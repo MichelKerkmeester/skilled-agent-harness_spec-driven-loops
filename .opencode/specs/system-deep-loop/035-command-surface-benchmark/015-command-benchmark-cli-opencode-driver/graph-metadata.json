@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
+  "spec_folder": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver",
+  "parent_id": "system-deep-loop/035-command-surface-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command benchmark cli-opencode driver",
+      "add cli-opencode leg to command benchmark",
+      "deep command-benchmark opencode executor"
+    ],
+    "key_topics": [
+      "command",
+      "benchmark",
+      "cli-opencode",
+      "driver",
+      "leg",
+      "deep",
+      "command-benchmark",
+      "opencode",
+      "executor",
+      "command-surface",
+      "behavior",
+      "scenarios"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "command-benchmark-matrix.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-command-behavior-matrix.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios can run under cli-opencode executors (e.g. deepseek-v4-pro, mimo-v2.5-pro), alongside the existing frozen claude-cli and gpt-fast legs. Touches the behavior-matrix driver config and its scheduler; honors cli-opencode dispatch rules. Runtime-affecting.",
+    "created_at": "2026-07-22T05:45:31.136Z",
+    "last_save_at": "2026-07-22T05:45:31.136Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e19ce21c78797e38febe0f9afe4d51e91c89f3d9654c9e695bb553bb4316558e",
+    "source_doc_hashes": {
+      "spec.md": "ae3f218e7197f28902097a71bf3d6f016d37332d162a32da76792f7b52f13193"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

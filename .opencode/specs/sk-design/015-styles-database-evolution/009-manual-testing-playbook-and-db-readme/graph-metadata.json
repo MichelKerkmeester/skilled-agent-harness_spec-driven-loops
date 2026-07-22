@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme",
+  "spec_folder": "sk-design/015-styles-database-evolution/009-manual-testing-playbook-and-db-readme",
+  "parent_id": "sk-design/015-styles-database-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles manual testing playbook realign",
+      "create-manual-testing-playbook conformance styles",
+      "styles database readme speckit alignment"
+    ],
+    "key_topics": [
+      "styles",
+      "manual",
+      "testing",
+      "playbook",
+      "realign",
+      "create-manual-testing-playbook",
+      "conformance",
+      "database",
+      "readme",
+      "speckit",
+      "alignment",
+      "bring"
+    ],
+    "importance_tier": "standard",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/styles/database/README.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/database/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Styles Manual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the README",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Bring the styles manual-testing playbook into conformance with the sk-doc create-manual-testing-playbook standard and move it out of docs/ into its canonical location; and expand styles/database/README.md to match the README style used by the spec-kit database folders. Documentation-only; no runtime, schema, or data change.",
+    "created_at": "2026-07-22T05:45:30.888Z",
+    "last_save_at": "2026-07-22T05:45:30.888Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:11067f5ae665cbbeaa94e6b598a0ddf4fd739dfdbbe7904c1be75c05b0a44aed",
+    "source_doc_hashes": {
+      "spec.md": "a6a4925b2695543b4d7c270ca1a819e1bc039e7992da4a5f1b4c2270424d2a3d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

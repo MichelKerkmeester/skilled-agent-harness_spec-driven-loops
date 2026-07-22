@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-styles-database-evolution/008-styles-readme-create-readme-alignment",
+  "spec_folder": "sk-design/015-styles-database-evolution/008-styles-readme-create-readme-alignment",
+  "parent_id": "sk-design/015-styles-database-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles readme create-readme alignment",
+      "expand sk-design readmes to sk-doc standard",
+      "sk-design readme usefulness template"
+    ],
+    "key_topics": [
+      "styles",
+      "readme",
+      "create-readme",
+      "alignment",
+      "expand",
+      "sk-design",
+      "readmes",
+      "sk-doc",
+      "standard",
+      "usefulness",
+      "template",
+      "align"
+    ],
+    "importance_tier": "standard",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/README.md",
+      ".opencode/skills/sk-design/styles/library/README.md",
+      ".opencode/skills/sk-doc/create-readme/assets/readme-template.md",
+      ".opencode/skills/sk-design/styles/lib/README.md",
+      ".opencode/skills/sk-design/styles/lib/engine/README.md",
+      ".opencode/skills/sk-design/styles/lib/database/README.md",
+      ".opencode/skills/sk-design/styles/library/bundles/README.md",
+      ".opencode/skills/sk-design/styles/library/manifests/README.md",
+      ".opencode/skills/sk-design/styles/scripts/README.md",
+      ".opencode/skills/sk-design/styles/tests/database/README.md",
+      ".opencode/skills/sk-design/styles/tests/engine/README.md",
+      ".opencode/skills/sk-design/styles/tests/oracle/README.md",
+      ".opencode/skills/sk-design/styles/tests/oracle/golden/README.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-readme/assets/readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-readme",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Expand and align twelve sk-design READMEs (the styles-library folder READMEs plus the sk-design skill-root README) to the sk-doc create-readme template and quality standard. They are currently thin stubs; make each genuinely useful — purpose, contents, usage, key files, architecture fit — without touching code or bundle data.",
+    "created_at": "2026-07-22T05:45:30.641Z",
+    "last_save_at": "2026-07-22T05:45:30.641Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0bbd37456f349b53bdc3ab40dbe9630e690739761c00d1487fb5a3a8b96a4320",
+    "source_doc_hashes": {
+      "spec.md": "d32cb6abc27d45227f6b80446a1922445a6c106e5fde3cb60860f0ee91fb1d90"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

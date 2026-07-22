@@ -30,7 +30,8 @@
     "system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation",
     "system-deep-loop/035-command-surface-benchmark/012-command-improvement-research",
     "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
-    "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research"
+    "system-deep-loop/035-command-surface-benchmark/014-command-asset-layer-research",
+    "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver"
   ],
   "manual": {
     "depends_on": [],
@@ -138,7 +139,7 @@
     ],
     "causal_summary": "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (36 baseline, 37 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself.",
     "created_at": "2026-07-14T20:25:28.626Z",
-    "last_save_at": "2026-07-16T16:34:21.017Z",
+    "last_save_at": "2026-07-22T05:48:51.676Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
