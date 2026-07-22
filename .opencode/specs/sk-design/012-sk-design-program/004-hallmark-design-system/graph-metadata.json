@@ -7,7 +7,8 @@
     "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes",
     "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
     "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
-    "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
+    "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane",
+    "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets"
   ],
   "manual": {
     "depends_on": [],
@@ -86,7 +87,7 @@
     ],
     "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, and a brand-first lane — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-07-22T16:57:33.777Z",
+    "last_save_at": "2026-07-22T19:16:29.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

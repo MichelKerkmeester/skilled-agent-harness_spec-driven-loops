@@ -83,7 +83,7 @@ function validateQueryVector(queryVector) {
 }
 
 function requestFingerprint(request, candidateK, profile) {
-  return digest(stableJson({
+  const fingerprintRequest = {
     text: request.text ?? '',
     requiredFacets: (request.requiredFacets ?? []).map(normalizeFacet).sort(compareRawStrings),
     exclusions: (request.exclusions ?? []).map(normalizeFacet).sort(compareRawStrings),
@@ -98,7 +98,16 @@ function requestFingerprint(request, candidateK, profile) {
     disableVector: request.disableVector === true,
     candidateK,
     fusionProfile: profile,
-  }));
+  };
+  if (request.requiredCompositionFacets !== undefined) {
+    fingerprintRequest.requiredCompositionFacets = request.requiredCompositionFacets
+      .map(normalizeFacet).sort(compareRawStrings);
+  }
+  if (request.compositionFacets !== undefined) {
+    fingerprintRequest.compositionFacets = request.compositionFacets
+      .map(normalizeFacet).sort(compareRawStrings);
+  }
+  return digest(stableJson(fingerprintRequest));
 }
 
 function loadEligibility(database, request, telemetry) {
@@ -129,9 +138,16 @@ function loadEligibility(database, request, telemetry) {
   const sectionRows = database.prepare(`
     SELECT style_rowid, name FROM style_sections WHERE style_rowid IN (${bindings})
   `).all(...ids);
-  facetsLoadSpan?.end(termRows.length + axisRows.length + sectionRows.length);
+  const compositionRows = database.prepare(`
+    SELECT style_rowid, facet FROM style_composition_facets
+    WHERE style_rowid IN (${bindings})
+  `).all(...ids);
+  facetsLoadSpan?.end(
+    termRows.length + axisRows.length + sectionRows.length + compositionRows.length,
+  );
   const facetsAssembleSpan = telemetry?.span('eligibility.facets.assemble', RESIDENCY.JS_RESIDENT);
   const facetsById = new Map(ids.map((id) => [Number(id), new Set()]));
+  const compositionFacetsById = new Map(ids.map((id) => [Number(id), new Set()]));
   for (const term of termRows) {
     facetsById.get(Number(term.style_rowid)).add(normalizeFacet(term.term));
   }
@@ -141,16 +157,24 @@ function loadEligibility(database, request, telemetry) {
   for (const section of sectionRows) {
     facetsById.get(Number(section.style_rowid)).add(normalizeFacet(section.name));
   }
+  for (const composition of compositionRows) {
+    compositionFacetsById.get(Number(composition.style_rowid))
+      .add(normalizeFacet(composition.facet));
+  }
   facetsAssembleSpan?.end(rows.length);
   const filterSpan = telemetry?.span('eligibility.filter', RESIDENCY.JS_RESIDENT);
   const required = (request.requiredFacets ?? []).map(normalizeFacet).filter(Boolean);
   const excluded = (request.exclusions ?? []).map(normalizeFacet).filter(Boolean);
+  const requiredComposition = (request.requiredCompositionFacets ?? [])
+    .map(normalizeFacet).filter(Boolean);
   const exactReuse = request.usage === 'exact-reuse' || request.exactReuse === true;
   const eligible = rows.filter((row) => {
     const facets = facetsById.get(Number(row.style_rowid));
+    const compositionFacets = compositionFacetsById.get(Number(row.style_rowid));
     if (row.theme) facets.add(normalizeFacet(row.theme));
     if (row.license_status === 'restricted') facets.add('license-restricted');
     return required.every((facet) => facets.has(facet))
+      && requiredComposition.every((facet) => compositionFacets.has(facet))
       && excluded.every((facet) => !facets.has(facet))
       && row.provenance_status === 'known'
       && (!exactReuse || (
@@ -159,7 +183,9 @@ function loadEligibility(database, request, telemetry) {
   }).map((row) => ({
     ...row,
     facets: facetsById.get(Number(row.style_rowid)),
+    compositionFacets: compositionFacetsById.get(Number(row.style_rowid)),
     matchedRequiredFacets: required,
+    matchedRequiredCompositionFacets: requiredComposition,
   }));
   filterSpan?.end(eligible.length);
   return { eligible, rejectedCount: rows.length - eligible.length, activeCount: rows.length };
@@ -168,6 +194,7 @@ function loadEligibility(database, request, telemetry) {
 function structuredLane(database, eligible, request, candidateK, telemetry) {
   const axes = new Set((request.axes ?? []).map(normalizeFacet));
   const needs = new Set((request.needs ?? []).map(normalizeFacet));
+  const compositionFacets = new Set((request.compositionFacets ?? []).map(normalizeFacet));
   const ids = eligible.map((row) => row.style_rowid);
   if (ids.length === 0) return [];
   const loadSpan = telemetry?.span('lane.structured.load', RESIDENCY.NATIVE);
@@ -190,7 +217,10 @@ function structuredLane(database, eligible, request, candidateK, telemetry) {
   const ranked = eligible.map((row) => ({
     id: row.style_id,
     rawScore: row.matchedRequiredFacets.length * 10
+      + row.matchedRequiredCompositionFacets.length * 10
       + [...axes].filter((axis) => axisById.get(Number(row.style_rowid)).has(axis)).length * 2
+      + [...compositionFacets]
+        .filter((facet) => row.compositionFacets.has(facet)).length * 2
       + [...needs].filter((need) => capabilitiesById.get(Number(row.style_rowid)).has(need)).length,
   })).sort((left, right) => right.rawScore - left.rawScore
     || compareRawStrings(left.id, right.id)).slice(0, candidateK);

@@ -72,6 +72,72 @@ test('aggregate content identity is stable across locator-only slug renames', ()
   assert.equal(after, before);
 });
 
+test('indexer populates deterministic measured composition DNA', async (context) => {
+  const { database, fixture } = await createIndexedFixture(context);
+  const before = database.prepare(`
+    SELECT composition_dna_json FROM styles WHERE slug = 'alpha'
+  `).get().composition_dna_json;
+  assert.deepEqual(JSON.parse(before), {
+    version: 1,
+    evidence: {
+      source: 'indexed-style-artifacts',
+      confidence: 'high',
+      inputs: [
+        'DESIGN.md headings',
+        'canonical.designSystem.layout',
+        'design token axes',
+      ],
+    },
+    regionLayout: {
+      descriptor: 'Centered grid',
+      regionCount: 4,
+      sequence: [
+        'tokens-colors',
+        'tokens-typography',
+        'tokens-spacing-shapes',
+        'components',
+      ],
+    },
+    compositionAxes: {
+      layout: ['centered', 'grid'],
+      primaryTokenAxis: 'color',
+      tokenEmphasis: [
+        { axis: 'color', count: 1 },
+        { axis: 'spacing', count: 1 },
+        { axis: 'typography', count: 1 },
+      ],
+    },
+    navigation: { shape: 'not-documented', regions: [] },
+    footer: { shape: 'not-documented', regions: [] },
+  });
+  assert.deepEqual(database.prepare(`
+    SELECT facet FROM style_composition_facets c
+    JOIN styles s USING(style_rowid) WHERE s.slug = 'alpha' ORDER BY facet ASC
+  `).all().map((row) => row.facet), [
+    'axis-centered',
+    'axis-grid',
+    'footer-not-documented',
+    'layout-centered-grid',
+    'navigation-not-documented',
+    'region-components',
+    'region-tokens-colors',
+    'region-tokens-spacing-shapes',
+    'region-tokens-typography',
+    'regions-4',
+    'token-emphasis-color',
+  ]);
+  const repeated = await indexStyleCorpus({
+    corpusRoot: fixture.root,
+    database,
+    corpusWalkMode: 'migration',
+    verifyAll: true,
+  });
+  assert.equal(repeated.indexed, 0);
+  assert.equal(database.prepare(`
+    SELECT composition_dna_json FROM styles WHERE slug = 'alpha'
+  `).get().composition_dna_json, before);
+});
+
 test('full rebuild validates staging and preserves a rollback generation', async (context) => {
   const fixture = await createFixtureCorpus();
   context.after(fixture.cleanup);

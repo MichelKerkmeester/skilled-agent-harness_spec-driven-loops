@@ -46,6 +46,7 @@ const SCHEMA_SQL = `
     thesis TEXT NOT NULL,
     theme TEXT,
     industry TEXT,
+    composition_dna_json TEXT NOT NULL DEFAULT '{}',
     aggregate_hash TEXT NOT NULL,
     retrieval_hash TEXT NOT NULL,
     quarantine_at TEXT,
@@ -92,6 +93,12 @@ const SCHEMA_SQL = `
     term_type TEXT NOT NULL CHECK (term_type IN ('facet', 'capability')),
     term TEXT NOT NULL,
     PRIMARY KEY (style_rowid, term_type, term)
+  ) WITHOUT ROWID, STRICT;
+
+  CREATE TABLE IF NOT EXISTS style_composition_facets (
+    style_rowid INTEGER NOT NULL REFERENCES styles(style_rowid) ON DELETE CASCADE,
+    facet TEXT NOT NULL,
+    PRIMARY KEY (style_rowid, facet)
   ) WITHOUT ROWID, STRICT;
 
   CREATE TABLE IF NOT EXISTS style_token_axes (
@@ -254,6 +261,8 @@ const SCHEMA_SQL = `
     ON styles(theme, style_id) WHERE lifecycle_state = 'active';
   CREATE INDEX IF NOT EXISTS idx_styles_lifecycle ON styles(lifecycle_state, style_id);
   CREATE INDEX IF NOT EXISTS idx_style_terms_lookup ON style_terms(term_type, term, style_rowid);
+  CREATE INDEX IF NOT EXISTS idx_composition_facets_lookup
+    ON style_composition_facets(facet, style_rowid);
   CREATE INDEX IF NOT EXISTS idx_style_axes_lookup ON style_token_axes(axis, style_rowid);
   CREATE INDEX IF NOT EXISTS idx_style_artifacts_path ON style_artifacts(relative_path);
   CREATE INDEX IF NOT EXISTS idx_style_vectors_profile ON style_vectors(profile_id, style_rowid);
@@ -299,6 +308,34 @@ export function createSchema(database) {
     }
   }
   database.exec(SCHEMA_SQL);
+  const styleColumns = new Set(database.prepare(`
+    PRAGMA table_info(styles)
+  `).all().map((column) => column.name));
+  if (!styleColumns.has('composition_dna_json')) {
+    database.exec('BEGIN IMMEDIATE');
+    try {
+      database.exec(`
+        ALTER TABLE styles
+        ADD COLUMN composition_dna_json TEXT NOT NULL DEFAULT '{}'
+      `);
+      database.exec('COMMIT');
+    } catch (error) {
+      database.exec('ROLLBACK');
+      throw error;
+    }
+  }
+  const requiredStyleColumns = new Set([
+    'style_rowid',
+    'style_id',
+    'slug',
+    'composition_dna_json',
+  ]);
+  const actualStyleColumns = new Set(database.prepare(`
+    PRAGMA table_info(styles)
+  `).all().map((column) => column.name));
+  if ([...requiredStyleColumns].some((column) => !actualStyleColumns.has(column))) {
+    throw new Error('Style database record schema is incomplete after migration.');
+  }
   const requiredIndexStateColumns = new Set([
     'style_rowid',
     'artifact_hint_hash',

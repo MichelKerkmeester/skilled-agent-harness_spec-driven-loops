@@ -6,7 +6,12 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { indexStyleCorpus } from '../../lib/database/indexer.mjs';
-import { queryPersistentStyles, weightedRrf } from '../../lib/database/retrieval.mjs';
+import {
+  FUSION_PROFILE,
+  queryPersistentStyles,
+  retrievalInternals,
+  weightedRrf,
+} from '../../lib/database/retrieval.mjs';
 import { openStyleDatabase } from '../../lib/database/schema.mjs';
 import {
   drainVectorQueue,
@@ -28,6 +33,39 @@ test('weighted RRF is rank-only, attributed, and UUID deterministic', () => {
     second.map(({ id, fusedScore }) => ({ id, fusedScore })));
   assert.equal(first[0].id, STYLE_ALPHA.id);
   assert.deepEqual(Object.keys(first[0].channelContributions).sort(), ['fts', 'structured']);
+});
+
+test('existing query fingerprints remain byte-compatible without composition facets', () => {
+  assert.equal(retrievalInternals.requestFingerprint({
+    text: 'style reference',
+    requiredFacets: ['warm surface'],
+  }, 50, FUSION_PROFILE), 'sha256:86e7aa340ebede8e807767155d3f40f339a2881318ddd2f1278065a7386b9257');
+});
+
+test('composition facet filters and ranking leave existing queries unchanged', async (context) => {
+  const { database } = await createIndexedFixture(context);
+  const existingRequest = { text: 'style reference', limit: 2 };
+  const before = queryPersistentStyles(existingRequest, { database });
+  const alpha = database.prepare(`
+    SELECT style_rowid FROM styles WHERE style_id = ?
+  `).get(STYLE_ALPHA.id);
+  database.prepare(`
+    INSERT INTO style_composition_facets(style_rowid, facet) VALUES (?, ?)
+  `).run(alpha.style_rowid, 'editorial-page-shape');
+
+  const filtered = queryPersistentStyles({
+    requiredCompositionFacets: ['editorial page shape'],
+  }, { database });
+  assert.deepEqual(filtered.cards.map((card) => card.id), [STYLE_ALPHA.id]);
+
+  const ranked = queryPersistentStyles({
+    compositionFacets: ['editorial page shape'],
+    disableFts: true,
+  }, { database });
+  assert.equal(ranked.cards[0].id, STYLE_ALPHA.id);
+
+  const after = queryPersistentStyles(existingRequest, { database });
+  assert.deepEqual(after, before);
 });
 
 test('eligibility precedes every lane and cursors remain deterministic', async (context) => {
