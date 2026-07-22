@@ -1,0 +1,32 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "description": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a",
+  "keywords": [
+    "repo-wide",
+    "scan",
+    "found",
+    "one",
+    "hundred",
+    "thirty-one",
+    "code",
+    "script",
+    "folders",
+    "opencode",
+    "skills",
+    "contain",
+    "source",
+    "files",
+    "readme"
+  ],
+  "lastUpdated": "2026-07-22T13:09:59.733Z",
+  "specId": "005",
+  "folderSlug": "code-readmes-infra-and-sk",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

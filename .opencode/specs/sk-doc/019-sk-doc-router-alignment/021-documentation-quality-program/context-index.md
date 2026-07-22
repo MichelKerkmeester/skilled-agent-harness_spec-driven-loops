@@ -8,7 +8,7 @@ Per-phase cross-reference for the `021-documentation-quality-program` phase pare
 | `002-reference-asset-template-alignment` | complete | 3 flagged create-skill reference/asset files conformed to ALL-CAPS headers + frontmatter; all three VALID. `h2UppercaseRequired` flip + deep HVR pass deferred (would fail 41 repo-wide offenders) |
 | `003-doc-tooling-and-template-fixes` | complete | Fixed `validate_document.py` symlink path (4 sites, `.resolve()`); added 2 `skill-readme-template.md` clarifications + version bump. `audit_readmes.py` doc deferred to its phase-005 code README |
 | `004-skill-mode-readme-overhaul` | complete | 14 READMEs to the 9-section template: 11 sk-doc mode full rewrites, 2 terse sk-code surface additions, `sk-git` AT A GLANCE insert. All VALID, 0 em dashes. Fixed stale asset paths in `create-readme` and `create-command` |
-| `005-code-readmes-infra-and-sk` | planned | Code READMEs: small-infra hubs + sk-doc/sk-code |
+| `005-code-readmes-infra-and-sk` | complete | 33 code READMEs authored (8 sk-doc, 6 sk-code, 6 system-code-graph, 5 skill-advisor, 4 mcp-code-mode, 3 mcp-tooling, 1 cli). All VALID, CONTENTS cross-checked, 0 em dashes |
 | `006-code-readmes-design-prompt-speckit` | planned | Code READMEs: sk-design, sk-prompt, system-spec-kit |
 | `007-code-readmes-deep-loop` | planned | Code READMEs: system-deep-loop; stale runtime catalog fixes |
 | `008-verification-and-closeout` | planned | Full validation gate; conformance sweeps; optional-extension decisions |

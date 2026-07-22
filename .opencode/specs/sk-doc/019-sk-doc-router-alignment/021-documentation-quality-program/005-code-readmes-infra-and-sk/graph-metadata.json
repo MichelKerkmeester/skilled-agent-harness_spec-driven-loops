@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/004-skill-mode-readme-overhaul",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,33 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "skill mode readme overhaul",
-      "bare readme rewrite",
-      "skill readme template migration",
-      "readme overhaul summary",
-      "skill readme swarm",
-      "fourteen readmes validated"
+      "code readmes infra batch",
+      "per-folder code readme",
+      "script folder readme authoring",
+      "code readmes infra summary",
+      "thirty-three code readmes",
+      "per-folder readme swarm"
     ],
     "key_topics": [
-      "skill",
-      "mode",
+      "code",
+      "readmes",
+      "infra",
+      "batch",
+      "per-folder",
       "readme",
-      "overhaul",
-      "bare",
-      "rewrite",
-      "template",
-      "migration",
+      "script",
+      "folder",
+      "authoring",
       "summary",
-      "swarm",
-      "fourteen",
-      "readmes"
+      "thirty-three",
+      "swarm"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/README.md",
-      ".opencode/skills/sk-doc/create-readme/README.md",
-      ".opencode/skills/sk-git/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -45,12 +42,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/README.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -94,7 +85,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Rewrite",
+        "name": "Purpose Author",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -112,7 +103,7 @@
         "source": "derived"
       },
       {
-        "name": "every",
+        "name": "an",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -136,6 +127,12 @@
         "source": "derived"
       },
       {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -143,12 +140,6 @@
       },
       {
         "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Template Section",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,12 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -188,11 +173,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
-    "created_at": "2026-07-22T12:50:05.876Z",
-    "last_save_at": "2026-07-22T13:08:26.635Z",
+    "causal_summary": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a developer opening one gets no orientation before reading the code",
+    "created_at": "2026-07-22T13:08:27.050Z",
+    "last_save_at": "2026-07-22T13:10:00.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:385425ded68cb0fb4dc7cea45ee470334662b29f4a793d6e3802819b5679dbbf",
+    "source_fingerprint": "sha256:57a2b4cf4af1cbe78c1e4d784a9d8a607164d8cb17099ff065e1f3d9f9ee7978",
     "source_doc_hashes": {
-      "spec.md": "80b29cb20a95997983000b5a710227bbaa97e9228b15763ee224af9229907c9e",
-      "plan.md": "21bf1454626de38dfa4a831b2f976433fa6e2ef3d368bc546fb8e39d7a401c0f",
-      "tasks.md": "ce7579d594e2ce818d80a196efa3198304401533a435b5f01e9e0c9ddfbdea8b",
-      "checklist.md": "6be86674fd93ecad4f62a8d1364a8063ce1f68cab8d74cc0f43886032db1d8a9",
-      "implementation-summary.md": "df75a65c36cfa34dec28272f6b37b77df84d6422dd5cf3784f159133052d298f"
+      "spec.md": "61c068b6a4842be0735e2f3c95ca5fdc16ecb54a508409335f2a0eb93786a6c3",
+      "plan.md": "683be0091299bc7ce2b5d2c35b83889b19179884e453d31653b37548688af26d",
+      "tasks.md": "39580c1731bcce4c4e39ad387a86646a62cc831389cbfd9c944e2b5f3ae569db",
+      "checklist.md": "0bebcd1413f7fc1c277af5452c38ce41eeab7968cc5946dd7f4ba11cc3c63701",
+      "implementation-summary.md": "449ccb76b25f3a9c968588bdf1e6563a9053d6a85d814614b350ce1ca47952bf"
     },
     "last_active_child_id": null,
     "last_active_at": null
