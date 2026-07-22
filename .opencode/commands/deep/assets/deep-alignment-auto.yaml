@@ -427,6 +427,10 @@ workflow:
             import { execFileSync } from 'node:child_process';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import {
+              snapshotOutOfScopeDirtyPaths,
+              enforceWriteContainment,
+            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
 
             // Fail closed: a requested codex executor must dispatch codex or abort,
             // never silently degrade to another executor. The branch exits non-zero
@@ -475,20 +479,43 @@ workflow:
             args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
 
             const dispatchId = 'alignment-i{current_iteration}-g{generation}';
-            process.exit(
-              runAuditedExecutorCommand({
-                command: 'codex',
-                args,
-                cwd: '{repo_root}',
-                timeoutSeconds: executor.timeoutSeconds,
-                stateLogPath: '{state_paths.state_log}',
-                executor,
-                iteration: Number('{current_iteration}'),
-                input: promptBody,
-                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-                dispatchId,
-              }),
-            );
+            const repoRoot = '{repo_root}';
+            const artifactDir = '{artifact_dir}';
+            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+            const dispatchExit = runAuditedExecutorCommand({
+              command: 'codex',
+              args,
+              cwd: repoRoot,
+              timeoutSeconds: executor.timeoutSeconds,
+              stateLogPath: '{state_paths.state_log}',
+              executor,
+              iteration: Number('{current_iteration}'),
+              input: promptBody,
+              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+              dispatchId,
+            });
+            // Structural write-containment: a workspace-write codex leaf can write
+            // anywhere in the repo. Revert any NEW out-of-artifact-dir change it
+            // made, append a containment_violation event to the state log, and
+            // fail the iteration fail-closed. The leaf's own writes under
+            // artifactDir (iteration file/delta/state record) are never flagged.
+            const containment = enforceWriteContainment({
+              repoRoot,
+              artifactDir,
+              preDispatchDirtyPaths,
+              stateLogPath: '{state_paths.state_log}',
+              iteration: Number('{current_iteration}'),
+              label: dispatchId,
+            });
+            if (containment.violations.length > 0) {
+              console.error(
+                'write-containment violation: reverted ' + containment.violations.length
+                  + ' out-of-scope path(s): '
+                  + containment.violations.map((v) => v.path).join(', '),
+              );
+              process.exit(1);
+            }
+            process.exit(dispatchExit);
             EOF
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
