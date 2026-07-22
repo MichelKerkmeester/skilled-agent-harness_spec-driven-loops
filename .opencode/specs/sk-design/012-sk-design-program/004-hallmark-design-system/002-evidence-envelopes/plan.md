@@ -4,7 +4,7 @@ description: "Plan for specifying and wiring the owned-asset manifest, motionCha
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 2 implementation plan (planned)"
@@ -121,7 +121,7 @@ Add or extend tests for conditional Motion section wiring (detector evidence pre
 ## 6. DEPENDENCIES
 
 - Phase 1 (`001-surgical-fixes`) completion.
-- Hallmark adoption research syntheses (`../../014-hallmark-design-skill-research/001-research/research/`).
+- Hallmark adoption research syntheses (`../../001-research/004-hallmark-design-skill-research/research/`).
 - The existing `MotionSystem` detector (unchanged, consumed as-is).
 - The existing v3 DESIGN.md schema/formatter/validator (`design-md-generator/backend/scripts/`).
 <!-- /ANCHOR:dependencies -->

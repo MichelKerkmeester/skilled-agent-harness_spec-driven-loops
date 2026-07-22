@@ -4,7 +4,7 @@ description: "Planned task breakdown for authoring the Phase 3 structural-finger
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 3 task breakdown (planned)"
@@ -38,8 +38,8 @@ Tasks use `T00N` identifiers in execution order. Each task cites its grounding s
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read Hallmark's `structure.md` six axes and `macrostructures/*` leaf shape as architecture-only grounding (read-only; external MIT source). [SOURCE: `../../014-hallmark-design-skill-research/001-research/research/` syntheses]
-- [ ] T002 Read both synthesis documents' Eliminated Alternatives sections (`lineages/sol-opencode/research.md`, `lineages/sol-codex/research.md`) to confirm the never-copy rationale before authoring. [SOURCE: `../../014-hallmark-design-skill-research/001-research/research/` syntheses]
+- [ ] T001 Read Hallmark's `structure.md` six axes and `macrostructures/*` leaf shape as architecture-only grounding (read-only; external MIT source). [SOURCE: `../../001-research/004-hallmark-design-skill-research/research/` syntheses]
+- [ ] T002 Read both synthesis documents' Eliminated Alternatives sections (`lineages/sol-opencode/research.md`, `lineages/sol-codex/research.md`) to confirm the never-copy rationale before authoring. [SOURCE: `../../001-research/004-hallmark-design-skill-research/research/` syntheses]
 - [ ] T003 Apply the responsive-collapse decision fixed in spec.md REQ-003 (single shared gate, not baked per card) when scaffolding the card template, so no card authors a bespoke collapse rule. [SOURCE: spec.md REQ-003]
 - [ ] T004 Scaffold the `.opencode/skills/sk-design/shared/references/structural-fingerprint-cards/` directory. [SOURCE: spec.md Files to Change]
 <!-- /ANCHOR:phase-1 -->
@@ -80,6 +80,6 @@ All of T001-T010 complete with evidence; 6-8 cards, the index, and the stamp che
 - `spec.md` REQ-001 through REQ-006
 - `plan.md` Phase 1 through Phase 3
 - `checklist.md` CHK-001 through CHK-012
-- `../../014-hallmark-design-skill-research/001-research/research/` (grounding syntheses)
+- `../../001-research/004-hallmark-design-skill-research/research/` (grounding syntheses)
 - `../002-evidence-envelopes/` (stamp/evidence mechanism dependency)
 <!-- /ANCHOR:cross-refs -->

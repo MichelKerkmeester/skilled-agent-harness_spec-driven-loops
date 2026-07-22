@@ -4,11 +4,11 @@ description: "Phase 1 implementation plan for landing five Hallmark-grounded heu
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:00:04Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 1 implementation plan (planned)"
-    next_safe_action: "Begin Phase 1 implementation per tasks.md"
+    last_updated_by: "implementation-agent"
+    recent_action: "Executed the plan and completed all validation gates"
+    next_safe_action: "None; packet complete"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ Five workstreams land in this phase: (1) a hero/media signature-role + deletion-
 
 ### Definition of Ready
 
-- `spec.md` for this phase is approved; the `014-hallmark-design-skill-research/001-research/research/` syntheses are available as grounding; the nine target reference files in `spec.md` §3 are identified and confirmed to exist.
+- `spec.md` for this phase is approved; the `001-research/004-hallmark-design-skill-research/research/` syntheses are available as grounding; the nine target reference files in `spec.md` §3 are identified and confirmed to exist.
 
 ### Definition of Done
 
@@ -64,7 +64,7 @@ Documentation-only reference-file amendment: each workstream lands as a new or e
 
 ### Data Flow
 
-Hallmark research syntheses (`014-hallmark-design-skill-research/001-research/research/`) flow through a clean-room ADAPT step (independently-worded heuristics grounded in the concept, never verbatim transcription) into the target mode-owned reference file. That file is then consulted at design/audit time by the existing read-only `design-interface`, `design-audit`, and `design-foundations` workflows. No runtime execution path, data store, or command surface changes; only the advisory reference content consulted during design/audit work changes.
+Hallmark research syntheses (`001-research/004-hallmark-design-skill-research/research/`) flow through a clean-room ADAPT step (independently-worded heuristics grounded in the concept, never verbatim transcription) into the target mode-owned reference file. That file is then consulted at design/audit time by the existing read-only `design-interface`, `design-audit`, and `design-foundations` workflows. No runtime execution path, data store, or command surface changes; only the advisory reference content consulted during design/audit work changes.
 
 ### Key Components
 
@@ -109,8 +109,8 @@ This is a documentation-only packet: no application code changes, so no unit/int
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- `.opencode/specs/sk-design/014-hallmark-design-skill-research/001-research/research/` — Hallmark adoption research syntheses (grounding source).
-- `.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/` — MIT-licensed Hallmark source; read-only grounding, never copied verbatim.
+- `.opencode/specs/sk-design/001-research/004-hallmark-design-skill-research/research/` — Hallmark adoption research syntheses (grounding source).
+- `.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/` — MIT-licensed Hallmark source; read-only grounding, never copied verbatim.
 - The nine existing sk-design mode reference/procedure files listed in `spec.md` §3 Files to Change.
 <!-- /ANCHOR:dependencies -->
 

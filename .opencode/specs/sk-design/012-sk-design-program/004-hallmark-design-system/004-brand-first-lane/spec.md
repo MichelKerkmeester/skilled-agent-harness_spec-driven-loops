@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 4 specification (planned; not implemented)"
@@ -44,10 +44,10 @@ _memory:
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `016-hallmark-adoption` |
+| **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Predecessor** | `003-authored-cards` |
 | **Phase** | 4 of 4 |
-| **Implements** | `../../014-hallmark-design-skill-research/001-research/research/` (Hallmark adoption research syntheses) |
+| **Implements** | `../../001-research/004-hallmark-design-skill-research/research/` (Hallmark adoption research syntheses) |
 <!-- /ANCHOR:metadata -->
 
 ---

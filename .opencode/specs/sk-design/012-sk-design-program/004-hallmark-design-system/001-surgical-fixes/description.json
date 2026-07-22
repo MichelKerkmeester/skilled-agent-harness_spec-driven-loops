@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes",
-  "description": "Hallmark (an external, MIT-licensed static-site design skill researched in packet `014-hallmark-design-skill-research`) encodes several heuristics",
+  "description": "Hallmark (an external, MIT-licensed static-site design skill researched in packet",
   "keywords": [
     "hallmark",
     "external",
@@ -10,13 +10,9 @@
     "design",
     "skill",
     "researched",
-    "packet",
-    "014-hallmark-design-skill-research",
-    "encodes",
-    "several",
-    "heuristics"
+    "packet"
   ],
-  "lastUpdated": "2026-07-22T16:27:33.298Z",
+  "lastUpdated": "2026-07-22T17:47:16.081Z",
   "specId": "001",
   "folderSlug": "surgical-fixes",
   "parentChain": [

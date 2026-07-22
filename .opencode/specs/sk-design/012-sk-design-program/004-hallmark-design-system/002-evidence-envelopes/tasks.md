@@ -4,7 +4,7 @@ description: "Task breakdown for authoring and wiring the owned-asset manifest, 
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 2 task breakdown (planned)"
@@ -40,7 +40,7 @@ _memory:
 
 - [ ] T001 Verify the three cited sk-design wiring points (`schema-v3.ts:134`, `types.ts:258`, `design-md-format.md:200`) against current code before any edits. [SOURCE: spec.md Open Questions]
 - [ ] T002 Confirm Phase 1 (`001-surgical-fixes`) is complete before starting Phase 2 implementation. [SOURCE: spec.md Metadata Predecessor]
-- [ ] T003 Review both Hallmark adoption research syntheses for manifest and motion grounding. [SOURCE: ../../014-hallmark-design-skill-research/001-research/research/]
+- [ ] T003 Review both Hallmark adoption research syntheses for manifest and motion grounding. [SOURCE: ../../001-research/004-hallmark-design-skill-research/research/]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -79,8 +79,8 @@ All 12 tasks are marked `[x]` with cited evidence; `checklist.md` is fully verif
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Parent packet: `../spec.md` (`016-hallmark-adoption`)
+- Parent packet: `../spec.md` (`012-sk-design-program/004-hallmark-design-system`)
 - Predecessor: `../001-surgical-fixes/`
 - Successor: `../003-authored-cards/`
-- Research grounding: `../../014-hallmark-design-skill-research/001-research/research/`
+- Research grounding: `../../001-research/004-hallmark-design-skill-research/research/`
 <!-- /ANCHOR:cross-refs -->

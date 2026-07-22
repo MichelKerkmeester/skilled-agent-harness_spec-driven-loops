@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 2 specification (planned; not implemented)"
@@ -44,11 +44,11 @@ _memory:
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `016-hallmark-adoption` |
+| **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Predecessor** | `001-surgical-fixes` |
 | **Successor** | `003-authored-cards` |
 | **Phase** | 2 of 4 |
-| **Implements** | `../../014-hallmark-design-skill-research/001-research/research/` (Hallmark adoption research syntheses) |
+| **Implements** | `../../001-research/004-hallmark-design-skill-research/research/` (Hallmark adoption research syntheses) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -140,7 +140,7 @@ Specify three provider-neutral, clean-room evidence envelopes — the owned-asse
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Dependency:** Phase 1 (`001-surgical-fixes`) completion; the Hallmark adoption research syntheses (`../../014-hallmark-design-skill-research/001-research/research/`); the existing `MotionSystem` detector; the existing v3 DESIGN.md schema/formatter/validator under `design-md-generator/backend/scripts/`.
+- **Dependency:** Phase 1 (`001-surgical-fixes`) completion; the Hallmark adoption research syntheses (`../../001-research/004-hallmark-design-skill-research/research/`); the existing `MotionSystem` detector; the existing v3 DESIGN.md schema/formatter/validator under `design-md-generator/backend/scripts/`.
 - **Risk:** the three cited sk-design wiring points (`schema-v3.ts:134`, `types.ts:258`, `design-md-format.md:200`) are unverified against current code — see Open Questions; a mismatch could require re-scoping the wiring task.
 - **Risk:** introducing named-theme duration multipliers instead of mapping `motionCharacter` onto existing bands would violate this packet's core design constraint.
 - **Licensing:** Hallmark is MIT-licensed (`external/hallmark/LICENSE`). This packet prefers clean-room adaptation; the manifest schema itself is clean-room and provider-neutral (its distinguishing fields are net-new). If any table substantially copies Hallmark's manifest or motion text, Hallmark's MIT notice must be added. External images/fonts/third-party assets are out of scope — not covered by the repo's MIT grant — and the manifest only ever references owned assets by their own rights, never Hallmark binaries.

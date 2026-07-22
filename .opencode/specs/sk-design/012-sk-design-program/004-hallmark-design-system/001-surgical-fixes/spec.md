@@ -10,11 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:00:04Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 1 specification (planned; not implemented)"
-    next_safe_action: "Begin Phase 1 implementation per tasks.md"
+    last_updated_by: "implementation-agent"
+    recent_action: "Implemented and strictly validated all five workstreams"
+    next_safe_action: "None; packet complete"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/SKILL.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,14 +40,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `016-hallmark-adoption` |
+| **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Successor** | `002-evidence-envelopes` |
 | **Phase** | 1 of 4 |
-| **Implements** | `../../014-hallmark-design-skill-research/001-research/research/` (Hallmark adoption research syntheses) |
+| **Implements** | `../../001-research/004-hallmark-design-skill-research/research/` (Hallmark adoption research syntheses) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 
 ### Problem Statement
 
-Hallmark (an external, MIT-licensed static-site design skill researched in packet `014-hallmark-design-skill-research`) encodes several heuristics that sk-design's existing modes currently lack: a disciplined hero/media enrichment gate, an explicit multi-page coherence lock, a broader anti-slop audit probe set with cognitive/perceptual rationale, engineering-verifiable fallback-font layout-shift proof, and a target-derived responsive proof matrix. Adopting these heuristics naively risks importing Hallmark's incompatible all-or-nothing 58-gate posture in place of sk-design's evidence-first P0-P3 severity model, and risks introducing new modes or commands where none are needed.
+Hallmark (an external, MIT-licensed static-site design skill researched in packet `012-sk-design-program/001-research/004-hallmark-design-skill-research`) encodes several heuristics that sk-design's existing modes currently lack: a disciplined hero/media enrichment gate, an explicit multi-page coherence lock, a broader anti-slop audit probe set with cognitive/perceptual rationale, engineering-verifiable fallback-font layout-shift proof, and a target-derived responsive proof matrix. Adopting these heuristics naively risks importing Hallmark's incompatible all-or-nothing 58-gate posture in place of sk-design's evidence-first P0-P3 severity model, and risks introducing new modes or commands where none are needed.
 
 ### Purpose
 
@@ -73,7 +73,7 @@ Land five scoped, clean-room-adapted heuristic upgrades directly into the existi
 
 - **Interface hero/media contract** — a signature-role decision (zero-or-one enrichment archetype AND zero-or-one polish pattern, stamped into a CSS comment) plus a deletion test; Tier 0 (typography-only) heroes MUST pass.
 - **Multi-page coherence** — a MUST-SHARE vs MAY-DIFFER axis table for existing multi-page/system workflows, plus an amend-don't-override rule for lock exceptions.
-- **~7-15 new anti-slop audit probes**, each with a cognitive/perceptual rationale field, sequenced after the existing 6-axis pre-emit self-critique.
+- **~7-15 new anti-slop audit probes**, each with a cognitive/perceptual rationale field, sequenced after the 6-axis pre-emit self-critique (established in the ai-slop-check procedure by this lane).
 - **Fallback-font metric overrides + CLS proof** — `size-adjust`, `ascent-override`, `descent-override`, `line-gap-override` matched to the real face, plus `font-display: swap`, verified via a CLS score.
 - **Target-derived responsive proof matrix** — a hard floor at 320/375/414/768 CSS-px widths, pointer/hover feature queries (not width) for interaction capability, and a clickable-text-never-wraps fix order; the orientation/zoom extension is flagged as a net-new sk-design addition beyond Hallmark's width + pointer/hover scope.
 - Preserving sk-design's evidence-first P0-P3 severity model as the governing posture for all five workstreams.
@@ -82,7 +82,7 @@ Land five scoped, clean-room-adapted heuristic upgrades directly into the existi
 
 - New sk-design modes, or new `/interface:*` / `/design:*` commands.
 - Importing Hallmark's catalogs, recipes, or its all-or-nothing 58-gate posture.
-- Phases 2-4 of the parent `016-hallmark-adoption` packet (evidence envelopes and successor concerns).
+- Phases 2-4 of the parent `012-sk-design-program/004-hallmark-design-system` packet (evidence envelopes and successor concerns).
 - External Hallmark images, fonts, or third-party assets — excluded from the repository's MIT grant and not carried into sk-design.
 
 ### Files to Change
@@ -111,7 +111,7 @@ Land five scoped, clean-room-adapted heuristic upgrades directly into the existi
 |----|-------------|---------------------|
 | REQ-001 | Hero/media contract heuristic | A signature-role decision (zero-or-one enrichment archetype AND zero-or-one polish pattern, stamped into a CSS comment) and a deletion test are documented; Tier 0 (typography-only) heroes are defined as an always-acceptable PASS state. |
 | REQ-002 | Multi-page coherence lock | A MUST-SHARE axis list (wordmark/logotype, accent colour + placement at <=5% per viewport, display+body fonts, CTA voice, section-heading rhythm) and a MAY-DIFFER axis list (macrostructure within the page-type family, hero archetype within that family, marketing-only enrichment) are documented, with an amend-don't-override rule for lock exceptions. |
-| REQ-003 | Anti-slop audit probe set | ~7-15 new probes are documented, each carrying a cognitive/perceptual rationale field, sequenced after (not instead of) the existing 6-axis pre-emit self-critique. |
+| REQ-003 | Anti-slop audit probe set | ~7-15 new probes are documented, each carrying a cognitive/perceptual rationale field, sequenced after (not instead of) the 6-axis pre-emit self-critique (established in the ai-slop-check procedure by this lane). |
 | REQ-004 | Evidence-first severity model preserved | Every adapted heuristic is expressed as an evidence-first P0-P3 finding, not a binary gate; Hallmark's all-or-nothing 58-gate posture is explicitly not imported. |
 
 ### P1 - Required
@@ -135,9 +135,9 @@ Land five scoped, clean-room-adapted heuristic upgrades directly into the existi
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Dependency:** `../../014-hallmark-design-skill-research/001-research/research/` (Hallmark adoption research syntheses) and the existing sk-design mode reference files listed in §3 Files to Change.
+- **Dependency:** `../../001-research/004-hallmark-design-skill-research/research/` (Hallmark adoption research syntheses) and the existing sk-design mode reference files listed in §3 Files to Change.
 - **Risk:** Importing Hallmark's all-or-nothing 58-gate posture instead of adapting to evidence-first P0-P3 — mitigated by REQ-004 and by requiring clean-room ADAPT rather than verbatim transcription.
-- **Licensing risk:** Hallmark is MIT-licensed (`.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/LICENSE`). Prefer clean-room ADAPT with independently-worded heuristics grounded in the concept. If any probe table substantially copies Hallmark's gate text, add Hallmark's MIT notice to a third-party notice surface. External Hallmark images, fonts, and other third-party assets are SKIP — they are not covered by the repository's MIT grant.
+- **Licensing risk:** Hallmark is MIT-licensed (`.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/LICENSE`). Prefer clean-room ADAPT with independently-worded heuristics grounded in the concept. If any probe table substantially copies Hallmark's gate text, add Hallmark's MIT notice to a third-party notice surface. External Hallmark images, fonts, and other third-party assets are SKIP — they are not covered by the repository's MIT grant.
 <!-- /ANCHOR:risks -->
 
 ---
@@ -159,6 +159,6 @@ Land five scoped, clean-room-adapted heuristic upgrades directly into the existi
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Exact target reference file per workstream (e.g., extending `design-principles.md` vs. adding a dedicated `hero-media-contract.md`) will be confirmed during Phase 1 implementation.
-- Whether the CLS-score verification requirement (REQ-005) needs a new automated check or remains a manual audit step is not yet decided.
+- The nine existing files in §3 were extended in place; no dedicated hero/media file, mode, or command was created.
+- CLS-score verification is a manual audit-step requirement. This phase adds no automated CLS checker.
 <!-- /ANCHOR:questions -->

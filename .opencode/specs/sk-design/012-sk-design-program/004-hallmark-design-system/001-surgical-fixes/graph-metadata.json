@@ -14,8 +14,7 @@
       "hallmark surgical fixes",
       "anti-slop audit probes",
       "hero media contract",
-      "hallmark surgical fixes planned",
-      "hero media contract planned"
+      "hallmark surgical fixes implemented"
     ],
     "key_topics": [
       "hallmark",
@@ -26,13 +25,13 @@
       "hero",
       "media",
       "contract",
-      "planned",
+      "implemented",
       "external",
       "mit-licensed",
       "static-site"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md",
@@ -44,8 +43,8 @@
       ".opencode/skills/sk-design/design-audit/references/audit-contract.md",
       ".opencode/skills/sk-design/design-foundations/references/type/typography-system.md",
       ".opencode/skills/sk-design/design-foundations/references/layout/layout-responsive.md",
-      "spec.md",
       "checklist.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
@@ -112,15 +111,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -154,12 +153,6 @@
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -173,6 +166,12 @@
       },
       {
         "name": "Problem Statement Hallmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Hallmark (an external, MIT-licensed static-site design skill researched in packet `014-hallmark-design-skill-research`) encodes several heuristics that sk-design's existing modes currently lack: a disciplined hero/media enrichment gate, an explicit multi-page coherence lock, a broader anti-slop audit probe set with cognitive/perceptual rationale, engineering-verifiable fallback-font layout-shift proof, and a target-derived responsive proof matrix",
+    "causal_summary": "Hallmark (an external, MIT-licensed static-site design skill researched in packet `012-sk-design-program/001-research/004-hallmark-design-skill-research`) encodes several heuristics that sk-design's existing modes currently lack: a disciplined hero/media enrichment gate, an explicit multi-page coherence lock, a broader anti-slop audit probe set with cognitive/perceptual rationale, engineering-verifiable fallback-font layout-shift proof, and a target-derived responsive proof matrix",
     "created_at": "2026-07-20T09:08:50.381Z",
-    "last_save_at": "2026-07-22T16:57:30.212Z",
+    "last_save_at": "2026-07-22T18:00:05.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:583da51ac1898565269b5378292679414eb038a01d46d2b7b934592b3e745228",
+    "source_fingerprint": "sha256:f40948f097585e3bb5bb44b520959d5186ce47f4467364c1551bf43bfe20ac56",
     "source_doc_hashes": {
-      "spec.md": "02e6a905c7bd32a1c84b21e3033c7f5048d32b578888281e7ed2c4f5c77177b8",
-      "plan.md": "a5eda1bb9874eeb423b8364d98d411f805f96daca270262676605a318a28f3ac",
-      "tasks.md": "23b4be27e9df7cc0fea336e814da4ef4bb062599df46fbbd45eef3db6f6a9c88",
-      "checklist.md": "a51df3287f4b5212a19165b98c45d91c7ea8deda50c6b696d5b62ef485da219d",
-      "implementation-summary.md": "c82d93f1ba335fbc9e0f27e9013875f55048815b2ec8abe28a8ceb4f3271c5ba"
+      "spec.md": "01130308ade5d446ed83eb76b3b2e1e6da9dbbc7525698533dadf25eda601b10",
+      "plan.md": "18d8ab8fe7478097a56136c30db3632d62a4e902c28906c880f681b5edcca3d8",
+      "tasks.md": "0056bf483bf063a1ab76a6638aa7f89307e773aeeb3a8e069193f5d593a3c821",
+      "checklist.md": "d88f073a591ce838b4c6c8bfc9fe827b110bc6c37278d10915e5d6a8ef2fdf9b",
+      "implementation-summary.md": "acdf911030ed00d99217dcef1902c74b5de9c5adaad9c81b5dbfe7afad59aee5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -4,7 +4,7 @@ description: "Planned implementation route for authoring, indexing, and register
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 3 implementation plan (planned)"
@@ -32,7 +32,7 @@ _memory:
 
 ### Technical Context
 
-Markdown-only reference content inside the `sk-design` skill; no runtime code, command, or mode-registry identity changes. Grounded in Hallmark's `structure.md` (six axes) and `macrostructures/*` (leaf shape), read read-only at `.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/`, plus the 014 research syntheses (`lineages/sol-opencode/research.md`, `lineages/sol-codex/research.md`).
+Markdown-only reference content inside the `sk-design` skill; no runtime code, command, or mode-registry identity changes. Grounded in Hallmark's `structure.md` (six axes) and `macrostructures/*` (leaf shape), read read-only at `.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/`, plus the 014 research syntheses (`lineages/sol-opencode/research.md`, `lineages/sol-codex/research.md`).
 
 ### Overview
 
@@ -108,8 +108,8 @@ This is a content-only packet, so verification is manual and grep-based rather t
 ## 6. DEPENDENCIES
 
 - Phase 2 (`002-evidence-envelopes`) stamp/evidence mechanism, reused or extended for the card diversification stamp.
-- `../../014-hallmark-design-skill-research/001-research/research/` syntheses (authoritative grounding and Eliminated Alternatives rationale).
-- Hallmark `structure.md` (six axes) and `macrostructures/*` (leaf shape) -- read-only, architecture-only grounding at `.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/` (MIT-licensed).
+- `../../001-research/004-hallmark-design-skill-research/research/` syntheses (authoritative grounding and Eliminated Alternatives rationale).
+- Hallmark `structure.md` (six axes) and `macrostructures/*` (leaf shape) -- read-only, architecture-only grounding at `.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/` (MIT-licensed).
 <!-- /ANCHOR:dependencies -->
 
 ---

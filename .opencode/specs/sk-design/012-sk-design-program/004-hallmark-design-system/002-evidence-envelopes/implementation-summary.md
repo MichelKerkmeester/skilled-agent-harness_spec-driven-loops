@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the forward-looking Phase 2 implementation record"
@@ -41,7 +41,7 @@ _memory:
 | **Spec Folder** | 002-evidence-envelopes |
 | **Status** | Planned |
 | **Level** | 2 |
-| **Parent Packet** | `016-hallmark-adoption` |
+| **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Phase** | 2 of 4 |
 <!-- /ANCHOR:metadata -->
 

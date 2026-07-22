@@ -8,7 +8,7 @@ trigger_phrases:
   - "pseudo-element audit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Anti-Patterns And Production Details
@@ -125,3 +125,21 @@ Release-hardening detectors:
 | Overall direction or signature visual concept | `interface` |
 | Implementation changes | `sk-code` |
 | Broader correctness/security/test review | `sk-code` (code-review mode) |
+
+## 9. Targeted Presentation Probe Sweep
+
+Run these probes only after the six-axis pre-emit self-critique in `../procedures/ai-slop-check.md`. A hit is a hypothesis, not an automatic failure: cite the element or rendered state, record the legitimate-exception evidence, explain user impact, and assign P0-P3 through `audit-contract.md`.
+
+| Probe | Finding evidence | Cognitive or perceptual rationale | Legitimate exception / owner |
+| --- | --- | --- | --- |
+| Compound hover overload | One card hover changes three or more of image transform, surface, border, shadow, icon position, or text decoration without distinct state meaning. | Simultaneous unrelated cues compete for attention and make the interaction feel unstable rather than informative. | A tightly choreographed product demonstration may earn multiple coupled changes when each one explains the same state. Owner: `motion`. |
+| Animated focus-ring arrival | The keyboard focus indicator fades, scales, draws, or waits before becoming fully visible. | Keyboard users need immediate location feedback; delayed visibility adds search time and can make focus appear lost. | Motion may follow after an immediate static ring is already visible. Owner: `motion` and `sk-code`. |
+| Invented proof or metrics | Unsourced customer counts, percentages, awards, logos, ratings, or testimonial claims appear as credibility decoration. | Specific numbers and marks trigger trust heuristics; fabricated precision misleads people at the point of evaluation. | Confirmed source, date, and usage rights falsify the finding. Owner: `interface` for content, product/legal for proof. |
+| Re-drawn product chrome | Decorative browser frames, fake application windows, or hand-built device shells imply a real product state without matching an owned capture. | Familiar chrome borrows authenticity and can cause users to mistake illustration for functioning evidence. | Clearly labelled concept art or an accurate, current product capture is acceptable. Owner: `interface`. |
+| Repeated split section head | Three or more sections repeat a small tag on one side and a large heading on the other regardless of content relationship. | Repetition turns hierarchy into a template rhythm; readers stop receiving structural information from the pattern. | A documented editorial system with varying content logic may justify the construction. Owner: `interface`. |
+| Intrinsic-grid refusal | A simple repeatable grid relies on several viewport breakpoints yet still produces awkward partial rows or squeezed cards. | Layout that ignores available space creates discontinuous jumps and makes neighboring content feel mechanically packed. | A page-level art direction with intentional column events may require explicit breakpoints. Owner: `foundations`. |
+| Long-token escape | URLs, identifiers, translations, or long words force horizontal page scroll or escape a flex/grid child lacking shrink capacity. | Overflow breaks grouping and can hide actions outside the user's visual or scroll context. | Purpose-built horizontal data regions may scroll locally when labelled and keyboard accessible. Owner: `foundations` and `sk-code`. |
+| Wrapped interactive label | A primary button, tab, nav item, or compact action wraps into an ambiguous two-line control. | Broken action phrases slow recognition and make target geometry inconsistent across peers. | Long-form link cards may wrap when their entire surface remains one clear target. Owner: `foundations` and `interface`. |
+| Sticky focus occlusion | A sticky header, banner, or bottom action bar covers the focused control after keyboard navigation or fragment movement. | The browser moved focus correctly, but visual occlusion removes confirmation and orientation. | No exception for task controls; fix scroll padding/margins or sticky geometry. Owner: `sk-code`. |
+
+AI-navigation and AI-footer page-furniture fingerprints are defined as two additional presentation probes in `ai-fingerprint-tells.md`. Together, this table and those subprobes add eleven focused checks without replacing the broader production-readiness pass.

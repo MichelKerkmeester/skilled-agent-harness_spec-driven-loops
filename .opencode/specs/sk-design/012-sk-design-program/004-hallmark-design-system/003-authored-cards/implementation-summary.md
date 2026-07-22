@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the forward-looking Phase 3 implementation record"
@@ -41,7 +41,7 @@ _memory:
 | **Spec Folder** | 003-authored-cards |
 | **Status** | Planned |
 | **Level** | 2 |
-| **Parent Packet** | `016-hallmark-adoption` |
+| **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Phase** | 3 of 4 |
 <!-- /ANCHOR:metadata -->
 
@@ -80,7 +80,7 @@ Not yet delivered. Implementation is planned to proceed in three sub-phases per 
 | Reuse ONLY Hallmark's load-on-demand index and stamp-diversification architecture | Copying the concrete catalogs (macrostructures, component packets, nav/footer archetype codes, theme names) would create a parallel design system and freeze Hallmark's taste inside sk-design; only the loading mechanism transfers (both syntheses' Eliminated Alternatives). |
 | Cards are independently authored, abstract fingerprints, not concrete recipes | Preserves sk-design's own design authority while still giving modes and agents structural-diversity decision support. |
 | Responsive collapse stays a single shared gate, not baked per card | Mirrors the only architecture element this packet is permitted to reuse from Hallmark (global gates for mobile collapse); prevents 6-8 independently-authored cards from drifting into contradictory concrete collapse rules, which would blur the abstract-fingerprint-vs-concrete-recipe boundary this packet must preserve. |
-| Architecture-only adoption needs no MIT notice | Hallmark is MIT-licensed (`.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/LICENSE`); the load-on-demand idea is adopted clean-room, and the only content that would trigger a notice obligation -- catalog text and recipes -- is excluded by design. |
+| Architecture-only adoption needs no MIT notice | Hallmark is MIT-licensed (`.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/LICENSE`); the load-on-demand idea is adopted clean-room, and the only content that would trigger a notice obligation -- catalog text and recipes -- is excluded by design. |
 <!-- /ANCHOR:decisions -->
 
 ---

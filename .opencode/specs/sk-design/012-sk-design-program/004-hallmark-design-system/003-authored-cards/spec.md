@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards"
-    last_updated_at: "2026-07-22T16:57:27Z"
+    last_updated_at: "2026-07-22T18:01:08Z"
 
     last_updated_by: "spec-author"
     recent_action: "Authored the Phase 3 specification (planned; not implemented)"
@@ -44,11 +44,11 @@ _memory:
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Parent Packet** | `016-hallmark-adoption` |
+| **Parent Packet** | `012-sk-design-program/004-hallmark-design-system` |
 | **Predecessor** | `002-evidence-envelopes` |
 | **Successor** | `004-brand-first-lane` |
 | **Phase** | 3 of 4 |
-| **Implements** | `../../014-hallmark-design-skill-research/001-research/research/` (Hallmark adoption research syntheses) |
+| **Implements** | `../../001-research/004-hallmark-design-skill-research/research/` (Hallmark adoption research syntheses) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -76,7 +76,7 @@ Author 6-8 abstract structural-fingerprint cards as sk-design's own decision-sup
 - A load-on-demand index: pick ONE card, read ONLY that file -- never load the whole set.
 - A stamp-based diversification check: read the existing stamp before picking, exclude cards already used.
 - **Responsive-collapse decision (fixed by this spec):** collapse stays a single **shared gate**, not a per-card property. Hallmark itself enforces mobile collapse globally (per-theme section-head collapse; image-track `minmax(0,1fr)`), never as a per-card rule. Baking bespoke collapse behavior into 6-8 independently-authored cards would (a) smuggle a concrete CSS recipe into what must stay an abstract fingerprint, and (b) risk the cards drifting into contradictory collapse rules. Each card's field 5 therefore only names which of its regions/axes the shared gate applies to; it does not redefine collapse.
-- A short licensing note: Hallmark is MIT (`.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/LICENSE`). Adopting the load-on-demand architecture as an idea needs no notice. This packet does not copy Hallmark's catalog text or recipes, so no notice obligation arises here; external images/fonts/third-party assets are skip.
+- A short licensing note: Hallmark is MIT (`.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/LICENSE`). Adopting the load-on-demand architecture as an idea needs no notice. This packet does not copy Hallmark's catalog text or recipes, so no notice obligation arises here; external images/fonts/third-party assets are skip.
 
 ### Out of Scope
 
@@ -130,10 +130,10 @@ Author 6-8 abstract structural-fingerprint cards as sk-design's own decision-sup
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-- **Dependency:** Phase 2 (`002-evidence-envelopes`) stamp/evidence mechanism, which this phase's diversification stamp is designed to reuse or extend. `../../014-hallmark-design-skill-research/001-research/research/` syntheses (`lineages/sol-opencode/research.md` and `lineages/sol-codex/research.md`), specifically their Eliminated Alternatives sections. Hallmark's `structure.md` six axes and `macrostructures/*` leaf shape, read-only, at `.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/`.
+- **Dependency:** Phase 2 (`002-evidence-envelopes`) stamp/evidence mechanism, which this phase's diversification stamp is designed to reuse or extend. `../../001-research/004-hallmark-design-skill-research/research/` syntheses (`lineages/sol-opencode/research.md` and `lineages/sol-codex/research.md`), specifically their Eliminated Alternatives sections. Hallmark's `structure.md` six axes and `macrostructures/*` leaf shape, read-only, at `.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/`.
 - **Risk:** unintentionally copying Hallmark's concrete language or structure into card prose (taste-freezing) -- mitigated by REQ-005's explicit exclusion list and the independently-authored requirement.
 - **Risk:** ambiguity between "abstract fingerprint" and "concrete recipe" during authoring -- mitigated by grounding each card in `structure.md`'s six axes rather than any macrostructure catalog entry, and by the REQ-003 shared-gate decision keeping collapse recipes out of card content.
-- **Licensing:** Hallmark is MIT (`.opencode/specs/sk-design/014-hallmark-design-skill-research/external/hallmark/LICENSE`). The load-on-demand architecture is adopted clean-room as an idea (no notice required). Hallmark's catalog text and recipes are not copied, so no MIT notice obligation arises for this packet. External images, fonts, and third-party assets are out of scope (skip).
+- **Licensing:** Hallmark is MIT (`.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/external/hallmark/LICENSE`). The load-on-demand architecture is adopted clean-room as an idea (no notice required). Hallmark's catalog text and recipes are not copied, so no MIT notice obligation arises for this packet. External images, fonts, and third-party assets are out of scope (skip).
 <!-- /ANCHOR:risks -->
 
 ---
