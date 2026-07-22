@@ -16,7 +16,18 @@ version: 1.3.2.0
 
 ---
 
-## 1. OVERVIEW
+## 1. AT A GLANCE
+
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Taking a git workflow from a clean workspace to a merged PR: worktree setup, Conventional Commits and completion/cleanup |
+| **Invoke with** | Git-workflow keywords ("commit", "worktree", "pull request", "finish work") through the skill advisor, or read `SKILL.md` directly |
+| **Works on** | Any repository doing owner-first worktrees, staged changes ready to commit, or finished work ready to integrate |
+| **Produces** | Owner-first worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
+
+---
+
+## 2. OVERVIEW
 
 sk-git is the single orchestrator for git work. It runs three phases in order: workspace setup (an isolated worktree or the current branch), commit hygiene (Conventional Commits with artifact filtering) and completion (PR, merge or discard, then cleanup). A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
 
@@ -47,7 +58,7 @@ It does not write code or manage spec folders. `sk-code` owns the code that gets
 
 ---
 
-## 2. QUICK START
+## 3. QUICK START
 
 **Step 1: Invoke it.** Gate 2 routing fires on git keywords, or read the skill directly.
 
@@ -74,7 +85,7 @@ Expected result: an isolated directory on an owner-first `{owner}/{NNNN}-{slug}`
 
 ---
 
-## 3. FEATURES
+## 4. FEATURES
 
 ### Key Features
 
@@ -91,7 +102,7 @@ Expected result: an isolated directory on an owner-first `{owner}/{NNNN}-{slug}`
 
 ---
 
-## 4. HOW IT WORKS
+## 5. HOW IT WORKS
 
 This section is the why behind the rules. Each one trades a little friction now for a failure it prevents later.
 
@@ -134,7 +145,7 @@ Finishing is not done when the PR merges. The completion flow removes the worktr
 
 ---
 
-## 5. STRUCTURE
+## 6. STRUCTURE
 
 ```text
 sk-git/
@@ -160,7 +171,7 @@ sk-git/
 
 ---
 
-## 6. REQUIREMENTS
+## 7. REQUIREMENTS
 
 | Requirement | Minimum | Notes |
 |---|---|---|
@@ -171,7 +182,7 @@ sk-git/
 
 ---
 
-## 7. TROUBLESHOOTING
+## 8. TROUBLESHOOTING
 
 | What you see | Cause | Fix |
 |---|---|---|
@@ -183,7 +194,7 @@ sk-git/
 
 ---
 
-## 8. FAQ
+## 9. FAQ
 
 **Q: Why does it always ask before creating a branch?**
 
@@ -207,7 +218,7 @@ A: Run `git worktree list` to find the stale one, remove it with `git worktree r
 
 ---
 
-## 9. VERIFICATION
+## 10. VERIFICATION
 
 The skill ships a manual testing playbook (41 scenarios across 7 categories) and a feature catalog covering worktree, commit, finish and the owner-first worktree tooling.
 
@@ -219,7 +230,7 @@ The skill ships a manual testing playbook (41 scenarios across 7 categories) and
 
 ---
 
-## 10. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Related Skills
 

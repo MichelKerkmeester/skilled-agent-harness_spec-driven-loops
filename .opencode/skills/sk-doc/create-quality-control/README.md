@@ -1,85 +1,145 @@
+---
+title: "create-quality-control"
+description: "Audit, score and optionally improve an existing markdown document through structure extraction, DQI scoring and Human Voice Rules review."
+trigger_phrases:
+  - "doc quality"
+  - "/doc:quality"
+  - "score this document"
+  - "human voice"
+version: 1.0.0.0
+---
+
 # create-quality-control
 
-Validate, score, and optionally improve existing markdown through structure extraction, DQI scoring, HVR voice review, and validation gates.
+> Run one command and know, with a number, whether a markdown document is actually ready to publish.
 
-## 1. OVERVIEW
+---
 
-`create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It extracts a target document's structure, computes a Document Quality Index (DQI) score and band, applies Human Voice Rules, and, only when edits are explicitly requested, makes targeted improvements to that same document. It is report-only by default and never creates new artifacts. `SKILL.md` is the authoritative contract; this README is human orientation.
+## 1. AT A GLANCE
 
-## 2. WHEN TO USE
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Auditing, scoring and optionally improving an existing markdown document's structure and voice |
+| **Invoke with** | `/doc:quality`, "doc quality", "score this document", "DQI", "HVR" |
+| **Works on** | Any existing markdown file already in the repo: README, `SKILL.md`, command doc, spec doc, reference |
+| **Produces** | A DQI score and band, a blocking/warning/recommendation issue list and (only if asked) a targeted edit to that one file |
 
-Use `create-quality-control` when you need to audit or improve an existing markdown document.
+---
 
-Good fits:
+## 2. OVERVIEW
 
-- Running `/doc:quality` on a README, `SKILL.md`, command doc, spec doc, reference, or other markdown file.
-- Checking structure, clarity, publish readiness, or AI-friendliness.
-- Computing or interpreting a DQI score from the shared structure extractor.
-- Applying HVR voice cleanup after structural issues are known.
-- Making targeted improvements to the same document when edits are explicitly requested.
+### Why This Skill Exists
 
-Do not use it for brand-new artifacts. Route new README, skill, agent, command, catalog, benchmark, flowchart, or playbook creation to the matching `sk-doc` creation packet.
+A document either reads well to the person who wrote it or it doesn't, and a self-assessment isn't evidence. Without a scoring pass, "looks fine to me" is the only quality bar a README or `SKILL.md` ever clears, and a document can ship with missing frontmatter, a broken section order or robotic AI-pattern prose that nobody catches until an operator hits it mid-task. Fixing that blind, by rewriting on instinct, risks changing product claims or policy text that nobody actually asked to touch.
 
-## 3. WHAT'S INSIDE
+### What It Does
 
-Packet-local files:
+`create-quality-control` reads a markdown file, runs it through structure extraction to get a Document Quality Index score and quality band, and classifies what it finds into blocking failures, warnings and recommendations before applying Human Voice Rules on top. `/doc:quality` is report-only by default: it tells you where the document stands and why. Only when edits are explicitly requested does it touch the file, and even then it stays scoped to that one document. It never creates a new artifact. For that, route to the matching creation packet (`create-readme`, `create-skill` and the rest).
 
-- `SKILL.md` - authoritative workflow contract for `create-quality-control`.
-- `README.md` - human orientation for this packet.
-- `references/README.md` - route map over the reference set (start here).
-- `references/workflows.md` - the four execution modes and mode selection (externally cited entry file).
-- `references/validation-and-enforcement.md` - validation touchpoints, enforcement approval prompts, phase chaining, and troubleshooting.
-- `references/workflow-examples.md` - worked command examples and batch/multi-file processing.
-- `references/optimization.md` - optimization procedure: heuristics, analysis workflow, README strategy, checklist, and iteration (externally cited entry file).
-- `references/transformation-patterns.md` - the 16 transformation patterns with worked before/after examples.
-- `changelog/.gitkeep` - packet-local changelog placeholder.
+---
 
-There are no packet-local `assets/` or `scripts/` directories in `create-quality-control`.
+## 3. QUICK START
 
-Shared backbone used by this packet:
+**Step 1: Invoke it.** `/doc:quality`, or read `SKILL.md` directly for the full contract.
 
-- `../shared/scripts/extract_structure.py` - source of truth for structure metrics, checklist results, and DQI.
-- `../shared/scripts/validate_document.py` - pre-delivery markdown validation gate.
-- `../shared/scripts/quick_validate.py` - fast validation for files, folders, or skill packets.
-- `../shared/references/filesystem-naming-convention.md` - structural naming authority and exemption boundary.
-- `../shared/references/validation.md` - DQI bands and validation severity.
-- `../shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.
-- `../shared/references/quick-reference.md` - command and quality-gate cheat sheet.
-- `../shared/assets/` - shared templates and rules used across `sk-doc`.
-
-## 4. QUICK START
-
-Report-only audit of one markdown file:
+**Step 2: Run the primary workflow.**
 
 ```bash
-python ../shared/scripts/check_authored_name_kebab.py README.md
-python ../shared/scripts/extract_structure.py README.md
-python ../shared/scripts/validate_document.py README.md
+python .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
 ```
 
-The authored-name result is a non-scored filename-case conformance signal. It does not alter DQI components or the DQI score.
+You get a JSON report with the detected document type, structural metrics, checklist results, DQI score and quality band.
 
-`extract_structure.py` takes only the file path and auto-detects the document type. If detection is ambiguous, force the type on the validation gate instead (the extractor has no `--type` flag):
+**Step 3: Verify before you rely on it.**
 
 ```bash
-python ../shared/scripts/validate_document.py README.md --type readme
+python .opencode/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme
 ```
 
-Typical workflow:
+Expected: zero blocking issues before the document counts as ready.
 
-1. Read the target document.
-2. Load `references/README.md` (route map) and, for modes, `references/workflows.md`.
-3. Run `../shared/scripts/extract_structure.py <file>`.
-4. Interpret DQI and checklist output with `../shared/references/validation.md`.
-5. Apply HVR review using `../shared/references/hvr-rules.md`.
-6. If the user requested edits, use `references/optimization.md` and edit only the target document.
-7. Validate with `../shared/scripts/validate_document.py <file>`.
-8. Re-run extraction after edits to confirm the final state.
+---
 
-## 5. HUB RELATIONSHIP
+## 4. HOW IT WORKS
 
-`create-quality-control` is a nested workflow packet of the `sk-doc` parent hub.
+Confirm the target file and pick one execution mode: report-only audit (the default for `/doc:quality`), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it. Classify findings in order, blocking structural failures first, then warnings, then recommendations and only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
 
-The shared create-quality-control backbone lives at `../shared`. The single advisor identity and routing registry live at the hub root: `../graph-metadata.json`, `../description.json`, `../mode-registry.json`, and `../hub-router.json`.
+### Key Concept: DQI Is Read, Never Guessed
 
-This packet owns existing-document validation and optimization. It does not create new artifacts and must not add a packet-local `graph-metadata.json`.
+The DQI score always comes from running `extract_structure.py` against the real file on disk, never from eyeballing the document. For example, a README can look polished and still be missing a required Quick Start section. The extractor still returns a lower DQI and flags the missing section as a blocking issue, and that number is what gets reported, not the impression a fast read leaves.
+
+### Enforcement Fixes
+
+The three structural failures this packet fixes most often are missing frontmatter, sections out of the required order and a required section that's simply absent. Each fix follows the same shape: identify the gap against the detected document type, apply the minimal correction rather than a rewrite, then re-run validation and extraction to confirm the fix actually landed. When the missing content needs source evidence that isn't in the workspace, the packet escalates instead of inventing it.
+
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When To Use This Skill
+
+Reach for this packet when a document needs to clear a real quality gate before publishing, when a document "feels off" but nobody has run a structural check on it, when someone asks to optimize or rewrite an existing document for AI-friendliness or when a document needs re-validation after another packet finished authoring it. Skip it when the document doesn't exist yet, that's a creation packet's job, or the fix is a one-character typo that doesn't need a scoring pass.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `create-readme`, `create-skill`, `create-agent` and the rest of the creation family | Own brand-new artifact creation. `create-quality-control` never originates a new file |
+| `create-manual-testing-playbook`, `create-benchmark`, `create-feature-catalog` | Validate inline as part of their own authoring workflow. This packet audits something already shipped |
+| `sk-code` | Owns code review and debugging. This packet is markdown-only |
+
+---
+
+## 6. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| A DQI claim with no extraction evidence behind it | The score was estimated instead of read from the tool | Re-run `extract_structure.py` and cite its JSON output |
+| Validator flags a document-type mismatch | `extract_structure.py` auto-detected the wrong type | Force the type on `validate_document.py --type <type>`. The extractor itself has no `--type` flag |
+| An edit touched more than the target document | Optimization scope crept into a nearby file | Revert the unrelated changes. Keep edits scoped to the one file unless the user explicitly expanded scope |
+| HVR issues were flagged while structural blockers are still open | Voice review ran ahead of the structural gate | Fix blocking structural issues first. HVR is a pass that comes after extraction, not a substitute for it |
+| A batch snapshot run edited files nobody asked to change | Batch mode drifted from summary into unrequested edits | Batch mode only summarizes per-file type, DQI and top recommendations. Edit only the specific files the user names |
+
+---
+
+## 7. FAQ
+
+**Q: Why is `/doc:quality` report-only by default?**
+
+A: An unrequested edit risks changing product claims or policy text without a real decision behind it. Edits happen only when explicitly asked for.
+
+**Q: Why this instead of letting each creation packet validate its own output?**
+
+A: A creation packet validates what it just wrote. `create-quality-control` audits something that already exists, independent of who authored it or when.
+
+**Q: Does it add a table of contents to the documents it touches?**
+
+A: No, never, unless another active project rule explicitly overrides that.
+
+**Q: What happens if the requested optimization would change a product claim or a legal or policy statement?**
+
+A: The packet escalates instead of editing. Product claims, policy text and canonical spec decisions need a human decision, not a quality-pass rewrite.
+
+---
+
+## 8. VERIFICATION
+
+| Check | How to run it |
+|---|---|
+| Structure and DQI | `python .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>` returns metrics, checklist results, DQI score and band |
+| Format validation | `python .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` reports zero blocking issues |
+| Filename case (non-scored) | `python .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` reports `PASS`, `FAIL` or an exemption |
+
+---
+
+## 9. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Authoritative workflow contract for `create-quality-control` |
+| [`references/README.md`](./references/README.md) | Route map over the reference set |
+| [`references/workflows.md`](./references/workflows.md) | The four execution modes and how to select one |
+| [`references/optimization.md`](./references/optimization.md) | Optimization procedure, heuristics and checklist |
+| [`references/transformation-patterns.md`](./references/transformation-patterns.md) | The 16 transformation patterns with worked before/after examples |
+| [`../shared/references/validation.md`](../shared/references/validation.md) | DQI bands and quality-gate interpretation |
+| [`../shared/references/hvr-rules.md`](../shared/references/hvr-rules.md) | Human Voice Rules for natural documentation style |

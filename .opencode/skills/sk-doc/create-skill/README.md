@@ -1,82 +1,147 @@
+---
+title: "create-skill"
+description: "Scaffold, validate and package standalone OpenCode skills and two-axis parent hubs from vetted templates, for anyone building or repairing a skill under .opencode/skills/."
+trigger_phrases:
+  - "create skill"
+  - "parent hub"
+version: 1.1.0.0
+---
+
 # create-skill
 
-Skill-authoring workflow packet for scaffolding OpenCode standalone skills and parent hubs.
+> Scaffold a validated OpenCode skill or parent hub from real templates, not a blank file and a guess.
 
-## 1. OVERVIEW
+---
 
-This workflow packet turns a skill-authoring request into a validated `.opencode/skills/` package, covering both standalone skills with their own advisor identity and parent hubs with nested workflow or surface packets. It scaffolds `SKILL.md`, references, and assets from the packet's templates, then validates and packages the result with `scripts/init_skill.py` and `scripts/package_skill.py` instead of inventing structure from scratch.
+## 1. AT A GLANCE
 
-## 2. WHEN TO USE
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Scaffolding, validating and packaging OpenCode skills under `.opencode/skills/`, standalone or parent hub |
+| **Invoke with** | `/create:skill`, `/create:skill-parent`, "new skill", "parent hub" |
+| **Works on** | New skill folders and existing skill or hub packages that need repair or re-validation |
+| **Produces** | `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/` for a skill, or a full parent-hub router set |
 
-Use `create-skill` when you need to create, rebuild, validate, or package an OpenCode skill under `.opencode/skills/`.
+---
 
-It covers two workflow modes:
+## 2. OVERVIEW
 
-- `create-skill`: standalone skill with its own advisor identity.
-- `create-skill-parent`: parent hub with nested workflow or surface packets.
+### Why This Skill Exists
 
-Use another `sk-doc` packet for agents, commands, READMEs, benchmarks, feature catalogs, manual testing playbooks, flowcharts, or document-quality review.
+Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter rules, section order, routing pseudocode and validation gates every single time, and the drift shows up as skills that skip a required field, use the wrong version format or bury routing logic where the advisor can never find it. A parent hub multiplies that risk across a registry, a router and however many nested packets, all of which have to agree with each other or the hub silently misroutes. create-skill exists to scaffold both shapes from vetted templates and then prove the result is valid before anyone calls it done.
 
-## 3. WHAT'S INSIDE
+### What It Does
 
-- `SKILL.md`: authoritative packet contract, routing rules, workflows, success criteria, and boundaries.
-- `README.md`: human-facing packet orientation.
-- `changelog/`: packet-local changelog location.
-- `references/README.md`: lifecycle index and route map.
-- `references/skill/creation-workflow.md`: standalone skill creation workflow.
-- `references/skill/examples-and-maintenance.md`: examples and maintenance guidance.
-- `references/shared/overview.md`: skill structure and authoring overview.
-- `references/shared/common-pitfalls.md`: common mistakes to avoid.
-- `references/shared/validation-and-packaging.md`: validation and packaging gates.
-- `references/parent-skill/parent-skills-nested-packets.md`: parent-hub and nested-packet model.
-- `references/parent-skill/parent-hub-router-schema.md`: registry and router schema.
-- `references/parent-skill/compiled-routing-architecture.md`: compiled-router scope, the shadow-child-to-cohort chain, and the `ready`-manifest-vs-compiled-serving boundary.
-- `assets/skill/skill-md-template.md`: standalone `SKILL.md` template.
-- `assets/skill/skill-readme-template.md`: standalone skill README template.
-- `assets/skill/skill-reference-template.md`: reference-file template.
-- `assets/skill/skill-asset-template.md`: asset-file template.
-- `assets/skill/skill-smart-router.md`: router-heavy skill pattern.
-- `assets/skill/skill-procedure-template.md`: private procedure card templates and guidelines.
-- `assets/parent-skill/parent-skill-hub-template.md`: parent hub `SKILL.md` template.
-- `assets/parent-skill/parent-skill-registry-template.json`: parent hub `mode-registry.json` template.
-- `assets/parent-skill/parent-skill-hub-router-template.json`: parent hub router template.
-- `assets/parent-skill/parent-skill-description-template.json`: parent hub descriptor template.
-- `assets/parent-skill/parent-skill-graph-metadata-template.json`: parent hub graph metadata template.
-- `scripts/init_skill.py`: scaffold helper for new standalone skill folders.
-- `scripts/package_skill.py`: validation and packaging helper.
+create-skill runs one of two workflow modes from a single packet. `create-skill` scaffolds a standalone skill with its own advisor identity, SKILL.md, README.md, references, assets and scripts, built with `scripts/init_skill.py` and normalized to this repo's section order. `create-skill-parent` scaffolds a parent hub that dispatches to nested workflow or surface packets, with one `mode-registry.json`, one `hub-router.json`, and `graph-metadata.json` only at the hub root, never inside a nested packet. Both modes end at the same gate: `scripts/validate_skill_package.py` must exit clean before `scripts/package_skill.py` runs. It does not audit or improve an existing skill's prose quality once the skill already exists and only needs review. That is `create-quality-control`.
 
-## 4. QUICK START
+---
 
-For a standalone skill:
+## 3. QUICK START
+
+**Step 1: Scaffold a standalone skill.**
 
 ```bash
-# --path is the PARENT directory; init_skill.py creates <path>/my-skill
+# --path is the PARENT directory. init_skill.py creates <path>/my-skill
 python3 scripts/init_skill.py my-skill --path .opencode/skills
-python3 scripts/package_skill.py .opencode/skills/my-skill --check
 ```
 
-For a parent hub, load the parent-hub references first, choose the generated routing state explicitly, and run one of these commands:
+Creates `my-skill/` with `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/`.
+
+**Step 2: Fill in the real content, then validate.**
 
 ```bash
-# Backward-compatible state: directive present, no activation manifest emitted
-python3 scripts/init_skill.py my-hub --path .opencode/skills \
-  --kind parent --compiled-routing legacy
-
-# Manifest-ready state: canonical mint followed by canonical freshness validation
-python3 scripts/init_skill.py my-hub --path .opencode/skills \
-  --kind parent --compiled-routing ready
+python3 scripts/validate_skill_package.py .opencode/skills/my-skill
 ```
 
-Existing parent invocations without `--compiled-routing` remain `legacy`. Ready mode writes all router inputs first, calls `.opencode/bin/compiled-route-manifest.cjs mint`, then calls its `freshness` action. It reports `compiled-ready (fresh manifest verified)` only when both results are valid and fresh. A failure returns non-zero, retains the legacy fallback, and never hand-authors a manifest or digest.
+Expected output ends with `package_skill.py --check: PASS (exit 0)`.
 
-The ready manifest is inert onboarding evidence: generation 1, legacy serving authority, and shadow-only. It does not activate compiled serving or change the repository default.
+**Step 3: Package only after validation passes.**
 
-## 5. IMPORTANT BOUNDARIES
+```bash
+python3 scripts/package_skill.py .opencode/skills/my-skill <output-directory>
+```
 
-This packet is nested under the `sk-doc` parent hub.
+---
 
-The shared create-quality-control backbone lives at `../shared`, including global standards and shared validators.
+## 4. HOW IT WORKS
 
-The single advisor identity and registry live at the `sk-doc` hub root, not inside this packet.
+The standalone path starts with concrete examples of what the skill needs to do, then clarifies purpose, trigger phrases, output contract and boundaries before any file gets written. From there each piece of reusable content gets a home: deterministic or repeatedly-rewritten code goes in `scripts/`, domain knowledge and detailed workflow guidance goes in `references/` and templates or output resources go in `assets/`. `scripts/init_skill.py` scaffolds the folder. Generated files get normalized to the repo's section order and trimmed of anything unneeded, then `SKILL.md` gets authored as an executable contract with `WHEN TO USE`, `SMART ROUTING`, `HOW IT WORKS`, `RULES` and `SUCCESS CRITERIA`. Validation runs before any completion claim, and packaging only runs after validation passes.
 
-Nested packets must not carry their own `graph-metadata.json`.
+The parent-hub path starts by confirming the target really is one advisor-routable identity, not several skills that happen to be related. `scripts/init_skill.py --kind parent` then scaffolds the hub root (`SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`) and each nested packet gets its own `SKILL.md`, `README.md` and `changelog/`, with no packet-local `graph-metadata.json` anywhere but the root.
+
+### Legacy Versus Ready Is A Choice, Not A Default
+
+`--compiled-routing legacy` and `--compiled-routing ready` produce genuinely different on-disk artifacts for the same hub shape, and the authoring workflow asks which one you want rather than silently picking. Legacy leaves the router directive in place with no canonical manifest, which is backward compatible with every existing call. Ready mints a canonical manifest with `compiled-route-manifest.cjs mint`, then verifies it is fresh and only reports `compiled-ready` when both steps succeed. A failed mint or a stale manifest falls back to legacy rather than ever hand-authoring a manifest or a digest. Either way, a ready manifest stays inert onboarding evidence: it never activates compiled serving or changes the repository default on its own.
+
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When To Use This Skill
+
+Reach for create-skill when creating a brand-new OpenCode skill, rebuilding an existing one or authoring a parent hub with nested workflow or surface packets. Reach for it too when repairing broken frontmatter, missing required sections or routing metadata in a package that already exists. Choose `create-skill-parent` specifically when one identity needs to dispatch to multiple nested packets, not merely because two skills feel related. Skip it for application code (that belongs to `sk-code`), for auditing or scoring an existing skill without rebuilding it (that belongs to `create-quality-control`) and for a README refresh on a skill that already has one.
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `create-readme` | Writes or refreshes a skill's README once the skill already exists. create-skill writes the first one while scaffolding. |
+| `create-quality-control` | Audits, scores or optimizes an existing skill document without rebuilding the package. |
+| `create-agent` | Owns agent scaffolding, a separate artifact family from skills. |
+| `sk-code` | Owns application code implementation. create-skill only authors the skill package that may describe that work. |
+
+---
+
+## 6. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| `validate_skill_package.py` fails on frontmatter | `name`, `description`, `allowed-tools` or `version` is missing, or `version` is not four-part | Fix `SKILL.md` frontmatter to match the four required fields exactly |
+| Parent hub validation reports a stale manifest | `--compiled-routing ready` was chosen, then router inputs changed after minting | Re-run `compiled-route-manifest.cjs mint`, or fall back to legacy |
+| Nested packet fails validation over `graph-metadata.json` | A nested workflow or surface packet was given its own `graph-metadata.json` | Delete it. Only the hub root carries `graph-metadata.json` |
+| Generated paths flagged as non-kebab-case under `--strict` | A `references/` or `assets/` file used snake_case or another casing | Rename to kebab-case. Python files and tool-mandated names stay exempt |
+| `package_skill.py` refuses to package | `validate_skill_package.py` has not run yet, or it failed | Run validation first and fix every hard failure before packaging |
+
+---
+
+## 7. FAQ
+
+**Q: Why two workflow modes in one packet instead of two skills?**
+
+A: Both modes share the same templates, validation gate and packaging helper. Splitting them would duplicate that machinery for what is really one decision: one advisor identity, or many nested packets under one identity.
+
+**Q: When do I choose `create-skill-parent` over adding another standalone skill?**
+
+A: When several packets need to answer to one advisor identity, one router and one registry. Two genuinely unrelated skills should stay two standalone skills, not get merged into a hub for convenience.
+
+**Q: What is the real difference between legacy and ready compiled-routing?**
+
+A: Legacy leaves the router directive in place with no canonical manifest, which is the safe, backward-compatible default. Ready mints and verifies a canonical manifest, but the result stays inert onboarding evidence and never activates compiled serving on its own.
+
+**Q: Do I need `scripts/`, `references/` and `assets/` for every skill?**
+
+A: No. `SKILL.md` is the only required file. Add the others only when the skill genuinely needs deterministic scripts, deep reference material or template assets.
+
+---
+
+## 8. VERIFICATION
+
+| Check | How to run it | Pass looks like |
+|---|---|---|
+| Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
+| Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
+| Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
+
+---
+
+## 9. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Runtime workflow, routing rules and the full standalone and parent-hub contract |
+| [`assets/skill/skill-md-template.md`](./assets/skill/skill-md-template.md) | Standalone `SKILL.md` scaffold |
+| [`assets/skill/skill-readme-template.md`](./assets/skill/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from |
+| [`assets/parent-skill/parent-skill-hub-template.md`](./assets/parent-skill/parent-skill-hub-template.md) | Parent hub `SKILL.md` scaffold |
+| [`references/README.md`](./references/README.md) | Route map into the `skill/` and `parent-skill/` reference groups |
+| [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
+| [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |

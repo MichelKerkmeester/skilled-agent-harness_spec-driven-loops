@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/004-skill-mode-readme-overhaul",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,31 +11,33 @@
   },
   "derived": {
     "trigger_phrases": [
-      "validate_document.py path bug",
-      "skill readme template clarifications",
-      "doc tooling fixes",
-      "validate_document path fix summary",
-      "validator symlink resolve"
+      "skill mode readme overhaul",
+      "bare readme rewrite",
+      "skill readme template migration",
+      "readme overhaul summary",
+      "skill readme swarm",
+      "fourteen readmes validated"
     ],
     "key_topics": [
-      "path",
-      "bug",
       "skill",
+      "mode",
       "readme",
+      "overhaul",
+      "bare",
+      "rewrite",
       "template",
-      "clarifications",
-      "doc",
-      "tooling",
+      "migration",
       "summary",
-      "validator",
-      "symlink",
-      "resolve"
+      "swarm",
+      "fourteen",
+      "readmes"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/sk-doc/create-skill/README.md",
+      ".opencode/skills/sk-doc/create-readme/README.md",
+      ".opencode/skills/sk-git/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -44,15 +46,9 @@
     ],
     "entities": [
       {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "skill-readme-template.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-readme-template.md",
+        "path": ".opencode/skills/sk-doc/create-skill/README.md",
         "source": "derived"
       },
       {
@@ -92,25 +88,13 @@
         "source": "derived"
       },
       {
-        "name": "Template Fixes",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Quick Start",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Make",
+        "name": "Purpose Rewrite",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -118,6 +102,18 @@
       {
         "name": "In Scope",
         "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -134,7 +130,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Add",
+        "name": "Overview Fan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -147,6 +143,12 @@
       },
       {
         "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Section",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -170,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -180,17 +188,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The documented top-level validator path `sk-doc/scripts/validatedocument.py` is a symlink to the real `sk-doc/shared/scripts/validatedocument.py`",
-    "created_at": "2026-07-22T12:21:14.835Z",
-    "last_save_at": "2026-07-22T12:50:05.543Z",
+    "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
+    "created_at": "2026-07-22T12:50:05.876Z",
+    "last_save_at": "2026-07-22T12:54:05.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5e6846728d2ea8927dfef1c2b79f0a38084be794701966e7ccfed29ca6592c6",
+    "source_fingerprint": "sha256:61eb056e096210393cd3be3f69720b6c7961e16b39ebfca3d6cab142d8163d90",
     "source_doc_hashes": {
-      "spec.md": "181168d1d01ddcfeb8f1abd8367f1e2863c5a102c8b8cb697d4c7520563dafbf",
-      "plan.md": "2737da64cac0a00a4534f3f7c54d087676b39914beeced695c251a1e13cfbe22",
-      "tasks.md": "7b41b089b177b97a4d4f9220d378b66630b1fc1142ed4702df6facb91beb3072",
-      "checklist.md": "c0bc9eacdb78f82b71f73269c5fb93cc41736b99db7d33efef08ee3ccd0b5852",
-      "implementation-summary.md": "f0b6bac941d09cf92f510627485300f2973e9881b9479d0c93e3ad9a462a896c"
+      "spec.md": "c4e05ee5464689d3609f0f4778f51d74c3eb77a6aa8c20f4c50c4e65785162aa",
+      "plan.md": "d62c2d4143a4ef1f048b05586fe71b53ed04195040e3a1b97142162cb055b89b",
+      "tasks.md": "524a9ea1973770f24f51874a120fe90547dd629896011eebfdb2c20fb582fcfe",
+      "checklist.md": "790781c969f2491ab86957915c3b467ffc2471bb439bfa2037625cf26a70c1bc",
+      "implementation-summary.md": "802ec041e6784b3d0486a8981f366cc5893643ef2e26b3b203420fb102f041a1"
     },
     "last_active_child_id": null,
     "last_active_at": null
