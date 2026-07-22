@@ -288,11 +288,31 @@ def is_uppercase_section(text: str) -> bool:
         "MCP TOOLS" -> True
     """
     section_name = extract_section_name_text(text)
-    # Check if all alphabetic characters are uppercase
-    alpha_chars = [c for c in section_name if c.isalpha()]
-    if not alpha_chars:
-        return True  # No alphabetic chars, consider valid
-    return all(c.isupper() for c in alpha_chars)
+    # The ALL-CAPS requirement applies to prose words only. Legitimate mixed-case
+    # tokens must not trip it, or the gate rejects correct headers: inline `code`,
+    # (parenthetical annotations), function signatures like name(args), and
+    # identifiers carrying an internal capital (ClickUp, MiMo, iOS). A header fails
+    # only when a plain prose word is Title-Case or all-lowercase.
+    s = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', section_name)  # link -> label
+    s = re.sub(r'`[^`]*`', ' ', s)                            # code spans
+    s = re.sub(r'[\w.]+\([^)]*\)', ' ', s)                    # function signatures
+    s = re.sub(r'\([^)]*\)', ' ', s)                          # parenthetical annotations
+    saw_word = False
+    for raw in re.split(r'[\s/,:;.\-—–&\'"?!→|]+', s):
+        w = ''.join(c for c in raw if c.isalpha())
+        if len(w) < 2:
+            continue
+        saw_word = True
+        if w.isupper():
+            continue                       # ALL-CAPS word: fine
+        if any(c.isupper() for c in w[1:]):
+            continue                       # internal capital: proper noun / product
+        return False                       # Title-Case or lowercase prose word
+    if not saw_word:
+        # Nothing but code/annotations/short tokens: fall back to the strict check
+        alpha_chars = [c for c in section_name if c.isalpha()]
+        return (not alpha_chars) or all(c.isupper() for c in alpha_chars)
+    return True
 
 
 def make_uppercase_section(text: str) -> str:
