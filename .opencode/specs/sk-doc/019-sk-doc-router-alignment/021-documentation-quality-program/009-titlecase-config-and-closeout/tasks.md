@@ -7,7 +7,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout"
-    last_updated_at: "2026-07-22T16:37:54Z"
+    last_updated_at: "2026-07-22T16:38:58Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete and the program is closed."
     next_safe_action: "Operator ff-merge to v4."
@@ -71,7 +71,7 @@ _memory:
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] All reference/asset files VALID with the flip; program validates recursively clean
+- [x] All reference/asset files VALID with the flip (`validate_document.py`), program validates recursively clean
 - [x] `checklist.md` verified with evidence
 
 <!-- /ANCHOR:completion -->
