@@ -1,13 +1,14 @@
 ---
 title: DESIGN.md Style Reference Format
-version: 1.0.0.3
-description: "The authoritative Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start — every value verbatim from tokens.json."
+version: 1.0.0.4
+description: "The authoritative Style Reference section specification: named colour tokens, semantic type scale, named components, conditional measured Motion, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start — every value verbatim from tokens.json."
 trigger_phrases:
   - design md format specification
   - style reference schema
   - design md section order
   - named colour tokens
   - quick start css tailwind
+  - measured motion section
   - agent prompt guide section
   - similar brands section
 importance_tier: important
@@ -208,7 +209,46 @@ plainly rather than inventing a visual language.
 Prose: max-width, hero structure, section rhythm, nav behavior, grid vs asymmetric —
 grounded in the breakpoint/spacing/column data.
 
-## 12. `## Agent Prompt Guide`
+## 12. `## Motion`
+
+This section is conditional and deterministic. Emit it only when the extracted
+`MotionSystem.durationScale` contains at least one measured duration band. Words such as
+"motion", "animation", or a duration in page copy never activate it.
+
+```
+## Motion
+
+**Reduced-motion query:** detected | not detected
+
+### Duration Scale
+
+| Band | Duration |
+|------|----------|
+| small | `150ms` |
+
+### Timing Functions
+
+**Primary:** `ease-out`
+
+**Observed:** `ease-out`, `linear`
+
+### Keyframe Animations
+
+| Name | Type | Duration | Properties |
+|------|------|----------|------------|
+| fade-in | entrance | `300ms` | opacity |
+```
+
+- Copy duration bands, timing functions, keyframe names/types/durations/properties, and
+  reduced-motion detection directly from `tokens.json.motionSystem`.
+- Omit Timing Functions or Keyframe Animations subsections when their measured arrays
+  are empty. Never fill them from defaults or prose.
+- The formatter emits this section into the locked pre-rendered block. The WRITE phase
+  pastes it unchanged, and validation rejects any altered value.
+- This measured section does not infer `motionCharacter`; that semantic handoff belongs
+  to authored design decisions, not extracted evidence.
+
+## 13. `## Agent Prompt Guide`
 
 ```
 ### Quick Color Reference
@@ -225,14 +265,14 @@ grounded in the breakpoint/spacing/column data.
 If no distinct CTA/action colour was observed, say "no distinct CTA color" — do not
 invent one.
 
-## 13. `## Similar Brands`
+## 14. `## Similar Brands`
 
 3–5 brands with a one-line WHY each, as **confident grounded inference** from the
 observed system (palette discipline, type scale, layout rhythm). This section is
 explicitly inferential and that is allowed — it characterizes the design's family, it
 does not fabricate the site's own data.
 
-## 14. `## Quick Start`
+## 15. `## Quick Start`
 
 Two fenced code blocks, every value verbatim from tokens, slugs matching §3/§4/§5.
 
@@ -295,6 +335,7 @@ Two fenced code blocks, every value verbatim from tokens, slugs matching §3/§4
 | Elevation | yes | render "flat" when 0 shadows, never omit |
 | Imagery | conditional | no imagery signal — stamp ABSENT |
 | Layout | yes | — |
+| Motion | conditional | `MotionSystem.durationScale` has no measured entries |
 | Agent Prompt Guide | yes | — |
 | Similar Brands | yes | — |
 | Quick Start | yes | — |

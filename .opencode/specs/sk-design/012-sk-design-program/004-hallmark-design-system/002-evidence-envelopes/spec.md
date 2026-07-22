@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Shared Evidence Envelopes"
-description: "Define three provider-neutral evidence contracts — owned-asset manifest, motionCharacter handoff, and conditional measured Motion section — for existing sk-design modes; planned, not implemented."
+description: "Delivered three provider-neutral evidence contracts — owned-asset manifest, motionCharacter handoff, and conditional measured Motion section — for existing sk-design modes."
 trigger_phrases:
   - "owned asset manifest"
   - "motion character handoff"
@@ -10,20 +10,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
-    last_updated_at: "2026-07-22T18:01:08Z"
+    last_updated_at: "2026-07-22T18:24:07Z"
 
-    last_updated_by: "spec-author"
-    recent_action: "Authored the Phase 2 specification (planned; not implemented)"
-    next_safe_action: "Await Phase 1 (001-surgical-fixes) completion, then begin Phase 2 implementation per tasks.md"
+    last_updated_by: "implementation-agent"
+    recent_action: "Implemented and verified all three evidence envelopes"
+    next_safe_action: "None; packet complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/SKILL.md"
-      - ".opencode/skills/sk-design/references/design-md-format.md"
+      - ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md"
+      - ".opencode/skills/sk-design/shared/evidence-envelopes/motion-character-handoff.md"
+      - ".opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -165,6 +166,5 @@ Specify three provider-neutral, clean-room evidence envelopes — the owned-asse
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Are the sk-design wiring points cited by both research syntheses (`schema-v3.ts:134`, `types.ts:258`, `design-md-format.md:200`) still accurate against current code? The files themselves were confirmed to exist at `.opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts`, `.opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts`, and `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md`, but the exact line numbers are unverified. Resolve as the first implementation task (T001) before any edits.
-- Where should the two new shared-contract documents (owned-asset manifest, `motionCharacter` handoff) live — a new `shared/evidence-envelopes/` reference pair, or an extension of existing `shared/` files? Resolve at implementation start.
+None. Implementation confirmed the live motion capability at `schema-v3.ts` lines 146 and 490, the `MotionSystem` type at `types.ts` line 260 before edits, and no existing Motion content in `design-md-format.md`. The shared contracts were placed in the approved `shared/evidence-envelopes/` pair; formatter/prompt and validator ownership resolved to `scripts/formatters-v3.ts`, `scripts/build-write-prompt.ts`, and `scripts/validate.ts`.
 <!-- /ANCHOR:questions -->

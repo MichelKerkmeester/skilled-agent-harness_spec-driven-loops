@@ -29,7 +29,7 @@ export type CapabilityDetector =
   | 'icons'
   | 'dark-mode';
 
-export type SectionEmitter = 'colors' | 'spacing-shapes' | 'surfaces' | 'quick-start';
+export type SectionEmitter = 'colors' | 'spacing-shapes' | 'surfaces' | 'motion' | 'quick-start';
 export type QuickStartEmitKind =
   | 'colors'
   | 'font-family'
@@ -203,6 +203,13 @@ const SECTIONS: readonly SchemaSection[] = [
     promptInstruction: 'Describe measured width, alignment, column, and spacing relationships.',
   },
   {
+    id: 'motion',
+    heading: '## Motion',
+    requiredness: 'conditional',
+    capability: 'motion',
+    emitter: 'motion',
+  },
+  {
     id: 'agent-prompt',
     heading: '## Agent Prompt Guide',
     requiredness: 'required',
@@ -263,6 +270,8 @@ const ISSUE_POLICIES: Readonly<Record<string, ValidationPolicy>> = {
   'table-format': { severity: 'hard', category: 'schema' },
   'blank-lines': { severity: 'hard', category: 'schema' },
   'missing-section': { severity: 'hard', category: 'schema' },
+  'motion-value-fidelity': { severity: 'hard', category: 'target' },
+  'unexpected-motion-section': { severity: 'hard', category: 'provenance' },
   'unknown-font': { severity: 'advisory', category: 'vocabulary', tier: 'notice' },
   'missing-type-table': { severity: 'advisory', category: 'shape', tier: 'notice' },
   'insufficient-colors': { severity: 'advisory', category: 'density', tier: 'notice' },

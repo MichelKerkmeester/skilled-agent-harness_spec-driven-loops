@@ -31,23 +31,33 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md",
+      ".opencode/skills/sk-design/shared/evidence-envelopes/motion-character-handoff.md",
       ".opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts",
       ".opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+      ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts",
       ".opencode/skills/sk-design/design-md-generator/references/design-md-format.md",
-      "tasks.md",
       "checklist.md",
+      "implementation-summary.md",
+      "tasks.md",
       "spec.md",
-      "plan.md",
-      "implementation-summary.md"
+      "plan.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "owned-asset-manifest.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
+        "path": ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-character-handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/evidence-envelopes/motion-character-handoff.md",
         "source": "derived"
       },
       {
@@ -63,21 +73,45 @@
         "source": "derived"
       },
       {
+        "name": "formatters-v3.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build-write-prompt.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts",
+        "source": "derived"
+      },
+      {
         "name": "design-md-format.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/design-md-generator/references/design-md-format.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -93,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -106,12 +134,6 @@
       },
       {
         "name": "Shared Evidence Envelopes",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Await Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -130,6 +152,12 @@
       },
       {
         "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Specify",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -159,39 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Pattern Shared",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Open Questions",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirm Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Metadata Predecessor",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "sk-design modes currently have no shared evidence contracts for three gaps that two independent Hallmark adoption research syntheses converged on as their highest-confidence findings: (1) there is no provider-neutral schema for describing owned assets without hotlinking or bundling third-party binaries; (2) there is no semantic vocabulary connecting motion \"character\" intent to sk-design's existing timing/easing bands; (3) the `MotionSystem` detector already produces motion evidence, but the v3 DESIGN.md schema has no output section for it — the gap is output, not detection",
     "created_at": "2026-07-20T09:21:25.442Z",
-    "last_save_at": "2026-07-22T18:01:09.020Z",
+    "last_save_at": "2026-07-22T18:24:07.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:35e05fc3fb61f10dd7a0098042a111b379fee321751f70487d646730390bdba0",
+    "source_fingerprint": "sha256:bce2b5c0644de3abd6cc80553ed71d8033df24c2bc645fa9a65a48f5d4099757",
     "source_doc_hashes": {
-      "spec.md": "27b6c40abc29974ed1d72f41301888ab9bc27e4ca0557a2630aeae4e494c2d56",
-      "plan.md": "9267947a51635c4e80dc53898f2703cce2941b18c016d89606654118ceb6647d",
-      "tasks.md": "adae8220889e5cbfb64dc276be2015bf4e3ce00c5fcdf7f96123ef8d19c36183",
-      "checklist.md": "9c8c07ca46ddd10e1ebb481ec0654fafb1cb6b654b4308571dcb44428585977e",
-      "implementation-summary.md": "71b3de4e0babbbeddd5d2a95835af8d5b047b23219ba49d595d90df6b8a2f596"
+      "spec.md": "62a8796a2e0e7b962ffef44fcf9f49f14e7913771de471b14f047f52a06f0a28",
+      "plan.md": "c9311e673089cce210d912c01d9f58ecabfef65030cadb869d7ee849f19b3e5e",
+      "tasks.md": "468af81c2add4bdcb5c243d89afea1ddfec77aed5aebb7029541ae78f3c8673a",
+      "checklist.md": "99337fece83f7fdc37fe405fce14af4b441c411e6f8f5e9052118da131926a84",
+      "implementation-summary.md": "ee0fba2ce57c7772fb9276dedfac34e3e1b1b33a9f99c93e1521dbe370e76f86"
     },
     "last_active_child_id": null,
     "last_active_at": null
