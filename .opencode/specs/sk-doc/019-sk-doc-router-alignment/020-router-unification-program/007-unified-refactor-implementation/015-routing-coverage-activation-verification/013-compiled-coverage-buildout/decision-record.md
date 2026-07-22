@@ -7,14 +7,14 @@ trigger_phrases:
   - "no concessions decision"
 importance_tier: "critical"
 contextType: "implementation"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Recorded ADR-001: Path 1 chosen, no concessions."
-    next_safe_action: "Reference ADR-001 when the sk-code pilot build-out starts."
+    recent_action: "Reconciled status to Complete: ADR-001 (Path 1) implemented and shipped fleet-wide (7/7 hubs compiled-serving)."
+    next_safe_action: "None; ADR-001 realized. Reference it for any future compiled-routing coverage work."
     blockers: []
     key_files:
       - ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/compiled-routing-coverage-diagnosis.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "packet-013-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Path 1 vs Path 2 vs Path 3: Path 1 accepted, Path 2 and Path 3 rejected."

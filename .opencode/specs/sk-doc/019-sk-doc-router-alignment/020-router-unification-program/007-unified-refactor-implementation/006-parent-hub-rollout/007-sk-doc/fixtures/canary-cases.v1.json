@@ -19,7 +19,8 @@
     { "id": "one-turn-clarify", "prompt": "create command and benchmark package", "expectedAction": "clarify", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
     { "id": "zero-signal-defer", "prompt": "unrelated orchard inventory", "expectedAction": "defer", "expectedReason": "no-match", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
     { "id": "forbidden-reject", "prompt": "forbidden documentation operation", "expectedAction": "reject", "expectedReason": "forbidden", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
-    { "id": "constraint-forbidden-reject", "prompt": "unrelated orchard inventory", "constraints": ["forbidden"], "expectedAction": "reject", "expectedReason": "forbidden", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } }
+    { "id": "constraint-forbidden-reject", "prompt": "unrelated orchard inventory", "constraints": ["forbidden"], "expectedAction": "reject", "expectedReason": "forbidden", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } },
+    { "id": "preview-not-review", "prompt": "preview the latest changes", "expectedAction": "defer", "expectedReason": "no-match", "gold": { "expectedIntents": ["defer"], "expectedResources": [] } }
   ],
   "advisorCases": [
     { "id": "live-match", "trust": "live", "expectedContribution": true },

@@ -204,13 +204,18 @@ function gateScenario({ hubId, scenario }, deps = {}) {
 
   const decision = { legacyIntents: legacy.intents, compiledAction: compiled.action, compiledIntents: compiled.intents };
 
-  // A conservative compiled defer serves the legacy decision unchanged — parity
-  // holds without comparing intents.
-  if (compiled.action !== 'route' || compiled.intents.length === 0) {
+  // Only a compiled DEFER is a true legacy fallback: the compiled plane yields and
+  // legacy serves its decision unchanged, so parity holds without comparing intents.
+  // clarify and reject are TERMINAL compiled decisions (the compiled plane refuses
+  // to route), NOT a fallback — they must be compared against legacy below, or a
+  // compiled clarify/reject that disagrees with a legacy route silently false-passes.
+  if (compiled.action === 'defer') {
     return { ...base, verdict: VERDICT.PASS, parityStatus: PARITY_STATUS.MATCH, reason: 'compiled-defers-to-legacy', decision };
   }
 
-  // The routing DECISION is the gate: same selected workflow modes == parity.
+  // The routing DECISION is the gate: same selected workflow modes == parity. A
+  // terminal clarify/reject carries no intents, so it matches legacy here only when
+  // legacy also routes nothing; a mismatch against a real legacy route is drift.
   if (sameSet(compiled.intents, legacy.intents)) {
     return { ...base, verdict: VERDICT.PASS, parityStatus: PARITY_STATUS.MATCH, reason: 'compiled-decision-matches-legacy', decision };
   }

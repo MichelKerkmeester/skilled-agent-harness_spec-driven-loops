@@ -1,0 +1,495 @@
+{
+  "sessionId": "fanout-sol-high-1784691838667-iv78vk",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-07-22T04:33:42.847Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Refresh can overwrite a concurrent serving-state update",
+      "file": ".opencode/bin/lib/compiled-route-manifest.cjs",
+      "line": 550,
+      "description": "The function reads and validates the existing manifest, caches `servingAuthority` and `shadowOnly`, performs compilation, then writes unconditionally. A concurrent writer that changes either serving field after line 552 but before line 588 is silently reverted by stale cached values. The mint path has an explicit concurrent-writer test, while refresh has no lock, compare-and-swap, fingerprint recheck, or concurrency test. [SOURCE: .opencode/bin/lib/compiled-route-manifest.cjs:550-590] [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:457-472] [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:501-605]",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Cutover gate false-passes compiled `clarify` and `reject` decisions",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+      "line": 207,
+      "description": "The gate labels any decision whose action is not `route` as `compiled-defers-to-legacy` and returns PASS. Compiled routers actually emit `clarify` and `reject`; those are terminal decisions, not legacy fallback. A compiled reject or clarify that disagrees with a legacy route therefore bypasses intent comparison and false-passes the cutover gate. The test suite covers only explicit `defer`. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs:207-217] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-cutover-luna.test.cjs:62-70] [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs:40-66] [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:140-153]",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Packet claims completion while its own required completion gates remain open",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md",
+      "line": 52,
+      "description": "The protocol says P1 items must complete or receive user approval, but P1 items CHK-025, CHK-040, CHK-041, and CHK-140 remain unchecked, and formal operator sign-off is blank. At the same time, the checklist and spec declare `complete`; `plan.md`, `tasks.md`, and `decision-record.md` retain `planned` frontmatter, unchecked definition-of-done/tasks, and stale blockers. No approval evidence resolves the contradiction. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md:52-58] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md:92-92] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md:123-124] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md:142-148] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md:197-208] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/plan.md:11-11] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/tasks.md:10-19] [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/decision-record.md:10-18]",
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "`sk-doc` compiled matcher over-routes `preview` as `review`",
+      "file": ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
+      "line": 23,
+      "description": "The compiled router substring-matches every non-command keyword. `sk-doc`'s quality vocabulary contains bare `review`, while the frozen legacy replay applies a word boundary specifically so `preview` does not match `review`. Direct replay confirms the divergence: compiled routes `\"preview this document\"` to `create-quality-control`; legacy returns no intents and `deferReason: no-mode-scored`. This disproves byte-identical behavior beyond the finite route-gold corpus. [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:23-29] [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:174-184] [SOURCE: .opencode/skills/sk-doc/hub-router.json:37] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:440-453]",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "Current manifest suite fails its authored-closure sync assertion",
+      "file": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+      "line": 378,
+      "description": "Live execution of `node --test .opencode/bin/tests/compiled-route-manifest.test.cjs` passed 15/16 and failed the sync capture/restore test. `compiled-route-sync.cjs --check` reports `UNRESOLVED: sk-code, system-deep-loop, mcp-tooling, sk-doc`, so the assertion that all seven authored hubs resolve no longer holds. This contradicts the packet's green-suite evidence and blocks a completion claim even though promoted runtime status is currently fresh. [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:378-411] [SOURCE: .opencode/bin/compiled-route-sync.cjs:351-357]",
+      "dimension": "traceability",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "SD-015 test limitation is stale",
+      "file": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md",
+      "line": 204,
+      "description": "The summary says there is no dedicated SD-015 lock-in test and leaves the follow-up unchecked, but `compiled-routing-parity.vitest.ts` contains a named SD-015 positive test plus a negative route-gap twin. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md:204-220] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts:468-534]",
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Benchmark flag telemetry still encodes the pre-cutover cohort",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
+      "line": 783,
+      "description": "`classifyFlagState(undefined)` reports `permitsCompiledWhenEligible: false` and comments that the cohort is empty, while the runtime's default cohort contains seven hubs and unset permits compiled for them. The test locks the stale value. This field is currently report telemetry rather than a gate, so severity is advisory. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs:783-806] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts:187-205] [SOURCE: .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs:29-42] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:380-400]",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "security: resolver and manifest trust boundaries",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "security: resolver and manifest trust boundaries",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "`sk-doc` compiled matcher over-routes `preview` as `review`",
+      "file": ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
+      "line": 23,
+      "description": "The compiled router substring-matches every non-command keyword. `sk-doc`'s quality vocabulary contains bare `review`, while the frozen legacy replay applies a word boundary specifically so `preview` does not match `review`. Direct replay confirms the divergence: compiled routes `\"preview this document\"` to `create-quality-control`; legacy returns no intents and `deferReason: no-mode-scored`. This disproves byte-identical behavior beyond the finite route-gold corpus. [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:23-29] [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:174-184] [SOURCE: .opencode/skills/sk-doc/hub-router.json:37] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:440-453]",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "Current manifest suite fails its authored-closure sync assertion",
+      "file": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+      "line": 378,
+      "description": "Live execution of `node --test .opencode/bin/tests/compiled-route-manifest.test.cjs` passed 15/16 and failed the sync capture/restore test. `compiled-route-sync.cjs --check` reports `UNRESOLVED: sk-code, system-deep-loop, mcp-tooling, sk-doc`, so the assertion that all seven authored hubs resolve no longer holds. This contradicts the packet's green-suite evidence and blocks a completion claim even though promoted runtime status is currently fresh. [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:378-411] [SOURCE: .opencode/bin/compiled-route-sync.cjs:351-357]",
+      "dimension": "traceability",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "`sk-doc` compiled matcher over-routes `preview` as `review`",
+      "file": ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
+      "line": 23,
+      "description": "The compiled router substring-matches every non-command keyword. `sk-doc`'s quality vocabulary contains bare `review`, while the frozen legacy replay applies a word boundary specifically so `preview` does not match `review`. Direct replay confirms the divergence: compiled routes `\"preview this document\"` to `create-quality-control`; legacy returns no intents and `deferReason: no-mode-scored`. This disproves byte-identical behavior beyond the finite route-gold corpus. [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:23-29] [SOURCE: .opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:174-184] [SOURCE: .opencode/skills/sk-doc/hub-router.json:37] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:440-453]",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "Current manifest suite fails its authored-closure sync assertion",
+      "file": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+      "line": 378,
+      "description": "Live execution of `node --test .opencode/bin/tests/compiled-route-manifest.test.cjs` passed 15/16 and failed the sync capture/restore test. `compiled-route-sync.cjs --check` reports `UNRESOLVED: sk-code, system-deep-loop, mcp-tooling, sk-doc`, so the assertion that all seven authored hubs resolve no longer holds. This contradicts the packet's green-suite evidence and blocks a completion claim even though promoted runtime status is currently fresh. [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:378-411] [SOURCE: .opencode/bin/compiled-route-sync.cjs:351-357]",
+      "dimension": "traceability",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 2
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 2,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 2.5,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "telemetryOnly": true,
+    "dimensionCoverage": 1,
+    "stabilizationPasses": 4,
+    "reason": "max-iterations hard ceiling reached"
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 1,
+      "partial": 1,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 4,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/bin/lib/compiled-route-manifest.cjs:535-595",
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs:193-217",
+          ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:23-29",
+          ".opencode/bin/compiled-route-sync.cjs:276-296"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002",
+          "F005",
+          "F007"
+        ],
+        "summary": "Final replay confirms four active implementation or closure defects."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 2,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md:52-58",
+          ".opencode/bin/tests/compiled-route-manifest.test.cjs:378-411"
+        ],
+        "findingRefs": [
+          "F003",
+          "F007"
+        ],
+        "summary": "Required P1 checks remain open and the current manifest suite is not green."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 9,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md:157-161"
+        ],
+        "findingRefs": [],
+        "summary": "Previously verified default-on catalog wording remains aligned."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 49,
+          "partial": 2,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts:1-751",
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs:193-217"
+        ],
+        "findingRefs": [
+          "F002",
+          "F007"
+        ],
+        "summary": "Targeted parity is green, while cutover and manifest validation remain incomplete."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

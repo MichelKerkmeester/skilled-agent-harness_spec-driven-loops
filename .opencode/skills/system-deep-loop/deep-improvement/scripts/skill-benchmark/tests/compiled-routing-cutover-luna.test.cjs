@@ -69,6 +69,39 @@ const eligible = new Set(['demo-hub']);
   assert.equal(r.reason, 'compiled-defers-to-legacy');
 }
 
+// 4a. compiled CLARIFY while legacy routes -> FAIL. A clarify is a terminal
+// compiled decision, not a legacy fallback: it must be compared, not auto-passed.
+{
+  const r = cutover.gateScenario({ hubId: 'demo-hub', scenario: scenario() }, {
+    routeLegacy: () => ({ intents: ['mode-a'] }), routeCompiled: () => ({ action: 'clarify', intents: [] }),
+    readManifestAuthority: compiledManifest, statusProbe: () => null, eligibleHubs: eligible,
+  });
+  assert.equal(r.verdict, 'FAIL');
+  assert.equal(r.reason, 'compiled-decision-differs-from-legacy');
+}
+
+// 4b. compiled REJECT while legacy routes -> FAIL. Same reasoning as 4a: a
+// terminal reject that disagrees with a legacy route is real drift, not a pass.
+{
+  const r = cutover.gateScenario({ hubId: 'demo-hub', scenario: scenario() }, {
+    routeLegacy: () => ({ intents: ['mode-a'] }), routeCompiled: () => ({ action: 'reject', intents: [] }),
+    readManifestAuthority: compiledManifest, statusProbe: () => null, eligibleHubs: eligible,
+  });
+  assert.equal(r.verdict, 'FAIL');
+  assert.equal(r.reason, 'compiled-decision-differs-from-legacy');
+}
+
+// 4c. compiled CLARIFY while legacy also routes nothing -> PASS. Guards against
+// over-correcting: a terminal decision that matches legacy's empty route is parity.
+{
+  const r = cutover.gateScenario({ hubId: 'demo-hub', scenario: scenario() }, {
+    routeLegacy: () => ({ intents: [] }), routeCompiled: () => ({ action: 'clarify', intents: [] }),
+    readManifestAuthority: compiledManifest, statusProbe: () => null, eligibleHubs: eligible,
+  });
+  assert.equal(r.verdict, 'PASS');
+  assert.equal(r.reason, 'compiled-decision-matches-legacy');
+}
+
 // 5. hub outside the serving closure -> SKIP.
 {
   const r = cutover.gateScenario({ hubId: 'other-hub', scenario: scenario() }, {

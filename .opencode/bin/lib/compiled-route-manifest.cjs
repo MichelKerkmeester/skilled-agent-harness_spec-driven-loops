@@ -573,19 +573,42 @@ function refreshCanonicalManifest({ hubId, skillRoot }) {
       refreshed: false,
     });
   }
+  // Re-read the manifest's serving state as late as possible. A concurrent flip of
+  // servingAuthority/shadowOnly during the (slow) compile above must survive this
+  // refresh, so carry forward the CURRENT on-disk values rather than the snapshot
+  // taken before the compile. A vanished or corrupt manifest here means another
+  // writer is mid-operation — fail closed instead of clobbering it.
+  let latest;
+  try {
+    const latestBytes = readManifestBytes(paths.absolutePath);
+    if (latestBytes === null) {
+      return failureRecord(hubId, 'missing-manifest', { refreshed: false });
+    }
+    latest = validateCanonicalManifestBytes({ hubId, manifestBytes: latestBytes });
+  } catch (error) {
+    return failureRecord(hubId, causeFrom(error, 'invalid-manifest'), { refreshed: false });
+  }
+  if (!latest.manifestValid) {
+    return failureRecord(hubId, 'invalid-manifest', { ...latest, refreshed: false });
+  }
   const manifest = {
     schemaVersion: 'V1',
     selectedPolicy: {
       effectivePolicyHash: currentPolicy.effectivePolicyHash,
       generation: newGeneration,
     },
-    servingAuthority: existingManifest.servingAuthority,
-    shadowOnly: existingManifest.shadowOnly,
+    servingAuthority: latest.manifest.servingAuthority,
+    shadowOnly: latest.manifest.shadowOnly,
   };
   const manifestBytes = artifactBytes(manifest);
   try {
     ensureActivationDirectory(path.dirname(paths.absolutePath));
-    fs.writeFileSync(paths.absolutePath, manifestBytes, { mode: 0o600 });
+    // Publish atomically: write a unique temp sibling then rename over the target so
+    // a concurrent reader never observes a half-written manifest and two publishers
+    // cannot interleave a partial file.
+    const tempPath = `${paths.absolutePath}.tmp-${process.pid}-${newGeneration}`;
+    fs.writeFileSync(tempPath, manifestBytes, { mode: 0o600 });
+    fs.renameSync(tempPath, paths.absolutePath);
   } catch (error) {
     return failureRecord(hubId, causeFrom(error), { refreshed: false });
   }

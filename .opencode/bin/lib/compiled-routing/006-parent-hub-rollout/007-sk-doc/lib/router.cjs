@@ -20,10 +20,19 @@ function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// Parity with the legacy replay's keywordHits: a bare keyword like "review" must
+// not substring-match inside "preview", and the short perf acronyms (inp/lcp/cls)
+// must not match inside longer words ("inp" in "input"), so these match on word
+// boundaries; every other keyword keeps substring matching, exactly as legacy does.
+const WORD_BOUNDARY_KEYWORDS = new Set(['review', 'lcp', 'inp', 'cls']);
+
 function containsSignal(text, value) {
   const signal = normalize(value);
   if (signal.startsWith('/')) {
     return new RegExp(`${escapePattern(signal)}(?![a-z0-9-])`, 'i').test(text);
+  }
+  if (WORD_BOUNDARY_KEYWORDS.has(signal)) {
+    return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(text);
   }
   return text.includes(signal);
 }

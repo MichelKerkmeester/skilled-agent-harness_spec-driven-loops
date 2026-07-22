@@ -800,9 +800,10 @@ function classifyFlagState(raw) {
     raw: raw === undefined ? null : raw,
     state,
     flagMode,
-    // Pre-cutover the per-hub default cohort is empty, so only an explicit
-    // force-on permits compiled serving; unset resolves to legacy fleet-wide.
-    permitsCompiledWhenEligible: flagMode === 'force-on',
+    // Post-cutover every eligible hub is in the default-on cohort, so an unset flag
+    // (mode 'default') permits compiled serving for eligible hubs exactly as force-on
+    // does; only an explicit force-legacy or an invalid value falls back to legacy.
+    permitsCompiledWhenEligible: flagMode === 'force-on' || flagMode === 'default',
     note: state === 'invalid' ? 'unrecognized value fails closed to legacy' : undefined,
   };
 }

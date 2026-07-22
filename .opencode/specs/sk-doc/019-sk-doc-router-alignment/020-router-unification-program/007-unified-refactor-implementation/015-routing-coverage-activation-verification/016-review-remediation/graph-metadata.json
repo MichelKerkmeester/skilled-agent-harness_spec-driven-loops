@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing review remediation",
+      "refresh manifest concurrency fix",
+      "sk-doc preview review over-route",
+      "authored closure unresolved hubs",
+      "cutover gate clarify reject",
+      "compiled routing remediation",
+      "deep review remediation",
+      "routing parity remediation",
+      "F001 F002 F005 F007 remediation"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "review",
+      "remediation",
+      "refresh",
+      "manifest",
+      "concurrency",
+      "sk-doc",
+      "preview",
+      "over-route",
+      "authored",
+      "closure"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/lib/compiled-route-manifest.cjs",
+      ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cutover-playbook-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "three Explore",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
+    "created_at": "2026-07-22T06:15:19.898Z",
+    "last_save_at": "2026-07-22T06:39:39.890Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13cc49ee1378192109a9a4b6747cc59003484794429d9f3a8c34a66ec4f811a8",
+    "source_doc_hashes": {
+      "spec.md": "efac342856915a1e296028c77fed5f3f71fb751f50d3a3b60e681fa9725f7b6a",
+      "plan.md": "ee1ddbddab152b4b2f04a357cb667bacc1c9c5e2d799f2f6499fa263c5ce73c3",
+      "tasks.md": "b197ed3e9ca489b5d0377687dc238f16955964a84a6f5d8c9857f2c4def71ad5",
+      "checklist.md": "c3a483696c1eee8cef04942f871c3cc8ccdd9be645b2d282a733db72ab983364",
+      "implementation-summary.md": "ed11bd7c938536c9a66fe7695d1c7d2bbc3bbbe2a53a933a018912f2d0d384e7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

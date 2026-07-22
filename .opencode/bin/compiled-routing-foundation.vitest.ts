@@ -11,7 +11,7 @@
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 
@@ -29,6 +29,31 @@ const resolver = requireCjs(join(RUNTIME, '011-runtime-engine', 'lib', 'resolve.
 const engine = requireCjs(join(RUNTIME, '011-runtime-engine', 'lib', 'compiled-route.cjs'));
 const status = requireCjs(join(HERE, 'compiled-route-status.cjs'));
 const scanner = requireCjs(join(HERE, 'check-no-spec-imports.cjs'));
+
+// The default-on cohort is duplicated across four copies that must stay in lockstep:
+// the runtime resolver (bin) and its byte-identical spec-tree twin, plus the advisor
+// flag source and its compiled dist. The two are held here so the drift-guard can
+// span all four rather than only the two live-imported ones.
+const REPO = join(HERE, '..', '..');
+const SPEC_TREE_RESOLVER = join(
+  REPO,
+  '.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
+  '007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs',
+);
+const ADVISOR_DIST_FLAG = join(
+  REPO,
+  '.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/compiled-routing-flag.js',
+);
+
+// Extract the ordered DEFAULT_ON_HUBS members from a source file by text, so the
+// guard never depends on that copy being loadable (the dist is ESM; requiring it
+// would couple this check to module-resolution instead of the cohort itself).
+function cohortMembersFromSource(filePath: string): string[] {
+  const source = readFileSync(filePath, 'utf8');
+  const match = source.match(/DEFAULT_ON_HUBS\s*(?::[^=]*)?=\s*new Set\(\[([\s\S]*?)\]/);
+  if (!match) throw new Error(`no DEFAULT_ON_HUBS Set literal found in ${filePath}`);
+  return [...match[1].matchAll(/['"]([^'"]+)['"]/g)].map((m) => m[1]);
+}
 
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 function clearFlag() { delete process.env[FLAG]; }
@@ -67,10 +92,28 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
     });
   }
 
-  it('resolver default-on cohort covers all 7 promoted hubs; advisor cohort mirrors it exactly', () => {
-    expect(resolver.DEFAULT_ON_HUBS.size).toBe(7);
-    expect(ADVISOR_DEFAULT_ON_HUBS.size).toBe(7);
-    expect([...ADVISOR_DEFAULT_ON_HUBS].sort()).toEqual([...resolver.DEFAULT_ON_HUBS].sort());
+  it('all four default-on cohort copies stay in lockstep (7 hubs; twins order-identical)', () => {
+    const specTreeResolver = requireCjs(SPEC_TREE_RESOLVER);
+    const binResolver = [...resolver.DEFAULT_ON_HUBS];
+    const twinResolver = [...specTreeResolver.DEFAULT_ON_HUBS];
+    const advisorSrc = [...ADVISOR_DEFAULT_ON_HUBS];
+    const advisorDist = cohortMembersFromSource(ADVISOR_DIST_FLAG);
+
+    // Exactly 7 hubs in every one of the four copies.
+    for (const cohort of [binResolver, twinResolver, advisorSrc, advisorDist]) {
+      expect(cohort.length).toBe(7);
+    }
+    // Order-identity WITHIN each family: the two resolver copies are byte-twins, and
+    // the advisor source and its compiled dist must list the cohort identically — an
+    // order change in one but not the other is a real drift a sorted check would miss.
+    expect(binResolver).toEqual(twinResolver);
+    expect(advisorSrc).toEqual(advisorDist);
+    // Membership-identity ACROSS the two families. The resolver family and the advisor
+    // family intentionally order the set differently, so this is set-equality; given
+    // the within-family identity above, matching one member of each family proves all
+    // four share the same membership.
+    const sorted = (list: string[]): string[] => [...list].sort();
+    expect(sorted(binResolver)).toEqual(sorted(advisorSrc));
   });
 
   it('unset resolves to a compiled decision for every default-on hub — promoted-cohort default', () => {

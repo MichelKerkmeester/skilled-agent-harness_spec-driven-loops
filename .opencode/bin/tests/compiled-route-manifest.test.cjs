@@ -544,6 +544,61 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.equal(afterRestore.causeCode, 'stale-manifest');
   });
 
+  test('a concurrent serving-authority flip during refresh is preserved, not reverted', () => {
+    const raceHub = `manifest-refresh-race-${process.pid}`;
+    const raceRoot = createParentFixture(raceHub);
+    removeManifestDirectory(raceHub);
+    const minted = manifestContract.mintCanonicalManifest({ hubId: raceHub, skillRoot: raceRoot });
+    assert.equal(minted.created, true, minted.causeCode);
+    assert.equal(minted.selectedPolicy.generation, 1);
+
+    const manifestPath = manifestContract.canonicalManifestPath({ hubId: raceHub }).absolutePath;
+    // Drift the source so the refresh genuinely recompiles to a new hash at gen 2.
+    const skillPath = path.join(raceRoot, 'SKILL.md');
+    fs.writeFileSync(skillPath, Buffer.concat([fs.readFileSync(skillPath), Buffer.from('\n')]));
+
+    // Simulate a concurrent writer that flips servingAuthority legacy->compiled in
+    // the window AFTER the refresh snapshots the manifest but BEFORE it writes: on
+    // the first manifest read, hand back the pre-flip bytes, then flip the on-disk
+    // file. A refresh that trusts its stale snapshot reverts the flip; a refresh
+    // that re-reads serving state before writing preserves it.
+    const realReadFileSync = fs.readFileSync;
+    let manifestReads = 0;
+    fs.readFileSync = function patchedReadFileSync(target, ...rest) {
+      const bytes = realReadFileSync.call(fs, target, ...rest);
+      const isManifest = typeof target === 'string'
+        && path.resolve(target) === path.resolve(manifestPath);
+      if (isManifest && manifestReads++ === 0) {
+        const flipped = {
+          ...JSON.parse(realReadFileSync.call(fs, manifestPath, 'utf8')),
+          servingAuthority: 'compiled',
+          shadowOnly: false,
+        };
+        fs.writeFileSync(manifestPath, Buffer.from(JSON.stringify(flipped)));
+      }
+      return bytes;
+    };
+    let refreshed;
+    try {
+      refreshed = manifestContract.refreshCanonicalManifest({ hubId: raceHub, skillRoot: raceRoot });
+    } finally {
+      fs.readFileSync = realReadFileSync;
+    }
+    assert.equal(refreshed.refreshed, true, refreshed.causeCode);
+
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    // The concurrent flip must survive...
+    assert.equal(manifest.servingAuthority, 'compiled');
+    assert.equal(manifest.shadowOnly, false);
+    // ...while the refresh still did its job (generation bumped, hash recompiled).
+    assert.equal(manifest.selectedPolicy.generation, 2);
+    assert.notEqual(
+      manifest.selectedPolicy.effectivePolicyHash,
+      minted.selectedPolicy.effectivePolicyHash,
+    );
+    removeManifestDirectory(raceHub);
+  });
+
   test('refuses to refresh unsafe hub identities and a missing manifest without writing anything', () => {
     for (const hubId of ['../escape', '/absolute', 'Upper-Case', 'two--hyphens', '.']) {
       const result = manifestContract.refreshCanonicalManifest({ hubId, skillRoot: primaryRoot });
