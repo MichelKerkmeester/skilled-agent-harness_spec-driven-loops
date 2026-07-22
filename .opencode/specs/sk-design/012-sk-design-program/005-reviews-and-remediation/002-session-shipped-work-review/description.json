@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review",
+  "description": "Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)",
+  "keywords": [
+    "spec",
+    "deep",
+    "review",
+    "session-shipped",
+    "work",
+    "commits",
+    "skilled"
+  ],
+  "lastUpdated": "2026-07-22T16:03:34.748Z",
+  "specId": "002",
+  "folderSlug": "session-shipped-work-review",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "005-reviews-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

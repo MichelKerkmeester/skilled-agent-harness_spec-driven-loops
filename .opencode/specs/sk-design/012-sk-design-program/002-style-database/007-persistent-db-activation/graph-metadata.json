@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation",
+  "spec_folder": "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation",
+  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "activate persistent styles database wire build",
+      "styles db 006 shadow parity perf gate flip",
+      "install-time prewarm distribution legacy kill switch",
+      "persistent styles db activation plan",
+      "shadow parity perf gate flip plan",
+      "install-time prewarm generation build plan",
+      "persistent styles db activation tasks",
+      "generation build shadow parity flip tasks",
+      "install-time prewarm kill switch tasks",
+      "persistent styles db activation checklist",
+      "shadow parity perf gate verification",
+      "eight reactivation gates kill switch checklist"
+    ],
+    "key_topics": [
+      "activate",
+      "persistent",
+      "styles",
+      "database",
+      "wire",
+      "shadow",
+      "parity",
+      "perf",
+      "gate",
+      "flip",
+      "install-time",
+      "prewarm"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wiring Plan If Kept",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Activate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Content Ownership",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "telemetry",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `003-db-fate` gap research recommended shelving the SQLite styles database: the JS math is tiny and parity-sensitive over 1,290 style bundles, and no measured SLO breach justified a storage swap",
+    "created_at": "2026-07-21T11:26:38.944Z",
+    "last_save_at": "2026-07-22T16:57:31.634Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eada7e14aa4e16e7b8deb1f10bd35fcf8e4a23c494c54d718b20c5d822d91982",
+    "source_doc_hashes": {
+      "spec.md": "9456919d6485641034397b526469d7db35e525a265bea289bb5f3bf6adfe6e78",
+      "plan.md": "81630af0a58b6515ed2dc00cff5f6f406b1201090651906119ba7609cd8f2d3f",
+      "tasks.md": "2f568730a46c6e216d1ac6924aab11165fc04e067acd976f51e9f54bef595ad2",
+      "checklist.md": "4f192a969ee2c14f6210d1fba994dfa38ecc303614ac2eae9988ed8998d3dc5c",
+      "implementation-summary.md": "f30017fdc9286b7b077e4e5a73453623c7bd29d5ae08b47385899f1eb4258f19"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
+  "description": "sk-design has no independently-authored library of abstract structural-fingerprint cards",
+  "keywords": [
+    "sk-design",
+    "independently-authored",
+    "library",
+    "abstract",
+    "structural-fingerprint",
+    "cards"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.294Z",
+  "specId": "003",
+  "folderSlug": "authored-cards",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "004-hallmark-design-system"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

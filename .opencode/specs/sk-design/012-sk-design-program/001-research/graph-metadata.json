@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/001-research",
+  "spec_folder": "sk-design/012-sk-design-program/001-research",
+  "parent_id": "sk-design/012-sk-design-program",
+  "children_ids": [
+    "sk-design/012-sk-design-program/001-research/001-research-style-database",
+    "sk-design/012-sk-design-program/001-research/002-research-design-commands",
+    "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
+    "sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research",
+    "sk-design/012-sk-design-program/001-research/005-gap-remediation-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design research phase",
+      "style database research",
+      "design command research",
+      "gap remediation research"
+    ],
+    "key_topics": [
+      "sk-design",
+      "research",
+      "phase",
+      "style",
+      "database",
+      "design",
+      "command",
+      "gap",
+      "remediation",
+      "program",
+      "needed",
+      "evidence"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design program needed evidence before building: which database technology fits the style library, why the design commands did not help create, whether Rust was warranted, how a hallmark design skill should work, and what gaps remained after the first build passes",
+    "created_at": "2026-07-22T16:38:24.421Z",
+    "last_save_at": "2026-07-22T16:57:34.253Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:269a1c8e6b62e708c860149e8c3e50626b1e3572baac3a0150e0f355f00d649c",
+    "source_doc_hashes": {
+      "spec.md": "2dccb298961d0d9b24109bff54db7bbf21ad15cc63b34685ec95e1b494f3ed37"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

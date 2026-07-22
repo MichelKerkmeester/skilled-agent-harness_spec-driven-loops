@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program",
+  "description": "The sk-design program grew across many packets — style-database research and build, the design-command redesign, hallmark design-system adoption, and",
+  "keywords": [
+    "sk-design",
+    "program",
+    "grew",
+    "across",
+    "many",
+    "packets",
+    "style-database",
+    "research",
+    "design-command",
+    "redesign",
+    "hallmark",
+    "design-system",
+    "adoption"
+  ],
+  "lastUpdated": "2026-07-22T16:34:54.277Z",
+  "specId": "012",
+  "folderSlug": "sk-design-program",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

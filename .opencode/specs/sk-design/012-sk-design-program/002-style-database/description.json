@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-design/012-sk-design-program/002-style-database",
+  "description": "The style library began as 13k flat files with no indexed query, no semantic retrieval, and no incremental sync — the largest structured dataset in",
+  "keywords": [
+    "style",
+    "library",
+    "began",
+    "13k",
+    "flat",
+    "files",
+    "indexed",
+    "query",
+    "semantic",
+    "retrieval",
+    "incremental",
+    "sync",
+    "largest",
+    "structured",
+    "dataset"
+  ],
+  "lastUpdated": "2026-07-22T16:35:37.381Z",
+  "specId": "002",
+  "folderSlug": "style-database",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

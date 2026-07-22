@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark",
+  "description": "Hybrid benchmark of the five /interface:* design commands: a deterministic structure/conformance axis (contract test + per-command scorecard) plus a",
+  "keywords": [
+    "hybrid",
+    "benchmark",
+    "five",
+    "interface",
+    "design",
+    "commands",
+    "deterministic",
+    "structure",
+    "conformance",
+    "axis",
+    "contract",
+    "test",
+    "per-command",
+    "scorecard",
+    "plus"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.360Z",
+  "specId": "005",
+  "folderSlug": "interface-command-benchmark",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "003-interface-commands"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "22-07-26_10-44__deep-command-benchmark-s-frozen-engines-cannot.md"
+  ]
+}

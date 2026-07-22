@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/002-database-readme-speckit-alignment",
+  "spec_folder": "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme/002-database-readme-speckit-alignment",
+  "parent_id": "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles database readme speckit alignment",
+      "expand styles database readme stub",
+      "database folder readme conventions",
+      "styles database readme plan",
+      "database folder readme sections",
+      "styles database readme exemplar mapping",
+      "styles database readme tasks",
+      "database folder readme task breakdown",
+      "expand database readme stub tasks",
+      "styles database readme checklist",
+      "database folder readme verification",
+      "styles database readme accuracy check"
+    ],
+    "key_topics": [
+      "styles",
+      "database",
+      "readme",
+      "speckit",
+      "alignment",
+      "expand",
+      "stub",
+      "folder",
+      "conventions",
+      "plan",
+      "sections",
+      "exemplar"
+    ],
+    "importance_tier": "standard",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/database/README.md",
+      ".opencode/skills/sk-design/styles/database/.gitignore",
+      ".opencode/skills/system-spec-kit/mcp-server/database/README.md",
+      "mcp-server/database/README.md",
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/database/README.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/database/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Database",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Canon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Package Topology",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Canon",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Expand",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Directory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proposed Section Mapping",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Directory Tree",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/sk-design/styles/database/README.md` is a 3-line stub:",
+    "created_at": "2026-07-22T06:16:26.730Z",
+    "last_save_at": "2026-07-22T16:57:28.148Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3dcd7241a0affe9972350317fa2f1cac730937a18385addab5c2f01cd5626271",
+    "source_doc_hashes": {
+      "spec.md": "fea98dabb625410f4663df3fd4f2b2943018646bee5a417dbce5d4ea829c8e8e",
+      "plan.md": "e9d11a3aab4cd1d5becbe29b556f8341719be2a32829454a0cd283278091c7ea",
+      "tasks.md": "1c16b31d65df8a0763b52dd66b03054f0c4232bc806022c791c9cb94800f6c53",
+      "checklist.md": "8669dda8dbae09a5d3e94140d5161383d8601dc615732277a87f6f31ad5fa01e",
+      "implementation-summary.md": "8036a45f0c5edf252c36e8f5e5f47b52ef9fbf1fbd48ddce367b632c0866d8d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

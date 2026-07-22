@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/001-research/002-research-design-commands",
+  "spec_folder": "sk-design/012-sk-design-program/001-research/002-research-design-commands",
+  "parent_id": "sk-design/012-sk-design-program/001-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design command research",
+      "interface command redesign",
+      "creation-template prompts"
+    ],
+    "key_topics": [
+      "design",
+      "command",
+      "research",
+      "interface",
+      "redesign",
+      "creation-template",
+      "prompts",
+      "five",
+      "commands",
+      "opencode",
+      "audit",
+      "foundations"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/shared/context-loading-contract.md",
+      ".opencode/skills/sk-design/shared/sk-code-handoff.md",
+      ".opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md",
+      ".opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-loading-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/context-loading-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "brief-to-dials.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md",
+        "source": "derived"
+      },
+      {
+        "name": "real-ui-loop.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Init",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five design commands (`.opencode/commands/design/{interface,audit,foundations,motion,md-generator}.md`) are thin routers: each resolves an execution mode and defers to the `sk-design` hub, carrying routing contracts and sibling discriminators but no generative scaffolding",
+    "created_at": "2026-07-19T06:46:18.402Z",
+    "last_save_at": "2026-07-22T16:57:33.305Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:edeb30bec25afd751913721c64337e3b5b9e64666599be5f2dfd34e952012f13",
+    "source_doc_hashes": {
+      "spec.md": "f1ade4c448bf7700e04caadc2bb5f5f9e49a8c898d7da9bc987eab6a0ae5aac8",
+      "plan.md": "717fc9ccd56f9950648ceb4948b9010e23de76abf7d073817e34d4df961f6d92",
+      "tasks.md": "2816d246d2f0da01aa0d4cbf9bb492dcf60653b7a35dc34d690c367fc59943de",
+      "checklist.md": "bb51a74ca46d813bee4706e4eb6220d23aae7c41e41af20b5359687fa4475b5c",
+      "implementation-summary.md": "f2c161a61882aca82281cf8897ef0f3ed5ca1e2a0df138ece990e0be9c41ed10",
+      "research/research.md": "c64120586916510656d73e1498a46815dca7602fab9173a1356697a61cd98008"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

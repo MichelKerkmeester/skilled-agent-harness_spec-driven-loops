@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme",
+  "description": "Phase-parent packet: realign two off-canon styles-library documents.",
+  "keywords": [
+    "phase-parent",
+    "packet",
+    "realign",
+    "two",
+    "off-canon",
+    "styles-library",
+    "documents"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.344Z",
+  "specId": "010",
+  "folderSlug": "manual-testing-playbook-and-db-readme",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "002-style-database"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

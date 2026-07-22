@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
+  "description": "Phase 004 shipped the five `/interface:` creation commands but kept a full `/design:` alias layer for backward compatibility: five thin alias wrappers",
+  "keywords": [
+    "phase",
+    "shipped",
+    "five",
+    "interface",
+    "creation",
+    "commands",
+    "kept",
+    "full",
+    "design",
+    "alias",
+    "layer",
+    "backward",
+    "compatibility",
+    "thin",
+    "wrappers"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.369Z",
+  "specId": "002",
+  "folderSlug": "retire-design-alias-namespace",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "003-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

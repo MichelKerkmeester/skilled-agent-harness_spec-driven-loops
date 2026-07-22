@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/003-interface-commands/001-interface-commands",
+  "spec_folder": "sk-design/012-sk-design-program/003-interface-commands/001-interface-commands",
+  "parent_id": "sk-design/012-sk-design-program/003-interface-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "interface commands implementation",
+      "creation-template commands",
+      "design command rename",
+      "interface creation commands complete",
+      "design command compatibility aliases"
+    ],
+    "key_topics": [
+      "interface",
+      "commands",
+      "implementation",
+      "creation-template",
+      "design",
+      "command",
+      "rename",
+      "creation",
+      "complete",
+      "compatibility",
+      "aliases",
+      "five"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/shared/creation-contract.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs",
+      ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "creation-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/creation-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "design-command-surface-check.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "interface-command-contract.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Manifest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five `/design:` commands are thin routers with no creation scaffolding",
+    "created_at": "2026-07-19T09:44:56.632Z",
+    "last_save_at": "2026-07-22T16:57:31.001Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:729959974c5588b2afec1e51f554f638ac9c3e9ee59028a7f8bbbdb45eb5e183",
+    "source_doc_hashes": {
+      "spec.md": "61d8400076b20f78bc6c7b6b496cc5bec6ee24185fc7a89387f6092a0a29e1eb",
+      "plan.md": "22d69d293f3492548f085680eb5d69e9d0d08a98e8d3c00eb7be6f30d3a042f0",
+      "tasks.md": "c9da581c4f489e77bcdd5640424e772dea6dc794cf56899a8bdb476115a0a338",
+      "checklist.md": "c1928d456af06f4daa7a409f23a038546401256bbd16008e8f59e08d38a57c9f",
+      "implementation-summary.md": "5f63c046dced146c5b870f828332576e736bd5bb8d2ae01b0709f5e6f4c5cf74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

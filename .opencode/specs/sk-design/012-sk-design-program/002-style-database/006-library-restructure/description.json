@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/002-style-database/006-library-restructure",
+  "description": "The `.opencode/skills/sk-design/styles/` root mixes three unrelated lifecycles under one flat, underscore-prefixed layout: 1,290 committed style",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "styles",
+    "root",
+    "mixes",
+    "three",
+    "unrelated",
+    "lifecycles",
+    "one",
+    "flat",
+    "underscore-prefixed",
+    "layout",
+    "committed",
+    "style"
+  ],
+  "lastUpdated": "2026-07-22T16:28:27.509Z",
+  "specId": "006",
+  "folderSlug": "library-restructure",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "002-style-database"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

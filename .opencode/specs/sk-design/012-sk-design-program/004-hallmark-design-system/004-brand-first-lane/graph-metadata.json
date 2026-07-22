@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane",
+  "spec_folder": "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane",
+  "parent_id": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "brand first authoring lane",
+      "authored design artifact",
+      "authored to measured conversion gate"
+    ],
+    "key_topics": [
+      "brand",
+      "first",
+      "authoring",
+      "lane",
+      "authored",
+      "design",
+      "artifact",
+      "measured",
+      "conversion",
+      "gate",
+      "sk-design",
+      "five"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "First Authoring Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Await Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Distinct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Each",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design's five modes are measured/evidence-first by design, and Phases 1-3 of this packet only fold Hallmark heuristics into that existing, measured surface",
+    "created_at": "2026-07-20T09:21:26.534Z",
+    "last_save_at": "2026-07-22T16:57:29.680Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4b5fde280d4901d7a7b2541779274bb80f60d27e099bcabacb3e6735aa5005c4",
+    "source_doc_hashes": {
+      "spec.md": "8c7ee17c01afa6297ba859add16deff44344112364b36eec7bc3ae8e5df66b40",
+      "plan.md": "8f6484adf8017fa8c39c506925c4e0e0ddd419638c622544b43abb0f41f93fa2",
+      "tasks.md": "8d3856728da42b9da5feec501140a9b0a8c3135aa84d041bc6b9c3d177d163e8",
+      "checklist.md": "643e8ae878a968a1a202f3a34942a9a331b5faf57e55c5145939853e5c2ac759",
+      "implementation-summary.md": "6fbebf6ec88ac12fd1ff87e85f621f24d1569db7e34ccfe68a62adf383c002a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

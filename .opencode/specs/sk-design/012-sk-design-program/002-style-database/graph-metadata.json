@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/002-style-database",
+  "spec_folder": "sk-design/012-sk-design-program/002-style-database",
+  "parent_id": "sk-design/012-sk-design-program",
+  "children_ids": [
+    "sk-design/012-sk-design-program/002-style-database/001-style-database",
+    "sk-design/012-sk-design-program/002-style-database/002-foundation",
+    "sk-design/012-sk-design-program/002-style-database/003-js-capabilities",
+    "sk-design/012-sk-design-program/002-style-database/004-measured-native",
+    "sk-design/012-sk-design-program/002-style-database/005-growth",
+    "sk-design/012-sk-design-program/002-style-database/006-library-restructure",
+    "sk-design/012-sk-design-program/002-style-database/007-persistent-db-activation",
+    "sk-design/012-sk-design-program/002-style-database/008-styles-folder-readmes",
+    "sk-design/012-sk-design-program/002-style-database/009-styles-readme-create-readme-alignment",
+    "sk-design/012-sk-design-program/002-style-database/010-manual-testing-playbook-and-db-readme"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design style database phase",
+      "style database build",
+      "styles database evolution",
+      "persistent style database activation"
+    ],
+    "key_topics": [
+      "sk-design",
+      "style",
+      "database",
+      "phase",
+      "styles",
+      "evolution",
+      "persistent",
+      "activation",
+      "library",
+      "began",
+      "13k",
+      "flat"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Stand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The style library began as 13k flat files with no indexed query, no semantic retrieval, and no incremental sync — the largest structured dataset in `sk-design` still trapped in flat files",
+    "created_at": "2026-07-22T16:38:24.094Z",
+    "last_save_at": "2026-07-22T16:57:34.094Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:17cb2471f5331f90311a5680a64997bdb5fac9bf069bb69eab6ef9921708adda",
+    "source_doc_hashes": {
+      "spec.md": "3676d9c46c982db51d7c5c702cb2ca7a9c8290e051337faa8483e41e87da5d60"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

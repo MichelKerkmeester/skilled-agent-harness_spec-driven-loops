@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/002-style-database/005-growth",
+  "spec_folder": "sk-design/012-sk-design-program/002-style-database/005-growth",
+  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "growth architecture styles database 10x 100x scale",
+      "eligible-id sql parameter limit hnsw ann",
+      "approximate search contract exact fallback rust"
+    ],
+    "key_topics": [
+      "growth",
+      "architecture",
+      "styles",
+      "database",
+      "10x",
+      "100x",
+      "scale",
+      "eligible-id",
+      "sql",
+      "parameter",
+      "limit",
+      "hnsw"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
+      ".opencode/skills/sk-design/styles/lib/database/vectors.mjs",
+      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vectors.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/lib/database/vectors.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Growth Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Roadmap Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement At",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Sequence Growth Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Phased",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Custom Rust",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "At 10x-100x corpus growth (roughly 129,000 bundles versus today's ~1,290), the eligible-ID SQL-parameter shape used for broad queries can approach or exceed SQLite's 32,766-variable limit at ~25.4% eligibility",
+    "created_at": "2026-07-20T09:21:24.207Z",
+    "last_save_at": "2026-07-22T16:57:31.975Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98aec4641af4bc1b144e9532f7a9a412d6606e8b084c885613f549da074c8de7",
+    "source_doc_hashes": {
+      "spec.md": "9c4f0f7cfbbfde33576d5bcbcc70f7fe089e8e3a6ec982341ccbc6fcee49efd2",
+      "plan.md": "5ce74d6fa4ae5fab568bbf5610c0b1d1f24eb83ef6a024f4c36be4df6cb790f9",
+      "tasks.md": "215dbf51620ac6e845e91a94e7acf427b6239e13f40e22de013e4e84da4e5d5d",
+      "checklist.md": "2f673b66cb9d851e681e8e6cfbb9cdf0c5023f0e865f812bac97157d72892b7c",
+      "implementation-summary.md": "701161e9e7849ac64b4670ba6f4f3c0c0703152cbcbc34275e9121ae0f8f5088"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

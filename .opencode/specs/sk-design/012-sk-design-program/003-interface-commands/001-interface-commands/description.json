@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/001-interface-commands",
+  "description": "The five `/design:` commands are thin routers with no creation scaffolding",
+  "keywords": [
+    "five",
+    "design",
+    "commands",
+    "thin",
+    "routers",
+    "creation",
+    "scaffolding"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.356Z",
+  "specId": "001",
+  "folderSlug": "interface-commands",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "003-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

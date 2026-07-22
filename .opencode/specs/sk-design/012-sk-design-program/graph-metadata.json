@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program",
+  "spec_folder": "sk-design/012-sk-design-program",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/012-style-database-and-interface-commands/001-research-style-database",
+    "sk-design/012-style-database-and-interface-commands/002-research-design-commands",
+    "sk-design/012-style-database-and-interface-commands/002-research-design-design-commands",
+    "sk-design/012-style-database-and-interface-commands/003-style-database",
+    "sk-design/012-style-database-and-interface-commands/004-interface-commands",
+    "sk-design/012-style-database-and-interface-commands/005-review-remediation",
+    "sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace",
+    "sk-design/012-style-database-and-interface-commands/007-gap-remediation-research",
+    "sk-design/012-style-database-and-interface-commands/008-interface-command-rewrite",
+    "sk-design/012-style-database-and-interface-commands/009-interface-command-research-refactor",
+    "sk-design/012-style-database-and-interface-commands/010-interface-command-benchmark",
+    "sk-design/012-sk-design-program/001-research",
+    "sk-design/012-sk-design-program/002-style-database",
+    "sk-design/012-sk-design-program/003-interface-commands",
+    "sk-design/012-sk-design-program/004-hallmark-design-system",
+    "sk-design/012-sk-design-program/005-reviews-and-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design program",
+      "style database and interface commands",
+      "hallmark design system",
+      "sk-design historic record"
+    ],
+    "key_topics": [
+      "sk-design",
+      "program",
+      "style",
+      "database",
+      "interface",
+      "commands",
+      "hallmark",
+      "design",
+      "system",
+      "historic",
+      "record",
+      "grew"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/specs/sk-design/012-sk-design-program/spec.md",
+      ".opencode/specs/sk-design/012-sk-design-program/retrospective.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrospective.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/retrospective.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design program grew across many packets — style-database research and build, the design-command redesign, hallmark design-system adoption, and several review and remediation passes",
+    "created_at": "2026-07-19T06:10:01.540Z",
+    "last_save_at": "2026-07-22T16:57:34.381Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1636ecfee47db0c8eb8b9cda3d12818a5efa9cf0f8ef6899ccb42a6ef961e59d",
+    "source_doc_hashes": {
+      "spec.md": "6509932158a5edf629229a07387c48c2a9d07ac225b088684bb6454c10a6275a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
+  "description": "sk-design modes currently have no shared evidence contracts for three gaps that two independent Hallmark adoption research syntheses converged on as",
+  "keywords": [
+    "sk-design",
+    "modes",
+    "currently",
+    "shared",
+    "evidence",
+    "contracts",
+    "three",
+    "gaps",
+    "two",
+    "independent",
+    "hallmark",
+    "adoption",
+    "research",
+    "syntheses",
+    "converged"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.293Z",
+  "specId": "002",
+  "folderSlug": "evidence-envelopes",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "004-hallmark-design-system"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

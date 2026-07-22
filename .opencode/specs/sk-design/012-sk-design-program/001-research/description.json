@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-design/012-sk-design-program/001-research",
+  "description": "The sk-design program needed evidence before building: which database technology fits the style library, why the design commands did not help create,",
+  "keywords": [
+    "sk-design",
+    "program",
+    "needed",
+    "evidence",
+    "database",
+    "technology",
+    "fits",
+    "style",
+    "library",
+    "design",
+    "commands",
+    "help"
+  ],
+  "lastUpdated": "2026-07-22T16:32:06.452Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/004-interface-command-research-refactor",
+  "description": "Evidence-based deep research (web-enabled, mixed GPT-5.6-SOL-fast + Opus-4.8-max executors) into how leading tools structure design/UI commands, then",
+  "keywords": [
+    "evidence-based",
+    "deep",
+    "research",
+    "web-enabled",
+    "mixed",
+    "gpt-5",
+    "6-sol-fast",
+    "opus-4",
+    "8-max",
+    "executors",
+    "leading",
+    "tools",
+    "structure",
+    "design",
+    "commands"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.364Z",
+  "specId": "004",
+  "folderSlug": "interface-command-research-refactor",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "003-interface-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

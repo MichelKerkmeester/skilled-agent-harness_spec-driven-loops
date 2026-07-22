@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/001-restructure",
+  "spec_folder": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research/001-restructure",
+  "parent_id": "sk-design/012-sk-design-program/001-research/005-gap-remediation-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "styles restructure research",
+      "styles data code separation",
+      "styles runtime architecture alignment"
+    ],
+    "key_topics": [
+      "styles",
+      "restructure",
+      "research",
+      "data",
+      "code",
+      "separation",
+      "runtime",
+      "architecture",
+      "alignment",
+      "forced",
+      "5-iter",
+      "gpt-5"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Styles Tree Restructure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Forced 5-iter GPT-5.6-SOL research on separating the 1,290 style data folders from backend code and aligning the styles tree to the deep-loop/runtime architecture.",
+    "created_at": "2026-07-21T09:46:41.179Z",
+    "last_save_at": "2026-07-22T16:57:28.883Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7a12252a234b4c6b641d11fe6e88c11c04cacd182ee6c9b396486638a72821b7",
+    "source_doc_hashes": {
+      "spec.md": "ff6d2e2414012ede087ffbdcf2f3c477ee4206967eac2bb5abc4f5dfab274cd4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
+  "spec_folder": "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
+  "parent_id": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "structural fingerprint cards",
+      "load on demand design cards",
+      "authored macrostructure cards"
+    ],
+    "key_topics": [
+      "structural",
+      "fingerprint",
+      "cards",
+      "load",
+      "demand",
+      "design",
+      "authored",
+      "macrostructure",
+      "sk-design",
+      "independently-authored",
+      "library",
+      "abstract"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      "plan.md",
+      "checklist.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Structural",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fingerprint Cards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Await Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Hallmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design has no independently-authored library of abstract structural-fingerprint cards",
+    "created_at": "2026-07-20T09:21:26.003Z",
+    "last_save_at": "2026-07-22T16:57:29.862Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03d4bce64f93a68195b6d8045b5c562221f1eec62b43f7fcaef40b0e910b167b",
+    "source_doc_hashes": {
+      "spec.md": "cb332bbf07b5e20a470b332a1476194e0730a8f71668552a11f5cdcabcc98414",
+      "plan.md": "3508b819f77e29a4f70b267344969f763957376645a892dd0ba5420222443809",
+      "tasks.md": "56e12dce012537c3745e9bc5994660bdd21c3f874641a69bdb2629f697ff347e",
+      "checklist.md": "e6d21f477b39948f9c6df77508274d2cba0f4ce60f8ef21e8bee03b0ee88ee93",
+      "implementation-summary.md": "7e8090d06c0335442889d76292e46205374c87dc057659eabda8146aff1b2dee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
