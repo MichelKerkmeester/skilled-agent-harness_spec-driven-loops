@@ -10,7 +10,8 @@
     "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/004-skill-mode-readme-overhaul",
     "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
     "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop"
+    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
+    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -88,7 +89,7 @@
     ],
     "causal_summary": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs, reference/asset template alignment, per-folder code READMEs repo-wide, and bare skill/mode READMEs) plus the doc-tooling bugs the audits surfaced. Eight phases, hardest and highest-leverage first, each one reviewable commit; agent-swarm authoring against the current templates.",
     "created_at": "2026-07-22T08:55:19.119Z",
-    "last_save_at": "2026-07-22T13:46:51.232Z",
+    "last_save_at": "2026-07-22T15:15:44.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -96,7 +97,7 @@
     ],
     "source_fingerprint": "sha256:e4d5406a00bf848b8e9b8626bc873e6cbf0be93601826105911bd5ef4195bfd1",
     "source_doc_hashes": {
-      "spec.md": "6b88d329ff3ee2d7fed404f3d8db4e8e6816909ea5285936331fffe7565a917d"
+      "spec.md": "11550328e451baa87b20b07d49a2a8a023adadc2ac9c22aea55067a672d2c8b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

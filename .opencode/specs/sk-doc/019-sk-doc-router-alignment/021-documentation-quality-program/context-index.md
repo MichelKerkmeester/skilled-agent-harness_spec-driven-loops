@@ -11,7 +11,9 @@ Per-phase cross-reference for the `021-documentation-quality-program` phase pare
 | `005-code-readmes-infra-and-sk` | complete | 33 code READMEs authored (8 sk-doc, 6 sk-code, 6 system-code-graph, 5 skill-advisor, 4 mcp-code-mode, 3 mcp-tooling, 1 cli). All VALID, CONTENTS cross-checked, 0 em dashes |
 | `006-code-readmes-design-prompt-speckit` | complete | 38 of 45 code READMEs authored (12 sk-design, 8 sk-prompt harness, 18 system-spec-kit). All VALID, CONTENTS cross-checked, 0 em dashes. 7 excluded: 6 benchmark seed fixtures (README could pollute the eval) + 1 stale `__tests__` duplicate |
 | `007-code-readmes-deep-loop` | complete | 53 code READMEs authored (35 runtime/lib domains + 18 runtime/mode/shared). All VALID, CONTENTS cross-checked, 0 em dashes. Refreshed 2 stale catalogs: `runtime/lib/README.md` 3 to 37 domains, `runtime/tests/README.md` 5 to 7 suites |
-| `008-verification-and-closeout` | planned | Full validation gate; conformance sweeps; optional-extension decisions |
+| `008-existing-readme-cleanup` | complete | Surgical repair of 64 older skill/code READMEs (real stale-path refs traced to moved targets + ~28 OVERVIEW added) via a triaged 6-agent Sonnet swarm; deleted the approved stale `__tests__` duplicate. Audit: invalid 70→43, broken-refs 177→119. Spec/archive/fixture files + false positives left alone (documented) |
+| `009-titlecase-config-code-findings` | planned | 2 README + 41 reference/asset Title-Case → ALL-CAPS; flip `h2UppercaseRequired: true`; remaining code findings (RIG_ROOT, dispatch-swe16, 10a checker) |
+| `010-verification-and-closeout` | planned | Full validation gate; final `audit_readmes.py` sweep; program closeout |
 
 ## Discovered pre-existing issues (surfaced, tracked for the relevant phase)
 

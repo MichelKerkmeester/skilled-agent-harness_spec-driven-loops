@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
-  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup",
   "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,34 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code readmes deep loop",
-      "runtime lib domain readmes",
-      "stale runtime catalog fix",
-      "code readmes deep loop summary",
-      "fifty-three deep-loop readmes",
-      "runtime lib catalog refresh"
+      "existing readme cleanup",
+      "stale broken reference repair",
+      "missing overview backfill",
+      "existing readme cleanup summary",
+      "audit triage surgical repair",
+      "broken reference cleanup swarm"
     ],
     "key_topics": [
-      "code",
-      "readmes",
-      "deep",
-      "loop",
-      "runtime",
-      "lib",
-      "domain",
+      "existing",
+      "readme",
+      "cleanup",
       "stale",
-      "catalog",
+      "broken",
+      "reference",
+      "repair",
+      "missing",
+      "overview",
+      "backfill",
       "summary",
-      "fifty-three",
-      "deep-loop"
+      "audit"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/lib/README.md",
-      ".opencode/skills/system-deep-loop/runtime/tests/README.md",
+      ".opencode/skills/sk-doc/create-command/references/README.md",
+      ".opencode/skills/sk-design/styles/scripts/README.md",
+      "core/README.md",
+      "templates/changelog/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -47,7 +49,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/README.md",
+        "path": ".opencode/skills/sk-doc/create-command/references/README.md",
         "source": "derived"
       },
       {
@@ -87,19 +89,13 @@
         "source": "derived"
       },
       {
-        "name": "Loop Batch",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Author",
+        "name": "Purpose Surgically",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -111,7 +107,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "The Title",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -129,19 +131,25 @@
         "source": "derived"
       },
       {
-        "name": "Overview Fan",
+        "name": "Overview Run",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern The",
+        "name": "Pattern Triage",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Six Sonnet",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -177,21 +185,15 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
-    "created_at": "2026-07-22T13:46:50.887Z",
-    "last_save_at": "2026-07-22T15:15:44.041Z",
+    "causal_summary": "The `auditreadmes.py` fleet sweep flagged 70 template-invalid READMEs, 177 broken references and 68 missing-OVERVIEW findings across the repo's 593 READMEs",
+    "created_at": "2026-07-22T15:15:44.494Z",
+    "last_save_at": "2026-07-22T15:16:58.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db1dabe1b116793494a2b3c02a0e12a05ca57ab9eeb6f3132c2ad87dff173ff3",
+    "source_fingerprint": "sha256:7ea29afb3228a435c7f26c795c44338e0f1a89ad365705de8aac1a7185361c29",
     "source_doc_hashes": {
-      "spec.md": "face69aeb2b74cb64c4e9e176c199d8364768efc2856bc3421ba9cb533269058",
-      "plan.md": "8104f04a4c4634279e8234b6eee58e3a856e897c26fb10e274155630ad3263cd",
-      "tasks.md": "5e70903a27d5181221129e32c3a859ccb4ad51a81a0be663e7b4af6cbd92d130",
-      "checklist.md": "5001a795ca4a9c99b2f144f0941452be13471731d93462f68719f6427f10bda2",
-      "implementation-summary.md": "061267b146c83f0acedd6046bfee90743d214e0fe3e690552aac80d95ff15ab4"
+      "spec.md": "7704bd3222b4a8e628f7568e44cb411d11b9ece00f3e701304038820f8f79ade",
+      "plan.md": "074a5cdbc6136df6f36a54129fe5a666e9725425a99bcec97b4880e3ad7b8c28",
+      "tasks.md": "a5492c7324856867ee36320677e241858567f2fd67ce9fcb715f3bbf607d1413",
+      "checklist.md": "c665fbde3024b123c5e5c8eb0f389eb372b53e770f3171185b746c4c5f574de5",
+      "implementation-summary.md": "8a213cee0a4ce2ad4d880d589c5e0c1ce409e0f0d537beacdc0051746c41118e"
     },
     "last_active_child_id": null,
     "last_active_at": null
