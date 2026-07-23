@@ -1,24 +1,26 @@
 ---
 title: "Feature Specification: Deep Research shadow parity"
-description: "Plan the Deep Research mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy emitter for init, iterative gather/analyze, convergence detection, synthesis, resume, and memory-save handoff; canonicalizes only declared transport volatility; diffs the mode projection event-for-event; and blocks authority cutover on any unexplained semantic difference. This is planning only and does not authorize a ledger cutover or remove the legacy writer."
+description: "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and projection comparison, reproducible receipts, and a fail-closed successor gate input. The legacy path remains authoritative."
 trigger_phrases:
   - "Deep Research shadow parity"
   - "deep-research ledger migration"
   - "deep-research event parity"
   - "mode 010 shadow harness"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
-    last_updated_at: "2026-07-15T15:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Read the leaf mold and Deep Research shadow-parity inputs"
-    next_safe_action: "Freeze the mode event map and parity oracle against shared contracts"
+    last_updated_at: "2026-07-22T12:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the Deep Research shadow-parity contract"
+    next_safe_action: "Consume DeepResearchModeGateInput in sibling 007 without widening its closed shape"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-shadow-parity/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-shadow-parity.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,11 +41,11 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Phase 013 Deep Research mode fan-out; shadow-parity planning after the shared mode contracts and compatibility work |
-| **Inputs** | Parent `036-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; the phase-014 shadow framework named by the phase brief |
+| **Inputs** | `runtime/lib/shadow-parity/`; `runtime/lib/legacy-projections/`; `runtime/lib/deep-research-ledger-schema/`; `runtime/lib/deep-research-reducers/`; `runtime/lib/deep-research-resume-adapter/` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -62,7 +64,7 @@ This phase plans a mode-owned harness that invokes the legacy emitter and the ne
 ### In Scope
 - A Deep Research lifecycle event map covering initialization, research-plan creation or revision, branch/query acquisition, source capture, evidence admission, claim and contradiction updates, reducer projection, next-focus selection, convergence evaluation, synthesis, resume, and memory-save handoff.
 - A legacy-side adapter and ledger-side shadow adapter that execute against the same frozen run manifest, source snapshot, prompt/model/tool fingerprints, budget lease, and input state.
-- A canonical comparison tuple for each mode event: event type, logical run and branch identity, step key, producer sequence, causal links, stable payload digest, and resulting projection fingerprint. Transport-only fields must be declared in an allowlist rather than silently ignored.
+- A stable pairing identity for each mode event: event type, logical run identity, logical branch identity, step key, and producer sequence. Raw event ID, causal links, stable payload digest, receipts, artifacts, projection fingerprint, and terminal decision are excluded from pairing because path-local IDs may differ and the remaining fields are compared after pairing. Transport-only fields must be declared in an allowlist rather than silently ignored.
 - Event-for-event diff reports that classify missing, extra, reordered, duplicated, payload, causal-link, receipt, artifact, projection, and terminal-decision differences.
 - Fixtures for fresh runs, multi-branch research, rejected or quarantined evidence, contradiction and supersession, max-iteration incomplete runs, converged runs, crash and resume boundaries, source mutation refresh, synthesis, and memory-save handoff.
 - A parity receipt bound to BASE, the run manifest, event-schema versions, reducer/projection versions, comparator configuration, fixture IDs, both stream digests, and all diff dispositions.
@@ -115,7 +117,7 @@ The gate requires zero unexplained differences across the fresh-run, branch, evi
 - **False parity from terminal-only comparison** — a matching report can conceal different claim admission, contradiction, next-focus, or resume events. Mitigation: compare the canonical mode event stream and intermediate projection fingerprints.
 - **Over-broad canonicalization** — excluding IDs, timestamps, or payload fields can hide duplicate work, branch drift, or altered evidence. Mitigation: maintain a reviewed allowlist and fail on unknown volatile fields.
 - **Nondeterministic web and model inputs** — replaying live sources or fresh model calls invalidates the comparison. Mitigation: freeze source captures, prompt/model/tool fingerprints, run manifest, and input state for each fixture.
-- **Legacy reducer behavior is more complete than its stated contract** — the findings record full-log and iteration-markdown rescans. Mitigation: use observed legacy output as the oracle while separately recording the intended typed projection.
+- **Legacy reducer behavior is more complete than its stated contract** — the findings record full-log and iteration-markdown rescans. Mitigation: use modeled legacy event and resume oracles for planning, then capture genuine observed golden fixtures for both dimensions before phase-014 authority consideration.
 - **Resume divergence** — a crash between effect, receipt, and state append can produce an uncertain handoff. Mitigation: include boundary fixtures, receipt matching, lease continuity, and explicit block/reconcile outcomes.
 - **Cross-mode contract drift** — the 009 write-set conflict graph and shared event/schema contracts may change while this child is planned. Mitigation: bind the parity receipt to exact contract digests and reopen on relevant drift.
 - **Authority leakage** — a shadow writer or projection accidentally changes the live path. Mitigation: assert non-authoritative flags, read-only comparison inputs, separate output paths, and no cutover mutation in this phase.
@@ -125,12 +127,11 @@ The gate requires zero unexplained differences across the fresh-run, branch, evi
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which shared phase-014 shadow-framework event envelope and comparator extension points are mandatory for a mode adapter, and which transport events remain outside the Deep Research stream?
-- Which legacy fields are genuinely volatile, and which must become stable logical IDs or content digests before parity can be measured?
-- What exact source snapshot, model response fixture, and memory-save transport fixture constitute the minimum reproducible corpus for live web and model nondeterminism?
-- Which evidence-admission, contradiction, and source-refresh dispositions are protected legacy behavior versus deliberate defects to be addressed by later mode implementation phases?
-- How should a ledger stream represent a legacy full-log rescan while preserving equivalent incremental projection semantics without treating implementation strategy as a tolerated mismatch?
-- What parity receipt fields and failure severities does `007-rollback-and-mode-gate` require before it can authorize rollback readiness or any later cutover review?
+No blocking questions remain. The implementation resolved the original planning questions as follows:
 
-These questions are planning boundaries, not permission to weaken parity. Until answered against the shared contracts and frozen fixtures, the safe disposition is blocked or indeterminate and the legacy path remains authoritative.
+- The adapter drives the shared `ParityPathExecutor`, sealed-input, shadow-effect, divergence, certificate, and receipt boundaries directly; transport-only timing and correlation fields remain outside semantic identity.
+- The closed volatility allowlist contains only `occurred_at`, `recorded_at`, and `correlation_id`, with presence, type, and semantic-noninterference checks.
+- Ten sealed scenarios cover fresh, branch, quarantine, contradiction, incomplete, converged, resume, source-refresh, synthesis, and memory-handoff behavior.
+- Modeled legacy event projection and resume behavior are the planning oracles; the ledger path independently folds the typed reducer and runs the real resume adapter. Genuine observed legacy golden fixtures for both dimensions remain a phase-014 obligation before authority consideration.
+- `DeepResearchParityReceipt` and `DeepResearchModeGateInput` are the exact closed handoff records. Any missing/malformed receipt, unexplained difference, nondeterministic replay, or fixture failure blocks sibling 007; neither record authorizes cutover.
 <!-- /ANCHOR:questions -->

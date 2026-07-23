@@ -5,18 +5,20 @@ trigger_phrases:
   - "deep research resume adapter implementation plan"
   - "deep-research idempotent resume plan"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter"
-    last_updated_at: "2026-07-15T19:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined resume decision algebra and continuity-ladder ownership boundaries"
-    next_safe_action: "Freeze compatibility outcomes and crash-window fixtures against phase-012 contracts"
+    last_updated_at: "2026-07-22T09:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the ledger-backed adapter and adversarial fixture suite"
+    next_safe_action: "Reproduce the exported decision algebra in 006-shadow-parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -31,7 +33,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / deep-research mode migration |
-| **Change class** | Planning contract for recovery and re-entry |
+| **Change class** | Additive-dark recovery and re-entry adapter |
 | **Execution** | Isolated worktree pinned to the phase-003 BASE; ledger remains additive-dark |
 
 ### Overview
@@ -42,17 +44,17 @@ Deep Research resume must rebuild the live loop from the sealed event-ledger sub
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-012 shared envelope, replay fingerprint, idempotency, and conflict contracts are frozen and available to the adapter.
-- [ ] The typed Deep Research event union, reducer projection fields, sealed reference set, and certificate/receipt references are reviewed at their sibling boundaries.
-- [ ] The continuity-ladder matrix names each lifecycle state, reducer field, required sealed reference, and allowed re-entry action.
-- [ ] The recovery decision algebra covers branch reuse/re-execution, effect reconciliation/compensation, compatibility outcomes, source invalidation, and memory-save retry.
-- [ ] Stable identifiers, manifest revision rules, root lease propagation, and append-before-dispatch ordering are defined without allocating a new lease on resume.
-- [ ] Crash, duplicate-delivery, late-event, source-mutation, changed-manifest, and unknown-effect fixtures are specified with expected ledger outcomes.
+- [x] Phase-012 shared envelope, replay fingerprint, idempotency, and conflict contracts are frozen and available to the adapter.
+- [x] The typed Deep Research event union, reducer projection fields, sealed reference set, and certificate/receipt references are reviewed at their sibling boundaries.
+- [x] The continuity-ladder matrix names each lifecycle state, reducer field, required sealed reference, and allowed re-entry action.
+- [x] The recovery decision algebra covers branch reuse/re-execution, effect reconciliation/compensation, compatibility outcomes, source invalidation, and memory-save retry.
+- [x] Stable identifiers, manifest revision rules, root lease propagation, and append-before-dispatch ordering are defined without allocating a new lease on resume.
+- [x] Crash, duplicate-delivery, late-event, source-mutation, changed-manifest, and unknown-effect fixtures are specified with expected ledger outcomes.
 
 ### Definition of Done
-- [ ] Ledger-only reconstruction reaches the same typed resumable state for the same sealed event history and reducer contract.
-- [ ] Resume decisions are immutable, fingerprint-bound, idempotent, and safe under process restart and duplicate requests.
-- [ ] The mode gate can hand the adapter to shadow parity without authority movement or legacy-writer changes.
+- [x] Ledger-only reconstruction reaches the same typed resumable state for the same sealed event history and reducer contract.
+- [x] Resume decisions are immutable, fingerprint-bound, idempotent, and safe under process restart and duplicate requests.
+- [x] The mode gate can hand the adapter to shadow parity without authority movement or legacy-writer changes.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

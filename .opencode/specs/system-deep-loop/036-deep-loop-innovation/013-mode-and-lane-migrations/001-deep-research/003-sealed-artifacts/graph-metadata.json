@@ -19,7 +19,10 @@
       "deep research sealed artifacts tasks",
       "deep-research verified read tasks",
       "deep research sealed artifacts checklist",
-      "deep-research tamper-evident artifact checklist"
+      "deep-research tamper-evident artifact checklist",
+      "deep research sealed artifacts implementation",
+      "deep-research artifact bindings",
+      "deep research verified sealed reads"
     ],
     "key_topics": [
       "deep",
@@ -41,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -175,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:30.948Z",
-    "last_save_at": "2026-07-19T18:01:23.537Z",
+    "last_save_at": "2026-07-21T17:51:36.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:509885a29201993d70280c012c8a4ceaac54dea8a28c7e713bc532af4cbb0632",
+    "source_fingerprint": "sha256:e3f926703028201983db3efd32991d0ced8d00dfd168fc5a4f9e17a7080f09fe",
     "source_doc_hashes": {
       "spec.md": "d46fdecafee341fc25b070ac5e6e5eb4ad0bb3942df42b9fb4d3eec8353ce3e1",
       "plan.md": "674e003a79970acae662397a1b80baefc5419d7d63efc08690895edc9d956590",
       "tasks.md": "469bbd6dd06907f695ec1df3a8ec1ef477feb607a0a649d59dcfc26a044ab742",
-      "checklist.md": "5f17fea34025d785ca2bacd09d34d6bc88d11db6ef4f88e3cd9c23bedce8241a"
+      "checklist.md": "5f17fea34025d785ca2bacd09d34d6bc88d11db6ef4f88e3cd9c23bedce8241a",
+      "implementation-summary.md": "37914c5e5965ad212552d7bdd255aa175c2abf3f98348d8646a7f393b51ff09b"
     },
     "last_active_child_id": null,
     "last_active_at": null

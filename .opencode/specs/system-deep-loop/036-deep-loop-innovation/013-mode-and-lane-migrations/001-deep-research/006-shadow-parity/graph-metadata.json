@@ -38,15 +38,31 @@
       "implementation",
       "plan"
     ],
-    "importance_tier": "high",
-    "status": "planned",
+    "importance_tier": "critical",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-shadow-parity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-shadow-parity.vitest.ts",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-shadow-parity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-shadow-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-shadow-parity.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,6 +73,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -72,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -79,6 +107,12 @@
       },
       {
         "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Deep Research",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -102,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -126,7 +154,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "the Deep Research",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -166,37 +194,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Deep Research mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy emitter for init, iterative gather/analyze, convergence detection, synthesis, resume, and memory-save handoff; canonicalizes only declared transport volatility; diffs the mode projection event-for-event; and blocks authority cutover on any unexplained semantic difference. This is planning only and does not authorize a ledger cutover or remove the legacy writer.",
+    "causal_summary": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and projection comparison, reproducible receipts, and a fail-closed successor gate input. The legacy path remains authoritative.",
     "created_at": "2026-07-16T03:43:31.690Z",
-    "last_save_at": "2026-07-17T13:21:27.062Z",
+    "last_save_at": "2026-07-22T15:59:34.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8207d8299dbafd025d10e3a8489cea2750df31e5dac5ebdb24f6d26a4dd4b09f",
+    "source_fingerprint": "sha256:6e170e8cbfe31310726f2803b220c7c04ab18bbc1b07805146c0a551a1ee3db8",
     "source_doc_hashes": {
-      "spec.md": "00a832b8274727c2a200ae31e52999bab8d06213e57b69b19868ccef9a695aa0",
-      "plan.md": "545be7234e5df7726c1c853b87550ed6d33833dac3f968deec207b9885968a73",
-      "tasks.md": "eb58554c655eaf69ed6046ff7317441b87ac640ed92c1441faebc261f6849f03",
-      "checklist.md": "b6329d4a562b4dc1e811f7b8cb9b279937eae65005c86c2e48e7c1d04dc2282d"
+      "spec.md": "519168211ef651eeb7e318f01baa748ae279912b3d746a945a60f487d73a5f18",
+      "plan.md": "1034508c88fc85890be82e53c52be97149f0a7c8ffbe0a57101f72c2cb33ee8f",
+      "tasks.md": "66151e05480e4835284db0f5758c3beb367a64e80bed52426a600d30ae55e17a",
+      "checklist.md": "81faa3b9bda0f8b64ea21a307707b7f0f3cccd58e96176f52dfcd6296c390e71",
+      "decision-record.md": "b0081b146049fbbe536aacfdc4cfa78a86da23c425b204488e6eb5c8226b7de5",
+      "implementation-summary.md": "b5ade997f9d9ae02154a1d30967585caaaeda985c0c51c32750c258109953f2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

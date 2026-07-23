@@ -20,7 +20,9 @@
       "deep research certificates and receipts tasks",
       "deep-research run certificate tasks",
       "deep research certificates and receipts checklist",
-      "deep-research offline verifier checklist"
+      "deep-research offline verifier checklist",
+      "deep research prior receipt digest",
+      "deep research receipt chain durability"
     ],
     "key_topics": [
       "deep",
@@ -37,14 +39,30 @@
       "implementation"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-certificates.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-certificates.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-certificates.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -77,12 +107,6 @@
       },
       {
         "name": "Deep Research",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Defined Deep Research",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,13 +130,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Mapped Deep Research",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -136,19 +160,13 @@
         "source": "derived"
       },
       {
-        "name": "Sequenced Deep Research",
+        "name": "Inventory Deep Research",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Inventory Deep Research",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -176,37 +194,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff, versioned replay-fingerprint inputs, and an independent offline verifier.",
     "created_at": "2026-07-16T03:43:31.211Z",
-    "last_save_at": "2026-07-19T18:01:19.170Z",
+    "last_save_at": "2026-07-22T06:27:30.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da83f0ad80dfc680511fe845d6b2ae28f4c70474d9efca983fdf7c34141a0fa3",
+    "source_fingerprint": "sha256:654b369b7bb50685f913bdf74e5ce6e951a5ad22f123d7fa0d11664f22917eaf",
     "source_doc_hashes": {
-      "spec.md": "a7e25107bc60a44bf15818e237f721d163e6d83057762a0f421a99818c5037f9",
-      "plan.md": "69e3adc70d88a56b3bad514cecf9f913eb089e8039e8b8e80df7310de93706c7",
-      "tasks.md": "12f58d5b0a0a7443d2b0c216df6986ebb361426b5e02c1a1bce935f9a4251500",
-      "checklist.md": "a59a85ebf9b74c4010c742c2bb2310d63536eb01fc8299b1b6cac4c86a2fd813"
+      "spec.md": "a4ec0ec14a67d80d887d57514fdabaca969291a078dca1ef9b9694503717221a",
+      "plan.md": "f5da705344d15026bed4759d2787377e2433961dc3483db79fb2854c98972b6b",
+      "tasks.md": "c52f4df7a3f74f03de4377ad73f244d42dfa6cd45630f35f5fc5c1ddef0915d2",
+      "checklist.md": "1ce099dfaf6952eae54eb98ebffbf54cb990f71c7c5b1dec8b2df42b2ad6ec53",
+      "decision-record.md": "67a60b496585b8f436874ec80f7d4404a40d5329e4cf64cb8ff60cd1d0f5f3ff",
+      "implementation-summary.md": "3964802741709a1e7f1315faa55f63fb9c6d5b138c32c17924aa4309d482bbb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

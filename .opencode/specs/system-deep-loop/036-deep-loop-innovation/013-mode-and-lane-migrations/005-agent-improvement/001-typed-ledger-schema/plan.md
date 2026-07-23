@@ -1,23 +1,27 @@
 ---
 title: "Implementation Plan: Agent Improvement — Typed Ledger Schema"
-description: "Implementation Plan for the first Agent Improvement migration child: define the typed append-only event envelope, AgentIR and behavioral-change event vocabulary, causal experiment fields, shared evaluator/canary/promotion reuse, and versioned upcaster boundary before reducers or projections are implemented."
+description: "Implemented additive-dark Agent Improvement typed ledger schema over the shared Deep Improvement Common Services event, authorization, replay, and compatibility contracts."
 trigger_phrases:
   - "agent improvement typed ledger implementation plan"
   - "typed AgentIR event schema plan"
   - "agent improvement causal event plan"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:45:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Captured Agent Improvement event ownership and sibling handoff boundary"
-    next_safe_action: "Define AgentIR fields and versioned event payloads for the variant run"
+    last_updated_at: "2026-07-23T14:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark Agent Improvement typed ledger schema"
+    next_safe_action: "Consume the exported event union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-schema.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/legacy-compatibility.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-ledger-schema.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,7 +37,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Agent Improvement variant |
 | **Change class** | Typed event schema and variant event vocabulary |
-| **Execution** | Planning-only child; implementation follows phase-006, phase-012, and mode-004 contract freeze |
+| **Execution** | Complete; additive-dark schema extending the frozen mode-004 common contract |
 
 ### Overview
 The phase defines one Agent Improvement event contract over the mode-004 Deep Improvement Common Services backbone.
@@ -48,19 +52,19 @@ authorization events, preserves raw evidence, and leaves reducers and projection
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment
-- [ ] Phase-012 shared event contracts and naming rules are available for specialization
-- [ ] Mode-004 common evaluator, canary, promotion, and receipt ownership is available for reuse
-- [ ] The Agent Improvement event catalog covers AgentIR compilation, mutation lineage, causal experiments, behavior coverage, manifest exposure, transfer, and terminal paths
-- [ ] Every event payload has explicit field types, identity references, and independent envelope/payload version policy
-- [ ] Reducer, projection, frontier, materialized-gauge, and mode-gate behavior is excluded from this child
+- [x] Phase-006 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment [Evidence: targeted Vitest exercises the real transition gateway, append-only ledger, shared envelope, and replay metadata]
+- [x] Phase-012 shared event contracts and naming rules are available for specialization [Evidence: the module imports shared envelope and registry types instead of declaring an alternate substrate]
+- [x] Mode-004 common evaluator, canary, promotion, and receipt ownership is available for reuse [Evidence: the 35 common definitions retain their shared contracts and gain only the Agent Improvement variant guard in this lane's 50-stem registry]
+- [x] The Agent Improvement event catalog covers AgentIR compilation, mutation lineage, causal experiments, behavior coverage, manifest exposure, transfer, and terminal paths [Evidence: all 15 extension stems pass the authorized append/readback matrix]
+- [x] Every event payload has explicit field types, identity references, and independent envelope/payload version policy [Evidence: closed payload/scope maps and independent-version rejection tests pass]
+- [x] Reducer, projection, frontier, materialized-gauge, and mode-gate behavior is excluded from this child [Evidence: scoped source audit and public exports contain schema, compatibility, and preparation surfaces only]
 
 ### Definition of Done
-- [ ] A reviewed typed envelope specialization and Agent Improvement event union are specified
-- [ ] AgentIR, change-contract, causal-experiment, manifest, coverage, and transfer fields are replay-addressable
-- [ ] Common evaluator, canary, promotion, receipt, and authorization types are reused without duplication
-- [ ] Upcaster hooks, compatibility classes, and fail-closed unknown-version behavior are specified
-- [ ] Handoff inputs and ownership boundaries for `002-reducers-and-projections` are explicit
+- [x] A reviewed typed envelope specialization and Agent Improvement event union are implemented [Evidence: `AgentImprovementLedgerEvent` covers 50/50 registered stems]
+- [x] AgentIR, change-contract, causal-experiment, manifest, coverage, and transfer fields are replay-addressable [Evidence: every extension payload uses stable references, digests, and typed scopes]
+- [x] Common evaluator, canary, promotion, receipt, and authorization types are reused without duplication [Evidence: `deepImprovementCommonEventDefinitions()` supplies the common registry surface]
+- [x] Upcaster hooks, compatibility classes, and fail-closed unknown-version behavior are implemented [Evidence: compatibility and legacy-upcast adversarial tests pass]
+- [x] Handoff inputs and ownership boundaries for `002-reducers-and-projections` are explicit [Evidence: spec scope and implementation summary exclude reducers and projections]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -157,10 +161,9 @@ the next sibling, or later migration gates.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This child changes planning artifacts only and has no runtime write or data migration. If the proposed schema fails
-review, discard or revert the four phase documents and reopen the planning contract without touching the phase-006
-core, phase-012 contracts, mode-004 services, or downstream variants. During later implementation, keep the variant
-writer additive and dark behind the existing authorization and compatibility bridge; reject an incompatible event
-version rather than emitting a guessed AgentIR, trace, manifest, or outcome. No reducer or projection rollback is
-defined here because those are owned by `002-reducers-and-projections`.
+This module is additive-dark and performs no data migration or authoritative runtime write. Rollback is deletion or
+reversion of the new schema module, its unit test, and this leaf's completion documentation; the phase-006 core,
+phase-012 contracts, mode-004 services, and downstream variants remain untouched. Incompatible event versions are
+rejected rather than guessed. No reducer or projection rollback is defined here because those remain owned by
+`002-reducers-and-projections`.
 <!-- /ANCHOR:rollback -->

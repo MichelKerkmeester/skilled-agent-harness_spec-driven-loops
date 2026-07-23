@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets"
-    last_updated_at: "2026-07-22T19:16:28Z"
+    last_updated_at: "2026-07-23T07:04:12Z"
     last_updated_by: "implementation-agent"
     recent_action: "Verified measured composition facets"
     next_safe_action: "Regenerate metadata and commit scoped changes"
@@ -105,7 +105,7 @@ The implementation extends the current SQLite projection and explicit indexing w
 | Focused schema/indexer/retrieval suites | PASS: tests 31, pass 31, fail 0 |
 | Post-change full database suite | PASS: tests 73, pass 73, fail 0 |
 | OpenCode alignment guards | PASS: alignment drift, stack folders, and 10 router-sync tests |
-| Strict packet validation | Errors 0; graph metadata absent under orchestrator ownership |
+| Strict packet validation | Errors 0; generated description and graph metadata present |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -115,7 +115,7 @@ The implementation extends the current SQLite projection and explicit indexing w
 
 1. **Documented structure only.** Navigation and footer values report documented regions, not DOM absence.
 2. **Bounded first version.** Layout axes use a small neutral vocabulary detected from the existing layout descriptor.
-3. **Generated metadata pending.** The orchestrator will create `description.json` and `graph-metadata.json` after handoff.
+3. **Generated metadata present.** `description.json` and `graph-metadata.json` are available in this packet.
 4. **Parent map untouched.** The existing phase-parent map remains unchanged under the requested scope lock.
 <!-- /ANCHOR:limitations -->
 

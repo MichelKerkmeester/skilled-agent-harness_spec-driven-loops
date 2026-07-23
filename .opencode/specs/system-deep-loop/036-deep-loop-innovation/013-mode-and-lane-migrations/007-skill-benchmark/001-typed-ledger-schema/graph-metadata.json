@@ -39,14 +39,56 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-schema.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/legacy-compatibility.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
+      "decision-record.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "skill-benchmark-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-ledger-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-compatibility.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/legacy-compatibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,25 +126,25 @@
         "source": "derived"
       },
       {
-        "name": "Bounded Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Skill Benchmark Typed Ledger Schema",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "The Skill Benchmark",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Acceptance Criteria",
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,14 +162,8 @@
         "source": "derived"
       },
       {
-        "name": "The Skill Benchmark",
+        "name": "Task Checklist",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -144,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "references",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "exact",
+        "name": "paired",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -160,43 +196,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Current Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Skill Benchmark event vocabulary over the deep-improvement-common backbone: a typed append-only envelope for paired scenario treatments, progressive skill exposure, trajectory evidence, gold integrity, raw scoring observations, and versioned contribution-certificate lifecycle facts. This phase defines event types and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:41.092Z",
-    "last_save_at": "2026-07-17T13:21:42.294Z",
+    "last_save_at": "2026-07-23T10:16:50.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e77cf93df0e4a0c49a7e0235ce34267d4740b9b03d18e9e2c0c00b7f445213b5",
+    "source_fingerprint": "sha256:7c8d388b3f10753a70442423b1ed091151b10287ad5fefd16fb1f3f63497d5ec",
     "source_doc_hashes": {
-      "spec.md": "e9c89ec9185f316f753afc6e35dccccbecdc12d1d96abd4c24b5e878a0202cda",
-      "plan.md": "0dd1cf6008b79fb26c29237a78309dc05f96297072e9e67d8afdf4d9965eb4f0",
-      "tasks.md": "db2155daa044a8766d850fcff3ac91f23718b983dd477768806061cf68fe5ea5",
-      "checklist.md": "90ceadb01148268bcb9169645e895ed88e53c8ef6bacf95d9ca0f36abf6536e5"
+      "spec.md": "6473a8bb7a8fabb266a6b8172cc69ea27977ac886fa786b346a3ba1c5edfe91b",
+      "plan.md": "12027275fbf525425798906bf653bb630cc437afe9b068a4214d2a5f1182eb6a",
+      "tasks.md": "3356b1a3ef2ca84ec0216122a92e692222308c3b8dcad4ca4e50e20c9f3bd5d1",
+      "checklist.md": "692dbde91f2dd015c3bb0125fa124e13d4937dc791b4074cf49df3b6a4dd1ef9",
+      "decision-record.md": "13bc03cf0e7ec89df163870adbfb22f9b66feed0cbffb25d5927b8d1de22f44c",
+      "implementation-summary.md": "ebb90a4ec7419b75a034b06d25045aebaf51ea64dd03a567131042b69a277e08"
     },
     "last_active_child_id": null,
     "last_active_at": null

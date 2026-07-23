@@ -39,14 +39,36 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts",
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-rollback-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +91,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -126,7 +154,7 @@
         "source": "derived"
       },
       {
-        "name": "sealed",
+        "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -156,47 +184,39 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Deep Research",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate. The gate consumes shadow-parity, sealed-artifact, certificate, receipt, resume, and replay evidence, keeps authority with the legacy path until phase 014, and emits the mode certificate required for staged cutover.",
+    "causal_summary": "Implements the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate while keeping authority with the legacy path until phase 014.",
     "created_at": "2026-07-16T03:43:31.931Z",
-    "last_save_at": "2026-07-19T18:01:20.739Z",
+    "last_save_at": "2026-07-23T07:06:15.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3a4bc1b8893009ef59f00dcdd488478c7b94e1981a26928e07cc9c41522dfb7",
+    "source_fingerprint": "sha256:4bcf542fc50d29295e701bf7e548aeea2d6db02765836207375adaf8ceb4c2a0",
     "source_doc_hashes": {
-      "spec.md": "fee8faed3579f12ec81affd41fff51341972f076798661ed9f69bda7f762dc70",
-      "plan.md": "a34c8ce38ffae7fdb43aef94e2e1979a7f90044c15d83d972dcc9f4edb2453e4",
-      "tasks.md": "fd9e0be65778872e1ade061a40b978e7e08d7b71044d4cb0b445eec5fa96d54c",
-      "checklist.md": "d279810c5751011a1dd35da3fcfc6930e056ba3dbbe0f9f59ef09fe1e846b7ae"
+      "spec.md": "88995cc2f947b293acb64b994e26a0f593998a58c6d0f45e31dd03965afd066e",
+      "plan.md": "1e45db7808d74880ef81141cc9ceaa2ea74fbc3cc3e511c03d8e5e2b945b77e5",
+      "tasks.md": "4905b39b7f342c4bbce7117727ecbaf6cd2aa28bf503ff4aed2bb96a5cd9f0e1",
+      "checklist.md": "a96ae566f175ad2e936f7f18eea782f85b204ddb2627849dc133725c300546bd",
+      "decision-record.md": "d21375a3d0e23216cd8b39996c05e0dd4640a5764a216324366bfe6b557b16da",
+      "implementation-summary.md": "1b5c0d1d4384da4a38c06b3cb42806a489a3a91fac9ebf7fc58894b5e400669f"
     },
     "last_active_child_id": null,
     "last_active_at": null

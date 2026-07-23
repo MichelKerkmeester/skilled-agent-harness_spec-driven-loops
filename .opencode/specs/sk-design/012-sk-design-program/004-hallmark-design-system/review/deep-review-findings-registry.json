@@ -1,0 +1,525 @@
+{
+  "mergedFrom": [
+    "glm-5-2",
+    "luna-xhigh",
+    "minimax-m3"
+  ],
+  "mergedVerdict": "FAIL",
+  "openFindings": [
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "002-evidence-envelopes spec.md Open Questions section lists pre-edit line numbers (146/490/260) but post-edit positions are 207/286",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/spec.md",
+      "line": 167,
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.82,
+        "downgradeTrigger": "If the 002 spec.md §7 is renamed to 'Verification Audit' or the historical content is moved to the implementation summary handoff, resolve."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "005 impl-summary Known Limitations 'Generated metadata pending' is stale",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+      "line": 118,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; documentation drift"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.8,
+        "downgradeTrigger": "If the 005 impl-summary's Known Limitations section is updated to remove the 'Generated metadata pending' line, resolve."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "005 impl-summary Known Limitations says 'Generated metadata pending' but description.json and graph-metadata.json are present",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+      "line": 118,
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        },
+        {
+          "iteration": 3,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Extended to cover the verification-table row as a separate documentation-drift surface; F006 (impl-summary self-contradiction) and F010 (verification-table contradiction) are now the same root cause with two distinct surfaces"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.78,
+        "downgradeTrigger": "If the 005 impl-summary's Known Limitations section and verification table row are both updated, resolve F006+F010."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "005 impl-summary verification table row 'graph metadata absent' is the same contradiction as F006",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+      "line": 108,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; verification-table contradiction"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.83,
+        "downgradeTrigger": "If the 005 impl-summary's verification table row is updated to remove the 'graph metadata absent' clause, resolve."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "006-deep-alignment-and-review/alignment is a seeded but unrun deep-alignment run; not in parent children_ids",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/006-deep-alignment-and-review/alignment/deep-alignment-findings-registry.json",
+      "line": 61,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.8,
+        "downgradeTrigger": "If the 006 directory is cleaned up or formally added to the parent, resolve."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ]
+    },
+    {
+      "findingId": "F004--325afba55444",
+      "severity": "P0",
+      "title": "Authored leaf symlinks can redirect a permitted write into measured data",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 72,
+      "description": "the guard validates only the lexical filename and then calls `writeFile` on the destination. If `AUTHORED-DESIGN.md` already points at `DESIGN.md` (or another measured file), the write follows that symlink and clobbers measured content, directly violating the hard authored/measured boundary. The adversarial test covers direct measured path strings but not pre-existing symlinks. Remediation: reject symlinked destination entries with `lstat`, and use no-follow/atomic creation semantics for the final write.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-xhigh"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--325afba55444",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--da11618783c1",
+          "peerLineages": [
+            "minimax-m3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--92258840badb",
+      "severity": "P1",
+      "title": "Authored Markdown export is only provenance-marker checked",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 76,
+      "description": "`refreshAuthoredExports` validates the structured token payload but accepts any Markdown containing `origin: authored`, even though the authored artifact template requires `artifactType`, schema, source description, authored date, and per-value palette/type/voice provenance. The helper can therefore publish a malformed or mismatched `AUTHORED-DESIGN.md` beside a valid `authored-tokens.json`. Remediation: parse and validate the rendered Markdown contract, or make the structured brand the sole source for rendering both exports.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-xhigh"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--92258840badb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--44ceac23da84",
+          "peerLineages": [
+            "minimax-m3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--c10dd153914e",
+      "severity": "P2",
+      "title": "Paired authored exports are not refreshed atomically",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 93,
+      "description": "the two independent `writeFile` calls run in `Promise.all`; an interruption or second-write failure can leave `AUTHORED-DESIGN.md` and `authored-tokens.json` from different refreshes. That violates the documented paired-export refresh model under partial I/O failure. Remediation: write a staged pair and rename both only after both contents are durable, or add rollback/consistency recovery.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-xhigh"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--c10dd153914e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--425abbf196d9",
+          "peerLineages": [
+            "minimax-m3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--44ceac23da84",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent Files to Change and Phase Map declare 4 lanes but 5 children exist (intentionally isolated 005 lane)",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 80,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Severity confirmed; rationale refined: 005 is intentionally outside the 4-lane scope per spec.md Phase | 5 + impl-summary scope-lock note, but the parent spec.md still does not declare 005 anywhere."
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.85,
+        "downgradeTrigger": "If parent spec.md is updated to declare the isolated 005 lane and the Files to Change table is widened, downgrade to P2."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--44ceac23da84",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--92258840badb",
+          "peerLineages": [
+            "luna-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--425abbf196d9",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent Open Questions 'specced but not yet built' is stale",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 108,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.95,
+        "downgradeTrigger": "If the open question is updated to reflect implementation-record state, downgrade to P2."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--425abbf196d9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--c10dd153914e",
+          "peerLineages": [
+            "luna-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--3fbbbf7d0290",
+      "severity": "P0",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent spec.md Status: Planned contradicts 5 children Status: Complete",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 45,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P0",
+        "confidence": 0.9,
+        "downgradeTrigger": "If parent spec.md is regenerated to Status: Complete and retrospective is updated, downgrade to P2."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--3fbbbf7d0290",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--9aac5f8c1a3f",
+          "peerLineages": [
+            "luna-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--9aac5f8c1a3f",
+      "severity": "P1",
+      "title": "Phase-parent scope and lifecycle metadata omit a completed fifth child",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 72,
+      "description": "the parent defines exactly four lanes and only maps phases 1-4, while the child packet declares Phase 5 Complete and `graph-metadata.json` lists it as a child. A recursive review or resume path using the parent map can miss the shipped measured-composition lane and retain the parent’s Planned state. Remediation: reconcile the parent scope, phase map, status, and generated metadata with the five-child topology.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-xhigh"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--9aac5f8c1a3f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--3fbbbf7d0290",
+          "peerLineages": [
+            "minimax-m3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--da11618783c1",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Program retrospective.md lists 4 hallmark lanes as Planned contradicting per-packet Complete",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/retrospective.md",
+      "line": 62,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.88,
+        "downgradeTrigger": "If the retrospective is updated to mark the four hallmark adoption lanes as Complete, downgrade to P2."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--da11618783c1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--325afba55444",
+          "peerLineages": [
+            "luna-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Regenerate scripts do not propagate child status to parent; F001 will not be caught by the documented workflow",
+      "file": ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js",
+      "line": 1,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; maintenance gap"
+        }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.85,
+        "downgradeTrigger": "If a parent-child reconciliation script is added to the regenerate workflow or a new validator is introduced that captures parent-child status consistency, resolve."
+      },
+      "_lineages": [
+        "minimax-m3"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 5,
+    "P2": 7
+  },
+  "openFindingsCount": 14,
+  "resolvedFindingsCount": 0,
+  "activeP0": 2,
+  "activeP1": 5,
+  "activeP2": 7
+}

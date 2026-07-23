@@ -40,63 +40,63 @@ missing raw observations, reducer-owned scope, or unexpected tracked mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 006 publishes the transition-authorized envelope and append boundary; phase 012 publishes the shared event and replay contracts
-- [ ] CHK-002 [P0] Current Deep Research lifecycle and JSONL obligations are inventoried from `SKILL.md:261-323`
-- [ ] CHK-003 [P1] The event ownership matrix names one owner for every shared, mode, reducer, projection, artifact, and certificate concern
-- [ ] CHK-004 [P2] The candidate report records the phase-006 and phase-012 contract revisions plus the event-vocabulary manifest hash
+- [x] CHK-001 [P0] Phase 006 publishes the transition-authorized envelope and append boundary; phase 012 publishes the shared event and replay contracts [Evidence: `deep-research-ledger-schema.ts:39` and gateway test at `deep-research-ledger-schema.vitest.ts:466`]
+- [x] CHK-002 [P0] Current Deep Research lifecycle and JSONL obligations are inventoried from `SKILL.md:261-323` [Evidence: compatibility inventory at `legacy-compatibility.ts:142`]
+- [x] CHK-003 [P1] The event ownership matrix names one owner for every shared, mode, reducer, projection, artifact, and certificate concern [Evidence: scope boundary recorded in `implementation-summary.md`]
+- [x] CHK-004 [P2] The candidate report records the phase-006 and phase-012 contract revisions plus the event-vocabulary manifest hash [Evidence: registry digest is produced by `createDeepResearchEventRegistry` at `deep-research-ledger-schema.ts:423`]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] The Deep Research envelope reuses shared identity, causation, integrity, authorization, and replay fields without mode-local duplicates
-- [ ] CHK-006 [P0] Every event stem has a stable name, independent event version, typed payload, requiredness rule, and causal or predecessor reference
-- [ ] CHK-007 [P1] Payloads contain references and digests for large artifacts; no mutable source body, report body, or in-place claim update is encoded
-- [ ] CHK-008 [P1] Raw observations remain separate from trusted or derived decisions, including raw novelty and confidence values
+- [x] CHK-005 [P0] The Deep Research envelope reuses shared identity, causation, integrity, authorization, and replay fields without mode-local duplicates [Evidence: envelope specialization at `deep-research-ledger-types.ts:427`]
+- [x] CHK-006 [P0] Every event stem has a stable name, independent event version, typed payload, requiredness rule, and causal or predecessor reference [Evidence: stem and payload maps at `deep-research-ledger-types.ts:306`]
+- [x] CHK-007 [P1] Payloads contain references and digests for large artifacts; every DATA field has one semantic rule and no blank locator, mutable source body, report body, convergence prose alias, code/version passage, or in-place claim update is encoded [Evidence: `DATA_FIELD_RULES` plus the locator, quoted-passage, policy-version, and cross-kind rejection tests]
+- [x] CHK-008 [P1] Raw observations remain separate from trusted or derived decisions, including raw novelty and confidence values [Evidence: typed fields and fixtures at `deep-research-ledger-schema.vitest.ts:229`]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] A complete fixture validates `run_initialized` through `run_completed` across init, iteration, convergence, synthesis, and memory-save handoff
-- [ ] CHK-010 [P0] Question, branch, source version, evidence, claim version, relation, gap, and focus references validate across multiple iterations
-- [ ] CHK-011 [P0] Event identity, `prevEventHash`, causal links, payload digests, producer fingerprints, and append positions are deterministic and immutable
-- [ ] CHK-012 [P0] Source admission fixtures record `admit`, `degrade`, and `quarantine` with exact locators, source identity, contamination status, and typed reasons
-- [ ] CHK-013 [P0] Claim fixtures preserve support, contradiction, qualification, contextualization, contested, unresolved, and supersession states without overwriting evidence
-- [ ] CHK-014 [P0] Convergence fixtures distinguish continue, recover, converged, incomplete, and blocked outcomes and retain raw signals plus policy fingerprints
-- [ ] CHK-015 [P0] Synthesis fixtures retain selected claim-version digests, citation event references, unresolved claims, and synthesis receipts
-- [ ] CHK-016 [P0] Memory-save fixtures distinguish requested, completed, and failed handoffs with continuity fingerprints and retryability
-- [ ] CHK-017 [P0] Compatibility fixtures pass exact, compatible, migrate, pin-old-runtime, and blocked outcomes; unknown event types and versions fail closed
-- [ ] CHK-018 [P0] Every event append is rejected when phase-006 authorization metadata is absent, stale, or inconsistent with the transition
-- [ ] CHK-019 [P1] A replay fixture produces stable event identities and fingerprints after resume, restart, retry, source mutation, and late judgment attachment
+- [x] CHK-009 [P0] A complete fixture validates `run_initialized` through `run_completed` across init, iteration, convergence, synthesis, and memory-save handoff [Evidence: all-stem test at `deep-research-ledger-schema.vitest.ts:466` passed]
+- [x] CHK-010 [P0] Question, branch, source version, evidence, claim version, relation, gap, and focus references validate across multiple iterations [Evidence: typed scope fixture at `deep-research-ledger-schema.vitest.ts:132`]
+- [x] CHK-011 [P0] Event identity, `prevEventHash`, causal links, payload digests, producer fingerprints, and append positions are deterministic and immutable [Evidence: determinism test at `deep-research-ledger-schema.vitest.ts:545` passed]
+- [x] CHK-012 [P0] Source admission fixtures record `admit`, `degrade`, and `quarantine` with exact locators, source identity, contamination status, and typed reasons [Evidence: all dispositions pass; whitespace-only source and passage selectors plus a 2.7 KiB quoted passage in `reasonCode` are rejected before append]
+- [x] CHK-013 [P0] Claim fixtures preserve support, contradiction, qualification, contextualization, contested, unresolved, and supersession states without overwriting evidence [Evidence: claim unions at `deep-research-ledger-types.ts:182` and rejection test at `deep-research-ledger-schema.vitest.ts:561`]
+- [x] CHK-014 [P0] Convergence fixtures distinguish continue, recover, converged, incomplete, and blocked outcomes and retain raw signals plus policy fingerprints in exact nested shapes [Evidence: targeted Vitest 16/16 passed, including prose rejection for every top-level policy-version family member]
+- [x] CHK-015 [P0] Synthesis fixtures retain selected claim-version digests, citation event references, unresolved claims, and synthesis receipts [Evidence: synthesis contracts at `deep-research-ledger-types.ts:247`; all-stem test passed]
+- [x] CHK-016 [P0] Memory-save fixtures distinguish requested, completed, and failed handoffs with continuity fingerprints and retryability [Evidence: stems at `deep-research-ledger-types.ts:326`; all-stem test passed]
+- [x] CHK-017 [P0] Compatibility fixtures pass exact, compatible, migrate, pin-old-runtime, and blocked outcomes; unknown event types and versions fail closed [Evidence: compatibility matrix at `deep-research-ledger-schema.vitest.ts:607` passed]
+- [x] CHK-018 [P0] Every event append is rejected when phase-006 authorization metadata is absent, stale, or inconsistent with the transition [Evidence: deny-before-append fixture commits zero events; authorized-ledger substrate suite passes 20/20, including forged/replayed proof and event-ID conflict cases]
+- [x] CHK-019 [P1] A replay fixture produces stable event identities and fingerprints after resume, restart, retry, source mutation, and late judgment attachment [Evidence: replay stability at `deep-research-ledger-schema.vitest.ts:500` and pure upcast at `deep-research-ledger-schema.vitest.ts:638`]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-020 [P0] The vocabulary matrix covers every in-scope Deep Research lifecycle and recommendation boundary listed in `findings-registry-modes.json:4984-5125`
-- [ ] CHK-021 [P1] The handoff matrix gives `002-reducers-and-projections` event names, fields, and references without prescribing reducer algorithms
+- [x] CHK-020 [P0] The vocabulary matrix covers every in-scope Deep Research lifecycle and recommendation boundary listed in `findings-registry-modes.json:4984-5125` [Evidence: 23-stem matrix at `deep-research-ledger-types.ts:306`]
+- [x] CHK-021 [P1] The handoff matrix gives `002-reducers-and-projections` event names, fields, and references without prescribing reducer algorithms [Evidence: exported union at `deep-research-ledger-types.ts:435`]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-022 [P0] Retrieved content is treated as untrusted evidence; instruction-scan and admission outcomes are typed before trusted claim use
-- [ ] CHK-023 [P1] Source, prompt, executor, and artifact digests do not expose credentials or place secret-bearing content in the ledger envelope
+- [x] CHK-022 [P0] Retrieved content is treated as untrusted evidence; instruction-scan and admission outcomes are typed before trusted claim use [Evidence: source and admission contracts at `deep-research-ledger-types.ts:158`]
+- [x] CHK-023 [P1] Source, prompt, executor, and artifact digests do not expose credentials or place secret-bearing content in the ledger envelope [Evidence: convergence prose rejection test at `deep-research-ledger-schema.vitest.ts:579`]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-024 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist agree on the event ownership boundary and planned status
-- [ ] CHK-025 [P2] The phase adjacency line names predecessor none and successor `002-reducers-and-projections` verbatim
+- [x] CHK-024 [P1] `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, and this checklist agree on the field-discipline and event-ownership boundaries [Evidence: strict `validate.sh` result recorded in `implementation-summary.md`]
+- [x] CHK-025 [P2] The phase adjacency line names predecessor none and successor `002-reducers-and-projections` verbatim [Evidence: `spec.md:31`]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-026 [P1] Only the four authored documents are created in this target folder; `description.json` and `graph-metadata.json` are generated by deterministic tooling
-- [ ] CHK-027 [P1] Schema, upcaster, and fixture implementation changes land in dependency-closed, path-scoped commits after this planning phase
+- [x] CHK-026 [P1] The five required Level-2 documents and the contract-backed decision record are present; `description.json` and `graph-metadata.json` are generated by deterministic tooling [Evidence: metadata refresh commands executed after the field-kind decision was recorded]
+- [x] CHK-027 [P1] Schema, upcaster, and fixture implementation changes are dependency-closed and path-scoped to this leaf [Evidence: scoped status audit lists only `deep-research-ledger-schema/`, its Vitest file, and this leaf's docs]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

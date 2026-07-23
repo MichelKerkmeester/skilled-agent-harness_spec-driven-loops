@@ -12,19 +12,21 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Deep AI Council event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
+    last_updated_at: "2026-07-23T10:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the additive-dark typed ledger schema"
+    next_safe_action: "Fold the exported event union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase-012 freeze?"
-      - "Which artifact and test-gate references remain portable without ledger-resident report bodies?"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "This phase owns Deep AI Council event vocabulary, not reducers or projections"
       - "The ledger remains append-only and non-authoritative until the later mode cutover phase"
+      - "Authorization proof references remain owned by durable ledger frames"
+      - "Artifact and test-gate evidence remains reference-and-digest only"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -43,7 +45,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
 | **Origin** | Deep AI Council mode migration after the phase-006 transition-authorized ledger core and phase-012 shared event contracts |
@@ -175,5 +177,5 @@ The schema adopts the current state contract without flattening it: legacy `roun
 - Which seat-calibration and effective-independence snapshot identity is stable enough for the first schema version without coupling this phase to the next reducer implementation?
 - Which artifact kinds are mandatory for the mode gate, and which remain optional diagnostic outputs during the additive-dark window?
 
-These questions are deliberately left for contract ratification and implementation planning. They do not authorize a reducer, projection, artifact generator, certificate, rollback switch, or authority decision in this phase.
+Implementation resolved these questions against the landed event envelope, authorized ledger, replay fingerprint, and converged Deep Research schema. Authorization references remain in durable ledger frames; the mode owns 25 logical stems; information surfaces use closed role-specific contracts; artifact and gate events carry references and digests only; and legacy rows without stable identity pin to the old runtime. These resolutions do not authorize a reducer, projection, artifact generator, certificate, rollback switch, or authority decision in this phase.
 <!-- /ANCHOR:questions -->

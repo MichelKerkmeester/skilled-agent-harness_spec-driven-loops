@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema"
     last_updated_at: "2026-07-15T21:30:00Z"
     last_updated_by: "opencode"
-    recent_action: "Scoped Deep Alignment event ownership and shared review-loop handoff"
-    next_safe_action: "Freeze authority, lane, and finding events against phase-012 contracts"
+    recent_action: "Implemented and verified the additive-dark Deep Alignment typed ledger schema"
+    next_safe_action: "Fold DeepAlignmentLedgerEvent in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Alignment mode |
 | **Change class** | Typed event schema and mode event vocabulary |
-| **Execution** | Planning-only child; implementation follows phase-006, phase-012, and shared review-loop contract freeze |
+| **Execution** | Implemented additive-dark over phase-006, phase-012, and the Deep Review shared-backbone contract |
 
 ### Overview
 The phase defines one Deep Alignment event contract over the phase-012 shared review-loop backbone. The schema records
@@ -47,20 +47,20 @@ reuses shared lifecycle events, and leaves reducers and projections to `002-redu
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 envelope, authorization, sequence, integrity, receipt, and replay contracts are available for direct type alignment
-- [ ] Phase-012 shared event contracts and review-loop lifecycle rules are available for specialization
-- [ ] The Deep Review shared-backbone boundary is available and no mode-local fork is required
-- [ ] The event catalog covers authority epochs, lane execution, applicability, observations, candidates, proof, verification, deviations, coverage, convergence, and terminal handoff
-- [ ] Every event payload has explicit field types, identity references, digest rules, and independent envelope/payload version policy
-- [ ] Authority invalidity, not-applicable, unresolved, inconclusive, untested, and blocked outcomes are represented without pass coercion
-- [ ] Reducer, projection, materialized-gauge, certificate, sealed-artifact, resume, shadow, rollback, and mode-gate behavior is excluded from this child
+- [x] Phase-006 envelope, authorization, sequence, integrity, receipt, and replay contracts are available for direct type alignment [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Phase-012 shared event contracts and review-loop lifecycle rules are available for specialization [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] The Deep Review shared-backbone boundary is available and no mode-local fork is required [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] The event catalog covers authority epochs, lane execution, applicability, observations, candidates, proof, verification, deviations, coverage, convergence, and terminal handoff [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Every event payload has explicit field types, identity references, digest rules, and independent envelope/payload version policy [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Authority invalidity, not-applicable, unresolved, inconclusive, untested, and blocked outcomes are represented without pass coercion [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Reducer, projection, materialized-gauge, certificate, sealed-artifact, resume, shadow, rollback, and mode-gate behavior is excluded from this child [Evidence: implementation summary and targeted 16-test Vitest suite]
 
 ### Definition of Done
-- [ ] A reviewed typed envelope specialization and Deep Alignment event union are specified
-- [ ] Authority, rule, lane, subject, applicability, observation, finding, verifier, proof, deviation, and compatibility fields are replay-addressable
-- [ ] Shared review-loop events are reused without duplicate lifecycle definitions
-- [ ] Upcaster hooks, compatibility classes, authority-epoch checks, and fail-closed unknown-version behavior are specified
-- [ ] Handoff inputs and ownership boundaries for `002-reducers-and-projections` are explicit
+- [x] A reviewed typed envelope specialization and Deep Alignment event union are specified [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Authority, rule, lane, subject, applicability, observation, finding, verifier, proof, deviation, and compatibility fields are replay-addressable [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Shared review-loop events are reused without duplicate lifecycle definitions [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Upcaster hooks, compatibility classes, authority-epoch checks, and fail-closed unknown-version behavior are specified [Evidence: implementation summary and targeted 16-test Vitest suite]
+- [x] Handoff inputs and ownership boundaries for `002-reducers-and-projections` are explicit [Evidence: implementation summary and targeted 16-test Vitest suite]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -163,10 +163,9 @@ ledger storage, JSONL layout, verifier provider, reducer storage, materialized c
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This child changes planning artifacts only and has no runtime write or data migration. If the proposed schema fails review,
-discard or revert the four phase documents and reopen the planning contract without touching the phase-006 core, phase-012
-contracts, Deep Review shared backbone, or downstream siblings. During later implementation, keep the mode writer additive
-and dark behind the existing authorization and compatibility bridge; reject incompatible, expired, mixed, or lossy events
-rather than emitting guessed authority, subject, evidence, proof, or conformance data. No reducer or projection rollback is
-defined here because those are owned by `002-reducers-and-projections`.
+This child adds a dark schema module and unit suite but no authoritative writer or data migration. Rollback removes the new
+module and suite plus this leaf's completion documentation; the phase-006 core, phase-012 contracts, Deep Review shared
+backbone, legacy path, and downstream siblings remain unchanged. Unsupported, expired, mixed, ambiguous, or lossy events
+stay fail-closed. No reducer or projection rollback is defined because those remain owned by
+`002-reducers-and-projections`.
 <!-- /ANCHOR:rollback -->

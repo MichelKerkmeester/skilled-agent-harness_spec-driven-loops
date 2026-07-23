@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped Deep Research lifecycle boundaries to receipt and certificate evidence"
-    next_safe_action: "Freeze the receipt matrix and replay-fingerprint input projection"
+    last_updated_at: "2026-07-22T04:29:33Z"
+    last_updated_by: "codex"
+    recent_action: "Hardened trusted completion, output ownership, and projection provenance"
+    next_safe_action: "Successor 005-resume-adapter can recover from the finalized evidence contracts"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/deep-research-certificates.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-certificates.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,20 +52,20 @@ cutover.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-007 receipt and certificate interfaces and phase-006 event, ledger, authorization, and replay interfaces are frozen for consumption
-- [ ] The `003-sealed-artifacts` reference matrix and verified-read outcomes are available to the receipt binder
-- [ ] The Deep Research transition matrix names logical operation identity, attempt identity, input/output references, and result dispositions
-- [ ] The replay-fingerprint input projection and explicit exclusions are contract-tested against schema, reducer, projection, and policy versions
-- [ ] The offline verifier bundle format contains contract registries, receipt/certificate bytes, sealed references, and provider evidence needed for declared checks
-- [ ] Source refresh, claim supersession, memory handoff, and unresolved effect recovery cases have typed dispositions
-- [ ] Dark integration can emit and verify receipts without changing legacy writers, outputs, memory behavior, or authority
+- [x] Phase-007 receipt and certificate interfaces and phase-006 event, ledger, authorization, and replay interfaces are frozen for consumption
+- [x] The `003-sealed-artifacts` reference matrix and verified-read outcomes are available to the receipt binder
+- [x] The Deep Research transition matrix names logical operation identity, attempt identity, input/output references, and result dispositions
+- [x] The replay-fingerprint input projection and explicit exclusions are contract-tested against schema, reducer, projection, and policy versions
+- [x] The offline verifier bundle format contains contract registries, receipt/certificate bytes, sealed references, and provider evidence needed for declared checks
+- [x] Source refresh, claim supersession, memory handoff, and unresolved effect recovery cases have typed dispositions
+- [x] Dark integration can emit and verify receipts without changing legacy writers, outputs, memory behavior, or authority
 
 ### Definition of Done
-- [ ] One Deep Research run certificate binds a complete, independently verifiable lifecycle receipt chain
-- [ ] Every registered logical transition emits an idempotent, conflict-detecting receipt over exact verified inputs and outputs
-- [ ] Replay fingerprints are stable for identical semantic inputs and change for any registered replay-affecting input
-- [ ] Offline verification detects tampering, omission, drift, unsupported versions, and unresolved outcomes without mutation
-- [ ] The Deep Research mode gate proves receipt/certificate parity while legacy authority remains unchanged
+- [x] One Deep Research run certificate binds a complete, independently verifiable lifecycle receipt chain
+- [x] Every registered logical transition emits an idempotent, conflict-detecting receipt over exact verified inputs and outputs
+- [x] Replay fingerprints are stable for identical semantic inputs and change for any registered replay-affecting input
+- [x] Offline verification detects tampering, omission, drift, unsupported versions, and unresolved outcomes without mutation
+- [x] The Deep Research mode gate proves receipt/certificate parity while legacy authority remains unchanged
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -80,6 +82,12 @@ cutover.
 - **Run certificate builder**: folds the verified receipt set and final event range into a canonical certificate body with
   final status, receipt-chain digest, ordered artifact-set digest, replay fingerprint, projection/synthesis/handoff
   references, open obligations, and explicit parity evidence.
+- **Trusted-completion gate**: requires the reducer-derived open-obligation set to be empty in addition to terminal
+  convergence and trusted receipt dispositions.
+- **Output ownership gate**: assigns each sealed transition output to one logical operation across the whole certificate;
+  reuse by a distinct receipt is a typed artifact failure.
+- **Projection provenance gate**: requires projection inputs to be the exact ordered effective envelopes from the verified
+  replay range during both issuance and offline verification.
 - **Replay-fingerprint binder**: projects only registered semantic inputs: contract versions, event chain, lineage,
   sealed references, source/result digests, executor commitments, policy/reducer/projection versions, logical
   transitions, and verified effect outcomes. It excludes process-local and timing-only values.
@@ -135,6 +143,8 @@ cutover.
   `not_applied` can retry with the same idempotency key.
 - Prove synthesis and memory-save output digests match the receipt inputs and that a failed handoff cannot receive trusted
   completion status.
+- Prove an unresolved gap obligation forces an incomplete certificate while an empty final obligation set permits trusted completion.
+- Prove distinct receipts cannot claim the same sealed output and projection inputs cannot diverge from the verified ledger range.
 - Prove the mode gate compares legacy and dark behavior only over equivalent verified reference sets and leaves legacy
   state, output, writers, and authority unchanged.
 <!-- /ANCHOR:phases -->
@@ -149,9 +159,9 @@ cutover.
 | REQ-003 | Transition matrix exercises `init`, `gather`, `analyze`, convergence, synthesis, memory-save, and resume/recovery with stable logical IDs and separate attempts |
 | REQ-004 / REQ-005 | Fingerprint fixture changes one semantic input at a time and varies excluded process/timing values; only registered semantic changes alter the fingerprint |
 | REQ-006 | Retry fixture returns the original receipt for identical facts and a typed conflict for changed head, result, input digest, epoch, or certification facts |
-| REQ-007 | Failure matrix preserves `blocked`, `invalid`, `quarantined`, `incomplete`, `failed`, and `in_doubt`; none is coerced to valid completion |
+| REQ-007 | Failure matrix preserves `blocked`, `invalid`, `quarantined`, `incomplete`, `failed`, and `in_doubt`; open obligations remain incomplete and none is coerced to valid completion |
 | REQ-008 | Resume/source-refresh fixture diffs result IDs and content digests, appends dependent revisions, and preserves prior receipt and certificate references |
-| REQ-009 | Offline bundle fixture verifies without network, model, search, or memory calls and reports exact missing or invalid evidence rather than repairing it |
+| REQ-009 | Offline bundle fixture verifies without network, model, search, or memory calls, requires exact projection/ledger event equality, and reports missing or invalid evidence rather than repairing it |
 | REQ-010 | Handoff fixture binds target, continuity, source/output, content, route, and persistence digests and refuses trusted status after failed or unknown persistence |
 | REQ-011 | Dark-mode fixture shows receipt/certificate failure blocks dark promotion only and leaves legacy state, output, writer behavior, and authority unchanged |
 <!-- /ANCHOR:testing -->

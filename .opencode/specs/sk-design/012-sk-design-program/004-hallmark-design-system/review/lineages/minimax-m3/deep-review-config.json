@@ -1,0 +1,61 @@
+{
+  "topic": "Review of sk-design hallmark-design-system phase parent: spec/code alignment, status consistency, phase-map integrity, and cross-reference fidelity across the five adoption lanes (001-surgical-fixes, 002-evidence-envelopes, 003-authored-cards, 004-brand-first-lane, 005-measured-composition-and-retrieval-facets).",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-minimax-m3-1784786065794-6evsk5",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 3,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "stopPolicy": "max-iterations",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "artifactDir": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/review/lineages/minimax-m3",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "minimax/MiniMax-M3",
+    "lineage": "minimax-m3"
+  },
+  "createdAt": "2026-07-23T07:56:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    ".deep-review-pause": "operator-controlled",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "fanout": {
+    "parentSessionLabel": "fanout-minimax-m3-1784786065794-6evsk5",
+    "siblingLineages": ["glm-5-2", "luna-xhigh", "minimax-m3"],
+    "executorModel": "minimax/MiniMax-M3"
+  }
+}

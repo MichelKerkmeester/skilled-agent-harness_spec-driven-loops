@@ -1,23 +1,25 @@
 ---
 title: "Implementation Plan: Deep Research - Rollback and Mode Gate"
-description: "Planning workflow for the Deep Research mode's fail-closed rollback switch, bounded rollback window, independent migration gate, and phase-014 certificate handoff."
+description: "Implementation record for the Deep Research mode's fail-closed rollback switch, bounded rollback window, independent migration gate, and phase-014 certificate handoff."
 trigger_phrases:
   - "Deep Research rollback and mode gate implementation plan"
   - "deep-research authority switch plan"
   - "deep-research migration certificate plan"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Research rollback switch and independent mode-gate contract"
-    next_safe_action: "Freeze rollback triggers and gate evidence against phase-012 contracts"
+    last_updated_at: "2026-07-22T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the rollback switch, migration gate, and focused adversarial verification"
+    next_safe_action: "Hand the readiness-only certificate contract to phase 014"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,27 +34,27 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Research mode migration |
-| **Change class** | Contract and verification planning |
+| **Change class** | Additive-dark runtime contract and verification |
 | **Execution** | Pinned BASE with shared phase-012 and phase-014 contract digests |
 
 ### Overview
-This phase turns the parent migration invariants into a Deep Research-specific rollback and mode-gate contract. It joins the phase-009 parity receipt with sealed artifacts, certificates, receipts, resume evidence, and replay fingerprints; defines a mode-scoped switch that remains fail-closed; and emits the mode-migration certificate that phase 014 may consume. The work is planning only: it does not flip authority, retire the legacy writer, or replace any sibling implementation.
+This phase turns the parent migration invariants into a Deep Research-specific rollback and mode-gate implementation. It authenticates the phase-009 parity receipt against real authorized-ledger audit evidence, joins sealed artifacts, certificates, receipts, resume evidence, replay fingerprints, classification, and rollback rehearsal, and emits the mode-migration certificate that phase 014 may consume. It does not flip authority, retire the legacy writer, or replace any sibling implementation.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-012 shared mode interfaces, write-set conflict graph, transition gateway, and rollback vocabulary are frozen for this mode
-- [ ] Deep Research sibling outputs from typed schema through shadow parity identify their artifacts, receipts, fingerprints, and failure dispositions
-- [ ] The switch has explicit deny-by-default states, epoch rules, external authorization, and no mode-owned recovery authority
-- [ ] The rollback window inherits the 14-day and five-successful-run minimum and defines extension and closure evidence
-- [ ] The independent gate lists every required parity, seal, certificate, receipt, replay, resume, lifecycle, and rollback input
-- [ ] The phase-014 handoff distinguishes a mode-migration certificate from a later cutover certificate
+- [x] The phase-012 shared mode interfaces, write-set conflict graph, transition gateway, and rollback vocabulary are frozen for this mode
+- [x] Deep Research sibling outputs from typed schema through shadow parity identify their artifacts, receipts, fingerprints, and failure dispositions
+- [x] The switch has explicit deny-by-default states, epoch rules, external authorization, and no mode-owned recovery authority
+- [x] The rollback window inherits the 14-day and five-successful-run minimum and defines extension and closure evidence
+- [x] The independent gate lists every required parity, seal, certificate, receipt, replay, resume, lifecycle, and rollback input
+- [x] The phase-014 handoff distinguishes a mode-migration certificate from a later cutover certificate
 
 ### Definition of Done
-- [ ] The rollback switch and non-destructive runbook are ratified against the shared transition policy
-- [ ] The independent Deep Research gate blocks incomplete or stale evidence and emits an exact-SHA-bound migration certificate only when green
+- [x] The rollback switch and non-destructive runbook are implemented against the shared transition policy
+- [x] The independent Deep Research gate blocks incomplete or stale evidence and emits an exact-SHA-bound migration certificate only when green
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -117,5 +119,5 @@ The plan inherits the parent program's additive-dark migration model and the sha
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase changes planning documents only. Before runtime adoption, reverting the four path-scoped authored files and re-ratifying the parent gate removes the proposed switch and mode-gate contract. After downstream artifacts consume the contract, an amendment must identify the changed state, trigger, window, evidence field, certificate, fixture, and phase-014 consumer; reopen stale gates; and rerun parity, replay, rollback, and handoff verification. Runtime rollback itself is non-destructive: preserve ledger history and sealed artifacts, fence the ledger writer, restore legacy authority at a new epoch through the external transition gateway, reconcile in-flight work under the resume policy, and emit a rollback certificate.
+The implementation is additive and dark. Reverting the new module, focused test, and this leaf's documentation removes the readiness layer without changing production authority. After downstream artifacts consume the contract, an amendment must identify the changed state, trigger, window, evidence field, certificate, fixture, and phase-014 consumer; reopen stale gates; and rerun parity, replay, rollback, and handoff verification. Runtime rollback remains non-destructive: preserve ledger history and sealed artifacts, fence the ledger writer, restore legacy authority at a new epoch through the external transition gateway, reconcile in-flight work under the resume policy, and emit a rollback certificate.
 <!-- /ANCHOR:rollback -->

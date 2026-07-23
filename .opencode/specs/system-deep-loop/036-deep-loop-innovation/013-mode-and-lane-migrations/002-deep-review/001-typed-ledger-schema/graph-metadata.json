@@ -39,14 +39,22 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +77,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -166,25 +180,41 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Candidate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle, scope and dimension passes, candidate findings, adjudication, convergence, and review-report handoff. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:32.178Z",
-    "last_save_at": "2026-07-19T14:47:13.389Z",
+    "last_save_at": "2026-07-23T08:23:02.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0898f48d574adbe31456f4bd2849808fbc1fee0cf1dfbbd2af1bb1ecdbcb87a",
+    "source_fingerprint": "sha256:b5ca5781d9624302a10de6234a585361d87b10179989f4f892f4000eb69aab60",
     "source_doc_hashes": {
-      "spec.md": "41bca433648ccb12c7c309303d4e614c6e7e9a4f465c4923b4d91f1dab025a5b",
-      "plan.md": "7d8c949f56665bb51c0e684296d6a7bea529d636d3fb497fb20e82111b1fa3ba",
-      "tasks.md": "c84398d744a81b6e59ff926132136c0e0efa16e218cbc183457ebf5f1535283c",
-      "checklist.md": "e509a425507686a83f2ecbf595b6ec6bf736fd53ceb75fe88882a578fe3279c8"
+      "spec.md": "ea7ce88fde40b88d1824fd1e4bc21d1783e01e9f6636ce53aba233f12a5823c1",
+      "plan.md": "860099573ecd7cdc7d1b494daf32ff8228474ecaa4a578283e08f46fe3109858",
+      "tasks.md": "347be98dcdb4929fcf98c1fcd8af27b553c9fd3344792135dae024364bc4e1e2",
+      "checklist.md": "f164d7e19ea944ad0a6d18a1415b1e6e05923b72ec8c722446050b196b824581",
+      "decision-record.md": "4c3210fce0a476753608995c4a6671653d4fd484c5e6e5e7d3ab45bbe44b75eb",
+      "implementation-summary.md": "44012b015af0cef8f07f61a6bdc5b63c8edea284187defe9a25c78fa4b663316"
     },
     "last_active_child_id": null,
     "last_active_at": null

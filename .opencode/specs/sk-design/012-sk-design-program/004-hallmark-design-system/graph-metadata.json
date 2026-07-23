@@ -8,7 +8,8 @@
     "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
     "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
     "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane",
-    "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets"
+    "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+    "sk-design/012-sk-design-program/004-hallmark-design-system/006-deep-alignment-and-review"
   ],
   "manual": {
     "depends_on": [],
@@ -20,7 +21,10 @@
       "sk-design hallmark design system phase",
       "hallmark adoption",
       "brand-first lane",
-      "hallmark evidence envelopes"
+      "hallmark evidence envelopes",
+      "hallmark handover",
+      "hallmark design system remaining work",
+      "finish hallmark deep-alignment"
     ],
     "key_topics": [
       "sk-design",
@@ -33,19 +37,33 @@
       "lane",
       "evidence",
       "envelopes",
-      "needed",
-      "adopting"
+      "handover",
+      "remaining"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "authored-brand-boundary.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -83,19 +101,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handover Summary The",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Zero Hallmark",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Next Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Checklist",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Notes",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, and a brand-first lane — rather than a single large change",
+    "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, brand-first authoring, and measured composition retrieval — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-07-22T19:16:29.241Z",
+    "last_save_at": "2026-07-23T07:56:07.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:37ee69c43343687f7c76dbbc4057cf1433baef1e8b5e4d1c72dbb20a2d687b26",
+    "source_fingerprint": "sha256:843aae3d23c4846852feb7041321b2bf75ae5ee1490ad055c39a8c91014e2692",
     "source_doc_hashes": {
-      "spec.md": "86431b7c7221e0fb428a11d4287d35ffc83f855222461ee0a7a944e7ec2b4e83"
+      "spec.md": "fced7b9b0bb16d50b101a4cd8d0a620e0977528702df0b258ad730b65393a378",
+      "handover.md": "577b70e053ff5481c7ccc4f704b010029dbee31389b14b0ced1ec589148dab64"
     },
     "last_active_child_id": null,
     "last_active_at": null

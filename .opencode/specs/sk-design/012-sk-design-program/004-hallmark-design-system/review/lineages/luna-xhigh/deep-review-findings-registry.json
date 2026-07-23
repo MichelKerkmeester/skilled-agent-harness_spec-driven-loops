@@ -1,0 +1,410 @@
+{
+  "sessionId": "fanout-luna-xhigh-1784786065794-6evsk5",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-07-23T00:03:03.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F004",
+      "severity": "P0",
+      "title": "Authored leaf symlinks can redirect a permitted write into measured data",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 72,
+      "description": "the guard validates only the lexical filename and then calls `writeFile` on the destination. If `AUTHORED-DESIGN.md` already points at `DESIGN.md` (or another measured file), the write follows that symlink and clobbers measured content, directly violating the hard authored/measured boundary. The adversarial test covers direct measured path strings but not pre-existing symlinks. Remediation: reject symlinked destination entries with `lstat`, and use no-follow/atomic creation semantics for the final write.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Phase-parent scope and lifecycle metadata omit a completed fifth child",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 72,
+      "description": "the parent defines exactly four lanes and only maps phases 1-4, while the child packet declares Phase 5 Complete and `graph-metadata.json` lists it as a child. A recursive review or resume path using the parent map can miss the shipped measured-composition lane and retain the parent’s Planned state. Remediation: reconcile the parent scope, phase map, status, and generated metadata with the five-child topology.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Authored Markdown export is only provenance-marker checked",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 76,
+      "description": "`refreshAuthoredExports` validates the structured token payload but accepts any Markdown containing `origin: authored`, even though the authored artifact template requires `artifactType`, schema, source description, authored date, and per-value palette/type/voice provenance. The helper can therefore publish a malformed or mismatched `AUTHORED-DESIGN.md` beside a valid `authored-tokens.json`. Remediation: parse and validate the rendered Markdown contract, or make the structured brand the sole source for rendering both exports.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Paired authored exports are not refreshed atomically",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 93,
+      "description": "the two independent `writeFile` calls run in `Promise.all`; an interruption or second-write failure can leave `AUTHORED-DESIGN.md` and `authored-tokens.json` from different refreshes. That violates the documented paired-export refresh model under partial I/O failure. Remediation: write a staged pair and rename both only after both contents are durable, or add rollback/consistency recovery.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F004",
+      "severity": "P0",
+      "title": "Authored leaf symlinks can redirect a permitted write into measured data",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 72,
+      "description": "the guard validates only the lexical filename and then calls `writeFile` on the destination. If `AUTHORED-DESIGN.md` already points at `DESIGN.md` (or another measured file), the write follows that symlink and clobbers measured content, directly violating the hard authored/measured boundary. The adversarial test covers direct measured path strings but not pre-existing symlinks. Remediation: reject symlinked destination entries with `lstat`, and use no-follow/atomic creation semantics for the final write.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Phase-parent scope and lifecycle metadata omit a completed fifth child",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 72,
+      "description": "the parent defines exactly four lanes and only maps phases 1-4, while the child packet declares Phase 5 Complete and `graph-metadata.json` lists it as a child. A recursive review or resume path using the parent map can miss the shipped measured-composition lane and retain the parent’s Planned state. Remediation: reconcile the parent scope, phase map, status, and generated metadata with the five-child topology.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Authored Markdown export is only provenance-marker checked",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 76,
+      "description": "`refreshAuthoredExports` validates the structured token payload but accepts any Markdown containing `origin: authored`, even though the authored artifact template requires `artifactType`, schema, source description, authored date, and per-value palette/type/voice provenance. The helper can therefore publish a malformed or mismatched `AUTHORED-DESIGN.md` beside a valid `authored-tokens.json`. Remediation: parse and validate the rendered Markdown contract, or make the structured brand the sole source for rendering both exports.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Paired authored exports are not refreshed atomically",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 93,
+      "description": "the two independent `writeFile` calls run in `Promise.all`; an interruption or second-write failure can leave `AUTHORED-DESIGN.md` and `authored-tokens.json` from different refreshes. That violates the documented paired-export refresh model under partial I/O failure. Remediation: write a staged pair and rename both only after both contents are durable, or add rollback/consistency recovery.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F004",
+      "severity": "P0",
+      "title": "Authored leaf symlinks can redirect a permitted write into measured data",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 72,
+      "description": "the guard validates only the lexical filename and then calls `writeFile` on the destination. If `AUTHORED-DESIGN.md` already points at `DESIGN.md` (or another measured file), the write follows that symlink and clobbers measured content, directly violating the hard authored/measured boundary. The adversarial test covers direct measured path strings but not pre-existing symlinks. Remediation: reject symlinked destination entries with `lstat`, and use no-follow/atomic creation semantics for the final write.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Phase-parent scope and lifecycle metadata omit a completed fifth child",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 72,
+      "description": "the parent defines exactly four lanes and only maps phases 1-4, while the child packet declares Phase 5 Complete and `graph-metadata.json` lists it as a child. A recursive review or resume path using the parent map can miss the shipped measured-composition lane and retain the parent’s Planned state. Remediation: reconcile the parent scope, phase map, status, and generated metadata with the five-child topology.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Authored Markdown export is only provenance-marker checked",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 76,
+      "description": "`refreshAuthoredExports` validates the structured token payload but accepts any Markdown containing `origin: authored`, even though the authored artifact template requires `artifactType`, schema, source description, authored date, and per-value palette/type/voice provenance. The helper can therefore publish a malformed or mismatched `AUTHORED-DESIGN.md` beside a valid `authored-tokens.json`. Remediation: parse and validate the rendered Markdown contract, or make the structured brand the sole source for rendering both exports.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Paired authored exports are not refreshed atomically",
+      "file": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "line": 93,
+      "description": "the two independent `writeFile` calls run in `Promise.all`; an interruption or second-write failure can leave `AUTHORED-DESIGN.md` and `authored-tokens.json` from different refreshes. That violates the documented paired-export refresh model under partial I/O failure. Remediation: write a staged pair and rename both only after both contents are durable, or add rollback/consistency recovery.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 1,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md:72"
+        ],
+        "findingRefs": [
+          "F001"
+        ],
+        "summary": "Parent lifecycle scope still disagrees with the registered five-child topology."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "evidence": [
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/checklist.md:59",
+          ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs:25"
+        ],
+        "findingRefs": [
+          "F002",
+          "F003",
+          "F004"
+        ],
+        "summary": "Recorded evidence does not cover the rendered-output contract, pair recovery, or final-path symlink redirection."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

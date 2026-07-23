@@ -39,14 +39,35 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,12 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "Scoped Deep",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,6 +123,12 @@
         "source": "derived"
       },
       {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,6 +142,12 @@
       },
       {
         "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -150,6 +177,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -160,31 +193,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep AI Council event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed multi-seat deliberation, critique, blinded adjudication, convergence, ai-council artifact, and council test-gate events. This phase defines events, field contracts, and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:33.922Z",
-    "last_save_at": "2026-07-19T14:47:13.252Z",
+    "last_save_at": "2026-07-23T09:10:31.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5475888efdf2dc13f9c32b23673909ec43ce125958c0d688632fe86be0e654a6",
+    "source_fingerprint": "sha256:c69620b9a9c5017820f55fa7da25bc44dd1852a01af358bfd34936cdc33e3884",
     "source_doc_hashes": {
-      "spec.md": "46772851e0aa33aa5646887fc9b8c29f715fb9ef1d61327b4496873ae05574c3",
-      "plan.md": "db38c180a4bb01f8a8673b7692c9f70b4266f84a29cc247f3ca702127b9f0877",
-      "tasks.md": "f2b22b26af8f98806b76c741c4076f96058cfc7a3d99fa04ebe4d5e08c738776",
-      "checklist.md": "f28aa20307fe0a7f09bb393185decea57baf1750864bf0eab374b94c40210461"
+      "spec.md": "32c7d5e6a8713ef24170864576b12ec34314aa988ea0755506933dd1784fe374",
+      "plan.md": "d7f268ed67858d961300434acf855cd8a9b4d552ae7c437bee8f0f4f0c93ea01",
+      "tasks.md": "1c423e71226c903016f4cfb7c1a3c078d38283396a6db7bc40b0395e8dae3e65",
+      "checklist.md": "009e63c710a5b97174eabe698ebd1c62d599cb1bf7b1459666b0b77660b26b93",
+      "implementation-summary.md": "b4d2c63448d1738511636e75face781dd92ffc9013a11715e4ae2ed148d9c2d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

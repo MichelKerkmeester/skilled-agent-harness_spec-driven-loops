@@ -1,24 +1,28 @@
 ---
 title: "Feature Specification: Agent Improvement — Typed Ledger Schema"
-description: "Plan the typed append-only event vocabulary for the Agent Improvement variant: typed AgentIR and change contracts, candidate and failure lineage, causal behavior experiments, evaluation manifests, transfer evidence, and versioned envelope/upcaster hooks over the shared Deep Improvement Common Services backbone. Reducers and projections belong to the next sibling."
+description: "The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract, mutation, causal-experiment, manifest, transfer, and behavioral-classification events."
 trigger_phrases:
   - "agent improvement typed ledger schema"
   - "agent improvement event vocabulary"
   - "typed AgentIR ledger"
   - "agent improvement append-only events"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:45:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Captured Agent Improvement event ownership and sibling handoff boundary"
-    next_safe_action: "Define AgentIR fields and versioned event payloads for the variant run"
+    last_updated_at: "2026-07-23T14:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark Agent Improvement typed ledger schema"
+    next_safe_action: "Consume the exported event union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-schema.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/legacy-compatibility.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-ledger-schema.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +43,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement variant) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 005; first child of the Agent Improvement migration |
@@ -57,7 +61,7 @@ are emitted as free-form JSON or folded into one score, replay cannot distinguis
 executor, raw evidence is lost when scoring policy changes, and a candidate can appear better without showing preserved
 authority or safety behavior.
 
-This phase plans the schema contract only. It consumes the phase-006 transition-authorized ledger core and phase-012
+This phase implements the schema contract only. It consumes the phase-006 transition-authorized ledger core and phase-012
 shared event contracts, then specializes the mode-004 Deep Improvement Common Services envelope and event vocabulary
 for Agent Improvement. Common evaluator, canary, and promotion events are reused rather than reimplemented. The
 variant adds only AgentIR, change-contract, causal-experiment, behavior-manifest, and transfer facts. It emits the
@@ -78,7 +82,7 @@ vocabulary consumed by `002-reducers-and-projections`; it does not define reduce
 ### Out of Scope
 - Reducers, projections, materialized gauges, candidate frontiers, coverage views, read models, and archive updates; these belong to `002-reducers-and-projections`.
 - Reimplementation of the phase-006 authorization gateway, ledger durability, replay fingerprint primitive, phase-012 shared event envelope, or mode-004 evaluator/canary/promotion services.
-- Agent Improvement sealed artifacts, transfer certificates, resume adapters, shadow parity, rollback switch, mode gate, authority cutover, legacy-writer retirement, production code, and implementation tests; this is a planning-only phase.
+- Agent Improvement sealed artifacts, transfer certificates, resume adapters, shadow parity, rollback switch, mode gate, authority cutover, legacy-writer retirement, reducers, projections, and authoritative runtime integration.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -151,10 +155,10 @@ sealed manifest and exposure references, and an explicit handoff to `002-reducer
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-No blocking questions for this planning contract. The implementation pass must resolve the exact imported type aliases
-and serialization library, confirm the final Agent Improvement event namespace, set the maximum inline payload size,
-and pin the canonical AgentIR component and locus unions against the shipped mode-004 contracts. It must also decide
-which causal attribution fields remain diagnostic references versus reducer inputs. The next sibling owns candidate
-frontier folding, coverage projections, score views, reducer ordering, and materialized read models; those decisions
-must not be pulled into this schema phase.
+No blocking questions remain. The implementation imports the shared envelope, event definitions, payload and scope
+maps, transition authorization, replay metadata, append-only preparation, and pinned scoring backend directly from
+the Deep Improvement Common Services module. The final namespace contains 15 `agent_improvement.*` extensions over
+35 unchanged common stems. Payloads are closed, bounded, and reference-plus-digest based; causal attribution remains
+immutable diagnostic evidence. The next sibling owns candidate-frontier folding, coverage projections, score views,
+reducer ordering, and materialized read models.
 <!-- /ANCHOR:questions -->

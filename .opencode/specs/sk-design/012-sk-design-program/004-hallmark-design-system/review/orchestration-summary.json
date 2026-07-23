@@ -1,0 +1,165 @@
+{
+  "run_id": "1784786065794-6evsk5",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system",
+  "base_artifact_dir": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/review",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm-5-2",
+      "state_log": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/review/lineages/glm-5-2/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-23T05:54:25.804Z",
+        "end_at_iso": "2026-07-23T06:13:11.285Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 6
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:56:00Z",
+          "deltaMs": 6048715
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:58:00Z",
+          "deltaMs": 6168715
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T08:00:00Z",
+          "deltaMs": 6288715
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T08:02:00Z",
+          "deltaMs": 6408715
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:59:00Z",
+          "deltaMs": 6228715
+        }
+      ]
+    },
+    {
+      "label": "minimax-m3",
+      "state_log": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/review/lineages/minimax-m3/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-23T05:54:25.866Z",
+        "end_at_iso": "2026-07-23T06:09:50.724Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 11
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:56:00Z",
+          "deltaMs": 6249276
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:56:30Z",
+          "deltaMs": 6279276
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:56:30Z",
+          "deltaMs": 6279276
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:56:50Z",
+          "deltaMs": 6299276
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T07:56:50Z",
+          "deltaMs": 6299276
+        }
+      ]
+    },
+    {
+      "label": "luna-xhigh",
+      "state_log": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/review/lineages/luna-xhigh/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-23T05:54:25.869Z",
+        "end_at_iso": "2026-07-23T06:07:44.451Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 8,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-23T00:01:00.000Z",
+          "deltaMs": 21085869
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-23T00:01:01.000Z",
+          "deltaMs": 21084869
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-23T00:02:00.000Z",
+          "deltaMs": 21025869
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-23T00:02:01.000Z",
+          "deltaMs": 21024869
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-23T00:03:00.000Z",
+          "deltaMs": 20965869
+        }
+      ]
+    }
+  ]
+}

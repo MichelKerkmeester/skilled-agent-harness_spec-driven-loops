@@ -1,24 +1,26 @@
 ---
 title: "Feature Specification: Deep Research - Resume Adapter"
-description: "Plan the Deep Research resume adapter over the sealed typed event ledger: rebuild interrupted live state through the mode reducers, map the continuity ladder to typed lifecycle state, and re-enter idempotently without double-applying, losing, or replaying semantic events."
+description: "The Deep Research resume adapter rebuilds interrupted live state from the sealed typed ledger through the frozen reducers, maps continuity to typed lifecycle state, and re-enters idempotently without replaying semantic work."
 trigger_phrases:
   - "deep research resume adapter"
   - "deep-research ledger resume"
   - "deep research idempotent re-entry"
   - "deep research continuity ladder"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter"
-    last_updated_at: "2026-07-15T19:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped resume reconstruction to sealed-ledger reducers and continuity decisions"
-    next_safe_action: "Freeze re-entry identity and continuity mapping against the shared resume contract"
+    last_updated_at: "2026-07-22T09:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark resume adapter"
+    next_safe_action: "Consume the closed decision and continuity contracts in 006-shadow-parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,13 +41,13 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-research mode migration) |
 | **Origin** | Fifth Deep Research child in the phase-013 mode migration fan-out |
 | **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency is navigation only |
 | **Consumes** | Shared phase-012 mode/replay contracts, typed ledger events, reducers, sealed references, and certificate/receipt outputs |
-| **Output** | A ratifiable resume-adapter contract, continuity-ladder mapping, recovery decision algebra, and idempotent re-entry fixture plan |
+| **Output** | A closed resume-adapter contract, continuity projection, recovery decision algebra, and full-pipeline adversarial fixtures |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -55,7 +57,7 @@ Deep Research is an autonomous loop with a live path of `init -> iterate: gather
 
 The shared migration contract changes the authority boundary: the sealed typed event ledger is the source of resumable facts, and the Deep Research reducers reconstruct the mode projection from that ledger. The adapter must map the existing continuity ladder to the reconstructed projection, choose a safe re-entry action for each logical branch and effect, and append the decision before work restarts. It must preserve stable logical identities across process restarts while keeping attempt identities distinct. A changed manifest, replay fingerprint, source version, or reducer contract must not inherit prior success by label alone.
 
-The research inputs make this boundary concrete. Deep Research requires a versioned executable research-plan DAG, a claim-evidence-contradiction ledger, living-resume invalidation through dependency edges, evidence admission before trusted reducer state, and a materialized synthesis view over immutable claim history. The runtime findings require `reuse | reexecute | compensate | reject` resume decisions, a root `RunLease`, effect receipts with an explicit unknown state, and a versioned replay-compatibility registry. This phase plans the adapter that joins those contracts; it does not implement a second reducer, seal, certificate, shadow harness, or authority switch.
+The research inputs make this boundary concrete. Deep Research requires a versioned executable research-plan DAG, a claim-evidence-contradiction ledger, living-resume invalidation through dependency edges, evidence admission before trusted reducer state, and a materialized synthesis view over immutable claim history. The runtime findings require `reuse | reexecute | compensate | reject` resume decisions, a root lease, effect receipts with an explicit unknown state, and a versioned replay-compatibility registry. This phase implements the adapter that joins those contracts; it does not implement a second reducer, seal, certificate, shadow harness, or authority switch.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -145,12 +147,14 @@ The research inputs make this boundary concrete. Deep Research requires a versio
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-012 idempotency key and append-before-dispatch contract does the adapter use for resume decisions and handoff retries?
-- Which reducer checkpoint fields are sufficient for bounded replay, and which cursor or projection changes require a full rebuild before re-entry?
-- Which adapter capability combinations permit effect reuse, receipt lookup, compensation, or safe re-execution for each Deep Research side effect?
-- Does a changed research manifest always fork a new lineage, or may a registered compatible migration preserve the original lineage with an explicit revision event?
-- Which source refresh and claim dependency index is exposed to the adapter without making it a second semantic reducer?
-- What exact memory-save idempotency and reconciliation receipt does the shared continuity service expose for an interrupted handoff?
+No open questions remain. The six implementation questions resolved as follows.
 
-These decisions are resolved against the frozen shared contracts and reducer outputs before implementation. They do not authorize a new ledger schema, a mutable continuity shortcut, a certificate decision, a shadow-parity verdict, or an authority cutover in this Planned phase.
+- Resume decisions use the shared authorization gateway, `AppendOnlyLedger.appendAuthorized`, the caller's bounded idempotency key, and append-before-dispatch ordering. An exact retry reconstructs the pre-decision prefix and reuses the same event and authorization identity.
+- Bounded replay accepts the frozen reducer checkpoint projection, authenticated source-tail sequence, and checkpoint integrity digest. The adapter independently derives the real tail from verified ledger frames; cursor or projection disagreement returns `rebuild_required` before append.
+- Effect recovery uses the shared effect-intent adapter descriptor plus verified confirmation, recovery, reconciliation, conflict, and operator-resolution events. Only replay-safe, proven-not-applied effects reexecute; an unresolved irreversible effect blocks because the shared descriptor exposes no compensation executor.
+- A registered compatible or migrate manifest revision keeps the persisted lineage but takes an explicit `restart` disposition with new attempt identities and manifest-scoped retry keys. Unregistered changes reject. A fresh lineage is never minted during same-run resume.
+- Source refresh and claim invalidation are derived from the frozen reducer projection's source identity and content digests, evidence links, claim relations, gap obligations, and supersession history. The adapter computes reachability only; it does not own semantic reduction.
+- Memory-save continuity comes from the reducer's `continuity-save` artifact state and real effect evidence. Valid completion is reused, uncertain persistence reconciles, and safe retry requires the shared stable effect idempotency contract.
+
+These resolutions consume frozen contracts and do not authorize a new ledger schema, mutable continuity shortcut, certificate decision, shadow-parity verdict, or authority cutover.
 <!-- /ANCHOR:questions -->

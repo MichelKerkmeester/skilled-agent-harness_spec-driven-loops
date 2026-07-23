@@ -106,7 +106,7 @@
     ],
     "causal_summary": "The sk-design program grew across many packets — style-database research and build, the design-command redesign, hallmark design-system adoption, and several review and remediation passes",
     "created_at": "2026-07-19T06:10:01.540Z",
-    "last_save_at": "2026-07-22T16:57:34.381Z",
+    "last_save_at": "2026-07-23T07:04:12.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -114,7 +114,7 @@
     ],
     "source_fingerprint": "sha256:1636ecfee47db0c8eb8b9cda3d12818a5efa9cf0f8ef6899ccb42a6ef961e59d",
     "source_doc_hashes": {
-      "spec.md": "6509932158a5edf629229a07387c48c2a9d07ac225b088684bb6454c10a6275a"
+      "spec.md": "601658e4a6fd1613616f515be3644d4e9afaa7c5258d32f41626ed29844b5a42"
     },
     "last_active_child_id": null,
     "last_active_at": null

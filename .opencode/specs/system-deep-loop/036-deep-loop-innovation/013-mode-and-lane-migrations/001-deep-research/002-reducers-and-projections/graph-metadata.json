@@ -39,16 +39,24 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "decision-record.md",
       ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/deep/assets/deep-research-auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "reduce-state.cjs",
         "kind": "file",
@@ -83,6 +91,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -146,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "identical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -174,43 +194,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence state, an artifact index, and per-mode status without side effects or authority cutover.",
     "created_at": "2026-07-16T03:43:30.675Z",
-    "last_save_at": "2026-07-19T14:47:13.115Z",
+    "last_save_at": "2026-07-22T06:11:00.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f75b0527ac37cb7936de2b9cba95f746ac83fc061f04ad94ea2066eefc580d3",
+    "source_fingerprint": "sha256:01492986efb0964418aa2d2f0aedc143de48dd58f70b015ace721414cf6df747",
     "source_doc_hashes": {
-      "spec.md": "86901ddb96ded1d907a4215e4ab4fe33bb35eb8b9f74e714e5a21b2e5ca9f50a",
-      "plan.md": "db0d59d1c190e45a6e209c846ac9b3aebeba717b00a9e8e39a4d1c22b92e7a40",
-      "tasks.md": "e2a67f717e14e478ae96740afa49ece91b8f1f56328ca11f02b75a431875eb4d",
-      "checklist.md": "ef7784bf808e142b6bdb13656b72da1def7773cf832457b0ea1928f90a441798"
+      "spec.md": "97976b25b834698759abbe42ddb3927014e95dd4ef47fdb6e88bfe9d65ab059d",
+      "plan.md": "3228bae4f6f95602b41a3ef0f627760e82b4ebf5f1a3f72fad0abc6f2e9f84bb",
+      "tasks.md": "418122be68786b074fd55281a5e97b8217bfac3ac0c31710bb32b7c72016ef2f",
+      "checklist.md": "c3d4706da0f17beb6bf9bc1ad9ea77b673a29070610f288d692f6eeaf369348e",
+      "decision-record.md": "055edb2c038f9b7c554d61d43aa30701f5240b75a69df637211aaccc9adabc82",
+      "implementation-summary.md": "7e3087edb3f9850cac954a38adeb7992407786f944e9d2282a36a3cbf82aa4fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,24 +1,26 @@
 ---
 title: "Feature Specification: Deep Research - Rollback and Mode Gate"
-description: "Plan the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate. The gate consumes shadow-parity, sealed-artifact, certificate, receipt, resume, and replay evidence, keeps authority with the legacy path until phase 014, and emits the mode certificate required for staged cutover."
+description: "Implements the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate while keeping authority with the legacy path until phase 014."
 trigger_phrases:
   - "Deep Research rollback and mode gate"
   - "deep-research authority rollback switch"
   - "deep-research migration gate"
   - "mode 010 rollback window"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Research rollback switch and independent mode-gate contract"
-    next_safe_action: "Freeze rollback triggers and gate evidence against phase-012 contracts"
+    last_updated_at: "2026-07-22T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the fail-closed rollback switch and independent migration gate"
+    next_safe_action: "Consume the readiness certificate in phase 014 without treating it as cutover authority"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,12 +41,12 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-research mode migration) |
 | **Origin** | Final Deep Research child in the phase-013 mode migration fan-out |
 | **Depends on** | `[]` in the mode workstream contract; sibling adjacency is navigation only |
-| **Outcome** | Plan the Deep Research rollback switch and independent mode gate for the typed event-ledger migration |
+| **Outcome** | A fail-closed rollback switch and independent exact-evidence migration gate for the typed event-ledger migration |
 | **Inputs** | Parent `036-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; Deep Research phase 009 shadow-parity contract; shared transition and rollback policy |
 <!-- /ANCHOR:metadata -->
 
@@ -55,7 +57,7 @@ Deep Research is a stateful autonomous loop with the lifecycle `init -> iterate:
 
 The parent program requires an additive, dark, non-authoritative substrate, shadow parity before authority changes, one mode at a time during cutover, and a rollback window before legacy retirement (`036-deep-loop-innovation/spec.md`). The shared transition policy fixes deny-by-default authorization, one writer per mode, monotonic authority epochs, a minimum rollback window of 14 calendar days and five successful authoritative executions, and certificate-backed non-destructive rollback (`004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md`). Phase 009 supplies the mode's event-for-event parity receipt; it explicitly does not authorize a cutover.
 
-The research inputs identify why this gate must be evidence-led. Deep Research requires a versioned executable plan, claim-evidence-contradiction history, pre-reducer evidence admission, dependency-aware resume invalidation, and a synthesis view over immutable claim history (`findings-registry-modes.json`). The runtime findings require an external recovery authority, explicit `transition_authorized` or `transition_denied` decisions, immutable health alarms, and precommitted rollback or quarantine rules (`findings-registry.json`). This phase plans the mode-local rollback switch, the independent gate that evaluates those inputs, and the certificate handoff into phase 014; it does not implement a second ledger, reducer, shadow harness, or authority cutover.
+The research inputs identify why this gate must be evidence-led. Deep Research requires a versioned executable plan, claim-evidence-contradiction history, pre-reducer evidence admission, dependency-aware resume invalidation, and a synthesis view over immutable claim history (`findings-registry-modes.json`). The runtime findings require an external recovery authority, explicit `transition_authorized` or `transition_denied` decisions, immutable health alarms, and precommitted rollback or quarantine rules (`findings-registry.json`). This phase implements the mode-local rollback switch, the independent gate that evaluates those inputs, and the certificate handoff into phase 014; it does not implement a second ledger, reducer, shadow harness, or authority cutover.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -133,14 +135,14 @@ The rollback switch is evaluated before every authority-sensitive admission and 
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
-- What exact shared switch field and authority-record projection does phase 012 expose for a mode-local rollback request without creating a second authority source?
-- Which Deep Research sealed artifacts and receipt classes are mandatory for the mode certificate, and which shared certificates are referenced rather than reissued here?
-- Which health-alarm combinations trigger immediate rollback versus evidence gathering, quarantine, or a window extension?
-- What minimum authoritative execution qualifies as successful for the five-run window when a run completes with a typed incomplete or abstention outcome?
-- Which in-flight states may be reconciled during rollback, and which must remain blocked until phase 014's state-migration policy is applied?
-- What exact certificate schema and acceptance endpoint does phase 014 consume for each mode without treating a migration certificate as a cutover certificate?
+No questions remain open. The implementation resolved the planning questions as follows.
 
-These questions are resolved against the frozen phase-012, shared rollback, and phase-014 contracts before implementation. They do not authorize an authority flip, a shortened rollback window, mutable evidence repair, or a mode-owned recovery decision in this Planned phase.
+- The real `TransitionAuthorizationGateway` remains the only authorization source; the switch does not project or persist independent authority.
+- Registered Deep Research lifecycle artifacts are read through the sealed-artifact store, while the existing offline run-certificate verifier checks receipt completeness and deterministic replay.
+- Non-healthy and non-recovered health aggregates block rollback readiness. Unresolved evidence and low traffic extend the window.
+- Only a `trusted-completion` under `new_authoritative_reversible` with a valid certificate digest counts toward the five-run minimum. Incomplete and abstained runs do not count.
+- The real in-flight classification manifest decides reconciliation eligibility. Missing or invalid classification blocks the switch and gate.
+- `DeepResearchModeMigrationCertificate` is the readiness handoff. Its closed fields state `authorityMutation: false`, `rollbackWindowClosed: false`, and `cutoverCertificate: false`; phase 014 performs any authority transition separately.
 <!-- /ANCHOR:questions -->

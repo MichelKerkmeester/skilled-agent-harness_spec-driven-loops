@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { test } from "node:test";
@@ -31,6 +31,42 @@ test("writer accepts authored paths and rejects measured paths", async () => {
     }
   } finally {
     await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("writer rejects an authored symlink without changing measured bytes", async () => {
+  const container = await mkdtemp(path.join(os.tmpdir(), "brand-first-symlink-"));
+  const root = path.join(container, "authored");
+  const measuredPath = path.join(container, "DESIGN.md");
+  const authoredPath = path.join(root, AUTHORED_DESIGN_FILENAME);
+  const measuredBytes = Buffer.from("measured design bytes\n", "utf8");
+
+  try {
+    await mkdir(root);
+    await writeFile(measuredPath, measuredBytes);
+    await symlink("../DESIGN.md", authoredPath);
+
+    await assert.rejects(
+      writeAuthoredArtifact(root, AUTHORED_DESIGN_FILENAME, "adversarial authored write\n"),
+      /refuses symlink destination/,
+      "the writer must reject an allowlisted filename when its directory entry is a symlink"
+    );
+    assert.deepEqual(
+      await readFile(measuredPath),
+      measuredBytes,
+      "rejecting the authored symlink must preserve measured bytes"
+    );
+
+    await rm(authoredPath);
+    await writeAuthoredArtifact(root, AUTHORED_DESIGN_FILENAME, "authored positive control\n");
+    assert.equal(
+      await readFile(authoredPath, "utf8"),
+      "authored positive control\n",
+      "a real authored file must remain writable"
+    );
+    assert.deepEqual(await readFile(measuredPath), measuredBytes);
+  } finally {
+    await rm(container, { recursive: true, force: true });
   }
 });
 
@@ -95,8 +131,53 @@ test("rendered authored design requires explicit authored provenance", async () 
       /must declare origin: authored/,
       "rendered Markdown without authored provenance must be rejected"
     );
+
+    await assert.rejects(
+      refreshAuthoredExports({
+        rootDirectory: root,
+        renderedDesign: "---\norigin: authored\n---\norigin: measured\n",
+        authoredBrand: validBrand("#315d54")
+      }),
+      /must not declare measured provenance/,
+      "an authored marker must not conceal a measured provenance marker"
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("paired refresh preflights both destinations before changing either export", async () => {
+  const container = await mkdtemp(path.join(os.tmpdir(), "brand-first-pair-preflight-"));
+  const root = path.join(container, "authored");
+  const authoredDesignPath = path.join(root, AUTHORED_DESIGN_FILENAME);
+  const authoredTokensPath = path.join(root, AUTHORED_TOKENS_FILENAME);
+  const measuredTokensPath = path.join(container, "tokens.json");
+  const priorDesign = "prior authored design\n";
+  const measuredTokens = Buffer.from('{"measured":true}\n', "utf8");
+
+  try {
+    await mkdir(root);
+    await writeFile(authoredDesignPath, priorDesign);
+    await writeFile(measuredTokensPath, measuredTokens);
+    await symlink("../tokens.json", authoredTokensPath);
+
+    await assert.rejects(
+      refreshAuthoredExports({
+        rootDirectory: root,
+        renderedDesign: "---\norigin: authored\n---\nreplacement authored design\n",
+        authoredBrand: validBrand("#9b4d3f")
+      }),
+      /refuses symlink destination/,
+      "an unsafe companion destination must reject the pair before commit"
+    );
+    assert.equal(
+      await readFile(authoredDesignPath, "utf8"),
+      priorDesign,
+      "pair preflight must preserve the safe companion when the other destination is unsafe"
+    );
+    assert.deepEqual(await readFile(measuredTokensPath), measuredTokens);
+  } finally {
+    await rm(container, { recursive: true, force: true });
   }
 });
 

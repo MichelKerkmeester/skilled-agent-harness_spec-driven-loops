@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes"
-    last_updated_at: "2026-07-22T18:24:07Z"
+    last_updated_at: "2026-07-23T07:04:12Z"
 
     last_updated_by: "implementation-agent"
     recent_action: "Implemented and verified all three evidence envelopes"
@@ -79,7 +79,7 @@ Specify three provider-neutral, clean-room evidence envelopes — the owned-asse
 - Interruption, reversal, and async proof requirements for the motionCharacter handoff.
 - The conditional measured Motion section wired end-to-end: schema-v3, formatter/prompt, validator, docs, and tests.
 - The detector-evidence-driven conditionality rule (the Motion section fires only when `MotionSystem` detects real motion, not on phrase-triggers).
-- Verifying the three cited sk-design wiring points (`schema-v3.ts:134`, `types.ts:258`, `design-md-format.md:200`) against current code before any edits, since these citations are unverified (see Open Questions).
+- Verifying the relevant wiring in `schema-v3.ts`, `types.ts`, and `design-md-format.md` against current code before any edits (see Open Questions).
 
 ### Out of Scope
 
@@ -142,7 +142,7 @@ Specify three provider-neutral, clean-room evidence envelopes — the owned-asse
 ## 6. RISKS & DEPENDENCIES
 
 - **Dependency:** Phase 1 (`001-surgical-fixes`) completion; the Hallmark adoption research syntheses (`../../001-research/004-hallmark-design-skill-research/research/`); the existing `MotionSystem` detector; the existing v3 DESIGN.md schema/formatter/validator under `design-md-generator/backend/scripts/`.
-- **Risk:** the three cited sk-design wiring points (`schema-v3.ts:134`, `types.ts:258`, `design-md-format.md:200`) are unverified against current code — see Open Questions; a mismatch could require re-scoping the wiring task.
+- **Risk:** the schema, type, and format wiring points were unverified against current code before implementation; a mismatch could have required re-scoping the wiring task.
 - **Risk:** introducing named-theme duration multipliers instead of mapping `motionCharacter` onto existing bands would violate this packet's core design constraint.
 - **Licensing:** Hallmark is MIT-licensed (`external/hallmark/LICENSE`). This packet prefers clean-room adaptation; the manifest schema itself is clean-room and provider-neutral (its distinguishing fields are net-new). If any table substantially copies Hallmark's manifest or motion text, Hallmark's MIT notice must be added. External images/fonts/third-party assets are out of scope — not covered by the repo's MIT grant — and the manifest only ever references owned assets by their own rights, never Hallmark binaries.
 <!-- /ANCHOR:risks -->
@@ -166,5 +166,5 @@ Specify three provider-neutral, clean-room evidence envelopes — the owned-asse
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-None. Implementation confirmed the live motion capability at `schema-v3.ts` lines 146 and 490, the `MotionSystem` type at `types.ts` line 260 before edits, and no existing Motion content in `design-md-format.md`. The shared contracts were placed in the approved `shared/evidence-envelopes/` pair; formatter/prompt and validator ownership resolved to `scripts/formatters-v3.ts`, `scripts/build-write-prompt.ts`, and `scripts/validate.ts`.
+None. Implementation confirmed the live motion capability in `schema-v3.ts`, the `MotionSystem` type in `types.ts`, and the prior absence of Motion content in `design-md-format.md`. The shared contracts were placed in the approved `shared/evidence-envelopes/` pair; formatter/prompt and validator ownership resolved to `scripts/formatters-v3.ts`, `scripts/build-write-prompt.ts`, and `scripts/validate.ts`.
 <!-- /ANCHOR:questions -->

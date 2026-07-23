@@ -39,14 +39,22 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,6 +71,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -144,12 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -166,25 +174,47 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Ledger Field Discipline",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Classify Every",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Research mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed run lifecycle, question and branch planning, evidence and claim provenance, convergence decisions, synthesis, and memory-save handoff events. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:30.422Z",
-    "last_save_at": "2026-07-17T13:21:25.182Z",
+    "last_save_at": "2026-07-21T17:19:03.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3344b3bfaabbf3b6f157627c7abdb68b27dc0f11e443a18aa8dcc96b89cf323",
+    "source_fingerprint": "sha256:129fbad8f599e39135467ea9365580fb91ed8a45d489c62eef16607020a4ba72",
     "source_doc_hashes": {
-      "spec.md": "05c3e4bac520a1423c8137e16bc880c8f8023ebd9d911314cddb74ce3fef58cd",
-      "plan.md": "a04350c72511410e4e4d78b3080ff2cfb6924c108a82ee058372dfaf800e615a",
-      "tasks.md": "b925bb6265cf19a101285a2024500dca8a556d0e7e62e5e6b50f5ad25d5e5340",
-      "checklist.md": "1bfc35bcc0f5007709bd0e89049eca084f19405c4229debd4840743954d9ffac"
+      "spec.md": "a34d372daed0f538c22c2b80d29da6329ed00a9a7e6655afccbb55fb794b7bb3",
+      "plan.md": "27e3e01ebaf94a42075830b436fce0b9ffad2dced53d63cfff5332b59d25f919",
+      "tasks.md": "86d21a7f8ffe6f8fb0f8f3dffbeda07f21f3db459b2380c5d275909386860323",
+      "checklist.md": "06a16bff23a3dcddae4699230e4648eb97e79fd8d6b95285147c2ad3e42acf04",
+      "decision-record.md": "349e83c44b0c83962433ca9a8868444c7e12e2719556c5c61772b5298c374260",
+      "implementation-summary.md": "73e6cdf6f765fcd523b12e6c6a0a253ffb1ec3cc351e758c4eff7d6760280afc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,23 +1,25 @@
 ---
 title: "Tasks: Deep Research - Rollback and Mode Gate"
-description: "Tasks for planning and verifying the Deep Research fail-closed rollback switch, bounded rollback window, independent migration gate, and phase-014 certificate handoff."
+description: "Completed tasks for the Deep Research fail-closed rollback switch, bounded rollback window, independent migration gate, and phase-014 certificate handoff."
 trigger_phrases:
   - "Deep Research rollback and mode gate tasks"
   - "deep-research rollback switch tasks"
   - "deep-research migration gate tasks"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Research rollback switch and independent mode-gate contract"
-    next_safe_action: "Freeze rollback triggers and gate evidence against phase-012 contracts"
+    last_updated_at: "2026-07-22T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed all implementation and verification tasks"
+    next_safe_action: "Consume the readiness-only handoff in phase 014"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,44 +42,44 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Pin BASE and read the phase-012 shared contracts, write-set conflict graph, shared rollback policy, and phase-014 cutover handoff
-- [ ] T002 [P] Inventory Deep Research sibling outputs `001` through `006` and bind their event, reducer, seal, certificate, receipt, resume, and parity digests
-- [ ] T003 [P] Mark the authority boundary and record that `006-shadow-parity` is non-authoritative, this phase gates readiness, and phase 014 owns cutover
+- [x] T001 Pin BASE and read the phase-012 shared contracts, write-set conflict graph, shared rollback policy, and phase-014 cutover handoff [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T002 [P] Inventory Deep Research sibling outputs `001` through `006` and bind their event, reducer, seal, certificate, receipt, resume, and parity digests [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T003 [P] Mark the authority boundary and record that `006-shadow-parity` is non-authoritative, this phase gates readiness, and phase 014 owns cutover [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Freeze the mode-scoped rollback switch states, request fields, deny-by-default guards, epoch rules, and stale-writer rejection
-- [ ] T005 Define the external authorization boundary and prohibit Deep Research from self-authorizing rollback, unquarantine, verifier replacement, or authority restoration
-- [ ] T006 Define rollback triggers for parity, seal, certificate, replay, receipt, state, health, budget, resume, source-drift, duplicate-request, and split-brain failures
-- [ ] T007 Define the non-destructive rollback runbook: freeze admission, fence the writer, classify in-flight work, reconcile safe effects, restore legacy at a new epoch, preserve evidence, and emit a certificate
-- [ ] T008 Define the 14-calendar-day and five-successful-authoritative-execution window, extension conditions, successful-run semantics, retained assets, and closure evidence
-- [ ] T009 Define the independent gate matrix for parity, sealed artifacts, certificates, receipts, replay, resume, lifecycle fixtures, failure dispositions, and rollback rehearsal
-- [ ] T010 Define the exact-SHA-bound mode-migration certificate and phase-014 handoff fields, explicitly excluding authority-cutover claims
-- [ ] T011 [P] Define blocked, not-ready, rollback-required, and ready result semantics for missing, stale, contradictory, malformed, or nondeterministic evidence
+- [x] T004 Freeze the mode-scoped rollback switch states, request fields, deny-by-default guards, epoch rules, and stale-writer rejection [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T005 Define the external authorization boundary and prohibit Deep Research from self-authorizing rollback, unquarantine, verifier replacement, or authority restoration [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T006 Define rollback triggers for parity, seal, certificate, replay, receipt, state, health, budget, resume, source-drift, duplicate-request, and split-brain failures [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T007 Define the non-destructive rollback runbook: freeze admission, fence the writer, classify in-flight work, reconcile safe effects, restore legacy at a new epoch, preserve evidence, and emit a certificate [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T008 Define the 14-calendar-day and five-successful-authoritative-execution window, extension conditions, successful-run semantics, retained assets, and closure evidence [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T009 Define the independent gate matrix for parity, sealed artifacts, certificates, receipts, replay, resume, lifecycle fixtures, failure dispositions, and rollback rehearsal [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T010 Define the exact-SHA-bound mode-migration certificate and phase-014 handoff fields, explicitly excluding authority-cutover claims [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T011 [P] Define blocked, not-ready, rollback-required, and ready result semantics for missing, stale, contradictory, malformed, or nondeterministic evidence [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Verify the switch denies unknown, stale, incomplete, and gateway-failed requests without authority change, projection change, or semantic append
-- [ ] T013 Verify the gate cannot pass without green `006-shadow-parity` results across lifecycle, failure, resume, synthesis, and memory-save fixtures
-- [ ] T014 Verify all required Deep Research seals, certificates, receipts, fingerprints, and artifact references are present, current, and internally consistent
-- [ ] T015 Verify deterministic replay, resume identity, source-refresh invalidation, evidence quarantine, contradiction, and incomplete-run behavior remain fail-closed
-- [ ] T016 Verify rollback rehearsal freezes admission, fences stale writers, changes the epoch, preserves events and artifacts, restores legacy, and emits a rollback certificate
-- [ ] T017 Verify the rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
-- [ ] T018 Verify fault fixtures for unknown effects, missing receipts, malformed seals, stale contracts, health alarms, budget exhaustion, duplicate requests, and split-brain attempts
-- [ ] T019 Verify the migration certificate binds exact SHA, BASE, contract digests, versions, fixtures, stream/artifact digests, verifier identity, and dispositions
-- [ ] T020 Verify phase 014 accepts readiness evidence without treating this mode certificate as an authority-cutover certificate
+- [x] T012 Verify the switch denies unknown, stale, incomplete, and gateway-failed requests without authority change, projection change, or semantic append [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T013 Verify the gate cannot pass without green `006-shadow-parity` results across lifecycle, failure, resume, synthesis, and memory-save fixtures [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T014 Verify all required Deep Research seals, certificates, receipts, fingerprints, and artifact references are present, current, and internally consistent [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T015 Verify deterministic replay, resume identity, source-refresh invalidation, evidence quarantine, contradiction, and incomplete-run behavior remain fail-closed [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T016 Verify rollback rehearsal freezes admission, fences stale writers, changes the epoch, preserves events and artifacts, restores legacy, and emits a rollback certificate [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T017 Verify the rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T018 Verify fault fixtures for unknown effects, missing receipts, malformed seals, stale contracts, health alarms, budget exhaustion, duplicate requests, and split-brain attempts [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T019 Verify the migration certificate binds exact SHA, BASE, contract digests, versions, fixtures, stream/artifact digests, verifier identity, and dispositions [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
+- [x] T020 Verify phase 014 accepts readiness evidence without treating this mode certificate as an authority-cutover certificate [evidence: implementation-summary.md records the scoped runtime delivery; focused Vitest 11/11 and runtime tsc passed]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Independent mode gate green and phase-014 handoff certificate emitted
+- [x] All tasks complete
+- [x] All requirements in spec.md met with evidence
+- [x] Independent mode gate green and phase-014 handoff certificate emitted
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
