@@ -49,11 +49,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The `h2UppercaseRequired` flip the operator approved turned out to conflict with reality, so this phase fixed the root cause first. The validator's `is_uppercase_section` flagged any lowercase character, so it would have rejected legitimate mixed-case headers: inline code, parenthetical annotations, function signatures, and proper nouns with an internal capital. It was refined to strip those and enforce ALL-CAPS only on prose words. Then the config was flipped for the reference and asset types, and a deterministic transform uppercased the 270 genuine Title-Case and sentence-case headers across 58 files, preserving the exempt parts rather than doing a blind `.upper()`. sk-design's design-audit house style was the largest cluster. All 667 reference/asset files now pass, and the README audit's invalid count fell rather than rose.
+The `h2UppercaseRequired` flip the operator approved turned out to conflict with reality, so this phase fixed the root cause first. The validator's `is_uppercase_section` flagged any lowercase character, so it would have rejected legitimate mixed-case headers: inline code, parenthetical annotations, function signatures, and proper nouns with an internal capital. It was refined to strip those and enforce ALL-CAPS only on prose words. Then the config was flipped for the reference and asset types, and a deterministic transform uppercased the genuine Title-Case and sentence-case offender headers, preserving the exempt parts rather than doing a blind `.upper()`. sk-design's design-audit house style was the largest cluster. All 667 reference/asset files now pass, and the README audit's invalid count fell rather than rose.
 
 ### Program closeout
 
-This closes the nine-phase documentation-quality program. Phases 001 to 003 fixed the metadata, templates and the broken validator path; 004 overhauled 14 skill READMEs; 005 to 007 authored 124 code READMEs and refreshed 2 catalogs; 008 surgically repaired 64 older READMEs and deleted a stale duplicate; 009 enforced Title-Case on reference and asset headers and closed out. Three code findings are deferred as code-maintenance tasks.
+This closes the documentation-quality program's authoring phases. Phases 001 to 003 fixed the metadata, templates and the broken validator path; 004 overhauled 14 skill READMEs; 005 to 007 authored 124 code READMEs and refreshed 2 catalogs; 008 surgically repaired 64 older READMEs and deleted a stale duplicate; 009 enforced Title-Case on reference and asset headers and closed out. Three code findings are deferred as code-maintenance tasks.
 
 <!-- /ANCHOR:what-built -->
 

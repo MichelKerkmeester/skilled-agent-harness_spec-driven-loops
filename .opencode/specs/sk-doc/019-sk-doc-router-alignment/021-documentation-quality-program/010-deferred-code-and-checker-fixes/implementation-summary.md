@@ -62,7 +62,7 @@ The scan found only 2 SKILL.md offenders (`code-opencode`, `create-flowchart`, 1
 
 ### Not fixed, with evidence
 
-The benchmark `RIG_ROOT` in `001-swe-1.6-eval-loop` points at a `002-eval-rig` that never existed, but that packet is an archived benchmark run with no live references, so its scripts are frozen artifacts; the live `003` copy is already correct. `dispatch-swe16.cjs` is referenced only in a credit comment in `dispatch-minimax.cjs`, so it is unused but low-value to remove. The repo-wide HVR sweep spans 4,601 files and roughly 167,000 em-dash occurrences that serve many grammatical roles, so it is a standalone project needing per-occurrence judgment, not a closeout fix.
+The benchmark `RIG_ROOT` in `001-swe-1.6-eval-loop` points at a `002-eval-rig` that never existed, but that packet is an archived benchmark run with no live references, so its scripts are frozen artifacts. The live `003` copy is already correct. `dispatch-swe16.cjs` is referenced only in a credit comment in `dispatch-minimax.cjs`, so it is unused but low-value to remove. The repo-wide HVR sweep spans roughly 4,601 files and about 79,000 em-dash occurrences that serve many grammatical roles, so it is a standalone project needing per-occurrence judgment, not a closeout fix.
 
 <!-- /ANCHOR:what-built -->
 

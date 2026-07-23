@@ -107,6 +107,6 @@ The reference headers were renamed by exact old-to-new string replacement (7 of 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The blocking validator still does not enforce ALL-CAPS for reference/asset types.** `template-rules.json` sets `h2UppercaseRequired: false` for them, so this class of drift is only caught by the advisory DQI score. Flipping it is deferred because it would immediately fail the 41 repo-wide Title-Case offenders.
-2. **The two reference files still carry em dashes and semicolons in prose.** The header fix is complete; the deep HVR pass is a separate, larger sweep the audit scoped on its own.
+1. **At this phase the blocking validator did not enforce ALL-CAPS for reference/asset types.** `template-rules.json` set `h2UppercaseRequired: false` for them, so this class of drift was only caught by the advisory DQI score. Phase 009 later resolved it: the validator was hardened, `h2UppercaseRequired` was flipped to true for reference and asset, and the offender headers were uppercased.
+2. **The two reference files still carry em dashes and semicolons in prose.** The header fix is complete. The deep HVR pass is a separate, larger sweep the audit scoped on its own.
 <!-- /ANCHOR:limitations -->

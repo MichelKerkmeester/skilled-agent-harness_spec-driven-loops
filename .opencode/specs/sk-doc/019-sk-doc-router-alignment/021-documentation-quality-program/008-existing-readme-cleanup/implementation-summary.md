@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-64 older skill and code READMEs were surgically repaired, and the stale `design-mcp-open-design/__tests__` duplicate was deleted. The work started from the `audit_readmes.py` fleet sweep (70 template-invalid, 177 broken refs, 68 missing-OVERVIEW across 593 READMEs), but the raw numbers were not handed to a swarm. A triage step classified the false-positive patterns and a multi-root resolver plus a spec/archive/fixture exclusion filter produced a verified list of 100 genuine targets. Six Sonnet agents repaired their disjoint batches: each broken reference was traced to where its target actually moved, missing OVERVIEW sections were added from existing lead prose, and false positives were left alone.
+64 older skill and code READMEs were surgically repaired, and the stale `design-mcp-open-design/__tests__` duplicate was deleted. The work started from the `audit_readmes.py` fleet sweep (70 template-invalid, 177 broken refs, 68 missing-OVERVIEW across 593 READMEs), but the raw numbers were not handed to a swarm. A triage step classified the false-positive patterns and a multi-root resolver plus a spec/archive/fixture exclusion filter produced a verified list of 100 candidate targets, of which 64 required edits and 36 were confirmed no-ops. Six Sonnet agents repaired the 64 in disjoint batches: each broken reference was traced to where its target actually moved, missing OVERVIEW sections were added from existing lead prose, and false positives were left alone.
 
 ### What moved where
 
