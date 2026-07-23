@@ -1,0 +1,233 @@
+{
+  "sessionId": "fanout-minimax-m3-1784786065794-6evsk5",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent spec.md Status: Planned contradicts 5 children Status: Complete",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 45,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P0", "reason": "Initial discovery" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P0",
+        "confidence": 0.90,
+        "downgradeTrigger": "If parent spec.md is regenerated to Status: Complete and retrospective is updated, downgrade to P2."
+      }
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent Files to Change and Phase Map declare 4 lanes but 5 children exist (intentionally isolated 005 lane)",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 80,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" },
+        { "iteration": 2, "from": "P1", "to": "P1", "reason": "Severity confirmed; rationale refined: 005 is intentionally outside the 4-lane scope per spec.md Phase | 5 + impl-summary scope-lock note, but the parent spec.md still does not declare 005 anywhere." }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.85,
+        "downgradeTrigger": "If parent spec.md is updated to declare the isolated 005 lane and the Files to Change table is widened, downgrade to P2."
+      }
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent Open Questions 'specced but not yet built' is stale",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+      "line": 108,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.95,
+        "downgradeTrigger": "If the open question is updated to reflect implementation-record state, downgrade to P2."
+      }
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Program retrospective.md lists 4 hallmark lanes as Planned contradicting per-packet Complete",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/retrospective.md",
+      "line": 62,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.88,
+        "downgradeTrigger": "If the retrospective is updated to mark the four hallmark adoption lanes as Complete, downgrade to P2."
+      }
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "006-deep-alignment-and-review/alignment is a seeded but unrun deep-alignment run; not in parent children_ids",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/006-deep-alignment-and-review/alignment/deep-alignment-findings-registry.json",
+      "line": 61,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.80,
+        "downgradeTrigger": "If the 006 directory is cleaned up or formally added to the parent, resolve."
+      }
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "005 impl-summary Known Limitations says 'Generated metadata pending' but description.json and graph-metadata.json are present",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+      "line": 118,
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" },
+        { "iteration": 3, "from": "P2", "to": "P2", "reason": "Extended to cover the verification-table row as a separate documentation-drift surface; F006 (impl-summary self-contradiction) and F010 (verification-table contradiction) are now the same root cause with two distinct surfaces" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.78,
+        "downgradeTrigger": "If the 005 impl-summary's Known Limitations section and verification table row are both updated, resolve F006+F010."
+      }
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "002-evidence-envelopes spec.md Open Questions section lists pre-edit line numbers (146/490/260) but post-edit positions are 207/286",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/spec.md",
+      "line": 167,
+      "firstSeen": 2,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.82,
+        "downgradeTrigger": "If the 002 spec.md §7 is renamed to 'Verification Audit' or the historical content is moved to the implementation summary handoff, resolve."
+      }
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Regenerate scripts do not propagate child status to parent; F001 will not be caught by the documented workflow",
+      "file": ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js",
+      "line": 1,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery; maintenance gap" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.85,
+        "downgradeTrigger": "If a parent-child reconciliation script is added to the regenerate workflow or a new validator is introduced that captures parent-child status consistency, resolve."
+      }
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "005 impl-summary Known Limitations 'Generated metadata pending' is stale",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+      "line": 118,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery; documentation drift" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.80,
+        "downgradeTrigger": "If the 005 impl-summary's Known Limitations section is updated to remove the 'Generated metadata pending' line, resolve."
+      }
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "005 impl-summary verification table row 'graph metadata absent' is the same contradiction as F006",
+      "file": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+      "line": 108,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery; verification-table contradiction" }
+      ],
+      "claimAdjudication": {
+        "finalSeverity": "P2",
+        "confidence": 0.83,
+        "downgradeTrigger": "If the 005 impl-summary's verification table row is updated to remove the 'graph metadata absent' clause, resolve."
+      }
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 3,
+    "P2": 6
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "lastReducedAt": "2026-07-23T07:57:20Z"
+}

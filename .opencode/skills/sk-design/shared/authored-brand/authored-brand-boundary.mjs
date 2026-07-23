@@ -1,4 +1,5 @@
-import { writeFile } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { lstat, realpath, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 export const AUTHORED_DESIGN_FILENAME = "AUTHORED-DESIGN.md";
@@ -55,32 +56,31 @@ export function validateAuthoredBrand(brand) {
 }
 
 export async function writeAuthoredArtifact(rootDirectory, artifactPath, content) {
-  const filename = assertAuthoredDestination(artifactPath);
-  if (typeof rootDirectory !== "string" || rootDirectory.length === 0) {
-    throw new TypeError("A root directory is required.");
-  }
   if (typeof content !== "string") {
     throw new TypeError("Authored artifact content must be a string.");
   }
 
-  const root = path.resolve(rootDirectory);
-  const destination = path.resolve(root, filename);
-  if (path.dirname(destination) !== root) {
-    throw new Error("Authored output escaped its root directory.");
+  const destination = await resolveAuthoredDestination(rootDirectory, artifactPath);
+  const staged = createStagedArtifact(destination, content);
+
+  try {
+    await writeFile(staged.temporaryPath, staged.content, {
+      encoding: "utf8",
+      flag: "wx",
+      mode: 0o600
+    });
+    await rename(staged.temporaryPath, destination);
+  } catch (error) {
+    await rm(staged.temporaryPath, { force: true });
+    throw error;
   }
 
-  await writeFile(destination, content, "utf8");
   return destination;
 }
 
 export async function refreshAuthoredExports({ rootDirectory, renderedDesign, authoredBrand }) {
   validateAuthoredBrand(authoredBrand);
-  if (
-    typeof renderedDesign !== "string" ||
-    !/(?:^|\r?\n)[ \t]*origin:[ \t]*authored[ \t]*(?:\r?\n|$)/.test(renderedDesign)
-  ) {
-    throw new Error(`${AUTHORED_DESIGN_FILENAME} must declare origin: authored.`);
-  }
+  validateRenderedAuthoredDesign(renderedDesign);
 
   const tokenDocument = `${JSON.stringify({
     schema: "sk-design/authored-brand/v1",
@@ -90,10 +90,30 @@ export async function refreshAuthoredExports({ rootDirectory, renderedDesign, au
     voice: authoredBrand.voice
   }, null, 2)}\n`;
 
-  return Promise.all([
-    writeAuthoredArtifact(rootDirectory, AUTHORED_DESIGN_FILENAME, renderedDesign),
-    writeAuthoredArtifact(rootDirectory, AUTHORED_TOKENS_FILENAME, tokenDocument)
+  const destinations = await Promise.all([
+    resolveAuthoredDestination(rootDirectory, AUTHORED_DESIGN_FILENAME),
+    resolveAuthoredDestination(rootDirectory, AUTHORED_TOKENS_FILENAME)
   ]);
+  const stagedArtifacts = [
+    createStagedArtifact(destinations[0], renderedDesign),
+    createStagedArtifact(destinations[1], tokenDocument)
+  ];
+
+  try {
+    await Promise.all(stagedArtifacts.map((artifact) => (
+      writeFile(artifact.temporaryPath, artifact.content, {
+        encoding: "utf8",
+        flag: "wx",
+        mode: 0o600
+      })
+    )));
+  } catch (error) {
+    await cleanupArtifacts(stagedArtifacts.map((artifact) => artifact.temporaryPath));
+    throw error;
+  }
+
+  await commitStagedArtifacts(stagedArtifacts);
+  return destinations;
 }
 
 export function assertReviewedConversionArtifact(reviewArtifact) {
@@ -174,6 +194,138 @@ function validateReviewedSelection(selection) {
   }
   if (selection.measurementEvidence.some((evidence) => typeof evidence !== "string" || evidence.trim() === "")) {
     throw new Error(`Reviewed selection ${selection.authoredValueId} contains empty evidence.`);
+  }
+}
+
+async function resolveAuthoredDestination(rootDirectory, artifactPath) {
+  const filename = assertAuthoredDestination(artifactPath);
+  if (typeof rootDirectory !== "string" || rootDirectory.length === 0) {
+    throw new TypeError("A root directory is required.");
+  }
+
+  const root = await realpath(path.resolve(rootDirectory));
+  const destination = path.resolve(root, filename);
+  if (path.dirname(destination) !== root) {
+    throw new Error("Authored output escaped its root directory.");
+  }
+
+  const destinationStats = await lstatIfPresent(destination);
+  if (destinationStats?.isSymbolicLink()) {
+    throw new Error(`Authored output refuses symlink destination: ${artifactPath}`);
+  }
+  if (destinationStats && !destinationStats.isFile()) {
+    throw new Error(`Authored output requires a file destination: ${artifactPath}`);
+  }
+  if (destinationStats) {
+    const resolvedDestination = await realpath(destination);
+    const relativeDestination = path.relative(root, resolvedDestination);
+    const segments = relativeDestination.replaceAll("\\", "/").split("/").filter(Boolean);
+    const escapedRoot = relativeDestination === ".." ||
+      relativeDestination.startsWith(`..${path.sep}`) ||
+      path.isAbsolute(relativeDestination);
+    const landedOnMeasuredPath = segments.includes("styles") ||
+      MEASURED_TARGETS.has(segments.at(-1));
+
+    if (escapedRoot || landedOnMeasuredPath) {
+      throw new Error(`Authored output refuses resolved destination: ${artifactPath}`);
+    }
+  }
+
+  return destination;
+}
+
+function validateRenderedAuthoredDesign(renderedDesign) {
+  if (typeof renderedDesign !== "string") {
+    throw new Error(`${AUTHORED_DESIGN_FILENAME} must declare origin: authored.`);
+  }
+
+  const frontmatterMatch = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(renderedDesign);
+  const origins = frontmatterMatch
+    ? [...frontmatterMatch[1].matchAll(/^[ \t]*origin:[ \t]*([^\r\n]+)[ \t]*$/gm)]
+    : [];
+
+  if (origins.length !== 1 || origins[0][1].trim() !== "authored") {
+    throw new Error(`${AUTHORED_DESIGN_FILENAME} must declare origin: authored.`);
+  }
+  if (/(?:^|\r?\n)[ \t]*origin:[ \t]*(?:measured|verified)\b[^\r\n]*(?:\r?\n|$)/i.test(renderedDesign)) {
+    throw new Error(`${AUTHORED_DESIGN_FILENAME} must not declare measured provenance.`);
+  }
+}
+
+function createStagedArtifact(destination, content) {
+  return {
+    content,
+    destination,
+    temporaryPath: path.join(
+      path.dirname(destination),
+      `.${path.basename(destination)}.${randomUUID()}.tmp`
+    )
+  };
+}
+
+async function commitStagedArtifacts(stagedArtifacts) {
+  const entries = stagedArtifacts.map((artifact) => ({
+    ...artifact,
+    backupPath: `${artifact.destination}.${randomUUID()}.bak`,
+    committed: false,
+    hadOriginal: false,
+    restored: false
+  }));
+
+  try {
+    for (const entry of entries) {
+      if (await lstatIfPresent(entry.destination)) {
+        await rename(entry.destination, entry.backupPath);
+        entry.hadOriginal = true;
+      }
+    }
+    for (const entry of entries) {
+      await rename(entry.temporaryPath, entry.destination);
+      entry.committed = true;
+    }
+  } catch (error) {
+    const rollbackErrors = [];
+    for (const entry of [...entries].reverse()) {
+      try {
+        if (entry.committed) {
+          await rm(entry.destination, { force: true });
+        }
+        if (entry.hadOriginal) {
+          await rename(entry.backupPath, entry.destination);
+          entry.restored = true;
+        }
+      } catch (rollbackError) {
+        rollbackErrors.push(rollbackError);
+      }
+    }
+    await cleanupArtifacts(entries.flatMap((entry) => {
+      const cleanupPaths = [entry.temporaryPath];
+      if (!entry.hadOriginal || entry.restored) {
+        cleanupPaths.push(entry.backupPath);
+      }
+      return cleanupPaths;
+    }));
+    if (rollbackErrors.length > 0) {
+      throw new AggregateError([error, ...rollbackErrors], "Authored export commit and rollback failed.");
+    }
+    throw error;
+  }
+
+  await cleanupArtifacts(entries.map((entry) => entry.backupPath));
+}
+
+async function cleanupArtifacts(artifactPaths) {
+  await Promise.all(artifactPaths.map((artifactPath) => rm(artifactPath, { force: true })));
+}
+
+async function lstatIfPresent(targetPath) {
+  try {
+    return await lstat(targetPath);
+  } catch (error) {
+    if (error?.code === "ENOENT") {
+      return null;
+    }
+    throw error;
   }
 }
 

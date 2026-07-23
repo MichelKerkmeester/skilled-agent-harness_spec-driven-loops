@@ -8,7 +8,8 @@
     "sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes",
     "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
     "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane",
-    "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets"
+    "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+    "sk-design/012-sk-design-program/004-hallmark-design-system/006-deep-alignment-and-review"
   ],
   "manual": {
     "depends_on": [],
@@ -85,17 +86,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, and a brand-first lane — rather than a single large change",
+    "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, brand-first authoring, and measured composition retrieval — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-07-22T19:16:29.241Z",
+    "last_save_at": "2026-07-23T07:04:12.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:37ee69c43343687f7c76dbbc4057cf1433baef1e8b5e4d1c72dbb20a2d687b26",
+    "source_fingerprint": "sha256:020a5044bc4b656513f65f471dec242d93aa2dde06bedf8c82a48488f00a128f",
     "source_doc_hashes": {
-      "spec.md": "86431b7c7221e0fb428a11d4287d35ffc83f855222461ee0a7a944e7ec2b4e83"
+      "spec.md": "fced7b9b0bb16d50b101a4cd8d0a620e0977528702df0b258ad730b65393a378"
     },
     "last_active_child_id": null,
     "last_active_at": null
