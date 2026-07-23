@@ -21,7 +21,8 @@
       "Deep AI Council reducers and projections tasks",
       "deep-ai-council projection reducer tasks",
       "Deep AI Council reducers and projections checklist",
-      "deep-ai-council deterministic projection gate"
+      "deep-ai-council deterministic projection gate",
+      "deep ai council reducer implementation"
     ],
     "key_topics": [
       "deep",
@@ -38,12 +39,13 @@
       "deterministic"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -173,19 +181,13 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Legacy Deep",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -193,21 +195,23 @@
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep AI Council migration: replay the typed deliberation ledger into iteration/convergence state, an immutable artifact index, and per-mode status while preserving independent-seat evidence, minority lineage, and protocol-specific outcomes.",
     "created_at": "2026-07-16T03:43:34.174Z",
-    "last_save_at": "2026-07-19T18:09:51.564Z",
+    "last_save_at": "2026-07-23T11:52:25.792Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20a9fa001be5982ad86769ea72d67d152b53e2209398035f07c16be59763b463",
+    "source_fingerprint": "sha256:64f4cc40bb0a77a9def5cbb81fd9cfe0ce0034d4fbf8807458f1efb75e297a40",
     "source_doc_hashes": {
-      "spec.md": "9bc678c12b590f27bf67d7ef7c815a152ca244a5432b88c2a0ce0e8ff331e5f3",
-      "plan.md": "7bf4dc3576d056edb66e1064e708576033a15c61fbc229a48f095cb8b5e06ecc",
-      "tasks.md": "ca6372098a47c73c78fc3c879cdf63536fcef9d4376f4fb12de1d2e76bc34c61",
-      "checklist.md": "41df823e4434f7b35303e065011d0f1ab93bd7954bbdb1bcd3c451bb604ce425"
+      "spec.md": "68c127973039072907570f641bd53b11ad5f4f28a162ab7c988fdda474e2e304",
+      "plan.md": "f8006656448b6ec1d70b2914db57f83418837e4adb0e2ba541678544bb9c7bb8",
+      "tasks.md": "1505955d2b683de5c848e01bf26da015459f3c8776e06630a9efe1b28b6ba17b",
+      "checklist.md": "ebd7c4b7185938c9de8a3ab7097861f3fd779c627ece3d35f731f907551304b4",
+      "implementation-summary.md": "d7400e515d2e2c29790819dacb8f0fc1d32a520a9dd27465d4c2944a9cba827e"
     },
     "last_active_child_id": null,
     "last_active_at": null

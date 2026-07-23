@@ -44,19 +44,19 @@ This phase turns the typed event sequence into deterministic live state for the 
 
 ### Definition of Ready
 
-- [ ] `001-typed-ledger-schema` publishes the event envelope, version policy, identity fields, and canonical ordering inputs
-- [ ] Projection ownership is separated from `003-sealed-artifacts` and the three downstream variant migrations
-- [ ] The common field matrix names every shared projection field, event source, stability rule, and consumer
-- [ ] Pure-fold constraints prohibit I/O, time, randomness, network access, mutable evaluator reads, and hidden writes
-- [ ] Evaluator epoch, raw trial, canary, promotion, rollback, and veto semantics are explicit before implementation begins
-- [ ] Replay, checkpoint, mixed-version, malformed-event, and epoch-mismatch fixtures are identified
+- [x] `001-typed-ledger-schema` publishes the event envelope, version policy, identity fields, and canonical ordering inputs
+- [x] Projection ownership is separated from `003-sealed-artifacts` and the three downstream variant migrations
+- [x] The common field matrix names every shared projection field, event source, stability rule, and consumer
+- [x] Pure-fold constraints prohibit I/O, time, randomness, network access, mutable evaluator reads, and hidden writes
+- [x] Evaluator epoch, raw trial, canary, promotion, rollback, and veto semantics are explicit before implementation begins
+- [x] Replay, checkpoint, mixed-version, malformed-event, and epoch-mismatch fixtures are identified
 
 ### Definition of Done
 
-- [ ] Complete and checkpointed replay produce byte-identical projections and fingerprints
-- [ ] Shared evaluator, canary, promotion, and per-mode status contracts are consumed by all three downstream variants without semantic forks
-- [ ] Raw evidence, lineage, and receipt references remain available after reductions or evaluator epoch changes
-- [ ] Strict validation and the phase verifier pass without tracked changes outside the phase implementation scope
+- [x] Complete and checkpointed replay produce byte-identical projections and fingerprints
+- [x] Shared evaluator, canary, promotion, and per-mode status contracts expose one fixed extension branch for all three downstream variants
+- [x] Raw evidence, lineage, and receipt references remain available after reductions or evaluator epoch changes
+- [x] Strict validation and the phase verifier pass without tracked changes outside the phase implementation scope
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

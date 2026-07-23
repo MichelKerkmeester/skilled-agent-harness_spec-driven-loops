@@ -19,7 +19,10 @@
       "deep improvement reducers tasks",
       "deep improvement projection tasks",
       "deep improvement reducers checklist",
-      "deep improvement projection verification"
+      "deep improvement projection verification",
+      "deep improvement common reducer implementation",
+      "deep improvement shared projection contract",
+      "deep improvement deterministic replay"
     ],
     "key_topics": [
       "deep",
@@ -36,14 +39,29 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-reducers.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement-common-reducers.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-reducers.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -66,6 +84,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -99,7 +123,7 @@
         "source": "derived"
       },
       {
-        "name": "reduced",
+        "name": "three",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -159,31 +183,13 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,21 +197,23 @@
     ],
     "causal_summary": "Define the pure reducers and projections for Deep Improvement Common Services",
     "created_at": "2026-07-16T03:43:35.996Z",
-    "last_save_at": "2026-07-19T18:01:16.508Z",
+    "last_save_at": "2026-07-23T11:52:24.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d8a5c5ac1b735894f5f4e63dab032ff9f9f21ddeda895fca3f4b2fbff465777",
+    "source_fingerprint": "sha256:ac0aaf2d96b0608af07fb97046585ae065197e654e3d434dff4395150d971f7a",
     "source_doc_hashes": {
-      "spec.md": "58054afc2c8001a14714323bf4147c48279125f13c69dff080eb2c53120ef40c",
-      "plan.md": "fd590bfb424fff1f79acfda42da5b8cc4f90ee6d91901f2b40110bea5d7c1410",
-      "tasks.md": "3b321a95830c534447bf8047be1906b1f988b942f6445a844aebdf2edf29151b",
-      "checklist.md": "60796e648d2bae838790a2a26117a5cd0bb9342884143bd5811e97f17d33a7b4"
+      "spec.md": "ed2e9e419759c809cc854c7ff43c51131b315deae7dc229ed85b114a11e62e7d",
+      "plan.md": "f42476885f15e381aee314d556e24687c477e715befa24dc6478c97f1cebd46a",
+      "tasks.md": "eb596988ab5377998878a490592a4885e6390e94dc93ea73f1dff15ccdc5abee",
+      "checklist.md": "44f804fdbd6c1cef2f77a6df1d600b70d962bc6621a689f092fb75caf81de33a",
+      "implementation-summary.md": "c2be25c60f43786829b9b75e8a33e300344ea4baa1903bc3b61c80e03200d598"
     },
     "last_active_child_id": null,
     "last_active_at": null

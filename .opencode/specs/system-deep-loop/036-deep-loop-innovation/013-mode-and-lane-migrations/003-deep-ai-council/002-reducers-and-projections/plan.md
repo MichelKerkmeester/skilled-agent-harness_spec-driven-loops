@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T22:15:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Outlined council projection families and replay gates"
-    next_safe_action: "Draft the council event-to-projection ownership matrix"
+    last_updated_at: "2026-07-23T13:07:00Z"
+    last_updated_by: "codex"
+    recent_action: "Delivered the council projection families and replay gates"
+    next_safe_action: "Consume the closed projection contract downstream"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,19 +47,19 @@ the seats-deliberate -> critique-rounds -> converge lifecycle, and proves shadow
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs.
-- [ ] Shared fan-out/fan-in, adjudication, budget, convergence, and mode contracts are identified, including the 013 write-set conflict graph.
-- [ ] The legacy Deep AI Council state, control-arm outputs, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
-- [ ] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects.
-- [ ] Event families for isolated proposals, critiques, stance transitions, independence snapshots, adjudication, counterfactual probes, and lifecycle status have one projection owner each.
-- [ ] The boundary with `003-sealed-artifacts` is explicit: this phase indexes references and does not create or certify sealed artifacts.
+- [x] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs.
+- [x] Shared fan-out/fan-in, adjudication, budget, convergence, and mode contracts are identified, including the 013 write-set conflict graph.
+- [x] The legacy Deep AI Council state, control-arm outputs, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
+- [x] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects.
+- [x] Event families for isolated proposals, critiques, stance transitions, independence snapshots, adjudication, counterfactual probes, and lifecycle status have one projection owner each.
+- [x] The boundary with `003-sealed-artifacts` is explicit: this phase indexes references and does not create or certify sealed artifacts.
 
 ### Definition of Done
-- [ ] A typed event-to-projection matrix covers every event consumed by Deep AI Council.
-- [ ] Deliberation/convergence, independence/stance, artifact index, and per-mode status reducers have deterministic invariants and fail-closed rules.
-- [ ] Plural outcome routing preserves factual, comparative, debate, and value-disagreement semantics without making two-of-three authoritative.
-- [ ] Replay, duplicate, late-event, schema-mismatch, counterfactual-instability, and projection-drift fixtures are defined and pass in shadow mode.
-- [ ] The typed projections retain raw evidence and remain non-authoritative until the later cutover phase.
+- [x] A typed event-to-projection matrix covers every event consumed by Deep AI Council.
+- [x] Deliberation/convergence, independence/stance, artifact index, and per-mode status reducers have deterministic invariants and fail-closed rules.
+- [x] Plural outcome routing preserves factual, comparative, debate, and value-disagreement semantics without making two-of-three authoritative.
+- [x] Replay, duplicate, late-order, schema-mismatch, impossible-transition, and projection-drift fixtures are defined and pass in shadow mode; counterfactual event shapes remain closed to the landed schema.
+- [x] The typed projections retain raw evidence and remain non-authoritative until the later cutover phase.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped matrix-cell, trial-index, score, and status fold boundaries"
-    next_safe_action: "Resolve cell ordering and checkpoint semantics with the predecessor schema"
+    last_updated_at: "2026-07-23T12:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the composite model-benchmark fold"
+    next_safe_action: "Consume the additive shadow projection downstream"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / model-benchmark variant |
 | **Change class** | Model-specific pure reducers, projections, replay fixtures, and common-service adapters |
-| **Execution** | Planning-only child after the model-benchmark typed schema; downstream migration waits for shared contract freeze |
+| **Execution** | Additive-dark runtime module over the landed typed schema and shared common reducer |
 
 ### Overview
 
@@ -49,19 +49,23 @@ per-mode status contract that extends rather than forks deep-improvement-common.
 
 ### Definition of Ready
 
-- [ ] Model-benchmark `001-typed-ledger-schema` publishes the event envelope, cell identity inputs, version policy, and canonical ordering fields
-- [ ] Deep-improvement-common service projections and stage semantics are available for consumption, not reimplementation
-- [ ] The projection field matrix names every matrix, trial, score, status, and common-service field, owner, stability rule, and consumer
-- [ ] Pure-fold constraints prohibit model calls, evaluator calls, I/O, time, randomness, network access, mutable configuration, and hidden writes
-- [ ] Matrix-cell identity, duplicate policy, incomplete-cell behavior, score-policy versioning, uncertainty, validity, and coverage semantics are explicit
-- [ ] Replay, checkpoint, matrix-permutation, mixed-version, malformed-event, epoch-mismatch, contamination, and underpowered-comparison fixtures are identified
+- [x] Model-benchmark `001-typed-ledger-schema` publishes the event envelope, cell identity inputs, version policy, and canonical ordering fields [Evidence: `implementation-summary.md`]
+- [x] Deep-improvement-common service projections and stage semantics are available for consumption, not reimplementation [Evidence: `implementation-summary.md`]
+- [x] The projection field matrix names every matrix, trial, score, status, and common-service field, owner, stability rule, and consumer [Evidence: `implementation-summary.md`]
+- [x] Pure-fold constraints prohibit model calls, evaluator calls, I/O, time, randomness, network access, mutable configuration, and hidden writes [Evidence: `implementation-summary.md`]
+- [x] Matrix-cell identity, duplicate policy, incomplete-cell behavior, score-policy versioning, uncertainty, validity, and coverage semantics are explicit [Evidence: `implementation-summary.md`]
+- [x] Replay, checkpoint, malformed-event, veto, and unsupported-extension fixtures are implemented [Evidence: targeted Vitest 26/26]
 
 ### Definition of Done
 
-- [ ] Complete and checkpointed replay produce byte-identical projections and fingerprints across matrix event permutations
-- [ ] Raw trial evidence, model and recipe lineage, receipts, validity, and score-policy history remain available after reduction changes
-- [ ] Model Benchmark consumes common evaluator, canary, promotion, veto, rollback, and status contracts without semantic forks
-- [ ] Strict validation and the phase verifier pass without tracked changes outside the model-benchmark implementation scope
+- [x] Complete and checkpointed replay produce byte-identical projections and fingerprints across batch boundaries [Evidence: targeted Vitest 26/26]
+- [x] Raw trial evidence, receipts, validity, and score-policy history remain available after ranking [Evidence: targeted Vitest 26/26]
+- [x] Every registry-admitted model event has an explicit fold case or a typed fail-closed result [Evidence: handled-stem inventory test; targeted Vitest 26/26]
+- [x] Matrix cells reject backward transitions while legal checkpoint continuation remains accepted [Evidence: cell-transition tests; targeted Vitest 26/26]
+- [x] Unknown hard floors, contamination, exposure, disclosure, retirement, and replacement block affected rankings [Evidence: eligibility tests; targeted Vitest 26/26]
+- [x] Pairwise comparison results and cost/latency slices remain separate addressable records [Evidence: projection-record tests; targeted Vitest 26/26]
+- [x] Model Benchmark consumes the common reducer surface and fold branch without widening the common projection [Evidence: common-fold oracle test]
+- [x] Strict validation, targeted Vitest, whole-runtime TypeScript, and exact-scope status pass [Evidence: `implementation-summary.md`]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -11,15 +11,20 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:26:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Established the pure-fold projection scope for Deep Alignment"
-    next_safe_action: "Map lane and authority events to the three live projection families"
+    last_updated_at: "2026-07-23T20:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed and verified the additive-dark reducer and projection surface"
+    next_safe_action: "Consume the closed projection surface from downstream migration leaves"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-reducers/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-reducers.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Causal input order, not stream-label order, defines cross-stream replay"
+      - "Deep Alignment imports the shared review-loop backbone from Deep Review"
+      - "Completed terminals recompute current blockers and require the latest run-stream convergence"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +43,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Child 002 of the 008-deep-alignment migration under phase 013; reducers and projections concern |
@@ -110,13 +115,23 @@ The reducer consumes the typed ledger contract from `001-typed-ledger-schema`, t
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
-- Which event fields are the canonical stable identity for a lane, authority epoch, and artifact when a scope path, authority revision, verifier, or adapter changes across runs?
-- Does the shared contract represent an out-of-order event as a blocked replay, a deterministic buffer request, or a ledger-level invalid sequence before the reducer is called?
-- Which discovery/applicability obligations are sufficient for a lane's denominator, and which missing authority, observation, or re-probe artifacts must block convergence rather than mark the lane incomplete?
-- Which known-deviation assertions are valid overlays for the current authority epoch and verifier digest, and which legacy exceptions must be replayed as expired or unresolved?
-- Which legacy Deep Alignment fields are protected behavior contracts for shadow parity, and which are known defects that the typed projection should intentionally correct?
+No implementation-blocking questions remain.
 
-These questions are planning inputs for the shared contract and implementation phases; none authorizes a local Deep Alignment fork or a best-effort fallback.
+### Resolved decisions
+
+- Lane, authority, subject, observation, candidate, finding, verification, proof,
+  artifact, and run identities use their closed typed scope plus captured
+  producer references; collisions or renames fail closed.
+- The reducer preserves causal input order while enforcing independent
+  contiguous sequence positions per stream. Missing positions return
+  `rebuild_required` with `cursor-gap`.
+- Authority validity, complete lane and applicability coverage, owned
+  verification and adjudication chains, accepted P0/P1 findings, hard vetoes,
+  and missing downstream assessments all participate in current blockers.
+- Known deviations remain authority-, verifier-, finding-, and subject-bound
+  overlays. They never delete the captured observation or verified finding.
+- The complete canonical legacy comparison structure remains shadow-only and
+  non-authoritative; later migration leaves own dual-path execution and cutover.
 <!-- /ANCHOR:questions -->

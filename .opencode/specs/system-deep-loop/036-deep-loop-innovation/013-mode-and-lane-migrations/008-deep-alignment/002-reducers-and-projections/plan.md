@@ -10,15 +10,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:26:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Outlined the Deep Alignment lane projections and replay gates"
-    next_safe_action: "Draft the lane event-to-projection matrix against the frozen contracts"
+    last_updated_at: "2026-07-23T20:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the reducer surface and adversarial verification gate"
+    next_safe_action: "Consume the additive-dark projection surface downstream"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-reducers/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-reducers.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The shared review-loop backbone remains owned by Deep Review"
+      - "Completion freshness uses current blockers and the established run stream"
 ---
 # Implementation Plan: Deep Alignment - Reducers & Projections
 
@@ -35,26 +39,33 @@ _memory:
 | **Execution** | Contract-first planning; implementation remains additive, dark, read-only, and non-authoritative |
 
 ### Overview
-The phase will specify one deterministic fold over the typed Deep Alignment event stream and three live projection families: lane iteration/convergence state, an immutable artifact and evidence index, and per-mode status. A separate derived projection will expose per-lane verdicts and the overall worst-verdict rollup while retaining authority snapshots, applicability outcomes, raw observations, re-probe receipts, and deviation adjudications as source data. The fold will reuse the phase-012 shared review-loop contract also consumed by Deep Review mode 002, and it will prove shadow parity before any authority can move.
+The phase delivers one deterministic fold over the typed Deep Alignment event
+stream and closed projections for lane iteration and convergence, authority,
+artifacts and evidence, conformance, proof witnesses, and per-mode status. A
+derived projection exposes per-lane verdicts and the overall worst-verdict
+rollup while retaining authority snapshots, applicability outcomes, raw
+observations, re-probe receipts, and deviation adjudications as source data.
+The fold imports the shared review-loop backbone consumed by Deep Review and
+keeps the complete legacy comparison view additive-dark.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs.
-- [ ] The phase-012 shared review-loop contract and the Deep Review reuse boundary are identified.
-- [ ] The 013 write-set conflict graph is available for projection ownership and persistence boundaries.
-- [ ] The legacy Deep Alignment state, lane fixtures, authority epochs, known-deviation cases, and protected-vs-known-defect decisions are pinned for shadow comparison.
-- [ ] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects.
-- [ ] The boundary with `003-sealed-artifacts` is explicit: this phase indexes references and does not create sealed artifacts or certificates.
+- [x] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs. [Evidence: the reducer and Vitest import the landed Deep Alignment registry and typed producer.]
+- [x] The phase-012 shared review-loop contract and the Deep Review reuse boundary are identified. [Evidence: the reducer imports `reduceSharedReviewLoopBackbone`; the public barrel does not re-export it.]
+- [x] The 013 write-set conflict graph is available for projection ownership and persistence boundaries. [Evidence: the closed field ownership surface assigns every persisted field to the additive-dark reducer.]
+- [x] The legacy Deep Alignment state, lane fixtures, authority epochs, known-deviation cases, and protected-vs-known-defect decisions are pinned for shadow comparison. [Evidence: `projectDeepAlignmentLegacyView` emits a complete frozen comparison structure.]
+- [x] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects. [Evidence: closed projection types, schema assertions, pure fold result, and integrity digest exports.]
+- [x] The boundary with `003-sealed-artifacts` is explicit: this phase indexes references and does not create sealed artifacts or certificates. [Evidence: artifact records are referential projections only.]
 
 ### Definition of Done
-- [ ] A typed event-to-projection matrix covers every event consumed by Deep Alignment.
-- [ ] Lane iteration/convergence, artifact and evidence index, and per-mode status reducers have deterministic invariants and fail-closed rules.
-- [ ] Per-lane verdicts preserve `not_applicable`, `unresolved`, `SKIP`, and `EXEMPT` as explicit derived outcomes and cannot erase raw findings.
-- [ ] Replay, duplicate, late-reprobe, authority-mismatch, schema-mismatch, and projection-drift fixtures are defined and pass in shadow mode.
-- [ ] The shared review-loop contract is reused by Deep Alignment and Deep Review without a mode-specific fork.
+- [x] A typed event-to-projection matrix covers every event consumed by Deep Alignment. [Evidence: `DEEP_ALIGNMENT_EVENT_ROUTING` is exhaustive over the landed stem union.]
+- [x] Lane iteration/convergence, artifact and evidence index, and per-mode status reducers have deterministic invariants and fail-closed rules. [Evidence: targeted Vitest passes 17 tests and whole-runtime TypeScript reports zero diagnostics for this module.]
+- [x] Per-lane verdicts preserve `not_applicable`, `unresolved`, `SKIP`, and `EXEMPT` as explicit derived outcomes and cannot erase raw findings. [Evidence: source observations, assessments, deviations, findings, and lane verdicts remain separate closed projection fields.]
+- [x] Replay, duplicate, late-reprobe, authority-mismatch, schema-mismatch, and projection-drift fixtures are defined and pass in shadow mode. [Evidence: the real fold rejects gaps, forged fingerprints, collisions, borrowed references, impossible transitions, stale completion evidence, and checkpoint/version drift.]
+- [x] The shared review-loop contract is reused by Deep Alignment and Deep Review without a mode-specific fork. [Evidence: cross-mode reuse test passes with `mode: 'alignment'` and the imported backbone.]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

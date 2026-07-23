@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Established the pure-fold projection scope for Deep Review"
-    next_safe_action: "Map typed ledger events to the three live projection families"
+    last_updated_at: "2026-07-23T11:07:39Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the additive-dark Deep Review projections"
+    next_safe_action: "Consume projections from downstream Deep Review siblings"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Review mode migration) |
 | **Origin** | Second Deep Review child in the 013 per-mode migration program; reducers and projections concern |

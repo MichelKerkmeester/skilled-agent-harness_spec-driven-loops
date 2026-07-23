@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped matrix reducers to model-run and scoring projections"
-    next_safe_action: "Freeze matrix fold inputs against 001-typed-ledger-schema"
+    last_updated_at: "2026-07-23T12:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Built and verified model-benchmark reducers"
+    next_safe_action: "Consume the shadow projection in the next leaf"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark variant) |
 | **Origin** | Phase 002 of the model-benchmark migration under phase 013 |
@@ -166,10 +166,10 @@ shared contracts and emits the write-set conflict graph.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Deferred to execution against the frozen predecessor schema and common-service contract:
-- Which event fields form the canonical matrix-cell key, and which experiment metadata remains an opaque artifact reference?
-- Is the scoring matrix one composite projection or separate model, task, metric, pairwise, and workload projections sharing one event frontier?
-- Which partial matrix states are eligible for a descriptive rank, a selection certificate, a promotion view, or only diagnostic display?
-- How are adaptive-selection propensities, mandatory coverage quotas, and confirmatory anchors represented without allowing a reducer to infer missing trials?
-- Which model alias, recipe, evaluator, fixture, workload, or score-policy changes require a new matrix epoch rather than an upcast or compatible continuation?
+Resolved against the frozen predecessor schema and common-service contract:
+- The full typed `TrialMatrixKey` is canonically hashed; large experiment material remains a digest-bound artifact reference.
+- One namespaced scoring-matrix projection retains raw observations, score vectors, validity cards, sealed selection evidence, and derived rankings on one replay frontier.
+- Rankings require a typed `selection_reduction_requested` event and stay ineligible when evidence is missing, invalid, abstained, or vetoed.
+- The landed schema has no adaptive-selection event family. The reducer does not infer propensity or quota facts and fails closed on unknown extensions.
+- Identity and score-policy changes remain explicit typed event data; unsupported schema or reducer versions require rebuild rather than implicit compatibility.
 <!-- /ANCHOR:questions -->
