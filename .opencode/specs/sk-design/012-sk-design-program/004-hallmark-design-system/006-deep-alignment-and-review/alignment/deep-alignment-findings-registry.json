@@ -1,75 +1,373 @@
 {
-  "alignmentTarget": "sk-design hallmark adoption conformance",
+  "alignmentTarget": "sk-design hallmark conformance",
   "lanes": [
     {
-      "laneId": "sk-design::designs::.opencode/skills/sk-design/design-interface/references/design-process/, .opencode/skills/sk-design/design-audit/, .opencode/skills/sk-design/design-foundations/references/, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-md-generator/references/design-md-format.md, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/SKILL.md",
-      "authority": "sk-design",
-      "artifactClass": "designs",
-      "scope": {
-        "type": "paths",
-        "values": [
-          ".opencode/skills/sk-design/design-interface/references/design-process/",
-          ".opencode/skills/sk-design/design-audit/",
-          ".opencode/skills/sk-design/design-foundations/references/",
-          ".opencode/skills/sk-design/shared/evidence-envelopes/",
-          ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/",
-          ".opencode/skills/sk-design/shared/authored-brand/",
-          ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
-          ".opencode/skills/sk-design/design-md-generator/references/design-md-format.md",
-          ".opencode/skills/sk-design/styles/lib/database/",
-          ".opencode/skills/sk-design/SKILL.md"
-        ]
-      },
-      "iterationsRun": 0,
-      "artifactsChecked": 0,
-      "checkedArtifactIds": null,
-      "openFindings": [],
-      "findingsBySeverity": {
-        "P0": 0,
-        "P1": 0,
-        "P2": 0
-      },
-      "invalidSeverityCount": 0,
-      "compositeScore": 0,
-      "verdict": "NOT_APPLICABLE"
-    },
-    {
-      "laneId": "sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/",
+      "laneId": "sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/",
       "authority": "sk-doc",
       "artifactClass": "docs",
       "scope": {
         "type": "paths",
         "values": [
-          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/"
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md",
+          ".opencode/skills/sk-design/shared/evidence-envelopes/",
+          ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/",
+          ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
+          ".opencode/skills/sk-design/design-audit/references/",
+          ".opencode/skills/sk-design/design-interface/references/design-process/"
         ]
       },
-      "iterationsRun": 0,
-      "artifactsChecked": 0,
-      "checkedArtifactIds": null,
-      "openFindings": [],
+      "iterationsRun": 12,
+      "artifactsChecked": 60,
+      "checkedArtifactIds": [
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/checklist.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/implementation-summary.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/plan.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/spec.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/tasks.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/checklist.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/implementation-summary.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/plan.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/spec.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/tasks.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/checklist.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/implementation-summary.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/plan.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/spec.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/tasks.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/checklist.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/implementation-summary.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/plan.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/spec.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/tasks.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/checklist.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/implementation-summary.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/plan.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/spec.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/tasks.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md",
+        ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md",
+        ".opencode/skills/sk-design/shared/evidence-envelopes/motion-character-handoff.md",
+        ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-action-punctuation.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-deliberate-seams.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-heading-rail.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-image-counterweight.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-layered-body.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-reciprocal-frame.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-staged-reveal.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/index.md",
+        ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/schema.md",
+        ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
+        ".opencode/skills/sk-design/design-audit/references/accessibility-performance.md",
+        ".opencode/skills/sk-design/design-audit/references/ai-fingerprint-tells.md",
+        ".opencode/skills/sk-design/design-audit/references/anti-patterns-production.md",
+        ".opencode/skills/sk-design/design-audit/references/audit-contract.md",
+        ".opencode/skills/sk-design/design-audit/references/corpus-map.md",
+        ".opencode/skills/sk-design/design-audit/references/critique-hardening.md",
+        ".opencode/skills/sk-design/design-audit/references/evidence-capture.md",
+        ".opencode/skills/sk-design/design-audit/references/hardening-edge-cases.md",
+        ".opencode/skills/sk-design/design-audit/references/smart-router-pseudocode.md",
+        ".opencode/skills/sk-design/design-audit/references/transform-remediation.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/copy-and-mock-data.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/redesign-intake.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/resource-loading-notes.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/transform-application.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md",
+        ".opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md"
+      ],
+      "openFindings": [
+        {
+          "severity": "P1",
+          "summary": "Non-sequential section numbering: expected section 7, found section 10 for `OPEN QUESTIONS`.",
+          "laneId": "sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/",
+          "source": "[SOURCE: .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/spec.md:158]"
+        },
+        {
+          "severity": "P1",
+          "summary": "Non-sequential section numbering: expected section 7, found section 10 for `OPEN QUESTIONS`.",
+          "source": "[SOURCE: .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/spec.md:205]",
+          "type": "non_sequential_numbering",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "artifactPath": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/spec.md",
+          "validatorExitCode": 0
+        },
+        {
+          "severity": "P0",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "message": "Missing required section: overview",
+          "artifactId": ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md",
+          "artifactPath": ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md",
+          "artifactDocType": "generic",
+          "sourceTool": "validate_document.py",
+          "validatorExitCode": 1,
+          "detail": {
+            "type": "missing_required_section",
+            "severity": "blocking",
+            "message": "Missing required section: overview",
+            "fix_hint": "Add section with name containing \"overview\""
+          }
+        },
+        {
+          "id": "P0-001",
+          "severity": "P0",
+          "summary": "Seven H2 headings are not ALL CAPS in sections 1–7.",
+          "source": "[SOURCE: .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-reciprocal-frame.md:16] [SOURCE: .opencode/skills/sk-doc/scripts/validate_document.py:602-610] [SOURCE: .opencode/skills/sk-doc/shared/references/core-standards.md:108-109]",
+          "type": "h2_not_uppercase",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "validatorExitCode": 1,
+          "verifiedBy": "python3 .opencode/skills/sk-doc/scripts/validate_document.py --type reference --json"
+        },
+        {
+          "id": "P0-004",
+          "severity": "P0",
+          "summary": "Required overview section is missing.",
+          "source": "[SOURCE: .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-staged-reveal.md:12-16] [SOURCE: .opencode/skills/sk-doc/shared/assets/template-rules.json:5-9] [SOURCE: .opencode/skills/sk-doc/scripts/validate_document.py:619-701]",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "validatorExitCode": 1,
+          "verifiedBy": "python3 .opencode/skills/sk-doc/scripts/validate_document.py --type reference --json"
+        },
+        {
+          "id": "P0-002",
+          "severity": "P0",
+          "summary": "Required overview section is missing.",
+          "laneId": "sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/",
+          "source": "[SOURCE: .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-reciprocal-frame.md:12-16] [SOURCE: .opencode/skills/sk-doc/shared/assets/template-rules.json:5-9] [SOURCE: .opencode/skills/sk-doc/scripts/validate_document.py:619-701]",
+          "type": "missing_required_section",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "validatorExitCode": 1,
+          "verifiedBy": "python3 .opencode/skills/sk-doc/scripts/validate_document.py --type reference --json",
+          "artifactPath": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-reciprocal-frame.md"
+        },
+        {
+          "id": "P0-001",
+          "severity": "P0",
+          "summary": "H2 header is not ALL CAPS: \"## 9. Targeted Presentation Probe Sweep\".",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-audit/references/anti-patterns-production.md:129] [SOURCE: .opencode/skills/sk-doc/shared/scripts/validate_document.py:602-610] [SOURCE: .opencode/skills/sk-doc/shared/references/core-standards.md:108-109]",
+          "type": "h2_not_uppercase",
+          "subcheck": "template-conformance",
+          "layer": "deterministic",
+          "validatorExitCode": 1,
+          "verifiedBy": "python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-design/design-audit/references/anti-patterns-production.md --json",
+          "artifactId": ".opencode/skills/sk-design/design-audit/references/anti-patterns-production.md",
+          "artifactPath": ".opencode/skills/sk-design/design-audit/references/anti-patterns-production.md",
+          "artifactDocType": "reference",
+          "sourceTool": "validate_document.py",
+          "detail": {
+            "type": "h2_not_uppercase",
+            "severity": "blocking",
+            "message": "H2 header not ALL CAPS: \"## 9. Targeted Presentation Probe Sweep\"",
+            "line": "## 9. Targeted Presentation Probe Sweep",
+            "auto_fixable": true,
+            "fix": "## 9. TARGETED PRESENTATION PROBE SWEEP",
+            "fix_hint": "Change \"Targeted Presentation Probe Sweep\" to \"TARGETED PRESENTATION PROBE SWEEP\""
+          }
+        }
+      ],
       "findingsBySeverity": {
-        "P0": 0,
-        "P1": 0,
+        "P0": 5,
+        "P1": 2,
         "P2": 0
       },
       "invalidSeverityCount": 0,
-      "compositeScore": 0,
-      "verdict": "NOT_APPLICABLE"
+      "compositeScore": 60,
+      "verdict": "FAIL"
+    },
+    {
+      "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design/design-md-generator/backend/scripts/",
+          ".opencode/skills/sk-design/styles/lib/database/",
+          ".opencode/skills/sk-design/shared/authored-brand/",
+          ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
+        ]
+      },
+      "iterationsRun": 8,
+      "artifactsChecked": 39,
+      "checkedArtifactIds": [
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/cluster.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/corpus-baseline-v3.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-tree.d.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/dark-mode-detect.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/design-boundary-detect.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/framework-detect.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/icon-detect.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/study-exemplars.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/typography-role-v3.ts",
+        ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts",
+        ".opencode/skills/sk-design/styles/lib/database/canonical.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/indexer.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/operator.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/stage-telemetry.mjs",
+        ".opencode/skills/sk-design/styles/lib/database/vectors.mjs",
+        ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+        ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
+      ],
+      "openFindings": [
+        {
+          "severity": "P1",
+          "summary": "CLI usage documentation embeds spec-folder paths in a source comment, violating the comment-hygiene gate. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:15]",
+          "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:15]"
+        },
+        {
+          "severity": "P1",
+          "summary": "Public TypeScript APIs lack required TSDoc comments across the checked slice.",
+          "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+          "type": "architectural-pattern-conformance",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:41] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:251] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:106] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/framework-detect.ts:172] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:80] [SOURCE: .opencode/skills/sk-code/code-opencode/assets/checklists/typescript-checklist.md:215]"
+        },
+        {
+          "severity": "P2",
+          "summary": "extract.ts places section 5 before section 4 and omits the required constants section.",
+          "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+          "type": "cross-file-consistency",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:58] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/overview-strict-and-naming.md:135]"
+        },
+        {
+          "severity": "P2",
+          "summary": "Several explanatory comments begin with lowercase text, violating comment-capitalization rules.",
+          "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+          "type": "comment-hygiene-beyond-simple-patterns",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:177] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:68] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
+        },
+        {
+          "severity": "P2",
+          "summary": "extract.ts uses an unjustified non-null assertion for candidate.css.",
+          "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+          "type": "architectural-pattern-conformance",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:413] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/quality-standards/overview-and-type-system.md:160]"
+        },
+        {
+          "severity": "P2",
+          "type": "cross-file-consistency",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "message": "interaction-capture.ts has non-sequential and duplicated numbered sections.",
+          "artifactId": ".opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts",
+          "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts",
+          "artifactSurface": "OPENCODE",
+          "sourceTool": "reasoning-agent (caller-supplied)",
+          "validatorExitCode": null,
+          "detail": {
+            "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:18] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:38] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/overview-strict-and-naming.md:135]"
+          }
+        },
+        {
+          "severity": "P2",
+          "type": "architectural-pattern-conformance",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "message": "preview-gen.ts violates the sk-code four-group import ordering.",
+          "artifactId": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+          "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
+          "artifactSurface": "OPENCODE",
+          "sourceTool": "reasoning-agent (caller-supplied)",
+          "validatorExitCode": null,
+          "detail": {
+            "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:9] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:11] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:156]"
+          }
+        },
+        {
+          "severity": "P1",
+          "summary": "Strict typecheck rejects report-gen.ts because a nullable designMdContent is passed to validateDesignMd.",
+          "type": "type-safety",
+          "subcheck": "strict-typecheck",
+          "layer": "deterministic",
+          "source": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:689] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:694] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/tsconfig.json:7]"
+        },
+        {
+          "severity": "P2",
+          "type": "section-organization",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "summary": "The five database modules omit the numbered ALL-CAPS section dividers required for significant or large JavaScript files.",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs:12] [SOURCE: .opencode/skills/sk-design/styles/lib/database/indexer.mjs:5] [SOURCE: .opencode/skills/sk-design/styles/lib/database/operator.mjs:6] [SOURCE: .opencode/skills/sk-design/styles/lib/database/retrieval.mjs:5] [SOURCE: .opencode/skills/sk-design/styles/lib/database/schema.mjs:5] [SOURCE: .opencode/skills/sk-code/code-opencode/references/javascript/style-guide.md:83]"
+        },
+        {
+          "severity": "P2",
+          "type": "exported-function-documentation",
+          "subcheck": "pattern-conformance",
+          "layer": "reasoning-agent",
+          "summary": "The exported buildStyleDatabase function lacks the required JSDoc; the preceding block documents the private writeGenerationPointer helper instead.",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/indexer.mjs:1112] [SOURCE: .opencode/skills/sk-design/styles/lib/database/indexer.mjs:1140] [SOURCE: .opencode/skills/sk-code/code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md:229]"
+        }
+      ],
+      "findingsBySeverity": {
+        "P0": 0,
+        "P1": 3,
+        "P2": 7
+      },
+      "invalidSeverityCount": 0,
+      "compositeScore": 22,
+      "verdict": "CONDITIONAL"
     }
   ],
   "overall": {
     "laneCount": 2,
-    "applicableLaneCount": 0,
+    "applicableLaneCount": 2,
     "findingsBySeverity": {
-      "P0": 0,
-      "P1": 0,
-      "P2": 0
+      "P0": 5,
+      "P1": 5,
+      "P2": 7
     },
-    "compositeScore": 0,
+    "compositeScore": 82,
     "verdict": "FAIL",
-    "sealed": false,
+    "sealed": true,
     "nothingToConverge": false,
-    "incompleteCoverage": true,
+    "incompleteCoverage": false,
     "integrityFault": false,
     "invalidSeverityCount": 0
   },
