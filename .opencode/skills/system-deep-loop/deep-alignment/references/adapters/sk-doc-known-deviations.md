@@ -8,7 +8,7 @@ trigger_phrases:
   - "toc ban compact pointer card kebab case"
 importance_tier: important
 contextType: reference
-version: 1.0.0.2
+version: 1.0.0.3
 ---
 
 # sk-doc Known-Deviation Suppression List
@@ -115,7 +115,23 @@ Each entry below was re-probed against live repo state while this list was autho
 
 ---
 
-## 7. SCOPE OF THIS LIST
+## 7. STRUCTURAL-FINGERPRINT-CARD CONTRACT
+
+**Deviation name**: Structural-fingerprint-card fixed-field contract
+
+**Why it is not a violation**: the sk-design structural-fingerprint cards under `shared/references/structural-fingerprint-cards/` are a specialized, deliberately-authored artifact type with their own file contract, not generic reference prose. `schema.md`'s CARD FILE CONTRACT requires an H1 plus a one-sentence identity statement plus exactly seven numbered H2 fields in a fixed order and in Title Case, with no overview section. The generic `reference`-doctype rules `validate_document.py` applies (a required `overview` section and ALL-CAPS H2 headings) contradict that intentional contract; enforcing them would reshape the card design rather than fix drift.
+
+**Evidence**:
+- `.opencode/skills/sk-design/shared/references/structural-fingerprint-cards/schema.md`, CARD FILE CONTRACT and REQUIRED FIELDS: exactly seven Title-Case numbered fields plus an identity statement, no overview.
+- The 2026-07-23 hallmark deep-alignment audit filed `missing_required_section: overview` and `h2_not_uppercase` against every card, which the card contract shows are conformant-by-design, not drift.
+
+**Match rule**: reasoning-agent layer only. `matchTypes` is empty because the deterministic layer keys on finding type plus doctype and cannot scope to a path subtree; a doctype-wide suppression would wrongly exempt every other `reference` document (for example `design-audit/references/anti-patterns-production.md`) that legitimately requires an overview and ALL-CAPS headings. A reviewing agent suppresses `missing_required_section` (overview) and `h2_not_uppercase` findings ONLY for files under `shared/references/structural-fingerprint-cards/`.
+
+**Live-Reality Check (2026-07-23)**: re-read `schema.md` directly — the seven-field, Title-Case, identity-statement contract is the live convention, and `index.md` plus `schema.md` in the same directory follow the same shape. `validate_document.py` classifies these files as `reference` from their `/references/` path segment and applies the generic overview plus uppercase rules, which is the source of the mismatch. This entry is reasoning-agent scoped; the deterministic layer intentionally does not suppress, to avoid over-suppressing sibling reference docs.
+
+---
+
+## 8. SCOPE OF THIS LIST
 
 **In scope**: sk-doc authority only. Each other authority adapter (sk-git, sk-design, sk-code, per phases 006/007) owns its own known-deviation list under its own `standardSource`, per ADR-005's per-authority requirement. This document does not attempt to anticipate their conventions.
 
@@ -123,15 +139,15 @@ Each entry below was re-probed against live repo state while this list was autho
 
 ---
 
-## 8. MACHINE-READABLE DEVIATION LIST
+## 9. MACHINE-READABLE DEVIATION LIST
 
-`scripts/adapters/sk-doc.cjs` parses this fenced block directly (see that file's `loadKnownDeviations()`). Keep it byte-consistent with Sections 2-6 above. This block is the operative rule set, the prose above is the human-readable rationale for the same rules.
+`scripts/adapters/sk-doc.cjs` parses this fenced block directly (see that file's `loadKnownDeviations()`). Keep it byte-consistent with Sections 2-7 above. This block is the operative rule set, the prose above is the human-readable rationale for the same rules.
 
 ```json
 {
   "authority": "sk-doc",
   "version": "1.0.0",
-  "generatedFrom": "sk-doc-known-deviations.md Section 8, hand-maintained alongside Sections 2-6",
+  "generatedFrom": "sk-doc-known-deviations.md Section 9, hand-maintained alongside Sections 2-7",
   "deviations": [
     {
       "id": "repo-wide-toc-ban",
@@ -205,6 +221,20 @@ Each entry below was re-probed against live repo state while this list was autho
         "deep-review/changelog/v1.0.0.0.md:1-10",
         "deep-alignment/changelog/v1.0.0.0.md:1-24"
       ]
+    },
+    {
+      "id": "structural-fingerprint-card-contract",
+      "name": "Structural-fingerprint-card fixed-field contract",
+      "appliesToLayer": "reasoning-agent",
+      "matchTypes": [],
+      "matchSubcheck": null,
+      "matchDocTypes": null,
+      "requiresValidatorExitZero": false,
+      "status": "active",
+      "evidence": [
+        "sk-design/shared/references/structural-fingerprint-cards/schema.md",
+        "hallmark-deep-alignment-audit-2026-07-23"
+      ]
     }
   ]
 }
@@ -212,7 +242,7 @@ Each entry below was re-probed against live repo state while this list was autho
 
 ---
 
-## 9. REFERENCES AND RELATED RESOURCES
+## 10. REFERENCES AND RELATED RESOURCES
 
 - [sk-doc-adapter.md](./sk-doc-adapter.md): the full `standardSource`/`discover`/`check` specification this list is loaded by.
 - [sk-doc.cjs](../../scripts/adapters/sk-doc.cjs): the reference wiring script. `loadKnownDeviations()` parses Section 8's fenced block.

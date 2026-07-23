@@ -126,7 +126,7 @@ Release-hardening detectors:
 | Implementation changes | `sk-code` |
 | Broader correctness/security/test review | `sk-code` (code-review mode) |
 
-## 9. Targeted Presentation Probe Sweep
+## 9. TARGETED PRESENTATION PROBE SWEEP
 
 Run these probes only after the six-axis pre-emit self-critique in `../procedures/ai-slop-check.md`. A hit is a hypothesis, not an automatic failure: cite the element or rendered state, record the legitimate-exception evidence, explain user impact, and assign P0-P3 through `audit-contract.md`.
 
