@@ -3,7 +3,7 @@
 - Lane: sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/
 - Authority: sk-doc / docs
 - Status: complete
-- Findings: 0 (new ratio 0)
+- Findings: 1 (new ratio 0.2)
 
 ## Artifacts Checked
 
@@ -19,7 +19,7 @@ _none_
 
 ## Findings - P1
 
-_none_
+- P1: The implementation plan misidentifies its research source twice: line 88 calls it `014`, and line 112 omits the required `012-sk-design-program` path segment. Live filesystem probes confirmed both named locations are missing and the research corpus exists at `.opencode/specs/sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research/research/`.
 
 ## Findings - P2
 
@@ -27,7 +27,7 @@ _none_
 
 ## Summary
 
-All five artifacts passed live sk-doc template-conformance and DQI checks.
+One P1 reality-alignment finding: plan.md names two nonexistent research dependency locations; the other four artifacts passed the sk-doc adapter checks without findings.
 
 ## Next Focus
 

@@ -1,25 +1,26 @@
 # Alignment Iteration 13
 
-- Lane: sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs
-- Authority: sk-code / code
+- Lane: sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/
+- Authority: sk-doc / docs
 - Status: complete
-- Findings: 1 (new ratio 1)
+- Findings: 2 (new ratio 1)
 
 ## Artifacts Checked
 
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/cluster.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/corpus-baseline-v3.ts
+- .opencode/skills/sk-design/design-interface/references/design-process/redesign-intake.md
+- .opencode/skills/sk-design/design-interface/references/design-process/resource-loading-notes.md
+- .opencode/skills/sk-design/design-interface/references/design-process/transform-application.md
+- .opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md
+- .opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md
 
 ## Findings - P0
 
-_none_
+- P0: The reference document omits the required Overview section.
+- P0: The reference document omits the required Overview section.
 
 ## Findings - P1
 
-- P1: CLI usage documentation embeds spec-folder paths in a source comment, violating the comment-hygiene gate. [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts:15]
+_none_
 
 ## Findings - P2
 
@@ -27,7 +28,7 @@ _none_
 
 ## Summary
 
-One P1: cli.ts embeds spec-folder paths in a source comment, violating comment hygiene.
+Two new P0 template-conformance findings: resource-loading-notes.md and transform-application.md omit the Overview section required for sk-doc reference documents; the other three artifacts passed the adapter checks.
 
 ## Next Focus
 

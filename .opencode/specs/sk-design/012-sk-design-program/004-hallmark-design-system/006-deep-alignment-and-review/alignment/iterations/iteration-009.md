@@ -3,7 +3,7 @@
 - Lane: sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/
 - Authority: sk-doc / docs
 - Status: complete
-- Findings: 1 (new ratio 1)
+- Findings: 2 (new ratio 1)
 
 ## Artifacts Checked
 
@@ -15,11 +15,12 @@
 
 ## Findings - P0
 
-- P0: H2 header is not ALL CAPS: "## 9. Targeted Presentation Probe Sweep".
+_none_
 
 ## Findings - P1
 
-_none_
+- P1: The anti-slop vocabulary reference points to a nonexistent path.
+- P1: The frontmatter overstates fingerprint tells as proof despite the document's hypothesis-only rule.
 
 ## Findings - P2
 
@@ -27,7 +28,7 @@ _none_
 
 ## Summary
 
-One active P0 template-conformance finding: anti-patterns-production.md contains a non-uppercase H2 heading; no known deviation suppresses it.
+Two new P1 sk-doc alignment findings: one stale shared-reference path and one frontmatter/body evidence-claim contradiction.
 
 ## Next Focus
 

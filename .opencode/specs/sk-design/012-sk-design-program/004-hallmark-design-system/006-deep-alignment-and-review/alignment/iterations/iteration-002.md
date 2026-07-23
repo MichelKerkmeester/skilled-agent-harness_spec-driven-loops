@@ -27,7 +27,7 @@ _none_
 
 ## Summary
 
-All five artifacts passed the live sk-doc adapter checks with no active findings.
+All five artifacts passed the sk-doc adapter checks and met the DQI floor; no active P0, P1, or P2 conformance findings.
 
 ## Next Focus
 

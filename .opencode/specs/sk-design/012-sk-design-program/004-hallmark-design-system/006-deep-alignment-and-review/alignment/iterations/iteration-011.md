@@ -27,7 +27,7 @@ _none_
 
 ## Summary
 
-All five artifacts pass live sk-doc validation with zero warnings and DQI scores of 93, 82, 93, 86, and 91; no active findings.
+Live sk-doc adapter checks returned zero findings for all five reference artifacts after known-deviation suppression.
 
 ## Next Focus
 

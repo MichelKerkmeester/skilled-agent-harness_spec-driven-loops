@@ -1,25 +1,24 @@
 {
   "alignmentTarget": "sk-design hallmark conformance",
-  "sessionId": "2026-07-23T12:58:15.611Z",
+  "sessionId": "2026-07-23T16:36:04.817Z",
   "parentSessionId": null,
   "lineageMode": "new",
   "generation": 1,
-  "createdAt": "2026-07-23T12:58:15.611Z",
-  "status": "initialized",
+  "createdAt": "2026-07-23T16:36:04.817Z",
+  "status": "complete",
   "maxIterations": 22,
   "convergence": {
     "coverageThreshold": 1,
     "stabilityWindow": 2,
-    "convergenceMode": "off",
     "mode": "off",
     "combination": "AND"
   },
   "executionMode": "auto",
   "executor": {
     "kind": "cli-codex",
-    "model": "gpt-5.6-luna",
-    "reasoningEffort": "xhigh",
-    "serviceTier": null,
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
     "sandboxMode": null,
     "timeoutSeconds": 900
   },
@@ -93,5 +92,6 @@
   },
   "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
   "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
-  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs"
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+  "laneConfigPath": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/7b6b26f0-950f-454e-85cd-a52a298ec1bc/scratchpad/hallmark-align-lanes-v3-depolluted.json"
 }

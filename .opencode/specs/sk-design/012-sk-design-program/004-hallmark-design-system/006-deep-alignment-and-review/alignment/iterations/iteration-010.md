@@ -15,7 +15,7 @@
 
 ## Findings - P0
 
-- P0: smart-router-pseudocode.md lacks the required Overview section; live validation reports missing_required_section: overview. [SOURCE: .opencode/skills/sk-design/design-audit/references/smart-router-pseudocode.md:14-20]
+- P0: Smart Router Pseudocode omits the required Overview section.
 
 ## Findings - P1
 
@@ -23,11 +23,11 @@ _none_
 
 ## Findings - P2
 
-- P2: smart-router-pseudocode.md scores DQI 67, below the adapter floor of 75, because its References H2 is unnumbered. [SOURCE: .opencode/skills/sk-design/design-audit/references/smart-router-pseudocode.md:160-165]
+- P2: Smart Router Pseudocode falls below the sk-doc DQI floor.
 
 ## Summary
 
-One P0 missing required Overview section and one P2 DQI-floor finding; four artifacts passed live validation.
+One new P0 and one new P2: smart-router-pseudocode.md lacks the required Overview section and scores 67/100 against sk-doc's DQI floor; the other four artifacts pass the live validator.
 
 ## Next Focus
 

@@ -15,8 +15,8 @@
 
 ## Findings - P0
 
-- P0: Blocking overview section is missing; live validator detects the document as README-type, while its first section is SEMANTIC ENUM.
-- P0: Blocking overview section is missing; live validator detects the document as README-type, while its first section is AUTHORITY AND BOUNDARY.
+- P0: Motion Character Handoff omits the required Overview section.
+- P0: Owned Asset Manifest omits the required Overview section.
 
 ## Findings - P1
 
@@ -28,7 +28,7 @@ _none_
 
 ## Summary
 
-Two new P0 template-conformance findings: both evidence-envelope documents lack the required overview section; no known deviation suppresses them.
+Two new P0 sk-doc template-conformance findings: both evidence-envelope documents omit the required Overview section.
 
 ## Next Focus
 

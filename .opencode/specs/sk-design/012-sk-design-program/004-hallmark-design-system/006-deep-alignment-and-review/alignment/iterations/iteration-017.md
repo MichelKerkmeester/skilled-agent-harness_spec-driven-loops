@@ -3,15 +3,15 @@
 - Lane: sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs
 - Authority: sk-code / code
 - Status: complete
-- Findings: 7 (new ratio 1)
+- Findings: 5 (new ratio 1)
 
 ## Artifacts Checked
 
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts
-- .opencode/skills/sk-design/design-md-generator/backend/scripts/study-exemplars.ts
+- .opencode/skills/sk-design/design-md-generator/backend/scripts/icon-detect.ts
+- .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts
+- .opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts
+- .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts
+- .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts
 
 ## Findings - P0
 
@@ -19,20 +19,19 @@ _none_
 
 ## Findings - P1
 
-- P1: Exported TypeScript APIs lack required TSDoc comments.
-- P1: Non-null assertions lack the required preceding justification comments.
-- P1: Catch handlers cast unknown errors directly instead of explicitly typing and narrowing them.
-- P1: Strict typecheck rejects report-gen.ts because a nullable designMdContent is passed to validateDesignMd.
+_none_
 
 ## Findings - P2
 
-- P2: Type-only imports precede runtime local imports instead of forming the final import group.
-- P2: report-gen.ts orders section 3 before section 2.
-- P2: Explanatory comments in render-safety.ts begin with lowercase text.
+- P2: Icon detection module exceeds the utility-module length guideline
+- P2: Interaction capture module substantially exceeds the utility-module length guideline
+- P2: Interaction capture comments violate the capitalization rule
+- P2: Output-policy comments violate the capitalization rule
+- P2: Preview generator comments violate the capitalization rule
 
 ## Summary
 
-Deterministic drift validation passed; seven new sk-code creation-standard findings remain, including four P1s and three P2s.
+Five new P2 conformance findings: two oversized utility modules and three files with lowercase-starting comments; live deterministic adapter checks returned no drift for all five artifacts.
 
 ## Next Focus
 

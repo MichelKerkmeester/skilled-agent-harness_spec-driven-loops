@@ -19,7 +19,7 @@ _none_
 
 ## Findings - P1
 
-- P1: Non-sequential section numbering: expected section 7, found section 10 for `OPEN QUESTIONS`.
+- P1: Spec section numbering skips expected section 7 and resumes at section 10.
 
 ## Findings - P2
 
@@ -27,7 +27,7 @@ _none_
 
 ## Summary
 
-One active P1 sk-doc warning: spec.md skips from section 6 to section 10.
+1 new P1: spec.md section numbering jumps from 6 to 10; the other four artifacts passed the live sk-doc checks.
 
 ## Next Focus
 
