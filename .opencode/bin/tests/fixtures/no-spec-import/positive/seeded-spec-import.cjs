@@ -5,7 +5,7 @@
 // module from the mutable spec tree. Never wired into any runtime path.
 
 const { resolveRoute } = require(
-  '../../../../specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs',
+  '../../../../specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs',
 );
 
 module.exports = { resolveRoute };

@@ -35,13 +35,21 @@ const EXCLUDED_DIRS = new Set(['node_modules', 'dist', 'compiled-routing', 'fixt
 // The build bridge legitimately reads the authored source from the spec tree to
 // copy it into the runtime location, and this guard itself names the spec path
 // as a detection pattern. Both reference spec paths as data, never as imports.
-const ALLOWLIST_BASENAMES = new Set(['compiled-route-sync.cjs', 'check-no-spec-imports.cjs']);
+// The compiled-routing foundation vitest deliberately requires the spec-tree
+// resolver twin to assert byte-identity with the promoted runtime copy; that
+// coupling is test-only (never on the serving path) and self-policing (the
+// require fails loudly if the twin path moves), so the durable guard excludes it.
+const ALLOWLIST_BASENAMES = new Set([
+  'compiled-route-sync.cjs',
+  'check-no-spec-imports.cjs',
+  'compiled-routing-foundation.vitest.ts',
+]);
 
 const SCANNABLE = new Set(['.cjs', '.mjs', '.js', '.ts', '.tsx']);
 
 // The compiled-routing spec tree, matched even when a path is split across
 // segments (the exact shape of the coupling this guard removed).
-const COMPILED_ROUTING_SPEC_FRAGMENT = 'specs/sk-doc/019-sk-doc-router-alignment';
+const COMPILED_ROUTING_SPEC_FRAGMENT = 'specs/sk-doc/019-skill-routing-refactor';
 
 const IMPORT_PATTERNS = [
   /\brequire\(\s*['"]([^'"]+)['"]\s*\)/g,
@@ -97,7 +105,7 @@ function scanFile(file) {
     // Catch a spec-tree path reconstructed from a string literal even when it is
     // fed to a dynamic require via a variable (the original coupling's shape).
     if (line.includes(COMPILED_ROUTING_SPEC_FRAGMENT) || line.includes('.opencode/specs')) {
-      if (/\b(require|import)\b/.test(line) || /['"][^'"]*specs\/sk-doc\/019-sk-doc-router-alignment/.test(line)) {
+      if (/\b(require|import)\b/.test(line) || /['"][^'"]*specs\/sk-doc\/019-skill-routing-refactor/.test(line)) {
         violations.push({ file, line: index + 1, target: line.trim().slice(0, 120), reason: 'compiled-routing spec-tree path literal in runtime code' });
       }
     }

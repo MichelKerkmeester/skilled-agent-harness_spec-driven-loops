@@ -1,6 +1,6 @@
 {
   "schemaVersion": "V1",
-  "generatedFrom": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation",
+  "generatedFrom": ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
   "runtimeRoot": ".opencode/bin/lib/compiled-routing",
   "hubs": [
     "sk-code",
@@ -11,7 +11,7 @@
     "sk-design",
     "sk-doc"
   ],
-  "fileCount": 65,
+  "fileCount": 62,
   "files": [
     "000-contract-schemas/lib/canonical.cjs",
     "000-contract-schemas/schemas/compiled-policy.v1.schema.json",
@@ -20,13 +20,10 @@
     "001-compiler-n1-shadow/compiler/order.cjs",
     "001-compiler-n1-shadow/harness/json-schema.cjs",
     "002-decision-evaluator/lib/decision-contract.cjs",
-    "002-decision-evaluator/lib/evaluator.cjs",
     "002-decision-evaluator/lib/projector.cjs",
-    "004-recovery-ladder/recovery-ladder.v1.json",
     "005-calibration/001-holdout-corpus/lib/calibration-corpus.cjs",
     "005-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json",
     "005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs",
-    "005-calibration/003-selective-controller/lib/selective-controller.cjs",
     "006-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
     "006-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs",
     "006-parent-hub-rollout/001-sk-code/lib/canary-router.cjs",
