@@ -1726,7 +1726,7 @@ async function startupScan(basePath: string): Promise<void> {
     for (const filePath of allFiles) {
       if (shuttingDown) break; // stop touching the DB once shutdown begins so closeDb's checkpoint stays clean
       try {
-        const result: IndexResult = await indexSingleFile(filePath, false);
+        const result: IndexResult = await indexSingleFile(filePath, false, { fromScan: true });
         if (result.status === 'indexed') indexed++;
         else if (result.status === 'updated') updated++;
         else unchanged++;
@@ -2482,7 +2482,7 @@ async function main(): Promise<void> {
           fileWatcher = startFileWatcher({
             paths: watchPaths,
             reindexFn: async (filePath: string) => {
-              const result = await indexSingleFile(filePath, false);
+              const result = await indexSingleFile(filePath, false, { fromScan: true });
               if (isMutationStatus(result.status)) {
                 try {
                   runPostMutationHooks('scan', {

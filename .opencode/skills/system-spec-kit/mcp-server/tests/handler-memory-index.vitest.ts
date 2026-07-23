@@ -9,6 +9,34 @@ import BetterSqlite3 from 'better-sqlite3';
 
 import * as handler from '../handlers/memory-index';
 import { BATCH_SIZE } from '../core/config';
+import * as vectorIndex from '../lib/search/vector-index';
+
+/**
+ * The regular in-memory-DB tests below only need requireDb() mocked to any
+ * open Database handle, since createMemoryRecord/lineage/etc. are also mocked.
+ * The write-back regression suite at the bottom of this file is the one
+ * exception — it exercises the real write transaction (markEnrichmentPending,
+ * the memory_index UPDATE) end to end, so it needs the actual production
+ * schema rather than a bare `:memory:` handle. It points MEMORY_DB_PATH at a
+ * private temp file for the duration of the call and restores it afterward —
+ * no external fixture or env var needs to be pre-configured to run this suite.
+ */
+function createSchemaBackedDb(): { database: InstanceType<typeof BetterSqlite3>; dbDir: string } {
+  const dbDir = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-test-writeback-db-'));
+  const dbPath = path.join(dbDir, 'test-memory.db');
+  const previousMemoryDbPath = process.env.MEMORY_DB_PATH;
+  process.env.MEMORY_DB_PATH = dbPath;
+  try {
+    try { vectorIndex.closeDb(); } catch { /* ignore */ }
+    return { database: vectorIndex.initializeDb(), dbDir };
+  } finally {
+    if (previousMemoryDbPath === undefined) {
+      delete process.env.MEMORY_DB_PATH;
+    } else {
+      process.env.MEMORY_DB_PATH = previousMemoryDbPath;
+    }
+  }
+}
 
 let tempDir: string | null = null;
 
@@ -401,6 +429,222 @@ async function loadRealMemorySaveGuardHarness(database: InstanceType<typeof Bett
     findScopeFilteredCandidatesMock,
     runReconsolidationIfEnabledMock,
   };
+}
+
+/**
+ * Same shape as loadRealMemorySaveGuardHarness, except quality-loop.js is left
+ * UNMOCKED (the real auto-fix/trim path must run) and the reconsolidation
+ * candidate set is empty (so the save reaches the write-back stage instead of
+ * short-circuiting on a synthetic candidate_changed conflict).
+ */
+async function loadRealMemorySaveWriteBackHarness(
+  database: InstanceType<typeof BetterSqlite3>,
+  parsedMemory: ReturnType<typeof buildSaveGuardParsedMemory>,
+) {
+  vi.resetModules();
+  vi.doUnmock('../handlers/memory-save');
+  vi.doUnmock('../handlers/memory-save.js');
+
+  const createMemoryRecordMock = vi.fn(() => 5201);
+
+  vi.doMock('../core/index.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../core/index.js')>();
+    return { ...actual, checkDatabaseUpdated: vi.fn(async () => false) };
+  });
+
+  vi.doMock('../utils/validators.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../utils/validators.js')>();
+    return { ...actual, createFilePathValidator: vi.fn(() => ((candidatePath: string) => candidatePath)) };
+  });
+
+  vi.doMock('../utils/index.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../utils/index.js')>();
+    return { ...actual, requireDb: vi.fn(() => database) };
+  });
+
+  vi.doMock('../lib/parsing/memory-parser.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../lib/parsing/memory-parser.js')>();
+    return {
+      ...actual,
+      parseMemoryFile: vi.fn(() => parsedMemory),
+      validateParsedMemory: vi.fn(() => ({ valid: true, errors: [], warnings: [] })),
+      isMemoryFile: vi.fn(() => true),
+    };
+  });
+
+  vi.doMock('../handlers/v-rule-bridge.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/v-rule-bridge.js')>();
+    return {
+      ...actual,
+      validateMemoryQualityContent: vi.fn(() => ({ valid: true, failedRules: [] })),
+      determineValidationDisposition: vi.fn(() => 'allow'),
+    };
+  });
+
+  vi.doMock('@spec-kit/shared/parsing/memory-sufficiency', () => ({
+    MEMORY_SUFFICIENCY_REJECTION_CODE: 'INSUFFICIENT_CONTEXT_ABORT',
+    evaluateMemorySufficiency: vi.fn(() => ({
+      pass: true,
+      rejectionCode: 'INSUFFICIENT_CONTEXT_ABORT',
+      reasons: [],
+      evidenceCounts: {
+        primary: 2,
+        support: 2,
+        total: 4,
+        semanticChars: 420,
+        uniqueWords: 72,
+        anchors: 2,
+        triggerPhrases: 2,
+      },
+      score: 0.97,
+    })),
+  }));
+
+  vi.doMock('@spec-kit/shared/parsing/memory-template-contract', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('@spec-kit/shared/parsing/memory-template-contract')>();
+    return {
+      ...actual,
+      validateMemoryTemplateContract: vi.fn(() => ({
+        valid: true,
+        violations: [],
+        missingAnchors: [],
+        unexpectedTemplateArtifacts: [],
+      })),
+    };
+  });
+
+  vi.doMock('@spec-kit/shared/parsing/spec-doc-health', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('@spec-kit/shared/parsing/spec-doc-health')>();
+    return {
+      ...actual,
+      evaluateSpecDocHealth: vi.fn(() => null),
+    };
+  });
+
+  vi.doMock('../lib/validation/save-quality-gate.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../lib/validation/save-quality-gate.js')>();
+    return {
+      ...actual,
+      runQualityGate: vi.fn(() => ({ pass: true, warnOnly: false, reasons: [], layers: {} })),
+      isQualityGateEnabled: vi.fn(() => true),
+    };
+  });
+
+  vi.doMock('../lib/search/search-flags.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../lib/search/search-flags.js')>();
+    return {
+      ...actual,
+      isSaveQualityGateEnabled: vi.fn(() => false),
+      isPostInsertEnrichmentEnabled: vi.fn(() => false),
+      isSaveReconsolidationEnabled: vi.fn(() => false),
+    };
+  });
+
+  vi.doMock('../handlers/save/embedding-pipeline.js', () => ({
+    generateOrCacheEmbedding: vi.fn(async () => ({
+      embedding: new Float32Array([0.25, 0.25]),
+      status: 'success',
+      failureReason: null,
+      pendingCacheWrite: null,
+    })),
+    persistPendingEmbeddingCacheWrite: vi.fn(),
+  }));
+
+  vi.doMock('../handlers/save/dedup.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/save/dedup.js')>();
+    return {
+      ...actual,
+      checkExistingRow: vi.fn(() => null),
+      checkContentHashDedup: vi.fn(() => null),
+    };
+  });
+
+  vi.doMock('../handlers/save/pe-orchestration.js', () => ({
+    evaluateAndApplyPeDecision: vi.fn(() => ({
+      decision: { action: 'CREATE', similarity: 0, reason: 'write-back regression fixture' },
+      earlyReturn: null,
+      supersededId: null,
+    })),
+  }));
+
+  vi.doMock('../handlers/save/reconsolidation-bridge.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/save/reconsolidation-bridge.js')>();
+    return {
+      ...actual,
+      findScopeFilteredCandidates: vi.fn(() => ({
+        candidates: [],
+        suppressedCandidateIds: [],
+        malformedCandidateCount: 0,
+        rawCandidateCount: 0,
+      })),
+      getRequestedScope: vi.fn(() => ({ tenantId: null, userId: null, agentId: null, sessionId: null })),
+      runReconsolidationIfEnabled: vi.fn(async () => ({
+        earlyReturn: null,
+        warnings: [],
+        saveTimeReconsolidation: {
+          status: 'skipped' as const,
+          persistedState: { kind: 'create' as const },
+        },
+      })),
+    };
+  });
+
+  vi.doMock('../handlers/save/create-record.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/save/create-record.js')>();
+    return {
+      ...actual,
+      createMemoryRecord: createMemoryRecordMock,
+      findSamePathExistingMemory: vi.fn(() => undefined),
+    };
+  });
+
+  vi.doMock('../lib/storage/lineage-state.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../lib/storage/lineage-state.js')>();
+    return {
+      ...actual,
+      createAppendOnlyMemoryRecord: vi.fn(() => 5202),
+      recordLineageVersion: vi.fn(),
+    };
+  });
+
+  vi.doMock('../handlers/save/post-insert.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/save/post-insert.js')>();
+    return {
+      ...actual,
+      runPostInsertEnrichmentIfEnabled: vi.fn(async () => ({
+        causalLinksResult: null,
+        enrichmentStatus: {
+          causalLinks: { status: 'skipped' as const },
+          entityExtraction: { status: 'skipped' as const },
+          summaries: { status: 'skipped' as const },
+          entityLinking: { status: 'skipped' as const },
+          graphLifecycle: { status: 'skipped' as const },
+        },
+        executionStatus: { status: 'skipped' as const },
+      })),
+    };
+  });
+
+  vi.doMock('../handlers/save/response-builder.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/save/response-builder.js')>();
+    return {
+      ...actual,
+      buildIndexResult: vi.fn(({ id, parsed }) => ({
+        status: 'indexed',
+        id,
+        specFolder: parsed.specFolder,
+        title: parsed.title,
+        triggerPhrases: parsed.triggerPhrases,
+        contextType: parsed.contextType,
+        importanceTier: parsed.importanceTier,
+        message: 'Indexed successfully',
+        embeddingStatus: 'success',
+      })),
+    };
+  });
+
+  const module = await import('../handlers/memory-save');
+  return { module, createMemoryRecordMock };
 }
 
 afterAll(() => {
@@ -1366,6 +1610,107 @@ describe('memory_index_scan provenance validation', () => {
       }
       vi.resetModules();
       fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+// Not fixture-gated: this suite builds its own schema-backed database inline
+// and never depends on MEMORY_DB_PATH, so it always runs regardless of the
+// external fixture the suite above requires.
+describe('persistQualityLoopContent scan-origin write-back gating (regression)', () => {
+  function buildOversizedFixture(filePath: string) {
+    const paragraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '.repeat(20);
+    const body = (paragraph + '\n\n').repeat(150); // well over the 8000-char quality-loop budget
+    const content = [
+      '---',
+      'title: "Oversized Write-Back Fixture"',
+      'trigger_phrases:',
+      '  - "oversized write-back fixture"',
+      'importance_tier: "normal"',
+      'contextType: "spec"',
+      '---',
+      '',
+      '# Oversized Write-Back Fixture',
+      '',
+      body,
+    ].join('\n');
+
+    return {
+      specFolder: 'system-spec-kit/999-write-back-regression-fixture',
+      filePath,
+      title: 'Oversized Write-Back Fixture',
+      triggerPhrases: ['oversized write-back fixture'],
+      content,
+      contentHash: 'oversized-write-back-fixture-hash',
+      contextType: 'spec',
+      importanceTier: 'normal',
+      hasCausalLinks: false,
+      qualityFlags: [],
+    };
+  }
+
+  it('does NOT rewrite the source file when indexing originates from a scan (force reindex)', async () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test-writeback-scan-'));
+    const filePath = path.join(
+      root,
+      '.opencode',
+      'specs',
+      'system-spec-kit',
+      '999-write-back-regression-fixture',
+      'oversized-scan-fixture.md',
+    );
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    const parsedMemory = buildOversizedFixture(filePath);
+    fs.writeFileSync(filePath, parsedMemory.content, 'utf8');
+    const beforeContent = fs.readFileSync(filePath, 'utf8');
+    expect(beforeContent.length).toBeGreaterThan(8000);
+
+    const { database, dbDir } = createSchemaBackedDb();
+    try {
+      const harness = await loadRealMemorySaveWriteBackHarness(database, parsedMemory);
+      const result = await harness.module.indexMemoryFileFromScan(filePath, { force: true });
+
+      expect(result.status).toBe('indexed');
+      const afterContent = fs.readFileSync(filePath, 'utf8');
+      expect(afterContent).toBe(beforeContent);
+    } finally {
+      try { vectorIndex.closeDb(); } catch { /* ignore */ }
+      resetRealMemorySaveHarnessMocks();
+      fs.rmSync(root, { recursive: true, force: true });
+      fs.rmSync(dbDir, { recursive: true, force: true });
+    }
+  });
+
+  it('still rewrites the source file with the trimmed content on a direct memory_save-origin index', async () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test-writeback-direct-'));
+    const filePath = path.join(
+      root,
+      '.opencode',
+      'specs',
+      'system-spec-kit',
+      '999-write-back-regression-fixture',
+      'oversized-direct-fixture.md',
+    );
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    const parsedMemory = buildOversizedFixture(filePath);
+    fs.writeFileSync(filePath, parsedMemory.content, 'utf8');
+    const beforeContent = fs.readFileSync(filePath, 'utf8');
+    expect(beforeContent.length).toBeGreaterThan(8000);
+
+    const { database, dbDir } = createSchemaBackedDb();
+    try {
+      const harness = await loadRealMemorySaveWriteBackHarness(database, parsedMemory);
+      const result = await harness.module.indexMemoryFile(filePath, { force: false });
+
+      expect(result.status).toBe('indexed');
+      const afterContent = fs.readFileSync(filePath, 'utf8');
+      expect(afterContent.length).toBeLessThanOrEqual(8000);
+      expect(afterContent).not.toBe(beforeContent);
+    } finally {
+      try { vectorIndex.closeDb(); } catch { /* ignore */ }
+      resetRealMemorySaveHarnessMocks();
+      fs.rmSync(root, { recursive: true, force: true });
+      fs.rmSync(dbDir, { recursive: true, force: true });
     }
   });
 });

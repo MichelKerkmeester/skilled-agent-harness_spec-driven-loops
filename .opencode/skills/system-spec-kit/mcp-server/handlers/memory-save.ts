@@ -2968,7 +2968,11 @@ async function indexMemoryFile(
     asyncEmbedding,
     plannerMode,
     origin: indexingOrigin,
-    persistQualityLoopContent: true,
+    // Scan-origin indexing (background scans, the file watcher, reindex) must never write
+    // back to source docs — an automated pass silently rewriting files a human didn't touch
+    // is a surprise, not a feature. Only a caller-initiated direct save may persist
+    // quality-loop auto-fixes to the file it was asked to save.
+    persistQualityLoopContent: indexingOrigin !== 'scan',
     refreshFromDiskAfterLock: parsedOverride !== null,
     scope: effectiveScope,
     qualityGateMode,

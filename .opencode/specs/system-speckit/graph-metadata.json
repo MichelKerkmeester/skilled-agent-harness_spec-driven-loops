@@ -19,7 +19,8 @@
     "system-speckit/039-subphase-recatalog-and-archive",
     "system-speckit/040-base-files-renumbering-name-cleanup",
     "system-speckit/041-cmd-speckit-family-rename",
-    "system-speckit/z_archive"
+    "system-speckit/z_archive",
+    "system-speckit/031-memory-reindex-embed-performance"
   ],
   "manual": {
     "depends_on": [],
@@ -53,7 +54,7 @@
     "entities": [],
     "causal_summary": "Track folder consolidating every system-speckit spec-kit subsystem spec (graph/context and memory-search optimization, phased-spec preference, Rust-backend rewrite research, vitest invariance, the memory command surface, the spec-mutation gate, the /speckit:phase merge, spec-kit UX upgrades and adoptions, coco-index integration research, the auto-mode contract, sub-phase recatalog, base-file renumbering, and the speckit command-family rename) into one chronological category.",
     "created_at": "2026-05-07T09:13:37.743Z",
-    "last_save_at": "2026-07-15T00:00:00.000Z",
+    "last_save_at": "2026-07-23T05:32:51.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -63,7 +64,7 @@
     "source_doc_hashes": {
       "spec.md": "cc72330c4923eba5a256235dbdde15f9de1783ce1e4aa1eda31ad22876b3ec7f"
     },
-    "last_active_child_id": "system-speckit/041-cmd-speckit-family-rename",
-    "last_active_at": "2026-07-15T00:00:00.000Z"
+    "last_active_child_id": "system-speckit/031-memory-reindex-embed-performance",
+    "last_active_at": "2026-07-23T05:32:51.705Z"
   }
 }

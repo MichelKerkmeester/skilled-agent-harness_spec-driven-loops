@@ -14,9 +14,15 @@
       "memory reindex embed performance spec",
       "mk-spec-memory ingest pipeline optimization",
       "ollama embed batch ingest parallelize speckit",
-      "memory reindex embed performance handover",
-      "ollama embed batch parallelize ingest pipeline",
-      "mk-spec-memory reindex slow optimization"
+      "memory reindex embed performance plan",
+      "scan write-back fix plan",
+      "persistQualityLoopContent gating plan",
+      "memory reindex embed performance tasks",
+      "scan write-back fix tasks",
+      "persistQualityLoopContent gating tasks",
+      "memory reindex embed performance checklist",
+      "scan write-back fix verification",
+      "persistQualityLoopContent regression evidence"
     ],
     "key_topics": [
       "memory",
@@ -33,17 +39,28 @@
       "parallelize"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/embedders/reindex.ts",
-      "mcp-server/lib/embedders/adapters/ollama.ts",
-      "mcp-server/lib/embedders/reindex.ts",
-      "mcp-server/lib/embedders/execution-router.ts",
-      "scripts/dist/memory/reindex-embeddings.js",
-      "mcp-server/database/backups/context-index.sqlite.pre-reindex-20260722T141849",
-      "spec.md",
-      "handover.md"
+      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md",
+      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts",
+      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
+      "dist/handlers/memory-save.js",
+      "dist/context-server.js",
+      "shared/embeddings/adapters/ollama.ts",
+      "lib/search/tfidf-summarizer.ts",
+      "utils/batch-processor.ts",
+      "mcp-server/handlers/memory-save.ts",
+      "mcp-server/tests/handler-memory-index.vitest.ts",
+      "mcp-server/handlers/memory-index.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -53,39 +70,93 @@
         "source": "derived"
       },
       {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/embedders/reindex.ts",
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md",
         "source": "derived"
       },
       {
-        "name": "ollama.ts",
+        "name": "memory-save.ts",
         "kind": "code",
-        "path": "mcp-server/lib/embedders/adapters/ollama.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
         "source": "derived"
       },
       {
-        "name": "execution-router.ts",
+        "name": "context-server.ts",
         "kind": "code",
-        "path": "mcp-server/lib/embedders/execution-router.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
         "source": "derived"
       },
       {
-        "name": "reindex-embeddings.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/reindex-embeddings.js",
+        "name": "handler-memory-index.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "context-index.sqlite.pre-reindex-20260722T141849",
-        "kind": "file",
-        "path": "mcp-server/database/backups/context-index.sqlite.pre-reindex-20260722T141849",
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-save.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tfidf-summarizer.ts",
+        "kind": "code",
+        "path": "lib/search/tfidf-summarizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.ts",
+        "kind": "code",
+        "path": "utils/batch-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp-server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -113,55 +184,51 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "all",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "batch-write",
+        "name": "Promise.all",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "No Rust",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Handover Summary",
+        "name": "Technical Context",
         "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context Transfer",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "For Next Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
     "created_at": "2026-07-22T14:55:36.697Z",
-    "last_save_at": "2026-07-22T14:55:36.697Z",
+    "last_save_at": "2026-07-22T18:24:31.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:aa88e14ef5bc7707ff9b843007356517f805e986ba18d4beed473f3e006bb269",
+    "source_fingerprint": "sha256:0951060e212a42722ffdad05491c9a867a132593f6396d76f5ece26758c05554",
     "source_doc_hashes": {
-      "spec.md": "fb1c3a8ea5b483b9500bb1ea6621398e1104c125463d0a2457f389ccdd2492a9",
-      "handover.md": "4493100af2da1a6a7a4db10e92cc01a43f666151ad7ae35ba7a19367d70dfc67"
+      "spec.md": "c8dda3221a764183fb20a3805b1bfc2b764c6b1ccae34025a51f5a8eff356076",
+      "plan.md": "f8ed91eae8611a113768d40ac2be48e4a7173781f2218e9dc845cac80dc2b372",
+      "tasks.md": "2999039c38a193de6fa54cd74e2cd3fe7787b9adf43f3859015affd8e39a8968",
+      "checklist.md": "d28e7c20ce4b6417d9d1e0ef2fb6e71bec7f5be9865ea76e5cb02f6984480714",
+      "implementation-summary.md": "6c7465fdfe98f314b32ea9fce2971226f1ed17df23ef27b1f0920fda78305c16",
+      "handover.md": "035f6e8d3dd4f69208e5c564d625c97b755b2b6a6e2cd490cce1c7689b0ae4b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

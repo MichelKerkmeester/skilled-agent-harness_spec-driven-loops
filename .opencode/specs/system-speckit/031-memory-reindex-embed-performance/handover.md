@@ -40,6 +40,32 @@ reindex/embed pipeline. A full delete + clean reindex of the memory DB (~10,090 
 at only single-digit memories/sec. The embedding compute is **already fast and GPU-accelerated** (Ollama /
 Metal) — so the bottleneck is elsewhere. **Do NOT implement blindly: the dominant stage is inferred, not
 measured. Instrument first, then optimize behind a feature flag.** Status: not started (briefing only).
+
+**✅ CRITICAL DATA-INTEGRITY BUG — content write-back FIXED — see §2.** The "Force reindex" / daemon
+indexing **mutated tracked source spec docs** — it truncated ~601 files repo-wide in one run (e.g. a
+committed 300-line review report cut to 117 lines). Root cause confirmed and fixed: `indexMemoryFile()`
+(`mcp-server/handlers/memory-save.ts`) hardcoded `persistQualityLoopContent: true` regardless of indexing
+origin, so a `force` scan's quality-loop auto-fix (specifically its budget-trim step) got written back to
+the source file exactly like a direct save would. Fixed by gating on the already-computed `indexingOrigin`:
+`persistQualityLoopContent: indexingOrigin !== 'scan'`. Two regression tests added
+(`mcp-server/tests/handler-memory-index.vitest.ts`, `persistQualityLoopContent scan-origin write-back
+gating (regression)`) confirm scan-origin indexing leaves the source file untouched while direct
+`memory_save` still applies the legitimate auto-fix.
+
+**An independent review (GPT-5.6-Sol-Fast, high effort) caught a gap the first pass missed and it was
+fixed in the same pass:** the explicit `runMemoryIndexScan({force:true})` path was closed, but the daemon's
+own `startupScan()` (`context-server.ts`) and its live file-watcher reindex callback both called
+`indexSingleFile(filePath, false)` with no `fromScan` flag, so `resolveIndexingOrigin` defaulted them to
+`'direct'` — meaning ordinary daemon startup or a file changing on disk could still trigger the same
+write-back. Both call sites now pass `{ fromScan: true }`. A source-pattern test
+(`context-server.vitest.ts`, `T47d`) that hardcoded the old two-argument call shape was updated to allow
+the new argument rather than reverting the fix.
+
+**The mis-numbered duplicate packet-folder side effect was investigated separately and its causing
+mechanism was NOT located** in the reindex/scan code path — treat that part as still open/unconfirmed, not
+fixed by this change. "Force reindexing all memory files" is safe to run again for the content-mutation
+concern (now covering the explicit force-reindex path AND ordinary daemon startup/file-watcher activity);
+watch for folder-renumbering recurrence regardless.
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -74,6 +100,39 @@ handover packages that for implementation.
    summary step.
 3. Is the reindex loop **serial or already concurrent** over memories? → read
    `mcp-server/lib/embedders/reindex.ts`.
+
+**✅ FIXED — reindex mutates tracked source docs (content write-back).**
+Running the clean-reindex driver (`scripts/dist/memory/reindex-embeddings.js`, step `[5/5] Force reindexing
+all memory files`) plus the running daemon **rewrote tracked source `.md` files** across the repo — **601
+files drifted in one run** (heavily `z-future`), several **truncated to older/shorter content** that was
+already committed (a 300-line `sk-design/012/010/review/review-report.md` was cut to 117; the V3/V4/V5
+sections vanished from the working tree). This is a data-integrity defect, not a perf issue.
+- **Recovery performed in the originating session:** killed the daemon + reindex, `git stash push` the
+  601-file drift (stash message `daemon-reindex-source-doc-corruption-recovery-20260722`, recoverable),
+  removed two mis-numbered untracked dupe folders; tree restored to clean v4. All correct content was safe
+  in git.
+- **Root cause confirmed and fixed:** `indexMemoryFile()` (`mcp-server/handlers/memory-save.ts`, inside
+  `processPreparedMemory`'s call) hardcoded `persistQualityLoopContent: true` regardless of caller. The
+  function already computes `indexingOrigin` (`'scan'` vs direct) one line above for provenance metadata,
+  but never used it to gate the write-back. Fix: `persistQualityLoopContent: indexingOrigin !== 'scan'`.
+  Direct `memory_save` calls keep the legitimate auto-fix write-back (documented in
+  `feature-catalog/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md`); scan-origin calls
+  (`indexSingleFile`/`indexMemoryFileFromScan`, reachable from `runMemoryIndexScan`) no longer persist
+  anything to source docs, regardless of `force`. This also brings the scan path into line with the
+  project's own ADR-001 ("generated memory is search-only; canonical continuity surfaces own the durable
+  record").
+- **Regression coverage:** `mcp-server/tests/handler-memory-index.vitest.ts` →
+  `persistQualityLoopContent scan-origin write-back gating (regression)` — two tests, both passing: a
+  force-scan over an oversized/low-quality fixture leaves the source file byte-identical; a direct
+  `memory_save`-origin index on the same fixture still rewrites it with the trimmed content.
+- **Still open — NOT part of this fix:** the mis-numbered duplicate packet-folder side effect observed
+  alongside the truncation. Exhaustively searched for a scan-reachable rename/renumber mechanism
+  (`fs.rename`/`fs.mkdir` call sites, "canonical save"/"identity"/"renumber" grep sweep across
+  `mcp-server/lib`, `mcp-server/handlers`, `scripts/`) — none found. Best-supported hypothesis (unconfirmed):
+  a concurrent/racing process, not this write-back path. Treat as an open risk to monitor, not resolved;
+  widen the search outside `system-spec-kit` if it recurs.
+- **"Force reindexing all memory files" is safe to run again** for the content-mutation concern covered by
+  this fix. The folder-renumbering risk above is independent and still unmitigated.
 <!-- /ANCHOR:context-transfer -->
 
 ---

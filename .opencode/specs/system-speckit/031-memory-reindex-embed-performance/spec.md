@@ -10,25 +10,31 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-22T14:45:00Z"
+    last_updated_at: "2026-07-22T18:20:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Scaffolded packet + handover for a fresh session"
-    next_safe_action: "Measure per-stage timings, then plan"
+    recent_action: "Closed startup-scan/watcher write-back gap found by review"
+    next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
       - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md"
-      - ".opencode/skills/system-spec-kit/mcp-server/lib/embedders/reindex.ts"
+      - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/context-server.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "system-speckit-031-memory-perf-handover-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 15
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Does the Ollama adapter batch requests? Yes — one /api/embed call with all texts as one input array (shared/embeddings/adapters/ollama.ts)."
+      - "Is summary generation an LLM call? No — TF-IDF sentence extraction (lib/search/tfidf-summarizer.ts)."
+      - "Is the reindex loop serial? Partially concurrent already — batches of 5 via Promise.all (utils/batch-processor.ts)."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 # Spec: Memory Reindex + Embed Ingest Performance
 
@@ -38,8 +44,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 031-memory-reindex-embed-performance |
-| **Level** | 1 |
-| **Status** | Planned — handover written, awaiting a fresh implementing session |
+| **Level** | 2 |
+| **Status** | In progress — data-integrity blocker (scan write-back) fixed + tested; per-stage timing measurement (the packet's original objective) not yet started |
 | **Verification** | Measured throughput gain + zero recall regression, behind a flag, daemon rebuilt/restarted |
 <!-- /ANCHOR:metadata -->
 
@@ -67,6 +73,12 @@ feature flag, reversible, parity-proven.
 
 **Out of scope:** a Rust rewrite (compute is already native + GPU; see `030-rust-backend-rewrite-research`);
 changing the embedding model or storage schema; the styles design DB (`sk-design/015`, a separate DB).
+
+**Scope addition (data-integrity blocker, fixed in this pass):** a full scan/reindex was found to write back
+quality-loop auto-fixes (including destructive content trimming) to tracked source docs — a direct violation
+of ADR-001 ("generated memory is search-only"). Closing this off was a prerequisite for the packet's own
+measurement work (Step 0 needs a scan that doesn't mutate the very files it's timing) and is now in scope
+here rather than a separate packet, per operator direction. See REQ-006.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -79,6 +91,7 @@ changing the embedding model or storage schema; the styles design DB (`sk-design
 - **REQ-003** — All changes behind a feature flag and reversible; DB writes stay serialized (single-writer lock) via batch-write.
 - **REQ-004** — Measured reindex throughput improvement (memories/sec before→after) with zero recall regression on a fixed query set.
 - **REQ-005** — Implemented in `mcp-server/lib/**`, rebuilt (`npm run build`), daemon restarted + health-verified; no Rust.
+- **REQ-006** — Scan/reindex-origin indexing must never write back to source docs (ADR-001: generated memory is search-only). `indexMemoryFile` must gate `persistQualityLoopContent` on indexing origin, not hardcode it true; regression-tested so a future change can't silently reintroduce the write-back for scan. This covers every call site that runs unattended, automatic indexing — the explicit `runMemoryIndexScan({force:true})` path, the daemon's `startupScan()`, and the live file-watcher's reindex callback — not only the first one found.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -110,7 +123,21 @@ changing the embedding model or storage schema; the styles design DB (`sk-design
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does the Ollama adapter already batch, or embed one request per memory? (Resolve by reading `adapters/ollama.ts`.)
-- Is per-memory summary generation a heuristic or an LLM call? (Determines the biggest lever.)
-- Is the reindex loop serial or already concurrent? (Resolve by reading `reindex.ts`.)
+**Answered (verified by reading the code, not assumed):**
+- Does the Ollama adapter already batch, or embed one request per memory? → **Batches.** One `/api/embed`
+  call with all texts as one input array (`shared/embeddings/adapters/ollama.ts`).
+- Is per-memory summary generation a heuristic or an LLM call? → **Heuristic.** TF-IDF sentence extraction
+  (`lib/search/tfidf-summarizer.ts`), not an LLM call.
+- Is the reindex loop serial or already concurrent? → **Partially concurrent already.** The full scan
+  processes batches of 5 files via `Promise.all` (`utils/batch-processor.ts`); batches themselves run
+  sequentially.
+
+**Still open:**
+- With batching/summary-cost largely ruled out, where does full-scan reindex time actually go? Step 0
+  (instrument per-stage timings) is still required — the candidate causes narrow to per-file pipeline
+  overhead (parse/scrub/chunk/DB-write) and batch-to-batch sequencing, not embedding or summary generation.
+- The mis-numbered duplicate packet-folder side effect (observed alongside the content-truncation bug) was
+  investigated exhaustively and its causing mechanism was **not located** in the reindex/scan code path. The
+  content write-back is fixed (REQ-006); the folder-duplication mechanism remains unconfirmed — treat as an
+  open risk to monitor, not as resolved.
 <!-- /ANCHOR:questions -->

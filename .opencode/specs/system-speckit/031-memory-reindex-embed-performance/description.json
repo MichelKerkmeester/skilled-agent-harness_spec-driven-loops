@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/031-memory-reindex-embed-performance",
   "description": "Measure, then optimize the mk-spec-memory reindex/embed pipeline.",
   "keywords": [
@@ -9,13 +10,14 @@
     "embed",
     "pipeline"
   ],
-  "lastUpdated": "2026-07-22T14:55:12.878Z",
+  "lastUpdated": "2026-07-23T05:32:49.753Z",
   "specId": "031",
   "folderSlug": "memory-reindex-embed-performance",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-07-26_06-32__folder-identity-packet-is-committed-as-031-memory.md"
+  ]
 }
