@@ -1667,6 +1667,7 @@ async function main() {
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
+  const { snapshotOutOfScopeDirtyPaths, enforceWriteContainment } = await import('../lib/deep-loop/write-containment.ts');
   const {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
     checkLineageTimestampWindow,
@@ -1980,6 +1981,18 @@ async function main() {
         ledgerPath,
         getGauges: () => latestGauges,
       });
+
+      // A codex leaf runs workspace-write, which can write anywhere in the repo.
+      // Snapshot the out-of-artifact dirty paths BEFORE dispatch so the post-
+      // dispatch guard can isolate the leaf's own NEW out-of-scope writes and
+      // never touch unrelated pre-existing dirty work. Native/cli-opencode/cli-
+      // claude-code lineages are intentionally excluded: their dispatch models may
+      // legitimately write outside lineageDir, and codex is the unguarded path.
+      const containmentEnabled = lineage.kind === 'cli-codex';
+      const preDispatchDirtyPaths = containmentEnabled
+        ? snapshotOutOfScopeDirtyPaths({ repoRoot: process.cwd(), artifactDir: lineageDir })
+        : [];
+
       let result;
       try {
         result = await runLineageProcess(command, cmdArgs, {
@@ -2013,6 +2026,46 @@ async function main() {
       const salvage = runSalvageSweep(lineageDir, loopType, savedStdout);
       const slotAccounting = buildSlotAccounting(hrStart, slotIntervalMs);
       lineageSlotAccounting.set(lineage.label, slotAccounting);
+
+      // Structural write-containment for codex leaves: diff the working tree for
+      // NEW out-of-artifact-dir writes, revert exactly those paths, log a
+      // containment_violation event, and fail the iteration fail-closed. The leaf
+      // must still be free to write its iteration file/delta/state record inside
+      // lineageDir; only OUT-of-lineageDir writes are violations. Fails open when
+      // the artifact dir is outside the git worktree (hermetic test lineages).
+      if (containmentEnabled) {
+        const containment = enforceWriteContainment({
+          repoRoot: process.cwd(),
+          artifactDir: lineageDir,
+          preDispatchDirtyPaths,
+          iteration: attempt,
+          label: lineage.label,
+        });
+        if (containment.violations.length > 0) {
+          if (containment.event) {
+            appendFanoutStatusLedger(ledgerPath, {
+              ...containment.event,
+              at: new Date().toISOString(),
+              label: lineage.label,
+              run_id: runId,
+              loop_type: loopType,
+              spec_folder: specFolder,
+              gauges: latestGauges,
+            });
+          }
+          const failure = new Error(
+            `lineage ${lineage.label} violated write containment: reverted `
+              + `${containment.violations.length} out-of-scope path(s): `
+              + `${containment.violations.map((v) => v.path).join(', ')}`,
+          );
+          failure.label = lineage.label;
+          failure.exitCode = 1;
+          failure.timedOut = false;
+          failure.containmentViolation = containment.violations;
+          failure.salvage = salvage;
+          throw failure;
+        }
+      }
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
       const timedOut = result.signal === 'SIGTERM';
