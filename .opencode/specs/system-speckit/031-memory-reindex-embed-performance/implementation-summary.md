@@ -10,13 +10,15 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-22T17:15:00Z"
+    last_updated_at: "2026-07-23T12:23:33Z"
     last_updated_by: "orchestrator"
-    recent_action: "Documented the scan write-back fix"
-    next_safe_action: "Restart daemon, then measure timings"
+    recent_action: "Corrected Limitation 5 re: async ingest; noted Phase 7 hardening plan"
+    next_safe_action: "Implement Phase 7 tasks (REQ-007..011), then restart daemon, measure timings"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts"
+      - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md"
       - ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -153,12 +155,20 @@ serving other sessions on this shared repo.
    standard branch (confirmed by reading the code), but the specific combination of oversized content +
    `fixedContent` + chunking is structurally unreachable given how the auto-fix trim step works, so no
    direct test exercises it. Documented in checklist.md rather than built as an artificial test.
-5. **Other automatic indexing entry points beyond `startupScan`/file-watcher were not separately
-   re-audited** — the review found and this pass fixed the two most significant ones; `memory_ingest_start`'s
-   bulk-ingestion callback was reviewed and left as `'direct'` origin deliberately (it's caller-initiated,
-   analogous to a batch of explicit saves, not an unattended background sweep), but this reasoning was not
-   independently re-verified by a second reviewer.
-6. **Packet remains open** — the original reindex-performance measurement objective (REQ-001–REQ-005) has
+5. **Correction (found by a later `/deep:research` pass): the async-ingest reasoning above was wrong.**
+   `memory_ingest_start`'s worker callback was left as `'direct'` origin on the assumption that it is
+   caller-initiated, analogous to a batch of explicit saves. A 7-iteration `/deep:research` loop
+   (`research/research.md` §3) traced the actual call path and found ingest jobs are queued and, on daemon
+   restart, **crash-replayed from scratch** — meaning the same destructive write-back this pass closed for
+   `startupScan`/file-watcher is still reachable through unattended startup recovery, not just a live
+   caller-initiated request. This is now tracked as REQ-008 / Phase 7 (planned, not yet implemented — see
+   plan.md, tasks.md T037-T038).
+6. **Daemon/startup/MCP hardening planned, not implemented** — the same research pass also hardened four
+   other issues (MCP startup probe duplication, a long-foreground-scan operability issue, a latent
+   socket-path overflow bug, and a daemon owner-lease race) as REQ-007/009/010/011. All five have concrete,
+   file:line-scoped fix designs in `research/research.md` §17 and are planned in plan.md Phase 5 / tasks.md
+   Phase 7, but none are implemented yet.
+7. **Packet remains open** — the original reindex-performance measurement objective (REQ-001–REQ-005) has
    not started.
 <!-- /ANCHOR:limitations -->
 

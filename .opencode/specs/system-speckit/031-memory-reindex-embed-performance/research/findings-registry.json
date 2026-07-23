@@ -1,0 +1,1372 @@
+{
+  "sessionId": "20945f7a-7105-477b-86dd-3bb75bd22b25",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-is-the-persistqualityloopcontent-write-back-a-one-off-bug-class-or-are-there-oth",
+      "inboxId": null,
+      "text": "Is the persistQualityLoopContent write-back a one-off bug class or are there other still-unaudited callers of indexMemoryFile / indexSingleFile across the codebase (e.g. memory_ingest_start, retry-queue reprocessing, checkpoint rebuild paths) that could reintroduce the same destructive write-back?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-what-is-the-exact-mechanism-inside-mk-spec-memory-launcher-cjs-live-owner-detect",
+      "inboxId": null,
+      "text": "What is the exact mechanism inside mk-spec-memory-launcher.cjs (live-owner detection, IPC round-trip, bootstrap lock, hf-model-server demand-listener setup) that can exceed OpenCode's MCP connection timeout during a cold/contended boot, and what's the minimal robustness fix (retry, faster ack, or a client-side reconnect nudge)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-is-the-sun-path-overflow-bug-in-resolvemodelserversocketpath-reachable-under-any",
+      "inboxId": null,
+      "text": "Is the sun_path-overflow bug in resolveModelServerSocketPath() reachable under any real (non-bare-shell) invocation path today, and what is the safest short-path fallback default that doesn't depend on env vars being set correctly?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-specifically-holds-the-single-writer-lock-on-context-index-sqlite-for-30-mi",
+      "inboxId": null,
+      "text": "What specifically holds the single-writer lock on context-index.sqlite for 30+ minutes, and is that a legitimate long operation (e.g. a large embedding backfill) or a genuine deadlock/leak that needs a timeout or lock-holder diagnostic?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-given-this-repo-runs-many-concurrent-opencode-claude-code-sessions-against-one-s",
+      "inboxId": null,
+      "text": "Given this repo runs many concurrent OpenCode/Claude Code sessions against ONE shared daemon, what are the highest-leverage robustness improvements to daemon startup, lease/re-election, and lock arbitration to reduce contention-driven failures like the ones seen this session?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-is-the-persistqualityloopcontent-write-back-a-one-off-bug-class-or-are-there-oth",
+      "inboxId": null,
+      "text": "Is the persistQualityLoopContent write-back a one-off bug class or are there other still-unaudited callers of indexMemoryFile / indexSingleFile across the codebase (e.g. memory_ingest_start, retry-queue reprocessing, checkpoint rebuild paths) that could reintroduce the same destructive write-back?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-what-is-the-exact-mechanism-inside-mk-spec-memory-launcher-cjs-live-owner-detect",
+      "inboxId": null,
+      "text": "What is the exact mechanism inside mk-spec-memory-launcher.cjs (live-owner detection, IPC round-trip, bootstrap lock, hf-model-server demand-listener setup) that can exceed OpenCode's MCP connection timeout during a cold/contended boot, and what's the minimal robustness fix (retry, faster ack, or a client-side reconnect nudge)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-is-the-sun-path-overflow-bug-in-resolvemodelserversocketpath-reachable-under-any",
+      "inboxId": null,
+      "text": "Is the sun_path-overflow bug in resolveModelServerSocketPath() reachable under any real (non-bare-shell) invocation path today, and what is the safest short-path fallback default that doesn't depend on env vars being set correctly?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-specifically-holds-the-single-writer-lock-on-context-index-sqlite-for-30-mi",
+      "inboxId": null,
+      "text": "What specifically holds the single-writer lock on context-index.sqlite for 30+ minutes, and is that a legitimate long operation (e.g. a large embedding backfill) or a genuine deadlock/leak that needs a timeout or lock-holder diagnostic?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-given-this-repo-runs-many-concurrent-opencode-claude-code-sessions-against-one-s",
+      "inboxId": null,
+      "text": "Given this repo runs many concurrent OpenCode/Claude Code sessions against ONE shared daemon, what are the highest-leverage robustness improvements to daemon startup, lease/re-election, and lock arbitration to reduce contention-driven failures like the ones seen this session?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which incremental daemon lease, re-election, and lock-arbitration changes have the best concurrency payoff?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact launcher sequence exceeds OpenCode's MCP startup timeout during cold or contended boot?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is the model-server socket fallback reachable outside bare-shell invocation, and what short fallback is safest?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What holds the SQLite writer lock during the observed long scan stall?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact `mcp_timeout` default and retry behavior does the active OpenCode version apply, and does its failure timer begin at process spawn, transport creation, or initialize dispatch?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact `mcp_timeout` default and retry behavior does the active OpenCode version apply?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Is the persistQualityLoopContent write-back a one-off bug class or are there other still-unaudited callers of indexMemoryFile / indexSingleFile across the codebase (e.g. memory_ingest_start, retry-queue reprocessing, checkpoint rebuild paths) that could reintroduce the same destructive write-back?",
+    "What is the exact mechanism inside mk-spec-memory-launcher.cjs (live-owner detection, IPC round-trip, bootstrap lock, hf-model-server demand-listener setup) that can exceed OpenCode's MCP connection timeout during a cold/contended boot, and what's the minimal robustness fix (retry, faster ack, or a client-side reconnect nudge)?",
+    "Is the sun_path-overflow bug in resolveModelServerSocketPath() reachable under any real (non-bare-shell) invocation path today, and what is the safest short-path fallback default that doesn't depend on env vars being set correctly?",
+    "What specifically holds the single-writer lock on context-index.sqlite for 30+ minutes, and is that a legitimate long operation (e.g. a large embedding backfill) or a genuine deadlock/leak that needs a timeout or lock-holder diagnostic?",
+    "Given this repo runs many concurrent OpenCode/Claude Code sessions against ONE shared daemon, what are the highest-leverage robustness improvements to daemon startup, lease/re-election, and lock arbitration to reduce contention-driven failures like the ones seen this session?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-001-async-ingestion-remains-a-destructive-write-back-caller",
+      "text": "F-001: Async ingestion remains a destructive write-back caller",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/ops/job-queue.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/storage/checkpoints.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-2-f-002-crash-recovery-amplifies-the-ingest-write-back-exposure",
+      "text": "F-002: Crash recovery amplifies the ingest write-back exposure",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/ops/job-queue.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/storage/checkpoints.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-3-f-003-no-other-production-source-indexing-caller-was-found",
+      "text": "F-003: No other production source-indexing caller was found",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/ops/job-queue.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/storage/checkpoints.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-1-4-f-004-existing-ingest-test-does-not-guard-origin-or-source-immutability",
+      "text": "F-004: Existing ingest test does not guard origin or source immutability",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/ops/job-queue.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/providers/retry-manager.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/storage/checkpoints.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/workflow.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-2-1-f-005-the-warm-owner-path-performs-two-serial-deep-probes-before-normal-host-tra",
+      "text": "F-005: The warm-owner path performs two serial deep probes before normal host traffic is attached",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`opencode.json`",
+        "`~/.config/opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts`",
+        "`~/.local/share/opencode/log/2026-06-11T054007.log`",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/prompts/iteration-1.md`"
+      ]
+    },
+    {
+      "id": "finding-2-2-f-006-owner-classification-contains-an-unbounded-synchronous-ps-call-on-macos",
+      "text": "F-006: Owner classification contains an unbounded synchronous `ps` call on macOS",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`opencode.json`",
+        "`~/.config/opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts`",
+        "`~/.local/share/opencode/log/2026-06-11T054007.log`",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/prompts/iteration-1.md`"
+      ]
+    },
+    {
+      "id": "finding-2-3-f-007-bootstrap-lock-contention-is-a-real-long-wait-but-not-on-the-confirmed-war",
+      "text": "F-007: Bootstrap-lock contention is a real long wait, but not on the confirmed warm-owner path",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`opencode.json`",
+        "`~/.config/opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts`",
+        "`~/.local/share/opencode/log/2026-06-11T054007.log`",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/prompts/iteration-1.md`"
+      ]
+    },
+    {
+      "id": "finding-2-4-f-008-hf-model-server-demand-listener-setup-is-not-the-initial-mcp-handshake-blo",
+      "text": "F-008: hf-model-server demand-listener setup is not the initial MCP handshake blocker",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`opencode.json`",
+        "`~/.config/opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts`",
+        "`~/.local/share/opencode/log/2026-06-11T054007.log`",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/prompts/iteration-1.md`"
+      ]
+    },
+    {
+      "id": "finding-2-5-f-009-the-launcher-host-timeout-budgets-are-misaligned-but-the-exact-opencode-de",
+      "text": "F-009: The launcher/host timeout budgets are misaligned, but the exact OpenCode deadline remains unconfirmed",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`opencode.json`",
+        "`~/.config/opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts`",
+        "`~/.local/share/opencode/log/2026-06-11T054007.log`",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/prompts/iteration-1.md`"
+      ]
+    },
+    {
+      "id": "finding-2-6-f-010-novelty-relative-to-iteration-1",
+      "text": "F-010: Novelty relative to iteration 1",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`opencode.json`",
+        "`~/.config/opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts`",
+        "`~/.local/share/opencode/log/2026-06-11T054007.log`",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/prompts/iteration-1.md`"
+      ]
+    },
+    {
+      "id": "finding-3-1-f-011-normal-mcp-registrations-do-not-reach-the-fallback",
+      "text": "F-011: Normal MCP registrations do not reach the fallback",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/mk-skill-advisor-launcher.cjs`",
+        "`.opencode/bin/spec-memory.cjs`",
+        "`.opencode/bin/skill-advisor.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`opencode.json`",
+        "`.claude/mcp.json`"
+      ]
+    },
+    {
+      "id": "finding-3-2-f-012-the-daemon-backed-cli-cold-spawn-paths-omit-the-model-url-but-remain-below",
+      "text": "F-012: The daemon-backed CLI cold-spawn paths omit the model URL but remain below `sun_path`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/mk-skill-advisor-launcher.cjs`",
+        "`.opencode/bin/spec-memory.cjs`",
+        "`.opencode/bin/skill-advisor.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`opencode.json`",
+        "`.claude/mcp.json`"
+      ]
+    },
+    {
+      "id": "finding-3-3-f-013-a-real-plugin-path-can-invoke-the-advisor-launcher-without-either-variable",
+      "text": "F-013: A real plugin path can invoke the advisor launcher without either variable, but the model overflow is normally masked",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/mk-skill-advisor-launcher.cjs`",
+        "`.opencode/bin/spec-memory.cjs`",
+        "`.opencode/bin/skill-advisor.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`opencode.json`",
+        "`.claude/mcp.json`"
+      ]
+    },
+    {
+      "id": "finding-3-4-f-014-the-unsafe-socket-fallback-has-one-implementation-authority-nearby-databas",
+      "text": "F-014: The unsafe socket fallback has one implementation authority; nearby database fallbacks are not socket paths",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/mk-skill-advisor-launcher.cjs`",
+        "`.opencode/bin/spec-memory.cjs`",
+        "`.opencode/bin/skill-advisor.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`opencode.json`",
+        "`.claude/mcp.json`"
+      ]
+    },
+    {
+      "id": "finding-3-5-f-015-safest-permanent-fix-is-a-canonical-short-model-socket-fallback-independen",
+      "text": "F-015: Safest permanent fix is a canonical short model-socket fallback independent of `dbDir`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/mk-skill-advisor-launcher.cjs`",
+        "`.opencode/bin/spec-memory.cjs`",
+        "`.opencode/bin/skill-advisor.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`opencode.json`",
+        "`.claude/mcp.json`"
+      ]
+    },
+    {
+      "id": "finding-3-6-f-016-independent-key-question-1-closing-sweep-confirms-iteration-1-s-inventory-",
+      "text": "F-016: Independent Key Question 1 closing sweep confirms iteration 1's inventory is complete",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/mk-skill-advisor-launcher.cjs`",
+        "`.opencode/bin/spec-memory.cjs`",
+        "`.opencode/bin/skill-advisor.cjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts`",
+        "`opencode.json`",
+        "`.claude/mcp.json`"
+      ]
+    },
+    {
+      "id": "finding-4-7-a-checkpoint-derived-rebuild-runs-only-when-its-sentinel-is-present-before-scan-",
+      "text": "A checkpoint-derived rebuild runs only when its sentinel is present, before scan instrumentation begins. [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts:451-473] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts:707-724]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-1-f-017-the-logged-single-writer-lock-is-a-process-lifetime-sidecar-sqlite-lock-no",
+      "text": "F-017: The logged single-writer lock is a process-lifetime sidecar SQLite lock, not a per-scan mutex",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-2-f-018-memory-index-scan-adds-a-second-shorter-application-level-scan-lease",
+      "text": "F-018: `memory_index_scan` adds a second, shorter application-level scan lease",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-3-f-019-a-normal-incremental-scan-of-this-packet-is-not-plausibly-a-30-minute-data",
+      "text": "F-019: A normal incremental scan of this packet is not plausibly a 30-minute database operation",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-8-f-020-zero-foreground-progress-and-responsive-health-calls-are-expected-together",
+      "text": "F-020: Zero foreground progress and responsive health calls are expected together",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-9-f-021-the-least-invasive-hardening-already-exists-background-scan-jobs-with-poll",
+      "text": "F-021: The least-invasive hardening already exists: background scan jobs with polling",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-10-f-022-incident-026-004-012-was-corruption-prevention-context-not-this-contention",
+      "text": "F-022: Incident `026/004/012` was corruption prevention context, not this contention root cause",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-4-orphan-sweeping-is-cursor-resumable-and-defaults-to-45-seconds-hard-clamped-to-a",
+      "text": "Orphan sweeping is cursor-resumable and defaults to 45 seconds, hard-clamped to at most 90 seconds. [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts:303-315] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts:914-970]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-5-post-insert-enrichment-repair-and-near-duplicate-repair-each-use-batch-size-near",
+      "text": "Post-insert enrichment repair and near-duplicate repair each use `BATCH_SIZE`; near-duplicate repair may make up to five sequential embedding calls. [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts:1121-1187]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-4-6-trigger-embedding-backfill-is-default-off-if-explicitly-enabled-it-reads-all-mem",
+      "text": "Trigger-embedding backfill is default-off. If explicitly enabled, it reads all memories with trigger phrases in one projection, synchronizes them in yielding transactions, and then performs up to 100 sequential embedding generations per invocation. [SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts:260-294] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts:382-432]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/trigger-embedding-backfill.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/utils/batch-processor.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`",
+        "`.opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md`",
+        "`.opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md`"
+      ]
+    },
+    {
+      "id": "finding-5-9-default-maintenance-scans-to-the-existing-background-job-api-medium-high-impact-",
+      "text": "**Default maintenance scans to the existing background job API (medium-high impact, low cost).** Poll status and expose cancellation for manual/maintenance calls. Add bounded provider deadlines separately only where an unresolved provider promise is confirmed. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-6-eliminate-duplicate-startup-work-and-bound-handshake-latency-high-impact-low-med",
+      "text": "**Eliminate duplicate startup work and bound handshake latency (high impact, low-medium cost).** Reuse one successful deep-probe result through bridge and session proxy, coalesce per-socket probes during storms, cap probe concurrency, and add a hard timeout to Darwin process inspection. This directly addresses the observed MCP startup failures without changing storage semantics. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:4]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-7-fence-owner-election-and-stale-reclamation-high-impact-medium-cost-move-stale-cl",
+      "text": "**Fence owner election and stale reclamation (high impact, medium cost).** Move stale classify/remove/create under one election lock, re-read after lock acquisition, add `leaseId`/generation fencing, and require the token on refresh/release/cleanup. This closes a newly identified real race before the DB lock has to arbitrate competing children. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:499-547]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-10-fix-the-two-concrete-context-loss-defects-medium-impact-low-cost-pass-fromscan-t",
+      "text": "**Fix the two concrete context-loss defects (medium impact, low cost).** Pass `fromScan: true` from async ingest and use one short, dbDir-independent model-socket default shared by launcher, model server, and plugin bridge. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:3] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:5]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-12-improve-observability-after-arbitration-is-correct-supporting-impact-low-cost-em",
+      "text": "**Improve observability after arbitration is correct (supporting impact, low cost).** Emit structured transition timings and lease generation for classify, probe, adopt, lock wait, exit-86, and background maintenance. Diagnostics should identify the current authoritative holder without synchronous process-table work on the critical handshake.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-11-introduce-the-canonical-runtime-context-envelope-incrementally-preventive-impact",
+      "text": "**Introduce the canonical runtime context envelope incrementally (preventive impact, medium cost).** Start with resolved paths/readiness evidence in launcher-plugin boundaries and operation-origin/execution-mode fields in indexing boundaries; then delete local fallback reconstruction as each consumer migrates.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-8-make-daemon-liveness-authoritative-across-launcher-disposal-high-impact-medium-h",
+      "text": "**Make daemon liveness authoritative across launcher disposal (high impact, medium-high cost).** Let the backend own its runtime descriptor/heartbeat, or transfer a renewable supervisory lease to exactly one adopter. Separate launcher cleanup from daemon-record cleanup so an exception cannot erase a live detached daemon's discovery path. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1622-1644] [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1692-1717]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-1-async-ingest-reconstructs-indexing-origin-and-omits-fromscan-enabling-source-wri",
+      "text": "Async ingest reconstructs indexing origin and omits `fromScan`, enabling source write-back.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-5-launcher-daemon-lease-owner-lease-socket-probe-maintenance-marker-and-database-l",
+      "text": "Launcher, daemon lease, owner lease, socket probe, maintenance marker, and database lock each expose a partial ownership truth without a fenced canonical transition.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-4-manual-maintenance-reconstructs-execution-mode-as-a-foreground-request-even-thou",
+      "text": "Manual maintenance reconstructs execution mode as a foreground request even though it is unattended, long-running job work.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-3-the-advisor-plugin-reconstructs-child-environment-and-omits-canonical-socket-inp",
+      "text": "The advisor plugin reconstructs child environment and omits canonical socket inputs.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-5-2-the-launcher-bridge-and-session-proxy-reconstruct-readiness-independently-doubli",
+      "text": "The launcher bridge and session proxy reconstruct readiness independently, doubling probes.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`, especially owner lease, stale adoption, respawn, DB-lock exit, and shutdown paths.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl`, canonical summaries for iterations 1-4.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-strategy.md`, topic, KQ5, boundaries, and stop conditions.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-config.json`, iteration limits and write ownership."
+      ]
+    },
+    {
+      "id": "finding-6-1-acquireownerleasefile-reads-the-current-owner-lease-once-source-opencode-bin-mk-",
+      "text": "`acquireOwnerLeaseFile()` reads the current owner lease once. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:499-502]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-2-classifyownerlease-calls-processliveness-ownerpid-a-dead-pid-is-stale-it-also-tr",
+      "text": "`classifyOwnerLease()` calls `processLiveness(ownerPid)`; a dead PID is stale. It also treats a live PID reparented to PID 1 as orphaned and treats a missing/older-than-two-TTL heartbeat as reclaimable. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:480-496]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-5-a-failed-exclusive-create-returns-acquired-false-a-successful-create-sets-the-la",
+      "text": "A failed exclusive create returns `acquired:false`; a successful create sets the launcher's process-local `ownerLeasePid` and returns `acquired:true`. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:523-532]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-19-a-live-daemon-pid-lease-causes-a-contender-to-bridge-rather-than-spawn-source-op",
+      "text": "A live daemon PID lease causes a contender to bridge rather than spawn. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1733-1745]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-3-after-classification-the-caller-does-not-re-read-or-compare-the-pathname-if-its-",
+      "text": "After classification, the caller does not re-read or compare the pathname. If its initial read found a stale lease, it unlinks whatever currently occupies that path. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:503-521]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-21-if-competing-children-are-nevertheless-spawned-the-process-lifetime-sqlite-sidec",
+      "text": "If competing children are nevertheless spawned, the process-lifetime SQLite sidecar lock rejects the second writer through exit 86. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1503-1509] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-4-it-creates-the-replacement-through-writeownerleasefileexclusive-whose-fs-opensyn",
+      "text": "It creates the replacement through `writeOwnerLeaseFileExclusive()`, whose `fs.openSync(path, 'wx', 0o600)` is Node's exclusive-create form (`O_CREAT | O_EXCL`), then writes and `fsync`s the new file. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:432-445]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-20-stale-daemon-reap-respawn-is-serialized-by-an-exclusive-respawn-lock-and-revalid",
+      "text": "Stale-daemon reap/respawn is serialized by an exclusive respawn lock and revalidates the snapshotted child PID under that lock. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1800-1839]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-6-t1-launcher-a-reads-stale-lease-s",
+      "text": "T1: Launcher A reads stale lease S.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-14-t1-owner-a-begins-a-delayed-heartbeat-and-reads-lease-a-the-pid-check-passes",
+      "text": "T1: Owner A begins a delayed heartbeat and reads lease A; the PID check passes.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-15-t2-a-stalls-before-renamesync-long-enough-for-another-launcher-to-classify-a-sta",
+      "text": "T2: A stalls before `renameSync`, long enough for another launcher to classify A stale (for example, after heartbeat expiry).",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-7-t2-launcher-b-reads-the-same-stale-lease-s",
+      "text": "T2: Launcher B reads the same stale lease S.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-8-t3-a-classifies-s-stale",
+      "text": "T3: A classifies S stale.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-16-t3-launcher-b-unlinks-lease-a-exclusively-creates-lease-b-and-returns-acquired-t",
+      "text": "T3: Launcher B unlinks lease A, exclusively creates lease B, and returns `acquired:true`.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-17-t4-a-resumes-and-atomically-renames-its-already-prepared-temporary-file-over-lea",
+      "text": "T4: A resumes and atomically renames its already-prepared temporary file over lease B.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-9-t4-b-classifies-s-stale",
+      "text": "T4: B classifies S stale.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-18-t5-a-re-reads-lease-a-and-returns-success-b-still-has-a-local-successful-acquisi",
+      "text": "T5: A re-reads lease A and returns success; B still has a local successful-acquisition result, but the shared pathname again names A.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-10-t5-a-unlinks-s",
+      "text": "T5: A unlinks S.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-11-t6-a-exclusively-creates-lease-a-and-returns-acquired-true",
+      "text": "T6: A exclusively creates lease A and returns `acquired:true`.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-12-t7-delayed-b-executes-the-unlink-authorized-by-its-old-read-and-removes-lease-a-",
+      "text": "T7: Delayed B executes the unlink authorized by its old read and removes lease A, not S.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-6-13-t8-b-exclusively-creates-lease-b-and-also-returns-acquired-true",
+      "text": "T8: B exclusively creates lease B and also returns `acquired:true`.",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:395-457` - owner-lease parsing, atomic replacement, exclusive creation, and payload fields.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:480-547` - stale classification, unlink/create acquisition, and heartbeat refresh.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:557-606` - heartbeat failure shutdown and PID-checked cleanup.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:608-679` - daemon PID-lease liveness and bridge readiness.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1480-1606` - detached launch, child exit, and exit-86 handling.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1622-1644` - release-for-re-election signal path.",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs:1733-1874` - owner acquisition, stale-daemon adoption, respawn serialization, lease reprobe, and launch.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/deep-research-state.jsonl:6-7` - previously confirmed database-lock property and iteration 5 hypotheses.",
+        "`.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-005.md:9-25` - claims evaluated only after the independent source trace."
+      ]
+    },
+    {
+      "id": "finding-7-6-add-structured-transition-timing-and-authority-diagnostics-supporting-impact-low",
+      "text": "**Add structured transition timing and authority diagnostics (supporting impact, low cost).** Record classify/probe/adopt/respawn-lock/exit-86/background-scan phase timings and the lease generation once one exists. This cannot correct arbitration, but it is now the prerequisite for measuring lease-race frequency, locating an exceptional long scan phase, and separating host timeout from daemon latency without another evidence-poor incident. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-004.md:41-57] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-006.md:88-100]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-1-collapse-duplicate-warm-owner-probes-and-bound-startup-critical-process-inspecti",
+      "text": "**Collapse duplicate warm-owner probes and bound startup-critical process inspection (high availability impact, low-medium cost).** Pass the successful lease-holder readiness result into the session proxy instead of immediately running a second deep `initialize` probe; then coalesce concurrent per-socket probes, cap probe concurrency, and put a timeout around Darwin `ps`. This remains number 1 because it directly explains the observed MCP startup failure class, consumes the same host timeout budget on every warm launch, and does not depend on changing lease or storage semantics. [SOURCE: .opencode/bin/lib/launcher-ipc-bridge.cjs:455-485] [SOURCE: .opencode/bin/lib/launcher-session-proxy.cjs:236-248] [SOURCE: .opencode/bin/lib/launcher-session-proxy.cjs:842-865] [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:460-497]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-4-fence-owner-lease-stale-removal-and-heartbeat-replacement-moderate-availability-",
+      "text": "**Fence owner-lease stale removal and heartbeat replacement (moderate availability impact, medium cost).** Re-read under the existing election/respawn lock, retain the lock through classify/remove/create, and add a `leaseId` or generation required by refresh/release/cleanup. This falls from iteration 5's number 2/high-impact position to number 4: iteration 6 proved both races, but also proved that live-daemon bridging, respawn-lock revalidation, and the SQLite sidecar `fcntl` lock keep the shown interleavings from becoming two database writers. The benefit is less startup churn and more reliable discovery metadata, not demonstrated data-loss prevention. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-006.md:9-36] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-006.md:64-74]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-2-make-async-ingest-explicitly-non-persisting-and-add-a-source-immutability-regres",
+      "text": "**Make async ingest explicitly non-persisting and add a source-immutability regression test (medium-high integrity impact, low cost).** Pass an explicit non-persisting origin from the async ingest callback so queued and crash-replayed ingest cannot write quality-loop fixes back to source documents. This moves above all lease work because it is the only confirmed residual source-mutation defect, is replayed after crashes, and has a narrow implementation boundary. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-001.md:17-37] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-003.md:44-48]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-5-replace-the-model-server-empty-environment-fallback-with-one-short-dbdir-indepen",
+      "text": "**Replace the model-server empty-environment fallback with one short, dbDir-independent default (medium latent availability impact, low cost).** Define and export a canonical `/tmp/mk-hf-embed/hf-embed.sock` default in `model-server-supervision.cjs`, retain explicit URL/socket-directory precedence, and update the cross-launcher resolver test. It is below lease fencing because normal MCP and CLI paths already supply short targets and advisor model supervision is normally default-off, but the current exported resolver is invalid by construction for a real plugin boundary. [SOURCE: .opencode/bin/lib/model-server-supervision.cjs:469-478] [SOURCE: .opencode/bin/lib/model-server-supervision.cjs:1465-1517] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts:171-180]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-3-route-maintenance-scans-to-the-existing-background-job-status-cancel-path-by-def",
+      "text": "**Route maintenance scans to the existing background job/status/cancel path by default (medium-high operability impact, low cost).** This directly removes the observed 30-minute no-response experience without changing the process-lifetime writer lock. It ranks above election redesign because the progress infrastructure already exists and the symptom was observed; provider-level deadlines remain conditional on identifying an actual unresolved provider branch. [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts:2081-2147] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts:41-142]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-7-separate-launcher-cleanup-from-live-daemon-discovery-metadata-defer-daemon-owned",
+      "text": "**Separate launcher cleanup from live-daemon discovery metadata; defer daemon-owned supervision until lifecycle design is complete (moderate availability impact, medium-high cost).** A launcher-only exception should not erase a live detached daemon's descriptor. Moving the heartbeat/runtime descriptor fully into the backend or transferring renewable supervision to an adopter remains plausible, but idle self-exit and proxy-disconnect semantics are not yet designed. This drops below observability and the bounded direct fixes because release-for-discovery is data-safe and a full authority transfer has unresolved lifecycle behavior. [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1622-1644] [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:1692-1717] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-006.md:56-62]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-9-ship-a-one-use-readiness-receipt-from-bridge-probe-to-session-proxy-have-maybebr",
+      "text": "**Ship a one-use readiness receipt from bridge probe to session proxy.** Have `maybeBridgeLeaseHolder()` pass its successful probe result to the injected bridge callback, have `bridgeStdioThroughSessionProxy()` forward it as `initialReadiness`, and make `createSessionProxy().start()` skip only its initial `waitForDaemonReady()` when that receipt is alive for the same socket. Reattach paths must continue probing normally. Tests can assert one deep probe instead of two on a warm-owner bridge and unchanged probing on cold start/reattach. This is a small runtime-context slice with an objective result: one fewer pre-attachment JSON-RPC round trip. [SOURCE: .opencode/bin/lib/launcher-ipc-bridge.cjs:463-485] [SOURCE: .opencode/bin/mk-spec-memory-launcher.cjs:318-327] [SOURCE: .opencode/bin/lib/launcher-session-proxy.cjs:374-387] [SOURCE: .opencode/bin/lib/launcher-session-proxy.cjs:842-865] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/launcher-ipc-bridge-probe.vitest.ts:314-368]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-10-ship-one-canonical-model-socket-fallback-at-its-existing-authority-add-exported-",
+      "text": "**Ship one canonical model-socket fallback at its existing authority.** Add exported `DEFAULT_MODEL_SERVER_SOCKET_DIR` and `DEFAULT_MODEL_SERVER_SOCKET_PATH` constants to `model-server-supervision.cjs`; make the empty-env resolver use that path instead of `options.dbDir`; update the existing cross-launcher test to assert the exact default and Darwin-safe byte length. Do not make the plugin's `createChildEnv()` set `SPECKIT_IPC_SOCKET_DIR` to the model directory: that variable also determines the advisor daemon IPC directory, whose current short default is `/tmp/mk-skill-advisor`, so doing so would conflate two socket authorities. If explicit propagation is later needed, forward `HF_EMBED_SERVER_URL` separately; the resolver-level default already fixes omission safely. [SOURCE: .opencode/bin/lib/model-server-supervision.cjs:37-40] [SOURCE: .opencode/bin/lib/model-server-supervision.cjs:469-478] [SOURCE: .opencode/bin/lib/model-server-supervision.cjs:1465-1517] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs:49-91] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs:214-241]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-8-treat-the-canonical-runtime-context-envelope-as-a-migration-direction-not-a-stan",
+      "text": "**Treat the canonical runtime context envelope as a migration direction, not a standalone implementation item (preventive impact, cross-cutting cost).** Its useful fields are real, but scheduling one envelope spanning resolved paths, readiness, indexing origin, foreground/background mode, and ownership generation would combine unrelated runtimes and failure domains. The measurable pieces are already represented by items 1, 2, 4, and 5; a shared type should be introduced only after at least two consumers genuinely share the same boundary contract.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-13-lease-race-runtime-frequency-and-durable-supervision-lifecycle-details-remain-un",
+      "text": "Lease-race runtime frequency and durable-supervision lifecycle details remain unmeasured. That uncertainty is now reflected in items 4, 6, and 7 rather than being used to inflate severity. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-006.md:64-74] [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-006.md:88-100]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-11-the-active-opencode-mcp-timeout-default-retry-behavior-and-timer-origin-remain-u",
+      "text": "The active OpenCode `mcp_timeout` default, retry behavior, and timer origin remain unknown. They can determine whether a complementary host configuration change is useful, but they do not make duplicate serial probes desirable or displace item 1. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-002.md:48-57]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    },
+    {
+      "id": "finding-7-12-the-exact-exceptional-phase-of-the-30-minute-foreground-scan-remains-unknown-bec",
+      "text": "The exact exceptional phase of the 30-minute foreground scan remains unknown because that path persisted no phase record. This blocks naming a provider-specific timeout, but it strengthens rather than weakens item 3's background status/cancel recommendation. [SOURCE: .opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/iterations/iteration-004.md:30-49]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/iterations/iteration-001.md` through `iteration-006.md`",
+        "`research/deep-research-state.jsonl`",
+        "`research/deep-research-strategy.md`",
+        "`research/findings-registry.json`",
+        "`.opencode/bin/lib/launcher-ipc-bridge.cjs`",
+        "`.opencode/bin/lib/launcher-session-proxy.cjs`",
+        "`.opencode/bin/mk-spec-memory-launcher.cjs`",
+        "`.opencode/bin/lib/model-server-supervision.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-scan-jobs.ts`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 72,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.34,
+    "coverageBySources": {
+      "code": 9,
+      "other": 42
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

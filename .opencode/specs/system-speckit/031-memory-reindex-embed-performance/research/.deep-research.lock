@@ -1,0 +1,11 @@
+{
+  "owner_pid": 52643,
+  "started_at_iso": "2026-07-23T09:09:24.430Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-23T09:09:24.430Z",
+  "packet_id": "system-speckit/031-memory-reindex-embed-performance",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-23T09:09:24.430Z",
+  "acquire_nonce": "52643-1784797764430-8619b7cd-5fe5-428d-b047-dc7a3dbfabec"
+}

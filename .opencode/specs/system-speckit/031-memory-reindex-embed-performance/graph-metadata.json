@@ -43,24 +43,24 @@
     "key_files": [
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md",
+      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
       "dist/handlers/memory-save.js",
       "dist/context-server.js",
+      "research/research.md",
+      ".claude/mcp.json",
       "shared/embeddings/adapters/ollama.ts",
-      "lib/search/tfidf-summarizer.ts",
-      "utils/batch-processor.ts",
-      "mcp-server/handlers/memory-save.ts",
-      "mcp-server/tests/handler-memory-index.vitest.ts",
-      "mcp-server/handlers/memory-index.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "lib/search/tfidf-summarizer.ts"
     ],
     "entities": [
       {
@@ -76,6 +76,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "memory-save.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
@@ -85,6 +91,42 @@
         "name": "context-server.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-ingest.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
         "source": "derived"
       },
       {
@@ -118,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
         "name": "ollama.ts",
         "kind": "code",
         "path": "shared/embeddings/adapters/ollama.ts",
@@ -127,36 +175,6 @@
         "name": "tfidf-summarizer.ts",
         "kind": "code",
         "path": "lib/search/tfidf-summarizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "batch-processor.ts",
-        "kind": "code",
-        "path": "utils/batch-processor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "mcp-server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -172,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "Planned Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -182,36 +206,12 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "all",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Promise.all",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
     "created_at": "2026-07-22T14:55:36.697Z",
-    "last_save_at": "2026-07-22T18:24:31.214Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-23T12:24:44.333Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -219,15 +219,17 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
+      "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:0951060e212a42722ffdad05491c9a867a132593f6396d76f5ece26758c05554",
+    "source_fingerprint": "sha256:4e3d30843d66f568093cdadc4aee6d4b5db1a1bb48cd6688970f7bd39154a4f5",
     "source_doc_hashes": {
-      "spec.md": "c8dda3221a764183fb20a3805b1bfc2b764c6b1ccae34025a51f5a8eff356076",
-      "plan.md": "f8ed91eae8611a113768d40ac2be48e4a7173781f2218e9dc845cac80dc2b372",
-      "tasks.md": "2999039c38a193de6fa54cd74e2cd3fe7787b9adf43f3859015affd8e39a8968",
-      "checklist.md": "d28e7c20ce4b6417d9d1e0ef2fb6e71bec7f5be9865ea76e5cb02f6984480714",
-      "implementation-summary.md": "6c7465fdfe98f314b32ea9fce2971226f1ed17df23ef27b1f0920fda78305c16",
+      "spec.md": "362baf26b6a08dc1b944643c06f987644d91623e850c19855237ce5f0996ae74",
+      "plan.md": "a56cf98d3993df0876c9f183cc1be34a5ff29662957009463131bc036eb31699",
+      "tasks.md": "9c6822ff6c35a0236be103f9713c403bc9cdc7b27855e3089bd06b3041534d6b",
+      "checklist.md": "c945067085a712745a31ad3fb814ee3965d627dfa8829991a0154f689e647038",
+      "implementation-summary.md": "f4de5347eecc505bce83187acdeb8f7f12d2e50748ceb878b7fdbd6b51de3361",
+      "research/research.md": "ffc469cae6ab7d0039a567437ee44bf9258ebf2c7a9b2dbfdac423c6465d2951",
       "handover.md": "035f6e8d3dd4f69208e5c564d625c97b755b2b6a6e2cd490cce1c7689b0ae4b5"
     },
     "last_active_child_id": null,

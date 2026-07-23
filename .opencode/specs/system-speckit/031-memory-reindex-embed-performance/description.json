@@ -10,14 +10,16 @@
     "embed",
     "pipeline"
   ],
-  "lastUpdated": "2026-07-23T05:32:49.753Z",
+  "lastUpdated": "2026-07-23T12:25:25.897Z",
   "specId": "031",
   "folderSlug": "memory-reindex-embed-performance",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "23-07-26_06-32__folder-identity-packet-is-committed-as-031-memory.md"
+    "23-07-26_06-32__folder-identity-packet-is-committed-as-031-memory.md",
+    "23-07-26_11-22__ran-a-7-iteration-of-10-budgeted-deep-research.md",
+    "23-07-26_13-25__ran-speckit-plan-auto-mode-to-turn-the-completed.md"
   ]
 }

@@ -10,13 +10,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-22T17:15:00Z"
+    last_updated_at: "2026-07-23T12:23:33Z"
     last_updated_by: "orchestrator"
-    recent_action: "Verified scan write-back fix"
-    next_safe_action: "Restart daemon, then measure timings"
+    recent_action: "Added CHK-070..079 for Phase 7 hardening (planned)"
+    next_safe_action: "Implement Phase 7 tasks, then check off CHK-070..079 with evidence"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts"
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
+      - ".opencode/bin/lib/launcher-ipc-bridge.cjs"
+      - ".opencode/bin/lib/launcher-session-proxy.cjs"
+      - ".opencode/bin/lib/model-server-supervision.cjs"
       - ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -162,6 +168,35 @@ _memory:
 
 ---
 
+<!-- ANCHOR:hardening -->
+## Daemon/Startup/MCP Hardening (REQ-007..011) — PLANNED, NOT STARTED
+
+Source: 7-iteration `/deep:research` loop, `research/research.md` §17 ranked items 1-5.
+
+- [ ] CHK-070 [P0] REQ-007: warm-owner MCP startup no longer runs two independent daemon-readiness probes
+  - **Evidence needed**: manual daemon-restart timing before/after; confirm reattach path (non-warm-owner) is unaffected.
+- [ ] CHK-071 [P1] REQ-007: `classifyOwnerLease()`'s synchronous `ps` call is timeout-bounded
+  - **Evidence needed**: code review + a test forcing a slow/hung `ps` to confirm it no longer blocks the event loop unboundedly.
+- [ ] CHK-072 [P0] REQ-008: async ingest (`memory_ingest_start`) cannot write quality-loop auto-fixes back to source files
+  - **Evidence needed**: a regression test structurally identical to the REQ-006 scan-origin test, run against the ingest path (crash-replay/queued-job case included, since `job-queue.ts:224-249,612-648,739-750` shows incomplete jobs replay from scratch after restart).
+- [ ] CHK-073 [P0] REQ-009: manual/maintenance `memory_index_scan` calls default to `background: true`
+  - **Evidence needed**: confirm the process-lifetime sidecar writer lock (`db-instance-lock.ts`) is unchanged; a background-mode scan returns a job ID immediately and reports status/progress on poll.
+- [ ] CHK-074 [P0] REQ-010: owner-lease stale removal and heartbeat replacement are fenced against the confirmed TOCTOU race
+  - **Evidence needed**: a test reproducing the exact interleaving from `research/research.md` §7.1 (two launchers, one delayed, both classify stale) proving the delayed launcher can no longer unlink a successor's fresh lease.
+- [ ] CHK-075 [P1] REQ-010: fencing does not change the SQLite sidecar lock's role as the final integrity boundary
+  - **Evidence needed**: confirm `db-instance-lock.ts` is untouched by this change — REQ-010 is availability hardening, not a new locking mechanism.
+- [ ] CHK-076 [P0] REQ-011: the empty-environment model-socket fallback uses a canonical short constant, not a `dbDir`-derived path
+  - **Evidence needed**: `tests/embedders/launcher-model-server-cross-launcher.vitest.ts` asserts the exact default path and its byte length is under macOS's 104-byte `sun_path` limit.
+- [ ] CHK-077 [P1] REQ-011: `SPECKIT_IPC_SOCKET_DIR` is not repurposed for the model-socket directory
+  - **Evidence needed**: code review confirming the advisor daemon's IPC directory and the model-server socket directory remain two distinct authorities.
+- [ ] CHK-078 [P1] No regressions in existing launcher/MCP/scan test suites after all 5 items land
+  - **Evidence needed**: full re-run of the launcher, cross-launcher, and memory-index test suites.
+- [ ] CHK-079 [P2] Items 6-8 from `research/research.md` §17 (observability, launcher/discovery separation, canonical context envelope) explicitly deferred, not silently dropped
+  - **Evidence**: documented in spec.md scope addendum and plan.md overview as follow-on/longer-term, out of scope for this pass.
+<!-- /ANCHOR:hardening -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
@@ -169,10 +204,12 @@ _memory:
 |----------|-------|----------|
 | P0 Items (fix) | 14 | 12/14 |
 | P0 Items (perf objective) | 5 | 0/5 |
+| P0 Items (hardening, REQ-007..011) | 5 | 0/5 |
 | P1 Items (fix) | 14 | 11/14 |
-| P2 Items | 2 | 0/2 |
+| P1 Items (hardening) | 3 | 0/3 |
+| P2 Items | 3 | 0/3 |
 
-**Verification Date**: 2026-07-22
+**Verification Date**: 2026-07-23
 
-**Overall status**: the data-integrity fix is coded, tested, and built, including a P0 gap (daemon startup scan + file watcher) found by an independent GPT-5.6-Sol-Fast review and closed in the same pass. Daemon restart is intentionally held pending operator input (concurrent daemon processes — see handover.md). The packet's original performance-measurement objective has not started.
+**Overall status**: the data-integrity fix is coded, tested, and built, including a P0 gap (daemon startup scan + file watcher) found by an independent GPT-5.6-Sol-Fast review and closed in the same pass. Daemon restart is intentionally held pending operator input (concurrent daemon processes — see handover.md). Five daemon/startup/MCP hardening items (REQ-007..011) are planned with concrete file:line-scoped designs from a completed 7-iteration `/deep:research` loop, but not yet implemented (Phase 7 tasks). The packet's original performance-measurement objective has not started.
 <!-- /ANCHOR:summary -->

@@ -10,13 +10,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-22T17:15:00Z"
+    last_updated_at: "2026-07-23T12:23:33Z"
     last_updated_by: "orchestrator"
-    recent_action: "Tracked tasks for the scan write-back fix"
-    next_safe_action: "Restart daemon, then measure timings"
+    recent_action: "Added Phase 7 tasks (T034-T047) for the 5 daemon/startup/MCP hardening items"
+    next_safe_action: "Implement Phase 7 tasks in ranked order, then restart daemon, then measure timings"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts"
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
+      - ".opencode/bin/lib/launcher-ipc-bridge.cjs"
+      - ".opencode/bin/lib/launcher-session-proxy.cjs"
+      - ".opencode/bin/lib/model-server-supervision.cjs"
       - ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -129,6 +135,38 @@ Verification + build (~30 minutes):
 
 ---
 
+<!-- ANCHOR:phase-7 -->
+## Phase 7: Daemon/Startup/MCP Hardening (planned, not started)
+
+Source: `research/research.md` §17 ranked list, items 1-5 (items 6-8 deferred as follow-on/longer-term, out of scope here). Recommended order: 007 → 008 → 009 → 010 → 011.
+
+**REQ-007 — Probe collapse (~1.5h)**
+- [ ] T034 [P] Thread `maybeBridgeLeaseHolder()`'s successful readiness result through to the session-proxy start path so the warm-owner branch skips a redundant `waitForDaemonReady()` (`.opencode/bin/lib/launcher-ipc-bridge.cjs:463-485`, `.opencode/bin/lib/launcher-session-proxy.cjs:374-397,842-865`) [45m]
+- [ ] T035 Add a bounded timeout around the synchronous `ps` call in `classifyOwnerLease()`'s `readParentPid()` (`.opencode/bin/mk-spec-memory-launcher.cjs:460-497`) [20m]
+- [ ] T036 Test: reattach path still runs its own independent probe (no regression); warm-owner path measurably skips the duplicate round-trip [25m]
+
+**REQ-008 — Async-ingest non-persisting origin (~30m)**
+- [ ] T037 Pass an explicit non-persisting/scan-equivalent origin from the `memory_ingest_start` async worker callback into `indexSingleFile`/`indexMemoryFile` (`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts:128-132`, `.opencode/skills/system-spec-kit/mcp-server/context-server.ts` `processFile`) [15m]
+- [ ] T038 Test: async-ingest source-immutability, mirroring the existing `handler-memory-index.vitest.ts` scan/direct regression pattern (`.opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts:2568-2574` currently only regex-checks sync semantics — extend or add a new test) [15m]
+
+**REQ-009 — Background-job default (~45m)**
+- [ ] T039 Identify manual/maintenance `memory_index_scan` call sites currently defaulting to foreground (`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts`) [15m]
+- [ ] T040 Default those call sites to `background: true`, reusing the existing job-status/progress/cancel path (`memory-index.ts:2088-2147`, `memory-index-scan-jobs.ts:41-142`) — do not touch `db-instance-lock.ts` [20m]
+- [ ] T041 Test: background-default scan returns a job ID immediately; poll confirms status/progress reporting works [10m]
+
+**REQ-010 — Lease fencing (~2-3h)**
+- [ ] T042 Add a `leaseId`/generation token to the owner-lease structure; require it for refresh, release, and cleanup (`.opencode/bin/mk-spec-memory-launcher.cjs:432-547`) [1h]
+- [ ] T043 Re-read and re-validate the lease under the existing election/respawn lock immediately before stale removal, closing the TOCTOU window research §7.1 identified [45m]
+- [ ] T044 Test: construct the exact two-launcher interleaving from research §7.1 (both classify stale, one delayed) and confirm the delayed launcher can no longer unlink the other's fresh lease [45m]
+
+**REQ-011 — Canonical socket default (~30m)**
+- [ ] T045 Export `DEFAULT_MODEL_SERVER_SOCKET_DIR`/`DEFAULT_MODEL_SERVER_SOCKET_PATH` constants in `.opencode/bin/lib/model-server-supervision.cjs`, matching the `/tmp/mk-hf-embed/hf-embed.sock` value already pinned in `opencode.json`/`.claude/mcp.json` [15m]
+- [ ] T046 Use the new constants in the empty-environment fallback (`:469-479`) instead of `options.dbDir`; do not repurpose `SPECKIT_IPC_SOCKET_DIR` [10m]
+- [ ] T047 Update `tests/embedders/launcher-model-server-cross-launcher.vitest.ts` to assert the exact default and its Darwin-safe byte length (<104 bytes) [15m]
+<!-- /ANCHOR:phase-7 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -136,7 +174,8 @@ Verification + build (~30 minutes):
 - [x] Independent review dispatched and its P0/P1/P2 findings resolved (Phase 6)
 - [x] No unexpected regressions in adjacent suites
 - [ ] Daemon restart still pending (T016, blocked on operator input)
-- [ ] Perf-measurement objective (Phase 5) not started — packet remains open
+- [ ] Perf-measurement objective (Phase 5 in plan.md / Phase 5 tasks) not started — packet remains open
+- [ ] Daemon/startup/MCP hardening (Phase 7, T034-T047) not started — planned this pass, recommended to execute before the perf-measurement objective
 <!-- /ANCHOR:completion -->
 
 ---
