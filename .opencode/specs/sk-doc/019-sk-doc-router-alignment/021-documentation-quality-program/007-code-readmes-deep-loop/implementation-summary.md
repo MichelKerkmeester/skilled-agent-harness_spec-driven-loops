@@ -110,6 +110,6 @@ Six Sonnet authors ran in parallel against the shared code-README brief with the
 
 1. **The `runtime/lib` catalog indexes domains without asserting a dependency graph.** It names the two foundation layers but does not draw a full inter-domain dependency direction, which the code does not yet enforce.
 2. **The existing per-domain `deep-review/scripts/README.md` uses an older heavier format.** Only its missing `tests/` subfolder README was added, in the lean shape; reconciling the older sibling is a phase 008 or later concern.
-3. **All 131 missing code READMEs across the three phases are now authored.** What remains is the phase 008 closeout: the full gate, the `audit_readmes.py` conformance sweep, and the deferred operator decisions.
+3. **All 124 missing code READMEs across the three phases are now authored.** What remains is the phase 008 closeout: the full gate, the `audit_readmes.py` conformance sweep, and the deferred operator decisions.
 
 <!-- /ANCHOR:limitations -->
