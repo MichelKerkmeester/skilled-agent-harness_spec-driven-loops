@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support",
+  "description": "`cli-devin` was fully removed as a deep-loop executor kind on 2026-06-08",
+  "keywords": [
+    "cli-devin",
+    "fully",
+    "removed",
+    "deep-loop",
+    "executor",
+    "kind"
+  ],
+  "lastUpdated": "2026-07-23T19:57:54.826Z",
+  "specId": "002",
+  "folderSlug": "deep-loop-executor-support",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

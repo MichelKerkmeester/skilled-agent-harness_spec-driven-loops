@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin",
+  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin contract pin",
+      "devin cli verification",
+      "devin hooks contract",
+      "devin contract pin plan",
+      "devin contract pin tasks",
+      "devin contract pin checklist",
+      "devin contract pin summary"
+    ],
+    "key_topics": [
+      "devin",
+      "contract",
+      "pin",
+      "cli",
+      "verification",
+      "hooks",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "archived",
+      "cli-devin"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Install",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Install Devin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06",
+    "created_at": "2026-07-23T19:51:58.474Z",
+    "last_save_at": "2026-07-23T20:02:19.819Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:51604d33a3814260e978086606790165d1b32e31a5bf2e3e28efeecd521eba0a",
+    "source_doc_hashes": {
+      "spec.md": "912e31b20c4d87f39c8cbe56a10032796be22351312ae39a6fa5ccc6bd1dd170",
+      "plan.md": "134116687128ce627950ec57b94b2c8edd2b1d161676a281d15275d2b7f4e20a",
+      "tasks.md": "2c7986f0a132707c07c9d06ea570417e85e8cd518fbf4a773e48082e7aad80bc",
+      "checklist.md": "27f21778dbb45bc9481a8e45606737b4b2beb67f6d745f0086effbaf2bbf597d",
+      "implementation-summary.md": "450f87bc627002032467ada8b4029d6564099254434583def3904e23906d5a8e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

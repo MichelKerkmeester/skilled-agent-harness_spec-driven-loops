@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support",
+  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin deep-loop executor",
+      "cli-devin executor kind",
+      "Devin fan-out adapter",
+      "cli-devin executor support plan",
+      "cli-devin executor support tasks",
+      "cli-devin executor support checklist"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "deep-loop",
+      "executor",
+      "kind",
+      "devin",
+      "fan-out",
+      "adapter",
+      "support",
+      "plan",
+      "tasks",
+      "checklist",
+      "fully"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Widen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Devin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "passing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-devin` was fully removed as a deep-loop executor kind on 2026-06-08",
+    "created_at": "2026-07-23T19:51:58.603Z",
+    "last_save_at": "2026-07-23T20:02:20.053Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2ffd7c46e356f2296048850f9d5ee584f6c8fc882066dc87ad75714073368849",
+    "source_doc_hashes": {
+      "spec.md": "05e88e1a64dd8244aa9ce655e5a2e678f7589845c52d6b83def80e8cd7b52407",
+      "plan.md": "fb19f168d7e7f23d62fbba0a0ee37619010cf4abe2c153aa6be4622d4b8c74af",
+      "tasks.md": "7a2d296e937ecc083eb2f3df19c69f178e1c004baff96a090553e576ef3a9793",
+      "checklist.md": "5c54630df0f5aab245949c2aa6676bad0f5d3f795e2aba0c1dcfb1307e5404d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

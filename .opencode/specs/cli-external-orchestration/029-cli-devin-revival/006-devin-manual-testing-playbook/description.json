@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
+  "description": "`cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking,",
+  "keywords": [
+    "cli-codex",
+    "ships",
+    "27-file",
+    "manual-testing-playbook",
+    "root",
+    "per-feature",
+    "scenario",
+    "files",
+    "across",
+    "categories",
+    "canonical",
+    "no-mocking"
+  ],
+  "lastUpdated": "2026-07-23T19:48:42.331Z",
+  "specId": "006",
+  "folderSlug": "devin-manual-testing-playbook",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

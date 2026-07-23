@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota",
+  "description": "The 2026-06-08 deprecation deleted the `swe-1.6` model entirely from `model-profiles.json` (it was cli-devin-exclusive; no `cli-opencode` alternative",
+  "keywords": [
+    "deprecation",
+    "deleted",
+    "swe-1",
+    "model",
+    "entirely",
+    "model-profiles",
+    "json",
+    "cli-devin-exclusive",
+    "cli-opencode",
+    "alternative"
+  ],
+  "lastUpdated": "2026-07-23T19:45:25.121Z",
+  "specId": "005",
+  "folderSlug": "devin-model-registry-and-quota",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

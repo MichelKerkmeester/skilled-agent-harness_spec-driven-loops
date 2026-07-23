@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin",
+    "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support",
+    "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet",
+    "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
+    "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota",
+    "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
+    "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin revival",
+      "Devin CLI executor",
+      "Devin hooks",
+      "Devin agents",
+      "cognition devin"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "revival",
+      "devin",
+      "cli",
+      "executor",
+      "hooks",
+      "agents",
+      "cognition",
+      "shipped",
+      "zarchive",
+      "016-cli-devin-creation",
+      "received"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "001-devin-contract-pin/implementation-summary.md",
+      "002-deep-loop-executor-support/spec.md",
+      "003-cli-devin-skill-packet/spec.md",
+      ".opencode/agents/context.md",
+      "001-devin-contract-pin/spec.md",
+      "007-docs-agents-governance-and-closeout/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
+    "created_at": "2026-07-23T19:51:48.213Z",
+    "last_save_at": "2026-07-23T20:02:19.586Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d115484a8500cb8cb2a3c93a3496eb8e57878c7af51357cb143bae92b46de357",
+    "source_doc_hashes": {
+      "spec.md": "0e62d7815da0360c676a4338bea34a33bb7ae76813441ae7db595c289fa5305a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

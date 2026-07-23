@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
+  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin hook adapters",
+      "devin hooks.v1.json",
+      "devin guard hooks",
+      "Devin lifecycle hooks",
+      "devin hook adapter plan",
+      "devin hooks implementation plan",
+      "devin hook adapter tasks",
+      "devin hook adapter checklist",
+      "devin hook adapter decision record",
+      "read_config_from.claude decision"
+    ],
+    "key_topics": [
+      "devin",
+      "hook",
+      "adapters",
+      "hooks",
+      "json",
+      "guard",
+      "lifecycle",
+      "adapter",
+      "plan",
+      "implementation",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "runtime/lib/spec-gate/spec-gate-core.mjs",
+      "lib/hooks/completion-evidence-sentinel.cjs",
+      ".claude/settings.json",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
+      "hooks/codex/shared.ts",
+      "runtime/hooks/codex/spec-gate-enforce.mjs",
+      "spec.md",
+      ".codex/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": "runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": "lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "hooks/codex/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/codex/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
+    "created_at": "2026-07-23T19:51:58.883Z",
+    "last_save_at": "2026-07-23T19:51:58.883Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:be1c8a4fff5a850c00e25379ac42f4d299b0d270299489b6ffa5ab9d5b4758c3",
+    "source_doc_hashes": {
+      "spec.md": "e697aa98b71c26e38ee2bf62c44d2673abc111618bf0ab9fc779f603f06f917f",
+      "plan.md": "c1ffa23398851cff2beffbc2b965f0594e45ea35a8112be2581c00586457defc",
+      "tasks.md": "43f8453643efa6df1066a45d99e425c8366681f56d3529a16cd7449681def390",
+      "checklist.md": "f078c6cd051da5baa43a1fb71715204b1164ae4c7ca364a26cfc3577cafec122",
+      "decision-record.md": "630262c60e7c01706305cc3f7bf122135d0a83bce315eea6d37a5938b99ee5f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

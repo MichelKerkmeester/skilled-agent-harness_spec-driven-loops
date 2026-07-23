@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin",
+  "description": "The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06",
+  "keywords": [
+    "archived",
+    "cli-devin",
+    "packets",
+    "deprecation",
+    "authored",
+    "against",
+    "devin",
+    "cli",
+    "existed"
+  ],
+  "lastUpdated": "2026-07-23T20:00:51.118Z",
+  "specId": "001",
+  "folderSlug": "devin-contract-pin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

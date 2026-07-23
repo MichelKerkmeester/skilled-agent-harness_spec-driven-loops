@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota",
+  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin model registry restoration",
+      "swe-1.6 model card",
+      "devin quota tiers",
+      "cli-devin executor rows",
+      "devin model registry plan",
+      "devin model registry tasks",
+      "devin model registry checklist"
+    ],
+    "key_topics": [
+      "devin",
+      "model",
+      "registry",
+      "restoration",
+      "swe-1",
+      "card",
+      "quota",
+      "tiers",
+      "cli-devin",
+      "executor",
+      "rows",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Restore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Data",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Also",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-06-08 deprecation deleted the `swe-1.6` model entirely from `model-profiles.json` (it was cli-devin-exclusive; no `cli-opencode` alternative existed) and stripped `cli-devin` executor rows from 3 sibling models",
+    "created_at": "2026-07-23T19:51:59.010Z",
+    "last_save_at": "2026-07-23T19:51:59.010Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:74812625cd60e6a8747daf5b4b581f1fdd360830010736db2a23558172de7142",
+    "source_doc_hashes": {
+      "spec.md": "5b76f5e34ca5a0ab216b4ee72943051e63258f71e4a668e574669d3b1feace8c",
+      "plan.md": "a6fb941258c5032b5ba06a8a07a98d4d4b2aeff15cc1cd9b8e309469d661a875",
+      "tasks.md": "26d66880aa4c8af68dcf73047fee4d4a00f8df3d4219ce49f013a2b2fe1da9f9",
+      "checklist.md": "29e1384e605f8614bbb0827cc41d0a8a00c1c9f22d166717806eb63ca4d115e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

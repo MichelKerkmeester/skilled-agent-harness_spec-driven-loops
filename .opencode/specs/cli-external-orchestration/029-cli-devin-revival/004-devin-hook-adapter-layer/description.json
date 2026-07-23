@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
+  "description": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify,",
+  "keywords": [
+    "repo",
+    "enforces",
+    "scope-lock",
+    "spec-folder",
+    "quality",
+    "completion-evidence",
+    "discipline",
+    "guard",
+    "hooks",
+    "spec-gate",
+    "enforce",
+    "classify"
+  ],
+  "lastUpdated": "2026-07-23T19:45:25.693Z",
+  "specId": "004",
+  "folderSlug": "devin-hook-adapter-layer",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

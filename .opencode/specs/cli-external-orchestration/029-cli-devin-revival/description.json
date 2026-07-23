@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival",
+  "description": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was",
+  "keywords": [
+    "cli-devin",
+    "shipped",
+    "zarchive",
+    "016-cli-devin-creation",
+    "received",
+    "two",
+    "effectiveness",
+    "prompt-quality",
+    "follow-ons"
+  ],
+  "lastUpdated": "2026-07-23T20:02:01.435Z",
+  "specId": "029",
+  "folderSlug": "cli-devin-revival",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

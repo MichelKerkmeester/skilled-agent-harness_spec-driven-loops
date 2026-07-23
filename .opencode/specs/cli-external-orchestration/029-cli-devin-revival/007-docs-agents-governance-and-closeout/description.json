@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
+  "description": "The 2026-06-08 deprecation (`zarchive/022-cli-devin-deprecation`) stripped `cli-devin`/`devin` mentions from all 3 runtime agent rosters, top-level",
+  "keywords": [
+    "deprecation",
+    "zarchive",
+    "022-cli-devin-deprecation",
+    "stripped",
+    "cli-devin",
+    "devin",
+    "mentions",
+    "runtime",
+    "agent",
+    "rosters",
+    "top-level"
+  ],
+  "lastUpdated": "2026-07-23T19:48:42.335Z",
+  "specId": "007",
+  "folderSlug": "docs-agents-governance-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

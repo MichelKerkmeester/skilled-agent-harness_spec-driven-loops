@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
+  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin manual testing playbook",
+      "DV-NNN scenarios",
+      "cli-devin playbook categories",
+      "devin hallucination fixture scenario",
+      "devin manual testing playbook plan",
+      "DV-NNN scenario authoring plan",
+      "devin manual testing playbook tasks",
+      "devin manual testing playbook checklist"
+    ],
+    "key_topics": [
+      "devin",
+      "manual",
+      "testing",
+      "playbook",
+      "dv-nnn",
+      "scenarios",
+      "cli-devin",
+      "categories",
+      "hallucination",
+      "fixture",
+      "scenario",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md",
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota/spec.md",
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout/spec.md",
+      ".opencode/specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automated Test Cross",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Cross",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Index",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism - there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
+    "created_at": "2026-07-23T19:51:59.132Z",
+    "last_save_at": "2026-07-23T19:51:59.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:ae41a4d98da3c839a8879b72da518d342b98b7abd283143771162469507670bc",
+    "source_doc_hashes": {
+      "spec.md": "6685d8127754fcd64d8687cd20a8263becb40abb2c3b080be399939280359490",
+      "plan.md": "36f97bf44c5d26fdeb0a7e0dc7c460fdc6ebe1d5d3991efd8f8f9f05598e396b",
+      "tasks.md": "20ead121b1375cc43a801beb6ac5db0d9c504ff7eb43435085b68d2bdfd90390",
+      "checklist.md": "f1b793bad229c4a96f825b4bc0079cccd2d9505b75f0ca539abdcdd81504a0d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

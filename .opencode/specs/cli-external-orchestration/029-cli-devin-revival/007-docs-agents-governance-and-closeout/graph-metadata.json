@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
+  "parent_id": "cli-external-orchestration/029-cli-devin-revival",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin revival closeout",
+      "Devin agent roster restore",
+      "Devin governance docs",
+      "Devin docs and closeout",
+      "Devin docs closeout plan",
+      "Devin agent roster restore plan",
+      "Devin docs closeout tasks",
+      "Devin agent roster restore tasks",
+      "Devin docs closeout checklist",
+      "Devin agent roster restore checklist"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "revival",
+      "closeout",
+      "devin",
+      "agent",
+      "roster",
+      "restore",
+      "governance",
+      "docs",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/agents/context.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
+      ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md",
+      ".claude/agents/context.md",
+      ".codex/agents/context.toml",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      ".codex/agents/deep-research.toml",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/agents/deep-improvement.md",
+      ".claude/agents/deep-improvement.md",
+      ".codex/agents/deep-improvement.toml",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-runtime-values.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-implementation-deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-improvement.toml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-06-08 deprecation (`zarchive/022-cli-devin-deprecation`) stripped `cli-devin`/`devin` mentions from all 3 runtime agent rosters, top-level governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and cross-skill sibling docs, and its own removal touch-list recorded the exact file paths and line numbers it edited",
+    "created_at": "2026-07-23T19:51:59.259Z",
+    "last_save_at": "2026-07-23T19:51:59.259Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:1765eb84a0db2734c7e39155633d79f443f9f9e3c5167e893f72e6b46e16612c",
+    "source_doc_hashes": {
+      "spec.md": "0f4d6ee57ffabcf628281e7d5851dc5b494061043dc4e78dbd8bb01c8dfc56f3",
+      "plan.md": "d1fe01a5220b7468275d835c48976ad7f8462f7cde698d9abc4d3d16b5fedbd0",
+      "tasks.md": "b389ca9acff389a386299db2a5939dd32633f7db118e6ed1b83a7e4747a8b820",
+      "checklist.md": "8af3cefe6e6fe5d3a3ede16ac83f3ccf19acd28f593d7843d05d979a5d2f4a3c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
