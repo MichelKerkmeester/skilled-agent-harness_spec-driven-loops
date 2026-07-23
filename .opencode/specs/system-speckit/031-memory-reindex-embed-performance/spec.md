@@ -10,10 +10,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T12:23:33Z"
+    last_updated_at: "2026-07-23T13:10:17Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned Phase 7 hardening (REQ-007..011)"
-    next_safe_action: "Implement REQ-007..011 in ranked order, restart daemon, measure timings"
+    recent_action: "Implemented + tested Phase 7 hardening (REQ-007..011)"
+    next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
       - ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md"
@@ -52,7 +52,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 031-memory-reindex-embed-performance |
 | **Level** | 2 |
-| **Status** | In progress — data-integrity blocker (scan write-back) fixed + tested; daemon/startup/MCP hardening (REQ-007..011) planned, not yet implemented; per-stage timing measurement (the packet's original objective) not yet started |
+| **Status** | In progress — data-integrity blocker (scan write-back) fixed + tested; daemon/startup/MCP hardening (REQ-007..011) implemented, tested (521 passed), and built; per-stage timing measurement (the packet's original objective) not yet started |
 | **Verification** | Measured throughput gain + zero recall regression, behind a flag, daemon rebuilt/restarted |
 <!-- /ANCHOR:metadata -->
 
@@ -87,13 +87,13 @@ of ADR-001 ("generated memory is search-only"). Closing this off was a prerequis
 measurement work (Step 0 needs a scan that doesn't mutate the very files it's timing) and is now in scope
 here rather than a separate packet, per operator direction. See REQ-006.
 
-**Scope addition (daemon/startup/MCP hardening, planned in this pass):** a 7-iteration `/deep:research` loop
+**Scope addition (daemon/startup/MCP hardening, implemented in this pass):** a 7-iteration `/deep:research` loop
 (`research/research.md`) hardened five follow-on issues surfaced while fixing REQ-006: a residual gap in the
 same write-back bug class (async ingest), an MCP startup reliability race, a latent socket-path overflow bug,
-an operability issue with long foreground scans, and a daemon owner-lease race. All five have a confirmed
-root cause and a concrete fix design; see REQ-007 through REQ-011. Items 6-8 from the research's ranked list
-(observability, launcher/discovery separation, the "canonical context envelope" migration direction) are
-explicitly deferred as follow-on/longer-term, not part of this implementation pass.
+an operability issue with long foreground scans, and a daemon owner-lease race. All five were implemented,
+regression-tested (521 passed, 0 new failures), and built; see REQ-007 through REQ-011. Items 6-8 from the
+research's ranked list (observability, launcher/discovery separation, the "canonical context envelope"
+migration direction) are explicitly deferred as follow-on/longer-term, not part of this implementation pass.
 <!-- /ANCHOR:scope -->
 
 ---

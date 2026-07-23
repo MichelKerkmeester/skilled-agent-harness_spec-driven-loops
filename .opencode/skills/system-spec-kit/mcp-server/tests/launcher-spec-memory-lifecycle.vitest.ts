@@ -9,22 +9,27 @@
 //   - reapOwnerBeforeRespawn must refuse to kill a heartbeat-fresh (live-owner)
 //     daemon on a socket-probe-only "dead" verdict (cap-refusal != death).
 
+import type * as fsTypes from 'node:fs';
 import { createRequire } from 'node:module';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
+// CJS require gives a mutable module object (unlike the ESM namespace import above),
+// which is required for vi.spyOn — and it's the exact same fs object the launcher's own
+// `require('fs')` resolves to, so spying here intercepts the launcher's internal calls too.
+const fs = require('node:fs') as typeof fsTypes;
 const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
   acquireBootstrapLock: (options?: { requireLock?: boolean; staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   removeStaleBootstrapLock: (staleMs?: number) => boolean;
   readBootstrapLockOwnerPid: () => number | null;
-  acquireOwnerLeaseFile: () => { acquired: boolean; lease?: { ownerPid: number }; classification?: string };
+  acquireOwnerLeaseFile: () => { acquired: boolean; lease?: { ownerPid: number; leaseId?: string }; holder?: { ownerPid?: number; leaseId?: string }; classification?: string };
   clearOwnerLeaseFile: () => void;
   ownerLeasePath: () => string;
-  readOwnerLeaseFile: (filePath?: string) => Record<string, unknown> | null;
-  buildOwnerLease: (ownerPid?: number) => Record<string, unknown>;
+  readOwnerLeaseFile: (filePath?: string) => (Record<string, unknown> & { leaseId?: string }) | null;
+  buildOwnerLease: (ownerPid?: number) => Record<string, unknown> & { leaseId: string };
   classifyOwnerLease: (lease: Record<string, unknown>) => string;
   reapOwnerBeforeRespawn: (ownerPid: number) => Promise<{ allowed: boolean; reason: string }>;
   configureLauncherPathsForTesting: (paths: { dbDir: string; lockDir: string; stateFile: string }) => void;
@@ -104,6 +109,55 @@ describe('mk-spec-memory launcher owner-lease CAS reclaim', () => {
     const reclaim = launcher.acquireOwnerLeaseFile();
     expect(reclaim.acquired).toBe(true);
     expect(launcher.readOwnerLeaseFile()?.ownerPid).toBe(process.pid);
+  });
+
+  // Reproduces a two-launcher TOCTOU interleaving: a racer (B) completes its own full
+  // acquire cycle in the window between this process's (A's) classify-as-stale read and
+  // its immediately-before-unlink re-validation. Without the leaseId fence, A's unlink
+  // would remove B's freshly-installed lease instead of the original stale one.
+  it('refuses to unlink a racing launcher\'s fresh lease when interleaved mid-reclaim', () => {
+    configureTempLauncher();
+    launcher.clearOwnerLeaseFile();
+
+    const first = launcher.acquireOwnerLeaseFile();
+    expect(first.acquired).toBe(true);
+    const originalLease = launcher.readOwnerLeaseFile();
+
+    // Seed a stale lease (dead owner) that racer A will classify as reclaimable.
+    const staleLeaseContent = `${JSON.stringify({ ...originalLease, ownerPid: findDeadPid(), ppid: 1 }, null, 2)}\n`;
+    writeFileSync(launcher.ownerLeasePath(), staleLeaseContent);
+    launcher.clearOwnerLeaseFile();
+
+    // Racer B's winning fresh lease — a distinct leaseId, installed as a side effect of A's
+    // OWN first read below (simulating B's full acquire cycle completing in that exact gap).
+    const racingLease = launcher.buildOwnerLease(process.pid);
+    const racingLeaseContent = `${JSON.stringify(racingLease, null, 2)}\n`;
+
+    const realReadFileSync = fs.readFileSync.bind(fs);
+    let ownerLeaseReadCount = 0;
+    const spy = vi.spyOn(fs, 'readFileSync').mockImplementation((...args: Parameters<typeof fs.readFileSync>) => {
+      const [filePath] = args;
+      if (typeof filePath === 'string' && filePath === launcher.ownerLeasePath()) {
+        ownerLeaseReadCount += 1;
+        if (ownerLeaseReadCount === 1) {
+          writeFileSync(launcher.ownerLeasePath(), racingLeaseContent);
+          return staleLeaseContent;
+        }
+      }
+      return realReadFileSync(...(args as Parameters<typeof fs.readFileSync>));
+    });
+
+    let attempt: ReturnType<typeof launcher.acquireOwnerLeaseFile>;
+    try {
+      attempt = launcher.acquireOwnerLeaseFile();
+    } finally {
+      spy.mockRestore();
+    }
+
+    expect(attempt.acquired).toBe(false);
+    expect(attempt.holder?.leaseId).toBe(racingLease.leaseId);
+    // Racer B's fresh lease must survive completely untouched — this is the fence's whole point.
+    expect(launcher.readOwnerLeaseFile()?.leaseId).toBe(racingLease.leaseId);
   });
 });
 

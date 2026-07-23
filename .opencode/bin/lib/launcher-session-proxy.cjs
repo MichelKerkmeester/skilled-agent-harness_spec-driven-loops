@@ -394,6 +394,10 @@ function createSessionProxy(options) {
   const maxQueuedClientFrames = Number.isInteger(options?.maxQueuedClientFrames) && options.maxQueuedClientFrames > 0
     ? options.maxQueuedClientFrames
     : DEFAULT_MAX_QUEUED_CLIENT_FRAMES;
+  // Set only by a caller that already ran its own deep liveness probe against this exact
+  // socket (the warm-owner bridge handshake) — lets start() skip a second redundant probe.
+  // Reattach/cold-start callers omit this and get the normal independent probe below.
+  const initialReadyResult = options?.initialReadyResult;
 
   let socket = null;
   let state = 'REATTACHING';
@@ -840,7 +844,9 @@ function createSessionProxy(options) {
   }
 
   async function start() {
-    const ready = await waitForDaemonReady(socketPath, probe, connect, log, { maxAttempts: maxColdStartAttempts });
+    const ready = initialReadyResult && initialReadyResult.status === 'alive'
+      ? initialReadyResult
+      : await waitForDaemonReady(socketPath, probe, connect, log, { maxAttempts: maxColdStartAttempts });
     if (stopped) return;
     if (ready.status !== 'alive') {
       enqueueOutputFrame(JSON.stringify({

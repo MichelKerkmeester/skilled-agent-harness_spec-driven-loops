@@ -180,6 +180,29 @@ describe('cross-launcher hf model server supervision', () => {
     expect(mss.resolveModelServerSocketPath({ SPECKIT_IPC_SOCKET_DIR: '/tmp/shared-hf' }, { dbDir: systemSpecKitDbDir })).toBe('/tmp/shared-hf/hf-embed.sock');
   });
 
+  it('falls back to the canonical short default when neither env nor dbDir are configured (REQ-011)', () => {
+    const truEmptyDefault = mss.resolveModelServerSocketPath({}, {});
+    expect(truEmptyDefault).toBe(mss.DEFAULT_MODEL_SERVER_SOCKET_PATH);
+    expect(truEmptyDefault).toBe('/tmp/mk-hf-embed/hf-embed.sock');
+    // Darwin's sun_path field is 104 bytes including the NUL terminator (103 usable).
+    expect(Buffer.byteLength(truEmptyDefault)).toBeLessThanOrEqual(103);
+    // mk-spec-memory-launcher.cjs's own wrapper intentionally keeps its own resolved
+    // dbDir as a fallback (research confirmed this specific path is not reachable via
+    // normal MCP/CLI config, which always pins HF_EMBED_SERVER_URL) — it is deliberately
+    // NOT asserted here to converge on the canonical default.
+  });
+
+  it('skill-advisor launcher also falls back to the canonical short default under an empty child env (REQ-011)', () => {
+    // Reproduces the plugin bridge's filtered child env: HF_EMBED_SERVER_URL is never
+    // forwarded and SPECKIT_IPC_SOCKET_DIR is absent from the plugin host's own env.
+    const skillAdvisorLauncher = require('../../../../../bin/mk-skill-advisor-launcher.cjs') as {
+      resolveModelServerSocketPath: (env?: Record<string, string | undefined>, options?: { dbDir?: string }) => string;
+    };
+    const result = skillAdvisorLauncher.resolveModelServerSocketPath({}, {});
+    expect(result).toBe(mss.DEFAULT_MODEL_SERVER_SOCKET_PATH);
+    expect(Buffer.byteLength(result)).toBeLessThanOrEqual(103);
+  });
+
   it('lets one launcher own the socket-keyed demand listener and spawn once', async () => {
     const socketDir = tempDir('hf-cross-single-winner-');
     const socketPath = join(socketDir, 'hf-embed.sock');

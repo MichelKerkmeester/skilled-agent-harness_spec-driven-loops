@@ -2569,6 +2569,17 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/processFile:\s*async\s*\(filePath:\s*string,\s*governance\)\s*=>\s*\{[\s\S]*?await\s+indexSingleFile\(filePath,\s*false[,)][\s\S]*?\}/)
     })
 
+    // Queued jobs are crash-replayed from scratch after a daemon restart, so async ingest
+    // must never persist quality-loop auto-fixes back to source docs, same as the
+    // startupScan/watcher gate (T47d below).
+    it('T47c-2: ingest queue processFile passes fromScan: true on both the governed and provenance branches', () => {
+      const processFileBlockMatch = sourceCode.match(/processFile:\s*async\s*\(filePath:\s*string,\s*governance\)\s*=>\s*\{[\s\S]*?\n\s{8}\},/)
+      expect(processFileBlockMatch).not.toBeNull()
+      const processFileBlock = processFileBlockMatch![0]
+      expect(processFileBlock).toMatch(/governance\s*\n?\s*\?\s*\{\s*governance,\s*fromScan:\s*true\s*\}/)
+      expect(processFileBlock).toMatch(/provenance:\s*\{[\s\S]*?\},\s*\n\s*fromScan:\s*true,/)
+    })
+
     it('T47d: file watcher reindex uses indexSingleFile sync semantics', () => {
       expect(sourceCode).toMatch(/reindexFn:\s*async\s*\(filePath:\s*string\)\s*=>\s*\{[\s\S]*?await\s+indexSingleFile\(filePath,\s*false[,)][\s\S]*?\}/)
       expect(sourceCode).not.toMatch(/indexMemoryFile\(filePath,\s*\{\s*asyncEmbedding:\s*true\s*\}\)/)

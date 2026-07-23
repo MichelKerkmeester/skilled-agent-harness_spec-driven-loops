@@ -35,6 +35,12 @@ const DEFAULT_CRASH_LOOP_WINDOW_MS = 60000;
 const DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS = 250;
 const DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS = 5000;
 const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
+// Canonical short default for the empty-environment fallback (neither HF_EMBED_SERVER_URL nor
+// SPECKIT_IPC_SOCKET_DIR set) — the same directory both opencode.json and .claude/mcp.json
+// already pin explicitly, chosen to stay well under macOS's 104-byte sun_path limit regardless
+// of repo checkout location. Not derived from dbDir, which can be arbitrarily long/nested.
+const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/mk-hf-embed';
+const DEFAULT_MODEL_SERVER_SOCKET_PATH = path.join(DEFAULT_MODEL_SERVER_SOCKET_DIR, HF_MODEL_SERVER_SOCKET_FILE_NAME);
 const HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME = 'hf-embed-respawn.lock';
 const HF_MODEL_SERVER_PID_FILE_NAME = 'hf-embed.pid';
 const HF_MODEL_SERVER_GIVEUP_FILE_NAME = 'hf-embed-giveup.json';
@@ -471,10 +477,15 @@ function resolveModelServerSocketPath(env = process.env, options = {}) {
   if (explicitTarget) return explicitTarget;
   if (env.SPECKIT_IPC_SOCKET_DIR?.startsWith('tcp://')) return env.SPECKIT_IPC_SOCKET_DIR;
 
+  // options.dbDir stays a valid explicit override (test isolation, deliberate per-instance
+  // configuration). Only the last-resort fallback — nothing configured anywhere — changes:
+  // it now uses the canonical short default instead of silently deriving a path that can
+  // exceed the sun_path limit depending on repo checkout location. SPECKIT_IPC_SOCKET_DIR
+  // remains a distinct socket authority from this default and is never repurposed for it.
   const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
   const socketDir = env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'));
+    : (rawDbDir ? path.resolve(rawDbDir) : DEFAULT_MODEL_SERVER_SOCKET_DIR);
   return path.join(socketDir, HF_MODEL_SERVER_SOCKET_FILE_NAME);
 }
 
@@ -1019,7 +1030,10 @@ function createModelServerControl(deps = {}) {
   const env = deps.env || process.env;
   const rootDir = deps.rootDir || defaultRoot;
   const opencodeDir = deps.opencodeDir || path.join(rootDir, '.opencode');
-  const dbDir = deps.dbDir || (() => path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp-server', 'database'));
+  // No internal long-path default: when the caller doesn't supply dbDir explicitly,
+  // resolveSocketPath below falls through to resolveModelServerSocketPath's own
+  // canonical short default instead of silently reconstructing the overflow-prone path.
+  const dbDir = deps.dbDir;
   const modelServerPath = deps.modelServerPath || path.join(opencodeDir, 'bin', 'hf-model-server.cjs');
   const signal = deps.signal || signalProcess;
   const processRowsRunner = deps.processRowsRunner || defaultProcessRowsRunner;
@@ -1493,6 +1507,8 @@ module.exports = {
   createModelServerControl,
   createModelServerSupervisor,
   defaultProcessRowsRunner,
+  DEFAULT_MODEL_SERVER_SOCKET_DIR,
+  DEFAULT_MODEL_SERVER_SOCKET_PATH,
   ensureCanonicalDir,
   getCrashLoopConfig,
   getModelServerGiveUpCooldownMs,

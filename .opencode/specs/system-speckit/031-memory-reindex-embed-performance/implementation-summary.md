@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Memory Reindex + Embed Ingest Performance"
-description: "Summarizes the completed scan write-back data-integrity fix. The packet's original reindex-performance objective is NOT covered by this summary and has not started."
+description: "Summarizes the completed scan write-back data-integrity fix (REQ-006) and the completed daemon/startup/MCP hardening pass (REQ-007..011, Phase 7). The packet's original reindex-performance objective is NOT covered by this summary and has not started."
 trigger_phrases:
   - "memory reindex embed performance implementation summary"
   - "scan write-back fix summary"
@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T12:23:33Z"
+    last_updated_at: "2026-07-23T13:10:17Z"
     last_updated_by: "orchestrator"
-    recent_action: "Corrected Limitation 5 re: async ingest; noted Phase 7 hardening plan"
-    next_safe_action: "Implement Phase 7 tasks (REQ-007..011), then restart daemon, measure timings"
+    recent_action: "Documented completed Phase 7 hardening (REQ-007..011) build/test/decisions"
+    next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
@@ -33,9 +33,9 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
 
-**This summary covers only the data-integrity fix sub-scope (REQ-006). The packet's original objective —
-measuring and optimizing reindex throughput (REQ-001–REQ-005) — has NOT started. The packet as a whole is
-NOT complete.**
+**This summary covers the data-integrity fix sub-scope (REQ-006) and the daemon/startup/MCP hardening
+sub-scope (REQ-007..011, Phase 7). The packet's original objective — measuring and optimizing reindex
+throughput (REQ-001–REQ-005) — has NOT started. The packet as a whole is NOT complete.**
 
 ---
 
@@ -45,7 +45,7 @@ NOT complete.**
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 031-memory-reindex-embed-performance |
-| **Sub-scope Completed** | 2026-07-22 (scan write-back fix only) |
+| **Sub-scopes Completed** | 2026-07-22 (scan write-back fix, REQ-006); 2026-07-23 (daemon/startup/MCP hardening, REQ-007..011) |
 | **Level** | 2 |
 | **Packet Status** | In progress — see spec.md METADATA |
 <!-- /ANCHOR:metadata -->
@@ -163,11 +163,8 @@ serving other sessions on this shared repo.
    `startupScan`/file-watcher is still reachable through unattended startup recovery, not just a live
    caller-initiated request. This is now tracked as REQ-008 / Phase 7 (planned, not yet implemented — see
    plan.md, tasks.md T037-T038).
-6. **Daemon/startup/MCP hardening planned, not implemented** — the same research pass also hardened four
-   other issues (MCP startup probe duplication, a long-foreground-scan operability issue, a latent
-   socket-path overflow bug, and a daemon owner-lease race) as REQ-007/009/010/011. All five have concrete,
-   file:line-scoped fix designs in `research/research.md` §17 and are planned in plan.md Phase 5 / tasks.md
-   Phase 7, but none are implemented yet.
+6. **Daemon/startup/MCP hardening (REQ-007/009/010/011) — now implemented.** See the Phase 7 sections below
+   for what was built, verified, and deviated from the original plan.
 7. **Packet remains open** — the original reindex-performance measurement objective (REQ-001–REQ-005) has
    not started.
 <!-- /ANCHOR:limitations -->
@@ -184,3 +181,70 @@ serving other sessions on this shared repo.
 | Restart the daemon as part of this pass | Held, undone | Discovered 3 concurrent daemon processes; restarting risks disrupting other active sessions on shared infra. |
 | Consider the fix complete after the first regression suite passed | Dispatched an independent review before treating it as done, which found the daemon startup-scan/file-watcher gap | A fix that's only tested against the code path it was written against can miss sibling call sites; this one did, and the review caught it before it shipped incomplete. |
 <!-- /ANCHOR:deviations -->
+
+---
+
+<!-- ANCHOR:phase7-what-built -->
+## Phase 7: Daemon/Startup/MCP Hardening (REQ-007..011) — What Was Built
+
+Implemented all 5 hardening items from the 7-iteration `/deep:research` synthesis (`research/research.md` §17), ranked by impact/cost and executed in order:
+
+- **REQ-007 (probe collapse)**: `maybeBridgeLeaseHolder()` (`launcher-ipc-bridge.cjs`) now forwards its own confirmed-alive deep probe as `initialReadyResult` through `bridgeStdioThroughSessionProxy` (`mk-spec-memory-launcher.cjs`) to `createSessionProxy().start()` (`launcher-session-proxy.cjs`), which skips a second redundant `waitForDaemonReady()` call on the warm-owner path only; reattach/cold-start paths (which never pass this option) are unaffected. `classifyOwnerLease()`'s synchronous `spawnSync('ps', ...)` now runs under a 2000ms default timeout (`mk-spec-memory-launcher.cjs`).
+- **REQ-008 (async-ingest origin)**: the `memory_ingest_start` worker callback (`processFile` in `context-server.ts`) now passes `fromScan: true` on both its governed and provenance branches, closing the residual write-back gap the same way `startupScan`/file-watcher were closed earlier in this packet.
+- **REQ-009 (background-job default)**: the `memory_index_scan` MCP tool now defaults `background: true` when the caller omits it, applied at the tool-dispatch boundary (`tools/lifecycle-tools.ts`) rather than inside `handleMemoryIndexScan` itself, so the CLI reindex command and the daemon's own boot-time drift-repair scan (both of which need synchronous completion) are unaffected.
+- **REQ-010 (lease fencing)**: `buildOwnerLease` now mints a `leaseId` (crypto.randomUUID) per lease instance; `acquireOwnerLeaseFile()` re-validates the leaseId immediately before its reclaim unlink, and `refreshOwnerLeaseFile()`/`clearOwnerLeaseFile()` require it to match this process's own tracked leaseId before mutating — closing the exact TOCTOU race research §7.1 constructed.
+- **REQ-011 (canonical socket default)**: `model-server-supervision.cjs` exports `DEFAULT_MODEL_SERVER_SOCKET_DIR`/`DEFAULT_MODEL_SERVER_SOCKET_PATH` (`/tmp/mk-hf-embed/hf-embed.sock`, matching both MCP configs' pinned value) and uses it as the empty-environment fallback instead of an unconditional `dbDir`-derived path; `options.dbDir` remains a valid explicit override.
+
+### Files Changed (Phase 7)
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Modified | `maybeBridgeLeaseHolder()` forwards its probe result as `initialReadyResult` |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modified | `bridgeStdioThroughSessionProxy` passthrough; bounded `ps` timeout; `leaseId` fencing across `buildOwnerLease`/`acquireOwnerLeaseFile`/`refreshOwnerLeaseFile`/`clearOwnerLeaseFile`/`respawnAfterDeadSocket` |
+| `.opencode/bin/lib/launcher-session-proxy.cjs` | Modified | `createSessionProxy`/`start()` honor `initialReadyResult` |
+| `.opencode/bin/lib/model-server-supervision.cjs` | Modified | `DEFAULT_MODEL_SERVER_SOCKET_DIR`/`PATH` constants; `resolveModelServerSocketPath` empty-env fallback; `createModelServerControl`'s own `dbDir` default removed |
+| `.opencode/bin/mk-skill-advisor-launcher.cjs` | Modified | `resolveModelServerSocketPath` wrapper no longer forces its own long `dbDir` default (scope correction — see Deviations) |
+| `.opencode/skills/system-spec-kit/mcp-server/context-server.ts` | Modified | `processFile` ingest callback passes `fromScan: true` |
+| `.opencode/skills/system-spec-kit/mcp-server/tools/lifecycle-tools.ts` | Modified | `memory_index_scan` dispatch defaults `background: true` |
+| `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts` | Modified | Updated `background` field description/default to match |
+| 6 test files | Modified/Created | `launcher-session-proxy.vitest.ts`, `launcher-ipc-bridge-probe.vitest.ts`, `context-server.vitest.ts`, `lifecycle-tools-scan-default.vitest.ts` (new), `launcher-spec-memory-lifecycle.vitest.ts`, `embedders/launcher-model-server-cross-launcher.vitest.ts` |
+<!-- /ANCHOR:phase7-what-built -->
+
+---
+
+<!-- ANCHOR:phase7-decisions -->
+## Phase 7: Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Apply the REQ-009 background default at the MCP tool dispatch boundary (`lifecycle-tools.ts`), not inside `handleMemoryIndexScan` | Dozens of existing tests and two internal callers (CLI reindex, boot-time drift repair) call `handleMemoryIndexScan` directly and require synchronous foreground completion; changing the shared handler's default would have broken all of them for no benefit, since they aren't the "manual" callers the finding was about. |
+| Preserve `options.dbDir` as an explicit override in `resolveModelServerSocketPath` rather than removing it | Test isolation and legitimate per-instance configuration depend on it; only the fallback-of-last-resort (nothing configured anywhere) needed to change. |
+| Fix `createModelServerControl`'s own internal `dbDir` default and `mk-skill-advisor-launcher.cjs`'s wrapper, beyond the original REQ-011 scope | Both unconditionally reconstructed the long path whenever a caller omitted `dbDir`, making the new canonical constant unreachable through the actual bug path (the skill-advisor plugin bridge's filtered child env) — the same class of "affected-surfaces gap" this packet already learned to check for with REQ-006. |
+| Use a `leaseId` (crypto.randomUUID) as the fencing token for REQ-010, not a full redesign of the election/respawn locking | Research's own severity recalibration (§7.1) established the SQLite sidecar lock is the real integrity boundary regardless; a minimal fencing token closes the specific TOCTOU window without introducing new locking machinery into a concurrency-sensitive area. |
+| Simulate the REQ-010 interleaving via a call-counted `fs.readFileSync` spy with a side-effect write, rather than real multi-process orchestration | `acquireOwnerLeaseFile()` is synchronous with no injectable dependencies for cross-process timing; intercepting the shared `fs` module (the same object the launcher's own `require('fs')` resolves to) lets a single test process reproduce the exact interleaving deterministically. |
+<!-- /ANCHOR:phase7-decisions -->
+
+---
+
+<!-- ANCHOR:phase7-verification -->
+## Phase 7: Verification
+
+| Test Type | Status | Coverage | Notes |
+|-----------|--------|----------|-------|
+| New regression tests (all 5 items) | Pass | 15 new tests across 6 files | Probe-collapse skip/no-regression/rejection (3), forwarding (1), source-pattern fromScan assertion (1), background-default (4), lease-fencing interleaving (1), canonical-default + skill-advisor cross-check (2), plus supporting assertions |
+| Combined regression run (17 touched/new files) | Pass | 521 passed / 36 skipped | 0 new failures; one single-test flake on a real-subprocess test reproduced clean on isolated re-run and full re-run |
+| Build | Pass | - | `npm run build` in `mcp-server/` exits 0; dist confirmed to contain `fromScan: true` (context-server.js), the background-default logic (tools/lifecycle-tools.js), and the updated schema description (tool-schemas.js) |
+| Live empirical confirmation of REQ-009 | N/A (observational) | - | A `memory_index_scan` call made during this same session hung 2+ minutes in the foreground, then its background task later timed out and failed after exactly 1800s (30 minutes) with no response — an unplanned, real-world reproduction of the exact bug REQ-009 fixes |
+| Daemon restart + live health check | Not done | - | Held pending operator input alongside the REQ-006 restart (3 concurrent daemon processes observed) |
+<!-- /ANCHOR:phase7-verification -->
+
+---
+
+<!-- ANCHOR:phase7-limitations -->
+## Phase 7: Known Limitations
+
+1. **Daemon not yet restarted** — all 5 fixes are coded, tested, and built, but the currently-running daemon process(es) are still serving the pre-fix `dist/` until restarted (same held state as the REQ-006 fix).
+2. **REQ-010's fencing narrows, does not eliminate, the OS-level race** — the `leaseId` re-validation happens immediately before the unlink syscall (no intervening `await` within this process), which closes the JS-level TOCTOU window research demonstrated. A sub-microsecond OS-level race between the re-validation read and the unlink syscall is theoretically still possible; research's own severity recalibration (§7.1) already established the SQLite sidecar lock is the true integrity backstop regardless, so this residual is accepted as proportionate rather than pursued with a full atomic compare-and-delete primitive.
+3. **Items 6-8 from research's ranked list remain out of scope** — observability/transition-timing instrumentation, launcher-cleanup/daemon-discovery separation, and the "canonical runtime context envelope" migration direction are documented as follow-on/longer-term work, not attempted in this pass.
+4. **REQ-010's real-world race frequency remains unmeasured** — research's own open question (§12) about how often the TOCTOU race actually fires under concurrent-session storms requires the deferred observability item (research §17 item 6) to answer; this pass fixes the mechanism, not the measurement.
+<!-- /ANCHOR:phase7-limitations -->

@@ -2441,14 +2441,17 @@ async function main(): Promise<void> {
     try {
       const ingestInit = initIngestJobQueue({
         processFile: async (filePath: string, governance) => {
+          // fromScan: true keeps this queued/crash-replayed path from writing quality-loop
+          // auto-fixes back to source docs, same as the startupScan/file-watcher gate.
           await indexSingleFile(filePath, false, governance
-            ? { governance }
+            ? { governance, fromScan: true }
             : {
                 provenance: {
                   provenanceSource: 'memory_ingest_start',
                   provenanceActor: 'async-ingest',
                   tool: 'memory_ingest_start',
                 },
+                fromScan: true,
               });
         },
       });

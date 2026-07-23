@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T12:23:33Z"
+    last_updated_at: "2026-07-23T13:10:17Z"
     last_updated_by: "orchestrator"
-    recent_action: "Added Phase 5 hardening plan (REQ-007..011)"
-    next_safe_action: "Implement Phase 5 items in ranked order, then restart daemon, then measure timings (Phase 4)"
+    recent_action: "Implemented + tested Phase 5 hardening (REQ-007..011)"
+    next_safe_action: "Restart daemon, then measure timings (Phase 4)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
@@ -57,10 +57,9 @@ scan/reindex was found to write quality-loop auto-fixes (including destructive c
 tracked source docs, violating ADR-001 — (2) five daemon/startup/MCP hardening items (REQ-007..011) found by
 a 7-iteration `/deep:research` loop while closing (1), and (3) the packet's original objective, measuring and
 optimizing mk-spec-memory reindex throughput. (1) is a hard prerequisite for (3), since Step 0 of the perf
-work needs a scan that doesn't mutate the very files it is timing. (2) is planned but not yet implemented in
-this pass — it hardens the same daemon/MCP surface (2) touched, ahead of (3)'s measurement work so the
-measurement runs against a hardened daemon. (1) is executed and verified; (2) is planned (this pass); (3) has
-not started.
+work needs a scan that doesn't mutate the very files it is timing. (2) hardens the same daemon/MCP surface
+(1) touched, ahead of (3)'s measurement work so the measurement runs against a hardened daemon. (1) is
+executed and verified; (2) is implemented, tested, and built (this pass); (3) has not started.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -87,11 +86,11 @@ not started.
 - [x] Scope-analysis tool confirms flat Level 2 plan, not phase decomposition (`recommend-level.sh`: phase_score 10 < 25 threshold, recommended_level 2 < 3 threshold)
 
 ### Definition of Done (for Phase 5 hardening)
-- [ ] All 5 items implemented per their REQ
-- [ ] Regression test per item (source-immutability for REQ-008; probe-collapse behavior for REQ-007; lease-fencing interleaving for REQ-010; socket-path length assertion for REQ-011; background-job default for REQ-009)
-- [ ] No regressions in existing launcher/MCP/scan test suites
-- [ ] Build passes, dist reflects all 5 fixes
-- [ ] Daemon restarted + health verified
+- [x] All 5 items implemented per their REQ
+- [x] Regression test per item (source-immutability for REQ-008; probe-collapse behavior for REQ-007; lease-fencing interleaving for REQ-010; socket-path length assertion for REQ-011; background-job default for REQ-009)
+- [x] No regressions in existing launcher/MCP/scan test suites (521 passed, 0 new failures)
+- [x] Build passes, dist reflects all 5 fixes (`npm run build` exit 0; verified `fromScan: true`/background-default/schema-description text present in dist)
+- [ ] Daemon restarted + health verified (held alongside the REQ-006 restart — see §7 Rollback / Dependencies)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -158,17 +157,17 @@ side-effecting option (`persistQualityLoopContent`), rather than introducing a n
 - [ ] Optimize only the measured-dominant stage, behind a feature flag
 - [ ] Measure throughput improvement + zero recall regression
 
-### Phase 5: Daemon/Startup/MCP Hardening (planned, not started)
+### Phase 5: Daemon/Startup/MCP Hardening (implemented)
 
-Ranked order from `research/research.md` §17 (highest impact/lowest cost first); recommended execution order is 007 → 008 → 009 → 010 → 011, since 007 directly explains the observed MCP failure and has no dependency on the others.
+Ranked order from `research/research.md` §17 (highest impact/lowest cost first); executed 007 → 008 → 009 → 010 → 011, since 007 directly explains the observed MCP failure and has no dependency on the others.
 
-- [ ] REQ-007: Collapse duplicate MCP startup probes; bound the synchronous `ps` call
-- [ ] REQ-008: Make async ingest non-persisting (close the residual write-back gap)
-- [ ] REQ-009: Default manual/maintenance scans to the `background: true` job path
-- [ ] REQ-010: Fence the owner-lease stale-reclamation/heartbeat race with a leaseId/generation token
-- [ ] REQ-011: Ship the canonical short model-socket default
-- [ ] Regression test per item; no regressions in existing launcher/MCP/scan suites
-- [ ] Build + daemon restart + health verification
+- [x] REQ-007: Collapse duplicate MCP startup probes; bound the synchronous `ps` call
+- [x] REQ-008: Make async ingest non-persisting (close the residual write-back gap)
+- [x] REQ-009: Default manual/maintenance scans to the `background: true` job path (at the MCP tool dispatch boundary — see tasks.md T039 deviation)
+- [x] REQ-010: Fence the owner-lease stale-reclamation/heartbeat race with a leaseId/generation token
+- [x] REQ-011: Ship the canonical short model-socket default (plus two additional call sites found during implementation — see tasks.md T046 deviation)
+- [x] Regression test per item; no regressions in existing launcher/MCP/scan suites (521 passed across 17 files)
+- [x] Build (`npm run build` in `mcp-server/` exits 0); daemon restart + health verification still held pending operator input alongside the REQ-006 restart (see §7 Rollback / Dependencies)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -250,15 +249,15 @@ Required inventories:
 Phase 1 (Root-Cause) ──> Phase 2 (Fix + Tests) ──> Phase 3 (Build + Docs) ──> Phase 5 (Hardening) ──> Phase 4 (Perf Measurement)
 ```
 
-Phase 5 is documented as "Phase 4" in the doc's original numbering order (perf measurement was scoped first) but is recommended to execute *before* Phase 4 in practice, since Phase 4's Step 0 measurement should run against a hardened daemon rather than one with a known startup race (REQ-007) and a known operability hang (REQ-009).
+Phase 5 is documented as "Phase 4" in the doc's original numbering order (perf measurement was scoped first) but was executed *before* Phase 4, since Phase 4's Step 0 measurement should run against a hardened daemon rather than one with a known startup race (REQ-007) and a known operability hang (REQ-009).
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Root-Cause | None | Fix + Tests |
 | Fix + Tests | Root-Cause | Build + Docs |
 | Build + Docs | Fix + Tests | Hardening, Perf Measurement |
-| Hardening (Phase 5) | Build + Docs | None directly; recommended before Perf Measurement |
-| Perf Measurement | Build + Docs (+ daemon restart); recommended after Hardening | None |
+| Hardening (Phase 5) | Build + Docs | None directly; executed before Perf Measurement |
+| Perf Measurement | Build + Docs (+ daemon restart); recommended after Hardening (done) | None |
 <!-- /ANCHOR:l2-phase-deps -->
 
 ---

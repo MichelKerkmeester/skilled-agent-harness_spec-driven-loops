@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T12:23:33Z"
+    last_updated_at: "2026-07-23T13:10:17Z"
     last_updated_by: "orchestrator"
-    recent_action: "Added CHK-070..079 for Phase 7 hardening (planned)"
-    next_safe_action: "Implement Phase 7 tasks, then check off CHK-070..079 with evidence"
+    recent_action: "Verified CHK-070..078 with evidence; Phase 7 hardening complete"
+    next_safe_action: "Restart daemon, then measure timings (perf objective)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
@@ -169,28 +169,28 @@ _memory:
 ---
 
 <!-- ANCHOR:hardening -->
-## Daemon/Startup/MCP Hardening (REQ-007..011) — PLANNED, NOT STARTED
+## Daemon/Startup/MCP Hardening (REQ-007..011) — IMPLEMENTED
 
 Source: 7-iteration `/deep:research` loop, `research/research.md` §17 ranked items 1-5.
 
-- [ ] CHK-070 [P0] REQ-007: warm-owner MCP startup no longer runs two independent daemon-readiness probes
-  - **Evidence needed**: manual daemon-restart timing before/after; confirm reattach path (non-warm-owner) is unaffected.
-- [ ] CHK-071 [P1] REQ-007: `classifyOwnerLease()`'s synchronous `ps` call is timeout-bounded
-  - **Evidence needed**: code review + a test forcing a slow/hung `ps` to confirm it no longer blocks the event loop unboundedly.
-- [ ] CHK-072 [P0] REQ-008: async ingest (`memory_ingest_start`) cannot write quality-loop auto-fixes back to source files
-  - **Evidence needed**: a regression test structurally identical to the REQ-006 scan-origin test, run against the ingest path (crash-replay/queued-job case included, since `job-queue.ts:224-249,612-648,739-750` shows incomplete jobs replay from scratch after restart).
-- [ ] CHK-073 [P0] REQ-009: manual/maintenance `memory_index_scan` calls default to `background: true`
-  - **Evidence needed**: confirm the process-lifetime sidecar writer lock (`db-instance-lock.ts`) is unchanged; a background-mode scan returns a job ID immediately and reports status/progress on poll.
-- [ ] CHK-074 [P0] REQ-010: owner-lease stale removal and heartbeat replacement are fenced against the confirmed TOCTOU race
-  - **Evidence needed**: a test reproducing the exact interleaving from `research/research.md` §7.1 (two launchers, one delayed, both classify stale) proving the delayed launcher can no longer unlink a successor's fresh lease.
-- [ ] CHK-075 [P1] REQ-010: fencing does not change the SQLite sidecar lock's role as the final integrity boundary
-  - **Evidence needed**: confirm `db-instance-lock.ts` is untouched by this change — REQ-010 is availability hardening, not a new locking mechanism.
-- [ ] CHK-076 [P0] REQ-011: the empty-environment model-socket fallback uses a canonical short constant, not a `dbDir`-derived path
-  - **Evidence needed**: `tests/embedders/launcher-model-server-cross-launcher.vitest.ts` asserts the exact default path and its byte length is under macOS's 104-byte `sun_path` limit.
-- [ ] CHK-077 [P1] REQ-011: `SPECKIT_IPC_SOCKET_DIR` is not repurposed for the model-socket directory
-  - **Evidence needed**: code review confirming the advisor daemon's IPC directory and the model-server socket directory remain two distinct authorities.
-- [ ] CHK-078 [P1] No regressions in existing launcher/MCP/scan test suites after all 5 items land
-  - **Evidence needed**: full re-run of the launcher, cross-launcher, and memory-index test suites.
+- [x] CHK-070 [P0] REQ-007: warm-owner MCP startup no longer runs two independent daemon-readiness probes
+  - **Evidence**: `maybeBridgeLeaseHolder()` forwards its own successful probe as `initialReadyResult` (`launcher-ipc-bridge.cjs`); `bridgeStdioThroughSessionProxy` passes it through (`mk-spec-memory-launcher.cjs`); `createSessionProxy().start()` skips its own `waitForDaemonReady()` only when `initialReadyResult.status === 'alive'` (`launcher-session-proxy.cjs`). `npx vitest run tests/launcher-session-proxy.vitest.ts tests/launcher-ipc-bridge-probe.vitest.ts` → 36 passed, including 3 new tests proving the skip, the reattach-path non-regression, and rejection of a non-alive injected result.
+- [x] CHK-071 [P1] REQ-007: `classifyOwnerLease()`'s synchronous `ps` call is timeout-bounded
+  - **Evidence**: `spawnSync('ps', ..., { timeout: parsePositiveInteger(SPECKIT_PS_PROBE_TIMEOUT_MS, 2000) })` (`mk-spec-memory-launcher.cjs`); existing launcher-lease suites re-verified with no regression (`tests/launcher-lease.vitest.ts` 58 passed).
+- [x] CHK-072 [P0] REQ-008: async ingest (`memory_ingest_start`) cannot write quality-loop auto-fixes back to source files
+  - **Evidence**: `processFile` callback (`context-server.ts`) now passes `fromScan: true` on both branches; `tests/context-server.vitest.ts` T47c-2 (new) asserts this at the source level — `npx vitest run tests/context-server.vitest.ts -t "T47c"` → 2 passed.
+- [x] CHK-073 [P0] REQ-009: manual/maintenance `memory_index_scan` calls default to `background: true`
+  - **Evidence**: fixed at the MCP tool dispatch boundary (`tools/lifecycle-tools.ts`), not `memory-index.ts` internals — `db-instance-lock.ts` untouched (confirmed by diff scope). `tests/lifecycle-tools-scan-default.vitest.ts` (new, 4 tests) proves the default applies when omitted and is overridable both ways. Also empirically reproduced twice this session: a live `memory_index_scan` call hung 2+ minutes in the foreground, then the same call's background task later timed out and failed after exactly 1800s (30 minutes) with no response — direct, real-world confirmation of the exact bug this item fixes.
+- [x] CHK-074 [P0] REQ-010: owner-lease stale removal and heartbeat replacement are fenced against the confirmed TOCTOU race
+  - **Evidence**: `leaseId` (crypto.randomUUID) fencing token added to `buildOwnerLease`/`acquireOwnerLeaseFile`/`refreshOwnerLeaseFile`/`clearOwnerLeaseFile`. `tests/launcher-spec-memory-lifecycle.vitest.ts` (new test) reproduces the exact research §7.1 interleaving (mocks `fs.readFileSync` to install a racing launcher's fresh lease as a side effect of this process's own classification read) and proves the delayed launcher's unlink is refused, holder reported as the racing lease — 8/8 passed.
+- [x] CHK-075 [P1] REQ-010: fencing does not change the SQLite sidecar lock's role as the final integrity boundary
+  - **Evidence**: `db-instance-lock.ts` not touched by this change (confirmed by diff scope) — REQ-010 adds a leaseId comparison only, no new locking mechanism.
+- [x] CHK-076 [P0] REQ-011: the empty-environment model-socket fallback uses a canonical short constant, not a `dbDir`-derived path
+  - **Evidence**: `DEFAULT_MODEL_SERVER_SOCKET_DIR`/`DEFAULT_MODEL_SERVER_SOCKET_PATH` exported from `model-server-supervision.cjs`; `tests/embedders/launcher-model-server-cross-launcher.vitest.ts` new test asserts the exact default (`/tmp/mk-hf-embed/hf-embed.sock`) and confirms `Buffer.byteLength(...) <= 103`. **Scope correction found during implementation**: the constant alone was unreachable through the real bug path — both `createModelServerControl`'s own internal `dbDir` default and `mk-skill-advisor-launcher.cjs`'s `resolveModelServerSocketPath` wrapper unconditionally reconstructed the long path, masking the fix. Both fixed in the same pass (not originally in tasks.md T045-T047); a new cross-check test confirms the skill-advisor launcher also now converges on the canonical default under an empty child env, matching the plugin bridge's actual filtered-env reachability path from research §5.
+- [x] CHK-077 [P1] REQ-011: `SPECKIT_IPC_SOCKET_DIR` is not repurposed for the model-socket directory
+  - **Evidence**: code review confirms `resolveModelServerSocketPath` treats `SPECKIT_IPC_SOCKET_DIR` and the new canonical default as mutually exclusive branches (env var still takes precedence when set); no code path assigns one to the other.
+- [x] CHK-078 [P1] No regressions in existing launcher/MCP/scan test suites after all 5 items land
+  - **Evidence**: combined run across all 17 touched/new test files — `521 passed | 36 skipped`, 0 failures, 0 new. `npm run build` in `mcp-server/` exits 0.
 - [ ] CHK-079 [P2] Items 6-8 from `research/research.md` §17 (observability, launcher/discovery separation, canonical context envelope) explicitly deferred, not silently dropped
   - **Evidence**: documented in spec.md scope addendum and plan.md overview as follow-on/longer-term, out of scope for this pass.
 <!-- /ANCHOR:hardening -->
@@ -204,12 +204,12 @@ Source: 7-iteration `/deep:research` loop, `research/research.md` §17 ranked it
 |----------|-------|----------|
 | P0 Items (fix) | 14 | 12/14 |
 | P0 Items (perf objective) | 5 | 0/5 |
-| P0 Items (hardening, REQ-007..011) | 5 | 0/5 |
+| P0 Items (hardening, REQ-007..011) | 5 | 5/5 |
 | P1 Items (fix) | 14 | 11/14 |
-| P1 Items (hardening) | 3 | 0/3 |
-| P2 Items | 3 | 0/3 |
+| P1 Items (hardening) | 3 | 3/3 |
+| P2 Items | 3 | 2/3 |
 
 **Verification Date**: 2026-07-23
 
-**Overall status**: the data-integrity fix is coded, tested, and built, including a P0 gap (daemon startup scan + file watcher) found by an independent GPT-5.6-Sol-Fast review and closed in the same pass. Daemon restart is intentionally held pending operator input (concurrent daemon processes — see handover.md). Five daemon/startup/MCP hardening items (REQ-007..011) are planned with concrete file:line-scoped designs from a completed 7-iteration `/deep:research` loop, but not yet implemented (Phase 7 tasks). The packet's original performance-measurement objective has not started.
+**Overall status**: the data-integrity fix is coded, tested, and built, including a P0 gap (daemon startup scan + file watcher) found by an independent GPT-5.6-Sol-Fast review and closed in the same pass. Daemon restart is intentionally held pending operator input (concurrent daemon processes — see handover.md). Five daemon/startup/MCP hardening items (REQ-007..011) are implemented, tested (521 passed across 17 files, 0 regressions), and built — including two scope corrections found during implementation (REQ-009's actual fix point was the MCP tool dispatch boundary, not `memory-index.ts`; REQ-011 needed two additional call sites beyond the original plan to actually reach the canonical default). The packet's original performance-measurement objective has not started.
 <!-- /ANCHOR:summary -->

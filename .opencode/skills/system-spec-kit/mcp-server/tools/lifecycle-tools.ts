@@ -60,7 +60,16 @@ export const TOOL_NAMES = new Set([
 /** Dispatch a tool call. Returns null if tool name not handled. */
 export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
   switch (name) {
-    case 'memory_index_scan':          return handleMemoryIndexScan(parseArgs<ScanArgs>(validateToolArgs('memory_index_scan', args)));
+    case 'memory_index_scan': {
+      const scanArgs = parseArgs<ScanArgs>(validateToolArgs('memory_index_scan', args));
+      // Interactive/manual MCP calls default to the background job path so an
+      // unexpectedly long scan surfaces progress via memory_index_scan_status
+      // instead of blocking the caller with no output; pass background: false
+      // explicitly to force the old synchronous path. Internal callers that need
+      // synchronous completion (CLI reindex, boot-time drift repair) call
+      // handleMemoryIndexScan directly and bypass this default.
+      return handleMemoryIndexScan(scanArgs.background === undefined ? { ...scanArgs, background: true } : scanArgs);
+    }
     case 'memory_index_scan_status':   return handleMemoryIndexScanStatus(parseArgs<IndexScanStatusArgs>(validateToolArgs('memory_index_scan_status', args)));
     case 'memory_index_scan_cancel':   return handleMemoryIndexScanCancel(parseArgs<IndexScanCancelArgs>(validateToolArgs('memory_index_scan_cancel', args)));
     case 'task_preflight':             return handleTaskPreflight(parseArgs<PreflightArgs>(validateToolArgs('task_preflight', args)));

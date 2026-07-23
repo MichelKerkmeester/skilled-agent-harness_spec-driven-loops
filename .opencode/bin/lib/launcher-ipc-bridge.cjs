@@ -478,10 +478,15 @@ async function maybeBridgeLeaseHolder(options) {
   // Await so an injected reconnecting bridge (whose start() resolves after the first
   // attach) is fully wired before returning. The raw bridge returns a socket, not a
   // promise, so Promise.resolve keeps the original fire-and-forget timing for it.
+  // Forward the deep probe that just confirmed liveness above so a reconnecting bridge
+  // (session proxy) does not pay a second, redundant daemon-readiness round-trip for the
+  // same socket on this warm-owner path; reattach paths that never called this function
+  // still run their own probe as before.
   await Promise.resolve(bridgeToSocket(socketPath, {
     onError: () => {
       writeLeaseHeld(' (bridge-refused)');
     },
+    initialReadyResult: probe,
   }));
   return { action: 'bridge', socketPath };
 }

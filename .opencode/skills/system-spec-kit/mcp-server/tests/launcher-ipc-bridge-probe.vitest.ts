@@ -136,6 +136,23 @@ describe('launcher IPC bridge liveness probe', () => {
     expect(bridge).toHaveBeenCalledTimes(1);
   });
 
+  it('forwards the confirmed-alive probe result to the bridge so it can skip a redundant re-probe (REQ-007)', async () => {
+    process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
+    const bridge = vi.fn();
+    await maybeBridgeLeaseHolder({
+      serviceName: 'mk-spec-memory',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
+      loggerPrefix: 'test-launcher',
+      connect: createAliveConnect(),
+      bridge,
+      probeTimeoutMs: 100,
+    });
+
+    expect(bridge).toHaveBeenCalledTimes(1);
+    const [, bridgeOptions] = bridge.mock.calls[0] as [string, { initialReadyResult?: { status?: string } }];
+    expect(bridgeOptions.initialReadyResult).toMatchObject({ status: 'alive' });
+  });
+
   it('awaits an async bridge before resolving the bridge decision', async () => {
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
     const order: string[] = [];

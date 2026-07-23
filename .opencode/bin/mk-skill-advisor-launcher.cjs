@@ -941,10 +941,13 @@ function requireModelServerSupervision() {
 }
 
 function resolveModelServerSocketPath(env = process.env, options = {}) {
-  return requireModelServerSupervision().resolveModelServerSocketPath(env, {
-    ...options,
-    dbDir: options.dbDir || (() => systemSpecKitDbDir),
-  });
+  // No unconditional dbDir default here: when a caller doesn't supply one AND
+  // neither HF_EMBED_SERVER_URL nor SPECKIT_IPC_SOCKET_DIR are set in env (the
+  // exact condition reachable through the plugin bridge's filtered child env),
+  // fall through to mss's own canonical short default instead of reconstructing
+  // the long system-spec-kit database path, which overflows macOS's sun_path
+  // limit. An explicit options.dbDir is still honored when a caller provides one.
+  return requireModelServerSupervision().resolveModelServerSocketPath(env, options);
 }
 
 function sharedModelServerPidPath(socketPath = resolveModelServerSocketPath()) {
@@ -1471,6 +1474,7 @@ module.exports = {
   ownerLeasePath,
   readOwnerLeaseFile,
   readProcessExecutableBasename,
+  resolveModelServerSocketPath,
   reapOwnerBeforeRespawn,
   removeStaleBootstrapLock,
   startOwnerLeaseHeartbeat,

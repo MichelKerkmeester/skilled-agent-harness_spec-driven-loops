@@ -475,6 +475,79 @@ describe('launcher session proxy frame engine', () => {
     proxy.stop();
   });
 
+  describe('initialReadyResult (REQ-007 probe collapse)', () => {
+    it('skips its own daemon-readiness probe when the caller already confirmed liveness', async () => {
+      const input = new FakeInput();
+      const output = new FakeOutput();
+      const sockets: FakeSocket[] = [];
+      let probeCalls = 0;
+      const proxy = createSessionProxy({
+        socketPath: 'tcp://127.0.0.1:65535',
+        stdin: input,
+        stdout: output,
+        probe: () => {
+          probeCalls += 1;
+          return Promise.resolve({ status: 'alive', reason: 'should-not-be-called' });
+        },
+        connect: createConnectedSocket(sockets),
+        log: () => undefined,
+        initialReadyResult: { status: 'alive', reason: 'warm-owner-bridge-already-probed' },
+      });
+
+      await proxy.start();
+
+      expect(probeCalls).toBe(0);
+      proxy.stop();
+    });
+
+    it('still runs its own probe when no initialReadyResult is provided (reattach/cold-start path unaffected)', async () => {
+      const input = new FakeInput();
+      const output = new FakeOutput();
+      const sockets: FakeSocket[] = [];
+      let probeCalls = 0;
+      const proxy = createSessionProxy({
+        socketPath: 'tcp://127.0.0.1:65535',
+        stdin: input,
+        stdout: output,
+        probe: () => {
+          probeCalls += 1;
+          return Promise.resolve({ status: 'alive', reason: 'test' });
+        },
+        connect: createConnectedSocket(sockets),
+        log: () => undefined,
+      });
+
+      await proxy.start();
+
+      expect(probeCalls).toBe(1);
+      proxy.stop();
+    });
+
+    it('ignores a non-alive initialReadyResult and falls back to its own probe', async () => {
+      const input = new FakeInput();
+      const output = new FakeOutput();
+      const sockets: FakeSocket[] = [];
+      let probeCalls = 0;
+      const proxy = createSessionProxy({
+        socketPath: 'tcp://127.0.0.1:65535',
+        stdin: input,
+        stdout: output,
+        probe: () => {
+          probeCalls += 1;
+          return Promise.resolve({ status: 'alive', reason: 'test' });
+        },
+        connect: createConnectedSocket(sockets),
+        log: () => undefined,
+        initialReadyResult: { status: 'dead', reason: 'stale-from-caller' },
+      });
+
+      await proxy.start();
+
+      expect(probeCalls).toBe(1);
+      proxy.stop();
+    });
+  });
+
   describe('resolveColdStartAttempts (cold-start bound)', () => {
     const savedEnv = process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS;
     afterEach(() => {

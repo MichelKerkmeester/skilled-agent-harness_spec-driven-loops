@@ -58,9 +58,9 @@
       "dist/handlers/memory-save.js",
       "dist/context-server.js",
       "research/research.md",
-      ".claude/mcp.json",
-      "shared/embeddings/adapters/ollama.ts",
-      "lib/search/tfidf-summarizer.ts"
+      "tools/lifecycle-tools.ts",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp-server/tools/lifecycle-tools.ts"
     ],
     "entities": [
       {
@@ -160,21 +160,15 @@
         "source": "derived"
       },
       {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
+        "name": "lifecycle-tools.ts",
+        "kind": "code",
+        "path": "tools/lifecycle-tools.ts",
         "source": "derived"
       },
       {
-        "name": "ollama.ts",
-        "kind": "code",
-        "path": "shared/embeddings/adapters/ollama.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tfidf-summarizer.ts",
-        "kind": "code",
-        "path": "lib/search/tfidf-summarizer.ts",
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
         "source": "derived"
       },
       {
@@ -190,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "Planned Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +194,23 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promise.all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
     "created_at": "2026-07-22T14:55:36.697Z",
-    "last_save_at": "2026-07-23T12:24:44.333Z",
+    "last_save_at": "2026-07-23T13:12:22.706Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:4e3d30843d66f568093cdadc4aee6d4b5db1a1bb48cd6688970f7bd39154a4f5",
+    "source_fingerprint": "sha256:931c10ecc24c9f29ce02b01c2b93607cf40554714944d094f532683f67430ed2",
     "source_doc_hashes": {
-      "spec.md": "362baf26b6a08dc1b944643c06f987644d91623e850c19855237ce5f0996ae74",
-      "plan.md": "a56cf98d3993df0876c9f183cc1be34a5ff29662957009463131bc036eb31699",
-      "tasks.md": "9c6822ff6c35a0236be103f9713c403bc9cdc7b27855e3089bd06b3041534d6b",
-      "checklist.md": "c945067085a712745a31ad3fb814ee3965d627dfa8829991a0154f689e647038",
-      "implementation-summary.md": "f4de5347eecc505bce83187acdeb8f7f12d2e50748ceb878b7fdbd6b51de3361",
+      "spec.md": "e40310f22ca60b6b7a905592d60fcfb8cf49b8daf768d0b4e437015521504717",
+      "plan.md": "8b7d03186f418bd9a6e564d059b2955cffff33a22de94e28534017c61d890a3f",
+      "tasks.md": "48667c7ceec9b8ea0aeff080fcb7d0f26a885b06128c379e3c53c61d6695d666",
+      "checklist.md": "9ebaf865513133144665a857d30efd895a5e25a8729a4216ed45ec733f1b6db8",
+      "implementation-summary.md": "06a1bf2e95a24bcfd02d2e77971bcc311384a07756b85146ad4442d1b7619331",
       "research/research.md": "ffc469cae6ab7d0039a567437ee44bf9258ebf2c7a9b2dbfdac423c6465d2951",
       "handover.md": "035f6e8d3dd4f69208e5c564d625c97b755b2b6a6e2cd490cce1c7689b0ae4b5"
     },

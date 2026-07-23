@@ -13,6 +13,7 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
+const crypto = require('crypto');
 const { spawn, spawnSync } = require('child_process');
 const mss = require('./lib/model-server-supervision.cjs');
 const { createSessionProxy } = require('./lib/launcher-session-proxy.cjs');
@@ -108,6 +109,10 @@ const now = () => new Date().toISOString();
 const BOOTSTRAP_LOCK_STALE_MS = 300000;
 let childProcess = null;
 let ownerLeasePid = null;
+// Fencing token for the owner lease this process currently holds (set alongside
+// ownerLeasePid). Lets refresh/clear verify they are acting on the exact lease
+// instance they acquired, not merely one that happens to share the same PID.
+let ownerLeaseId = null;
 let leaseStartedAt = null;
 let launcherShutdownInProgress = false;
 let rssBreachSelfExitInProgress = false;
@@ -322,6 +327,7 @@ function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
     stdin: options.stdin ?? process.stdin,
     stdout: options.stdout ?? process.stdout,
     log,
+    initialReadyResult: options.initialReadyResult,
   });
   return sessionProxy.start();
 }
@@ -448,6 +454,10 @@ function writeOwnerLeaseFileExclusive(lease) {
 function buildOwnerLease(ownerPid = process.pid) {
   return {
     ownerPid,
+    // Unique per lease instance (even repeated leases for the same ownerPid get a fresh
+    // id) so acquire/refresh/clear can fence on the exact lease they last observed instead
+    // of ownerPid alone, which a delayed racer could otherwise mistake for its own stale read.
+    leaseId: crypto.randomUUID(),
     ppid: process.ppid,
     executablePath: process.execPath,
     startedAtIso: new Date().toISOString(),
@@ -468,11 +478,14 @@ function readParentPid(pid) {
       return null;
     }
   }
+  // Bounded so a hung/slow `ps` on a loaded machine cannot block this launcher's event loop
+  // indefinitely before the daemon-readiness probe even starts.
   const result = spawnSync('ps', ['-o', 'ppid=', '-p', String(pid)], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'ignore'],
+    timeout: parsePositiveInteger(process.env.SPECKIT_PS_PROBE_TIMEOUT_MS, 2000),
   });
-  if (result.status !== 0 || !result.stdout) return null;
+  if (result.error || result.status !== 0 || !result.stdout) return null;
   const parsed = Number.parseInt(result.stdout.trim(), 10);
   return Number.isInteger(parsed) ? parsed : null;
 }
@@ -514,6 +527,19 @@ function acquireOwnerLeaseFile() {
   // only one racer can win: the loser's exclusive create hits EEXIST and returns
   // acquired:false instead of last-writer-wins overwriting the winner's lease.
   if (existing) {
+    // Fence the unlink on the exact lease instance just classified stale: re-read
+    // immediately before removing so a delayed unlink cannot remove a DIFFERENT
+    // (fresh) lease a racing launcher already installed in the interim. Without
+    // this, the classification read and the unlink are two separate points in
+    // time an interleaved racer can straddle.
+    const immediatelyBefore = readOwnerLeaseFile(currentOwnerLeasePath);
+    if (immediatelyBefore && immediatelyBefore.leaseId !== existing.leaseId) {
+      return {
+        acquired: false,
+        holder: immediatelyBefore,
+        classification: classifyOwnerLease(immediatelyBefore),
+      };
+    }
     try {
       fs.unlinkSync(currentOwnerLeasePath);
     } catch (error) {
@@ -529,12 +555,17 @@ function acquireOwnerLeaseFile() {
     };
   }
   ownerLeasePid = process.pid;
+  ownerLeaseId = lease.leaseId;
   return { acquired: true, lease, reclaimed: existing };
 }
 
 function refreshOwnerLeaseFile(ownerPid, patch = {}) {
   const lease = readOwnerLeaseFile();
-  if (!lease || lease.ownerPid !== ownerPid) return false;
+  // Fence on this process's own leaseId, not just ownerPid: a stale writer whose
+  // ownerPid happens to still read back (e.g. it lost and re-won a later cycle
+  // under the same PID) must not overwrite a successor that has since taken over
+  // the lease under a fresh leaseId.
+  if (!lease || lease.ownerPid !== ownerPid || lease.leaseId !== ownerLeaseId) return false;
   const nextOwnerPid = patch.ownerPid ?? ownerPid;
   writeOwnerLeaseFile({
     ...lease,
@@ -542,7 +573,7 @@ function refreshOwnerLeaseFile(ownerPid, patch = {}) {
     lastHeartbeatIso: new Date().toISOString(),
   });
   const reread = readOwnerLeaseFile();
-  if (!reread || reread.ownerPid !== nextOwnerPid) return false;
+  if (!reread || reread.ownerPid !== nextOwnerPid || reread.leaseId !== lease.leaseId) return false;
   ownerLeasePid = nextOwnerPid;
   return true;
 }
@@ -581,7 +612,7 @@ function clearOwnerLeaseFile() {
   if (!Number.isInteger(ownerLeasePid)) return;
   try {
     const lease = readOwnerLeaseFile();
-    if (lease && lease.ownerPid === ownerLeasePid
+    if (lease && lease.ownerPid === ownerLeasePid && lease.leaseId === ownerLeaseId
         && readOwnerLeaseFile()?.ownerPid === ownerLeasePid) {
       fs.unlinkSync(ownerLeasePath());
     }
@@ -590,6 +621,7 @@ function clearOwnerLeaseFile() {
   } finally {
     clearOwnerLeaseHeartbeat();
     ownerLeasePid = null;
+    ownerLeaseId = null;
   }
 }
 
@@ -912,6 +944,7 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
       return { action: 'report', reason: 'respawn-lock-held', socketPath: decision.socketPath };
     }
     ownerLeasePid = process.pid;
+    ownerLeaseId = ownerLease.leaseId;
 
     const reapResult = await reapLeaseChildBeforeRespawn(childPid);
     if (!reapResult.allowed) {
