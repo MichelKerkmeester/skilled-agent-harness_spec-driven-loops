@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/011-review-remediation"
     last_updated_at: "2026-07-22T20:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Landed the validator hardening (528->528 corpus, 26/26 tests)."
-    next_safe_action: "Triage the 52 P1 README-vs-code accuracy findings."
+    recent_action: "Fixed the code-README accuracy P1s (32 READMEs, four verified Sonnet agents)."
+    next_safe_action: "Reconcile the minor spec-doc count-nuances, or ff-merge."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-md-generator/references/writing-style-guide.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "packet-021-011"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -111,6 +111,6 @@ Every finding was confirmed on disk before any edit. The corruption was repaired
 
 1. **The validator hardening landed.** `is_uppercase_section` now rejects scrambled mixed-case and correctly exempts code spans, nested parentheticals, autolinks, function args, and identifier/product names; verified by a `528 -> 528` zero-regression corpus re-run and 26 table-driven cases. Only the 011 packet's own template-header/anchor conformance still needs finalization.
 2. **Three findings are routed, not fixed.** The style-catalog links, the pre-existing missing-overview, and the import-policy test failures are recorded for separate owners.
-3. **The 52 P1 README-vs-code accuracy findings are not triaged here.** They are tracked for a surface-by-surface pass.
+3. **The code-README accuracy P1s are fixed.** Four scope-locked Sonnet agents verified each cited finding against live code and corrected 32 READMEs across eight skill trees (wrong mode/consumer lists, overstated adoption, fabricated APIs, stale paths/counts, mis-assigned surfaces), rejecting the findings that no longer held. What remains is minor: the spec-doc count-nuances (008 target-vs-edited wording, 009/010 counts, checklist item tallies) and the parent packet's own template-header conformance.
 
 <!-- /ANCHOR:limitations -->
