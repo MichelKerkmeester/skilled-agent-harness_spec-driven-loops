@@ -1,0 +1,83 @@
+{
+  "topic": "Review: .opencode/specs/sk-doc/019-skill-routing-refactor",
+  "sessionId": "fanout-sol-drift-review-1784816478908-ihoaxh",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-doc/019-skill-routing-refactor",
+  "createdAt": "2026-07-23T12:00:00.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": null,
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/sk-doc/019-skill-routing-refactor",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "reviewScopeFiles": [
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/spec.md",
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md",
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md",
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/routing-config-and-advisor-reference.md",
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/spec.md",
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/spec.md",
+    ".opencode/bin/compiled-route.cjs",
+    ".opencode/bin/lib/compiled-route-manifest.cjs",
+    ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs",
+    ".opencode/bin/compiled-routing-foundation.vitest.ts",
+    ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json",
+    ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+    ".opencode/skills/mcp-tooling/leaf-manifest.json",
+    ".opencode/skills/sk-code/leaf-manifest.json",
+    ".opencode/skills/sk-design/leaf-manifest.json",
+    ".opencode/skills/sk-doc/leaf-manifest.json",
+    ".opencode/skills/sk-prompt/leaf-manifest.json",
+    ".opencode/skills/system-deep-loop/leaf-manifest.json"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

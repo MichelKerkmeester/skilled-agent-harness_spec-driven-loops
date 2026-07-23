@@ -78,6 +78,12 @@
         "source": "derived"
       },
       {
+        "name": "Extend Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -88,25 +94,19 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase parent for implementing the council-synthesized unified router refactor: one content-addressed compiled policy, one closed decision algebra, one shared recovery budget, destination-local prepare/verify/commit, calibrated negotiation (Idea 5, fully integrated — not deferred), and an optional offline correction overlay. Nine top-level phases, two of them multi-phased (calibration, parent-hub rollout), each gated on route-gold and reversible, activated one skill at a time in the order mcp-code-mode → sk-code → system-deep-loop → mcp-tooling. The shared scorer is never touched.",
     "created_at": "2026-07-18T13:13:21.286Z",
-    "last_save_at": "2026-07-23T12:31:27.634Z",
+    "last_save_at": "2026-07-23T15:09:40.456Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:60f8a28c03f3a7bc4fa34f967fd17ee8a0650ee38177d589c1ad1106dcc30727",
+    "source_fingerprint": "sha256:392fbc5f69e374a42358b3332c968cbf1ab0c5b86fa3587c4e6b9ddb9857577e",
     "source_doc_hashes": {
-      "spec.md": "15b1b4a6d90a2e00cbe431b4075425d9b2031b933d34291ae4d86587ca73843f"
+      "spec.md": "0f35bcd8e6d34601040c7809cc6d43ed2e4bd9b9f57fb0192a6717e66ef8d3e6"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-22T20:24:32.023Z"

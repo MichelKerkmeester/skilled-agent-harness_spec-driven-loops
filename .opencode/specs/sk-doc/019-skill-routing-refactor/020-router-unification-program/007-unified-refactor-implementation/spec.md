@@ -38,6 +38,16 @@ Implement the unified router refactor designed by the Opus-4.8 council in the si
 | 6 | 006-parent-hub-rollout/ | Activate the compiled contract per parent hub, in blast-radius order: sk-code (006/001) → system-deep-loop (006/002) → mcp-tooling (006/003) | **Yes (3 children)** |
 | 7 | 007-learning-overlay/ | Optional/offline CorrectionOverlay: candidate → gated promotion → pointer CAS (never edits serving policy). Built last; gated on a demonstrated routing gain | — |
 | 8 | 008-fleet-cleanup/ | Retire legacy dual-read; per-skill deletion gates (incl. N=1 via the identical compiler path); retain-prior-generation window | — |
+| 9 | 009-non-hub-rollout/ | Independently-verified compiled-policy rollout for the standalone non-hub routable skills, after the parent hubs | **Yes (4 children)** |
+| 10 | 010-live-activation/ | Bind the shadow-complete compiled contract to live serving — fenced per-hub activation of `selectedPolicy` (the cutover) | — |
+| 11 | 011-runtime-engine/ | The promoted runtime resolver + engine that consumes the bound `selectedPolicy` and serves compiled routing from a stable `bin/` path, decoupled from the spec tree | — |
+| 12 | 012-cutover-hardening/ | Harden the cutover: a 10-iteration deep-review of the runtime engine, the durable no-spec-import guard, and the drift-vs-breakage status probe | — |
+| 12 | 012-default-on-decision/ | The per-hub default-on decision — make compiled routing the effective default (unset flag → compiled for eligible hubs) | — |
+| 13 | 013-create-skill-alignment/ | Let new parent hubs express a deliberate compiled state through the create-skill canon | — |
+| 14 | 014-benchmark-alignment/ | Extend Lane C to validate the compiled-serving path, not just authored routing | — |
+| 15 | 015-routing-coverage-activation-verification/ | **Sub-parent (14 children).** Make the shipped-but-inert compiled router fully informed — per-hub routing-coverage buildout + activation verification | **Yes (14 children)** |
+
+> **Numbering note:** phase `12` is shared by two sibling folders (`012-cutover-hardening`, `012-default-on-decision`) — a pre-existing prefix collision, both listed above.
 
 ## SHARED MIGRATION-GATE MODEL (applies to every phase)
 

@@ -35,7 +35,7 @@ Every phase holds two invariants: the deterministic route-gold benchmark stays g
 | 4 | 004-oob-glm-parallel-research/ | Parallel GLM-5.2-max out-of-box lineage exploring the same radical agenda concurrently, to diversify the idea space | Research |
 | 5 | 005-oob-idea-deep-dives/ | **Sub-parent (8 children).** One 5-iteration deep-dive per lateral direction surfaced by the exploration, each with a plain-language presentation | Research |
 | 6 | 006-unified-refactor-research/ | The council synthesis: the eight directions fused into one coherent unified-router design + the Opus-4.8 ai-council deliberation | Design |
-| 7 | 007-unified-refactor-implementation/ | **Sub-parent.** The phased, reversible implementation plan for the unified refactor (compiler → evaluator → execution → recovery → calibration → per-hub rollout → cleanup) | Implementation (planned) |
+| 7 | 007-unified-refactor-implementation/ | **Sub-parent (16 children, 000–015).** The phased, reversible build of the unified refactor — compiler/evaluator/execution/recovery/calibration/per-hub rollout/cleanup plus non-hub rollout, live activation, the promoted runtime engine, cutover hardening, and routing-coverage verification. The runtime cutover is live. | Implementation (in progress) |
 
 ## CURRENT vs HISTORIC CONTEXT
 
