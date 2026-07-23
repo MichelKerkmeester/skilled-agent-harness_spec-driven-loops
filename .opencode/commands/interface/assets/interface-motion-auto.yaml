@@ -1,6 +1,154 @@
+# ─────────────────────────────────────────────────────────────────
+# SK-DESIGN INTERFACE: MOTION CREATION WORKFLOW (AUTO MODE)
+# ─────────────────────────────────────────────────────────────────
+# Mode: autonomous (no user approval gates)
+# Delegates shared lifecycle/envelope/authority/proof vocabulary to
+# creation-contract.md; this file carries only the motion
+# workflow and the command-standard scaffolding.
+# ─────────────────────────────────────────────────────────────────
 role: sk-design motion creation command, autonomous execution
 purpose: Create temporal behavior for a transition
 action: Apply workflowMode=motion to $ARGUMENTS through the shared creation contract
+
+operating_mode:
+  workflow: sequential_creation_contract
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  intake: progressive
+  tracking: progressive_step_outputs
+  validation: continuous_self_validation
+  confirmation: "Only for route, identity, access, destructive action, or acceptance changes"
+  description: |
+    Runs the motion workflow end to end without step-by-step
+    approval, delegating shared lifecycle/envelope/authority/proof vocabulary to
+    creation-contract.md. Pauses only when a confirmation-required field is
+    unresolved or confidence drops below threshold.
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, record bounded assumptions" }
+    low: { range: "0-39%", action: "STOP - resolve the confirmation-required field before motion work" }
+  scoring_weights:
+    brief_clarity: 0.30
+    grounding_fit: 0.25
+    behavior_and_states: 0.25
+    proof_bar: 0.20
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present the unresolved field to the operator with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUT CONTRACT
+# ─────────────────────────────────────────────────────────────────
+input_contract:
+  required:
+  - transition
+  optional:
+  - intent
+  - interruption_reversal
+  - material
+  - constraints
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve the resolved brief and continue"
+  - label: "Review"
+    description: "Show the resolved brief and grounding record"
+  - label: "Modify"
+    description: "Adjust intent, states, or constraints before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  creation_contract_gate:
+    location: "Between step_2 and step_3"
+    purpose: "Verify the shared creation contract is loaded before route proof and motion work"
+    requirements:
+    - "creation-contract.md read (lifecycle, envelope, authority, proof vocabulary)"
+    - "route proof recorded (command, workflowMode)"
+    action_if_failed: "STOP and return to the contract-load step"
+  critical_steps:
+    step_5_progressive_brief:
+      enforcement: "MUST classify every field as resolved, auto-resolvable, or confirmation-required"
+      verification: "No confirmation-required field left unresolved before motion work"
+    step_9_run_motion_work:
+      enforcement: "MUST produce the motion design spec before any handoff"
+      verification: "Deliverable visible_blocks are populated, not placeholders"
+    step_11_proof:
+      enforcement: "MUST qualify evidence with typed levels and an explicit ceiling"
+      verification: "Evidence ledger present with an honest proof bar"
+
+gate_logic:
+  hard:
+    H0_route_proof:
+      description: "The canonical /interface:motion route + workflowMode=motion must be proven"
+      fail_action: "STOP and record the route proof"
+    H1_creation_contract:
+      description: "The shared creation contract must be loaded before motion work"
+      fail_action: "STOP and load creation-contract.md"
+    H2_required_input:
+      description: "A resolvable transition must be present"
+      fail_action: "STATUS=ASK MISSING=transition"
+    H3_acceptance_before_handoff:
+      description: "Implementation handoff only after accepted design output"
+      fail_action: "Hold handoff until acceptance"
+  soft:
+    S1_bounded_assumptions:
+      description: "Auto-resolvable fields may proceed with recorded bounded assumptions"
+      fail_action: "Proceed with rationale"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures - pause and report to the operator"
+    half_open: "Single retry before resuming"
+  on_open:
+    action: "Report failures with a summary of the unresolved brief"
+    suggest: "Resolve the blocked field or defer to a sibling route"
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute the workflow steps sequentially without approval gates"
+  decision_making: "Use the confidence framework to self-assess at each step"
+  self_validation_approach:
+    continuous: "Self-validate at each step output"
+    confidence_threshold: "Stop only if confidence < 40%"
+    error_handling: "Apply error_recovery strategies automatically"
+  uncertainty_handling: "If a confirmation-required field is unresolved, pause and report"
+  progress_tracking: "Record each step output"
+  completion_criteria: "All steps validated, deliverable produced, status contract emitted"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  proof_first: true
+  anti_default_critique: required
+  evidence_typing: "Typed evidence levels with an explicit ceiling; no-fit is a valid outcome"
+  contract_references:
+    creation_contract: ".opencode/skills/sk-design/shared/creation-contract.md"
+    context_loading_contract: ".opencode/skills/sk-design/shared/context-loading-contract.md"
+    handoff_contract: ".opencode/skills/sk-design/shared/sk-code-handoff.md"
 
 workflow:
   step_1_load_hub:
@@ -62,6 +210,47 @@ status_contract:
   missing_input: "STATUS=ASK MISSING=<input>"
   cannot_run: "STATUS=FAIL ERROR=<named-cause>"
   route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  missing_transition:
+    action: "Emit STATUS=ASK MISSING=transition and wait"
+  no_fit_grounding:
+    action: "Record 'no-fit' as a valid grounding outcome and proceed without a behavior exemplar"
+  contract_not_loaded:
+    action: "Return to the creation-contract load step before continuing"
+  acceptance_conflict:
+    action: "Request explicit amendment for conflicting accepted decisions"
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_12_prepare_handoff
+  message: "Motion design workflow complete."
+  next_steps:
+  - action: "Run /interface:design to frame or reframe direction"
+  - action: "Run /interface:foundations to revise the static system"
+  - action: "Run /interface:audit to QA the behavior"
+  - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - "Load creation-contract.md before motion work"
+  - "Prove the canonical route before producing the motion spec"
+  - "Ground one behavior-changing decision"
+  - "Run anti-default critique with one named criterion"
+  - "Qualify evidence with typed levels and an explicit ceiling"
+  NEVER:
+  - "Skip the creation contract or route proof"
+  - "Prepare handoff before design output is accepted"
+  - "Ship motion without a semantic reduced-motion equivalent"
+  - "Leave a confirmation-required field unresolved in autonomous mode"
 
 pipeline:
   stage: "behavior - specifies temporal behavior after direction or foundations and before audit or build"
