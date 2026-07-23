@@ -272,4 +272,40 @@ describe('validateDesignMd', () => {
     const result = validateDesignMd(md, makeTokens());
     expect(result.failures.some((f) => f.type === 'quickstart-phantom-color')).toBe(true);
   });
+
+  it('requires and value-checks Motion when detector evidence is present', () => {
+    const tokens = makeV3Tokens();
+    tokens.motionSystem = {
+      durationScale: [{ label: 'small', value: '150ms', frequency: 2 }],
+      primaryTimingFunction: 'ease-out',
+      timingFunctions: [{ value: 'ease-out', frequency: 2 }],
+      keyframeAnimations: [],
+      prefersReducedMotion: false,
+    };
+    const document = v3Document(tokens);
+
+    expect(validateDesignMd(document, tokens).failures).toHaveLength(0);
+    expect(validateDesignMd(document.replace('## Motion', '## Motion Removed'), tokens).failures)
+      .toEqual(expect.arrayContaining([
+        expect.objectContaining({ type: 'missing-section', value: '## Motion' }),
+      ]));
+    expect(validateDesignMd(document.replace('`150ms`', '`999ms`'), tokens).failures)
+      .toEqual(expect.arrayContaining([
+        expect.objectContaining({ type: 'motion-value-fidelity', category: 'target' }),
+      ]));
+  });
+
+  it('rejects a phrase-triggered Motion section without detector evidence', () => {
+    const tokens = makeV3Tokens();
+    tokens.motionSystem = null;
+    const document = `${v3Document(tokens)}\n## Motion\n\nMotion 150ms ease-out.\n`;
+    const result = validateDesignMd(document, tokens);
+
+    expect(result.failures).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        type: 'unexpected-motion-section',
+        category: 'provenance',
+      }),
+    ]));
+  });
 });

@@ -13,7 +13,13 @@ function tokens(overrides: Record<string, unknown> = {}): DesignTokens {
     shadowTokens: [],
     gradients: [{ value: 'linear-gradient(270deg, rgb(3,29,60), rgb(4,51,103) 15%)', location: 'card' }],
     darkMode: { supported: false, detectionMethod: 'none' },
-    motionSystem: { durationScale: [{ label: 'fast', value: '100ms', frequency: 4 }] },
+    motionSystem: {
+      durationScale: [{ label: 'small', value: '150ms', frequency: 4 }],
+      primaryTimingFunction: 'ease-out',
+      timingFunctions: [{ value: 'ease-out', frequency: 4 }],
+      keyframeAnimations: [],
+      prefersReducedMotion: true,
+    },
     a11yTokens: { focusIndicator: { captured: true, consistent: false, style: {} }, contrastPairs: [] },
     iconSystem: null,
     ...overrides,
@@ -26,6 +32,8 @@ describe('buildWritePrompt (v3 Style Reference)', () => {
     expect(p).toBe(buildWritePrompt(tokens())); // deterministic
     expect(p).toContain('## Tokens — Colors'); // pre-rendered named colour table
     expect(p).toContain('## Quick Start'); // pre-rendered Quick Start
+    expect(p).toContain('## Motion');
+    expect(p).toContain('| small | `150ms` |');
     expect(p).toContain('@theme'); // Tailwind block
     expect(p).toContain('PASTE THEM UNCHANGED');
     expect(p).toContain('FACTS'); // facts block present

@@ -257,13 +257,33 @@ export interface IconSystemInfo {
 
 // ─── Motion System Types ──────────────────────────────────────────────────────
 
-export interface MotionSystem {
-  durationScale: { label: string; value: string; frequency: number }[];
+export interface MotionDurationBand {
+  label: string;
+  value: string;
+  frequency: number;
+}
+
+export interface MotionTimingFunction {
+  value: string;
+  frequency: number;
+}
+
+export interface MotionKeyframeAnimation {
+  name: string;
+  type: string;
+  duration: string;
+  properties: string[];
+}
+
+export interface MeasuredMotionSection {
+  durationScale: MotionDurationBand[];
   primaryTimingFunction: string;
-  timingFunctions: { value: string; frequency: number }[];
-  keyframeAnimations: { name: string; type: string; duration: string; properties: string[] }[];
+  timingFunctions: MotionTimingFunction[];
+  keyframeAnimations: MotionKeyframeAnimation[];
   prefersReducedMotion: boolean;
 }
+
+export interface MotionSystem extends MeasuredMotionSection {}
 
 // ─── A11y Types ───────────────────────────────────────────────────────────────
 

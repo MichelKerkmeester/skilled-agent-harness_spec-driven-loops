@@ -8,6 +8,7 @@
 
 import * as fs from 'fs';
 import { CORPUS_BASELINE_V3 } from './corpus-baseline-v3';
+import { formatMotionV3 } from './formatters-v3';
 import {
   assertSchemaIntegrity,
   createSchemaConsumerContract,
@@ -426,6 +427,44 @@ function commentLabels(markdown: string): readonly string[] {
   return [...markdown.matchAll(/\/\*\s*([^*]+?)\s*\*\//g)].map((match) => match[1].trim());
 }
 
+function checkMotionFidelity(
+  md: string,
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema,
+): { passed: boolean; failures: RawValidationIssue[] } {
+  const section = schema.sections.find((candidate) => candidate.id === 'motion');
+  if (!section) return { passed: true, failures: [] };
+
+  const actual = markdownBlock(md, section.heading, 2);
+  const hasMotionEvidence = resolveCapabilities(tokens, schema).has(section.capability ?? 'motion');
+  if (!hasMotionEvidence) {
+    return actual === undefined
+      ? { passed: true, failures: [] }
+      : {
+        passed: false,
+        failures: [{
+          type: 'unexpected-motion-section',
+          value: section.heading,
+          message: 'Motion section is present without a measured durationScale from the motion detector',
+        }],
+      };
+  }
+  if (actual === undefined) return { passed: true, failures: [] };
+
+  const expectedDocument = formatMotionV3(tokens, schema, section);
+  const expected = markdownBlock(expectedDocument, section.heading, 2) ?? '';
+  const normalize = (value: string) => value.replace(/\r\n/g, '\n').trim();
+  if (normalize(actual) === normalize(expected)) return { passed: true, failures: [] };
+  return {
+    passed: false,
+    failures: [{
+      type: 'motion-value-fidelity',
+      value: section.heading,
+      message: 'Motion section must match the deterministic projection of measured motionSystem evidence',
+    }],
+  };
+}
+
 // The ship-ready surface must contain exactly the schema groups enabled by measured
 // capabilities. Value checks remain separate so structural and target fidelity failures
 // stay legible.
@@ -608,6 +647,10 @@ export function validateDesignMd(
   const qsFidelity = checkQuickStartFidelity(mdContent, tokens, schema);
   if (qsFidelity.passed) passed.push('quickstart-fidelity');
   rawIssues.push(...qsFidelity.failures);
+
+  const motionFidelity = checkMotionFidelity(mdContent, tokens, schema);
+  if (motionFidelity.passed) passed.push('motion-fidelity');
+  rawIssues.push(...motionFidelity.failures);
   rawIssues.push(...checkProvenance(mdContent, tokens, schema));
   rawIssues.push(...checkCorpusAdvisories(mdContent, tokens, corpusBaseline, schema));
 

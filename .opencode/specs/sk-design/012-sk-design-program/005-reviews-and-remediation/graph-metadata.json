@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "spec_folder": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "parent_id": "sk-design/012-sk-design-program",
+  "children_ids": [
+    "sk-design/012-sk-design-program/005-reviews-and-remediation/000-program-review-artifacts",
+    "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
+    "sk-design/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review",
+    "sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review",
+    "sk-design/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design reviews and remediation phase",
+      "remediation program review",
+      "post-review remediation",
+      "session shipped work review"
+    ],
+    "key_topics": [
+      "sk-design",
+      "reviews",
+      "remediation",
+      "phase",
+      "program",
+      "review",
+      "post-review",
+      "session",
+      "shipped",
+      "work",
+      "style-database",
+      "interface-command"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped style-database and interface-command work needed independent review before it could be trusted — and the findings needed remediation, not just recording",
+    "created_at": "2026-07-22T16:38:23.175Z",
+    "last_save_at": "2026-07-22T16:57:33.629Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:77be6cff529e178030323bf3933af1a56d0d2bc443c067539e58257298b0d52c",
+    "source_doc_hashes": {
+      "spec.md": "8d5ca303ef1291d9999bd0f5cb437e10293a3461fa42a2c792322fd39ee6b4a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

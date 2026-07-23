@@ -55,6 +55,18 @@ const WARM_SURFACE_PATTERN = /\b(warm|cream|beige|bone|ivory|linen|sand|tan)\b/i
 const MOTION_PATTERN = /\b(motion|animation|animated|transition|kinetic|scroll)\b/i;
 const SERIF_PATTERN = /(^|[^a-z])serif([^a-z]|$)/i;
 const SANS_SERIF_PATTERN = /sans[- ]serif/i;
+const COMPOSITION_DNA_VERSION = 1;
+const LAYOUT_AXIS_PATTERNS = Object.freeze([
+  ['asymmetric', /\basymmetr(?:y|ic)\b/i],
+  ['centered', /\bcent(?:er|red|ered)\b/i],
+  ['full-bleed', /\bfull[- ]bleed\b/i],
+  ['grid', /\bgrid\b/i],
+  ['sidebar', /\bside[- ]?bar\b/i],
+  ['split', /\bsplit\b/i],
+  ['stacked', /\bstack(?:ed)?\b/i],
+]);
+const NAVIGATION_REGION_PATTERN = /(^|-)(header|nav|navigation)(-|$)/;
+const FOOTER_REGION_PATTERN = /(^|-)footer(-|$)/;
 
 function nowIso() {
   return new Date().toISOString();
@@ -126,6 +138,65 @@ function deriveSections(designMarkdown) {
     if (match) sections.push({ name: match[1], line: index + 1 });
   }
   return sections;
+}
+
+function deriveCompositionDNA(designSystem, tokenAxes, sections) {
+  const layoutDescriptor = excerpt(designSystem.layout, 160) || null;
+  const sectionSequence = sections.map((section) => normalizeTerm(section.name)).filter(Boolean);
+  const layoutAxes = LAYOUT_AXIS_PATTERNS
+    .filter(([, pattern]) => pattern.test(layoutDescriptor ?? ''))
+    .map(([axis]) => axis);
+  const tokenEmphasis = tokenAxes.slice().sort((left, right) => (
+    right.count - left.count || compareRawStrings(left.axis, right.axis)
+  ));
+  const navigationRegions = sectionSequence.filter((region) => (
+    NAVIGATION_REGION_PATTERN.test(region)
+  ));
+  const footerRegions = sectionSequence.filter((region) => FOOTER_REGION_PATTERN.test(region));
+  const inputs = ['DESIGN.md headings'];
+  if (layoutDescriptor) inputs.push('canonical.designSystem.layout');
+  if (tokenAxes.length > 0) inputs.push('design token axes');
+  return {
+    version: COMPOSITION_DNA_VERSION,
+    evidence: {
+      source: 'indexed-style-artifacts',
+      confidence: layoutDescriptor && sectionSequence.length > 0 ? 'high' : 'partial',
+      inputs,
+    },
+    regionLayout: {
+      descriptor: layoutDescriptor,
+      regionCount: sectionSequence.length,
+      sequence: sectionSequence,
+    },
+    compositionAxes: {
+      layout: layoutAxes,
+      primaryTokenAxis: tokenEmphasis[0]?.axis ?? null,
+      tokenEmphasis,
+    },
+    navigation: {
+      shape: navigationRegions.length > 0 ? 'documented-region' : 'not-documented',
+      regions: navigationRegions,
+    },
+    footer: {
+      shape: footerRegions.length > 0 ? 'documented-region' : 'not-documented',
+      regions: footerRegions,
+    },
+  };
+}
+
+function deriveCompositionFacets(compositionDNA) {
+  const values = new Set();
+  const descriptor = normalizeTerm(compositionDNA.regionLayout.descriptor);
+  if (descriptor) values.add(`layout-${descriptor}`);
+  values.add(`regions-${compositionDNA.regionLayout.regionCount}`);
+  for (const region of compositionDNA.regionLayout.sequence) values.add(`region-${region}`);
+  for (const axis of compositionDNA.compositionAxes.layout) values.add(`axis-${axis}`);
+  if (compositionDNA.compositionAxes.primaryTokenAxis) {
+    values.add(`token-emphasis-${normalizeTerm(compositionDNA.compositionAxes.primaryTokenAxis)}`);
+  }
+  values.add(`navigation-${compositionDNA.navigation.shape}`);
+  values.add(`footer-${compositionDNA.footer.shape}`);
+  return [...values].sort(compareRawStrings);
 }
 
 function deriveCapabilities(designSystem, tokenAxes, sections, provenanceStatus) {
@@ -307,6 +378,8 @@ function parseStyle(slug, crawlRecord, artifacts) {
   const industry = designSystem.industry == null ? null : String(designSystem.industry);
   const sections = deriveSections(designMarkdown);
   const tokenAxes = deriveTokenAxes(tokens, designSystem);
+  const compositionDNA = deriveCompositionDNA(designSystem, tokenAxes, sections);
+  const compositionFacets = deriveCompositionFacets(compositionDNA);
   const provenanceStatus = canonical.source && canonical.uuid && canonical.meta?.url
     ? 'known'
     : 'missing';
@@ -371,6 +444,9 @@ function parseStyle(slug, crawlRecord, artifacts) {
     sections,
     capabilities,
     facets,
+    compositionDNA,
+    compositionDnaJson: stableJson(compositionDNA),
+    compositionFacets,
     provenance: {
       status: provenanceStatus,
       sourceUrl: canonical.source ?? crawlRecord?.url ?? null,
@@ -407,6 +483,7 @@ function replaceStyleChildren(database, styleRowid, style, timestamp) {
     'style_provenance',
     'style_artifacts',
     'style_terms',
+    'style_composition_facets',
     'style_token_axes',
     'style_sections',
     'retrieval_documents',
@@ -453,6 +530,10 @@ function replaceStyleChildren(database, styleRowid, style, timestamp) {
   );
   for (const term of style.facets) insertTerm.run(styleRowid, 'facet', term);
   for (const term of style.capabilities) insertTerm.run(styleRowid, 'capability', term);
+  const insertCompositionFacet = database.prepare(
+    'INSERT INTO style_composition_facets(style_rowid, facet) VALUES (?, ?)',
+  );
+  for (const facet of style.compositionFacets) insertCompositionFacet.run(styleRowid, facet);
   const insertAxis = database.prepare(
     'INSERT INTO style_token_axes(style_rowid, axis, token_count) VALUES (?, ?, ?)',
   );
@@ -665,7 +746,10 @@ export async function indexStyleCorpus(options) {
     const snapshotSpan = telemetry?.span('snapshot.load', RESIDENCY.NATIVE);
     const currentRows = database.prepare(`
       SELECT s.style_rowid, s.style_id, s.slug, s.crawl_status, s.aggregate_hash,
-        s.retrieval_hash, s.lifecycle_state, i.artifact_hint_hash, i.crawl_record_hash
+        s.retrieval_hash, s.composition_dna_json, s.lifecycle_state,
+        i.artifact_hint_hash, i.crawl_record_hash,
+        (SELECT COUNT(*) FROM style_composition_facets c
+          WHERE c.style_rowid = s.style_rowid) AS composition_facet_count
       FROM styles s
       LEFT JOIN style_index_state i ON i.style_rowid = s.style_rowid
     `).all();
@@ -683,6 +767,8 @@ export async function indexStyleCorpus(options) {
       const needsVerification = options.verifyAll === true
         || !current
         || current.lifecycle_state !== 'active'
+        || current.composition_dna_json === '{}'
+        || Number(current.composition_facet_count) === 0
         || current.artifact_hint_hash !== artifactHintHash
         || current.crawl_record_hash !== crawlRecordHash;
       if (needsVerification) {
@@ -730,6 +816,8 @@ export async function indexStyleCorpus(options) {
         || current.slug !== style.slug
         || current.crawl_status !== style.crawlStatus
         || current.aggregate_hash !== style.aggregateHash
+        || current.retrieval_hash !== style.retrievalHash
+        || current.composition_dna_json !== style.compositionDnaJson
         || current.crawl_record_hash !== style.crawlRecordHash
         || current.lifecycle_state !== 'active';
     });
@@ -818,9 +906,10 @@ export async function indexStyleCorpus(options) {
       const upsertStyle = database.prepare(`
         INSERT INTO styles(
           style_id, slug, lifecycle_state, crawl_status, title, thesis, theme,
-          industry, aggregate_hash, retrieval_hash, quarantine_at, tombstoned_at,
+          industry, composition_dna_json, aggregate_hash, retrieval_hash,
+          quarantine_at, tombstoned_at,
           created_at, updated_at
-        ) VALUES (?, ?, 'active', ?, ?, ?, ?, ?, ?, ?, NULL, NULL, ?, ?)
+        ) VALUES (?, ?, 'active', ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, ?, ?)
         ON CONFLICT(style_id) DO UPDATE SET
           slug = excluded.slug,
           lifecycle_state = 'active',
@@ -829,6 +918,7 @@ export async function indexStyleCorpus(options) {
           thesis = excluded.thesis,
           theme = excluded.theme,
           industry = excluded.industry,
+          composition_dna_json = excluded.composition_dna_json,
           aggregate_hash = excluded.aggregate_hash,
           retrieval_hash = excluded.retrieval_hash,
           quarantine_at = NULL,
@@ -844,6 +934,7 @@ export async function indexStyleCorpus(options) {
           style.thesis,
           style.theme,
           style.industry,
+          style.compositionDnaJson,
           style.aggregateHash,
           style.retrievalHash,
           timestamp,
@@ -1183,6 +1274,8 @@ export async function rollbackStyleDatabase(options) {
 export const indexerInternals = Object.freeze({
   computeAggregateHash,
   computeGenerationHash,
+  deriveCompositionDNA,
+  deriveCompositionFacets,
   normalizeMarkdown,
   parseStyle,
 });

@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+  "description": "The shipped style database can query text, generic facets, token axes, capabilities, and vectors, but it cannot describe or query the measured page",
+  "keywords": [
+    "shipped",
+    "style",
+    "database",
+    "query",
+    "text",
+    "generic",
+    "facets",
+    "token",
+    "axes",
+    "capabilities",
+    "vectors",
+    "cannot",
+    "describe",
+    "measured",
+    "page"
+  ],
+  "lastUpdated": "2026-07-22T19:16:28.848Z",
+  "specId": "005",
+  "folderSlug": "measured-composition-and-retrieval-facets",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "004-hallmark-design-system"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

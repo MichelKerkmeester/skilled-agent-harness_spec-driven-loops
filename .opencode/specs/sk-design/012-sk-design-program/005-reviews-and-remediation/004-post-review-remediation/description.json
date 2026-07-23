@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
+  "description": "Remediate the verified findings from the 017 GPT-5.6-SOL review: fix stale _db/_engine path references in the styles playbook, the database README,",
+  "keywords": [
+    "remediate",
+    "verified",
+    "findings",
+    "gpt-5",
+    "6-sol",
+    "review",
+    "stale",
+    "path",
+    "references",
+    "styles",
+    "playbook",
+    "database",
+    "readme"
+  ],
+  "lastUpdated": "2026-07-22T16:28:27.437Z",
+  "specId": "004",
+  "folderSlug": "post-review-remediation",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "005-reviews-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

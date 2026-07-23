@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/002-style-database/003-js-capabilities",
+  "description": "Once Phase 0 (`001-foundation`) ships its measurement plane, the 013 research identified six concrete JS-only capability opportunities the styles",
+  "keywords": [
+    "phase",
+    "001-foundation",
+    "ships",
+    "measurement",
+    "plane",
+    "research",
+    "identified",
+    "six",
+    "concrete",
+    "js-only",
+    "capability",
+    "opportunities",
+    "styles"
+  ],
+  "lastUpdated": "2026-07-22T16:28:27.503Z",
+  "specId": "003",
+  "folderSlug": "js-capabilities",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "002-style-database"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

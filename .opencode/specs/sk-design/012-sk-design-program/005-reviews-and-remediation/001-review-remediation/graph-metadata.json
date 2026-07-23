@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
+  "spec_folder": "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
+  "parent_id": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation",
+      "packet 012 findings",
+      "style database hardening"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "packet",
+      "findings",
+      "style",
+      "database",
+      "hardening",
+      "gpt-5",
+      "6-sol",
+      "deep",
+      "stabilized",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The GPT-5.6-SOL deep review over packet 012 stabilized 0 P0, 9 P1, 1 P2",
+    "created_at": "2026-07-19T13:04:50.464Z",
+    "last_save_at": "2026-07-22T16:57:29.449Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2888d0fcc3edba128650e1b6659499fc626367450cde5afdd8acf70cebd89041",
+    "source_doc_hashes": {
+      "spec.md": "1db1eccfc3d1ae8008a39b0b8a505ba910862e176fa1beff2af88dd0af5ccc4e",
+      "plan.md": "3f9463c85048b9286d2ce87a9d0c20ea2bf2f85fa220b3a8d663f52b59d17e08",
+      "tasks.md": "5387420142a31fcdf815a49229429eb3eb6f367d24a90ffc8c68c22eda9c74e5",
+      "checklist.md": "a0d0a436048007e1abd636ad8400d6896827717c091617d263a7beaacf03d012",
+      "implementation-summary.md": "5d46c472899a5de8ecdcd8ce0de9e3fc65f2ef1443351ddfd161fd14c89c42c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -159,6 +159,31 @@ describe('v3 schema single-authority contract', () => {
     ))).toBe(true);
   });
 
+  it('activates deterministic Motion output only from measured detector evidence', () => {
+    const withoutMotion = tokens({
+      components: [{ type: 'Banner', variants: [{ name: 'Motion 300ms', count: 1, style: {} }] }],
+      motionSystem: null,
+    });
+    const withMotion = tokens({
+      motionSystem: {
+        durationScale: [{ label: 'small', value: '150ms', frequency: 2 }],
+        primaryTimingFunction: 'ease-out',
+        timingFunctions: [{ value: 'ease-out', frequency: 2 }],
+        keyframeAnimations: [],
+        prefersReducedMotion: false,
+      },
+    });
+
+    expect(resolveSchemaSections(withoutMotion).some((section) => section.id === 'motion')).toBe(false);
+    expect(formatSchemaValueSectionsV3(withoutMotion)).not.toContain('## Motion');
+    expect(buildWritePrompt(withoutMotion)).not.toContain('## Motion');
+
+    expect(resolveSchemaSections(withMotion).some((section) => section.id === 'motion')).toBe(true);
+    expect(formatSchemaValueSectionsV3(withMotion)).toContain('| small | `150ms` |');
+    expect(buildWritePrompt(withMotion)).toContain('## Motion');
+    expect(validateDesignMd(v3Document(withMotion), withMotion).failures).toHaveLength(0);
+  });
+
   it('keeps hard issue classification immutable under a supplied schema override', () => {
     const input = tokens();
     const adversarial = {

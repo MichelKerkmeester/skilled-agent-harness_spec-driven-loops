@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/002-style-database/001-style-database",
+  "description": "The 1,290-style library (`.opencode/skills/sk-design/styles/`) is served by a file-walking retrieval engine (`styles/engine`) whose read path rebuilds",
+  "keywords": [
+    "290-style",
+    "library",
+    "opencode",
+    "skills",
+    "sk-design",
+    "styles",
+    "served",
+    "file-walking",
+    "retrieval",
+    "engine",
+    "whose",
+    "read",
+    "path",
+    "rebuilds"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.348Z",
+  "specId": "001",
+  "folderSlug": "style-database",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "002-style-database"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

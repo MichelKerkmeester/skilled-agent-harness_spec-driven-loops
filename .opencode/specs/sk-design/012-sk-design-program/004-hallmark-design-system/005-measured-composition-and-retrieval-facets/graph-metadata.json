@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+  "spec_folder": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
+  "parent_id": "sk-design/012-sk-design-program/004-hallmark-design-system",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "measured composition DNA",
+      "page shape retrieval facets",
+      "style composition query"
+    ],
+    "key_topics": [
+      "measured",
+      "composition",
+      "dna",
+      "page",
+      "shape",
+      "retrieval",
+      "facets",
+      "style",
+      "query",
+      "shipped",
+      "database",
+      "text"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
+      ".opencode/skills/sk-design/styles/lib/database/indexer.mjs",
+      ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "schema.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "indexer.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/lib/database/indexer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Composition",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Facets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Basis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator-owned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped style database can query text, generic facets, token axes, capabilities, and vectors, but it cannot describe or query the measured page shape already present in each style's canonical record, token axes, and `DESIGN.md` headings",
+    "created_at": "2026-07-22T19:16:29.110Z",
+    "last_save_at": "2026-07-22T19:16:29.110Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:463dab6373ee06156e237bd5ef402cc3ec4fa2db43462a7f0ea9abd2fddfd06a",
+    "source_doc_hashes": {
+      "spec.md": "3423ec6215d44c38cb1b3a4ea376c45c1807f8f31c961c89c4fd56d363f71421",
+      "plan.md": "ef73a5c930b64c28abc6523fff15bbce6f2a99a5682f45faaecc524127705170",
+      "tasks.md": "b3b55f18c338dae33bfc1081de066c3409b92af8678bcb2145e1b2f4e6bd3736",
+      "checklist.md": "de57001b233093ab2b34cdf01960cbc2bf8d59af670a8556081ef50bf08d4445",
+      "implementation-summary.md": "90c28806f7b7e3490148bb44c87fe01aef4ee8957e75d1a6adf421c9057f1324"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

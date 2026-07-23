@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes",
+  "description": "Hallmark (an external, MIT-licensed static-site design skill researched in packet",
+  "keywords": [
+    "hallmark",
+    "external",
+    "mit-licensed",
+    "static-site",
+    "design",
+    "skill",
+    "researched",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-22T17:47:16.081Z",
+  "specId": "001",
+  "folderSlug": "surgical-fixes",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "004-hallmark-design-system"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

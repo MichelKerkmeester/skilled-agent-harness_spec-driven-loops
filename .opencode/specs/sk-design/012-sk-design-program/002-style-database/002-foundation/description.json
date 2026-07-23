@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/002-style-database/002-foundation",
+  "description": "The styles database evolution roadmap (015) has no measurement plane",
+  "keywords": [
+    "styles",
+    "database",
+    "evolution",
+    "roadmap",
+    "measurement",
+    "plane"
+  ],
+  "lastUpdated": "2026-07-22T16:28:27.510Z",
+  "specId": "002",
+  "folderSlug": "foundation",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "002-style-database"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "description": "The shipped style-database and interface-command work needed independent review before it could be trusted — and the findings needed remediation, not",
+  "keywords": [
+    "shipped",
+    "style-database",
+    "interface-command",
+    "work",
+    "needed",
+    "independent",
+    "review",
+    "trusted",
+    "findings",
+    "remediation"
+  ],
+  "lastUpdated": "2026-07-22T16:33:46.502Z",
+  "specId": "005",
+  "folderSlug": "reviews-and-remediation",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

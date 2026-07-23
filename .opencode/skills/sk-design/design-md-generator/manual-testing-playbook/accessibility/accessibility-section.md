@@ -104,7 +104,7 @@ To test focus-indicator honesty, extract from a site where focus styles cannot b
 | `../../backend/scripts/cluster.ts` | Provides wcagContrast() used by the pipeline for contrast ratio computation |
 | `../../backend/scripts/types.ts` | A11yTokens type: focusIndicator, contrastPairs, minTouchTarget, minFontSize, ariaRoleStats, reducedMotionSupport, tabOrder, langAttribute, skipLinkDetected, altTextCoverage |
 | `../../SKILL.md` | §4 ALWAYS rule 7 (accessibility section required, note absence if no data) |
-| `../../references/design-md-format.md` | v3 Style Reference section specification — §12 Agent Prompt Guide (where captured a11y data and flagged problems surface) |
+| `../../references/design-md-format.md` | v3 Style Reference section specification — §13 Agent Prompt Guide (where captured a11y data and flagged problems surface) |
 
 ---
 

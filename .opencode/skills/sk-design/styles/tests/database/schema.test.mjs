@@ -48,6 +48,62 @@ test('version one index state migrates to the current schema', () => {
   }
 });
 
+test('version two style records migrate without changing existing fields', () => {
+  const database = new DatabaseSync(':memory:');
+  try {
+    database.exec(`
+      PRAGMA user_version = 2;
+      CREATE TABLE styles (
+        style_rowid INTEGER PRIMARY KEY,
+        style_id TEXT NOT NULL UNIQUE,
+        slug TEXT NOT NULL UNIQUE,
+        lifecycle_state TEXT NOT NULL DEFAULT 'active',
+        crawl_status TEXT NOT NULL,
+        title TEXT NOT NULL,
+        thesis TEXT NOT NULL,
+        theme TEXT,
+        industry TEXT,
+        aggregate_hash TEXT NOT NULL,
+        retrieval_hash TEXT NOT NULL,
+        quarantine_at TEXT,
+        tombstoned_at TEXT,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      ) STRICT;
+      INSERT INTO styles(
+        style_id, slug, lifecycle_state, crawl_status, title, thesis, theme,
+        industry, aggregate_hash, retrieval_hash, created_at, updated_at
+      ) VALUES (
+        'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'legacy-style', 'active',
+        'captured', 'Legacy Style', 'Preserved thesis', 'light', 'Editorial',
+        'sha256:aggregate', 'sha256:retrieval', '2026-01-01T00:00:00.000Z',
+        '2026-01-01T00:00:00.000Z'
+      );
+    `);
+    const before = database.prepare(`
+      SELECT style_id, slug, lifecycle_state, crawl_status, title, thesis, theme,
+        industry, aggregate_hash, retrieval_hash, created_at, updated_at
+      FROM styles
+    `).get();
+    createSchema(database);
+    const after = database.prepare(`
+      SELECT style_id, slug, lifecycle_state, crawl_status, title, thesis, theme,
+        industry, aggregate_hash, retrieval_hash, created_at, updated_at
+      FROM styles
+    `).get();
+    assert.deepEqual(after, before);
+    assert.equal(database.prepare(`
+      SELECT composition_dna_json FROM styles
+    `).get().composition_dna_json, '{}');
+    assert.equal(database.prepare(`
+      SELECT COUNT(*) AS count FROM sqlite_master
+      WHERE type = 'table' AND name = 'style_composition_facets'
+    `).get().count, 1);
+  } finally {
+    database.close();
+  }
+});
+
 test('schema rejects duplicate slugs and inconsistent tombstones', async (context) => {
   const { database } = await createIndexedFixture(context);
   const alpha = database.prepare('SELECT * FROM styles ORDER BY style_id LIMIT 1').get();

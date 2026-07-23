@@ -8,7 +8,7 @@ trigger_phrases:
   - "looks AI generated audit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AI Fingerprint Tells
@@ -145,6 +145,28 @@ One identical entrance animation applied to every section: fade in and rise on s
 - Check: the same scroll-triggered fade-and-rise applied uniformly to most or all top-level sections.
 - Owner: `motion`.
 - Severity: P2. Climbs to P1 if the reveal gates content visibility so the section ships blank on a hidden tab or a headless render, because that is a content-delivery failure, not a motion taste issue.
+
+#### AI-navigation fingerprint probe
+
+Flag a navigation shell that reflexively copies generic SaaS furniture—wordmark left, interchangeable center links, utility link plus rounded CTA right—when the actual information architecture, product posture, or available actions do not support that grouping.
+
+- Check: the nav labels, order, grouping, and CTA can be swapped into an unrelated product without changing their meaning; the source IA or redesign preserve list provides no rationale.
+- Cognitive rationale: navigation is a spatial memory map. Genre-blind grouping makes every destination look equally generic and forces returning users to relearn where product-specific tasks live.
+- Legitimate exception: a conventional arrangement is valid when observed task frequency, an owned system, or preserved IA supports it. Familiarity alone is not a defect.
+- Owner: `interface` for information hierarchy; `sk-code` for implementation.
+- Severity: P2 when the shell weakens orientation, P1 when it hides or mislabels a primary route.
+
+#### AI-footer fingerprint probe
+
+Flag a footer that defaults to a broad multi-column sitemap with placeholder social links, repeated navigation, newsletter capture, and legal boilerplate even though the site role does not need those groups.
+
+- Check: footer columns contain speculative or duplicate destinations, dead social affordances, invented newsletter value, or categories that are not present in the owned IA.
+- Perceptual rationale: the dense closing block signals completeness through volume, but repeated low-value links blur the final task and reduce confidence that destinations are maintained.
+- Legitimate exception: a content-rich organization may need a sitemap footer when every group maps to real, maintained information architecture and the primary closing action remains clear.
+- Owner: `interface` for structure and content; `sk-code` for implementation.
+- Severity: P3 for redundant furniture, P1-P2 when dead or misleading destinations damage trust or navigation.
+
+Treat both page-furniture probes as hypotheses within the general-family sweep. They do not prove a generator on their own and do not bypass the evidence and exception rules below.
 
 ---
 

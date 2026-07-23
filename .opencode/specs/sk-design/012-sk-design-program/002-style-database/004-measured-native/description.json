@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/002-style-database/004-measured-native",
+  "description": "The 013 research concluded no Rust rewrite now, but reserved a conditional, measured path for later native work",
+  "keywords": [
+    "research",
+    "concluded",
+    "rust",
+    "rewrite",
+    "now",
+    "reserved",
+    "conditional",
+    "measured",
+    "path",
+    "later",
+    "native",
+    "work"
+  ],
+  "lastUpdated": "2026-07-22T16:28:27.498Z",
+  "specId": "004",
+  "folderSlug": "measured-native",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "002-style-database"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

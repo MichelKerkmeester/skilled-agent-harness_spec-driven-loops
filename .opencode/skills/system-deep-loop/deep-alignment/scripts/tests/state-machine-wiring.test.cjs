@@ -259,8 +259,62 @@ function testZeroArtifactLaneIsNotApplicable() {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Test 5: convergence-mode off forces every configured iteration
+// ─────────────────────────────────────────────────────────────────────────────
+
+function testConvergenceModeOffForcesMaxIterations() {
+  const { root, specFolder, alignmentDir } = makeSpecFolder('convergence-off');
+  try {
+    const lanes = resolveLanesFromConfig([
+      { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/'] } },
+    ]);
+    const laneIds = lanes.map(laneKey);
+    writeJson(path.join(alignmentDir, 'deep-alignment-config.json'), { alignmentTarget: 'convergence-off fixture', lanes });
+    writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
+      lanes: [{
+        laneId: laneIds[0],
+        authority: 'sk-doc',
+        artifactClass: 'docs',
+        scope: lanes[0].scope,
+        artifacts: [{ path: 'docs/a.md' }],
+      }],
+    });
+
+    const stateLogPath = path.join(alignmentDir, 'deep-alignment-state.jsonl');
+    appendJsonl(stateLogPath, [
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 0 },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 0 },
+    ]);
+
+    const beforeMax = checkConvergence(specFolder, {
+      maxIterations: 3,
+      stabilityWindow: 2,
+      convergenceMode: 'off',
+    });
+    assert.equal(beforeMax.coverage.met, true);
+    assert.equal(beforeMax.stability.stable, true);
+    assert.equal(beforeMax.decision, DECISIONS.CONTINUE);
+    assert.equal(beforeMax.convergenceMode, 'off');
+
+    appendJsonl(stateLogPath, [
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 0 },
+    ]);
+    const atMax = checkConvergence(specFolder, {
+      maxIterations: 3,
+      stabilityWindow: 2,
+      convergenceMode: 'off',
+    });
+    assert.equal(atMax.decision, DECISIONS.STOP_MAX_ITERATIONS);
+    assert.match(atMax.reason, /convergence disabled/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+
 testFullWiringConverges();
 testMaxIterationsIndependentHardStop();
 testZeroLanesCleanExit();
 testZeroArtifactLaneIsNotApplicable();
+testConvergenceModeOffForcesMaxIterations();
 console.log('[deep-alignment] state-machine wiring regression passed');

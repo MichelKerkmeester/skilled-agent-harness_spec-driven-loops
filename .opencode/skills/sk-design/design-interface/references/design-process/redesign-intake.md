@@ -7,7 +7,7 @@ trigger_phrases:
   - "never silently change"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Redesign Intake
@@ -43,6 +43,25 @@ Pick one lane before visual decisions:
 | Overhaul | The surface blocks the task or no longer fits the brand | Rebuild structure only after naming what must stay recognizable |
 
 When the lane is ambiguous, ask one focused question: `Should this preserve the existing user path, or may I restructure it?`
+
+For work spanning more than one page, also declare whether the pages belong to one product system and which page-type family each page serves. Shared-system coherence is decided before page-level variation.
+
+### Multi-Page Coherence Lock
+
+Capture one lock ledger for the site or product, then keep page composition decisions separate from it.
+
+| Axis | Lock | Rule |
+| --- | --- | --- |
+| Wordmark or logotype | MUST-SHARE | Preserve the same mark, construction, and placement logic across pages. |
+| Accent colour and placement | MUST-SHARE | Keep the same accent role and cap its visible area at no more than 5% of each viewport unless an approved exception amends the lock. |
+| Display and body fonts | MUST-SHARE | Keep the same role pairing and fallback strategy; page-level variation may change scale, not identity. |
+| CTA voice | MUST-SHARE | Preserve action vocabulary, sentence style, and confidence level across flows. |
+| Section-heading rhythm | MUST-SHARE | Preserve the relationship among kicker, heading, support copy, and surrounding space when those roles apply. |
+| Macrostructure | MAY-DIFFER | Vary composition inside the page-type family so a landing page, index, detail page, and product workspace can solve different jobs. |
+| Hero archetype | MAY-DIFFER | Choose a different brief-grounded hero within the page-type family; do not change the shared visual system to manufacture variety. |
+| Marketing-only enrichment | MAY-DIFFER | Use or omit campaign media, authored craft, or promotional polish where the page job earns it. Product-task pages need not inherit it. |
+
+**Amend; do not override.** If a page genuinely needs to break a MUST-SHARE axis, add an exception to the lock ledger with the page, axis, user or brand reason, scope, approver, and verification. Do not silently replace the shared value in a local file. The amendment becomes the visible contract for later pages; an unrecorded override is drift.
 
 ## 3. Audit Before Touching
 
@@ -95,7 +114,9 @@ Return a compact intake before design work:
 
 ```text
 Redesign lane: greenfield | preserve | overhaul
+Surface scope: single page | multi-page system
 Preserve list: URLs, nav, forms, legal, locked tokens
+Coherence lock: MUST-SHARE axes, MAY-DIFFER axes, approved amendments
 Change candidates: layout, hierarchy, content order, visual system
 Approval needed: any silent-change item that must move
 Next step: design process, system pass or implementation handoff

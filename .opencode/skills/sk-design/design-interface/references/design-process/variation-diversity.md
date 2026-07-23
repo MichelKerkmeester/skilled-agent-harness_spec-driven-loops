@@ -9,7 +9,7 @@ trigger_phrases:
   - "seed of thought debias"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.2
+version: 1.5.0.3
 ---
 
 # Variation Diversity (Seed of Thought)
@@ -79,6 +79,12 @@ The seed sits inside the existing process, it does not bypass it.
 - **The quality floor still gates the build.** Each direction that goes to a real render must clear the floor in [`ux-quality-reference.md`](./ux-quality-reference.md): responsive, visible focus, reduced motion respected.
 
 The difference from the raw recipe is the index space. The raw recipe indexes into "the variation options," which for a median-biased model are already N safe versions of one layout. This indexes into a subject-grounded set with the median removed, so the index lands on something that is distinct by construction and grounded by construction.
+
+### Multi-Page Inversion After A System Lock
+
+When an owned `DESIGN.md` or an approved coherence ledger already locks the shared system, invert the usual diversification priority: **hold the MUST-SHARE axes fixed and spend variation only on MAY-DIFFER axes**. Do not seed alternate wordmarks, accent systems, font pairings, CTA voices, or section-heading rhythms. Seed page-shape decisions such as region order, proof placement, hero archetype within the page-type family, responsive collapse, or marketing-only enrichment.
+
+The proof of diversity is then structural fitness, not visible system churn. Two pages are meaningfully different when each composition serves its own job while still looking and sounding like the same product. If a seeded direction needs a locked-axis change to work, either reject it or propose a visible amendment through [`redesign-intake.md`](./redesign-intake.md); never let the variation exercise silently override the lock.
 
 ---
 

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
+  "spec_folder": "sk-design/012-sk-design-program/005-reviews-and-remediation/004-post-review-remediation",
+  "parent_id": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post review remediation stale db engine paths",
+      "017 review findings fix playbook readme phase-map",
+      "graph-metadata key_files pointer restructure remediation",
+      "post review remediation plan",
+      "fix stale db engine paths plan",
+      "017 findings remediation approach",
+      "post review remediation tasks",
+      "stale db engine path fix tasks",
+      "017 findings remediation ledger",
+      "post review remediation summary",
+      "stale db engine path fix done",
+      "017 findings remediation p1-006 refuted"
+    ],
+    "key_topics": [
+      "post",
+      "review",
+      "remediation",
+      "stale",
+      "engine",
+      "paths",
+      "findings",
+      "playbook",
+      "readme",
+      "phase-map",
+      "graph-metadata",
+      "pointer"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+      ".opencode/skills/sk-design/styles/lib/database/README.md",
+      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
+      "database/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/docs/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/lib/database/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "wrong",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Remediated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Worked",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remediate the verified findings from the 017 GPT-5.6-SOL review: fix stale _db/_engine path references in the styles playbook, the database README, the 015 parent phase-map, and the graph-metadata key_files pointers left behind by the 005 restructure. Documentation/metadata only; no shipped code behavior changes.",
+    "created_at": "2026-07-21T18:23:49.821Z",
+    "last_save_at": "2026-07-22T16:57:29.024Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:49a4d0f258c46f7c789d8db52fb92b2e213f05333d90c9df31d58a1b6dd3da25",
+    "source_doc_hashes": {
+      "spec.md": "5a56e81fcd257574dd54902efa970eb298c321c560f4e8fb41f921ec9c1f57dd",
+      "plan.md": "100fc5ca6e49651021a46b34a1a1311a17ef6a124c5d5862dcfe42b2701951ff",
+      "tasks.md": "a24d36180fa33dd33abfed90b8e591d8df0815821c16496bbafcedd7453c803a",
+      "implementation-summary.md": "fd3bbe62da6b3cd01e222babfb61b29cf6370231c6f7f3d59e558fb6865cf6d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

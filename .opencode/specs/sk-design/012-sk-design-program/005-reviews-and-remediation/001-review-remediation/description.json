@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/005-reviews-and-remediation/001-review-remediation",
+  "description": "The GPT-5.6-SOL deep review over packet 012 stabilized 0 P0, 9 P1, 1 P2",
+  "keywords": [
+    "gpt-5",
+    "6-sol",
+    "deep",
+    "review",
+    "packet",
+    "stabilized"
+  ],
+  "lastUpdated": "2026-07-22T16:27:33.278Z",
+  "specId": "001",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program",
+    "005-reviews-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

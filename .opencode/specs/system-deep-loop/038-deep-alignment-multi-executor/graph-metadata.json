@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/038-deep-alignment-multi-executor",
+  "spec_folder": "system-deep-loop/038-deep-alignment-multi-executor",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment multi executor",
+      "alignment cli opencode",
+      "alignment convergence mode off",
+      "deep alignment implementation plan",
+      "alignment cli opencode plan",
+      "forced alignment iterations",
+      "deep alignment tasks",
+      "alignment executor implementation",
+      "alignment convergence tasks",
+      "deep alignment verification checklist",
+      "alignment executor verification",
+      "alignment convergence verification"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "multi",
+      "executor",
+      "cli",
+      "opencode",
+      "convergence",
+      "mode",
+      "implementation",
+      "plan",
+      "forced",
+      "iterations"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/commands/deep/alignment.md",
+      ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
+      ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
+      "spec.md",
+      "plan.md",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "alignment.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "state-machine-wiring.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Multi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Allow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Adapt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:alignment` has a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supports cli-opencode",
+    "created_at": "2026-07-23T04:55:05.803Z",
+    "last_save_at": "2026-07-23T04:55:05.803Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2b3e232042c6b52ba1e37fb789dbefde70d8ad48075772b1c01ef16df8513b0f",
+    "source_doc_hashes": {
+      "spec.md": "091c2a33b2151aaad697d67d5efa787eefd91129a0de01e205de977cb20b84ec",
+      "plan.md": "1ce32673c05c6ad794ba60dd6f70443049733e6ee5b6bf81288047d922aae9e5",
+      "tasks.md": "60a404d794007793850bd49c2ca37789e72713aa910e8f2ddc55c75821e07ea5",
+      "checklist.md": "7416bbaf31e14d7d56e9596698ef0de9906c24407ae5f6994b32e7f9cb5b9c2e",
+      "implementation-summary.md": "4e3201f7f2eac58faff3faa8e9c310f53c5e3359f58176480fe3773f5d845ed4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

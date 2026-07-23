@@ -8,7 +8,7 @@ trigger_phrases:
   - "five dimension score"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Audit Contract
@@ -43,6 +43,12 @@ Design audit reports are findings-first and evidence-bound: every severity, scor
 | P3 | Polish | Low-impact detail that improves craft | optical alignment, copy tightening, subtle spacing refinement |
 
 If unsure between severities, ask: would a real user fail, contact support, or abandon? If yes, it is at least P1.
+
+### Evidence-First Probe Rule
+
+Audit probes are diagnostic questions, never an all-or-nothing release checklist. A matching pattern becomes a finding only when the report includes target evidence, a falsifiable exception check, user or system impact, and an owner. Assign severity from that impact through P0-P3; do not promote a cosmetic tell because it appeared on a checklist, and do not lower a task failure because most other probes passed.
+
+A clean probe sweep means only that those patterns were not observed in the available evidence. It does not prove accessibility, distinctiveness, or release readiness, and there is no aggregate pass count that overrides the five-dimension score or unresolved evidence states.
 
 ## 3. Five-Dimension Score
 
@@ -127,6 +133,12 @@ Observation is neutral and factual; it records what was seen before the report s
 - Use prompt/design artifact evidence when reviewing a plan.
 - Label any inferred issue as inferred and state what would confirm it.
 - Do not claim visual overlays, browser inspection, or automated scans ran unless they actually ran.
+
+### Manual CLS Evidence For Web Fonts
+
+When a surface loads a web font with fallback text, the audit must record a manual, numeric CLS check before making a typography or release-readiness claim. Capture the browser-reported CLS in a controlled run that renders the fallback first and then loads the real face; record viewport, cache/network condition, measured value, and which text regions shifted. Repeat after the fallback uses measured `size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override` with the real face using `font-display: swap`.
+
+Eyeballing the swap is not evidence. If no numeric run was captured, label layout-shift coverage `not-assessed`. File any observed shift through P0-P3 according to task impact—for example, movement that causes a mistaken activation is P0-P1, while a small non-interactive text reflow may be P2-P3.
 
 ## 6. Report Order
 

@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { nameColors, formatSpacingShapesV3, emitQuickStart, formatColorsV3, formatSurfacesV3 } from '../scripts/formatters-v3';
+import {
+  emitQuickStart,
+  formatColorsV3,
+  formatMotionV3,
+  formatSpacingShapesV3,
+  formatSurfacesV3,
+  nameColors,
+} from '../scripts/formatters-v3';
 import type { DesignTokens } from '../scripts/types';
 
 function tokens(over: Record<string, unknown> = {}): DesignTokens {
@@ -48,6 +55,30 @@ describe('formatters-v3 (Style Reference emitters)', () => {
     const hexes = new Set(tokens().colorTokens.map((c) => c.hex.toLowerCase()));
     const phantom = (a.match(/#[0-9a-f]{6}/gi) || []).map((h) => h.toLowerCase()).filter((h) => !hexes.has(h));
     expect(phantom).toHaveLength(0);
+  });
+
+  it('renders measured motion values without inventing a timing function', () => {
+    const output = formatMotionV3(tokens({
+      motionSystem: {
+        durationScale: [
+          { label: 'small', value: '150ms', frequency: 3 },
+          { label: 'medium', value: '300ms', frequency: 1 },
+        ],
+        primaryTimingFunction: 'ease-out',
+        timingFunctions: [{ value: 'ease-out', frequency: 3 }],
+        keyframeAnimations: [
+          { name: 'fade-in', type: 'entrance', duration: '300ms', properties: ['opacity'] },
+        ],
+        prefersReducedMotion: true,
+      },
+    }));
+
+    expect(output).toContain('## Motion');
+    expect(output).toContain('| small | `150ms` |');
+    expect(output).toContain('**Primary:** `ease-out`');
+    expect(output).toContain('| fade-in | entrance | `300ms` | opacity |');
+    expect(output).toContain('**Reduced-motion query:** detected');
+    expect(output).not.toContain('frequency');
   });
 
   it('empty/missing token sets render absence cleanly and never throw', () => {

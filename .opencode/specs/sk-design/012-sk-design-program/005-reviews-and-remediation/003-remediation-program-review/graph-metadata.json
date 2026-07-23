@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review",
+  "spec_folder": "sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review",
+  "parent_id": "sk-design/012-sk-design-program/005-reviews-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design remediation program review",
+      "packet A B C deep review session shipped",
+      "styles restructure db activation command rewrite review",
+      "sk-design remediation review plan",
+      "gpt-5.6-sol forced depth review plan",
+      "packet A B C review verify plan",
+      "sk-design remediation review tasks",
+      "gpt-5.6-sol review task ledger",
+      "packet A B C review verification tasks",
+      "sk-design remediation program review summary",
+      "gpt-5.6-sol 10 iteration review verified verdict",
+      "packet A B C deep review findings confirmed refuted"
+    ],
+    "key_topics": [
+      "sk-design",
+      "remediation",
+      "program",
+      "review",
+      "packet",
+      "deep",
+      "session",
+      "shipped",
+      "styles",
+      "restructure",
+      "activation",
+      "command"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/review/review-report.md",
+      ".opencode/specs/sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/goal-file-manifest.txt",
+      "review/review-report.md",
+      "spec.md",
+      "review/lineages/gpt-56-sol-high/review-report.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-file-manifest.txt",
+        "kind": "file",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/goal-file-manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Risks & Mitigations",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Done",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library restructure, persistent DB activation) plus the packet-doc reconciliations, read at pinned HEAD 7b9d3b6b71. Read-only; verdict CONDITIONAL, 0 P0.",
+    "created_at": "2026-07-21T17:55:36.529Z",
+    "last_save_at": "2026-07-22T16:57:29.167Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b448c106944216d067e0ba958cc70336a45ae847c82f8cb0e3a9f7a77413ca78",
+    "source_doc_hashes": {
+      "spec.md": "155cc5f8cf281bef74abef640cb81db71d038ab414f51df8de1f5e2560c18feb",
+      "plan.md": "947dbd178c376464f0f7225523c8fdec51862dd0b894f1379a689bd827a4ac8f",
+      "tasks.md": "5c9ab84439efb9d5c288f9b11c01e8b5e9097151cc006170ccbcfae867d02bb9",
+      "implementation-summary.md": "9757d4e03cf0ec51f57ef8758d78ad9e2a510f5826dfbb14a79b93ed92f830fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

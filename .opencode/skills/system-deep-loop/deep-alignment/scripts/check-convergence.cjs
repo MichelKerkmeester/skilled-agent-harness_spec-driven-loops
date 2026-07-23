@@ -4,7 +4,7 @@
 // ║ Deep-Alignment — CONVERGE-state Decision                                 ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ Input:  --spec-folder P [--max-iterations N] [--coverage-threshold F]    ║
-// ║         [--stability-window N] [--json]                                 ║
+// ║         [--stability-window N] [--convergence-mode default|off] [--json] ║
 // ║ Output: one JSON decision object on stdout.                              ║
 // ║ Exit:   0=ok, 1=script error, 3=input validation error.                  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -52,6 +52,8 @@ const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-ro
 const DEFAULT_MAX_ITERATIONS = 10;
 const DEFAULT_COVERAGE_THRESHOLD = 1.0; // every discovered artifact must be checked at least once
 const DEFAULT_STABILITY_WINDOW = 2; // N consecutive zero-new-findings iterations
+const DEFAULT_CONVERGENCE_MODE = 'default';
+const CONVERGENCE_MODES = Object.freeze(['default', 'off']);
 
 const DECISIONS = Object.freeze({
   CONVERGED: 'CONVERGED',
@@ -175,13 +177,17 @@ function computeDryRunStability(iterationRecords, window) {
 
 /**
  * @param {string} specFolder
- * @param {{maxIterations?: number, coverageThreshold?: number, stabilityWindow?: number}} [options]
+ * @param {{maxIterations?: number, coverageThreshold?: number, stabilityWindow?: number, convergenceMode?: string}} [options]
  * @returns {Object} decision payload
  */
 function checkConvergence(specFolder, options = {}) {
   const maxIterations = options.maxIterations ?? DEFAULT_MAX_ITERATIONS;
   const coverageThreshold = options.coverageThreshold ?? DEFAULT_COVERAGE_THRESHOLD;
   const stabilityWindow = options.stabilityWindow ?? DEFAULT_STABILITY_WINDOW;
+  const convergenceMode = options.convergenceMode ?? DEFAULT_CONVERGENCE_MODE;
+  if (!CONVERGENCE_MODES.includes(convergenceMode)) {
+    throw inputError(`convergenceMode must be one of: ${CONVERGENCE_MODES.join(', ')}`);
+  }
 
   const resolvedSpecFolder = path.resolve(specFolder);
   const { artifactDir: alignmentDir } = resolveArtifactRoot(resolvedSpecFolder, 'alignment');
@@ -197,6 +203,7 @@ function checkConvergence(specFolder, options = {}) {
       reason: 'zero applicable lanes (no lanes resolved, or every lane discovered zero artifacts)',
       iterationsRun: iterationRecords.length,
       maxIterations,
+      convergenceMode,
       coverage: null,
       stability: null,
       overallVerdict: registry.overall.verdict,
@@ -206,7 +213,7 @@ function checkConvergence(specFolder, options = {}) {
   const { coverage, checked, discovered } = computeArtifactCoverage(registry.lanes, corpusSizes);
   const stability = computeDryRunStability(iterationRecords, stabilityWindow);
   const coverageMet = coverage >= coverageThreshold;
-  const converged = coverageMet && stability.stable; // AND, never OR -- see file header
+  const converged = convergenceMode === 'default' && coverageMet && stability.stable; // AND, never OR -- see file header
   const maxIterationsHit = iterationRecords.length >= maxIterations;
 
   let decision;
@@ -220,13 +227,18 @@ function checkConvergence(specFolder, options = {}) {
 
   return {
     decision,
-    reason: converged
+    reason: convergenceMode === 'off' && maxIterationsHit
+      ? `convergence disabled; max-iterations (${maxIterations}) reached`
+      : convergenceMode === 'off'
+        ? `convergence disabled; forcing all ${maxIterations} iteration(s) (${iterationRecords.length} recorded)`
+        : converged
       ? `coverage ${(coverage * 100).toFixed(1)}% >= threshold ${(coverageThreshold * 100).toFixed(1)}% AND ${stability.reason}`
       : maxIterationsHit
         ? `not converged (coverage ${(coverage * 100).toFixed(1)}%, ${stability.reason}) but max-iterations (${maxIterations}) reached`
         : `not yet converged: coverage ${(coverage * 100).toFixed(1)}% (need ${(coverageThreshold * 100).toFixed(1)}%), ${stability.reason}`,
     iterationsRun: iterationRecords.length,
     maxIterations,
+    convergenceMode,
     coverage: { ratio: Math.round(coverage * 1000) / 1000, checked, discovered, threshold: coverageThreshold, met: coverageMet },
     stability: { ...stability, window: stabilityWindow },
     overallVerdict: registry.overall.verdict,
@@ -245,6 +257,7 @@ function parseArgs(argv) {
     else if (token === '--max-iterations') { args.maxIterations = Number(argv[i + 1]); i += 1; }
     else if (token === '--coverage-threshold') { args.coverageThreshold = Number(argv[i + 1]); i += 1; }
     else if (token === '--stability-window') { args.stabilityWindow = Number(argv[i + 1]); i += 1; }
+    else if (token === '--convergence-mode') { args.convergenceMode = argv[i + 1]; i += 1; }
     else if (token === '--json') { args.json = true; }
     else if (token === '--help' || token === '-h') { args.help = true; }
     else { throw inputError(`Unexpected argument: ${token}`); }
@@ -257,7 +270,8 @@ function main(argv = process.argv.slice(2)) {
   if (args.help) {
     process.stdout.write(
       'Usage: check-convergence.cjs --spec-folder <path> [--max-iterations N] '
-      + '[--coverage-threshold F] [--stability-window N] [--json]\n',
+      + '[--coverage-threshold F] [--stability-window N] '
+      + '[--convergence-mode default|off] [--json]\n',
     );
     return 0;
   }
@@ -267,6 +281,7 @@ function main(argv = process.argv.slice(2)) {
     maxIterations: Number.isFinite(args.maxIterations) ? args.maxIterations : undefined,
     coverageThreshold: Number.isFinite(args.coverageThreshold) ? args.coverageThreshold : undefined,
     stabilityWindow: Number.isFinite(args.stabilityWindow) ? args.stabilityWindow : undefined,
+    convergenceMode: args.convergenceMode,
   });
 
   if (args.json) {

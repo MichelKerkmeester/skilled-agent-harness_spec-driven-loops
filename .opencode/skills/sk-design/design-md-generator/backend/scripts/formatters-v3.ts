@@ -26,7 +26,7 @@ import type {
   SchemaSection,
   StyleReferenceSchema,
 } from './schema-v3';
-import type { ColorToken, DesignTokens, TypographyLevel } from './types';
+import type { ColorToken, DesignTokens, MeasuredMotionSection, TypographyLevel } from './types';
 
 // ── colour space ────────────────────────────────────────────────
 function hexToRgb(hex: string): [number, number, number] {
@@ -212,6 +212,63 @@ export function formatSurfacesV3(
   return out;
 }
 
+function markdownTableCell(value: string): string {
+  return value.replace(/\r?\n/g, ' ').replace(/\|/g, '\\|').replace(/`/g, '\\`').trim();
+}
+
+// ── Motion (measured detector output only) ─────────────────────
+export function formatMotionV3(
+  tokens: DesignTokens,
+  schema: StyleReferenceSchema = V3_SCHEMA,
+  section: SchemaSection = schemaSectionForEmitter('motion', schema),
+): string {
+  const motion = tokens.motionSystem as MeasuredMotionSection;
+  const durationRows = motion.durationScale.map((band) => (
+    `| ${markdownTableCell(band.label)} | \`${markdownTableCell(band.value)}\` |`
+  ));
+  const timingFunctions = [...motion.timingFunctions]
+    .sort((left, right) => right.frequency - left.frequency)
+    .map((timing) => `\`${markdownTableCell(timing.value)}\``);
+
+  const lines = [
+    section.heading,
+    '',
+    `**Reduced-motion query:** ${motion.prefersReducedMotion ? 'detected' : 'not detected'}`,
+    '',
+    '### Duration Scale',
+    '',
+    '| Band | Duration |',
+    '|------|----------|',
+    ...durationRows,
+  ];
+
+  if (timingFunctions.length > 0) {
+    lines.push(
+      '',
+      '### Timing Functions',
+      '',
+      `**Primary:** \`${markdownTableCell(motion.primaryTimingFunction)}\``,
+      '',
+      `**Observed:** ${timingFunctions.join(', ')}`,
+    );
+  }
+
+  if (motion.keyframeAnimations.length > 0) {
+    lines.push(
+      '',
+      '### Keyframe Animations',
+      '',
+      '| Name | Type | Duration | Properties |',
+      '|------|------|----------|------------|',
+      ...motion.keyframeAnimations.map((animation) => (
+        `| ${markdownTableCell(animation.name)} | ${markdownTableCell(animation.type)} | \`${markdownTableCell(animation.duration)}\` | ${animation.properties.map(markdownTableCell).join(', ')} |`
+      )),
+    );
+  }
+
+  return `${lines.join('\n')}\n`;
+}
+
 // ── Quick Start (CSS + Tailwind) — schema groups own the emitted surface ──
 function fontValue(value: string): string {
   return /\s/.test(value) ? `'${value.replace(/'/g, "\\'")}'` : value;
@@ -321,6 +378,7 @@ export function formatSchemaSectionV3(
     case 'colors': return formatColorsV3(tokens, schema, section);
     case 'spacing-shapes': return formatSpacingShapesV3(tokens, schema, section);
     case 'surfaces': return formatSurfacesV3(tokens, schema, section);
+    case 'motion': return formatMotionV3(tokens, schema, section);
     case 'quick-start': return emitQuickStart(tokens, schema, section);
     case undefined: throw new Error(`Schema section ${section.id} has no deterministic emitter.`);
   }

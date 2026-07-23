@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/002-style-database/004-measured-native",
+  "spec_folder": "sk-design/012-sk-design-program/002-style-database/004-measured-native",
+  "parent_id": "sk-design/012-sk-design-program/002-style-database",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "measured native experiments roadmap phase 2",
+      "slo crossing entry gate no rust valid outcome",
+      "sqlite-vec ort sidecar bounded rust parse core",
+      "measured native experiments implementation plan",
+      "sk-code 018 shell adapter core shape",
+      "oracle win byte parity promotion gate",
+      "measured native experiments tasks",
+      "entry gate candidate evaluation tasks",
+      "promote or reject no rust tasks",
+      "measured native experiments checklist",
+      "residency honesty forbid unsafe code",
+      "byte parity oracle win verification"
+    ],
+    "key_topics": [
+      "measured",
+      "native",
+      "experiments",
+      "roadmap",
+      "phase",
+      "slo",
+      "crossing",
+      "entry",
+      "gate",
+      "rust",
+      "valid",
+      "outcome"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Native Experiments",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Roadmap Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 013 research concluded no Rust rewrite now, but reserved a conditional, measured path for later native work",
+    "created_at": "2026-07-20T09:21:23.740Z",
+    "last_save_at": "2026-07-22T16:57:32.156Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26d1701ea8d76f11ac1946ec412c6d4781737c8c6fb71e6ad3c2dfe8c9e3b69c",
+    "source_doc_hashes": {
+      "spec.md": "e71fb590ab7d7f271922e712b48e170c51327f4c462bbac30a2930f2f8ca76b7",
+      "plan.md": "6c445055416faa79ecb49595dcb8f7f4523ea82c2bb448b057aa3adca85dafb5",
+      "tasks.md": "511b55bf19e603ec962e6880e2053e3605f73ff2138b15e9d183fbed611a0eb3",
+      "checklist.md": "5afbc41fdb19f18a42f85fa11bfc854d64aeb3f5dc78720513233705ccbaed9e",
+      "implementation-summary.md": "fd21b84723f7d2e771f32c4717adb8d59a3fb4d56499c83b30fbbe6f91d6d694"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

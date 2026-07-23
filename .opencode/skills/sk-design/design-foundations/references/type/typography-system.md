@@ -8,7 +8,7 @@ trigger_phrases:
   - "line length"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Typography System
@@ -76,6 +76,33 @@ Pair typefaces by job, not taste alone:
 - Preload only the critical above-the-fold weight and style. Extra preloads compete with product content and should earn their cost.
 - Prefer a variable font when the design uses at least three weights or axes from the same family and the compressed file is competitive. Use static files when the system needs only one or two weights.
 
+#### Fallback Metric Contract
+
+For role-critical web fonts, name a local fallback face and measure it against the real face. The fallback `@font-face` must set all four metric controls—`size-adjust`, `ascent-override`, `descent-override`, and `line-gap-override`—from measured font metrics, while the real downloadable face uses `font-display: swap`. Do not copy percentage values from another family: the overrides are a relationship between this exact fallback and this exact web font.
+
+```css
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/product-sans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans Fallback";
+  src: local("Arial");
+  size-adjust: 98.7%; /* Example wiring only; derive from the actual font pair. */
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+```
+
+The percentages above demonstrate descriptor placement only; they are not design tokens or reusable defaults. Replace all four from the measured font pair, and verify the family stack in every role that uses the web font, including bold or italic faces whose metrics differ.
+
+#### CLS Proof
+
+Treat fallback matching as unverified until a manual audit records a numeric CLS score from a run where fallback text renders before the real face. Record viewport, cache/network condition, before/after score, and the shifted text region; repeat after the overrides are applied. A visual side-by-side or “looks stable” judgment does not satisfy the proof. The audit procedure and P0-P3 impact mapping live in `../../../design-audit/references/audit-contract.md` under Manual CLS Evidence For Web Fonts.
+
 ### OpenType Polish
 
 Use OpenType features for text that needs typographic finish, not as blanket decoration:
@@ -127,3 +154,4 @@ Check:
 - Do data values use tabular numerals?
 - Are labels specific enough to be understood without placeholders?
 - Does type still work under 200 percent zoom or longer translated strings?
+- Does a controlled fallback-to-web-font run report a numeric CLS score, with all four fallback metric overrides traced to the real face?

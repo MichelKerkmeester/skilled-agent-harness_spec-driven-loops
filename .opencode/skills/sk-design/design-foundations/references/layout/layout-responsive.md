@@ -8,7 +8,7 @@ trigger_phrases:
   - "container queries"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Layout And Responsive System
@@ -130,6 +130,31 @@ Adaptation means rethinking the experience for context, not scaling pixels.
 
 Use content-driven breakpoints. Stretch from narrow width until the design breaks, then add a breakpoint there. Three common breakpoints are often enough, but content wins.
 
+### Target-Derived Proof Matrix
+
+Breakpoints still come from content, but proof has a fixed minimum floor. Exercise the actual target at all four CSS-pixel widths below; add rows for every content-driven breakpoint, high-risk component, or device class the product supports. These widths are test states, not instructions to create four media queries.
+
+| Width | Minimum evidence |
+| --- | --- |
+| `320px` | Longest supported labels, no document-level horizontal scroll, primary action reachable, focus target not hidden by fixed UI. |
+| `375px` | Common phone flow completes with readable measure, stable controls, and no clipped or overlapping text. |
+| `414px` | Wider-phone layout uses the added room intentionally rather than stretching a narrow composition or exposing a premature extra column. |
+| `768px` | Tablet/narrow-window composition resolves navigation, columns, and touch targets without assuming fine pointer input. |
+
+For each row, record viewport, content fixture, input capability, state tested, observation, evidence label, and any owner-mapped finding. Test the narrowest supported translation or long-token case, not only ideal English copy.
+
+### Clickable Text Must Not Wrap
+
+Compact controls such as primary buttons, tabs, segmented controls, and top-level nav actions should keep their action phrase intact. When one wraps, fix it in this order:
+
+1. Remove redundant words while preserving the action meaning.
+2. Allow more inline room by reducing neighboring non-essential content or changing group layout.
+3. Reduce horizontal padding within the existing touch-target floor.
+4. Move the control to its own row or switch the group to a narrow-context pattern.
+5. Reduce type size only within the role's readable minimum and only after the structural fixes above.
+
+Do not solve wrapping with clipping, ellipsis, hidden overflow, forced word breaks, or a smaller hit target. Long-form link cards are exempt when wrapping is part of their intended reading layout and the whole surface remains one clear target.
+
 ---
 
 ## 6. INPUT METHOD AND SAFE AREAS
@@ -146,6 +171,14 @@ Use feature queries for input behavior:
 }
 ```
 
+Width never proves input capability. Pair the width matrix with at least these capability states when the target can encounter them:
+
+| Capability query | Required proof |
+| --- | --- |
+| `(hover: hover) and (pointer: fine)` | Hover feedback is supplementary, focus-visible remains complete, and compact pointing does not shrink keyboard targets. |
+| `(hover: none) and (pointer: coarse)` | Every action works without hover, target geometry meets the touch floor, and hover-only information has an explicit alternative. |
+| Mixed or changing input | A touch-capable laptop, stylus, or connected pointer does not lose controls because width guessed the input type; use `any-hover` / `any-pointer` only when secondary-device support is the actual question. |
+
 Fixed elements must account for notches and home indicators:
 
 ```css
@@ -153,6 +186,10 @@ Fixed elements must account for notches and home indicators:
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 ```
+
+### Net-New Orientation And Zoom Extension
+
+The width plus pointer/hover matrix above is the adopted baseline. **Orientation and zoom are an additional sk-design requirement, not part of that source baseline.** Add portrait and landscape checks where orientation changes available height or panel order, and verify reflow at 200% browser zoom without document-level horizontal scrolling for normal content. Record these as separate evidence rows so the extension is not misattributed.
 
 ---
 
@@ -172,3 +209,7 @@ Fixed elements must account for notches and home indicators:
 - No horizontal scroll at narrow widths.
 - Touch targets are at least 44 by 44 pixels when touch is possible.
 - The layout survives portrait, landscape, and very wide screens without stretching content absurdly.
+- The 320/375/414/768 CSS-pixel proof floor is recorded with content and input capability evidence.
+- Compact clickable text survives the ordered fix pass without wrapping, clipping, or shrinking its target.
+- Pointer and hover behavior comes from capability queries rather than viewport-width guesses.
+- Orientation and 200% zoom checks are recorded as the net-new sk-design extension.

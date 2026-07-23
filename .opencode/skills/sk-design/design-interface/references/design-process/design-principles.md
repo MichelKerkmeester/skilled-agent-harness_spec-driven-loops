@@ -9,7 +9,7 @@ trigger_phrases:
   - "interface copy and writing"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.3
+version: 1.5.0.4
 ---
 
 # Interface Design Principles
@@ -42,6 +42,18 @@ If the brief does not pin down what the product or subject is, pin it yourself b
 ## 3. DESIGN PRINCIPLES
 
 For web designs, the hero is a thesis. Open with the most characteristic thing in the subject's world, in whatever form makes sense for it: a headline, an image, an animation, a live demo, an interactive moment. Be deliberate with your choice: a big number with a small label, supporting stats, and a gradient accent is the template answer, only use if that's truly the best option.
+
+### Hero Signature-Role Contract
+
+Choose the hero's role before choosing media. A hero may carry **zero or one brief-derived enrichment archetype** and **zero or one supporting polish pattern**. More than one of either turns the opening into a demo reel and weakens the page thesis. Record the decision in the implementation CSS so later passes preserve the reason, including intentional abstention:
+
+```css
+/* hero-signature: enrichment=<brief-derived role|none>; polish=<single supporting treatment|none>; reason=<subject-specific job>; fallback=typography-only */
+```
+
+Run a deletion test before keeping either addition: temporarily remove the enrichment and polish, then ask whether the subject, promise, primary action, and intended hierarchy still read correctly. If removal improves clarity or changes nothing material, delete the addition. If removal erases a brief-specific proof, capability, or emotional cue, keep the smallest version that restores that role and record its source, crop or state behavior, narrow-screen treatment, and reduced-motion fallback.
+
+**Tier 0 is a valid pass, not a fallback failure.** A typography-only hero with `enrichment=none` and `polish=none` passes when the headline, copy, spacing, type treatment, and primary action carry the thesis without decorative support. Never add media merely to avoid an empty slot.
 
 When visual assets are part of the signature direction, specify them as build-facing style axes and usage rules: subject, crop, aspect ratio, lighting, treatment, placement, density, and when not to use them. Do not turn this into an illustration-library program. The point is to make the intended asset language implementable and consistent, not to invent an asset system the brief did not ask for.
 
