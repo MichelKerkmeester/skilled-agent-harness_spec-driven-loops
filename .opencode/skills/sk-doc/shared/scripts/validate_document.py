@@ -273,43 +273,123 @@ def extract_section_name_text(text: str) -> str:
     return text.strip()
 
 
+# Patterns that separate a legitimate mixed-case token (a code identifier or a
+# product/acronym name) from a header that simply was not uppercased. Each
+# requires a lowercase run to follow every internal capital, so a scrambled word
+# like "oVERVIEW" or "tITLE" — a lone lowercase letter in front of an all-caps
+# run — matches none of them and is correctly rejected.
+_CAMEL_CASE = re.compile(r'[a-z][a-z0-9]*(?:[A-Z][a-z0-9]+)+')       # renderBlocks, gate3Precedence
+# Two or more capitalized segments: a single one (e.g. "Overview") is just a
+# Title-Case word that must be uppercased, not a product name.
+_PASCAL_CASE = re.compile(r'(?:[A-Z][a-z0-9]+){2,}')                  # JavaScript, OpenCode, MiMo
+_ACRONYM_SUFFIX = re.compile(r'[A-Z]{2,}[a-z0-9]*')                   # OAuth, PDFs, AIs, HTTPStatus
+# Irregular lowercase-first product names that no structural pattern can tell
+# apart from garbage; keep this list explicit and small.
+_PROPER_NOUN_WHITELIST = {'iOS', 'iPadOS', 'macOS', 'eBay', 'iPhone'}
+
+
+def _is_identifier_or_proper_noun(token: str) -> bool:
+    """A mixed-case token that is a code identifier or a product/acronym name."""
+    return bool(
+        _CAMEL_CASE.fullmatch(token)
+        or _PASCAL_CASE.fullmatch(token)
+        or _ACRONYM_SUFFIX.fullmatch(token)
+        or token in _PROPER_NOUN_WHITELIST
+    )
+
+
+def _strip_nonprose(text: str) -> str:
+    """
+    Remove the parts of a header the ALL-CAPS rule must not police: code spans,
+    autolinks, inline-link destinations (keeping the visible label), and balanced
+    parenthetical groups (annotations and function-call args). Parentheses are
+    matched by depth so a header like "API (legacy (v2) only)" is fully removed
+    and a link whose URL itself contains parentheses never leaks a fragment — the
+    two failure modes the earlier first-closing-paren regex got wrong.
+    """
+    text = re.sub(r'`[^`]*`', ' ', text)   # inline code spans first
+    out = []
+    i, n = 0, len(text)
+    while i < n:
+        ch = text[i]
+        if ch == '<':                       # autolink <https://...>
+            j = text.find('>', i + 1)
+            if j != -1:
+                out.append(' ')
+                i = j + 1
+                continue
+        if ch == '[':                       # inline link [label](url): keep label, drop the URL
+            close = text.find(']', i + 1)
+            if close != -1 and close + 1 < n and text[close + 1] == '(':
+                out.append(' ' + text[i + 1:close] + ' ')
+                depth, k = 0, close + 1
+                while k < n:
+                    if text[k] == '(':
+                        depth += 1
+                    elif text[k] == ')':
+                        depth -= 1
+                        if depth == 0:
+                            k += 1
+                            break
+                    k += 1
+                i = k
+                continue
+        if ch == '(':                       # function call, or a parenthetical annotation
+            # A '(' with an identifier immediately before it (no space) is a
+            # function name plus args, so drop the name too; a space before it
+            # means a prose word followed by a parenthetical, so keep the word.
+            while out and (out[-1].isalnum() or out[-1] in '_.'):
+                out.pop()
+            depth, k = 0, i
+            while k < n:
+                if text[k] == '(':
+                    depth += 1
+                elif text[k] == ')':
+                    depth -= 1
+                    if depth == 0:
+                        k += 1
+                        break
+                k += 1
+            out.append(' ')
+            i = k
+            continue
+        out.append(ch)
+        i += 1
+    return ''.join(out)
+
+
 def is_uppercase_section(text: str) -> bool:
     """
-    Check if section name is ALL CAPS.
+    Check whether a section name satisfies the ALL-CAPS rule.
 
-    Handles special characters like &, ', -, etc.
-    Only checks alphabetic characters for case.
+    The rule applies to prose words only. Code spans, parenthetical annotations,
+    function-call args, and link destinations are removed first; a code
+    identifier (camelCase) or a product/acronym name (PascalCase, OAuth, PDFs)
+    is then accepted as-is. A header fails only when a plain prose word is
+    Title-Case, all-lowercase, or scrambled mixed-case.
 
     Examples:
         "OVERVIEW" -> True
         "Overview" -> False
+        "oVERVIEW" -> False
         "INSTALLATION & SETUP" -> True
-        "WHAT'S NEXT?" -> True
-        "MCP TOOLS" -> True
+        "MODE DETECTION (`SP-001..SP-004`)" -> True
+        "DEPTH LOOP renderBlocks" -> True
+        "API (legacy (v2) only)" -> True
+        "API <https://example.com/docs>" -> True
     """
     section_name = extract_section_name_text(text)
-    # The ALL-CAPS requirement applies to prose words only. Legitimate mixed-case
-    # tokens must not trip it, or the gate rejects correct headers: inline `code`,
-    # (parenthetical annotations), function signatures like name(args), and
-    # identifiers carrying an internal capital (ClickUp, MiMo, iOS). A header fails
-    # only when a plain prose word is Title-Case or all-lowercase.
-    s = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', section_name)  # link -> label
-    s = re.sub(r'`[^`]*`', ' ', s)                            # code spans
-    s = re.sub(r'[\w.]+\([^)]*\)', ' ', s)                    # function signatures
-    s = re.sub(r'\([^)]*\)', ' ', s)                          # parenthetical annotations
-    saw_word = False
-    for raw in re.split(r'[\s/,:;.\-—–&\'"?!→|]+', s):
-        w = ''.join(c for c in raw if c.isalpha())
-        if len(w) < 2:
+    for raw in re.split(r'[\s/,:;.\-—–&\'"?!→|]+', _strip_nonprose(section_name)):
+        token = raw.strip('`()[]{}\'".,:;<>')
+        letters = [c for c in token if c.isalpha()]
+        if len(letters) < 2:
             continue
-        saw_word = True
-        if w.isupper():
-            continue                       # ALL-CAPS word: fine
-        if any(c.isupper() for c in w[1:]):
-            continue                       # internal capital: proper noun / product
-        return False                       # Title-Case or lowercase prose word
-    # No prose word failed the check (a header of only code spans, annotations,
-    # signatures or short tokens has nothing prose to enforce ALL CAPS on).
+        if ''.join(letters).isupper():
+            continue                       # ALL-CAPS prose word: fine
+        if _is_identifier_or_proper_noun(token):
+            continue                       # code identifier or product/acronym name
+        return False                       # Title-Case, lowercase, or scrambled prose word
+    # Nothing prose remained to enforce the rule on.
     return True
 
 

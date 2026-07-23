@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/011-review-remediation"
     last_updated_at: "2026-07-22T20:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Fixed NUL corruption + named commands; routed out-of-scope findings."
-    next_safe_action: "Baseline the validator corpus, then harden is_uppercase_section."
+    recent_action: "Landed the validator hardening (528->528 corpus, 26/26 tests)."
+    next_safe_action: "Triage the 52 P1 README-vs-code accuracy findings."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-md-generator/references/writing-style-guide.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "packet-021-011"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -109,7 +109,7 @@ Every finding was confirmed on disk before any edit. The corruption was repaired
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The validator hardening is staged, not landed.** `is_uppercase_section` still accepts arbitrary mixed-case prose and mishandles nested parentheticals; the fix needs a corpus baseline and table-driven tests before it touches the gate.
+1. **The validator hardening landed.** `is_uppercase_section` now rejects scrambled mixed-case and correctly exempts code spans, nested parentheticals, autolinks, function args, and identifier/product names; verified by a `528 -> 528` zero-regression corpus re-run and 26 table-driven cases. Only the 011 packet's own template-header/anchor conformance still needs finalization.
 2. **Three findings are routed, not fixed.** The style-catalog links, the pre-existing missing-overview, and the import-policy test failures are recorded for separate owners.
 3. **The 52 P1 README-vs-code accuracy findings are not triaged here.** They are tracked for a surface-by-surface pass.
 

@@ -50,7 +50,7 @@ _memory:
 ## Sign-off
 
 - [x] In-scope P0 blockers fixed and verified
-- [ ] Validator hardening (T006) landed with tests and a clean corpus re-run
+- [x] Validator hardening (T006) landed with tests and a clean corpus re-run
 - [x] Parent packet re-validates and the branch state is recorded
 
 <!-- /ANCHOR:signoff -->

@@ -52,7 +52,7 @@ _memory:
 - [x] T003 Restore the NUL-corrupted code span in `vision-audit-benchmark.md` from the merge-base blob (`\x00 0 \x00` -> `` `--file` ``).
 - [x] T004 Make the create-skill Quick-Start runnable from the repo root (`create-skill/README.md`, repo-root-relative script paths).
 - [x] T005 Make the mcp-server/api validation command runnable (`api/README.md`, `npm test` -> subshell `npx vitest run`).
-- [ ] T006 Harden `is_uppercase_section` with a balanced-delimiter scanner and a true mixed-case gate (`validate_document.py`) — staged behind a corpus baseline.
+- [x] T006 Harden `is_uppercase_section` with a balanced-delimiter scanner and precise identifier/proper-noun patterns (`validate_document.py`); corpus regression `528 -> 528` with 0 regressions, `test_is_uppercase_section.py` 26/26.
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -72,7 +72,7 @@ _memory:
 
 - [x] The in-scope P0 blockers (NUL corruption, named non-runnable commands) are fixed and verified
 - [x] Out-of-scope findings are routed with evidence, not fixed on this branch
-- [ ] The validator hardening (T006) lands with tests and a clean corpus re-run
+- [x] The validator hardening (T006) landed with table-driven tests and a clean corpus re-run
 - [x] `checklist.md` verified with evidence
 
 <!-- /ANCHOR:completion -->
