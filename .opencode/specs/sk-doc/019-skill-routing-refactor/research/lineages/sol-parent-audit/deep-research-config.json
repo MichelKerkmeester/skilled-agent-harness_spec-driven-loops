@@ -1,0 +1,60 @@
+{
+  "topic": "Audit the complete parent specification for rename-migration omissions, parent-document drift, tree mismatches, stale references, grouping gaps, broken handoffs, and metadata inconsistencies while excluding frozen historical artifacts.",
+  "maxIterations": 10,
+  "minIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-doc/019-skill-routing-refactor",
+  "artifactDir": ".opencode/specs/sk-doc/019-skill-routing-refactor/research/lineages/sol-parent-audit",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-23T17:32:33.522Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "medium",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-parent-audit-1784827807920-27vo4o",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

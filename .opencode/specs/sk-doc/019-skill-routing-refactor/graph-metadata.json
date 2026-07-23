@@ -4,7 +4,6 @@
   "spec_folder": "sk-doc/019-skill-routing-refactor",
   "parent_id": null,
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/000-migration-plan",
     "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map",
     "sk-doc/019-skill-routing-refactor/002-router-collision-fixes",
     "sk-doc/019-skill-routing-refactor/003-trigger-scoping-and-handoffs",
@@ -110,17 +109,17 @@
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-23T12:56:35.877Z",
+    "last_save_at": "2026-07-23T18:18:06.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:52e4075230ddadeb78d81dd95bfffc99eb0c8ac012228039abe2176899059347",
+    "source_fingerprint": "sha256:a77945fa3ff685813d99f3333ab216edfdf77f367d50bae6f1f4884da450ef54",
     "source_doc_hashes": {
-      "spec.md": "6d4e242aff14d955f7bed21046a2253ecc514250260b417556349b90fe3a15db"
+      "spec.md": "1b91bc7bea837330d7467aadf4ea0e2f6f20518b775779c23ac5219002c0e1ff"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
     "last_active_at": "2026-07-16T16:38:55.308Z"
   }
 }

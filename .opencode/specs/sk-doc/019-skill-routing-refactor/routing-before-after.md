@@ -14,7 +14,7 @@ contextType: "reference"
 
 > Two questions the router answers: **which skill/mode** handles a request, and **which files** it should load. This walks the parent-hub router, the normal/child-mode router, the JSON files behind them, and the benchmark that scores them — what each looked like before the consistency work, and what changed.
 
-**Snapshot:** 6 hubs fixed · route-gold 7/7 PASS · 91 scenarios green · `create-skill` canon aligned.
+**Snapshot:** 6 hubs fixed · route-gold 7/7 hubs PASS · 91 of 106 scenarios carry route-gold and match · `create-skill` canon aligned.
 
 Legend: 🟠 **Before** · 🟢 **After** · 💡 plain-terms note.
 
@@ -81,7 +81,7 @@ A parent hub scores the request against each mode's keyword **classes**. The sco
 
 ### The second layer: hub → files
 
-Picking a mode is only half the job. A second router — `shared/references/smart_routing.md`, an `INTENT_SIGNALS` + `RESOURCE_MAP` block — then chooses which **leaf files** to load inside that mode. Two hubs (`sk-code`, `sk-doc`) had this layer under- or over-emitting; it was corrected so the files loaded match the mode's documented contract.
+Picking a mode is only half the job. A second router — `shared/references/smart-routing.md`, an `INTENT_SIGNALS` + `RESOURCE_MAP` block — then chooses which **leaf files** to load inside that mode. Two hubs (`sk-code`, `sk-doc`) had this layer under- or over-emitting; it was corrected so the files loaded match the mode's documented contract.
 
 ---
 
@@ -126,7 +126,9 @@ The routing config is a small set of JSON files. Some pre-existed and were *fixe
 | `leaf-aliases.json` *(new)* | The typing seam: a flat list of `{workflowMode, leafResourceId, diskPath}` — maps each leaf id to its file, resolving shared-tier aliases. | **Added.** Lets the benchmark recover typed pairs from a flat router output. |
 | `leaf-manifest.config.json` *(new)* | Registry-less config for normals: the one `workflowMode`, which `leafRoots` are routable, what to exclude. | **Added.** The normal-tier pattern — a typed surface without any hub JSONs. |
 
-A sixth artifact, `shared/references/smart_routing.md`, isn't JSON but holds the Layer-2 `INTENT_SIGNALS` + `RESOURCE_MAP` the manifest is derived against. The *contract* that converts a raw path into a canonical `(workflowMode, leafResourceId)` pair lives in one library, so a prefix is never stripped ad-hoc.
+A sixth artifact, `shared/references/smart-routing.md`, isn't JSON but holds the Layer-2 `INTENT_SIGNALS` + `RESOURCE_MAP` the manifest is derived against. The *contract* that converts a raw path into a canonical `(workflowMode, leafResourceId)` pair lives in one library, so a prefix is never stripped ad-hoc.
+
+> **Serving-authority note (current state):** this before/after describes the *authored* routing config — the JSON files above are the authoring source of truth. For hubs that have cut over, that authored config is now compiled and *served* by the compiled-routing runtime (Group E, `020-router-unification-program`, promoted to `.opencode/bin/lib/compiled-routing/`), which is the current serving authority: the JSONs still author it, the runtime resolves it. Legacy authored-config serving stays available and reversible until each hub's cutover gate passes.
 
 | 🟠 Before — uneven & flat | 🟢 After — uniform typed pairs |
 |---|---|
@@ -149,16 +151,16 @@ The benchmark replays the router deterministically (no model) and compares what 
 
 | 🟠 Before — blocked & skill-specific | 🟢 After — green & tier-neutral |
 |---|---|
-| 6/7 hubs `BLOCKED-BY-ROUTE-GOLD` — the routers genuinely mis-selected. | 7/7 hubs PASS (aggregates 90–100), 91 scenarios matched. |
+| 6/7 hubs `BLOCKED-BY-ROUTE-GOLD` — the routers genuinely mis-selected. | 7/7 hubs PASS (aggregates 90–100); the 91 of 106 scenarios that carry route-gold all match. |
 | The shared harness hard-coded an `MR-`/`CB-` id prefix meaning "browser test" — an `sk-code` convention that collided with other skills reusing `MR-`. | The prefix hard-code is gone — replaced by an explicit `declaredKind` frontmatter signal any skill can set. |
 | Committed scorecards held stale numbers from before the reorg. | A CI freshness gate regenerates every manifest and fails on drift, so scorecards can't silently rot. |
 
 ### Two things the benchmark taught us
 
 - **The ambiguity delta is a fixed constant in the replay.** The `ambiguityDelta` field in the JSON is *not read* by the scorer (it hard-codes `1`). So precision is tuned with weights and classes — never by editing that field, which looks like it should work but does nothing.
-- **Green ≠ correct, without teeth.** A deterministic pass proves the config *coheres*; it does not prove routing *quality* if the gold were written to match the router. That is why the current step is a **mutation test** (corrupt the gold and the router, confirm the score drops) plus a live-mode reality-check — to prove the green has teeth and isn't circular.
+- **Green ≠ correct, without teeth.** A deterministic pass proves the config *coheres*; it does not prove routing *quality* if the gold were written to match the router. That is why routing verification is anchored by a **mutation test** (corrupt the gold and the router, confirm the verdict flips) plus a live-mode reality-check. The mutation test is complete: 91/91 route-gold-carrying scenarios across all 6 applicable hubs flip `PASS → BLOCKED-BY-ROUTE-GOLD` under a corrupted gold (`fleetGoldTeethRate = 1.0`), so the green is not circular; the live-mode reality-check is partial (mode-correct on the 4 hubs that ran, with sk-code + sk-doc pending a longer-budget re-run). That verification lives in the compiled-routing program (`020-router-unification-program`), not this consistency pass.
 
-> 💡 **In plain terms:** the test used to be blocked because the routers were actually wrong, and the test itself had one skill's naming baked in. Now the routers are right, the test treats every skill the same way, and the next step is to shake the test hard to prove a "pass" can't be faked.
+> 💡 **In plain terms:** the test used to be blocked because the routers were actually wrong, and the test itself had one skill's naming baked in. Now the routers are right, the test treats every skill the same way, and the test is shaken hard — corrupting both gold and router — so a "pass" can't be faked.
 
 ---
 

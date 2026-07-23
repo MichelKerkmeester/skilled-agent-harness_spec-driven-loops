@@ -53,6 +53,16 @@ map and this bridge present the children.
 | E — Router-unification program | 020 | Nested program: 3-tier standard, defaultMode policy, unified compiled-routing runtime (7 children) |
 | F — Documentation-quality program | 021 | Nested program: metadata, templates, READMEs, tooling, review remediation (11 children) |
 
+> **Nested topology (why the child counts understate the tree).** Groups E and F are
+> multi-level. Group E's `020` has 7 direct children, but its `007-unified-refactor-implementation`
+> is itself a sub-parent spanning `000`–`015` (17 physical folders — `012` appears twice, a
+> pre-existing **duplicate-prefix collision**: `012-cutover-hardening` + `012-default-on-decision`,
+> both intentional). Inside `007`, four children are their own sub-parents:
+> `005-calibration` (3), `006-parent-hub-rollout` (3), `009-non-hub-rollout` (4), and
+> `015-routing-coverage-activation-verification` (14). Treat the flat "7 children / 11 children"
+> annotations as direct-child counts, not leaf totals; resume by walking each nested parent's own
+> `graph-metadata.json`.
+
 ## Historic synthesis
 
 **A+B — from packet corrections to routing conformance (001-009).** Phases 001-004
@@ -100,3 +110,9 @@ phases 001-010 are complete and phase 011 (review remediation) remains in progre
   and were intentionally left unchanged by the rename.
 - The fleet compiled-routing cutover (Group E) is verified byte-identical to legacy and stays
   reversible; making it the fleet default is operator-gated.
+- **Lifecycle-status authority.** When a parent phase-map row and a child's own status disagree,
+  the child's `graph-metadata.json` is the machine-authoritative surface for automated resume and
+  traversal; the parent `spec.md` rows and this bridge are human-readable intent summaries that must
+  reconcile to it. A child's status is derived from its `implementation-summary.md` presence plus
+  checklist completion. On conflict, trust the child graph for tooling and treat a more-advanced
+  parent narrative as intent still to be reconciled downward — never the reverse.

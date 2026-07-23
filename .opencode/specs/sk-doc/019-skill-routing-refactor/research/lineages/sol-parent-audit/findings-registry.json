@@ -1,0 +1,49 @@
+{
+  "openQuestions": [
+    "Which child should root last_active_child_id select while multiple workstreams remain active?",
+    "Which lifecycle surface is authoritative: parent row, child spec, implementation summary, or graph metadata?",
+    "Should the routing references be current operational docs or dated historical snapshots?"
+  ],
+  "resolvedQuestions": [
+    "The direct 001-021 phase map and A-F membership match the live root tree.",
+    "The duplicate 012 is nested under 020/007 and nested 020/007/015 is the phase parent.",
+    "Parent supporting references contain current-contract contradictions and broken paths.",
+    "Handoff and resume pointers are incomplete or broken.",
+    "Parent metadata is not synchronized with the live tree and current scope."
+  ],
+  "keyFindings": [
+    {"id":"P1-01","severity":"P1","summary":"graph-metadata children_ids contains nonexistent 000-migration-plan.","source":"research.md#p11--children_ids-contains-a-nonexistent-000-migration-plan"},
+    {"id":"P1-02","severity":"P1","summary":"description.json still describes only the narrow ten-packet predecessor.","source":"research.md#p12--descriptionjson-still-describes-only-the-narrow-ten-packet-predecessor"},
+    {"id":"P1-03","severity":"P1","summary":"last_active_child_id is null despite active work.","source":"research.md#p13--last_active_child_id-is-null-despite-active-work"},
+    {"id":"P1-04","severity":"P1","summary":"The routing reference simultaneously claims 2-of-7 and 7-of-7 surface-router/manifest rollout.","source":"research.md#p14--the-same-document-claims-both-2-of-7-and-7-of-7-rollout"},
+    {"id":"P1-05","severity":"P1","summary":"Default-mode inventory is stale for four hubs.","source":"research.md#p15--default-mode-inventory-is-stale-for-four-hubs"},
+    {"id":"P1-06","severity":"P1","summary":"resourceContractVersion is falsely described as sk-doc-only.","source":"research.md#p16--resourcecontractversion-is-falsely-described-as-sk-doc-only"},
+    {"id":"P1-07","severity":"P1","summary":"The before/after architecture omits compiled-routing serving authority.","source":"research.md#p17--the-current-after-architecture-omits-compiled-routing-serving-authority"},
+    {"id":"P1-08","severity":"P1","summary":"The before/after guide presents completed verification as current next work.","source":"research.md#p18--it-presents-completed-verification-as-the-current-next-step"},
+    {"id":"P1-09","severity":"P1","summary":"Root Parent Spec pointer is broken.","source":"research.md#p19--root-parent-spec-pointer-is-broken"},
+    {"id":"P1-10","severity":"P1","summary":"Both Layer-2 references use removed smart_routing.md spelling.","source":"research.md#p110--both-layer-2-paths-in-routing-before-aftermd-use-removed-underscore-spelling"},
+    {"id":"P1-11","severity":"P1","summary":"Lifecycle status authority is split across parent, child, summary, and graph surfaces.","source":"research.md#9-p1-finding--lifecycle-authority-split"},
+    {"id":"P1-12","severity":"P1","summary":"Nested duplicate-012 and phase-parent-015 topology is absent from the parent continuity bridge.","source":"research.md#10-p1-finding--nested-topology-is-missing-from-the-parent-continuity-bridge"}
+  ],
+  "ruledOutDirections": [
+    "Direct child omissions or A-F mis-grouping",
+    "Root-level duplicate 012",
+    "Root 015 as a phase parent",
+    "Intentional rename-ledger entries as stale references",
+    "Stale parent spec content hash",
+    "Incorrect Group E/F direct-child counts"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 3,
+    "resolvedQuestions": 5,
+    "keyFindings": 12,
+    "convergenceScore": 0.88,
+    "coverageBySources": {
+      "parent-surfaces": 6,
+      "direct-child-packets": 21,
+      "routing-hubs": 7,
+      "iteration-artifacts": 10
+    }
+  }
+}

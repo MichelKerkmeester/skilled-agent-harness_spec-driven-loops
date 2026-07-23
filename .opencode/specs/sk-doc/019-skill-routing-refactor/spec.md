@@ -52,7 +52,7 @@ Routing across the skill fleet was neither uniform nor measurable. It began as a
 ### Purpose
 Make routing correct, measurable, and consistent across the skill fleet, and restore documentation conformance. Concretely: give each `create-*` packet a uniform routing contract; root-cause and fix the benchmark-measurable routing defects for sk-doc and the skill-advisor; instrument per-hub routing on the typed-pair surface across the fleet; run the fleet-wide router-unification program that standardizes routing config and promotes a compiled-routing runtime that serves byte-identically to legacy behind a reversible flag; and run the documentation-quality program that returns the tree to sk-doc's standards.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level, and it documents root purpose and the sub-phase list only. All detailed planning, tasks, checklists, decisions, and continuity live in the child phase folders below. Folder provenance and the rename history live in `context-index.md`, not here.
+> **Phase-parent note:** This spec.md documents root purpose and the sub-phase list only — all detailed planning, tasks, checklists, decisions, and continuity live in the child phase folders below. The parent level also carries three companion docs (never heavy per-phase docs): `context-index.md` (folder provenance + rename history) and the two routing references `routing-config-and-advisor-reference.md` and `routing-before-after.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -117,7 +117,7 @@ Aggregate scope; per-phase detail lives in child plans.
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- Each phase MUST pass `validate.sh` independently. Within a sequential workstream (Group A→B, Group C research→fixes) a phase gates the one after it; the workstreams themselves (Groups D, E, F) run concurrently, so this ordering is per-workstream, not a single global sequence.
 - The parent tracks aggregate progress via this map; run `validate.sh --recursive` on the parent to validate all phases as an integrated unit.
 - Groups E and F are nested sub-programs with their own children; resume them at their own parent spec.
 
@@ -129,6 +129,9 @@ Aggregate scope; per-phase detail lives in child plans.
 | Group A (001-004) | Group B (005-009) | Registries synchronized with zero drift; every packet has a documented smart-routing posture | Extractor drift check + `package_skill.py --check` |
 | Group C research (010-011) | Group C fixes (012-014) | Root causes recorded with a dependency-ordered fix plan | Research docs' fix plans |
 | Group D research (016/017/019) | Implementation | Typed-pair measurement plan and typed-gold seed recorded | Per-hub research docs |
+| Group D pilot (015-sk-code) | Group D fan-out (016-019) | Reusable typed-gold derivation recipe + refreshed sk-code baseline | 015 implementation-summary |
+| Groups E, F (020, 021) | (nested) | Each nested program gates internally at its own parent spec | `020/spec.md`, `021/spec.md` |
+| All workstreams (A–F) | Parent closeout | Every workstream meets its §1 Handoff Criteria | `validate.sh --recursive` + per-workstream evidence |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -168,4 +171,4 @@ Stop the blocked gate, preserve verified work, record the exact error, and never
 
 - **Phase children**: the twenty-one numbered child folders above hold per-phase canonical docs.
 - **Provenance & rename history**: see `./context-index.md` for the folder-history bridge and the old→new rename map.
-- **Parent Spec**: see `../spec.md`.
+- **Parent Spec**: none — this is a top-level packet on the `sk-doc` track.
