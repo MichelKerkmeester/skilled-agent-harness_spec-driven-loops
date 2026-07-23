@@ -209,7 +209,7 @@
     ],
     "causal_summary": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
     "created_at": "2026-07-17T04:07:17.535Z",
-    "last_save_at": "2026-07-23T11:35:29.184Z",
+    "last_save_at": "2026-07-23T12:42:17.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a6c4215fa98eddc63299809b661d37168ce43583205127858cd33f9a1e11dbb2",
+    "source_fingerprint": "sha256:95a061166ae0103f100174d927f0cafa5145825bb266cbde499d02edfad287c7",
     "source_doc_hashes": {
-      "spec.md": "e37d9ca14122008237fcdf951aa515fc7bc4fdb24c932931ba54788c68ef4531",
-      "plan.md": "04a7a21e8cdd4d8cac7c1c5d149535324539fd5ccfb3a276d696f10c1a4d6546",
-      "tasks.md": "065b6d0d750d94d84128b1016f71ff8862838c963a1b8df3f54b2ba053c3ee21",
-      "implementation-summary.md": "53097c9bbabfcc0dbc78e30a91ed709830405f7fb423f61845492651d58050f1",
+      "spec.md": "88a1f28946eb2e052330cddde73292a7dc3ad6f6b8630e271a12b3eeda8841cf",
+      "plan.md": "d8b7f2f6376025433c445792f315fc6f5d4a2788083b944a7e0aeaeec22096de",
+      "tasks.md": "8f00d937dac01170673d41ec39bbcafe2d9154f6f14b1bd3fff3e2fcaa67d060",
+      "implementation-summary.md": "5da271016e54d5edff298e498754edd06b09d84cb174520b6c3b7bafb60b085e",
       "research/research.md": "7f52295b7504851fc8ee8afbb6bfe3d20be8524eafa441634150856b3f42ba19"
     },
     "last_active_child_id": null,

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark found routing quality is strongly skill-specific, and system-skill-advisor is the front-line router that decides which skill fires",
     "created_at": "2026-07-16T07:57:26.719Z",
-    "last_save_at": "2026-07-23T11:35:26.386Z",
+    "last_save_at": "2026-07-23T12:42:20.380Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:45801598ea8a35e0701319dac114e628eab2c64830ecf178d0a426b5ab71d46e",
+    "source_fingerprint": "sha256:a833c9c3f1503a58574d4475bbbe23628051f88b9e42a6fc5f29e04bb169cd02",
     "source_doc_hashes": {
-      "spec.md": "4fe54833b8c1bb102ac4d58bf5cd4f8d6756edc0598dcbe55d96e4819c4ccf23",
-      "plan.md": "7b151b9b9f6b4c04af1162fbf5206dc4ecabfeaf8d375421c3b3c167a67cdba4",
-      "tasks.md": "6205756cf98107d857be083882064b12b023d57f6be8b11c3fe063fd92ebfeb1",
-      "implementation-summary.md": "d6ff6fe0c31ed0fac5fcef1b0cc9c6b4d895c5afedb35d07053fbba0999dd3ad",
+      "spec.md": "6e8cbf366c62e86e24a2c6127f53791ef6f97623d77990b19818239bd7e31d96",
+      "plan.md": "88015a982ed626a27d6f3dc48edba550609c55f52c4c149ac9c9ca4b65aa0c68",
+      "tasks.md": "28fc0f7289fb620fc3455bf26b9762aee956d49f7b597fed03053e48db2e37ab",
+      "implementation-summary.md": "153125926bf7cec59934695b6a4255d2373d691426247d0cbeada771381ddfa5",
       "research/research.md": "7b3461a2742abe6316631731523ce010d3a1ba59cc424298ce6b1491727ff2ab"
     },
     "last_active_child_id": null,

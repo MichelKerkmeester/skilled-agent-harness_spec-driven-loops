@@ -189,7 +189,7 @@
     ],
     "causal_summary": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a developer opening one gets no orientation before reading the code",
     "created_at": "2026-07-22T13:08:27.050Z",
-    "last_save_at": "2026-07-23T11:35:50.218Z",
+    "last_save_at": "2026-07-23T12:42:22.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69600fbdb8040e40471afa6481050f8bfbdc8777f97643dbb500a3506cf21301",
+    "source_fingerprint": "sha256:d8bc514ec07ca49de40b4cd7d2fb3f225e2da9b69254ea6bcf7e20a877e920d9",
     "source_doc_hashes": {
-      "spec.md": "23783dfc54bb9034663d9e2e5b9c3905c0a98064433f13f04a038e323717e88c",
-      "plan.md": "ef19324c69cb09bcf638a64dc2dc0fe2da1e13c0b336977f24ed79e2be73360d",
-      "tasks.md": "c5b18c6af7eaaa0824cd57f14545ed0752ec3ff07e74df5eba4cb0e2a98ef591",
-      "checklist.md": "a00c376e761b8c16a3738cfb218c8e5e0ac4314047bc9bb19fdb68b3f1792f1a",
-      "implementation-summary.md": "4f92930120f3ad9232bcbcc95e0f4f54d52e1115ecfb85dd4d19e7824df9b850"
+      "spec.md": "c909cd2a5d1e505ec4d5083fdcb14a3dde25dc43403564cb7180d8ee05d45e03",
+      "plan.md": "653b66debde111dce9db24c01fd5ad17fe0fab198fb58993b411c60a7396b074",
+      "tasks.md": "040e00827cc2c2560c6b3f4014321b814cd619789be3c3d7e72fe8fa8b052174",
+      "checklist.md": "9c699bc87bf80982d2399dde9eb7f2bff284fa65f34e979b084c6dbbacde72b1",
+      "implementation-summary.md": "6ce16754ad2cb333478d5867742cc2ced5cc7a9eaf68b976b751d9e0f4d550d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

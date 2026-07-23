@@ -4,17 +4,6 @@
   "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/001-json-cleanup-and-conventions",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/002-reference-asset-template-alignment",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/004-skill-mode-readme-overhaul",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/005-code-readmes-infra-and-sk",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/008-existing-readme-cleanup",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
-    "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/011-review-remediation",
     "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/001-json-cleanup-and-conventions",
     "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/002-reference-asset-template-alignment",
     "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
@@ -103,15 +92,15 @@
     ],
     "causal_summary": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs, reference/asset template alignment, per-folder code READMEs repo-wide, and bare skill/mode READMEs) plus the doc-tooling bugs the audits surfaced. Phases sequenced hardest and highest-leverage first, each a reviewable commit, with agent-swarm authoring against the current templates.",
     "created_at": "2026-07-22T08:55:19.119Z",
-    "last_save_at": "2026-07-23T11:35:48.802Z",
+    "last_save_at": "2026-07-23T12:31:27.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:637ebfa86942cf54d4d64aa9d6ad1df37af894ad1e9ba5b56c2dd620ee794ec0",
+    "source_fingerprint": "sha256:bd5d3198b8285e94050f7cb6ccf6882d398b981aa3c3750e7b459a34436e9eee",
     "source_doc_hashes": {
-      "spec.md": "c264809b22d4577021395eaf260fb3fc782a285f6479df9d0f5f4639fea94bfa"
+      "spec.md": "30ca8ba7390e9d45af0c054f4e89347d86bd22c67e90af805f8b8642bde3c815"
     },
     "last_active_child_id": null,
     "last_active_at": null

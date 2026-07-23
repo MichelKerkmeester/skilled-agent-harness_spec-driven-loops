@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
     "created_at": "2026-07-13T13:09:09.451Z",
-    "last_save_at": "2026-07-23T11:32:37.015Z",
+    "last_save_at": "2026-07-23T12:42:17.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1691e8da8dedeb0f293a7598eafdc9a92d8a4ea3e6b75fc6e3a78361c0b6f6f9",
+    "source_fingerprint": "sha256:ec5f7c946ba493a90e13851ec74256ae357fcf514e323e812085a42b39b2b549",
     "source_doc_hashes": {
-      "spec.md": "338872c34b3d4ebb9621735b8746fee583d111c7a307f749b41908b73dccfc9b",
-      "plan.md": "471db4747ea9151674676d2f4814954c790fc5249b3ce075d2b08a14d5f97021",
-      "tasks.md": "8ef1658b8d91613c21de4cef44ae87c4c031fff61997e4e62cefc1445f1968c2",
-      "checklist.md": "41048c23c6d478571406144bbce53fcd3470324a47a8914d6f6fd45dc766cff0",
-      "implementation-summary.md": "d3e454a1ecee4c3b325ac8318b79bf2f71e3b1b718395678248059795fc931cb"
+      "spec.md": "70ce8cc84da9e4422b732af782b2cb833508b056b2580e55744ec7e77530bcef",
+      "plan.md": "09d5d19e4f6350ad8f5ec0ef56f499fbdb3f5fd3a7cc0bbb9db2b934c893472e",
+      "tasks.md": "b2ee2eda28630c1477c78f1dd48b34da211e14806a3036f20d8814501b1365fe",
+      "checklist.md": "8ab6fb2ebc2a0e20af5fab399e60c67c9866f72dc6cc6ad7bd637c2203a010f7",
+      "implementation-summary.md": "f7cdb729a25114a013ce44d0caf3f083e3d1da82bab3fd48c2d8e19d1c0d9a5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

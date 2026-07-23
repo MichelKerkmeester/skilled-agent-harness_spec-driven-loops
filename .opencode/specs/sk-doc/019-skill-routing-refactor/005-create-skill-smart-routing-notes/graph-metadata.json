@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note rather than a force-fit router. Packets with real keyed resource subdirs (references/<key>/) already carry the discover_markdown_resources/_guard_in_skill/UNKNOWN_FALLBACK mechanism; the 7 flat-resource packets get a documented N/A note modeled on create-readme's precedent (does not use keyed resource discovery + router-resilience rules).",
     "created_at": "2026-07-12T14:23:01.493Z",
-    "last_save_at": "2026-07-23T11:35:24.286Z",
+    "last_save_at": "2026-07-23T12:42:17.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09a400bd414425be4b52b4124bb7c1b99c2c0769c12e1aced078f134afa433b9",
+    "source_fingerprint": "sha256:4ccffb8d6c69a7f22a53e326301dc764a8ce8cd21ce8da8d318dddc3261a3c46",
     "source_doc_hashes": {
-      "spec.md": "249009dbeb774f19263cc4078c1934602a38552f6c305985f570734e41ca9dc4",
-      "plan.md": "f66140bbba9eaf3d9633c95827e772fe4525d50de426f4f7c57dc1ab95ddcbe2",
-      "tasks.md": "ea4f41245fe38b3ed328adc5fa5cc0ae8a32d09327120d0792e614853ff272c0",
-      "checklist.md": "bba6de3b593a06c8e41c77cea0d74cc047df38c016ede89db2adfc65264c4edc",
-      "implementation-summary.md": "32ccf0df9a4c89240725c95204c10a7c1298b078e2745479e17d12bb009f9177"
+      "spec.md": "e8f41c2b72da8d0ec639276193e34a146fd72be9fa73cb2cbc026f26be02cbd8",
+      "plan.md": "db91854a78cc4d261cd7aa3ad23bd9932abb37a33bc7df072ab4ff05ab4fb86a",
+      "tasks.md": "a6908c4244310bec3e740ff1a901eaaaee0d9b910b7a727377fe537f03d4e24c",
+      "checklist.md": "d0c7f85ec754eae16a958b57c4e3df6ad1306ed700d0c2220facc64a4d70883b",
+      "implementation-summary.md": "7e20f871fdd17ed7179ef585b01dca35e5ea005901fdc6c89202cc6c037500d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

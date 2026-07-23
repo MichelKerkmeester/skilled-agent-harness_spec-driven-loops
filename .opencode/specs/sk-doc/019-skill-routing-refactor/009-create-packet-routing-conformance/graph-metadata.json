@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check): split the merged 'WHEN TO USE + SMART_ROUTING' header into separate WHEN TO USE and SMART ROUTING H2s, ensure a REFERENCES H2, add missing keyword-trigger and SUCCESS CRITERIA content, renumber, version-bump, and changelog. Fix the files, not the validator.",
     "created_at": "2026-07-12T10:23:20.067Z",
-    "last_save_at": "2026-07-23T11:35:25.749Z",
+    "last_save_at": "2026-07-23T12:42:19.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5df7523e2fca87ceb21cc4d26d16633737151722d801595e8d243075b7f3c61e",
+    "source_fingerprint": "sha256:286b2223d4298f961c517769688b42776075c38d7c6e5c52b2c31bb8ceef2980",
     "source_doc_hashes": {
-      "spec.md": "aba50876a3a703aa2e36dda0c8789d87d02eb142288e10a628ac94bcc23e751a",
-      "plan.md": "7cf7e149ae030c9bdfa45fba19d77762f8691fdb0cb4c67d21a0a08e57bba7ae",
-      "tasks.md": "c56ac01cec89d8e8488f569bdb0ec5f5986b793a3dda7e0abb07b33bf34afca4",
-      "checklist.md": "f64bc4dee2ecb7db6e9ee9a51166f68c532efeff50b6e5d0f25303d4c853c7bc",
-      "implementation-summary.md": "af82964d9439a6333f1a85589bb95b8deafe53993f78d020883a97a6ea1b94b4"
+      "spec.md": "b4bd7fc575478cab0a054c841ec530e160339e16f4194a2526764b2107863b08",
+      "plan.md": "54f6fb76453ca024b8548c8de414a823c334111d769e78888e11033b826cc181",
+      "tasks.md": "1f94925bace39ddb1d303e4317d85eba1e33b7350ca6d067b348e16f02dd6689",
+      "checklist.md": "836cdd8b72a0eab4b53db9ca8d75423c7379908716414edd83b506a78493c26e",
+      "implementation-summary.md": "cf685afd68c3463f25b892287863719ffea973875b716b0111687d01003636be"
     },
     "last_active_child_id": null,
     "last_active_at": null

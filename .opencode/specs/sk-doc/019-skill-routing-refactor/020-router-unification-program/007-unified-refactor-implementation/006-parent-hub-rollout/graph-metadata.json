@@ -4,9 +4,6 @@
   "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
   "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
   "children_ids": [
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
@@ -91,7 +88,7 @@
     ],
     "causal_summary": "Phase parent that activates the compiled unified-router contract on the parent hubs one at a time, in increasing blast-radius order: sk-code (evidence composition), then system-deep-loop (shared packet/backend projections), then mcp-tooling (external effects + cross-hub judgment). Each hub is a fenced-CAS canary gated on route-gold staying green, advisor identity matching-or-ignored, document parity, and a proven rollback drill. The shared scorer is never touched; rollback swaps to the byte-identical prior manifest and cannot undo a committed external effect.",
     "created_at": "2026-07-18T13:13:20.416Z",
-    "last_save_at": "2026-07-23T11:35:37.721Z",
+    "last_save_at": "2026-07-23T12:31:27.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

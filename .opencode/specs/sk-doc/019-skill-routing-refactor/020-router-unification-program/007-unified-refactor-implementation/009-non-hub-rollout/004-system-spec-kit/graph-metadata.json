@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The unified compiler was proven on one standalone skill, but `system-spec-kit` has a materially larger authored router: 17 intent classes, 48 manifest leaves, multiline resource arrays, and an explicit always-loaded default resource",
     "created_at": "2026-07-19T10:37:32.836Z",
-    "last_save_at": "2026-07-23T11:35:41.895Z",
+    "last_save_at": "2026-07-23T12:42:30.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:067cd6a17653e5b6643c85f9565c34f7608106e7d8f3aacc70a15aac162bbcd8",
+    "source_fingerprint": "sha256:211baf3afacec1c3630c6f64796136b7d604b3d96ff7590a16339cc70ac899fb",
     "source_doc_hashes": {
-      "spec.md": "224e0139fb480b211f6d9e4589cce81358c6ced64f94d0cdd6857b33fec27209",
-      "plan.md": "a6a125ec47177703773556227a77bc2e564399c53158fd2f287a075a90939631",
-      "tasks.md": "eb4d95870430d8323d8c043a44c9d6a02ffe4a6428757207d6f7e11a2e6b26b6",
-      "checklist.md": "5e85d054ec3774145a3c5397c242ae877488b67627bfd501ff6baab3f6d98eaf",
-      "implementation-summary.md": "9ea9ef1e731530e3453e7e163de669b556c0552fc3f43ff3a1b601d729344081"
+      "spec.md": "f5243dc797455335091ce8812929ee653f1914f31d60e7d952a4a894cdf747af",
+      "plan.md": "52f43ea6ae8429958c6362a493cb2e35a6a11405e7e653d6d26ac912cd0b9f3c",
+      "tasks.md": "9c085a50147b0ab9273682f6bf9b535906468d4203e64f35043c8fb4e9273b5e",
+      "checklist.md": "59dfc4a60445dcb84191dd973c3fb038c3537148fff9349b8f1e20121c48d687",
+      "implementation-summary.md": "eceb34556531cd97cdd516eeee631b535e0146ea9d85566e67a8e134a977d05b"
     },
     "last_active_child_id": null,
     "last_active_at": null

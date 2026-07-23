@@ -207,7 +207,7 @@
     ],
     "causal_summary": "sk-design's routing cannot be measured on the canonical typed-pair surface",
     "created_at": "2026-07-17T04:00:35.686Z",
-    "last_save_at": "2026-07-23T11:35:28.124Z",
+    "last_save_at": "2026-07-23T12:42:19.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:03ed9f451b27417b1c863386938f3e64d2f180a152271269a53a4c1bdfb66a01",
+    "source_fingerprint": "sha256:5cb678386908887060c6157135a4bc9d0bb8143f1c4b37411b16815d804bfa29",
     "source_doc_hashes": {
-      "spec.md": "9b7a082165313943ddc8a3fc85122f65c0a3e94327a4830f4bed09e0c4b6f5d8",
-      "plan.md": "1481eae78c1a438f8e68d06dcea351adc1c9198ff7467db87d825f94956da0b4",
-      "tasks.md": "d3874070b43bc9dff14a0fe492839453d5e206338d62f21715dd869bdd15b118",
-      "implementation-summary.md": "edd9e12fd2c6f627e247214e9e45c77ea0250ccaa63b0c321423b592c6593329",
+      "spec.md": "3585a3c53f94afb177525420f9874b58568c10f0be1e6f310b1be4849c3edd37",
+      "plan.md": "e4798c46c3d72b702d2e2885b41b765229e9be48db4c4c9c88c84f54b506ea6c",
+      "tasks.md": "ecd052fb9612d3b34c77d3a026468098b53786763751fe3737ff3a1d5f8c091a",
+      "implementation-summary.md": "7ca59bdd786df7aa7fabeb4b60d18894c0fb5652bed3e82a2677ff3db121446e",
       "research/research.md": "8c8f2d341a88a3d26589f6a3fabb66802e85b36618ff90d1355c26af867b258e"
     },
     "last_active_child_id": null,

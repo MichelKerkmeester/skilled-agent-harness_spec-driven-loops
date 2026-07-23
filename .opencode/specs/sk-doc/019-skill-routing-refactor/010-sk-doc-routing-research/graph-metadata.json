@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
     "created_at": "2026-07-16T07:29:53.884Z",
-    "last_save_at": "2026-07-23T11:35:26.078Z",
+    "last_save_at": "2026-07-23T12:42:19.816Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e4d77516eedd23b00ab3379c0f19e1f0a3ae2c63402aa205888c3777cd3dfb87",
+    "source_fingerprint": "sha256:176c3cf57edfce5d8f3abe0792541eb5fdd3dd319be046ebe601fdd78a04d417",
     "source_doc_hashes": {
-      "spec.md": "f59f574e01f22cadded58aafb2c39b2d6abd54dd2c8f10c93f4fb4d1ed3cc693",
-      "plan.md": "3dd1c2e25caa10a74c41fd0475cc0ccee4d27ad0edd418c3b8d02707521a672e",
-      "tasks.md": "bdec2d7c5e1859a9bb36e7557cf1bc07e901d07fce10b3fe2d4c02522a116d38",
-      "implementation-summary.md": "8702da954fa4af000d47417ced09dfc87871f68e77ec376ab3e3c2b9eaaf69a8",
+      "spec.md": "7688187ea8c958b6acfbf14d8452ddd55a172fbd4c38696613024b0dfdb97f5e",
+      "plan.md": "31b390086bcd8ddd4dccbd4103a48bf5c9a4ae098a697278644e5deaae33b13a",
+      "tasks.md": "92004096bf3bf93616c00ad2d29310c1f64ffcd0186c91d30120a522fa39653b",
+      "implementation-summary.md": "dbdc9e1298de9941f91e004b49f4ce6216ad26f7153384672444a44005088641",
       "research/research.md": "f963f43006548f6cb49ac7557dcb7e512f980e85b790acf66432a53657dd5c14"
     },
     "last_active_child_id": null,

@@ -21,7 +21,7 @@
     "sk-doc/014-sk-doc-parent",
     "sk-doc/015-hub-doc-conformance-fixes",
     "sk-doc/017-benchmark-authoring-centralization",
-    "sk-doc/018-sk-doc-router-alignment",
+    "sk-doc/019-skill-routing-refactor",
     "sk-doc/019-hyphen-naming-convention",
     "sk-doc/999-create-diff-mode",
     "sk-doc/z_archive"

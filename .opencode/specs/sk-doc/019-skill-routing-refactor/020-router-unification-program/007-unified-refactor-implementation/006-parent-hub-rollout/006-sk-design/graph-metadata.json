@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`sk-design` has six public design-axis modes, one authored named bundle, a null default, and a",
     "created_at": "2026-07-19T11:06:53.314Z",
-    "last_save_at": "2026-07-23T11:35:39.376Z",
+    "last_save_at": "2026-07-23T12:42:30.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34a0785a6f79dbd10622fb591ccb49d9f3d32bdc7af7d44f1be5079db859ae30",
+    "source_fingerprint": "sha256:b85c79df77725674ffd6170290708425726eb7b3670b9a44506e74d564347841",
     "source_doc_hashes": {
-      "spec.md": "9520f07e8192a59d2858e0e982d183adaae27d41a03200da22867441214799f1",
-      "plan.md": "7831503b7b23f14dd49dd57456aac5ac995eb57280d576b15e799d8f9ed21598",
-      "tasks.md": "4964ff2c79fec13aa48abdc75d0dd5a649001fe8d3c67c07856dece54faf165a",
-      "checklist.md": "21752317c1160dc30b57c840dab68f3c903df6e7684c93f681d2bbc01c2480c4",
-      "implementation-summary.md": "d7ed6f1707a9f7684a55f2e10376dc353dc6c9ab7879339a38d20c275b2e7fc5"
+      "spec.md": "49400ccb93b34a653da254edbbe18cfa3dbf8d7beaee86f3119f5794645390fd",
+      "plan.md": "25c12b3602cc5a3abdf9d44c09378c41345a4ceee14b48c80efccb214b3c9162",
+      "tasks.md": "fffc820dff8327b3a479ee79961850510a7f4e92ad04c7a46facf3dd1b3c1814",
+      "checklist.md": "0a85a871db9fed0883e3d2c0fe8063d72c33371357e9e4b8cd38f3922f638a4d",
+      "implementation-summary.md": "6aea8bc3b52560eef1d81d8854d683741a27f940a4718a6b9b2e4087ec809465"
     },
     "last_active_child_id": null,
     "last_active_at": null

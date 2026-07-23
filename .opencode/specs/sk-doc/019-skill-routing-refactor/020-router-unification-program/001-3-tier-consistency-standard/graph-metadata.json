@@ -127,17 +127,17 @@
     ],
     "causal_summary": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
     "created_at": "2026-07-18T14:47:46.609Z",
-    "last_save_at": "2026-07-23T11:35:29.831Z",
+    "last_save_at": "2026-07-23T12:42:21.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcdf5a2b0de5d1539119c6c27e7cd5cfeffcd3d0a4260908d82b89e31102a38c",
+    "source_fingerprint": "sha256:c038029df45cb071ba8d4586f1874a5c7f3a193f3501ebe609528289678bbca7",
     "source_doc_hashes": {
-      "spec.md": "17d188a6402bd7d552a72a5804b745191ab9eea2e513750c8d1b159981017a8a",
-      "implementation-summary.md": "ad9fc56d4c30c6d1abf97efe962296bd3226b0b93a229b6f7395b45f2daa9c1e"
+      "spec.md": "5efb832601f6a78e18f118770f99880183c378b2139a316c5a56683381e58545",
+      "implementation-summary.md": "76dbe2b98c400e3aebac53fc952cbea40302f6db5df63f61a871f766eb19bd58"
     },
     "last_active_child_id": null,
     "last_active_at": null

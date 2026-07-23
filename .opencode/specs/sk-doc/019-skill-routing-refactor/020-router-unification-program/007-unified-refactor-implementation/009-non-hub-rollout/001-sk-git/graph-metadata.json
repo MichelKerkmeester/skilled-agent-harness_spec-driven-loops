@@ -7,10 +7,10 @@
   "manual": {
     "depends_on": [
       {
-        "packet_id": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
+        "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
         "reason": "Reuses the generic compiler, projection, parity, and activation modules.",
         "source": "authored",
-        "spec_folder": "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
+        "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
       }
     ],
     "supersedes": [],
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer fixtures, or fenced rollback proof for it",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-23T11:35:40.969Z",
+    "last_save_at": "2026-07-23T12:31:28.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:911c9ad0ca1f91fc64cc63b832308e66ee7aac48fc428c3a6ff5b45400a0af9c",
+    "source_fingerprint": "sha256:2afa1b87f4639cd5030602ec6c00f885e2cc97cfc12d1f16ed9443979b5e2646",
     "source_doc_hashes": {
-      "spec.md": "bd0eaf865aeb137c920c124e7807bd405c364a1c8b5fd6fed33d947579354f82",
-      "plan.md": "f46bdc080da778050a9f860dffc607f74e186c4201d21843b299b559768eae16",
-      "tasks.md": "b019430713006dd3d22cdd0672a10f20fd3a27805a780c806480bfbed25b9b4a",
-      "checklist.md": "3eddb9303691ee0a91f67fb6db422f92eac6d057e7b706a3ee179ddd59d57248",
-      "implementation-summary.md": "673058d1489bcf95e732f3d2e3f48ca691d23f4046696c04799abc17941e4365"
+      "spec.md": "5b97e63c750cecf52e7dc72a3c68de9155d2ab2ac555f988f568f0113445380e",
+      "plan.md": "e2ff715141fb2b49ce8aacf14e15c914cb5f763239c1daf4bddac9f308263f55",
+      "tasks.md": "9d426e8b1e69c17c608746ba45ceee879f0c1b7ef08ef712d669567860b8fcd1",
+      "checklist.md": "1f306e8f3ddc7c2c91722287c6f6a064079e4cdca7eb56af80fdb68a43cdf55e",
+      "implementation-summary.md": "58681716fb21a2b98e85fad846948b676be077a242e4b97551693fbc074cecf5"
     },
     "last_active_child_id": null,
     "last_active_at": null

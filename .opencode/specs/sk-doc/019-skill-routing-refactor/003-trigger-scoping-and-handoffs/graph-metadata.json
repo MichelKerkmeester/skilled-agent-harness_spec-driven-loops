@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-07-23T11:35:23.492Z",
+    "last_save_at": "2026-07-23T12:42:18.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d230d95f2e02d213b22ff138cf7317ffda456eb40cc5ed0afef203c5753566ca",
+    "source_fingerprint": "sha256:102f1c34a65348a9115747b024e46131b088e446d0c0e6ad1c6cc004fb64abc9",
     "source_doc_hashes": {
-      "spec.md": "b96c84f5b16b2644d94eb912088e9677cf329ba252ea6349cbb3e0174cae6f91",
-      "plan.md": "bfdf200e2008d67193761638e5faba6cae1b3de56e68fc33e9f8a36cf54f306c",
-      "tasks.md": "6aee5171488613d1db85b91e7a243c56b0c1f863eab3ff5bb10592896646f638",
-      "checklist.md": "e3b66c0f18d1997412ae07dff27bba91fcfb31182302afccaa43f49882fc0187",
-      "decision-record.md": "7430431f9ab7971de8d79b975858b6e135673a040cea6fd61ae8cff157d491c4",
-      "implementation-summary.md": "f7ff4bbf64ab9e310592d923f87f34643ae67b4f801024226e56f1035fd99162"
+      "spec.md": "d788736074f0e63ac949bca407c869095c07faf1f650e42d26c633bfde386b2e",
+      "plan.md": "368d88374acd965b63e8f2abb8efdc093991bcfa219a0c62f228cfba51a22fd7",
+      "tasks.md": "25b492ad5023d4a71861f0046bbfe34a1e609d1786a963511840347c4b2eb9ad",
+      "checklist.md": "d3983b225b5212110f4eb1e1f002f63a7047247c9b152f415ac2c1d339d4828b",
+      "decision-record.md": "beee3b684ba4dc8fa3cc5b50c212ca356b020e9561e70b87833b10c7e0321a02",
+      "implementation-summary.md": "6b3a5edcce868386fd7918e7a19f82f153ba45636d0d82c0cc432463a3ec3b4a"
     },
     "last_active_child_id": null,
     "last_active_at": null

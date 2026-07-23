@@ -4,9 +4,6 @@
   "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/005-calibration",
   "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
   "children_ids": [
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/005-calibration/001-holdout-corpus",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/005-calibration/002-rank-vs-calibrated-contract",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/005-calibration/003-selective-controller",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/005-calibration/001-holdout-corpus",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/005-calibration/002-rank-vs-calibrated-contract",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/005-calibration/003-selective-controller"
@@ -87,7 +84,7 @@
     ],
     "causal_summary": "Phase parent integrating Idea 5 (calibrated negotiation) into the unified router refactor as a first-class build — NOT deferred. Three children: build the sealed held-out routing corpus (the artifact whose absence made the synthesis park calibration), specify the rank-vs-calibrated route contract (rankScore/scoreMargin always, estimatedError only with a validated certificate), and build the selective-classification controller that auto-routes under a validated risk budget else clarifies/defers.",
     "created_at": "2026-07-18T13:13:19.110Z",
-    "last_save_at": "2026-07-23T11:35:36.471Z",
+    "last_save_at": "2026-07-23T12:31:28.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

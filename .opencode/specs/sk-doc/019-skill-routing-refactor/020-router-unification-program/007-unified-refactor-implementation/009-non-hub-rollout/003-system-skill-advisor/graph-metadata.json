@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The authored `system-skill-advisor` inline router had no target-local compiled policy, typed scorer projection, exact positive-route shadow-parity proof, or fenced rollback evidence",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-23T11:35:41.603Z",
+    "last_save_at": "2026-07-23T12:42:30.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cf6271adc5a2220da748ada4170beeeb7233d2856ea2fdb557ab9ff01a6da12",
+    "source_fingerprint": "sha256:e920ba2f95d7791d0ce4b7e6c84f173d3bee04edc49ba9b9c7944551edfe5ace",
     "source_doc_hashes": {
-      "spec.md": "a1e6b4dbe6577c44b3ceeb07541693476ccb00feff05402edaa0948a437eb21a",
-      "plan.md": "a5e746a90a58fd2c44de0544922d463f5fd90c1939dc3d6631c6fc18aafd26d9",
-      "tasks.md": "2caed65d698b4bee648ff88c54741ab2f6c1df0b755e07bb595960409d58f13d",
-      "checklist.md": "e90a4ba7a3d6294677e796b1231c193bf9fc8cb2502b1f1fe27ca8ea9d61bb24",
-      "implementation-summary.md": "86f74f5f4b5e24d9b4a9890d831aabfe87803a803d7d98411f602a5ffff0a54a"
+      "spec.md": "4aa8451e5c7f714307ea3646b03f455230fb021139ac06ade25fdebb584fddbe",
+      "plan.md": "3e77496d4aee5e1547a26656774dfcd75e02a503beeb462042d9a885a88af6b0",
+      "tasks.md": "474066f2cb14b586bd3d0880f251eaaadc7f0371a5c48f94d026c579e4b77d0a",
+      "checklist.md": "1cfbaf6d7d32dcfc99ba256fdb8a0aa8c294bedb7ea38b7871109bb85648945b",
+      "implementation-summary.md": "19ff2f21ba43a770855a1c47dd669a0e27ed8810d9e3655330b493f7dba3d881"
     },
     "last_active_child_id": null,
     "last_active_at": null

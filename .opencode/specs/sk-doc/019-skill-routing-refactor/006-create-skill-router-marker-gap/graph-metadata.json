@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The create-skill conformance checker (`packageskill.py --check`) emits an advisory warning — `SMART ROUTING section missing smart-router marker(s): discovermarkdownresources, guardinskill, UNKNOWNFALLBACK` — on eight of the ten `create-` packets",
     "created_at": "2026-07-13T12:05:59.813Z",
-    "last_save_at": "2026-07-23T11:35:24.730Z",
+    "last_save_at": "2026-07-23T12:42:18.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebf1803d40c9128302f733e15899c58a8cdbd7e0f95acbbf62ace0772111b689",
+    "source_fingerprint": "sha256:efb1d6e3d401ab62d9b7ddd61b598578824f46545545a96f01772fa699069447",
     "source_doc_hashes": {
-      "spec.md": "ebc1168c04c25f98928f6c7e1990fc4141377301403312613f4131c2473765c9",
-      "plan.md": "a2d53d34d74ebebed77d038897f235264c98cb13f1cfde7ed9a1b4ce1969c97f",
-      "tasks.md": "ec46668694965043ec1dde98216c2e5be6a4cd9ce2efa4a5274f2beffed5bfd0",
-      "checklist.md": "6fc95771c07fd4cc4829d7c432224d796017a1fa07146b65e0dff551097642a4",
-      "implementation-summary.md": "240bd302f263d90ed259736bbcdc5386e3e800879172018b8cca6966d15342bd"
+      "spec.md": "54fbcefa11f616aca36ab673ceae4ae830b7514672c0483dd70d8b2ba60acbdb",
+      "plan.md": "fc18984bfa005d36f799d5a8d4b5812098b1037507345b3df655c8a280131d3f",
+      "tasks.md": "d6f3330194225bc5140b4527870ac3f6f666b8dc94c35fdd8c0edc17f8fdcc08",
+      "checklist.md": "6feda2d9cc940eb9944ba91133fe2a6a54e914aec46c828209c06f4dd0fd9c3a",
+      "implementation-summary.md": "989b20f62f897d5a334957d6437d1e5a35bc8b726b5c7fbabb341f363f938c1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-07-23T11:35:44.751Z",
+    "last_save_at": "2026-07-23T12:42:32.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61eb5c365915e2793a770006a281559c85f718b1489e6b4b1bf4767a9d304cca",
+    "source_fingerprint": "sha256:bc00cf2e0b37ec20d11d676375c30cb9c108dc62a0d4a95e923a4b6eae4b31e4",
     "source_doc_hashes": {
-      "spec.md": "d693cef9bb5002da8b95c385e13b5e6940a985d2544ea60379a3abef7d368a64",
-      "plan.md": "09dd4f0a491a450a87ed7deaafaf5447e8a033dbcbd7270b5fa46ed06d0b793e",
-      "tasks.md": "abd270ccab99b9572e00ef7c26f4496f745d23dbad52a33319bac230a46c4f3b",
-      "checklist.md": "03173ee167c32518427154c4bec0ea241164e083f1e04ea7b5449b545f8554db",
-      "decision-record.md": "20c773dcf5ab13452f58596455817dd0e52098ea412ccc83f0631a6ebdcf58f5",
-      "implementation-summary.md": "f70ba2735513bfdc4cb8d4e6dd312f3523a3f4b4242c4e76600f51b3a885cc2d"
+      "spec.md": "952492a5070e03cc6bc33247dc8b407d5cbd0776da794c82dae70101384a4ad2",
+      "plan.md": "fb1538560f9ce4ae5ccbe7410afa6952f2f7f3a587a6350497d99564985080f8",
+      "tasks.md": "3292001dbabf362ecdc2bd2c5b9dd05e0426135a68a951d7c39f70d9a438d2e4",
+      "checklist.md": "043497ea8db7ed08c0895d5d300e1e4792bee09e46153d49f2fcea5ec3610215",
+      "decision-record.md": "274603aba712e5bc36f6d1caea575f99fa55e36eb60c1c078e3811de4a9bbde1",
+      "implementation-summary.md": "47f04cdc10a672998abedfb08f7053d8776114fc40a4d04cc967b35eed525157"
     },
     "last_active_child_id": null,
     "last_active_at": null

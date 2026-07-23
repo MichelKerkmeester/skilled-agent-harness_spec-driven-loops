@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-07-23T11:35:45.679Z",
+    "last_save_at": "2026-07-23T12:42:31.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3c468aa07f84c319d0b884b58e08e1d0bc19c70f2d8147b98144df426db8edc",
+    "source_fingerprint": "sha256:968154d97c9817258cb6a962c070a73b1f662f3ba526def2b081d41c21b288a4",
     "source_doc_hashes": {
-      "spec.md": "0fc9e5030fef4404272363f51d48450b674eca586550aa34b63219f8e5331c99",
-      "plan.md": "fa8497d27fc743fdfe8fb6e84139ca234fe96c7c12a5f84b42305721d5916746",
-      "tasks.md": "d4f4400181b5fe3f838ae1e66c97e55c64e15af689263900b16ba0375ba96442",
-      "checklist.md": "4bd9df0bfdce07da8cbd185aa2b8a68a8c19578a0cea71ed582e5a7b7a8238dd",
-      "implementation-summary.md": "46473bf7a70798e57f59bb8a7d3505eae0b9d20b1a2c8bb4acdb75b0d32113d2"
+      "spec.md": "5ac8e0f2ee0d1b550dda96257c11f961e0bd587b63ed41f6ffafcc44d6310423",
+      "plan.md": "094f0ac3e782af29438c5ef6406fbdc2f73488fe8bdce5d3e6e6db006dc6d55a",
+      "tasks.md": "38d8ac9fbd4cb88a42cd7ba86a397dd93664381a4de27acc8633f97ebe5e5a54",
+      "checklist.md": "88fe75935499059c3c9cde98ba7ebf66cec1d113771360d0556929ec75dc5da4",
+      "implementation-summary.md": "f011df2dec030cb5c8a0867901b3728d66a094040544b9f5cb9e0e6da9d181e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

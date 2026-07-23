@@ -209,7 +209,7 @@
     ],
     "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
     "created_at": "2026-07-16T08:08:19.396Z",
-    "last_save_at": "2026-07-23T11:35:26.698Z",
+    "last_save_at": "2026-07-23T12:42:18.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:1cb82a5d795b40028d3de49ad772e0854877af9576d2bf79e5909bc882cd653f",
+    "source_fingerprint": "sha256:179073f8747ba53951674fcf39445a59f82b6217dae61251d628d7e361368318",
     "source_doc_hashes": {
-      "spec.md": "92ba19e1ca74c2a67055b97aa0707b01d7b166374f5859be1865704cb9a5f0f3",
-      "plan.md": "24065ec7dba9c05b389dc7ac48c45053becfb78fe82962a54faaed92a8aa1dbe",
-      "tasks.md": "920986611ab89e0294f830439bac0e4bf6fa3d9b59315c24997489344ce37606",
-      "checklist.md": "b7cde6897690f7c6e1f62d9b81bcdc48853c744b636d2360716034fae3f007dd",
-      "decision-record.md": "4680044359ff719c8a930a12b7cf8239f0490d4dfb91b3dfad75af8d5bfed539"
+      "spec.md": "0141348072fe84f9baebbb1d50ebd03c02676f9a0c10d303df16107ff21c9cec",
+      "plan.md": "ceab21e05dab7092c6b04c55229c7e1e731e168d9a8c59e8a63836a41a309bd8",
+      "tasks.md": "e26cf253aae9faf1fa9dfdaf2596cb2d5c5b9718a794febfd81e149b50200f10",
+      "checklist.md": "396542eb4cf18a026c037c502980a06f526cd8be0926944eb3ea7a8a55d54b81",
+      "decision-record.md": "b878c3657d45d1d7d7ba6ad86f34272233885377f0e8f5f9e0e9fe5c46f8892e"
     },
     "last_active_child_id": null,
     "last_active_at": null

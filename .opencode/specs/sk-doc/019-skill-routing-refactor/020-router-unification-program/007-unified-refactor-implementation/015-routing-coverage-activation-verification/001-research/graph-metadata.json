@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The compiled skill-router is shipped but inert",
     "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-07-23T11:35:44.479Z",
+    "last_save_at": "2026-07-23T12:42:31.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76119e1c7d91a9e41566be3dd85895b294fffa87c840514c9c346534137d4d71",
+    "source_fingerprint": "sha256:0fa6ab8a02cde3d4ce34c1afe113fc0a664cafbb8c4bb537d63833f994e10d9a",
     "source_doc_hashes": {
       "spec.md": "bb55df5bf5c86a3789b6bf6264bcfaeffce5ebca273c2309bd94f3f124c30917",
       "plan.md": "fa0664054f53e7f624cbaf0a3045dee2f9a48b6fed9ebe466d2a96298eadbbf3",
       "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
       "checklist.md": "6a5df4a543801d7fa269d625a60d9bb94fc306ab3c8570022ac698c7c5dc9e11",
-      "implementation-summary.md": "ec0472901d3a0f240642de53ee97f58938f7198c26c8f6a4340c5cf28e0c96d2"
+      "implementation-summary.md": "92da57383067e7a4d98bb214c27dd62783f143c36a537cf8961183f897bd92c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

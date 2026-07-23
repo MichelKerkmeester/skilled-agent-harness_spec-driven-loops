@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The closeout deferred five follow-ups",
     "created_at": "2026-07-22T16:53:39.311Z",
-    "last_save_at": "2026-07-23T11:35:51.618Z",
+    "last_save_at": "2026-07-23T12:42:23.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8332ac1f33800e955ede1f88795eeae409d26b11bf809e53fe8ffd264996f528",
+    "source_fingerprint": "sha256:09e58d4540aeb8258182a025695f0e7fac7e4e1b0f828ad8d520a29c052325cb",
     "source_doc_hashes": {
-      "spec.md": "e11cebfca645072cde882191b9f1b8eac3d92f891109b1ee71d501af7cac1ac1",
-      "plan.md": "a58213645f2059d230646eeeace304e7b47dfa611f03a5bc6852846025dff2df",
-      "tasks.md": "0dc9784064a3356bea55809c426846193150a468d94f9c00a42a200263922e2c",
-      "checklist.md": "efd5479b3a2b8f7142290335aec172a2d31f04d93f51ff2b8fa0a8a89a452f77",
-      "implementation-summary.md": "172a5baaf3d4745dd49ea8c408cb705ecb6cc31e2cc2554653fe124540ed7e52"
+      "spec.md": "b6312e3c3d902f3d51267e8c36db99c88496e631bbb70e667ffc9ee8ad1104dc",
+      "plan.md": "b689b10c22464539107d2d14f6c97e3881213b51289d8d93970dc9c7ec0406ea",
+      "tasks.md": "d626728afd364d41708b4fbda6b28bd15d2313d222b6061ba368cfa18e661fbd",
+      "checklist.md": "a73db3be235b539bb4c21465987e09a5515c72adbee1f62dcd9ba99a5b4584e7",
+      "implementation-summary.md": "bc56063f1cbf95e1adbf4ade6b031118f868f37f07111a3b735a7da56837440c"
     },
     "last_active_child_id": null,
     "last_active_at": null

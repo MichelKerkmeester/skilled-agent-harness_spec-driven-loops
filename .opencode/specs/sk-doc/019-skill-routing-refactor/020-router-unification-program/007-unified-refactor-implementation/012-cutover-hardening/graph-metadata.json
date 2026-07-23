@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `011-runtime-engine`, the activation layer `010-live-activation`, and the regression harness added in the same review cycle) returned CONDITIONAL: 0 P0, 7 P1, 2 P2",
     "created_at": "2026-07-20T05:26:38.974Z",
-    "last_save_at": "2026-07-23T11:35:42.786Z",
+    "last_save_at": "2026-07-23T12:42:25.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61c41c4bb08921cb1c5fb87a552081baa1da0a0b138edb177b4808fc83c33f73",
+    "source_fingerprint": "sha256:9658cc116aae08ef5ff59e6fc87bbfaf86825feca976ce4ea1418bb974e5a82b",
     "source_doc_hashes": {
       "spec.md": "97e450f99b4861383d48d6671acb9b53250541a444b7d80aed2c01c22abf052a",
       "plan.md": "0d5d914ab18212d8905ca52cda5b5acf4bfa0ec8a1866f26a78516215c1a3b63",
       "tasks.md": "ddfe96cf88df5265177087dc0d49b8b06f19a4b1acf32c2a623a8b987f284fbc",
       "checklist.md": "85a27b998b85a2b89e22ee76269d9a8f15dda74acd14a8efe9f4845dc1f0c21f",
-      "implementation-summary.md": "186c6f7c611fdd44ad987298a93840259b2c894e91b9c1ec8ca029971064b2c0"
+      "implementation-summary.md": "ebaa45eb3d8540998de4c158fd4d3873760d972311d2b33d7ccf2b514b3654e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

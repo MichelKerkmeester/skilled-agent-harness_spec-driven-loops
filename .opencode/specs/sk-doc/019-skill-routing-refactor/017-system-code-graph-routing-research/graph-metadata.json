@@ -209,7 +209,7 @@
     ],
     "causal_summary": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at all",
     "created_at": "2026-07-17T04:06:39.227Z",
-    "last_save_at": "2026-07-23T11:35:28.460Z",
+    "last_save_at": "2026-07-23T12:42:18.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f3817edd993a02a7fdf120d1193f61e6c2c61b9ec521eaeef49baf5b75c5fe1a",
+    "source_fingerprint": "sha256:568d2c38f386bed0d0c3649d38ff4b8a22e7b76a49f3a7eb5a5a5c3abba332f2",
     "source_doc_hashes": {
-      "spec.md": "9500b8223dcc51d35c8145435be161fd4f664c1861314902f77700995662cab9",
-      "plan.md": "7f18ff4b58deefc73a2336444a2ba1a37ce8e83e21de287aca2193e237bbf90c",
-      "tasks.md": "fb7fb58ad559295139b998eef69b00c34f3b1b62aa4fc1a91efefc1e35b3120b",
-      "implementation-summary.md": "9e19ab73b80e0147674c5a6ec5fda20f6b5dae27660b4de1a737b19c2803ff5d",
+      "spec.md": "3b56db5456570d2987ec5b663fba730d5abd72fce6bc58956d7b00807157f286",
+      "plan.md": "5ee70caaaa642434246369201a09f8c751d87d20a4c95ce91d6b19688eb985ab",
+      "tasks.md": "ca6de896f36689edcbddd9067e53723e733631a2159434d17d7aa3a443d087cd",
+      "implementation-summary.md": "a9fd5d2587aad4d7b514677cdec9e8fb746bee6abcaa0551f266543721d89276",
       "research/research.md": "4090a81546fbab0858065b290a2241fc76ccae12a2d2e3712a018f707dd98a50"
     },
     "last_active_child_id": null,

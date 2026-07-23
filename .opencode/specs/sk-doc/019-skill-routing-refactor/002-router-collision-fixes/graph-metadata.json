@@ -199,7 +199,7 @@
     ],
     "causal_summary": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality work",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-07-23T11:35:23.134Z",
+    "last_save_at": "2026-07-23T12:42:18.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a0089ff812c1b1a2d1b7eeeab24a5e2d3a4d2c8f37a7b8f67aba8cd7e974f7b",
+    "source_fingerprint": "sha256:9f1c32f20625cccf6cd861c687a26bd27b538146118f71bf7b1cbf2541b6bebb",
     "source_doc_hashes": {
-      "spec.md": "2cbd5b1a7a49e95562a707853e1233531d918b7b727d8bfbc9c5e9711540c5ed",
-      "plan.md": "ad96890ffb236716e83c6aa614db434f44e7361453b83c41f09258d4a97c2f65",
-      "tasks.md": "f3f5da31a0f0177482a4f840b11ccea80fccac1b265d5ccf0daa1e8956d237d1",
-      "checklist.md": "d91baad08f2322c2fd054ad517216c8aa6f33583bdaef7a7d2993abed8260e47",
-      "decision-record.md": "fdcaf42536b1fb23b705072d66bdc6b2c308d54fdc6928de44b5b4d47e954bdd",
-      "implementation-summary.md": "b1d35bc728e3048375d32397d59f9841fee1ed43fa9c92e3c78fed15f42eff1d"
+      "spec.md": "12b9c3958ff33b0eaf7e142e6b48d2a45af0029ac460f6e1bb71b2a1bd34f320",
+      "plan.md": "32fd6cb09cdce3a93d3607db08691b1bb34e79c223df80d795ff59cafcf16fc0",
+      "tasks.md": "4485b0c398caf53511d7f574c0db1342d733d0b746c7527db11625d969eae416",
+      "checklist.md": "2f0ed5178ee78c4e0ebbca1ac87e2419eaeb676649547f7b91f73767c0a372c3",
+      "decision-record.md": "d406fee16f3ded15cbbf452b37c824c71329af772ea137a7959a7ecb0e142950",
+      "implementation-summary.md": "57d879b350ca4a4596e09e01e0280247022452206d1832122f87f87ecbbefcec"
     },
     "last_active_child_id": null,
     "last_active_at": null

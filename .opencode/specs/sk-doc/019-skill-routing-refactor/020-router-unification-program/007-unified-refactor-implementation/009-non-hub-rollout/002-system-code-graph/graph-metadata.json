@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode packets",
     "created_at": "2026-07-19T12:00:00.000Z",
-    "last_save_at": "2026-07-23T11:35:41.297Z",
+    "last_save_at": "2026-07-23T12:42:30.288Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a847e013d6263dae4461790184b90f49c30118a06f801cef8ceb94d56a232bff",
+    "source_fingerprint": "sha256:c7399234a792a4f4059017e8da73c92f27c3394b41843589c05d6c2a0ca3cce7",
     "source_doc_hashes": {
-      "spec.md": "864a3f8d306a3efe1c23cab9b84bda4b94af845ff88bf5e91cdbd6c60a7bf87e",
-      "plan.md": "fefa85439de20b3132e5ec55517cff5bf79e3cbd9b4e322a0e466f5ef4e52dd5",
-      "tasks.md": "f606a00ee72da7bc2c18bc2eee98bcc754e80a039fa76e3ff0b741a459e92b42",
-      "checklist.md": "a1113ef5d0a39ffba1f82f980c6c9c45a24aabce86c91a4b878ddfffaf11331e",
-      "implementation-summary.md": "e73927f5f3e074933a4b0ded2a64dc78ffd1f2258847e30e696f48e635cbf8cb"
+      "spec.md": "95de18040b8af9fdf5624707bf038c18c7e1e4288667183a1c4b56fc58b8d9c4",
+      "plan.md": "b2ebd640917017d9fb30df5f836c9fe01f40dd843e2c532a6a266ca595209a20",
+      "tasks.md": "3eeae398a60eb5e0b38e0684febb973aabba2b888826c8ca3969a8d010188022",
+      "checklist.md": "b97114204c6c108722f55e9702b5f86e67b8aacdc70f026dbb592a1da06a469c",
+      "implementation-summary.md": "462ee25322ccafa5cfbebb7e9c8cde070d70ebc3319d099e5e5410afdb7c085a"
     },
     "last_active_child_id": null,
     "last_active_at": null

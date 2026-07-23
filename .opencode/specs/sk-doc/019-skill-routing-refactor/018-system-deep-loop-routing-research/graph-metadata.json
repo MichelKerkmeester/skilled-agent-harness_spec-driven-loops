@@ -210,7 +210,7 @@
     ],
     "causal_summary": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
     "created_at": "2026-07-17T04:07:04.548Z",
-    "last_save_at": "2026-07-23T11:35:28.810Z",
+    "last_save_at": "2026-07-23T12:42:16.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:cc8f9901c67627b0138fdf194fe19cb2aebb043102516fd89a0c64354cdb3276",
+    "source_fingerprint": "sha256:0d99d4d28fe4f7efbac4cd23e28ba9f7a667a13db5e3efb96db1952f153f2660",
     "source_doc_hashes": {
-      "spec.md": "5a981134beffcf923c41c44437a19ccf79e11929208e479e1b6dd74aede3649c",
-      "plan.md": "a41ee995ae1b7c7138b4004cd0ede11c807a69368072a059a3e0e7fc0819820c",
-      "tasks.md": "481fe555eb7d25cea2ba4962e14551a9916cde0c1b5aff19de7082e43a16a7e6",
-      "implementation-summary.md": "7e8e4a0dd3cb0b227ced6113d4fcd3d17249ea92de34d269f4ec968c12f34f8b",
+      "spec.md": "7170c1298131d5c356c50cb6b68023372e5152353a7d3ad2ce545457ac143798",
+      "plan.md": "56bd71a90643c2bcf3e07195cc0fe0815ca1cde4342407c2b4a6dfcab04f9b92",
+      "tasks.md": "370c6e6141fcc00061e76df352b8c1a31ce3b012d8175ed87a8a9955610ca137",
+      "implementation-summary.md": "408532753f37ecfa514d86c5e31bb76f58539e95f42b50fd4e8f884de4a61e72",
       "research/research.md": "39e68b4040b8a42be2049e6af881db8fb9d2453c337ab57832031a49348efe83"
     },
     "last_active_child_id": null,

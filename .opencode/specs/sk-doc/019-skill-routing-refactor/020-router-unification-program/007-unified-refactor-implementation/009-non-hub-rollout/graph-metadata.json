@@ -4,8 +4,6 @@
   "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
   "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
   "children_ids": [
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
-    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
     "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/003-system-skill-advisor",
@@ -89,7 +87,7 @@
     ],
     "causal_summary": "Compile standalone skills that carry their own inline router into the unified policy contract",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-23T11:35:40.619Z",
+    "last_save_at": "2026-07-23T12:31:28.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

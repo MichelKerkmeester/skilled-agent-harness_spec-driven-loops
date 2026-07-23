@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
     "created_at": "2026-07-20T21:51:45.508Z",
-    "last_save_at": "2026-07-23T11:35:47.286Z",
+    "last_save_at": "2026-07-23T12:42:31.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e4e23b9bc29b69e48aeab6aceb0a6025543704c99f4430f5abe66f84548f06d",
+    "source_fingerprint": "sha256:514a5596f78fa31acaef8bb953e83fe86ed6465cbe5c93f88afd7c3308ebf7e7",
     "source_doc_hashes": {
       "spec.md": "88a261564338b0f080d97b29ead13c193d1a526931be0a60384fcda7a1bead50",
       "plan.md": "51d9f4bbedabf39a6c88f40be565da0ca44db6eb0f8d32a67f8bffb3459f5369",
       "tasks.md": "031e5cb3727bd1ca6c35b62a3f677d0f1d7d2d4c441e94b997c0aa2f56af9983",
-      "checklist.md": "e8461b1c504b812befaf3c1fb74ea3626af59f643790d2fbc54b36a6dd2907cc",
-      "implementation-summary.md": "f02d9bdc4e5d32176fa875d3c1732c44ad5960eb1c6bdbad5310a21706cf0bca"
+      "checklist.md": "7abe3ea2eab69e7297485d6ced4a3ebdfe26ed7298a112f49ed167ae776cf09a",
+      "implementation-summary.md": "e73871b311a836eb7c64ed5ae612afdf0849d241719391d95773ad224a647244"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-07-23T11:35:47.898Z",
+    "last_save_at": "2026-07-23T12:42:32.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7061ed72381681b9b25b70a7175a4ceaddfa11b99e1d1ee6a5660a4b2494ce2c",
+    "source_fingerprint": "sha256:e6117a4c32c7df7da67e2125c0a1e4f48e6b856103e4476357fd2a96f73d4c43",
     "source_doc_hashes": {
-      "spec.md": "f78065e9cf8ea7cf7a4df79f1ab7a7acb5e4b1bb03625d12864e5c289dcee50c",
-      "plan.md": "d02a3b561c2d5d303fd0230358bf70342c9277f89fbf7464855e85c188ce2d78",
-      "tasks.md": "cc553c6c74b480466969541c6a6036bf4d5bde0ddd74f715260e5a4ff4373ae1",
-      "checklist.md": "a70f7404965a51ac9a6dc854cb8fd92b59827da67486a0253aea5f607c07aa96",
-      "decision-record.md": "211d62b8fd25960216caa3590978439cf5e3e16eab6944c59e9197e7351e8bcc",
-      "implementation-summary.md": "3e4c008f84e6609bcb3e6b439b90bafa62becd6b1b075b8a09c917e94aa72e0e"
+      "spec.md": "825e881156876896a5c5e66e87a8c723fcb5b9a5b79a9f85849211c3bd912429",
+      "plan.md": "0b46a21f62e5d0894fdc69025997783bac2bd458a248ccfc278c9efa02566a94",
+      "tasks.md": "cb746d46ebe189c0a874801ee14020146f347e5cd9383b476dab4bec7786223a",
+      "checklist.md": "35f34d33959fd84c1cb1be0451b29249ad55c6e3697f7e38f236d5a32bc799fb",
+      "decision-record.md": "d3d25a8816ef92ea0d6710863782c4672a91daea19f0035c2eb4390f7d188a2e",
+      "implementation-summary.md": "c6d142f1874439c46d18781d4d001dc86f87caeda0542f4fff68740724ca3c74"
     },
     "last_active_child_id": null,
     "last_active_at": null

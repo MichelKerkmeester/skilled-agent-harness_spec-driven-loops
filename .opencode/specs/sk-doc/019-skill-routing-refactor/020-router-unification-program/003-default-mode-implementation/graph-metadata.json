@@ -120,17 +120,17 @@
     ],
     "causal_summary": "Implement the vetted defaultMode recs from 021 research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast.",
     "created_at": "2026-07-18T14:47:45.777Z",
-    "last_save_at": "2026-07-23T11:35:30.468Z",
+    "last_save_at": "2026-07-23T12:42:20.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77d192aba0c3facca12f9c36ae66cd82a46da719e04005a35343659c69a2dc78",
+    "source_fingerprint": "sha256:892c5ac96935eefa1fae7f323d00d597f1b4fbda485dc859e7b0e5b6081c17dc",
     "source_doc_hashes": {
-      "spec.md": "c100318fdd0a6dd18555041bbf48ed1d72eb0cf9ca42b2e4e668c42ed9f2d5f1",
-      "implementation-summary.md": "766350bfe27b55b912822d1b7ec50571f667c8556dde1c8a63f4afdd193068d9"
+      "spec.md": "1401ad3ee89d964b465522723a1ea48f5a72260f35722e18db9465d26febeaa3",
+      "implementation-summary.md": "b130d255493ac4f0b2feab1dc9a2b2e591c6fad0838253e5a412a1e588707550"
     },
     "last_active_child_id": null,
     "last_active_at": null

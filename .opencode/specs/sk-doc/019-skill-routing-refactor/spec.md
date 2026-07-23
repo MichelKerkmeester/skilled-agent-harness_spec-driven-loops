@@ -1,32 +1,16 @@
 ---
-title: "Feature Specification: Align sk-doc create-* packet routing to the create-skill router standard"
-description: "Phase parent for aligning the ten sk-doc create-* creation packets to the create-skill router standard — activation boundaries, sibling handoffs, hub registries, per-packet smart-routing posture, and the remaining router-marker conformance gap."
+title: "Feature Specification: sk-doc skill-routing refactor — routing correctness across the skill fleet"
+description: "Phase parent for the sk-doc skill-routing history: create-* packet routing conformance, benchmark-driven routing research and fixes, per-hub routing research across the fleet, the fleet-wide router-unification program (including the promoted compiled-routing runtime), and the documentation-quality program."
 trigger_phrases:
-  - "018-sk-doc-router-alignment"
-  - "sk-doc router alignment"
+  - "019-skill-routing-refactor"
+  - "sk-doc skill routing refactor"
   - "phase parent"
 importance_tier: "important"
 contextType: "implementation"
-_memory:
-  continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment"
-    last_updated_at: "2026-07-13T14:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Opened the router-marker gap-analysis child"
-    next_safe_action: "Decide the create-skill router-marker posture in child 006, then reconcile"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
-      parent_session_id: null
-    completion_pct: 90
-    open_questions: []
-    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT
   FORBIDDEN content (do NOT author at phase-parent level):
     - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
@@ -38,7 +22,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Align sk-doc create-* packet routing to the create-skill router standard
+# Feature Specification: sk-doc skill-routing refactor — routing correctness across the skill fleet
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -51,10 +35,10 @@ _memory:
 | **Created** | 2026-07-13 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None |
-| **Parent Packet** | `sk-doc/018-sk-doc-router-alignment` |
+| **Parent Packet** | None (top-level under the `sk-doc` track) |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | Every create-* packet is the source of truth for its activation boundary, both hub registries match packet sources with zero drift, each packet documents its smart-routing posture, and the create-skill router-marker gap is analyzed with a recorded decision |
+| **Handoff Criteria** | Each child phase is the source of truth for its slice of routing; routing behavior is measurable on the canonical typed-pair surface for every instrumented hub; the fleet router-unification program's compiled-routing runtime serves byte-identically to legacy with a reversible kill-switch; and the documentation-quality program's remediation closes out |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -63,12 +47,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The ten sk-doc `create-*` creation packets did not present a uniform routing contract against the create-skill router standard. Trigger placement and sibling handoffs were inconsistent, the generated hub registries did not always reflect packet-owned vocabulary, most packets did not document why they carry (or do not carry) the create-skill keyed-discovery router mechanism, and the create-skill conformance checker still reports a smart-router-marker gap on the flat-resource packets.
+Routing across the skill fleet was neither uniform nor measurable. It began as a narrow sk-doc concern — the ten `create-*` creation packets did not present a consistent routing contract against the create-skill standard — but the same defect recurred fleet-wide: hubs could not be measured on a canonical typed-pair surface, router configuration drifted between skills, and no runtime made compiled routing authoritative without coupling the serving path to the mutable spec tree. In parallel, the skill tree had drifted from sk-doc's own documentation standards.
 
 ### Purpose
-Make each packet the single source of truth for its activation boundary, synchronize the hub registries to packet vocabulary, give every packet an explicit smart-routing posture, and analyze the residual create-skill router-marker conformance gap so an informed keep-vs-wire decision can be made.
+Make routing correct, measurable, and consistent across the skill fleet, and restore documentation conformance. Concretely: give each `create-*` packet a uniform routing contract; root-cause and fix the benchmark-measurable routing defects for sk-doc and the skill-advisor; instrument per-hub routing on the typed-pair surface across the fleet; run the fleet-wide router-unification program that standardizes routing config and promotes a compiled-routing runtime that serves byte-identically to legacy behind a reversible flag; and run the documentation-quality program that returns the tree to sk-doc's standards.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level, and it documents root purpose and the sub-phase list only. All detailed planning, tasks, checklists, decisions, and continuity live in the child phase folders below. Folder provenance and the rename history live in `context-index.md`, not here.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -77,27 +61,27 @@ Make each packet the single source of truth for its activation boundary, synchro
 ## 3. SCOPE
 
 ### In Scope
-- Audit all ten `create-*` packet contracts and both hub router files.
-- Resolve trigger collisions, narrow broad triggers, and correct sibling handoffs.
-- Regenerate both router JSON projections and verify zero trigger drift.
-- Document each packet's smart-routing posture (keyed-discovery mechanism or honest N/A note).
-- Analyze the residual create-skill router-marker conformance gap and record the decision.
-- Preserve create-benchmark layout and workstream-A benchmark-family vocabulary.
+- **Group A — Router audit and fixes (001-004):** audit the routing sources, resolve trigger collisions and ownership, scope triggers and correct sibling handoffs, and standardize packet shape with synchronized router projections.
+- **Group B — create-skill routing conformance (005-009):** document each flat-resource packet's smart-routing posture, analyze the residual router-marker gap, close hub keyword-coverage and benchmark-routing gaps, and normalize packets to the create-skill canon.
+- **Group C — Benchmark-driven routing research and fixes (010-014):** research sk-doc and skill-advisor routing behavior, implement the resulting path-contract and advisor fixes, and wire the benchmark harness to typed gold behind offline and live gates.
+- **Group D — Per-hub routing research (015-019):** make routing measurable on the canonical typed-pair surface for sk-code, sk-design, system-code-graph, system-deep-loop, and sk-prompt.
+- **Group E — Router-unification program (020):** a nested program standardizing fleet routing config, resolving the defaultMode policy, and designing plus implementing the unified router — including the promoted compiled-routing runtime.
+- **Group F — Documentation-quality program (021):** a nested program restoring the skill tree to sk-doc's documentation standards across metadata, templates, READMEs, tooling, and validators.
 
 ### Out of Scope
-- Any create-benchmark layout change.
-- Changes outside sk-doc packet contracts, hub routers, and this spec packet.
-- Rebuilding stale system-spec-kit dist.
-- Wiring the create-skill keyed-discovery markers into flat-resource packets — that decision is the subject of child 006, not a committed action here.
+- Any change outside routing correctness/measurement, the router-unification runtime, and documentation quality.
+- Rewriting historical research, benchmark, or lineage artifacts.
+- Committing the fleet compiled-routing cutover as a default (it stays reversible and operator-gated inside Group E).
 
 ### Files to Change
-Summary of aggregate file scope. Per-phase detail lives in child plans.
+Aggregate scope; per-phase detail lives in child plans.
 
-| File Path | Change Type | Phase | Description |
+| File Path | Change Type | Group | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skills/sk-doc/create-*/SKILL.md` | Modify | 002-005 | Trigger boundaries, exact sibling handoffs, heading placement, smart-routing posture notes |
-| `.opencode/skills/sk-doc/{mode-registry.json,hub-router.json}` | Modify | 004 | Synchronized routing projections |
-| `.opencode/specs/sk-doc/018-sk-doc-router-alignment/**` | Create | 001-006 | Audit map, evidence, decisions, verification, and router-marker gap analysis |
+| `.opencode/skills/sk-doc/create-*/SKILL.md` and `.opencode/skills/sk-doc/{mode-registry.json,hub-router.json}` | Modify | A, B | Routing contracts, sibling handoffs, and synchronized router projections |
+| `.opencode/skills/<hub>/**` routing surfaces + typed-pair benchmark fixtures | Modify | C, D | Path-contract fixes, advisor fixes, and typed-gold measurement wiring |
+| `.opencode/bin/lib/compiled-routing/**` and the authored source under `020-router-unification-program/007-unified-refactor-implementation/**` | Modify | E | The promoted compiled-routing runtime and its authored source |
+| Skill/mode READMEs, metadata, templates, and doc validators across the tree | Modify | F | Documentation-quality remediation |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,41 +89,46 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+> Phased decomposition. Each phase is an independently executable child spec folder; all implementation detail lives inside the phase children. The flat `001-021` filesystem is grouped into six narrative workstreams (A-F) — the grouping is expository, not a physical nesting.
 
-| Phase | Folder | Focus | Status |
-|-------|--------|-------|--------|
-| 1 | 001-audit-and-fix-map/ | Read all sources, map all 14 trigger/handoff fixes, and capture the routing baseline | Complete |
-| 2 | 002-p0-collision-fixes/ | Resolve README/flowchart quality-action collisions | Complete |
-| 3 | 003-p1-trigger-scoping-and-handoffs/ | Narrow broad triggers and correct sibling handoffs | Complete |
-| 4 | 004-p2-standardization-and-regen/ | Standardize packet shape, sync registries, and verify zero drift | Complete |
-| 5 | 005-smart-routing-mechanism-notes/ | Give each flat-resource packet an honest smart-routing N/A note | Complete |
-| 6 | 006-router-conformance-gap-analysis/ | Analyze the residual create-skill router-marker gap across all ten packets; record the keep-vs-wire decision | Open — decision pending |
-| 7 | 007-hub-intent-keyword-coverage/ | Fix create-agent / create-changelog hub mis-routing by adding artifact-noun keyword coverage across the three synced surfaces | Complete |
-| 8 | 008-create-benchmark-routing/ | Fix create-benchmark mis-routing under the word cap by swapping a redundant alias for `benchmark package` across the three synced surfaces | Complete |
-| 9 | 009-packet-smart-routing-conformance/ | Normalize all ten flat-resource packets to the create-skill canon so `package_skill.py --check` passes without weakening the checker | Complete |
-| 10 | 010-sk-doc-routing-research/ | Deep-research on sk-doc routing (10 iterations): falsified the alias theory, root-caused the three-part path-contract defect, and produced its Layer A/B fix plan | Complete (research) |
-| 11 | 011-skill-advisor-routing-research/ | Deep-research on system-skill-advisor (10 iterations): confidence-floor saturation, three P0 defects, and the metadata-hub discovery boundary shared with sk-doc | Complete (research) |
-| 12 | 012-sk-doc-routing-fixes/ | Implement the sk-doc path-contract fixes from the 010 research, coordinating the shared advisor-discovery boundary with 013 | Planned |
-| 13 | 013-skill-advisor-routing-fixes/ | Implement the advisor P0 through P2 fixes from the 011 research, with the shared metadata-hub discovery deliverable owned jointly with 012 | Planned |
-| 14 | 014-benchmark-harness-typed-wiring/ | Fix the two-classifier decoupling behind the dispatcher's zero-emission, wire the skill-benchmark loader/runner/live/scorer to typed gold, relocate the contract library out of sk-doc, and build a sealed independently-authored holdout corpus behind offline and live gates before Wave-2 propagation | Planned |
+| Phase | Group | Focus | Status |
+|-------|-------|-------|--------|
+| 001-router-audit-and-fix-map | A | Audit the routing sources, baseline the queries, and map the prioritized fixes before edits | Complete |
+| 002-router-collision-fixes | A | Move existing-document audit/validation ownership from README/flowchart creators to quality control | Complete |
+| 003-trigger-scoping-and-handoffs | A | Remove broad selector tokens and replace vague exclusions with exact sibling handoffs | Complete |
+| 004-router-standardization-and-regen | A | Standardize packet trigger/handoff shapes and synchronize both router JSON projections with zero drift | Complete |
+| 005-create-skill-smart-routing-notes | B | Document honest smart-routing postures for flat-resource packets instead of force-fitting keyed discovery | Complete |
+| 006-create-skill-router-marker-gap | B | Analyze the residual router-marker warnings and frame the keep-N/A-versus-wire decision from live evidence | Research; decision pending |
+| 007-hub-intent-keyword-coverage | B | Add artifact-noun keyword coverage so agent/changelog prompts avoid generic create-skill tie-breaking | Complete |
+| 008-create-benchmark-routing-fix | B | Swap a redundant benchmark alias for `benchmark package` across synced surfaces under the word cap | Complete |
+| 009-create-packet-routing-conformance | B | Normalize the flat-resource packets to the canonical create-skill contract so `package_skill.py --check` passes | Complete |
+| 010-sk-doc-routing-research | C | Root-cause sk-doc benchmark failures and define the dependency-ordered path-contract fix plan | Research-complete |
+| 011-skill-advisor-routing-research | C | Measure skill-advisor usefulness, isolate its correctness defects, and hand off prioritized fixes | Research-complete |
+| 012-sk-doc-routing-fixes | C | Enforce the canonical typed leaf-resource contract across sk-doc routing, fixtures, replay, and doctrine | Planned |
+| 013-skill-advisor-routing-fixes | C | Repair advisor correctness, calibration measurement, discovery guards, and transport diagnostics | Planned |
+| 014-benchmark-harness-typed-wiring | C | Wire typed routing through dispatch and blind benchmarks behind offline+live gates before propagation | Planned |
+| 015-sk-code-router-alignment | D | Pilot typed-gold derivation, refresh sk-code's baseline, and establish a reusable fan-out recipe | In progress |
+| 016-sk-design-routing-research | D | Diagnose six-mode sk-design routing, manifest feasibility, and a dependency-ordered measurement plan | Research-complete |
+| 017-system-code-graph-routing-research | D | Map resource domains into a proposed standalone mode, typed leaf contract, and benchmark plan | Research-complete |
+| 018-system-deep-loop-routing-research | D | Investigate seven-mode path collisions, packet ownership, manifest design, and scenario normalization | In progress |
+| 019-sk-prompt-routing-research | D | Diagnose both sk-prompt modes, propose prompt-models leaf routing, and seed typed-gold implementation | Research-complete |
+| 020-router-unification-program | E | Fleet router-unification: 3-tier config standard, defaultMode policy, and the unified compiled-routing runtime (reversible, route-gold-gated) | Active (nested program) |
+| 021-documentation-quality-program | F | Restore documentation conformance across metadata, templates, READMEs, tooling, and validators, plus review remediation | In progress (nested program) |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume .opencode/specs/sk-doc/018-sk-doc-router-alignment/006-router-conformance-gap-analysis/` to resume the active phase
-- Run `validate.sh --recursive` on parent to validate all phases as an integrated unit
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- The parent tracks aggregate progress via this map; run `validate.sh --recursive` on the parent to validate all phases as an integrated unit.
+- Groups E and F are nested sub-programs with their own children; resume them at their own parent spec.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-audit-and-fix-map | 002-p0-collision-fixes | Exact 14-fix map and before-state recorded | Phase 001 plan/tasks contain 3/6/5 map |
-| 002-p0-collision-fixes | 003-p1-trigger-scoping-and-handoffs | Quality-action ownership is unambiguous | Internal replay routes both quality queries to `create-quality-control` |
-| 003-p1-trigger-scoping-and-handoffs | 004-p2-standardization-and-regen | Broad triggers removed and all handoffs name siblings | Grep and packet source review |
-| 004-p2-standardization-and-regen | 005-smart-routing-mechanism-notes | Registries synchronized with zero drift | Extractor drift check |
-| 005-smart-routing-mechanism-notes | 006-router-conformance-gap-analysis | Every packet has a documented smart-routing posture | `package_skill.py --check` PASS for all ten |
+| 001-router-audit-and-fix-map | 002-router-collision-fixes | Exact fix map and before-state recorded | Phase 001 plan/tasks contain the fix map |
+| Group A (001-004) | Group B (005-009) | Registries synchronized with zero drift; every packet has a documented smart-routing posture | Extractor drift check + `package_skill.py --check` |
+| Group C research (010-011) | Group C fixes (012-014) | Root causes recorded with a dependency-ordered fix plan | Research docs' fix plans |
+| Group D research (016/017/019) | Implementation | Typed-pair measurement plan and typed-gold seed recorded | Per-hub research docs |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -147,7 +136,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-The create-skill router-marker posture for the eight flat-resource packets is the sole open decision. Child 006 holds the analysis and the keep-vs-wire framing for that decision.
+- The create-skill router-marker posture for the flat-resource packets (Group B) — the keep-N/A-versus-wire decision framed in child `006-create-skill-router-marker-gap`.
+- The fleet compiled-routing cutover default remains operator-gated inside Group E (`020`); it stays reversible until explicitly promoted.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -157,25 +147,25 @@ The create-skill router-marker posture for the eight flat-resource packets is th
 ### Pre-Task Checklist
 - Confirm the active child phase and its allowed files.
 - Read source files before editing.
-- Preserve create-benchmark vocabulary and layout.
+- Preserve historical research/benchmark/lineage artifacts unchanged.
 
 ### Execution Rules
 | Rule | Required Behavior |
 |---|---|
-| Scope | Write only to approved sk-doc files and this packet |
-| Source | Treat packet trigger lines as authoring truth |
-| Verification | Run package, drift, routing, JSON, and spec gates |
+| Scope | Write only to the approved files for the active child phase |
+| Source | Treat committed route-gold and packet contracts as authoring truth |
+| Verification | Run package, drift, routing, typed-benchmark, and spec gates for the active phase |
 
 ### Status Reporting Format
 Report phase, changed files, verification commands, results, and blockers.
 
 ### Blocked Task Protocol
-Stop the blocked gate, preserve verified work, record the exact error, and do not write to a banned path to bypass it.
+Stop the blocked gate, preserve verified work, record the exact error, and never write to a banned path to bypass it.
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: See the six numbered child folders above for per-phase canonical docs
-- **Provenance**: See `./context-index.md` for the folder-history bridge
-- **Parent Spec**: See `../spec.md`
+- **Phase children**: the twenty-one numbered child folders above hold per-phase canonical docs.
+- **Provenance & rename history**: see `./context-index.md` for the folder-history bridge and the old→new rename map.
+- **Parent Spec**: see `../spec.md`.

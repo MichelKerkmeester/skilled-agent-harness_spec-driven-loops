@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
     "created_at": "2026-07-22T06:15:19.898Z",
-    "last_save_at": "2026-07-23T11:35:48.491Z",
+    "last_save_at": "2026-07-23T12:42:31.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef09e14d4ed7c2568114696d55232906a23b9ebc09c14c3f29235204c8b9a6e0",
+    "source_fingerprint": "sha256:b82fcd5c111ba7c9eca713c7cc3d37cf546ae120c9acc36470170c920c2a6aa9",
     "source_doc_hashes": {
-      "spec.md": "1a2db08e37bcb11d27cfe89d0e6cd7b0ccbcd06432e1d850daf227003e001385",
-      "plan.md": "5f6a28a070c37b8ccadce8095aaa8ea4a675ddd8ba2567bdbc4dd44cc28e3bf1",
-      "tasks.md": "b12bc9ae99cc0384af4fd1efa13981007bee49d5ce50806a254fa01c9788e6e9",
-      "checklist.md": "d8adfbb5a6802fdac44a71e7f40d4e5f00b7d51584ffb34926d14f1ebaf555da",
-      "implementation-summary.md": "4afcc634c59b5f89e7edeac26ba2017d84bda3e5cdf366f4d005d03c9d59e167"
+      "spec.md": "fea13ac908eac736968947cc7b75cc13033ef865bc5eb504de6e6fd1516a35b0",
+      "plan.md": "59b6b0b2cff21271082a2cbb711483adef97dcc9f272b247961267ea88520405",
+      "tasks.md": "692ed0c6ffdfb5e2156dfcd158358f10fb0967d59a494a7f0403b27a35c9a6b9",
+      "checklist.md": "77c53204fb2241105d2f1cd293bae1417fd78987c81da662d7fce2d2a1ee7bc9",
+      "implementation-summary.md": "e9928640d25de44aa05253910cd8b604ab8b45d786c63a4d71200a6faeb4aead"
     },
     "last_active_child_id": null,
     "last_active_at": null

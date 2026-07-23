@@ -6802,7 +6802,7 @@
       "lastUpdated": "2026-07-18T03:48:54.799Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment",
+      "specFolder": "sk-doc/019-skill-routing-refactor",
       "description": "The ten sk-doc `create-` creation packets did not present a uniform routing contract against the create-skill router standard",
       "keywords": [
         "ten",
@@ -6821,7 +6821,7 @@
       "lastUpdated": "2026-07-18T03:48:54.863Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/001-audit-and-fix-map",
+      "specFolder": "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map",
       "description": "Trigger ownership was inconsistent across packet source files and router projections",
       "keywords": [
         "trigger",
@@ -6837,7 +6837,7 @@
       "lastUpdated": "2026-07-18T03:48:54.804Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/002-p0-collision-fixes",
+      "specFolder": "sk-doc/019-skill-routing-refactor/002-router-collision-fixes",
       "description": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality",
       "keywords": [
         "readme",
@@ -6858,7 +6858,7 @@
       "lastUpdated": "2026-07-18T03:48:54.805Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/003-p1-trigger-scoping-and-handoffs",
+      "specFolder": "sk-doc/019-skill-routing-refactor/003-trigger-scoping-and-handoffs",
       "description": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
       "keywords": [
         "bare",
@@ -6881,7 +6881,7 @@
       "lastUpdated": "2026-07-18T03:48:54.806Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/004-p2-standardization-and-regen",
+      "specFolder": "sk-doc/019-skill-routing-refactor/004-router-standardization-and-regen",
       "description": "The ten packets placed trigger lines and handoff boundaries inconsistently, and the JSON projections were not derived from a uniform source shape",
       "keywords": [
         "ten",
@@ -6902,7 +6902,7 @@
       "lastUpdated": "2026-07-18T03:48:54.807Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/005-smart-routing-mechanism-notes",
+      "specFolder": "sk-doc/019-skill-routing-refactor/005-create-skill-smart-routing-notes",
       "description": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note",
       "keywords": [
         "request",
@@ -6923,7 +6923,7 @@
       "lastUpdated": "2026-07-18T03:48:54.807Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/006-router-conformance-gap-analysis",
+      "specFolder": "sk-doc/019-skill-routing-refactor/006-create-skill-router-marker-gap",
       "description": "The create-skill conformance checker (`packageskill.py --check`) emits an advisory warning — `SMART ROUTING section missing smart-router marker(s):",
       "keywords": [
         "create-skill",
@@ -6944,7 +6944,7 @@
       "lastUpdated": "2026-07-18T03:48:54.808Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/007-hub-intent-keyword-coverage",
+      "specFolder": "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage",
       "description": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
       "keywords": [
         "sk-doc",
@@ -6961,7 +6961,7 @@
       "lastUpdated": "2026-07-18T03:48:54.808Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/008-create-benchmark-routing",
+      "specFolder": "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix",
       "description": "`create a benchmark package` mis-routed to `create-skill`: create-benchmark's alias class held only artifact-path terms (`benchmarkreport.md`,",
       "keywords": [
         "benchmark",
@@ -6980,7 +6980,7 @@
       "lastUpdated": "2026-07-18T03:48:54.809Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/009-packet-smart-routing-conformance",
+      "specFolder": "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance",
       "description": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check):",
       "keywords": [
         "normalize",
@@ -6999,7 +6999,7 @@
       "lastUpdated": "2026-07-18T03:48:54.809Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research",
+      "specFolder": "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research",
       "description": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
       "keywords": [
         "tier-2",
@@ -7015,7 +7015,7 @@
       "lastUpdated": "2026-07-18T03:48:54.816Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/011-skill-advisor-routing-research",
+      "specFolder": "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research",
       "description": "The Tier-2 gpt-5.6-luna skill-benchmark found routing quality is strongly skill-specific, and system-skill-advisor is the front-line router that",
       "keywords": [
         "tier-2",
@@ -7034,7 +7034,7 @@
       "lastUpdated": "2026-07-18T03:48:54.821Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes",
+      "specFolder": "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes",
       "description": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
       "keywords": [
         "sk-doc",
@@ -7055,7 +7055,7 @@
       "lastUpdated": "2026-07-18T03:48:54.822Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/013-skill-advisor-routing-fixes",
+      "specFolder": "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes",
       "description": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often",
       "keywords": [
         "advisor",
@@ -7073,7 +7073,7 @@
       "lastUpdated": "2026-07-18T03:48:54.823Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring",
+      "specFolder": "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring",
       "description": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real",
       "keywords": [
         "shared",
@@ -7094,7 +7094,7 @@
       "lastUpdated": "2026-07-18T03:48:54.825Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment",
+      "specFolder": "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment",
       "description": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
       "keywords": [
         "sk-code",
@@ -7112,7 +7112,7 @@
       "lastUpdated": "2026-07-18T03:48:54.828Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/016-sk-design-routing-research",
+      "specFolder": "sk-doc/019-skill-routing-refactor/016-sk-design-routing-research",
       "description": "sk-design's routing cannot be measured on the canonical typed-pair surface",
       "keywords": [
         "sk-design",
@@ -7126,7 +7126,7 @@
       "lastUpdated": "2026-07-18T03:48:54.832Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research",
+      "specFolder": "sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research",
       "description": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at",
       "keywords": [
         "system-code-graph",
@@ -7145,7 +7145,7 @@
       "lastUpdated": "2026-07-18T03:48:54.835Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research",
+      "specFolder": "sk-doc/019-skill-routing-refactor/018-system-deep-loop-routing-research",
       "description": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
       "keywords": [
         "system-deep-loop",
@@ -7163,7 +7163,7 @@
       "lastUpdated": "2026-07-18T03:48:54.840Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/019-sk-prompt-routing-research",
+      "specFolder": "sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research",
       "description": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
       "keywords": [
         "sk-prompt",
@@ -7176,7 +7176,7 @@
       "lastUpdated": "2026-07-18T03:48:54.862Z"
     },
     {
-      "specFolder": "sk-doc/019-sk-doc-router-alignment/020-fleet-routing-consistency",
+      "specFolder": "sk-doc/019-skill-routing-refactor/020-fleet-routing-consistency",
       "description": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
       "keywords": [
         "routing",

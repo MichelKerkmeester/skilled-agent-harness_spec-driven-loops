@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
     "created_at": "2026-07-21T09:34:21.815Z",
-    "last_save_at": "2026-07-23T11:35:48.186Z",
+    "last_save_at": "2026-07-23T12:42:32.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:fe42b0831400f07d7fefa9050fe24e7e8031ae64007ab9402bd4dad59c6776f1",
+    "source_fingerprint": "sha256:c8db1fc7c401f15f8bedddacf772828b873931f3b7b1719df8e73ffaed856059",
     "source_doc_hashes": {
-      "spec.md": "137b6fb845cc467b205042c444e4434a8c5a577fba133e779d92ec88c06451c3",
-      "plan.md": "53c68811031145c112f1683836407797f5b17a01a64e4fed4c9cd66ad3af2553",
-      "tasks.md": "e1ee9b7d23a29d5aec708c9311f6eb8acbfa6caaf0c16a0e20b0f4cb74eaa544",
-      "checklist.md": "cb222d05992abc3b23ef37fad0ed764d2d37512ff4b9afb059bac85469dab81b",
-      "decision-record.md": "a91bebf57daef0336297c93da98db4c2d474aa388e909451e2607017a8c04ea8",
-      "implementation-summary.md": "62fba5523e77895ac61b36bfebc15a4c8e661466e7685c9114aec509ab039930",
+      "spec.md": "6f3f838f16f793b10ce43feae2e27c2c2e9b55b668ec57e6443698e401887029",
+      "plan.md": "8acb3498513c16f021fa002bfcebcb5a0328f499c2061b1052ff4c5e30ef6005",
+      "tasks.md": "f1048cad025151658e5814f72c8e8be82bc5a76f1c3812a64b6a13c067d76ee5",
+      "checklist.md": "c0aa457ba802c9fa14ff650c934871baeb0ec9d9c881469526a5174478989bd7",
+      "decision-record.md": "c96990c892999e8f78b57a95545194eedc88167ee4256629cf6ac6a678de08d2",
+      "implementation-summary.md": "4cdc750f5affcda14d86fa397182764cc8f80bb3280ab57331cefb007c0b4488",
       "handover.md": "31bcf0ac0c3fc8413eabd3b15081465626d796d890a508207fabe8768852be20"
     },
     "last_active_child_id": null,

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The original gap was that Lane C validated authored routing but not the compiled-serving path",
     "created_at": "2026-07-20T17:46:53.368Z",
-    "last_save_at": "2026-07-23T11:35:43.858Z",
+    "last_save_at": "2026-07-23T12:42:25.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7677cf2e36c63a45a6a3506c630ed6bb781e912e543b26e6efe858a55a8f9f17",
+    "source_fingerprint": "sha256:7651f1733a736b8ffd3d928fc3f3d21aa4faf3e2d195fabd3372e86070da3df0",
     "source_doc_hashes": {
-      "spec.md": "8f230bc8500729d4e1c3b8be08e6093a4c07c3cdccd9bea2234e15ddea6a3b18",
-      "plan.md": "4edd6c08837c5e27c6b98f2c7c95b636aad4e462dd3b4e2fb92d8e7210d792be",
-      "tasks.md": "96cfb7ba90e5c5193036543d8137d0f4e3c4dba74f81208528fd4d85e10ea929",
-      "checklist.md": "179ce51eda70d59bcd2d0924823dcbbf5719fc4a54b83b87109ea681646f382a",
-      "implementation-summary.md": "42adf054ed6e03fea57d3d09e1e7c171b00c3d39c6e69e1667420d96c1fee277"
+      "spec.md": "b40ee3130558cd314ca705f4c11b04c318a8d84c47d47bbd2037f9a2135a0ac5",
+      "plan.md": "9a243514033b928928402cd2c378300cd311f9bc5e0f5dc08fb8b0f44fd6a705",
+      "tasks.md": "c6c5fc398ca5492a1dfe1acc6d63ac30ef511ff08e043ee2e517e971806cae89",
+      "checklist.md": "f62441412aa94d9db999b397b72b8e1819eb58fba927555191fed3d003f0c957",
+      "implementation-summary.md": "caedf4d0f282f474664015c9dc2c98fecfa1b16fddc9a539d427c19c4de3eee6"
     },
     "last_active_child_id": null,
     "last_active_at": null
