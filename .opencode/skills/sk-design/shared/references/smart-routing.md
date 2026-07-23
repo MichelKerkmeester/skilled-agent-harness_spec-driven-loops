@@ -13,6 +13,8 @@ version: 1.0.0.0
 
 # sk-design Surface Router — per-intent leaf sets
 
+## 1. OVERVIEW
+
 This is sk-design's second-layer (surface) router. The hub selects a workflow
 mode in [`hub-router.json`](../../hub-router.json) (`interface` / `foundations` /
 `motion` / `audit` / `md-generator` / `design-mcp-open-design`); this doc maps a
@@ -23,15 +25,13 @@ contract boundary
 (`sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs`), where the packet
 segment (`design-interface`, …) resolves to its declared `workflowMode`
 (`interface`, …).
-
 Routing is two stages: the hub picks the WORKFLOW MODE (mode telemetry), this
 router picks the LEAVES within it. The two layers stay separate — the hub router
 only emits a mode's `SKILL.md` pointer, never leaf paths, and this router never
 re-decides the mode.
-
 ---
 
-## 1. INTENT MODEL
+## 2. INTENT MODEL
 
 - **interface leaves** — distinctive-UI direction: the design-process spine
   (`design_principles`, `brief_to_dials`) plus the interface preflight card. Broad
@@ -60,7 +60,7 @@ axes (e.g. an explicit interface + foundations UI build) route to both.
 
 ---
 
-## 2. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 3. MACHINE-READABLE ROUTER (REPLAY / BENCHMARK SOURCE)
 
 The single machine-readable projection of the intent model above. The prose is the
 human-facing contract; this block is the byte-for-byte source the deterministic
@@ -136,7 +136,7 @@ RESOURCE_MAP = {
 }
 ```
 
-## 3. HOW TO READ THIS
+## 4. HOW TO READ THIS
 
 - One dominant design axis routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the

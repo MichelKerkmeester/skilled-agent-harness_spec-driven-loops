@@ -14,13 +14,13 @@ version: 1.0.0.0
 
 # Transform Application
 
+## 1. OVERVIEW
+
 This is the interface-side landing lane for transform verbs. It applies a requested change to an interface surface after the hub has already selected `interface`. It does not decide whether the change is warranted; that is an audit question.
-
 Read this with `design-principles.md` and `brief-to-dials.md`. The transform still has to be grounded in the subject, register, density, motion budget and the surface's single job.
-
 ---
 
-## 1. ROUTING RULE
+## 2. ROUTING RULE
 
 Use the framing to break the audit/interface tie.
 
@@ -33,7 +33,7 @@ Use the framing to break the audit/interface tie.
 
 ---
 
-## 2. SHARED APPLICATION CONTRACT
+## 3. SHARED APPLICATION CONTRACT
 
 Every transform uses the same proof shape.
 
@@ -50,7 +50,7 @@ Do not expose sliders, vibe controls or style presets. The verb is a work reques
 
 ---
 
-## 3. VERB LANES
+## 4. VERB LANES
 
 ### Bolder
 
@@ -173,7 +173,7 @@ Surface/job: `__________`
 
 ---
 
-## 4. GOLD PROMPTS
+## 5. GOLD PROMPTS
 
 These prompts anchor the hub route.
 

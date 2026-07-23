@@ -12,9 +12,11 @@ version: 1.0.0.0
 
 # Brand-First Authoring Lane
 
+## 1. OVERVIEW
+
 Use this lane when the operator explicitly wants a new brand direction authored from a product description. It creates proposals, not evidence. The measured extraction pipeline and style corpus remain separate authorities.
 
-## 1. Inputs and outputs
+## 2. INPUTS AND OUTPUTS
 
 Required input: one short product description naming product, audience, desired posture, constraints, and exclusions.
 
@@ -26,7 +28,7 @@ Required outputs:
 
 Do not add a command or mode for this lane. It is a shared procedure used by the existing Interface and Foundations owners when the operator explicitly requests authored brand creation.
 
-## 2. Authoring workflow
+## 3. AUTHORING WORKFLOW
 
 1. Preserve the input description verbatim as `sourceDescription`.
 2. Author a brief-specific palette, type system, and voice. Do not select a named preset or present invented values as observations.
@@ -35,7 +37,7 @@ Do not add a command or mode for this lane. It is a shared procedure used by the
 5. Render `AUTHORED-DESIGN.md` and refresh both authored exports through `refreshAuthoredExports`.
 6. Report the two authored filenames and the unresolved validation work. Never describe the result as measured or verified.
 
-## 3. Overwrite policy
+## 4. OVERWRITE POLICY
 
 An authored run may create or replace only `AUTHORED-DESIGN.md` and `authored-tokens.json` in the selected output root. Re-running refreshes those two files as one authored export set.
 
@@ -49,7 +51,7 @@ An authored run may create or replace only `AUTHORED-DESIGN.md` and `authored-to
 
 The writer performs path validation before filesystem I/O. It exposes no measured writer and no conversion function. If a caller supplies a measured path, the run stops and the existing measured file remains byte-unchanged.
 
-## 4. Reviewed-conversion procedure
+## 5. REVIEWED-CONVERSION PROCEDURE
 
 An authored value may enter the measured corpus only after a human creates and signs a separate `reviewed-conversion` checklist artifact. This procedure is intentionally manual. `assertReviewedConversionArtifact` checks that the record is structurally complete; it does not perform conversion, write a measured file, or prove the reviewer's claims.
 
@@ -108,7 +110,7 @@ The machine-readable companion record uses:
 
 After the checklist passes human review, the existing measured owner may manually recreate the approved value from the attached measurement evidence. Preserve the conversion record as lineage. Do not copy the authored record wholesale, strip its provenance, or use an automated `verified=true` flag.
 
-## 5. Hard boundary
+## 6. HARD BOUNDARY
 
 The invariant is structural:
 
@@ -120,6 +122,6 @@ There is no automatic edge from authored exports to measured artifacts. The only
 
 Missing checklist, missing signature, missing attestation, missing evidence, or an evidence-free verified flag blocks the bridge. The authored lane never writes the measured destination, even after review.
 
-## 6. Clean-room and asset boundary
+## 7. CLEAN-ROOM AND ASSET BOUNDARY
 
 The lane independently applies the research conclusion that authored and measured systems require separate authority. It copies no Hallmark code, prose, schema, or asset. Images, fonts, logos, and other third-party binaries remain outside this lane and require their own rights evidence.
