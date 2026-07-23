@@ -608,6 +608,12 @@ function ownsOwnerLeaseFile(ownerPid = process.pid) {
   return lease?.ownerPid === ownerPid;
 }
 
+// Both clear functions re-validate the lease immediately before the unlink syscall (same
+// narrowing as the acquire-reclaim fence above) so a delayed clear cannot remove a successor's
+// fresh lease. clearOwnerLeaseFile fences on this process's own tracked leaseId, since it is
+// clearing a lease it itself holds. clearOwnerLeaseFileIfOwner intentionally fences on ownerPid
+// only: it clears a caller-identified PID's lease (e.g. a confirmed-dead process) without ever
+// having held that lease's own generation token, so there is no leaseId to compare against.
 function clearOwnerLeaseFile() {
   if (!Number.isInteger(ownerLeasePid)) return;
   try {

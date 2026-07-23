@@ -10,9 +10,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T13:10:17Z"
+    last_updated_at: "2026-07-23T17:10:53Z"
     last_updated_by: "orchestrator"
-    recent_action: "Documented completed Phase 7 hardening (REQ-007..011) build/test/decisions"
+    recent_action: "Extended REQ-010 limitation framing to cover refresh/clear per deep-review P1"
     next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
@@ -244,7 +244,7 @@ Implemented all 5 hardening items from the 7-iteration `/deep:research` synthesi
 ## Phase 7: Known Limitations
 
 1. **Daemon not yet restarted** — all 5 fixes are coded, tested, and built, but the currently-running daemon process(es) are still serving the pre-fix `dist/` until restarted (same held state as the REQ-006 fix).
-2. **REQ-010's fencing narrows, does not eliminate, the OS-level race** — the `leaseId` re-validation happens immediately before the unlink syscall (no intervening `await` within this process), which closes the JS-level TOCTOU window research demonstrated. A sub-microsecond OS-level race between the re-validation read and the unlink syscall is theoretically still possible; research's own severity recalibration (§7.1) already established the SQLite sidecar lock is the true integrity backstop regardless, so this residual is accepted as proportionate rather than pursued with a full atomic compare-and-delete primitive.
+2. **REQ-010's fencing narrows, does not eliminate, the OS-level race — on all three lease-mutation paths, not only reclaim.** `acquireOwnerLeaseFile`'s `leaseId` re-validation happens immediately before the unlink syscall (no intervening `await` within this process), closing the JS-level TOCTOU window research demonstrated for the reclaim path. `refreshOwnerLeaseFile` (heartbeat) and `clearOwnerLeaseFile`/`clearOwnerLeaseFileIfOwner` are the same accepted-risk class: each validates the lease's `leaseId`/`ownerPid` before mutating, but a sub-microsecond OS-level window remains between that validation and the subsequent write or unlink syscall, during which a successor could theoretically be mutated. A follow-up deep-review pass (2026-07-23, MiniMax-M3, 10 iterations) independently constructed both interleaving scenarios and confirmed: neither produces data corruption (the SQLite sidecar lock remains the true integrity backstop regardless), and the existing heartbeat fence detects the resulting inconsistency and makes the affected successor self-terminate rather than silently continuing on a corrupted lease — so, as with the reclaim path, this residual is accepted as proportionate rather than pursued with a full atomic compare-and-delete primitive or file lock.
 3. **Items 6-8 from research's ranked list remain out of scope** — observability/transition-timing instrumentation, launcher-cleanup/daemon-discovery separation, and the "canonical runtime context envelope" migration direction are documented as follow-on/longer-term work, not attempted in this pass.
 4. **REQ-010's real-world race frequency remains unmeasured** — research's own open question (§12) about how often the TOCTOU race actually fires under concurrent-session storms requires the deferred observability item (research §17 item 6) to answer; this pass fixes the mechanism, not the measurement.
 <!-- /ANCHOR:phase7-limitations -->

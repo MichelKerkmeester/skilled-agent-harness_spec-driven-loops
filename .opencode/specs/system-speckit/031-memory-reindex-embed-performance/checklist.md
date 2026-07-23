@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T13:10:17Z"
+    last_updated_at: "2026-07-23T17:10:53Z"
     last_updated_by: "orchestrator"
-    recent_action: "Verified CHK-070..078 with evidence; Phase 7 hardening complete"
-    next_safe_action: "Restart daemon, then measure timings (perf objective)"
+    recent_action: "10-iter deep review (MiniMax-M3) CONDITIONAL; all 4 findings remediated"
+    next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
@@ -197,6 +197,32 @@ Source: 7-iteration `/deep:research` loop, `research/research.md` §17 ranked it
 
 ---
 
+<!-- ANCHOR:deep-review -->
+## Independent Deep Review (10 iterations, MiniMax-M3) — Verdict CONDITIONAL, Remediated
+
+A 10-iteration `/deep:review` pass (executor: MiniMax-M3 via cli-opencode, no early convergence) independently reviewed the entire packet scope (REQ-006 through REQ-011, all 16 touched implementation + test files) across all four dimensions. Full report: `review/review-report.md`.
+
+- [x] CHK-080 [P0] Correctness dimension reviewed, all REQ items independently verified
+  - **Evidence**: `review/iterations/iteration-00{1-4}.md` — REQ-010, 007, 008, 009 each independently traced and behaviorally confirmed; REQ-006 covered under existing evidence.
+- [x] CHK-081 [P1] Security dimension reviewed, no exploitable findings
+  - **Evidence**: `review/iterations/iteration-005.md` — model-socket path, leaseId entropy, background-scan attack surface, spawn/eval sweep, and secrets sweep all PASS.
+- [x] CHK-082 [P1] Traceability dimension reviewed against spec/checklist/continuity evidence
+  - **Evidence**: `review/iterations/iteration-006.md` — spot-checked CHK-070..078 evidence directly; found 2 documentation P2s (see below).
+- [x] CHK-083 [P1] Maintainability dimension reviewed (comment hygiene, pattern consistency, test quality)
+  - **Evidence**: `review/iterations/iteration-007.md` — comment-hygiene claim reaffirmed clean; found 1 maintainability P2 (see below).
+- [x] CHK-084 [P0] Every P0/P1 finding adversarially re-verified before being finalized
+  - **Evidence**: `review/iterations/iteration-008.md` — P1-001 (owner-lease refresh/clear generation-check gap) independently re-verified via 3 concrete interleaving scenarios; reaffirmed P1 (bounded, self-healing, no data-integrity impact) rather than accepted at face value.
+- [x] CHK-085 [P1] Reviewer's own test/build claims independently reproduced, not merely accepted
+  - **Evidence**: `review/iterations/iteration-009.md` — re-ran the full 17-file, 521-test suite and `npm run build` independently inside the review worktree; confirmed the exact same 521 passed / 0 failed / 36 skipped result and a clean build.
+- [x] CHK-086 [P1] Zero scope violations across the full review session
+  - **Evidence**: `review/iterations/iteration-009.md`'s scope-violation retrospective — 0 `## SCOPE VIOLATIONS` sections across iterations 1-8; confirmed no writes occurred outside the review packet's allowed paths.
+- [x] CHK-087 [P0] All findings remediated before packet closeout
+  - **Evidence**: P1-001 — extended `implementation-summary.md` Phase 7 Known Limitations item 2 to explicitly cover the refresh/clear lease-mutation paths as the same accepted-risk TOCTOU class already documented for reclaim (not a code change; per the review's own downgrade trigger). P2-001 — fixed `plan.md`'s stale "Phase 5"/"Phase 4" continuity labels to match the "Phase 7 hardening" wording used consistently across sibling docs. P2-002 — replaced the two vague FIX ADDENDUM verification cells (`launcher-session-proxy.cjs` row, test-suite row) with concrete, re-runnable commands. P2-003 — added an invariant-explaining comment above `clearOwnerLeaseFile`/`clearOwnerLeaseFileIfOwner` in `mk-spec-memory-launcher.cjs` documenting the re-validate-before-unlink pattern and the intentional leaseId-vs-ownerPid-only fencing asymmetry between the two functions. Re-ran `tests/launcher-spec-memory-lifecycle.vitest.ts tests/launcher-lease.vitest.ts` after the comment-only code change — 20/20 passed.
+
+<!-- /ANCHOR:deep-review -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
@@ -205,11 +231,13 @@ Source: 7-iteration `/deep:research` loop, `research/research.md` §17 ranked it
 | P0 Items (fix) | 14 | 12/14 |
 | P0 Items (perf objective) | 5 | 0/5 |
 | P0 Items (hardening, REQ-007..011) | 5 | 5/5 |
+| P0 Items (deep review) | 3 | 3/3 |
 | P1 Items (fix) | 14 | 11/14 |
 | P1 Items (hardening) | 3 | 3/3 |
+| P1 Items (deep review) | 5 | 5/5 |
 | P2 Items | 3 | 2/3 |
 
 **Verification Date**: 2026-07-23
 
-**Overall status**: the data-integrity fix is coded, tested, and built, including a P0 gap (daemon startup scan + file watcher) found by an independent GPT-5.6-Sol-Fast review and closed in the same pass. Daemon restart is intentionally held pending operator input (concurrent daemon processes — see handover.md). Five daemon/startup/MCP hardening items (REQ-007..011) are implemented, tested (521 passed across 17 files, 0 regressions), and built — including two scope corrections found during implementation (REQ-009's actual fix point was the MCP tool dispatch boundary, not `memory-index.ts`; REQ-011 needed two additional call sites beyond the original plan to actually reach the canonical default). The packet's original performance-measurement objective has not started.
+**Overall status**: the data-integrity fix is coded, tested, and built, including a P0 gap (daemon startup scan + file watcher) found by an independent GPT-5.6-Sol-Fast review and closed in the same pass. Daemon restart is intentionally held pending operator input (concurrent daemon processes — see handover.md). Five daemon/startup/MCP hardening items (REQ-007..011) are implemented, tested (521 passed across 17 files, 0 regressions), and built — including two scope corrections found during implementation (REQ-009's actual fix point was the MCP tool dispatch boundary, not `memory-index.ts`; REQ-011 needed two additional call sites beyond the original plan to actually reach the canonical default). A subsequent independent 10-iteration deep review (MiniMax-M3) returned verdict CONDITIONAL (0 P0, 1 bounded P1, 3 P2) and independently reproduced the test/build results; all 4 findings were remediated in the same pass (1 documentation extension, 2 doc-accuracy fixes, 1 code comment) — see the Independent Deep Review section above and `review/review-report.md`. The packet's original performance-measurement objective has not started.
 <!-- /ANCHOR:summary -->

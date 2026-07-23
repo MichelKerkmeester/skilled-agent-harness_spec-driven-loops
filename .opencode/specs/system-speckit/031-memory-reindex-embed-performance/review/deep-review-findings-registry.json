@@ -1,0 +1,139 @@
+{
+  "sessionId": "20260723-160812-031-hardening-review",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "status": "reaffirmed",
+      "category": "correctness",
+      "title": "LeaseId checks do not fence heartbeat replacement or cleanup against a successor interleaving (sub-microsecond TOCTOU between validation and write/unlink)",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "lineRange": "562-579 (refresh), 611-626 (clear), 628-638 (clearIfOwner)",
+      "findingClass": "algorithmic",
+      "claim": "refreshOwnerLeaseFile (L562-579) and clearOwnerLeaseFile/clearOwnerLeaseFileIfOwner (L611-638) validate a generation (leaseId, ownerPid) before mutation but do not atomically bind the later replace/unlink to that generation. A stale writer can mutate a successor's lease in a sub-microsecond OS-level window between the second-read fence and the write/unlink syscall.",
+      "evidenceRefs": [
+        ".opencode/bin/mk-spec-memory-launcher.cjs:563,568,570,575,576 (refresh: read, validate, write, reread, validate; window between L568-validation and L570-write)",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:614,615,616,617 (clear: read, validate, reread, unlink; window between L616-reread and L617-unlink)",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:631,632,633 (clearIfOwner: same class with weaker ownerPid-only fence)",
+        ".opencode/skills/system-spec-kit/mcp-server/tests/launcher-spec-memory-lifecycle.vitest.ts:114-161 (only ACQUIRE reclaim path is tested; no test exercises refresh or clear in TOCTOU window)",
+        ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/deep-review-strategy.md §13 item 1 (implementer's acknowledged risk for ACQUIRE path; refresh/clear windows are the SAME class but not explicitly acknowledged)"
+      ],
+      "counterevidenceSought": [
+        "Is there a pre-write reread? NO (refresh L568 is the only validation before write at L570; clear L615-616 is the only validation before unlink at L617).",
+        "Is the L575-576 reread sufficient? NO — it reads A's own write, so it always matches.",
+        "Is the L616 reread sufficient? NO — it reads L1 (A's), then B can act before L617.",
+        "Could the heartbeat fence at L595-601 make this moot? PARTIALLY — it catches the inconsistency and triggers graceful shutdown, but the immediate winner of the race still mutates a lease it shouldn't.",
+        "Is the same-process scenario a real risk? NO (Node single-threaded; ruled out structurally)."
+      ],
+      "alternativeExplanation": "Most likely: the implementer understood the refresh/clear TOCTOU windows are the SAME class as the ACQUIRE window already documented in §13 item 1, and consciously extended the accepted-risk framing to the refresh/clear paths. The §13 acknowledgement should be tightened to explicitly include all three lease-mutation paths, not just ACQUIRE. Less likely: implementer focused on ACQUIRE because that's where the original spec language pointed, and didn't independently reason about refresh/clear. Either way, the underlying safety story is intact (bounded damage, heartbeat fence catches inconsistency, SQLite sidecar is the integrity backstop). The fix is documentation-level (extend §13 to cover all three paths) OR code-level (pre-write reread / flock).",
+      "finalSeverity": "P1",
+      "previousSeverity": "P1",
+      "confidence": 0.75,
+      "downgradeTrigger": "If the implementer (a) extends §13 to explicitly acknowledge the refresh/clear windows as accepted-risk same-class, AND (b) either moves the reread to a pre-write position OR adopts flock on the lease file, P1-001 downgrades to P2. If the implementer only does (a) without (b), P1-001 can downgrade to P2 (acknowledged-but-unmitigated, treated same as ACQUIRE).",
+      "reAdjudicatedInIteration": 8,
+      "reAdjudicationVerdict": "reaffirmed",
+      "scenarios": [
+        {
+          "id": "a",
+          "name": "Refresh late-arrival heartbeat (cross-process)",
+          "exploitable": true,
+          "window": "L563 read → L570 write (sub-microsecond)",
+          "damage": "B self-terminates via heartbeat fence L595-601; no data corruption",
+          "verdictClass": "ii_cosmetic_self_healing"
+        },
+        {
+          "id": "c",
+          "name": "Heartbeat vs stale-reclaim within SAME process",
+          "exploitable": false,
+          "window": "none",
+          "damage": "n/a",
+          "verdictClass": "iii_not_possible",
+          "reason": "Node single-threaded event loop; refresh and acquire are mutually exclusive within a single tick"
+        },
+        {
+          "id": "b",
+          "name": "Clear cross-process (cleanup fence)",
+          "exploitable": true,
+          "window": "L616 reread → L617 unlink (sub-microsecond)",
+          "damage": "B's L2 is deleted by A's stale-clear; B's next heartbeat fails (no lease file) and B self-terminates via L595-601; no data corruption",
+          "verdictClass": "ii_cosmetic_self_healing"
+        }
+      ],
+      "findingAge": 3,
+      "firstRaisedIteration": 1,
+      "reaffirmedIterations": [7, 8],
+      "boundedBy": "none — independently exploitable; mitigation chain: heartbeat fence L595-601 (catches inconsistency) → SIGTERM shutdown → clearAllLeaseFiles fallback → respawn"
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "status": "open",
+      "category": "traceability",
+      "title": "Continuity frontmatter uses contradictory phase labels",
+      "file": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/plan.md",
+      "lineRange": "15-17",
+      "firstRaisedIteration": 6,
+      "confidence": 0.80,
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "status": "open",
+      "category": "traceability",
+      "title": "FIX ADDENDUM verification column is not uniformly re-runnable",
+      "file": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/plan.md",
+      "lineRange": "FIX ADDENDUM: AFFECTED SURFACES table",
+      "firstRaisedIteration": 6,
+      "confidence": 0.80,
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "status": "open",
+      "category": "maintainability",
+      "title": "LeaseId-fencing invariant has no anchor comment in clearOwnerLeaseFile and clearOwnerLeaseFileIfOwner",
+      "file": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "lineRange": "611-638",
+      "firstRaisedIteration": 7,
+      "confidence": 0.70,
+      "findingClass": "instance-only",
+      "boundedBy": "P1-001 (algorithmic generation-check gap); P2-003 is the documentation/maintainability dimension of the same underlying architectural area",
+      "downgradeTrigger": "If implementer documents both invariant AND asymmetric-protection reasoning AND demonstrates via test that the asymmetry is exercised safely, downgrades to P3 informational"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "iter8Adjudication": {
+    "P1-001_reAdjudicated": true,
+    "P1-001_reAdjudicationVerdict": "reaffirmed_P1",
+    "P1-001_alternativeSeverityOptionsConsidered": ["P0", "P1", "P2", "closed"],
+    "P1-001_alternativeSeverityOptionsRejected": {
+      "P0": "No data corruption; heartbeat fence at L595-601 catches every inconsistency; bounded damage to successor-process self-termination only.",
+      "P2": "Implementer's §13 item 1 already accepts this TOCTOU class for ACQUIRE path; refresh/clear windows are SAME class but not yet explicitly acknowledged. Until §13 is extended (or pre-write reread / flock is added), P1 framing holds.",
+      "closed": "Two of three scenarios (a and b) ARE exploitable in sub-microsecond windows; cannot close as non-issue."
+    },
+    "scenarioAdjudications": {
+      "a_refresh_late_arrival": "(ii) cosmetic/self-healing bookkeeping confusion — bounded damage via heartbeat fence",
+      "b_clear_cross_process": "(ii) cosmetic/self-healing bookkeeping confusion — bounded damage via heartbeat fence",
+      "c_heartbeat_same_process": "(iii) NOT POSSIBLE — Node single-threaded event loop rules out structurally"
+    }
+  }
+}

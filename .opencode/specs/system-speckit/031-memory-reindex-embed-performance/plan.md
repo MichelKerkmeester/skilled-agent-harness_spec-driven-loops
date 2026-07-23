@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/031-memory-reindex-embed-performance"
-    last_updated_at: "2026-07-23T13:10:17Z"
+    last_updated_at: "2026-07-23T17:10:53Z"
     last_updated_by: "orchestrator"
-    recent_action: "Implemented + tested Phase 5 hardening (REQ-007..011)"
-    next_safe_action: "Restart daemon, then measure timings (Phase 4)"
+    recent_action: "Fixed FIX ADDENDUM verification cells + phase-label wording per deep-review P2s"
+    next_safe_action: "Restart daemon, verify health, then measure per-stage timings"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
@@ -225,13 +225,13 @@ Ranked order from `research/research.md` §17 (highest impact/lowest cost first)
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|---------------|
 | `launcher-ipc-bridge.cjs` `maybeBridgeLeaseHolder()` | Producer of warm-owner readiness result | Update — must forward result to session proxy | `rg -n "maybeBridgeLeaseHolder\|waitForDaemonReady" .opencode/bin/lib/*.cjs .opencode/bin/*.cjs` |
-| `launcher-session-proxy.cjs` `createSessionProxy().start()` | Consumer that currently re-probes independently | Update — skip probe on warm-owner path only | Manual daemon restart timing; reattach-path test unaffected |
+| `launcher-session-proxy.cjs` `createSessionProxy().start()` | Consumer that currently re-probes independently | Update — skip probe on warm-owner path only | `npx vitest run tests/launcher-session-proxy.vitest.ts -t "initialReadyResult"` (3 tests: skip-when-alive, still-probes-when-absent, ignores-non-alive-result); live daemon-restart round-trip timing is operator-verified manually, since it cannot be safely reproduced against a shared production daemon in this worktree |
 | `mk-spec-memory-launcher.cjs` `classifyOwnerLease()`/lease functions | Producer of owner-lease state + `ps` classification | Update — bounded `ps` timeout (REQ-007); leaseId/generation token (REQ-010) | `rg -n "classifyOwnerLease\|readParentPid\|leaseId" .opencode/bin/mk-spec-memory-launcher.cjs` |
 | `memory-ingest.ts` async worker callback | Consumer of `indexSingleFile`, currently omits origin | Update — add non-persisting origin argument | `rg -n "indexSingleFile" .opencode/skills/system-spec-kit/mcp-server/handlers/*.ts` |
 | `memory-index.ts` manual/maintenance scan call sites | Producer of scan invocation defaults | Update — default `background: true` | `rg -n "memory_index_scan\|background:" .opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts` |
 | `model-server-supervision.cjs` empty-env fallback | Producer of model-socket path | Update — canonical constant, not `dbDir`-derived | `rg -n "DEFAULT_MODEL_SERVER_SOCKET\|resolveModelServerSocketPath" .opencode/bin/lib/model-server-supervision.cjs` |
 | `mk-skill-advisor-bridge.mjs` `createChildEnv()` | Consumer reachable via `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` | Not a consumer to change — REQ-011 fixes the fallback it reaches, not this bridge itself | `rg -n "createChildEnv\|HF_EMBED_SERVER_URL" .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` |
-| `handler-memory-index.vitest.ts` / launcher + cross-launcher test suites | Existing regression coverage | Extend — one new test per REQ item | `npx vitest run` against each touched suite |
+| `handler-memory-index.vitest.ts` / launcher + cross-launcher test suites | Existing regression coverage | Extend — one new test per REQ item | `npx vitest run tests/launcher-ipc-bridge.vitest.ts tests/launcher-ipc-bridge-probe.vitest.ts tests/launcher-session-proxy.vitest.ts tests/launcher-lease.vitest.ts tests/launcher-recycle-lease.vitest.ts tests/launcher-spec-memory-lifecycle.vitest.ts tests/launcher-daemon-reelection.vitest.ts tests/embedders/launcher-model-server.vitest.ts tests/embedders/launcher-model-server-cross-launcher.vitest.ts tests/handler-memory-index.vitest.ts tests/context-server.vitest.ts tests/context-server-error-envelope.vitest.ts tests/lifecycle-tools-scan-default.vitest.ts tests/handler-memory-index-async-scan.vitest.ts tests/handler-memory-index-scan-jobs.vitest.ts tests/handler-memory-index-cooldown.vitest.ts tests/memory-index-scoped-scan-gating.vitest.ts` (17 files, 521 passed / 0 failed / 36 skipped) |
 
 Required inventories:
 - Same-class producers: `rg -n 'persistQualityLoopContent|fromScan' .opencode/skills/system-spec-kit/mcp-server/handlers/*.ts` — confirms REQ-008 is the only remaining caller (research §3 already performed this sweep twice independently; re-run here is a cheap re-confirmation, not new investigation).
