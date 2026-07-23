@@ -9,7 +9,7 @@ description: "node:test suite for the motion corpus evidence-gate adapter and it
 
 ## 1. OVERVIEW
 
-`corpus/__tests__/` owns the `node:test` coverage for `design-motion/corpus/motion-evidence.mjs`, the maintainer-facing adapter that runs the target-owned restraint gate before any corpus retrieval and, once gate-approved, retrieves one purpose/state temporal owner under closed eligibility rules.
+`corpus/tests/` owns the `node:test` coverage for `design-motion/corpus/motion-evidence.mjs`, the maintainer-facing adapter that runs the target-owned restraint gate before any corpus retrieval and, once gate-approved, retrieves one purpose/state temporal owner under closed eligibility rules.
 
 ## 2. CONTENTS
 
@@ -24,7 +24,7 @@ description: "node:test suite for the motion corpus evidence-gate adapter and it
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-design/design-motion/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-motion/corpus/tests/*.test.mjs
 ```
 
 ## 4. RELATED

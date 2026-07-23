@@ -32,7 +32,7 @@ import {
   STUDY_HYDRATED_CONTENT_HASH,
   STUDY_HYDRATION,
   TARGET_TOKENS,
-} from './__fixtures__/study-cases';
+} from './fixtures/study-cases';
 
 import type { StudyContext } from '../scripts/study-exemplars';
 import type { StudyRetrievalSurface } from '../scripts/study-prepare';

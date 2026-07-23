@@ -1,15 +1,15 @@
 ---
-title: "__fixtures__: Study Exemplar Adversarial Fixtures"
+title: "fixtures: Study Exemplar Adversarial Fixtures"
 description: "Adversarial design source, token, and prompt-injection fixtures for the study-exemplars vitest suite."
 ---
 
-# __fixtures__: Study Exemplar Adversarial Fixtures
+# fixtures: Study Exemplar Adversarial Fixtures
 
 ---
 
 ## 1. OVERVIEW
 
-`tests/__fixtures__/` holds `study-cases.ts`, the adversarial fixture module for `../study-exemplars.test.ts`. It builds an intentionally hostile source design (a prompt-injection line, a source logo reference, and leak-prone copy) plus matching adversarial tokens, so the study-exemplar pipeline can be asserted against source-leak, brand-leak, and injection scenarios rather than only clean input.
+`tests/fixtures/` holds `study-cases.ts`, the adversarial fixture module for `../study-exemplars.test.ts`. It builds an intentionally hostile source design (a prompt-injection line, a source logo reference, and leak-prone copy) plus matching adversarial tokens, so the study-exemplar pipeline can be asserted against source-leak, brand-leak, and injection scenarios rather than only clean input.
 
 ## 2. CONTENTS
 

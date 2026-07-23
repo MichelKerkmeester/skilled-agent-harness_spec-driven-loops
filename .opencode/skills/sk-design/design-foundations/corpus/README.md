@@ -14,5 +14,5 @@ Unknown fields and untyped values are rejected structurally.
 Run from the repository root:
 
 ```bash
-node --test .opencode/skills/sk-design/design-foundations/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-foundations/corpus/tests/*.test.mjs
 ```

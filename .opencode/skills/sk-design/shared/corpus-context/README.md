@@ -20,5 +20,5 @@ they preserve the ordinary target-derived workflow instead of hiding failure.
 Run the package tests from the repository root:
 
 ```bash
-node --test .opencode/skills/sk-design/shared/corpus-context/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/shared/corpus-context/tests/*.test.mjs
 ```

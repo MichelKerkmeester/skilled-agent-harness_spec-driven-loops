@@ -39,7 +39,7 @@ Add a corpus acceptance verdict to the valid neutral context plan, run the valid
 ### Exact Command Sequence
 
 ```bash
-node --input-type=module -e "import { POSITIVE_FIXTURE } from './.opencode/skills/sk-design/shared/corpus-context/__tests__/fixtures.mjs'; import { validateCorpusContextPlan } from './.opencode/skills/sk-design/shared/corpus-context/validate-context-plan.mjs'; const plan = structuredClone(POSITIVE_FIXTURE.plan); plan.corpusVerdict = 'accept'; const result = validateCorpusContextPlan(plan); console.log(JSON.stringify(result)); if (result.valid || !result.errors.includes('plan.corpusVerdict:unexpected')) process.exit(1);"
+node --input-type=module -e "import { POSITIVE_FIXTURE } from './.opencode/skills/sk-design/shared/corpus-context/tests/fixtures.mjs'; import { validateCorpusContextPlan } from './.opencode/skills/sk-design/shared/corpus-context/validate-context-plan.mjs'; const plan = structuredClone(POSITIVE_FIXTURE.plan); plan.corpusVerdict = 'accept'; const result = validateCorpusContextPlan(plan); console.log(JSON.stringify(result)); if (result.valid || !result.errors.includes('plan.corpusVerdict:unexpected')) process.exit(1);"
 ```
 
 ### Evidence
@@ -73,7 +73,7 @@ Capture the JSON refusal and confirm the original authority order remains unchan
 | File | Role |
 |---|---|
 | `.opencode/skills/sk-design/shared/corpus-context/validate-context-plan.mjs` | Rejects verdict and authority fields outside the schema. |
-| `.opencode/skills/sk-design/shared/corpus-context/__tests__/validate-context-plan.test.mjs` | Covers severity, proof, copying, reuse and transport-acceptance rejection. |
+| `.opencode/skills/sk-design/shared/corpus-context/tests/validate-context-plan.test.mjs` | Covers severity, proof, copying, reuse and transport-acceptance rejection. |
 
 ---
 

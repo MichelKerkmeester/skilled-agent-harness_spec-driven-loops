@@ -9,7 +9,7 @@ description: "node:test suite for the interface corpus relational-exemplar adapt
 
 ## 1. OVERVIEW
 
-`corpus/__tests__/` owns the `node:test` coverage for `design-interface/corpus/relational-exemplar.mjs`, the maintainer-facing adapter that grounds a resolved brief in one mode-selected coherent anchor plus at most one bounded contrast or rejected default. Tests cover the plan against a real fixture style corpus and the positive, no-fit, and rejected-default falsification atlas.
+`corpus/tests/` owns the `node:test` coverage for `design-interface/corpus/relational-exemplar.mjs`, the maintainer-facing adapter that grounds a resolved brief in one mode-selected coherent anchor plus at most one bounded contrast or rejected default. Tests cover the plan against a real fixture style corpus and the positive, no-fit, and rejected-default falsification atlas.
 
 ## 2. CONTENTS
 
@@ -23,7 +23,7 @@ description: "node:test suite for the interface corpus relational-exemplar adapt
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-design/design-interface/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-interface/corpus/tests/*.test.mjs
 ```
 
 ## 4. RELATED

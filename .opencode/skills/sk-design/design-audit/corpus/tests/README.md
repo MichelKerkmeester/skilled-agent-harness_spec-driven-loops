@@ -9,7 +9,7 @@ description: "node:test suite for the audit corpus comparison-lane adapter and i
 
 ## 1. OVERVIEW
 
-`corpus/__tests__/` owns the `node:test` coverage for `design-audit/corpus/comparison-lane.mjs`, the maintainer-facing adapter that turns zero to two mode-selected corpus references into closed, non-authoritative comparison rows. Tests build a real fixture style corpus, run the styles engine build, and assert the comparison lane against drift, unavailable, and forged-evidence cases.
+`corpus/tests/` owns the `node:test` coverage for `design-audit/corpus/comparison-lane.mjs`, the maintainer-facing adapter that turns zero to two mode-selected corpus references into closed, non-authoritative comparison rows. Tests build a real fixture style corpus, run the styles engine build, and assert the comparison lane against drift, unavailable, and forged-evidence cases.
 
 ## 2. CONTENTS
 
@@ -23,7 +23,7 @@ description: "node:test suite for the audit corpus comparison-lane adapter and i
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-design/design-audit/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-audit/corpus/tests/*.test.mjs
 ```
 
 ## 4. RELATED

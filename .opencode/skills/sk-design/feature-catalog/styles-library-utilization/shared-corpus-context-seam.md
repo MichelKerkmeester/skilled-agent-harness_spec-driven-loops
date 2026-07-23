@@ -46,8 +46,8 @@ Modes hydrate and judge evidence only after receiving a valid neutral plan. A ne
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/shared/corpus-context/__tests__/validate-context-plan.test.mjs` | Automated test | Covers zero hydration, authority prohibitions and contradictory states. |
-| `.opencode/skills/sk-design/shared/corpus-context/__tests__/fixtures.mjs` | Automated test | Defines positive and fail-closed shared fixtures. |
+| `.opencode/skills/sk-design/shared/corpus-context/tests/validate-context-plan.test.mjs` | Automated test | Covers zero hydration, authority prohibitions and contradictory states. |
+| `.opencode/skills/sk-design/shared/corpus-context/tests/fixtures.mjs` | Automated test | Defines positive and fail-closed shared fixtures. |
 
 ---
 

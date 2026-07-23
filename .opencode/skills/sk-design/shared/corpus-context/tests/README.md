@@ -9,7 +9,7 @@ description: "node:test suite for the shared neutral corpus-context plan validat
 
 ## 1. OVERVIEW
 
-`corpus-context/__tests__/` owns the `node:test` coverage for `../validate-context-plan.mjs`, the validator pair behind the neutral `CORPUS_CONTEXT_PLAN v1` seam shared by every design mode's corpus adapter. `POSITIVE_FIXTURE` from this folder is also imported directly by `design-mcp-open-design/tests/transport-grounding.test.mjs`, so this is the canonical fixture source beyond its own suite.
+`corpus-context/tests/` owns the `node:test` coverage for `../validate-context-plan.mjs`, the validator pair behind the neutral `CORPUS_CONTEXT_PLAN v1` seam shared by every design mode's corpus adapter. `POSITIVE_FIXTURE` from this folder is also imported directly by `design-mcp-open-design/tests/transport-grounding.test.mjs`, so this is the canonical fixture source beyond its own suite.
 
 ## 2. CONTENTS
 
@@ -27,7 +27,7 @@ description: "node:test suite for the shared neutral corpus-context plan validat
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-design/shared/corpus-context/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/shared/corpus-context/tests/*.test.mjs
 ```
 
 ## 5. RELATED

@@ -48,11 +48,11 @@ Open Design transport accepts a metadata-only grounding receipt, freezes the mod
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-interface/corpus/__tests__/relational-exemplar.test.mjs` | Automated test | Covers authority locks, source attestation and handoff leakage. |
-| `.opencode/skills/sk-design/design-audit/corpus/__tests__/comparison-lane.test.mjs` | Automated test | Covers verdict rejection and intended-anchor evidence. |
-| `.opencode/skills/sk-design/design-foundations/corpus/__tests__/relationship-blueprint.test.mjs` | Automated test | Covers relationships, ledger binding and explicit-none. |
-| `.opencode/skills/sk-design/design-motion/corpus/__tests__/motion-evidence.test.mjs` | Automated test | Covers restraint-first flow and source-bound eligibility. |
-| `.opencode/skills/sk-design/design-mcp-open-design/__tests__/transport-grounding.test.mjs` | Automated test | Covers no-cache receipts, frozen proposals and reconciliation. |
+| `.opencode/skills/sk-design/design-interface/corpus/tests/relational-exemplar.test.mjs` | Automated test | Covers authority locks, source attestation and handoff leakage. |
+| `.opencode/skills/sk-design/design-audit/corpus/tests/comparison-lane.test.mjs` | Automated test | Covers verdict rejection and intended-anchor evidence. |
+| `.opencode/skills/sk-design/design-foundations/corpus/tests/relationship-blueprint.test.mjs` | Automated test | Covers relationships, ledger binding and explicit-none. |
+| `.opencode/skills/sk-design/design-motion/corpus/tests/motion-evidence.test.mjs` | Automated test | Covers restraint-first flow and source-bound eligibility. |
+| `.opencode/skills/sk-design/design-mcp-open-design/tests/transport-grounding.test.mjs` | Automated test | Covers no-cache receipts, frozen proposals and reconciliation. |
 
 ---
 

@@ -9,7 +9,7 @@ description: "node:test suite for the foundations corpus relationship-blueprint 
 
 ## 1. OVERVIEW
 
-`corpus/__tests__/` owns the `node:test` coverage for `design-foundations/corpus/relationship-blueprint.mjs`, the maintainer-facing adapter that turns mode-owned, typed relationship decisions into a bounded compatibility graph. Tests cover the closed relation vocabulary directly and the full plan against a real fixture style corpus.
+`corpus/tests/` owns the `node:test` coverage for `design-foundations/corpus/relationship-blueprint.mjs`, the maintainer-facing adapter that turns mode-owned, typed relationship decisions into a bounded compatibility graph. Tests cover the closed relation vocabulary directly and the full plan against a real fixture style corpus.
 
 ## 2. CONTENTS
 
@@ -24,7 +24,7 @@ description: "node:test suite for the foundations corpus relationship-blueprint 
 Run from the repository root.
 
 ```bash
-node --test .opencode/skills/sk-design/design-foundations/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-foundations/corpus/tests/*.test.mjs
 ```
 
 ## 4. RELATED

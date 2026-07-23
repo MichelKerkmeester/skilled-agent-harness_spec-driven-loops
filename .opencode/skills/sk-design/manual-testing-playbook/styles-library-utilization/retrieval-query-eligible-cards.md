@@ -77,7 +77,7 @@ Capture the complete JSON result and record `eligibility.eligibleCount`, `eligib
 | File | Role |
 |---|---|
 | `.opencode/skills/sk-design/styles/_engine/style-library.mjs` | Query command and bounded card result. |
-| `.opencode/skills/sk-design/styles/_engine/__tests__/eligibility-first.test.mjs` | Regression proof for eligibility-before-ranking. |
+| `.opencode/skills/sk-design/styles/_engine/tests/eligibility-first.test.mjs` | Regression proof for eligibility-before-ranking. |
 
 ---
 

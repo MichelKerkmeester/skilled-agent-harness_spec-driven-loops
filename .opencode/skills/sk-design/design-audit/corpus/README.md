@@ -29,5 +29,5 @@ The fixtures form a falsification atlas:
 Run from the repository root:
 
 ```bash
-node --test .opencode/skills/sk-design/design-audit/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-audit/corpus/tests/*.test.mjs
 ```

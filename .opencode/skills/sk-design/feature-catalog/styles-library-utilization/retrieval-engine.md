@@ -49,9 +49,9 @@ Hydration binds the request to a re-derived live record, checks the generation a
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/styles/_engine/__tests__/eligibility-first.test.mjs` | Automated test | Proves ranking cannot reintroduce an ineligible record. |
-| `.opencode/skills/sk-design/styles/_engine/__tests__/hydrate-guard.test.mjs` | Automated test | Covers generation mismatch, poisoned records and path escape. |
-| `.opencode/skills/sk-design/styles/_engine/__tests__/proof.test.mjs` | Automated test | Covers proof binding and ready-gate refusal. |
+| `.opencode/skills/sk-design/styles/_engine/tests/eligibility-first.test.mjs` | Automated test | Proves ranking cannot reintroduce an ineligible record. |
+| `.opencode/skills/sk-design/styles/_engine/tests/hydrate-guard.test.mjs` | Automated test | Covers generation mismatch, poisoned records and path escape. |
+| `.opencode/skills/sk-design/styles/_engine/tests/proof.test.mjs` | Automated test | Covers proof binding and ready-gate refusal. |
 
 ---
 
