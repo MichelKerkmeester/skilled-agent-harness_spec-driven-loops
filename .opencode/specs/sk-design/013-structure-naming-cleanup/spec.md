@@ -137,11 +137,9 @@ Bring sk-design's folder structure and command assets into line with the sk-doc 
 <!-- /ANCHOR:questions -->
 ---
 
-<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
 - **Implementation Summary**: See `implementation-summary.md`
 - **Naming convention**: the sk-doc kebab-case filesystem convention (sk-doc/017 program).
 - **Command contract**: `sk-doc/create-command/assets/command-contract.json`.
 
-<!-- /ANCHOR:related-docs -->
