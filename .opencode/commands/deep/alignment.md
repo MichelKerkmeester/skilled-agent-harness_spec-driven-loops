@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-alignment loop: conformance audit against named standard authorities across resolved lanes. Modes :auto, :confirm.
-argument-hint: "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-kind=native|cli-codex] [--model=MODEL] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (--model/--reasoning-effort/--service-tier are codex-leaf-only; :auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--convergence-mode=default|off] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-kind=native|cli-codex|cli-opencode] [--model=MODEL] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (--model/--reasoning-effort apply to cli-codex and cli-opencode; --service-tier is cli-codex-only; :auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Grep, Glob, Task, Bash, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query
 ---
 
@@ -66,7 +66,7 @@ concrete evidence of the pasted-inline case above.
 - **ALL** agent dispatching is handled by the YAML workflow steps.
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `lanes` (resolved via the structured scoping question, or `--lane-config`), `spec_folder`, `execution_mode`, `maxIterations`, `coverageThreshold`, `stabilityWindow`, `lineage_mode`
+  - `lanes` (resolved via the structured scoping question, or `--lane-config`), `spec_folder`, `execution_mode`, `maxIterations`, `coverageThreshold`, `stabilityWindow`, `convergenceMode`, `lineage_mode`
 
 ### AUTONOMOUS EXECUTION DIRECTIVE (:auto)
 
@@ -103,7 +103,7 @@ The presentation asset owns every dashboard, prompt, and result-template string 
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS`. A `--lane-config <file.json>` flag resolves lanes non-interactively (`scripts/scoping.cjs` `parseLaneConfigFile`); without it, resolve lanes through the structured three-axis scoping question (authority x artifactClass x scope) before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the consolidated setup prompt (inline in the confirm workflow's own `gate_init_approval`-equivalent step) before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the same consolidated setup prompt to ask for execution mode.
-6. Load the selected workflow asset only after `lanes`, `spec_folder`, `execution_mode`, `maxIterations`, `coverageThreshold`, `stabilityWindow`, and `lineage_mode` are bound.
+6. Load the selected workflow asset only after `lanes`, `spec_folder`, `execution_mode`, `maxIterations`, `coverageThreshold`, `stabilityWindow`, `convergenceMode`, and `lineage_mode` are bound.
 
 ### Lane Config Flag
 
@@ -113,13 +113,17 @@ The presentation asset owns every dashboard, prompt, and result-template string 
 
 `--coverage-threshold <F>` (default `1.0`) and `--stability-window <N>` (default `2`) tune the two-signal AND-gate `deep-alignment/scripts/check-convergence.cjs` evaluates; both must hold together before STOP is legal, and `--max-iterations` remains an independent hard stop regardless of their outcome. Do not transfer `deep-review`'s single `convergenceThreshold` ratio semantics onto these two flags — they are not equivalent.
 
+`--convergence-mode=default` uses that early-convergence gate. `--convergence-mode=off` disables the `CONVERGED` decision so an applicable run executes exactly `--max-iterations` and stops with `STOP_MAX_ITERATIONS`; zero-applicable-lane runs still exit as `NOTHING_TO_CONVERGE`.
+
 ### Executor Flags
 
-The per-iteration LEAF defaults to the native `@deep-alignment` agent on `opus` (`--executor-kind=native`). Set `--executor-kind=cli-codex` to dispatch a single external GPT codex executor that acts as the deep-alignment leaf for each iteration, mirroring `/deep:review`'s codex path.
+The per-iteration LEAF defaults to the native `@deep-alignment` agent on `opus` (`--executor-kind=native`). In `:auto`, set `--executor-kind=cli-codex` to dispatch a single external GPT codex executor, or `--executor-kind=cli-opencode` to dispatch a single OpenCode-backed model such as GLM 5.2 or MiniMax M3. Both external executors act as the deep-alignment leaf for one iteration at a time. `:confirm` and no-suffix interactive execution remain native-only.
 
-- `--model=MODEL`, `--reasoning-effort=LEVEL` (`none|minimal|low|medium|high|xhigh|max|ultra`), and `--service-tier=TIER` (`priority|standard|fast`) are **codex-leaf-only** — they apply solely to `--executor-kind=cli-codex` and are rejected for native. The codex leaf always runs `--sandbox workspace-write` (it Bash-writes its own iteration, delta, and state records) with `approval_policy=never`; sandbox mode is not operator-configurable.
+- `--model=MODEL` and `--reasoning-effort=LEVEL` (`none|minimal|low|medium|high|xhigh|max|ultra`) apply to `cli-codex` and `cli-opencode`. OpenCode requires an explicit model and maps reasoning effort to `--variant`.
+- `--service-tier=TIER` (`priority|standard|fast`) is **cli-codex-only** and is rejected for native and cli-opencode.
+- The codex leaf always runs `--sandbox workspace-write` with `approval_policy=never`. The OpenCode leaf runs with `--pure --dangerously-skip-permissions` only after the workflow verifies an isolated linked worktree, a clean primary worktree, artifact-contained local changes, and the prompt pack's `BANNED OPERATIONS` / `ALLOWED WRITE PATHS` markers. Its single-executor path remains subject to the cli-opencode cross-runtime self-invocation guard.
 - `--executor-timeout=SECONDS` bounds a single executor invocation for any kind.
-- `cli-opencode` and `cli-claude-code` are NOT available for this single-executor mode; only `native` and `cli-codex` resolve. Parallel fan-out is a separate path this command does not expose here.
+- `cli-claude-code` is not available for this single-executor mode. Parallel fan-out is a separate path this command does not expose here.
 
 ---
 

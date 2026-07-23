@@ -33,14 +33,13 @@ user_inputs:
   max_iterations: 10
   coverage_threshold: 1.0
   stability_window: 2
+  convergence_mode: default
   batch_size: 5
-  # This mode dispatches either the native @deep-alignment LEAF agent (default) or
-  # a single external cli-codex executor acting as that leaf. For kind: native only
-  # `kind` and `timeout_seconds` are honored. For kind: cli-codex the workflow reads
-  # `model`, `reasoning_effort`, and `service_tier`; `sandbox_mode` is forced to
-  # workspace-write at dispatch (the leaf must Bash-write its iteration artifacts) and
-  # is not read from here. `cli-opencode` / `cli-claude-code` stay reserved and unwired
-  # for this mode -- do not advertise them on the command surface.
+  # This mode dispatches the native @deep-alignment LEAF agent (default), a single
+  # external cli-codex executor, or a single external cli-opencode executor acting
+  # as that leaf. cli-codex reads `model`, `reasoning_effort`, and `service_tier`;
+  # cli-opencode reads `model` and `reasoning_effort` only. cli-claude-code remains
+  # reserved and unwired for this mode.
   executor:
     kind: native
     model: null
@@ -238,6 +237,7 @@ workflow:
           maxIterations: "{max_iterations}"
           convergence.coverageThreshold: "{coverage_threshold}"
           convergence.stabilityWindow: "{stability_window}"
+          convergence.mode: "{convergence_mode}"
           convergence.combination: "AND"
           executionMode: "auto"
           executor: "{executor}"
@@ -249,7 +249,7 @@ workflow:
 
       step_create_state_log:
         action: "Initialize JSONL state log with a config record"
-        content: '{"type":"config","mode":"alignment","alignmentTarget":"{alignment_target}","lanes":{resolved_lanes_json},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","maxIterations":{max_iterations},"coverageThreshold":{coverage_threshold},"stabilityWindow":{stability_window},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","mode":"alignment","alignmentTarget":"{alignment_target}","lanes":{resolved_lanes_json},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","maxIterations":{max_iterations},"coverageThreshold":{coverage_threshold},"stabilityWindow":{stability_window},"convergenceMode":"{convergence_mode}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
 
       step_discover_lanes:
@@ -350,12 +350,12 @@ workflow:
         note: "This is a single-shot resolver, never a loop itself -- SKILL.md's FORBIDDEN INVOCATION PATTERNS rules out a custom dispatcher that parallelizes lanes or iterations."
 
       step_dispatch_alignment_iteration:
-        action: "Dispatch one lane-slice iteration: the native deep-alignment LEAF agent, or an external cli-codex executor acting as that leaf"
+        action: "Dispatch one lane-slice iteration: the native deep-alignment LEAF agent, or an external cli-codex/cli-opencode executor acting as that leaf"
         skip_when: "slice_done == true"
         resolve_executor:
           source: "config.executor"
           loader: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
-          note: "This mode resolves only native and cli-codex single executors. There is no if_cli_opencode branch here (the self-invocation guard makes a single-executor cli-opencode dispatch from this surface invalid), and fan-out is a separate parallel path this step never touches."
+          note: "This mode resolves native, cli-codex, and cli-opencode single executors. cli-opencode remains subject to its cross-runtime self-invocation guard; fan-out is a separate parallel path this step never touches."
         render_prompt_pack:
           template_path: ".opencode/skills/system-deep-loop/deep-alignment/assets/alignment-prompt-pack.md.tmpl"
           renderer: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
@@ -498,7 +498,130 @@ workflow:
             - "Fails closed when the codex binary is absent (exit 1); codex routing never degrades to native"
             - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"
             - "--sandbox workspace-write is required so the leaf can Bash-write its own iteration file/delta/state record (the leaf agent has no Write/Edit tool); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
-            - "No if_cli_opencode single-executor branch exists here by design; the cli-opencode self-invocation guard makes it invalid from this surface, and parallel cli-codex/cli-opencode fan-out is a separate path this step never touches"
+        if_cli_opencode:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { execFileSync } from 'node:child_process';
+            import { appendFileSync, readFileSync, realpathSync } from 'node:fs';
+            import { isAbsolute, relative, resolve } from 'node:path';
+
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            if (!model) {
+              throw new Error('cli-opencode executor requires --model');
+            }
+            const executor = {
+              kind: 'cli-opencode',
+              model,
+              configDir: null,
+              reasoningEffort,
+              serviceTier: null,
+              sandboxMode: null,
+              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
+              governor: null,
+            };
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            if (!promptBody.includes('BANNED OPERATIONS') || !promptBody.includes('ALLOWED WRITE PATHS')) {
+              throw new Error('Unsafe cli-opencode dispatch: rendered prompt is missing required write-containment sections');
+            }
+
+            const repoRoot = realpathSync('{repo_root}');
+            const artifactDir = resolve(repoRoot, '{state_paths.packet_dir}');
+            const artifactRelative = relative(repoRoot, artifactDir);
+            if (artifactRelative === '' || artifactRelative.startsWith('..') || isAbsolute(artifactRelative)) {
+              throw new Error('Unsafe cli-opencode dispatch: artifact directory must be a strict descendant of the worktree root');
+            }
+
+            const git = (args, cwd = repoRoot, trim = true) => {
+              const output = execFileSync('git', args, { cwd, encoding: 'utf8' });
+              return trim ? output.trim() : output;
+            };
+            const resolveGitPath = (candidate) => realpathSync(isAbsolute(candidate) ? candidate : resolve(repoRoot, candidate));
+            const gitDir = resolveGitPath(git(['rev-parse', '--git-dir']));
+            const commonGitDir = resolveGitPath(git(['rev-parse', '--git-common-dir']));
+            if (gitDir === commonGitDir) {
+              throw new Error('Unsafe cli-opencode dispatch: --dir must point at an isolated linked worktree');
+            }
+
+            const primaryBlock = git(['worktree', 'list', '--porcelain'])
+              .split(/\n\n+/)
+              .find((block) => /^branch refs\/heads\/(?:main|master)$/m.test(block));
+            const primaryLine = primaryBlock?.split('\n').find((line) => line.startsWith('worktree '));
+            if (!primaryLine) {
+              throw new Error('Unsafe cli-opencode dispatch: primary main/master worktree could not be resolved');
+            }
+            const primaryRoot = realpathSync(primaryLine.slice('worktree '.length));
+            const primaryStatus = git(['status', '--porcelain=v1', '--untracked-files=all'], primaryRoot);
+            if (primaryStatus) {
+              throw new Error('Unsafe cli-opencode dispatch: primary worktree must be clean before unrestricted execution');
+            }
+
+            const dirtyPaths = [
+              ...git(['diff', '--name-only', '-z', 'HEAD', '--'], repoRoot, false).split('\0'),
+              ...git(['ls-files', '--others', '--exclude-standard', '-z'], repoRoot, false).split('\0'),
+            ].filter(Boolean);
+            const outsideArtifactDir = dirtyPaths.filter((candidate) => {
+              const candidateRelative = relative(artifactDir, resolve(repoRoot, candidate));
+              return candidateRelative.startsWith('..') || isAbsolute(candidateRelative);
+            });
+            if (outsideArtifactDir.length > 0) {
+              throw new Error(`Unsafe cli-opencode dispatch: worktree changes outside the artifact directory: ${outsideArtifactDir.join(', ')}`);
+            }
+
+            const recoveryBaselineCommit = git(['rev-parse', '--verify', 'HEAD']);
+            appendFileSync(
+              '{state_paths.state_log}',
+              `${JSON.stringify({ type: 'event', event: 'recovery_baseline', mode: 'alignment', iteration: Number('{current_iteration}'), recoveryBaselineCommit, worktree: repoRoot, timestamp: new Date().toISOString() })}\n`,
+              'utf8',
+            );
+            const message = 'Resolved route: mode=alignment; target_agent=deep-alignment; execution=single_alignment_iteration; state_source=externalized_files; do_not_switch_mode=true'
+              + '\n\n'
+              + promptBody;
+            const args = [
+              'run',
+              '--model',
+              executor.model,
+              '--format',
+              'json',
+              '--dangerously-skip-permissions',
+              '--pure',
+              '--dir',
+              '{repo_root}',
+            ];
+            if (executor.reasoningEffort) {
+              args.push('--variant', executor.reasoningEffort);
+            }
+            args.push(message);
+
+            const dispatchId = 'alignment-i{current_iteration}-g{generation}';
+            process.exit(
+              runAuditedExecutorCommand({
+                command: 'opencode',
+                args,
+                cwd: '{repo_root}',
+                timeoutSeconds: executor.timeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                // OpenCode reads stdin during startup; an empty input provides EOF.
+                input: '',
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+              }),
+            );
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
+            - "Fail closed before dispatch unless the rendered BANNED OPERATIONS and ALLOWED WRITE PATHS sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir; append the recovery-baseline commit to state_log"
+            - "Route-proof message starts with `Resolved route: mode=alignment; target_agent=deep-alignment` and the prompt pack requires the matching alignment state-record fields"
+            - "opencode run receives --model, --format json, --dangerously-skip-permissions, --pure, --dir, and optional --variant; service-tier is not supported"
+            - "input:'' supplies closed stdin (EOF), equivalent to </dev/null"
+            - "The cli-opencode self-invocation guard still applies: this single-executor branch runs only from a non-OpenCode dispatch surface"
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
@@ -513,7 +636,7 @@ workflow:
 
       step_check_convergence:
         action: "Evaluate the coverage-AND-stability convergence gate (CONVERGE state)"
-        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs --spec-folder {spec_folder} --max-iterations {max_iterations} --coverage-threshold {coverage_threshold} --stability-window {stability_window} --json"
+        command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs --spec-folder {spec_folder} --max-iterations {max_iterations} --coverage-threshold {coverage_threshold} --stability-window {stability_window} --convergence-mode {convergence_mode} --json"
         append_jsonl: '{"type":"event","event":"convergence_check","mode":"alignment","run":{current_iteration},"decision":"{convergence_decision}","coverage":{convergence_coverage_json},"stability":{convergence_stability_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
         outputs:
           - convergence_decision: "CONVERGED | CONTINUE | STOP_MAX_ITERATIONS | NOTHING_TO_CONVERGE"
