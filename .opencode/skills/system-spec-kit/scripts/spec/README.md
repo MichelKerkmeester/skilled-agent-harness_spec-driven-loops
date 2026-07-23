@@ -83,7 +83,7 @@ Disallowed direction:
 
 - Rule scripts should not mutate spec content.
 - Shell helpers should not call spec lifecycle entrypoints.
-- Spec scripts should not depend on generated `dist/` output.
+- Source modules should not import generated `dist/` output directly. Shell entrypoints may execute freshness-verified compiled output, as `validate.sh` does for the MCP-server validation orchestrator.
 
 ---
 

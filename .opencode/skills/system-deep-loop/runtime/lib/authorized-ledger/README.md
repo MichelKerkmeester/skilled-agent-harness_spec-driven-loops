@@ -1,6 +1,6 @@
 ---
 title: "Authorized Ledger"
-description: "Default-deny authorization gateway and immutable append-only ledger that every other runtime/lib domain writes verified events through."
+description: "Default-deny authorization gateway and immutable append-only ledger that ledger-backed runtime/lib domains write verified events through."
 ---
 
 # Authorized Ledger
@@ -9,7 +9,7 @@ description: "Default-deny authorization gateway and immutable append-only ledge
 
 ## 1. OVERVIEW
 
-Fail-closed write substrate for `system-deep-loop` runtime domains. A transition request only reaches the append-only ledger after the authorization gateway checks it against a registered policy and both the current legacy result and the typed decision agree. The immutable frame store persists each accepted event as an owner-only, single-frame file. The deterministic reducer rebuilds disposable projections by replaying those frames against an exact registered reducer version.
+Fail-closed write substrate for `system-deep-loop` runtime domains. A transition request only reaches the append-only ledger after the authorization gateway independently evaluates it against the ledger head, the authority epoch and a registered policy. Dark-ledger callers such as `DarkLedgerAdapter.recordAfterLegacy()` invoke this authorization after the legacy result is already final and always return that legacy result unchanged, so authorization never compares against or overrides it. The immutable frame store persists each accepted event as an owner-only, single-frame file. The deterministic reducer rebuilds disposable projections by replaying those frames against an exact registered reducer version.
 
 ## 2. CONTENTS
 

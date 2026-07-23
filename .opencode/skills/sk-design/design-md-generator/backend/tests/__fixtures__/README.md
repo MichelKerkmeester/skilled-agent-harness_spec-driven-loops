@@ -15,11 +15,11 @@ description: "Adversarial design source, token, and prompt-injection fixtures fo
 
 | File | Purpose |
 |------|---------|
-| `study-cases.ts` | Exports `STUDY_GENERATION`, `ADVERSARIAL_DESIGN`, `ADVERSARIAL_TOKENS`, `STUDY_CONTENT_HASH`, `STUDY_CANDIDATE`, `STUDY_HYDRATION`, `TARGET_TOKENS`, and a set of leak-draft strings (`EXACT_LEAK_DRAFT`, `NORMALIZED_LEAK_DRAFT`, `BRAND_LEAK_DRAFT`, `RELATIVE_ASSET_LEAK_DRAFT`, `NUMERIC_TOKEN_LEAK_DRAFT`, `CLEAN_RETRY_DRAFT`) used to assert that generated study prose does not leak source-owned identity, colors, or assets. |
+| `study-cases.ts` | Exports `STUDY_GENERATION`, `ADVERSARIAL_DESIGN`, `ADVERSARIAL_TOKENS`, `STUDY_CONTENT_HASH`, `STUDY_HYDRATED_CONTENT_HASH`, `STUDY_CANDIDATE`, `STUDY_HYDRATION`, `TARGET_TOKENS` and a set of leak-draft strings (`EXACT_LEAK_DRAFT`, `NORMALIZED_LEAK_DRAFT`, `SHORT_NORMALIZED_LEAK_DRAFT`, `BRAND_LEAK_DRAFT`, `RELATIVE_ASSET_LEAK_DRAFT`, `NUMERIC_TOKEN_LEAK_DRAFT`, `CLEAN_RETRY_DRAFT`) used to assert that generated study prose does not leak source-owned identity, colors or assets. |
 
 ## 3. CONSUMERS
 
-- [`../study-exemplars.test.ts`](../study-exemplars.test.ts) - imports every export from this module to drive the study-exemplar leak-detection assertions.
+- [`../study-exemplars.test.ts`](../study-exemplars.test.ts) - imports 13 of the 15 exports (all except `ADVERSARIAL_TOKENS` and `STUDY_CONTENT_HASH`) to drive the study-exemplar leak-detection assertions.
 
 ## 4. RELATED
 

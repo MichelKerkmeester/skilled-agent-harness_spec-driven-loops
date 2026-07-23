@@ -9,7 +9,7 @@ description: "Install, connect, daemon, and read-only diagnostic scripts for the
 
 ## 1. OVERVIEW
 
-`scripts/` holds the setup, connect, daemon, and diagnostic scripts for `mcp-figma`, the Figma transport mode of the `mcp-tooling` hub (the external sibling of the `design-mcp-open-design` transport). Every script but `_common.sh` sources `_common.sh` for its color helpers, its `figma_bin` resolver, and its daemon paths, so all scripts agree on how to find the canonical `figma-ds-cli` binary. The canonical package is `figma-ds-cli` (the silships tool). A bare `figma` command belongs to the unrelated npm package `unic/figma-cli` and none of these scripts select it.
+`scripts/` holds the setup, connect, daemon, and diagnostic scripts for `mcp-figma`, the Figma transport mode of the `mcp-tooling` hub (the external sibling of the `design-mcp-open-design` transport). Every script except `_common.sh` and `print-utcp-snippets.sh` sources `_common.sh` for its color helpers, its `figma_bin` resolver and its daemon paths, so all scripts that resolve `figma-ds-cli` agree on how to find the canonical binary. `print-utcp-snippets.sh` only prints static Code Mode wiring text, so it never needs those helpers. The canonical package is `figma-ds-cli` (the silships tool). A bare `figma` command belongs to the unrelated npm package `unic/figma-cli` and none of these scripts select it.
 
 ## 2. CONTENTS
 

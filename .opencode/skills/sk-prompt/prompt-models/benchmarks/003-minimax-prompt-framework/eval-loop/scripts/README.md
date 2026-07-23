@@ -33,7 +33,7 @@ Run from `003-minimax-prompt-framework/eval-loop/`:
 node scripts/loop.cjs --mock --max-iters 2
 ```
 
-Exercises the full iteration cycle against mocked MiniMax dispatches. Exit 0 means converged with a synthesis written, 1 means budget exhausted, 2 means paused on a rate-limit sentinel.
+Exercises the full iteration cycle against mocked MiniMax dispatches. Exit 0 means the run ended normally, whether by converging, exhausting the mutation queue or reaching `--max-iters`, with a synthesis written in every case. Exit 1 means the iteration-one sanity gate rejected the run. Exit 2 means the loop paused on a pause sentinel or a rate-limit signal. Exit 3 means a fatal, uncaught error.
 
 ## 4. RELATED
 

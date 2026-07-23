@@ -24,6 +24,7 @@ End-to-end coverage that spawns the `.cjs` script entry points as child processe
 | `review-depth-graph.vitest.ts` | review node-kind allow-list against `coverage-graph-db.ts` |
 | `review-depth-convergence.vitest.ts` | review convergence signals |
 | `review-depth-validator.vitest.ts` | review-depth validation fixtures |
+| `divergent-pivot.vitest.ts` | Pivot transaction prepare-record-finalize flow, quorum agreement and seat-resume recovery for `lib/deep-loop/divergent-pivot.ts` |
 
 ## 3. RELATED RESOURCES
 

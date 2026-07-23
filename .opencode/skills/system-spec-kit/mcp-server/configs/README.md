@@ -79,7 +79,7 @@ Run from the repository root:
 
 ```bash
 node -e "JSON.parse(require('fs').readFileSync('.opencode/skills/system-spec-kit/mcp-server/configs/search-weights.json', 'utf8'))"
-npm test -- --run .opencode/skills/system-spec-kit/mcp-server/tests/config-cognitive.vitest.ts
+(cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/config-cognitive.vitest.ts)
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/configs/README.md
 ```
 

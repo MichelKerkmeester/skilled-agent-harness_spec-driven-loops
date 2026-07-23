@@ -59,7 +59,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Feature | What It Does |
 |---|---|
 | Folder boundary | Documents direct code files under `code-webflow/assets/templates`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
+| sk-code alignment | Points reviewers at Webflow CSS, HTML and JavaScript standards and implementation-pattern checks. |
 | Verification handoff | Records the expected owner and current refinement context for follow-up work. |
 
 ---
@@ -80,7 +80,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
+| sk-code surface | WEBFLOW | Applies Webflow CSS, HTML and JavaScript conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 
 ---

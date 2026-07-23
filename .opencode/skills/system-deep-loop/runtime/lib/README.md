@@ -9,7 +9,7 @@ description: "Domain logic library for system-deep-loop, holding thirty-seven do
 
 ## 1. OVERVIEW
 
-Shared domain logic for the `system-deep-loop` hub, which routes research, review, ai-council and four improvement lanes. Active graph-backed workflow modes use `runtimeLoopType` values `research`, `review` or `council`. Legacy `context` handling remains only for historical artifacts, and improvement lanes keep `runtimeLoopType: null`. Each domain isolates its own concerns and writes verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
+Shared domain logic for the `system-deep-loop` hub, which routes research, review, ai-council, alignment and three improvement lanes. Active graph-backed workflow modes use `runtimeLoopType` values `research`, `review` or `council`. Legacy `context` handling remains only for historical artifacts, and improvement lanes keep `runtimeLoopType: null`. Most domains isolate their own concerns and write verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate, though a few domains such as `council/`, `coverage-graph/` and `write-set-conflict-graph/` stay outside that ledger-backed spine. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
 
 ## 2. LIBRARY DOMAINS
 
@@ -17,7 +17,7 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 
 | Domain | Purpose |
 |--------|---------|
-| `authorized-ledger/` | Default-deny authorization gateway and immutable append-only ledger that every other domain writes verified events through. |
+| `authorized-ledger/` | Default-deny authorization gateway and immutable append-only ledger that ledger-backed domains write verified events through. |
 | `blinded-adjudication/` | Reviewer-blind adjudication comparing a baseline judgment with a policy-linked intervention without exposing candidate identity. |
 | `branch-leases-waves/` | Durable fan-out admission, fenced branch ownership and immutable wave compilation for parallel branch execution. |
 | `claim-continuity/` | Tracks claim identity across loop iterations by matching, folding and replaying claim events into a disposable frontier projection. |
@@ -26,11 +26,11 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `contradiction-supersession/` | Isolated shadow ledger recording contradiction and supersession between claims, with an audited replay-verified status projection. |
 | `council/` | Multi-seat dispatch, adjudicator-verdict stability and cost guards for the deep-ai-council mode. |
 | `coverage-graph/` | Schema, queries and Bayesian signals for deep-loop convergence detection. |
-| `cross-mode-closures/` | Five shared-implementation closures every deep-loop mode invokes through one additive-dark contract instead of reimplementing shared mechanics. |
+| `cross-mode-closures/` | Five shared-implementation closures with a manifest-complete catalog mapping them to every deep-loop mode ID, designed to replace per-mode reimplementation of shared mechanics. No mode packet invokes them yet outside the domain's own unit test. |
 | `cycle-detection/` | Detects unproductive repetition across iterations by comparing bounded state-signature history against a versioned policy. |
 | `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend. |
 | `dispatch-receipts/` | Records a durable integrity-checked receipt before a dispatch crosses the process-spawn boundary, so a resumed session recognizes an already-launched run. |
-| `event-envelope/` | Foundational canonical-serialization and event-schema registry substrate underneath every domain. |
+| `event-envelope/` | Foundational canonical-serialization and event-schema registry substrate underneath most domains, excluding `council/`, `coverage-graph/` and `write-set-conflict-graph/`. |
 | `health-degeneration-harness/` | Turns normalized budget, cycle and coverage signals into a per-mode health state and a recommended response action. |
 | `hierarchical-budgets/` | Reserves, settles and replays token, cost, iteration and wall-time budgets across a four-level scope hierarchy. |
 | `inflight-state-classification/` | Classifies in-flight legacy state rows against a frozen census into upcast, pin, fork, migrate or block dispositions. |

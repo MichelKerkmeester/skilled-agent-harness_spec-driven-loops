@@ -1,6 +1,6 @@
 ---
 title: "Data Loaders"
-description: "Data loader modules that normalize input from JSON files or native CLI capture, then hard-stop when no usable session data exists."
+description: "Data loader module that normalizes explicit structured JSON input, then hard-stops when no usable session data exists."
 trigger_phrases:
   - "data loaders"
   - "load collected data"
@@ -11,23 +11,21 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/loaders/` is the script-side ingestion layer for context generation. It loads explicit JSON input or normalized native capture data, validates that usable session data exists, and returns a consistent object for extractors and renderers.
+`scripts/loaders/` is the script-side ingestion layer for context generation. It loads explicit structured JSON input, validates that usable session data exists and returns a consistent object for extractors and renderers.
 
 ## 2. SCRIPT IO
 
 | Source | Input | Output |
 | --- | --- | --- |
-| Explicit JSON | `dataFile` option | Parsed and normalized session data |
-| Preferred capture | `preferredCaptureSource` option or `SYSTEM_SPEC_KIT_CAPTURE_SOURCE` | Normalized native capture data |
-| Capture fallback | OpenCode, Claude Code, OpenCode, Copilot CLI | First usable native capture payload |
-| No data | Empty or unusable sources | `NO_DATA_AVAILABLE` hard stop |
+| Explicit JSON | `dataFile` option, populated via a file path, `--stdin`, or `--json` | Parsed and normalized session data tagged `_source: 'file'` |
+| Legacy shared path | A legacy shared `save-context` `dataFile` path | `LEGACY_SHARED_DATA_FILE` rejection |
+| No data | `dataFile` unset | `NO_DATA_FILE` hard stop |
+| Read or parse failure | Missing file, permission error or invalid JSON | `EXPLICIT_DATA_FILE_LOAD_FAILED` error |
 
 ## 3. ENTRYPOINTS
 
-- `loadData()` loads explicit or captured data and enforces the no-data hard stop.
-- `loadFromJsonFile()` reads and validates explicit JSON data files.
-- `loadFromNativeCapture()` loads normalized data from supported CLI capture sources.
-- `index.ts` re-exports the public loader API for script consumers.
+- `loadCollectedData()` loads and validates the explicit JSON data file, sanitizes the path, normalizes the payload and enforces the no-data hard stop.
+- `index.ts` re-exports `loadCollectedData` plus the `DataSource` and `LoadedData` types for script consumers.
 
 ## 4. VALIDATION FROM REPO ROOT
 
@@ -43,7 +41,7 @@ python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_d
 
 | File | Purpose |
 | --- | --- |
-| `data-loader.ts` | Loads explicit data, applies path checks, normalizes capture data, and throws clear no-data errors |
+| `data-loader.ts` | Loads the explicit JSON data file, applies path checks, normalizes the payload and throws clear no-data errors |
 | `index.ts` | Barrel export for the loader API |
 
 ## 6. BOUNDARIES

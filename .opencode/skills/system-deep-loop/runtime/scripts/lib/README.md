@@ -19,7 +19,7 @@ Internal helpers used only by the CLI entry points in `../`. This folder is CLI 
 
 ## 3. CONSUMERS
 
-- The `.cjs` scripts in `../` (`convergence.cjs`, `query.cjs`, `status.cjs`, `upsert.cjs`, `fanout-run.cjs`, `fanout-pool.cjs`, `fanout-salvage.cjs`, `fanout-merge.cjs`, `loop-lock.cjs`)
+- The `.cjs` scripts in `../` (`convergence.cjs`, `query.cjs`, `status.cjs`, `upsert.cjs`, `fanout-run.cjs`, `fanout-pool.cjs`)
 
 ## 4. RELATED
 

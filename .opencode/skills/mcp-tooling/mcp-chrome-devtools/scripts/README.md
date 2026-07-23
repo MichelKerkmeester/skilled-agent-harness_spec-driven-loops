@@ -9,7 +9,7 @@ description: "Install and read-only diagnostic scripts for the mcp-chrome-devtoo
 
 ## 1. OVERVIEW
 
-`scripts/` holds the setup and diagnostic scripts for `mcp-chrome-devtools`, the Chrome DevTools transport mode of the `mcp-tooling` hub. Both scripts install and verify the `bdg` CLI (`browser-debugger-cli`) that the skill uses to drive Chrome DevTools Protocol sessions. Neither script touches `.utcp_config.json` or any secret.
+`scripts/` holds the setup and diagnostic scripts for `mcp-chrome-devtools`, the Chrome DevTools transport mode of the `mcp-tooling` hub. `install.sh` installs and verifies the `bdg` CLI (`browser-debugger-cli`) that the skill uses to drive Chrome DevTools Protocol sessions. `doctor.sh` never installs anything: it only reports whether `bdg` is already resolvable, directly or via `npx --no-install`. Neither script touches `.utcp_config.json` or any secret.
 
 ## 2. CONTENTS
 

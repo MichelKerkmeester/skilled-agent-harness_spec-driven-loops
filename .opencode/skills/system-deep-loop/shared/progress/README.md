@@ -1,6 +1,6 @@
 ---
 title: "Progress: shared progress-record type and pair validator"
-description: "Shared additive progress_record JSONL event type, completion reducer allowlist and started/completed pair validator for every deep-loop mode."
+description: "Shared additive progress_record JSONL event type, completion reducer allowlist and started/completed pair validator for the research, review and ai-council reducers."
 ---
 
 # Progress
@@ -9,7 +9,7 @@ description: "Shared additive progress_record JSONL event type, completion reduc
 
 ## 1. OVERVIEW
 
-Shared `progress_record` type, completion reducer allowlist and started/completed pair validator, cross-cutting across every deep-loop mode (council, context, review, research, improvement). Every completion reducer imports this folder so the allowlist that separates completion-bearing state events from watchdog-resetting progress heartbeats lives in one place. `validateProgressRecordPair` rejects zero-delta no-op pairs so a heartbeat cannot mask a genuine stall.
+Shared `progress_record` type, completion reducer allowlist and started/completed pair validator, used by the research, review and ai-council completion reducers listed in Consumers below. The deep-improvement lanes and the alignment mode reduce state without this helper. `validateProgressRecordPair` rejects zero-delta no-op pairs so a heartbeat cannot mask a genuine stall.
 
 ## 2. CONTENTS
 

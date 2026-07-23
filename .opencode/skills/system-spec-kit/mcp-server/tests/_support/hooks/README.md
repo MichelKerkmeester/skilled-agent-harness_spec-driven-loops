@@ -27,7 +27,7 @@ trigger_phrases:
 Run focused hook tests from `mcp_server` after changing support helpers:
 
 ```bash
-npx vitest run tests/hooks-runtime-detection.vitest.ts
+npx vitest run tests/hook-session-stop-replay.vitest.ts
 ```
 
 ## 5. RELATED

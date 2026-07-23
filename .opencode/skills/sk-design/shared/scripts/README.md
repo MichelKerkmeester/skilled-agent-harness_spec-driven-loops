@@ -9,13 +9,13 @@ description: "Cross-mode Python and Node checkers plus their node:test coverage,
 
 ## 1. OVERVIEW
 
-`shared/scripts/` owns the deterministic gates and row-parsing helpers reused across sk-design modes, plus the `node:test` coverage for the two largest checkers. Python checkers here validate shared reference documents (`numeric-design-laws.md`, `variant-parameter-contract.md`, the proof-of-application card, procedure cards), while the Node checkers validate the `/interface:*` command surface itself against `command-metadata.json`, `mode-registry.json`, and `hub-router.json`.
+`shared/scripts/` owns the deterministic gates and row-parsing helpers reused across sk-design modes, plus the `node:test` coverage for the two largest checkers. Python checkers here validate shared reference documents (`numeric-design-laws.md`, `variant-parameter-contract.md` and the proof-of-application card), while the Node checkers validate procedure cards, the AI-fingerprint registry and the `/interface:*` command surface itself against `command-metadata.json`, `mode-registry.json` and `hub-router.json`.
 
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
-| `md_table.py` | Shared Markdown table parsing helpers (`_clean_cell`, `_strip_markdown`, `_split_table_row`, `_is_separator_row`) imported by every Python row checker in this file and in `design-audit/scripts` and `design-foundations/scripts`. |
+| `md_table.py` | Shared Markdown table parsing helpers (`_clean_cell`, `_strip_markdown`, `_split_table_row`, `_is_separator_row`) imported by every Python checker in this file and in `design-audit/scripts`, plus `baseline_rhythm_check.py` and `naming_doc_check.py` in `design-foundations/scripts` (`contrast_check.py` parses no tables and does not import it). |
 | `numeric_law_check.py` | Completeness and uniqueness gate for `shared/numeric-design-laws.md`'s Law Index table: every row needs all six required cells filled and no duplicate values. |
 | `variant_parameter_check.py` | Schema gate for `shared/assets/variant-parameter-contract.md`: every variant knob row must have its required cells filled and name every canonical transport. |
 | `proof_check.py` | Proof-of-application gate for a filled context-loading notes file or `shared/assets/proof-of-application-card.md`: requires REGISTER/DIALS, CONTRAST PAIRS, INTERFACE PREFLIGHT, and AUDIT EVIDENCE fields plus a READY verdict. |
@@ -29,7 +29,7 @@ description: "Cross-mode Python and Node checkers plus their node:test coverage,
 ## 3. CONSUMERS
 
 - `design-audit/scripts/perf_evidence_check.py` and `polish_readiness_check.py` import `md_table.py`.
-- `design-foundations/scripts/baseline_rhythm_check.py`, `contrast_check.py`, and `naming_doc_check.py` import `md_table.py`.
+- `design-foundations/scripts/baseline_rhythm_check.py` and `naming_doc_check.py` import `md_table.py`.
 - `shared/numeric-design-laws.md` and `shared/context-loading-contract.md` document `numeric_law_check.py` and `proof_check.py` as their own verification commands.
 
 ## 4. VALIDATION

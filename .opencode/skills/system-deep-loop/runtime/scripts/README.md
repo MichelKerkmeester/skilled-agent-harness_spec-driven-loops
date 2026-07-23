@@ -9,7 +9,7 @@ description: "CLI entry points for deep-loop runtime operations: convergence det
 
 ## 1. OVERVIEW
 
-CLI invocation surface for deep-loop runtime operations. Consumed by active `/deep:*` workflows under `.opencode/commands/deep`, including research, review, ai-council, and the four improvement commands. Each script is a thin CommonJS wrapper around the domain library at `../lib/`. The deprecated standalone context loop no longer consumes fan-out; legacy context parsing remains only where a script explicitly documents historical artifact compatibility.
+CLI invocation surface for deep-loop runtime operations. Consumed by active `/deep:*` workflows under `.opencode/commands/deep`, including research, review, ai-council, alignment and the three improvement commands. Each script is a thin CommonJS wrapper around the domain library at `../lib/`. The deprecated standalone context loop no longer consumes fan-out. Legacy context parsing remains only where a script explicitly documents historical artifact compatibility.
 
 ## 2. SCRIPTS
 

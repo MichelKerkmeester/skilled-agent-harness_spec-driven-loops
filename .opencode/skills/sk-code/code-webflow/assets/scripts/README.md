@@ -59,7 +59,7 @@ Run individual scripts from the repository root with the documented arguments.
 | Feature | What It Does |
 |---|---|
 | Folder boundary | Documents direct code files under `code-webflow/assets/scripts`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
+| sk-code alignment | Points reviewers at Webflow CSS, HTML and JavaScript standards and implementation-pattern checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 
 ---
@@ -78,7 +78,7 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
+| sk-code surface | WEBFLOW | Applies Webflow CSS, HTML and JavaScript conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 
 ---

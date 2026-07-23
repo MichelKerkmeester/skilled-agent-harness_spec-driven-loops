@@ -32,7 +32,9 @@ Run from `001-swe-1.6-eval-loop/`:
 node scripts/loop.cjs --mock --max-iters 2
 ```
 
-Exercises the full iteration cycle with `dispatchMock` instead of live SWE 1.6 calls. Exit code 0 means the loop converged and wrote a synthesis, 1 means the iteration budget ran out, 2 means it paused on a rate-limit sentinel.
+This command currently fails before running any iteration. `loop.cjs` and `score-variant.cjs` resolve their rig dependency to a sibling `../002-eval-rig` directory, which does not exist at that path anymore (the shared eval-rig now lives at `003-minimax-prompt-framework/eval-rig/`).
+
+The loop's actual exit-code contract: 0 means the run ended normally, whether by converging, exhausting the mutation queue or reaching `--max-iters`, with a synthesis written in every case. 1 means the iteration-one sanity gate rejected the run. 2 means the loop paused on a pause sentinel or a rate-limit signal. 3 means a fatal, uncaught error.
 
 ## 4. RELATED
 

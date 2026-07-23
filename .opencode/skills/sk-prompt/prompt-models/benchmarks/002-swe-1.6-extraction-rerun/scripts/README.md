@@ -31,7 +31,7 @@ Run from `002-swe-1.6-extraction-rerun/`:
 node scripts/confirm-variant.cjs --variant <variant-id> --runs 3 --mock
 ```
 
-Verifies the confirmation pipeline end to end without live SWE 1.6 dispatches. Writes `state/confirm/confirmation-results.jsonl` plus `confirmation-report.md`.
+This command currently fails before dispatching anything. `confirm-variant.cjs` resolves its eval-loop and rig dependencies to sibling `../003-eval-loop` and `../002-eval-rig` directories, and neither exists at those paths anymore. The eval loop this package reruns is `001-swe-1.6-eval-loop/`, and the shared eval-rig now lives at `003-minimax-prompt-framework/eval-rig/`. Once those module paths resolve, the script is designed to write `state/confirm/confirmation-results.jsonl` plus `confirmation-report.md`.
 
 ## 4. RELATED
 

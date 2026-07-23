@@ -27,7 +27,7 @@ Exit `0` on pass (or advisory warnings in default mode), `1` on invalid argument
 
 ## 4. CONSUMERS
 
-- `.opencode/commands/doctor/mcp.md` and its `_routes.yaml` / `scripts/mcp-doctor.sh` route wiring call this as one of the MCP subsystem health checks.
+- None. This is a standalone operator check, run directly by hand. `scripts/mcp-doctor.sh` (behind `/doctor:mcp`) implements its own separate `diagnose_mk_code_index()` checks for the MCP subsystem, and the code-graph route in `_routes.yaml` diagnoses through the `mk_code_index` MCP tools and CLI status commands instead of calling this script.
 
 ## 5. RELATED
 
