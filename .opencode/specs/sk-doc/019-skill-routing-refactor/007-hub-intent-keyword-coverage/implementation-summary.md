@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/007-hub-intent-keyword-coverage"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage"
     last_updated_at: "2026-07-13T15:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Fix verified across routing battery and both guards"
@@ -29,7 +29,7 @@ _memory:
 |-------|-------|
 | **Packet** | 007 — hub intent keyword coverage |
 | **Status** | Complete |
-| **Parent** | `sk-doc/018-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-skill-routing-refactor` |
 <!-- /ANCHOR:metadata -->
 
 ---

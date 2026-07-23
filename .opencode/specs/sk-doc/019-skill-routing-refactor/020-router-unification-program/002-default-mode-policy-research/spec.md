@@ -32,7 +32,7 @@ A parent hub is a pure router: its `SKILL.md` never handles a request itself, it
 | **Status** | Research — run 1 (4 iters) answered keep-1/flip-4; runs 2-3 (divergent + OOB agendas) open |
 | **Created** | 2026-07-18 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-sk-doc-router-alignment/020-router-unification-program` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/020-router-unification-program` |
 <!-- /ANCHOR:metadata -->
 
 ---

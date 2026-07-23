@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:49:16Z"
     last_updated_by: "claude"
     recent_action: "Reconciled spec.md status to Complete (matches implementation-summary.md; 7dfffa0c93)"

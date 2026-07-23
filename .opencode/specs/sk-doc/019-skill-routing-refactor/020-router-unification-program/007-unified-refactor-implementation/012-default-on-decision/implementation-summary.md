@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Settled the ruling (adopt the phased path) and reconciled the packet to that status"
@@ -130,7 +130,7 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 | Drift CI and status readout | Planned for P0-P1 |
 | Canary and kill-switch drill | Planned for P2 and P4 |
 | Frozen scorer digest comparison | Planned per stage |
-| Spec-folder strict validation | Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision --strict`; Errors zero |
+| Spec-folder strict validation | Run: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision --strict`; Errors zero |
 <!-- /ANCHOR:verification -->
 
 ---

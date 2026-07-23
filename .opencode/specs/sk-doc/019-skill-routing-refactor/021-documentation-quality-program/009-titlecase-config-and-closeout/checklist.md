@@ -7,7 +7,7 @@ status: "complete"
 completion_pct: 100
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/009-titlecase-config-and-closeout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/009-titlecase-config-and-closeout"
     last_updated_at: "2026-07-22T16:53:38Z"
     last_updated_by: "claude"
     recent_action: "Verified the flip and closeout."

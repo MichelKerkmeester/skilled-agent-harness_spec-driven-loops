@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/002-p0-collision-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/002-router-collision-fixes"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed P0 collision edits and replay"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-p0-collision-fixes"
+      session_id: "scaffold-scaffold/002-router-collision-fixes"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

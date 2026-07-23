@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/005-smart-routing-mechanism-notes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/005-create-skill-smart-routing-notes"
     last_updated_at: "2026-07-12T14:23:42Z"
     last_updated_by: "claude-code"
     recent_action: "All items verified"

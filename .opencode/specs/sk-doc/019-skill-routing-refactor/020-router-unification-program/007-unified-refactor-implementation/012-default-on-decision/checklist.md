@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "gpt-5.6-sol"
     recent_action: "Prepared the unchecked Planned verification matrix"

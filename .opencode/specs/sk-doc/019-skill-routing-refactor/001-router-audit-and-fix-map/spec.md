@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/001-audit-and-fix-map"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed audit, baseline, and 14-fix map"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-audit-and-fix-map"
+      session_id: "scaffold-scaffold/001-router-audit-and-fix-map"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 4 |
 | **Predecessor** | None |
-| **Successor** | 002-p0-collision-fixes |
+| **Successor** | 002-router-collision-fixes |
 | **Handoff Criteria** | All sources read, six queries captured, generator search complete, and 14 fixes mapped before source edits |
 <!-- /ANCHOR:metadata -->
 

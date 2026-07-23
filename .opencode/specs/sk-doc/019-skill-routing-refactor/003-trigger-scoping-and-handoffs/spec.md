@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/003-p1-trigger-scoping-and-handoffs"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/003-trigger-scoping-and-handoffs"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Removed broad triggers and corrected all packet handoffs"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-p1-trigger-scoping-and-handoffs"
+      session_id: "scaffold-scaffold/003-trigger-scoping-and-handoffs"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -53,8 +53,8 @@ FAILURE MODES:
 | **Branch** | `wt/goalAB-skdoc` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 4 |
-| **Predecessor** | 002-p0-collision-fixes |
-| **Successor** | 004-p2-standardization-and-regen |
+| **Predecessor** | 002-router-collision-fixes |
+| **Successor** | 004-router-standardization-and-regen |
 | **Handoff Criteria** | Bare benchmark, generic documentation, suffix-only, and schema-only prompts cannot select a creator; all packet exclusions name sibling ids |
 <!-- /ANCHOR:metadata -->
 
@@ -197,7 +197,7 @@ Require artifact-specific intent for selection and make every cross-packet bound
 
 - `plan.md` defines the six P1 changes.
 - `decision-record.md` records the specificity policy.
-- `../001-audit-and-fix-map/plan.md` is the frozen fix map.
+- `../001-router-audit-and-fix-map/plan.md` is the frozen fix map.
 
 ---
 

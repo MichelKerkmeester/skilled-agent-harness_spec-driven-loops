@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/002-p0-collision-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/002-router-collision-fixes"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Scoped quality ownership across three packet sources"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-p0-collision-fixes"
+      session_id: "scaffold-scaffold/002-router-collision-fixes"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -53,8 +53,8 @@ FAILURE MODES:
 | **Branch** | `wt/goalAB-skdoc` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 4 |
-| **Predecessor** | 001-audit-and-fix-map |
-| **Successor** | 003-p1-trigger-scoping-and-handoffs |
+| **Predecessor** | 001-router-audit-and-fix-map |
+| **Successor** | 003-trigger-scoping-and-handoffs |
 | **Handoff Criteria** | Both quality queries route only to `create-quality-control`; README and flowchart authoring queries remain covered |
 <!-- /ANCHOR:metadata -->
 
@@ -198,7 +198,7 @@ Make quality-action ownership explicit without weakening README or flowchart aut
 
 - `plan.md` defines the target-state boundary.
 - `decision-record.md` records central quality ownership.
-- `../001-audit-and-fix-map/plan.md` defines P0-01 through P0-03.
+- `../001-router-audit-and-fix-map/plan.md` defines P0-01 through P0-03.
 
 ---
 

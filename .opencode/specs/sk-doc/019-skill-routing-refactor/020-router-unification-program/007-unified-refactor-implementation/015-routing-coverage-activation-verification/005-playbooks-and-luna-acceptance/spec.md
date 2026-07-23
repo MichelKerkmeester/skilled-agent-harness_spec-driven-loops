@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance"
     last_updated_at: "2026-07-21T07:50:27Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Reran 7-hub LUNA-HIGH sweep with real dispatch: 13/14 PASS, 1 FAIL, 0 SKIP"

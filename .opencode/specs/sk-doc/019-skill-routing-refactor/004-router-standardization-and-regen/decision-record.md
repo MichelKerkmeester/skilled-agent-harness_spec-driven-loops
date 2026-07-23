@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/004-p2-standardization-and-regen"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/004-router-standardization-and-regen"
     last_updated_at: "2026-07-13T06:25:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored and validated the phase spec docs"

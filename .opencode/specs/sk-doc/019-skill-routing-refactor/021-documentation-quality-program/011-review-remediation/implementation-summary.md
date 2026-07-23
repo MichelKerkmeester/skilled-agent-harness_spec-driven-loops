@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/011-review-remediation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/011-review-remediation"
     last_updated_at: "2026-07-22T20:45:00Z"
     last_updated_by: "claude"
     recent_action: "Fixed the code-README accuracy P1s (32 READMEs, four verified Sonnet agents)."

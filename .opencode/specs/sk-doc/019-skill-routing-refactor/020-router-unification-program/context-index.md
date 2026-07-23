@@ -1,7 +1,7 @@
 # Context Index — Router-Unification Program
 
 > Migration bridge for this reorganized phase parent. Five formerly-separate
-> top-level packets under `019-sk-doc-router-alignment/` were consolidated into
+> top-level packets under `019-skill-routing-refactor/` were consolidated into
 > this one program (numbered `020`, the fleet routing packet number) so the
 > whole storyline — fleet consistency → defaultMode → out-of-box exploration →
 > unified refactor — reads as one historic-to-current arc. This file exists so
@@ -10,7 +10,7 @@
 
 ## Old → New Mapping
 
-| Former packet (under `019-sk-doc-router-alignment/`) | New location |
+| Former packet (under `019-skill-routing-refactor/`) | New location |
 |------------------------------------------------------|--------------|
 | `020-fleet-routing-consistency` | `020-router-unification-program/001-3-tier-consistency-standard` |
 | `021-default-mode-policy-research` | `020-router-unification-program/002-default-mode-policy-research` |

@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Completed the shadow compiler, N=1 projections, parity lane, and rollback drill"

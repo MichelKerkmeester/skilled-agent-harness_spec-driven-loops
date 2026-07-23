@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/004-p2-standardization-and-regen"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/004-router-standardization-and-regen"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Synchronized router projections and captured final replay"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-p2-standardization-and-regen"
+      session_id: "scaffold-scaffold/004-router-standardization-and-regen"
       parent_session_id: null
     completion_pct: 95
     open_questions: []

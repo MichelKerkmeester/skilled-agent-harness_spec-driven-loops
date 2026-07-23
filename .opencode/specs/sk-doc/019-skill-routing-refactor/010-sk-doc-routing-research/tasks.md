@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/010-sk-doc-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research"
     last_updated_at: "2026-07-16T08:08:19Z"
     last_updated_by: "claude"
     recent_action: "Authored tasks.md documenting the executed iteration workplan"

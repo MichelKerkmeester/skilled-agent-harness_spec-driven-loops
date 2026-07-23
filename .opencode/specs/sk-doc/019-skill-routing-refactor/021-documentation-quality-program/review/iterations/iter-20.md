@@ -14,8 +14,8 @@
 
 - **[P0] All ten “complete” phases fail the mandatory strict validation gate**
   
-  `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/010-deferred-code-and-checker-fixes/implementation-summary.md:103`  
-  `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/context-index.md:7`
+  `.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/010-deferred-code-and-checker-fixes/implementation-summary.md:103`  
+  `.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/context-index.md:7`
   
   Evidence: The summaries claim `Parent recursive --strict | Clean`, and the context index marks phases 001–010 complete. Running `validate.sh <phase> --strict` against every child returned `RESULT: FAILED`, exit 2, with `GRAPH_METADATA_SHAPE`, `DESCRIPTION_SHAPE`, and `SECTION_COUNTS` bridge failures. Parent recursive validation also failed. Whatever the shared bridge’s root cause, the repository’s hard completion gate is red.
   
@@ -49,9 +49,9 @@
 
 - **[P1] Parent packet state still describes the obsolete eight-phase plan**
   
-  `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/spec.md:3`  
-  `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/spec.md:15`  
-  `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/graph-metadata.json:44`
+  `.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/spec.md:3`  
+  `.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/spec.md:15`  
+  `.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/graph-metadata.json:44`
   
   Evidence: The parent says “Eight phases,” records phase 002 as the next action, and maps phase 008 to nonexistent `008-verification-and-closeout`. The tree and `children_ids` contain ten children through phase 010, while derived metadata still says `status: planned`. This contradicts the context index’s all-complete state.
   

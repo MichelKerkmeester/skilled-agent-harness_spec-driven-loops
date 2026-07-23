@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/001-json-cleanup-and-conventions"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/001-json-cleanup-and-conventions"
     last_updated_at: "2026-07-22T12:29:01Z"
     last_updated_by: "claude"
     recent_action: "Removed the residue; added rule 2b; codified the convention in doctrine and AGENTS.md."

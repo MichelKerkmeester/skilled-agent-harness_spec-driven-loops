@@ -7,7 +7,7 @@ contextType: "implementation"
 status: "in_progress"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design"
     last_updated_at: "2026-07-19T11:08:33.000Z"
     last_updated_by: "codex"
     recent_action: "Recorded the sk-design verification evidence."

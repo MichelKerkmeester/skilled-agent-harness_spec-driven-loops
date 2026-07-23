@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/015-sk-code-router-alignment"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded 015 with the corrected Wave 2 scope (no map bugs; measurement-only)"
@@ -60,7 +60,7 @@ sk-code's map therefore needs **no correctness edits**. The real gap is measurem
 | **Status** | Planned |
 | **Created** | 2026-07-16 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
 | **Evidence Source** | This session's verification: drift-guard 7/7, `parseResourceMap` regex read, fresh router run PASS 83 |
 <!-- /ANCHOR:metadata -->

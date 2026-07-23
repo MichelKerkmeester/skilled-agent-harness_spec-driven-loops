@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "implemented; REAL-GREEN canary; legacy remains serving-authoritative"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration"
     last_updated_at: "2026-07-19T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Built and verified the external-executor rollout child"

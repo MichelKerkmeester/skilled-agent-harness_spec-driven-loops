@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/001-3-tier-consistency-standard"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "REQ-006 verification: deterministic teeth-proof (91/91 gold, 6/6 router) + adversarial audit + live-mode reality check (4/6 hubs) synthesized into this report"

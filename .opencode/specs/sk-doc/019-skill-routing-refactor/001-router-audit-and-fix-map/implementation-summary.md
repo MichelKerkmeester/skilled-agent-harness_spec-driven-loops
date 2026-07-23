@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/001-audit-and-fix-map"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed audit and fix map"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-audit-and-fix-map"
+      session_id: "scaffold-scaffold/001-router-audit-and-fix-map"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-audit-and-fix-map |
+| **Spec Folder** | 001-router-audit-and-fix-map |
 | **Completed** | 2026-07-13 |
 | **Level** | 3 |
 | **Status** | Complete |

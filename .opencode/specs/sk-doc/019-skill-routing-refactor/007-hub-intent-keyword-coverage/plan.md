@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/007-hub-intent-keyword-coverage"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage"
     last_updated_at: "2026-07-13T15:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Three-surface keyword edits verified"
@@ -68,7 +68,7 @@ Run a 13-prompt routing battery through `router-replay` (two target modes plus e
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 - `parent-hub-vocab-sync.cjs` (three-surface drift guard), `router-replay.cjs` (router semantics), `d5-connectivity.cjs` (hub gate).
-- Sibling `006-router-conformance-gap-analysis` (which surfaced the mis-routing).
+- Sibling `006-create-skill-router-marker-gap` (which surfaced the mis-routing).
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -82,4 +82,4 @@ Additive keyword edits across four files. Rollback = revert the commit; the rout
 
 ## RELATED DOCUMENTS
 - `./spec.md`, `./tasks.md`, `./checklist.md`, `./implementation-summary.md`
-- Sibling: `../006-router-conformance-gap-analysis/`
+- Sibling: `../006-create-skill-router-marker-gap/`

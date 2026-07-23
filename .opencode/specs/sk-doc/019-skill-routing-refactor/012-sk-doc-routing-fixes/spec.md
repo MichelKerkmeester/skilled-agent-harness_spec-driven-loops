@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded shared discovery-fixture ownership: this packet owns, 013 consumes read-only"
@@ -59,7 +59,7 @@ sk-doc scored 20/100 with roughly 19 percent exact-resource recall on the Tier-2
 | **Status** | Planned |
 | **Created** | 2026-07-16 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
 | **Research Source** | `../010-sk-doc-routing-research/research/research.md` |
 <!-- /ANCHOR:metadata -->

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/005-smart-routing-mechanism-notes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/005-create-skill-smart-routing-notes"
     last_updated_at: "2026-07-12T14:23:42Z"
     last_updated_by: "claude-code"
     recent_action: "6 packets got N/A notes; create-benchmark documented exception; 10/10 PASS"
@@ -82,4 +82,4 @@ Additive SKILL.md notes + changelogs. Rollback = revert the commit.
 
 ## RELATED DOCUMENTS
 - `./spec.md`, `./tasks.md`, `./checklist.md`, `./implementation-summary.md`
-- Sibling: `../009-packet-smart-routing-conformance/`
+- Sibling: `../009-create-packet-routing-conformance/`

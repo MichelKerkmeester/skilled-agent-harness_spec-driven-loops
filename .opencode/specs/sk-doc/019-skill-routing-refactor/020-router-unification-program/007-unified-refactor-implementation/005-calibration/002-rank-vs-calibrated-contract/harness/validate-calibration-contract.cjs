@@ -54,7 +54,7 @@ const REPO_ROOT = findRepoRoot(PHASE_ROOT);
 const FIXTURE_PATH = path.join(PHASE_ROOT, 'fixtures/calibration-cases.v1.json');
 const IMPLEMENTATION_ROOT = path.join(
   REPO_ROOT,
-  '.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
+  '.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program',
   '007-unified-refactor-implementation'
 );
 const CORPUS_DIRECTORY = path.join(

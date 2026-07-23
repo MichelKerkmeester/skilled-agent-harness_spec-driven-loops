@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/013-skill-advisor-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored Level 3 scaffold (spec/plan/tasks/checklist/decision-record) from 011 research"
@@ -64,7 +64,7 @@ The system-skill-advisor routes 73.08 percent of holdout prompts correctly, but 
 | **Status** | Planned |
 | **Created** | 2026-07-16 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
 | **Research Source** | `../011-skill-advisor-routing-research/research/research.md` |
 <!-- /ANCHOR:metadata -->

@@ -10,14 +10,14 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Reconciled status to Complete: ADR-001 (Path 1) implemented and shipped fleet-wide (7/7 hubs compiled-serving)."
     next_safe_action: "None; ADR-001 realized. Reference it for any future compiled-routing coverage work."
     blockers: []
     key_files:
-      - ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/compiled-routing-coverage-diagnosis.md"
+      - ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/compiled-routing-coverage-diagnosis.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "packet-013-authoring"

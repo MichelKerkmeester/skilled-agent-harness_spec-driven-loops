@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/008-create-benchmark-routing"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix"
     last_updated_at: "2026-07-13T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "All items verified"

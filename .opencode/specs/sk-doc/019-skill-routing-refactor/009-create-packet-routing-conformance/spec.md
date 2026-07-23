@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/009-packet-smart-routing-conformance"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance"
     last_updated_at: "2026-07-14T08:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "7/7 packets normalized + verified PASS; committed on the goal worktree branch"
@@ -37,7 +37,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-12 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/018-sk-doc-router-alignment` |
+| **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
 <!-- /ANCHOR:metadata -->
 

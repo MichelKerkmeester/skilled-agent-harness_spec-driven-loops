@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled the completion record to the implemented+committed state (code landed in 4153cbebd8)"
@@ -135,7 +135,7 @@ The full context, alternatives, and consequences live in this packet's `decision
 | Route-gold compiled-versus-legacy parity | Compiled byte-identical to legacy on all seven hubs (invariant held at 4153cbebd8); frozen scorer consumed read-only |
 | Frozen scorer digest comparison | The three scorer SHA-256 digests unchanged, 3/3 (invariant held at 4153cbebd8) |
 | Durable no-spec-import rule fixtures | Shipped and wired into CI in 4153cbebd8 |
-| Spec-folder strict validation | Re-run during this reconciliation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation --strict`; Errors 0 on this folder |
+| Spec-folder strict validation | Re-run during this reconciliation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation --strict`; Errors 0 on this folder |
 <!-- /ANCHOR:verification -->
 
 ---

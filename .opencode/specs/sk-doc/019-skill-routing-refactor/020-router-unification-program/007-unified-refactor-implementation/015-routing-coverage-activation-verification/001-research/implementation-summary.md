@@ -97,7 +97,7 @@ Strict Level-2 packet validation:
 
 ```
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research \
+  .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research \
   --strict
 ```
 <!-- /ANCHOR:verification -->

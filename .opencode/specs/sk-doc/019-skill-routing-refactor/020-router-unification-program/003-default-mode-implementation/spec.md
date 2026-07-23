@@ -31,7 +31,7 @@ Apply the `defaultMode` recommendations synthesized in the sibling research pack
 | **Status** | Complete — 4 hubs flipped, sk-design over-emission fixed, defer-routed archetype added; route-gold held all baselines |
 | **Created** | 2026-07-17 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-sk-doc-router-alignment/020-router-unification-program` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/020-router-unification-program` |
 | **Executor** | GPT-5.6-SOL high fast (independently verified) |
 <!-- /ANCHOR:metadata -->
 

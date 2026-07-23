@@ -134,7 +134,7 @@ The remaining seven findings (P1-001, P1-002, P1-003, P1-006, P1-007, P1-008, P2
 <!--
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-cutover-hardening"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-cutover-hardening"
     last_updated_at: "2026-07-20T00:00:00.000Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Round 3: restored the audit-record self-heal Round 2's journal had dropped for the deleted-after-clean-flip case — flip-serving.cjs rebuilds a missing serving-flip-record from the manifest on the idempotent path (reconstructed:true); harness 11/11 (new record-self-heal check), node --check clean, live activation tree untouched (git-dirty 0). The external reducer/strategy-anchor blocker that halted Round 2's re-review is now fixed (system-deep-loop/033, commit 208f43f641); a 3-iteration confirming /deep:review cleared the reducer end-to-end"

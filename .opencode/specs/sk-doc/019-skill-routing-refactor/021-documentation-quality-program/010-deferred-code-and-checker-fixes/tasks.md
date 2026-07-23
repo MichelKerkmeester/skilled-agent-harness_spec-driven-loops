@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/010-deferred-code-and-checker-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/010-deferred-code-and-checker-fixes"
     last_updated_at: "2026-07-22T16:53:38Z"
     last_updated_by: "claude"
     recent_action: "All deferred fixes applied and verified."

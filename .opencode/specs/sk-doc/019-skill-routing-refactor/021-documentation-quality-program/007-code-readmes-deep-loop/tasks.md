@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/007-code-readmes-deep-loop"
     last_updated_at: "2026-07-22T15:15:43Z"
     last_updated_by: "claude"
     recent_action: "All fifty-three READMEs authored and the two catalogs refreshed."

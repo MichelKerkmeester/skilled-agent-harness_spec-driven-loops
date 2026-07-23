@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/017-system-code-graph-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research"
     last_updated_at: "2026-07-17T05:41:36Z"
     last_updated_by: "opencode"
     recent_action: "Completed eight deep-research iterations, synthesis, resource map, and bounded spec findings write-back"

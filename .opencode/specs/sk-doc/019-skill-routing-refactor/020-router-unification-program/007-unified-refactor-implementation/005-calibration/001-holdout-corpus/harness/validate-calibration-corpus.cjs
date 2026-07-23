@@ -55,12 +55,12 @@ const LOAD_PLAYBOOK_SCENARIOS_PATH = path.join(
 );
 const TYPED_PROJECTOR_PATH = path.join(
   REPO_ROOT,
-  '.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
+  '.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program',
   '007-unified-refactor-implementation/001-compiler-n1-shadow/compiler/projections.cjs'
 );
 const CANONICAL_PATH = path.join(
   REPO_ROOT,
-  '.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
+  '.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program',
   '007-unified-refactor-implementation/000-contract-schemas/lib/canonical.cjs'
 );
 const TRUSTED_SCORER_DIGEST =

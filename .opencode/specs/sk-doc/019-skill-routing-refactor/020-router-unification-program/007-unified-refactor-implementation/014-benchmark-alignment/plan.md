@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment"
     last_updated_at: "2026-07-21T06:48:08Z"
     last_updated_by: "codex-gpt-5.6"
     recent_action: "Restored default-off benchmark parity isolation"

@@ -4,7 +4,7 @@
     ".opencode/skills/mcp-code-mode/leaf-manifest.json": "1d798d3f475f8381834008b683b881bb7d2dd88ad0bf5835e16120596d005253",
     ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs": "63a3dbbc3f0a1a89f99c561d1764132973a6f427aedb766e9104847d1d4d1a5f",
     ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs": "5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029",
-    ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas/lib/canonical.cjs": "65afc9696470219dbe1a46b0c4f3059a7d387da2d1160290fb3ed48864d53f83"
+    ".opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas/lib/canonical.cjs": "65afc9696470219dbe1a46b0c4f3059a7d387da2d1160290fb3ed48864d53f83"
   },
   "manualTestingPlaybook": {
     "fileCount": 28,

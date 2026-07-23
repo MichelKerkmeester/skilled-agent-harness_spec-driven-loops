@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/006-router-conformance-gap-analysis"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/006-create-skill-router-marker-gap"
     last_updated_at: "2026-07-13T14:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Analyzed the create-skill router-marker gap across all ten packets from live checker output"
@@ -37,8 +37,8 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Analysis complete — decision pending |
 | **Created** | 2026-07-13 |
-| **Parent Packet** | `sk-doc/018-sk-doc-router-alignment` |
-| **Sibling** | `005-smart-routing-mechanism-notes` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor` |
+| **Sibling** | `005-create-skill-smart-routing-notes` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -97,7 +97,7 @@ Produce a per-packet gap analysis grounded in live checker output, state whether
 ## 6. RISKS & DEPENDENCIES
 
 - **Risk:** treating the advisory warning as a defect would pressure a force-fit that misrepresents flat-resource packets — explicitly the anti-goal here.
-- **Dependency:** sibling `005-smart-routing-mechanism-notes` (the N/A-note posture under analysis) and the create-skill authority (`§2` SMART ROUTING + `skill_smart_router.md`).
+- **Dependency:** sibling `005-create-skill-smart-routing-notes` (the N/A-note posture under analysis) and the create-skill authority (`§2` SMART ROUTING + `skill_smart_router.md`).
 <!-- /ANCHOR:risks -->
 
 ---

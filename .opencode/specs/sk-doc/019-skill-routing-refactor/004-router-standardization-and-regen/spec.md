@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/018-sk-doc-router-alignment/004-p2-standardization-and-regen"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/004-router-standardization-and-regen"
     last_updated_at: "2026-07-13T06:50:00Z"
     last_updated_by: "opencode"
     recent_action: "Standardized packet shape and synchronized router JSON"
@@ -17,7 +17,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-p2-standardization-and-regen"
+      session_id: "scaffold-scaffold/004-router-standardization-and-regen"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Branch** | `wt/goalAB-skdoc` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 4 |
-| **Predecessor** | 003-p1-trigger-scoping-and-handoffs |
+| **Predecessor** | 003-trigger-scoping-and-handoffs |
 | **Successor** | None |
 | **Handoff Criteria** | Ten package checks pass, JSON parses, trigger drift is zero, routing delta is recorded, and validation blocker is reported |
 <!-- /ANCHOR:metadata -->
