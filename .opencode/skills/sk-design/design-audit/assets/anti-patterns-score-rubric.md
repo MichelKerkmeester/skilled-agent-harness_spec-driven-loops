@@ -36,7 +36,7 @@ Use this 0 to 4 ladder for the Anti-Patterns dimension in full audits. It calibr
 | 1 | Three or more tells, systemic generic identity or register mismatch that weakens trust or clarity. |
 | 0 | Anti-pattern directly blocks task completion, causes an accessibility failure or makes the UI unusable or untrustworthy. |
 
-## 3. Use Notes
+## 3. USE NOTES
 
 - Score the visible surface, not the model you suspect created it.
 - Keep confirmed, inferred or not-assessed labels from the evidence worksheet.

@@ -51,7 +51,7 @@ For a single planning pass, dispatch the `@ai-council` LEAF agent. It returns on
 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "run an ai council for the login refactor" --threshold 0.8
 
 # Or dispatch the agent directly from an orchestrator
-@ai-council: Compare the streaming ingest plan against the batch ingest plan for specs/042-pipeline/ and persist the artifacts.
+@ai-council: Compare the streaming ingest plan against the batch ingest plan for <spec-folder>/ and persist the artifacts.
 ```
 
 Expected output: a council report with scored proposals, cross-critique notes and convergence status.
@@ -71,7 +71,7 @@ Deep mode iterates over multiple topics, each with its own rounds, and converges
 **Step 2: Persist the report.** The `@ai-council` agent is scoped-write and persists the canonical packet-local `ai-council/**` artifact set directly. The CLI helper remains available as a fallback for non-council callers that already have a captured report.
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs specs/042-pipeline \
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <spec-folder> \
   --input-file /tmp/council-report.md
 ```
 
@@ -80,7 +80,7 @@ Expected result: a packet-local `ai-council/` tree with `ai-council-state.jsonl`
 **Step 3: Verify completion before you hand off.**
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs specs/042-pipeline
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <spec-folder>
 ```
 
 Expected result: confirmation that `ai-council-state.jsonl` ends with a `council_complete` event.

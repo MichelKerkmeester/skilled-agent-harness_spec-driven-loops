@@ -1,5 +1,7 @@
 # styles/lib/engine
 
+## 1. OVERVIEW
+
 The flat-file retrieval engine and the storage-neutral facade. This is the default read path (no database
 required).
 

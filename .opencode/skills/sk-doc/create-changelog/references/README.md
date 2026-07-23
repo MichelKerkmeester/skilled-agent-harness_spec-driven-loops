@@ -60,7 +60,7 @@ Load the file that matches the current task:
 ### Packet-local (nested) output
 - `.opencode/skills/system-spec-kit/templates/changelog/root.md` - packet-local root template
 - `.opencode/skills/system-spec-kit/templates/changelog/phase.md` - packet-local phase template
-- `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js` - packet-local generator
+- `.opencode/skills/system-spec-kit/scripts/spec-folder/nested-changelog.ts` - packet-local generator
 
 ### Real entries to model
 - `.opencode/skills/sk-doc/changelog/v1.8.0.0.md` - versioning standard, engine, and enforcement rollout

@@ -30,7 +30,7 @@ run.
 over the command surface (overall verdict FAIL, with open findings); a formally
 accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
 **Owning mode:** `deep-alignment`.
-**Source specification:** `.opencode/specs/system-deep-loop/066-command-surface-benchmark/`.
+**Source specification:** `.opencode/specs/system-deep-loop/035-command-surface-benchmark/`.
 
 ## 2. BENCHMARK-ID INDEX
 
@@ -41,7 +41,7 @@ accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
 
 | Benchmark ID | Authority | Adapter | Corpus | Status | Source spec packet | Execution | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [`command-surface`](./command-surface/conformance-benchmark.md) | `sk-doc` | `sk-doc-command` | `.opencode/commands` tree (public + held-out fixtures) | Live convergence run complete (FAIL); fixture-run identity pending | `system-deep-loop/066-command-surface-benchmark` | [command](#exec-command-surface) | [`004/alignment/`](../../../../../specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment) |
+| [`command-surface`](./command-surface/conformance-benchmark.md) | `sk-doc` | `sk-doc-command` | `.opencode/commands` tree (public + held-out fixtures) | Live convergence run complete (FAIL); fixture-run identity pending | `system-deep-loop/035-command-surface-benchmark` | [command](#exec-command-surface) | [`004/alignment/`](../../../../../specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment) |
 
 ## 3. CORPUS
 
@@ -62,7 +62,7 @@ Run from the repository root after `sk-doc-command` is registered for
 `sk-doc` in deep-alignment's `AUTHORITY_ADAPTERS` allowlist:
 
 ```bash
-/deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder .opencode/specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration
+/deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder .opencode/specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration
 ```
 
 Expected stable inputs:
@@ -75,7 +75,7 @@ Expected stable inputs:
 
 The package is the stable authoring surface; it is not the audit trail. Evidence
 for `command-surface` lands at
-[`004-command-lane-integration/alignment/`](../../../../../specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment)
+[`004-command-lane-integration/alignment/`](../../../../../specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment)
 in the executing spec phase. That location owns transcripts, deep-alignment state
 and deltas, reduced reports, and any generated scorecard. Update the pointer after
 each accepted run; do not copy those generated artifacts into this package.

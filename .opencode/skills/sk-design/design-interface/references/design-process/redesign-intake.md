@@ -32,7 +32,7 @@ Redesign starts by deciding what must remain stable; protected contracts need ex
 
 ---
 
-## 2. Classify The Redesign
+## 2. CLASSIFY THE REDESIGN
 
 Pick one lane before visual decisions:
 
@@ -63,7 +63,7 @@ Capture one lock ledger for the site or product, then keep page composition deci
 
 **Amend; do not override.** If a page genuinely needs to break a MUST-SHARE axis, add an exception to the lock ledger with the page, axis, user or brand reason, scope, approver, and verification. Do not silently replace the shared value in a local file. The amendment becomes the visible contract for later pages; an unrecorded override is drift.
 
-## 3. Audit Before Touching
+## 3. AUDIT BEFORE TOUCHING
 
 Before changing layout or tokens, capture:
 
@@ -75,7 +75,7 @@ Before changing layout or tokens, capture:
 - Existing IA, content blocks, reusable patterns and SEO-visible headings.
 - Components to preserve, components to retire and components to rebuild.
 
-## 4. Never Silently Change
+## 4. NEVER SILENTLY CHANGE
 
 These require explicit approval before changing:
 
@@ -88,7 +88,7 @@ These require explicit approval before changing:
 
 If a design improvement depends on one of these changes, state it as a required decision rather than hiding it inside the visual pass.
 
-## 5. Lane-Specific Moves
+## 5. LANE-SPECIFIC MOVES
 
 ### Greenfield
 
@@ -108,7 +108,7 @@ If a design improvement depends on one of these changes, state it as a required 
 - Keep recognizers users rely on, such as account areas, pricing labels or support paths.
 - Provide a migration note for any approved URL, nav or form change.
 
-## 6. Output Contract
+## 6. OUTPUT CONTRACT
 
 Return a compact intake before design work:
 

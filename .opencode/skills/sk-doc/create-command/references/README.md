@@ -48,8 +48,8 @@ Load the file that matches the current task:
 - [common-pitfalls.md](common-pitfalls.md) - Component selection and common command mistakes
 
 ### Templates
-- [command-template.md](../assets/command/command-template.md) - Command type templates, gates, dispatch, modes, and validation checklist
-- [command-presentation-template.md](../assets/command/command-presentation-template.md) - Presentation asset skeleton for split command families
+- [command-template.md](../assets/command-template.md) - Command type templates, gates, dispatch, modes, and validation checklist
+- [command-presentation-template.md](../assets/command-presentation-template.md) - Presentation asset skeleton for split command families
 
 ### Shared Reference Files
 - [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements

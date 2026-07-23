@@ -1,5 +1,7 @@
 # Corpus Context Contract
 
+## 1. OVERVIEW
+
 This package defines the neutral `CORPUS_CONTEXT_PLAN v1` seam used between
 design intake/routing and later mode-owned corpus decisions. It is plain Node
 ESM and has no build step or runtime dependency.

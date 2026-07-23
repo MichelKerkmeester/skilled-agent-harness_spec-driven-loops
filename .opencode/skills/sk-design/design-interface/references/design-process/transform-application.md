@@ -20,7 +20,7 @@ Read this with `design-principles.md` and `brief-to-dials.md`. The transform sti
 
 ---
 
-## 1. Routing Rule
+## 1. ROUTING RULE
 
 Use the framing to break the audit/interface tie.
 
@@ -33,7 +33,7 @@ Use the framing to break the audit/interface tie.
 
 ---
 
-## 2. Shared Application Contract
+## 2. SHARED APPLICATION CONTRACT
 
 Every transform uses the same proof shape.
 
@@ -50,7 +50,7 @@ Do not expose sliders, vibe controls or style presets. The verb is a work reques
 
 ---
 
-## 3. Verb Lanes
+## 3. VERB LANES
 
 ### Bolder
 
@@ -173,7 +173,7 @@ Surface/job: `__________`
 
 ---
 
-## 4. Gold Prompts
+## 4. GOLD PROMPTS
 
 These prompts anchor the hub route.
 

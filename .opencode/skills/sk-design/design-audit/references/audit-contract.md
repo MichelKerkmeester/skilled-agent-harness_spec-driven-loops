@@ -33,7 +33,7 @@ Design audit reports are findings-first and evidence-bound: every severity, scor
 
 ---
 
-## 2. Severity
+## 2. SEVERITY
 
 | Severity | Name | Definition | Examples |
 | --- | --- | --- | --- |
@@ -50,7 +50,7 @@ Audit probes are diagnostic questions, never an all-or-nothing release checklist
 
 A clean probe sweep means only that those patterns were not observed in the available evidence. It does not prove accessibility, distinctiveness, or release readiness, and there is no aggregate pass count that overrides the five-dimension score or unresolved evidence states.
 
-## 3. Five-Dimension Score
+## 3. FIVE-DIMENSION SCORE
 
 Score each dimension 0-4.
 
@@ -109,7 +109,7 @@ Rating bands:
 - `6-9` Poor.
 - `0-5` Critical.
 
-## 4. Findings Schema
+## 4. FINDINGS SCHEMA
 
 Use this shape for actionable findings:
 
@@ -126,7 +126,7 @@ Observation is neutral and factual; it records what was seen before the report s
 - Owner: `foundations` for token choice; `sk-code` for implementation.
 ```
 
-## 5. Evidence Rules
+## 5. EVIDENCE RULES
 
 - Use file/line when code is provided.
 - Use rendered observation when a screenshot or live page is available.
@@ -140,7 +140,7 @@ When a surface loads a web font with fallback text, the audit must record a manu
 
 Eyeballing the swap is not evidence. If no numeric run was captured, label layout-shift coverage `not-assessed`. File any observed shift through P0-P3 according to task impact—for example, movement that causes a mistaken activation is P0-P1, while a small non-interactive text reflow may be P2-P3.
 
-## 6. Report Order
+## 6. REPORT ORDER
 
 1. Findings by severity.
 2. Audit Health Score table.

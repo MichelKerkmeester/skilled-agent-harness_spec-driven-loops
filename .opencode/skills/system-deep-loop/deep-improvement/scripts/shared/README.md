@@ -40,8 +40,8 @@ Current state:
           ▼                    ▼                   ▼
 ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
 │ Lane A names     │  │ shared names      │  │ Lane B names      │
-│ ../agent-        │  │ ./ (this folder)  │  │ ../model-         │
-│ improvement/     │  │ materialize, etc. │  │ benchmark/        │
+│ ../agent         │  │ ./ (this folder)  │  │ ../model          │
+│ -improvement/    │  │ materialize, etc. │  │ -benchmark/       │
 └──────────────────┘  └──────────────────┘  └──────────────────┘
 
 Spawn map (resolveScriptPath):

@@ -25,7 +25,7 @@ to inject startup context and the compact skill-advisor brief.
 
 ---
 
-## 2. Activation
+## 2. ACTIVATION
 
 Hooks are inert unless enabled:
 
@@ -40,7 +40,7 @@ should still include it so direct Codex invocations behave the same way.
 
 ---
 
-## 3. Registration
+## 3. REGISTRATION
 
 Codex reads hook entries from `~/.codex/hooks.json` using the Claude-style
 outer array plus nested `hooks` array shape:
@@ -107,7 +107,7 @@ merges (preserving Superset/user entries), and is idempotent.
 
 ---
 
-## 4. Event Inputs
+## 4. EVENT INPUTS
 
 Hook commands receive JSON on stdin. Current generated schemas use snake_case
 field names and reject unknown properties.
@@ -145,7 +145,7 @@ field names and reject unknown properties.
 
 ---
 
-## 5. Event Outputs
+## 5. EVENT OUTPUTS
 
 Use JSON output for model-visible context:
 
@@ -169,7 +169,7 @@ the submitted user message.
 
 ---
 
-## 6. Exit and Timeout Semantics
+## 6. EXIT AND TIMEOUT SEMANTICS
 
 | Condition | Behavior |
 | --- | --- |
@@ -184,7 +184,7 @@ timeout so the user can see the advisor surface is installed.
 
 ---
 
-## 7. Spec Kit Memory Wiring
+## 7. SPEC KIT MEMORY WIRING
 
 Installed paths:
 
@@ -209,7 +209,7 @@ non-empty and start with `Advisor:` on the prompt hook.
 
 ---
 
-## 8. Sources
+## 8. SOURCES
 
 - OpenAI Codex source schema:
   `https://raw.githubusercontent.com/openai/codex/main/codex-rs/hooks/src/schema.rs`

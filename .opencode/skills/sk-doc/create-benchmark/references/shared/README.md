@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # Benchmark Creation Reference Map
 
-Overflow depth for the `create-benchmark` packet. The authoritative workflow, report contract, date convention, and rules live in [`../SKILL.md`](../../SKILL.md). This set holds only the material that does not belong in the contract: real adoptions that teach the format, a report rendered in miniature, and the mistakes that break a benchmark folder.
+Overflow depth for the `create-benchmark` packet. The authoritative workflow, report contract, date convention, and rules live in [`../../SKILL.md`](../../SKILL.md). This set holds only the material that does not belong in the contract: real adoptions that teach the format, a report rendered in miniature, and the mistakes that break a benchmark folder.
 
 ---
 
@@ -44,7 +44,7 @@ Load the file that matches the current task:
 | **Agent-improvement authoring guide** — the Lane A guide-only family: the five agent-quality dimensions and what stays code-owned in deep-improvement | [agent-improvement-authoring-guide.md](../agent-improvement/agent-improvement-authoring-guide.md) | Authoring or updating a Lane A agent-improvement guide (agent-improvement) |
 | **Command benchmark composition** — how a command benchmark composes the behavior and conformance axes over the command surface via a lane-owned matrix manifest and launcher, with the matrix-manifest field shape | [command-benchmark-composition.md](command-benchmark-composition.md) | Authoring a command benchmark (behavior + conformance) for the OpenCode command surface |
 
-The case studies, pitfalls, and worked example cover the **MCP promotion** family (`../SKILL.md` sections 3 through 8); the behavior benchmark guide covers the **behavior benchmark** family (section 9); the skill-benchmark storage guide covers **skill-benchmark** (Lane C, section 10); the model-benchmark fixture guide covers **model-benchmark** (Lane B, section 11); the conformance benchmark authoring guide covers **conformance benchmark** (section 12); and the agent-improvement authoring guide covers **agent-improvement** (Lane A, section 14). The command benchmark composition guide spans the behavior and conformance families for the command surface. `../SKILL.md` holds the authoritative contracts.
+The case studies, pitfalls, and worked example cover the **MCP promotion** family (`../../SKILL.md` sections 3 through 8); the behavior benchmark guide covers the **behavior benchmark** family (section 9); the skill-benchmark storage guide covers **skill-benchmark** (Lane C, section 10); the model-benchmark fixture guide covers **model-benchmark** (Lane B, section 11); the conformance benchmark authoring guide covers **conformance benchmark** (section 12); and the agent-improvement authoring guide covers **agent-improvement** (Lane A, section 14). The command benchmark composition guide spans the behavior and conformance families for the command surface. `../../SKILL.md` holds the authoritative contracts.
 
 ---
 
@@ -77,7 +77,7 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 | Path | What | Status |
 | --- | --- | --- |
 | `.opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-17/` | mk-spec-memory text-embedder bake-off ([case-studies.md](case-studies.md) Case study 1) | Live, promoted |
-| `.opencode/specs/z-future/code-graph-and-cocoindex/backup/mcp-coco-index/mcp-server/benchmarks/benchmark-2026-05-18/` | experimental coco-index code-embedder bake-off ([case-studies.md](case-studies.md) Case study 2) | Archived, never promoted |
+| _(folder removed from disk. See case-studies.md Case study 2 for the narrative.)_ | experimental coco-index code-embedder bake-off ([case-studies.md](case-studies.md) Case study 2) | Archived, never promoted |
 
 ### Related sk-doc references
 
@@ -87,4 +87,4 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 
 ---
 
-*End of create-benchmark reference map — the authoritative workflow and report contract live in [`../SKILL.md`](../../SKILL.md).*
+*End of create-benchmark reference map — the authoritative workflow and report contract live in [`../../SKILL.md`](../../SKILL.md).*

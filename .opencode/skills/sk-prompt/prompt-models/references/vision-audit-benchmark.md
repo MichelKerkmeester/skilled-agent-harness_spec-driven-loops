@@ -16,7 +16,7 @@ version: 0.9.0.1
 > Which rotation models accept image input, and which one is an accurate visual-design
 > auditor. Established 2026-06-28 while choosing an auditor for the Anobel bento-tile run.
 
-## 1. Capability matrix (image input)
+## 1. CAPABILITY MATRIX (image input)
 
 Source: opencode's `models.dev` cache (`~/.cache/opencode/models.json`, the data opencode
 itself routes on) cross-checked with a live direct-API probe.
@@ -33,7 +33,7 @@ Takeaway: of the four coding-flagship candidates, **only MiniMax-M3 and Kimi k2.
 vision**. DeepSeek-v4-pro and MiMo-v2.5-pro are text-only — their VL siblings are different
 models. GLM-5.2 is multimodal in practice despite its registry flag.
 
-## 2. Transport (direct API — opencode `--file` is broken here)
+## 2. TRANSPORT (direct API — opencode `--file` is broken here)
 
 opencode `run --file <image>` does **not** deliver the image to custom OpenAI-compatible
 providers (bug #20802), so vision dispatch must go direct to each provider's HTTP API:
@@ -50,7 +50,7 @@ providers (bug #20802), so vision dispatch must go direct to each provider's HTT
 
 Keys come from `~/.local/share/opencode/auth.json` (`<provider>.key`).
 
-## 3. Accuracy benchmark (the part that matters)
+## 3. ACCURACY BENCHMARK (the part that matters)
 
 Vision *capability* ≠ audit *accuracy*. Probed each vision model on two ground-truth render
 tiles — a CLEAN tile (no orange, nothing clipped, legible) and a CLIPPED tile (real vertical
@@ -67,7 +67,7 @@ Real-world confirmation: MiniMax-M3 (anthropic) then audited 7 Anobel concepts (
 returned specific, accurate, file-grounded findings (panel overflow, eyebrow overlapping a
 node, too-light bottom row) — no hallucinated palette violations.
 
-## 4. Recommendation
+## 4. RECOMMENDATION
 
 - **Design-vision auditor of record = MiniMax-M3** via the anthropic endpoint + base64 image,
   paired with the deterministic gates (`contrast_check.py`, palette/anti-tell greps, render

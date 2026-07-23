@@ -69,7 +69,7 @@ The MCP server then discovers the live ephemeral daemon URL from the socket at s
 
 ---
 
-## 3. THE opencode CONFIG ENTRY
+## 3. THE OPENCODE CONFIG ENTRY
 
 `od mcp install opencode` writes to `~/.config/opencode/opencode.json` under key path `mcp`, server key `open-design` (override with `--name`). It **deep-merges**, preserving existing config. **[CONFIRMED - read]**
 
@@ -94,7 +94,7 @@ opencode uses `command` as an **array** and the key `environment` (not `env`). *
 
 ---
 
-## 4. THE Claude Code INSTALL
+## 4. THE CLAUDE CODE INSTALL
 
 `od mcp install claude` does **not** write a file directly. It shells out to the `claude` CLI, which requires the `claude` binary on PATH. **[CONFIRMED - read]**
 

@@ -1,0 +1,31 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
+  "description": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs,",
+  "keywords": [
+    "sk-doc",
+    "documentation-quality",
+    "program",
+    "restore",
+    "skill",
+    "tree",
+    "own",
+    "standards",
+    "across",
+    "four",
+    "fronts",
+    "legacy",
+    "misplaced",
+    "metadata",
+    "jsons"
+  ],
+  "lastUpdated": "2026-07-23T04:57:05.562Z",
+  "specId": "021",
+  "folderSlug": "documentation-quality-program",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

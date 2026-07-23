@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
+  "description": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
+  "keywords": [
+    "repo-wide",
+    "scan",
+    "flagged",
+    "fifty-three",
+    "code",
+    "script",
+    "folders",
+    "without",
+    "readme",
+    "system-deep-loop",
+    "largest",
+    "single",
+    "group"
+  ],
+  "lastUpdated": "2026-07-22T15:15:43.555Z",
+  "specId": "007",
+  "folderSlug": "code-readmes-deep-loop",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

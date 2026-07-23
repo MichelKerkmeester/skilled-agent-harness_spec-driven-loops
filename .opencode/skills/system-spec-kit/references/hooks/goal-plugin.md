@@ -16,13 +16,13 @@ version: 3.7.0.8
 
 Use this reference when changing, validating, or operating the local `/goal` OpenCode plugin. It names the plugin-owned state, injection hooks, command boundary, environment controls, and restart requirements.
 
-## 1. Purpose
+## 1. PURPOSE
 
 `/goal` gives an OpenCode session a durable completion objective. The command is a thin router; the plugin owns state, injection, lifecycle tracking, status output, completion supervision, and guarded continuation.
 
 This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not a daemon-backed CLI bridge. The plugin is documented here because it participates in the same OpenCode runtime-injection layer as the Spec Kit memory, code graph, and skill-advisor plugin surfaces.
 
-## 2. Runtime Surfaces
+## 2. RUNTIME SURFACES
 
 | Surface | Path | Role |
 |---|---|---|
@@ -31,7 +31,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by session id, intentionally outside spec docs. |
 | Tests | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
-## 3. Behavior Contract
+## 3. BEHAVIOR CONTRACT
 
 - `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`.
 - `/goal set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
@@ -44,7 +44,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `MK_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
 - `/goal show` and `mk_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
 
-## 4. Environment Variables
+## 4. ENVIRONMENT VARIABLES
 
 | Variable | Default | Effect |
 |---|---|---|
@@ -62,7 +62,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | Age threshold before an orphaned active-state file is swept and archived. |
 | `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
 
-## 5. Output Fields
+## 5. OUTPUT FIELDS
 
 `mk_goal_status` and `/goal set` responses expose these status fields in addition to the injection preview and prompt metadata:
 
@@ -87,7 +87,7 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 `budget_tokens_used` and `budget_usage_source` are legacy-compatible aliases for the same values. They remain in output for existing tests, docs, and operators that read the budget-prefixed field names, but new integrations should read `tokens_used` and `usage_source`.
 
-## 6. Boundaries
+## 6. BOUNDARIES
 
 - Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
 - Do not route `mk-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
@@ -95,7 +95,7 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
 - Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
 
-## 7. Verification
+## 7. VERIFICATION
 
 Run these checks after modifying goal-plugin behavior or docs that describe the plugin:
 
@@ -113,7 +113,7 @@ python3 .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh .
 
 For documentation-only changes under `system-spec-kit`, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
 
-## 8. Related References
+## 8. RELATED REFERENCES
 
 - `references/config/hook-system.md` - cross-runtime hook and plugin transport map.
 - `feature-catalog/ux-hooks/goal-opencode-plugin.md` - current feature catalog entry.

@@ -10,7 +10,7 @@ expected_leaf_resources: []
 
 # 24 — Local-LLM memory substrate
 
-## Why this category
+## 1. OVERVIEW
 
 The vitest-style tests in `mcp-server/tests/local-llm-features/` verify the **mechanical** properties of the local-LLM stack: vector shape, determinism, L2 normalization, cascade resolution, profile-keyed DB filenames, auto-migration, native module loading. Those are necessary but not sufficient — they cannot tell you whether the system **actually behaves correctly** for the AI assistants that depend on it.
 
@@ -109,10 +109,9 @@ Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/local
 
 ## Related references
 
-- Vitest mechanical checks: `mcp-server/tests/local-llm-features/*.vitest.ts` (10 files, 53 tests)
-- Quality property checks: `mcp-server/tests/local-llm-features/ollama-quality.vitest.ts` (determinism, L2 norm, similarity ordering, 10 tests)
+- Vitest mechanical checks: `mcp-server/tests/local-llm-features/*.vitest.ts` (5 files, 21 tests)
 - Embedding architecture: `shared/embeddings/README.md`, `references/memory/embedding-resilience.md`
 - Cascade behavior: `shared/embeddings/factory.ts:resolveProvider`, `shared/embeddings/profile.ts:resolveActiveProfileProvider`
-- Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp-server/handlers/causal-graph.ts`
+- Causal graph: `mcp-server/lib/storage/causal-edges.ts`, `mcp-server/handlers/causal-graph.ts`
 - Drift detection: `mcp-server/handlers/causal-graph.ts` (memory_drift_why handler)
-- Cross-AI MCP wiring: `opencode.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)
+- Cross-AI MCP wiring: `opencode.json`, `.claude/mcp.json`, `.mcp.json` (all point at the same Memory MCP DB)

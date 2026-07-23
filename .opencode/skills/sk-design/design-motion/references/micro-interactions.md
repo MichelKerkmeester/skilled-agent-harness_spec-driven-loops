@@ -32,7 +32,7 @@ Design the small, local feedback that makes an interface feel alive and trustwor
 
 ---
 
-## 2. Feedback Patterns
+## 2. FEEDBACK PATTERNS
 
 | State | Motion pattern | Notes |
 | --- | --- | --- |
@@ -107,21 +107,21 @@ When a project has no animation library, swap contextual state or hover icons wi
 }
 ```
 
-## 3. Loading And Waiting
+## 3. LOADING AND WAITING
 
 - Skeletons preserve layout and reduce perceived wait.
 - Progress bars should be determinate when progress is knowable.
 - Loading copy must be product-specific: `Syncing your team's changes...`, not generic jokes.
 - For waits above a few seconds, set expectations or provide cancel/escape.
 
-## 4. Gestures
+## 4. GESTURES
 
 - Drag states need lift, target feedback, and rollback/undo when meaningful.
 - Swipe actions need thresholds and visible alternatives.
 - Touch interactions need 44 by 44 pixel targets and spacing.
 - Gesture-only actions need accessible alternatives.
 
-## 5. Delight Boundaries
+## 5. DELIGHT BOUNDARIES
 
 Delight belongs at success, first-time action, empty state, milestone, or error recovery. It should be quick, appropriate, and optional. If users notice the delight more than their task, it has gone too far.
 
@@ -132,7 +132,7 @@ Never:
 - Play sound without respecting system settings and mute controls.
 - Repeat the same flourish until it becomes noise.
 
-## 6. Morphing Icons
+## 6. MORPHING ICONS
 
 Use morphing icons only when transformation communicates state continuity, such as menu to close, plus to cross, arrow direction, or play to pause.
 
@@ -146,7 +146,7 @@ Rules distilled from the corpus:
 - Decorative icon SVGs are `aria-hidden="true"`; the control carries the accessible name.
 - Reduced motion sets transition duration to zero or swaps instantly.
 
-## 7. Handoff Snippet
+## 7. HANDOFF SNIPPET
 
 When handing to implementation, include:
 

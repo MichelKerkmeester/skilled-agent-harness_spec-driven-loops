@@ -51,7 +51,7 @@ Dependency direction: hooks/ ───▶ ../lib/ (never the reverse)
 ## 3. DIRECTORY TREE
 
 ```text
-scripts/hooks/
+hooks/
 ├── dispatch-preflight-lint.mjs        # PreToolUse(Bash) hard-rule lint (Claude runtime)
 ├── dispatch-audit-posttooluse.mjs     # PostToolUse(Bash) audit trail (Claude runtime)
 └── codex/                             # Codex CLI sibling adapters over the same cores

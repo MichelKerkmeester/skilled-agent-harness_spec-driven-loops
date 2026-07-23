@@ -34,7 +34,7 @@ Use the corpus map as provenance: modernized audit guidance lives in the distill
 
 ---
 
-## 2. Source Files
+## 2. SOURCE FILES
 
 | Corpus file | Distilled into | Practical guidance kept |
 | --- | --- | --- |
@@ -48,10 +48,10 @@ Use the corpus map as provenance: modernized audit guidance lives in the distill
 | `external/clarify.md` | `anti-patterns-production.md` | UX writing, error copy, CTAs, empty states, terminology, localization |
 | `external/pseudo-elements.md` | `anti-patterns-production.md` | pseudo-element and View Transitions review rules |
 
-## 3. Distillation Notes
+## 3. DISTILLATION NOTES
 
 - Core Web Vitals were modernized during distillation: `external/optimize.md` still lists the deprecated First Input Delay (FID < 100ms), but `accessibility-performance.md` intentionally uses Interaction to Next Paint (INP < 200ms). Do not revert to FID from the stale corpus source.
 
-## 4. Distillation Boundary
+## 4. DISTILLATION BOUNDARY
 
 This child reports and scores issues. Sibling skills own creation and repair guidance; implementation belongs to `sk-code` after the user accepts fixes.

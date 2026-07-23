@@ -32,7 +32,7 @@ Keep motion smooth, battery-safe, and respectful of user preference. This refere
 
 ---
 
-## 2. Rendering Cost
+## 2. RENDERING COST
 
 | Rendering step | Examples | Guidance |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ Keep motion smooth, battery-safe, and respectful of user preference. This refere
 | Paint | color, border, shadow, filter, mask, image | Allowed for small, bounded, short-lived effects. |
 | Layout | width, height, top, left, margin, flow changes | Avoid continuous animation; use FLIP or structural alternatives. |
 
-## 3. Critical Never Patterns
+## 3. CRITICAL NEVER PATTERNS
 
 - Do not interleave layout reads and writes in the same frame.
 - Do not drive animation from `scrollTop`, `scrollY`, or raw scroll events.
@@ -49,7 +49,7 @@ Keep motion smooth, battery-safe, and respectful of user preference. This refere
 - Do not add `will-change` everywhere; use it temporarily and surgically, only on compositable properties (`transform`, `opacity`, `filter`), and never `will-change: all`.
 - Never use `transition: all`. Name the exact properties instead, for example `transition-property: transform, opacity`. `transition: all` animates unexpected properties and can trigger layout or paint work you never intended.
 
-## 4. FLIP Pattern
+## 4. FLIP PATTERN
 
 For layout-like transitions:
 1. Measure the first geometry.
@@ -60,7 +60,7 @@ For layout-like transitions:
 
 This makes the user perceive layout motion while the animation itself stays compositor-friendly.
 
-## 5. Scroll Motion
+## 5. SCROLL MOTION
 
 - Use IntersectionObserver for visibility and pausing.
 - Use Scroll or View Timelines when the platform supports them.
@@ -68,14 +68,14 @@ This makes the user perceive layout motion while the animation itself stays comp
 - Avoid default fade-and-rise section reveals across an entire page.
 - Pause loops when off-screen.
 
-## 6. Blur, Filters, And Layers
+## 6. BLUR, FILTERS, AND LAYERS
 
 - Keep blur small, typically `<= 8px`, and short-lived.
 - Avoid continuous blur on large surfaces.
 - Isolate expensive effects with containment when possible.
 - Limit promoted layers; too many layers consume memory and can reduce performance.
 
-## 7. Reduced Motion
+## 7. REDUCED MOTION
 
 Reduced motion does not mean no state feedback. Replace movement with instant state changes, opacity shifts, color/focus changes, or static progress cues.
 
@@ -91,7 +91,7 @@ Reduced motion does not mean no state feedback. Replace movement with instant st
 
 For React motion, use `useReducedMotion()` and swap to `{ duration: 0 }` or a non-motion state.
 
-## 8. Verification
+## 8. VERIFICATION
 
 - Test on the lowest target device, not only desktop Chrome.
 - Confirm no interaction is blocked during motion.

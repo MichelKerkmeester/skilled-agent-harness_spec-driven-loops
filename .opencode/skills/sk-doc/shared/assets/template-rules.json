@@ -104,7 +104,8 @@
         "quality checklist & quick reference": "quality_checklist"
       },
       "tocRequired": false,
-      "h2EmojiRequired": false
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": true
     },
     "command": {
       "description": "Command files in .opencode/commands/ folders",
@@ -113,10 +114,25 @@
         "instructions"
       ],
       "compiledContractMarker": "render-command-contract",
-      "routerDetectPrimary": ["presentation_boundary"],
-      "routerStructuralSections": ["router_contract", "owned_assets", "mode_routing", "execution_targets"],
-      "routerRequiredSections": ["owned_assets", "presentation_boundary"],
-      "routerRecommendedSections": ["router_contract", "mode_routing", "execution_targets", "workflow_summary"],
+      "routerDetectPrimary": [
+        "presentation_boundary"
+      ],
+      "routerStructuralSections": [
+        "router_contract",
+        "owned_assets",
+        "mode_routing",
+        "execution_targets"
+      ],
+      "routerRequiredSections": [
+        "owned_assets",
+        "presentation_boundary"
+      ],
+      "routerRecommendedSections": [
+        "router_contract",
+        "mode_routing",
+        "execution_targets",
+        "workflow_summary"
+      ],
       "recommendedSections": [
         "contract",
         "examples",
@@ -211,7 +227,8 @@
           "version",
           "disable-model-invocation"
         ]
-      }
+      },
+      "h2UppercaseRequired": true
     },
     "install_guide": {
       "description": "Installation guide files for MCP servers, plugins, and tools",
@@ -310,7 +327,8 @@
         "four execution modes": "execution_modes"
       },
       "tocRequired": false,
-      "h2EmojiRequired": false
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": true
     },
     "asset": {
       "description": "Asset files in skill assets/ folders",
@@ -372,7 +390,8 @@
         "naming reference": "naming_reference"
       },
       "tocRequired": false,
-      "h2EmojiRequired": false
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": true
     },
     "changelog": {
       "description": "Component changelog files at .opencode/changelog/{component}/v{VERSION}.md or .opencode/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .opencode/skills/sk-doc/shared/assets/changelog-template.md",
@@ -573,8 +592,21 @@
       "h2EmojiRequired": false,
       "h2UppercaseRequired": false,
       "requiredSections": [],
-      "allowedValidationTypes": ["Automated test", "Unit", "Integration", "Fixture", "Benchmark", "Schema", "Manual playbook", "Reference", "Vitest", "Node test", "MCP integration test", "Test harness"],
-      "description": "Per-feature catalog leaf file under */feature-catalog/<category>/ (only the Validation And Tests table Type + placeholder check applies; catalogs do not use emoji/uppercase H2s). allowedValidationTypes is a curated canonical set — the advisory Type warning surfaces near-dupes/typos to normalize toward these, not to force 2 values on the real corpus"
+      "allowedValidationTypes": [
+        "Automated test",
+        "Unit",
+        "Integration",
+        "Fixture",
+        "Benchmark",
+        "Schema",
+        "Manual playbook",
+        "Reference",
+        "Vitest",
+        "Node test",
+        "MCP integration test",
+        "Test harness"
+      ],
+      "description": "Per-feature catalog leaf file under */feature-catalog/<category>/ (only the Validation And Tests table Type + placeholder check applies; catalogs do not use emoji/uppercase H2s). allowedValidationTypes is a curated canonical set \u2014 the advisory Type warning surfaces near-dupes/typos to normalize toward these, not to force 2 values on the real corpus"
     }
   },
   "validationRules": {

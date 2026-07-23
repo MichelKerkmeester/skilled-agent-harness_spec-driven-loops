@@ -59,7 +59,7 @@ The hub resolves `workflowMode: review` to the `deep-review` packet and runs its
 Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
 
 - **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research`, `ai-council`, `alignment` or `agent-improvement`.
-- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. Alignment maps to `review`; it is an explicit `null` only for the four improvement lanes and is never guessed from `workflowMode`.
+- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. Alignment maps to `review`. It is an explicit `null` only for the three improvement lanes and is never guessed from `workflowMode`.
 - **`backendKind`** is what actually runs the mode: a runtime convergence loop, the improvement host or an external adapter.
 
 A router reads the registry, loads the mode packet, and either calls the runtime convergence loop (when `runtimeLoopType` is set) or the improvement host or external adapter (when it is `null`).

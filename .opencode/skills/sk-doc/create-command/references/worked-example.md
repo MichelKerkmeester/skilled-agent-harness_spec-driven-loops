@@ -133,7 +133,7 @@ Presentation asset: `.opencode/commands/review/assets/review_packet_presentation
 
 Presentation source of truth for `/review:packet`. The router owns mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard layout, and result displays.
 
-## 1. Startup Presentation
+## 1. STARTUP PRESENTATION
 
 For no suffix, ask once:
 
@@ -152,7 +152,7 @@ For `:auto`, do not show the mode prompt. Ask only if the spec folder is missing
 
 `STATUS=FAIL ERROR="Missing required spec-folder for /review:packet:auto"`
 
-## 2. Dashboard / Checkpoint Layout
+## 2. DASHBOARD / CHECKPOINT LAYOUT
 
 | Step | Status | Evidence |
 |---|---|---|
@@ -161,7 +161,7 @@ For `:auto`, do not show the mode prompt. Ask only if the spec folder is missing
 | Findings checked | pending | review notes |
 | Result emitted | pending | status line |
 
-## 3. Results Display
+## 3. RESULTS DISPLAY
 
 ### Success
 
@@ -171,7 +171,7 @@ For `:auto`, do not show the mode prompt. Ask only if the spec folder is missing
 
 `STATUS=FAIL ERROR="<message>"`
 
-## 4. Next-Step Suggestions
+## 4. NEXT-STEP SUGGESTIONS
 
 | Condition | Suggested Command | Reason |
 |---|---|---|

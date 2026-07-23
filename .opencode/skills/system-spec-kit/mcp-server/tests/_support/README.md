@@ -8,7 +8,7 @@ trigger_phrases:
 
 # Test Support
 
-## 1. PURPOSE
+## 1. OVERVIEW
 
 `tests/_support/` contains shared Vitest setup and focused helpers used by MCP server tests. Keep this directory limited to reusable test infrastructure, not assertions or production behavior.
 

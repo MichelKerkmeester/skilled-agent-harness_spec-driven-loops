@@ -85,7 +85,7 @@ RESOURCE_MAP = {
 }
 ```
 
-## 3. How to read this
+## 3. HOW TO READ THIS
 
 - One dominant executor intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the

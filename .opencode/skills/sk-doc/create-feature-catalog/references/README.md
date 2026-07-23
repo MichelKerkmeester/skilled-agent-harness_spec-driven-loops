@@ -24,7 +24,7 @@ Route-map for the `create-feature-catalog` reference set. The primary authoring 
 
 **Core Principle**: Keep the workflow and contract in `SKILL.md`; keep worked depth (a real example, extended pitfall fixes) in single-concern references.
 
-Two scaffolds live in `../assets/feature-catalog/` and are the starting point for actual files:
+Two scaffolds live in `../assets/` and are the starting point for actual files:
 
 - `feature-catalog-template.md` — root catalog scaffold, plus its own when-to-create table, category/file design, authoring notes, and publishing checklist.
 - `feature-catalog-snippet-template.md` — per-feature file scaffold, plus its frontmatter contract, authoring notes, and per-feature checklist.
@@ -48,8 +48,8 @@ Load the file that matches the current task:
 ### Packet
 
 - [../SKILL.md](../SKILL.md) - the primary feature-catalog workflow and rules contract
-- [../assets/feature-catalog/feature-catalog-template.md](../assets/feature-catalog/feature-catalog-template.md) - root catalog scaffold
-- [../assets/feature-catalog/feature-catalog-snippet-template.md](../assets/feature-catalog/feature-catalog-snippet-template.md) - per-feature file scaffold
+- [../assets/feature-catalog-template.md](../assets/feature-catalog-template.md) - root catalog scaffold
+- [../assets/feature-catalog-snippet-template.md](../assets/feature-catalog-snippet-template.md) - per-feature file scaffold
 
 ### Shared sk-doc backbone
 

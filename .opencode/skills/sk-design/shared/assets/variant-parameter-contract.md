@@ -18,7 +18,7 @@ The checker proves only that every knob row is present, complete, and declared f
 
 ---
 
-## 1. Knob Schema
+## 1. KNOB SCHEMA
 
 | Knob | Range/Values | Step | Owner Mode | Transports | Caveat |
 |---|---|---|---|---|---|
@@ -30,7 +30,7 @@ The checker proves only that every knob row is present, complete, and declared f
 
 ---
 
-## 2. Application Notes
+## 2. APPLICATION NOTES
 
 - `interface` owns density and structure because the register and design read set posture, packing, and layout family before render work.
 - `foundations` owns type-scale, color-amount, and pairing because those knobs belong to the static token system, color dosage, and type roles.

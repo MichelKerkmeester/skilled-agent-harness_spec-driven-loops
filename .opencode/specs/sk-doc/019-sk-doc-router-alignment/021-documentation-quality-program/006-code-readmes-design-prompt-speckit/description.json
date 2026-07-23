@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
+  "description": "The repo-wide scan flagged forty-five code and script folders without a README across sk-design (13), sk-prompt (14) and system-spec-kit (18)",
+  "keywords": [
+    "repo-wide",
+    "scan",
+    "flagged",
+    "forty-five",
+    "code",
+    "script",
+    "folders",
+    "without",
+    "readme",
+    "across",
+    "sk-design",
+    "sk-prompt",
+    "system-spec-kit"
+  ],
+  "lastUpdated": "2026-07-22T13:46:50.198Z",
+  "specId": "006",
+  "folderSlug": "code-readmes-design-prompt-speckit",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

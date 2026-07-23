@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Refero style-library extractor
 
-## Overview
+## 1. OVERVIEW
 
 `extract-refero.mjs` builds the sibling `styles/<slug>/` folders from
 [styles.refero.design](https://styles.refero.design/). For each `/style/<uuid>`
@@ -55,7 +55,7 @@ writes; the browser (chrome-devtools-mcp, spawned over stdio) only reads DOM.
 _harness/
 ├── extract-refero.mjs   # the extractor (this folder's only executable)
 └── README.md            # this file
-../_manifest.json        # crawl state, written per style
+../library/bundles/crawl-manifest.json        # crawl state, written per style
 ../<slug>/               # one folder per captured style (see Output below)
 ```
 
@@ -64,7 +64,7 @@ _harness/
 | File | Role |
 |------|------|
 | `extract-refero.mjs` | Enumerate → capture → write, with throttle, lastmod resume, `--self-test`, and `--normalize`. |
-| `../_manifest.json` | Crawl state: `{ uuid, url, lastmod, slug, status, capturedAt, error }` per style. |
+| `../library/bundles/crawl-manifest.json` | Crawl state: `{ uuid, url, lastmod, slug, status, capturedAt, error }` per style. |
 
 ## Output (per style)
 
@@ -79,7 +79,7 @@ _harness/
 
 ```bash
 node extract-refero.mjs --enumerate-only     # refresh _manifest.json from the sitemap, capture nothing
-node extract-refero.mjs --self-test          # re-capture cursor and byte-diff vs ../cursor/ (writes nothing real)
+node extract-refero.mjs --self-test          # re-capture cursor and byte-diff vs ../library/bundles/cursor/ (writes nothing real)
 node extract-refero.mjs --limit 50           # capture up to 50 not-yet-done styles
 node extract-refero.mjs --only <uuid|slug>   # (re)capture a single style
 node extract-refero.mjs --normalize          # migrate existing folders to the current shape
@@ -102,11 +102,11 @@ node extract-refero.mjs --self-test          # expect: MATCH ×4 then PASS
 ```
 
 The self-test re-captures the cursor style and byte-diffs the four Extended tabs
-against the committed [`../cursor/`](../cursor/) reference (timestamp-normalized),
+against the committed [`../library/bundles/cursor/`](../library/bundles/cursor/) reference (timestamp-normalized),
 without writing to any real style folder. Raise `--delay-ms` if the site returns 429s.
 
 ## Related
 
-- [`../cursor/`](../cursor/) — the reference style; the output template every capture mirrors.
+- [`../library/bundles/cursor/`](../library/bundles/cursor/) — the reference style; the output template every capture mirrors.
 - [`../README.md`](../README.md) — the extracted-styles index.
 - `.opencode/specs/sk-design/010-sk-design-styles-from-refero/` — the spec packet (harness + pilot phases).

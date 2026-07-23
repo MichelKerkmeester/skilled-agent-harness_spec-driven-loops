@@ -136,7 +136,7 @@ def route_flowchart_request(request):
 
 ---
 
-## 3. Required Inputs
+## 3. REQUIRED INPUTS
 
 Before drafting, establish:
 
@@ -151,7 +151,7 @@ Read the target file before editing it. Use `Glob` or `Grep` to locate nearby di
 
 ---
 
-## 4. Pattern Selection
+## 4. PATTERN SELECTION
 
 Choose one closest pattern before drafting. Load the asset for visual guidance and adapt it to the real workflow.
 
@@ -168,7 +168,7 @@ Use the pattern's demonstrated features, not its content. Do not copy placeholde
 
 ---
 
-## 5. Output Shape
+## 5. OUTPUT SHAPE
 
 For a standalone flowchart file, use this shape unless the surrounding project has a stronger local convention:
 
@@ -209,7 +209,7 @@ A valid flowchart includes:
 
 ---
 
-## 6. Notation Rules
+## 6. NOTATION RULES
 
 Use consistent ASCII or box-drawing notation throughout one diagram.
 
@@ -227,7 +227,7 @@ Keep widths consistent. The validator allows limited width variation, but too ma
 
 ---
 
-## 7. How It Works: Creation Workflow
+## 7. HOW IT WORKS: CREATION WORKFLOW
 
 Follow this order for every creation or rewrite task:
 
@@ -258,7 +258,7 @@ python3 ../shared/scripts/validate_document.py <document.md>
 
 ---
 
-## 8. Pattern-Specific Build Rules
+## 8. PATTERN-SPECIFIC BUILD RULES
 
 For linear workflows:
 
@@ -309,7 +309,7 @@ For user journeys:
 
 ---
 
-## 9. Validator Contract
+## 9. VALIDATOR CONTRACT
 
 `scripts/validate-flowchart.sh` is required before delivery for any generated or edited flowchart file.
 
@@ -339,7 +339,7 @@ If the validator cannot run, report the exact command, failure, and what was man
 
 ---
 
-## 10. Rules
+## 10. RULES
 
 Always:
 
@@ -374,7 +374,7 @@ Escalate or ask when:
 
 ---
 
-## 11. Success Criteria
+## 11. SUCCESS CRITERIA
 
 The task is successful when:
 
@@ -388,6 +388,6 @@ The task is successful when:
 
 ---
 
-## 12. References
+## 12. REFERENCES
 
 For long examples and visual pattern details, use `assets/*`. For deeper creation guidance — a worked decision-tree example, validator mechanics and notation, pattern selection, and common pitfalls — use the reference route-map at `references/README.md`, which maps each concern to a focused single-concern file. For shared markdown standards and document-level validation behavior, use `../shared/`.

@@ -26,7 +26,7 @@ Use this worksheet before scoring and before writing findings. Fill each table f
 
 ---
 
-## 2. Target
+## 2. TARGET
 
 | Field | Value |
 | --- | --- |
@@ -35,7 +35,7 @@ Use this worksheet before scoring and before writing findings. Fill each table f
 | Why this target | User request, release gate or sampled surface |
 | Evidence status | confirmed, inferred or not-assessed |
 
-## 3. Evidence Inventory
+## 3. EVIDENCE INVENTORY
 
 | Evidence Type | Available | Source | Label |
 | --- | --- | --- | --- |
@@ -44,7 +44,7 @@ Use this worksheet before scoring and before writing findings. Fill each table f
 | Design artifact | yes/no | file, frame or image | confirmed / inferred / not-assessed |
 | Deterministic scan | yes/no | command and exit code | confirmed / not-assessed |
 
-## 4. Dimension Coverage
+## 4. DIMENSION COVERAGE
 
 | Dimension | Evidence | Label | What Would Confirm |
 | --- | --- | --- | --- |
@@ -54,7 +54,7 @@ Use this worksheet before scoring and before writing findings. Fill each table f
 | Theming |  | confirmed / inferred / not-assessed |  |
 | Anti-Patterns |  | confirmed / inferred / not-assessed |  |
 
-## 5. Probe Ledger
+## 5. PROBE LEDGER
 
 | Probe | Target | Result | Label | Impact If Failed |
 | --- | --- | --- | --- | --- |
@@ -65,13 +65,13 @@ Use this worksheet before scoring and before writing findings. Fill each table f
 | Responsive stress |  | pass/fail/skip | confirmed / inferred / not-assessed |  |
 | Anti-pattern scan |  | pass/fail/skip | confirmed / inferred / not-assessed |  |
 
-## 6. Finding Handoff Rows
+## 6. FINDING HANDOFF ROWS
 
 | Finding | Severity | Label | Evidence | What Would Confirm | Owner |
 | --- | --- | --- | --- | --- | --- |
 |  | P0/P1/P2/P3 | confirmed / inferred |  |  | interface/foundations/motion/sk-code |
 
-## 7. Use Rules
+## 7. USE RULES
 
 - Confirmed means the audit read real source, real render, real artifact or real command output.
 - Inferred means the audit has partial visual or contextual evidence and names what would confirm it.

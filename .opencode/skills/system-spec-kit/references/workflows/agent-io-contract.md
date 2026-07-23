@@ -15,7 +15,7 @@ version: 3.6.0.8
 
 Shared advisory contract for structured agent dispatch and return metadata. This contract helps orchestrators and leaf agents exchange typed hints without making older prompts invalid.
 
-## 1. Contract Status
+## 1. CONTRACT STATUS
 
 ```yaml
 schema_version: agent-io/v1
@@ -31,7 +31,7 @@ status: optional-advisory
 
 Agent I/O is advisory-only: a convenience header that may opportunistically carry manifest or result digests as data, never as authority. The enforceable design gate is the design proof token plus the guarded boundary: guarded-proxy classification, the structured Open Design transport result, and parent re-validation. Presence of Agent I/O headers never substitutes for that gate, and absence of Agent I/O headers never passes a design handoff. Acceptance for this note is the advisory-only status, the real-gate naming, both failure directions, and the by-name pointer to `cli-child-pairing.md` "Agent I/O Is Not The Gate" as the canonical scoped statement; this prose adds no checker, schema, or refusal reason.
 
-## 2. Dispatch Group
+## 2. DISPATCH GROUP
 
 Orchestrators may place this compact header near the top of a delegated task prompt. Target size: under 15 lines.
 
@@ -62,7 +62,7 @@ self_assessed_quality: none | high | medium | low | <short producer confidence n
 
 Consumers must keep these fields advisory and ignore unknown values rather than rejecting an otherwise valid task prompt.
 
-## 3. Result Group
+## 3. RESULT GROUP
 
 Leaf agents may append this envelope after their required native output:
 
@@ -91,7 +91,7 @@ Rules for result envelopes:
 - Use `verification: not_applicable` only when the agent's native contract allows no verification command.
 - Keep summaries factual and evidence-backed.
 
-## 4. Handoff Group
+## 4. HANDOFF GROUP
 
 Optional handoff fields describe information crossing from one agent to another. The first concrete use is a debug-to-implementation handoff. This is a narrower, advisory adaptation of Gem's existing orchestrator `debugger_diagnosis` machine-check; it adds typed fields without replacing native debug reports.
 
@@ -115,7 +115,7 @@ Handoff rules:
 - Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing warn and require manual verification; they are not rejected for missing this group.
 - Absence of this group in ordinary work remains valid and must not block the receiver.
 
-## 5. Pre-Execution Group
+## 5. PRE-EXECUTION GROUP
 
 Optional pre-execution fields describe scoped gates that fire only when their predicate is true. The orchestrator owns the predicates and should not spread heuristic copies across leaf agents.
 
@@ -137,7 +137,7 @@ Pre-execution rules:
 - A low, typo, or docs task with no cross-agent diagnosis should skip all three gates.
 - Missing pre-execution metadata in legacy or ordinary dispatches remains a degraded advisory state, not a rejection reason.
 
-## 6. Advisory Group
+## 6. ADVISORY GROUP
 
 Optional advisory fields route review attention and surface spec drift without creating gates, mutations, or new refusal reasons.
 
@@ -157,7 +157,7 @@ Advisory rules:
 - If `spec_drift` is absent, consumers should treat it as `none`.
 - Missing advisory fields in legacy or ordinary dispatches remain valid and must not block the receiver.
 
-## 7. Evidence Group
+## 7. EVIDENCE GROUP
 
 Optional evidence fields let a load-bearing claim carry its proof in a fixed, machine-checkable shape at the dispatch boundary. This is the structural backstop for the doctrine that a finding is a hypothesis until verified: a claim either names its class and what would confirm it, or the missing piece is surfaced as an advisory. The schema is owned by `runtime/` (`lib/deep-loop/evidence-contract.ts`); that module is the source of truth for allowed values, and this doc cites it rather than redefining them.
 

@@ -162,6 +162,30 @@ function findGraphMetadata(dir) {
   return out;
 }
 
+// Recursively collect every description.json beneath a directory.
+function findDescriptionJson(dir) {
+  const out = [];
+  const stack = [dir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    let entries;
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(full);
+      } else if (entry.isFile() && entry.name === 'description.json') {
+        out.push(full);
+      }
+    }
+  }
+  return out;
+}
+
 // A file/dir that is a symlink (changelog policy forbids symlinked changelogs).
 function isSymlink(p) {
   try {
@@ -272,6 +296,20 @@ function main() {
   } else {
     const rel = nested.map((f) => path.relative(target, f));
     fail(`2a: nested graph-metadata.json found (re-introduces a second identity): ${rel.join(', ')}`);
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // 2b. NO description.json inside any mode packet or shared/
+  //     (the advisor identity is hub-only; a nested one is dead residue)
+  // ───────────────────────────────────────────────────────────────
+  const nestedDesc = findDescriptionJson(target).filter(
+    (f) => f !== path.join(target, 'description.json'),
+  );
+  if (nestedDesc.length === 0) {
+    pass('2b: no nested description.json inside any packet or shared/');
+  } else {
+    const rel = nestedDesc.map((f) => path.relative(target, f));
+    fail(`2b: nested description.json found (re-introduces a second advisor identity): ${rel.join(', ')}`);
   }
 
   // ───────────────────────────────────────────────────────────────
@@ -935,8 +973,13 @@ function main() {
   if (!fs.existsSync(leafManifestPath)) {
     info('10: hub has no leaf-manifest.json — leaf-resource contract guards do not apply');
   } else {
-    const generatorPath = path.join(target, 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-    const contractLibPath = path.join(target, 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+    // The leaf-resource generator and contract library are shared tooling that
+    // lives canonically under sk-doc, not inside every hub. A hub can carry a
+    // leaf-manifest.json without owning the create-skill authoring mode, so
+    // resolve the generator from the canonical location rather than from target.
+    const canonicalManifestScripts = path.join(path.dirname(target), 'sk-doc', 'create-skill', 'scripts');
+    const generatorPath = path.join(canonicalManifestScripts, 'generate-leaf-manifest.cjs');
+    const contractLibPath = path.join(canonicalManifestScripts, 'lib', 'leaf-resource-contract.cjs');
 
     // 10a: manifest-source — the registry declares a contract version and the
     // committed manifest is present, readable JSON in the expected shape.
@@ -963,7 +1006,7 @@ function main() {
     let contractLib = null;
     let generatorLib = null;
     if (!fs.existsSync(generatorPath) || !fs.existsSync(contractLibPath)) {
-      sourceIssues.push('the leaf-resource contract library/generator is missing under create-skill/scripts/');
+      sourceIssues.push('the shared leaf-resource contract library/generator is missing under sk-doc/create-skill/scripts/');
     } else {
       try {
         // eslint-disable-next-line global-require, import/no-dynamic-require

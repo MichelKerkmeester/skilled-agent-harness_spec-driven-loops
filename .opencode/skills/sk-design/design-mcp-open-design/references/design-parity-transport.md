@@ -19,7 +19,7 @@ This reference is the Open Design terminal side of the real-UI loop. The loop it
 
 ---
 
-## 1. INTAKE — read a system
+## 1. INTAKE — READ A SYSTEM
 
 For an installed Open Design app, read a matching system via the read-only tools (`od mcp` get_file/search_files, or `od tools design-systems read`): its `DESIGN.md` for direction, `tokens.css` for the paste-ready `:root` tokens, and `components.html` for reusable markup. Resolve exactly one system from the subject and brief (never a chooser — that is `sk-design`'s rule). The read is live and never cached into the repo; copying Open Design content would attach its per-source license.
 
@@ -31,7 +31,7 @@ When an Open Design system is the ground, reuse its `tokens.css` tokens and `com
 
 Targeted feedback (real-UI loop §4) routes as a follow-up message on the run conversation (`od run start --conversation <id>`) or an `od ui respond` answer that names the element and the single change. There are no inline comment threads, so the revision grammar is the agent classifying feedback precisely, not reading app comments.
 
-## 4. FIDELITY CHECK — the run's render
+## 4. FIDELITY CHECK — THE RUN'S RENDER
 
 A finished generation run is multi-turn. Turn 1 returns a discovery question-form with zero files. Answering it (`od ui respond` or a follow-up message) fires the build run that writes the design files (`index.html` and friends) and gives the project an `entryFile` and a `previewUrl`. Poll `get_run(runId)` (`od run watch`/`info`), fetch the written files with `get_artifact`, and open the `previewUrl` to inspect the render. Because Open Design is local-first, that `previewUrl` is local and not gated behind a remote sign-in, so it is directly inspectable.
 

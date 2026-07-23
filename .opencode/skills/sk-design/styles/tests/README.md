@@ -1,5 +1,7 @@
 # styles/tests
 
+## 1. OVERVIEW
+
 The automated test suites for the styles library. Run with `node --test` (Node ≥ 22; the database suites
 use the built-in `node:sqlite`).
 

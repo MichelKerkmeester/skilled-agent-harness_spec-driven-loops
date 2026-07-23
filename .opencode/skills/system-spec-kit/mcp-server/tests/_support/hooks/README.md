@@ -8,7 +8,7 @@ trigger_phrases:
 
 # Hook Test Support
 
-## 1. PURPOSE
+## 1. OVERVIEW
 
 `tests/_support/hooks/` contains small harness utilities for hook-focused tests. The helpers make replay tests deterministic by sandboxing filesystem writes and consuming checked-in hook fixtures.
 
@@ -27,7 +27,7 @@ trigger_phrases:
 Run focused hook tests from `mcp_server` after changing support helpers:
 
 ```bash
-npx vitest run tests/hooks-runtime-detection.vitest.ts
+npx vitest run tests/hook-session-stop-replay.vitest.ts
 ```
 
 ## 5. RELATED

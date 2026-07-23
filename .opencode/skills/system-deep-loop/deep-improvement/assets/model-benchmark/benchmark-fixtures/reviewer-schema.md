@@ -15,7 +15,7 @@ version: 1.17.0.2
 
 ---
 
-## 1. Overview
+## 1. OVERVIEW
 
 Reviewer fixtures let Lane B check whether a reviewer prompt still catches a known bug class. A fixture supplies a prompt template, a diff or repo-state input, and an expected verdict. The scorer runs the reviewer prompt, extracts `PASS`, `FAIL`, or `BLOCK`, then compares the result to the hidden oracle.
 
@@ -23,7 +23,7 @@ Reviewer fixtures are opt-in. Existing pattern and code-task fixtures keep their
 
 ---
 
-## 2. Required Shape
+## 2. REQUIRED SHAPE
 
 ```json
 {
@@ -61,7 +61,7 @@ Required fields:
 
 ---
 
-## 3. Visible And Hidden Cases
+## 3. VISIBLE AND HIDDEN CASES
 
 Use `tests` for visible calibration cases and `hidden_tests` for held-out oracle cases. Each case may override `input`, `input_kind`, `expectedVerdict`, `expectedFindings`, and `reviewer_output`.
 
@@ -69,7 +69,7 @@ The scorer grades visible plus hidden cases, but hidden cases are the overfit gu
 
 ---
 
-## 4. Deterministic Replay
+## 4. DETERMINISTIC REPLAY
 
 For deterministic CI or pre-commit replay, a case may include `reviewer_output`. When present, the scorer parses that output instead of dispatching a live model. When absent, the scorer writes the composed prompt to a temp file and calls `dispatch-model.cjs`.
 
@@ -77,7 +77,7 @@ Live model dispatch is opt-in and should stay outside blocking CI unless the ope
 
 ---
 
-## 5. Verdict Contract
+## 5. VERDICT CONTRACT
 
 Reviewer output should include one parseable verdict line:
 
@@ -95,7 +95,7 @@ REVIEWER_BENCHMARK: fixture reviewer-example expected FAIL, got PASS — rule no
 
 ---
 
-## 6. Adding A Fixture
+## 6. ADDING A FIXTURE
 
 1. Copy one of the `reviewer-*.json` seed fixtures.
 2. Keep `kind: "reviewer-prompt"` and choose `input_kind`.

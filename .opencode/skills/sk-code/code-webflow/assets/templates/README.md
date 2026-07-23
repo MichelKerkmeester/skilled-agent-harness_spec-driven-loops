@@ -1,6 +1,6 @@
 ---
 title: "sk code assets webflow templates: Code README"
-description: "Code-facing README for .opencode/skills/sk-code/assets/webflow/templates."
+description: "Code-facing README for .opencode/skills/sk-code/code-webflow/assets/templates."
 trigger_phrases:
   - "sk-code assets/webflow/templates"
   - "code readme"
@@ -18,7 +18,7 @@ Executable asset scripts shipped with the skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/sk-code/assets/webflow/templates` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.opencode/skills/sk-code/code-webflow/assets/templates` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -43,7 +43,7 @@ Start with `.opencode/skills/sk-code/SKILL.md` for runtime routing and workflow 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/sk-code/assets/webflow/templates
+rg --files .opencode/skills/sk-code/code-webflow/assets/templates
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -58,8 +58,8 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Feature | What It Does |
 |---|---|
-| Folder boundary | Documents direct code files under `assets/webflow/templates`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
+| Folder boundary | Documents direct code files under `code-webflow/assets/templates`. |
+| sk-code alignment | Points reviewers at Webflow CSS, HTML and JavaScript standards and implementation-pattern checks. |
 | Verification handoff | Records the expected owner and current refinement context for follow-up work. |
 
 ---
@@ -80,7 +80,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Setting | Default | Purpose |
 |---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
+| sk-code surface | WEBFLOW | Applies Webflow CSS, HTML and JavaScript conventions. |
 | README scope | Direct folder | This file documents this folder, not sibling folders. |
 
 ---
@@ -90,7 +90,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/sk-code/assets/webflow/templates for sk-code and README coverage.
+User request: Check .opencode/skills/sk-code/code-webflow/assets/templates for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the current refinement and release-alignment review. Use the completed 026 audit only as predecessor context.
 ```

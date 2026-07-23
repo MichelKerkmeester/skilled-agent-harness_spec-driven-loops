@@ -31,7 +31,7 @@ Establishes type system patterns, error handling, documentation, async patterns,
 
 ---
 
-## 2. INTERFACE vs TYPE DECISION GUIDE
+## 2. INTERFACE VS TYPE DECISION GUIDE
 
 ### When to Use `interface`
 

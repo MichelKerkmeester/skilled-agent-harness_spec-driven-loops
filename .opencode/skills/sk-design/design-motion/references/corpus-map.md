@@ -30,7 +30,7 @@ Trace each piece of motion guidance back to its source corpus file and record wh
 
 ---
 
-## 2. Source Files
+## 2. SOURCE FILES
 
 | Corpus file | Distilled into | Practical guidance kept |
 | --- | --- | --- |
@@ -43,6 +43,6 @@ Trace each piece of motion guidance back to its source corpus file and record wh
 | `external/fixing-motion-performance.md` | `performance-reduced-motion.md` | Rendering steps glossary, critical never-patterns, FLIP measurement, blur bounds, will-change discipline, view transitions |
 | `external/make-interfaces-feel-better.md` | `micro-interactions.md`, `animate-presence-patterns.md`, `performance-reduced-motion.md` | Interruptible CSS transitions vs one-shot keyframes, scale-on-press, icon spring `bounce: 0`, `initial={false}` first-render suppression, never `transition: all` |
 
-## 3. Distillation Boundary
+## 3. DISTILLATION BOUNDARY
 
 This child owns motion build guidance. Motion-performance review and severity findings live in `audit`; static systems live in `foundations`.

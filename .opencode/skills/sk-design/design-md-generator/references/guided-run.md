@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 The guided run wrapper reduces command friction while preserving the existing extract, write, validate and report contract.
 
-## 1. What The Wrapper Does
+## 1. WHAT THE WRAPPER DOES
 
 It checks:
 
@@ -31,7 +31,7 @@ It can run:
 - Validation with `validate.ts` only when `DESIGN.md` already exists.
 - Optional report generation when both source files exist.
 
-## 2. What It Never Does
+## 2. WHAT IT NEVER DOES
 
 - It does not auto-author `DESIGN.md` content.
 - It does not invent values.
@@ -39,7 +39,7 @@ It can run:
 - It does not skip `build-write-prompt.ts`.
 - It does not treat missing `DESIGN.md` as validation success.
 
-## 3. Normal Run Shape
+## 3. NORMAL RUN SHAPE
 
 ```bash
 npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/DESIGN.md --fast
@@ -53,6 +53,6 @@ Expected phases:
 4. If `DESIGN.md` exists, validation runs.
 5. If validation ran and report was requested, report generation runs.
 
-## 4. Operator Handoff
+## 4. OPERATOR HANDOFF
 
 If the wrapper stops after prompt generation, the next actor writes `DESIGN.md` using the prompt and the loaded references. The wrapper has done its job. Authorship remains explicit and fidelity remains inspectable.

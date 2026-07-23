@@ -351,7 +351,7 @@ These groups mix classes per verb, so see [tool-surface.md](tool-surface.md) for
 
 ---
 
-## 7. DOES figma-ds-cli SHIP ITS OWN MCP? → NO
+## 7. DOES FIGMA-DS-CLI SHIP ITS OWN MCP? → NO
 
 A full read-only scan of the repo tree, `README` / `REFERENCE` / `CLAUDE.md` / `package.json`, `src/**`, and `plugin/**` for `mcp` / "model context protocol" returned **zero hits**. The bundled daemon is figma-ds-cli's own HTTP/WebSocket bridge to Figma Desktop, **not** an MCP server. **[CONFIRMED: repo + remote text scan]**
 

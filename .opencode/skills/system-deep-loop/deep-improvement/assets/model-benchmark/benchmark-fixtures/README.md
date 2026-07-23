@@ -58,7 +58,7 @@ Current state:
 
 ---
 
-## 3. Reviewer Fixture Shape
+## 3. REVIEWER FIXTURE SHAPE
 
 Reviewer fixtures are detected by shape: `kind: "reviewer-prompt"`, a string `prompt_template`, and an `expectedVerdict` in `pass`/`fail`/`block`. They carry `tests[]` and `hidden_tests[]` just like code-task fixtures, but the oracle is a verdict plus expected finding tokens rather than function return values.
 

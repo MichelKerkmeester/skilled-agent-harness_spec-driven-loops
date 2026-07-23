@@ -53,9 +53,9 @@ Load the file that matches the current task.
 - [install-guide/quality-and-standards.md](install-guide/quality-and-standards.md) - Install-guide troubleshooting, quality and checklist
 
 ### Templates
-- [readme-template.md](../assets/readme/readme-template.md) - Fillable scaffold for project, skill, feature and component READMEs
-- [readme-code-template.md](../assets/readme/readme-code-template.md) - Code-folder README scaffold with diagram examples
-- [install-guide-template.md](../assets/readme/install-guide-template.md) - Full install-guide scaffold and platform config patterns
+- [readme-template.md](../assets/readme-template.md) - Fillable scaffold for project, skill, feature and component READMEs
+- [readme-code-template.md](../assets/readme-code-template.md) - Code-folder README scaffold with diagram examples
+- [install-guide-template.md](../assets/install-guide-template.md) - Full install-guide scaffold and platform config patterns
 
 ### Shared Standards
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting rules

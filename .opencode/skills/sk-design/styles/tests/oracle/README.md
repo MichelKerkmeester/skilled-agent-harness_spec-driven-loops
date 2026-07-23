@@ -1,5 +1,7 @@
 # styles/tests/oracle
 
+## 1. OVERVIEW
+
 The differential-parity oracle: proves the flat engine and the SQLite path return byte-for-byte identical
 results across the full query matrix at 1x / 10x / 100x scales.
 

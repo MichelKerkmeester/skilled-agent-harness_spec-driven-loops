@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/001-json-cleanup-and-conventions",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/001-json-cleanup-and-conventions",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor metadata json cleanup",
+      "nested description.json residue",
+      "parent-skill-check description rule",
+      "advisor metadata cleanup summary",
+      "parent-skill-check rule 2b",
+      "prompt-models description residue removed"
+    ],
+    "key_topics": [
+      "advisor",
+      "metadata",
+      "json",
+      "cleanup",
+      "nested",
+      "description",
+      "residue",
+      "parent-skill-check",
+      "rule",
+      "summary",
+      "prompt-models",
+      "removed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Conventions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "incompatible",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Harden",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas: spec-folder continuity metadata and skill-advisor hub-identity metadata",
+    "created_at": "2026-07-22T08:55:19.438Z",
+    "last_save_at": "2026-07-22T12:29:01.508Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bfa4865bb28555cc0dd8c2dd0670b253115252ae9005ce45cbe953d0fdecf3f8",
+    "source_doc_hashes": {
+      "spec.md": "0fb3ebd59bbbf616a33c9bbc77d422522e81c6f4c67b2ea33c06af5a4ad78151",
+      "plan.md": "d022f48bbac0aea24a8f08058353d632e7c75975cfefa1d344c88391ef10d148",
+      "tasks.md": "2e2564374b76581371281ec167bdcddf2a16917fb076893b9cd739d91ec75998",
+      "checklist.md": "ebaae157310fddc6c38fab0b9e735dce622430ce97542e1264e82197023bebdc",
+      "implementation-summary.md": "e460f1a8907b18f97c500b171c626bd614f03292c86ad14d465a923e0dec1030"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

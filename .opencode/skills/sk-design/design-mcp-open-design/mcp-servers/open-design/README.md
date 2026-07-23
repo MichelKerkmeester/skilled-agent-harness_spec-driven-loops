@@ -2,7 +2,7 @@
 
 Pointer doc for the design-mcp-open-design skill's CLI and MCP server. Nothing is installed here, because both ship inside the Open Design desktop app.
 
-## What it is
+## 1. OVERVIEW
 
 Open Design's terminal surface is the bundled `od` CLI, run as `node "<app>/Contents/Resources/app/prebundled/daemon/daemon-cli.mjs"`. Its MCP server is the same local daemon exposed over stdio. Neither is an npm package and neither is vendored here, so there is no `setup.sh`: the desktop app is the unit of installation. A bare `od` on PATH is the unrelated octal-dump tool and must never be used.
 

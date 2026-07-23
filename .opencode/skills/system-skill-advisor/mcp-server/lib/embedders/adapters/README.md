@@ -46,6 +46,8 @@ trigger_phrases:
 
 ## 5. ENTRYPOINTS
 
+`../index.ts` (`lib/embedders/index.ts`) imports this adapter:
+
 ```text
 import { OllamaAdapter } from './adapters/ollama.js'
 ```

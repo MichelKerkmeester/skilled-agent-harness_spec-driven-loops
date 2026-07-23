@@ -1,5 +1,7 @@
 # styles/tests/oracle/golden
 
+## 1. OVERVIEW
+
 The pinned **golden canonical outputs** — the byte reference the differential oracle
 (`../differential-oracle.mjs`) replays against.
 

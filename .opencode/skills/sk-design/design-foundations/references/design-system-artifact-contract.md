@@ -18,7 +18,7 @@ This contract is conditional. A document is lintable only when it declares itsel
 
 ---
 
-## 1. Token Tiers
+## 1. TOKEN TIERS
 
 All implementation tokens are lowercase CSS custom properties. Names are category-led, kebab-case, and role-based. Use hyphens, not underscores. Do not use camelCase, free-form abbreviations, or categories outside the tier allowlist.
 
@@ -37,7 +37,7 @@ Numerals are allowed when they are part of a scale step, such as neutral ramp va
 
 ---
 
-## 2. Required Headings
+## 2. REQUIRED HEADINGS
 
 Heading checks are presence checks. They verify that the artifact exposes the sections downstream implementers expect; they do not certify that the content inside each section is complete or tasteful. Numeric prefixes are allowed, so `## 2. COLOR RAMP` satisfies `COLOR RAMP`.
 
@@ -51,7 +51,7 @@ Allowed aliases are intentionally narrow. `COLOR TOKENS` or `COLOR SYSTEM` may s
 
 ---
 
-## 3. Compliant Shape
+## 3. COMPLIANT SHAPE
 
 ```text
 artifactKind: token
@@ -77,7 +77,7 @@ This shape is valid because the artifact is explicitly marked as a token artifac
 
 ---
 
-## 4. Anti-Examples
+## 4. ANTI-EXAMPLES
 
 ```text
 --PrimaryColor

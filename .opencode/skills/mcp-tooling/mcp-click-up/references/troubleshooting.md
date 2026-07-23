@@ -271,7 +271,7 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 
 ---
 
-## 9. PATH CONFLICT: `cu` vs `cupt`
+## 9. PATH CONFLICT: `cu` VS `cupt`
 
 **Symptom:** Running `cu` instead of `cupt` opens a UUCP program (or errors)
 

@@ -16,7 +16,7 @@ The authoritative routing logic discovers markdown at runtime, guards every path
 
 ---
 
-## 1. Pseudocode
+## 1. PSEUDOCODE
 
 ```python
 from pathlib import Path

@@ -18,7 +18,7 @@ The compiled skill router is a closed-cohort, byte-verified fast path that resol
 
 ---
 
-## 1. Overview And Scope
+## 1. OVERVIEW AND SCOPE
 
 Two routers coexist for a parent hub:
 
@@ -29,7 +29,7 @@ Two routers coexist for a parent hub:
 
 ---
 
-## 2. Which Skills The Router Serves
+## 2. WHICH SKILLS THE ROUTER SERVES
 
 The compiled router serves exactly **seven parent hubs**, enumerated as `HUB_CHILD` in `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs`:
 
@@ -51,7 +51,7 @@ The router only ever selects **within** an already-identified hub — which of t
 
 ---
 
-## 3. The Chain: Shadow-Child To A Live Decision
+## 3. THE CHAIN: SHADOW-CHILD TO A LIVE DECISION
 
 A compiled-serving hub's routing decision passes through four layers on disk, in this order:
 
@@ -64,7 +64,7 @@ A compiled-serving hub's routing decision passes through four layers on disk, in
 
 ---
 
-## 4. The Compiled-Serving Parity Bar
+## 4. THE COMPILED-SERVING PARITY BAR
 
 A hub earns the **`compiled-serving`** verdict when its compiled decision matches the legacy (prose-router replay) decision on **every** scenario in its benchmark set — zero drift, zero unsafe over-detection, zero silent defers on a scenario legacy actually routes. This is measured by the Lane C harness, `system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs`, which re-hashes the three frozen scorer files as a precondition and never re-implements their judgment — it only translates the compiled decision into the frozen evaluator's own vocabulary and asks it to score.
 
@@ -74,7 +74,7 @@ Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub 
 
 ---
 
-## 5. The Path To Compiled-Serving
+## 5. THE PATH TO COMPILED-SERVING
 
 For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
 
@@ -87,7 +87,7 @@ For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
 
 ---
 
-## 6. The Boundary: `ready` Mints A Manifest, It Does Not Serve
+## 6. THE BOUNDARY: `ready` MINTS A MANIFEST, IT DOES NOT SERVE
 
 `scripts/init_skill.py --kind parent --compiled-routing ready` does exactly this, and nothing more:
 
@@ -109,7 +109,7 @@ A freshly minted `ready` manifest is inert onboarding evidence — safe, reversi
 
 ---
 
-## 7. Related Resources
+## 7. RELATED RESOURCES
 
 - [parent-skills-nested-packets.md](parent-skills-nested-packets.md) - the `modes[]`/`packetKind` contract the compiled router compiles.
 - [parent-hub-router-schema.md](parent-hub-router-schema.md) - the `hub-router.json` schema the shadow-child compiler consumes.

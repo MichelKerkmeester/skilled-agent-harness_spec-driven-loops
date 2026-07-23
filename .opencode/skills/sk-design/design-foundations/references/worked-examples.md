@@ -32,7 +32,7 @@ Copy the reasoning pattern, not the values: these examples are not reusable pres
 
 ---
 
-## 2. Dense Product Dashboard
+## 2. DENSE PRODUCT DASHBOARD
 
 ### Brief
 
@@ -71,7 +71,7 @@ Verification: contrast pairs, numeric alignment, chart scale legibility, dark-mo
 
 Do not copy the teal hue, dark palette or spacing values by default. Copy the reasoning pattern: product posture, dense grouping, semantic color separation, tabular numbers and verification tied to the task.
 
-## 3. Generous Brand Landing
+## 3. GENEROUS BRAND LANDING
 
 ### Brief
 
@@ -110,7 +110,7 @@ Verification: action contrast, readable measure, content order, mobile signup ac
 
 Do not copy the warm paper, coral accent or chapter gaps by default. Copy the reasoning pattern: brand posture, atmosphere with roles, spacious rhythm, restrained display type and responsive preservation of the story.
 
-## 4. How To Use These Examples
+## 4. HOW TO USE THESE EXAMPLES
 
 - Use them to calibrate completeness.
 - Replace every value with values grounded in the current brief.

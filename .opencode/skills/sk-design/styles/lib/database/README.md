@@ -1,5 +1,7 @@
 # Style Database
 
+## 1. OVERVIEW
+
 The style database is a rebuildable SQLite projection of the flat style bundles in the parent
 directory. The flat files remain authoritative. Normal persistent reads never walk the corpus.
 

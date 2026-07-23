@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`mcp-server/handlers/` contains MCP tool handlers for advisor operations plus the skill-graph handlers under `skill-graph/`. The tool registry imports `../handlers/index.js`; the handlers are thin entrypoints that delegate recommendation, status, rebuild, validation and skill-graph behavior to library modules.
+`mcp-server/handlers/` contains MCP tool handlers for advisor operations plus the skill-graph handlers under `skill-graph/`. The tool registry (`../tools/index.ts`) imports this folder's `index.ts`. The handlers are thin entrypoints that delegate recommendation, status, rebuild, validation and skill-graph behavior to library modules.
 
 Current state:
 

@@ -97,7 +97,7 @@ If the form still surfaces, answer it with `od ui respond --run <runId> <surface
 
 ---
 
-## 5. HANDOFF TO sk-code
+## 5. HANDOFF TO SK-CODE
 
 When a generated design heads into application code, the handoff is already owned: emit the handoff manifest in `real-ui-loop.md` §6 (token system, files changed, key interactions, checks run, open risks, next `sk-code` steps), and let `sk-code` govern how generated or installed source is wired, adapted, and verified. Do not duplicate a handoff schema in the prompt. The prompt's job ends at the brief.
 

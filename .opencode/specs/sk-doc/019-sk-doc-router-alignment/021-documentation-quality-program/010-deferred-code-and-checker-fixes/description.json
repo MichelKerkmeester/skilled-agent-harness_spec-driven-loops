@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "description": "The closeout deferred five follow-ups",
+  "keywords": [
+    "closeout",
+    "deferred",
+    "five",
+    "follow-ups"
+  ],
+  "lastUpdated": "2026-07-22T16:53:39.008Z",
+  "specId": "010",
+  "folderSlug": "deferred-code-and-checker-fixes",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program/007-code-readmes-deep-loop",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/021-documentation-quality-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code readmes deep loop",
+      "runtime lib domain readmes",
+      "stale runtime catalog fix",
+      "code readmes deep loop summary",
+      "fifty-three deep-loop readmes",
+      "runtime lib catalog refresh"
+    ],
+    "key_topics": [
+      "code",
+      "readmes",
+      "deep",
+      "loop",
+      "runtime",
+      "lib",
+      "domain",
+      "stale",
+      "catalog",
+      "summary",
+      "fifty-three",
+      "deep-loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/README.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
+    "created_at": "2026-07-22T13:46:50.887Z",
+    "last_save_at": "2026-07-22T15:15:44.041Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:db1dabe1b116793494a2b3c02a0e12a05ca57ab9eeb6f3132c2ad87dff173ff3",
+    "source_doc_hashes": {
+      "spec.md": "face69aeb2b74cb64c4e9e176c199d8364768efc2856bc3421ba9cb533269058",
+      "plan.md": "8104f04a4c4634279e8234b6eee58e3a856e897c26fb10e274155630ad3263cd",
+      "tasks.md": "5e70903a27d5181221129e32c3a859ccb4ad51a81a0be663e7b4af6cbd92d130",
+      "checklist.md": "5001a795ca4a9c99b2f144f0941452be13471731d93462f68719f6427f10bda2",
+      "implementation-summary.md": "061267b146c83f0acedd6046bfee90743d214e0fe3e690552aac80d95ff15ab4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
