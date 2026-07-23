@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/039-cli-codex-read-only-audit-leaf",
+  "description": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write",
+  "keywords": [
+    "single-executor",
+    "deep-alignment",
+    "loop",
+    "dispatches",
+    "cli-codex",
+    "leaf",
+    "sandbox",
+    "workspace-write",
+    "because",
+    "required",
+    "bash-write"
+  ],
+  "lastUpdated": "2026-07-23T12:51:54.033Z",
+  "specId": "039",
+  "folderSlug": "cli-codex-read-only-audit-leaf",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
