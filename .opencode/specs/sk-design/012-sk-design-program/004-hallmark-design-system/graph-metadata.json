@@ -21,7 +21,10 @@
       "sk-design hallmark design system phase",
       "hallmark adoption",
       "brand-first lane",
-      "hallmark evidence envelopes"
+      "hallmark evidence envelopes",
+      "hallmark handover",
+      "hallmark design system remaining work",
+      "finish hallmark deep-alignment"
     ],
     "key_topics": [
       "sk-design",
@@ -34,19 +37,33 @@
       "lane",
       "evidence",
       "envelopes",
-      "needed",
-      "adopting"
+      "handover",
+      "remaining"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+      "handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "authored-brand-boundary.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -84,19 +101,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handover Summary The",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Zero Hallmark",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Next Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Checklist",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Notes",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, brand-first authoring, and measured composition retrieval — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-07-23T07:04:12.479Z",
+    "last_save_at": "2026-07-23T07:56:07.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:020a5044bc4b656513f65f471dec242d93aa2dde06bedf8c82a48488f00a128f",
+    "source_fingerprint": "sha256:843aae3d23c4846852feb7041321b2bf75ae5ee1490ad055c39a8c91014e2692",
     "source_doc_hashes": {
-      "spec.md": "fced7b9b0bb16d50b101a4cd8d0a620e0977528702df0b258ad730b65393a378"
+      "spec.md": "fced7b9b0bb16d50b101a4cd8d0a620e0977528702df0b258ad730b65393a378",
+      "handover.md": "577b70e053ff5481c7ccc4f704b010029dbee31389b14b0ced1ec589148dab64"
     },
     "last_active_child_id": null,
     "last_active_at": null
