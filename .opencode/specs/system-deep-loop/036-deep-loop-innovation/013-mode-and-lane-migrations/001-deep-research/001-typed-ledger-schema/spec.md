@@ -12,19 +12,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T17:20:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Research event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
+    last_updated_at: "2026-07-21T16:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark typed ledger schema"
+    next_safe_action: "Build reducers and projections over the frozen event union"
     blockers: []
     key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact shared envelope field names and transition tokens does phase 012 freeze?"
-      - "Which source locator representation is portable without placing evidence blobs in ledger rows?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "This phase owns Deep Research event vocabulary, not reducers or projections"
       - "The ledger remains append-only and non-authoritative until the later mode cutover phase"
+      - "Logical deep_research stems map to the shared three-segment kebab-case wire namespace"
+      - "Authorization references remain owned by authorized-ledger frames and replay metadata reuses the shared descriptor fields"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -43,7 +43,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-research |
 | **Origin** | Phase 013 Deep Research migration, after phase 012 shared mode contracts and phase 006 transition-authorized ledger core |
@@ -87,7 +87,7 @@ This phase plans the typed append-only vocabulary that can carry those facts thr
 |----|-------------|---------------------|
 | REQ-001 | The Deep Research envelope specializes the phase-012 shared envelope without shadow field names or mode-local authorization rules | A contract comparison lists every inherited field, every mode extension, and every rejected duplicate; the mode union compiles against the shared contract |
 | REQ-002 | The event namespace covers the complete run path from initialization through iteration, convergence, synthesis, and memory-save handoff | The vocabulary matrix contains a typed event for each lifecycle boundary and names the required predecessor event or causal reference |
-| REQ-003 | Every event has deterministic identity, causal linkage, payload digest, source or artifact references where applicable, and append-only revision semantics | Schema fixtures reject missing IDs, mutable evidence blobs, absent `prevEventHash`, and in-place claim or judgment updates |
+| REQ-003 | Every event has deterministic identity, causal linkage, payload digest, source or artifact references where applicable, and append-only revision semantics | Every DATA field is assigned one semantic validation kind; fixtures reject missing IDs, blank locator selectors, unknown convergence-signal keys, prose in code/version fields, over-long reason prose, absent `prevEventHash`, and in-place claim or judgment updates |
 | REQ-004 | Planning and evidence events preserve the mode's research-specific entities and provenance | Question, branch, source version, evidence admission, claim version, relation, gap, and next-focus payloads have explicit types and stable cross-event references |
 | REQ-005 | Raw discovery and evaluation observations remain distinct from derived decisions | Iteration novelty, trusted evidence yield, source admission, claim status, and convergence decisions retain raw values and policy fingerprints without encoding reducer output as input |
 | REQ-006 | Envelope and payload version changes have explicit compatibility and upcaster hooks | The compatibility matrix covers exact, compatible, migrate, pin-old-runtime, and blocked outcomes; an unknown event or version fails closed |
@@ -109,12 +109,14 @@ The proposed event union is grouped by lifecycle and uses stable event stems wit
 | `deep_research.claim_asserted` / `deep_research.claim_relation_recorded` | Claim and claim-version IDs, normalized claim digest, evidence IDs, relation `supports | contradicts | qualifies | contextualizes`, independence group, raw confidence, and claim status |
 | `deep_research.claim_superseded` | Prior and successor claim-version IDs, supersession reason, effective timestamp, replacement evidence references, and invalidation scope |
 | `deep_research.gap_detected` / `deep_research.next_focus_selected` | Gap or obligation ID, gap kind, affected claim/question IDs, criticality, proposed query recipes, selection score vector, visit cooldown, policy version, and chosen branch or question |
-| `deep_research.convergence_evaluated` / `deep_research.convergence_blocked` | Convergence decision, raw and trusted signals, quality-gate results, blocker IDs, policy/evaluator fingerprints, evidence tail, and explicit incomplete or recovery reason when applicable |
+| `deep_research.convergence_evaluated` / `deep_research.convergence_blocked` | Convergence decision; closed raw ratios plus observation digest; closed trusted ratios plus assessment digest; closed quality-gate statuses, policy version, and result digest; blocker IDs, policy/evaluator fingerprints, evidence tail, and explicit incomplete or recovery reason when applicable |
 | `deep_research.synthesis_started` / `deep_research.synthesis_committed` | Admitted ledger revision, selected claim-version set digest, synthesis policy digest, report revision, report digest, citation event references, unresolved or contested claim IDs, and synthesis receipt |
 | `deep_research.memory_save_requested` / `deep_research.memory_save_completed` / `deep_research.memory_save_failed` | Target packet, continuity payload digest, route and merge mode, source event range, persistence receipt or record references, continuity fingerprint, retryability, and typed failure reason |
 | `deep_research.run_completed` | Terminal status, convergence event ID, synthesis event ID, memory-save event ID, final ledger tail hash, counts, and completion or incomplete reason |
 
-The envelope extension uses a typed `scope` object rather than repeating IDs in every top-level field. `scope.runId` and `scope.lineageId` are required on all mode events; `scope.iteration`, `scope.branchId`, `scope.questionId`, `scope.sourceVersionId`, `scope.evidenceId`, and `scope.claimVersionId` are required only where the event stem needs them. Payloads carry references and digests, not mutable source or report bodies. A payload that cannot identify its source, causal parent, policy version, or append position is invalid.
+The envelope extension uses a typed `scope` object rather than repeating IDs in every top-level field. `scope.runId` and `scope.lineageId` are required on all mode events; `scope.iteration`, `scope.branchId`, `scope.questionId`, `scope.sourceVersionId`, `scope.evidenceId`, and `scope.claimVersionId` are required only where the event stem needs them. Payloads carry references and digests, not mutable source or report bodies. The three convergence evidence collections are exact typed records rather than open JSON objects; unknown keys and free-prose values are invalid.
+
+Every DATA field belongs to one explicit semantic kind. Digests use 64-character lowercase hex; identifiers, references, versions, and codes use bounded ASCII system-token shapes; enums use occurrence-specific value sets; ratios and counts use numeric ranges; value objects use closed nested validators. Only explicit `*Reason` fields accept human explanation, capped at 4,096 characters. `reasonCode` is a 128-character code token pending a complete producer vocabulary, not a reason passage. A payload that cannot identify its source, causal parent, policy version, or append position is invalid.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
@@ -143,7 +145,7 @@ The envelope extension uses a typed `scope` object rather than repeating IDs in 
 
 - **Shared-contract drift** - phase 012 may rename envelope fields or transition tokens after this planning packet. Mitigation: mark inherited fields as shared, run a contract diff before implementation, and reject mode-local aliases.
 - **Vocabulary overlap** - generic ledger events, fan-in events, and Deep Research evidence events can claim the same lifecycle boundary. Mitigation: publish an ownership table with one writer family per event stem and route cross-mode facts through the shared event contract.
-- **Mutable evidence leakage** - storing source text or report bodies in event payloads makes replay and retention unsafe. Mitigation: store immutable artifact references, content digests, exact locators, and admission decisions only.
+- **Mutable evidence leakage** - storing source text, report bodies, or prose hidden under convergence-signal, code, version, or identifier aliases makes replay and retention unsafe. Mitigation: derive accepted fields from an exhaustive semantic-kind table, store immutable artifact references, content digests, exact locators, and admission decisions only, and leave no default free-string validator.
 - **False convergence** - raw `newInfoRatio` can be low while evidence risk remains high. Mitigation: retain raw signals but include trusted yield, claim blockers, contradiction risk, citation drift, and incomplete status in convergence events; the convergence reducer remains out of scope.
 - **Upcaster loss** - a legacy JSONL record may lack claim or source identifiers. Mitigation: allow a typed `blocked` or `degraded` compatibility outcome, preserve the original record digest, and never synthesize stable identity from mutable prose alone.
 - **Source poisoning** - fetched content may contain instructions that must not influence the runtime. Mitigation: record retrieval and instruction-scan outcomes as evidence fields and keep admission separate from trusted claim state.
@@ -154,11 +156,12 @@ The envelope extension uses a typed `scope` object rather than repeating IDs in 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact shared envelope field names, event identity algorithm, and authorization receipt shape does phase 012 freeze?
-- Does the shared contract provide a generic source/evidence reference type, or should Deep Research define a narrow mode extension that remains digest-only?
-- Which legacy JSONL `type` values map directly to typed events, and which require a `degraded` or `blocked` compatibility disposition?
-- Are memory-save request and completion events emitted by Deep Research or by the shared continuity service with a mode-specific payload?
-- Which source identity and independence-group algorithm is stable enough for the first schema version without prematurely coupling the reducer?
+- The shared envelope contributes its exact fourteen wire fields. Deep Research specializes `event_type`, `event_version`, and `payload`; it does not add a second top-level identity, causation, authorization, integrity, or replay field set.
+- The authorized ledger owns `authorization_ref` and `prev_record_hash`. A mode payload carries `prevEventHash` as the expected prior-tail commitment, while the durable frame remains authoritative for the append chain.
+- Replay metadata reuses `fingerprint_version`, `final_digest`, and `replay_input_digests` from the shared replay descriptor.
+- Source and passage locators are digest-bound, non-blank selectors. Source and report bodies remain outside ledger payloads.
+- Legacy `config`, `iteration`, `resumed`, `restarted`, and `blocked_stop` records have registered pure migration paths when stable identities exist. Liveness-only records remain compatible, behavior without a lossless typed counterpart pins the old runtime, and unknown records or versions block.
+- Memory-save request, completion, and failure are mode-specific handoff events. Persistence remains owned by the shared continuity service.
 
-These questions are deliberately left for contract ratification and implementation planning. They do not authorize a reducer, projection, or authority decision in this phase.
+These resolutions preserve the additive-dark boundary and do not authorize reducer, projection, artifact, certificate, resume, parity, rollback, or cutover behavior.
 <!-- /ANCHOR:questions -->

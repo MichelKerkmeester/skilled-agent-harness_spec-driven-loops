@@ -20,7 +20,9 @@
       "deep research resume adapter tasks",
       "deep-research idempotent resume tasks",
       "deep research resume adapter checklist",
-      "deep-research replay-safe resume checklist"
+      "deep-research replay-safe resume checklist",
+      "deep research effect confirmation binding",
+      "resume adapter forged confirmation"
     ],
     "key_topics": [
       "deep",
@@ -36,15 +38,37 @@
       "implementation",
       "plan"
     ],
-    "importance_tier": "high",
-    "status": "planned",
+    "importance_tier": "critical",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-resume-adapter.vitest.ts",
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-resume-adapter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-resume-adapter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -88,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Fifth Deep Research",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,12 +131,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -160,41 +190,33 @@
         "source": "derived"
       },
       {
-        "name": "The Deep Research",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Deep Research resume adapter over the sealed typed event ledger: rebuild interrupted live state through the mode reducers, map the continuity ladder to typed lifecycle state, and re-enter idempotently without double-applying, losing, or replaying semantic events.",
+    "causal_summary": "The Deep Research resume adapter rebuilds interrupted live state from the sealed typed ledger through the frozen reducers, maps continuity to typed lifecycle state, and re-enters idempotently without replaying semantic work.",
     "created_at": "2026-07-16T03:43:31.450Z",
-    "last_save_at": "2026-07-17T13:21:26.722Z",
+    "last_save_at": "2026-07-22T08:26:40.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:465875897e936a65b75de14fe3a1ffd9783983ad536ffe81b602af564ba4380e",
+    "source_fingerprint": "sha256:187914f3b5f8805ef9abec32f42e8ab1144db3d4147e74085b24aee4ffe24079",
     "source_doc_hashes": {
-      "spec.md": "46d15420c71414cb40d3033918afd63fab0034be7c18a773d80a5b0f11487805",
-      "plan.md": "2927aa36895a686489e276946a3415babf82410991cd128d090d44b8498c2046",
-      "tasks.md": "2b7abc43e8590c9cf1bdaaeb1d081ba4f3dbe5df79ee74f1041957bd78f5a654",
-      "checklist.md": "174c0dc2effe1f3b252b1a6023a68b26a1393d0511844b5d83d76fe752707ba4"
+      "spec.md": "9a2209e0ae2b49892a23b9168e8de8dae3b7acccfdd65ec3feaa08f397068c0b",
+      "plan.md": "bd0d971e5ab2255f6797cc9b4c58c31882d87c65596d9751125f8b3c0df3ad30",
+      "tasks.md": "3d783828878bf4090c715d43b6700f8d71dd3d721c96d8998d27750868c9e6cf",
+      "checklist.md": "846055f48255090ef080e5ef6e64aabd432dfb580f23d1c3ac76e017fff11a64",
+      "decision-record.md": "ff92784e954ad215ceabb3bbf0c0df8ddc06eb4e897401a1f95b7edc51ad42b9",
+      "implementation-summary.md": "d2d4a1012f3e918b564d05b5c55e1a848d7695ccf54c656510da16a723d35ffc"
     },
     "last_active_child_id": null,
     "last_active_at": null

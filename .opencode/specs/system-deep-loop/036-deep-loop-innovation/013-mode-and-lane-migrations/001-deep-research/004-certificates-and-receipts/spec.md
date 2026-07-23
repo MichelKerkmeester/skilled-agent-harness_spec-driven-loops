@@ -12,13 +12,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined Deep Research run certificates and transition receipt attestations"
-    next_safe_action: "Freeze replay inputs and offline verifier rules against shared contracts"
+    last_updated_at: "2026-07-22T04:29:33Z"
+    last_updated_by: "codex"
+    recent_action: "Closed obligation, output-ownership, and projection-ledger trust gaps"
+    next_safe_action: "Successor 005-resume-adapter can consume the frozen receipt and certificate contracts"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-certificates.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-research |
 | **Origin** | Fourth child of the phase-013 Deep Research mode migration fan-out |
@@ -80,7 +82,9 @@ memory service.
 
 ### In Scope
 - A Deep Research run-certificate profile that binds run identity, lineage, lifecycle coverage, final ledger heads, the ordered sealed reference set, receipt-chain digest, replay fingerprint, projection and synthesis outputs, memory-save handoff result, and unresolved obligations.
-- A mode transition-receipt profile for `init`, logical branch `gather`, logical branch `analyze`, convergence evaluation, synthesis commit, memory-save handoff, and resume or recovery reconciliation; attempt identity remains distinct from logical transition identity.
+- A mode transition-receipt profile for once-per-run `init`, terminal convergence, synthesis, and memory-save boundaries plus repeatable logical branch `gather` and `analyze` operations; attempt identity remains distinct from logical transition identity.
+- Certificate-wide ownership for transition outputs so one sealed artifact cannot be claimed as the output of two distinct logical receipts.
+- Exact ordered equality between reducer projection events and the authorized-ledger replay range during issuance and offline verification.
 - Attestation rules for what a receipt and certificate prove, including authorized transition, canonical input/output digests, sealed-reference validity, result disposition, prior and resulting ledger heads, and shared certification metadata.
 - A replay-fingerprint input contract covering shared envelope and payload versions, canonical codec, event chain, run lineage, ordered artifact references, source/result digests, executor and capability commitments, reducer/projection versions, policy fingerprints, and effect outcomes.
 - Fingerprint exclusions and normalization rules for wall-clock values, process IDs, arrival order, random request identifiers, mutable paths, cache aliases, and attempt-only data that cannot change replay semantics.
@@ -106,24 +110,24 @@ memory service.
 | REQ-003 | Each logical transition emits a complete receipt | `init`, `gather`, `analyze`, convergence, synthesis, handoff, and resume/recovery rows identify the authorized transition, logical operation, attempt history, input references, output references, result disposition, and resulting head |
 | REQ-004 | Replay inputs are explicit and versioned | Recomputing the fingerprint uses only registered replay-affecting fields and produces the same value for identical canonical inputs; contract, event, artifact, executor, policy, reducer, projection, and effect versions are included |
 | REQ-005 | Replay exclusions cannot alter semantics | Process IDs, wall-clock timestamps, completion order, random request IDs, filesystem paths, cache aliases, and attempt-only identifiers are excluded or normalized; any field that changes a decision is not excluded |
-| REQ-006 | Receipt and certificate chains are append-only and conflict detecting | Duplicate logical transitions with identical canonical facts are idempotent; reused identity with different facts, prior head, result, digest, or authority epoch returns a typed conflict and appends no false success |
-| REQ-007 | Failure and uncertainty remain attestable without becoming success | `blocked`, `invalid`, `quarantined`, `incomplete`, `failed`, and `in_doubt` are explicit dispositions; the run certificate cannot report trusted completion when a required receipt or reference is unresolved |
+| REQ-006 | Receipt and certificate chains are append-only and conflict detecting | Duplicate logical transitions with identical canonical facts are idempotent; reused identity with different facts, prior head, result, digest, or authority epoch returns a typed conflict and appends no false success; distinct logical receipts cannot claim the same sealed output artifact |
+| REQ-007 | Failure and uncertainty remain attestable without becoming success | `blocked`, `invalid`, `quarantined`, `incomplete`, `failed`, and `in_doubt` are explicit dispositions; trusted completion requires an empty final open-obligation set as well as complete trusted receipts and references |
 | REQ-008 | Source and claim drift is visible across resume | Changed result IDs, source content digests, retraction/update signals, claim dependencies, and superseding evidence produce new receipts and references while preserving the prior certificate inputs and historical artifacts |
-| REQ-009 | The offline verifier is independent of live execution | A verifier with the contract registry, certificate/receipt bundle, and sealed artifact bundle can validate canonical bytes, shared certification, chain continuity, authorization, replay fingerprint, and outputs without network, model, search, or memory-service calls |
+| REQ-009 | The offline verifier is independent of live execution | A verifier with the contract registry, certificate/receipt bundle, and sealed artifact bundle validates canonical bytes, shared certification, chain continuity, authorization, replay fingerprint, outputs, and exact projection-event equality with the verified ledger range without network, model, search, or memory-service calls |
 | REQ-010 | Memory-save handoff is receipt-bound | The handoff receipt binds target packet, continuity payload digest, final reference set, offered content digest, persistence result, and retry/recovery disposition; a failed or unverifiable handoff cannot be presented as trusted completion |
 | REQ-011 | The migration remains additive-dark | Certificate or receipt failure blocks dark evidence, parity, and trusted handoff promotion but leaves legacy state, output, writer behavior, and authority unchanged until staged cutover |
 
 ### Deep Research receipt and certificate boundary matrix
 
-| Lifecycle boundary | Receipt attests | Replay-bound inputs | Required result handling |
-|--------------------|------------------|----------------------|--------------------------|
-| `init` | Authorized run creation, frozen charter/frontier, initial configuration, executor/tool commitments, and initial ledger head | Run/lineage/generation, objective/plan/recipe/capability/config digests, shared contract versions, initial reference-set digest | Missing or mutable-only inputs block branch dispatch and do not create a trusted run certificate |
-| `gather` | One logical branch's admitted source-capture transition, retrieval outcome, source identity, and normalized evidence references | Logical branch ID, question/gap ID, frozen query recipe, executor/capability fingerprint, source result IDs/content digests, admission policy | Source mutation, poisoning, absent capture, or unknown effect is `quarantined`, `blocked`, or `in_doubt`, never successful evidence |
-| `analyze` | Claim/evidence observation and validation transition, including contradiction, abstention, and unresolved obligations | Source/evidence digest set, extraction and claim schema versions, claim dependencies, cross-validation policy, raw observation digests | Unresolved or abstained claims remain explicit and cannot be counted as trusted support |
-| `convergence` | One verified frontier snapshot and the decision produced by the shared convergence policy | Finalized frontier, trusted evidence yield, coverage, divergence pressure, contradiction/falsification obligations, budget/lease state, policy/evaluator fingerprints | `CONTINUE`, `STOP_ELIGIBLE`, `INDETERMINATE`, `BLOCKED`, and terminal incomplete outcomes remain distinct |
-| `synthesize` | Materialized report and claim/evidence view over a declared ledger revision | Ordered selected claim versions, evidence spans, unresolved claims, reducer/projection/synthesis versions, input reference-set digest | Changed or incomplete inputs produce mismatch or incomplete output; synthesis never silently rebaselines |
-| `memory-save` | Handoff package offered to memory persistence and its observed persistence outcome | Target packet, route/merge mode, continuity payload, final source/output digests, content digest, memory contract version | Persistence failure, unknown outcome, or invalid input yields failed or `in_doubt` handoff evidence |
-| `resume/recovery` | Reconciliation of prior transition attempts and the decision to reuse, re-execute, compensate, or block | Prior receipt ID, logical operation ID, idempotency key, prior head, target evidence, compatibility decision, current contract fingerprint | Only conclusive `not_applied` may retry; `applied` synthesizes confirmation; `in_doubt` stops automatic replay |
+| Lifecycle boundary | Required run cardinality | Receipt attests | Replay-bound inputs | Required result handling |
+|--------------------|--------------------------|------------------|----------------------|--------------------------|
+| `init` | Exactly one | Authorized run creation, frozen charter/frontier, initial configuration, executor/tool commitments, and initial ledger head | Run/lineage/generation, objective/plan/recipe/capability/config digests, shared contract versions, initial reference-set digest | Missing or mutable-only inputs block branch dispatch and do not create a trusted run certificate |
+| `gather` | At least one; one per logical source-capture operation | One logical branch's admitted source-capture transition, retrieval outcome, source identity, and normalized evidence references | Logical branch ID, question/gap ID, frozen query recipe, executor/capability fingerprint, source result IDs/content digests, admission policy | Source mutation, poisoning, absent capture, or unknown effect is `quarantined`, `blocked`, or `in_doubt`, never successful evidence |
+| `analyze` | At least one; one per logical analysis operation | Claim/evidence observation and validation transition, including contradiction, abstention, and unresolved obligations | Source/evidence digest set, extraction and claim schema versions, claim dependencies, cross-validation policy, raw observation digests | Unresolved or abstained claims remain explicit and cannot be counted as trusted support |
+| `convergence` | Exactly one terminal evaluation | One verified frontier snapshot and the decision produced by the shared convergence policy | Finalized frontier, trusted evidence yield, coverage, divergence pressure, contradiction/falsification obligations, budget/lease state, policy/evaluator fingerprints | `CONTINUE`, `STOP_ELIGIBLE`, `INDETERMINATE`, `BLOCKED`, and terminal incomplete outcomes remain distinct |
+| `synthesize` | Exactly one | Materialized report and claim/evidence view over a declared ledger revision | Ordered selected claim versions, evidence spans, unresolved claims, reducer/projection/synthesis versions, input reference-set digest | Changed or incomplete inputs produce mismatch or incomplete output; synthesis never silently rebaselines |
+| `memory-save` | Exactly one | Handoff package offered to memory persistence and its observed persistence outcome | Target packet, route/merge mode, continuity payload, final source/output digests, content digest, memory contract version | Persistence failure, unknown outcome, or invalid input yields failed or `in_doubt` handoff evidence |
+| `resume/recovery` | Optional and repeatable when reconciliation occurs | Reconciliation of prior transition attempts and the decision to reuse, re-execute, compensate, or block | Prior receipt ID, logical operation ID, idempotency key, prior head, target evidence, compatibility decision, current contract fingerprint | Only conclusive `not_applied` may retry; `applied` synthesizes confirmation; `in_doubt` stops automatic replay |
 
 ### Run certificate attestation
 
@@ -132,7 +136,8 @@ the verifier found a coherent run bundle with the declared identity, authorized 
 recomputed replay fingerprint, declared reducer/projection and synthesis outputs, and explicit terminal disposition. It
 does not attest to external truth, source quality beyond the recorded admission verdicts, completeness beyond the declared
 coverage inputs, or authority to replace the legacy path. A certificate with an unresolved required receipt, unverifiable
-artifact, unknown effect, mixed ledger head, or missing memory handoff is `incomplete` or `unverifiable`, never `valid`
+artifact, open obligation, unknown effect, mixed ledger head, reused transition output, projection/ledger event mismatch, or
+missing memory handoff is `incomplete`, `invalid`, or `unverifiable`, never `valid`
 completion.
 
 ### Replay-fingerprint input contract
@@ -152,7 +157,8 @@ The verifier rejects an unregistered field rather than silently folding it into 
 The verifier parses strict schemas, validates the shared certification provider and trust policy, recomputes canonical body
 digests, checks run scope and unique logical transition identities, walks prior-head and receipt links, validates each
 authorization reference, resolves every sealed reference from the supplied local bundle, and recomputes the replay
-fingerprint from the registered input projection. It then folds the declared event range with the registered reducer and
+fingerprint from the registered input projection. Before folding, it requires the supplied projection events to equal the
+ordered effective event envelopes in the verified ledger range. It then folds that exact event range with the registered reducer and
 projection versions, checks synthesis and handoff output digests, and confirms that every required result disposition is
 compatible with the run certificate. It never fetches a URL, reruns a model, calls a search provider, repairs a missing
 receipt, or treats a process exit as an observed external outcome. The output is a typed verdict with failure location and

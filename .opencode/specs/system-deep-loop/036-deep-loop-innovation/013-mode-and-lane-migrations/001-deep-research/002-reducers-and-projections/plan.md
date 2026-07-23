@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T17:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped deep-research state into three deterministic projection surfaces"
-    next_safe_action: "Define canonical event ordering and field-level reducer ownership"
+    last_updated_at: "2026-07-22T04:21:28Z"
+    last_updated_by: "codex"
+    recent_action: "Closed evaluator-owned convergence and source-aware artifact identity"
+    next_safe_action: "Downstream projection consumption"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,19 +48,19 @@ state. The existing reducer and heartbeat behavior are treated as parity baselin
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `001-typed-ledger-schema` has a frozen event envelope, ordering inputs, schema-version policy, and deep-research event inventory
-- [ ] Phase-012 shared mode interfaces identify reducer ownership, replay identity, continuity, and legacy-projection ports
-- [ ] The phase-013 write-set graph identifies the reducer/projection resource boundary and any shared gauge-store fence
-- [ ] A field-level reducer ownership matrix names every projected field, input event family, fold operation, and invalid-state outcome
-- [ ] Fixtures cover valid lifecycle, evidence admission, claim revision, contradiction, artifact reference, convergence witness, and status events
-- [ ] The planned projection fingerprint and rebuild policy are compatible with the shared replay contract
+- [x] `001-typed-ledger-schema` has a frozen event envelope, ordering inputs, schema-version policy, and deep-research event inventory
+- [x] Phase-012 shared mode interfaces identify reducer ownership, replay identity, continuity, and legacy-projection ports
+- [x] The phase-013 write-set graph identifies the reducer/projection resource boundary and any shared gauge-store fence
+- [x] A field-level reducer ownership matrix names every projected field, input event family, fold operation, and invalid-state outcome
+- [x] Fixtures cover valid lifecycle, evidence admission, claim revision, contradiction, artifact reference, convergence witness, and status events
+- [x] The planned projection fingerprint and rebuild policy are compatible with the shared replay contract
 
 ### Definition of Done
-- [ ] One pure fold produces iteration/convergence, artifact-index, and per-mode status projections
-- [ ] Raw observations and versioned judgments remain available after projection refresh
-- [ ] Full replay and incremental replay produce equivalent projections and fingerprints
-- [ ] Permutation, duplicate, late-event, source-mutation, missing-receipt, and incompatible-version fixtures pass
-- [ ] Legacy-shaped output is comparison-only and cannot authorize a transition or cutover
+- [x] One pure fold produces iteration/convergence, artifact-index, and per-mode status projections
+- [x] Raw observations and versioned judgments remain available after projection refresh
+- [x] Full replay and incremental replay produce equivalent projections and fingerprints
+- [x] Permutation, duplicate, late-event, source-mutation, missing-receipt, and incompatible-version fixtures pass
+- [x] Legacy-shaped output is comparison-only and cannot authorize a transition or cutover
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -71,7 +71,8 @@ state. The existing reducer and heartbeat behavior are treated as parity baselin
 - The event router assigns each event family to one reducer owner: run/plan lifecycle, branch/iteration lifecycle, evidence admission, claim/evidence relations, community/frontier state, convergence/health witness, artifact references, and mode status.
 - The iteration projection stores plan revision, branch identity, iteration sequence, query recipe identity, admission result, trusted/provisional evidence counts, active claim versions, open contradiction and falsification obligations, next-focus candidates, and raw score observations.
 - The convergence projection stores observed and finalized frontiers, coverage and trusted evidence yield, redundancy and citation-drift measures, cycle/lease observations, health-witness inputs, terminal decision evidence, and a distinct incomplete or quarantined outcome when a stop prerequisite is absent.
-- The artifact index stores logical artifact identity, artifact kind, schema version, digest, producer event, branch/iteration provenance, receipt references, availability and validity state, and supersession links. Construction and sealing remain external ports.
+- Evaluator decisions own stop eligibility and finalized revision. Claim-ledger-only events do not replay an earlier quality-gate snapshot; a fresh convergence evaluation or block event is required to change those fields.
+- The artifact index stores logical artifact identity, artifact kind, schema version, full digest, producer event, branch/iteration provenance, receipt references, availability and validity state, and supersession links. Source artifact identity combines the source-version identity with the content digest, so independent sources with identical bytes cannot collide. Construction and sealing remain external ports.
 - The per-mode status projection derives a finite state machine from authorized lifecycle events. Impossible transitions, missing terminal evidence, unknown event types, and incompatible fingerprints become explicit blocked or rebuild-required results.
 - The fold emits a projection fingerprint from schema version, reducer version, codec, canonical ordering policy, and normalized projection content. Incremental state tracks cursors, seen event IDs, keyed entities, and finalized frontier; a clean replay remains the oracle.
 - Compatibility output is a read-only projection adapter for legacy iteration/status consumers. It reports lossy mappings and never appends events, changes authority, or suppresses raw evidence.
@@ -105,10 +106,10 @@ state. The existing reducer and heartbeat behavior are treated as parity baselin
 | Requirement | Verification |
 |-------------|--------------|
 | REQ-001 | Pure-function harness runs the same event sequence with fixed versions and compares canonical serialized projections and fingerprints |
-| REQ-002 | Ownership matrix test fails on missing, duplicate, or unowned projected fields and event families |
+| REQ-002 | Ownership matrix and stale-evaluation fixtures prove claim-ledger-only events cannot change evaluator-owned eligibility/finalized revision or advance the convergence cursor |
 | REQ-003 | Arrival-order permutation fixtures compare logical identity/sequence ordering against completion-order input |
 | REQ-004 | Research fixtures cover raw novelty versus admitted evidence, claim supersession, contradiction/falsification obligations, observed/finalized frontiers, and incomplete stop states |
-| REQ-005 | Artifact-index fixtures verify digest identity, receipt linkage, missing/invalid/unknown states, supersession, and no placeholder artifact creation |
+| REQ-005 | Artifact-index fixtures verify full-digest identity, distinct-source/same-content coexistence, receipt linkage, missing/invalid/unknown states, supersession, and no placeholder artifact creation |
 | REQ-006 | Status-machine fixtures exercise valid, impossible, duplicated, late, terminal, quarantined, and missing-evidence transitions |
 | REQ-007 | Version, codec, ordering, cursor-gap, truncation, and projection-drift fixtures require `rebuild_required` or `blocked` |
 | REQ-008 | Differential harness compares incremental cursor folds with clean full replay after duplicate events, rotations, late judgments, and supersession forks |

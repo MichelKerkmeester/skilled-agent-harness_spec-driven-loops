@@ -12,13 +12,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T17:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined pure deep-research folds and projection ownership boundaries"
-    next_safe_action: "Freeze reducer algebra and replay fixtures against the typed ledger contract"
+    last_updated_at: "2026-07-22T04:21:28Z"
+    last_updated_by: "codex"
+    recent_action: "Closed evaluator-owned convergence and source-aware artifact identity"
+    next_safe_action: "Downstream projection consumption"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,13 +39,13 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-research mode migration) |
 | **Origin** | Second child of the `001-deep-research` phase-013 mode migration parent |
 | **Depends on** | `[]` in `manifest/phase-tree.json`; sibling references are navigation only |
 | **Parent outcome** | Plan the deep-research reducers and projections over the typed event-ledger substrate |
-| **Authority posture** | Pure planning and projection-contract work; no ledger authority or runtime cutover |
+| **Authority posture** | Implemented additive-dark projection contract; no ledger authority or runtime cutover |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -90,10 +90,10 @@ search, call models, write the ledger, seal artifacts, select production thresho
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The reducer is a pure fold over the typed event sequence | Equal event sequence, schema/reducer versions, and fold options produce byte-equivalent projection data and fingerprint with no filesystem, network, clock, random, model, or ledger side effect |
-| REQ-002 | Reducer ownership is explicit for every projected field | An ownership matrix maps each iteration, convergence, artifact-index, status, frontier, and fingerprint field to its input event types, fold algebra, and immutable-output rule; no field has competing owners |
+| REQ-002 | Reducer ownership is explicit for every projected field | An ownership matrix maps each iteration, convergence, artifact-index, status, frontier, and fingerprint field to its input event types, fold algebra, and immutable-output rule; eligibility and finalized revision change only on convergence evaluation or block events, and no field has competing owners |
 | REQ-003 | Replay order is deterministic and arrival-order safe | Canonical ordering uses only persisted logical identity and sequence fields; completion timing, wall-clock values, process order, and object-key enumeration cannot change the projection |
 | REQ-004 | Iteration and convergence state preserves evidence risk | The projection retains raw observations and versioned judgments, separates observed and finalized frontiers, distinguishes trusted evidence yield from raw novelty, and exposes unresolved contradiction, falsification, citation-drift, redundancy, health, lease, and incomplete blockers |
-| REQ-005 | The artifact index is reversible and provenance-linked | Every artifact reference has stable identity, digest, schema, branch/iteration provenance, receipt links, validity state, and supersession history; invalid or missing artifacts remain explicit states and are never replaced by placeholders |
+| REQ-005 | The artifact index is reversible and provenance-linked | Every artifact reference has stable identity, full digest, schema, branch/iteration provenance, receipt links, validity state, and supersession history; distinct source versions with byte-identical content remain distinct artifacts, while invalid or missing artifacts remain explicit states and are never replaced by placeholders |
 | REQ-006 | Per-mode status is derived, typed, and fail-closed | Status transitions are replayed from authorized lifecycle events, preserve terminal ambiguity and quarantine, reject impossible transitions, and never infer success from a missing event or absent artifact |
 | REQ-007 | Projection fingerprints and rebuild boundaries are explicit | The fingerprint binds event schema, reducer version, codec, ordering policy, and projection content; incompatible changes, cursor gaps, truncation, or unseen event types produce `rebuild_required` or `blocked`, not silent reuse |
 | REQ-008 | Incremental and full replay have the same semantics | Cursor-based folds retain per-plane cursors, seen event IDs, keyed state, and frontiers; differential fixtures prove incremental output equals a clean full fold for duplicates, late events, supersession, rotation, and replay from a checkpoint |
@@ -104,7 +104,7 @@ search, call models, write the ledger, seal artifacts, select production thresho
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A reviewed reducer-ownership matrix covers every projected field and every phase-004 deep-research event family with one owner and one fold rule.
+- **SC-001**: A reviewed reducer-ownership matrix covers every projected field and every phase-004 deep-research event family with one owner and one fold rule; evaluator-owned eligibility cannot change under a claim-ledger-only event, and the convergence cursor advances only for declared convergence feeders.
 - **SC-002**: Replaying the same typed event sequence twice yields identical iteration/convergence state, artifact index, per-mode status, and projection fingerprint.
 - **SC-003**: Permutation and late-arrival fixtures prove that logical identity and finalized-frontier rules prevent arrival order from changing trusted state.
 - **SC-004**: Raw findings, claim/evidence revisions, contradiction obligations, invalid artifacts, and ambiguous outcomes remain inspectable while derived views expose only their typed current state.
@@ -133,5 +133,5 @@ search, call models, write the ledger, seal artifacts, select production thresho
 - Which artifact validity states and receipt references are authoritative inputs for this projection, versus outputs reserved for `003-sealed-artifacts`?
 - What checkpoint compaction and event-retention rule preserves contradiction history, supersession lineage, and resumed-leaf replay without requiring a full history read?
 
-These decisions are resolved against the frozen typed schema and shared mode contract before implementation. They do not authorize a runtime writer, a seal, a convergence threshold, or an authority cutover in this Planned phase.
+These decisions were resolved against the frozen typed schema and shared mode contract. The implementation consumes all 23 frozen stems, treats convergence-event blocker IDs as the typed carrier for health, lease, contradiction, and other stop blockers, keeps artifact validity referential, versions checkpoints without compacting canonical history, and marks legacy mappings as lossy and shadow-only. These decisions do not authorize a runtime writer, a seal, a convergence threshold, or an authority cutover.
 <!-- /ANCHOR:questions -->

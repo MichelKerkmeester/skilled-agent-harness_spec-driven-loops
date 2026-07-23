@@ -1,19 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
-  "description": "Plan the Deep Research mode's shadow-parity harness over the typed event-ledger substrate.",
+  "description": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and",
   "keywords": [
-    "plan",
+    "implemented",
     "deep",
     "research",
-    "mode",
-    "shadow-parity",
-    "harness",
+    "shadow",
+    "parity",
     "typed",
     "event-ledger",
-    "substrate"
+    "substrate",
+    "independent",
+    "legacy",
+    "ledger",
+    "executors",
+    "strict",
+    "event"
   ],
-  "lastUpdated": "2026-07-18T03:48:55.942Z",
+  "lastUpdated": "2026-07-22T15:59:06.578Z",
   "specId": "006",
   "folderSlug": "shadow-parity",
   "parentChain": [

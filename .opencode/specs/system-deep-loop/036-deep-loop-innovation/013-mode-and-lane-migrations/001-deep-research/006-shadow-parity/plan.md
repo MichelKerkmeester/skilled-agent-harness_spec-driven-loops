@@ -6,18 +6,18 @@ trigger_phrases:
   - "deep-research event parity implementation"
   - "mode 010 phase 009 implementation plan"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/006-shadow-parity"
-    last_updated_at: "2026-07-15T15:00:00Z"
+    last_updated_at: "2026-07-22T15:57:14Z"
     last_updated_by: "opencode"
-    recent_action: "Mapped shadow-parity requirements to the Deep Research lifecycle"
+    recent_action: "Closed quarantine-priority coverage and fixture/resume-evidence key shapes"
     next_safe_action: "Define adapters, canonicalization, fixtures, and parity receipt fields"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,30 +32,30 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Research mode |
-| **Change class** | Planning-only migration contract; shadow instrumentation and verification design |
+| **Change class** | Additive-dark runtime adapter, verification harness, and closed successor handoff |
 | **Execution** | Isolated candidate run pinned to BASE with the legacy path remaining authoritative |
 
 ### Overview
-The phase defines the Deep Research shadow path over the typed event ledger. A mode adapter observes the existing lifecycle, the ledger adapter emits the corresponding typed events, and a comparator evaluates both streams against the same frozen run manifest and input corpus. The comparator checks event-for-event sequence parity plus claim, evidence, contradiction, convergence, synthesis, resume, and memory-save projections. Phase-014 shadow framework facilities and the parent compatibility bridge are consumed rather than reimplemented. A parity receipt is the only handoff artifact; authority remains unchanged.
+The phase implements the Deep Research shadow path over the typed event ledger. Independent legacy and ledger executors run against one sealed capsule, and the comparator checks event-for-event sequence parity plus claim, evidence, contradiction, convergence, synthesis, resume, and memory-save projections. The shared shadow framework, legacy projection engine, typed reducers, and resume adapter are driven directly. `DeepResearchParityReceipt` and `DeepResearchModeGateInput` are the only successor handoff artifacts; authority remains unchanged.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Shared mode contracts, event-version rules, and write-set ownership from phase 012 are available as pinned inputs
-- [ ] The phase-014 shadow framework interface and parent compatibility bridge expose non-authoritative dual-run hooks
-- [ ] The legacy Deep Research lifecycle and reducer output are inventoried for init, iteration, convergence, synthesis, resume, and memory-save paths
-- [ ] The canonical event tuple and volatility allowlist are reviewed before fixture results are accepted
-- [ ] The fixture corpus freezes source captures, model/tool fingerprints, manifests, budgets, and expected failure dispositions
-- [ ] The parity receipt schema records BASE, contract digests, stream digests, projection fingerprints, and diff dispositions
+- [x] Shared mode contracts, event-version rules, and write-set ownership from phase 012 are available as pinned inputs [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The phase-014 shadow framework interface and parent compatibility bridge expose non-authoritative dual-run hooks [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The legacy Deep Research lifecycle and reducer output are inventoried for init, iteration, convergence, synthesis, resume, and memory-save paths [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The canonical event tuple and volatility allowlist are reviewed before fixture results are accepted [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The fixture corpus freezes source captures, model/tool fingerprints, manifests, budgets, and expected failure dispositions [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The parity receipt schema records BASE, contract digests, stream digests, projection fingerprints, and diff dispositions [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
 
 ### Definition of Done
-- [ ] Every required Deep Research fixture has a legacy stream, ledger stream, canonical diff, and reproducible receipt
-- [ ] Event-for-event parity has zero unexplained semantic differences, including resume and memory-save handoff behavior
-- [ ] Any tolerated transport difference is typed, allowlisted, non-semantic, and recorded in the receipt
-- [ ] The non-authoritative guard is proven and no cutover or legacy-writer removal is included
-- [ ] The successor mode gate receives a parity-green handoff contract without a cutover certificate
+- [x] Every required Deep Research fixture has a legacy stream, ledger stream, canonical diff, and reproducible receipt [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] Event-for-event parity has zero unexplained semantic differences, including resume and memory-save handoff behavior [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] Any tolerated transport difference is typed, allowlisted, non-semantic, and recorded in the receipt [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The non-authoritative guard is proven and no cutover or legacy-writer removal is included [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
+- [x] The successor mode gate receives a parity-green handoff contract without a cutover certificate [EVIDENCE: implementation-summary.md Verification records focused Vitest 49/49 passed and pinned tsc exit 0]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -64,7 +64,7 @@ The phase defines the Deep Research shadow path over the typed event ledger. A m
 - **Frozen run input**: bind BASE, run manifest, source snapshot, prompt/model/tool fingerprints, initial state, budget lease, and fixture ID before either path starts.
 - **Legacy adapter**: observe the existing emitter and reducer behavior without rewriting legacy state; map its lifecycle records into the canonical Deep Research event vocabulary.
 - **Ledger shadow adapter**: emit the typed mode events through the shared transition and event-envelope interfaces in dark, non-authoritative mode; preserve stable logical run, branch, step, and claim identities.
-- **Canonical comparator**: compare `(eventType, logicalRunId, logicalBranchId, stepKey, producerSeq, causalLinks, stablePayloadDigest, projectionFingerprint)` in order; classify missing, extra, duplicate, reorder, payload, receipt, artifact, and projection differences.
+- **Canonical comparator**: pair by `(eventType, logicalRunId, logicalBranchId, stepKey, producerSequence)`, then compare stable payload, causal links, receipt references, artifact references, projection fingerprint, and terminal decision; classify missing, extra, duplicate, reorder, and every field-specific difference.
 - **Projection oracle**: fold both canonical streams into plan, branch, evidence, claim, contradiction, next-focus, convergence, synthesis, and memory-save projections; compare each materialized view against the other and against a deterministic replay.
 - **Volatility boundary**: allow only declared transport fields such as process-local timing or correlation values to vary; unknown fields and any semantic field drift fail closed.
 - **Fixture and receipt store**: retain frozen inputs, both event streams, canonicalized streams, diff reports, projection fingerprints, and parity receipts in non-authoritative test output.
