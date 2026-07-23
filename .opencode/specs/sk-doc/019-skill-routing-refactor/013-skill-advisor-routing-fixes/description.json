@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes",
+  "description": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often",
+  "keywords": [
+    "advisor",
+    "current-source",
+    "holdout",
+    "accuracy",
+    "percent",
+    "selective",
+    "precision",
+    "routes",
+    "correctly",
+    "far",
+    "often"
+  ],
+  "lastUpdated": "2026-07-23T11:35:26.861Z",
+  "specId": "013",
+  "folderSlug": "skill-advisor-routing-fixes",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

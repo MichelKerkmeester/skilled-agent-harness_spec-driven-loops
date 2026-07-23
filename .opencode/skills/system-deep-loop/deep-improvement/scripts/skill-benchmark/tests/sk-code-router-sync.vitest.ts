@@ -213,7 +213,7 @@ const LEAF_CONTRACT = require(
 // is an additional check exercised whenever the artifact is present.
 const SK_CODE_ROUTE_GOLD = join(
   REPO_ROOT,
-  '.opencode', 'specs', 'sk-doc', '019-sk-doc-router-alignment', '020-router-unification-program',
+  '.opencode', 'specs', 'sk-doc', '019-skill-routing-refactor', '020-router-unification-program',
   '007-unified-refactor-implementation', '006-parent-hub-rollout', '001-sk-code', 'compiled',
   'route-gold.typed.json',
 );

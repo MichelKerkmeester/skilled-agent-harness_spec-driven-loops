@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/011-review-remediation",
+  "description": "The forced 20-iteration deep review of the 021 program returned FAIL",
+  "keywords": [
+    "forced",
+    "20-iteration",
+    "deep",
+    "review",
+    "program",
+    "returned",
+    "fail"
+  ],
+  "lastUpdated": "2026-07-23T11:35:51.761Z",
+  "specId": "011",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

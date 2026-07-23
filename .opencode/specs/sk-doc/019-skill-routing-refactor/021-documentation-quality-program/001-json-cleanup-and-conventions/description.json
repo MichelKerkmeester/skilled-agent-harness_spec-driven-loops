@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/001-json-cleanup-and-conventions",
+  "description": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas:",
+  "keywords": [
+    "skill",
+    "tree",
+    "carries",
+    "two",
+    "metadata",
+    "systems",
+    "reuse",
+    "filenames",
+    "description",
+    "json",
+    "graph-metadata",
+    "incompatible",
+    "schemas"
+  ],
+  "lastUpdated": "2026-07-23T11:35:48.926Z",
+  "specId": "001",
+  "folderSlug": "json-cleanup-and-conventions",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

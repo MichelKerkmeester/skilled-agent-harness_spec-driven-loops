@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research",
+  "description": "`defaultMode = <child>` auto-commits the hub to one mode when nothing specific fires",
+  "keywords": [
+    "defaultmode",
+    "child",
+    "auto-commits",
+    "hub",
+    "one",
+    "mode",
+    "nothing",
+    "specific",
+    "fires"
+  ],
+  "lastUpdated": "2026-07-23T11:35:29.959Z",
+  "specId": "002",
+  "folderSlug": "default-mode-policy-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

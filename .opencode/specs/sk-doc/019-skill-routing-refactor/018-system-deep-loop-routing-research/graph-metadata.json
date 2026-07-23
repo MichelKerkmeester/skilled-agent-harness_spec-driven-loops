@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/018-system-deep-loop-routing-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/018-system-deep-loop-routing-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop routing research",
+      "deep-loop workflow mode routing",
+      "deep-loop packet-qualified leaf paths",
+      "deep-loop benchmark recall",
+      "system-deep-loop routing research plan",
+      "system-deep-loop routing research tasks",
+      "system-deep-loop routing research iterations",
+      "system-deep-loop routing research outcome",
+      "system-deep-loop routing research status",
+      "system-deep-loop typed-pair routing findings",
+      "deep-loop leaf manifest research",
+      "system-deep-loop benchmark routing score"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "routing",
+      "research",
+      "deep-loop",
+      "workflow",
+      "mode",
+      "packet-qualified",
+      "leaf",
+      "paths",
+      "benchmark",
+      "recall",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json",
+      "research/resource-map.md",
+      "research/deep-research-strategy.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Diagnose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
+    "created_at": "2026-07-17T04:07:04.548Z",
+    "last_save_at": "2026-07-23T11:35:28.810Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:cc8f9901c67627b0138fdf194fe19cb2aebb043102516fd89a0c64354cdb3276",
+    "source_doc_hashes": {
+      "spec.md": "5a981134beffcf923c41c44437a19ccf79e11929208e479e1b6dd74aede3649c",
+      "plan.md": "a41ee995ae1b7c7138b4004cd0ede11c807a69368072a059a3e0e7fc0819820c",
+      "tasks.md": "481fe555eb7d25cea2ba4962e14551a9916cde0c1b5aff19de7082e43a16a7e6",
+      "implementation-summary.md": "7e8e4a0dd3cb0b227ced6113d4fcd3d17249ea92de34d269f4ec968c12f34f8b",
+      "research/research.md": "39e68b4040b8a42be2049e6af881db8fb9d2453c337ab57832031a49348efe83"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/005-calibrated-negotiation",
+  "description": "Five-iteration SOL xhigh-fast deep-research lineage on modeling the zero-signal branch as a calibrated one-turn negotiation: always expose rankScore",
+  "keywords": [
+    "five-iteration",
+    "sol",
+    "xhigh-fast",
+    "deep-research",
+    "lineage",
+    "modeling",
+    "zero-signal",
+    "branch",
+    "calibrated",
+    "one-turn",
+    "negotiation",
+    "always",
+    "expose",
+    "rankscore"
+  ],
+  "lastUpdated": "2026-07-23T11:35:32.675Z",
+  "specId": "005",
+  "folderSlug": "calibrated-negotiation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "005-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

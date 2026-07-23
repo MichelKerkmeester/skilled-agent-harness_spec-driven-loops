@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
+  "description": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a",
+  "keywords": [
+    "sk-code",
+    "today",
+    "routes",
+    "registry-driven",
+    "hub",
+    "reads",
+    "mode-registry",
+    "json",
+    "applies",
+    "routerpolicy",
+    "outcomes",
+    "surfacebundle",
+    "bundle"
+  ],
+  "lastUpdated": "2026-07-23T11:35:37.844Z",
+  "specId": "001",
+  "folderSlug": "sk-code",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "006-parent-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

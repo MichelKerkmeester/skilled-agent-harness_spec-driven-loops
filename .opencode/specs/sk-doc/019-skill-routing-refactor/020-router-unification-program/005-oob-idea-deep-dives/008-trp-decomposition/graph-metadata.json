@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "t r p decomposition deep dive",
+      "threshold recovery provenance routing",
+      "defaultMode is one corner"
+    ],
+    "key_topics": [
+      "decomposition",
+      "deep",
+      "dive",
+      "threshold",
+      "recovery",
+      "provenance",
+      "routing",
+      "defaultmode",
+      "one",
+      "corner",
+      "candidate",
+      "hypothesis"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Prepare",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick",
+    "created_at": "2026-07-18T10:05:19.988Z",
+    "last_save_at": "2026-07-23T11:35:33.827Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8b0168e7c0570dfe7cf0a5a8fe63d0f1fa83ca43498479978cbc70f5f5490659",
+    "source_doc_hashes": {
+      "spec.md": "33d59a853f798675bdf7261d2b337d8568eb8be40cef50d70adf08db73a69302"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

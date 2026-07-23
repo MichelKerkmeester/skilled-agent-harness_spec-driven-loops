@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/003-system-skill-advisor",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/003-system-skill-advisor",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor compiled policy",
+      "system skill advisor non hub rollout",
+      "advisor router shadow parity",
+      "system skill advisor rollout plan",
+      "advisor compiled router build",
+      "advisor frozen scorer verification",
+      "system skill advisor rollout tasks",
+      "advisor compiled policy tasks",
+      "advisor parity rollback tasks",
+      "system skill advisor rollout checklist",
+      "advisor real green checklist",
+      "advisor protected scorer hashes"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "compiled",
+      "policy",
+      "non",
+      "hub",
+      "rollout",
+      "router",
+      "shadow",
+      "parity",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "harness/run-phase.cjs",
+      "compiled/system-skill-advisor/policy.json",
+      "implementation-summary.md",
+      "harness/support.cjs",
+      "compiled/system-skill-advisor/route-gold.typed.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "run-phase.cjs",
+        "kind": "file",
+        "path": "harness/run-phase.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": "compiled/system-skill-advisor/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "support.cjs",
+        "kind": "file",
+        "path": "harness/support.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "route-gold.typed.json",
+        "kind": "config",
+        "path": "compiled/system-skill-advisor/route-gold.typed.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Compile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exit Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relative Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The authored `system-skill-advisor` inline router had no target-local compiled policy, typed scorer projection, exact positive-route shadow-parity proof, or fenced rollback evidence",
+    "created_at": "2026-07-19T00:00:00.000Z",
+    "last_save_at": "2026-07-23T11:35:41.603Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5cf6271adc5a2220da748ada4170beeeb7233d2856ea2fdb557ab9ff01a6da12",
+    "source_doc_hashes": {
+      "spec.md": "a1e6b4dbe6577c44b3ceeb07541693476ccb00feff05402edaa0948a437eb21a",
+      "plan.md": "a5e746a90a58fd2c44de0544922d463f5fd90c1939dc3d6631c6fc18aafd26d9",
+      "tasks.md": "2caed65d698b4bee648ff88c54741ab2f6c1df0b755e07bb595960409d58f13d",
+      "checklist.md": "e90a4ba7a3d6294677e796b1231c193bf9fc8cb2502b1f1fe27ca8ea9d61bb24",
+      "implementation-summary.md": "86f74f5f4b5e24d9b4a9890d831aabfe87803a803d7d98411f602a5ffff0a54a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

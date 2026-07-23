@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system code graph compiled policy",
+      "system code graph non hub rollout",
+      "system code graph shadow parity rollback",
+      "system code graph rollout plan",
+      "system code graph target local harness",
+      "system code graph scorer parity plan",
+      "system code graph rollout tasks",
+      "system code graph compiler tasks",
+      "system code graph real green tasks",
+      "system code graph rollout checklist",
+      "system code graph real scorer verification",
+      "system code graph rollback evidence"
+    ],
+    "key_topics": [
+      "system",
+      "code",
+      "graph",
+      "compiled",
+      "policy",
+      "non",
+      "hub",
+      "rollout",
+      "shadow",
+      "parity",
+      "rollback",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "harness/validate.cjs",
+      "parity/run-shadow.cjs",
+      "harness/support.cjs",
+      "activation/run-drill.cjs",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.cjs",
+        "kind": "file",
+        "path": "harness/validate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-shadow.cjs",
+        "kind": "file",
+        "path": "parity/run-shadow.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "support.cjs",
+        "kind": "file",
+        "path": "harness/support.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-drill.cjs",
+        "kind": "file",
+        "path": "activation/run-drill.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Router Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Compile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "GREEN",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode packets",
+    "created_at": "2026-07-19T12:00:00.000Z",
+    "last_save_at": "2026-07-23T11:35:41.297Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a847e013d6263dae4461790184b90f49c30118a06f801cef8ceb94d56a232bff",
+    "source_doc_hashes": {
+      "spec.md": "864a3f8d306a3efe1c23cab9b84bda4b94af845ff88bf5e91cdbd6c60a7bf87e",
+      "plan.md": "fefa85439de20b3132e5ec55517cff5bf79e3cbd9b4e322a0e466f5ef4e52dd5",
+      "tasks.md": "f606a00ee72da7bc2c18bc2eee98bcc754e80a039fa76e3ff0b741a459e92b42",
+      "checklist.md": "a1113ef5d0a39ffba1f82f980c6c9c45a24aabce86c91a4b878ddfffaf11331e",
+      "implementation-summary.md": "e73927f5f3e074933a4b0ded2a64dc78ffd1f2258847e30e696f48e635cbf8cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

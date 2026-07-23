@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
+  "description": "Five-iteration SOL xhigh-fast deep-research lineage on the smallest information-preserving router contract — RouteRequest facts + content-addressed",
+  "keywords": [
+    "five-iteration",
+    "sol",
+    "xhigh-fast",
+    "deep-research",
+    "lineage",
+    "smallest",
+    "information-preserving",
+    "router",
+    "contract",
+    "routerequest",
+    "facts",
+    "content-addressed"
+  ],
+  "lastUpdated": "2026-07-23T11:35:32.996Z",
+  "specId": "006",
+  "folderSlug": "minimal-typed-contract",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "005-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

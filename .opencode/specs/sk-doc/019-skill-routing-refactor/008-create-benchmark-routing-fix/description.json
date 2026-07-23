@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix",
+  "description": "`create a benchmark package` mis-routed to `create-skill`: create-benchmark's alias class held only artifact-path terms (`benchmarkreport.md`,",
+  "keywords": [
+    "benchmark",
+    "package",
+    "mis-routed",
+    "create-skill",
+    "create-benchmark",
+    "alias",
+    "class",
+    "held",
+    "only",
+    "artifact-path",
+    "terms",
+    "benchmarkreport"
+  ],
+  "lastUpdated": "2026-07-23T11:35:25.191Z",
+  "specId": "008",
+  "folderSlug": "create-benchmark-routing-fix",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
+    "sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/005-sk-prompt",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
+    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent hub rollout phase parent",
+      "compiled contract per-hub canary",
+      "unified router activation order"
+    ],
+    "key_topics": [
+      "parent",
+      "hub",
+      "rollout",
+      "phase",
+      "compiled",
+      "contract",
+      "per-hub",
+      "canary",
+      "unified",
+      "router",
+      "activation",
+      "order"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "distinct",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXECUTIVE SUMMARY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent that activates the compiled unified-router contract on the parent hubs one at a time, in increasing blast-radius order: sk-code (evidence composition), then system-deep-loop (shared packet/backend projections), then mcp-tooling (external effects + cross-hub judgment). Each hub is a fenced-CAS canary gated on route-gold staying green, advisor identity matching-or-ignored, document parity, and a proven rollback drill. The shared scorer is never touched; rollback swaps to the byte-identical prior manifest and cannot undo a committed external effect.",
+    "created_at": "2026-07-18T13:13:20.416Z",
+    "last_save_at": "2026-07-23T11:35:37.721Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9196e40fd3ee2ce0084d55eb9fae6551316a5b2aaab8a7853c43a9c768511798",
+    "source_doc_hashes": {
+      "spec.md": "a3450cdfba7e16c6295f299833ef36390578dce54f1ba28ba02f38ca60d2e273"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

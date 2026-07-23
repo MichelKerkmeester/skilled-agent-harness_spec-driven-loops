@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "description": "Sub-phase parent housing eight per-idea presentation docs plus a dedicated 5-iteration SOL xhigh-fast deep-research lineage for each lateral routing",
+  "keywords": [
+    "sub-phase",
+    "parent",
+    "housing",
+    "eight",
+    "per-idea",
+    "presentation",
+    "docs",
+    "plus",
+    "dedicated",
+    "5-iteration",
+    "sol",
+    "xhigh-fast",
+    "deep-research",
+    "lineage",
+    "lateral",
+    "routing"
+  ],
+  "lastUpdated": "2026-07-23T11:35:30.943Z",
+  "specId": "005",
+  "folderSlug": "oob-idea-deep-dives",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

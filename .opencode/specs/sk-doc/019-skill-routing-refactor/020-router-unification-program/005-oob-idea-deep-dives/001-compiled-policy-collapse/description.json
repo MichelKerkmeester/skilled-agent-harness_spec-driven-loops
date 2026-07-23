@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "description": "Five-iteration SOL xhigh-fast deep-research lineage on collapsing the two hand-authored routing maps (INTENT_SIGNALS + RESOURCE_MAP + hub-router.json",
+  "keywords": [
+    "five-iteration",
+    "sol",
+    "xhigh-fast",
+    "deep-research",
+    "lineage",
+    "collapsing",
+    "two",
+    "hand-authored",
+    "routing",
+    "maps",
+    "hub-router",
+    "json"
+  ],
+  "lastUpdated": "2026-07-23T11:35:31.238Z",
+  "specId": "001",
+  "folderSlug": "compiled-policy-collapse",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "005-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing default-on decision",
+      "SPECKIT_COMPILED_ROUTING flip default",
+      "compiled router safe cutover contract",
+      "compiled routing default-on implementation plan",
+      "P0 P4 compiled routing migration",
+      "compiled routing safe cutover plan",
+      "compiled routing default-on tasks",
+      "P0 P4 migration task list",
+      "compiled routing default-on checklist",
+      "P0 P4 safe cutover verification",
+      "compiled routing default-on decision record",
+      "compiled eligibility single source"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "default-on",
+      "decision",
+      "flip",
+      "default",
+      "router",
+      "safe",
+      "cutover",
+      "contract",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/bin/compiled-route.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "On Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cutover Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Routing Default",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "On Safe Cutover",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Observe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Requirement Coverage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent goal frames \"compiled routing as the effective default\" as a switch to flip",
+    "created_at": "2026-07-20T18:11:31.092Z",
+    "last_save_at": "2026-07-23T11:35:43.168Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:52b372887e93cafa7ba92a17391f11eec7e76f80a138513f26ddae85e771b3b6",
+    "source_doc_hashes": {
+      "spec.md": "3c2bc9ca3abe581e8ed256a4df2c3f90c625ccf30757d41c7181adadbab39fc8",
+      "plan.md": "8a5c5f1bd2c4277c3cddeb58cbc0a1fa4f64c775047a78208a04e7f05bbbb254",
+      "tasks.md": "21770f96f3b5391fc1327a578703a909972e4c1cfa1f2dd9f3b0e90181db4bae",
+      "checklist.md": "ade33f6234382ab008191b4500c544f4ee4d72d511019682ae5033aece1c0df0",
+      "decision-record.md": "7b7c073aa730bf8c9c33ef97482b9f43c1b27f503de450817d181976ae5eeb14",
+      "implementation-summary.md": "302a2e77af30c667363cb4369dcf06925f5641c5f944b8a7490e6a2e01e3f9e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

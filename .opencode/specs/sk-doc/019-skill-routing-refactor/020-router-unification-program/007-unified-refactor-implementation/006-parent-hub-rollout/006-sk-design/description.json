@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
+  "description": "Compiled sk-design parent-hub shadow rollout with six design axes, ordered bundles, nested leaf projection, real-scorer proof, and fenced rollback.",
+  "keywords": [
+    "compiled",
+    "sk-design",
+    "parent-hub",
+    "shadow",
+    "rollout",
+    "six",
+    "design",
+    "axes",
+    "ordered",
+    "bundles",
+    "nested",
+    "leaf",
+    "projection",
+    "real-scorer",
+    "proof",
+    "fenced",
+    "rollback"
+  ],
+  "lastUpdated": "2026-07-23T11:35:39.210Z",
+  "specId": "006",
+  "folderSlug": "sk-design",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "006-parent-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

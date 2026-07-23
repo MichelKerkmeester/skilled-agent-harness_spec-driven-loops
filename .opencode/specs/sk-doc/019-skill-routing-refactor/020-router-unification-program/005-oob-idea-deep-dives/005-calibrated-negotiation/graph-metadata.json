@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/005-calibrated-negotiation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/005-calibrated-negotiation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "calibrated routing negotiation deep dive",
+      "selective classification routing",
+      "rank score vs estimated error"
+    ],
+    "key_topics": [
+      "calibrated",
+      "routing",
+      "negotiation",
+      "deep",
+      "dive",
+      "selective",
+      "classification",
+      "rank",
+      "score",
+      "estimated",
+      "error",
+      "advisor"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Calibrated One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Turn Routing Negotiation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor's `confidence` is a bounded ranking heuristic, not a probability of correctness",
+    "created_at": "2026-07-18T04:39:05.409Z",
+    "last_save_at": "2026-07-23T11:35:32.838Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1452a3efbbd9a865b62a5335db061570cc9d22140eb91294b6f83ffa8919662a",
+    "source_doc_hashes": {
+      "spec.md": "a6e9d026f70e79451355a9095660ab30dd0c14b999da6c42b64c3de0ae11e19c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

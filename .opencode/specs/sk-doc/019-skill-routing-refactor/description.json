@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor",
+  "description": "The ten sk-doc `create-` creation packets did not present a uniform routing contract against the create-skill router standard",
+  "keywords": [
+    "ten",
+    "sk-doc",
+    "creation",
+    "packets",
+    "present",
+    "uniform",
+    "routing",
+    "contract",
+    "against",
+    "create-skill",
+    "router",
+    "standard"
+  ],
+  "lastUpdated": "2026-07-23T11:35:21.876Z",
+  "specId": "019",
+  "folderSlug": "skill-routing-refactor",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-07-26_17-28__status-phase-4-phase-3-phase-5-core-landed-and.md",
+    "16-07-26_17-38__checkpoint-foundation-core-landed-and-a-finding.md"
+  ]
+}

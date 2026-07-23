@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map",
+  "description": "Trigger ownership was inconsistent across packet source files and router projections",
+  "keywords": [
+    "trigger",
+    "ownership",
+    "inconsistent",
+    "across",
+    "packet",
+    "source",
+    "files",
+    "router",
+    "projections"
+  ],
+  "lastUpdated": "2026-07-23T11:35:22.614Z",
+  "specId": "001",
+  "folderSlug": "router-audit-and-fix-map",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

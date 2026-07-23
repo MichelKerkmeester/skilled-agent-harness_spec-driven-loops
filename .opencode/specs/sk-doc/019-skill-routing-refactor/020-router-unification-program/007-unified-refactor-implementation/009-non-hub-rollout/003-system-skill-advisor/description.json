@@ -1,0 +1,32 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/003-system-skill-advisor",
+  "description": "The authored `system-skill-advisor` inline router had no target-local compiled policy, typed scorer projection, exact positive-route shadow-parity",
+  "keywords": [
+    "authored",
+    "system-skill-advisor",
+    "inline",
+    "router",
+    "target-local",
+    "compiled",
+    "policy",
+    "typed",
+    "scorer",
+    "projection",
+    "exact",
+    "positive-route",
+    "shadow-parity"
+  ],
+  "lastUpdated": "2026-07-23T11:35:41.452Z",
+  "specId": "003",
+  "folderSlug": "system-skill-advisor",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "009-non-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

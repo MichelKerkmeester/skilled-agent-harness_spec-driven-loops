@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
+  "description": "Lane C never exercises the compiled routing path, and it fits in two non-frozen files (CF-BM-1)",
+  "keywords": [
+    "lane",
+    "never",
+    "exercises",
+    "compiled",
+    "routing",
+    "path",
+    "fits",
+    "two",
+    "non-frozen",
+    "files",
+    "cf-bm-1"
+  ],
+  "lastUpdated": "2026-07-23T11:35:45.155Z",
+  "specId": "004",
+  "folderSlug": "benchmark-compiled-lane-c",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "015-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

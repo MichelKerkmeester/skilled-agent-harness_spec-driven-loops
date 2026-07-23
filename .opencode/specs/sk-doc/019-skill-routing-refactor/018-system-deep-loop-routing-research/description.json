@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/019-skill-routing-refactor/018-system-deep-loop-routing-research",
+  "description": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
+  "keywords": [
+    "system-deep-loop",
+    "routing",
+    "cannot",
+    "measured",
+    "canonical",
+    "typed-pair",
+    "surface",
+    "coordinate",
+    "model",
+    "structurally",
+    "ambiguous"
+  ],
+  "lastUpdated": "2026-07-23T11:35:28.617Z",
+  "specId": "018",
+  "folderSlug": "system-deep-loop-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

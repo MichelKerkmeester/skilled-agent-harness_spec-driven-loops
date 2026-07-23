@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code alignment drift guards",
+      "code-opencode resource map equality gate",
+      "qualifiedIdToLeaf bijection test",
+      "sk-code alignment plan",
+      "drift guards orchestrator plan",
+      "qualifiedIdToLeaf plan",
+      "sk-code alignment tasks",
+      "drift guards task list",
+      "sk-code alignment checklist",
+      "drift guards QA gate",
+      "sk-code alignment implementation summary",
+      "drift guards delivered summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "alignment",
+      "drift",
+      "guards",
+      "code-opencode",
+      "resource",
+      "map",
+      "equality",
+      "gate",
+      "qualifiedidtoleaf",
+      "bijection",
+      "test"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/alignment-verification-automation.md",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+      ".opencode/skills/sk-code/leaf-manifest.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "verify_stack_folders.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-router-sync.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Guards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
+    "created_at": "2026-07-20T21:51:40.268Z",
+    "last_save_at": "2026-07-23T11:35:46.657Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3a6d4e47a4afa62a7a86120123529ccf14623cfce2fa8adc395afc77233f9671",
+    "source_doc_hashes": {
+      "spec.md": "d6271471813c4f9e55e5149816cc8c235bb60c16548bca8715eeb0cad4256c4e",
+      "plan.md": "bc6d08a7c828dbd6b0db39a51af540b792e745759c6a0b8a95fea2a4dae4c9fb",
+      "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
+      "checklist.md": "41dd4b31e35a033d8d0911474bb01c9e92f1a7e70a9e2862f66f9a799fa5b833",
+      "implementation-summary.md": "61f7750c4932abc9f53f11dce155ca43f928b40ce82edd0c3795d709fe12ee89"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

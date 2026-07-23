@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "description": "Five-iteration SOL xhigh-fast deep-research lineage on a no-wrong-door routing protocol where any mode can accept intake and offer a typed transfer",
+  "keywords": [
+    "five-iteration",
+    "sol",
+    "xhigh-fast",
+    "deep-research",
+    "lineage",
+    "no-wrong-door",
+    "routing",
+    "protocol",
+    "mode",
+    "accept",
+    "intake",
+    "offer",
+    "typed",
+    "transfer"
+  ],
+  "lastUpdated": "2026-07-23T11:35:32.231Z",
+  "specId": "004",
+  "folderSlug": "no-wrong-door-handoff",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "005-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

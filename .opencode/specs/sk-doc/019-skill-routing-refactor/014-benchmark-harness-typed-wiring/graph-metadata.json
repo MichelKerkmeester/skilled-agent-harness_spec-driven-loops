@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "benchmark harness typed wiring",
+      "two classifier decoupling fix",
+      "leaf selection coupled to hub modes",
+      "sealed independent holdout corpus",
+      "selected-map join fix",
+      "single classifier collapse plan",
+      "unified intent leaf taxonomy phases",
+      "sealed holdout same change sequencing",
+      "single classifier collapse tasks",
+      "unified taxonomy task list",
+      "sealed holdout task sequence",
+      "benchmark harness typed wiring checklist"
+    ],
+    "key_topics": [
+      "benchmark",
+      "harness",
+      "typed",
+      "wiring",
+      "two",
+      "classifier",
+      "decoupling",
+      "leaf",
+      "selection",
+      "coupled",
+      "hub",
+      "modes"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/leaf-aliases.json",
+      "reviews/sol-5.6-ultra-amendment-verdict.md",
+      "reviews/glm-5.2-max-amendment-review.md",
+      "reviews/fable-5-xhigh-parent-skill-opinion.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "live-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "sol-5.6-ultra-amendment-verdict.md",
+        "kind": "doc",
+        "path": "reviews/sol-5.6-ultra-amendment-verdict.md",
+        "source": "derived"
+      },
+      {
+        "name": "glm-5.2-max-amendment-review.md",
+        "kind": "doc",
+        "path": "reviews/glm-5.2-max-amendment-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-5-xhigh-parent-skill-opinion.md",
+        "kind": "doc",
+        "path": "reviews/fable-5-xhigh-parent-skill-opinion.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Typed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real dispatch path it does not",
+    "created_at": "2026-07-16T14:14:43.463Z",
+    "last_save_at": "2026-07-23T11:35:27.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:4eb18e5ef775212d5ed236362b3372e284155fc190414934dbc5ec9c87d5d7c7",
+    "source_doc_hashes": {
+      "spec.md": "b0bcc53dab8b3e2f037b89f5c165e2cdb9d80068fd25bd9ae7c2d1556e446d7a",
+      "plan.md": "e4151ebdd6a333596d187e8eb72e206fa63e74c137fc452da0f82d13bd1ed8bb",
+      "tasks.md": "5de4235638d0dcd29e020866cd95aaab51d34c15c482d466966a5012e28200ca",
+      "checklist.md": "7ab06b16f3e18e85ca45b09182f5571e29dea6e46410b4316e06c7b062b41f99",
+      "decision-record.md": "552fe1ea21a0c163d96f48a863f6592e5155336077384d0b4e9a60ee2d2d40bb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "replayable correction overlay deep dive",
+      "two-plane routing learning",
+      "hash-addressed routing overlay"
+    ],
+    "key_topics": [
+      "replayable",
+      "correction",
+      "overlay",
+      "deep",
+      "dive",
+      "two-plane",
+      "routing",
+      "learning",
+      "hash-addressed",
+      "cannot",
+      "safely",
+      "learn"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replayable Correction Overlay",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Outcome The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Routing cannot safely learn by mutating serving rules online because mutable policy destroys deterministic replay",
+    "created_at": "2026-07-18T04:39:05.018Z",
+    "last_save_at": "2026-07-23T11:35:31.660Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9dbd658125e2691639b452f42fb75aebb72f8a789bfd7077e7833b9f449f7a20",
+    "source_doc_hashes": {
+      "spec.md": "a0e5cc56ee65e0565fcd45f0e19ba09aefee6c350361bbdd91a52ccecac7c3c9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

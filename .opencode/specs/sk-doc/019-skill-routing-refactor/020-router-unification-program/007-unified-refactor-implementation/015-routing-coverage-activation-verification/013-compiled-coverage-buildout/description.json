@@ -1,0 +1,32 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "description": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered",
+  "keywords": [
+    "real",
+    "parity",
+    "run",
+    "speckitcompiledrouting",
+    "route-gold",
+    "shows",
+    "compiled",
+    "router",
+    "mechanism",
+    "works",
+    "byte-identical",
+    "legacy",
+    "covered"
+  ],
+  "lastUpdated": "2026-07-23T11:35:48.035Z",
+  "specId": "013",
+  "folderSlug": "compiled-coverage-buildout",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "015-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

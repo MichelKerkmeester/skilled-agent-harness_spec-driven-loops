@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/008-existing-readme-cleanup",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/008-existing-readme-cleanup",
+  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "existing readme cleanup",
+      "stale broken reference repair",
+      "missing overview backfill",
+      "existing readme cleanup summary",
+      "audit triage surgical repair",
+      "broken reference cleanup swarm"
+    ],
+    "key_topics": [
+      "existing",
+      "readme",
+      "cleanup",
+      "stale",
+      "broken",
+      "reference",
+      "repair",
+      "missing",
+      "overview",
+      "backfill",
+      "summary",
+      "audit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-command/references/README.md",
+      ".opencode/skills/sk-design/styles/scripts/README.md",
+      "core/README.md",
+      "templates/changelog/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/references/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Surgically",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Title",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Triage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Six Sonnet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `auditreadmes.py` fleet sweep flagged 70 template-invalid READMEs, 177 broken references and 68 missing-OVERVIEW findings across the repo's 593 READMEs",
+    "created_at": "2026-07-22T15:15:44.494Z",
+    "last_save_at": "2026-07-23T11:35:50.989Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9129eb783c3f0473fab1ae8dde033cec3c24e5b4ce0c85eca633539c151d1506",
+    "source_doc_hashes": {
+      "spec.md": "7d300994dd7bdfb7df78405b24d5818a25573c61b392806e6b9139692f308c9a",
+      "plan.md": "716003adb5c45ecf63251f144fcd22b31a57675494292fdd3ab3d726d1cb91cc",
+      "tasks.md": "a3d69cdf0334f287a93299b07d0673b12a39cea328748916f5926ef9bca6e2bb",
+      "checklist.md": "a4257139fc0ee8c6e227f7ef8057dd07733f40ae2a1be417f879dc998e4481f7",
+      "implementation-summary.md": "8024ce75f0c3c4efa128b8717cdf7228fb9022357d7ffafe1bf28e2ec3cf6cb3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

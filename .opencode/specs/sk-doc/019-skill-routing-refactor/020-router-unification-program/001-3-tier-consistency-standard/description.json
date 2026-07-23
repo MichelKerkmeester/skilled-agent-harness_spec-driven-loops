@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard",
+  "description": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
+  "keywords": [
+    "routing",
+    "config",
+    "inconsistent",
+    "across",
+    "fleet",
+    "ways",
+    "hard",
+    "trust",
+    "test",
+    "uniformly"
+  ],
+  "lastUpdated": "2026-07-23T11:35:29.665Z",
+  "specId": "001",
+  "folderSlug": "3-tier-consistency-standard",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

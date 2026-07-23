@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/006-unified-refactor-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/006-unified-refactor-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unified router refactor research",
+      "fuse eight routing ideas into one",
+      "parent hub and singular skill routing contract"
+    ],
+    "key_topics": [
+      "unified",
+      "router",
+      "refactor",
+      "research",
+      "fuse",
+      "eight",
+      "routing",
+      "ideas",
+      "one",
+      "parent",
+      "hub",
+      "singular"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Context Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Specific Agenda",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eight source ideas overlap at their most important boundaries: outcome typing, uncertainty recovery, policy posture, compiled identity, authority, and migration",
+    "created_at": "2026-07-18T10:28:55.781Z",
+    "last_save_at": "2026-07-23T11:35:34.147Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e945c0662324f16b941763ec71a4b59345a3408649dfa64e19f4ce05273358ad",
+    "source_doc_hashes": {
+      "spec.md": "e1702ca66b624258ce00c9bdb6eef157042ac51726531ab830cd7f44764c541d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "execution plane prepare verify commit",
+      "route proof destination local authority",
+      "idempotency ledger fencing epoch receipt",
+      "execution plane build plan",
+      "prepare verify commit implementation",
+      "idempotency ledger receipt fixtures",
+      "execution plane task list",
+      "prepare verify commit tasks",
+      "idempotency ledger fixture tasks",
+      "execution plane verification",
+      "prepare verify commit checklist",
+      "idempotency fencing evidence"
+    ],
+    "key_topics": [
+      "execution",
+      "plane",
+      "prepare",
+      "verify",
+      "commit",
+      "route",
+      "proof",
+      "destination",
+      "local",
+      "authority",
+      "idempotency",
+      "ledger"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "lib/execution-plane.cjs",
+      "lib/idempotency-ledger.cjs",
+      "lib/projector.cjs",
+      "fixtures/execution-route-gold.v1.json",
+      "tests/execution-plane.test.cjs",
+      "harness/run-phase.cjs",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "execution-plane.cjs",
+        "kind": "file",
+        "path": "lib/execution-plane.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "idempotency-ledger.cjs",
+        "kind": "file",
+        "path": "lib/idempotency-ledger.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "projector.cjs",
+        "kind": "file",
+        "path": "lib/projector.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "execution-route-gold.v1.json",
+        "kind": "config",
+        "path": "fixtures/execution-route-gold.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "execution-plane.test.cjs",
+        "kind": "file",
+        "path": "tests/execution-plane.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-phase.cjs",
+        "kind": "file",
+        "path": "harness/run-phase.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Plane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phased Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A route decision is not an effect",
+    "created_at": "2026-07-18T13:13:17.358Z",
+    "last_save_at": "2026-07-23T11:35:35.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18c05f2f41f5391632939e768ed6998a1728e8dbe2060ab823b74e2ff507f89b",
+    "source_doc_hashes": {
+      "spec.md": "0c2631b60e0c4d9c0642174aad667f5dfbc36e9cb0c936320f5460440c2c5116",
+      "plan.md": "619e7c7bfda73b635920a9841948e49257961c8ead6c34fc6ff648c206ba36e3",
+      "tasks.md": "403babf08ef26cdbe703bd958e772361d768f972325730cf47ab9c3b15f4aad5",
+      "checklist.md": "1174c2f30c3933257460f7bb6b02e9e54ef2e99b29fefc4aa418a4ab674bf6d0",
+      "implementation-summary.md": "52b7d2a0a2bb2dd63ffcc2b174b11f5ad4c3391ddabdf0b2b869edf64c345edb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

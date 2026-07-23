@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing policy deep dive",
+      "collapse intent signals resource map",
+      "registry-derived routing policy"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "policy",
+      "deep",
+      "dive",
+      "collapse",
+      "intent",
+      "signals",
+      "resource",
+      "map",
+      "registry-derived",
+      "parent-hub"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Policy Collapse",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deepen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Context Seed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Parent-hub routing is represented in both prose tables and JSON metadata, so equivalent rules can drift and no single immutable artifact identifies the active policy",
+    "created_at": "2026-07-18T04:39:04.885Z",
+    "last_save_at": "2026-07-23T11:35:31.376Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:94c7c0d740d4273a8fdb24937bd31982037805d0ef8c812d6587e946349def13",
+    "source_doc_hashes": {
+      "spec.md": "be47cc0cdd1781175ca08fef9cd3c3a373a97401310a90f15727832c17de99b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

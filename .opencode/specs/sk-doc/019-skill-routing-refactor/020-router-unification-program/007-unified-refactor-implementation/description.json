@@ -1,0 +1,33 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "description": "Phase parent for implementing the council-synthesized unified router refactor: one content-addressed compiled policy, one closed decision algebra, one",
+  "keywords": [
+    "phase",
+    "parent",
+    "implementing",
+    "council-synthesized",
+    "unified",
+    "router",
+    "refactor",
+    "one",
+    "content-addressed",
+    "compiled",
+    "policy",
+    "closed",
+    "decision",
+    "algebra"
+  ],
+  "lastUpdated": "2026-07-23T11:35:34.304Z",
+  "specId": "007",
+  "folderSlug": "unified-refactor-implementation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "20-07-26_06-08__deep-review-of-the-compiled-routing-cutover.md",
+    "22-07-26_21-24__review-gate-closed-the-20-iteration-deep-review.md"
+  ]
+}

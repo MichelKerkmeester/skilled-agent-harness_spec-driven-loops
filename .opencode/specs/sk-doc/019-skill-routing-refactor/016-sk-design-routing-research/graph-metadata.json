@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-sk-design-routing-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-sk-design-routing-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design routing research",
+      "sk-design typed pair routing",
+      "sk-design leaf manifest gap",
+      "sk-design benchmark recall",
+      "sk-design routing research plan",
+      "sk-design routing research tasks",
+      "sk-design routing research iterations",
+      "sk-design routing research outcome",
+      "sk-design routing research status"
+    ],
+    "key_topics": [
+      "sk-design",
+      "routing",
+      "research",
+      "typed",
+      "pair",
+      "leaf",
+      "manifest",
+      "gap",
+      "benchmark",
+      "recall",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-motion/SKILL.md",
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Diagnose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design's routing cannot be measured on the canonical typed-pair surface",
+    "created_at": "2026-07-17T04:00:35.686Z",
+    "last_save_at": "2026-07-23T11:35:28.124Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:03ed9f451b27417b1c863386938f3e64d2f180a152271269a53a4c1bdfb66a01",
+    "source_doc_hashes": {
+      "spec.md": "9b7a082165313943ddc8a3fc85122f65c0a3e94327a4830f4bed09e0c4b6f5d8",
+      "plan.md": "1481eae78c1a438f8e68d06dcea351adc1c9198ff7467db87d825f94956da0b4",
+      "tasks.md": "d3874070b43bc9dff14a0fe492839453d5e206338d62f21715dd869bdd15b118",
+      "implementation-summary.md": "edd9e12fd2c6f627e247214e9e45c77ea0250ccaa63b0c321423b592c6593329",
+      "research/research.md": "8c8f2d341a88a3d26589f6a3fabb66802e85b36618ff90d1355c26af867b258e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -37,7 +37,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
 const IMPL_ROOT = path.join(
   REPO_ROOT,
-  '.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
+  '.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program',
   '007-unified-refactor-implementation',
 );
 const AUTHORED_RESOLVER = path.join(IMPL_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');

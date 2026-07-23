@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/007-proof-carrying-commit",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/007-proof-carrying-commit",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "proof carrying route plan deep dive",
+      "prepare verify commit routing",
+      "route proof is not authority"
+    ],
+    "key_topics": [
+      "proof",
+      "carrying",
+      "route",
+      "plan",
+      "deep",
+      "dive",
+      "prepare",
+      "verify",
+      "commit",
+      "routing",
+      "authority",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Carrying Prepare",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A route decision can blur classification, authority acquisition, and execution",
+    "created_at": "2026-07-18T04:39:05.757Z",
+    "last_save_at": "2026-07-23T11:35:33.512Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b1797d96ada8b573d0a6650897a0caf52961eead242beb6f6f3a0669a4edad7c",
+    "source_doc_hashes": {
+      "spec.md": "0e7508ee8abad8633bb69c9591fabb00baf5260afbf8a71a03197a45ed341381"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

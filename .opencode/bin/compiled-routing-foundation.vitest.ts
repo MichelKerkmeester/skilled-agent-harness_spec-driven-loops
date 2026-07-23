@@ -37,7 +37,7 @@ const scanner = requireCjs(join(HERE, 'check-no-spec-imports.cjs'));
 const REPO = join(HERE, '..', '..');
 const SPEC_TREE_RESOLVER = join(
   REPO,
-  '.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program',
+  '.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program',
   '007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs',
 );
 const ADVISOR_DIST_FLAG = join(

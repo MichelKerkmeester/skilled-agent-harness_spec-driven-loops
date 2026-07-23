@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "description": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome",
+  "keywords": [
+    "phase",
+    "parent",
+    "program",
+    "shipped-but-inert",
+    "compiled",
+    "skill-router",
+    "perfectly",
+    "integrated",
+    "enabled",
+    "default",
+    "phased",
+    "outcome"
+  ],
+  "lastUpdated": "2026-07-23T11:35:44.009Z",
+  "specId": "015",
+  "folderSlug": "routing-coverage-activation-verification",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

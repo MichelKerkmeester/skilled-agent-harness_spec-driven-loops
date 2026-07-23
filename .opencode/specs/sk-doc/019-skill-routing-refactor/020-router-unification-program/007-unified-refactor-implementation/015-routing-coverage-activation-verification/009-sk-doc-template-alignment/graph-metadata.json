@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/009-sk-doc-template-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/009-sk-doc-template-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc template alignment",
+      "feature catalog trigger phrases routing claim",
+      "playbook topology quote tolerance",
+      "sk-doc template alignment plan",
+      "strict package validator plan",
+      "lockstep directive manifest plan",
+      "sk-doc template alignment tasks",
+      "lockstep manifest task list",
+      "sk-doc template alignment checklist",
+      "lockstep manifest QA gate",
+      "sk-doc template alignment implementation summary",
+      "lockstep manifest planned summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "template",
+      "alignment",
+      "feature",
+      "catalog",
+      "trigger",
+      "phrases",
+      "routing",
+      "claim",
+      "playbook",
+      "topology",
+      "quote"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-snippet-template.md",
+      ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/create-feature-catalog/scripts/validate_catalog_package.py",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      ".opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-lockstep-surfaces.json",
+      ".opencode/skills/sk-doc/create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-snippet-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_catalog_package.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/scripts/validate_catalog_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "hub-skill-scaffold.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-lockstep-surfaces.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-lockstep-surfaces.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-lockstep-parity.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doc-frontmatter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Correct",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
+    "created_at": "2026-07-20T21:51:42.834Z",
+    "last_save_at": "2026-07-23T11:35:47.011Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:185f196b218f44a7763bbf44c59528b81b276a2341f97a23eccffec897cc5d3e",
+    "source_doc_hashes": {
+      "spec.md": "7ef782e48a210e8f2a39d6c8d4fb205f75778a36a530c2e90152120a9b1679d2",
+      "plan.md": "ed307975c49033ab43f8f44dc4613b8e1b788473aa85747789752ef5acdfb6bc",
+      "tasks.md": "017cce8e5439d44d69e3e82192809894c194b19963004dba1a3a0311bb192626",
+      "checklist.md": "2e023e89251c3d59852672553740df90e547094558fd1266e96de45d3a6b8e0a",
+      "implementation-summary.md": "5e54515104d05a859f7e114951ec5d2407c12545478e6da760b86dc7b82d0afc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

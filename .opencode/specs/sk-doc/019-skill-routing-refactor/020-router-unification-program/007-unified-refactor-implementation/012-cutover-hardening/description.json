@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/012-cutover-hardening",
+  "description": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `011-runtime-engine`, the activation layer",
+  "keywords": [
+    "10-iteration",
+    "deep",
+    "review",
+    "p4b",
+    "compiled-routing",
+    "cutover",
+    "runtime",
+    "engine",
+    "011-runtime-engine",
+    "activation",
+    "layer"
+  ],
+  "lastUpdated": "2026-07-23T11:35:42.638Z",
+  "specId": "012",
+  "folderSlug": "cutover-hardening",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

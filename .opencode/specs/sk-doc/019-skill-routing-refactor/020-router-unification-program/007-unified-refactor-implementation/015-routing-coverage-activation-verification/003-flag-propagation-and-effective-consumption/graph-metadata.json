@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing flag propagation effective consumption",
+      "SPECKIT_COMPILED_ROUTING child env allowlist",
+      "compiledRoute bridge subprocess hook threading",
+      "compiled routing flag propagation plan",
+      "compiledRoute threading implementation plan",
+      "child env allowlist consumption plan",
+      "compiled routing flag propagation tasks",
+      "compiledRoute threading task list",
+      "compiled routing flag propagation checklist",
+      "compiledRoute consumption verification",
+      "compiled routing consumption decision record",
+      "compiledRouteSummary threading decision"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "flag",
+      "propagation",
+      "effective",
+      "consumption",
+      "child",
+      "env",
+      "allowlist",
+      "compiledroute",
+      "bridge",
+      "subprocess"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      ".opencode/bin/compiled-routing-flag-propagation.vitest.ts",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/subprocess.ts",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag-propagation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/bin/compiled-routing-flag-propagation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subprocess.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/subprocess.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Propagation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Effective Consumption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement With",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Neither Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Routing Flag Propagation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural reasons this phase is scoped to fix:",
+    "created_at": "2026-07-20T21:51:27.075Z",
+    "last_save_at": "2026-07-23T11:35:45.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e68db66980e97b1b8b6617fec8bc5c8acef7c5e3aace241766a1a26d8cb3d0ad",
+    "source_doc_hashes": {
+      "spec.md": "450ab7882772a11bbf80e13cc0172669ea5076559f0c7152c13a843055dba344",
+      "plan.md": "b2d7b79f0a27c5daa71a228287111ece5615b70a3bd1f1495a79f914ea27e6d4",
+      "tasks.md": "677104185f510e585b7611899631b5515ddd623fb459fc91f61bc1008ce8496a",
+      "checklist.md": "069100fa2ac9d00ff7be39e3cc72eb0d39728f11388c5feb0983e02cc5e12d71",
+      "decision-record.md": "6484ce2515b127414194205b416b83be57f36ed7b033360436494c7aecba445d",
+      "implementation-summary.md": "fd357cefac343afc478f6e446ac9db0d72a5aa541c2511c5552e5f4d76e43d99"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

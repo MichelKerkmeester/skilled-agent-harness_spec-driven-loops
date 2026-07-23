@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/000-contract-schemas",
+  "description": "The unified router refactor is not a router rewrite — it is a shadow compiler plus additive semantic gates whose entire safety model rests on",
+  "keywords": [
+    "unified",
+    "router",
+    "refactor",
+    "rewrite",
+    "shadow",
+    "compiler",
+    "plus",
+    "additive",
+    "semantic",
+    "gates",
+    "whose",
+    "entire",
+    "safety",
+    "model",
+    "rests"
+  ],
+  "lastUpdated": "2026-07-23T11:35:34.605Z",
+  "specId": "000",
+  "folderSlug": "contract-schemas",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

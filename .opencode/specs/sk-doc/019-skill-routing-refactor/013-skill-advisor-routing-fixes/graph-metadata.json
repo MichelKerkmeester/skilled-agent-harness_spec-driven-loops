@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor routing fixes implementation",
+      "advisor output contract fallback budget fix",
+      "executor delegation ambiguity coherence fix",
+      "shadow floor calibration experiment",
+      "skill advisor routing fixes plan",
+      "advisor fix dependency order",
+      "executor delegation finalization boundary plan",
+      "shadow floor experiment gate plan",
+      "skill advisor routing fixes tasks",
+      "advisor fix task list",
+      "P0 correctness fix tasks",
+      "gated shadow experiment task"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "routing",
+      "implementation",
+      "output",
+      "contract",
+      "fallback",
+      "budget",
+      "executor",
+      "delegation",
+      "ambiguity",
+      "coherence"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Section",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Correctness",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Covers",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often than not",
+    "created_at": "2026-07-16T08:23:16.276Z",
+    "last_save_at": "2026-07-23T11:35:27.033Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:a11600af31dc3f4f29f7f91286381334d93bd5f7abf70b3c7ff739b6c78dae29",
+    "source_doc_hashes": {
+      "spec.md": "724c84ad6b0e313feefba9a77aa2b3641d6c0b85d7aac3b35d2d0ca5470d1387",
+      "plan.md": "9b873a25ce542797b751bbf6261371ff1f589f51573e27c7583bcd11c650b5d1",
+      "tasks.md": "cd73a833a8dca69c552e7f92629cc7fc712fca8da144409cd7f5343e2344b638",
+      "checklist.md": "e8cba4a8462af6f56676730de60ae34ff9d943a28bb2b278893d4b6f8db208c7",
+      "decision-record.md": "3543f58d9c56bff129b1b53ba292671bbb18678300c8345eae9a1cc8168d3d1d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance",
+  "description": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check):",
+  "keywords": [
+    "normalize",
+    "non-conformant",
+    "sk-doc",
+    "packet",
+    "skill",
+    "files",
+    "passes",
+    "canonical",
+    "create-skill",
+    "section",
+    "contract",
+    "check"
+  ],
+  "lastUpdated": "2026-07-23T11:35:25.564Z",
+  "specId": "009",
+  "folderSlug": "create-packet-routing-conformance",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

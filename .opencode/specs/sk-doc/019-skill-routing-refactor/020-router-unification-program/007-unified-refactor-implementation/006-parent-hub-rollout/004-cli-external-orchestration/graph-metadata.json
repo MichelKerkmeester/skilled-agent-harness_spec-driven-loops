@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli external orchestration router activation",
+      "external executor ordered bundle",
+      "cli executor canary",
+      "cli external orchestration rollout plan",
+      "external executor compiled policy",
+      "cli canary implementation",
+      "cli external orchestration rollout tasks",
+      "external executor canary tasks",
+      "cli router implementation tasks",
+      "cli external orchestration verification",
+      "external executor canary evidence",
+      "cli router real green"
+    ],
+    "key_topics": [
+      "cli",
+      "external",
+      "orchestration",
+      "router",
+      "activation",
+      "executor",
+      "ordered",
+      "bundle",
+      "canary",
+      "rollout",
+      "plan",
+      "compiled"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "harness/validate-canary.cjs",
+      "compiled/policy.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "activation/acceptance.json",
+      "lib/registry-compiler.cjs",
+      "lib/router.cjs",
+      "fixtures/canary-cases.v1.json",
+      "compiled/PolicyCardV1.md",
+      "lib/execution-fence.cjs",
+      "lib/activation-gate.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-canary.cjs",
+        "kind": "file",
+        "path": "harness/validate-canary.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": "compiled/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance.json",
+        "kind": "config",
+        "path": "activation/acceptance.json",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": "lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router.cjs",
+        "kind": "file",
+        "path": "lib/router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": "fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "PolicyCardV1.md",
+        "kind": "doc",
+        "path": "compiled/PolicyCardV1.md",
+        "source": "derived"
+      },
+      {
+        "name": "execution-fence.cjs",
+        "kind": "file",
+        "path": "lib/execution-fence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "activation-gate.cjs",
+        "kind": "file",
+        "path": "lib/activation-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Rollout This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Compile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The authored hub declares three equally weighted external CLI executors and supports explicit multi-executor dispatch, but its compiled contract needs a deterministic representation that the shared decision parser, projector, scorer, and execution plane can all consume",
+    "created_at": "2026-07-19T00:00:00.000Z",
+    "last_save_at": "2026-07-23T11:35:38.745Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b61c6330779aa1fe77de830ce1bf9b97a839a509e6deed12b3006bfc89c7eba1",
+    "source_doc_hashes": {
+      "spec.md": "e7829d3acb6e766f662592bb56769c6ce530cb03db9a183a40e3ffc4b711256f",
+      "plan.md": "50ee0c76df7c8646f6a0e5f1cf4af21647e7f4c24057403a70a851f48c339cb8",
+      "tasks.md": "5f656a75e87c34c6330c84c84d6992ecfe236d89d93f083ebc63159fc930adaa",
+      "checklist.md": "952bd3b33aa7ea46b23a0fd611bde70d418457eb6ae01f4e084b08907ea9ff32",
+      "implementation-summary.md": "f32a2f354237ea4c406a346904046800656985f196c533f13bd73c2ca4415eb8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

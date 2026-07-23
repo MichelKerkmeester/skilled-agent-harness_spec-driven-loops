@@ -1,0 +1,21 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "description": "The closeout deferred five follow-ups",
+  "keywords": [
+    "closeout",
+    "deferred",
+    "five",
+    "follow-ups"
+  ],
+  "lastUpdated": "2026-07-23T11:35:51.453Z",
+  "specId": "010",
+  "folderSlug": "deferred-code-and-checker-fixes",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

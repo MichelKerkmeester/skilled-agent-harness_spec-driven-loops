@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "minimal typed router contract deep dive",
+      "route request compiled policy route decision",
+      "defaultMode commitment smell"
+    ],
+    "key_topics": [
+      "minimal",
+      "typed",
+      "router",
+      "contract",
+      "deep",
+      "dive",
+      "route",
+      "request",
+      "compiled",
+      "policy",
+      "decision",
+      "defaultmode"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Minimal Typed Router Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`defaultMode` conflates missing evidence, a policy prior, and authority to execute",
+    "created_at": "2026-07-18T04:39:05.620Z",
+    "last_save_at": "2026-07-23T11:35:33.189Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5659a7b3421e92a977070a68ad75d6a818055aeef6f5c40cbbb37f7321af60bb",
+    "source_doc_hashes": {
+      "spec.md": "d1e410e2b07ad732b7162d82224e09bf7e89f291184e9df21ecfaa3cb96a2f3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/002-reference-asset-template-alignment",
+  "description": "sk-doc's reference/asset standard requires numbered ALL-CAPS H2 headers (`## 1",
+  "keywords": [
+    "sk-doc",
+    "reference",
+    "asset",
+    "standard",
+    "requires",
+    "numbered",
+    "all-caps",
+    "headers"
+  ],
+  "lastUpdated": "2026-07-23T11:35:49.223Z",
+  "specId": "002",
+  "folderSlug": "reference-asset-template-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "021-documentation-quality-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

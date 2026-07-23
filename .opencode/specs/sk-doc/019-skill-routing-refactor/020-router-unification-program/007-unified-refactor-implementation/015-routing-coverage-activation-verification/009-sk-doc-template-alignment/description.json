@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/009-sk-doc-template-alignment",
+  "description": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
+  "keywords": [
+    "four",
+    "sk-doc",
+    "authoring",
+    "templates",
+    "validators",
+    "sync",
+    "code",
+    "actually",
+    "enforces",
+    "consumes",
+    "them"
+  ],
+  "lastUpdated": "2026-07-23T11:35:46.828Z",
+  "specId": "009",
+  "folderSlug": "sk-doc-template-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "020-router-unification-program",
+    "007-unified-refactor-implementation",
+    "015-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

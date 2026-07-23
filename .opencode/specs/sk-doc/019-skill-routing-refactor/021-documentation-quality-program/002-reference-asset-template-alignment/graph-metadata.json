@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/002-reference-asset-template-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/002-reference-asset-template-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reference asset template alignment",
+      "all caps header conformance",
+      "parent-skill smart routing template fix",
+      "reference asset alignment summary",
+      "all caps header fix",
+      "smart routing template restructure"
+    ],
+    "key_topics": [
+      "reference",
+      "asset",
+      "template",
+      "alignment",
+      "caps",
+      "header",
+      "conformance",
+      "parent-skill",
+      "smart",
+      "routing",
+      "summary",
+      "restructure"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-architecture.md",
+      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-smart-routing-template.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "compiled-routing-architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/compiled-routing-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-smart-routing-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-smart-routing-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Template Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-doc's reference/asset standard requires numbered ALL-CAPS H2 headers (`## 1",
+    "created_at": "2026-07-22T09:47:50.164Z",
+    "last_save_at": "2026-07-23T11:35:49.374Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b3797ccaa3637e8b6045b10e9a606dc5088f28eaa49995feb867ed0c572a9c7",
+    "source_doc_hashes": {
+      "spec.md": "816457ec025978fa8f1708d72a37407da1b7caa581a87e05d70a0360fdd32b05",
+      "plan.md": "4e23d2275ce90f799060081164548b6537fddc9acbf2a514a44c9ba1c569c2d4",
+      "tasks.md": "22d49009945ea72be367f71c1cc94d32c706b430be44b2b0543f2eb0aae695a4",
+      "checklist.md": "7fbb5bdedf2006c24e84c282cddc69d58c02ecc96ef5749660da19a0d660d774",
+      "implementation-summary.md": "2a18bc55761c15c1224568b08ed854d48be608d2ceaa53596b36b8bc36f85702"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

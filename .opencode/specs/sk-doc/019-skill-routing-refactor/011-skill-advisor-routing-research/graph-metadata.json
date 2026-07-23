@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor routing research",
+      "advisor recommend confidence calibration",
+      "5-lane RRF fusion",
+      "shouldFireAdvisor threshold drift",
+      "advisor transport resilience",
+      "skill advisor routing research plan",
+      "advisor confidence calibration research",
+      "advisor fix plan handoff",
+      "skill advisor routing research tasks",
+      "skill advisor routing research iterations",
+      "skill advisor routing research outcome",
+      "advisor confidence policy floor"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "routing",
+      "research",
+      "recommend",
+      "confidence",
+      "calibration",
+      "5-lane",
+      "rrf",
+      "fusion",
+      "shouldfireadvisor",
+      "threshold"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      "implementation-summary.md",
+      "tools/index.ts",
+      "research/deep-research-dashboard.md",
+      "research/findings-registry.json",
+      "hooks/claude/user-prompt-submit.ts",
+      "research/deep-research-state.jsonl",
+      "plan.md",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "research/resource-map.md",
+      "research/iterations/iteration-001.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outcome Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark found routing quality is strongly skill-specific, and system-skill-advisor is the front-line router that decides which skill fires",
+    "created_at": "2026-07-16T07:57:26.719Z",
+    "last_save_at": "2026-07-23T11:35:26.386Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:45801598ea8a35e0701319dac114e628eab2c64830ecf178d0a426b5ab71d46e",
+    "source_doc_hashes": {
+      "spec.md": "4fe54833b8c1bb102ac4d58bf5cd4f8d6756edc0598dcbe55d96e4819c4ccf23",
+      "plan.md": "7b151b9b9f6b4c04af1162fbf5206dc4ecabfeaf8d375421c3b3c167a67cdba4",
+      "tasks.md": "6205756cf98107d857be083882064b12b023d57f6be8b11c3fe063fd92ebfeb1",
+      "implementation-summary.md": "d6ff6fe0c31ed0fac5fcef1b0cc9c6b4d895c5afedb35d07053fbba0999dd3ad",
+      "research/research.md": "7b3461a2742abe6316631731523ce010d3a1ba59cc424298ce6b1491727ff2ab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

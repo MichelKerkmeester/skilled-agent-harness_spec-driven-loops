@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "default mode policy research",
+      "should hubs default to null",
+      "parent hub defaultMode design",
+      "defer to parent vs default to child",
+      "parent hub routing out of box",
+      "typed route decision",
+      "proof carrying route plan",
+      "defaultMode commitment boundary",
+      "compiled routing policy"
+    ],
+    "key_topics": [
+      "default",
+      "mode",
+      "policy",
+      "research",
+      "hubs",
+      "null",
+      "parent",
+      "hub",
+      "defaultmode",
+      "design",
+      "defer",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      "research/lineages/sol-oob/research.md",
+      "research/lineages/sol-oob/iterations/iteration-001.md",
+      "research/deep-research-config.json",
+      "research/deep-research-findings-registry.json",
+      "research/orchestration-summary.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/sol-oob/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Policy Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Determine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Routing Out",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Box Run",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Run",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigation Report Run",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Overview",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`defaultMode = <child>` auto-commits the hub to one mode when nothing specific fires",
+    "created_at": "2026-07-18T14:47:46.181Z",
+    "last_save_at": "2026-07-23T11:35:30.139Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5dc59d853e68122bb93c93a6ac69bb761a628ea2ee72f2cb2e17ac97634d73ac",
+    "source_doc_hashes": {
+      "spec.md": "8adf67d04a0053700d982c6a468f98ad3272426cef9787e73b5cdfff9cde067f",
+      "research/research.md": "13a1fffe64e94f72617ace827c30d59fb97621e363e2ba02b8859fc219840979"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "no wrong door handoff deep dive",
+      "bounded routing handoff protocol",
+      "acceptance vs completion routing"
+    ],
+    "key_topics": [
+      "wrong",
+      "door",
+      "handoff",
+      "deep",
+      "dive",
+      "bounded",
+      "routing",
+      "protocol",
+      "acceptance",
+      "completion",
+      "one-shot",
+      "recovery"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Door Bounded Handoff",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Outcome The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "One-shot routing has no bounded recovery path when an ambiguous request reaches the wrong mode",
+    "created_at": "2026-07-18T04:39:05.270Z",
+    "last_save_at": "2026-07-23T11:35:32.458Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:901ff5d600a7a1ada0e914e4fcb8db14eff4ac28a61c5e2e6b3a0a802d32c48e",
+    "source_doc_hashes": {
+      "spec.md": "245fb9ea5cbf6398f199f4ec978c24f71ae58450fccdf0f99cce6e7e3d2429be"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

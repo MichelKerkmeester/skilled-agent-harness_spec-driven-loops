@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/007-learning-overlay",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/007-learning-overlay",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "learning overlay phase",
+      "correction overlay offline promotion",
+      "vocabulary to destination overlay CAS",
+      "learning overlay plan",
+      "offline correction overlay build approach",
+      "overlay pointer CAS promotion",
+      "learning overlay tasks",
+      "offline correction overlay checklist",
+      "overlay promotion CAS tasks"
+    ],
+    "key_topics": [
+      "learning",
+      "overlay",
+      "phase",
+      "correction",
+      "offline",
+      "promotion",
+      "vocabulary",
+      "destination",
+      "cas",
+      "plan",
+      "approach",
+      "pointer"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "lib/correction-overlay.cjs"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "correction-overlay.cjs",
+        "kind": "file",
+        "path": "lib/correction-overlay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Overlay",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phased Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "byte-exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offline Correction Overlay",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
+    "created_at": "2026-07-18T13:13:20.713Z",
+    "last_save_at": "2026-07-23T11:35:39.924Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:692977a0f62815844f4d47bcae6d94b9a01d9ed0141c7f956b3495eae9dab22a",
+    "source_doc_hashes": {
+      "spec.md": "e8f5a7f179818be406efe655ca247ca200c0275cf2693a3189321ab9a56d0fb0",
+      "plan.md": "4dc3a83dee0e9e985498aa2729bf1e5c9fd94722158c16bb15deb903ba449d3a",
+      "tasks.md": "e9236ac7ccfbb67df6be244231bf9216aabba7c55f4d944cf0258c27d633282b",
+      "checklist.md": "a99e0709f3378fe41f1a1bfd994bde260915b1b091b539a5cb56af9df2fcac45",
+      "implementation-summary.md": "00519e47be886be586f7187283d4cf46166cc2bb7dc3c0be33b93c27c105ef32"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

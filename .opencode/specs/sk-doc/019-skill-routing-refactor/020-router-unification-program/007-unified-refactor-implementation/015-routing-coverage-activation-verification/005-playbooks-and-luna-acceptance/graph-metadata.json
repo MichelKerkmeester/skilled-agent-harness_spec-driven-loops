@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing playbook scenario matrix",
+      "luna high live acceptance gold holdout",
+      "vacuous evidence contract compiled route",
+      "compiled routing playbook plan",
+      "luna high acceptance stage plan",
+      "compiled routing playbook tasks",
+      "luna high acceptance task list",
+      "compiled routing playbook checklist",
+      "luna high acceptance QA gate",
+      "compiled routing playbook implementation summary",
+      "luna high acceptance build record"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "playbook",
+      "scenario",
+      "matrix",
+      "luna",
+      "high",
+      "live",
+      "acceptance",
+      "gold",
+      "holdout",
+      "vacuous"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-design/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-doc/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-prompt/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/mcp-tooling/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/cli-external-orchestration/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/luna-acceptance.cjs",
+      ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/compiled-routing/luna-high-real-20260721-073315/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-compiled-routing-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cutover-playbook-executor.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "luna-acceptance.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/luna-acceptance.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Playbooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Matrix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "High Acceptance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
+    "created_at": "2026-07-20T21:51:32.363Z",
+    "last_save_at": "2026-07-23T11:35:45.679Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b3c468aa07f84c319d0b884b58e08e1d0bc19c70f2d8147b98144df426db8edc",
+    "source_doc_hashes": {
+      "spec.md": "0fc9e5030fef4404272363f51d48450b674eca586550aa34b63219f8e5331c99",
+      "plan.md": "fa8497d27fc743fdfe8fb6e84139ca234fe96c7c12a5f84b42305721d5916746",
+      "tasks.md": "d4f4400181b5fe3f838ae1e66c97e55c64e15af689263900b16ba0375ba96442",
+      "checklist.md": "4bd9df0bfdce07da8cbd185aa2b8a68a8c19578a0cea71ed582e5a7b7a8238dd",
+      "implementation-summary.md": "46473bf7a70798e57f59bb8a7d3505eae0b9d20b1a2c8bb4acdb75b0d32113d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

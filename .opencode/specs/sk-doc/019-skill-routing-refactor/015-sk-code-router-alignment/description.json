@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment",
+  "description": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
+  "keywords": [
+    "sk-code",
+    "routing",
+    "cannot",
+    "measured",
+    "typed-pair",
+    "surface",
+    "committed",
+    "benchmark",
+    "baseline",
+    "actively",
+    "misleads"
+  ],
+  "lastUpdated": "2026-07-23T11:35:27.554Z",
+  "specId": "015",
+  "folderSlug": "sk-code-router-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

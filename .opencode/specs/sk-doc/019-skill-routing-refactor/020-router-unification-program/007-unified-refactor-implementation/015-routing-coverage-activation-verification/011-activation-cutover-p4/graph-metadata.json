@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
+  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compiled routing staged hub-by-hub cutover",
+      "compiled routing P4 activation controller",
+      "compiled routing coverage-closure join gate",
+      "compiled routing P4 cutover plan",
+      "staged hub-by-hub activation plan",
+      "coverage-closure join gate plan",
+      "compiled routing P4 cutover tasks",
+      "staged hub-by-hub activation task list",
+      "compiled routing P4 cutover checklist",
+      "staged activation verification gate",
+      "compiled routing cutover decision record",
+      "per-hub cohort staging decision"
+    ],
+    "key_topics": [
+      "compiled",
+      "routing",
+      "staged",
+      "hub-by-hub",
+      "cutover",
+      "activation",
+      "controller",
+      "coverage-closure",
+      "join",
+      "gate",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "controller/cutover-controller.cjs",
+      "verification/verify-cutover.cjs",
+      "verification/dry-run-evidence.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "cutover-controller.cjs",
+        "kind": "file",
+        "path": "controller/cutover-controller.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-cutover.cjs",
+        "kind": "file",
+        "path": "verification/verify-cutover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run-evidence.json",
+        "kind": "config",
+        "path": "verification/dry-run-evidence.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Staged Hub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Activation Cutover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Specify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Routing Staged Activation Cutover",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
+    "created_at": "2026-07-20T21:44:54.891Z",
+    "last_save_at": "2026-07-23T11:35:47.591Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a30075e5f03cb65fa3d9429b5ea2d0eeb71ca5e714171ba08376b496d1315f6",
+    "source_doc_hashes": {
+      "spec.md": "9f913723968f275a668f43dadb9c2acd610ccce6c68dd5b0eaae4ef7bc2b01d7",
+      "plan.md": "1664f0ad6c109f0dc8e4b51f3d5f280f8dede62c9c303225078bb7d481f10e7b",
+      "tasks.md": "dbf213b1227ba92d0c674f2f27ed8ab39df823622ff9f955d50c280f64481bdf",
+      "checklist.md": "cfb1ffffd82907e16e3c738331a2f1a38d8c5e2d07199db8ceb457afd8424ca2",
+      "decision-record.md": "2de0cd6f0528e993d6a899d8ff2b9c001823fa20ef252d8368483a38a382e86b",
+      "implementation-summary.md": "988e2a87b6341ddbf4427f114e70ffb2f6754bf8c560c53c8cb4f16355ed0dce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
