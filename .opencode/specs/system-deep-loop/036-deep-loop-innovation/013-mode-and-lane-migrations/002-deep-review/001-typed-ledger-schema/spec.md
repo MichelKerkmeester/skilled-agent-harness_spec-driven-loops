@@ -12,19 +12,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T19:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Review event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
+    last_updated_at: "2026-07-23T10:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the Deep Review typed ledger schema"
+    next_safe_action: "Fold the exported union in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase 012 freeze?"
-      - "Which review evidence references remain portable without storing report bodies in ledger rows?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "This phase owns Deep Review event vocabulary, not reducers or projections"
-      - "Deep Review consumes the shared review-loop contract used by deep-alignment"
+      - "Authorization references remain owned by durable ledger frames"
+      - "Review evidence uses typed references, locators, and source/content digests"
+      - "Verdict-bearing finding state binds a typed adjudication event and payload digest"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -43,12 +43,12 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the phase-006 transition-authorized ledger core and phase-012 shared event contracts |
 | **Inputs** | `036-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `002-deep-loop-effectiveness-and-fanout/research/findings-registry*.json`, and the checked-in `deep-review/SKILL.md` state contract |
-| **Output** | A ratifiable Deep Review event union, field-level payload contract, and version/upcaster hook plan; no reducer or projection implementation |
+| **Output** | A ratified 26-stem Deep Review event union, closed field-level payload contract, and fail-closed version/upcaster hooks; no reducer or projection implementation |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -169,5 +169,5 @@ The envelope extension uses a typed `scope` object rather than repeating identif
 - Which semantic fingerprint components and rename-map version are stable enough for the first schema version without coupling the reducer to one analyzer?
 - Is review-report publication a mode event or a shared synthesis event with a Deep Review report payload and section manifest?
 
-These questions are deliberately left for contract ratification and implementation planning. They do not authorize a reducer, projection, report view, or authority decision in this phase.
+Implementation resolved these questions against the landed shared envelope, authorized ledger, replay fingerprint, and converged Deep Research schema. Authorization receipts remain in durable ledger frames; the mode owns 26 logical stems and digest/reference-only payloads; semantic fingerprints use versioned anchors, context, program slices, rename maps, and baseline state; review-report publication is a mode event carrying only a revision, digest, section manifest, finding references, and receipt. These resolutions do not authorize reducer, projection, report-view, or authority behavior in this phase.
 <!-- /ANCHOR:questions -->

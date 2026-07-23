@@ -39,14 +39,28 @@
       "phase"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "decision-record.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,12 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "Framed Model Benchmark",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Model Benchmark Typed Ledger Schema",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,6 +111,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -144,7 +158,7 @@
         "source": "derived"
       },
       {
-        "name": "successor",
+        "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -166,25 +180,41 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Scoring Prerequisite Boundary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Plan the Model Benchmark variant's typed append-only event vocabulary over the shared deep-improvement-common backbone. The phase defines the mode envelope specialization, concrete run and scoring-matrix event types, field-level types, provenance and contamination lineage, normalized usage, versioned envelope policy, and upcaster hooks. It stops before reducer and projection design in 002-reducers-and-projections and does not re-implement shared evaluator, canary, or promotion services.",
+    "causal_summary": "Implements the Model Benchmark variant's additive-dark typed append-only event vocabulary over the shared deep-improvement-common backbone. The module extends 35 common events with 32 model-benchmark events and stops before reducer, projection, or authority-cutover work.",
     "created_at": "2026-07-16T03:43:39.273Z",
-    "last_save_at": "2026-07-19T18:01:21.110Z",
+    "last_save_at": "2026-07-23T10:45:40.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94de22c86fb6fc0af2f4fd55a6acaa8074a74879dfd28fb9af3d3a1201507fde",
+    "source_fingerprint": "sha256:075591b96b2c0ed7b2d42354a93434e35d6f4f3017059e0cd51bf2aeb1d79ec9",
     "source_doc_hashes": {
-      "spec.md": "ec34d3a5abeb72d4c3748d8a2f90c234d0700c132cf6fcecbacb827034067203",
-      "plan.md": "0a6a8465e5ea0baee7f8d5e3ceb2bed14b8a39ca515f48b5c7ac8a664a5de1ce",
-      "tasks.md": "0636d8b4d5debc91ad12ff86ba3d13cdbfdac3349e3646d58d5edffb2f8a8e73",
-      "checklist.md": "10ea62c91509afc6088d89e945db044b5f9dc20b2949f753e95374e6f0da51c5"
+      "spec.md": "a70e05b0932cb50c069260b31ff33c243a809fe32c371b0a0308005d7fbd092d",
+      "plan.md": "24493a524f22258dc194ebfbb7dc10aca91f70861ec8c0d396761fb2fa91acf1",
+      "tasks.md": "323b47a45590224b671c9656a42741aaebb18f857f00f83c04a442536a857a47",
+      "checklist.md": "5b16a7467dd3548a3ffd2f7498cffff44897b812814fb8c7826da703088b98eb",
+      "decision-record.md": "853c81c6abc2f046d599edffea7a5fd90f03afaeff62c0fc8149af26ce3106cb",
+      "implementation-summary.md": "fba0fe9e0f96c159fb7b3f651ab4a5fbf2d971b0a3d0645c076194cfd862b9c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

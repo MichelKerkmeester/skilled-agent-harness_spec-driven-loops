@@ -39,14 +39,49 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-schema.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/legacy-compatibility.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-ledger-schema.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "agent-improvement-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement-ledger-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-compatibility.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/legacy-compatibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,13 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Captured Agent Improvement",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -115,6 +150,12 @@
       },
       {
         "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Agent Improvement",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -138,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "immutable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -148,31 +195,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan the typed append-only event vocabulary for the Agent Improvement variant: typed AgentIR and change contracts, candidate and failure lineage, causal behavior experiments, evaluation manifests, transfer evidence, and versioned envelope/upcaster hooks over the shared Deep Improvement Common Services backbone. Reducers and projections belong to the next sibling.",
+    "causal_summary": "The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract, mutation, causal-experiment, manifest, transfer, and behavioral-classification events.",
     "created_at": "2026-07-16T03:43:37.523Z",
-    "last_save_at": "2026-07-19T18:09:52.874Z",
+    "last_save_at": "2026-07-23T10:17:19.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb206dd80e0415cef5ac9004ff4e6d2e43e1075908290ee0799a7c7284e84520",
+    "source_fingerprint": "sha256:4bc5c1b8975f0594169b763280378da54bb84bf6872986d8b537da5814120ca8",
     "source_doc_hashes": {
-      "spec.md": "c34c230390cb02d9cc8f5350bd0822529e0849c1b009890b2dc834a8fe304481",
-      "plan.md": "b77997fec5a51708e8f0c59d952d41b749ca770d2934942bd15f47a8272cc6f1",
-      "tasks.md": "31b8d936b6a688fa64d003f2beec7ed6276b87c05cfbafb06834e64bf19bbd5d",
-      "checklist.md": "af2425ced9ead8f9d60633890d21ee613c3683e45c5e020ff873b3cf8a2404b4"
+      "spec.md": "84524bb90bf1e0fdf76389a94bfca76c6f8c6d4a9e31df8bcab0f0a42def1614",
+      "plan.md": "ef86cca2fe2e3fba8c7a62f2ac5aa54295b5ee5b05e007045931a1d8274aeb02",
+      "tasks.md": "6bfbf932fd699be8788c15d8b8bec8f6e38e2b76a74d93491cd872bd030ab314",
+      "checklist.md": "15593e9ee8ce6d3d942df19e4eead291365d879d05a0897634d7676a64ceb949",
+      "implementation-summary.md": "8be7af77d1106e4bc3ffbe74057bea4738d8aeafa6938f43f07cea52bd514e9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

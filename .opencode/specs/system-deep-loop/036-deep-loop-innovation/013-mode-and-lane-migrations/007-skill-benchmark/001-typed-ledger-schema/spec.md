@@ -13,22 +13,42 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema"
     last_updated_at: "2026-07-15T21:12:00Z"
     last_updated_by: "opencode"
-    recent_action: "Bounded Skill Benchmark scope to typed event vocabulary before reducers"
-    next_safe_action: "Specify event variants and upcaster hooks against phases 003 and 009"
+    recent_action: "Implemented the additive-dark Skill Benchmark typed ledger schema"
+    next_safe_action: "Fold the closed event union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-schema.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/legacy-compatibility.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The lane imports all 35 common stems and adds 21 skill-benchmark stems"
+      - "Common payload and scope shapes remain closed and unchanged"
+      - "Raw benchmark observations cannot carry normalized rankings or promotion verdicts"
+      - "Normalized score references bind to the shared deep-improvement score event and backend"
 ---
 
-<!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Feature Specification: Skill Benchmark Typed Ledger Schema
 
 > Phase adjacency under the 007-skill-benchmark parent (grouping order, not a runtime dependency): predecessor: none (first sibling); successor: 002-reducers-and-projections.
+
+## EXECUTIVE SUMMARY
+
+The Skill Benchmark lane adds a closed, additive-dark event vocabulary over the shared Deep Improvement Common ledger.
+Its registry now narrows shared events to the Skill Benchmark variant, while targeted tests cover durable foreign-variant
+rejection and every legacy compatibility outcome. The schema binds `prevEventHash` into each payload digest; actual-head
+equality remains an explicit authorized-ledger and reducer integration boundary.
+
+**Key Decisions**: Narrow shared definitions inside the lane registry; keep storage-aware head comparison outside the
+stateless schema leaf.
+
+**Critical Dependencies**: The frozen event-envelope registry and authorized append-only ledger substrate.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -36,9 +56,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema |
-| **Level** | 2 |
+| **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-improvement-common / skill-benchmark |
 | **Origin** | Phase 013 mode-and-lane migration fan-out; Skill Benchmark typed-ledger planning contract |
@@ -164,8 +184,54 @@ or references required by the event contract.
   harness used for behavior baselines.
 <!-- /ANCHOR:risks -->
 
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+- **Integrity**: Common events must carry `scope.variant: skill-benchmark` at registry validation, including direct
+  preparation and durable append revalidation.
+- **Determinism**: Equivalent inputs must produce identical canonical bytes, payload digests, and upcast results.
+- **Security**: Evidence-bearing fields accept references and digests, not mutable output bodies.
+- **Performance**: Registry narrowing remains an in-memory validation step with no new storage or network dependency.
+- **Compatibility**: Exact, compatible, migrate, both pin-old-runtime paths, and blocked outcomes remain explicit.
+
+## 8. EDGE CASES
+
+- A foreign common event prepared against the common registry must fail against the Skill Benchmark registry and remain
+  absent from the lane ledger.
+- A stable legacy planning identity must select the pure upcaster; an identity-deficient planning record must pin the old
+  runtime.
+- Spaced mutable content in `traceRef` or a raw-score `measurementRef` must fail the token/reference rule.
+- A self-consistent but incorrect payload `prevEventHash` can pass schema validation; integration or replay must compare
+  that claim with the actual preceding frame.
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Assessment | Evidence |
+|-----------|------------|----------|
+| Scope | Medium | One registry module, one test file, and leaf documentation |
+| Risk | High | Per-lane ledger integrity and replay semantics |
+| Research | Medium | Shared common registry and frozen append substrate contracts |
+| Documentation | Level 3 | The accepted schema/substrate boundary requires a decision record |
+
+## 10. RISK MATRIX
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| Foreign variant enters the lane through direct common preparation | Medium | High | Registry-local variant wrapper plus append-path regression test |
+| Compatibility outcome remains unexercised | Medium | Medium | Explicit migrate and both pin-path assertions |
+| Mutable output test passes through an unrelated allowlist failure | Medium | Medium | Target real evidence fields with spaced values |
+| Payload previous-hash claim is mistaken for actual-head proof | Medium | High | Decision record and integration/reducer responsibility |
+
+## 11. USER STORIES
+
+- As a ledger consumer, I need every shared Skill Benchmark event to carry the correct lane variant so replay cannot mix
+  mode histories.
+- As a compatibility operator, I need every decision outcome and reason code tested so old records fail closed.
+- As a schema reviewer, I need evidence-field tests to exercise their named token rule rather than an unrelated allowlist.
+- As a reducer author, I need the payload previous-hash boundary documented so semantic head checks land in the correct
+  layer.
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 12. OPEN QUESTIONS
 
 None block authoring of the vocabulary. The execution phase must resolve the following against the frozen shared contracts:
 
@@ -178,3 +244,9 @@ None block authoring of the vocabulary. The execution phase must resolve the fol
 - What exact upcaster compatibility class applies when an evaluator, gold recipe, resource digest, or executor descriptor
   changes without changing the event shape?
 <!-- /ANCHOR:questions -->
+
+## RELATED DOCUMENTS
+
+- `decision-record.md` records the accepted schema-only previous-hash boundary.
+- `implementation-summary.md` records the registry narrowing and verification evidence.
+- `002-reducers-and-projections/spec.md` owns future replay and reducer semantics.

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Model Benchmark typed ledger schema"
-description: "Plan the Model Benchmark variant's typed append-only event vocabulary over the shared deep-improvement-common backbone. The phase defines the mode envelope specialization, concrete run and scoring-matrix event types, field-level types, provenance and contamination lineage, normalized usage, versioned envelope policy, and upcaster hooks. It stops before reducer and projection design in 002-reducers-and-projections and does not re-implement shared evaluator, canary, or promotion services."
+description: "Implements the Model Benchmark variant's additive-dark typed append-only event vocabulary over the shared deep-improvement-common backbone. The module extends 35 common events with 32 model-benchmark events and stops before reducer, projection, or authority-cutover work."
 trigger_phrases:
   - "Model Benchmark typed ledger schema"
   - "model-benchmark event vocabulary"
@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema"
     last_updated_at: "2026-07-15T22:59:00Z"
     last_updated_by: "opencode"
-    recent_action: "Framed Model Benchmark's typed ledger vocabulary and reducer boundary"
-    next_safe_action: "Freeze event names and field contracts against shared ledger inputs"
+    recent_action: "Implemented and verified the additive-dark Model Benchmark typed ledger vocabulary"
+    next_safe_action: "Consume the immutable event union in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 006 of the 013 mode-and-lane migration parent; the model-benchmark research recommendations in `findings-registry-modes.json` |
@@ -51,7 +51,10 @@ The Model Benchmark lane currently has useful execution and scoring behavior but
 
 This phase plans the append-only event schema that makes those behaviors replayable and auditable. It consumes the phase-006 transition-authorized ledger core and the phase-012 shared event contracts, while layering only Model Benchmark-specific run and scoring-matrix facts on the deep-improvement-common services from mode 004. The envelope must retain raw observations, task-family and perturbation lineage, model and execution-path identity, contamination evidence, judge identity, normalized usage, and validity state without allowing a reducer to rewrite evidence.
 
-The purpose is a vocabulary contract, not an implementation or a reducer design. The next sibling, `002-reducers-and-projections`, owns folds, projections, selection-certificate reduction, policy materialization, and derived gauges. Shared evaluator, canary, calibration infrastructure, and promotion authority remain shared-service concerns; this phase only declares the Model Benchmark events that consume or reference them.
+The purpose is a schema implementation, not an authoritative writer or reducer design. The next sibling,
+`002-reducers-and-projections`, owns folds, projections, selection-certificate reduction, policy materialization, and
+derived gauges. Shared evaluator, canary, calibration infrastructure, and promotion authority remain shared-service
+concerns; this phase only declares and validates the Model Benchmark events that consume or reference them.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -68,9 +71,9 @@ The purpose is a vocabulary contract, not an implementation or a reducer design.
 ### Out of Scope
 - Reducer algorithms, projection tables, materialized scorecards, selection-certificate calculation, policy ranking, and derived gauges; those belong to `002-reducers-and-projections`.
 - Re-implementing shared evaluator, canary generation, promotion, receipt, budget, lock, adjudication, or effect-recovery services from deep-improvement-common or the shared event contracts.
-- Authority cutover, legacy-writer retirement, in-flight state migration, or runtime implementation; those remain in the later mode gate and staged cutover phases.
+- Authority cutover, authoritative writer integration, legacy-writer retirement, or in-flight state migration; those remain in the later mode gate and staged cutover phases.
 - Defining a new scoring rubric or changing the evaluator/reviewer contract; the schema carries versioned score observations and references the lane-owned contract.
-- Running benchmark executions, selecting models, or generating description and graph metadata for this planning packet.
+- Running benchmark executions or selecting models.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -92,7 +95,8 @@ The purpose is a vocabulary contract, not an implementation or a reducer design.
 
 ### Event vocabulary boundary
 
-The planned namespace is `deep-improvement.model-benchmark.*`, with the shared envelope carrying the event type and a discriminated payload. The initial vocabulary is grouped by append-only fact, not by reducer output:
+The namespace is `deep-improvement.model-benchmark.*`, with the shared envelope carrying the event type and a
+discriminated payload. The implemented vocabulary is grouped by append-only fact, not by reducer output:
 
 | Event family | Concrete event types | Purpose |
 |--------------|----------------------|---------|

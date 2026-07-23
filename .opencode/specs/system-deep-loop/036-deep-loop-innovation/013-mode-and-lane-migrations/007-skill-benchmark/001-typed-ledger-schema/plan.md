@@ -23,7 +23,7 @@ _memory:
 ---
 # Implementation Plan: Skill Benchmark Typed Ledger Schema
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 <!-- ANCHOR:summary -->
@@ -47,18 +47,18 @@ sibling's projections possible without changing the meaning of raw evidence.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-006 transition-authorized ledger core and phase-012 shared event contracts are pinned by version and digest
-- [ ] The deep-improvement-common service boundary is listed, with no duplicated run, receipt, budget, lock, or replay code
-- [ ] The Skill Benchmark treatment lattice and scenario lifecycle are explicit
-- [ ] The typed envelope specialization and event namespace cover every required causal stage
-- [ ] Raw scoring and gold-integrity facts are separate from reducer-owned verdicts
-- [ ] Versioned payload rules, replay fingerprints, and pure upcaster hooks are defined
+- [x] The phase-006 transition-authorized ledger core and phase-012 shared event contracts are pinned by direct imports and real-substrate tests
+- [x] The deep-improvement-common service boundary is imported without duplicated run, receipt, budget, lock, or replay code
+- [x] The Skill Benchmark treatment lattice and scenario lifecycle are explicit in closed payload rules
+- [x] The typed envelope specialization and event namespace cover every required causal stage
+- [x] Raw scoring and gold-integrity facts are separate from reducer-owned verdicts
+- [x] Versioned payload rules, replay fingerprints, and pure upcaster hooks are defined
 
 ### Definition of Done
-- [ ] A closed event registry and field-level type contract is reviewed against the parent invariants and research inputs
-- [ ] Positive, negative, unknown, blocked, incompatibility, and expiry states have typed representations
-- [ ] Schema fixtures prove append-only identity, digest linkage, treatment parity, gold blocking, and deterministic upcasting
-- [ ] The event vocabulary is handed to `002-reducers-and-projections` without reducer or projection implementation in this phase
+- [x] A closed 56-stem event registry and field-level type contract is verified by the targeted suite
+- [x] Positive, negative, unknown, blocked, incompatibility, and expiry states have typed representations
+- [x] Schema fixtures prove append-only identity, digest linkage, treatment parity, gold blocking, and deterministic upcasting
+- [x] The event vocabulary is handed to `002-reducers-and-projections` without reducer or projection implementation in this phase
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -157,3 +157,56 @@ route them through the prior reader or a pinned old-runtime decision. Never rewr
 as part of schema rollback. Any incompatible event already emitted must be handled by the shared compatibility policy and an
 explicit migrate, pin, or block decision.
 <!-- /ANCHOR:rollback -->
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+`deep-improvement-common` definitions feed the Skill Benchmark registry wrapper. The wrapped registry feeds
+`prepareEventWrite`, the authorization request, and `AppendOnlyLedger.appendAuthorized`; reducers consume verified
+frames after append.
+<!-- /ANCHOR:dependency-graph -->
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+1. Narrow every shared common definition inside the lane registry.
+2. Prove direct preparation and durable append reject a foreign variant.
+3. Close compatibility and evidence-field test gaps.
+4. Record the previous-hash ownership boundary and run final verification.
+<!-- /ANCHOR:critical-path -->
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+| Milestone | Evidence | Status |
+|-----------|----------|--------|
+| Registry integrity | Foreign variant rejects; correct variant appends | Complete |
+| Compatibility coverage | Migrate and both pin paths asserted | Complete |
+| Evidence precision | Real reference fields exercise token rejection | Complete |
+| Boundary record | Accepted decision record with substrate/reducer ownership | Complete |
+<!-- /ANCHOR:milestones -->
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Confirm the shared P1 contract, lane variant, frozen substrate, and scoped paths before editing.
+- Capture targeted tests, TypeScript, and strict validation baselines.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SCOPE | Modify only the Skill Benchmark schema module, its test, and this leaf |
+| TASK-SEQ | Registry guard before regression tests; documentation before final validation |
+| TASK-EVIDENCE | Drive the real preparation, authorization, and append substrate |
+
+### Status Reporting
+
+Report registry behavior, compatibility cases, evidence-field mechanisms, TypeScript errors, Vitest count, and strict
+validation exit.
+
+### Blocked Task Protocol
+
+If the frozen substrate contradicts the leaf contract, stop the affected edit, record the exact conflict, and preserve
+the schema-only boundary rather than widening scope.

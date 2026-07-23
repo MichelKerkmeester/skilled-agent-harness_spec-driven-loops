@@ -11,15 +11,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Captured the common-service event vocabulary boundary and sibling ordering"
-    next_safe_action: "Define envelope fields and versioned event payloads for shared service runs"
+    last_updated_at: "2026-07-23T09:11:00Z"
+    last_updated_by: "codex"
+    recent_action: "Verified terminal facts and non-vacuous schema proofs"
+    next_safe_action: "Fold the exported union in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The common schema is additive-dark and schema-only"
+      - "The deep-improvement score backend reference is closed and mandatory"
 ---
 # Verification Checklist: Deep Improvement Common Services — Typed Ledger Schema
 
@@ -38,61 +40,61 @@ families, reducer/projection scope leakage, or any promotion path that can self-
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The phase-006 transition-authorized ledger core is identified with its envelope, authorization, receipt, and replay obligations
-- [ ] CHK-002 [P0] The phase-012 shared event contracts are identified with their naming, identity, causation, sequence, and versioning obligations
-- [ ] CHK-003 [P1] The common evaluator, canary, and promotion service boundaries are mapped to all three downstream variants
-- [ ] CHK-004 [P1] The child adjacency is recorded: predecessor none (first sibling) and successor `002-reducers-and-projections`
+- [x] CHK-001 [P0] The phase-006 transition-authorized ledger core is identified with its envelope, authorization, receipt, and replay obligations [Evidence: real shared imports and gateway/ledger append matrix] [Test: Vitest 15/15 passed]
+- [x] CHK-002 [P0] The phase-012 shared event contracts are identified with their naming, identity, causation, sequence, and versioning obligations [Evidence: shared 14-field envelope inventory and independent event/payload version tests] [Test: Vitest 15/15 passed]
+- [x] CHK-003 [P1] The common evaluator, canary, and promotion service boundaries are mapped to all three downstream variants [Evidence: closed variant scope and common payload maps] [Test: Vitest 15/15 passed]
+- [x] CHK-004 [P1] The child adjacency is recorded: predecessor none (first sibling) and successor `002-reducers-and-projections` [Evidence: `spec.md` adjacency line] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Every event in the catalog has a typed payload, stable event name, owner, version policy, and explicit required/optional field rule
-- [ ] CHK-006 [P0] Raw observations, normalized scores, canary evidence, and promotion decisions are separate immutable event concepts
-- [ ] CHK-007 [P1] No reducer, projection, frontier, gauge, read-model, or materialized-state behavior is hidden in the schema definitions
-- [ ] CHK-008 [P1] Large artifacts are digest-bound references and do not force unbounded raw traces into every ledger event
+- [x] CHK-005 [P0] Every event in the catalog has a typed payload, stable event name, owner, version policy, and explicit field rule [Evidence: 35 stems, wire map, payload map, scope map, and exhaustive data-rule table] [Test: Vitest 15/15 passed]
+- [x] CHK-006 [P0] Raw observations, normalized scores, canary evidence, and promotion decisions are separate immutable event concepts [Evidence: separation, predecessor-reference, and post-prepare mutation tests] [Test: Vitest 15/15 passed]
+- [x] CHK-007 [P1] No reducer, projection, frontier, gauge, read-model, or materialized-state behavior is hidden in the schema definitions [Evidence: import/export and scope audit] [Test: Vitest 15/15 passed]
+- [x] CHK-008 [P1] Large artifacts are digest-bound references and do not force unbounded raw traces into ledger events [Evidence: under-limit prose rejects in observation and protected-canary reference fields while valid tokens prepare] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] Serialize and validate the envelope for every run, candidate, evaluator, score, canary, promotion, quarantine, abstention, and terminal event family
-- [ ] CHK-010 [P0] Replay a complete candidate lineage from run start through evaluator observations, score events, canary outcomes, and promotion or quarantine
-- [ ] CHK-011 [P0] Preserve raw evaluator observations while applying a second normalization version; no prior observation or score is overwritten
-- [ ] CHK-012 [P0] Reject promotion when canary leakage, drift, metamorphic failure, insufficient evidence, or external authorization is missing or denied
-- [ ] CHK-013 [P0] Verify upcaster fixtures for current, supported historical, unknown, missing-field, ambiguous, and lossy payload versions
-- [ ] CHK-014 [P1] Verify the upcaster path and target schema version contribute deterministically to the replay fingerprint
-- [ ] CHK-015 [P1] Verify all three downstream variants consume the common evaluator, canary, and promotion event types without copied definitions
-- [ ] CHK-016 [P1] Verify unsupported variant extensions fail closed and cannot masquerade as common-service events
+- [x] CHK-009 [P0] Serialize and validate the envelope for every run, candidate, evaluator, score, canary, promotion, quarantine, abstention, and terminal event family [Evidence: 35/35 authorized append/readback matrix plus coherent terminal-fact pairs] [Test: Vitest 15/15 passed]
+- [x] CHK-010 [P0] Replay a complete candidate lineage from run start through evaluator observations, score events, canary outcomes, and promotion or quarantine [Evidence: ordered all-stem ledger fixture retains previous-tail and authorization links] [Test: Vitest 15/15 passed]
+- [x] CHK-011 [P0] Preserve raw evaluator observations independently from normalization; no prior observation or score is overwritten [Evidence: registered successor events reference predecessor identity and digest without mutating original payloads] [Test: Vitest 15/15 passed]
+- [x] CHK-012 [P0] Reject promotion when canary or external authorization evidence is absent or self-issued [Evidence: external transition-reference and missing-proof tests] [Test: Vitest 15/15 passed]
+- [x] CHK-013 [P0] Verify upcaster fixtures for current, supported historical, unknown, missing-identity, and lossy payload versions [Evidence: exact/compatible/migrate/pin-old-runtime/blocked matrix] [Test: Vitest 15/15 passed]
+- [x] CHK-014 [P1] Verify the upcaster path and target schema version contribute deterministically to replay identity [Evidence: source digest, upcaster fingerprint, replay metadata, and independent version-boundary tests] [Test: Vitest 15/15 passed]
+- [x] CHK-015 [P1] Verify one exported common evaluator, canary, and promotion contract is available to all three downstream variants [Evidence: variant attribution matrix accepts the three registered variants] [Test: Vitest 15/15 passed]
+- [x] CHK-016 [P1] Verify unsupported variant extensions fail closed and cannot masquerade as common-service events [Evidence: unknown variant and unnamespaced payload extension rejection] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-017 [P0] The reviewed event catalog enumerates every shared Deep Improvement Common Services event and identifies its producer and consumer boundary
-- [ ] CHK-018 [P1] Every requirement in spec.md maps to one plan step, task, checklist item, and planned evidence artifact
+- [x] CHK-017 [P0] The reviewed event catalog enumerates every shared Deep Improvement Common Services event and identifies its producer and consumer boundary [Evidence: 35-stem union and implementation-summary ownership matrix] [Test: Vitest 15/15 passed]
+- [x] CHK-018 [P1] Every requirement in spec.md maps to implementation, task, checklist, and verification evidence [Evidence: tasks T001-T017 and this completed checklist] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-019 [P0] Canary contents and hidden evaluator details are represented only through authorized sealed references or leak-veto outcomes
-- [ ] CHK-020 [P0] Promotion events reference external transition authorization and cannot derive authorization from their own score or canary payload
-- [ ] CHK-021 [P1] Evaluator feedback, candidate aliases, and evidence references do not expose protected canary material to candidate generation
+- [x] CHK-019 [P0] Canary contents and hidden evaluator details are represented only through references plus digests or leak-veto outcomes [Evidence: closed canary payloads reject prose in protected reference fields and accept system-token references] [Test: Vitest 15/15 passed]
+- [x] CHK-020 [P0] Promotion events reference external transition authorization and cannot derive authorization from their own score or canary payload [Evidence: `transition-authorization:` reference rule plus real gateway proof; phase-014 authenticity obligation documented] [Test: Vitest 15/15 passed]
+- [x] CHK-021 [P1] Evaluator feedback, candidate aliases, and evidence references do not expose protected canary material to candidate generation [Evidence: closed candidate/evaluator/canary families reject cross-family and mutable fields] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-022 [P1] The four phase documents agree on the common-service ownership boundary and the reducer handoff to `002-reducers-and-projections`
-- [ ] CHK-023 [P2] The phase outcome is reflected in the parent mode-and-lane migration map and the three downstream variant plans
+- [x] CHK-022 [P1] The phase documents, decision record, and implementation summary agree on the common-service ownership boundary and reducer handoff [Evidence: strict packet validation] [Test: Vitest 15/15 passed]
+- [x] CHK-023 [P2] The leaf records the contract surface the parent map and three downstream variant plans must consume without widening it [Evidence: implementation-summary sibling contract; downstream edits remain outside this lane] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-024 [P1] This planning child writes only `spec.md`, `plan.md`, `tasks.md`, and `checklist.md`; generated metadata is handled by deterministic tooling
-- [ ] CHK-025 [P2] Any later implementation lands in path-scoped commits with the additive-dark and rollback constraints preserved
+- [x] CHK-024 [P1] This implementation writes only the new schema module, its unit suite, and this leaf's docs; generated metadata is handled by deterministic tooling [Evidence: scoped status audit] [Test: Vitest 15/15 passed]
+- [x] CHK-025 [P2] The implementation preserves additive-dark and path-scoped rollback constraints [Evidence: no writer integration, golden module, or frozen substrate mutation] [Test: Vitest 15/15 passed]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
@@ -107,6 +109,6 @@ is intentionally verified by the next sibling rather than this child.
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Sign-off remains pending for this Planned phase. The implementation verifier may sign only after the schema catalog,
-compatibility matrix, replay fixtures, and downstream reuse review are recorded in the phase evidence report.
+Signed off after the 35-stem schema catalog, compatibility matrix, replay fixtures, authorization path, and downstream
+reuse boundary passed the recorded verification gates.
 <!-- /ANCHOR:sign-off -->

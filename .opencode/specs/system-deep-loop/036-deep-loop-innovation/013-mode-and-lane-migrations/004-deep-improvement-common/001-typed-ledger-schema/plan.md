@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Deep Improvement Common Services — Typed Ledger Schema"
-description: "Implementation Plan for the first child of the Deep Improvement Common Services migration: define the typed append-only event envelope, shared evaluator/canary/promotion event vocabulary, field-level types, and versioned upcaster boundary before reducers or downstream variants are implemented."
+description: "Implemented plan for the additive-dark Deep Improvement Common typed ledger schema, shared evaluator/canary/promotion vocabulary, field-level contracts, and fail-closed upcaster boundary."
 trigger_phrases:
   - "deep improvement typed ledger implementation plan"
   - "common evaluator canary promotion schema plan"
@@ -11,15 +11,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Captured the common-service event vocabulary boundary and sibling ordering"
-    next_safe_action: "Define envelope fields and versioned event payloads for shared service runs"
+    last_updated_at: "2026-07-23T08:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed schema implementation and verification"
+    next_safe_action: "Fold the exported union in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The shared envelope and authorized ledger remain the only authority substrate"
+      - "The common schema exports closed contracts for all three downstream variants"
 ---
 # Implementation Plan: Deep Improvement Common Services — Typed Ledger Schema
 
@@ -33,7 +35,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Deep Improvement Common Services |
 | **Change class** | Typed event schema and shared service vocabulary |
-| **Execution** | Planning-only child; implementation follows phase-006 and phase-012 contract freeze |
+| **Execution** | Implemented over frozen phase-006 and phase-012 contracts; additive-dark and non-authoritative |
 
 ### Overview
 The phase defines one append-only event contract for the shared evaluator-first loop: run lifecycle, candidate lineage
@@ -47,18 +49,18 @@ must be additive over the imported ledger core, preserve raw evidence, and leave
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment
-- [ ] Phase-012 shared event contracts and naming rules are available for specialization
-- [ ] Common-service ownership is separated from downstream variant extensions
-- [ ] The event catalog covers evaluator-first run behavior, canaries, guarded promotion, abstention, and quarantine
-- [ ] Every event payload has explicit field types, identity references, and version policy
-- [ ] Reducer, projection, frontier, and materialized-gauge behavior is excluded from this child
+- [x] Phase-006 envelope, authorization, sequence, receipt, and replay contracts are available for direct type alignment [Evidence: real shared imports and authorized append matrix]
+- [x] Phase-012 shared event contracts and naming rules are available for specialization [Evidence: shared envelope field inventory and replay metadata contract]
+- [x] Common-service ownership is separated from downstream variant extensions [Evidence: closed `variant` scope and public common payload maps]
+- [x] The event catalog covers evaluator-first run behavior, canaries, guarded promotion, abstention, and quarantine [Evidence: 35-stem union]
+- [x] Every event payload has explicit field types, identity references, and version policy [Evidence: exhaustive data and scope rule tables]
+- [x] Reducer, projection, frontier, and materialized-gauge behavior is excluded from this child [Evidence: scoped export and import audit]
 
 ### Definition of Done
-- [ ] A reviewed typed envelope specialization and event union are specified
-- [ ] Common evaluator, canary, and promotion services have one reusable event vocabulary
-- [ ] Upcaster hooks, compatibility classes, and fail-closed unknown-version behavior are specified
-- [ ] Handoff inputs and ownership boundaries for `002-reducers-and-projections` and the three variants are explicit
+- [x] A reviewed typed envelope specialization and event union are implemented [Evidence: runtime TypeScript exit 0 and 35/35 append matrix]
+- [x] Common evaluator, canary, and promotion services have one reusable event vocabulary [Evidence: exported payload and scope maps]
+- [x] Upcaster hooks, compatibility classes, and fail-closed unknown-version behavior are implemented [Evidence: targeted compatibility tests]
+- [x] Handoff inputs and ownership boundaries for `002-reducers-and-projections` and the three variants are explicit [Evidence: implementation summary sibling contract]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -147,9 +149,8 @@ authority cutover. Those choices belong to the imported core, the next sibling, 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This child changes planning artifacts only and has no runtime write or data migration. If the proposed schema fails
-review, discard or revert the four phase documents and reopen the planning contract without touching the imported core
-or downstream variants. During later implementation, keep the new event writer additive and dark behind the existing
-authorization and compatibility bridge; reject an incompatible event version rather than emitting a guessed payload.
-No reducer or projection rollback is defined here because those are owned by `002-reducers-and-projections`.
+This child adds a dark schema module, one unit suite, and leaf-local completion records. Rollback removes those new
+files and reverts this leaf's docs without touching the imported core or downstream variants. No authoritative writer
+or data migration exists, and incompatible event versions remain rejected rather than guessed. Reducer or projection
+rollback is not defined here because those are owned by `002-reducers-and-projections`.
 <!-- /ANCHOR:rollback -->

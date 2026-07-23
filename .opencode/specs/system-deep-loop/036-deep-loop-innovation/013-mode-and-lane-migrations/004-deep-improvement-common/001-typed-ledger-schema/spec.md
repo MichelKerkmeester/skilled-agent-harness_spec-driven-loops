@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Deep Improvement Common Services — Typed Ledger Schema"
-description: "Plan the typed append-only event vocabulary for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. This phase defines the event-envelope specialization, concrete payloads, field types, schema versions, and upcaster hooks consumed by agent-improvement, model-benchmark, and skill-benchmark; reducers and projections belong to the next sibling."
+description: "Defines the additive-dark typed append-only event vocabulary for shared Deep Improvement services: candidate generation, evaluator observations, score normalization, canary analysis, and guarded promotion."
 trigger_phrases:
   - "deep improvement common typed ledger schema"
   - "deep improvement event vocabulary"
@@ -12,15 +12,22 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Captured the common-service event vocabulary boundary and sibling ordering"
-    next_safe_action: "Define envelope fields and versioned event payloads for shared service runs"
+    last_updated_at: "2026-07-23T08:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the common typed ledger schema"
+    next_safe_action: "Fold the exported union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/deep-improvement-common-ledger-types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/deep-improvement-common-ledger-schema.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-ledger-schema.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The common catalog contains 35 closed event stems"
+      - "Score writes bind backend:deep-improvement-score"
+      - "Authorization proof ownership remains in the shared gateway and ledger"
+      - "Downstream variants extend through their namespaces without widening common payloads"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -39,7 +46,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; first child of the shared Deep Improvement Common Services migration |
@@ -49,16 +56,15 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The Deep Improvement Common Services backbone currently has no single typed event vocabulary for its evaluator-first
-loop: candidate generation, evaluator execution, score preservation, canary analysis, and guarded promotion are shared
-by three later variants but are not yet expressed as one append-only contract. Without a common event-envelope
-specialization, each variant can invent incompatible identifiers, score fields, lifecycle names, or promotion
-evidence, making replay, shadow parity, and shared-service ownership impossible to verify.
+The Deep Improvement Common Services backbone needs one typed event vocabulary for its evaluator-first loop.
+Candidate generation, evaluator execution, score preservation, canary analysis, and guarded promotion are shared by
+three later variants and now use one append-only contract, preventing incompatible identifiers, score fields,
+lifecycle names, or promotion evidence.
 
-This phase plans the schema contract only. It consumes the phase-006 transition-authorized ledger core and the
-phase-012 shared event contracts, then specializes them for Deep Improvement Common Services. The contract must keep
-raw evaluator observations separate from normalization and reduction, preserve candidate and evaluator lineage, bind
-canary and promotion evidence to an evaluation epoch, and expose versioned upcaster hooks. It emits vocabulary for
+This phase implements the schema contract only. It consumes the phase-006 transition-authorized ledger core and the
+phase-012 shared event contracts, then specializes them for Deep Improvement Common Services. The contract keeps
+raw evaluator observations separate from normalization and reduction, preserves candidate and evaluator lineage,
+binds canary and promotion evidence to an evaluation epoch, and exposes versioned upcaster hooks. It emits vocabulary for
 the next sibling's reducers and projections; it does not define those reducers.
 <!-- /ANCHOR:problem -->
 
@@ -76,7 +82,7 @@ the next sibling's reducers and projections; it does not define those reducers.
 - Reducers, projections, materialized gauges, frontier calculation, archive updates, and read models; these belong to `002-reducers-and-projections`.
 - Reimplementation of the phase-006 authorization gateway, ledger durability, replay fingerprint primitive, or phase-012 shared event envelope.
 - Variant-only event payloads and mode-specific certificates owned by the three downstream migrations.
-- Authority cutover, legacy-writer retirement, production code, and implementation tests; this is a planning-only phase.
+- Authority cutover, legacy-writer retirement, production writer integration, and mode activation.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -93,7 +99,7 @@ the next sibling's reducers and projections; it does not define those reducers.
 | REQ-007 | Shared services have one source contract for the three downstream variants | `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` reuse the common evaluator, canary, and promotion event types and add only explicitly namespaced variant extensions |
 <!-- /ANCHOR:requirements -->
 
-The planned event union is grouped into concrete append-only names: `deep_improvement_run_started`,
+The implemented event union is grouped into concrete append-only names: `deep_improvement_run_started`,
 `deep_improvement_run_resumed`, `deep_improvement_run_paused`, `deep_improvement_run_completed`,
 `deep_improvement_candidate_proposed`, `deep_improvement_candidate_generated`,
 `deep_improvement_candidate_rejected`, `deep_improvement_evaluation_epoch_sealed`,
@@ -102,8 +108,9 @@ The planned event union is grouped into concrete append-only names: `deep_improv
 `deep_improvement_canary_executed`, `deep_improvement_canary_vetoed`,
 `deep_improvement_promotion_proposed`, `deep_improvement_promotion_authorized`,
 `deep_improvement_promotion_denied`, `deep_improvement_promotion_paused`,
-`deep_improvement_promotion_aborted`, and `deep_improvement_promotion_completed`. The final catalog may add
-failure and quarantine companions, but it must not replace these lifecycle facts with mutable status fields.
+`deep_improvement_promotion_aborted`, and `deep_improvement_promotion_completed`. The complete common catalog also
+includes explicit lineage, failure, verification, quarantine, canary leak/drift/invariant, gate, shadow rollout,
+canary rollout, and baseline-restoration facts. None replace lifecycle history with mutable status.
 
 The event vocabulary must preserve the distinction between observation and judgment. A raw observation records what an
 evaluator returned for a fixture and candidate; normalization records the versioned transformation; a score decision or
@@ -145,8 +152,8 @@ and an explicit handoff to `002-reducers-and-projections`.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-No blocking questions for the planning contract. The implementation pass must resolve the exact type aliases and
-serialization library against the imported phase-006 and phase-012 contracts, choose the final event-name namespace,
-and confirm the maximum inline payload size before code lands. The next sibling owns reducer input ordering, projection
-keys, frontier semantics, and materialized read models; those decisions must not be pulled into this schema phase.
+No blocking questions remain. The implementation specializes the shared event envelope, uses
+`deep-improvement-common.ledger.*` wire names, closes every payload by semantic field kind, and carries references plus
+digests instead of mutable bodies. The next sibling still owns reducer input ordering, projection keys, frontier
+semantics, and materialized read models.
 <!-- /ANCHOR:questions -->

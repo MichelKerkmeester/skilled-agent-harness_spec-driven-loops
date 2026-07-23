@@ -11,17 +11,20 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Deep AI Council event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
+    last_updated_at: "2026-07-23T10:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed typed ledger schema implementation and verification"
+    next_safe_action: "Fold the exported event union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase-012 freeze?"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Reducers and projections are owned by the next sibling"
+      - "Authorization proof references remain owned by durable ledger frames"
+      - "Unknown envelope and payload versions fail closed independently"
 ---
 # Implementation Plan: Deep AI Council - Typed Ledger Schema
 
@@ -34,28 +37,28 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / deep-ai-council |
-| **Change class** | Typed event schema and compatibility contract planning |
-| **Execution** | Implement after phase 006 and phase 012 contracts are frozen; ledger remains additive and non-authoritative |
+| **Change class** | Typed event schema and compatibility contract implementation |
+| **Execution** | Implemented over frozen phase 006 and phase 012 contracts; ledger remains additive and non-authoritative |
 
 ### Overview
-The plan turns the existing Deep AI Council lifecycle into an explicit event vocabulary without changing the current state writer, artifact parser, reducer, or authority path. The implementation will specialize the shared envelope, define a discriminated union for run setup, independent seat deliberation, critique rounds, blinded adjudication, convergence, packet-local artifact references, and the council test gate, preserve raw observations and information-surface boundaries, and register pure version/upcaster hooks. The next sibling consumes these events to build reducers and projections. The checked-in mode contract establishes the one-CLI-per-round rule, 2-3 seat limit, append-only state rows, artifact persistence, resume semantics, planning-only boundary, and two-of-three convergence baseline; the mode findings registry adds effective independence, pairwise adjudication, calibration, debate escalation, stance trajectories, and anti-groupthink evidence requirements.
+The implementation turns the existing Deep AI Council lifecycle into an explicit event vocabulary without changing the current state writer, artifact parser, reducer, or authority path. It specializes the shared envelope, defines a discriminated union for run setup, independent seat deliberation, critique rounds, blinded adjudication, convergence, packet-local artifact references, and the council test gate, preserves raw observations and information-surface boundaries, and registers pure version/upcaster hooks. The next sibling consumes these events to build reducers and projections.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 006 publishes the transition-authorized envelope, append API, replay fingerprint, and fail-closed authorization result.
-- [ ] Phase 012 publishes the shared event identity, causal-link, branch, receipt, artifact-reference, version, and write-set contracts used by Deep AI Council.
-- [ ] The current Deep AI Council state rows, artifact audit rows, output sections, seat rules, convergence signals, rollback records, resume paths, and test-gate obligations are inventoried from the mode references.
-- [ ] The event ownership boundary distinguishes shared ledger events from Deep AI Council events and from the next sibling's reducer/projection outputs.
-- [ ] The target phase remains limited to schema vocabulary and upcaster hooks; no reducer, artifact generator, test runner, or authority work is scheduled here.
+- [x] Phase 006 publishes the transition-authorized envelope, append API, replay fingerprint, and fail-closed authorization result. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] Phase 012 publishes the shared event identity, causal-link, branch, receipt, artifact-reference, version, and write-set contracts used by Deep AI Council. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] The current Deep AI Council state rows, artifact audit rows, output sections, seat rules, convergence signals, rollback records, resume paths, and test-gate obligations are inventoried from the mode references. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] The event ownership boundary distinguishes shared ledger events from Deep AI Council events and from the next sibling's reducer/projection outputs. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] The target phase remains limited to schema vocabulary and upcaster hooks; no reducer, artifact generator, test runner, or authority work is scheduled here. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
 
 ### Definition of Done
-- [ ] The Deep AI Council event union and payload field matrix are ratified against phases 003 and 009.
-- [ ] Version compatibility fixtures cover exact, compatible, migrate, pin-old-runtime, and blocked outcomes.
-- [ ] Append-only, role-isolation, blinding, independence, convergence, artifact-reference, and test-gate invariants are executable as schema checks.
-- [ ] A handoff packet gives `002-reducers-and-projections` stable event names and references without prescribing its fold algorithm.
+- [x] The Deep AI Council event union and payload field matrix are ratified against phases 003 and 009. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] Version compatibility fixtures cover exact, compatible, migrate, pin-old-runtime, and blocked outcomes. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] Append-only, role-isolation, blinding, independence, convergence, artifact-reference, and test-gate invariants are executable as schema checks. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] A handoff packet gives `002-reducers-and-projections` stable event names and references without prescribing its fold algorithm. [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -124,5 +127,5 @@ The next sibling `002-reducers-and-projections` depends on this phase's stable e
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase is planning-only until its implementation is separately authorized. If schema implementation begins, land the envelope extension, event registry, upcasters, and fixtures in path-scoped commits behind the dark ledger path. Reverting those commits restores the prior Deep AI Council JSONL writer, report parser, resume behavior, and packet-local artifact flow. Do not delete or rewrite historical state; unsupported historical rows remain readable through the legacy path or are reported as explicit blocked compatibility outcomes. Any phase-006 or phase-012 contract change invalidates the candidate schema and requires regeneration from the shared contract before implementation continues.
+The schema, registry, upcasters, and fixtures are additive-dark and have no authoritative writer integration. Removing the new module, unit suite, and leaf completion documentation restores the prior workspace while leaving the Deep AI Council JSONL writer, report parser, resume behavior, and packet-local artifacts untouched. Historical state is neither deleted nor rewritten; unsupported rows remain on the legacy path or return an explicit blocked compatibility outcome.
 <!-- /ANCHOR:rollback -->

@@ -11,17 +11,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Deep AI Council event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
+    last_updated_at: "2026-07-23T10:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed schema implementation and verification"
+    next_safe_action: "Fold the exported event union in 002-reducers-and-projections"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase-012 freeze?"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Reducers and projections are owned by the next sibling"
+      - "Authorization proof references remain owned by durable ledger frames"
 ---
 # Tasks: Deep AI Council - Typed Ledger Schema
 
@@ -42,41 +44,41 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 006 transition authorization and phase 012 shared event contracts are frozen before naming council fields
-- [ ] T002 Inventory current Deep AI Council JSONL rows, optional metadata, artifact audit rows, report-required sections, seat rules, convergence signals, rollback records, resume paths, and council test-gate inputs
-- [ ] T003 Build the event ownership matrix separating shared ledger events, Deep AI Council events, packet-local artifact references, and the next sibling's reducer/projection outputs
+- [x] T001 Confirm phase 006 transition authorization and phase 012 shared event contracts are frozen before naming council fields [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T002 Inventory current Deep AI Council JSONL rows, optional metadata, artifact audit rows, report-required sections, seat rules, convergence signals, rollback records, resume paths, and council test-gate inputs [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T003 Build the event ownership matrix separating shared ledger events, Deep AI Council events, packet-local artifact references, and the next sibling's reducer/projection outputs [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Define the `deep-ai-council` envelope specialization, typed identifiers, scope object, inherited shared fields, authorization references, replay references, and one-CLI-per-round boundary
-- [ ] T005 Define the discriminated event union for run lifecycle, rounds, seat selection/dispatch/return, proposals, critique, candidate blinding, pairwise judging, bias audits, adjudication, stance changes, convergence, artifacts, test gate, rollback, and completion
-- [ ] T006 Define field-level payload types, requiredness, digest rules, information-surface rules, usage/cost receipts, calibration references, independence evidence, minority/contradiction references, and cross-event links
-- [ ] T007 Define envelope and payload version boundaries plus pure compatibility and upcaster hooks for legacy `ai-council-state.jsonl` and artifact-audit rows
-- [ ] T008 Specify schema fixtures for normal multi-seat deliberation, two-seat runs, resume/restart, timeout, cross-critique, order-swapped judgment, bias flag, low independence, debate escalation, blocked convergence, artifact rollback, and test-gate failure
+- [x] T004 Define the `deep-ai-council` envelope specialization, typed identifiers, scope object, inherited shared fields, authorization references, replay references, and one-CLI-per-round boundary [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T005 Define the discriminated event union for run lifecycle, rounds, seat selection/dispatch/return, proposals, critique, candidate blinding, pairwise judging, bias audits, adjudication, stance changes, convergence, artifacts, test gate, rollback, and completion [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T006 Define field-level payload types, requiredness, digest rules, information-surface rules, usage/cost receipts, calibration references, independence evidence, minority/contradiction references, and cross-event links [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T007 Define envelope and payload version boundaries plus pure compatibility and upcaster hooks for legacy `ai-council-state.jsonl` and artifact-audit rows [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T008 Specify schema fixtures for normal multi-seat deliberation, two-seat runs, resume/restart, timeout, cross-critique, order-swapped judgment, bias flag, low independence, debate escalation, blocked convergence, artifact rollback, and test-gate failure [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Verify every event payload conforms to the phase-012 envelope and every append request carries phase-006 authorization metadata
-- [ ] T010 Verify the event union covers `run setup -> independent seats -> critique rounds -> blinded adjudication -> convergence -> ai-council artifacts -> council test gate -> completion` without assigning reducer ownership
-- [ ] T011 Verify deterministic IDs, causal links, previous-tail hashes, payload digests, visible-information declarations, artifact references, and supersession-only revisions
-- [ ] T012 Verify raw seat returns, proposal scores, critique findings, pairwise outcomes, bias flags, independence inputs, stance changes, convergence signals, and gate results remain separate from selected plans or terminal outcomes
-- [ ] T013 Verify candidate blinding, deterministic shuffle, order-swapped judging, abstention, inconsistency, role separation, one-CLI-per-round, and effective-independence references are represented without a reducer
-- [ ] T014 Verify exact, compatible, migrate, pin-old-runtime, and blocked compatibility outcomes; unknown event types and versions fail closed
-- [ ] T015 Verify high nominal agreement cannot hide low effective independence, critical dissent, missing witnesses, minority loss, or test-gate failure in convergence evidence
-- [ ] T016 Verify the phase scope excludes reducers, projections, dashboards, graph rebuilds, artifact generation, certificates, rollback switches, authority cutover, and mode-gate implementation
-- [ ] T017 Verify the handoff matrix gives `002-reducers-and-projections` stable event names and entity references without prescribing its fold algorithm
+- [x] T009 Verify every event payload conforms to the phase-012 envelope and every append request carries phase-006 authorization metadata [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T010 Verify the event union covers `run setup -> independent seats -> critique rounds -> blinded adjudication -> convergence -> ai-council artifacts -> council test gate -> completion` without assigning reducer ownership [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T011 Verify deterministic IDs, causal links, previous-tail hashes, payload digests, visible-information declarations, artifact references, and supersession-only revisions [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T012 Verify raw seat returns, proposal scores, critique findings, pairwise outcomes, bias flags, independence inputs, stance changes, convergence signals, and gate results remain separate from selected plans or terminal outcomes [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T013 Verify candidate blinding, deterministic shuffle, order-swapped judging, abstention, inconsistency, role separation, one-CLI-per-round, and effective-independence references are represented without a reducer [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T014 Verify exact, compatible, migrate, pin-old-runtime, and blocked compatibility outcomes; unknown event types and versions fail closed [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T015 Verify high nominal agreement cannot hide low effective independence, critical dissent, missing witnesses, minority loss, or test-gate failure in convergence evidence [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T016 Verify the phase scope excludes reducers, projections, dashboards, graph rebuilds, artifact generation, certificates, rollback switches, authority cutover, and mode-gate implementation [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] T017 Verify the handoff matrix gives `002-reducers-and-projections` stable event names and entity references without prescribing its fold algorithm [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test as applicable)
+- [x] All tasks complete [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] All requirements in spec.md met with evidence [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
+- [x] Phase gate green (validate/build/test as applicable) [Evidence: implementation and verification receipts are recorded in `implementation-summary.md`]
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

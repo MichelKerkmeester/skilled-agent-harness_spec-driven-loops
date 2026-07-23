@@ -11,17 +11,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema"
-    last_updated_at: "2026-07-15T19:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Review event vocabulary to ledger planning"
-    next_safe_action: "Freeze typed event names against phase-012 shared contracts"
+    last_updated_at: "2026-07-23T10:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the typed ledger schema implementation"
+    next_safe_action: "Fold the exported union in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact shared envelope fields and transition tokens does phase 012 freeze?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Reducers and projections are owned by the next sibling"
+      - "Durable ledger frames own transition-authorization references"
+      - "Candidate severity requires typed adjudication"
 ---
 # Implementation Plan: Deep Review - Typed Ledger Schema
 
@@ -34,28 +35,28 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / deep-review |
-| **Change class** | Typed event schema and compatibility contract planning |
-| **Execution** | Implement after phase 006 and phase 012 contracts are frozen; ledger remains additive and non-authoritative |
+| **Change class** | Typed event schema and compatibility contract implementation |
+| **Execution** | Implemented over the frozen phase-006 and phase-012 contracts; ledger remains additive and non-authoritative |
 
 ### Overview
-The plan turns the existing Deep Review lifecycle into an explicit event vocabulary without changing the current reducer or authority path. The implementation will specialize the shared envelope, define a discriminated union for scope, per-dimension passes, candidate findings, adjudication, convergence, and review-report behavior, preserve raw observations and immutable references, and register pure version/upcaster hooks. The next sibling consumes these events to build reducers and projections. The checked-in mode contract establishes the four dimensions, lineage, JSONL records, blocked-stop gates, typed claim adjudication, and report output in `deep-review/SKILL.md:287-356` and `deep-review/references/state/state-jsonl.md:45-344`; the mode findings registry supplies the candidate-first, orthogonal-severity, fingerprint, evidence, and targeted-verification requirements in `findings-registry-modes.json:2619-2876`.
+The implementation turns the existing Deep Review lifecycle into an explicit event vocabulary without changing the current reducer or authority path. It specializes the shared envelope, defines a discriminated union for scope, per-dimension passes, candidate findings, adjudication, convergence, and review-report behavior, preserves raw observations and immutable references, and registers pure version/upcaster hooks. The next sibling consumes these events to build reducers and projections. The checked-in mode contract establishes the four dimensions, lineage, JSONL records, blocked-stop gates, typed claim adjudication, and report output in `deep-review/SKILL.md:287-356` and `deep-review/references/state/state-jsonl.md:45-344`; the mode findings registry supplies the candidate-first, orthogonal-severity, fingerprint, evidence, and targeted-verification requirements in `findings-registry-modes.json:2619-2876`.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 006 publishes the transition-authorized envelope, append API, replay fingerprint, and fail-closed authorization result.
-- [ ] Phase 012 publishes the shared review-loop identity, lineage, causal-link, artifact-reference, version, convergence, and write-set contracts used by deep-review and deep-alignment.
-- [ ] The current Deep Review config, JSONL, iteration, finding, graph, convergence, claim-adjudication, synthesis, resume, and continuity records are inventoried from the mode references.
-- [ ] The event ownership boundary distinguishes shared review-loop events from Deep Review mode events and from the next sibling's reducer/projection outputs.
-- [ ] The target phase remains limited to schema vocabulary and upcaster hooks; no reducer, report generator, or authority work is scheduled here.
+- [x] Phase 006 publishes the transition-authorized envelope, append API, replay fingerprint, and fail-closed authorization result. [Evidence: real shared imports and authorized append matrix]
+- [x] Phase 012 publishes the shared review-loop identity, lineage, causal-link, artifact-reference, version, convergence, and write-set contracts used by deep-review and deep-alignment. [Evidence: contract pins and shared-boundary audit in `implementation-summary.md`]
+- [x] The current Deep Review config, JSONL, iteration, finding, graph, convergence, claim-adjudication, synthesis, resume, and continuity records are inventoried from the mode references. [Evidence: 26-stem payload map and legacy compatibility table]
+- [x] The event ownership boundary distinguishes shared review-loop events from Deep Review mode events and from the next sibling's reducer/projection outputs. [Evidence: ownership matrix in `implementation-summary.md`]
+- [x] The target phase remains limited to schema vocabulary and upcaster hooks; no reducer, report generator, or authority work is scheduled here. [Evidence: scoped status audit and exported module surface]
 
 ### Definition of Done
-- [ ] The Deep Review event union and payload field matrix are ratified against phases 003 and 009.
-- [ ] Version compatibility fixtures cover exact, compatible, migrate, pin-old-runtime, and blocked outcomes.
-- [ ] Append-only, provenance, candidate-admission, adjudication, lineage, and unresolved-report invariants are executable as schema checks.
-- [ ] A handoff packet gives `002-reducers-and-projections` stable event names and references without prescribing its fold algorithm.
+- [x] The Deep Review event union and payload field matrix are ratified against the landed shared contracts. [Evidence: runtime TypeScript exit 0 and 26/26 authorized append matrix]
+- [x] Version compatibility fixtures cover exact, compatible, migrate, pin-old-runtime, and blocked outcomes. [Evidence: targeted compatibility tests pass]
+- [x] Append-only, provenance, candidate-admission, adjudication, lineage, and unresolved-report invariants are executable as schema checks. [Evidence: targeted Vitest 14/14 and mutation falsifier]
+- [x] The implementation summary gives `002-reducers-and-projections` stable event names and references without prescribing its fold algorithm. [Evidence: public union and sibling handoff in `implementation-summary.md`]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

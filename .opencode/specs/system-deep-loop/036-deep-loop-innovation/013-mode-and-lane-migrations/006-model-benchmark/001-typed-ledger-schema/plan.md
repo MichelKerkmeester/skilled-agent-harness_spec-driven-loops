@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Model Benchmark typed ledger schema"
-description: "Implementation Plan for the Model Benchmark typed ledger schema phase: freeze the mode envelope specialization and append-only event vocabulary over the shared deep-improvement-common and transition-authorized ledger contracts, with field-level types, lineage, validity, and upcaster hooks."
+description: "Implemented plan for the additive-dark Model Benchmark typed ledger schema: extend the closed deep-improvement-common vocabulary with model-specific trial, observation, validity, lineage, and reducer-handoff events."
 trigger_phrases:
   - "Model Benchmark typed ledger schema implementation plan"
   - "model-benchmark event schema plan"
@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema"
     last_updated_at: "2026-07-15T22:59:00Z"
     last_updated_by: "opencode"
-    recent_action: "Mapped event families to Model Benchmark run and scoring evidence"
-    next_safe_action: "Resolve shared envelope fields before freezing the mode payload union"
+    recent_action: "Implemented and verified the combined common and Model Benchmark event registry"
+    next_safe_action: "Consume the immutable event union in 002-reducers-and-projections"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,8 +32,8 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / model-benchmark child phase |
-| **Change class** | Planning contract: typed append-only event vocabulary |
-| **Execution** | Plan against phase-006 and phase-012 frozen contracts; no runtime authority or reducer implementation in this phase |
+| **Change class** | Additive-dark typed append-only event schema |
+| **Execution** | Extend the frozen common contracts; no runtime authority or reducer implementation in this phase |
 
 ### Overview
 The plan turns the Model Benchmark research findings into a closed event vocabulary over the shared ledger. It starts from the transition-authorized envelope, adds a mode-specific payload union for multi-model runs and scoring matrices, and preserves task lineage, contamination evidence, judge calibration, validity, usage, latency, and raw observations as immutable facts. The plan explicitly builds on deep-improvement-common services from mode 004 and hands its evidence to `002-reducers-and-projections`; it does not duplicate evaluator, canary, promotion, or reducer behavior.
@@ -43,18 +43,18 @@ The plan turns the Model Benchmark research findings into a closed event vocabul
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-006 transition-authorization and phase-012 shared event contracts are available with stable field names and version references
-- [ ] The mode-004 deep-improvement-common ownership boundary is listed for evaluator, canary, calibration, and promotion services
-- [ ] Current Model Benchmark evidence paths and research findings are mapped to event families without treating research prose as an implementation contract
-- [ ] The next sibling `002-reducers-and-projections` input boundary is agreed before any derived selection state is named
-- [ ] The phase remains scoped to the target folder and its four authored documents
+- [x] Phase-006 transition-authorization and phase-012 shared event contracts are available with stable field names and version references
+- [x] The mode-004 deep-improvement-common ownership boundary is listed for evaluator, canary, calibration, and promotion services
+- [x] Current Model Benchmark evidence paths and research findings are mapped to event families without treating research prose as an implementation contract
+- [x] The next sibling `002-reducers-and-projections` input boundary is agreed before any derived selection state is named
+- [x] The implementation remains scoped to the new schema module, its unit test, and this leaf's docs
 
 ### Definition of Done
-- [ ] The Model Benchmark envelope specialization and closed payload union are documented
-- [ ] Every event type has field-level types, identity rules, append-only semantics, and compatibility treatment
-- [ ] Versioned-envelope and upcaster hooks are specified with fail-closed major-version behavior
-- [ ] Scoring-matrix, usage, lineage, validity, and judge evidence are retained for later reducers
-- [ ] The phase's checklist and strict spec validation are green
+- [x] The Model Benchmark envelope specialization and closed payload union are documented
+- [x] Every event type has field-level types, identity rules, append-only semantics, and compatibility treatment
+- [x] Versioned-envelope and upcaster hooks are specified with fail-closed major-version behavior
+- [x] Scoring-matrix, usage, lineage, validity, and judge evidence are retained for later reducers
+- [x] The phase's checklist and strict spec validation are green
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -121,5 +121,10 @@ The plan depends on the phase-006 transition-authorized ledger core for authoriz
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase creates planning documents only and performs no runtime write, schema migration, ledger mutation, or authority change. If a later implementation discovers a contract defect, the safe rollback is to reject the new mode schema version, retain the previous compatible decoder/upcaster, and keep the legacy Model Benchmark path authoritative until the corrected additive version passes shadow parity. Never delete or rewrite already-emitted evidence; supersede an incorrect event interpretation with an append-only compatibility or invalidation decision.
+This phase adds a dark schema module and performs no schema migration, authoritative ledger mutation, or authority
+change. Rollback is to stop importing the new module; the legacy Model Benchmark path remains authoritative. If a
+later implementation discovers a contract defect, reject the new mode schema version and retain the previous
+compatible decoder/upcaster until the corrected additive version passes shadow parity. Never delete or rewrite
+already-emitted evidence; supersede an incorrect interpretation with an append-only compatibility or invalidation
+decision.
 <!-- /ANCHOR:rollback -->
