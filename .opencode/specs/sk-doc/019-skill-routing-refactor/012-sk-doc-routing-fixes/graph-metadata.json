@@ -59,7 +59,8 @@
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-doc-leaf-routing-contract.vitest.ts",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs"
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+      ".opencode/skills/sk-doc/shared/references/smart-routing.md"
     ],
     "entities": [
       {
@@ -177,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "smart-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/smart-routing.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
     "created_at": "2026-07-16T08:08:19.396Z",
-    "last_save_at": "2026-07-23T12:42:18.109Z",
+    "last_save_at": "2026-07-24T06:22:00.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +220,10 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:179073f8747ba53951674fcf39445a59f82b6217dae61251d628d7e361368318",
+    "source_fingerprint": "sha256:5bfc337f9a465983fb929e21908b221ca8c9c99ae11686b49b57d04a535ef362",
     "source_doc_hashes": {
-      "spec.md": "0141348072fe84f9baebbb1d50ebd03c02676f9a0c10d303df16107ff21c9cec",
-      "plan.md": "ceab21e05dab7092c6b04c55229c7e1e731e168d9a8c59e8a63836a41a309bd8",
+      "spec.md": "4013b510e8ed06b1b72d015298359beec880556521f332f893b199689f88859b",
+      "plan.md": "4a0c17a76d3cd8cf534820b53cdd1c9438d09fb55d04c49080400223329957dd",
       "tasks.md": "e26cf253aae9faf1fa9dfdaf2596cb2d5c5b9718a794febfd81e149b50200f10",
       "checklist.md": "396542eb4cf18a026c037c502980a06f526cd8be0926944eb3ea7a8a55d54b81",
       "decision-record.md": "b878c3657d45d1d7d7ba6ad86f34272233885377f0e8f5f9e0e9fe5c46f8892e"

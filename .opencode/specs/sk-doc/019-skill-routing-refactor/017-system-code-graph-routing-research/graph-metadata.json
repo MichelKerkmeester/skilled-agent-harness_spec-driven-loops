@@ -46,7 +46,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
-      "scripts/dist/memory/generate-context.js",
       "research/findings-registry.json",
       "research/deep-research-state.jsonl",
       "research/iterations/iteration-001.md",
@@ -59,7 +58,8 @@
       "research/iterations/iteration-008.md",
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs"
+      ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
     ],
     "entities": [
       {
@@ -90,12 +90,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -177,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at all",
     "created_at": "2026-07-17T04:06:39.227Z",
-    "last_save_at": "2026-07-23T12:42:18.946Z",
+    "last_save_at": "2026-07-24T06:22:00.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:568d2c38f386bed0d0c3649d38ff4b8a22e7b76a49f3a7eb5a5a5c3abba332f2",
+    "source_fingerprint": "sha256:2f8e4408951397b30bc8a28e8ec78347968b524f533aa0c4bd07f68eb352aa0f",
     "source_doc_hashes": {
       "spec.md": "3b56db5456570d2987ec5b663fba730d5abd72fce6bc58956d7b00807157f286",
       "plan.md": "5ee70caaaa642434246369201a09f8c751d87d20a4c95ce91d6b19688eb985ab",
       "tasks.md": "ca6de896f36689edcbddd9067e53723e733631a2159434d17d7aa3a443d087cd",
-      "implementation-summary.md": "a9fd5d2587aad4d7b514677cdec9e8fb746bee6abcaa0551f266543721d89276",
+      "implementation-summary.md": "ceb90db6376f4dae1c89aaa1b4bb20624409d92950a2b25a3b938507d7c4d432",
       "research/research.md": "4090a81546fbab0858065b290a2241fc76ccae12a2d2e3712a018f707dd98a50"
     },
     "last_active_child_id": null,
