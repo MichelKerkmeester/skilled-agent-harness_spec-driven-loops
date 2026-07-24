@@ -1,6 +1,6 @@
 {
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/008-cursor-model-allowlist",
   "level": "2",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/008-cursor-model-allowlist",
   "description": "Phase 002 gave `cli-cursor` a permissive model reference (`CURSORSUPPORTEDMODELS = ['auto', 'composer-2.5', 'composer-2.5-fast']`) explicitly",
   "keywords": [
     "phase",
@@ -15,7 +15,7 @@
     "5-fast",
     "explicitly"
   ],
-  "lastUpdated": "2026-07-24T11:24:14.224Z",
+  "lastUpdated": "2026-07-24T11:50:24.424Z",
   "specId": "008",
   "folderSlug": "cursor-model-allowlist",
   "parentChain": [

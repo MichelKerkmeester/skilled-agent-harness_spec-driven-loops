@@ -100,6 +100,8 @@ The phase count matches `029-cli-devin-revival`'s 7-phase shape because Cursor's
 | 5 | `005-cursor-model-registry-and-routing/` | Add a Composer profile + `cli-cursor` executor rows and the CI gate coverage. | Complete |
 | 6 | `006-cursor-manual-testing-playbook/` | Author a Cursor-native manual-testing playbook. | Complete |
 | 7 | `007-docs-agents-governance-and-closeout/` | Add roster/governance/sibling doc mentions; full recursive validation and closeout. | Complete |
+| 8 | `008-cursor-model-allowlist/` | Restrict cli-cursor dispatch to an enforced 10-id allowlist (Composer 2.5, Grok 4.5, GLM 5.2); remove `auto` as the default. | Complete |
+| 9 | `009-cursor-hooks-catalog-and-playbook-coverage/` | Add a feature-catalog entry and playbook coverage for every cli-cursor hook adapter. | Planned |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -114,11 +116,13 @@ The phase count matches `029-cli-devin-revival`'s 7-phase shape because Cursor's
 | From | To | Criteria | Verification |
 |---|---|---|---|
 | 001 | 002 | Live Cursor CLI contract (binary, flags, auth, hooks, config, permissions, models, unique surfaces) confirmed. | Met — `cursor-agent --version` (`2026.07.23-e383d2b`), `--help`/`mcp`/`plugin`/`worker` captured, `cursor.com/docs` fetched and cross-checked (001 implementation-summary.md). |
-| 002 | 003 | `cli-cursor` compiles as a new `ExecutorKind` and dispatches through `fanout-run.cjs` with a real `buildCursorLineageCommand`, rejecting cleanly when `cursor-agent` is absent from PATH. | Pending. |
-| 003 | 004 | `cli-cursor/` exists under the hub, registered in `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`, and `parent-skill-check.cjs` + `validate_skill_package.py` both stay at 0 fails against the hub. | Pending. |
-| 004 | 005 | Cursor hook adapters installed and live-verified for the confirmed-delivered core events (`sessionStart`/`beforeSubmitPrompt`/`stop`). | Pending. |
-| 005 | 006 | Composer profile + `cli-cursor` executor rows present; `check-prompt-quality-card-sync.sh` passes with `cli-cursor` covered. | Pending. |
-| 006 | 007 | Manual-testing playbook authored with Cursor-native scenario categories, cross-referenced from `cli-cursor/SKILL.md`. | Pending. |
+| 002 | 003 | `cli-cursor` compiles as a new `ExecutorKind` and dispatches through `fanout-run.cjs` with a real `buildCursorLineageCommand`, rejecting cleanly when `cursor-agent` is absent from PATH. | Met — `executor-config.ts`/`fanout-run.cjs` extended, fail-closed test asserts the binary-absent rejection (002 implementation-summary.md). |
+| 003 | 004 | `cli-cursor/` exists under the hub, registered in `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`, and `parent-skill-check.cjs` + `validate_skill_package.py` both stay at 0 fails against the hub. | Met — both validators 0 fails (003 implementation-summary.md). |
+| 004 | 005 | Cursor hook adapters installed and live-verified for the confirmed-delivered core events (actually `sessionStart`/`preToolUse`/`sessionEnd`, not the originally-assumed `sessionStart`/`beforeSubmitPrompt`/`stop` trio — live probing inverted the assumption). | Met — live delivery table captured in 004 decision-record.md. |
+| 005 | 006 | Composer profile + `cli-cursor` executor rows present; `check-prompt-quality-card-sync.sh` passes with `cli-cursor` covered. | Met — `GUARD PASS` (005 implementation-summary.md). |
+| 006 | 007 | Manual-testing playbook authored with Cursor-native scenario categories, cross-referenced from `cli-cursor/SKILL.md`. | Met — 19 `CU-NNN` scenarios across 9 categories (006 implementation-summary.md). |
+| 007 | 008 | Roster/governance mentions land wherever the 3 siblings appear; whole packet validates `--recursive --strict` 0/0. | Met — 8/8 folders 0/0 (007 implementation-summary.md). |
+| 008 | 009 | cli-cursor dispatch enforced to a 10-id allowlist; `auto` removed as the default. | Met — allowlist enforced at both dispatch entry points (008 implementation-summary.md). |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage",
+  "description": "`cli-external-orchestration/feature-catalog/feature-catalog.md` (the hub-level feature catalog) was never updated for `cli-cursor` at all — it still",
+  "keywords": [
+    "cli-external-orchestration",
+    "feature-catalog",
+    "hub-level",
+    "feature",
+    "catalog",
+    "never",
+    "cli-cursor",
+    "still"
+  ],
+  "lastUpdated": "2026-07-24T11:47:42.484Z",
+  "specId": "009",
+  "folderSlug": "cursor-hooks-catalog-and-playbook-coverage",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../007-docs-agents-governance-and-closeout/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../009-cursor-hooks-catalog-and-playbook-coverage/spec.md` |
 | **Handoff Criteria** | Any `cli-cursor` dispatch outside the enforced 10-id allowlist is rejected before a command is constructed, at both runtime execution paths (`fanout-run.cjs`, `dispatch-model.cjs`); skill docs describe the allowlist exclusively; whole packet re-validates 0/0. |
 <!-- /ANCHOR:metadata -->
 
