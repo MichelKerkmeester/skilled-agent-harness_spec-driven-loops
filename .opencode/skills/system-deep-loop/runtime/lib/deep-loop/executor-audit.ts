@@ -51,24 +51,35 @@ const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'codex',
   'cli-claude-code': 'claude',
   'cli-opencode': 'opencode',
+  // 'agent' is an alias symlink to the same binary on this CLI, never the
+  // dispatch target — always resolve the canonical name.
+  'cli-cursor': 'cursor-agent',
 };
 
 const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'CODEX_SESSION_ID',
   'cli-claude-code': 'CLAUDE_CODE_SESSION_ID',
   'cli-opencode': 'OPENCODE_SESSION_ID',
+  // Confirmed live 2026-07-24: `cursor-agent -p` sets CURSOR_CONVERSATION_ID in
+  // its own subprocess env, matching the --output-format json `session_id` field.
+  'cli-cursor': 'CURSOR_CONVERSATION_ID',
 };
 
 const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-codex': ['SPECKIT_CODEX_STATE_DIR', 'CODEX_HOME'],
   'cli-claude-code': ['SPECKIT_CLAUDE_CODE_STATE_DIR', 'CLAUDE_CODE_HOME', 'CLAUDE_HOME'],
   'cli-opencode': ['SPECKIT_OPENCODE_STATE_DIR', 'OPENCODE_HOME'],
+  // No CURSOR_HOME-style override is documented or present in `cursor-agent
+  // --help` (checked live) — only the repo-owned detection var is listed, never
+  // a fabricated CLI-native one.
+  'cli-cursor': ['SPECKIT_CURSOR_STATE_DIR'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': '.codex',
   'cli-claude-code': '.claude',
   'cli-opencode': '.opencode',
+  'cli-cursor': '.cursor',
 };
 
 const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
@@ -97,6 +108,10 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   'cli-codex': ['CODEX_', 'OPENAI_', 'AZURE_OPENAI_'],
   'cli-claude-code': ['CLAUDE_', 'CLAUDE_CODE_', 'ANTHROPIC_'],
   'cli-opencode': ['OPENCODE_'],
+  // Confirmed live: auth vars (CURSOR_API_KEY/CURSOR_AUTH_TOKEN/
+  // CURSOR_API_ENDPOINT) and subprocess env (CURSOR_CONVERSATION_ID/
+  // CURSOR_AGENT/CURSOR_INVOKED_AS/CURSOR_RIPGREP_PATH) all share this prefix.
+  'cli-cursor': ['CURSOR_'],
 };
 
 type RunAuditedExecutorCommandInput = {

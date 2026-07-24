@@ -46,7 +46,7 @@ describe('F-P1-1: dispatch-model cwd propagation', () => {
     fs.writeFileSync(promptFile, 'review prompt');
   });
 
-  for (const executor of ['cli-claude-code', 'cli-opencode']) {
+  for (const executor of ['cli-claude-code', 'cli-opencode', 'cli-cursor']) {
     it(`passes cwd to the spawn layer for ${executor}`, () => {
       let capturedCwd: string | undefined;
       const fakeSpawn = (_bin: string, _args: string[], opts: { cwd?: string }) => {
@@ -210,8 +210,26 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     expect(claude.args[claude.args.indexOf('--permission-mode') + 1]).toBe('acceptEdits');
   });
 
+  it('cli-cursor omits --auto-review by default (read-only) and adds it under the write opt-in', () => {
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const readOnly = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', resolved);
+    expect(readOnly.args).not.toContain('--auto-review');
+    expect(readOnly.args).not.toContain('--force');
+
+    process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
+    const writeCapable = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', resolved);
+    expect(writeCapable.args).toContain('--auto-review');
+  });
+
+  it('cli-cursor never forwards variant as a flag (no --reasoning-effort / model[effort=...] support)', () => {
+    const spec = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, variant: 'high' });
+    expect(spec.args).not.toContain('--effort');
+    expect(spec.args).not.toContain('--variant');
+    expect(spec.args).not.toContain('high');
+  });
+
   it('routing is preserved for all active executors (bin resolves)', () => {
-    for (const ex of ['cli-opencode', 'cli-claude-code']) {
+    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-cursor']) {
       const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', resolved);
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);

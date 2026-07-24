@@ -29,10 +29,10 @@ Widen the deep-loop runtime's typed executor union to include `cli-cursor`, acro
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- [ ] Every new `cli-cursor` map/row in `executor-config.ts` and `executor-audit.ts` cross-checked against phase 001's `implementation-summary.md`.
-- [ ] Strict typecheck (changed-module scope at minimum) exits 0 with the widened `EXECUTOR_KINDS` union.
-- [ ] Focused Vitest run (`executor-config.vitest.ts`, `executor-audit.vitest.ts`, `fanout-run.vitest.ts`, `remediation.vitest.ts`) passes with zero changes to existing kinds' assertions.
-- [ ] `dispatch-model.cjs` and `profile-validator.cjs` `KNOWN_EXECUTORS` edited in the same commit so the hand-synced sets do not drift for the new kind.
+- [x] Every new `cli-cursor` map/row in `executor-config.ts` and `executor-audit.ts` cross-checked against phase 001's `implementation-summary.md`.
+- [x] Strict typecheck (changed-module scope at minimum) exits 0 with the widened `EXECUTOR_KINDS` union.
+- [x] Focused Vitest run (`executor-config.vitest.ts`, `executor-audit.vitest.ts`, `fanout-run.vitest.ts`, `remediation.vitest.ts`) passes with zero changes to existing kinds' assertions.
+- [x] `dispatch-model.cjs` and `profile-validator.cjs` `KNOWN_EXECUTORS` edited in the same commit so the hand-synced sets do not drift for the new kind.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -55,22 +55,22 @@ Widen the deep-loop runtime's typed executor union to include `cli-cursor`, acro
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Re-read phase 001's `implementation-summary.md` for the confirmed flag surface, approval flags, and model-roster shape.
-- [ ] Confirm (or explicitly mark TBD) Cursor's session-id env var, the `SandboxMode → approval-flag` mapping, and whether reasoning-effort uses the model bracket, before touching `executor-audit.ts`/`fanout-run.cjs`.
+- [x] Re-read phase 001's `implementation-summary.md` for the confirmed flag surface, approval flags, and model-roster shape.
+- [x] Confirm (or explicitly mark TBD) Cursor's session-id env var, the `SandboxMode → approval-flag` mapping, and whether reasoning-effort uses the model bracket, before touching `executor-audit.ts`/`fanout-run.cjs`.
 
 ### Phase 2: Core Implementation
-- [ ] Widen `EXECUTOR_KINDS`; add `cli-cursor` rows to `EXECUTOR_KIND_FLAG_SUPPORT` and `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX`.
-- [ ] Add `CURSOR_SUPPORTED_MODELS`, `CursorSupportedModel`, `CursorApprovalMode`, `resolveCursorApprovalMode()` in `executor-config.ts`.
-- [ ] Add `cli-cursor` rows to all maps in `executor-audit.ts`.
-- [ ] Add `cli-cursor` to `SPECKIT_STATE_ENV_BY_KIND` and implement `buildCursorLineageCommand` (plus fail-closed preflight) in `fanout-run.cjs`; register it in `LINEAGE_COMMAND_ADAPTERS`.
-- [ ] Add `cli-cursor` to `dispatch-model.cjs`'s `KNOWN_EXECUTORS` and a new `buildSpawnSpec` case.
-- [ ] Add `cli-cursor` to `profile-validator.cjs`'s `KNOWN_EXECUTORS` in the same change.
+- [x] Widen `EXECUTOR_KINDS`; add `cli-cursor` rows to `EXECUTOR_KIND_FLAG_SUPPORT` and `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX`.
+- [x] Add `CURSOR_SUPPORTED_MODELS`, `CursorSupportedModel`, `CursorApprovalMode`, `resolveCursorApprovalMode()` in `executor-config.ts`.
+- [x] Add `cli-cursor` rows to all maps in `executor-audit.ts`.
+- [x] Add `cli-cursor` to `SPECKIT_STATE_ENV_BY_KIND` and implement `buildCursorLineageCommand` (plus fail-closed preflight) in `fanout-run.cjs`; register it in `LINEAGE_COMMAND_ADAPTERS`.
+- [x] Add `cli-cursor` to `dispatch-model.cjs`'s `KNOWN_EXECUTORS` and a new `buildSpawnSpec` case.
+- [x] Add `cli-cursor` to `profile-validator.cjs`'s `KNOWN_EXECUTORS` in the same change.
 
 ### Phase 3: Verification
-- [ ] Run the 4 focused Vitest files; confirm zero diffs in existing kinds' assertions.
-- [ ] Add and pass a new `cli-cursor` absent-binary fail-closed test in `fanout-run.vitest.ts`, mirroring the `cli-codex` case.
-- [ ] Run strict typecheck on the two changed `.ts` modules.
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 002-deep-loop-executor-support --strict`.
+- [x] Run the 4 focused Vitest files; confirm zero diffs in existing kinds' assertions.
+- [x] Add and pass a new `cli-cursor` absent-binary fail-closed test in `fanout-run.vitest.ts`, mirroring the `cli-codex` case.
+- [x] Run strict typecheck on the two changed `.ts` modules.
+- [x] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 002-deep-loop-executor-support --strict`.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

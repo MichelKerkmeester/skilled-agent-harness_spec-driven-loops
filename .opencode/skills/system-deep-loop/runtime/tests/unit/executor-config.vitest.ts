@@ -11,6 +11,7 @@ import {
   parseFanoutConfig,
   expandLineages,
   preflightFanoutCapabilities,
+  resolveCursorApprovalMode,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
@@ -109,6 +110,30 @@ describe('executor-config', () => {
   it('rejects configDir for cli-codex', () => {
     expect(() => parseExecutorConfig({ kind: 'cli-codex', configDir: '~/.codex' })).toThrowError(
       /configDir.*not supported by executor kind 'cli-codex'/,
+    );
+  });
+
+  it('accepts cli-cursor with its supported execution flags', () => {
+    expect(parseExecutorConfig({
+      kind: 'cli-cursor',
+      model: 'auto',
+      sandboxMode: 'workspace-write',
+    })).toMatchObject({
+      kind: 'cli-cursor',
+      model: 'auto',
+      sandboxMode: 'workspace-write',
+    });
+  });
+
+  it('rejects reasoningEffort for cli-cursor (no --reasoning-effort flag, no model[effort=...] bracket)', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-cursor', model: 'auto', reasoningEffort: 'high' })).toThrowError(
+      /reasoningEffort.*not supported by executor kind 'cli-cursor'/,
+    );
+  });
+
+  it('rejects configDir for cli-cursor', () => {
+    expect(() => parseExecutorConfig({ kind: 'cli-cursor', configDir: '~/.cursor' })).toThrowError(
+      /configDir.*not supported by executor kind 'cli-cursor'/,
     );
   });
 
@@ -286,6 +311,7 @@ describe('executor web-search policy', () => {
       'cli-codex': { inherit: true, disabled: true, cached: false, live: true },
       'cli-claude-code': { inherit: true, disabled: false, cached: false, live: false },
       'cli-opencode': { inherit: true, disabled: false, cached: false, live: true },
+      'cli-cursor': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
 
@@ -346,6 +372,13 @@ describe('parseFanoutConfig', () => {
       executors: [{ kind: 'cli-codex', model: 'gpt-5.6-codex', label: 'codex' }],
     });
     expect(config.executors[0]).toMatchObject({ kind: 'cli-codex', model: 'gpt-5.6-codex' });
+  });
+
+  it('accepts cli-cursor as a fan-out lineage', () => {
+    const config = parseFanoutConfig({
+      executors: [{ kind: 'cli-cursor', model: 'auto', label: 'cursor' }],
+    });
+    expect(config.executors[0]).toMatchObject({ kind: 'cli-cursor', model: 'auto' });
   });
 
   it('accepts per-lineage cli-claude-code configDir in fan-out config', () => {
@@ -640,5 +673,21 @@ describe('expandLineages', () => {
       branches: Array.from({ length: 16 }, (_, index) => ({ id: `branch-${index}` })),
       replicas: 2,
     })).toThrowError(/expands to 512 lineages; maximum is 256/);
+  });
+});
+
+describe('resolveCursorApprovalMode', () => {
+  it('maps read-only to the CLI unflagged default (ask)', () => {
+    expect(resolveCursorApprovalMode('read-only')).toBe('ask');
+  });
+
+  it('maps workspace-write (and the null/undefined default) to auto-review', () => {
+    expect(resolveCursorApprovalMode('workspace-write')).toBe('auto-review');
+    expect(resolveCursorApprovalMode(null)).toBe('auto-review');
+    expect(resolveCursorApprovalMode(undefined)).toBe('auto-review');
+  });
+
+  it('maps danger-full-access to force (--force/--yolo), never a sandbox value', () => {
+    expect(resolveCursorApprovalMode('danger-full-access')).toBe('force');
   });
 });

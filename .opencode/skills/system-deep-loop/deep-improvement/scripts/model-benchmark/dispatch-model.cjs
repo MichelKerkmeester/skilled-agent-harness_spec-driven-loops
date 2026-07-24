@@ -137,6 +137,7 @@ const RATE_LIMIT_PATTERNS = [
 const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
+  'cli-cursor',
 ]);
 
 function sha256Hex(input) {
@@ -423,6 +424,18 @@ function buildSpawnSpec(executor, promptText, resolved) {
       const args = ['-p', promptText, '--model', model, '--permission-mode', permissionMode, '--output-format', 'text'];
       if (variant) args.push('--effort', variant);
       return { bin: process.env.CLAUDE_BIN || 'claude', args, input: null };
+    }
+    case 'cli-cursor': {
+      // Cursor has no --reasoning-effort/--variant flag and rejects the
+      // parameterized model[effort=...] bracket outright (live-verified
+      // 2026-07-24) — effort tiers are baked into the model id itself (e.g.
+      // gpt-5.2-high), so `variant` is not forwarded; callers select an
+      // effort-suffixed id via `model` instead.
+      // Read-only judgment: omitting --auto-review leaves Cursor's own
+      // prompt-and-block default in place, so unattended dispatch cannot write.
+      const args = ['-p', promptText, '--model', model || 'auto', '--output-format', 'text'];
+      if (writeCapable) args.push('--auto-review');
+      return { bin: process.env.CURSOR_AGENT_BIN || 'cursor-agent', args, input: null };
     }
     default:
       throw new Error(`Unknown executor: ${executor}`);

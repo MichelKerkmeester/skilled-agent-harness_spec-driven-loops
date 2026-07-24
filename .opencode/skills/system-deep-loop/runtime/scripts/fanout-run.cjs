@@ -439,6 +439,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-codex': 'SPECKIT_CODEX_STATE_DIR',
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
+  'cli-cursor': 'SPECKIT_CURSOR_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -1610,11 +1611,56 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
   });
 }
 
+function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isCursorBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-cursor executor unavailable: command -v cursor-agent failed');
+  }
+  const webSearch = effectiveWebSearchPolicy(lineage);
+  const model = lineage.model || 'auto';
+  // Cursor has no --reasoning-effort flag and rejects the parameterized
+  // model[effort=...] bracket outright ("Cannot use this model", live-verified
+  // 2026-07-24 against cursor-agent 2026.07.23-e383d2b) — effort tiers are baked
+  // into the model id itself (e.g. gpt-5.2-high), so reasoningEffort is never
+  // forwarded here (also unsupported at the executor-config.ts flag-support
+  // layer). The approval-flag mapping below intentionally mirrors
+  // resolveCursorApprovalMode() in executor-config.ts (kept independent rather
+  // than imported, matching how the codex/opencode adapters above already
+  // derive their own kind-specific flags from resolvedSandbox rather than
+  // calling a shared resolver): read-only leaves Cursor's own prompt-and-block
+  // default in place (no flag — nothing unattended can answer the prompt),
+  // workspace-write uses --auto-review ("Smart Auto"), danger-full-access uses
+  // --force ("Run Everything"). --sandbox tracks the same 2-way OS toggle.
+  const args = ['-p', prompt, '--output-format', 'text', '--model', model];
+  if (resolvedSandbox === 'danger-full-access') {
+    args.push('--force', '--sandbox', 'disabled');
+  } else if (resolvedSandbox === 'read-only') {
+    args.push('--sandbox', 'enabled');
+  } else {
+    args.push('--auto-review', '--sandbox', 'enabled');
+  }
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'cursor-agent',
+    args,
+    input: undefined,
+    prompt,
+    promptArgIndexes: [1],
+    executableVersion: resolveExecutableVersion('cursor-agent', options),
+    model,
+    reasoningEffort: null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch,
+  });
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
   'cli-claude-code': buildClaudeLineageCommand,
   'cli-opencode': buildOpencodeLineageCommand,
+  'cli-cursor': buildCursorLineageCommand,
 });
 
 /**
@@ -1632,6 +1678,17 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
 
 function isCodexBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+// `cursor-agent -p` exits 0 even on an auth failure, so this PATH preflight is
+// the only availability signal buildCursorLineageCommand may use — never the
+// dispatch exit code.
+function isCursorBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v cursor-agent >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -2218,6 +2275,7 @@ module.exports = {
   buildLineageCommand,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
+  isCursorBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,

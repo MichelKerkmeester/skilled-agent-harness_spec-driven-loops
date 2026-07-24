@@ -388,12 +388,15 @@ describe('executor-audit', () => {
     expect(detectFromAncestry('cli-claude-code', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/claude -p'])).toBe(true);
     expect(detectFromAncestry('cli-claude-code', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/opencode'])).toBe(false);
     expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/codex exec'])).toBe(true);
+    expect(detectFromAncestry('cli-cursor', ['/usr/local/bin/node worker.js', '/Users/x/.local/bin/cursor-agent -p'])).toBe(true);
   });
 
   it('detectFromRuntimeEnv matches the runtime-specific session variable only', () => {
     expect(detectFromRuntimeEnv('cli-claude-code', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(true);
     expect(detectFromRuntimeEnv('cli-claude-code', { OPENCODE_SESSION_ID: 'session-1' })).toBe(false);
     expect(detectFromRuntimeEnv('cli-codex', { CODEX_SESSION_ID: 'session-1' })).toBe(true);
+    expect(detectFromRuntimeEnv('cli-cursor', { CURSOR_CONVERSATION_ID: 'session-1' })).toBe(true);
+    expect(detectFromRuntimeEnv('cli-cursor', { CODEX_SESSION_ID: 'session-1' })).toBe(false);
     expect(detectFromRuntimeEnv('native', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(false);
   });
 
@@ -515,6 +518,24 @@ describe('executor-audit', () => {
       SPECKIT_CLI_DISPATCH_STACK: 'cli-codex',
     });
     expect(nextEnv.ANTHROPIC_API_KEY).toBeUndefined();
+  });
+
+  it('buildExecutorDispatchEnv preserves only Cursor provider state and credentials', () => {
+    const executor = { ...cliClaudeExecutor(), kind: 'cli-cursor' as const, model: 'auto' };
+    const nextEnv = buildExecutorDispatchEnv(executor, {
+      PATH: '/usr/bin',
+      CURSOR_CONVERSATION_ID: 'conversation-1',
+      CURSOR_API_KEY: 'cursor-secret',
+      OPENAI_API_KEY: 'wrong-provider',
+    });
+
+    expect(nextEnv).toMatchObject({
+      PATH: '/usr/bin',
+      CURSOR_CONVERSATION_ID: 'conversation-1',
+      CURSOR_API_KEY: 'cursor-secret',
+      SPECKIT_CLI_DISPATCH_STACK: 'cli-cursor',
+    });
+    expect(nextEnv.OPENAI_API_KEY).toBeUndefined();
   });
 
   it('runAuditedExecutorCommand emits a typed dispatch_failure when the guard rejects before spawn', () => {

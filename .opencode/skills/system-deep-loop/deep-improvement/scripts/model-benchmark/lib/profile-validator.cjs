@@ -35,6 +35,7 @@ const KNOWN_EXECUTORS = new Set([
   'native',
   'cli-opencode',
   'cli-claude-code',
+  'cli-cursor',
 ]);
 
 const KNOWN_SCORERS = new Set(['pattern', '5dim']);

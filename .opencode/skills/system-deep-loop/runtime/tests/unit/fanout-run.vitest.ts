@@ -808,11 +808,13 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
   it('returns the complete adapter contract for every executor kind', () => {
     const binDir = makeTempDir('fanout-run-adapter-contract-');
     writeStubBinary(binDir, 'codex');
+    writeStubBinary(binDir, 'cursor-agent');
     const cases = [
       { kind: 'native', label: 'native' },
       { kind: 'cli-codex', label: 'codex', model: 'gpt-5.6-sol' },
       { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5' },
       { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1' },
+      { kind: 'cli-cursor', label: 'cursor', model: 'auto' },
     ];
     for (const lineage of cases) {
       const command = buildLineageCommand(
@@ -962,6 +964,96 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       'default',
       { env },
     )).toThrow(/command -v codex failed/);
+  });
+});
+
+describe('fanout-run.cjs — cli-cursor adapter', () => {
+  const { buildLineageCommand, isCursorBinaryAvailable } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv; executableVersion?: string },
+    ) => {
+      command: string;
+      args: string[];
+      input?: string;
+      effectiveConfig: Record<string, unknown>;
+      invocationFingerprint: string;
+    };
+    isCursorBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+  };
+
+  it('builds the non-interactive cursor-agent command for workspace-write (auto-review)', () => {
+    const binDir = makeTempDir('fanout-run-cursor-');
+    writeStubBinary(binDir, 'cursor-agent');
+    const command = buildLineageCommand(
+      { kind: 'cli-cursor', model: 'auto' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` }, executableVersion: 'cursor-agent 2026.07.23-e383d2b' },
+    );
+    expect({ command: command.command, args: command.args, input: command.input }).toEqual({
+      command: 'cursor-agent',
+      args: [
+        '-p', 'bounded prompt',
+        '--output-format', 'text',
+        '--model', 'auto',
+        '--auto-review', '--sandbox', 'enabled',
+      ],
+      input: undefined,
+    });
+    expect(command.effectiveConfig).toMatchObject({
+      kind: 'cli-cursor',
+      executable: 'cursor-agent',
+      model: 'auto',
+      reasoningEffort: null,
+      sandboxMode: 'workspace-write',
+      webSearch: 'inherit',
+    });
+    expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
+  });
+
+  it('maps read-only to the CLI unflagged default and danger-full-access to --force/--sandbox disabled', () => {
+    const binDir = makeTempDir('fanout-run-cursor-sandbox-');
+    writeStubBinary(binDir, 'cursor-agent');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+
+    const readOnly = buildLineageCommand({ kind: 'cli-cursor', model: 'auto' }, 'p', 'read-only', 'plan', opts);
+    expect(readOnly.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'auto', '--sandbox', 'enabled']);
+    expect(readOnly.args).not.toContain('--force');
+    expect(readOnly.args).not.toContain('--auto-review');
+
+    const danger = buildLineageCommand({ kind: 'cli-cursor', model: 'auto' }, 'p', 'danger-full-access', 'bypassPermissions', opts);
+    expect(danger.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'auto', '--force', '--sandbox', 'disabled']);
+  });
+
+  it('defaults an omitted model to auto', () => {
+    const binDir = makeTempDir('fanout-run-cursor-default-model-');
+    writeStubBinary(binDir, 'cursor-agent');
+    const command = buildLineageCommand(
+      { kind: 'cli-cursor' },
+      'p',
+      'workspace-write',
+      'default',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
+    );
+    expect(command.args).toContain('auto');
+    expect(command.effectiveConfig.model).toBe('auto');
+  });
+
+  it('fails closed before command construction when cursor-agent is absent, ignoring the always-0 -p exit code', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-cursor-') };
+    expect(isCursorBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-cursor', model: 'auto' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env },
+    )).toThrow(/command -v cursor-agent failed/);
   });
 });
 

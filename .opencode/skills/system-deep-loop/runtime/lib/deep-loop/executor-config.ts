@@ -8,7 +8,7 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 // Ordered low→high. `ultra` is codex gpt-5.6-sol's top reasoning tier, above `max`.
@@ -35,6 +35,14 @@ export type FanoutAssignmentModel = typeof FANOUT_ASSIGNMENT_MODELS[number];
 const SANDBOX_MODES = ['read-only', 'workspace-write', 'danger-full-access'] as const;
 export type SandboxMode = typeof SANDBOX_MODES[number];
 export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
+
+/**
+ * Cursor's real approval-flag family (live-verified against the installed
+ * CLI), not a fabricated permission-mode enum: `ask` is the CLI's own unflagged
+ * prompt-and-block default, `auto-review` is `--auto-review` ("Smart Auto"),
+ * `force` is `--force`/`--yolo` ("Run Everything").
+ */
+export type CursorApprovalMode = 'ask' | 'auto-review' | 'force';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -68,6 +76,12 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
   'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
   'cli-opencode': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
+  // No reasoningEffort: the live cursor-agent CLI (2026.07.23-e383d2b) rejects the
+  // parameterized `model[effort=...]` bracket outright ("Cannot use this model"),
+  // confirmed live 2026-07-24 — effort tiers are baked into the model id itself
+  // (e.g. `gpt-5.2-high`), not a separate flag. No configDir: no confirmed Cursor
+  // CLI flag isolates the shared `.cursor/` config dir (open question, deferred).
+  'cli-cursor': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -96,7 +110,26 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
     cached: false,
     live: true,
   },
+  // No confirmed cursor-agent web-search flag (checked live, 2026-07-24): same
+  // flag-less shape as cli-claude-code — inherit only, nothing enforceable.
+  'cli-cursor': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
+  },
 } as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
+
+/**
+ * Cursor model ids confirmed live via `cursor-agent --list-models` (2026-07-24,
+ * account mkerkmeester@proton.me, cursor-agent 2026.07.23-e383d2b). Not
+ * exhaustive — Cursor accepts any valid --model id at dispatch time; this list
+ * only anchors the router default and the Cursor-native model so callers have
+ * a typo-checked reference; no id here was ever fabricated — each is a literal
+ * `--list-models` output row.
+ */
+export const CURSOR_SUPPORTED_MODELS = ['auto', 'composer-2.5', 'composer-2.5-fast'] as const;
+export type CursorSupportedModel = typeof CURSOR_SUPPORTED_MODELS[number];
 
 // ───────────────────────────────────────────────────────────────────
 // 3. DOMAIN ERRORS
@@ -203,6 +236,30 @@ export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined
       return 'bypassPermissions';
     default:
       return 'acceptEdits';
+  }
+}
+
+/**
+ * Map a generic sandbox mode to Cursor's approval-flag family.
+ *
+ * `read-only` maps to the CLI's own unflagged default (`ask`) rather than an
+ * explicit flag: Cursor exposes no read-only-specific flag, and its unflagged
+ * behavior already blocks destructive actions pending approval that an
+ * unattended dispatch can never supply — the closest analog it has to a
+ * read-only executor policy. `danger-full-access` maps to `force`
+ * (`--force`/`--yolo`), never to a Cursor sandbox value.
+ *
+ * @param mode - Generic sandbox mode or undefined.
+ * @returns Cursor-compatible approval mode.
+ */
+export function resolveCursorApprovalMode(mode: SandboxMode | null | undefined): CursorApprovalMode {
+  switch (normalizeSandboxMode(mode)) {
+    case 'read-only':
+      return 'ask';
+    case 'danger-full-access':
+      return 'force';
+    default:
+      return 'auto-review';
   }
 }
 

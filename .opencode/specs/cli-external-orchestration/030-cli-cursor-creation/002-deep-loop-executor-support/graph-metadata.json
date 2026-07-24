@@ -16,7 +16,9 @@
       "Cursor fan-out adapter",
       "cli-cursor executor support plan",
       "cli-cursor executor support tasks",
-      "cli-cursor executor support checklist"
+      "cli-cursor executor support checklist",
+      "cli-cursor deep-loop executor summary",
+      "cli-cursor executor support implementation"
     ],
     "key_topics": [
       "cli-cursor",
@@ -30,21 +32,22 @@
       "plan",
       "tasks",
       "checklist",
-      "runtime"
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "tasks.md",
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -54,15 +57,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -178,31 +187,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop runtime's typed executor union currently has 4 members (`native`, `cli-codex`, `cli-claude-code`, `cli-opencode`) defined in `EXECUTORKINDS` (`executor-config.ts` line 11, confirmed live)",
     "created_at": "2026-07-24T04:24:28.248Z",
-    "last_save_at": "2026-07-24T04:24:28.248Z",
+    "last_save_at": "2026-07-24T06:52:18.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f121f6a5fbe5137b8f4efd7a08bc791326e864238bf38bbb81f100d1ea3c6ad3",
+    "source_fingerprint": "sha256:d8cc53b82c9fada89ea19342de973240918dbe606fb8f59d73134726117346bb",
     "source_doc_hashes": {
-      "spec.md": "cfc3f91b2114a9feff5bbe874edf74ebc651f4952b632f26a30f2c7df313e42c",
-      "plan.md": "f10e0838c8a7e8f4ac1b0d4cc86b1210437af92d8505df11b04f153b965253e4",
-      "tasks.md": "bd71c3df404866437d4f858ae61aa78764f1d4dd014a9857c337b99f91434888",
-      "checklist.md": "83e0b652f41d3f6172d45d375c79c4b77133141ca52bdbd1c415432df25bdf5e"
+      "spec.md": "9caa87e613db125529aa7cca4535fbc741bd12227e5546a3496e9cf4f8a6e14b",
+      "plan.md": "a975b404727d12d327614657c8128826aa42276f4aabf8d397030ba591277ccb",
+      "tasks.md": "6810167f9cb1ce0a104e1b2439550cef388f564124fd5a6f73dea2c7ba8d77aa",
+      "checklist.md": "64264e72207691c340d12438c588b586d0d7bc131e95e7bb839e664b768b383d",
+      "implementation-summary.md": "63d69a9134cf1445dbcb49ba306fb434be57bf3681269adba62ce3610d8cb051"
     },
     "last_active_child_id": null,
     "last_active_at": null
