@@ -34,7 +34,7 @@ Canonical package artifacts:
 
 This playbook provides 19 deterministic scenarios across 9 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-07-24): Covers the canonical default invocation (`auto` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (both its confirmed-fires and confirmed-non-delivery halves, per phase 004's live event-delivery table), session continuity (`--continue`/`--resume`), and prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch). Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
+Coverage note (2026-07-24): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (both its confirmed-fires and confirmed-non-delivery halves, per phase 004's live event-delivery table), session continuity (`--continue`/`--resume`), and prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch). Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
 ### Realistic Test Model
 
@@ -61,7 +61,7 @@ Coverage note (2026-07-24): Covers the canonical default invocation (`auto` mode
 4. **Standing precondition-check warning (Cursor-specific gotcha).** `cursor-agent -p` without valid auth exits `0` even on an authentication failure - the exit code is NEVER a reliable availability or auth signal for this CLI. Every precondition check and every scenario in this playbook MUST inspect `cursor-agent about` output text (looking for `User Email: Not logged in` vs a real email) or a dispatch's own output text, never the exit code alone.
 5. The active runtime is NOT Cursor CLI itself - the self-invocation guard in SKILL.md §2 must not trip. Verify by running `env | grep -i cursor_` and confirming no `CURSOR_AGENT`/`CURSOR_CONVERSATION_ID` vars are set.
 6. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-cursor/{references,assets}/` so prompt-quality, hook-contract, and template scenarios resolve.
-7. `auto` is the documented default model; `composer-2.5`/`composer-2.5-fast` are Cursor's own native model (confirmed live at Pro tier); hosted-frontier ids (`gpt-5.2-high`, `claude-opus-4-8-xhigh`, etc.) are reached by exact enumerated id, never a `[effort=...]` bracket (confirmed rejected: `Error: Cannot use this model`). Use the model a scenario names; do not substitute IDs outside this roster.
+7. **Enforced model allowlist.** `composer-2.5` (Cursor's own native model, confirmed live at Pro tier) is the documented default; dispatch is otherwise scoped to exactly 10 ids — `composer-2.5`/`composer-2.5-fast`, `cursor-grok-4.5-{low,medium,high}[-fast]` (6 ids), and `glm-5.2-{high,max}` — enforced by `CURSOR_SUPPORTED_MODELS` in `executor-config.ts` and checked in both `fanout-run.cjs` and `dispatch-model.cjs`. `auto` and every hosted GPT/Claude/Gemini/Kimi id are OUT OF SCOPE for this skill, not merely undocumented. Effort tiers are reached by exact enumerated id, never a `[effort=...]` bracket (confirmed rejected: `Error: Cannot use this model`). Use the model a scenario names; do not substitute IDs outside this allowlist.
 8. **Shared `.cursor/` config caveat.** Unlike every sibling CLI, `cursor-agent` reads the exact same `.cursor/`/`~/.cursor/` config the Cursor **editor** reads (`hooks.json`, `mcp.json`, `rules/`, `cli-config.json`). Every dispatched scenario in this playbook silently inherits the operator's live editor-level configuration on this machine unless a scenario explicitly notes an isolation flag (`--workspace`/`--add-dir`/`--plugin-dir`). See `references/shared-editor-config.md`.
 9. Destructive/opt-in scenarios (`CU-010` real worktree creation, any live `CU-017` cloud-worker variant) MUST run only against rebuildable, non-production state and require explicit human approval before execution beyond the documented `--help`/inspection default.
 
@@ -81,7 +81,7 @@ Coverage note (2026-07-24): Covers the canonical default invocation (`auto` mode
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- CLI commands shown as `cursor-agent <flags> -p "<prompt>"` (e.g., `cursor-agent -p "..." --model auto --output-format text`)
+- CLI commands shown as `cursor-agent <flags> -p "<prompt>"` (e.g., `cursor-agent -p "..." --model composer-2.5 --output-format text`)
 - Bash commands shown as `bash: <command>` (e.g., `bash: command -v cursor-agent`)
 - File capture shown as `> /tmp/<file>` (orchestrator captures Cursor output to a temp file for inspection)
 - `->` separates sequential steps in the command sequence column
@@ -182,17 +182,17 @@ This section records wave planning and capacity guidance for the manual testing 
 
 This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
 
-### CU-001 | Default invocation (auto model, text output)
+### CU-001 | Default invocation (composer-2.5, text output)
 
 #### Description
 
-Verify the canonical zero-input default dispatch (`--model auto --output-format text`, paired with the skill's documented `--auto-review --sandbox enabled` approval default) returns a usable answer with exit code 0.
+Verify the canonical zero-input default dispatch (`--model composer-2.5 --output-format text`, paired with the skill's documented `--auto-review --sandbox enabled` approval default) returns a usable answer with exit code 0.
 
 #### Scenario Contract
 
 Prompt: `Generate a TypeScript function fizzbuzz(n: number): string[] that returns the fizzbuzz sequence from 1 to n. Output only the function body and its signature in your response text, no file writes, no explanation.`
 
-Expected signals: `cursor-agent -p` exits 0. Output text contains a TypeScript function named `fizzbuzz` referencing `Fizz`/`Buzz`/`FizzBuzz` semantics. `git status --porcelain` stays clean (the prompt explicitly asks for an inline answer, not a file write). The dispatched command line includes `--model auto --output-format text --auto-review --sandbox enabled`.
+Expected signals: `cursor-agent -p` exits 0. Output text contains a TypeScript function named `fizzbuzz` referencing `Fizz`/`Buzz`/`FizzBuzz` semantics. `git status --porcelain` stays clean (the prompt explicitly asks for an inline answer, not a file write). The dispatched command line includes `--model composer-2.5 --output-format text --auto-review --sandbox enabled`.
 
 Desired user-visible outcome: A working `fizzbuzz` function returned inline, with operator-readable evidence that the documented default invocation shape works end to end.
 
@@ -372,7 +372,7 @@ Opt-in, explicitly marked destructive extension of `CU-009`: actually create a r
 
 Prompt: `With explicit operator approval, create a real Cursor-native worktree named cu010-probe using -w, confirm it exists at ~/.cursor/worktrees/<repo>/cu010-probe, then remove it.`
 
-Expected signals: Operator approval captured BEFORE dispatch. `cursor-agent -p ... -w cu010-probe --mode ask --model auto` exits 0. `~/.cursor/worktrees/<repo>/cu010-probe` exists after dispatch. Cleanup removes the created worktree directory and any git worktree registration, verified via `git worktree list` no longer showing it.
+Expected signals: Operator approval captured BEFORE dispatch. `cursor-agent -p ... -w cu010-probe --mode ask --model composer-2.5` exits 0. `~/.cursor/worktrees/<repo>/cu010-probe` exists after dispatch. Cleanup removes the created worktree directory and any git worktree registration, verified via `git worktree list` no longer showing it.
 
 Desired user-visible outcome: Proof the native worktree flag genuinely creates an isolated checkout, with a clean teardown leaving no residual state.
 
@@ -414,7 +414,7 @@ Verify `.cursor/mcp.json` (project) and `~/.cursor/mcp.json` (user) precedence (
 
 Prompt: `Check for .cursor/mcp.json and ~/.cursor/mcp.json, document their precedence, then confirm --approve-mcps is accepted on a trivial dispatch.`
 
-Expected signals: Existence of project/user `mcp.json` is checked and documented honestly (present or absent). `cursor-agent -p "say hi" --model auto --output-format text --approve-mcps </dev/null` exits 0 with no CLI-level flag rejection.
+Expected signals: Existence of project/user `mcp.json` is checked and documented honestly (present or absent). `cursor-agent -p "say hi" --model composer-2.5 --output-format text --approve-mcps </dev/null` exits 0 with no CLI-level flag rejection.
 
 Desired user-visible outcome: Confirmation of the precedence rule and that `--approve-mcps` never blocks a dispatch, whether or not any server is configured.
 
@@ -480,7 +480,7 @@ Verify `--continue` picks up the most recent session and produces a coherent fol
 
 Prompt: `Turn 1: sketch a TypeScript User type and write it to /tmp/cli-cursor-playbook-cu015/user.ts. Turn 2 (--continue): implement validate(user) for the type from Turn 1.`
 
-Expected signals: Turn 1 writes `/tmp/cli-cursor-playbook-cu015/user.ts` with a `User` type, exit 0. Turn 2 (`cursor-agent -p ... --continue --model auto`) exits 0 and its output/file changes reference the Turn 1 `User` type by name or shape.
+Expected signals: Turn 1 writes `/tmp/cli-cursor-playbook-cu015/user.ts` with a `User` type, exit 0. Turn 2 (`cursor-agent -p ... --continue --model composer-2.5`) exits 0 and its output/file changes reference the Turn 1 `User` type by name or shape.
 
 Desired user-visible outcome: A working multi-turn task, with an honest record of whether `--continue` round-trip behavior held up under this first live check (not asserted in advance as confirmed).
 
@@ -498,7 +498,7 @@ Verify `--resume [chatId]` returns to a specific earlier session using the `sess
 
 Prompt: `Turn 1 (--output-format json): sketch a TypeScript Order type and write it to /tmp/cli-cursor-playbook-cu016/order.ts, capturing session_id. Turn 2 (--resume <session_id>): implement a total() function for the type from Turn 1.`
 
-Expected signals: Turn 1's JSON output includes a `session_id` field. Turn 2 (`cursor-agent -p ... --resume "$SESSION_ID" --model auto`) exits 0 and its output/file changes reference the Turn 1 `Order` type.
+Expected signals: Turn 1's JSON output includes a `session_id` field. Turn 2 (`cursor-agent -p ... --resume "$SESSION_ID" --model composer-2.5`) exits 0 and its output/file changes reference the Turn 1 `Order` type.
 
 Desired user-visible outcome: A working resumed task with the actual `session_id` captured as evidence, honestly reporting the observed round-trip behavior rather than assuming it in advance.
 
@@ -544,7 +544,7 @@ Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `
 
 #### Scenario Contract
 
-Prompt: `Spec folder: cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the CLEAR 5-check from the canonical card (Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it via the RCAF framework. Dispatch the improved prompt against /tmp/cli-cursor-playbook-cu018/auth.ts with --model auto --auto-review --sandbox enabled. Verify the operator records both CLEAR score sets, names the framework selected, and Cursor produces a meaningfully better implementation from the improved prompt. Return a verdict including both CLEAR score sets and the framework selected.`
+Prompt: `Spec folder: cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the CLEAR 5-check from the canonical card (Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it via the RCAF framework. Dispatch the improved prompt against /tmp/cli-cursor-playbook-cu018/auth.ts with --model composer-2.5 --auto-review --sandbox enabled. Verify the operator records both CLEAR score sets, names the framework selected, and Cursor produces a meaningfully better implementation from the improved prompt. Return a verdict including both CLEAR score sets and the framework selected.`
 
 Expected signals: Operator records CLEAR scores for the weak prompt (low on Expression and Arrangement) and for the improved (RCAF) prompt (higher across all five axes). The dispatched command uses the improved prompt and exits 0. The modified `auth.ts` reflects the upgrade (explicit null/empty validation).
 
@@ -593,7 +593,7 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 
 ### CLI INVOCATION
 
-- CU-001: [Default invocation (auto model, text output)](../manual-testing-playbook/cli-invocation/default-invocation.md)
+- CU-001: [Default invocation (composer-2.5, text output)](../manual-testing-playbook/cli-invocation/default-invocation.md)
 - CU-002: [Auth-fail-but-exit-0 safety gotcha](../manual-testing-playbook/cli-invocation/auth-fail-exit-zero-safety-gotcha.md)
 - CU-003: [Hallucination-fixture: fake flag / bracket model id](../manual-testing-playbook/cli-invocation/hallucination-fixture-fake-flag.md)
 

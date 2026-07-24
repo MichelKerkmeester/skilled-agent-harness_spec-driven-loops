@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Adding a 4th CLI mode is not complete when the packet and runtime wiring exist — the new executor must also appear wherever its 3 siblings already do: in the agent rosters (per-runtime `context`/`deep-research`/`deep-review`/`deep-improvement` agent docs across `.opencode/`, `.claude/`, `.codex/`), in governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and in cross-skill sibling mentions",
     "created_at": "2026-07-24T04:56:11.705Z",
-    "last_save_at": "2026-07-24T09:09:36.003Z",
+    "last_save_at": "2026-07-24T11:26:00.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7314bdc60aaae35373575cc0786a0c5105b9e3ef1ca6ad39ec3b1fb191c7b4a5",
+    "source_fingerprint": "sha256:300fc4b2f9f67eae4a6c2aa2e4077a95f93da11aae09f7883621d6306b782f22",
     "source_doc_hashes": {
-      "spec.md": "a480b4f2e7ce07dd7867bf03bc85660f6a6cf870c33d3aed418eee1bf76d5bb2",
+      "spec.md": "7e081f79be7a0a98d56cdf2c4b0d58992c8880879597f9b248640a15b2ccfec9",
       "plan.md": "496e5d998cfafdf9781e5c15109651577ba3704c033688d41554bb6c43efd226",
       "tasks.md": "3008139b42ded53511f913f8d35be1ff796d56797e4a23972a12dc118ad7771f",
       "checklist.md": "31563c07ae64e885616e4774f89b3cc57094369d50b372ae34d5956435edb672",

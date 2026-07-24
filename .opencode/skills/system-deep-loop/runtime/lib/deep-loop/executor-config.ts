@@ -121,15 +121,39 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
 } as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
 
 /**
- * Cursor model ids confirmed live via `cursor-agent --list-models` (2026-07-24,
- * account mkerkmeester@proton.me, cursor-agent 2026.07.23-e383d2b). Not
- * exhaustive — Cursor accepts any valid --model id at dispatch time; this list
- * only anchors the router default and the Cursor-native model so callers have
- * a typo-checked reference; no id here was ever fabricated — each is a literal
- * `--list-models` output row.
+ * Enforced allowlist of cursor-agent --model ids. Cursor's live roster spans
+ * 150+ hosted-frontier ids across GPT/Claude/Gemini/Grok/GLM/Kimi families,
+ * with no per-model prompt-craft data for almost all of them and ids that
+ * drift over time — dispatch is scoped to this curated set only, confirmed
+ * live via `cursor-agent --list-models` (2026-07-24, account
+ * mkerkmeester@proton.me, cursor-agent 2026.07.23-e383d2b; no id here was
+ * ever fabricated). This is a hard gate, not a typo-checked reference: any
+ * caller-supplied model outside this set must be rejected before a command
+ * is constructed. `auto` (Cursor's own router) is deliberately excluded — it
+ * can silently resolve to a model outside this allowlist, defeating the
+ * point of enforcing one.
  */
-export const CURSOR_SUPPORTED_MODELS = ['auto', 'composer-2.5', 'composer-2.5-fast'] as const;
+export const CURSOR_SUPPORTED_MODELS = [
+  'cursor-grok-4.5-low',
+  'cursor-grok-4.5-low-fast',
+  'cursor-grok-4.5-medium',
+  'cursor-grok-4.5-medium-fast',
+  'cursor-grok-4.5-high',
+  'cursor-grok-4.5-high-fast',
+  'composer-2.5',
+  'composer-2.5-fast',
+  'glm-5.2-high',
+  'glm-5.2-max',
+] as const;
 export type CursorSupportedModel = typeof CURSOR_SUPPORTED_MODELS[number];
+
+/** Default model when a cli-cursor dispatch omits one — Cursor's own native model, now that `auto` is no longer an allowed id. */
+export const CURSOR_DEFAULT_MODEL: CursorSupportedModel = 'composer-2.5';
+
+/** True when `model` is in the enforced cli-cursor allowlist. */
+export function isCursorModelAllowed(model: string): model is CursorSupportedModel {
+  return (CURSOR_SUPPORTED_MODELS as readonly string[]).includes(model);
+}
 
 // ───────────────────────────────────────────────────────────────────
 // 3. DOMAIN ERRORS

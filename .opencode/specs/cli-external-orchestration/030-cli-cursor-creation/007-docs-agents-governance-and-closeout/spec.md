@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../006-cursor-manual-testing-playbook/spec.md` |
-| **Successor** | None (final phase) |
+| **Successor** | `../008-cursor-model-allowlist/spec.md` |
 | **Handoff Criteria** | `cli-cursor` mentioned wherever its 3 siblings are, across rosters/governance/cross-skill docs; whole packet passes `validate.sh --recursive --strict` 0/0 and the hub passes both skill validators at 0 fails. |
 <!-- /ANCHOR:metadata -->
 

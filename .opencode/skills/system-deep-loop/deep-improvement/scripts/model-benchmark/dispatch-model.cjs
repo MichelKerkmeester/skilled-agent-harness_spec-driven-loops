@@ -57,6 +57,25 @@ const SCRIPTS_ROOT = __dirname;
 const LEGACY_STATE_DIR = path.join(SCRIPTS_ROOT, '..', '..', 'state');
 const PAUSE_SENTINEL_BASENAME = '.benchmark-pause';
 
+// Mirrors CURSOR_SUPPORTED_MODELS in runtime/lib/deep-loop/executor-config.ts.
+// Cursor's live roster spans 150+ hosted-frontier ids with no per-model
+// prompt-craft data for almost all of them — dispatch is scoped to this
+// curated set only; `auto` is deliberately excluded since it can silently
+// resolve outside the allowlist.
+const CURSOR_ALLOWED_MODELS = new Set([
+  'cursor-grok-4.5-low',
+  'cursor-grok-4.5-low-fast',
+  'cursor-grok-4.5-medium',
+  'cursor-grok-4.5-medium-fast',
+  'cursor-grok-4.5-high',
+  'cursor-grok-4.5-high-fast',
+  'composer-2.5',
+  'composer-2.5-fast',
+  'glm-5.2-high',
+  'glm-5.2-max',
+]);
+const CURSOR_DEFAULT_MODEL = 'composer-2.5';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -433,7 +452,13 @@ function buildSpawnSpec(executor, promptText, resolved) {
       // effort-suffixed id via `model` instead.
       // Read-only judgment: omitting --auto-review leaves Cursor's own
       // prompt-and-block default in place, so unattended dispatch cannot write.
-      const args = ['-p', promptText, '--model', model || 'auto', '--output-format', 'text'];
+      const resolvedModel = model || CURSOR_DEFAULT_MODEL;
+      if (!CURSOR_ALLOWED_MODELS.has(resolvedModel)) {
+        throw new Error(
+          `cli-cursor model '${resolvedModel}' is not in the enforced allowlist: ${[...CURSOR_ALLOWED_MODELS].join(', ')}`,
+        );
+      }
+      const args = ['-p', promptText, '--model', resolvedModel, '--output-format', 'text'];
       if (writeCapable) args.push('--auto-review');
       return { bin: process.env.CURSOR_AGENT_BIN || 'cursor-agent', args, input: null };
     }

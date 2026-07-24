@@ -1611,12 +1611,37 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
   });
 }
 
+// Mirrors CURSOR_SUPPORTED_MODELS in executor-config.ts. Duplicated as a plain
+// JS literal (rather than dynamically imported) so buildCursorLineageCommand
+// stays synchronous and directly unit-testable, matching this file's existing
+// convention of hand-duplicating small per-kind cursor facts (see
+// SPECKIT_STATE_ENV_BY_KIND above) instead of threading an async import
+// through a sync call path.
+const CURSOR_ALLOWED_MODELS = new Set([
+  'cursor-grok-4.5-low',
+  'cursor-grok-4.5-low-fast',
+  'cursor-grok-4.5-medium',
+  'cursor-grok-4.5-medium-fast',
+  'cursor-grok-4.5-high',
+  'cursor-grok-4.5-high-fast',
+  'composer-2.5',
+  'composer-2.5-fast',
+  'glm-5.2-high',
+  'glm-5.2-max',
+]);
+const CURSOR_DEFAULT_MODEL = 'composer-2.5';
+
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-cursor executor unavailable: command -v cursor-agent failed');
   }
   const webSearch = effectiveWebSearchPolicy(lineage);
-  const model = lineage.model || 'auto';
+  const model = lineage.model || CURSOR_DEFAULT_MODEL;
+  if (!CURSOR_ALLOWED_MODELS.has(model)) {
+    throw inputError(
+      `cli-cursor model '${model}' is not in the enforced allowlist: ${[...CURSOR_ALLOWED_MODELS].join(', ')}`,
+    );
+  }
   // Cursor has no --reasoning-effort flag and rejects the parameterized
   // model[effort=...] bracket outright ("Cannot use this model", live-verified
   // 2026-07-24 against cursor-agent 2026.07.23-e383d2b) — effort tiers are baked

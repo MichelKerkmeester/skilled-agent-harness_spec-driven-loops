@@ -68,15 +68,15 @@ Cursor CLI tasks are routed using `--mode` (execution mode) and `--model` (which
 ```bash
 # Default agent mode (read-write, gated by approval flags)
 cursor-agent -p "Fix the authentication bug in src/auth/handler.ts" \
-  --model auto --auto-review --sandbox enabled
+  --model composer-2.5 --auto-review --sandbox enabled
 
 # Read-only planning mode
 cursor-agent -p "Plan the migration from REST to GraphQL" \
-  --mode plan --model auto
+  --mode plan --model composer-2.5
 
 # Read-only Q&A mode
 cursor-agent -p "Explain how the retry logic works in src/api/client.ts" \
-  --mode ask --model auto
+  --mode ask --model composer-2.5
 ```
 
 ---
@@ -97,11 +97,14 @@ Approval flags (`--auto-review`/`--force`) have no effect in `--mode plan`/`--mo
 
 | Task Type | Execution mode | Model guidance |
 |-----------|-----------------|------------------|
-| Code review / bug detection | Default agent, `--sandbox enabled`, no write approval needed for the review itself | `auto` or `composer-2.5` for a Cursor-native opinion |
-| Architecture exploration | `--mode ask` | `auto`, or a high-effort id (`gpt-5.2-high`) for deep analysis |
-| Multi-step planning | `--mode plan` | `auto` |
-| Code generation / file edits | Default agent, `--auto-review` (or `--force` for unattended runs) | `auto` for general work, `composer-2.5` for a Cursor-native attempt |
+| Code review / bug detection | Default agent, `--sandbox enabled`, no write approval needed for the review itself | `composer-2.5` (default) |
+| Architecture exploration | `--mode ask` | `composer-2.5`, or `cursor-grok-4.5-high`/`glm-5.2-max` for deep analysis |
+| Multi-step planning | `--mode plan` | `composer-2.5` |
+| Code generation / file edits | Default agent, `--auto-review` (or `--force` for unattended runs) | `composer-2.5` (default) |
 | Composer-specific validation | Default agent or `--mode ask` | `composer-2.5`/`composer-2.5-fast` explicitly |
+| Grok/GLM-specific second opinion | Default agent or `--mode ask` | `cursor-grok-4.5-{low,medium,high}[-fast]` or `glm-5.2-{high,max}` explicitly |
+
+All model guidance above is scoped to the enforced 10-id allowlist (SKILL.md §3) — never `auto`, never a model outside this table.
 
 ---
 
@@ -119,11 +122,11 @@ Cursor CLI supports session continuation via `--resume [chatId]` and `--continue
 
 ```bash
 # Continue the most recent session
-cursor-agent -p "Now add tests for what you just implemented" --continue --model auto
+cursor-agent -p "Now add tests for what you just implemented" --continue --model composer-2.5
 
 # Resume a specific chat by id (id surfaces in --output-format json's session_id field)
 cursor-agent -p "Continue implementing the rate limiter" \
-  --resume "$SESSION_ID" --model auto --auto-review --sandbox enabled
+  --resume "$SESSION_ID" --model composer-2.5 --auto-review --sandbox enabled
 ```
 
 ### When to Use Each Operation

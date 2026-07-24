@@ -48,11 +48,11 @@ This repo already manages its own numbered-worktree discipline via `sk-git` (own
 ```bash
 # Try a risky refactor in a disposable worktree, leaving the current checkout untouched
 cursor-agent -p "Attempt an aggressive refactor of the auth module" \
-  -w risky-refactor --model auto --auto-review --sandbox enabled
+  -w risky-refactor --model composer-2.5 --auto-review --sandbox enabled
 
 # Base the new worktree on a specific branch
 cursor-agent -p "Prototype the new caching layer" \
-  -w cache-prototype --worktree-base develop --model auto
+  -w cache-prototype --worktree-base develop --model composer-2.5
 ```
 
 This is a direct, interactive/manual operator action — not something an orchestrated fan-out or automated pipeline in this repo should invoke on its own.
@@ -107,7 +107,7 @@ Cursor CLI is an MCP **client** only — it discovers and uses already-configure
 
 ```bash
 cursor-agent -p "Use the configured GitHub MCP server to list open PRs" \
-  --model auto --auto-review --sandbox enabled --approve-mcps
+  --model composer-2.5 --auto-review --sandbox enabled --approve-mcps
 ```
 
 Without `--approve-mcps`, an unapproved MCP server prompt behaves like any other unattended approval — nothing can answer it, and the action stalls or is silently skipped depending on the approval mode in effect.

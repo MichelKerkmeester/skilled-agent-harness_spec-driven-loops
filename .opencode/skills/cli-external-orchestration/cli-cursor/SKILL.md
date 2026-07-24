@@ -39,10 +39,10 @@ Orchestrate Cursor's terminal coding agent (`cursor-agent`) for tasks that benef
 ### Activation Triggers
 
 - **Cross-AI Validation** — code review second perspective, bug detection, an independent implementation attempt.
-- **Composer Dispatch** — tasks that specifically want Cursor's own native model (`composer-2.5`), Cursor's Auto router, or a hosted frontier model already available through Cursor's roster.
+- **Composer Dispatch** — tasks that specifically want Cursor's own native model (`composer-2.5`/`composer-2.5-fast`), or the Grok 4.5 / GLM 5.2 tiers already on the enforced allowlist (see §3 Model Selection).
 - **Read-Only Exploration** — `--mode plan` (read-only planning) or `--mode ask` (read-only Q&A) when a task wants Cursor's analysis without any file writes.
 - **Isolated Experimentation** — Cursor's native git worktree isolation (`-w`/`--worktree`) for a change the operator wants tried in a disposable checkout, documented in `references/cursor-tools.md` as an opt-in escape hatch, not this packet's default dispatch shape.
-- **Specialized Generation** — explicit Cursor requests, a task that wants a model unique to Cursor's roster (Grok, Gemini, GLM, Kimi variants alongside the hosted frontier models).
+- **Specialized Generation** — explicit Cursor requests naming Grok 4.5 or GLM 5.2 specifically (the only non-Composer models on the enforced allowlist).
 
 ### When NOT to Use
 
@@ -194,7 +194,7 @@ echo "$CURSOR_ABOUT" | grep -qi "not logged in" && CURSOR_AUTH_OK=0 || CURSOR_AU
 
 | State | CURSOR_AUTH_OK | Action |
 |-------|-----------------|--------|
-| Authenticated | 1 | Proceed with `cursor-agent -p "<prompt>" --output-format text --model auto --auto-review --sandbox enabled` |
+| Authenticated | 1 | Proceed with `cursor-agent -p "<prompt>" --output-format text --model composer-2.5 --auto-review --sandbox enabled` |
 | Not logged in | 0 | **ASK user** to run `cursor-agent login` — surface the command, do NOT dispatch. Never substitute an unrelated CLI. |
 
 **User prompt template — not logged in:**
@@ -209,42 +209,44 @@ Cursor CLI is not authenticated on this machine. cli-cursor uses Cursor account 
 
 ### Default Invocation (Skill Default)
 
-**Default model + approval**: `auto` (Cursor's intelligent router) · `auto-review` approval (Smart Auto). Balances safety and unattended progress for the typical delegation.
+**Default model + approval**: `composer-2.5` (Cursor's own native model) · `auto-review` approval (Smart Auto). `auto` (Cursor's own router) is NOT used — it can silently resolve to a model outside the enforced allowlist below, which defeats the point of enforcing one.
 
 ```bash
 cursor-agent -p "<prompt>" \
   --output-format text \
-  --model auto \
+  --model composer-2.5 \
   --auto-review \
   --sandbox enabled
 ```
 
-**User override** (honor explicit user phrasing verbatim):
+**User override** (honor explicit user phrasing verbatim, but ONLY within the enforced allowlist — see Model Selection below):
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model auto --auto-review --sandbox enabled` |
+| (nothing specified) | `--model composer-2.5 --auto-review --sandbox enabled` |
 | "Use Composer" | `--model composer-2.5 --auto-review --sandbox enabled` |
 | "Use Composer fast" | `--model composer-2.5-fast --auto-review --sandbox enabled` |
-| "Just plan it, don't write anything" | `--model auto --mode plan` (read-only; approval flags do not apply in plan mode) |
-| "Full auto, run everything" | `--model auto --force --sandbox disabled` |
-| "GPT-5.2 high" | `--model gpt-5.2-high --auto-review --sandbox enabled` |
+| "Use Grok" / "Grok high" | `--model cursor-grok-4.5-high --auto-review --sandbox enabled` |
+| "Use GLM" / "GLM max" | `--model glm-5.2-max --auto-review --sandbox enabled` |
+| "Just plan it, don't write anything" | `--model composer-2.5 --mode plan` (read-only; approval flags do not apply in plan mode) |
+| "Full auto, run everything" | `--model composer-2.5 --force --sandbox disabled` |
+| Any model NOT in the allowlist (e.g. "GPT-5.2 high", "use auto") | **Refuse the model, do not substitute silently.** Tell the user this dispatch is scoped to the allowlist below and ask which allowed model to use instead. |
 
-Honor whichever dimensions the user names. Model stays on `auto` and approval stays `auto-review` unless the user explicitly names a different model or approval level.
+Honor whichever dimensions the user names (approval level, mode). Model stays on `composer-2.5` unless the user explicitly names a different ALLOWED model.
 
-### Model Selection
+### Model Selection — Enforced Allowlist
 
-`auto` (Cursor's documented router default) is the skill default. **Composer** (`composer-2.5` / `composer-2.5-fast`) is Cursor's own native model — the direct analog to reaching for a provider's house model. Effort tiers are baked into the model id suffix (e.g. `gpt-5.2-high`, `claude-opus-4-8-xhigh`) — Cursor has no `--reasoning-effort` flag and rejects the parameterized `model[effort=...]` bracket outright.
+Cursor's live roster spans 150+ hosted-frontier ids across GPT/Claude/Gemini/Grok/GLM/Kimi families with no per-model prompt-craft data for almost all of them, and ids drift over time. **cli-cursor dispatch is scoped to exactly these 10 ids — never dispatch a model outside this list, and never substitute the closest-sounding allowed model without telling the user.** Effort tiers are baked into the model id suffix — Cursor has no `--reasoning-effort` flag and rejects the parameterized `model[effort=...]` bracket outright.
 
-| Model family | Example ids | When to reach for it |
+| Family | Allowed ids | When to reach for it |
 |-------|----|-----------------------|
-| **Auto** ★ default | `auto` | General delegation — Cursor's own router picks the best available model for the task. |
-| **Composer** | `composer-2.5`, `composer-2.5-fast` | Cursor-exclusive; use when the task specifically wants Cursor's own model rather than a hosted frontier model. |
-| **Hosted frontier (via Cursor)** | `gpt-5.2-high`, `claude-opus-4-8-xhigh`, `gemini-3.1-pro`, `cursor-grok-4.5-high` | When the task wants a specific provider's model but dispatched through Cursor's roster; effort is baked into the id, not a separate flag. |
+| **Composer** (Cursor-native) ★ default | `composer-2.5`, `composer-2.5-fast` | Cursor-exclusive; the direct analog to reaching for a provider's own house model. Default choice absent other direction. |
+| **Grok 4.5** (via Cursor) | `cursor-grok-4.5-low`, `cursor-grok-4.5-low-fast`, `cursor-grok-4.5-medium`, `cursor-grok-4.5-medium-fast`, `cursor-grok-4.5-high`, `cursor-grok-4.5-high-fast` | When the task wants xAI's Grok at a specific thinking tier through Cursor's roster. |
+| **GLM 5.2** (via Cursor) | `glm-5.2-high`, `glm-5.2-max` | When the task wants Z.AI's GLM at a specific tier through Cursor's roster. |
 
-**Live enumeration**: `cursor-agent --list-models` (requires authentication) returns the full current roster — dozens of ids across GPT/Claude/Gemini/Grok/GLM/Kimi families, each effort tier as its own id. Do not hardcode a stale roster; query live when a task needs a model not listed above.
+**No `auto` and no roster outside this table.** `auto` (Cursor's own router) is deliberately excluded — enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside this table, escalate to the user rather than fabricating a substitute or falling back to `auto`.
 
-**Selection Strategy**: default `auto`; use `composer-2.5`/`composer-2.5-fast` when the task specifically wants Cursor's native model; pick a hosted-frontier id directly when the task wants a specific provider's model at a specific effort tier. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `composer-2.5`; pick a Grok/GLM tier only when the task or user explicitly names that family. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Cursor Agent Delegation
 
@@ -264,7 +266,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 - **The exit code is never an availability signal.** `cursor-agent -p` without auth exits `0` and prints an error to stdout/stderr instead. Every guard and pre-flight in this packet checks output text, never exit code.
 - **The canonical binary is `cursor-agent`, never the bare `agent` alias.** `agent` is a symlink to the same binary; using it in a process-ancestry match risks colliding with an unrelated `agent` command.
 - **Cursor shares its entire config surface with the Cursor editor** (`.cursor/`/`~/.cursor/`: `mcp.json`, `hooks.json`, `rules/`, `cli-config.json`). A dispatched `cursor-agent` silently inherits the operator's shared hooks/MCP/rules unless a workspace/config-isolation flag is used — see [shared-editor-config.md](./references/shared-editor-config.md).
-- **No `model[effort=...]` bracket support.** Unlike some sibling CLIs' parameterized model syntax, `cursor-agent --model 'gpt-5.2[effort=high]'` is rejected outright ("Cannot use this model") — effort tiers must be selected via an exact enumerated id (`gpt-5.2-high`), never a bracket.
+- **No `model[effort=...]` bracket support.** Unlike some sibling CLIs' parameterized model syntax, `cursor-agent --model 'cursor-grok-4.5[effort=high]'` is rejected outright ("Cannot use this model") — effort tiers must be selected via an exact enumerated id (`cursor-grok-4.5-high`), never a bracket.
 - **`--auto-review`/`--force` are the write-capable escalation, not `--sandbox`.** `--sandbox enabled|disabled` toggles the OS-level sandbox; the approval decision (whether unattended actions run without a human) is `--auto-review` (Smart Auto) or `--force`/`--yolo` (Run Everything) — omitting both leaves Cursor's own prompt-and-block default in place, which cannot proceed unattended.
 
 ---
@@ -279,7 +281,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 4. Validate Cursor-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so errors surface; check output TEXT for auth/availability failures, never the exit code (always `0`).
 6. **Redirect cursor-agent stdin from `/dev/null`** when dispatching in a `while read` loop, mirroring the family-wide convention: `cursor-agent -p "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Live-verified: a real `cursor-agent -p ... </dev/null` dispatch completes normally with no hang.
-7. **Specify model and approval mode explicitly** — never rely on caller environment. Default: `--model auto --auto-review --sandbox enabled`. Honor user overrides verbatim.
+7. **Specify model and approval mode explicitly** — never rely on caller environment. Default: `--model composer-2.5 --auto-review --sandbox enabled`. Honor user overrides verbatim, but ONLY within the enforced allowlist (§3 Model Selection) — never `auto`, never a model outside the 10 allowed ids.
 8. Route to `--mode plan`/`--mode ask`/default agent per the task type (see Section 3 routing table).
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in `--force`/non-interactive mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md`:
@@ -301,6 +303,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 4. Assume Cursor output is correct without verification — cross-reference codebase and project standards.
 5. Build or maintain a packet-local Cursor execution adapter; the deep-loop runtime is the execution authority.
 6. Treat a `0` exit code as proof of a successful, authenticated dispatch — always inspect output text.
+7. Dispatch a `--model` value outside the enforced 10-id allowlist (§3 Model Selection) — including `auto` — or silently substitute the closest-sounding allowed model instead of asking the user. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS`/`isCursorModelAllowed` in `executor-config.ts`; a hard-rejecting check in `fanout-run.cjs`'s `buildCursorLineageCommand` and `dispatch-model.cjs`'s cli-cursor case) — this rule states the same constraint for any advisory/manual dispatch the runtime layer cannot see.
 
 ### ⚠️ ESCALATE IF
 

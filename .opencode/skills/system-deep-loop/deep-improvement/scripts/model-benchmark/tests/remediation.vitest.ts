@@ -57,7 +57,7 @@ describe('F-P1-1: dispatch-model cwd propagation', () => {
         executor,
         prompt_file: promptFile,
         cwd: '/custom/work/dir',
-        model: 'm',
+        model: executor === 'cli-cursor' ? 'composer-2.5' : 'm',
         agent: 'general',
         _spawn: fakeSpawn,
       });
@@ -212,25 +212,34 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
 
   it('cli-cursor omits --auto-review by default (read-only) and adds it under the write opt-in', () => {
     delete process.env.DEEP_AGENT_DISPATCH_WRITE;
-    const readOnly = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', resolved);
+    const cursorResolved = { ...resolved, model: 'composer-2.5' };
+    const readOnly = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', cursorResolved);
     expect(readOnly.args).not.toContain('--auto-review');
     expect(readOnly.args).not.toContain('--force');
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
-    const writeCapable = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', resolved);
+    const writeCapable = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', cursorResolved);
     expect(writeCapable.args).toContain('--auto-review');
   });
 
   it('cli-cursor never forwards variant as a flag (no --reasoning-effort / model[effort=...] support)', () => {
-    const spec = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, variant: 'high' });
+    const spec = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, model: 'composer-2.5', variant: 'high' });
     expect(spec.args).not.toContain('--effort');
     expect(spec.args).not.toContain('--variant');
     expect(spec.args).not.toContain('high');
   });
 
+  it('cli-cursor rejects a model outside the enforced allowlist', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, model: 'auto' }))
+      .toThrow(/not in the enforced allowlist/);
+    expect(() => dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, model: 'gpt-5.6-sol-high-fast' }))
+      .toThrow(/not in the enforced allowlist/);
+  });
+
   it('routing is preserved for all active executors (bin resolves)', () => {
     for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-cursor']) {
-      const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', resolved);
+      const execResolved = ex === 'cli-cursor' ? { ...resolved, model: 'composer-2.5' } : resolved;
+      const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', execResolved);
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);
     }

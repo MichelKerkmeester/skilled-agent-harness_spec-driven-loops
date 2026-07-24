@@ -54,7 +54,7 @@ Calling AI (plan) --> Cursor CLI (generate) --> Calling AI (review) --> Cursor C
 # Step 1: Cursor generates the code
 cursor-agent -p \
   "Create a rate limiter middleware for Express with sliding window algorithm. Output only the code, no explanation." \
-  --model auto --auto-review --sandbox enabled --output-format text > /tmp/rate-limiter.ts
+  --model composer-2.5 --auto-review --sandbox enabled --output-format text > /tmp/rate-limiter.ts
 
 # Step 2: Calling AI reviews (done within the calling AI session)
 # Read /tmp/rate-limiter.ts, identify issues, write review to /tmp/review.md
@@ -62,7 +62,7 @@ cursor-agent -p \
 # Step 3: Cursor fixes based on review
 cursor-agent -p \
   "In rate-limiter.ts, fix these issues: $(cat /tmp/review.md)" \
-  --model auto --auto-review --sandbox enabled --output-format text > /tmp/rate-limiter-v2.ts
+  --model composer-2.5 --auto-review --sandbox enabled --output-format text > /tmp/rate-limiter-v2.ts
 ```
 
 ### When to Use
@@ -89,7 +89,7 @@ cursor-agent -p \
 # --output-format json gives a structured envelope: {type, result, session_id, usage, ...}
 cursor-agent -p \
   "Analyze src/auth.ts and return JSON with: {functions: [{name, params, returnType}], issues: [{line, severity, description}]}" \
-  --model auto --sandbox enabled --output-format json > /tmp/envelope.json
+  --model composer-2.5 --sandbox enabled --output-format json > /tmp/envelope.json
 
 # The model's own answer is in the .result field; parse that separately
 jq -r '.result' /tmp/envelope.json > /tmp/analysis.json
@@ -121,11 +121,11 @@ jq '.issues[] | select(.severity == "high")' /tmp/analysis.json
 ```bash
 # Launch multiple Cursor tasks in background
 cursor-agent -p "Review src/api/ for issues. Return JSON." \
-  --model auto --sandbox enabled --output-format text > /tmp/review.txt 2>&1 &
+  --model composer-2.5 --sandbox enabled --output-format text > /tmp/review.txt 2>&1 &
 PID1=$!
 
 cursor-agent -p "Generate unit tests for src/utils.ts" \
-  --model auto --auto-review --sandbox enabled --output-format text > /tmp/generated-tests.ts 2>&1 &
+  --model composer-2.5 --auto-review --sandbox enabled --output-format text > /tmp/generated-tests.ts 2>&1 &
 PID2=$!
 
 # Calling AI continues other work...
@@ -154,13 +154,13 @@ The same class of bug that affects other backgrounded CLI dispatches applies her
 ```bash
 # RISKY: cursor-agent may inherit the loop's stdin
 while IFS= read -r line; do
-  cursor-agent -p "$PROMPT" --model auto --sandbox enabled > "$LOG" 2>&1 &
+  cursor-agent -p "$PROMPT" --model composer-2.5 --sandbox enabled > "$LOG" 2>&1 &
   echo "$!" > "pid-$LINE_ID.pid"
 done < input.jsonl
 
 # SAFE: redirect cursor-agent stdin from /dev/null so the loop keeps its own
 while IFS= read -r line; do
-  cursor-agent -p "$PROMPT" --model auto --sandbox enabled > "$LOG" 2>&1 </dev/null &
+  cursor-agent -p "$PROMPT" --model composer-2.5 --sandbox enabled > "$LOG" 2>&1 </dev/null &
   echo "$!" > "pid-$LINE_ID.pid"
 done < input.jsonl
 ```
@@ -171,40 +171,45 @@ done < input.jsonl
 
 ## 5. MODEL SELECTION STRATEGY
 
-**Cursor CLI's roster spans Composer and dozens of hosted-provider ids. Choose based on task type.**
+**cli-cursor dispatch is scoped to an enforced 10-id allowlist — Composer, Grok 4.5, and GLM 5.2 only. Choose based on task type; never dispatch a model outside this set.**
 
 ### Decision Matrix
 
 | Task Type | Model choice | Rationale |
 |-----------|-----------------|-----------|
-| General delegation | `auto` (default) | Cursor's own router balances speed/cost/quality |
+| General delegation | `composer-2.5` (default) | Cursor's own model; predictable, always allowed |
 | Task specifically wants Cursor's own model | `composer-2.5` / `composer-2.5-fast` | Cursor-exclusive — no hosted-provider equivalent |
-| Architecture / security analysis at high depth | A hosted-frontier `-xhigh`/`-high` id (e.g. `gpt-5.2-high`, `claude-opus-4-8-xhigh`) | Effort is baked into the id; pick a high-tier suffix |
-| Code generation | `auto` or a `-medium` id | Balanced for most generation tasks |
-| Trivial lookups | `auto` | The router already selects an appropriately fast model |
+| Architecture / security analysis at high depth | `cursor-grok-4.5-high` (or `-high-fast`), or `glm-5.2-max` | Effort is baked into the id; pick the high tier |
+| Code generation | `composer-2.5`, or `cursor-grok-4.5-medium` | Balanced for most generation tasks |
+| Trivial lookups | `composer-2.5-fast` | The fast variant is quicker for simple tasks |
+| Task wants a model NOT on this list (e.g. GPT, Claude, Gemini, Kimi via Cursor) | **Not supported by this skill** | Escalate to the user rather than substituting an allowed model silently |
 
 ### Implementation
 
 ```bash
-# General delegation — let the router decide
-cursor-agent -p "Add error handling to auth.ts" --model auto --auto-review --sandbox enabled
+# General delegation — the skill default
+cursor-agent -p "Add error handling to auth.ts" --model composer-2.5 --auto-review --sandbox enabled
 
 # Composer-specific request
 cursor-agent -p "Review this diff for correctness" --model composer-2.5 --sandbox enabled
 
 # High-effort analysis — pick the tier via the id itself, not a flag
 cursor-agent -p "Review the authentication architecture for security gaps" \
-  --mode ask --model gpt-5.2-high
+  --mode ask --model cursor-grok-4.5-high
 
 # NEVER: parameterized bracket syntax — rejected outright by the live CLI
-# cursor-agent -p "..." --model 'gpt-5.2[effort=high]'   # "Cannot use this model"
+# cursor-agent -p "..." --model 'cursor-grok-4.5[effort=high]'   # "Cannot use this model"
+
+# NEVER: a model outside the enforced allowlist, including auto
+# cursor-agent -p "..." --model auto            # rejected by fanout-run.cjs / dispatch-model.cjs
+# cursor-agent -p "..." --model gpt-5.6-sol-high-fast  # not on the allowlist at all
 ```
 
 ### Why Explicit Model Specification Matters
 
-- Omitting `--model` defaults to `auto`, which is fine for general delegation but not reproducible if Cursor's routing logic changes across CLI versions
+- Omitting `--model` defaults to `composer-2.5`, never `auto` — the runtime layer rejects `auto` outright since it can silently resolve outside the allowlist
 - Explicit specification ensures reproducible behavior in scripts and CI/CD pipelines
-- Query `cursor-agent --list-models` (requires authentication) for the current live roster before hardcoding an id in a script — the roster changes over time
+- The allowlist is fixed at 10 ids (`executor-config.ts`'s `CURSOR_SUPPORTED_MODELS`) — do not query `cursor-agent --list-models` to justify dispatching an id outside it; that command lists Cursor's full roster, not this skill's scope
 
 ---
 
@@ -229,15 +234,15 @@ Task type?
 
 ```bash
 # Analysis: read-only, no approval flags needed (mode itself is read-only)
-cursor-agent -p "Identify all N+1 query patterns in src/" --mode ask --model auto
+cursor-agent -p "Identify all N+1 query patterns in src/" --mode ask --model composer-2.5
 
 # Code generation: default agent + Smart Auto
 cursor-agent -p "Add retry logic to all API calls in src/api/" \
-  --model auto --auto-review --sandbox enabled
+  --model composer-2.5 --auto-review --sandbox enabled
 
 # Fully unattended: explicit user approval required beforehand
 cursor-agent -p "Run the test suite and fix failures" \
-  --model auto --force --sandbox disabled
+  --model composer-2.5 --force --sandbox disabled
 ```
 
 ### Combinations to Avoid
@@ -263,7 +268,7 @@ is not being rotated on use, allowing token replay attacks."
 
 cursor-agent -p \
   "In src/auth/tokens.ts, fix this security issue. Context from prior analysis: $ANALYSIS" \
-  --model auto --auto-review --sandbox enabled
+  --model composer-2.5 --auto-review --sandbox enabled
 ```
 
 ### Project Rules (automatic, not opt-in)
@@ -276,7 +281,7 @@ Unlike sibling CLIs that need an explicit context file reference, Cursor CLI aut
 cursor-agent -p \
   "Spec folder: specs/cli-external-orchestration/030-cli-cursor-creation (pre-approved, skip Gate 3). \
    Implement the change described in tasks.md T004." \
-  --model auto --auto-review --sandbox enabled
+  --model composer-2.5 --auto-review --sandbox enabled
 ```
 
 ---
@@ -290,21 +295,21 @@ cursor-agent -p \
 ```bash
 # Stage 1: Generate
 cursor-agent -p "Create a webhook handler for Stripe events" \
-  --model auto --auto-review --sandbox enabled --output-format text > /tmp/webhook.ts
+  --model composer-2.5 --auto-review --sandbox enabled --output-format text > /tmp/webhook.ts
 
 # Stage 2: Syntax check
 npx tsc --noEmit /tmp/webhook.ts 2>/tmp/syntax-errors.txt
 if [ $? -ne 0 ]; then
   cursor-agent -p \
     "In webhook.ts, fix these TypeScript errors: $(cat /tmp/syntax-errors.txt)" \
-    --model auto --auto-review --sandbox enabled --output-format text > /tmp/webhook-fixed.ts
+    --model composer-2.5 --auto-review --sandbox enabled --output-format text > /tmp/webhook-fixed.ts
   cp /tmp/webhook-fixed.ts /tmp/webhook.ts
 fi
 
 # Stage 3: Read-only security scan (a different execution mode, not a different tool)
 cursor-agent -p \
   "Audit webhook.ts for security issues. Focus on: input validation, injection, auth bypasses. Return JSON: {issues: [{severity, line, description, fix}]}" \
-  --mode ask --model auto --output-format json > /tmp/security-scan.json
+  --mode ask --model composer-2.5 --output-format json > /tmp/security-scan.json
 
 # Stage 4: Functional check (calling AI reviews the result)
 ```
@@ -313,7 +318,7 @@ cursor-agent -p \
 
 | Stage | Purpose | Cursor invocation |
 |-------|---------|--------------------|
-| 1. Generate | Create initial artifact | `--model auto --auto-review --sandbox enabled` |
+| 1. Generate | Create initial artifact | `--model composer-2.5 --auto-review --sandbox enabled` |
 | 2. Syntax | Verify it compiles/parses | Language toolchain (tsc, eslint, etc.) |
 | 3. Security | Check for vulnerabilities | `--mode ask` (read-only) |
 | 4. Functional | Verify correctness | Calling AI review or tests |
@@ -353,12 +358,12 @@ cursor-agent -p \
 
 ```bash
 # BAD: exit code is always 0, even on auth failure
-if cursor-agent -p "..." --model auto --sandbox enabled; then
+if cursor-agent -p "..." --model composer-2.5 --sandbox enabled; then
   echo "Success"  # This runs even when the dispatch never reached a model
 fi
 
 # GOOD: inspect output text
-OUTPUT=$(cursor-agent -p "..." --model auto --sandbox enabled 2>&1)
+OUTPUT=$(cursor-agent -p "..." --model composer-2.5 --sandbox enabled 2>&1)
 if echo "$OUTPUT" | grep -qi "Authentication required"; then
   echo "Auth failed"
 else
@@ -370,7 +375,7 @@ fi
 
 ```bash
 # BAD: unrestricted access with no human checkpoint
-cursor-agent -p "Migrate the database" --model auto --force --sandbox disabled
+cursor-agent -p "Migrate the database" --model composer-2.5 --force --sandbox disabled
 
 # GOOD: require explicit user approval before this combination
 ```
@@ -379,17 +384,17 @@ cursor-agent -p "Migrate the database" --model auto --force --sandbox disabled
 
 ```bash
 # BAD: rejected outright by the live CLI
-cursor-agent -p "..." --model 'gpt-5.2[effort=high]'
+cursor-agent -p "..." --model 'cursor-grok-4.5[effort=high]'
 
 # GOOD: pick the exact effort-suffixed id
-cursor-agent -p "..." --model gpt-5.2-high
+cursor-agent -p "..." --model cursor-grok-4.5-high
 ```
 
 ### 4. Ignoring the Shared Editor Config Surface
 
 ```bash
 # BAD: assuming a clean, isolated session
-cursor-agent -p "..." --model auto --sandbox enabled
+cursor-agent -p "..." --model composer-2.5 --sandbox enabled
 # This silently inherits the operator's ~/.cursor/hooks.json, mcp.json, and rules.
 
 # GOOD: read shared-editor-config.md and account for the shared surface explicitly

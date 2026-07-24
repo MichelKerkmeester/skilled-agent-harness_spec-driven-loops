@@ -12,6 +12,9 @@ import {
   expandLineages,
   preflightFanoutCapabilities,
   resolveCursorApprovalMode,
+  CURSOR_SUPPORTED_MODELS,
+  CURSOR_DEFAULT_MODEL,
+  isCursorModelAllowed,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
@@ -116,17 +119,17 @@ describe('executor-config', () => {
   it('accepts cli-cursor with its supported execution flags', () => {
     expect(parseExecutorConfig({
       kind: 'cli-cursor',
-      model: 'auto',
+      model: 'composer-2.5',
       sandboxMode: 'workspace-write',
     })).toMatchObject({
       kind: 'cli-cursor',
-      model: 'auto',
+      model: 'composer-2.5',
       sandboxMode: 'workspace-write',
     });
   });
 
   it('rejects reasoningEffort for cli-cursor (no --reasoning-effort flag, no model[effort=...] bracket)', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-cursor', model: 'auto', reasoningEffort: 'high' })).toThrowError(
+    expect(() => parseExecutorConfig({ kind: 'cli-cursor', model: 'composer-2.5', reasoningEffort: 'high' })).toThrowError(
       /reasoningEffort.*not supported by executor kind 'cli-cursor'/,
     );
   });
@@ -376,9 +379,9 @@ describe('parseFanoutConfig', () => {
 
   it('accepts cli-cursor as a fan-out lineage', () => {
     const config = parseFanoutConfig({
-      executors: [{ kind: 'cli-cursor', model: 'auto', label: 'cursor' }],
+      executors: [{ kind: 'cli-cursor', model: 'composer-2.5', label: 'cursor' }],
     });
-    expect(config.executors[0]).toMatchObject({ kind: 'cli-cursor', model: 'auto' });
+    expect(config.executors[0]).toMatchObject({ kind: 'cli-cursor', model: 'composer-2.5' });
   });
 
   it('accepts per-lineage cli-claude-code configDir in fan-out config', () => {
@@ -689,5 +692,37 @@ describe('resolveCursorApprovalMode', () => {
 
   it('maps danger-full-access to force (--force/--yolo), never a sandbox value', () => {
     expect(resolveCursorApprovalMode('danger-full-access')).toBe('force');
+  });
+});
+
+describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
+  it('is exactly the 10-id enforced allowlist, with auto excluded', () => {
+    expect([...CURSOR_SUPPORTED_MODELS].sort()).toEqual([
+      'composer-2.5',
+      'composer-2.5-fast',
+      'cursor-grok-4.5-high',
+      'cursor-grok-4.5-high-fast',
+      'cursor-grok-4.5-low',
+      'cursor-grok-4.5-low-fast',
+      'cursor-grok-4.5-medium',
+      'cursor-grok-4.5-medium-fast',
+      'glm-5.2-high',
+      'glm-5.2-max',
+    ]);
+    expect(CURSOR_SUPPORTED_MODELS).not.toContain('auto');
+  });
+
+  it('defaults to composer-2.5, which is itself an allowed model', () => {
+    expect(CURSOR_DEFAULT_MODEL).toBe('composer-2.5');
+    expect(isCursorModelAllowed(CURSOR_DEFAULT_MODEL)).toBe(true);
+  });
+
+  it('accepts every allowlisted id and rejects auto plus out-of-roster ids', () => {
+    for (const model of CURSOR_SUPPORTED_MODELS) {
+      expect(isCursorModelAllowed(model)).toBe(true);
+    }
+    expect(isCursorModelAllowed('auto')).toBe(false);
+    expect(isCursorModelAllowed('gpt-5.6-sol-high-fast')).toBe(false);
+    expect(isCursorModelAllowed('claude-opus-4-8-xhigh')).toBe(false);
   });
 });

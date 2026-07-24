@@ -814,7 +814,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
       { kind: 'cli-codex', label: 'codex', model: 'gpt-5.6-sol' },
       { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5' },
       { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1' },
-      { kind: 'cli-cursor', label: 'cursor', model: 'auto' },
+      { kind: 'cli-cursor', label: 'cursor', model: 'composer-2.5' },
     ];
     for (const lineage of cases) {
       const command = buildLineageCommand(
@@ -989,7 +989,7 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     const binDir = makeTempDir('fanout-run-cursor-');
     writeStubBinary(binDir, 'cursor-agent');
     const command = buildLineageCommand(
-      { kind: 'cli-cursor', model: 'auto' },
+      { kind: 'cli-cursor', model: 'composer-2.5' },
       'bounded prompt',
       'workspace-write',
       'default',
@@ -1000,7 +1000,7 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
       args: [
         '-p', 'bounded prompt',
         '--output-format', 'text',
-        '--model', 'auto',
+        '--model', 'composer-2.5',
         '--auto-review', '--sandbox', 'enabled',
       ],
       input: undefined,
@@ -1008,7 +1008,7 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     expect(command.effectiveConfig).toMatchObject({
       kind: 'cli-cursor',
       executable: 'cursor-agent',
-      model: 'auto',
+      model: 'composer-2.5',
       reasoningEffort: null,
       sandboxMode: 'workspace-write',
       webSearch: 'inherit',
@@ -1021,16 +1021,16 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     writeStubBinary(binDir, 'cursor-agent');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
 
-    const readOnly = buildLineageCommand({ kind: 'cli-cursor', model: 'auto' }, 'p', 'read-only', 'plan', opts);
-    expect(readOnly.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'auto', '--sandbox', 'enabled']);
+    const readOnly = buildLineageCommand({ kind: 'cli-cursor', model: 'composer-2.5' }, 'p', 'read-only', 'plan', opts);
+    expect(readOnly.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'composer-2.5', '--sandbox', 'enabled']);
     expect(readOnly.args).not.toContain('--force');
     expect(readOnly.args).not.toContain('--auto-review');
 
-    const danger = buildLineageCommand({ kind: 'cli-cursor', model: 'auto' }, 'p', 'danger-full-access', 'bypassPermissions', opts);
-    expect(danger.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'auto', '--force', '--sandbox', 'disabled']);
+    const danger = buildLineageCommand({ kind: 'cli-cursor', model: 'composer-2.5' }, 'p', 'danger-full-access', 'bypassPermissions', opts);
+    expect(danger.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'composer-2.5', '--force', '--sandbox', 'disabled']);
   });
 
-  it('defaults an omitted model to auto', () => {
+  it('defaults an omitted model to composer-2.5 (auto is no longer an allowed id)', () => {
     const binDir = makeTempDir('fanout-run-cursor-default-model-');
     writeStubBinary(binDir, 'cursor-agent');
     const command = buildLineageCommand(
@@ -1040,15 +1040,42 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
       'default',
       { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
     );
-    expect(command.args).toContain('auto');
-    expect(command.effectiveConfig.model).toBe('auto');
+    expect(command.args).toContain('composer-2.5');
+    expect(command.effectiveConfig.model).toBe('composer-2.5');
+  });
+
+  it('accepts every model in the enforced allowlist', () => {
+    const binDir = makeTempDir('fanout-run-cursor-allowlist-');
+    writeStubBinary(binDir, 'cursor-agent');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const allowed = [
+      'cursor-grok-4.5-low', 'cursor-grok-4.5-low-fast',
+      'cursor-grok-4.5-medium', 'cursor-grok-4.5-medium-fast',
+      'cursor-grok-4.5-high', 'cursor-grok-4.5-high-fast',
+      'composer-2.5', 'composer-2.5-fast',
+      'glm-5.2-high', 'glm-5.2-max',
+    ];
+    for (const model of allowed) {
+      const command = buildLineageCommand({ kind: 'cli-cursor', model }, 'p', 'workspace-write', 'default', opts);
+      expect(command.args).toContain(model);
+    }
+  });
+
+  it('rejects a model outside the enforced allowlist, including the retired auto default', () => {
+    const binDir = makeTempDir('fanout-run-cursor-rejected-model-');
+    writeStubBinary(binDir, 'cursor-agent');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    for (const model of ['auto', 'gpt-5.6-sol-high-fast', 'claude-opus-4-8-xhigh']) {
+      expect(() => buildLineageCommand({ kind: 'cli-cursor', model }, 'p', 'workspace-write', 'default', opts))
+        .toThrow(/not in the enforced allowlist/);
+    }
   });
 
   it('fails closed before command construction when cursor-agent is absent, ignoring the always-0 -p exit code', () => {
     const env = { ...process.env, PATH: makeTempDir('fanout-run-no-cursor-') };
     expect(isCursorBinaryAvailable(env)).toBe(false);
     expect(() => buildLineageCommand(
-      { kind: 'cli-cursor', model: 'auto' },
+      { kind: 'cli-cursor', model: 'composer-2.5' },
       'bounded prompt',
       'workspace-write',
       'default',

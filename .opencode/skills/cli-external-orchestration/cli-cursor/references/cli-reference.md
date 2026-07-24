@@ -23,7 +23,7 @@ Comprehensive reference for all Cursor CLI commands, flags, models, configuratio
 
 ### Core Principle
 
-Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It defaults to the `auto` model (an intelligent router) and dispatches non-interactively via `-p`. Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
+Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces a 10-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
 
 ### Purpose
 
@@ -101,7 +101,7 @@ cursor-agent logout
 | `-p` / `--print` | (none) | Non-interactive/print mode — required for orchestrated dispatch |
 | `--output-format` | `text`, `json`, `stream-json` | `text` (default, final-answer-only), `json` (structured, includes `session_id`), `stream-json` (message-level progress) |
 | `--stream-partial-output` | (none) | Pairs with `stream-json` for text deltas |
-| `--model` | model id or `auto` | Model to use — see §5 |
+| `--model` | one of 10 allowed ids (see §5) | Model to use — `auto` and every other Cursor id are rejected by this skill's dispatch layer |
 | `--mode` | `plan`, `ask` | `plan` = read-only planning; `ask` = read-only Q&A; omit for the default read-write agent mode (`--plan` is a shorthand for `--mode plan`) |
 | `--force` / `-f` / `--yolo` | (none) | "Run Everything" — auto-approves unless explicitly denied |
 | `--auto-review` | (none) | "Smart Auto" — auto-runs safe tool calls, prompts for the rest |
@@ -140,54 +140,54 @@ cursor-agent logout
 
 ```bash
 # Non-interactive default dispatch
-cursor-agent -p "Refactor utils.ts to use async/await" --model auto --output-format text
+cursor-agent -p "Refactor utils.ts to use async/await" --model composer-2.5 --output-format text
 
 # With explicit approval + sandbox
-cursor-agent -p "Add error handling to auth.ts" --model auto --auto-review --sandbox enabled
+cursor-agent -p "Add error handling to auth.ts" --model composer-2.5 --auto-review --sandbox enabled
 
 # Read-only planning
-cursor-agent -p "Plan a migration to the new API" --mode plan --model auto
+cursor-agent -p "Plan a migration to the new API" --mode plan --model composer-2.5
 
 # Read-only Q&A
-cursor-agent -p "Explain how the retry logic works" --mode ask --model auto
+cursor-agent -p "Explain how the retry logic works" --mode ask --model composer-2.5
 
 # Full unattended run
-cursor-agent -p "Run the test suite and fix failures" --force --sandbox disabled --model auto
+cursor-agent -p "Run the test suite and fix failures" --force --sandbox disabled --model composer-2.5
 
 # JSON output (structured, includes session_id)
-cursor-agent -p "Summarize this module" --output-format json --model auto
+cursor-agent -p "Summarize this module" --output-format json --model composer-2.5
 ```
 
 ---
 
 ## 5. MODEL SELECTION
 
-### Supported Models
+### Supported Models — Enforced Allowlist
 
-`auto` (intelligent router) is the CLI default. Live enumeration via `cursor-agent --list-models` (requires authentication) returns dozens of ids; effort tiers are suffixes on the id (e.g. `-low`, `-medium`, `-high`, `-xhigh`, `-max`), not a separate flag.
+Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families, `cursor-agent --list-models`), with no per-model prompt-craft data for almost all of them and ids that drift over time. **cli-cursor dispatch is scoped to exactly 10 ids — this is an enforced allowlist, not a reference list.** `auto` (Cursor's own router) is excluded: it can silently resolve to a model outside this set, defeating the point of enforcing one. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`; a hard-rejecting check in both `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed).
 
-| Model family | Example ids | Notes |
+| Family | Allowed ids | Notes |
 |-------|----|-------|
-| **Auto** ★ default | `auto` | Cursor's own router picks the best model for the task |
-| **Composer** (Cursor-native) | `composer-2.5`, `composer-2.5-fast` | The direct analog to a provider's own house model — Cursor-exclusive |
-| **GPT family (via Cursor)** | `gpt-5.2`, `gpt-5.2-high`, `gpt-5.4-high`, `gpt-5.6-sol-xhigh`, etc. | Hosted OpenAI models dispatched through Cursor |
-| **Claude family (via Cursor)** | `claude-opus-4-8-high`, `claude-sonnet-5-thinking-high`, etc. | Hosted Anthropic models dispatched through Cursor |
-| **Gemini / Grok / GLM / Kimi (via Cursor)** | `gemini-3.1-pro`, `cursor-grok-4.5-high`, `glm-5.2-max`, `kimi-k2.7-code` | Additional hosted providers dispatched through Cursor |
+| **Composer** (Cursor-native) ★ default | `composer-2.5`, `composer-2.5-fast` | The direct analog to a provider's own house model — Cursor-exclusive |
+| **Grok 4.5** (via Cursor) | `cursor-grok-4.5-low`, `cursor-grok-4.5-low-fast`, `cursor-grok-4.5-medium`, `cursor-grok-4.5-medium-fast`, `cursor-grok-4.5-high`, `cursor-grok-4.5-high-fast` | xAI's Grok 4.5, all 3 thinking tiers, each with a `-fast` variant |
+| **GLM 5.2** (via Cursor) | `glm-5.2-high`, `glm-5.2-max` | Z.AI's GLM 5.2, 2 tiers |
+
+Effort tiers are suffixes on the id (`-low`/`-medium`/`-high`/`-fast`/`-max`), not a separate flag. Any other model id — including `auto` and every GPT/Claude/Gemini/Kimi id — is out of scope for this skill; escalate to the user rather than dispatching it.
 
 ### Reasoning Effort Configuration
 
-**There is no `--reasoning-effort` flag, and no `model[effort=...]` parameterized bracket support.** Live-tested against two real model ids (`gpt-5.2[effort=high]` and the exact bracket example from Cursor's own `--help` text, `claude-opus-4-8[context=1m,effort=high,fast=false]`) — both were rejected outright with `Cannot use this model: <literal string>`. Effort is selected by choosing the exact enumerated id with the desired tier suffix (e.g. `gpt-5.2-high` instead of `gpt-5.2` + a bracket).
+**There is no `--reasoning-effort` flag, and no `model[effort=...]` parameterized bracket support.** Live-tested against two real model ids (a Grok bracket variant and the exact bracket example from Cursor's own `--help` text, `claude-opus-4-8[context=1m,effort=high,fast=false]`) — both were rejected outright with `Cannot use this model: <literal string>`. Effort is selected by choosing the exact enumerated id with the desired tier suffix (e.g. `cursor-grok-4.5-high` instead of `cursor-grok-4.5` + a bracket).
 
 ### Selection Strategy
 
 | Task Type | Model choice | Rationale |
 |-----------|-----------------|-----------|
-| General delegation | `auto` (default) | Cursor's router balances speed/cost/quality automatically |
+| General delegation | `composer-2.5` (default) | Cursor's own model; predictable and always allowed |
 | Task specifically wants Cursor's own model | `composer-2.5` / `composer-2.5-fast` | Cursor-exclusive, no hosted-provider equivalent |
-| Task wants a specific provider at a specific tier | An exact enumerated id (e.g. `gpt-5.2-high`) | Effort is baked into the id; query `--list-models` for the current roster |
-| Trivial lookups | `auto` | The router already selects an appropriately fast model for simple tasks |
+| Task specifically wants Grok or GLM at a tier | An exact allowed id (e.g. `cursor-grok-4.5-high`, `glm-5.2-max`) | Effort is baked into the id; only these 8 non-Composer ids are permitted |
+| Task wants any model outside the allowlist | **Not supported** | Escalate to the user — do not substitute an allowed model silently |
 
-Always specify `--model` explicitly in scripts for predictability; omitting it defaults to `auto`, which is fine for general delegation but not reproducible across runs if Cursor's routing logic changes.
+Always specify `--model` explicitly in scripts for predictability; omitting it defaults to `composer-2.5`, never `auto`.
 
 ---
 
@@ -200,15 +200,15 @@ Always specify `--model` explicitly in scripts for predictability; omitting it d
 ```bash
 # Capture to file
 cursor-agent -p "Generate a TypeScript interface for the User model" \
-  --model auto --output-format text > /tmp/user-interface.ts
+  --model composer-2.5 --output-format text > /tmp/user-interface.ts
 
 # Capture structured JSON (includes session_id)
 cursor-agent -p "List all exported functions in src/" \
-  --model auto --output-format json > /tmp/result.json
+  --model composer-2.5 --output-format json > /tmp/result.json
 jq -r '.result' /tmp/result.json
 
 # Redirect stderr separately
-cursor-agent -p "Analyze auth flow" --model auto > /tmp/analysis.txt 2>/tmp/errors.txt
+cursor-agent -p "Analyze auth flow" --model composer-2.5 > /tmp/analysis.txt 2>/tmp/errors.txt
 ```
 
 ### Exit Codes

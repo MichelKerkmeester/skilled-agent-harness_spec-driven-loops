@@ -57,7 +57,7 @@ If nothing prints, install it with `curl https://cursor.com/install -fsS | bash`
 ```bash
 cursor-agent -p "Add input validation to src/utils.ts" \
   --output-format text \
-  --model auto \
+  --model composer-2.5 \
   --auto-review \
   --sandbox enabled \
   2>&1
@@ -82,7 +82,7 @@ You get a response from Cursor's own native model rather than a hosted frontier 
 ```bash
 cursor-agent -p "Explain how the auth flow works in this repo" \
   --mode ask \
-  --model auto \
+  --model composer-2.5 \
   2>&1
 ```
 
@@ -116,7 +116,7 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Model Selection And Execution Modes
 
-`auto` (Cursor's own router) is the skill default. **Composer** (`composer-2.5` / `composer-2.5-fast`) is Cursor's own native model — reach for it when the task specifically wants Cursor's house model rather than a hosted frontier provider. Effort tiers are baked directly into a model's id (`gpt-5.2-high`, `claude-opus-4-8-xhigh`) — there is no `--reasoning-effort` flag and the parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
+Dispatch is scoped to an enforced 10-id allowlist — Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set. **Composer** (`composer-2.5` / `composer-2.5-fast`) is Cursor's own native model and the skill default; **Grok 4.5** (6 tiers, `cursor-grok-4.5-{low,medium,high}[-fast]`) and **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`) round out the allowlist. Effort tiers are baked directly into a model's id — there is no `--reasoning-effort` flag and the parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
 
 Three execution modes govern how a dispatch behaves: the default agent mode (reads and writes, gated by approval flags), `--mode plan` (read-only planning), and `--mode ask` (read-only Q&A). Approval is a separate axis from the sandbox: `--auto-review` ("Smart Auto") auto-runs safe actions and prompts for the rest; `--force`/`--yolo` ("Run Everything") never prompts; omitting both leaves Cursor's own default prompt-and-block behavior in place, which cannot proceed unattended.
 
@@ -162,7 +162,8 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `command not found: cursor-agent` | CLI not installed or PATH not updated | `curl https://cursor.com/install -fsS \| bash`, then restart your terminal |
 | Output contains `Error: Authentication required` (exit code still `0`) | Not logged in, or headless auth env vars unset | Run `cursor-agent login`, or set `CURSOR_API_KEY`/`CURSOR_AUTH_TOKEN` |
 | Task ran but no files changed | `--mode plan`/`--mode ask` was used, or neither `--auto-review` nor `--force` was passed | Use the default agent mode with `--auto-review` or `--force` for edit tasks |
-| `Cannot use this model: <id>[effort=...]` | Parameterized model bracket syntax, not supported by Cursor CLI | Use an exact enumerated id instead (e.g. `gpt-5.2-high`, from `cursor-agent --list-models`) |
+| `Cannot use this model: <id>[effort=...]` | Parameterized model bracket syntax, not supported by Cursor CLI | Use an exact enumerated id from the allowlist instead (e.g. `cursor-grok-4.5-high`) |
+| `cli-cursor model '<id>' is not in the enforced allowlist` | The requested `--model` is outside the 10-id allowlist (SKILL.md §3) | Pick one of the 10 allowed ids, or ask the operator to extend the allowlist |
 | `Self-invocation refused` | The caller is already inside Cursor CLI (`CURSOR_AGENT`/`CURSOR_CONVERSATION_ID` set, or `cursor-agent` ancestry) | Use a different runtime or exit the current Cursor session first |
 | Dispatch behaves differently than expected, or an unexpected hook fires | Cursor CLI shares config with the editor (`hooks.json`/`mcp.json`/`rules/`) | Read `references/shared-editor-config.md`; consider a workspace-isolation flag |
 | `Workspace Trust Required` | Cursor CLI does not trust the target directory yet | Pass `--trust` (or `--force`/`--yolo`) for a directory you control |
@@ -175,9 +176,9 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 A: You can. This skill exists for when an external AI assistant (Claude Code, Codex) needs to dispatch to Cursor programmatically. It handles model selection, approval mapping, auth pre-flight and the self-invocation guard so the calling AI does not have to.
 
-**Q: When do I pick Composer over a hosted frontier model?**
+**Q: When do I pick Composer over Grok or GLM?**
 
-A: Pick `composer-2.5`/`composer-2.5-fast` when the task specifically wants Cursor's own house model. Pick a hosted-frontier id (`gpt-5.2-high`, `claude-opus-4-8-xhigh`, etc.) when the task wants a specific provider's model at a specific effort tier, dispatched through Cursor's roster.
+A: Pick `composer-2.5`/`composer-2.5-fast` (the default) when the task specifically wants Cursor's own house model, or when no other model is named. Pick `cursor-grok-4.5-{low,medium,high}[-fast]` or `glm-5.2-{high,max}` when the task or user explicitly names Grok or GLM. Dispatch is enforced to exactly these 10 ids — a hosted GPT/Claude/Gemini/Kimi id, or `auto`, is out of scope for this skill.
 
 **Q: The task ran but nothing changed. What happened?**
 
@@ -185,7 +186,7 @@ A: Either the dispatch used `--mode plan`/`--mode ask` (both read-only regardles
 
 **Q: Does Cursor CLI use a `--reasoning-effort` flag like some sibling CLIs?**
 
-A: No. Effort tiers are baked into the model id itself (`gpt-5.2-high`, `claude-opus-4-8-xhigh`), and the parameterized `model[effort=...]` bracket syntax is rejected outright by the CLI — confirmed live, not assumed from documentation.
+A: No. Effort tiers are baked into the model id itself (`cursor-grok-4.5-high`, `glm-5.2-max`), and the parameterized `model[effort=...]` bracket syntax is rejected outright by the CLI — confirmed live, not assumed from documentation.
 
 **Q: When do I pick Cursor over Codex or Claude Code?**
 
@@ -200,7 +201,7 @@ The skill ships a manual testing playbook with per-feature scenarios (authored i
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-cursor/README.md --type readme` reports zero issues |
-| Default dispatch | `cursor-agent -p "Say hello" --model auto --output-format text --sandbox enabled` returns a greeting |
+| Default dispatch | `cursor-agent -p "Say hello" --model composer-2.5 --output-format text --sandbox enabled` returns a greeting |
 | Auth pre-flight | `cursor-agent about` output text does not contain "Not logged in" |
 
 ---
