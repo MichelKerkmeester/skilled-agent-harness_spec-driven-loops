@@ -43,6 +43,8 @@ A **25-iteration deep-research pass** (`001-research/`; 143 findings → 47 cons
 | P1 | 010-rollback-audit-and-non-hub-policy/ | `activate-hub.cjs --rollback`; unconditional `serving-prior` refresh; fence `direction`; append-only audit; explicit non-hub archetype ineligibility policy + negative fixtures; named P2 canary profile/owner/thresholds | 2 | 002 |
 | P4 | 011-activation-cutover-p4/ | The staged hub-by-hub tri-state default-on controller: lockstep directives/templates/catalog wording; the P3 coverage-closure join gate; `=0` kill-switch drill; per-hub stop-on-first-failure | 3 | 002-010 |
 | P3 | 012-p3-canonical-minter-foundation/ | Canonical initial manifest minter and exact freshness predicate for new registry-driven hubs; additive status visibility and sync durability; no eligibility-map removal or default-on cohort change | 3 | 002, 006 compiler |
+| P3 | 013-compiled-coverage-buildout/ | Real parity run (`SPECKIT_COMPILED_ROUTING=1`, route-gold on) proving the compiled router is byte-identical to legacy on covered scenarios; per-hub compiled-coverage buildout | 3 | 002 |
+| — | 016-review-remediation/ | Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) of the v4 compiled-routing landing, plus remediation of their findings | 2 | 011, 013 |
 
 ## SHARED MIGRATION-GATE MODEL
 

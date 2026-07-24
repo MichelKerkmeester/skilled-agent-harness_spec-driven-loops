@@ -115,25 +115,25 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/skills/system-skill-advisor/mcp_server/hooks/claude/user-prompt-submit.ts` | Modify | Resolve the no-brief output contract (P0-1) and reserve fallback budget out of the hook timeout (P0-2) |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Modify | Align the 4 stale expectations with the resolved output contract |
+| `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Modify | Resolve the no-brief output contract (P0-1) and reserve fallback budget out of the hook timeout (P0-2) |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Modify | Align the 4 stale expectations with the resolved output contract |
 | `.opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md` | Modify | Document the resolved contract and the corrected transport diagnostic taxonomy |
-| `.opencode/skills/system-skill-advisor/mcp_server/hooks/lib/skill-advisor-cli-fallback.ts` | Modify | Accept a reserved timeout slice, split diagnostic codes (P1/P2-7) |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts` | Create | Timing tests: primary-timeout to fallback-success, probe-timeout within budget, skipped, daemon-absent exit 75 |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts` | Modify | Cover the never-exercised existing-candidate branch (lines 470-477), assert branch provenance |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Modify | Single finalization boundary so `result.ambiguous` derives from the post-override cluster (lines 839-868) |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json` | Modify | Replace the stale `suppressed-codex-abstain` fixture with a genuinely retired executor alias |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/executor-delegation.vitest.ts` | Modify | Assert `result.ambiguous === (top.ambiguousWith.length > 0)` on every fixture |
-| `.opencode/skills/system-skill-advisor/mcp_server/bench/scorer-calibration-baseline.json` | Modify | Regenerate against the clean 193-row corpus |
-| `.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Regenerate against the clean 193-row corpus |
-| `.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/joined-calibration-report.cjs` | Create (proposed name) | One joined evaluator: holdout top-1, ambiguity accuracy, floor frequency, Brier/ECE bins |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts` | Modify | Restore hash-equality assertions against the regenerated baselines |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/metadata-hub-discovery-battery.vitest.ts` | Create (proposed name, coordinated with 012) | Per-workflow-mode fixture routing at compat thresholds through the real scorer |
+| `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Modify | Accept a reserved timeout slice, split diagnostic codes (P1/P2-7) |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts` | Create | Timing tests: primary-timeout to fallback-success, probe-timeout within budget, skipped, daemon-absent exit 75 |
+| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts` | Modify | Cover the never-exercised existing-candidate branch (lines 470-477), assert branch provenance |
+| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts` | Modify | Single finalization boundary so `result.ambiguous` derives from the post-override cluster (lines 839-868) |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/fixtures/executor-delegation-cases.json` | Modify | Replace the stale `suppressed-codex-abstain` fixture with a genuinely retired executor alias |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/executor-delegation.vitest.ts` | Modify | Assert `result.ambiguous === (top.ambiguousWith.length > 0)` on every fixture |
+| `.opencode/skills/system-skill-advisor/mcp-server/bench/scorer-calibration-baseline.json` | Modify | Regenerate against the clean 193-row corpus |
+| `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Regenerate against the clean 193-row corpus |
+| `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/joined-calibration-report.cjs` | Create (proposed name) | One joined evaluator: holdout top-1, ambiguity accuracy, floor frequency, Brier/ECE bins |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts` | Modify | Restore hash-equality assertions against the regenerated baselines |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/metadata-hub-discovery-battery.vitest.ts` | Create (proposed name, coordinated with 012) | Per-workflow-mode fixture routing at compat thresholds through the real scorer |
 | `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modify | Fail when a metadata-routed mode lacks a discovery fixture |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/advisor-threshold-surface-parity.vitest.ts` | Create | Two-layer matrix: 4 env-row surfaces, 2 call-override-row surfaces |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/runtime-parity.vitest.ts` | Modify | Absorb or rename the mislabeled `['claude','opencode','opencode']` test |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts` | Modify (P2-8, gated) | `taskIntentFloor` 0.82 to 0.80 behind the shadow-experiment path |
-| `.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/shadow-floor-experiment.cjs` | Create (proposed name, gated) | Runs the three-gate acceptance check and reports accept or reject |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/advisor-threshold-surface-parity.vitest.ts` | Create | Two-layer matrix: 4 env-row surfaces, 2 call-override-row surfaces |
+| `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/runtime-parity.vitest.ts` | Modify | Absorb or rename the mislabeled `['claude','opencode','opencode']` test |
+| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/scoring-constants.ts` | Modify (P2-8, gated) | `taskIntentFloor` 0.82 to 0.80 behind the shadow-experiment path |
+| `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/shadow-floor-experiment.cjs` | Create (proposed name, gated) | Runs the three-gate acceptance check and reports accept or reject |
 <!-- /ANCHOR:scope -->
 
 ---
