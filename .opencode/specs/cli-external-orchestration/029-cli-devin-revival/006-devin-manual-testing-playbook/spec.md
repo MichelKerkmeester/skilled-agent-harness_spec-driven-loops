@@ -15,7 +15,7 @@ _memory:
     key_files: [".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota/spec.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout/spec.md", ".opencode/specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 0
-    open_questions: ["Should the hallucination-fixture scenario re-verify the fake --reasoning-effort flag name against a live swe-1.6 dispatch at implementation time, or is the archived 018 citation sufficient grounding on its own?", "Should permission-modes include a destructive/approval-gated scenario analogous to cli-codex's CX-007 (danger-full-access), given bypass/autonomous modes carry comparable risk?", "Once phase 003's skill packet lands, should this playbook's preconditions cite its reference/asset paths verbatim, or pre-draft against the currently-planned layout and reconcile later?"]
+    open_questions: ["Should the hallucination-fixture scenario re-verify the fake --reasoning-effort flag name against a live dispatch on the phase 005 allowlist at implementation time, or is the archived 018 citation sufficient grounding on its own?", "Should permission-modes include a destructive/approval-gated scenario analogous to cli-codex's CX-007 (danger-full-access), given smart/dangerous modes carry comparable risk?", "Once phase 003's skill packet lands, should this playbook's preconditions cite its reference/asset paths verbatim, or pre-draft against the currently-planned layout and reconcile later?"]
     answered_questions: []
 ---
 # Feature Specification: Devin manual-testing playbook
@@ -61,7 +61,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 - Author the playbook root file `manual-testing-playbook.md` under `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/`, mirroring cli-codex's confirmed 17-section structure (EXECUTION POLICY banner, SELF-INVOCATION GUARD banner, then numbered §1 Overview through §17 Feature Catalog Cross-Reference Index).
 - Author 8 category subdirectories, each with at least 1 `DV-NNN` scenario file using the universal per-feature template (frontmatter, §1 Overview, §2 Scenario Contract, §3 Test Execution, §4 Source Files, §5 Source Metadata): `cli-invocation`, `permission-modes`, `subagents`, `hooks`, `session-continuity`, `cloud-handoff`, `prompt-templates`, `mcp-integration`.
 - Target roughly 15-20 total scenario files - smaller than Codex's 26 since several Codex categories don't apply in the same shape.
-- Reframe Codex's `sandbox-modes` category as Devin's `permission-modes` category (the 4 permission modes - normal/accept-edits/bypass/autonomous - plus the genuinely separate `--sandbox` OS-level flag), not a verbatim port of Codex's read-only/workspace-write/danger-full-access sandbox shape.
+- Reframe Codex's `sandbox-modes` category as Devin's `permission-modes` category (the 4 permission modes - auto/accept-edits/smart/dangerous - plus the genuinely separate `--sandbox` OS-level flag), not a verbatim port of Codex's read-only/workspace-write/danger-full-access sandbox shape.
 - Reframe Codex's `agent-routing` (`config.toml` `-p profile`) category as Devin's `subagents` category (`subagent_explore`, `subagent_general`, custom `.devin/agents/[name]/AGENT.md` profiles), Devin's genuinely different delegation mechanism.
 - Add a `hooks` category exercising the 8 lifecycle events confirmed in phase 001 and adapted in phase 004, with `SessionStart`/`UserPromptSubmit` smoke tests at minimum.
 - Add a `cloud-handoff` category testing `/handoff` thoroughly, since it may be one of Devin's primary invocation modes rather than a secondary one.
@@ -107,7 +107,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-006 | Scenario IDs use the `DV-NNN` prefix (Devin), globally unique and sequential with no gaps across all 8 categories | Extracting every `DV-\d{3}` token across all scenario files yields a sorted, gap-free, duplicate-free sequence starting at `DV-001`. |
-| REQ-007 | `permission-modes` category documents why it replaces Codex's `sandbox-modes` category (4 permission modes distinct from the separate `--sandbox` OS-level flag) | The category's overview text names all 4 modes (normal/accept-edits/bypass/autonomous) and states `--sandbox` is a separate, OS-level mechanism, not a 5th mode. |
+| REQ-007 | `permission-modes` category documents why it replaces Codex's `sandbox-modes` category (4 permission modes distinct from the separate `--sandbox` OS-level flag) | The category's overview text names all 4 modes (auto/accept-edits/smart/dangerous) and states `--sandbox` is a separate, OS-level mechanism, not a 5th mode. |
 | REQ-008 | `subagents` category documents why it replaces Codex's `agent-routing`/`-p profile`/`config.toml` category | The category's scenario files reference `subagent_explore`, `subagent_general`, and a custom `.devin/agents/[name]/AGENT.md` profile at least once each. |
 | REQ-009 | `hooks` category exercises at minimum `SessionStart` and `UserPromptSubmit` smoke tests against the 8-lifecycle-event contract confirmed in phase 001 | The category contains scenario coverage naming both `SessionStart` and `UserPromptSubmit` explicitly. |
 | REQ-010 | `cloud-handoff` category tests `/handoff` thoroughly, not as a single throwaway scenario | The category contains `>=2` scenario files. |
@@ -149,8 +149,8 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the hallucination-fixture scenario re-verify the fake `--reasoning-effort` flag name against a live `swe-1.6` dispatch at implementation time, or is the archived 018 citation sufficient grounding on its own? Leaning toward re-verifying when a live dispatch is feasible.
-- Should `permission-modes` include a destructive/approval-gated scenario analogous to cli-codex's `CX-007` (danger-full-access), given `bypass`/`autonomous` modes carry comparable risk? Leaning toward yes, scoped to a sandboxed temp directory, mirroring the Codex precedent.
+- Should the hallucination-fixture scenario re-verify the fake `--reasoning-effort` flag name against a live dispatch on one of phase 005's allowlisted models at implementation time, or is the archived 018 citation sufficient grounding on its own? Leaning toward re-verifying when a live dispatch is feasible.
+- Should `permission-modes` include a destructive/approval-gated scenario analogous to cli-codex's `CX-007` (danger-full-access), given `smart`/`dangerous` modes carry comparable risk? Leaning toward yes, scoped to a sandboxed temp directory, mirroring the Codex precedent.
 - Once phase 003's skill packet lands, should this playbook's preconditions cite its reference/asset paths verbatim, or pre-draft against the currently-planned layout and reconcile at implementation time? Leaning toward pre-drafting and reconciling (see Risks table).
 <!-- /ANCHOR:questions -->
 

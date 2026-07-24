@@ -55,7 +55,7 @@ _memory:
 
 - [ ] T004 Author the root file `manual-testing-playbook.md` with the confirmed 17-section structure, both banners, and the per-category summary sections. (`cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md`)
 - [ ] T005 Author the `cli-invocation` category: default invocation, `--print` single-turn mode, model selection via `--model`/short names, and the flag-hallucination-fixture scenario. (`cli-invocation/*.md`)
-- [ ] T006 Author the `permission-modes` category: normal, accept-edits, bypass, autonomous, plus the separate `--sandbox` OS-level flag. (`permission-modes/*.md`)
+- [ ] T006 Author the `permission-modes` category: auto, accept-edits, smart, dangerous, plus the separate `--sandbox` OS-level flag. (`permission-modes/*.md`)
 - [ ] T007 Author the `subagents` category: `subagent_explore`, `subagent_general`, and a custom `.devin/agents/[name]/AGENT.md` profile. (`subagents/*.md`)
 - [ ] T008 Author the `hooks` category: `SessionStart`/`UserPromptSubmit` smoke tests at minimum, against phase 004's adapter layer. (`hooks/*.md`)
 - [ ] T009 Author the `session-continuity` category: `--continue`/`-c`, `--resume`/`-r`, `/fork`, `/revert`. (`session-continuity/*.md`)

@@ -85,7 +85,7 @@ _memory:
 ## Security
 
 - [ ] CHK-030 [P0] No scenario file embeds a real credential, token, or the operator's actual `COGNITION_API_KEY` value - placeholders only.
-- [ ] CHK-031 [P0] Any scenario touching `bypass`/`autonomous` permission mode or `--sandbox` requires documented operator approval evidence, mirroring the `CX-007` danger-full-access precedent.
+- [ ] CHK-031 [P0] Any scenario touching `smart`/`dangerous` permission mode or `--sandbox` requires documented operator approval evidence, mirroring the `CX-007` danger-full-access precedent.
 - [ ] CHK-032 [P1] No scenario scripts or automates `devin auth login` - it remains an operator-only interactive step in every command sequence.
 <!-- /ANCHOR:security -->
 
