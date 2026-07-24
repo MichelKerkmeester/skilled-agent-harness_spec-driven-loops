@@ -42,6 +42,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Deep Review mode migration) |
 | **Origin** | Phase 006 of the 013 per-mode migration workstream; operator brief for typed-ledger shadow parity |
 | **Inputs** | Parent program spec; phase tree; phase-012 shared review-loop contract; phase-008 shadow framework; the two effectiveness/fan-out findings registries |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -52,6 +53,8 @@ Deep Review currently follows a recognizable loop: establish review scope, run p
 This phase plans a **shadow-parity harness**, not an authority cutover. For the same frozen input, contract versions, source revision, dimension set, and execution manifest, the legacy emitter remains authoritative while the new ledger path records its typed events and projections beside it. A comparator normalizes only explicitly non-semantic fields and then diffs the two paths event-for-event and projection-for-projection. Every mismatch is retained as evidence and blocks promotion until classified and resolved.
 
 The mode shares its loop backbone with deep-alignment. It must consume the shared review-loop contract frozen in phase 012 rather than fork a Deep Review-specific loop state machine. It also consumes the generic shadow framework from phase 008 for paired execution, replay, health evidence, and degeneration handling. Deep Review-specific work is limited to its finding lifecycle, severity/confidence separation, review-report projection, and parity gate.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs to this still-Planned harness without moving authority from the legacy emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -60,7 +63,7 @@ The mode shares its loop backbone with deep-alignment. It must consume the share
 ### In Scope
 - A Deep Review shadow runner that invokes the legacy emitter and typed-ledger path from the same immutable input envelope without changing legacy authority.
 - A mode adapter mapping scope, dimension-pass, candidate, validation, severity, convergence, and review-report transitions into the shared typed event vocabulary.
-- A canonical parity projection keyed by review lineage, stable finding fingerprint, dimension, evidence references, disposition, and report position.
+- A canonical parity projection keyed by review lineage, stable finding fingerprint, dimension, evidence references, disposition, and report position. Stream pairs use logical identity rather than raw `eventId`, so independently emitted legacy and ledger events still pair.
 - Event-for-event comparison with explicit handling for missing, extra, reordered, duplicated, stale, and payload-divergent events.
 - Projection comparison for findings, P0/P1/P2 impact, independent confidence and evidence attributes, convergence state, report ordering, receipts, checkpoints, and replay fingerprints.
 - Fixture coverage for clean reviews, multiple dimensions, duplicate candidates, finding updates, fixed and pre-existing findings, inconclusive validation, convergence, resumed runs, and deterministic replays.
@@ -93,9 +96,11 @@ The mode shares its loop backbone with deep-alignment. It must consume the share
 
 ### Shadow-parity acceptance contract
 
-The harness is green only when all required fixtures pass with **zero unexplained event or projection differences**. Normalization may remove transport timestamps, process-local paths, and generated attempt identifiers only when the shared contract declares them non-semantic and preserves their causal position. It must not normalize away event type, sequence, lineage, finding identity, severity, evidence, disposition, receipt references, convergence state, or report order.
+The harness is green only when all required fixtures pass with **zero unexplained semantic event or projection differences**. A tolerance is accountable only when the diff has a typed disposition, owner, reason, and proof that it cannot change trusted state or downstream authority; any unaccountable tolerance blocks parity. The closed volatility allowlist is `occurred_at`, `recorded_at`, and `correlation_id`. Each allowlisted field is still checked for presence, type, and non-interference with semantic identity. Event type, sequence, lineage, finding identity, severity, evidence, disposition, receipt references, convergence state, and report order remain protected.
 
-The comparator reports four separate verdicts: event-stream parity, projection parity, replay/resume parity, and safety parity. Safety parity requires that both paths reject the same invalid transition class, that a shadow mismatch never authorizes a ledger transition, and that the legacy emitter remains the only publication authority. A failed or incomplete verdict is `PARITY_BLOCKED`, not an implicit pass. The mode gate may consume only a certificate whose fixture digest, contract fingerprints, comparator version, and candidate SHA match the run under review.
+The comparator reports four separate verdicts: event-stream parity, projection parity, replay/resume parity, and safety parity. Safety parity requires that both paths reject the same invalid transition class, that a shadow mismatch never authorizes a ledger transition, and that the legacy emitter remains the only publication authority. Every named cross-artifact reference must resolve to an artifact of the declared kind and, where the artifact bears them, match epoch, lifecycle, freshness, and real state; visibility and role-redaction rules plus authority liveness are checked at the same boundary. Existence- or shape-only acceptance is a defect.
+
+A failed or incomplete verdict is `PARITY_BLOCKED`, not an implicit pass. Fault-injection fixtures must traverse the real paired execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot satisfy acceptance. The manifest-bound parity receipt is evidence, not a standalone forgery-proof authority object. The authenticated mode gate is the trust anchor and must re-verify the receipt binding rather than self-trust a computed parity status.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 

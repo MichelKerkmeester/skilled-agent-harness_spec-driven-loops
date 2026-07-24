@@ -44,6 +44,7 @@ _memory:
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; sixth child of the shared Deep Improvement Common Services migration |
 | **Child depends_on** | `[]` |
 | **Inputs** | Phase-014 health and degeneration shadow framework; siblings `001-typed-ledger-schema` through `005-resume-adapter`; parent phase plan; 036/002 findings registries |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -67,6 +68,9 @@ handling, recovery hysteresis, and non-authoritative action requests. It does no
 second cycle detector, authorize a stop, dispatch a candidate, or cut authority. It owns the shared evaluator, canary, and
 promotion parity contract that `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` reuse. Their later
 mode migrations consume this one source rather than defining variant-specific shadow semantics.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs
+to this still-Planned harness without moving authority from the legacy emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -76,7 +80,8 @@ mode migrations consume this one source rather than defining variant-specific sh
 - A paired shadow runner that feeds the same immutable run context to the legacy emitter and the typed ledger path, records
   path versions and correlation identities, and keeps the ledger path non-authoritative.
 - A legacy-to-typed event mapping and comparator with one-to-one matching by run, lineage, logical event identity, and
-  sequence; it preserves raw bytes and hashes while declaring only approved volatile fields such as observation timestamps.
+  sequence rather than raw `eventId`, so independently emitted streams still pair; it preserves raw bytes and hashes while
+  declaring only the closed volatility allowlist.
 - Event-for-event comparison of event family, schema/version path, causal links, candidate and evaluator identity, fixture
   and baseline references, raw observation references, normalized score references, uncertainty, canary outcomes, promotion
   status, receipt references, authorization references, and terminal dispositions.
@@ -140,24 +145,32 @@ match without intermediate state parity is a failure.
 Authority cutover is blocked until every required item below is green for the shared service corpus and for each downstream
 variant fixture set:
 
-- **Event completeness**: 100% of eligible event boundaries have one matched legacy and typed event; missing, extra, reordered,
-  unauthorized, or unknown-version events are zero.
-- **Protected semantic parity**: 100% of protected event fields and projection fields match their declared canonical values;
-  unexplained or policy-uncovered differences are zero.
+- **Event completeness**: 100% of eligible event boundaries have one logically paired legacy and typed event; missing, extra,
+  reordered, unauthorized, or unknown-version events are zero.
+- **Protected semantic parity**: protected event fields and projection fields have zero unexplained semantic differences. A
+  tolerated diff is accountable only when it has a typed disposition, owner, reason, and proof that it cannot change trusted
+  state or downstream authority; any unaccountable tolerance blocks parity.
+- **Closed volatility**: only `occurred_at`, `recorded_at`, and `correlation_id` may be excluded, and each is still checked for
+  presence, type, and non-interference with semantic identity.
 - **Decision parity**: evaluator insufficiency, canary veto/drift/leak, promotion pause/abort/restore, and promotion eligibility
   agree at every boundary; no shadow decision changes legacy authority.
-- **Evidence integrity**: every comparison has a pair identity, source digests, policy/version identities, cursors, and receipts;
-  no telemetry gap, stale watermark, or non-evaluable boundary may be counted as a pass.
+- **Evidence integrity**: every comparison has a pair identity, source digests, policy/version identities, cursors, and receipts.
+  Every named cross-artifact reference resolves to its declared kind and, where present, matches epoch, lifecycle, freshness,
+  and real state; visibility and role redaction plus authority liveness are checked. Existence- or shape-only acceptance is a
+  defect, and no telemetry gap, stale watermark, or non-evaluable boundary may be counted as a pass.
 - **Replay parity**: captured pairs replay deterministically with identical match identities, projection fingerprints, mismatch
   classifications, and final verdict; duplicate delivery is idempotent.
 - **Framework parity**: phase-014 health observations and recovery signals use the same coherent evidence boundary, while all
   pause, re-seed, quarantine, repair, and stop requests remain non-authoritative.
 - **Operational safety**: the typed path performs no authority write, candidate dispatch, evaluator mutation, hidden-fixture
   disclosure, baseline mutation, or legacy-writer bypass during shadow execution.
+- **Anti-vacuous testing**: fault injections traverse the real execution, authorization, ledger, reducer, projection, receipt,
+  and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests do not satisfy acceptance.
 
 The report is `PASS` only when all blocking criteria are green and every tolerated representation difference is listed in the
 versioned normalization manifest. `INCONCLUSIVE`, `TELEMETRY_GAP`, or `MISMATCH` is a blocking result, not a soft pass. The
-later mode gate may consume a passing report, but this child never issues a cutover certificate.
+manifest-bound parity receipt is evidence, not a standalone forgery-proof authority object. The authenticated mode gate is the
+trust anchor and must re-verify the receipt binding rather than self-trust a computed parity status; this child never authorizes cutover.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

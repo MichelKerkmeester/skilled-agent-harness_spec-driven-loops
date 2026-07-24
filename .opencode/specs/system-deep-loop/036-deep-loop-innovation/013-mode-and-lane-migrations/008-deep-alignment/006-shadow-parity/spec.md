@@ -43,6 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Phase 013 of the Deep Alignment mode migration: shadow parity before authority cutover |
 | **Inputs** | Parent program spec; phase tree; phase-014 shadow framework; shared review-loop contract frozen in phase 012; mode research registries for authority capsules, proof-carrying findings, applicability, deviations, receipts, and cross-epoch replay |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -53,6 +54,8 @@ Deep Alignment performs per-lane conformance checks against a named authority an
 The harness must run the new ledger path in shadow alongside the legacy emitter on the same frozen run inputs, authority material, lane assignments, and review-loop decisions. It must compare the resulting event streams and projections event-for-event, not merely compare final counts or a terminal pass bit. The comparison must expose missing, extra, reordered, stale, authority-mismatched, applicability-mismatched, and semantically changed observations as blocking parity failures. The phase-014 shadow framework supplies the paired execution boundary; this phase defines Deep Alignment's mode contract over that framework and reuses the shared review-loop contract frozen in phase 012.
 
 The parity result is evidence for a future authority decision, not an authority decision itself. This phase plans no cutover, no rollback implementation, and no mutation of the legacy emitter. It establishes the acceptance evidence that `007-rollback-and-mode-gate` must consume and that the later staged cutover must require.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs to this still-Planned harness without moving authority from the legacy emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -60,7 +63,7 @@ The parity result is evidence for a future authority decision, not an authority 
 
 ### In Scope
 - A Deep Alignment shadow runner contract over the phase-014 shadow framework: identical run manifest, target digest, authority capsule reference, lane configuration, review-loop contract, executor capabilities, and budget inputs for both paths.
-- A canonical event comparator that pairs legacy and ledger events by stable logical identity, event type, causal parent, sequence position, authority epoch, lane, subject digest, and semantic payload; non-semantic fields are normalized only through a declared allowlist.
+- A canonical event comparator that pairs legacy and ledger events by stable logical identity, event type, causal parent, sequence position, authority epoch, lane, subject digest, and semantic payload rather than raw `eventId`, so independently emitted streams still pair; non-semantic fields are normalized only through the closed allowlist.
 - Projection comparison for per-lane findings, applicability outcomes, evidence bindings, known-deviation dispositions, authority conflicts, terminal status, gauges, and other public mode outputs owned by this migration.
 - Shadow capture, deterministic replay, late-event and retry fixtures, crash-boundary fixtures supplied by the shared framework, and mismatch reports with enough evidence to reproduce the first divergence.
 - Fail-closed parity policy: missing inputs, invalid authority material, unpaired events, unknown event fields, projection drift, or unresolved comparator ambiguity produce `PARITY_BLOCKED` rather than an inferred pass.
@@ -89,6 +92,14 @@ The parity result is evidence for a future authority decision, not an authority 
 | REQ-008 | Shadow failures are actionable and fail closed | The harness emits a typed mismatch report with paired event references, canonical diff, lane, subject, authority epoch, first divergence, and replay command; missing evidence or comparator ambiguity yields `PARITY_BLOCKED`, never `PARITY_PASS` |
 | REQ-009 | Green parity is a prerequisite, not an authority flip | The phase produces a parity receipt proving the acceptance matrix is green while legacy remains authoritative; any future cutover consumes this receipt and cannot be authorized by this phase alone |
 <!-- /ANCHOR:requirements -->
+
+### Shadow-parity acceptance contract
+
+The mode is parity-green only with zero unexplained semantic differences across the required Deep Alignment fixtures. A tolerated diff is accountable only when it has a typed disposition, owner, reason, and proof that it cannot change trusted state or downstream authority; any unaccountable tolerance blocks parity. The closed volatility allowlist is `occurred_at`, `recorded_at`, and `correlation_id`, and each allowlisted field is still checked for presence, type, and non-interference with semantic identity.
+
+Every named cross-artifact reference must resolve to an artifact of the declared kind and, where the artifact bears them, match epoch, lifecycle, freshness, and real state; visibility and role-redaction rules plus authority liveness are checked at the same boundary. Existence- or shape-only acceptance is a defect. Fault-injection fixtures must traverse the real paired runner, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot satisfy acceptance.
+
+The parity receipt is manifest-bound evidence, not a standalone forgery-proof authority object. The authenticated mode gate is the trust anchor and must re-verify the receipt binding rather than self-trust a computed parity status. A missing, malformed, partial, or blocked receipt leaves legacy authority unchanged.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

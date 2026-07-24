@@ -42,7 +42,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase 012 contract digest, write-set graph digest, and phase-014 handoff version are recorded
-- [ ] CHK-002 [P0] Model Benchmark siblings `001` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and shadow-parity references
+- [ ] CHK-002 [P0] LANDED additive-dark Model Benchmark siblings `001` through `003` and planned evidence siblings `004` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and shadow-parity references
 - [ ] CHK-003 [P0] The shared-service ownership matrix identifies evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback owners
 - [ ] CHK-004 [P1] The legacy anchor, typed frontier, matrix frontier, evaluator epoch, canary epoch, and required fixture manifest are recorded for every gate boundary
 <!-- /ANCHOR:pre-impl -->
@@ -50,8 +50,8 @@ underpowered coverage, or an empty eligible matrix is blocking.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] The switch is default-deny and invalid or absent state resolves to `legacy_authoritative` with typed refusal evidence
-- [ ] CHK-006 [P0] The Model Benchmark adapter cannot bypass external authorization or accept a certificate for another mode, contract, frontier, matrix, evaluator epoch, or canary epoch
+- [ ] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and `legacy_authoritative` without throwing
+- [ ] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode
 - [ ] CHK-007 [P0] The rollback window records stable identity, legacy anchor, typed and matrix frontiers, trigger policy, fencing token, successful-run count, expiry, unresolved obligations, and close or rollback receipt
 - [ ] CHK-008 [P1] Window closure requires both 14 calendar days and five successful authoritative executions and extends for low traffic or unresolved parity, validity, replay, receipt, budget, health, or effect obligations
 - [ ] CHK-009 [P0] Gate and rollback operations do not rewrite legacy rows, delete typed events, mutate sealed artifacts, disclose hidden cases, dispatch models, or retire legacy writers
@@ -63,10 +63,10 @@ underpowered coverage, or an empty eligible matrix is blocking.
 
 - [ ] CHK-011 [P0] Absent, malformed, stale, unauthorized, mixed-version, gateway-failed, and wrong-mode requests fail closed before append, projection, effect, or authority change
 - [ ] CHK-012 [P0] The Model Benchmark adapter cannot self-authorize rollback, unquarantine, verifier replacement, or legacy restoration
-- [ ] CHK-013 [P0] The `006-shadow-parity` report is green for run declaration, matrix admission, model and execution-path dispatch, trial outcomes, raw observations, scoring, calibration, contamination, workload, abort, restore, resume, failure, and duplicate-delivery boundaries
+- [ ] CHK-013 [P0] The required phase-009 parity receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
 - [ ] CHK-014 [P0] Event and projection parity has zero missing, extra, reordered, unauthorized, unsupported, or unexplained protected differences at every eligible matrix boundary
 - [ ] CHK-015 [P0] Raw per-cell and per-item observations, model/build identity, execution path, task family, anchor or diagnostic status, seed, score vector, calibration, usage, cost, latency, and validity remain addressable after reduction changes
-- [ ] CHK-016 [P0] Required recipe, anchor, diagnostic, model-cell, raw-trial, workload, calibration, contamination, and scoring artifacts have valid seals, dependency closures, current epochs, content digests, and tamper-evident reads
+- [ ] CHK-016 [P0] Every required recipe, anchor, diagnostic, model-cell, raw-trial, workload, calibration, contamination, and scoring reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, valid seals, dependency closure, and content digest
 - [ ] CHK-017 [P0] Common sealed anchors remain paired across compared cells and adaptive diagnostics record information inputs, family quotas, selection policy, exposure caps, and confirmatory status
 - [ ] CHK-018 [P0] Model and execution-path factors are independently represented where the claim is model-specific; a complete stack comparison is not mislabeled as a model comparison
 - [ ] CHK-019 [P0] Candidate-specific judge calibration, rubric-axis validity, oracle uncertainty, protocol perturbations, contamination lineage, and hidden-visibility states remain separate from model quality scores
@@ -74,7 +74,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 - [ ] CHK-021 [P0] Certificate and receipt chains verify offline with stable replay fingerprints, predecessor links, effect identities, budgets, policy versions, matrix coverage, and explicit uncertainty
 - [ ] CHK-022 [P0] Complete replay, checkpoint replay, matrix-order permutation, resume, changed-manifest, crash-before-receipt, duplicate delivery, and unknown-effect fixtures remain deterministic or fail closed
 - [ ] CHK-023 [P0] Missing observations, stale watermarks, unsupported versions, evaluator or canary epoch mismatch, calibration gaps, contaminated cases, telemetry gaps, underpowered comparisons, and nondeterminism produce `blocked`, `incomplete`, or `rollback_required`
-- [ ] CHK-024 [P0] Rollback rehearsal freezes admission, fences typed writers, classifies model-cell and scoring work, recovers or quarantines effects, restores legacy at a new epoch, preserves events and artifacts, and emits a rollback certificate
+- [ ] CHK-024 [P0] Rollback rehearsal requires a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-checks the request anchor against the re-verified migration certificate, freezes admission, restores legacy at a new epoch, preserves evidence, and emits a rollback certificate
 - [ ] CHK-025 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
 - [ ] CHK-026 [P0] Model Benchmark consumes the same evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback fixtures through namespaced adapters
 - [ ] CHK-027 [P0] Repeated evaluation of the same sealed matrix frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
@@ -101,7 +101,7 @@ underpowered coverage, or an empty eligible matrix is blocking.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-014 readiness handoff, and later authority-cutover certificate
+- [ ] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-014 readiness handoff, later authority-cutover certificate, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record
 - [ ] CHK-037 [P1] The shared-service reuse boundary names Deep Improvement Common Services and records that Model Benchmark consumes its evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery source
 - [ ] CHK-038 [P2] Research traceability cites the 036/002 findings on model/path confounding, adaptive anchors, candidate-specific calibration, contamination lineage, operational workload, cost, and false-green ranking claims
 <!-- /ANCHOR:docs -->

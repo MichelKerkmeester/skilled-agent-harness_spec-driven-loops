@@ -43,7 +43,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Skill Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 013 mode-and-lane migration fan-out; Skill Benchmark resume-adapter planning contract |
-| **Depends on** | `[]` as an independent sibling planning contract; implementation consumes frozen shared and preceding mode contracts |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Skill Benchmark `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 | **Inputs** | Parent phase spec; manifest/phase-tree.json; findings-registry.json; findings-registry-modes.json; Skill Benchmark typed-ledger and reducer contracts |
 <!-- /ANCHOR:metadata -->
 
@@ -71,6 +72,8 @@ promotion, receipt, budget, lock, continuity, or effect-recovery services.
 
 The phase is planning only. The per-mode 010 migration lands after phase 012 freezes the shared contracts and emits the
 write-set conflict graph. The six sibling concerns and the mode gate integrate the rest of Skill Benchmark.
+The Skill Benchmark schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
+Planned adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -128,6 +131,9 @@ write-set conflict graph. The six sibling concerns and the mode gate integrate t
 | REQ-009 | Shared-service authority remains single-source | The adapter references mode-004 evaluator, canary, promotion, receipt, budget, lock, continuity, compatibility, and effect-recovery decisions and cannot clear a shared veto or emit shared authority |
 | REQ-010 | The handoff supports later shadow parity and mode integration | The resume plan exposes deterministic source and output fingerprints, cell decisions, excluded reasons, and shared receipt references required by `006-shadow-parity` and the later mode gate |
 | REQ-011 | Dark-mode boundaries remain intact | Resume and scoring projections affect only the typed shadow path before phase 017; legacy state, live control flow, and user-visible authority remain unchanged |
+| REQ-012 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked |
+| REQ-013 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed |
+| REQ-014 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance |
 <!-- /ANCHOR:requirements -->
 
 ### Continuity-ladder mapping

@@ -49,6 +49,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-alignment |
 | **Origin** | Phase 013 Deep Alignment migration after typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
+| **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
+| **Consumes** | Planned certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -77,6 +79,10 @@ independent per-lane evidence contract that certifies this mode is migrated only
 sealed, verifier and authority provenance are pinned, and the certificate and receipt chain close. This is planning only: it is the
 mode exit gate into phase 014 and does not flip authority, retire legacy writers, migrate in-flight state, or fork the shared
 review-loop backbone used by Deep Review mode 002.
+
+The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and non-authoritative.
+This Planned leaf consumes their contracts and the later receipt, resume, and parity evidence without allowing any predecessor
+output to become an authority decision.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -102,6 +108,11 @@ review-loop backbone used by Deep Review mode 002.
   report, resume, and write-set behavior are consumed from phase 012 rather than copied into a Deep Alignment-only state machine.
 - Planning fixtures for clean lane gates, missing or stale authority, unsupported applicability, known deviations, evidence gaps,
   parity drift, malformed switch state, rollback at effect boundaries, expired windows, unknown effects, and safe legacy fallback.
+- An exception-safe caller boundary that authenticates the complete rollback request class, guards every caller-controlled digest
+  and validator, snapshots validated primitives, and converts circular, non-finite, forbidden-prototype, non-plain, or wrong-shape
+  input into a typed denial.
+- Required phase-009 parity-receipt verification followed by independent readiness derivation through the real
+  `TransitionAuthorizationGateway` and deterministic ledger replay.
 
 ### Out of Scope
 - Implementing the phase-012 shared review-loop contract, typed ledger, transition gateway, replay fingerprint, sealing primitive,
@@ -115,6 +126,8 @@ review-loop backbone used by Deep Review mode 002.
 - Treating a final alignment report, aggregate verdict, nominal coverage count, or generic deep-loop green result as a substitute for
   the independent Deep Alignment gate.
 - Hand-writing `description.json` or `graph-metadata.json` for this folder.
+- Re-running the phase-009 parity harness, adopting its computed `exitStatus` as the gate verdict, or claiming provenance beyond
+  the substrate-handle boundaries accepted by the golden 007 decision record.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -122,18 +135,20 @@ review-loop backbone used by Deep Review mode 002.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Authority control fails closed | Missing, malformed, stale, unauthorized, expired, mixed-version, or digest-mismatched authority control resolves to `legacy_authoritative`; no ledger result becomes live through an environment fallback, prompt flag, or process-local state |
+| REQ-001 | Authority control never throws and fails closed | Missing, malformed, stale, unauthorized, expired, mixed-version, digest-mismatched, circular, non-finite, forbidden-prototype, non-plain, or wrong-shape caller input resolves to `legacy_authoritative`; every caller-input digest and validator is guarded, and no exception or ledger result escapes through an environment fallback, prompt flag, or process-local state |
 | REQ-002 | Rollback is external and auditable | A rollback is one authorized `ledger -> legacy` transition bound to mode, lane set, authority epoch, healthy anchor, observed tail, reason, gate state, and restoration receipt; a failing lane cannot self-authorize or self-clear it |
 | REQ-003 | The rollback window is bounded | The window has a start event, expiry deadline, maximum logical operations or attempts, last healthy sealed frontier, legacy checkpoint, and explicit expiry disposition; renewal requires a new authorized transition and evidence |
 | REQ-004 | Rollback triggers preserve safety | Authority invalidity, applicability drift, unexplained semantic parity difference, replay mismatch, seal or receipt failure, unknown effect, stale fence, contract drift, integrity alarm, health quarantine, or unexpected canonical write blocks promotion and invokes legacy fallback within the window |
 | REQ-005 | Rollback preserves evidence | Failed ledger tails, lane parity receipts, authority and verifier references, known-deviation adjudications, seal references, rollback reason, and legacy restoration receipt remain append-only and replay-addressable |
 | REQ-006 | The gate covers the full Deep Alignment lifecycle | The matrix covers lane resolution, discovery, applicability, per-artifact verification, finding re-probe, known-deviation disposition, convergence, per-lane report, resume, continuity, and the gated-remediation boundary |
-| REQ-007 | Shadow parity is a blocking input | Every required lane fixture has matching canonical event and projection fingerprints after only declared volatility normalization; unexplained or missing parity evidence yields `BLOCKED` or `INDETERMINATE`, never pass |
-| REQ-008 | Authority and artifact evidence are complete | Authority capsule, rule IR, source anchors, applicability decisions, target digests, verifier receipts, raw observations, counterevidence, known-deviation assertions, and lane coverage references verify through shared seals with no mutable path-only dependency |
+| REQ-007 | Phase-009 shadow parity is required evidence, not the gate verdict | The gate re-verifies receipt integrity, mode/frontier/manifest binding, and typed dispositions, ignores the receipt's computed `exitStatus` as authority, does not re-run the parity harness, and independently re-derives readiness through the real `TransitionAuthorizationGateway` plus deterministic ledger replay |
+| REQ-008 | Authority and artifact evidence are complete and referentially verified | Every named cross-artifact reference resolves through the real substrate to its expected KIND and, where present, matches EPOCH, LIFECYCLE, freshness, real STATE, VISIBILITY/role redaction, and AUTHORITY liveness; existence or shape alone cannot pass |
 | REQ-009 | Findings remain verify-first and typed | Detector candidates, live re-probe results, severity, confidence, evidence strength, conformance, applicability, unresolved state, and known-deviation adjudication remain separate fields; unsupported claims cannot enter the asserted registry |
 | REQ-010 | Certificates and receipts are independently verifiable | The gate receives a verified run certificate, receipt-set closure, authority epoch, verifier digest, replay fingerprint, and certificate policy digest; signature or process integrity is not overclaimed as semantic conformance |
 | REQ-011 | Deep Alignment reuses the shared review loop | The gate consumes phase-012 shared scope, coverage, lineage, convergence, report, resume, and write-set contracts used by Deep Review; no Deep Alignment-local lifecycle fork can pass |
 | REQ-012 | The gate is independent and phase-safe | Deep Alignment produces its own `PASS`, `BLOCKED`, or `INDETERMINATE` result and certificate; another mode, aggregate dashboard, or final report cannot substitute, and a pass emits only `MIGRATED_SHADOW_READY` for phase 014 |
+| REQ-013 | Rollback-request authentication is structurally complete | A closed request schema classifies every field as gateway-authenticated, independently re-derived, cross-checked against verified evidence, a validated closed value, or a deterministic constant; unknown or inert fields fail closed, and only snapshotted validated values reach authorization and certificate emission |
+| REQ-014 | Fencing and rollback anchoring use re-verified substrate state | A stale token is accepted only when it is a positive safe integer strictly below the canonical writer resource's durable coordinator high-water mark and newly issued rollback token; the requested rollback anchor must equal the anchor in the independently re-verified migration certificate |
 
 The authority-control record is resolved by one fail-closed function over requested posture, toggle, mode-gate certificate, authority
 epoch, named-authority capsule, verifier digest, lane configuration, contract digests, rollback-window record, and current health
@@ -153,6 +168,19 @@ green, all required references verify, the certificate and receipt chain close, 
 authority guard remains non-authoritative. A tolerated difference must have a typed disposition, owner, reason, expiry, and proof of
 non-interference; it cannot be silently counted as parity. Known deviations remain observable adjudication facts and never delete
 the original observation.
+
+Parity is mandatory evidence only. The gate authenticates the phase-009 receipt and its bindings, then independently replays
+the deterministic ledger and asks the real transition gateway to evaluate locally re-derived evidence. The receipt's computed
+`exitStatus` never becomes the verdict, and this leaf does not re-run the parity harness.
+
+The complete rollback request is authenticated structurally before authorization. Every named reference must resolve through
+the real substrate and satisfy its kind, epoch/lifecycle/freshness/state, visibility, and authority obligations. Stale-writer
+denial compares the caller-attested predecessor token with the coordinator's durable high-water mark and newly issued rollback
+token; rollback anchoring compares the request with the independently re-verified migration certificate. The accepted limits on
+retained-store observation, lifecycle-label semantics, health/resume/window/risk authenticity, and historical lease identity
+come from the golden leaf's [decision record](../../001-deep-research/007-rollback-and-mode-gate/decision-record.md). Their
+provenance must be verified before propagation, and phase 014 must correlate those bounded sources before relying on the
+readiness certificate.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -166,6 +194,7 @@ the original observation.
 - **SC-006**: Required authority, rule, target, observation, finding, counterevidence, report, and resume artifacts are sealed and verified from pinned inputs.
 - **SC-007**: A run certificate and receipt chain independently bind the authority epoch, verifier, lane coverage, replay fingerprint, gate result, and rollback evidence.
 - **SC-008**: The gate emits `MIGRATED_SHADOW_READY` with a phase-014 handoff while retaining legacy authority, keeping remediation opt-in, and changing no shared review-loop contract.
+- **SC-009**: Malformed request objects never throw; class-wide authentication, referential-integrity checks, independent gateway/replay derivation, strict coordinator supersession, and rollback-anchor equality all fail closed with typed evidence.
 - **Given** an authority capsule is expired or mixed with a different verifier digest, **When** the gate resolves control state, **Then** it returns `legacy_authoritative` or `BLOCKED` and emits no pass certificate.
 - **Given** a lane has an unresolved applicability predicate, **When** verification is requested, **Then** the lane records `UNRESOLVED` or `NOT_APPLICABLE` before expensive judging and cannot be counted as conformant.
 - **Given** shadow parity differs in event order or a finding receipt is missing, **When** the mode gate evaluates the fixture, **Then** the result is `PARITY_BLOCKED` or `INDETERMINATE` and authority remains unchanged.
@@ -183,6 +212,7 @@ the original observation.
 - **False parity** - matching reports can hide event order, authority epoch, known-deviation, evidence, receipt, or resume drift. Mitigation: compare events, projections, source and target digests, lane coverage, and replay fingerprints with a narrow volatility allowlist.
 - **Certificate overclaim** - a signed certificate can prove origin and integrity without proving authority correctness, scope closure, or evidence sufficiency. Mitigation: keep those obligations as independent P0 evidence rows.
 - **Review/alignment fork** - Deep Alignment and Deep Review could drift in scope, convergence, or report semantics. Mitigation: consume the frozen phase-012 shared review-loop contract and write-set fence rather than defining local lifecycle rules.
+- **Provenance overclaim** - Caller-supplied health, historical lease, retention, resume, window, or risk evidence could look internally consistent without a real source handle. Mitigation: preserve the golden 007 decision-record boundaries and require phase-014 correlation against authoritative stores and coordinator history.
 - **Dependencies**: the 036 parent and phase tree; phase-012 shared review-loop and write-set contracts; phase-014 handoff consumer; the phase-006 authorization spine; the six Deep Alignment siblings; Deep Alignment's existing state-machine and adapter contracts; the two findings registries; and the spec-kit validator. The phase tree declares `depends_on: []`; these are pinned contract inputs and navigation boundaries, not an added phase dependency.
 <!-- /ANCHOR:risks -->
 

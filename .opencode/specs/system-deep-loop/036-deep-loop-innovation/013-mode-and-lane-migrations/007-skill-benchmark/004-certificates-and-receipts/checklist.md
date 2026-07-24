@@ -71,6 +71,8 @@ incomplete or unsupported; it must never silently become a passing skill effect.
 - [ ] CHK-020 [P0] `PASS`, `FAIL`, `VETOED`, `INCOMPLETE`, `UNSUPPORTED_VERSION`, and `UNKNOWN` remain distinct in verifier and certificate results; an uncertain external effect cannot be marked successful from process exit
 - [ ] CHK-021 [P1] Shared-service fixtures produce semantic parity for common, agent-improvement, model-benchmark, and Skill Benchmark adapters without field, fingerprint, receipt, or veto drift
 - [ ] CHK-022 [P1] Dark certificate and receipt emission changes no authority and rollback leaves legacy projections, raw observations, sealed artifacts, and archival readers usable
+- [ ] CHK-032 [P0] The closure map binds exposure/causal-score `assignmentId` and `assignmentDigest` pairs to `RUN_ASSIGNMENT`, run-assignment `skillBundleRef` and `skillBundleDigest` to `SKILL_BUNDLE_SNAPSHOT`, and the recomputed ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
+- [ ] CHK-033 [P0] Real-store fixtures reject missing, fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named evidence; missing offline bytes are typed `unverifiable`, and selector syntax passes only after real target-context resolution
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

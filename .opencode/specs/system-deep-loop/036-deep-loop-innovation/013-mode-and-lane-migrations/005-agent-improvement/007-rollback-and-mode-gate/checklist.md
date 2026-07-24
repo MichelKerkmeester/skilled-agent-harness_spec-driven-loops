@@ -41,7 +41,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase-012 contract digest, phase-015 contract and write-set graph digests, and phase-014 handoff version are recorded
-- [ ] CHK-002 [P0] Agent Improvement sibling outputs `001` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and parity references
+- [ ] CHK-002 [P0] LANDED additive-dark Agent Improvement siblings `001` through `003` and planned evidence siblings `004` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and parity references
 - [ ] CHK-003 [P0] The common-service ownership matrix identifies evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and rollback owners for Agent Improvement and the other two variants
 - [ ] CHK-004 [P1] The AgentIR frontier, legacy anchor, evaluator epoch, canary epoch, required behavior-family manifest, and required transfer fixtures are recorded for every gate boundary
 <!-- /ANCHOR:pre-impl -->
@@ -49,8 +49,8 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] The switch is default-deny and invalid or absent state resolves to `legacy_authoritative` with typed refusal evidence
-- [ ] CHK-006 [P0] Agent Improvement cannot bypass external authorization or accept a certificate for another mode, contract, frontier, evaluator epoch, or canary epoch
+- [ ] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and `legacy_authoritative` without throwing
+- [ ] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode
 - [ ] CHK-007 [P0] The rollback window records stable identity, legacy anchor, AgentIR frontier, trigger policy, fencing token, valid-run count, expiry, and close or rollback receipt
 - [ ] CHK-008 [P1] Window closure requires both 14 calendar days and five successful authoritative executions and extends for low traffic or unresolved obligations
 - [ ] CHK-009 [P0] Gate and rollback operations do not rewrite legacy rows, delete typed events, mutate sealed artifacts, disclose hidden canaries, dispatch a candidate, or retire legacy writers
@@ -62,17 +62,17 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 
 - [ ] CHK-011 [P0] Absent, malformed, stale, unauthorized, mixed-version, gateway-failed, wrong-mode, and cross-frontier requests fail closed before append, projection, effect, or authority change
 - [ ] CHK-012 [P0] Agent Improvement cannot self-authorize rollback, unquarantine, verifier replacement, or legacy restoration
-- [ ] CHK-013 [P0] The `006-shadow-parity` report is green for AgentIR, candidate lineage, raw evaluation, score normalization, canary, promotion, abort, restore, resume, failure, duplicate-delivery, and unknown-effect boundaries
+- [ ] CHK-013 [P0] The required phase-009 parity receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
 - [ ] CHK-014 [P0] Event and projection parity has zero missing, extra, reordered, unauthorized, unsupported, or unexplained protected differences at every eligible boundary
 - [ ] CHK-015 [P0] Raw per-case observations, clause and behavior-family identity, executor and environment, evaluator capsule, seed, score scale, rationale digest, normalization version, cost, latency, and transfer references remain addressable after reduction changes
-- [ ] CHK-016 [P0] Required AgentIR, change-contract, improver, failure, candidate, raw-trajectory, evaluator, canary, and promotion artifacts have valid seals, dependency closures, current epochs, content digests, and tamper-evident reads
+- [ ] CHK-016 [P0] Every required AgentIR, change-contract, improver, failure, candidate, raw-trajectory, evaluator, canary, and promotion reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, valid seals, dependency closure, and content digest
 - [ ] CHK-017 [P0] Agent behavior fixtures cover clauses, authority conflicts, act/refuse/clarify, side effects, perturbations, untouched families, semantic variants, executor portability, profile scope, critical invariants, and transfer without exposing hidden contents
 - [ ] CHK-018 [P0] Canary and promotion fixtures cover shadow, candidate-blind, authorized, denied, paused, aborted, restored, completed, vetoed, evaluator-integrity, `UNKNOWN`, and `INSUFFICIENT_EVIDENCE` outcomes
 - [ ] CHK-019 [P0] Target reward and evaluator-integrity oversight remain separate; score inflation, hidden-fixture leakage, cache tampering, action-trace drift, authority regression, and transfer failure produce independent blocking evidence
 - [ ] CHK-020 [P0] Certificate and receipt chains verify offline with stable replay fingerprints, predecessor links, effect identities, budgets, policy versions, AgentIR frontier, and explicit uncertainty
 - [ ] CHK-021 [P0] Complete replay, checkpoint replay, resume, changed-manifest, crash-before-receipt, duplicate delivery, unknown-effect, and cross-executor fixtures remain deterministic or fail closed
 - [ ] CHK-022 [P0] Missing observations, stale watermarks, unsupported versions, evaluator or canary epoch mismatch, telemetry gaps, transfer gaps, and nondeterminism produce `blocked`, `incomplete`, or `rollback_required`
-- [ ] CHK-023 [P0] Rollback rehearsal freezes admission, fences typed writers, classifies in-flight proposal/evaluation/canary/promotion work, recovers or quarantines effects, restores legacy at a new epoch, preserves events and artifacts, and emits a rollback certificate
+- [ ] CHK-023 [P0] Rollback rehearsal requires a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-checks the request anchor against the re-verified migration certificate, freezes admission, restores legacy at a new epoch, preserves evidence, and emits a rollback certificate
 - [ ] CHK-024 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
 - [ ] CHK-025 [P0] Agent Improvement, model-benchmark, and skill-benchmark consume the same evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and rollback fixtures through namespaced adapters
 - [ ] CHK-026 [P0] Repeated evaluation of the same sealed Agent Improvement frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
@@ -99,7 +99,7 @@ without the required evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Agent Improvement mode gate, mode-migration certificate, phase-014 readiness handoff, and later phase-014 authority-cutover certificate
+- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Agent Improvement mode gate, mode-migration certificate, phase-014 readiness handoff, later authority-cutover certificate, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record
 - [ ] CHK-036 [P1] The common-service reuse matrix names `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` and records that they consume the mode-004 source
 - [ ] CHK-037 [P2] Research traceability cites the 036/002 findings on AgentIR, first-divergent traces, Pareto lineage, frozen evaluator capsules, raw observations, behavior-family coverage, evaluator leakage, transfer, and reversible promotion
 <!-- /ANCHOR:docs -->

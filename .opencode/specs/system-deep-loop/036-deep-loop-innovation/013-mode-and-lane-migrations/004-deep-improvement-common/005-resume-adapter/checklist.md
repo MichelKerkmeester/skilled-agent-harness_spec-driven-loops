@@ -66,6 +66,10 @@ fails on missing evidence, zero exercised transitions, silent fallback, mutated 
 - [ ] CHK-019 [P1] Incomplete evaluator, canary, and promotion work preserves immutable evidence and does not convert `UNKNOWN` or `INCONCLUSIVE` into pass
 - [ ] CHK-020 [P1] Shadow resume and promotion leave legacy state, live control flow, user-visible authority, and authority epochs unchanged before phase 017
 - [ ] CHK-021 [P1] Re-entry receipts bind stable logical effect identity and idempotency key while preserving distinct attempt history across retries and process restarts
+- [ ] CHK-024 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
+- [ ] CHK-025 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
+- [ ] CHK-026 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
+- [ ] CHK-027 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

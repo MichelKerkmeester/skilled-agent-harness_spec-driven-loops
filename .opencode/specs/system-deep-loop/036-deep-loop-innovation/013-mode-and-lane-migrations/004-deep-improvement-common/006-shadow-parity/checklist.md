@@ -49,8 +49,8 @@ eligible boundaries is a failed gate, not an implicit pass.
 ## Code Quality
 
 - [ ] CHK-005 [P0] Both paths receive one immutable run context; divergence in run, candidate, lineage, evaluator, fixture, baseline, budget, policy, or input digest blocks the report
-- [ ] CHK-006 [P0] Event pairing is one-to-one by stable logical identity and sequence; missing, extra, reordered, ambiguous, unauthorized, and unsupported events fail closed
-- [ ] CHK-007 [P0] Protected semantic fields are compared without over-normalization; every tolerated representation difference is named in the versioned normalization manifest
+- [ ] CHK-006 [P0] Event pairing is one-to-one by stable logical identity and sequence rather than raw `eventId`, so independent streams still pair; missing, extra, reordered, ambiguous, unauthorized, and unsupported events fail closed
+- [ ] CHK-007 [P0] The closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`; each field is checked for presence, type, and non-interference, while protected semantic fields remain comparable
 - [ ] CHK-008 [P1] The shared harness is reusable by `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`; variant data is namespaced and cannot weaken common checks
 <!-- /ANCHOR:code-quality -->
 
@@ -68,9 +68,11 @@ eligible boundaries is a failed gate, not an implicit pass.
 - [ ] CHK-017 [P0] Phase-014 healthy, degeneration, recovery, stale, missing, and unsupported observations preserve one coherent evidence boundary; data gaps never count as healthy
 - [ ] CHK-018 [P0] Phase-014 pause, re-seed, quarantine, repair, and stop requests remain observations and do not stop, dispatch, cancel, spend budget, mutate a baseline, or change authority
 - [ ] CHK-019 [P0] Complete replay, checkpoint replay, resume, and duplicate delivery produce identical match identities, projection fingerprints, mismatch classes, and verdicts
-- [ ] CHK-020 [P1] Every mismatch carries source and target event references, raw digests, policy/version identities, cursors, projection fields, and a deterministic mismatch class
-- [ ] CHK-021 [P0] The accepted corpus has zero unexplained protected projection differences and zero authority writes from the typed shadow path
+- [ ] CHK-020 [P1] Every mismatch carries source and target event references, raw digests, policy/version identities, cursors, projection fields, a deterministic mismatch class, and any tolerated diff's owner, reason, and non-interference proof
+- [ ] CHK-021 [P0] The accepted corpus has zero unexplained semantic differences; any unaccountable tolerance blocks parity, and the typed shadow path performs zero authority writes
 - [ ] CHK-022 [P0] `MISMATCH`, `INCONCLUSIVE`, `TELEMETRY_GAP`, stale watermark, unsupported adapter, or empty eligible corpus cannot produce `PASS`
+- [ ] CHK-032 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass
+- [ ] CHK-033 [P0] Fault injections traverse the real execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot pass
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -108,7 +110,8 @@ eligible boundaries is a failed gate, not an implicit pass.
 The phase is complete only when every P0 verifier check passes for the shared corpus and all three downstream variant fixture
 sets, every eligible boundary has event and projection evidence, raw evaluator and canary evidence remains addressable, phase-014
 health remains non-authoritative, and the final report is `PASS` with zero unexplained protected differences, zero blocking data
-gaps, and zero authority writes. A passing report is evidence for the later mode gate; it is not a cutover certificate.
+gaps, and zero authority writes. The manifest-bound receipt is evidence for the authenticated later mode gate, which re-verifies
+its binding instead of self-trusting computed status; it is not a cutover certificate.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

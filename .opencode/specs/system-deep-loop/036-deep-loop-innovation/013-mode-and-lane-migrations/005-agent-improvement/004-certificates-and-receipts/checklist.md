@@ -60,6 +60,8 @@ This checklist is the blocking SOL verifier contract for the Agent Improvement c
 - [ ] CHK-014 [P1] Raw evaluator observations remain available for replay while normalization and score-policy changes produce distinct evidence from candidate execution
 - [ ] CHK-015 [P1] Candidate-visible views expose commitments and typed verdicts without protected fixture identity or exact hidden scores before the disclosure transition
 - [ ] CHK-016 [P0] Shadow parity compares certificate/verifier output with the legacy Agent Improvement result while legacy authority remains unchanged
+- [ ] CHK-027 [P0] The certificate contract declares the lane's plain-digest closure map as explicitly empty, invents no Deep Review-shaped fields, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
+- [ ] CHK-028 [P0] Real-store anti-vacuous fixtures check kind, borne epoch/lifecycle/freshness/real state, visibility, authority liveness, and selector target resolution, with absent offline bytes typed `unverifiable` and no shape-only pass
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

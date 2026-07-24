@@ -44,6 +44,8 @@ _memory:
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
 | **Origin** | Phase 005 of the Agent Improvement migration under phase 013 |
 | **Inputs** | 036 parent spec; phase-tree manifest; 036/002 findings registries; Agent Improvement siblings `001-typed-ledger-schema`, `002-reducers-and-projections`, `003-sealed-artifacts`; deep-improvement-common `004-certificates-and-receipts` and `005-resume-adapter` |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Agent Improvement `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -66,6 +68,9 @@ The result is an idempotent re-entry contract. Replaying the same sealed range a
 re-entry receipt and projection fingerprint; a duplicate request must not apply an event or external effect twice; a changed
 manifest, evaluator epoch, reducer identity, or artifact closure must create an explicit fork, re-execution, quarantine, or
 rejection decision rather than silently inheriting prior success.
+
+The Agent Improvement schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
+Planned adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -102,6 +107,9 @@ rejection decision rather than silently inheriting prior success.
 | REQ-007 | Deep-improvement-common remains the single service owner | Evaluator, canary, certificate, receipt, promotion, redaction, and effect-recovery fields and transitions are referenced from common contracts; Agent Improvement adds only namespaced resume inputs and projections |
 | REQ-008 | Resume cannot turn score into promotion authority | Critical behavior-family failures, insufficient evidence, stale artifacts, evaluator leakage, canary vetoes, rollback ambiguity, and unknown effects remain visible vetoes; resume changes only the dark path before phase 014 |
 | REQ-009 | Replay and checkpoint optimization are equivalent to full fold | A validated checkpoint plus remaining ledger range produces the same AgentIR frontier, coverage, status, receipts, and projection fingerprint as a clean full replay; incompatible checkpoints refuse safely |
+| REQ-010 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked |
+| REQ-011 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed |
+| REQ-012 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance |
 <!-- /ANCHOR:requirements -->
 
 ### Agent Improvement continuity-ladder contract

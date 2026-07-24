@@ -90,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "This Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,12 +104,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority.",
     "created_at": "2026-07-16T03:43:37.283Z",
-    "last_save_at": "2026-07-19T18:09:49.454Z",
+    "last_save_at": "2026-07-24T07:35:16.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:4922da30b93e6ed28e1c83c31db9a9cdb4601e16eac2f67e3e67286bf141e41f",
+    "source_fingerprint": "sha256:5903a73ad70d1ec7895153aacca5aef3b588217350b078f78ed332bfd69e892d",
     "source_doc_hashes": {
-      "spec.md": "622e9bd13cdf0e6836e177a2b80e35d83040e21b5510703ed0ef761ed111e39a",
+      "spec.md": "d87126fa1bc5a3aba4397dfb275bbc357aaea613f0aa8c8acb36d79ba975acf0",
       "plan.md": "93269005d39221d2757b75a6b5557899d54a9183d3a40ddd59558ab75d08d555",
       "tasks.md": "a4db9aac8e83eb7c1c2929d16f628ef9c12509a7e8c6096359a274d35c5dd0ae",
-      "checklist.md": "765b3d830143677aaa7dd58a18af4a455c8d0283d8fecea1840bc7cfced38dac"
+      "checklist.md": "0f6e22674071897175ef40f22ee0f3dfc1e07091013fbe6fea516d918fc84304"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -93,14 +93,14 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "model",
-        "kind": "key_phrase",
+        "name": "Deep Review",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Plan the model-benchmark variant certificate and receipt contract over the typed event-ledger substrate: per-run multi-model benchmark attestations, per-transition receipts, scoring-matrix replay fingerprints, and independent offline verification while reusing deep-improvement-common evaluator, canary, and promotion services.",
     "created_at": "2026-07-16T03:43:40.006Z",
-    "last_save_at": "2026-07-19T18:01:17.519Z",
+    "last_save_at": "2026-07-24T07:18:39.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e117103b46fa3a33f3b028187a430ba4059472d93bf5d99e3985b842ee80802d",
+    "source_fingerprint": "sha256:71ee40dee0c38485a87a2535bda5c3d50adff1c1da623f0fbfe25bfe194405cb",
     "source_doc_hashes": {
-      "spec.md": "10602519a0699c63b33f094e4bf4e5cfbf6516f9301ce5ba4bd068b45830375e",
+      "spec.md": "c113c26709f3e883bf94adc603e2bbbf66d5d3b874cd8804b6b092ef933ece01",
       "plan.md": "a9b0daadc0b520682e5e526dcaca365b3221975f4dbae72c5a95ecaab65474fc",
       "tasks.md": "8395d8bfa7a8437c51ef88b5a951821e4603b2ef9d40e1a55c928b7bf62a032d",
-      "checklist.md": "1e1ac4b978eab08e70253905e7684b19ce8e48c2e0ecda459009eb90bb6eeb7f"
+      "checklist.md": "358e58f9115c5f59fc901e690373b8c3f619c4584ed62ffc052bed28a45e971e"
     },
     "last_active_child_id": null,
     "last_active_at": null

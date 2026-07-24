@@ -42,6 +42,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the Deep AI Council workflow, typed runtime migration, and shadow evidence) |
 | **Origin** | Phase 013 Deep AI Council migration, `006-shadow-parity` child: prove ledger projection parity before any authority cutover |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -52,6 +53,8 @@ The current Deep AI Council path is a planning-only multi-seat workflow: seats d
 This phase plans a shadow harness that executes the legacy emitter and the new ledger path beside one another from the same frozen council input, seat results, runtime configuration, and target version. The harness maps both histories into one canonical behavior projection, compares the projection event-for-event, compares the derived artifacts and convergence outcome, and records every mismatch as a blocking parity result. Ledger-only authorization, receipt, and audit events are checked separately as required control-plane evidence; they must not hide a missing or changed council behavior event.
 
 The mode-specific research makes the comparison substantive rather than a line-count check. CouncilBrief assignments, private evidence boundaries, typed belief and challenge messages, effective-independence observations, blinded adjudication, minority retention, and comparative control arms are behavior-bearing fields when present in the frozen fixture. A green shadow result therefore proves that the migration preserves the existing council contract while exposing the richer evidence needed by the new ledger. This phase consumes the phase-014 shadow framework named in the phase brief and remains planning-only.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs to this still-Planned harness without moving authority from the legacy council emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -60,7 +63,7 @@ The mode-specific research makes the comparison substantive rather than a line-c
 ### In Scope
 - A paired shadow-run contract for normal council completion, multi-round deliberation, seat timeout or error, unresolved contradiction, max-round non-convergence, partial artifact persistence, rollback, and resume at each persisted boundary.
 - A frozen-input boundary containing the candidate SHA, BASE SHA, council configuration, target version, seat manifests, recorded seat outputs, tool receipts, and fixture digest so both paths observe identical work.
-- A canonical parity projection that maps legacy council events and typed ledger events by logical round, seat, claim, decision, artifact, and lifecycle identity; it compares ordered event kind, identity, required payload, terminal status, and projection fingerprint.
+- A canonical parity projection that maps legacy council events and typed ledger events by logical round, seat, claim, decision, artifact, and lifecycle identity rather than raw `eventId`; independently emitted streams still pair by that logical identity. It compares ordered event kind, identity, required payload, terminal status, and projection fingerprint.
 - An explicit normalization profile for non-semantic metadata such as wall-clock timestamps or byte counts. The profile is versioned and digest-bound; fields outside it are compared, not ignored.
 - Separate checks for ledger authorization, receipt references, control-plane audit events, duplicate side effects, and legacy-authority preservation. Shadow writes are non-authoritative and must not dispatch seats or persist a second external effect.
 - A mismatch taxonomy, parity report, and cutover-blocking receipt that identifies the first divergent event, both source locations, the normalized field diff, the affected projection, and the required remediation owner.
@@ -87,7 +90,13 @@ The mode-specific research makes the comparison substantive rather than a line-c
 | REQ-007 | Parity is a hard pre-cutover gate | The acceptance report records zero unexplained diffs, zero unauthorized events, zero duplicate side effects, deterministic replay fingerprints, and a green fixture matrix before any authority decision is eligible. |
 <!-- /ANCHOR:requirements -->
 
-The canonical comparison treats the legacy event vocabulary and typed ledger vocabulary as two encodings of one behavior history. Adapter or audit events that exist only on the ledger side are retained in the report and checked for authorization, but cannot satisfy or replace a missing behavior tuple. A mismatch is blocking when it changes event order, logical identity, required content, lifecycle status, projection output, artifact meaning, failure classification, or resume/rollback authority. A timestamp or transport byte difference is non-blocking only when the pinned normalization profile explicitly names it.
+### Shadow-parity acceptance contract
+
+The canonical comparison treats the legacy event vocabulary and typed ledger vocabulary as two encodings of one behavior history. Adapter or audit events that exist only on the ledger side are retained in the report and checked for authorization, but cannot satisfy or replace a missing behavior tuple. The pass bar is zero unexplained semantic differences. A tolerated diff is accountable only when it has a typed disposition, owner, reason, and proof that it cannot change trusted state or downstream authority; any unaccountable tolerance blocks parity.
+
+The closed volatility allowlist is `occurred_at`, `recorded_at`, and `correlation_id`. Each allowlisted field is still checked for presence, type, and non-interference with semantic identity. Event order, logical identity, required content, lifecycle status, projection output, artifact meaning, failure classification, and resume or rollback authority remain protected.
+
+Every named cross-artifact reference must resolve to an artifact of the declared kind and, where the artifact bears them, match epoch, lifecycle, freshness, and real state; visibility and role-redaction rules plus authority liveness are checked at the same boundary. Existence- or shape-only acceptance is a defect. Fault-injection fixtures must traverse the real council execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot satisfy acceptance. The manifest-bound parity receipt is evidence, not a standalone forgery-proof authority object. The authenticated mode gate is the trust anchor and must re-verify the receipt binding rather than self-trust a computed parity status.
 
 The minimum parity matrix includes: a three-seat successful council with `council_complete`; a multi-round critique and convergence run; a timeout and an error seat; two high-confidence contradictory recommendations; max-round `non-converged`; a failed persistence step followed by rollback; resume after `round_start`, after all `seat_returned` rows, after synthesis, and after `round_end`; and a run exercising blinded adjudication, minority retention, independence evidence, or a comparative control arm. The matrix must use recorded outputs for deterministic event comparison and must include a completion-order permutation where the shared shadow framework supports it.
 

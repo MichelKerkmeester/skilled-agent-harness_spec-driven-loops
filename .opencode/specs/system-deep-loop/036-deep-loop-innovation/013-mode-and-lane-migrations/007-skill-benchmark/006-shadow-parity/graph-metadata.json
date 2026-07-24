@@ -173,7 +173,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark shadow-parity harness for paired skill scenarios and scoring: run the typed ledger path beside the legacy emitter, compare canonical projections event-for-event, and block authority movement until parity is green.",
     "created_at": "2026-07-16T03:43:42.387Z",
-    "last_save_at": "2026-07-17T13:21:43.974Z",
+    "last_save_at": "2026-07-24T07:19:00.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +182,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:1c2c48b993930f0bcdf06fdfb04adb2761ac0ed34cb173cd612cc19fd0522ffb",
+    "source_fingerprint": "sha256:41425fe2e060b8bc3fd05c2de2c9e1d887c01ca4afdac0be150f66c779ca6ab5",
     "source_doc_hashes": {
-      "spec.md": "f099fd9646fd4356d77448b0560b96df1da4c02b722fa8d8ea3a3a962d7a1e04",
+      "spec.md": "d6a46b9de208bd42a60ce4400275f21b876de00cb00ffecbe2bb23314aee2c2c",
       "plan.md": "45bc36bff540dc62ae6f257d72e15045be47e871a5cbad798f08650ea2bb4f0f",
       "tasks.md": "a03c809a4074c1471500fe0e1ae4cbe8311f225cdcc0490178e1af120b65a85b",
-      "checklist.md": "4bcbe431ab6e71bb56b177b02c43af78fd123bd3f1d6b9e29d72344bc83598a6"
+      "checklist.md": "c994945f84385c258bff2f61bd88582d98c4f2535c777c0e05d832c4b5c0ec35"
     },
     "last_active_child_id": null,
     "last_active_at": null

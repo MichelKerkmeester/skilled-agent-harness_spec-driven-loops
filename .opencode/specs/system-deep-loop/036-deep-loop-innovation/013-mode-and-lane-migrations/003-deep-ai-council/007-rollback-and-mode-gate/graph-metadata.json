@@ -90,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "This Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -98,12 +104,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "explicit",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate. The contract keeps authority fail-closed, bounds the rollback window, proves shadow parity, verifies sealed council artifacts, and emits a mode-specific certificate before phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:35.476Z",
-    "last_save_at": "2026-07-19T18:01:19.729Z",
+    "last_save_at": "2026-07-24T07:36:16.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a6df57ef907c55b92dd17240ad1d31f8183bf346ce1865dbc812f1274778a102",
+    "source_fingerprint": "sha256:182096addba0efa432d681acdc7985f1fb8c12dd194f5f3b3ded18858d15fe48",
     "source_doc_hashes": {
-      "spec.md": "ab01a6a0d881f44d49b8182116179dcd4bbbac3a9f6ef37cf8f8a62223f8c6f3",
+      "spec.md": "e15595bbf919b979541874671474f9508cb94bc441f7b10c28ad463af891453c",
       "plan.md": "0db8ceea40645e1705b9e7f3203e83fdedd4b70188bf77c753ffa3943431d645",
       "tasks.md": "2ccc00c62b46bac43b113ebd8c552b7a36160ef045202adde233a6ffe5852342",
-      "checklist.md": "cf6e108b5b1be25cf7df663c6d81c23052662fc73ebec9d66aaf064ea6cddca9"
+      "checklist.md": "c267cad9ef3ca7a59cda34f81b4afac953f283e537e4ae954adaaa02a5c90be1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -42,7 +42,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 - [ ] CHK-001 [P0] The phase-012 shared-contract digest, phase-015 mode-interface and write-set graph, phase-014 shadow-framework interface, parent compatibility bridge, and mode 004 common-service contract are pinned in the candidate report
 - [ ] CHK-002 [P0] Legacy Model Benchmark boundaries are inventoried for recipe, run, model/executor expansion, cell admission, trial, score, calibration, contamination, workload, resume, and terminal behavior
 - [ ] CHK-003 [P1] BASE, recipe, matrix, model/executor descriptors, task/family digests, anchors, diagnostic policy, evaluator and judge epochs, workload, contamination visibility, seeds, baseline, budget, fixture IDs, and output paths are frozen before dual execution
-- [ ] CHK-004 [P1] The canonical event tuple, protected matrix and projection fields, diff taxonomy, common-service references, receipt schema, and volatility allowlist are reviewed before any difference is classified as tolerated
+- [ ] CHK-004 [P1] The canonical event tuple, protected fields, diff taxonomy, common-service references, and receipt schema are reviewed; the closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`, each with presence, type, and non-interference checks
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -50,7 +50,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 
 - [ ] CHK-005 [P0] Changes are scoped to the Model Benchmark shadow contract; no adjacent mode implementation, common-service rewrite, authority flip, legacy-writer removal, or sibling concern is included
 - [ ] CHK-006 [P0] Both paths receive one immutable run context and evaluator/judge epoch; divergence in BASE, recipe, matrix, cell identity, model, executor, task, family, workload, contamination, baseline, budget, or input digest blocks the report
-- [ ] CHK-007 [P0] Event pairing is one-to-one by stable logical identity and canonical sequence; missing, extra, reordered, ambiguous, unauthorized, unsupported, duplicate, and late semantic events fail closed
+- [ ] CHK-007 [P0] Event pairing is one-to-one by stable logical identity and canonical sequence rather than raw `eventId`, so independent streams still pair; missing, extra, reordered, ambiguous, unauthorized, unsupported, duplicate, and late semantic events fail closed
 - [ ] CHK-008 [P0] The mode consumes mode 004 evaluator, canary, promotion, health, receipt, budget, veto, and mismatch contracts; namespaced Model Benchmark fields cannot weaken common checks
 - [ ] CHK-009 [P1] Unknown event fields, changed recipe or model build, changed evaluator epoch, missing usage, missing family samples, stale lineage, and non-allowlisted volatility fail rather than being dropped
 <!-- /ANCHOR:code-quality -->
@@ -58,7 +58,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-010 [P0] Accepted fixtures have 100 percent event-boundary coverage with zero missing, extra, reordered, duplicate, unauthorized, unknown-version, or unexplained protected-field events
+- [ ] CHK-010 [P0] Accepted fixtures have complete event-boundary coverage and zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, and any unaccountable tolerance blocks parity
 - [ ] CHK-011 [P0] Run and matrix projections match after every event boundary for recipe, cell identity, model/executor treatment, task/family, anchor and diagnostic status, and terminal disposition
 - [ ] CHK-012 [P0] Raw trial evidence retains item and family output, score vector, evaluator and judge identity, fixture, seed, normalization, cost, latency, error, abstention, retry, and receipt references across score-policy replay
 - [ ] CHK-013 [P0] Score projections preserve metric/rubric version, uncertainty, calibration, multiplicity, selection policy, hard floors, abstentions, invalid cells, contamination, coverage, and underpowered states without aggregate compensation hiding a regression
@@ -70,7 +70,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 - [ ] CHK-019 [P0] Partial, failed, unknown, invalid, abstained, inconclusive, stale, and missing cells remain explicit; an absent observation cannot become a zero score or successful matrix completion
 - [ ] CHK-020 [P0] Phase-014 healthy, degeneration, recovery, stale, missing, and unsupported observations preserve one coherent cursor and watermark; data gaps never count as healthy
 - [ ] CHK-021 [P0] Phase-014 pause, re-seed, quarantine, repair, and stop requests remain observations and do not stop, dispatch, cancel, spend budget, mutate a baseline, promote a selection, or change authority
-- [ ] CHK-022 [P0] Complete replay, checkpoint replay, matrix-order permutation, resume, late completion, and duplicate delivery produce identical match identities, projection fingerprints, mismatch classes, and verdicts
+- [ ] CHK-022 [P0] Complete replay, checkpoint replay, matrix-order permutation, resume, late completion, duplicate delivery, and injected faults traverse the real execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline, assert exact typed failure classes, and reproduce deterministic verdicts
 - [ ] CHK-023 [P0] The accepted corpus has zero unexplained protected projection differences, zero blocking evidence gaps, and zero authority writes from the typed shadow path
 - [ ] CHK-024 [P0] `MISMATCH`, `INCONCLUSIVE`, `TELEMETRY_GAP`, `INSUFFICIENT_EVIDENCE`, stale evaluator, unsupported adapter, missing usage, or empty eligible corpus cannot produce `PASS`
 <!-- /ANCHOR:testing -->
@@ -80,7 +80,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 
 - [ ] CHK-025 [P1] The protected-field manifest covers run, matrix, cell, model, executor, task, family, treatment, raw trial, score, uncertainty, coverage, calibration, validity, contamination, workload, cost, latency, receipt, shared control, resume, and terminal fields
 - [ ] CHK-026 [P1] The lifecycle event map accounts for every run, design, sealing, admission, trial, observation, score, validity, contamination, calibration, workload, reduction, resume, and terminal boundary
-- [ ] CHK-027 [P1] The parity report identifies the mode 004 common-service result and every Model Benchmark fixture result, with no variant-local fork of shared parity semantics
+- [ ] CHK-027 [P1] The parity report identifies the mode 004 common-service result and every Model Benchmark fixture result; its manifest-bound receipt is evidence that the authenticated mode gate re-verifies rather than a self-trusted computed authority status
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -89,6 +89,7 @@ fingerprints, commands, exit codes, boundary counts, mismatch counts, and zero-a
 - [ ] CHK-028 [P0] Shadow execution cannot mutate model recipes, evaluator or canary assets, hidden task contents, benchmark cells, stable baselines, production promotion state, or legacy-writer authority
 - [ ] CHK-029 [P0] Candidate and judge information boundaries, hidden-case secrecy, contamination controls, evaluator-integrity checks, capability limits, and digest-bound evidence remain intact in shared projections
 - [ ] CHK-030 [P1] Shadow reservations and duplicate external effects are bounded by typed budget and receipt rules without bypassing the shared transition-authorization gateway
+- [ ] CHK-035 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
@@ -112,7 +113,7 @@ The phase is complete only when every P0 verifier check passes for the Model Ben
 and projection evidence, common evaluator/canary/promotion/health services remain shared and non-authoritative, raw matrix and
 operational evidence remains addressable, and the final report is `PASS` with zero unexplained protected differences, zero
 blocking data gaps, and zero authority writes. This evidence may be consumed by the successor mode gate; it cannot authorize
-authority cutover by itself.
+authority cutover by itself, and the authenticated gate must re-verify the manifest binding before consumption.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

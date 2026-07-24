@@ -44,7 +44,7 @@ This checklist is the blocking SOL verifier contract for the Skill Benchmark sha
 
 - [ ] CHK-009 [P1] Changes are scoped to Skill Benchmark scenario/scoring parity; no sibling concern, shared-service rewrite, or authority cutover is included
 - [ ] CHK-010 [P1] The adapter reuses deep-improvement-common and phase-014 services; no duplicate ledger, receipt, budget, replay, sealing, or generic projection implementation exists
-- [ ] CHK-011 [P2] Canonical event comparison excludes only fields named by the versioned volatile-field allowlist; no broad timing or payload tolerance hides semantic drift
+- [ ] CHK-011 [P2] The closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`; each field is checked for presence, type, and non-interference, and no broad timing or payload tolerance hides semantic drift
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -52,13 +52,16 @@ This checklist is the blocking SOL verifier contract for the Skill Benchmark sha
 
 - [ ] CHK-001 [P0] The frozen matrix runs paired no-skill, full-skill, distractor, SKILL.md-only, references-ablated, scripts-ablated, compatibility-boundary, and off/auto/forced/placebo diagnostic arms
 - [ ] CHK-002 [P0] Every pair has identical task, treatment, bundle, executor, environment, registry, tool, permission, dependency, gold, seed, and common-service digests before comparison
-- [ ] CHK-003 [P0] Canonical event projections match event-for-event on event kind, logical ID, causal order, payload digest, status, score contribution, and receipt reference
-- [ ] CHK-004 [P0] Missing, extra, reordered, payload, status, score, cost, gold, receipt, and replay mismatches produce typed withheld results and fail closed
+- [ ] CHK-003 [P0] Canonical events pair by logical identity rather than raw `eventId`, so independent streams still pair, then match event kind, causal order, payload digest, status, score contribution, and receipt reference
+- [ ] CHK-004 [P0] The corpus has zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, and missing, extra, reordered, payload, status, score, cost, gold, receipt, or replay mismatches fail closed
 - [ ] CHK-012 [P0] Availability, invocation, resource exposure, trajectory/key-point coverage, milestone, final outcome, cost, and security-probe stages are separately projected; intention-to-treat remains primary
 - [ ] CHK-013 [P0] Scored scenarios with empty required gold are blocked, pending and structural-only rows are excluded from positive numerators, gold provenance is recorded, and gold mutation changes the score or invalidates the run
 - [ ] CHK-014 [P0] Near-neighbor, noise-skill, loader-exposure, model-activation, compatibility, and executor-failure controls distinguish harness exposure from actual skill use and execution failure
 - [ ] CHK-015 [P0] Replay of the same frozen inputs reproduces the canonical projections, pair identity, score projection, mismatch classification, and exit-code receipt
 - [ ] CHK-016 [P0] The shadow path cannot alter legacy authority, emit a cutover signal, or satisfy the later mode gate through a partial or withheld result
+- [ ] CHK-021 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass
+- [ ] CHK-022 [P0] Fault injections traverse the real scenario runner, authorization, ledger, reducer, scorer projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot pass
+- [ ] CHK-023 [P1] The manifest-bound parity receipt is evidence that the authenticated mode gate re-verifies; neither the receipt nor its computed status is trusted as standalone authority
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

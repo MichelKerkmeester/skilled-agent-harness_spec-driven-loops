@@ -67,6 +67,8 @@ must produce an explicit incomplete or unsupported result; it must never silentl
 - [ ] CHK-018 [P0] All three downstream variants consume identical shared evaluator, canary, promotion, certificate, receipt, and fingerprint fixtures through adapters
 - [ ] CHK-019 [P0] A crash after an external effect and before durable receipt commit remains uncertain and requires explicit recovery evidence before retry, promote, or restore
 - [ ] CHK-020 [P1] Dark-path certificate and receipt emission cannot change authority, and rollback leaves legacy projections and archival evidence readable
+- [ ] CHK-028 [P0] A declared field-to-expected-kind closure map covers at least `PROMOTION_EVIDENCE.unresolvedEvidenceDigests` and `PROMOTION_EVIDENCE.vetoEvidenceDigests`, checks array elements independently, and binds the recomputed ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
+- [ ] CHK-029 [P0] Real-store fixtures reject missing, fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named evidence; missing offline bytes are typed `unverifiable`, and selector syntax passes only after real target-context resolution
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

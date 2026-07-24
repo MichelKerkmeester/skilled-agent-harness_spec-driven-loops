@@ -79,6 +79,8 @@ verifier dependency on live services, or unexpected tracked mutation.
 - [ ] CHK-023 [P0] Unknown event or receipt versions, missing sealed references, mutable references, and contradictory receipt chains fail closed without a guessed decoder or passing certificate
 - [ ] CHK-024 [P0] The offline verifier completes with model, network, external tool, and mutable workspace access unavailable
 - [ ] CHK-025 [P1] Unknown external effects remain unknown or recovery-required and cannot become successful completion through retry or certificate generation
+- [ ] CHK-037 [P0] The certificate contract declares every deferred `(artifact kind, plain-digest field) -> expected artifact kind(s)` mapping from the sealed-leaf decision, checks array elements independently, recomputes the ordered dependency closure across certificates, receipts, replay fingerprints, and event-ledger evidence, and distinguishes missing input from typed `unverifiable` bundle absence
+- [ ] CHK-038 [P0] Real-store anti-vacuous fixtures reject fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named references and prove `locator.selector` resolves to real target context without becoming severity or authority input
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

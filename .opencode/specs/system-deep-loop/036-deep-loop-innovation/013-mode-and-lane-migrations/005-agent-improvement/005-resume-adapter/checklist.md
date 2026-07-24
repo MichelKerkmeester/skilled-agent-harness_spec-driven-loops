@@ -71,6 +71,10 @@ is accepted as a pass.
 - [ ] CHK-020 [P0] The adapter emits no authority write, legacy-state mutation, candidate dispatch, evaluator mutation, or production promotion before phase 017
 - [ ] CHK-021 [P1] Common evaluator, canary, certificate, receipt, promotion, redaction, and effect-recovery fixture identities match the deep-improvement-common contract without a variant fork
 - [ ] CHK-022 [P1] Duplicate, late, reordered, missing, extra, unsupported-version, and malformed event fixtures preserve prior evidence and return deterministic mismatch identities
+- [ ] CHK-029 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
+- [ ] CHK-030 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
+- [ ] CHK-031 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
+- [ ] CHK-032 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

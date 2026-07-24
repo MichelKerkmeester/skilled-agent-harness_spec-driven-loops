@@ -45,6 +45,7 @@ _memory:
 | **Origin** | Phase 013 mode-and-lane migrations, mode 006; shadow-parity planning after the Model Benchmark schema, reducer, sealing, and receipt contracts |
 | **Child depends_on** | `[]` |
 | **Inputs** | Phase-014 health and degeneration shadow framework; phase-012 shared mode contracts and write-set conflict graph; phase-012 contract freeze; Model Benchmark siblings `001-typed-ledger-schema` through `005-resume-adapter`; mode 004 Deep Improvement Common Services; 036/002 findings registries |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -69,6 +70,9 @@ gaps, recovery observations, and non-authoritative action requests. It reuses th
 evaluator, canary, promotion, receipt, budget, health, and generic parity contracts. It adds only Model Benchmark-specific run
 identity, trial and scoring-matrix events, workload and contamination evidence, validity fields, projections, fixtures, and
 parity reporting. It does not re-implement shared evaluator, canary, or promotion behavior, and it does not move authority.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs
+to this still-Planned harness without moving authority from the legacy benchmark emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -82,8 +86,8 @@ parity reporting. It does not re-implement shared evaluator, canary, or promotio
   completion, failure and unknown outcomes, raw observations, score vectors, usage and latency, judge calibration, oracle and
   contamination evidence, validity, matrix reduction handoff, and terminal run state.
 - Stable event pairing by run, matrix cell, task and family identity, candidate and model/executor fingerprint, treatment and
-  perturbation, logical step, causal links, and canonical sequence; completion timing and provider serialization are volatile only
-  under an explicit versioned allowlist.
+  perturbation, logical step, causal links, and canonical sequence rather than raw `eventId`, so independently emitted streams
+  still pair; completion timing and provider serialization are volatile only under the closed allowlist.
 - Model Benchmark projection checkpoints after each matched event boundary for run lifecycle, matrix-cell disposition, raw trial
   evidence, score state, uncertainty, coverage, common-anchor membership, adaptive allocation, judge validity, contamination,
   workload, cost, latency, shared-service references, and terminal outcome.
@@ -133,18 +137,22 @@ parity reporting. It does not re-implement shared evaluator, canary, or promotio
 
 The mode is parity-green only when each required fixture produces a canonical legacy stream and typed-ledger stream with equal
 eligible event coverage, order, event type, logical identity, matrix-cell identity, model and execution-path identity, task and
-family identity, treatment, causal links, protected payload, shared-service references, and projection fingerprint. The
-comparator may ignore only fields named in the versioned volatility allowlist, such as process-local timing or transport
-correlation values. Every allowlisted field must still be present, correctly typed, and proven non-semantic.
+family identity, treatment, causal links, protected payload, shared-service references, and projection fingerprint. The closed
+volatility allowlist is `occurred_at`, `recorded_at`, and `correlation_id`. Every allowlisted field must still be present,
+correctly typed, and proven not to interfere with semantic identity.
 
 Authority cutover remains blocked until all of the following are green:
 
 - **Event completeness**: 100% of eligible Model Benchmark event boundaries have one legacy and one typed match; missing, extra,
   duplicate, reordered, unauthorized, malformed, and unknown-version events are zero.
-- **Matrix semantic parity**: 100% of protected run, cell, model, executor, task, family, treatment, anchor, diagnostic,
-  score, uncertainty, coverage, validity, contamination, usage, latency, and terminal fields match their canonical values.
+- **Matrix semantic parity**: protected run, cell, model, executor, task, family, treatment, anchor, diagnostic, score,
+  uncertainty, coverage, validity, contamination, usage, latency, and terminal fields have zero unexplained semantic
+  differences. A tolerated diff is accountable only when it has a typed disposition, owner, reason, and proof that it cannot
+  change trusted state or downstream authority; any unaccountable tolerance blocks parity.
 - **Evidence integrity**: raw trial observations, judge and evaluator references, workload receipts, exposure lineage, and policy
-  identities remain addressable; missing usage, stale inputs, unsupported versions, and insufficient evidence are explicit states.
+  identities remain addressable. Every named cross-artifact reference resolves to its declared kind and, where present, matches
+  epoch, lifecycle, freshness, and real state; visibility and role redaction plus authority liveness are checked. Existence- or
+  shape-only acceptance is a defect; missing usage, stale inputs, unsupported versions, and insufficient evidence are explicit states.
 - **Decision parity**: score-policy, calibration, contamination, hard-floor, veto, incomplete, inconclusive, and shared promotion
   preparation dispositions agree at every boundary; the typed path cannot authorize or mutate a selection.
 - **Replay parity**: complete replay, checkpoint replay, matrix-order permutations, resume, late completion, and duplicate delivery
@@ -153,11 +161,15 @@ Authority cutover remains blocked until all of the following are green:
   degeneration signals block a pass where required data is unavailable and never become direct action authority.
 - **Operational safety**: shadow execution performs no production model dispatch, hidden-case disclosure, evaluator or canary
   mutation, baseline mutation, promotion, authority write, or legacy-writer bypass.
+- **Anti-vacuous testing**: fault injections traverse the real benchmark execution, authorization, ledger, reducer, projection,
+  receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests do not satisfy acceptance.
 
 The final report is `PASS` only when every blocking criterion is green and every tolerated representation difference is listed in
 the versioned normalization manifest. `MISMATCH`, `INCONCLUSIVE`, `TELEMETRY_GAP`, `INSUFFICIENT_EVIDENCE`, stale watermark,
 unsupported adapter, or empty eligible corpus is a blocking result, not a soft pass. The later mode gate may consume a passing
-report, but this child never issues a cutover certificate.
+report only after re-verifying the manifest binding. The parity receipt is evidence, not a standalone forgery-proof authority
+object; the authenticated mode gate is the trust anchor and must not self-trust a computed parity status. This child never
+authorizes cutover.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

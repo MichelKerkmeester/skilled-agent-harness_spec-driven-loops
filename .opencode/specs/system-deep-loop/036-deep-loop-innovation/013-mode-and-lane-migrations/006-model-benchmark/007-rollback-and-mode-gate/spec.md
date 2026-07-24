@@ -42,9 +42,10 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the Deep Improvement Common Services backbone) |
 | **Origin** | Final child concern in the phase-013 Model Benchmark migration |
-| **Depends on** | `[]` in the approved phase definition; sibling adjacency is navigation only |
+| **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
+| **Consumes** | Planned certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
 | **Outcome** | Plan the Model Benchmark rollback switch and independent mode gate for the typed event-ledger migration |
-| **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, Model Benchmark siblings `001` through `006`, and the shared transition/versioning/rollback policy |
+| **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -63,6 +64,10 @@ artifacts, certificates and receipts, resume behavior, and the `006-shadow-parit
 but not sufficient for a safe migration. Without a mode-scoped rollback switch, a stale writer or unresolved external model
 effect can continue after restoration. Without an independent gate, a plausible matrix score or certificate can be mistaken
 for proof that this mode migrated safely.
+
+The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and
+non-authoritative. This Planned leaf consumes their contracts and the later receipt, resume, and parity evidence without
+allowing any predecessor output to become an authority decision.
 
 This phase defines the fail-closed authority-cutover toggle, the bounded rollback window, and the Model Benchmark gate that
 certifies this mode's migration. It builds on the Deep Improvement Common Services evaluator, canary, calibration, and
@@ -103,6 +108,11 @@ selection claim.
   only; it must not create a competing shared service or gate.
 - The phase-014 handoff and the planning boundary for the 010 per-mode fan-out, which lands only after phase 012 freezes the
   shared contracts and emits the executable write-set conflict graph.
+- An exception-safe caller boundary that authenticates the complete rollback request class, guards every caller-controlled
+  digest and validator, snapshots validated primitives, and converts circular, non-finite, forbidden-prototype, non-plain,
+  or wrong-shape input into a typed denial.
+- Required phase-009 parity-receipt verification followed by independent readiness derivation through the real
+  `TransitionAuthorizationGateway` and deterministic ledger replay.
 
 ### Out of Scope
 
@@ -117,6 +127,8 @@ selection claim.
   or the phase-014 authority-cutover contract.
 - Treating a leaderboard, terminal score, mutable report, process exit, public ranking, or this phase's readiness certificate
   as proof that a model is globally best or that legacy authority may be retired.
+- Re-running the phase-009 parity harness, adopting its computed `exitStatus` as the gate verdict, or claiming provenance
+  beyond the substrate-handle boundaries accepted by the golden 007 decision record.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -124,18 +136,20 @@ selection claim.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The Model Benchmark rollback switch is mode-scoped and fail closed | Absent, malformed, unknown, stale, mixed-version, wrong-mode, or gateway-failed input selects `legacy_authoritative`, emits typed refusal evidence, and performs no semantic append, external effect, or authority change |
+| REQ-001 | The Model Benchmark rollback switch is mode-scoped, never throws, and fails closed | Absent, malformed, unknown, stale, mixed-version, wrong-mode, gateway-failed, circular, non-finite, forbidden-prototype, non-plain, or wrong-shape caller input selects `legacy_authoritative`, emits typed refusal evidence, and performs no semantic append, external effect, or authority change; every caller-input digest and validator is guarded |
 | REQ-002 | Rollback and restoration require external authorization | The mode cannot authorize its own rollback, unquarantine, verifier replacement, or legacy restoration; each request carries mode, policy, epoch, request digest, evidence digest, reason, actor capability, and decision identity |
 | REQ-003 | The rollback window is bounded and auditable | Closure waits for both 14 calendar days and five successful authoritative executions, whichever completes later; low traffic or unresolved parity, validity, replay, receipt, budget, health, or effect obligations extend the window |
 | REQ-004 | Restoration is non-destructive and certificate-backed | Admission freezes, stale writers are fenced, in-flight model and scoring work is classified, legacy authority resumes at a new epoch, no event or sealed artifact is deleted, and a rollback certificate records reconciliation and unknown states |
-| REQ-005 | The independent gate requires Model Benchmark shadow parity | The `006-shadow-parity` evidence covers run declaration, matrix admission, dispatch, trial outcomes, raw observations, scoring, calibration, contamination, workload, abort, restore, resume, and failure boundaries with zero unexplained semantic differences |
-| REQ-006 | The gate requires complete sealed matrix evidence | The benchmark recipe, common anchors, adaptive diagnostic policy, model and execution-path cells, raw outputs, usage, scoring matrix, validity, contamination, workload, and evaluator references are digest-valid, dependency-closed, current, and readable |
+| REQ-005 | Phase-009 shadow parity is required evidence, not the gate verdict | The gate re-verifies receipt integrity, mode/frontier/manifest binding, and typed dispositions, ignores the receipt's computed `exitStatus` as authority, does not re-run the parity harness, and independently re-derives readiness through the real `TransitionAuthorizationGateway` plus deterministic ledger replay |
+| REQ-006 | The gate requires complete sealed and referentially verified matrix evidence | Every named cross-artifact reference resolves through the real substrate to its expected KIND and, where present, matches EPOCH, LIFECYCLE, freshness, real STATE, VISIBILITY/role redaction, and AUTHORITY liveness; existence or shape alone cannot pass |
 | REQ-007 | The gate requires certificate and receipt continuity | The Model Benchmark certificate, transition receipt chain, verifier receipt, effect outcomes, budget evidence, replay fingerprint, and explicit dispositions for every required transition are complete and independently verifiable |
 | REQ-008 | Uncertainty never becomes migration readiness | Missing, stale, contradictory, malformed, unsupported, contaminated, `UNKNOWN`, `INCONCLUSIVE`, `INSUFFICIENT_EVIDENCE`, telemetry-gap, or underpowered inputs produce `blocked`, `incomplete`, `not_ready`, or `rollback_required`, never a green gate |
 | REQ-009 | The certificate is exact-SHA and matrix bound | The certificate names this mode, BASE, candidate SHA, shared contract versions, event and reducer versions, evaluator and canary epochs, matrix and artifact digests, fixture IDs, rollback anchor, window state, verifier, gate predicates, and dispositions |
 | REQ-010 | Shared services have one source of truth | Model Benchmark consumes Deep Improvement Common Services evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery semantics through adapters and cannot weaken or copy them |
 | REQ-011 | The gate is independent of authority | An offline verifier evaluates immutable evidence and uses the shared authorization boundary; a pass emits phase-014 readiness only and cannot mutate authority, dispatch a model, alter a baseline, promote a candidate, or retire a writer |
 | REQ-012 | The handoff is deterministic and sequencing-safe | Re-evaluating the same sealed matrix frontier and contract fingerprints yields the same gate result and certificate body digest; the handoff remains blocked until phase 012 freezes shared contracts and emits the write-set conflict graph |
+| REQ-013 | Rollback-request authentication is structurally complete | A closed request schema classifies every field as gateway-authenticated, independently re-derived, cross-checked against verified evidence, a validated closed value, or a deterministic constant; unknown or inert fields fail closed, and only snapshotted validated values reach authorization and certificate emission |
+| REQ-014 | Fencing and rollback anchoring use re-verified substrate state | A stale token is accepted only when it is a positive safe integer strictly below the canonical writer resource's durable coordinator high-water mark and newly issued rollback token; the requested rollback anchor must equal the anchor in the independently re-verified migration certificate |
 
 ### Model Benchmark rollback and mode-gate acceptance contract
 
@@ -157,6 +171,19 @@ and receipt continuity, matrix and reducer fingerprints, replay and resume decis
 rollback rehearsal. It compares raw trial observations before normalized scores and preserves the distinction between model
 quality, execution-path behavior, judge or rubric validity, contamination, operational cost, canary veto, incomplete
 evidence, unknown effect, and selection disposition. A final score match is never sufficient.
+
+Parity is mandatory evidence only. The gate authenticates the phase-009 receipt and its bindings, then independently
+replays the deterministic ledger and asks the real transition gateway to evaluate locally re-derived evidence. The receipt's
+computed `exitStatus` never becomes the verdict, and this leaf does not re-run the parity harness.
+
+The complete rollback request is authenticated structurally before authorization. Every named reference must resolve
+through the real substrate and satisfy its kind, epoch/lifecycle/freshness/state, visibility, and authority obligations.
+Stale-writer denial compares the caller-attested predecessor token with the coordinator's durable high-water mark and newly
+issued rollback token; rollback anchoring compares the request with the independently re-verified migration certificate.
+The accepted limits on retained-store observation, lifecycle-label semantics, health/resume/window/risk authenticity, and
+historical lease identity come from the golden leaf's
+[decision record](../../001-deep-research/007-rollback-and-mode-gate/decision-record.md). Their provenance must be verified
+before propagation, and phase 014 must correlate those bounded sources before relying on the readiness certificate.
 
 | Gate input | Required evidence | Blocking disposition |
 |------------|-------------------|----------------------|
@@ -190,6 +217,8 @@ window closed, that a model won deployment, or that a legacy writer may be remov
   calibration, promotion, receipt, certificate, veto, or recovery semantics.
 - **SC-007**: The exact-SHA mode certificate hands phase-014 readiness while explicitly excluding authority cutover and
   legacy-writer retirement, and remains sequenced behind the phase 012 contract freeze and write-set graph.
+- **SC-008**: Malformed request objects never throw; class-wide authentication, referential-integrity checks, independent
+  gateway/replay derivation, strict coordinator supersession, and rollback-anchor equality all fail closed with typed evidence.
 
 **Given** a sealed multi-model matrix with raw trials, score observations, calibration, contamination, workload, and receipt
 evidence, **When** the independent gate verifies it, **Then** the gate checks the complete evidence graph and refuses a
@@ -230,6 +259,9 @@ admission freezes, stale writers are fenced, legacy resumes at a new epoch, and 
   recovery.
 - **Shared-service fork** - Model Benchmark could copy evaluator, canary, promotion, or rollback behavior. Mitigation: one
   adapter boundary, shared fixtures, common hard-veto ordering, and a negative test for variant-local semantics.
+- **Provenance overclaim** - Caller-supplied health, historical lease, retention, resume, window, or risk evidence could look
+  internally consistent without a real source handle. Mitigation: preserve the golden 007 decision-record boundaries and
+  require phase-014 correlation against authoritative stores and coordinator history.
 - **Sequencing drift** - The mode gate could be treated as authority or run before shared contracts are frozen. Mitigation:
   keep the phase-014 handoff separate from cutover, require the phase 012 contract and write-set digests, and preserve the
   010 fan-out ordering stated by the parent program.

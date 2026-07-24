@@ -96,13 +96,13 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "This Planned",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "The Skill Benchmark",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,6 +121,12 @@
       },
       {
         "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Benchmark",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -170,7 +176,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 014.",
     "created_at": "2026-07-16T03:43:42.643Z",
-    "last_save_at": "2026-07-19T18:09:52.108Z",
+    "last_save_at": "2026-07-24T07:35:17.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,12 +185,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ca673217aaa7c99b5fee7084235c4b65656a4afa03647e6272310f0bb7981709",
+    "source_fingerprint": "sha256:a95aa6862deee03357b06d914da31d110c2b0256460dad1f7f988f164e94a06e",
     "source_doc_hashes": {
-      "spec.md": "412ff7aba4e72fb4e224291d6f9e2868e3088a14bd99248d981fb965ad1768e3",
+      "spec.md": "1f93bc183bc3a634baf90b90a763d96cf5351ae83fe615b41dc689ef39d69d26",
       "plan.md": "eb36fefdb664d325bf52ab734f211d0a6c8d1ec571a6150877dc74829e55d32b",
       "tasks.md": "561b1ea706adf92a447a124a47ae572b18dfffcbcd59ae2c4f2bb7472d43919e",
-      "checklist.md": "56ce2bdf2e296e203e7241e7efd1b911fee9c40c5cd7688a67786a88e9cb8d25"
+      "checklist.md": "ec1a9781f8600841b220c1ffbf71ee57547fcbfbae550afbb4a327467aaa4fdd"
     },
     "last_active_child_id": null,
     "last_active_at": null

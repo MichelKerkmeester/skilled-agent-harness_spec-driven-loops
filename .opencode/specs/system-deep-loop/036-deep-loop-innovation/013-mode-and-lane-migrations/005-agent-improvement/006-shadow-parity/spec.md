@@ -44,6 +44,7 @@ _memory:
 | **Owner skill** | system-deep-loop (owns the Agent Improvement workflow, typed migration, and shadow evidence) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 005; shadow-parity planning after shared contracts and common-service migration |
 | **Inputs** | Parent `036-deep-loop-innovation/spec.md`; `manifest/phase-tree.json`; `findings-registry.json`; `findings-registry-modes.json`; phase-014 shadow framework; sibling `005-resume-adapter` contract |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -67,6 +68,9 @@ run context, compares the agent-specific behavior projection event-for-event, an
 and promotion control-plane references supplied by mode 004 Deep Improvement Common Services. It consumes the phase-014 shadow
 framework and shared compatibility bridge, but owns only the Agent Improvement event map, namespaced adapter, projection fields,
 fixtures, comparator extensions, parity receipt, and successor handoff. No authority cutover occurs here.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs
+to this still-Planned harness without moving authority from the legacy emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -80,7 +84,8 @@ fixtures, comparator extensions, parity receipt, and successor handoff. No autho
   clauses, evaluator capsule and epoch, fixture rings, executor descriptors, tool receipts, environment, and budget context.
 - A canonical comparison tuple for each mode event: event type, run and candidate lineage identity, changed locus, logical step,
   producer sequence, causal links, stable payload digest, shared-service references, and resulting projection fingerprint.
-  Transport-only fields are excluded only through a versioned allowlist.
+  Pairing uses this logical identity rather than raw `eventId`, so independently emitted streams still pair. Transport-only
+  fields are excluded only through the closed volatility allowlist.
 - Agent-specific projection checkpoints for AgentIR structure, clause and authority-conflict coverage, proposal lineage, raw trial
   evidence, per-family and per-dimension outcomes, insufficient-evidence state, failure class, frontier membership, ablation
   result, executor transfer, canary and promotion disposition, rollback target, and terminal status.
@@ -125,16 +130,22 @@ fixtures, comparator extensions, parity receipt, and successor handoff. No autho
 
 The mode is parity-green only when every required fixture produces a canonical legacy stream and ledger stream with equal event
 count, order, event type, logical identity, changed-locus and lineage fields, causal links, protected payload, shared-service
-references, and projection fingerprint. The comparator may ignore only fields named in the versioned volatility allowlist, such as
-process-local timing or transport correlation values; a field is not volatile merely because it is inconvenient to compare. Every
-allowlisted field must still be checked for presence, type, and non-interference with semantic identity.
+references, and projection fingerprint. The closed volatility allowlist is `occurred_at`, `recorded_at`, and `correlation_id`;
+each allowlisted field is still checked for presence, type, and non-interference with semantic identity.
 
 The gate requires zero unexplained differences across proposal, single-locus repair, frontier, defect-injection, discipline,
 missing-evidence, evaluator-epoch, semantic-variant, executor-transfer, resume, canary, and promotion-preparation fixtures. A
-tolerated difference is not green until it has a typed disposition, owner, reason, and proof that it cannot change candidate
+tolerated difference is accountable only when it has a typed disposition, owner, reason, and proof that it cannot change candidate
 lineage, trusted scoring, family stability, evaluator integrity, or authority. Missing family samples produce
-`INSUFFICIENT_EVIDENCE`, not stability. A missing or malformed parity receipt is a failure, not an empty result. The receipt is
-evidence for the later mode gate; it is not a cutover certificate.
+`INSUFFICIENT_EVIDENCE`, not stability; any unaccountable tolerance blocks parity.
+
+Every named cross-artifact reference must resolve to an artifact of the declared kind and, where the artifact bears them, match
+epoch, lifecycle, freshness, and real state; visibility and role-redaction rules plus authority liveness are checked at the same
+boundary. Existence- or shape-only acceptance is a defect. Fault-injection fixtures must traverse the real Agent Improvement
+execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure
+class; stub-only or zero-event tests cannot satisfy acceptance. A missing or malformed parity receipt is a failure, not an empty
+result. The manifest-bound receipt is evidence, not a standalone forgery-proof authority object. The authenticated mode gate is the
+trust anchor and must re-verify the receipt binding rather than self-trust a computed parity status.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
