@@ -1,19 +1,19 @@
 ---
 title: "Session Handover Document: cli-cursor creation (030)"
-description: "Packet closed out - all 7 phases implemented, live-verified, and validated. No further handover needed; retained as historical record."
-trigger_phrases: ["cli-cursor handover", "030 handover", "cursor cli continuation"]
+description: "Packet extended from 7 to 17 phases across a hooks-focused session: .cursor/hooks.json registered and brought to Claude parity, MCP wired, two dead-wire defects found and fixed, hooks-category playbook re-executed, and discovery mirrors added for all three hook-config runtimes."
+trigger_phrases: ["cli-cursor handover", "030 handover", "cursor cli continuation", "cursor hooks handover"]
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
-    last_updated_at: "2026-07-24T13:15:00Z"
+    last_updated_at: "2026-07-24T18:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Packet complete - all 7 phases implemented and closed out"
-    next_safe_action: "None - packet complete, no further work scoped"
+    recent_action: "Phases 010-017 shipped and pushed; packet validates 18/18 at 0/0"
+    next_safe_action: "None required; see handover section 3.2 for opt-in work"
     blockers: []
-    key_files: ["spec.md", "007-docs-agents-governance-and-closeout/implementation-summary.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    key_files: [".cursor/hooks.json", ".cursor/mcp.json", ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-session", parent_session_id: null }
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -26,11 +26,25 @@ _memory:
 
 ## 1. Handover Summary
 
-- **From Session:** 2026-07-24, cli-devin revival + cli-cursor creation session (spec authoring), continued 2026-07-24 (implementation)
-- **To Session:** None required — packet is complete
-- **Phase Completed:** ALL 7 PHASES — spec authoring, implementation, live verification, and closeout
+- **From Session:** 2026-07-24 — hooks-focused continuation (phases 010-017)
+- **To Session:** Optional — the packet is complete and pushed; remaining items are opt-in, not blocking
+- **Phase Completed:** 010 through 017. The packet grew from 7 phases to 17.
 - **Handover Time:** 2026-07-24
-- **Recent action**: Phases 002-007 implemented, live-verified where the spec required it, and committed; whole packet passes `validate.sh --recursive --strict` 0/0
+- **Recent action:** All work committed and pushed to `origin/skilled/v4.0.0.0` (HEAD `0c9a43195d`, 0 ahead / 0 behind). Packet validates `--recursive --strict` at **18/18 folders, 0 errors, 0 warnings**.
+
+### What changed, in one line each
+
+| Phase | Outcome |
+|---|---|
+| 010 | `.cursor/hooks.json` created and committed — the registration ADR-001 always specified but never shipped |
+| 011 | Expanded toward Claude parity: `postToolUse` chain, `Task`-matcher guard, 5 repo-guard scripts |
+| 012 | Hooks-category playbook re-executed independently — 3 PASS, 1 documented SKIP |
+| 013 | All Cursor `.mjs` hooks aligned to `sk-code/code-opencode` P0 standards; `hooks.md` gained a Cursor section |
+| 014 | `.cursor/hooks/` discovery mirror (13 symlinks) |
+| 016 | `.cursor/mcp.json` symlinked; `mcp-route-guard.mjs` dead wire found and fixed, then wired |
+| 017 | `.codex/hooks/` (16) and `.claude/hooks/` (18) discovery mirrors |
+
+Phase 015 (`hook-code-style-cross-runtime`) belongs to a concurrent session, not this one.
 
 ---
 
@@ -38,75 +52,105 @@ _memory:
 
 ### 2.1 Key Decisions Made
 
-| Decision | Rationale | Impact |
-|---|---|---|
-| 7-phase shape mirroring `029-cli-devin-revival` | Cursor's real capabilities map onto the same 7 workstreams (contract-pin → executor → skill-packet → hooks → model-registry → playbook → closeout) | Phase folders and handoff criteria are directly comparable to the Devin precedent |
-| Named `030-cli-cursor-creation` (not `-revival`) | Cursor has **never** existed in this repo — a first-time addition | No archived packet is "the old cli-cursor" — there isn't one |
-| Worktree/worker/plugin marketplace kept out of repo-runtime scope | Genuine Cursor-unique capabilities (no sibling analog) but wiring them into this repo's deep-loop runtime would be scope creep | Documented in the skill-packet references + playbook only (phase 003/006), no dedicated runtime phase |
-| Only Composer gets a new model profile | Composer is Cursor-exclusive; hosted frontier models Cursor drives already have provider-native profiles elsewhere | Phase 005 scope stayed narrow — one new profile, not a roster rebuild |
-| `.cursor/hooks.json` adapters built + live-verified, registration deferred | Phase 004's shared `.cursor/` config surface also affects the operator's live Cursor editor sessions, not just CLI dispatch — an environmental change warranting explicit approval | Operator chose "build adapters, skip registering hooks.json" as a live check-in during phase 004; no `.cursor/hooks.json` exists in this repo |
-| Hooks wired to `sessionStart`/`preToolUse`/`sessionEnd`, not the originally-planned `sessionStart`/`beforeSubmitPrompt`/`stop` | Phase 004 live-probed real dispatches and found `beforeSubmitPrompt`/`stop` never fire under the CLI — inverting the original Codex-mirrored assumption | `spec-gate-classify.mjs` ships dormant; `preToolUse` covers every tool, broader than the originally-planned `beforeShellExecution` |
+- **`.cursor/hooks.json` uses relative paths and is committed.** Empirically confirmed Cursor pins hook-command cwd to the project root regardless of the invoking shell's directory, so relative paths are portable across clones. This is what made ADR-001's "committed to the repo" decision viable.
+- **`.cursor/mcp.json` is a symlink to `.mcp.json`, not a copy.** Cursor's MCP schema is byte-compatible with Claude's (`mcpServers` / `command` string / `args` array / `env` object), confirmed from Cursor's own docs before acting. A copy would drift. `opencode.json` could **not** participate — different schema (`mcp` key, `command` as array, `environment`).
+- **Runtime-specific payload normalization lives in the Cursor adapter, never in the shared core.** Both `post-tool-use.mjs` (`Shell`→`Bash`) and `mcp-route-guard.mjs` (split-field recombination) normalize at the adapter boundary, because the core is shared by four runtimes.
+- **Discovery mirrors are organizational only; configs keep pointing at real paths.** Not a style preference — 4 Cursor scripts and 4 Codex/Claude scripts silently emit nothing when invoked through a symlink.
+- **`spec-gate-prebind.mjs` was never touched** across 9 phases. It belongs to a concurrent session, is uncommitted and unreviewed; every phase that mentioned it hedged rather than wiring or editing it.
 
-### 2.2 Blockers Encountered (all resolved)
+### 2.2 Blockers Encountered
 
-| Blocker | Status | Resolution |
-|---|---|---|
-| No authenticated Cursor account on this machine | **Resolved** | Operator completed `cursor-agent login` mid-session (Pro tier, `mkerkmeester@proton.me`) — unlocked live verification for phases 002-006 |
-| Live model roster / Composer specs were auth-gated | **Resolved** | `composer-2.5`/`composer-2.5-fast` confirmed live via `cursor-agent --list-models`; context window/pricing remain genuinely unexposed by the CLI even authenticated, documented as TBD (not fabricated) |
-| Cursor CLI hook per-event delivery was an open question | **Resolved** | Phase 004 live-probed all documented events; confirmed-fires/confirmed-non-delivery/untested split recorded in `mcp-server/hooks/cursor/README.md` |
+- **A false "no MCP servers" premise** blocked `mcp-route-guard.mjs` for two phases. The operator challenged it; the repo in fact had 5 credential-free servers in `.mcp.json`. Root cause of the error: conflating "Cursor sees no servers" with "no servers exist." **Resolved in 016.**
+- **`beforeSubmitPrompt` and `preCompact` remain dormant** under `cursor-agent 2026.07.23-e383d2b`. Registered for parity; re-verify against a future build. **Not resolved — a CLI-side limitation, not ours.**
+- **`preCompact` is untestable in isolation** — no compaction-forcing flag exists in the CLI. **Not resolved; documented.**
 
 ### 2.3 Files Modified
 
-**Full history**: 8 spec-authoring commits + 6 implementation commits (phases 002-007), each phase committed independently after its own `validate.sh --strict` passed.
+**Runtime config (committed, live):**
+- `.cursor/hooks.json` — 12 entries across 6 events
+- `.cursor/mcp.json` — symlink to `../.mcp.json`
+- `.codex/hooks.json`, `.claude/settings.json` — **deliberately unchanged**
 
-| Phase | Summary | Status |
-|---|---|---|
-| `001-cursor-contract-pin/` | Live Cursor CLI verification (binary, hooks, config, auth, models, unique surfaces) | Complete |
-| `002-deep-loop-executor-support/` | `cli-cursor` added to `executor-config.ts`/`executor-audit.ts`/`fanout-run.cjs`/`dispatch-model.cjs`/`profile-validator.cjs` + tests | Complete |
-| `003-cli-cursor-skill-packet/` | Built `cli-external-orchestration/cli-cursor/` per `sk-doc create-skill`; wired hub registries | Complete |
-| `004-cursor-hook-adapter-layer/` | Built + live-verified Cursor hook adapters | Complete (`.cursor/hooks.json` registration deferred by operator choice) |
-| `005-cursor-model-registry-and-routing/` | Composer-2.5 profile + `cli-cursor` executor row + CI gate | Complete |
-| `006-cursor-manual-testing-playbook/` | 19-scenario, 9-category Cursor-native playbook | Complete |
-| `007-docs-agents-governance-and-closeout/` | Roster/governance/cross-skill mentions; full recursive validation | Complete |
+**Hook adapters:**
+- `mcp-server/hooks/cursor/` — `shared.ts`, `session-start.ts`, `session-end.ts`, `user-prompt-submit.ts` (new), `precompact.ts` (new), `post-tool-use.mjs` (new), `task-dispatch-guard.mjs` (new), `mcp-route-guard.mjs` (new, fixed)
+- `runtime/hooks/cursor/` — `spec-gate-enforce.mjs`, `spec-gate-classify.mjs` (both restyled)
 
-`validate.sh --recursive --strict` on the whole packet: **8/8 folders, 0 errors, 0 warnings** (re-verified after every phase's edits, not just trusted).
+**Discovery mirrors (all symlinks, mode `120000`):**
+- `.cursor/hooks/` (13), `.codex/hooks/` (16), `.claude/hooks/` (18) — each with a README
+
+**Docs:**
+- `sk-code/code-opencode/references/shared/hooks.md` — Cursor is now a first-class runtime alongside Claude/OpenCode/Copilot (was entirely absent)
+- `cli-external-orchestration/feature-catalog/feature-catalog.md`, `cli-cursor/references/hook-contract.md`, playbook root + `hooks/` scenarios
 
 ### 2.4 Traps & Scar Tissue
 
-| Trap / blast site | Activation condition | Load-bearing or defensive? | How to avoid re-paying it |
-|---|---|---|---|
-| Uncommitted spec-folder and skill-directory content silently reverted/deleted mid-session | Concurrent git `merge`+`reset --hard`+`clean -fd` activity on this exact branch, observed via `git reflog` (authored under the operator's own git identity, likely an auto-sync process) | Load-bearing — real, repeatable data loss, wiped an entire 19-file playbook once | **Commit immediately after content is authored and verified, never batch to the end of a phase.** When a wipe is suspected, check `git reflog` for unexpected `merge`/`reset` entries before re-authoring. |
-| `generate-description.js --level N` doesn't persist the `level` key | This tool version | Load-bearing (fails `DESCRIPTION_SHAPE` otherwise) | Manually patch `description.json` to add `"level": "N"` (string) if needed |
-| Editing markdown *after* running generate/backfill scripts | Any edit-then-validate cycle | Load-bearing (fails `GENERATED_METADATA_INTEGRITY`/`SOURCE_FINGERPRINT_MISMATCH`) | Content edits first, generate/backfill **last**, per folder |
-| `cursor-agent -p` exits `0` even on auth failure | Any dispatch attempt without login | Load-bearing for phase 002's fail-closed guard | Guard checks `command -v cursor-agent` + explicit auth-state probe (`cursor-agent about`), never the exit code alone |
-| Quoting a literal `[text](path)` markdown link inside spec-doc prose (as evidence) | Any doc that quotes another file's link syntax verbatim | Load-bearing (fails `SPEC_DOC_INTEGRITY` — the link checker treats it as a real link from the quoting file's own location) | Describe the link in plain prose ("one line linking to X, labeled Y") instead of reproducing bracket syntax |
-| Compiled-routing manifest's pinned `effectivePolicyHash` goes stale whenever `SKILL.md` content changes | Any edit to a hub's own or a child mode's `SKILL.md` | Load-bearing for `validate_skill_package.py`'s "compiled routing readiness" check | Verify via `resolve.cjs` that the pinned hash is a bookkeeping/fast-path-activation value (not a routing-correctness gate), then hand-align it to the fresh `currentPolicyHash` a `freshness` check reports |
-| A profile's filename must exactly match its registry `id`, not a spec's originally-planned filename | Adding a new model to `sk-prompt/prompt-models` | Load-bearing (fails `check-prompt-quality-card-sync.sh` CHECK 3) | Name the profile file `<registry-id>.md` from the start, or rename before committing |
+Read this section before touching anything in this packet.
+
+1. **A hook emitting nothing is usually SUCCESS, not failure.** Claude/Codex hooks approve by writing no output and exiting 0. Testing a hook in isolation cannot distinguish "approved silently" from "never ran." **Always compare against the same script's real-path invocation.** This exact mistake produced a false positive mid-session that would have wrongly flagged 4 healthy scripts.
+
+2. **Symlink invocation silently kills some hooks.** Any hook compiled from a `.ts` source ending in `runCursorHook(import.meta.url, main)` compares `process.argv[1]` (stays the symlink path) against the ESM-resolved `import.meta.url` (resolves to the real path). They never match through a symlink, so `main()` never runs and nothing is emitted — not even the fail-open envelope. Affected: Cursor `session-start.js`/`session-end.js`/`user-prompt-submit.js`/`precompact.js`, Codex `session-start.js`/`user-prompt-submit.js`, Claude `session-prime.js`. **Never repoint a runtime config at a discovery mirror.**
+
+3. **Do not generalize the above by file extension.** Claude's `user-prompt-submit.js` works fine through its symlink; Codex's identically-named sibling does not. The affected set must be determined per file.
+
+4. **A proxy that forwards the wrong payload shape is invisible.** `mcp-route-guard.mjs` forwarded Cursor's bare `tool_name` to a core that only parses packed `mcp__<server>__<tool>` / `<server>_<tool>` forms. It matched nothing, always, while looking healthy. Cursor splits server and tool across `mcp_server_name` + `tool_name`. **When proxying between runtimes, test a real captured payload against the target's parser — reading the code is not enough.** The same class of bug was correctly avoided for `completion-evidence-stop.cjs` (it needs `last_assistant_message`, which Cursor's `sessionEnd` never carries — left unwired for that reason).
+
+5. **A concurrent session actively writes this same working tree.** It wiped files three times in one turn (`017/spec.md` and both mirror READMEs, *after* successful writes). It also reverted `spec.md` `Successor` edits twice and created a colliding `015-` folder. **Verify files still exist immediately before committing; commit fast rather than batching.**
+
+6. **Editing another session's spec.md stales its metadata.** A one-line `Successor` edit broke `SOURCE_FINGERPRINT` on their `graph-metadata.json`. Re-run `backfill-graph-metadata.js` on any folder whose docs you touch, even trivially.
+
+7. **`cursor-agent -p` exits 0 even on auth failure.** Never use exit code as an auth or availability signal — inspect `cursor-agent about` output text.
+
+8. **`--trust` is required** for a non-interactive `-p` dispatch against a fresh workspace directory, or the workspace-trust prompt silently blocks it.
 
 ---
 
-## 3. Packet Status
+## 3. For Next Session
 
-This packet requires no further session handover — all 7 phases are implemented, live-verified where the spec required it, and validated. If a future session needs to extend `cli-cursor` (e.g. a new model, a new hook event once Cursor's CLI delivery changes, or registering `.cursor/hooks.json`), open a new phase child under this same `030-cli-cursor-creation` parent rather than reopening a closed phase.
+### 3.1 Recommended Starting Point
 
-### 3.1 Deferred, Explicitly-Approved Follow-ups
+Nothing is blocking. The packet is complete, pushed, and validating clean. Pick from §3.2 only to extend it.
 
-- **`.cursor/hooks.json` registration**: adapters are built and live-verified (phase 004), but the actual project-level registration file was deliberately not committed — this affects the operator's live Cursor editor sessions too, so it needs its own explicitly-approved step, not a silent follow-on.
-- **7 untested hook events** (`postToolUseFailure`, `beforeMCPExecution`, `afterMCPExecution`, `preCompact`, `subagentStart`, `subagentStop`, `afterAgentResponse`): genuinely unconfirmed, not assumed either way — a future phase could probe these if a real scenario needs them.
-- **`validate_skill_package.py --strict`** (not required by this packet's own REQ-005, which targets the default invocation) surfaces 2 pre-existing, packet-unrelated hub contract warnings (`SKILL.md` description length, missing smart-router markers) — left for a future, separately-scoped hub-hygiene pass.
+### 3.2 Priority Tasks Remaining
+
+| # | Task | Why it is open | Effort |
+|---|---|---|---|
+| 1 | Run the 17 non-hooks playbook scenarios (`CU-001..012`, `CU-015..019`) | Only the 4 hooks-category scenarios were independently re-executed; the operator scoped it that way | Medium — real dispatches; 2 are destructive/opt-in |
+| 2 | Review + commit `spec-gate-prebind.mjs`, then wire it | Still a concurrent session's uncommitted file. **Until something opens the Gate-3 state, the `preToolUse` deny path is inert (fails open).** Highest-value remaining item — it activates enforcement | Small once reviewed |
+| 3 | Re-verify `beforeSubmitPrompt` / `preCompact` against a newer `cursor-agent` | Registered but dormant on `2026.07.23-e383d2b`; a build change could activate them silently | Small |
+| 4 | Wire `afterMCPExecution` | Confirmed firing, payload shape recorded (`result_json`, `duration`), but no Claude-side counterpart exists to proxy to | Small, needs a target first |
+| 5 | Make `runCursorHook` symlink-tolerant | Would remove trap #2 entirely (resolve both sides through `realpathSync` before comparing). Touches shared code four runtimes depend on | Small code, wide blast radius |
+| 6 | Fix `dispatch-audit-posttooluse.mjs` hardcoding `runtime: 'claude'` | Cursor-proxied audit lines are mislabeled. Cosmetic provenance drift | Trivial |
+
+### 3.3 Critical Context to Load
+
+1. `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md` — **the canonical cross-runtime hook reference.** Now documents all four runtimes plus the split-shape and discovery-mirror caveats. Start here.
+2. `.cursor/hooks.json` — live Cursor wiring (also read by the Cursor **editor**; changes have cross-surface impact).
+3. `016-cursor-mcp-wiring-and-route-guard-fix/implementation-summary.md` — the dead-wire investigation, including the evidence table.
+4. `014-cursor-hooks-discovery-mirror/implementation-summary.md` — the entrypoint-guard root cause.
+5. `cli-cursor/manual-testing-playbook/manual-testing-playbook.md` — 21 scenarios; its `EXECUTION POLICY` mandates real dispatches and PASS/FAIL/SKIP verdicts only.
 
 ---
 
 ## 4. Validation Checklist
 
-- [x] All implementation work committed (14 total commits across spec-authoring + implementation, each phase independently)
-- [x] `validate.sh --recursive --strict` passes 8/8, 0/0
-- [x] Both hub skill validators (`parent-skill-check.cjs`, `validate_skill_package.py`) pass 0 fails
-- [x] No breaking changes — nothing outside `030-cli-cursor-creation/` and the surfaces phases 002-007 explicitly targeted was touched
-- [x] This handover document is complete and reflects the packet's actual completed state
+- [x] `validate.sh 030-cli-cursor-creation --recursive --strict` → **18/18 PASSED, 0 errors, 0 warnings**
+- [x] All work committed and pushed; `origin/skilled/v4.0.0.0` at `0c9a43195d`, 0 ahead / 0 behind
+- [x] Discovery mirrors confirmed on the **remote** as mode `120000` (real symlinks, not path-text files)
+- [x] `.codex/hooks.json` and `.claude/settings.json` confirmed byte-identical (never touched)
+- [x] Every newly wired Cursor hook live-fire confirmed against a real dispatch, not inferred
+- [x] `verify_alignment_drift.py` clean across both Cursor hook directories
+- [x] No credentials in any new file; all symlink targets relative
+- [x] `spec-gate-prebind.mjs` untouched throughout
 
 ---
 
 ## 5. Session Notes
 
-Cursor CLI is real, installed, and now authenticated on this machine (`cursor-agent 2026.07.23-e383d2b`, Pro tier). The binary name is `cursor-agent`, not `cursor` — `agent` is a separate alias. Every claim in this packet about Cursor CLI behavior is live-verified against the real binary, not assumed from editor knowledge or sibling-CLI analogy — including the two findings that inverted this packet's own original assumptions (the auth-fail-exits-0 gotcha, and the hooks confirmed-fires/non-delivery split).
+The two most valuable outputs of this session were **not** the features — they were two defects found by refusing to accept plausible-looking evidence:
+
+- The **MCP dead wire** surfaced only because the operator challenged a blocker I had written down as fact. The lesson generalizes: *"the tool reports none configured"* and *"none exist"* are different claims, and I collapsed them.
+- The **false-positive sweep** would have shipped documentation flagging 4 healthy scripts as broken. It was caught by asking what would prove the reading wrong — comparing against the real path — rather than accepting that empty output meant failure.
+
+Both are recorded in §2.4 because the same shapes will recur: a proxy that silently matches nothing, and a success signal indistinguishable from a failure signal.
+
+One process note: the concurrent session sharing this working tree made file loss a recurring hazard. What worked was committing small units immediately rather than batching, and re-verifying file existence right before every commit. Anyone continuing here should assume the same conditions.

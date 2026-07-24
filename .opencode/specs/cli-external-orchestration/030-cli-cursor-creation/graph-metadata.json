@@ -37,7 +37,8 @@
       "cursor cli hub mode",
       "cli-cursor handover",
       "030 handover",
-      "cursor cli continuation"
+      "cursor cli continuation",
+      "cursor hooks handover"
     ],
     "key_topics": [
       "cli-cursor",
@@ -51,7 +52,7 @@
       "hub",
       "handover",
       "continuation",
-      "real"
+      "hooks"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -64,8 +65,13 @@
       "001-cursor-contract-pin/spec.md",
       "007-docs-agents-governance-and-closeout/spec.md",
       ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      "mcp-server/hooks/cursor/README.md",
+      ".cursor/mcp.json",
+      ".codex/hooks.json",
+      ".claude/settings.json",
       "spec.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      "016-cursor-mcp-wiring-and-route-guard-fix/implementation-summary.md",
+      "014-cursor-hooks-discovery-mirror/implementation-summary.md",
       "handover.md"
     ],
     "entities": [
@@ -88,15 +94,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp-server/hooks/cursor/README.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
         "source": "derived"
       },
       {
@@ -180,17 +198,17 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-07-24T18:29:17.772Z",
+    "last_save_at": "2026-07-24T19:20:13.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:21e47c817f86761f1f8801adf3e6b7f797133ea3cf021cb9f20fba59720b2eb9",
+    "source_fingerprint": "sha256:02d1196dba1993c70ffd6457148694cbd14f08d1cdfe78c45fbedafaaf0ed8cc",
     "source_doc_hashes": {
       "spec.md": "c3fc8597d6fb9d496b80ad909253d54b9a560ab0f67d286ddb52f70c395324b2",
-      "handover.md": "263ec030aee655938061ec483f260b88a439c22913305e5fea7bc977c0fbe2c5"
+      "handover.md": "fc98e8115efa03c5dcb34f42be55ef11c2a08ec2031afc10f04ad830662fc33c"
     },
     "last_active_child_id": null,
     "last_active_at": null
