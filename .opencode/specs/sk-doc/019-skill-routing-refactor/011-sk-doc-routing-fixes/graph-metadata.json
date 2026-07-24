@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc routing fixes implementation",
+      "leaf resource contract library",
+      "typed pair workflowMode leafResourceId",
+      "sk-doc path-root normalization fix",
+      "sk-doc routing fixes plan",
+      "leaf resource contract implementation phases",
+      "dependency-ordered fix plan",
+      "sk-doc path contract rollback",
+      "sk-doc routing fixes tasks",
+      "leaf resource contract task list",
+      "nine step fix plan tasks",
+      "sk-doc routing fixes checklist"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "routing",
+      "implementation",
+      "leaf",
+      "resource",
+      "contract",
+      "library",
+      "typed",
+      "pair",
+      "workflowmode",
+      "leafresourceid",
+      "path-root"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/leaf-aliases.json",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-doc-leaf-routing-contract.vitest.ts",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+      ".opencode/skills/sk-doc/shared/references/smart-routing.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-leaf-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-leaf-routing-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-doc-leaf-routing-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-report.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "smart-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/smart-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
+    "created_at": "2026-07-16T08:08:19.396Z",
+    "last_save_at": "2026-07-24T11:03:16.781Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:55778298b180fc64554b39d62b0bde3c39736ade2c7740c385e57a563ec08e36",
+    "source_doc_hashes": {
+      "spec.md": "03ff24550578ded671371fe5c21fa5d64b8f9d7b79e5d71db7da7a3df87c7997",
+      "plan.md": "c0867b2e57c6968879c6fec260bd9e244c26893a55aea8e8463d8a2bf4aa9216",
+      "tasks.md": "1e02eab54a8b401f8986fc12c393e5aa30e8713961f47dc32618e11e7aec13a1",
+      "checklist.md": "f18a8bc3d5a2468af4eccba67eeaeb6a888ef0b89df952376cc8f29501fe0830",
+      "decision-record.md": "c3f251fcc570d8efec57a391c278fbda87d00d139ba0795fe4347b1d1be47db2",
+      "implementation-summary.md": "5311f08d2f52384306a6cb6963f25b8ef20d083a9857a9a1d2d156d493fedb11"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

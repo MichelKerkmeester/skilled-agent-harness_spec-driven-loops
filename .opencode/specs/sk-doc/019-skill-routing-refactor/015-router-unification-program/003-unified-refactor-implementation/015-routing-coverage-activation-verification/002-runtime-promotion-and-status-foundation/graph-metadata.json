@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime promotion and status foundation",
+      "compiled routing P0 foundation spec",
+      "promote resolver closure status probe tri-state",
+      "runtime promotion status foundation plan",
+      "compiled routing P0 build sequence",
+      "promote closure status probe plan",
+      "runtime promotion status foundation tasks",
+      "compiled routing P0 task list",
+      "runtime promotion status foundation checklist",
+      "compiled routing P0 verification gate",
+      "runtime promotion status foundation decisions",
+      "compiled routing closure promotion decision record"
+    ],
+    "key_topics": [
+      "runtime",
+      "promotion",
+      "status",
+      "foundation",
+      "compiled",
+      "routing",
+      "spec",
+      "promote",
+      "resolver",
+      "closure",
+      "probe",
+      "tri-state"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      ".opencode/bin/compiled-route-sync.cjs",
+      ".opencode/bin/check-no-spec-imports.cjs",
+      ".github/workflows/runtime-no-spec-import.yml",
+      ".opencode/bin/compiled-route-status.cjs",
+      ".opencode/bin/compiled-route.cjs",
+      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+      ".opencode/plugins/mk-skill-advisor.js",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-spec-imports.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/check-no-spec-imports.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-no-spec-import.yml",
+        "kind": "config",
+        "path": ".github/workflows/runtime-no-spec-import.yml",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Promotion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The compiled router is shipped but held inert",
+    "created_at": "2026-07-20T21:51:24.395Z",
+    "last_save_at": "2026-07-24T10:52:37.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:563c2405b0e2f15f55301984faad980993b07f37d6552e31d624cd271877013c",
+    "source_doc_hashes": {
+      "spec.md": "64c70a6afa238f95e35bb89dd9655c4dc6e024902e62f384aa582abb6d2d6641",
+      "plan.md": "90ca1f8830606c5cf4122951e65a8377851174aed0a1216e761365b6a96965d4",
+      "tasks.md": "cb48d95e0ae385d3f6d549029866103077e6606feb4d55850e1a98253863603f",
+      "checklist.md": "1a08d8d8e8f50ca4a767d1305b631ee4d04fb38691550ba00c2fbf4f077446a9",
+      "decision-record.md": "6fa4df5f61a9b7b26cd3609f0fca9956edd820eea03bd67e8fe715b67416012c",
+      "implementation-summary.md": "d1e8f5a37c82c2c7938768f9ac0fa7cef78420ee8844639dcf52525c2e9f400c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

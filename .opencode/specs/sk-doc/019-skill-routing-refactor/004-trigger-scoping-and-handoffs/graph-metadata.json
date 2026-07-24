@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc trigger scoping",
+      "sibling packet handoffs",
+      "trigger scoping plan",
+      "packet handoff alignment",
+      "trigger scoping tasks",
+      "handoff alignment tasks",
+      "trigger scoping checklist",
+      "sibling handoff checklist",
+      "trigger specificity decision",
+      "sibling handoff decision",
+      "trigger scoping summary",
+      "handoff alignment summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "trigger",
+      "scoping",
+      "sibling",
+      "packet",
+      "handoffs",
+      "plan",
+      "handoff",
+      "alignment",
+      "tasks",
+      "checklist",
+      "specificity"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/hub-router.json",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Scoping",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Positive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
+    "created_at": "2026-07-13T04:45:47Z",
+    "last_save_at": "2026-07-24T11:03:16.728Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53e9f701be1e2d0f5a9ca1cb3ac8a2e59adac10f8ab0241ed3bbe76740263b8e",
+    "source_doc_hashes": {
+      "spec.md": "d15b557d56f69a1f3a46f91e2f563100cab4c886ed4ab386fe32db9a55ccf059",
+      "plan.md": "af30bab8458ebc51498f169a7dbf0788f23de03a328576bcc32b3b6c6cb6ee17",
+      "tasks.md": "ee09c5c22501713ad780f75f2204256e2f056c625bd1fee9f5fd0ea43101082d",
+      "checklist.md": "8304b131a29880d9306967b30c8666e8c9dcfe423b1df8ce0983265608cc735d",
+      "decision-record.md": "ece89c5c8b32ce85b8d2e0666a5c77083525023e082f6efdef827ca21920e4d0",
+      "implementation-summary.md": "c46616d7d87f40e8c98cd679d2cacdf62873e09d2a68d844c89e587a24eb481b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

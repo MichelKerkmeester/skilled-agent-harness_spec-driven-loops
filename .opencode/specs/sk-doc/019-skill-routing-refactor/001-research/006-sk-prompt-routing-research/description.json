@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
+  "description": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
+  "keywords": [
+    "sk-prompt",
+    "routing",
+    "only",
+    "half-instrumented",
+    "baseline",
+    "misleading"
+  ],
+  "lastUpdated": "2026-07-24T11:02:43.175Z",
+  "specId": "006",
+  "folderSlug": "sk-prompt-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

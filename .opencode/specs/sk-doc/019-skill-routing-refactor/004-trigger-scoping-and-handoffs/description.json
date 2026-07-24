@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "description": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
+  "keywords": [
+    "bare",
+    "benchmark",
+    "generic",
+    "documentation",
+    "command",
+    "suffix",
+    "hub-schema",
+    "terms",
+    "carried",
+    "too",
+    "little",
+    "artifact",
+    "intent",
+    "select",
+    "packet",
+    "safely"
+  ],
+  "lastUpdated": "2026-07-24T11:02:43.071Z",
+  "specId": "004",
+  "folderSlug": "trigger-scoping-and-handoffs",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

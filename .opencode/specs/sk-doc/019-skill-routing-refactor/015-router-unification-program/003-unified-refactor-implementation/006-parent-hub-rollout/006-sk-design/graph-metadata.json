@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design compiled router rollout",
+      "sk-design parent hub canary",
+      "design axis ordered bundle",
+      "sk-design rollout plan",
+      "sk-design router implementation",
+      "design canary plan",
+      "sk-design rollout tasks",
+      "sk-design canary status",
+      "sk-design router tasks",
+      "sk-design checklist",
+      "sk-design real green",
+      "sk-design scorer verification"
+    ],
+    "key_topics": [
+      "sk-design",
+      "compiled",
+      "router",
+      "rollout",
+      "parent",
+      "hub",
+      "canary",
+      "design",
+      "axis",
+      "ordered",
+      "bundle",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "fixtures/canary-cases.v1.json",
+      "activation/acceptance.json",
+      "harness/validate-canary.cjs",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": "fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance.json",
+        "kind": "config",
+        "path": "activation/acceptance.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-canary.cjs",
+        "kind": "file",
+        "path": "harness/validate-canary.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Router Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Compile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "writeback",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References See",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "status",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design` has six public design-axis modes, one authored named bundle, a null default, and a",
+    "created_at": "2026-07-19T11:06:53.314Z",
+    "last_save_at": "2026-07-24T10:52:39.137Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3f0a854291140599bb57722818fdda1094daf8be6607d24416e4bc3b2ddb4256",
+    "source_doc_hashes": {
+      "spec.md": "743bec1a41fb64112b2ec4d40a57191195c98b97b2072df5bfa8cbfda38cd3de",
+      "plan.md": "833df343dc764b61ed4147a348ecc92232697297f1b5854626294c8c2ce794a9",
+      "tasks.md": "1ab1a5a536eb963c08da3629eaa5f8b3d3ebd35bf125f7e1ba29fc439b85ab11",
+      "checklist.md": "407f9c9dfaa3e3df5e4693d2d9659da7795ed6abfc9dd962878cfb72d160e84c",
+      "implementation-summary.md": "984c2abc1316b53f55571f1a5b31d1e97f9e1d2f72f46f6bf0948effc8c65f7b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

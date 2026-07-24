@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research",
+  "description": "The Tier-2 gpt-5.6-luna skill-benchmark found routing quality is strongly skill-specific, and system-skill-advisor is the front-line router that",
+  "keywords": [
+    "tier-2",
+    "gpt-5",
+    "6-luna",
+    "skill-benchmark",
+    "found",
+    "routing",
+    "quality",
+    "strongly",
+    "skill-specific",
+    "system-skill-advisor",
+    "front-line",
+    "router"
+  ],
+  "lastUpdated": "2026-07-24T11:02:43.151Z",
+  "specId": "002",
+  "folderSlug": "skill-advisor-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-07-26_08-57__deep-research-completed-on-system-skill-advisor.md"
+  ]
+}

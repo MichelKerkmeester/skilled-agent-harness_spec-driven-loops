@@ -63,7 +63,7 @@ Detect parent-level drift left by the rename migration and subsequent fixes.
 ## 9. EXHAUSTED APPROACHES (do not retry)
 
 - Root-level duplicate-`012` hypothesis: prefixes `001`–`021` are unique; the collision is under `020/007`. (iteration 1)
-- Root `015-sk-code-router-alignment` as phase parent: ruled out by empty `children_ids`; nested `020/007/015` is the phase parent. (iteration 1)
+- Root `014-sk-code-router-alignment` as phase parent: ruled out by empty `children_ids`; nested `020/007/015` is the phase parent. (iteration 1)
 <!-- /ANCHOR:exhausted-approaches -->
 
 <!-- ANCHOR:ruled-out-directions -->

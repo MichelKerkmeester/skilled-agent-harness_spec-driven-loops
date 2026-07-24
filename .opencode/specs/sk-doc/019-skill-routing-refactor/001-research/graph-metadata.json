@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research",
+    "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research",
+    "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
+    "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research",
+    "sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research",
+    "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research",
+    "sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+    "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+    "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
+    "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-routing research layer",
+      "routing research phase parent",
+      "per-hub routing research",
+      "unified refactor research"
+    ],
+    "key_topics": [
+      "skill-routing",
+      "research",
+      "layer",
+      "routing",
+      "phase",
+      "parent",
+      "per-hub",
+      "unified",
+      "refactor",
+      "lean",
+      "ten",
+      "lineages"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Research Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Lean phase parent for the ten research lineages that define the skill-routing program's benchmark, per-hub, defaultMode, out-of-box, and unified-refactor evidence base.",
+    "created_at": "2026-07-24T10:52:35.915Z",
+    "last_save_at": "2026-07-24T11:03:16.498Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5b4e4a6268e10fed6d97433a67a431168e864601246fe9f5f1007355654bfc97",
+    "source_doc_hashes": {
+      "spec.md": "d8b15ff4bed010c901c26a6b3e44dc511cc0a278713b96678561a363e0b44b4b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

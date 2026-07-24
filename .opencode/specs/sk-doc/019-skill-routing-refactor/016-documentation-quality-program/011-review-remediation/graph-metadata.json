@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "021 review remediation",
+      "fix nul corruption headers",
+      "deep review blockers remediation",
+      "review remediation summary",
+      "nul corruption fix summary",
+      "021 blocker remediation"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "nul",
+      "corruption",
+      "headers",
+      "deep",
+      "blockers",
+      "summary",
+      "blocker",
+      "forced",
+      "20-iteration",
+      "program"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/references/writing-style-guide.md",
+      ".opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "api/README.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "writing-style-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/writing-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "vision-audit-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "api/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The forced 20-iteration deep review of the 021 program returned FAIL",
+    "created_at": "2026-07-22T20:53:39.733Z",
+    "last_save_at": "2026-07-24T10:55:17.353Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e02d63f08dbbf59e8c50b4b4fa29f6b7ae7d9b44952a4027fd3c220bff59e79a",
+    "source_doc_hashes": {
+      "spec.md": "0c45087dbd7e406ca94d6532c4fec3f7153a6630074610168eb36d3987ffca95",
+      "plan.md": "bb8f7b24a2e50cff25a004eceb8d359a9c15d474f35048e295e32f20d5060773",
+      "tasks.md": "5f7d801523cdb42f500ffd41e996d22bcbad4b7fe05f0be91ab57e9b6a20d879",
+      "checklist.md": "aa7bd3fbd02acd9f8da5430f92831ed3ac2adcab63962d29f1a74f07ee2cdefd",
+      "implementation-summary.md": "180866c830ee373ab55a71b6c823ad9cc38a228f79b34bceb7f5cf5e16b95233"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

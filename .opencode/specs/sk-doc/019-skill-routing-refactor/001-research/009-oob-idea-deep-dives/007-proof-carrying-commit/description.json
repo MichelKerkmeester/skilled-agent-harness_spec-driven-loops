@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
+  "description": "A route decision can blur classification, authority acquisition, and execution",
+  "keywords": [
+    "route",
+    "decision",
+    "blur",
+    "classification",
+    "authority",
+    "acquisition",
+    "execution"
+  ],
+  "lastUpdated": "2026-07-24T10:53:31.879Z",
+  "specId": "007",
+  "folderSlug": "proof-carrying-commit",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research",
+    "009-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

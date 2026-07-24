@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research",
+  "description": "sk-design's routing cannot be measured on the canonical typed-pair surface",
+  "keywords": [
+    "sk-design",
+    "routing",
+    "cannot",
+    "measured",
+    "canonical",
+    "typed-pair",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-24T11:02:43.157Z",
+  "specId": "003",
+  "folderSlug": "sk-design-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

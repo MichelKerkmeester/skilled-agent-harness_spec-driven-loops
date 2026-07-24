@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc router audit",
+      "subskill fix map",
+      "sk-doc router audit plan",
+      "fourteen fix map",
+      "router audit tasks",
+      "fourteen fix tasks",
+      "router audit checklist",
+      "fourteen fix checklist",
+      "router audit decisions",
+      "registry source authority",
+      "router audit summary",
+      "fourteen fix map summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "router",
+      "audit",
+      "subskill",
+      "map",
+      "plan",
+      "fourteen",
+      "tasks",
+      "checklist",
+      "decisions",
+      "registry",
+      "source"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Triggers",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Delta",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Evidence",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Trigger ownership was inconsistent across packet source files and router projections",
+    "created_at": "2026-07-13T04:45:46Z",
+    "last_save_at": "2026-07-24T11:03:16.708Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9dc4993241485797b46bc3a324fbfac70be6c1b449fa1ae6753360e1f16ba53",
+    "source_doc_hashes": {
+      "spec.md": "ad2ccca66dc0656017ccd17d3ec1fa4d1db47ee6220f6dc5bd991e554164b199",
+      "plan.md": "5413770d85e99dc0d5c02d9228533e56da046f06c39a61fc7d06326be3448e59",
+      "tasks.md": "8b44d76f2b61d4229c61fd72e7fe566bb645db512a77e607143e0f15ad2fff02",
+      "checklist.md": "4d831562bc8618b23ec4ba9d49640084d9f89814d92ed8847d924a8b9b04df3a",
+      "decision-record.md": "49e5fdeb0785d20dae78068abe954a398404b2085611cd09abbb8b093c969b3d",
+      "implementation-summary.md": "c9ec57551d47b6cab95f716637aa48be77369f194dc8d81d25f45539e1fe1db0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

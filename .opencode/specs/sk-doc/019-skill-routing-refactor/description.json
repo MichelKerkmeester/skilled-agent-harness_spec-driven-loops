@@ -1,26 +1,16 @@
 {
   "level": "3",
   "specFolder": "sk-doc/019-skill-routing-refactor",
-  "description": "Phase parent for the sk-doc skill-wide routing history: create-* routing conformance, benchmark and per-hub routing research and fixes, the fleet rout",
+  "description": "Routing across the skill fleet was neither uniform nor measurable",
   "keywords": [
-    "phase",
-    "parent",
-    "sk-doc",
-    "skill-wide",
     "routing",
-    "history",
-    "conformance",
-    "benchmark",
-    "per-hub",
-    "research",
+    "across",
+    "skill",
     "fleet",
-    "router-unification",
-    "program",
-    "compiled-routing",
-    "runtime",
-    "documentation-quality"
+    "uniform",
+    "measurable"
   ],
-  "lastUpdated": "2026-07-23T18:05:56.482Z",
+  "lastUpdated": "2026-07-24T11:01:41.016Z",
   "specId": "019",
   "folderSlug": "skill-routing-refactor",
   "parentChain": [

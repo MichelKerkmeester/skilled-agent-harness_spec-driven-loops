@@ -63,7 +63,7 @@ Planning Packet
 ### F003 — P1 — Router-unification parent still presents the implementation as a seven-phase planned program
 
 - Dimension: traceability
-- Evidence: `.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/spec.md:28-43`; completed runtime cutover at `007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:23`.
+- Evidence: `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/spec.md:28-43`; completed runtime cutover at `007-unified-refactor-implementation/011-runtime-engine/implementation-summary.md:23`.
 - Impact: parent-level resume and status guidance points at an obsolete program state.
 - Recommendation: update the parent phase map and current-vs-historic section to reflect the expanded implementation program.
 - Disposition: active.
@@ -71,7 +71,7 @@ Planning Packet
 ### F004 — P1 — Unified implementation parent omits phases 009 through 015
 
 - Dimension: maintainability
-- Evidence: `.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/spec.md:28-40`; later status-bearing child summaries.
+- Evidence: `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/spec.md:28-40`; later status-bearing child summaries.
 - Impact: most current implementation work is absent from the mandatory phase-parent navigation contract.
 - Recommendation: enumerate all direct numbered children, their current statuses, dependencies, and resume target.
 - Disposition: active.

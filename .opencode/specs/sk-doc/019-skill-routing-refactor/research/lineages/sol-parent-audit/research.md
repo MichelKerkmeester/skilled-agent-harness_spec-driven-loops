@@ -26,8 +26,8 @@ Ten forced-depth iterations covered tree inventory, A–F grouping, both routing
 
 - The root has exactly 21 numbered direct children, `001`–`021`, and every basename appears once in the parent phase map. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:94]
 - A–F is a complete, non-overlapping direct-layer partition: A `001–004`, B `005–009`, C `010–014`, D `015–019`, E `020`, F `021`. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:47]
-- The duplicate `012` collision is nested under `020/007`; it is not a root collision. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/spec.md:50]
-- Root `015-sk-code-router-alignment` is a standard packet; nested `020/007/015-routing-coverage-activation-verification` is the 14-child phase parent. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment/graph-metadata.json:6] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/graph-metadata.json:6]
+- The duplicate `012` collision is nested under `020/007`; it is not a root collision. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/spec.md:50]
+- Root `014-sk-code-router-alignment` is a standard packet; nested `020/007/015-routing-coverage-activation-verification` is the 14-child phase parent. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/graph-metadata.json:6] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/graph-metadata.json:6]
 
 ## 5. P1 Findings — Metadata and Resume Integrity
 
@@ -65,7 +65,7 @@ The document stops at Advisor → Hub → Surface and presents legacy router art
 
 ### P1.8 — It presents completed verification as the current next step
 
-Mutation testing and live-mode checking are written in future tense, but the current Group E verification records completed teeth tests and live sampling, with narrower remaining gaps. Resuming from this document repeats completed work. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:158] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard/verification-report.md:28] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard/verification-report.md:92]
+Mutation testing and live-mode checking are written in future tense, but the current Group E verification records completed teeth tests and live sampling, with narrower remaining gaps. Resuming from this document repeats completed work. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:158] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard/verification-report.md:28] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard/verification-report.md:92]
 
 ## 8. P1 Findings — Broken Links and Paths
 
@@ -79,18 +79,18 @@ The document twice names `shared/references/smart_routing.md`; the current canon
 
 ## 9. P1 Finding — Lifecycle Authority Split
 
-Parent rows `015` and `018` say in progress while their child specs/graphs remain planned; `019` is research-complete in parent/spec but in-progress in graph metadata. Nested parents `020` and `021` are active/in progress in the root narrative but planned in their graph roots. No document defines which lifecycle surface wins. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:110] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment/graph-metadata.json:42] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/graph-metadata.json:42] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/graph-metadata.json:41]
+Parent rows `015` and `018` say in progress while their child specs/graphs remain planned; `019` is research-complete in parent/spec but in-progress in graph metadata. Nested parents `020` and `021` are active/in progress in the root narrative but planned in their graph roots. No document defines which lifecycle surface wins. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:110] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/graph-metadata.json:42] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research/graph-metadata.json:42] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/graph-metadata.json:41]
 
 ## 10. P1 Finding — Nested Topology Is Missing from the Parent Continuity Bridge
 
-`context-index.md` accurately says Group E has seven children, but does not qualify that as direct depth and omits the nested `020/007` duplicate-`012` collision and 14-child phase-parent `015`. Combined with null `last_active_child_id`, a bare “phase 015” or “012 collision” can send a resumer to the wrong packet. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:53] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/spec.md:50]
+`context-index.md` accurately says Group E has seven children, but does not qualify that as direct depth and omits the nested `020/007` duplicate-`012` collision and 14-child phase-parent `015`. Combined with null `last_active_child_id`, a bare “phase 015” or “012 collision” can send a resumer to the wrong packet. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:53] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/spec.md:50]
 
 ## 11. P2 Findings
 
 1. **Incomplete handoff map.** The table covers A→B, C research→fixes, and only D `016/017/019`→implementation; active `015`, `018`, `020`, and `021` have no actionable handoff despite the aggregate closeout criterion. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:41] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:124]
 2. **Misleading single-document note.** `spec.md` says it is the only authored parent document while naming `context-index.md`; two additional authored routing references also exist. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:55]
 3. **Stale consumer line citations and non-rooted RELATED paths.** Several function ranges no longer contain the named symbols, and literal skill-tree paths omit `.opencode/skills/`. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/routing-config-and-advisor-reference.md:87] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/routing-config-and-advisor-reference.md:234]
-4. **Validation metric scopes are conflated.** “7/7” and “91 scenarios” are presented as one snapshot, while the later teeth report distinguishes 106 total, 91 applicable, and six hubs. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:17] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard/verification-report.md:41]
+4. **Validation metric scopes are conflated.** “7/7” and “91 scenarios” are presented as one snapshot, while the later teeth report distinguishes 106 total, 91 applicable, and six hubs. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:17] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard/verification-report.md:41]
 5. **Serial transition wording conflicts with parallel workstreams.** “Each phase” must pass before “the next phase” begins, but D/E/F are concurrently active; the rule needs a per-workstream qualifier. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:120]
 
 ## 12. Open Questions

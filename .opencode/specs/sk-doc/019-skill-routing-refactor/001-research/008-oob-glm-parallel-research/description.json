@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "description": "The prior routing study answered the practical `defaultMode` question, but that answer stayed within the existing parent-hub routing frame",
+  "keywords": [
+    "prior",
+    "routing",
+    "study",
+    "answered",
+    "practical",
+    "defaultmode",
+    "question",
+    "answer",
+    "stayed",
+    "within",
+    "existing",
+    "parent-hub",
+    "frame"
+  ],
+  "lastUpdated": "2026-07-24T11:05:24.223Z",
+  "specId": "008",
+  "folderSlug": "oob-glm-parallel-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

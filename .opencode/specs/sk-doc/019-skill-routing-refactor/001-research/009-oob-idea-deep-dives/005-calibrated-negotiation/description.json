@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/005-calibrated-negotiation",
+  "description": "The advisor's `confidence` is a bounded ranking heuristic, not a probability of correctness",
+  "keywords": [
+    "advisor",
+    "confidence",
+    "bounded",
+    "ranking",
+    "heuristic",
+    "probability",
+    "correctness"
+  ],
+  "lastUpdated": "2026-07-24T10:53:31.884Z",
+  "specId": "005",
+  "folderSlug": "calibrated-negotiation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research",
+    "009-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

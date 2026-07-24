@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "description": "One-shot routing has no bounded recovery path when an ambiguous request reaches the wrong mode",
+  "keywords": [
+    "one-shot",
+    "routing",
+    "bounded",
+    "recovery",
+    "path",
+    "ambiguous",
+    "request",
+    "reaches",
+    "wrong",
+    "mode"
+  ],
+  "lastUpdated": "2026-07-24T10:53:31.887Z",
+  "specId": "004",
+  "folderSlug": "no-wrong-door-handoff",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research",
+    "009-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

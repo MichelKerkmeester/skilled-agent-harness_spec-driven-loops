@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/003-typed-no-destination",
+  "description": "The current zero-signal state can collapse genuine no-work, no-match, dependency failure, degradation, handoff, and clarification needs into one bare",
+  "keywords": [
+    "current",
+    "zero-signal",
+    "state",
+    "collapse",
+    "genuine",
+    "no-work",
+    "no-match",
+    "dependency",
+    "failure",
+    "degradation",
+    "handoff",
+    "clarification",
+    "needs",
+    "one",
+    "bare"
+  ],
+  "lastUpdated": "2026-07-24T10:53:31.881Z",
+  "specId": "003",
+  "folderSlug": "typed-no-destination",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research",
+    "009-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

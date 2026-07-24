@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "out-of-box routing glm parallel",
+      "glm-5.2 lateral routing ideas",
+      "glm parent hub routing synthesis",
+      "typed handoff routing",
+      "threshold recovery provenance routing"
+    ],
+    "key_topics": [
+      "out-of-box",
+      "routing",
+      "glm",
+      "parallel",
+      "glm-5",
+      "lateral",
+      "ideas",
+      "parent",
+      "hub",
+      "synthesis",
+      "typed",
+      "handoff"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "research/lineages/glm-oob/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Box Routing Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Lineage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Context Question",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Routing Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Scope",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Method Each",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Handoff The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prior routing study answered the practical `defaultMode` question, but that answer stayed within the existing parent-hub routing frame",
+    "created_at": "2026-07-18T14:47:45.373Z",
+    "last_save_at": "2026-07-24T11:06:40.720Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d09f496efee62db5d54223032d3c0606756eee6ed55b908ba75f35b08e708921",
+    "source_doc_hashes": {
+      "spec.md": "5b5d268b118af12a4649f22930af0c2b401466f49ec1ff9cd08e142e4d286677",
+      "research/research.md": "3e3ef5843f777dd08f41316c42424f7efd2c7e84f08a088bf9166efd3707dbbb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

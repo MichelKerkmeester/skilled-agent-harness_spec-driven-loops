@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code router typed gold",
+      "sk-code stale baseline refresh",
+      "wave 2 pilot sk-code",
+      "sk-code live mode routing sample",
+      "sk-code router typed gold plan",
+      "wave 2 sk-code pilot phases",
+      "manifest-gated typed-gold derivation",
+      "sk-code router typed gold tasks",
+      "wave 2 sk-code pilot task breakdown",
+      "sk-code baseline refresh tasks",
+      "sk-code router checklist",
+      "sk-code typed-gold verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "router",
+      "typed",
+      "gold",
+      "stale",
+      "baseline",
+      "refresh",
+      "wave",
+      "pilot",
+      "live",
+      "mode",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+      "research/research.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gold Instrumentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Measurement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
+    "created_at": "2026-07-16T19:43:16.256Z",
+    "last_save_at": "2026-07-24T11:03:16.813Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e7f232f0b16541f3d0a48b3793a411c0ac113adfc6f985a0859a883c7330794c",
+    "source_doc_hashes": {
+      "spec.md": "619e34f5c8d6ad557173d2d7cd661bcd45100e13665fc7b38b80b5037b4c080e",
+      "plan.md": "11876e1e66eb25210a216d02e520f1f3720151510f71ee999d48ab9b78435799",
+      "tasks.md": "bfcdb8c37b0c37402c2122052a726d1dc28ff3b19556e93f9412b6f01a24e6a0",
+      "checklist.md": "e78b449f742343e089fa0a5714bd990d4f2faa7906c4e8d5b286ae282b9bc8a8",
+      "implementation-summary.md": "3127490b6c28b9bdc5937285aef326612b60a31304ca2a5e6de1977731ac9d44",
+      "research/research.md": "a2769b0ed8db0a8599510acd2796ca610d2b38973ac8820c41b36f4c022033b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

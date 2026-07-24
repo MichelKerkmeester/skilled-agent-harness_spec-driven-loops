@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/006-minimal-typed-contract",
+  "description": "`defaultMode` conflates missing evidence, a policy prior, and authority to execute",
+  "keywords": [
+    "defaultmode",
+    "conflates",
+    "missing",
+    "evidence",
+    "policy",
+    "prior",
+    "authority",
+    "execute"
+  ],
+  "lastUpdated": "2026-07-24T10:53:31.888Z",
+  "specId": "006",
+  "folderSlug": "minimal-typed-contract",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research",
+    "009-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
