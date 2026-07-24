@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer",
+  "description": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks",
+  "keywords": [
+    "repo",
+    "enforces",
+    "scope-lock",
+    "spec-folder",
+    "quality",
+    "completion-evidence",
+    "discipline",
+    "guard",
+    "hooks"
+  ],
+  "lastUpdated": "2026-07-24T04:46:18.828Z",
+  "specId": "004",
+  "folderSlug": "cursor-hook-adapter-layer",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
