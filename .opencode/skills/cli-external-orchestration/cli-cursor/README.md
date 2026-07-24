@@ -196,11 +196,12 @@ A: Reach for Cursor when the task specifically wants Composer, a read-only plan/
 
 ## 8. VERIFICATION
 
-The skill ships a manual testing playbook with per-feature scenarios (authored in a later phase of the same creation packet).
+The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, execution modes, approvals and sandbox, worktree isolation, MCP integration, hooks, session continuity, cloud worker and prompt templates.
 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-cursor/README.md --type readme` reports zero issues |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md` |
 | Default dispatch | `cursor-agent -p "Say hello" --model composer-2.5 --output-format text --sandbox enabled` returns a greeting |
 | Auth pre-flight | `cursor-agent about` output text does not contain "Not logged in" |
 
