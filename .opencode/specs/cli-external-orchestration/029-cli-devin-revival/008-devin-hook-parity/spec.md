@@ -7,9 +7,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity"
-    last_updated_at: "2026-07-24T06:50:25Z"
+    last_updated_at: "2026-07-24T17:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 008 spec/plan/tasks/checklist/decision-record"
+    recent_action: "Added phase 004's confirmed hook-dormancy finding to Open Questions"
     next_safe_action: "Wait for phase 004, then live-verify remaining event schemas"
     blockers: ["devin auth login needs an interactive OAuth flow", "depends on phase 004 landing first"]
     key_files: ["../004-devin-hook-adapter-layer/decision-record.md", "../research-devin-hooks-portability/research.md"]
@@ -140,8 +140,8 @@ High - 9 new files across 6 different skill-packet directories, 1 genuinely nove
 - As the implementer of phase 009, I want `mcp-route-guard.cjs`'s dormancy status already documented so I know exactly what to re-evaluate once real MCP servers are registered.
 
 ## 12. OPEN QUESTIONS
-- Does project-level `.devin/hooks.v1.json` actually work, or is an installer into a user-global location needed like Codex needed? (REQ-006, blocking)
-- Is Devin's `SessionEnd` stdout-lenient like `SessionStart`, or strict like `Stop`? (REQ-005, blocking for that one registration decision only)
+- **ANSWERED by phase 004 (2026-07-24)**: project-level `.devin/hooks.v1.json` does NOT work under `devin -p` -- confirmed dead across every registration path tested (standalone file with/without a version field, `.devin/config.json`'s `"hooks"` key, deliberately malformed JSON producing zero parse errors, and `--agent-config`'s own strict parser rejecting a `hooks` field outright). This applies to every hook this phase builds, not just `SessionStart`/`UserPromptSubmit` -- an installer into a user-global location would not help, since the problem is `-p` mode never consulting hook config at all, not a discovery-path issue. Whatever this phase builds must be marked dormant the same way phase 004's adapters are, pending either a future `devin` build with confirmed `-p` hook support, or confirmation that true interactive mode (untested, no TTY available) fires hooks where `-p` does not.
+- Is Devin's `SessionEnd` stdout-lenient like `SessionStart`, or strict like `Stop`? (REQ-005, blocking for that one registration decision only -- now moot for live behavior until the dormancy finding above changes, but still worth deciding for when it does.)
 - `mk-goal.js`/`mk-speckit-completion.js` have no hook-based Devin target at all - forwarded as a new open question on the parent `spec.md`, not solved here.
 <!-- /ANCHOR:questions -->
 
