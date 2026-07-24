@@ -145,3 +145,4 @@ Medium-high - host-level integration work is more contained than phase 008's hoo
 - `../research/research.md` (source research, esp. §7 recommended phase shape, §7.3 two-tier policy)
 - `../001-devin-contract-pin/implementation-summary.md` (predecessor, live Devin contract)
 - `../008-devin-hook-parity/spec.md` (re-evaluates `mcp-route-guard.cjs` dormancy)
+- `../010-devin-feature-catalog/spec.md` (sequential-numbering neighbor only, not a dependency - its real dependencies are 003/005/009; see Phase Transition Rules in `../spec.md`)

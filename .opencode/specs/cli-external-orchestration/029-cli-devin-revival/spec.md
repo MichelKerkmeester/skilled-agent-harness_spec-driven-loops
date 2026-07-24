@@ -94,12 +94,13 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 1 | `001-devin-contract-pin/` | Verify the live Devin CLI, hook, config, permission, model, and auth contract. | Complete |
 | 2 | `002-deep-loop-executor-support/` | Restore `cli-devin` as a 5th typed deep-loop executor kind, incl. dispatch builder. | Planned |
 | 3 | `003-cli-devin-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Planned |
-| 4 | `004-devin-hook-adapter-layer/` | Add thin Devin hook adapters for the 7 repo guard hooks; decide adapter vs. native import. | Planned |
+| 4 | `004-devin-hook-adapter-layer/` | Add thin Devin hook adapters for `SessionStart`/`UserPromptSubmit`; live-verified 2026-07-24 that no hook fires under `devin -p` in any registration path — adapters built dormant. | Complete (dormant) |
 | 5 | `005-devin-model-registry-and-quota/` | Restore `swe-1.6` + sibling executor rows (current slugs) and the CI gate arrays. | Planned |
 | 6 | `006-devin-manual-testing-playbook/` | Author a Devin-native manual-testing playbook. | Planned |
 | 7 | `007-docs-agents-governance-and-closeout/` | Restore agent/governance/sibling doc mentions; full recursive validation and closeout. | Planned |
 | 8 | `008-devin-hook-parity/` | Give every Claude hook and OpenCode plugin a correct Devin adapter, native-import equivalent, or documented gap — the remaining 6 guard cores, 2 lifecycle-completion adapters, and 1 dispatch-guard adapter phase 004 deferred. | Planned |
 | 9 | `009-devin-mcp-host-integration/` | Register this repo's 3 MCP servers with Devin's native `devin mcp` surface under a two-tier deny-by-default permission policy — resolves Open Question 3. | Planned |
+| 10 | `010-devin-feature-catalog/` | Author a `create-feature-catalog` package for cli-devin; the `hooks` category must enumerate all 8 lifecycle events with accurate dormancy status, never overstated. | Planned |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -107,6 +108,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - Every routing surface must check `command -v devin` before advertising or dispatching Devin, mirroring the `cli-codex` fail-closed precedent.
 - Phase 005 must use **current** model slugs (`kimi-k2.7-code`, `glm-5.2`) — the archived deprecation docs reference their now-superseded predecessors (`kimi-k2.6`, `glm-5.1`).
 - Phase 007 must build its touch-list by grepping the **current** tree, not by replaying archived line numbers verbatim — several unrelated later changes (a hyphen-case filesystem-naming pass, a hub folder move, an agent filename change) landed between 2026-06-08 and today.
+- Phase 010's real dependencies are phases 003 (hosts `feature-catalog/`), 005 (model-dispatch content), and 009 (mcp-host-integration content) — not its numeric predecessor 006; its `hooks` category sources entirely from phases 004/008 regardless of their own build status. Phase 008 must also carry phase 004's confirmed hook-dormancy finding (no hook fires under `devin -p`, any registration path) rather than assume its own remaining 6 events will fare differently without re-verification.
 - Phase 008 depends only on phase 004 (not 005-007); phase 009 depends only on phase 001 (not 002-008) — neither 008 nor 009 sits in the original 1-7 linear chain, matching the precedent set by `027-cli-codex-revival`'s own later-added 007-009 phases. Phases 004, 008, and 009 all share one blocker: none can complete live verification without an authenticated `devin` session (see Open Questions and the packet's `blockers` field).
 
 ### Phase Handoff Criteria

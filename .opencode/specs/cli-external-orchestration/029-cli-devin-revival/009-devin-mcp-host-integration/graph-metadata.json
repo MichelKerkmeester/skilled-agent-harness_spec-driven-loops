@@ -191,7 +191,7 @@
     ],
     "causal_summary": "This repo runs 3 stdio MCP servers (spec-kit-memory, code-graph, skill-advisor) that every other CLI executor (Claude Code, OpenCode) can already reach",
     "created_at": "2026-07-24T06:43:36.338Z",
-    "last_save_at": "2026-07-24T06:44:18.023Z",
+    "last_save_at": "2026-07-24T13:13:51.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d417a7550a7f7be4707fbaf7fa8f774fd89344042d784cec960f9ed0be2ce2a5",
+    "source_fingerprint": "sha256:e7706ad4eaa291d51f26ff1c09874a452b1af564c9c6fa9777ed90eeb5a0d0ed",
     "source_doc_hashes": {
-      "spec.md": "e87c508e87ab7ba14509b24107855cc4ef15ace187bb53d50b55229312fb32a8",
+      "spec.md": "d7def35fc70fcd9d9ce26ce7844ae27b7efa4ab871ca48fe6f327ed929dbb86f",
       "plan.md": "52d30480a92558bb62ebf14af767d6376d8662c9d4a275c208e7f5905a2db6af",
       "tasks.md": "5fc813ae27e7b8373164d6d21776c89ad93625227928b1c35a5f1c6bd2c1c87f",
       "checklist.md": "72f85bc79455228a6697b9864b385600b6fe014a6cba81fa461d38b8c29862ba",

@@ -12,7 +12,8 @@
     "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
     "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
     "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
-    "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration"
+    "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration",
+    "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog"
   ],
   "manual": {
     "depends_on": [],
@@ -214,16 +215,16 @@
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-24T06:44:17.421Z",
+    "last_save_at": "2026-07-24T13:13:51.392Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b3e6d801f8364363ef561ec776d1f3fa0ab3c6079f471272fcc643d22b637909",
+    "source_fingerprint": "sha256:e1ce58688b1cbfde8811ff5e92d7c49063ffcba687e61efc4e7b4abc40f1443d",
     "source_doc_hashes": {
-      "spec.md": "11cb6617a8ce505969242dfb267cf5e52598078c5368e632f63dcee9dff7a48a",
+      "spec.md": "ad5612bc2fee9fc78ac67436158a82deebe520856527c580684aecb0d3d00be5",
       "research/research.md": "65003631e5154758de221824cf53bf1a152f7eb262c3e09c87bcca2b44be5708"
     },
     "last_active_child_id": null,
