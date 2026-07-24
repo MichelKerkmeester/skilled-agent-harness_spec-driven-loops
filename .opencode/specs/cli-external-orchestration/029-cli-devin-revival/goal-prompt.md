@@ -4,7 +4,7 @@ Continue implementing cli-devin (Devin CLI, binary `devin`) revival across the r
 
 Spec folder: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival`. Read `spec.md` first (parent — phase map, transition rules, open questions), then `001-devin-contract-pin/implementation-summary.md` (the live-verified Devin facts everything else depends on).
 
-Current state: phase 001 (contract-pin) is Complete — Devin CLI v3000.2.17 is installed, `devin auth login` is done (Devin Pro tier, logged in), and its real 4-mode permission contract (`normal`/`accept-edits`/`bypass`/`autonomous`) is live-verified. Phases 002-009 are all fully spec'd (spec.md/plan.md/tasks.md/checklist.md, +decision-record.md for 003/004/008/009) and validate 0/0, but **none is implemented yet**.
+Current state: phase 001 (contract-pin) is Complete — Devin CLI v3000.2.17 is installed, `devin auth login` is done (Devin Pro tier, logged in), and its real 4-mode permission contract (`auto`/`accept-edits`/`smart`/`dangerous`, corrected 2026-07-24 from a wrong docs-sourced name set) is live-verified. Phases 002-009 are all fully spec'd (spec.md/plan.md/tasks.md/checklist.md, +decision-record.md for 003/004/008/009) and validate 0/0, but **none is implemented yet**.
 
 Numbering note: 008/009 were added after 002-007 existed. Their real Predecessor isn't the prior-numbered phase — 008 depends only on 004, 009 only on 001. Parent `spec.md`'s Phase Transition Rules say this; don't let folder numbers imply a dependency that isn't real.
 
