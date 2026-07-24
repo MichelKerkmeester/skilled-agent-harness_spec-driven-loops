@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/003-cli-cursor-skill-packet",
+  "description": "Cursor CLI (`cursor-agent`) has no presence in this repo \u2014 no standalone skill, no hub mode, no archived packet",
+  "keywords": [
+    "cursor",
+    "cli",
+    "cursor-agent",
+    "presence",
+    "repo",
+    "standalone",
+    "skill",
+    "hub",
+    "mode",
+    "archived",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-24T04:33:50.546Z",
+  "specId": "003",
+  "folderSlug": "cli-cursor-skill-packet",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
