@@ -9,9 +9,9 @@ description: "Devin CLI UserPromptSubmit hook that calls the shared spec-gate co
 
 ## 1. OVERVIEW
 
-`runtime/hooks/devin/` holds the Devin CLI side of the Gate-3 spec-folder discipline for the two events phase 004 scopes (`SessionStart`, `UserPromptSubmit`), mirroring `runtime/hooks/codex/`. `spec-gate-classify.mjs` calls into `runtime/lib/spec-gate/spec-gate-core.mjs` as a fourth consumer alongside the Claude hook, the OpenCode plugin, and the Codex hook, so the core never changes for a new runtime. The entrypoint fails open: a missing or invalid stdin payload always resolves to approve.
+`runtime/hooks/devin/` holds the Devin CLI side of the Gate-3 spec-folder discipline, mirroring `runtime/hooks/codex/`. `spec-gate-classify.mjs` (phase 004, `UserPromptSubmit`) and `spec-gate-enforce.mjs` (phase 008, `PreToolUse`) both call into `runtime/lib/spec-gate/spec-gate-core.mjs` as a fourth consumer alongside the Claude hook, the OpenCode plugin, and the Codex hook, so the core never changes for a new runtime. Both entrypoints fail open: a missing or invalid stdin payload always resolves to approve.
 
-**`PreToolUse` enforcement (`spec-gate-enforce.mjs`) is deliberately NOT built here.** Phase 004's own scope explicitly starts with `SessionStart`/`UserPromptSubmit` only; `PreToolUse` belongs to phase 008 (`devin-hook-parity`) alongside the other 5 remaining lifecycle events. The parent packet's Files-to-Change table listed `spec-gate-enforce.mjs` under this phase, which conflicted with phase 004's own stated 2-event scope -- resolved in favor of the explicit scope statement, not the table.
+**`spec-gate-enforce.mjs` was added by phase 008, not phase 004.** Phase 004's own scope explicitly started with `SessionStart`/`UserPromptSubmit` only, deferring `PreToolUse` enforcement to phase 008 alongside the other remaining lifecycle events. Phase 008's original 9-file matrix then itself omitted `spec-gate-enforce.mjs` -- a real gap the research had already scoped (§10, C-02/C-05/G-01) but that never made it into the file list -- caught and closed during phase 008's implementation.
 
 ## 2. STATUS: DORMANT -- LIVE-VERIFIED, NOT ASSUMED
 
@@ -24,13 +24,15 @@ Live-probed 2026-07-24 against the installed `devin 3000.2.17` binary: neither `
 | File | Purpose | Status |
 |------|---------|--------|
 | `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn and would surface the bounded Gate-3 question as `additionalContext`. | **Dormant** -- confirmed no `-p`-mode attachment point exists (see §2). |
+| `spec-gate-enforce.mjs` | `PreToolUse(^exec$\|^edit$)` hook (phase 008). Calls `spec-gate-core.mjs`'s `evaluateMutation()` directly -- the actual gate-3 BLOCK, distinct from `spec-gate-classify.mjs`'s advisory classify step. A `deny` decision emits `permissionDecision: "deny"`; an `advise` decision surfaces `additionalContext` without blocking. Devin's `exec`/`edit` `tool_input` field names are unconfirmed -- tolerates the same file_path candidate fallbacks the Claude/Codex siblings use. | **Dormant** -- confirmed no `-p`-mode attachment point exists (see §2). |
 
 ## 4. CONSUMERS
 
-- The project's `.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to the `UserPromptSubmit` event. **Committed per operator direction** despite the confirmed dormancy above -- re-tested live after committing and still confirmed dormant, no different from before the file existed.
+- The project's `.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit` and `spec-gate-enforce.mjs` to `PreToolUse` (`^exec$`, `^edit$` matchers). **Committed per operator direction** despite the confirmed dormancy above -- re-tested live after the phase 008 extension and still confirmed dormant, no different from before the files existed.
 
 ## 5. RELATED
 
-- [`spec-gate-core.mjs`](../../lib/spec-gate/spec-gate-core.mjs): shared runtime-neutral policy this hook calls.
+- [`spec-gate-core.mjs`](../../lib/spec-gate/spec-gate-core.mjs): shared runtime-neutral policy both hooks call.
 - [`runtime/hooks/claude`](../claude/README.md), [`runtime/hooks/codex`](../codex/README.md), [`runtime/hooks/cursor`](../cursor/README.md): sibling implementations for the other CLI transports.
 - [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`](../../../../../specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md): ADR-001 and the full live-verification methodology.
+- [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md`](../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md): ADR covering `spec-gate-enforce.mjs`.
