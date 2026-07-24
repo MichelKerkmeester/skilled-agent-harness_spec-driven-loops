@@ -87,7 +87,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 
 - Layer A, the runtime-critical minimum: a pure contract library and manifest generator, hub topology artifacts (`resourceContractVersion`, `leaf-aliases.json`, `leaf-manifest.json`), extended `parent-skill-check.cjs` enforcement, typed-gold migration of all 19 sk-doc scenario fixtures plus a pre-dispatch topology validator, canonical typed-pair emission in `router-replay.cjs` and `executor-dispatch.cjs`, correction of the nine affected packet maps and a scorer/report error taxonomy.
 - **Shared discovery-fixture boundary (with sibling packet `013-skill-advisor-routing-fixes`).** This packet OWNS the single canonical discovery-fixture set for the metadata-hub advisor-discovery boundary. Format is typed gold, the same typed-pair format this packet already uses for its 19 sk-doc scenario fixtures, and location is under the sk-doc tree. Layer A defines the format and location early. Packet 013's P1-5 metadata-hub advisor-discovery battery and `parent-skill-check.cjs` build on top of and consume these fixtures read-only, they do not author a competing set.
-- Layer B, authoring doctrine: the `pathContract` declaration in create-skill's hub-router templates and schema doc, plus the second-layer router scaffold and sk-doc's own `shared/references/smart_routing.md`. It also fixes the stale "~34 alias" canon text.
+- Layer B, authoring doctrine: the `pathContract` declaration in create-skill's hub-router templates and schema doc, plus the second-layer router scaffold and sk-doc's own `shared/references/smart-routing.md`. It also fixes the stale "~34 alias" canon text.
 - The six verification test files these steps introduce or extend and the eight verification commands in Section 9 of the research.
 
 ### Out of Scope
@@ -121,7 +121,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 | `.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json` | Modify | Same `pathContract` declaration in the generated template |
 | `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md` | Modify | Document the `pathContract` schema field |
 | `.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_smart_routing_template.md` | Create | Second-layer router scaffold for future authored hubs |
-| `.opencode/skills/sk-doc/shared/references/smart_routing.md` | Create | sk-doc's own per-intent leaf sets and explicit full-inventory intent |
+| `.opencode/skills/sk-doc/shared/references/smart-routing.md` | Create | sk-doc's own per-intent leaf sets and explicit full-inventory intent |
 | `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md` (lines 208-209) | Modify | Remove the stale "~34 uncovered aliases" sentence |
 <!-- /ANCHOR:scope -->
 
@@ -146,7 +146,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-008 | Declare the `pathContract` in create-skill's hub-router template, schema doc and smart-router asset. Add the second-layer router scaffold plus sk-doc's own `shared/references/smart_routing.md` | New parent hubs generated from the templates carry the `pathContract` field. sk-doc's `smart_routing.md` lists exact per-intent leaf sets and one explicit full-inventory intent |
+| REQ-008 | Declare the `pathContract` in create-skill's hub-router template, schema doc and smart-router asset. Add the second-layer router scaffold plus sk-doc's own `shared/references/smart-routing.md` | New parent hubs generated from the templates carry the `pathContract` field. sk-doc's `smart-routing.md` lists exact per-intent leaf sets and one explicit full-inventory intent |
 | REQ-009 | Remove the stale "~34 uncovered aliases" sentence from `parent_skills_nested_packets.md:208-209` | `rg -n "34" parent_skills_nested_packets.md` no longer matches the retired claim |
 <!-- /ANCHOR:requirements -->
 

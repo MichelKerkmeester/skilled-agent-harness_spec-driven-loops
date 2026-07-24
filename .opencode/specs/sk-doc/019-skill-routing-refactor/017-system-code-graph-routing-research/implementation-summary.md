@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research"
     last_updated_at: "2026-07-17T05:41:36Z"
     last_updated_by: "opencode"
-    recent_action: "Completed eight deep-research iterations, synthesis, resource map, and bounded spec findings write-back"
-    next_safe_action: "Create a sibling implementation packet using research/research.md Sections 15-16 and acceptance gates A0-A9"
+    recent_action: "Deep-research synthesis + bounded spec findings write-back done"
+    next_safe_action: "Create sibling implementation packet from research Sections 15-16"
     blockers:
       - "Canonical generate-context.js save could not run because scripts/dist/memory/generate-context.js is absent"
     key_files:

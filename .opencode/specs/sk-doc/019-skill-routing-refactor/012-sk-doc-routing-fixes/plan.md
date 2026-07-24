@@ -99,7 +99,7 @@ The hub router selects a `workflowMode` and packet entrypoint. The packet resolv
 | `mode-registry.json` | Existing: workflowMode/alias registry | Update: add `resourceContractVersion` | `parent-skill-check.cjs` strict mode |
 | `parent-skill-check.cjs` | Existing: registry-router key equality, first-layer existence | Update: add manifest/byte-drift/collision/reachability guards | `PARENT_HUB_CHECK_STRICT=1` run |
 | 19 sk-doc scenario fixtures | Existing: legacy gold strings | Update: typed gold (`expected_workflow_mode` + canonical leaf) | `validate-playbook-topology.cjs` per fixture |
-| `router-replay.cjs` | Existing: reads `smart_routing.md`, stops at packet `SKILL.md` | Update: emit canonical typed pairs, dual-read legacy | `sk-doc-leaf-routing-contract.vitest.ts` |
+| `router-replay.cjs` | Existing: reads `smart-routing.md`, stops at packet `SKILL.md` | Update: emit canonical typed pairs, dual-read legacy | `sk-doc-leaf-routing-contract.vitest.ts` |
 | `executor-dispatch.cjs` | Existing: dispatches selected resources | Update: emit canonical pairs, cap selected-map union | `sk-doc-leaf-routing-contract.vitest.ts` |
 | Nine packet routing maps | Existing: packet-local leaf sets, six wrong or missing | Update: correct per acceptance-matrix row | Fresh Mode-B live run |
 | `score-skill-benchmark.cjs`, `build-report.cjs` | Existing: exact `Set.has` equality, no error taxonomy | Update: 5-class taxonomy, excluded-row reporting | Aggregate vitest regression |
@@ -154,7 +154,7 @@ Required inventories:
 
 ### Phase 8: Layer B Doctrine (fix-plan steps 8-9)
 - [ ] `pathContract` declared in `skill_smart_router.md`, `parent_skill_hub_router_template.json` and `parent_hub_router_schema.md`
-- [ ] `parent_skill_smart_routing_template.md` and sk-doc's own `shared/references/smart_routing.md` added
+- [ ] `parent_skill_smart_routing_template.md` and sk-doc's own `shared/references/smart-routing.md` added
 - [ ] Stale "~34 uncovered aliases" sentence removed from `parent_skills_nested_packets.md:208-209`
 
 ### Phase 9: Verification
