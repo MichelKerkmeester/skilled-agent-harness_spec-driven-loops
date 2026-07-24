@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration",
+  "description": "This repo runs 3 stdio MCP servers (spec-kit-memory, code-graph, skill-advisor) that every other CLI executor (Claude Code, OpenCode) can already",
+  "keywords": [
+    "repo",
+    "runs",
+    "stdio",
+    "mcp",
+    "servers",
+    "spec-kit-memory",
+    "code-graph",
+    "skill-advisor",
+    "every",
+    "cli",
+    "executor",
+    "claude",
+    "code",
+    "opencode",
+    "already"
+  ],
+  "lastUpdated": "2026-07-24T06:43:46.510Z",
+  "specId": "009",
+  "folderSlug": "devin-mcp-host-integration",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
