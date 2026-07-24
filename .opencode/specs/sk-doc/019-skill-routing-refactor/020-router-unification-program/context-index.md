@@ -10,7 +10,7 @@
 
 ## Old → New Mapping
 
-| Former packet (under `019-skill-routing-refactor/`) | New location |
+| Former packet (under `019-skill-routing-refactor/`) | New location (also under `019-skill-routing-refactor/`) |
 |------------------------------------------------------|--------------|
 | `020-fleet-routing-consistency` | `020-router-unification-program/001-3-tier-consistency-standard` |
 | `021-default-mode-policy-research` | `020-router-unification-program/002-default-mode-policy-research` |

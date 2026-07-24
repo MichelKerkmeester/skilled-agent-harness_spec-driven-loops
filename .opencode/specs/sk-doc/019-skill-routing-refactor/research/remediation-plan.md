@@ -175,3 +175,40 @@ Both models produced false positives, caught only by disk verification:
 
 **Estimated remaining effort:** ~13 units across R1-R4 (R3 is the bulk), plus the separately-scoped
 sk-design and deep-loop-runtime items.
+
+---
+
+## 8. Execution log — verify-adjusted outcomes
+
+Waves executed in worktree `sk-doc/0104-019-audit-remediation`. Verify-first materially changed
+several findings from the original register.
+
+**R1 — done (`247d82a779`).** F-14 (012): root cause was `hasStartedWork()` — 012 has 8 completed
+tasks (Layer A; deliverables verified on disk), so implementation-summary.md became required while
+the packet still claimed "Planned". Authored a truthful In-Progress implementation-summary + set
+Status In Progress. **012 now validates Errors:0.**
+
+**R2 — one real defect, rest verify-adjusted to non-defects (`7534f7021d`).** Only F-16 (015-sk-code)
+was a real narrative defect — declared Planned in spec+graph but 23/25 checklist + impl-summary =
+In Progress; reconciled. The others are **graph-derivation lag on truthful specs**, not over-claims:
+F-15 (019-sk-prompt "Research Complete" + impl-summary = true), F-18 (015/009 "Complete, REQ-006
+deferred out-of-scope" validates Errors:0), F-18 (015/013 "Complete" carries the verified default-on
+commit `7dfffa0c93`). sol CF-19/CF-20 counted explicitly-deferred / minor items as incomplete. No edit.
+
+**R3 — verified REAL; deferred as a scoped structural decision.** 020/004, 020/006, and all 8
+020/005 idea-children declare Level 2 but are research deep-dives with only `spec.md` + `presentation.md`
+(Errors:3 each: FILE_EXISTS + LEVEL_MATCH + SECTION_COUNTS). Passing research packets (017) carry
+`plan.md` + `tasks.md` even at Level 1, so these fail at **every** level. The truthful fix: author
+~22 thin plan/tasks files across the 11 packets (+ downgrade to Level 1 to match research content),
+or establish a research-presentation level exemption. This is a one-time policy decision touching the
+router-unification exploration sub-workstream — do it as a **dedicated author-pass, not piecemeal**.
+Recommended: downgrade the 11 to Level 1 and author minimal method-plan + iterations-as-tasks docs
+mirroring 017's research pattern.
+
+**R4 — F-25 done, F-26 scoped out.** F-25 (020 context-index "New location" base) clarified. F-26
+(sk-design invariant 6a) confirmed real (`parent-skill-check.cjs` shows a canon FAIL) but is a
+**different hub** — fix under its own sk-design Gate-3 + commit.
+
+**Net:** 12 findings fixed, 3 rejected as FP/non-defect, 4 R2 verify-adjusted to non-defects, R3
+(11 packets) scoped for a dedicated author-pass, F-26 + M-01 (containment bug) scoped to their own
+packets.
