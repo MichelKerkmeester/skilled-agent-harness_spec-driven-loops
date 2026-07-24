@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Devin PostToolUse Quality Check                               ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Run the edited file's quality checkers, warn-only.              ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse quality-check hook for Devin CLI -- the Devin sibling of the
 // Codex/Claude post-edit quality hook. Reads the hook's stdin JSON, resolves the
 // edited file's checker via the shared post-edit-router core, and runs it under
@@ -10,13 +15,25 @@
 // Devin's `edit` tool_name is a proposed matcher (research §10), not live-confirmed.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
 const router = require('../../lib/post-edit-router.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
 // Devin file-write tool -- proposed name (research §10), unconfirmed live.
 const DEVIN_EDIT_TOOLS = new Set(['edit']);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function readStdin() {
   const chunks = [];
@@ -63,6 +80,10 @@ function printFindings(findings, filePath) {
     else printGenericFinding(finding, filePath);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const startedAt = Date.now();
@@ -121,6 +142,10 @@ async function main() {
     // Fail-open.
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main()
   .catch(() => {})

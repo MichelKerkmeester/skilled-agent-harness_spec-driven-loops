@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude PreToolUse Dispatch Preflight                          ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Lint a CLI dispatch command against the skill's hard rules.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse(Bash) preflight for CLI dispatch.
 //
 // Intercepts a composed `opencode run` / `claude -p` command BEFORE it spawns and evaluates the
@@ -6,6 +11,10 @@
 // violation denies the call with the rule's reason; `warn` violations attach an advisory and let
 // the normal permission flow proceed. Runs on every Bash call, so it fast-exits on anything that
 // is not a dispatch shape, and it FAILS OPEN — any internal error approves silently, never blocks.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES as DISPATCH_SKILLS } from '../lib/dispatch-audit.mjs';
@@ -20,6 +29,10 @@ import path from 'node:path';
 // before-lint and the after-audit can never disagree about what counts as a dispatch; extend by
 // adding an entry there as new cli-* dispatch skills gain a hard_rules block.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function approve() {
   // No output + exit 0 → defer to the normal permission flow.
   process.exit(0);
@@ -30,6 +43,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -79,5 +96,9 @@ async function main() {
   }));
   return process.exit(0);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

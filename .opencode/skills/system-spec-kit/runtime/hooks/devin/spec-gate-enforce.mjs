@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Devin PreToolUse Spec Gate Enforce                            ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Deny an unscoped mutation while the spec gate is open.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse enforce hook for Devin CLI -- the Devin sibling of the Claude/Codex
 // spec-gate-enforce hook. Intercepts a Devin tool call BEFORE it runs and
 // evaluates the shared spec-gate core's evaluateMutation() policy. A deny emits
@@ -15,14 +20,25 @@
 // names are unconfirmed (research §10 proposed skeleton, no live capture yet)
 // -- this adapter tries the same file_path candidate fallbacks the Claude/Codex
 // siblings already tolerate rather than assuming one exact shape.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Devin tool vocabulary -> the mutation classes the core expects. `exec` is the
 // shell surface (Bash-equivalent); `edit` is the file-write surface (proposed,
 // not live-confirmed -- research-devin-hooks-portability/research.md §10).
 const DEVIN_TOOL_MAP = { exec: 'bash', edit: 'edit' };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -40,6 +56,10 @@ function filePathFrom(toolInput) {
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
   return typeof candidate === 'string' && candidate ? candidate : null;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -101,5 +121,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

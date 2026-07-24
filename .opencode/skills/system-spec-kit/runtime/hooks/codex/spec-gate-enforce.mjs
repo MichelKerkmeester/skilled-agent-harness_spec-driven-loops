@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex PreToolUse Spec Gate Enforce                            ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Deny an unscoped mutation while the spec gate is open.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse enforce hook for Codex CLI -- the Codex sibling of the Claude
 // spec-gate-enforce hook. Intercepts a Codex tool call BEFORE it runs and
 // evaluates the shared spec-gate core's evaluateMutation() policy. A deny emits
@@ -8,13 +13,24 @@
 // a third consumer alongside the Claude hook and the OpenCode plugin -- no core
 // change. FAILS OPEN -- any missing payload or internal error approves silently,
 // so a bug here never blocks correctly-scoped work.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Codex tool vocabulary -> the mutation classes the core expects. `exec` is the
 // shell surface (Bash-equivalent); `apply_patch`/`edit` are file writes.
 const CODEX_TOOL_MAP = { exec: 'bash', apply_patch: 'write', edit: 'edit' };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -54,6 +70,10 @@ function filePathFrom(toolInput, projectDir) {
   // exempt sibling that happens to come first.
   return paths.find((candidatePath) => !guardCore.isExemptTargetPath(candidatePath, projectDir)) || paths[0];
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -115,5 +135,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

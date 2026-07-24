@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude PostToolUse Code Graph Freshness                       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Queue an incremental rescan after an edit lands.                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse(Write|Edit) code-graph freshness guard for Claude Code.
 //
 // Claude's counterpart to the mk-code-graph-freshness OpenCode plugin: after a
@@ -13,10 +18,18 @@
 // stdout; this hook never writes hookSpecificOutput.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { spawn } = require('node:child_process');
 const { join } = require('node:path');
 
 const freshnessCore = require('../../lib/code-graph/freshness-core.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function exitOpen() {
   process.exit(0);
@@ -58,6 +71,10 @@ function dispatchScan(projectDir, dispatchSpec) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
 async function main() {
   if (freshnessCore.isFreshnessDisabled(process.env)) return exitOpen();
 
@@ -91,5 +108,9 @@ async function main() {
 
   return exitOpen();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => exitOpen());

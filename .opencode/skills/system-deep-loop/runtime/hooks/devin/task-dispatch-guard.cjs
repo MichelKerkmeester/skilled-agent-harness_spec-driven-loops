@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Devin PreToolUse Subagent Dispatch Guard                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Reject a deep-loop mode mismatch before the dispatch runs.      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse(run_subagent) deep-loop dispatch guard for Devin CLI -- a deliberate
 // divergence from the Codex precedent, not a port. Codex folds this concern into
 // its exec-shape recognizer because Codex has no native subagent-dispatch tool.
@@ -16,7 +21,15 @@
 // rather than assuming one exact shape.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const guardCore = require('../../lib/deep-loop/dispatch-guard.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -28,6 +41,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -78,5 +95,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

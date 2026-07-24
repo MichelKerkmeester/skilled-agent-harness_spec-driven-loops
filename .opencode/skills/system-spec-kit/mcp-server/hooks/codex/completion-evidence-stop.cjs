@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex Stop Completion Evidence Sentinel                       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Advise when a completion claim lacks packet evidence.           ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // Stop hook for Codex CLI -- the Codex sibling of the Claude completion-evidence
 // Stop sentinel. Plain, directly-runnable .cjs (no build step) that reads its own
 // Stop payload, resolves the active packet from the shared lifecycle state file,
@@ -12,12 +17,20 @@
 // and the sentinel no-ops -- dormant-safe until Codex provides the message.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { createHash } = require('node:crypto');
 const { readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { tmpdir } = require('node:os');
 
 const sentinelCore = require('../../lib/hooks/completion-evidence-sentinel.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> the Stop event finishes normally.
@@ -51,6 +64,10 @@ function readLastSpecFolder(cwd, sessionId) {
     return null;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return approve();
@@ -100,5 +117,9 @@ async function main() {
   // Advisory only -- never a block/continue decision.
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

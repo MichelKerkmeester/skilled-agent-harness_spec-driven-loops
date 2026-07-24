@@ -6,32 +6,45 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 // Cursor's counterpart to Claude's mcp-route-guard.cjs (PreToolUse `mcp__claude_ai_.*` matcher).
 //
-// STATUS: BUILT, UNWIRED -- NOT in .cursor/hooks.json. No MCP server is
-// configured for Cursor CLI on this machine: repo `.cursor/mcp.json` does not
-// exist, `~/.cursor/mcp.json` is a 0-byte empty file, and
-// `cursor-agent mcp list` itself reports none configured.
-// beforeMCPExecution/afterMCPExecution cannot be live-verified without a
-// real, credentialed MCP server to dispatch against, and fabricating one was
-// out of scope for this pass.
+// `beforeMCPExecution` is confirmed live-firing against cursor-agent
+// 2026.07.23-e383d2b, with a real captured payload (isolated workspace, own
+// mcp.json + probe hooks.json, dispatched with `--approve-mcps`).
 //
-// This proxy is written defensively against the SAME `tool_name` /
-// `workspace_roots` field convention confirmed live for every OTHER Cursor
-// hook event (preToolUse, postToolUse, sessionStart/End) -- Cursor's hook
-// payloads share that shape consistently across every event this packet has
-// actually observed. That is a reasonable inference, NOT an independent
-// confirmation for beforeMCPExecution specifically: no live payload for this
-// event has ever been captured. Do NOT add this to .cursor/hooks.json until a
-// configured MCP server lets a real payload be captured and this field-name
-// assumption re-checked -- mirrors spec-gate-classify.mjs's own "register...
-// ONLY after re-confirming live delivery" precedent, applied here one step
-// earlier (before ANY registration, not just before trusting the result).
+// The captured payload carries the server and the tool in SEPARATE fields --
+// `mcp_server_name: "sequential_thinking"` alongside a BARE
+// `tool_name: "sequentialthinking"` -- unlike Claude, which packs both into a
+// single `mcp__<server>__<tool>` string. The shared guard core only parses
+// those two packed shapes (`mcp__<server>__<tool>` or `<server>_<tool>`), so
+// forwarding Cursor's bare tool_name verbatim matches NOTHING and the guard
+// silently never advises. The two fields are therefore recombined into the
+// packed Claude shape before the core sees them; verified against the core
+// directly, the bare form returns no advisory where the packed form does.
+//
+// Advisory only -- this guard never denies. FAILS OPEN: any missing payload,
+// spawn error, or parse failure approves silently.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const GUARD_SCRIPT_RELATIVE = '.opencode/skills/mcp-code-mode/runtime/hooks/claude/mcp-route-guard.cjs';
 const CHILD_TIMEOUT_MS = 3_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
+
+// The packed shape the shared core parses: `mcp__<server>__<tool>`.
+const CLAUDE_MCP_PREFIX = 'mcp__';
+const CLAUDE_MCP_SEPARATOR = '__';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve(agentMessage) {
   process.stdout.write(JSON.stringify({
@@ -47,6 +60,19 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
+// Recombine Cursor's split server/tool fields into the single packed string
+// the shared core parses. Without a server name there is nothing to pack, so
+// the bare tool name is passed through and simply will not match -- the same
+// silent no-match the core already gives any unrecognized shape.
+function packServerAndTool(serverName, toolName) {
+  if (!serverName || !toolName) return toolName;
+  return `${CLAUDE_MCP_PREFIX}${serverName}${CLAUDE_MCP_SEPARATOR}${toolName}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
 async function main() {
   let payload;
   try {
@@ -57,7 +83,7 @@ async function main() {
 
   const projectDir = payload?.workspace_roots?.[0] || process.cwd();
   const guardPayload = {
-    tool_name: payload?.tool_name,
+    tool_name: packServerAndTool(payload?.mcp_server_name, payload?.tool_name),
     cwd: projectDir,
   };
 
@@ -89,5 +115,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

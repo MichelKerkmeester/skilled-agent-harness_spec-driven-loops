@@ -20,7 +20,15 @@
 // (wired to the confirmed-firing preToolUse) is the sole deny surface. FAILS
 // OPEN -- any missing payload or internal error approves silently.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   process.stdout.write(JSON.stringify({ permission: 'allow' }));
@@ -32,6 +40,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -57,5 +69,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

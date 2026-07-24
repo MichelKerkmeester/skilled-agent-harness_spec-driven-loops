@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude UserPromptSubmit Spec Gate Classify                    ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Surface the spec-folder question on a mutating turn.            ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // UserPromptSubmit classify hook for Claude Code.
 //
 // Runs the shared spec-gate core against each user turn: opens the session
@@ -8,9 +13,16 @@
 // enforce hook (spec-gate-enforce.mjs) is the one surface that can deny.
 // FAILS OPEN -- any missing payload or internal error approves silently, so a
 // bug here never blocks or corrupts the turn it observes.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> Claude proceeds with the turn unchanged.
@@ -22,6 +34,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -49,5 +65,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

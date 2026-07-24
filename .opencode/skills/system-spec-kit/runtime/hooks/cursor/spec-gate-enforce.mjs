@@ -14,7 +14,15 @@
 // core change. FAILS OPEN -- any missing payload, unmapped tool, or internal
 // error approves silently, so a bug here never blocks correctly-scoped work.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Cursor tool vocabulary -> the mutation classes the core expects, confirmed
 // live via a temporary probe-hook dispatch against cursor-agent
@@ -23,6 +31,10 @@ import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
 // observed in testing -- if Cursor later exposes one, add it here rather
 // than assuming it maps the same way.
 const CURSOR_TOOL_MAP = { Shell: 'bash', Write: 'write' };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // {"permission":"allow"} + exit 0 -> defer to the normal flow.
@@ -41,6 +53,10 @@ function filePathFrom(toolInput) {
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
   return typeof candidate === 'string' && candidate ? candidate : null;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -98,5 +114,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

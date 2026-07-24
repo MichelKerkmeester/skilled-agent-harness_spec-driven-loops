@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude Stop Completion Evidence Sentinel                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Advise when a completion claim lacks packet evidence.           ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // Stop hook (Claude Code) for the completion-evidence sentinel.
 //
 // Standalone by design: the existing Stop owner (session-stop.ts, compiled to
@@ -14,12 +19,20 @@
 // missing payload or internal error.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { createHash } = require('node:crypto');
 const { readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { tmpdir } = require('node:os');
 
 const sentinelCore = require('../../lib/hooks/completion-evidence-sentinel.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> the Stop event finishes normally.
@@ -58,6 +71,10 @@ function readLastSpecFolder(cwd, sessionId) {
     return null;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return approve();
@@ -111,5 +128,9 @@ async function main() {
   // which would force Claude to continue.
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

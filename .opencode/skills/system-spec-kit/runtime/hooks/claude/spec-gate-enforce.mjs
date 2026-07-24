@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude PreToolUse Spec Gate Enforce                           ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Deny an unscoped mutation while the spec gate is open.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse enforce hook for Claude Code -- wired to TWO matchers in
 // .claude/settings.json: "Write|Edit" (deny-capable) and "Bash" (advise-only,
 // same file). It intercepts the tool call BEFORE it runs and evaluates the
@@ -7,9 +12,16 @@
 // without overriding the permission decision. FAILS OPEN -- any missing
 // payload or internal error approves silently, so a bug here never blocks
 // unrelated, correctly-scoped work.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -27,6 +39,10 @@ function filePathFrom(toolInput) {
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
   return typeof candidate === 'string' ? candidate : null;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -89,5 +105,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

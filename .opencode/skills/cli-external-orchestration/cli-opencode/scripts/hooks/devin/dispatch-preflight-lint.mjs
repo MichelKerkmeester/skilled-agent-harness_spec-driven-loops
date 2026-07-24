@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Devin PreToolUse Dispatch Preflight                           ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Lint a CLI dispatch command against the skill's hard rules.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse(exec) preflight for CLI dispatch under Devin CLI -- the Devin sibling
 // of the Codex/Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` / `codex exec -p` command BEFORE it spawns on the
@@ -11,9 +16,17 @@
 // Devin's `exec` tool_name is a proposed matcher (research §10), not live-confirmed,
 // since PreToolUse never fires under `-p` dispatch to observe a real payload.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { readHardRules, evaluate } from '../../lib/dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES } from '../../lib/dispatch-audit.mjs';
 import path from 'node:path';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -25,6 +38,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -74,5 +91,9 @@ async function main() {
   }));
   return process.exit(0);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

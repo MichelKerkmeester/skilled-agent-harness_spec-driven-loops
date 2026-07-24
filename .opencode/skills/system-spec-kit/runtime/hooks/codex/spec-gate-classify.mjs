@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex UserPromptSubmit Spec Gate Classify                     ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Surface the spec-folder question on a mutating turn.            ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // UserPromptSubmit classify hook for Codex CLI -- the Codex sibling of the Claude
 // spec-gate-classify hook. Runs the shared spec-gate core against each user turn:
 // opens the session gate and surfaces the bounded Gate-3 question as
@@ -6,9 +11,16 @@
 // answer to an already-open gate. Advisory only -- no deny capability; the
 // enforce hook is the sole deny surface. FAILS OPEN -- any missing payload or
 // internal error approves silently.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> Codex proceeds with the turn unchanged.
@@ -20,6 +32,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -47,5 +63,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude PostToolUse Dispatch Audit                             ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Append a redacted audit line for a completed dispatch.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse(Bash) CLI dispatch audit trail for Claude Code.
 //
 // Claude's counterpart to the mk-cli-dispatch-audit OpenCode plugin: it observes a completed
@@ -8,10 +13,17 @@
 // lint, it must never emit a permissionDecision, since a post-execution audit has no business
 // affecting a result that already exists. FAILS OPEN -- any missing payload, parse error, or
 // audit-path failure exits 0 with no output, so a bug here can never break a real dispatch.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
 import * as dispatchAuditCore from '../lib/dispatch-audit.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function done() {
   // No output + exit 0 -> pure observation, nothing for Claude to act on.
@@ -23,6 +35,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -62,5 +78,9 @@ async function main() {
 
   return done();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => done());

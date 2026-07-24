@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Devin PostCompaction Context Recovery                         ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Rehydrate continuity context after a compaction event.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostCompaction hook for Devin CLI -- a bespoke adapter, not a port. Claude's
 // PreCompact fires BEFORE compaction with session_id/transcript_path/trigger and
 // deliberately emits no stdout (the cache is delivered later via a synthesized
@@ -14,14 +19,26 @@
 // STATUS: DORMANT -- see ./README.md for the packet-wide -p hook-firing finding.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const { readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { tmpdir } = require('node:os');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const MAX_CONTEXT_BYTES = 4096;
 const MEMORY_CONTEXT_TIMEOUT_MS = 2500;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function emit(context) {
   if (context) {
@@ -98,6 +115,10 @@ function boundedMemoryContextResume(projectDir) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
 async function main() {
   let payload;
   try {
@@ -133,5 +154,9 @@ async function main() {
   // Step 4 + 5: sanitize the composed sections, then emit directly.
   return emit(sanitizeForInjection(sections.join('\n\n')));
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => emit(null));

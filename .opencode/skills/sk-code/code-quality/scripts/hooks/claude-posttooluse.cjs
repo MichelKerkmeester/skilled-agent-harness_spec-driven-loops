@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude PostToolUse Quality Check                              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Run the edited file's quality checkers, warn-only.              ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse(Write|Edit) unified quality-check hook for Claude Code.
 //
 // Thin adapter over the shared runtime-neutral post-edit-router core: reads
@@ -19,10 +24,22 @@
 //                 "timeout": 10 }] }
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const router = require('../lib/post-edit-router.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function readStdin() {
   const chunks = [];
@@ -63,6 +80,10 @@ function printFindings(findings, filePath) {
     else printGenericFinding(finding, filePath);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const startedAt = Date.now();
@@ -121,6 +142,10 @@ async function main() {
     // Fail-open.
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main()
   .catch(() => {})

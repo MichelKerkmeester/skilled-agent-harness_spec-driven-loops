@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex PostToolUse Quality Check                               ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Run the edited file's quality checkers, warn-only.              ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse quality-check hook for Codex CLI -- the Codex sibling of the Claude
 // post-edit quality hook. Reads the hook's stdin JSON, resolves the edited file's
 // checker via the shared post-edit-router core, and runs it under the hook
@@ -7,13 +12,25 @@
 // block the tool call this hook observes.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
 const router = require('../../lib/post-edit-router.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
 // Codex file-write tools that produce a file worth checking.
 const CODEX_EDIT_TOOLS = new Set(['apply_patch', 'edit']);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function readStdin() {
   const chunks = [];
@@ -71,6 +88,10 @@ function printFindings(findings, filePath) {
     else printGenericFinding(finding, filePath);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const startedAt = Date.now();
@@ -132,6 +153,10 @@ async function main() {
     // Fail-open.
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main()
   .catch(() => {})

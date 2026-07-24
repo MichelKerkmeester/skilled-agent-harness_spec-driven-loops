@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex PreToolUse Dispatch Preflight                           ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Lint a CLI dispatch command against the skill's hard rules.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse(exec) preflight for CLI dispatch under Codex CLI -- the Codex sibling
 // of the Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` command BEFORE it spawns on the exec surface and
@@ -9,9 +14,17 @@
 // call, so it fast-exits on anything that is not a dispatch shape, and it FAILS
 // OPEN -- any internal error approves silently, never blocks.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { readHardRules, evaluate } from '../../lib/dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES } from '../../lib/dispatch-audit.mjs';
 import path from 'node:path';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Codex dispatches sub-agents via `codex exec -p <agent>` on the exec surface --
 // a shape the shared cross-runtime core (opencode run / claude -p) does not know.
@@ -24,6 +37,10 @@ const CODEX_EXEC_SHAPE = {
 };
 const DISPATCH_SKILLS = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
   process.exit(0);
@@ -34,6 +51,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -83,5 +104,9 @@ async function main() {
   }));
   return process.exit(0);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

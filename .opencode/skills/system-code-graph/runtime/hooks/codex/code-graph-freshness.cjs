@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex PostToolUse Code Graph Freshness                        ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Queue an incremental rescan after an edit lands.                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse code-graph freshness guard for Codex CLI -- the Codex sibling of
 // the Claude code-graph-freshness hook. After an apply_patch/edit lands, it
 // evaluates the same runtime-neutral policy (debounce -> empty gate -> warm probe
@@ -9,13 +14,25 @@
 // missing payload or internal error exits 0 silently.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { spawn } = require('node:child_process');
 const { join, isAbsolute } = require('node:path');
 
 const freshnessCore = require('../../lib/code-graph/freshness-core.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Codex file-write tools -- this guard only cares that a file changed.
 const CODEX_EDIT_TOOLS = new Set(['apply_patch', 'edit']);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function exitOpen() {
   process.exit(0);
@@ -74,6 +91,10 @@ function dispatchScan(projectDir, dispatchSpec) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
 async function main() {
   if (freshnessCore.isFreshnessDisabled(process.env)) return exitOpen();
 
@@ -106,5 +127,9 @@ async function main() {
 
   return exitOpen();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => exitOpen());

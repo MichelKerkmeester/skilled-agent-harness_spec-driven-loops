@@ -28,12 +28,24 @@
 // internal error approves silently, so a bug here never blocks a
 // correctly-scoped Task dispatch.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const GUARD_SCRIPT_RELATIVE = '.opencode/skills/system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs';
 const CHILD_TIMEOUT_MS = 5_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve(agentMessage) {
   process.stdout.write(JSON.stringify({
@@ -48,6 +60,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -110,5 +126,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

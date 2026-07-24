@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Devin PreToolUse MCP Route Guard                              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Advise routing an MCP call through Code Mode on a match.        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PreToolUse advisory hook for native external MCP calls under Devin CLI -- the
 // Devin sibling of the Codex/Claude mcp-route-guard hook. Reads a matched
 // `mcp__.*` tool call and evaluates the runtime-neutral mcp-route-guard core; a
@@ -13,7 +18,15 @@
 // re-evaluate once real MCP servers exist.
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const guardCore = require('../../lib/mcp-route-guard.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
   // No output + exit 0 -> defer to the normal permission flow.
@@ -25,6 +38,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -56,5 +73,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Codex PostToolUse Dispatch Audit                              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Append a redacted audit line for a completed dispatch.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // PostToolUse(exec) CLI dispatch audit trail for Codex CLI -- the Codex sibling of
 // the Claude dispatch-audit hook. Observes a completed exec call, recognizes an
 // `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends one
@@ -8,7 +13,10 @@
 // permissionDecision, since a post-execution audit has no business affecting a
 // result that already exists. FAILS OPEN -- any missing payload, parse error, or
 // audit-path failure exits 0 with no output.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
 import {
@@ -19,6 +27,10 @@ import {
   buildAuditLine,
   appendAuditLog,
 } from '../../lib/dispatch-audit.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Codex dispatches sub-agents via `codex exec -p <agent>` -- a shape the shared
 // core (opencode run / claude -p) does not know. Extend the recognizer locally so
@@ -32,6 +44,10 @@ const CODEX_EXEC_SHAPE = {
 };
 const SHAPES = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function done() {
   // No output + exit 0 -> pure observation, nothing for Codex to act on.
   process.exit(0);
@@ -42,6 +58,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -85,5 +105,9 @@ async function main() {
 
   return done();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => done());

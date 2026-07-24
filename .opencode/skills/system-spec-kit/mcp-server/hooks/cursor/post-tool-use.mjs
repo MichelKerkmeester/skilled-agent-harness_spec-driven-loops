@@ -25,14 +25,26 @@
 // spawn/parse error on any one chained hook must never affect the tool call
 // already completed, and never affects the other chained hook.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs';
 const CODE_GRAPH_FRESHNESS_RELATIVE = '.opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs';
 const DISPATCH_AUDIT_RELATIVE = '.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function approve(agentMessage) {
   process.stdout.write(JSON.stringify({
@@ -80,6 +92,10 @@ function parseShellToolOutput(rawToolOutput) {
     return {};
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -139,5 +155,9 @@ async function main() {
 
   return approve();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());
