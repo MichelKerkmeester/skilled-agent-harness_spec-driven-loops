@@ -20,7 +20,9 @@
       "devin hook adapter tasks",
       "devin hook adapter checklist",
       "devin hook adapter decision record",
-      "read_config_from.claude decision"
+      "read_config_from.claude decision",
+      "devin hook adapter summary",
+      "devin hook dormancy finding"
     ],
     "key_topics": [
       "devin",
@@ -37,27 +39,46 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "plan.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
+      "plan.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
       "runtime/lib/spec-gate/spec-gate-core.mjs",
       "lib/hooks/completion-evidence-sentinel.cjs",
-      ".claude/settings.json",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
       ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
+      "hooks/devin/shared.ts",
       "hooks/codex/shared.ts",
+      "hooks/devin/session-start.ts",
+      "hooks/devin/user-prompt-submit.ts",
+      "runtime/hooks/devin/spec-gate-classify.mjs",
       "runtime/hooks/codex/spec-gate-enforce.mjs",
-      "spec.md",
-      ".codex/hooks.json"
+      "hooks/devin/README.md",
+      "runtime/hooks/devin/README.md"
     ],
     "entities": [
       {
-        "name": "plan.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -73,9 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
         "source": "derived"
       },
       {
@@ -91,21 +118,27 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
-        "source": "derived"
-      },
-      {
         "name": "shared.ts",
         "kind": "code",
-        "path": "hooks/codex/shared.ts",
+        "path": "hooks/devin/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": "hooks/devin/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/devin/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/devin/spec-gate-classify.mjs",
         "source": "derived"
       },
       {
@@ -115,25 +148,7 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,13 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Problem Statement This",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -191,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
     "created_at": "2026-07-23T19:51:58.883Z",
-    "last_save_at": "2026-07-23T19:51:58.883Z",
+    "last_save_at": "2026-07-24T13:00:59.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be1c8a4fff5a850c00e25379ac42f4d299b0d270299489b6ffa5ab9d5b4758c3",
+    "source_fingerprint": "sha256:bf8f62ff4f63d8d597c6aa535d99be1d318baa1555974ebe60284b154bc22fcb",
     "source_doc_hashes": {
-      "spec.md": "e697aa98b71c26e38ee2bf62c44d2673abc111618bf0ab9fc779f603f06f917f",
-      "plan.md": "c1ffa23398851cff2beffbc2b965f0594e45ea35a8112be2581c00586457defc",
-      "tasks.md": "43f8453643efa6df1066a45d99e425c8366681f56d3529a16cd7449681def390",
-      "checklist.md": "f078c6cd051da5baa43a1fb71715204b1164ae4c7ca364a26cfc3577cafec122",
-      "decision-record.md": "630262c60e7c01706305cc3f7bf122135d0a83bce315eea6d37a5938b99ee5f4"
+      "spec.md": "a4e718ac1900ebcd5d385737107c7f5e66d505626343ed9fe7ad0d23690e4887",
+      "plan.md": "2c7c9c2d5e03943ea51b6d2946b49e5ff17df5605a1353acf788a6630819fd53",
+      "tasks.md": "6f837d5f31786efbd3183319ba67455b64f68d09621ee5d95f9286ff0d6c2532",
+      "checklist.md": "8e218864063e3b9c61c062628ab009562c98b1e63ad75f5a1198b1d6c65b02af",
+      "decision-record.md": "4085b3ecd358be1821565ed14e4dfc6bcad816ca99747a3348956e6132ef77f8",
+      "implementation-summary.md": "799697187115d04d17286a30996b9be193679367838edaf081dd85732f12830b"
     },
     "last_active_child_id": null,
     "last_active_at": null

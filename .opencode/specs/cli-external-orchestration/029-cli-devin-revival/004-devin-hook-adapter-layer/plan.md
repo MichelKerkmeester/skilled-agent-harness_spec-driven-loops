@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T16:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored Level 3 plan: dependency graph, critical path, milestones, ADR-001 pointer"
-    next_safe_action: "Wait for phase 003, then run Phase 1 live schema re-verification"
-    blockers: ["depends on 003-cli-devin-skill-packet landing first", "read_config_from.claude fidelity unverified"]
+    recent_action: "Executed; Phase 3 live smoke test returned a confirmed negative"
+    next_safe_action: "Phase 008 can begin; same dormant-hooks caveat applies"
+    blockers: []
     key_files: ["spec.md", "tasks.md", "decision-record.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Does read_config_from.claude ingest Claude Code's hooks in the schema .devin/hooks.v1.json expects? See decision-record.md ADR-001"]
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Hooks never fire under devin -p; read_config_from.claude fidelity is moot until that changes."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -35,6 +35,8 @@ _memory:
 
 ### Overview
 Add thin Devin-host adapters over the existing runtime-neutral hook cores - the same `hooks/claude/*.ts` implementations and `runtime/lib/spec-gate/spec-gate-core.mjs` that `hooks/codex/` and `runtime/hooks/codex/` already delegate to - register them in `.devin/hooks.v1.json`, and live-smoke-test the JSON stdin/stdout round trip for `SessionStart` and `UserPromptSubmit` first.
+
+**Outcome (2026-07-24)**: the live smoke test in Phase 3 returned a confirmed negative -- `.devin/hooks.v1.json` (and `.devin/config.json`'s `"hooks"` key) is never consulted under `devin -p`, ruling out registration entirely for this build. Adapters were built, typechecked, and directly-invocation-tested per the plan below, but `.devin/hooks.v1.json` was never authored/committed, and every "register the config file" step below did not happen as originally planned. Full evidence: `decision-record.md` ADR-001.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -130,7 +132,7 @@ N/A - this is new-adapter work, not a bug fix. No existing consumer behavior cha
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-Remove `hooks/devin/`, `runtime/hooks/devin/`, and `.devin/hooks.v1.json`; leave the neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) untouched, matching the codex-precedent rollback plan exactly.
+Remove `hooks/devin/` and `runtime/hooks/devin/`; leave the neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) untouched, matching the codex-precedent rollback plan exactly. `.devin/hooks.v1.json` was never created (see Outcome note above), so there is nothing to remove there.
 <!-- /ANCHOR:rollback -->
 
 ---

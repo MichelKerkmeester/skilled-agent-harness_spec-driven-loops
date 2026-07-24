@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T16:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored ADR-001 recommending hand-built Devin hook adapters"
-    next_safe_action: "Verify read_config_from.claude fidelity before implementation starts"
-    blockers: ["read_config_from.claude fidelity is unverified from fetched documentation alone"]
-    key_files: ["spec.md", "plan.md"]
+    recent_action: "Live-verified: hooks never fire under devin -p; adapters built dormant"
+    next_safe_action: "Re-run the probe methodology before ever registering .devin/hooks.v1.json"
+    blockers: ["No headless -p attachment point for hooks exists in devin 3000.2.17"]
+    key_files: ["spec.md", "plan.md", "../../../../.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Does read_config_from.claude actually ingest Claude Code's own hooks in the same schema .devin/hooks.v1.json expects, or only simpler rules/instructions-style context?"]
-    answered_questions: []
+    completion_pct: 100
+    open_questions: ["Does hook firing work in true interactive mode (untestable from this environment, no TTY)?"]
+    answered_questions: ["read_config_from.claude fidelity became moot: hooks.v1.json/config.json hooks key are never read at all under -p, confirmed via malformed-JSON and --agent-config strict-parser tests."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -31,8 +31,8 @@ _memory:
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
-| **Date** | 2026-07-23 |
+| **Status** | Accepted (revised 2026-07-24) |
+| **Date** | 2026-07-23 (revised 2026-07-24) |
 | **Deciders** | claude-code (authoring), operator (approval) |
 
 ---
@@ -58,7 +58,9 @@ We needed to choose between building the adapter layer by hand, mirroring the co
 
 **We chose**: Start with hand-built thin adapters for Devin, mirroring the proven `cli-codex` pattern exactly, rather than relying on `read_config_from.claude`'s unverified import fidelity.
 
-**How it works**: `hooks/devin/shared.ts` reads and validates each Devin hook payload, spawns the matching compiled `hooks/claude/*.js` adapter (the same neutral core `cli-codex` already delegates to), and translates the result into Devin's documented `hookSpecificOutput` response envelope. `runtime/hooks/devin/spec-gate-classify.mjs`/`spec-gate-enforce.mjs` wire the same way into `spec-gate-core.mjs`, mapping Devin's tool-call vocabulary onto the core's `bash`/`write`/`edit` vocabulary. This phase re-evaluates `read_config_from.claude` once its actual import fidelity is verified against a live Devin session, rather than assuming it now.
+**How it works**: `hooks/devin/shared.ts` reads and validates each Devin hook payload, spawns the matching compiled `hooks/claude/*.js` adapter (the same neutral core `cli-codex` already delegates to), and translates the result into Devin's documented `hookSpecificOutput` response envelope. `runtime/hooks/devin/spec-gate-classify.mjs` wires the same way into `spec-gate-core.mjs` for `UserPromptSubmit`. `spec-gate-enforce.mjs` (`PreToolUse`, mapping Devin's tool-call vocabulary onto the core's `bash`/`write`/`edit` vocabulary) is NOT built in this phase -- it belongs to phase 008 alongside the other 5 remaining lifecycle events, matching this phase's own explicit "starting with SessionStart/UserPromptSubmit" scope statement, which the original Files-to-Change table's inclusion of `spec-gate-enforce.mjs` contradicted.
+
+**Revision (2026-07-24) -- the deeper finding this ADR did not anticipate**: `read_config_from.claude`'s fidelity turned out to be the SMALLER unknown. Live-probing the installed `devin 3000.2.17` binary (temporary uncommitted `.devin/hooks.v1.json` + a real dispatched tool call, mirroring the exact methodology `cli-cursor`'s phase 004 used) found that **`.devin/hooks.v1.json` and `.devin/config.json`'s `"hooks"` key are never consulted at all under `devin -p`** -- confirmed via zero probe firings across `SessionStart`/`UserPromptSubmit`/`PreToolUse`/`Stop`, and via deliberately malformed hook JSON producing zero parse errors (proof the file isn't read, not merely ignored once read). `--agent-config`'s own strict parser separately confirmed `hooks` is not a valid field in that schema (`unknown field 'hooks'`). No headless/dispatched attachment point for Devin's hook system exists in this build -- and `-p` is the only mode any dispatcher, including this repo's own `cli-devin` executor, would ever use. True interactive mode was not testable from this environment (no TTY) and remains the one unconfirmed gap. The operator chose to build the adapters anyway, explicitly marked dormant, so the code is ready the moment a future `devin` build adds `-p` hook support -- not to claim coverage that does not exist today.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -81,18 +83,19 @@ We needed to choose between building the adapter layer by hand, mirroring the co
 ### Consequences
 
 **What improves**:
-- The 7 guard hooks fire correctly under a dispatched Devin executor, closing the same enforcement blind spot `cli-codex`'s adapter layer already closed for Codex.
-- The adapter strategy rests on a precedent already proven live, not an unverified vendor import path.
+- The 2 in-scope guard hooks (`SessionStart` lifecycle prime, `UserPromptSubmit` Gate-3 classify) exist as ready, typechecked, directly-invocation-verified code the moment Devin ships `-p` hook support -- no adapter work needed at that point, only registration.
+- The adapter strategy rests on a precedent already proven live for `cli-codex`, and the code is byte-identical in shape to that proven pattern.
 
 **What it costs**:
-- More adapter code to write and maintain than a pure native-import approach would need, if that approach turns out to be fully faithful. Mitigation: keep adapters thin (translation only, no duplicated lifecycle logic), matching the codex precedent's own design discipline, and re-evaluate `read_config_from.claude` once its fidelity is confirmed, at which point some hand-built adapters could be retired.
+- Zero live coverage today: unlike `cli-codex`/`cli-cursor`, these adapters cannot be claimed to close any enforcement blind spot right now, because no dispatched Devin session can trigger them. This is not a maintenance cost, it is a confirmed, documented capability gap.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| `read_config_from.claude` turns out to be fully faithful, and hand-built adapters become redundant maintenance | M | Explicit re-evaluation trigger recorded here; not a silent abandonment of the simpler path |
-| Devin's hook JSON schema drifts from what codex's adapters assume (matcher syntax, timeout units, decision field names) | M | Live-verify every field against a real fired event before marking an adapter done, not just against docs |
+| `-p` hook support is added in a future `devin` build but this dormant status is never re-checked, so the adapters ship silently believing they're still dead code | M | Re-verification trigger recorded in both README.md files (`mcp-server/hooks/devin/`, `runtime/hooks/devin/`); re-run the exact probe methodology before registering `.devin/hooks.v1.json` |
+| Interactive mode (untested from this environment) turns out to already fire hooks, meaning coverage exists today for human-run sessions specifically, and this ADR's "zero coverage" framing is too pessimistic | L | Explicitly flagged as the one unconfirmed gap; operator can test interactively and update this ADR with the result |
+| `read_config_from.claude` turns out to be fully faithful, and hand-built adapters become redundant maintenance once `-p` hook support exists | L | Explicit re-evaluation trigger recorded here; not a silent abandonment of the simpler path |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -104,9 +107,9 @@ We needed to choose between building the adapter layer by hand, mirroring the co
 |---|---|---|---|
 | 1 | **Necessary?** | PASS | Guard hooks must fire regardless of which CLI executor is dispatched; `cli-devin` currently has no adapters, a confirmed live gap. |
 | 2 | **Beyond Local Maxima?** | PASS | `read_config_from.claude` was investigated and flagged as a future simplification, not ignored - it is deferred with an explicit re-evaluation trigger, not dismissed. |
-| 3 | **Sufficient?** | PASS | Hand-built adapters for the two proven-first events (`SessionStart`, `UserPromptSubmit`) are sufficient to close the immediate enforcement gap in scope for this phase. |
-| 4 | **Fits Goal?** | PASS | Matches the `cli-codex` precedent exactly - the same adapter shape, the same neutral cores, the same fail-open discipline. |
-| 5 | **Open Horizons?** | PASS | Re-evaluate `read_config_from.claude` once its actual import fidelity is verified at implementation time; this could reduce future maintenance burden without requiring a rewrite of the chosen approach. |
+| 3 | **Sufficient?** | PASS (revised) | Hand-built adapters for the two proven-first events (`SessionStart`, `UserPromptSubmit`) are built, typechecked, and directly-invocation-verified -- sufficient as ready code. They do NOT close a live enforcement gap today: confirmed no `-p`-mode attachment point exists in this `devin` build. Honestly labeled dormant, not overstated. |
+| 4 | **Fits Goal?** | PASS | Matches the `cli-codex` precedent exactly - the same adapter shape, the same neutral cores, the same fail-open discipline, the same `hookSpecificOutput` envelope. |
+| 5 | **Open Horizons?** | PASS | Re-evaluate this whole dormant status (not just `read_config_from.claude`) once a devin build documents `-p` hook support, or once interactive mode is confirmed to fire hooks where `-p` does not. |
 
 **Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
@@ -117,11 +120,11 @@ We needed to choose between building the adapter layer by hand, mirroring the co
 ### Implementation
 
 **What changes**:
-- `system-spec-kit/mcp-server/hooks/devin/` created: `shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `README.md` (additional adapters as later hooks are wired).
-- `system-spec-kit/runtime/hooks/devin/` created: `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `README.md`.
-- `.devin/hooks.v1.json` created at the project root, registering the two wired events.
+- `system-spec-kit/mcp-server/hooks/devin/` created: `shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `README.md` -- built, typechecked (`tsc --noEmit` 0 errors), compiled, directly-invocation-verified. Dormant (see README.md §2).
+- `system-spec-kit/runtime/hooks/devin/` created: `spec-gate-classify.mjs`, `README.md` -- built, directly-invocation-verified. Dormant. `spec-gate-enforce.mjs` is NOT created here; it belongs to phase 008.
+- `.devin/hooks.v1.json` is **NOT created/committed** -- registering a config path confirmed dead under `-p` dispatch would misrepresent this phase's actual coverage as active. The exact JSON shape is documented in both README.md files for whoever re-verifies `-p` hook support later.
 
-**How to roll back**: Delete `hooks/devin/`, `runtime/hooks/devin/`, and `.devin/hooks.v1.json`. The neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) were never modified, so no reversal is needed there - confirm with `git diff` showing no changes to those paths.
+**How to roll back**: Delete `hooks/devin/` and `runtime/hooks/devin/`. The neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) were never modified, so no reversal is needed there - confirm with `git diff` showing no changes to those paths.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
