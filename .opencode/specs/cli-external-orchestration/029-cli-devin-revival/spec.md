@@ -139,6 +139,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 ---
 
 ## RELATED DOCUMENTS
+- `hook-testing-results.md` (direct-invocation + live `devin -p` evidence for every adapter phases 004 and 008 built)
 - `001-devin-contract-pin/spec.md`, `.../implementation-summary.md`
 - `002-deep-loop-executor-support/spec.md` through `007-docs-agents-governance-and-closeout/spec.md`
 - `008-devin-hook-parity/spec.md`, `.../implementation-summary.md` (Complete (dormant) 2026-07-24 — full guard-hook coverage across all 7 event categories Claude covers, depends only on 004)
