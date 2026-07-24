@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog",
+  "description": "No `cli-external-orchestration` sibling mode has a feature-catalog package today -- `cli-codex` and `cli-cursor` both ship only a",
+  "keywords": [
+    "cli-external-orchestration",
+    "sibling",
+    "mode",
+    "feature-catalog",
+    "package",
+    "today",
+    "cli-codex",
+    "cli-cursor",
+    "ship",
+    "only"
+  ],
+  "lastUpdated": "2026-07-24T13:13:12.698Z",
+  "specId": "010",
+  "folderSlug": "devin-feature-catalog",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
