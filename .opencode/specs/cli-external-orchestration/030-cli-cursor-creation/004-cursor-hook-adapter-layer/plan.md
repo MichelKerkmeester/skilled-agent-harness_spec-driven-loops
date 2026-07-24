@@ -32,15 +32,15 @@ Add sibling `cursor/` hook-adapter directories mirroring the live `cli-codex` st
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- [ ] Neutral hook cores unchanged (`git diff` empty for `hooks/claude/**`, `runtime/lib/spec-gate/**`, `lib/hooks/completion-evidence-sentinel.cjs`).
-- [ ] Each wired event has captured live stdin/stdout evidence proving CLI delivery, not just config presence.
-- [ ] Adapters fail open on malformed payloads (protecting editor users of the shared config).
-- [ ] ADR-001 (registration scope) and ADR-002 (event mapping + partial-delivery) recorded with status + verification trigger.
+- [x] Neutral hook cores unchanged (`git diff` empty for `hooks/claude/**`, `runtime/lib/spec-gate/**`, `lib/hooks/completion-evidence-sentinel.cjs`).
+- [x] Each wired event has captured live stdin/stdout evidence proving CLI delivery, not just config presence.
+- [x] Adapters fail open on malformed payloads (protecting editor users of the shared config).
+- [x] ADR-001 (registration scope) and ADR-002 (event mapping + partial-delivery) recorded with status + verification trigger.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-Two-layer adapter mirroring the codex precedent: `mcp-server/hooks/cursor/` holds thin per-event adapters (`session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts`) plus `shared.ts` that reads a Cursor hook payload from stdin, spawns the matching compiled `hooks/claude/*.js` neutral core, and re-encodes the result into Cursor's `{permission: allow|deny|ask, user_message, agent_message}` envelope (exit 0 succeed / exit 2 block). `runtime/hooks/cursor/` wires `spec-gate-classify.mjs`/`spec-gate-enforce.mjs` into the shared `spec-gate-core.mjs`, mapping Cursor's `beforeShellExecution`/`beforeMCPExecution`/`beforeReadFile` tool vocabulary onto the core's `bash`/`write`/`edit` vocabulary. Registration is a project `.cursor/hooks.json` mapping Cursor event names to the adapter commands.
+Two-layer adapter mirroring the codex precedent, corrected against live-probe evidence: `mcp-server/hooks/cursor/` holds thin per-event adapters (`session-start.ts` for `sessionStart`, `session-end.ts` for `sessionEnd` — NOT `user-prompt-submit.ts`/`session-stop.ts`, since `beforeSubmitPrompt`/`stop` are confirmed to never fire) plus `shared.ts` that reads a Cursor hook payload from stdin, spawns the matching compiled `hooks/claude/*.js` neutral core, and re-encodes the result into Cursor's `{permission: allow|deny|ask, user_message, agent_message}` envelope (exit 0 succeed / exit 2 block — live-verified). `runtime/hooks/cursor/` wires `spec-gate-enforce.mjs` into the shared `spec-gate-core.mjs` via the generic `preToolUse` event (confirmed to fire for every tool, broader than `beforeShellExecution` alone), mapping Cursor's confirmed `Shell`/`Write` `tool_name` vocabulary onto the core's `bash`/`write` vocabulary; `spec-gate-classify.mjs` exists mapped to `beforeSubmitPrompt` but is dormant (never fires). Registration via a project `.cursor/hooks.json` is architecturally chosen (ADR-001) but the actual file is deferred to a later, explicitly-approved step (operator choice this phase).
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:affected-surfaces -->
@@ -49,7 +49,7 @@ Two-layer adapter mirroring the codex precedent: `mcp-server/hooks/cursor/` hold
 |---|---|---|---|
 | `mcp-server/hooks/cursor/**` | (new) thin Cursor adapters | Create | Live smoke test per event |
 | `runtime/hooks/cursor/**` | (new) Cursor-side spec-gate wiring | Create | spec-gate classify/enforce round trip |
-| `.cursor/hooks.json` | (new) project hook registration | Create | `cursor-agent` fires registered events |
+| `.cursor/hooks.json` | (new) project hook registration | Deferred (operator choice) | Verified instead via a temporary, uncommitted probe file |
 | `hooks/claude/**`, `runtime/lib/spec-gate/**` | Neutral cores | No change | `git diff` empty |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -57,18 +57,18 @@ Two-layer adapter mirroring the codex precedent: `mcp-server/hooks/cursor/` hold
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm phase 003 landed; read the live `hooks/codex/`+`runtime/hooks/codex/` files as the structural template.
-- [ ] Live-probe which Cursor events the installed `cursor-agent` CLI actually delivers (partial-delivery caveat).
+- [x] Confirm phase 003 landed; read the live `hooks/codex/`+`runtime/hooks/codex/` files as the structural template.
+- [x] Live-probe which Cursor events the installed `cursor-agent` CLI actually delivers (partial-delivery caveat).
 
 ### Phase 2: Core Implementation
-- [ ] Author `mcp-server/hooks/cursor/shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts`, `README.md`.
-- [ ] Author `runtime/hooks/cursor/spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `README.md`.
-- [ ] Author project `.cursor/hooks.json` registering the confirmed-delivered core events.
+- [x] Author `mcp-server/hooks/cursor/shared.ts`, `session-start.ts`, `session-end.ts`, `README.md` (renamed from the originally-planned `user-prompt-submit.ts`/`session-stop.ts` once live probing showed those events never fire).
+- [x] Author `runtime/hooks/cursor/spec-gate-classify.mjs` (dormant), `spec-gate-enforce.mjs` (wired to `preToolUse`), `README.md`.
+- [x] Project `.cursor/hooks.json` registration explicitly deferred by operator choice; verified instead via a temporary, uncommitted probe file.
 
 ### Phase 3: Verification
-- [ ] Live smoke test each wired event; capture stdin/stdout evidence.
-- [ ] Confirm neutral cores unchanged; confirm adapters fail open on malformed input.
-- [ ] Document any non-delivered event as an open gap.
+- [x] Live smoke test each wired event; capture stdin/stdout evidence.
+- [x] Confirm neutral cores unchanged; confirm adapters fail open on malformed input.
+- [x] Document any non-delivered event as an open gap.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -88,7 +88,7 @@ Reuse the codex precedent's live-round-trip approach: pipe a representative Curs
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-Delete `mcp-server/hooks/cursor/`, `runtime/hooks/cursor/`, and `.cursor/hooks.json`. The neutral cores were never modified, so no reversal is needed there — confirm with `git diff` showing no changes to those paths. Removing the project `.cursor/hooks.json` also removes the editor-blast-radius effect.
+Delete `mcp-server/hooks/cursor/` and `runtime/hooks/cursor/`. `.cursor/hooks.json` was never committed (deferred by operator choice), so there is no editor-blast-radius effect to revert yet — registering it is a future, separately-approved step. The neutral cores were never modified, so no reversal is needed there — confirm with `git diff` showing no changes to those paths.
 <!-- /ANCHOR:rollback -->
 
 <!-- ANCHOR:phase-deps -->
@@ -158,9 +158,9 @@ Two ADRs govern this phase: ADR-001 (registration scope given Cursor's editor-sh
 ## AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirmed phase 003 landed (`cli-cursor` mode registered)
-- [ ] Confirmed which Cursor events the installed CLI actually delivers
-- [ ] Confirmed both ADRs Accepted before writing `.cursor/hooks.json`
+- [x] Confirmed phase 003 landed (`cli-cursor` mode registered)
+- [x] Confirmed which Cursor events the installed CLI actually delivers
+- [x] Confirmed both ADRs Accepted before writing `.cursor/hooks.json`
 
 ### Execution Rules
 | Rule | Requirement |

@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-24 |
 | **Deciders** | claude-code (authoring), operator (approval pending) |
 
@@ -120,10 +120,10 @@ We must choose where to register the guard adapters, knowing every option has a 
 ### Implementation
 
 **What changes**:
-- `.cursor/hooks.json` created at the project root, registering the confirmed-delivered core events.
 - `mcp-server/hooks/cursor/README.md` documents the editor-shared blast radius and the fail-open guarantee.
+- `.cursor/hooks.json` itself — the architectural decision (project-level, ADR-001) is Accepted, but the operator explicitly chose to defer the actual committed file to a later, separately-approved step during this phase. The adapters exist and are live-verified; only the registration file is outstanding.
 
-**How to roll back**: Delete `.cursor/hooks.json` (removes the editor-blast-radius effect entirely) and the `hooks/cursor/` adapter directories; the neutral cores are untouched.
+**How to roll back**: Once `.cursor/hooks.json` is eventually registered, delete it (removes the editor-blast-radius effect entirely) and the `hooks/cursor/` adapter directories; the neutral cores are untouched. Today, rollback is simply not registering it.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -136,7 +136,7 @@ We must choose where to register the guard adapters, knowing every option has a 
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-24 |
 | **Deciders** | claude-code (authoring), operator (approval pending) |
 
@@ -145,13 +145,31 @@ We must choose where to register the guard adapters, knowing every option has a 
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitPrompt`, `beforeShellExecution`, `beforeMCPExecution`, `beforeReadFile`, `afterFileEdit`, `preCompact`, `stop`, `sessionEnd`, and more — confirmed in phase 001). This repo's 7 guard hooks each need to map onto one of those events. But a community report (surfaced in phase 001) says the Cursor **CLI** does not fire every event defined in `hooks.json` — the editor's event list is an upper bound, not a guarantee of CLI delivery. Wiring all 7 guards against the full editor event list up front would risk registering guards that silently never fire under a dispatched `cursor-agent`, creating a false sense of coverage.
+Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitPrompt`, `beforeShellExecution`, `beforeMCPExecution`, `beforeReadFile`, `afterFileEdit`, `preCompact`, `stop`, `sessionEnd`, and more — confirmed in phase 001). This repo's 7 guard hooks each need to map onto one of those events. Phase 001 flagged (from a community report) that the Cursor **CLI** might not fire every event the editor does. This phase live-verified per-event delivery empirically, using a temporary, uncommitted `.cursor/hooks.json` wiring every documented event to a probe script, then dispatching real `cursor-agent -p` sessions (single-turn and `--continue` multi-turn) that exercised shell commands, file reads, and file writes.
+
+**Confirmed result — the reverse of what was assumed.** The phase's own working assumption (mirroring the Codex precedent's `SessionStart`/`UserPromptSubmit`/`Stop` trio) was that `sessionStart`/`beforeSubmitPrompt`/`stop` would be the safe starting set. Live testing shows:
+
+| Event | Fires under `cursor-agent -p`? | Evidence |
+|---|---|---|
+| `sessionStart` | **Yes** | Fired once per session, full payload captured |
+| `sessionEnd` | **Yes** | Fired once per process, `reason:"completed"`/`final_status:"completed"` |
+| `preToolUse` | **Yes** | Fired before every tool call (`Shell`, `Read`, `Grep`, `Write` all observed as `tool_name`) |
+| `postToolUse` | **Yes** | Fired after every tool call |
+| `beforeShellExecution` / `afterShellExecution` | **Yes** | Fired around every shell command |
+| `beforeReadFile` | **Yes** | Fired on file reads, full file content in payload |
+| `afterFileEdit` | **Yes** | Fired when the model used its native write/edit tool (not shell redirection) |
+| `afterAgentThought` | **Yes** | Fired on reasoning steps |
+| `beforeSubmitPrompt` | **No** — confirmed non-delivery | Never fired across 3 separate dispatches, including a `--continue` second turn |
+| `stop` | **No** — confirmed non-delivery | Never fired across all 3 dispatches; `sessionEnd` is the actual completion signal under `-p` |
+| `postToolUseFailure`, `beforeMCPExecution`, `afterMCPExecution`, `preCompact`, `subagentStart`, `subagentStop`, `afterAgentResponse` | Untested | No failure/MCP/subagent/compaction scenario was triggered in these probes; treat as unconfirmed, not assumed either way |
+
+This inverts the phase's original plan: `beforeSubmitPrompt` (the intended Gate-3-classify attachment point) and `stop` (the intended completion-sentinel attachment point) are the two events from the "safe starting set" that do NOT fire, while `preToolUse` (the single most valuable enforcement point — it wraps every tool call, not just shell) fires reliably and was not even in the original starting-set plan.
 
 ### Constraints
 
-- The set of events the CLI actually delivers is unconfirmed from documentation alone (phase 001 open question).
-- The codex precedent proved out `SessionStart`/`UserPromptSubmit` first before extending — a start-small, verify-then-extend discipline this phase should inherit.
-- A guard that is registered but never delivered is worse than an unregistered one, because it looks active while enforcing nothing.
+- The set of events the CLI actually delivers is now empirically confirmed for the tested set (see table above); untested events remain genuinely unconfirmed, not assumed.
+- The codex precedent proved out `SessionStart`/`UserPromptSubmit` first before extending — a start-small, verify-then-extend discipline this phase inherited, but the actual "small start" that survived contact with the live CLI is different from Codex's.
+- A guard that is registered but never delivered is worse than an unregistered one, because it looks active while enforcing nothing — this is exactly why `beforeSubmitPrompt`/`stop` must NOT be wired as if they worked.
 <!-- /ANCHOR:adr-002-context -->
 
 ---
@@ -159,9 +177,9 @@ Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitProm
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Start with the three core events the codex precedent maps first (`sessionStart` ← SessionStart, `beforeSubmitPrompt` ← UserPromptSubmit, `stop` ← Stop), live-verify each actually fires under the installed `cursor-agent` CLI, and only then extend to the shell/MCP/file/edit guards (`beforeShellExecution`/`beforeMCPExecution`/`beforeReadFile` ← spec-gate/permission guards, `afterFileEdit` ← post-edit quality, `preCompact` ← compaction, `sessionEnd` ← teardown) — registering each additional event **only after** its CLI delivery is confirmed live. Any event the CLI does not deliver is documented as an open, editor-only gap, never assumed active.
+**We chose**: Wire adapters only to the events empirically confirmed to fire under `cursor-agent -p`: `sessionStart` (lifecycle prime), `preToolUse` (spec-gate enforce — using the generic, always-fires-before-every-tool event rather than the narrower `beforeShellExecution`, since `preToolUse` alone covers `Shell`/`Write`/`Read`/`Grep` and any future tool without needing per-tool-event wiring), and `sessionEnd` (completion signal, replacing the originally-planned `stop`, which is confirmed to never fire under CLI dispatch). `beforeSubmitPrompt` (the intended Gate-3-classify attachment point) has no working CLI attachment point at all and is documented as a confirmed, load-bearing gap, not deferred-but-assumed-workable.
 
-**How it works**: Phase 1 probes CLI delivery empirically. Each mapped guard is wired, then smoke-tested end-to-end inside a real `cursor-agent` session with captured stdin/stdout evidence. The mapping table lives in `mcp-server/hooks/cursor/README.md` with a per-event "CLI delivery: confirmed / not-delivered / untested" column, so coverage is always legible and never overstated.
+**How it works**: Phase 1 empirically probed every documented event with a temporary, uncommitted `.cursor/hooks.json` and a logging probe script, across 3 live `cursor-agent -p` dispatches (including a `--continue` turn) exercising shell/read/write tool calls. Only confirmed-firing events get real adapters; `postToolUseFailure`/`beforeMCPExecution`/`afterMCPExecution`/`preCompact`/`subagentStart`/`subagentStop`/`afterAgentResponse` remain untested and unwired pending a scenario that actually triggers them. The mapping table lives in `mcp-server/hooks/cursor/README.md` with a per-event "CLI delivery: confirmed-fires / confirmed-non-delivery / untested" column, so coverage is always legible and never overstated.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -171,11 +189,12 @@ Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitProm
 
 | Option | Pros | Cons | Score |
 |---|---|---|---|
-| **Start-small, verify-then-extend (chosen)** | Never registers a guard that silently never fires; matches the codex precedent's proven order; coverage is always legible | Slower to reach full 7-guard coverage | 9/10 |
-| Wire all 7 guards against the full editor event list up front | Fastest to "full coverage" on paper | Rejected — risks registering guards the CLI never delivers, creating false coverage; contradicts the phase-001 partial-delivery caveat | 2/10 |
-| Wire nothing until Cursor documents CLI delivery officially | Zero risk of false coverage | Rejected — leaves the enforcement blind spot open indefinitely on an unbounded external-docs timeline | 3/10 |
+| **Empirically-confirmed-only wiring (chosen)** | Never registers a guard that silently never fires; every wired event has direct captured evidence; `preToolUse` gives broader coverage than the originally-planned per-tool events | `beforeSubmitPrompt`/`stop` genuinely have no working attachment point — Gate-3 classify and a stop-time sentinel cannot be wired as originally planned | 9/10 |
+| Blindly wire the originally-planned `sessionStart`/`beforeSubmitPrompt`/`stop` trio (mirroring Codex without verifying) | Matches the codex precedent's exact event names | Rejected — live testing proved 2 of the 3 never fire; would have shipped guards that silently never run | 1/10 |
+| Wire all documented events up front (including untested ones) | Fastest to "full coverage" on paper | Rejected — `postToolUseFailure`/MCP/subagent/compaction events remain genuinely untested; wiring them would assert delivery with no evidence | 2/10 |
+| Wire nothing until Cursor documents CLI delivery officially | Zero risk of false coverage | Rejected — leaves the enforcement blind spot open indefinitely on an unbounded external-docs timeline, and this phase already has the evidence needed for the confirmed subset | 3/10 |
 
-**Why this one**: Empirical per-event verification is the only approach that closes the enforcement gap while never claiming a guard is active without evidence it fires — directly honoring both the codex precedent and the "Finding = hypothesis" verification standard.
+**Why this one**: Empirical per-event verification is the only approach that closes the enforcement gap while never claiming a guard is active without evidence it fires — directly honoring both the "Finding = hypothesis" verification standard and the discovery that the Codex-mirrored plan was simply wrong about which events fire.
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -184,18 +203,20 @@ Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitProm
 ### Consequences
 
 **What improves**:
-- Coverage claims are always backed by live per-event delivery evidence, never by the editor's event list alone.
-- The README's per-event delivery column keeps the real coverage legible to maintainers.
+- Coverage claims are always backed by live per-event delivery evidence, never by the editor's event list or a sibling CLI's event names.
+- `preToolUse` gives the spec-gate enforce adapter broader coverage (every tool, not just shell) than the originally-planned `beforeShellExecution`-only approach would have.
+- The README's per-event delivery column keeps the real coverage legible to maintainers, including the confirmed-non-delivery events.
 
 **What it costs**:
-- Full 7-guard coverage arrives incrementally rather than in one pass. Mitigation: the three core events (session/prompt/stop) — the highest-value guards — land first.
+- Gate-3 classify (originally planned against `beforeSubmitPrompt`) and a stop-time completion sentinel (originally planned against `stop`) have no confirmed CLI attachment point at all — this is a real capability gap for `cli-cursor` dispatch, not just an incomplete rollout. `sessionEnd` substitutes for a completion-time hook but fires after the fact, unlike `stop`'s presumed pre-completion timing.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| The CLI delivers an event in one build but not a later one | M | The per-event delivery column is re-verified when the `cursor-agent` build changes, not treated as permanent |
-| A guard mapped to a non-delivered event is assumed active | H | Explicit "not-delivered / editor-only" status recorded; never assumed closed |
+| The CLI delivers an event in one build but not a later one (including `beforeSubmitPrompt`/`stop` starting to fire in a future build) | M | The per-event delivery column is re-verified when the `cursor-agent` build changes, not treated as permanent; re-run the same probe methodology this ADR documents |
+| A guard mapped to a non-delivered event is assumed active | H | Explicit "confirmed-non-delivery" status recorded for `beforeSubmitPrompt`/`stop`; never assumed closed |
+| Gate-3 classify has no working attachment point under `cli-cursor` CLI dispatch | H | Documented explicitly here and in `mcp-server/hooks/cursor/README.md`; the spec-gate ENFORCE path (via `preToolUse`) still blocks unauthorized mutations even though the advisory CLASSIFY question cannot be surfaced pre-emptively |
 <!-- /ANCHOR:adr-002-consequences -->
 
 ---
@@ -207,7 +228,7 @@ Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitProm
 |---|---|---|---|
 | 1 | **Necessary?** | PASS | The CLI's partial-event delivery is a documented, unresolved caveat that would otherwise create false coverage. |
 | 2 | **Beyond Local Maxima?** | PASS | Wire-all-up-front and wire-nothing were both considered and rejected with reasons. |
-| 3 | **Sufficient?** | PASS | Verifying the three core events, then extending on evidence, closes the highest-value gap first without overstating coverage. |
+| 3 | **Sufficient?** | PASS | The empirically-confirmed `sessionStart`/`preToolUse`/`sessionEnd` set closes the highest-value enforcement gap (spec-gate mutations) without overstating coverage; the genuine `beforeSubmitPrompt`/`stop` gap is documented, not papered over. |
 | 4 | **Fits Goal?** | PASS | Matches the codex precedent's proven start-small order and the repo's verification standards. |
 | 5 | **Open Horizons?** | PASS | Additional events are added purely by confirming delivery, with no rework of the chosen structure. |
 
@@ -220,9 +241,10 @@ Cursor's editor exposes ~18 agent hook events (`sessionStart`, `beforeSubmitProm
 ### Implementation
 
 **What changes**:
-- `mcp-server/hooks/cursor/README.md`: the event-mapping table with a per-event CLI-delivery status column.
-- `.cursor/hooks.json`: registers only events confirmed to fire under the CLI, extended incrementally.
+- `mcp-server/hooks/cursor/README.md`: the event-mapping table with a per-event CLI-delivery status column (confirmed-fires / confirmed-non-delivery / untested).
+- Adapters built for `sessionStart`, `preToolUse` (spec-gate enforce), and `sessionEnd`; no adapter built for `beforeSubmitPrompt` or `stop` since neither has a confirmed CLI attachment point.
+- `.cursor/hooks.json` registration itself is deferred to a later, explicitly-approved step (operator choice during this phase) — the adapter code and live-verification evidence ship now; the committed project-level registration file does not.
 
-**How to roll back**: Remove any event's registration from `.cursor/hooks.json`; the mapping table and adapters remain as documentation of what was attempted and what the CLI delivered.
+**How to roll back**: Remove any event's registration from `.cursor/hooks.json` (once registered); the mapping table and adapters remain as documentation of what was attempted and what the CLI delivered.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->

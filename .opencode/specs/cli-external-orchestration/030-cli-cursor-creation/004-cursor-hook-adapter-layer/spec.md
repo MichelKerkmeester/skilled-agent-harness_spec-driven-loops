@@ -40,7 +40,7 @@ Add thin Cursor-host hook adapters over this repo's existing runtime-neutral gua
 |---|---|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete (adapters built + live-verified; `.cursor/hooks.json` registration explicitly deferred by operator choice — see §12) |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -81,9 +81,9 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/cursor/`, `run
 ### Files to Change
 | File Path | Change Type | Phase | Description |
 |---|---|---|---|
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/**` (`shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts`, `README.md`; more as later events are wired) | Create | 004 | Thin Cursor-host adapters delegating to the existing `hooks/claude/*.ts` implementations, mirroring `hooks/codex/`. |
-| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/**` (`spec-gate-enforce.mjs`, `spec-gate-classify.mjs`, `README.md`) | Create | 004 | Cursor-side wiring into the shared `runtime/lib/spec-gate/spec-gate-core.mjs`, mirroring `runtime/hooks/codex/`. |
-| `.cursor/hooks.json` (project-level) | Create | 004 | Native Cursor hook registration for the wired events, mapping Cursor event names to the adapter commands. |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/**` (`shared.ts`, `session-start.ts`, `session-end.ts`, `README.md`) | Create | 004 | Thin Cursor-host adapters delegating to the existing `hooks/claude/*.ts` implementations, mirroring `hooks/codex/`. Built for `sessionStart`/`sessionEnd` (both confirmed to fire); no `user-prompt-submit.ts`/`session-stop.ts`-named adapter, since `beforeSubmitPrompt`/`stop` are confirmed to never fire under the CLI (see REQ-001). |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/**` (`spec-gate-enforce.mjs`, `spec-gate-classify.mjs`, `README.md`) | Create | 004 | Cursor-side wiring into the shared `runtime/lib/spec-gate/spec-gate-core.mjs`, mirroring `runtime/hooks/codex/`. `spec-gate-enforce.mjs` wires to `preToolUse` (confirmed fires, broader than `beforeShellExecution`); `spec-gate-classify.mjs` is built but dormant (`beforeSubmitPrompt` confirmed non-firing). |
+| `.cursor/hooks.json` (project-level) | **Deferred** | 004 | Native Cursor hook registration. NOT created in this phase's commit — the operator explicitly chose to build and live-verify the adapters first and defer the actual registration (which also affects Cursor-editor users of this repo) to a later, explicitly-approved step. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -92,9 +92,9 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/cursor/`, `run
 ### P0 - Blockers
 | ID | Requirement | Priority |
 |---|---|---|
-| REQ-001 | Adapters exist for at least `sessionStart`, `beforeSubmitPrompt`, and `stop` (the Cursor analogs of the codex precedent's first-proven events). | P0 |
-| REQ-002 | `.cursor/hooks.json` correctly registers those adapters using Cursor's documented `{version, hooks:{<event>:[{command, timeout?, type?, matcher?}]}}` schema, and the adapters honor the `{permission: allow\|deny\|ask, ...}` + exit-code-2-blocks response contract. | P0 |
-| REQ-003 | A live smoke test confirms each wired event actually fires under the installed `cursor-agent` CLI (not just the editor), capturing stdin/stdout evidence — directly addressing the documented CLI partial-event-delivery caveat. | P0 |
+| REQ-001 | Adapters exist for the events empirically confirmed to fire under `cursor-agent -p`: `sessionStart`, `preToolUse` (spec-gate enforce), `sessionEnd` (replacing the originally-planned `stop`, which is confirmed to never fire). `beforeSubmitPrompt` (originally the Gate-3-classify attachment point) is confirmed to never fire either — `spec-gate-classify.mjs` is built but not wired anywhere, and this gap is documented, not silently assumed closed. | P0 |
+| REQ-002 | `.cursor/hooks.json`'s schema and the adapters' response contract are validated directly against the real CLI: a live-verified deny path (`{"permission":"deny", ...}` + exit 2) was confirmed to actually block a real `cursor-agent` tool call. The committed adapters honor this contract; the actual `.cursor/hooks.json` registration file itself is deferred (operator choice) to a later step. | P0 |
+| REQ-003 | A live smoke test confirms each wired event actually fires under the installed `cursor-agent` CLI (not just the editor), capturing stdin/stdout evidence — directly addressing the documented CLI partial-event-delivery caveat. Done via a temporary, uncommitted probe `.cursor/hooks.json` across 3 live dispatches (2 single-turn + 1 `--continue`), covering shell/read/write tool calls and a dedicated deny-path test. | P0 |
 | REQ-004 | This phase does not modify `ADVISOR_RUNTIME_VALUES` and does not modify the runtime-neutral hook cores. | P0 |
 
 ### P1 - Required
@@ -107,12 +107,12 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/cursor/`, `run
 ### P2 - Nice-to-have
 | ID | Requirement | Priority |
 |---|---|---|
-| REQ-008 | The remaining repo guard hooks beyond the core events get adapters extended incrementally, each mapped to its corresponding Cursor event (`beforeShellExecution`/`beforeMCPExecution`/`beforeReadFile` for the spec-gate/permission guards, `afterFileEdit` for post-edit quality, `preCompact` for compaction, `sessionEnd` for teardown); exact sequencing decided at implementation time, only for events confirmed to fire under the CLI. | P2 |
+| REQ-008 | Additional repo guard hooks beyond `preToolUse`/`sessionStart`/`sessionEnd` get adapters extended incrementally onto the remaining confirmed-firing events (`postToolUse` for post-edit quality/code-graph-freshness-style checks, `beforeMCPExecution`/`afterMCPExecution` once an MCP scenario is live-tested, `preCompact`/`subagentStart`/`subagentStop`/`afterAgentResponse`/`postToolUseFailure` once each is confirmed to fire — none were triggered by this phase's probe scenarios); exact sequencing decided at implementation time, only for events confirmed to fire under the CLI. | P2 |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: The installed `cursor-agent` binary recognizes and fires the wired hook adapters in a live session, confirmed by captured stdin/stdout evidence, not just static config presence.
+- **SC-001**: The installed `cursor-agent` binary recognizes and fires the wired hook adapters in a live session, confirmed by captured stdin/stdout evidence, not just static config presence — verified via a temporary, uncommitted probe `.cursor/hooks.json` (the final committed registration is deferred per operator choice; the adapters and their delivery are proven regardless).
 - **SC-002**: Neutral hook cores show zero behavioral diff (`git diff` empty for the core paths against pre-phase state).
 - **SC-003**: `decision-record.md`'s ADR-001 and ADR-002 each have a recorded status and an explicit verification/re-evaluation trigger.
 - **SC-004**: For any Cursor event the CLI does NOT deliver (per REQ-003 verification), the gap is documented, not silently assumed closed.
@@ -199,9 +199,9 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/cursor/`, `run
 
 ## 12. OPEN QUESTIONS
 
-- Does the Cursor CLI (as opposed to the editor) actually fire every event registered in `.cursor/hooks.json`? A community report says not all events are delivered — verify per-event live before claiming any guard is active under CLI dispatch (see `decision-record.md` ADR-002).
-- Is a project-level `.cursor/hooks.json` (which also applies to Cursor-editor users of this repo) acceptable, or is a dispatch-scoped isolation mechanism (e.g. a generated hooks.json in the lineage cwd, or `--workspace` config isolation) needed? ADR-001 chooses project-level with fail-open mitigation; revisit if editor impact is unacceptable.
-- Which of the repo's guard hooks map onto which Cursor events beyond the `sessionStart`/`beforeSubmitPrompt`/`stop` core is decided at implementation time, only for events confirmed to fire under the CLI.
+- **ANSWERED**: Does the Cursor CLI actually fire every event registered in `.cursor/hooks.json`? No — live-verified (temporary uncommitted probe hooks.json + 3 dispatches). `sessionStart`/`preToolUse`/`postToolUse`/`sessionEnd`/`beforeShellExecution`/`afterShellExecution`/`beforeReadFile`/`afterFileEdit`/`afterAgentThought` all confirmed to fire; `beforeSubmitPrompt`/`stop` confirmed to NEVER fire. This inverts the phase's original assumed "safe starting set" — see `decision-record.md` ADR-002 for the full table and methodology.
+- **PARTIALLY DEFERRED**: Is a project-level `.cursor/hooks.json` acceptable given the editor-shared blast radius? ADR-001's answer (project-level + fail-open) stands architecturally, but the operator chose to defer the actual file registration to a later, explicitly-approved step during this phase — the adapters are built and live-verified, the commit does not include `.cursor/hooks.json` itself.
+- **ANSWERED**: Which guards map onto which events? `spec-gate-enforce.mjs` → `preToolUse` (not `beforeShellExecution` — the generic event covers file writes too). `spec-gate-classify.mjs` → `beforeSubmitPrompt`, built but dormant since that event never fires. A `sessionEnd`-based completion signal replaces the originally-planned `stop` attachment (`stop` never fires).
 <!-- /ANCHOR:questions -->
 
 ---

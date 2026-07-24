@@ -29,28 +29,28 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] T001 Confirm phase 003 landed; read live `hooks/codex/` + `runtime/hooks/codex/` as the structural template
-- [ ] T002 Live-probe which Cursor events the installed `cursor-agent` CLI actually delivers; record the confirmed-delivered list
+- [x] T001 Confirm phase 003 landed; read live `hooks/codex/` + `runtime/hooks/codex/` as the structural template
+- [x] T002 Live-probe which Cursor events the installed `cursor-agent` CLI actually delivers; record the confirmed-delivered list — see `decision-record.md` ADR-002's delivery table (`sessionStart`/`preToolUse`/`postToolUse`/`sessionEnd`/`beforeShellExecution`/`afterShellExecution`/`beforeReadFile`/`afterFileEdit`/`afterAgentThought` confirmed; `beforeSubmitPrompt`/`stop` confirmed non-firing)
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] T003 Author `mcp-server/hooks/cursor/shared.ts` (payload read + neutral-core spawn + Cursor `{permission,...}` envelope + fail-open)
-- [ ] T004 [P] Author `mcp-server/hooks/cursor/session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts`, `README.md`
-- [ ] T005 [P] Author `runtime/hooks/cursor/spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `README.md` (map Cursor tool vocab → core bash/write/edit)
-- [ ] T006 Author project `.cursor/hooks.json` registering only the confirmed-delivered core events (`sessionStart`/`beforeSubmitPrompt`/`stop`)
+- [x] T003 Author `mcp-server/hooks/cursor/shared.ts` (payload read + neutral-core spawn + Cursor `{permission,...}` envelope + fail-open)
+- [x] T004 [P] Author `mcp-server/hooks/cursor/session-start.ts`, `session-end.ts`, `README.md` — named `session-end.ts` (not `user-prompt-submit.ts`/`session-stop.ts`) since it wires to the confirmed-firing `sessionEnd`, not the confirmed-non-firing `beforeSubmitPrompt`/`stop`
+- [x] T005 [P] Author `runtime/hooks/cursor/spec-gate-classify.mjs` (dormant, `beforeSubmitPrompt` never fires), `spec-gate-enforce.mjs` (wired to `preToolUse`, confirmed fires), `README.md` (map Cursor `Shell`/`Write` tool_name → core `bash`/`write`)
+- [x] T006 `.cursor/hooks.json` registration explicitly DEFERRED by operator choice (see `spec.md` §12) — adapters built and live-verified via a temporary, uncommitted probe file instead; the committed diff contains no `.cursor/hooks.json`
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T007 Live smoke test each wired event under `cursor-agent`; capture stdin/stdout evidence
-- [ ] T008 Confirm neutral cores unchanged (`git diff` empty); feed malformed stdin and assert fail-open (`{permission: allow}`)
-- [ ] T009 Document any registered-but-undelivered event as an open gap (editor-only until CLI delivery confirmed)
+- [x] T007 Live smoke test each wired event under `cursor-agent`; capture stdin/stdout evidence — 3 dispatches (2 single-turn + 1 `--continue`) via a temporary probe `.cursor/hooks.json`, plus a dedicated deny-path test (`{"permission":"deny"}` + exit 2 confirmed to actually block a real tool call)
+- [x] T008 Confirm neutral cores unchanged (`git diff` empty); feed malformed stdin and assert fail-open (`{permission: allow}`) — both confirmed: `git diff --stat` empty for `hooks/claude/`, `runtime/lib/spec-gate/`, `hooks/codex/`, `runtime/hooks/codex/`; `echo "not-json" | node spec-gate-enforce.mjs` returns `{"permission":"allow"}` exit 0
+- [x] T009 Document any registered-but-undelivered event as an open gap (editor-only until CLI delivery confirmed) — `beforeSubmitPrompt`/`stop` documented as confirmed-non-delivery (not just "undelivered", actively disproven) in `mcp-server/hooks/cursor/README.md`'s delivery table
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] T010 `validate.sh 004-cursor-hook-adapter-layer --strict` passes 0/0; SC-001..SC-004 met; write `implementation-summary.md`
+- [x] T010 `validate.sh 004-cursor-hook-adapter-layer --strict` passes 0/0; SC-001..SC-004 met; write `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

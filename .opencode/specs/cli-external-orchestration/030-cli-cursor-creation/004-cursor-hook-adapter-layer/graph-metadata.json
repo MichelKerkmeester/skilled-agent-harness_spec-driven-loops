@@ -19,7 +19,9 @@
       "cursor hook adapter tasks",
       "cursor hook adapter checklist",
       "cursor hook adapter decision record",
-      "cursor hooks.json scope decision"
+      "cursor hooks.json scope decision",
+      "cursor hook adapter summary",
+      "cursor hook delivery findings"
     ],
     "key_topics": [
       "cursor",
@@ -36,18 +38,26 @@
       "decision"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "dist/hooks/cursor/session-start.js",
+      "mcp-server/hooks/cursor/README.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/README.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/README.md",
       ".codex/hooks.json",
       "runtime/lib/spec-gate/spec-gate-core.mjs",
       "lib/hooks/completion-evidence-sentinel.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
       ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
-      "spec.md"
+      "mcp-server/hooks/cursor/shared.ts",
+      "runtime/hooks/cursor/spec-gate-classify.mjs",
+      "implementation-summary.md",
+      "mcp-server/hooks/cursor/session-start.ts"
     ],
     "entities": [
       {
@@ -75,6 +85,24 @@
         "source": "derived"
       },
       {
+        "name": "session-start.js",
+        "kind": "code",
+        "path": "dist/hooks/cursor/session-start.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp-server/hooks/cursor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
@@ -93,15 +121,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/cursor/shared.ts",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/cursor/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/cursor/session-start.ts",
         "source": "derived"
       },
       {
@@ -163,41 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Depends On",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parallel Opportunities",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks",
     "created_at": "2026-07-24T04:46:37.220Z",
-    "last_save_at": "2026-07-24T04:46:37.220Z",
+    "last_save_at": "2026-07-24T07:50:17.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c6493368a3c64e7f4dbde1120ebce6a3df84e931ab9a34aa13451f561115ed5",
+    "source_fingerprint": "sha256:9c4b3cbe74bbd6e3f67302e15b802d40957e51b40f3662b5adc8f7c6be1c2305",
     "source_doc_hashes": {
-      "spec.md": "1455b282687341554f8b5b6446d4d771819592733ac3f88e339673ff214c3e6b",
-      "plan.md": "4f906705af3b80c1c9cdbe2ea4adf98b6fff1e066944ebd18407d7e3f6aecd53",
-      "tasks.md": "672038e6d0de77ff129683e1543a2bec54c3b2b34e41ecf2851306d8343e10bd",
-      "checklist.md": "3d417d1459ab8f5a633e60ca3eaea5166ee7e0dfbdf50878a6e1069a6f6404ff",
-      "decision-record.md": "17bba64a813f65cc178dfa6b5bf66284bdd3977a3c8a72ab304dc64e0c58b9a3"
+      "spec.md": "2222d52775e74d306f7b65c9abcaa243c66e47301596617f91056c413ea47318",
+      "plan.md": "9a712d0ccbef19bb93a763e8435dcdd89edc6b23aa2e64e34e3429925d6c3816",
+      "tasks.md": "74dc576cd182030e59c7212afc74383ce560f4ea722420adcd340bea901d031f",
+      "checklist.md": "e3acdc8e1c39f51c84eb459ba8ecb7878b8354ff8c2ab3daeb0a32c9e2684a73",
+      "decision-record.md": "f0a9f90ac0a5e7a502d214a0a7f46b67a27079b46b1d898f91e1ca9b0769622d",
+      "implementation-summary.md": "ac730213c05fd8450c3a3db220b68299140e9045a1c9a59d4aa9ed280999270e"
     },
     "last_active_child_id": null,
     "last_active_at": null

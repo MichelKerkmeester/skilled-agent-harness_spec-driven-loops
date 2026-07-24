@@ -1,18 +1,32 @@
 {
+  "level": "3",
   "specFolder": "cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer",
-  "description": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks",
+  "description": "Cursor hook adapters (sessionStart/preToolUse/sessionEnd) built and live-verified against a real cursor-agent CLI, overturning the original beforeSubm",
   "keywords": [
-    "repo",
-    "enforces",
-    "scope-lock",
-    "spec-folder",
-    "quality",
-    "completion-evidence",
-    "discipline",
-    "guard",
-    "hooks"
+    "cursor",
+    "hook",
+    "adapters",
+    "sessionstart",
+    "pretooluse",
+    "sessionend",
+    "live-verified",
+    "against",
+    "real",
+    "cursor-agent",
+    "cli",
+    "overturning",
+    "original",
+    "beforesubmitprompt",
+    "stop",
+    "assumption",
+    "hooks",
+    "json",
+    "registration",
+    "deferred",
+    "operator",
+    "choice"
   ],
-  "lastUpdated": "2026-07-24T04:46:18.828Z",
+  "lastUpdated": "2026-07-24T07:47:13.314Z",
   "specId": "004",
   "folderSlug": "cursor-hook-adapter-layer",
   "parentChain": [
@@ -20,6 +34,5 @@
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }
