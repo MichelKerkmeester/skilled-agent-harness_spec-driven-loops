@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the blocking zero-diff contract for council shadow parity"
+    recent_action: "Defined the blocking explained-difference contract for council shadow parity"
     next_safe_action: "Run the fixture matrix and retain first-divergence receipts"
     blockers: []
     key_files: []
@@ -51,23 +51,23 @@ unexplained projection difference fails the gate.
 
 - [ ] CHK-009 [P0] The shadow path is additive and non-authoritative; it cannot dispatch seats, mutate canonical state, or commit an external side effect
 - [ ] CHK-010 [P1] Canonical event mapping preserves raw legacy and ledger rows and documents every ledger-only control-plane event
-- [ ] CHK-011 [P1] The normalization profile is versioned, digest-bound, minimal, and rejects unknown fields rather than silently dropping them
+- [ ] CHK-011 [P1] The closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`; each field is checked for presence, type, and non-interference, and unknown fields fail rather than being silently dropped
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
 - [ ] CHK-001 [P0] Both paths consume one frozen execution envelope; input, config, target, seat-output, tool-receipt, and profile digests match
-- [ ] CHK-002 [P0] Canonical behavior events match event-for-event: equal cardinality, ordered kind, round/seat/claim identity, required payload, lifecycle status, and terminal sequence
-- [ ] CHK-003 [P0] No unexplained legacy-only or ledger-only behavior event exists; adapter, authorization, receipt, and audit events cannot mask a missing behavior tuple
+- [ ] CHK-002 [P0] Canonical behavior events pair by logical round/seat/claim identity rather than raw `eventId` and match on cardinality, ordered kind, required payload, lifecycle status, and terminal sequence
+- [ ] CHK-003 [P0] No unexplained semantic difference exists; every tolerated diff has a typed disposition, owner, reason, and proof, any unaccountable tolerance blocks parity, and control-plane events cannot mask a missing behavior tuple
 - [ ] CHK-004 [P0] Projection parity holds for convergence, non-convergence, majority/minority output, hard violations, unresolved values, counterfactual results, artifacts, and fingerprints when exercised
 - [ ] CHK-012 [P0] Normal completion and multi-round critique fixtures pass with identical `council_complete` presence, convergence result, artifact references, and projection fingerprint
 - [ ] CHK-013 [P0] Timeout, seat error, insufficient quorum, contradictory high-confidence recommendations, and max-round non-convergence fixtures preserve identical failure semantics
 - [ ] CHK-014 [P0] Partial persistence, rollback, resume after each persisted boundary, and post-rollback resume fixtures preserve identical forensic history and recovery decisions
 - [ ] CHK-015 [P0] CouncilBrief/private-evidence, typed belief/challenge, effective-independence, blinded adjudication, minority-retention, and comparative-control fields match when present in fixtures
-- [ ] CHK-016 [P0] Every ledger behavior event has an authorized transition and required receipt references; unauthorized or missing-receipt events fail the run
+- [ ] CHK-016 [P0] Every ledger behavior event has an authorized transition and required receipt references; every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks
 - [ ] CHK-017 [P0] Effect IDs and side-effect observations prove zero duplicate dispatches, shadow-owned external writes, or receipt-less effects
-- [ ] CHK-018 [P0] Replay and supported completion-order permutations produce stable parity fingerprints and stable first-divergence classification
+- [ ] CHK-018 [P0] Fault injections traverse the real council execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline with exact typed-class assertions; replay and supported completion-order permutations produce stable fingerprints and first-divergence classifications
 - [ ] CHK-019 [P0] A semantic field outside the normalization profile fails parity while an explicitly allowlisted metadata field is the only tolerated difference
 - [ ] CHK-020 [P0] Any unexplained mismatch produces a cutover-blocking receipt and leaves legacy authority enabled
 <!-- /ANCHOR:testing -->
@@ -76,7 +76,7 @@ unexplained projection difference fails the gate.
 ## Fix Completeness
 
 - [ ] CHK-005 [P1] The final parity report covers every fixture row, records zero unexplained diffs, and identifies the first divergent event for every failed candidate
-- [ ] CHK-021 [P1] Parity evidence is bound to exact SHAs, mapping/profile versions, raw event digests, canonical projection fingerprints, and command exit codes
+- [ ] CHK-021 [P1] The manifest-bound parity receipt is evidence bound to exact SHAs, mapping/profile versions, raw event digests, projection fingerprints, and exit codes; the authenticated mode gate re-verifies the binding and does not self-trust computed parity status
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -108,6 +108,6 @@ fingerprints are stable, and legacy remains authoritative pending the later mode
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the SOL verifier confirms the zero-diff parity contract, the receipt is bound to the exact
+Signed off when the SOL verifier confirms the zero-unexplained-difference parity contract, the receipt is bound to the exact
 candidate and fixture digests, and the cutover decision remains blocked unless all acceptance criteria are green.
 <!-- /ANCHOR:sign-off -->

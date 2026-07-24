@@ -67,6 +67,8 @@ unsupported result; it must never silently become a passing score or a selected 
 - [ ] CHK-017 [P0] Shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto fixtures produce semantic parity through all three benchmark variant adapters
 - [ ] CHK-018 [P0] A crash after model or measurement execution and before durable receipt commit remains uncertain and requires explicit recovery evidence before retry, selection, or restore
 - [ ] CHK-019 [P1] Dark-path certificate and receipt emission cannot change live router or authority state, and rollback leaves legacy projections and archival evidence readable
+- [ ] CHK-027 [P0] The certificate contract declares the lane's plain-digest closure map as explicitly empty, invents no Deep Review-shaped fields, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
+- [ ] CHK-028 [P0] Real-store anti-vacuous fixtures check kind, borne epoch/lifecycle/freshness/contamination state, visibility, authority liveness, and selector target resolution, with absent offline bytes typed `unverifiable` and no shape-only pass
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

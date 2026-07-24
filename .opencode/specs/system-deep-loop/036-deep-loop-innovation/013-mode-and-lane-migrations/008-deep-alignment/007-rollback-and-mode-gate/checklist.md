@@ -41,7 +41,7 @@ mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` only; it never auth
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] BASE, the parent 036 invariant, `manifest/phase-tree.json`, phase-012 shared review-loop digest, write-set fence, phase-014 handoff revision, and phase-006 authorization digest are pinned in the candidate report
-- [ ] CHK-002 [P0] The six Deep Alignment sibling contracts and their evidence ownership boundaries are present; no sibling responsibility is redefined in this phase
+- [ ] CHK-002 [P0] LANDED additive-dark siblings `001` through `003` and planned evidence siblings `004` through `006` are inventory-bound with their ownership boundaries; no sibling responsibility is redefined here
 - [ ] CHK-003 [P0] The legacy Deep Alignment lifecycle is inventoried for lane resolution, discovery, applicability, each artifact check, live re-probe, known deviation, convergence, report, resume, continuity, and remediation exclusion
 - [ ] CHK-004 [P1] The authority-control schema, rollback trigger matrix, healthy anchor, dual window bounds, expiry rule, lane evidence rows, and phase-014 handoff fields are frozen before fixture execution
 <!-- /ANCHOR:pre-impl -->
@@ -49,8 +49,8 @@ mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` only; it never auth
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] The authority resolver fails closed to `legacy_authoritative` for missing, malformed, stale, expired, unauthorized, mixed-epoch, or digest-mismatched control evidence
-- [ ] CHK-006 [P0] Rollback is an externally authorized `ledger -> legacy` transition with authority epoch, healthy frontier, legacy checkpoint, lane tail, reason, and restoration receipt
+- [ ] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and `legacy_authoritative` without throwing
+- [ ] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and permits rollback only through the real gateway with a re-verified certificate anchor
 - [ ] CHK-007 [P1] The rollback window has both a deadline and logical-operation or attempt bound; expiry and renewal cannot silently widen the window
 - [ ] CHK-008 [P0] Deep Alignment consumes the phase-012 shared review-loop and Deep Review mode 002 fence without a local scope, coverage, lineage, convergence, report, resume, or write-set fork
 - [ ] CHK-009 [P0] The phase emits no authority flip, self-clearing rollback, window close, automatic remediation, legacy-writer removal, or canonical state mutation
@@ -63,13 +63,13 @@ mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` only; it never auth
 - [ ] CHK-011 [P0] Applicability fixtures cover applicable, not-applicable, unresolved, unsupported, and stale target states without coercing unknown evidence to pass or fail
 - [ ] CHK-012 [P0] Detector candidates, live re-probes, known deviations, counterevidence, severity, confidence, evidence strength, conformance, and lifecycle fields remain orthogonal and typed
 - [ ] CHK-013 [P0] Convergence, coverage, stability, per-lane worst verdict, report synthesis, resume, and continuity fixtures match without terminal-report parity shortcuts
-- [ ] CHK-014 [P0] Every required fixture has zero unexplained semantic differences; any tolerated transport field is typed, allowlisted, owned, reasoned, and recorded
-- [ ] CHK-015 [P0] Authority capsule, rule IR, source anchors, applicability profile, target, observation, finding, counterevidence, known-deviation, report, and resume artifacts verify through the shared seal contract before consumption
+- [ ] CHK-014 [P0] The required phase-009 receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
+- [ ] CHK-015 [P0] Every authority capsule, rule IR, source anchor, applicability profile, target, observation, finding, counterevidence, known-deviation, report, and resume reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, seal, and content digest
 - [ ] CHK-016 [P0] Missing, changed, truncated, substituted, wrong-kind, unsupported, expired, or descriptor-drifted artifacts release no bytes and produce a typed gate failure
 - [ ] CHK-017 [P0] The run certificate binds the pinned authority epoch, lane configuration, event range, declared outcome, unresolved or blocked findings, per-lane reports, replay fingerprint, and receipt-set root
 - [ ] CHK-018 [P0] Every required transition receipt closes with authorization, causal links, input/output digests, append position, effect state, and explicit unknown handling
 - [ ] CHK-019 [P0] Independent verification reproduces the authority, verifier, certificate, and receipt result without live model, tool, network, or mutable workspace access
-- [ ] CHK-020 [P0] Authority drift, applicability drift, parity mismatch, replay mismatch, seal or receipt gap, unknown effect, stale fence, contract drift, integrity alarm, health quarantine, and unexpected canonical write each produce rollback or block evidence
+- [ ] CHK-020 [P0] Authority drift, applicability drift, parity mismatch, replay mismatch, seal or receipt gap, unknown effect, contract drift, integrity alarm, health quarantine, or a predecessor token not strictly below the coordinator's durable high-water mark and new rollback token each produce typed rollback or block evidence; the request anchor must equal the re-verified migration-certificate anchor
 - [ ] CHK-021 [P0] Rollback fixtures at before dispatch, after effect start, after provider acceptance, after receipt append, after projection refresh, and before report commit introduce no duplicate finding, effect, report, adjudication, or authority transition
 - [ ] CHK-022 [P0] Deadline expiry and logical-operation exhaustion close the rollback window safely; stale-window renewal, invalid authority, and unavailable-checkpoint cases fail closed
 - [ ] CHK-023 [P0] The Deep Alignment gate remains blocked when Deep Review, a generic dashboard, a final report, aggregate coverage, or a convergence score is green but Deep Alignment evidence is absent
@@ -92,7 +92,7 @@ mutation. A mode-gate PASS certifies `MIGRATED_SHADOW_READY` only; it never auth
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-028 [P1] The phase docs identify the phase-012 shared review-loop contract, Deep Review mode 002 boundary, six sibling ownership limits, authority capsule, rollback switch, dual bounds, per-lane gate evidence, and phase-014 handoff
+- [ ] CHK-028 [P1] The phase docs identify the phase-012 shared review-loop contract, Deep Review mode 002 boundary, LANDED additive-dark predecessors, sibling ownership limits, authority capsule, rollback switch, dual bounds, per-lane gate evidence, phase-014 handoff, and provenance limits cited from the golden 007 decision record
 - [ ] CHK-029 [P2] Every tolerated volatility exception, unresolved disposition, known-deviation assertion, and approved non-PASS result has a durable owner, reason, expiry, and invalidation condition
 <!-- /ANCHOR:docs -->
 

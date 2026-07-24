@@ -44,6 +44,8 @@ _memory:
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Phase 013 Deep Alignment fan-out; resume-adapter concern from the typed ledger migration |
 | **Planning authority** | Phase 012 shared review-loop contract, shared mode contracts, and the emitted write-set conflict graph |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Deep Alignment `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -65,6 +67,8 @@ conformance presentation from the folded state.
 The adapter reuses the shared review-loop backbone frozen for Deep Review mode 002 in phase 012. The per-mode migration
 execution lands only after the shared contracts and write-set conflict graph are frozen. This phase is planning only: it does
 not define the shared backbone, implement the six sibling concerns, move authority, or solve the mode gate.
+The Deep Alignment schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
+Planned adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -112,6 +116,9 @@ not define the shared backbone, implement the six sibling concerns, move authori
 | REQ-008 | Deviations remain visible chronological facts | A deviation is an append-only overlay bound to authority epoch, subject, scope, verifier, issuer, evidence, and expiry; it never erases the original observation and can reactivate after drift |
 | REQ-009 | Shared review-loop behavior is reused | Deep Alignment consumes the phase-012 run, resume, scope, pass, convergence, blocked-stop, continuity, and terminal semantics with namespaced payloads, not a mode-local lifecycle |
 | REQ-010 | The adapter is ready for shadow parity without authority movement | Resume decisions, projection fingerprints, receipts, and refusal reasons are deterministic inputs for `006-shadow-parity`; the adapter cannot authorize cutover or rewrite legacy state |
+| REQ-011 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked |
+| REQ-012 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed |
+| REQ-013 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance |
 <!-- /ANCHOR:requirements -->
 
 ### Deep Alignment continuity-ladder mapping

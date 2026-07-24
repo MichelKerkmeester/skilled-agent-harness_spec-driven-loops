@@ -42,6 +42,7 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-improvement-common + skill-benchmark |
 | **Origin** | Skill Benchmark mode migration: plan shadow parity for skill scenario runs and scoring before any authority cutover |
+| **Consumes / depends on** | LANDED additive-dark predecessors `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts`; their outputs remain non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -50,6 +51,8 @@ _memory:
 The Skill Benchmark migration changes both the scenario-run path and the scorer path. A ledger-backed implementation cannot become authoritative merely because it produces a final score: the benchmark must preserve the legacy emitter's semantic event stream, the paired treatment identity, skill exposure evidence, gold handling, and scoring outcome. Absolute skill-on scores are confounded by executor and task difficulty, while a final pass/fail cannot distinguish discovery, invocation, instruction adherence, or execution failure.
 
 This phase plans a **shadow-only** harness that executes the new typed-ledger path beside the legacy emitter on the same frozen scenario, treatment, executor, environment, tool, permission, dependency, seed, and gold inputs. It compares the two canonical projections event-for-event and records every mismatch with enough identity and digest context to reproduce it. The phase consumes the generic shadow framework from phase 014 and the shared deep-improvement-common services from mode 004; it adds only Skill Benchmark scenario and scoring logic. Legacy remains authoritative throughout this phase.
+
+The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs to this still-Planned harness without moving authority from the legacy emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -60,7 +63,7 @@ This phase plans a **shadow-only** harness that executes the new typed-ledger pa
 - A paired-run identity that binds the legacy and ledger executions to the same task, skill bundle, registry, tool and permission surface, dependency versions, gold snapshot, seed, and scenario revision.
 - The Skill Benchmark adapter into the phase-014 shadow framework, using deep-improvement-common ledger, receipt, budget, replay, sealing, and projection services without re-implementing them.
 - Skill-specific scenario events and scoring projections for availability, invocation, resource exposure, trajectory compliance, milestones, final-state checks, cost, and controlled security probes.
-- Canonical projection normalization and event-for-event comparison, including stable logical IDs, sequence or causal parent, event kind, payload digest, status, score, and receipt references; volatile timing fields require an explicit exclusion rule.
+- Canonical projection normalization and event-for-event comparison, including stable logical IDs, sequence or causal parent, event kind, payload digest, status, score, and receipt references. Pairing uses logical identity rather than raw `eventId`, so independently emitted streams still pair; volatility is limited to the closed allowlist.
 - Gold-integrity checks for scored, negative, structural-only, and pending scenarios, plus negative controls for near-neighbor and noise skills and empty expected sets.
 - A parity report and digest-bound shadow receipt that classify missing, extra, reordered, payload, score, gold, cost, and receipt mismatches and fail closed on unexplained semantic differences.
 
@@ -85,6 +88,14 @@ This phase plans a **shadow-only** harness that executes the new typed-ledger pa
 | REQ-007 | Parity failures cannot authorize migration | Any missing, extra, reordered, semantically different, invalid-gold, or unexplained score event produces a typed mismatch and a withheld shadow result; legacy remains authoritative and no cutover signal is emitted |
 | REQ-008 | Evidence is replayable and bounded to the frozen contract | The parity report binds scenario, bundle, evaluator, gold, executor, registry, tool, permission, dependency, and common-service digests, records commands and exit codes, and reproduces the same projection under replay |
 <!-- /ANCHOR:requirements -->
+
+### Shadow-parity acceptance contract
+
+The mode is parity-green only with zero unexplained semantic differences across the required scenario matrix. A tolerated diff is accountable only when it has a typed disposition, owner, reason, and proof that it cannot change trusted state or downstream authority; any unaccountable tolerance blocks parity. The closed volatility allowlist is `occurred_at`, `recorded_at`, and `correlation_id`, and each allowlisted field is still checked for presence, type, and non-interference with semantic identity.
+
+Every named cross-artifact reference must resolve to an artifact of the declared kind and, where the artifact bears them, match epoch, lifecycle, freshness, and real state; visibility and role-redaction rules plus authority liveness are checked at the same boundary. Existence- or shape-only acceptance is a defect. Fault-injection fixtures must traverse the real scenario runner, authorization, ledger, reducer, scorer projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class; stub-only or zero-event tests cannot satisfy acceptance.
+
+The parity receipt is manifest-bound evidence, not a standalone forgery-proof authority object. The authenticated mode gate is the trust anchor and must re-verify the receipt binding rather than self-trust a computed parity status. A missing, malformed, partial, or withheld receipt blocks the gate and leaves legacy authority unchanged.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

@@ -42,7 +42,7 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 - [ ] CHK-001 [P0] The phase-012 shared mode-contract digest, phase-014 shadow-framework interface, parent compatibility bridge, and mode 004 common-service contract are pinned in the candidate report
 - [ ] CHK-002 [P0] The legacy Agent Improvement boundaries are inventoried for AgentIR/package compilation, proposal, mutation, lineage, scoring, raw trials, family stability, frontier, resume, and promotion preparation
 - [ ] CHK-003 [P1] BASE, candidate and baseline digests, inheritance graph, evaluator capsule and epoch, fixture rings, executor/environment descriptors, input state, budget lease, fixture IDs, and output paths are frozen before dual execution
-- [ ] CHK-004 [P1] The canonical event tuple, protected AgentIR and projection fields, diff taxonomy, common-service references, receipt schema, and volatility allowlist are reviewed before any difference is classified as tolerated
+- [ ] CHK-004 [P1] The canonical event tuple, protected fields, diff taxonomy, common-service references, and receipt schema are reviewed; the closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`, each with presence, type, and non-interference checks
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -50,7 +50,7 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 
 - [ ] CHK-005 [P0] Changes are scoped to the Agent Improvement shadow contract; no adjacent mode implementation, common-service rewrite, authority flip, legacy-writer removal, or sibling concern is included
 - [ ] CHK-006 [P0] Both paths receive one immutable run context and one evaluator capsule/epoch; divergence in run, lineage, AgentIR, baseline, fixture, executor, environment, budget, or input digest blocks the report
-- [ ] CHK-007 [P0] Event pairing is one-to-one by stable logical identity and sequence; missing, extra, reordered, ambiguous, unauthorized, unsupported, and duplicated events fail closed
+- [ ] CHK-007 [P0] Event pairing is one-to-one by stable logical identity and sequence rather than raw `eventId`, so independent streams still pair; missing, extra, reordered, ambiguous, unauthorized, unsupported, and duplicated events fail closed
 - [ ] CHK-008 [P1] The mode consumes the mode 004 evaluator, canary, promotion, health, receipt, and mismatch contracts; namespaced Agent Improvement fields cannot weaken common checks
 - [ ] CHK-009 [P1] Unknown event fields, changed evaluator epochs, missing family samples, and non-allowlisted volatility fail closed rather than being dropped from comparison
 <!-- /ANCHOR:code-quality -->
@@ -58,7 +58,7 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-010 [P0] Accepted fixtures have 100 percent event-boundary coverage with zero missing, extra, reordered, unauthorized, unknown-version, duplicate, or unexplained protected-field events
+- [ ] CHK-010 [P0] Accepted fixtures have complete event-boundary coverage and zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, and any unaccountable tolerance blocks parity
 - [ ] CHK-011 [P0] AgentIR and inheritance projections match after every event boundary for structure, clause IDs, authority conflicts, changed locus, lineage, and compile or change-contract status
 - [ ] CHK-012 [P0] Proposal and mutation fixtures preserve parent lineage, failure-cluster inputs, single-locus intent, candidate identity, and deterministic frontier membership
 - [ ] CHK-013 [P0] Raw trial evidence retains candidate, baseline, evaluator capsule and epoch, fixture, executor, seed, judge family, raw scale, rationale digest, normalization version, cost, and latency across score-policy replay
@@ -67,8 +67,8 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 - [ ] CHK-016 [P0] Known-locus defect, causal replay, ablation, and change-contract fixtures match failure class, implicated component, collateral utility, behavioral-semver impact, and repair disposition
 - [ ] CHK-017 [P0] Semantic-equivalence and metamorphic fixtures preserve the required worst-variant or lower-tail result; identical replay alone cannot establish parity
 - [ ] CHK-018 [P0] Executor-transfer fixtures use a separately provisioned verifier and preserve task artifacts, verifier semantics, transfer evidence, and invalidation when a model, tool schema, or adapter changes
-- [ ] CHK-019 [P0] Evaluator epoch, canary, promotion, health, receipt, rollback-target, and integrity fixtures satisfy mode 004 common-service parity without allowing control-plane events to replace missing Agent Improvement behavior events
-- [ ] CHK-020 [P0] Crash, resume, duplicate delivery, and fresh-continuation fixtures produce identical match identities, projection fingerprints, invalidation decisions, lease continuity, mismatch classes, and verdicts
+- [ ] CHK-019 [P0] Evaluator epoch, canary, promotion, health, receipt, rollback-target, and integrity fixtures satisfy mode 004 common-service parity; every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks
+- [ ] CHK-020 [P0] Crash, resume, duplicate delivery, fresh-continuation, and injected-fault fixtures traverse the real execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline, assert exact typed failure classes, and reproduce deterministic match identities and verdicts
 - [ ] CHK-021 [P0] The accepted corpus has zero unexplained protected projection differences, zero blocking evidence gaps, and zero authority writes from the typed shadow path
 - [ ] CHK-022 [P0] `MISMATCH`, `INCONCLUSIVE`, `TELEMETRY_GAP`, `INSUFFICIENT_EVIDENCE`, stale evaluator, unsupported AgentIR, or empty eligible corpus cannot produce `PASS`
 <!-- /ANCHOR:testing -->
@@ -78,7 +78,7 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 
 - [ ] CHK-023 [P1] The protected-field manifest covers AgentIR, inheritance, proposal lineage, changed loci, raw trials, family vectors, evaluator epochs, frontier, ablation, transfer, canary, promotion, rollback, resume, and terminal fields
 - [ ] CHK-024 [P1] The lifecycle event map accounts for every initialization, proposal, mutation, causal, scoring, frontier, resume, transfer, canary, and promotion-preparation boundary
-- [ ] CHK-025 [P1] The parity report identifies the mode 004 common-service result and every Agent Improvement fixture result, with no variant-local fork of shared parity semantics
+- [ ] CHK-025 [P1] The parity report identifies the mode 004 common-service result and every Agent Improvement fixture result; its manifest-bound receipt is evidence that the authenticated mode gate re-verifies rather than a self-trusted computed authority status
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -109,7 +109,8 @@ or zero eligible boundaries is a failed gate, not an implicit pass.
 The phase is complete only when every P0 verifier check passes for the Agent Improvement corpus, every eligible boundary has event
 and projection evidence, common evaluator/canary/promotion services remain non-authoritative and shared, raw proposal and trial
 evidence remains addressable, and the final report is `PASS` with zero unexplained protected differences, zero blocking data gaps,
-and zero authority writes. This evidence may be consumed by the successor mode gate; it cannot authorize authority cutover by itself.
+and zero authority writes. This manifest-bound evidence may be consumed only after the authenticated successor mode gate
+re-verifies it; it cannot authorize authority cutover by itself.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

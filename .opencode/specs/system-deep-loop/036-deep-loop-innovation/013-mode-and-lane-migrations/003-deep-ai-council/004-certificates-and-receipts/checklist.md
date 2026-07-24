@@ -78,6 +78,8 @@ bias evidence, a false trusted gate result, or any change to legacy authority.
 - [ ] CHK-026 [P0] Recovery distinguishes `not_applied`, `applied`, `in_doubt`, and `conflict`; only conclusive `not_applied` retries with the original key
 - [ ] CHK-027 [P0] Late seat results, artifact supersession, policy drift, and evidence changes preserve historical receipts and append affected revisions without silent rebaselining
 - [ ] CHK-028 [P0] Dark receipt/certificate failures block dark promotion only and leave legacy state, artifacts, output, writers, and authority unchanged
+- [ ] CHK-040 [P0] The certificate contract declares the lane's plain-digest closure map as explicitly empty, invents no Deep Review-shaped fields, and still recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
+- [ ] CHK-041 [P0] Real-store anti-vacuous fixtures check kind, borne epoch/lifecycle/freshness/real state, visibility, authority liveness, and selector target resolution, with absent offline bytes typed `unverifiable` and no shape-only pass
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

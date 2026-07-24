@@ -43,12 +43,13 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Formal depends_on** | [] |
 | **Origin** | Phase 013 Agent Improvement migration: certificates and receipts over the typed event-ledger substrate |
+| **Consumes** | LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts plus shared deep-improvement-common services; all remain additive-dark and non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Agent Improvement generates and scores mutable agent proposals across a lineage of target definitions, operator choices, evaluator observations, and promotion decisions. A terminal score or status does not prove which proposal, evaluator epoch, canary set, executor, budget, or prior transition produced it, and it cannot be independently replayed after the live services change. The typed ledger therefore needs a mode-specific per-run certificate and receipts for every proposal/scoring/promotion transition.
+Agent Improvement generates and scores mutable agent proposals across a lineage of target definitions, operator choices, evaluator observations, and promotion decisions. Its typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and non-authoritative while this leaf stays Planned. A terminal score or status does not prove which proposal, evaluator epoch, canary set, executor, budget, or prior transition produced it, and it cannot be independently replayed after the live services change. The typed ledger therefore needs a mode-specific per-run certificate and receipts for every proposal/scoring/promotion transition.
 
 The certificate must attest to the completed Agent Improvement run without making the certificate itself the evaluator. Each receipt must bind one authorized transition to its ordered inputs, outputs, predecessor receipts, and evidence digests. Replay fingerprints must make the relevant dependency closure explicit, while an offline verifier must recompute the fingerprints and reject missing, reordered, mutated, stale, or unauthorized evidence.
 
@@ -94,7 +95,7 @@ Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improve
 | REQ-001 | The per-run `CERTIFICATE` attests to one Agent Improvement run and its terminal evidence boundary. | A schema fixture binds the run ID, mode/variant, target and candidate lineage, AgentIR/target digest, sealed-artifact references, common-service epochs, terminal transition, receipt root, final disposition, and verifier result without relying on mutable live state. |
 | REQ-002 | Every Agent Improvement transition that can affect candidate lineage, score, canary state, promotion, rollback, or terminal status emits one typed `RECEIPT`. | A transition matrix maps each allowed event to exactly one receipt shape, event ID, actor/authority context, ordered parents, input/output digests, and evidence references; missing, duplicate, or orphan receipts fail validation. |
 | REQ-003 | Replay fingerprints include the complete Agent Improvement dependency closure. | Recomputing a fingerprint from the canonical vector changes when any event/schema version, ordered parent, candidate or target digest, operator lineage, evaluator/canary/promotion epoch, fixture commitment, executor/model/tool setting, budget, normalization, reducer, or prior-state input changes. |
-| REQ-004 | An independent verifier can validate the certificate and receipts offline. | A clean verifier fixture accepts a valid run using local immutable inputs only and fails closed on digest mismatch, receipt reorder, missing dependency, schema incompatibility, unauthorized transition, stale epoch, or incomplete evidence. |
+| REQ-004 | An independent verifier validates the complete ordered dependency closure offline. | Given the lane's declared plain-digest expected-kind map, the verifier resolves named references to actually sealed bytes; checks kind plus borne epoch, lifecycle, freshness, real state, visibility, and authority liveness; recomputes rather than trusts the replay fingerprint; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and fails closed on missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, incomplete, or bundle-absent evidence. |
 | REQ-005 | Agent Improvement reuses deep-improvement-common evaluator, canary, and promotion services. | The integration inventory identifies the shared service IDs and receipt contracts consumed by this mode; no mode-local evaluator, canary, promotion, or threshold implementation is introduced. |
 | REQ-006 | The contract consumes phase-007 receipt/certificate primitives and the `003-sealed-artifacts` artifact references without redefining their ownership. | Cross-phase fixtures show primitive IDs, artifact digests, and lifecycle state are referenced and verified consistently; an incompatible primitive version is refused rather than silently coerced. |
 | REQ-007 | The certificate and receipt contract remains non-authoritative until the Agent Improvement mode gate proves shadow parity. | The mode gate records certificate/verifier parity evidence while authority remains on the legacy path; no certificate is treated as a cutover authorization. |
@@ -107,6 +108,14 @@ Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improve
 | REQ-009 | Candidate-blind and hidden-evidence boundaries are represented in the evidence contract. | Receipt payloads expose digests and typed verdicts to the proposer while withholding protected fixture identity or exact hidden scores until the declared disclosure transition. |
 | REQ-010 | Verifier failures are typed and actionable. | The fixture matrix distinguishes `MISSING_EVIDENCE`, `FINGERPRINT_MISMATCH`, `TRANSITION_UNAUTHORIZED`, `EPOCH_MISMATCH`, `SCHEMA_INCOMPATIBLE`, and `INCOMPLETE_RUN` rather than collapsing them into a generic failed status. |
 <!-- /ANCHOR:requirements -->
+
+The Agent Improvement sealed leaf recorded no deferred plain-digest closure and has no sealed-leaf decision record for
+that class. Its closure-map acceptance input is therefore the explicit empty map `{}`; this leaf must not invent Deep
+Review-shaped fields. The empty class does not relax other references: real-store anti-vacuous fixtures must reject
+shape-valid missing, fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, and authority-dead evidence.
+Absent sealed bytes in the offline bundle are typed `unverifiable`, never a silent pass. Because Agent Improvement sealed
+material carries `locator.selector`, selector syntax is accepted only after target-context resolution, and selector text
+remains advisory rather than an authority or score input.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

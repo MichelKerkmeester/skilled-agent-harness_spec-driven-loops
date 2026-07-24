@@ -74,6 +74,10 @@ or unexpected tracked mutation.
 - [ ] CHK-023 [P1] Report or terminal projection is idempotent for one folded frontier and creates a new immutable projection for a changed frontier
 - [ ] CHK-024 [P1] Same-lineage and independent-lineage concurrency cases agree with the shared write-set conflict graph
 - [ ] CHK-025 [P1] Deep Alignment lifecycle shape matches phase-012 and Deep Review mode 002 fixtures without exercising a local transition path
+- [ ] CHK-035 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
+- [ ] CHK-036 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
+- [ ] CHK-037 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
+- [ ] CHK-038 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

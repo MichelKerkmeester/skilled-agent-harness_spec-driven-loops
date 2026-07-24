@@ -42,8 +42,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
 | **Origin** | Fourth child of the Deep AI Council mode migration fan-out |
-| **Depends on** | `[]`; sibling planning contracts are independent and compose at the Deep AI Council mode gate |
-| **Consumes** | Shared phase-007 receipt and certificate primitives, typed ledger and replay contracts, and predecessor `003-sealed-artifacts` references |
+| **Depends on** | `[]`; sibling planning contracts remain a composition boundary rather than a hard runtime dependency |
+| **Consumes** | Shared phase-007 receipt/certificate primitives plus LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts; all remain additive-dark and non-authoritative |
 | **Inputs** | `036-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `findings-registry.json`, `findings-registry-modes.json`, and the Deep AI Council typed-ledger and reducer contracts |
 <!-- /ANCHOR:metadata -->
 
@@ -64,7 +64,8 @@ stance trajectories, bias and metamorphic checks, control-arm comparisons, and r
 observations belong in the typed event and reducer contracts, while certificates and receipts attest that the recorded
 observations and decisions were assembled under the declared contracts.
 
-This phase plans one per-run Deep AI Council certificate and a receipt profile for every logical transition in the run:
+The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but their outputs remain
+additive-dark and non-authoritative while this leaf stays Planned. This phase plans one per-run Deep AI Council certificate and a receipt profile for every logical transition in the run:
 `seats deliberate -> critique rounds -> converge -> ai-council artifacts -> council test gate`, plus initialization,
 recovery, and completion. A receipt attests one authorized transition, its exact input and output references, resulting
 ledger head, and effect or recovery disposition. The certificate attests the verified run bundle, declared result, sealed
@@ -107,7 +108,7 @@ digest, verifier, artifact store, reducer, resume adapter, or authority decision
 | REQ-006 | Receipt and certificate chains are append-only and conflict detecting | Exact-repeat retry returns the original receipt; reused identity with different facts, prior head, candidate set, order token, result, or authority epoch returns a typed conflict and appends no false success |
 | REQ-007 | Uncertainty and council disagreement remain attestable without becoming success | `blocked`, `invalid`, `incomplete`, `quarantined`, `failed`, `in_doubt`, `abstained`, and `unresolved` remain explicit; the certificate cannot report trusted completion with unresolved required evidence or a failed gate |
 | REQ-008 | Independence, minority, and bias evidence remain certificate-addressable | The bundle retains raw seat/error vectors, independence groups, stance and belief revisions, minority and contradiction references, order-swapped outcomes, bias findings, control-arm deltas, and vetoes without reducing them to nominal agreement |
-| REQ-009 | The offline verifier is independent of live council execution | A verifier with trusted registries, the receipt/certificate bundle, and local sealed references validates canonical bytes, authorization, chain continuity, replay fingerprint, projections, artifacts, and gate evidence without network, model, search, or memory calls |
+| REQ-009 | The offline verifier is independent of live council execution and verifies the complete ordered dependency closure | A verifier with trusted registries, the receipt/certificate bundle, local sealed bytes, and this lane's declared plain-digest expected-kind map resolves named references against actually sealed content; checks kind plus epoch, lifecycle, freshness, real state, visibility, and authority liveness where borne; recomputes rather than trusts the replay fingerprint; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and fails closed with typed missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or `unverifiable` outcomes without network, model, search, or memory calls |
 | REQ-010 | Recovery distinguishes logical retries from attempts and external effects | `not_applied`, `applied`, `in_doubt`, and `conflict` are recorded against the logical transition; only conclusive `not_applied` can retry with the original idempotency key |
 | REQ-011 | The migration remains additive-dark | Receipt or certificate failure blocks dark evidence and mode-gate promotion only; legacy council state, artifacts, writers, output, and authority remain unchanged until staged cutover |
 
@@ -151,14 +152,23 @@ change a replay decision. The verifier rejects an unregistered field instead of 
 
 ### Independent offline verification
 
+The Deep AI Council sealed leaf recorded no deferred plain-digest closure and has no sealed-leaf decision record for that
+class. Its closure-map acceptance input is therefore the explicit empty map `{}`; this leaf must not invent Deep
+Review-shaped fields. The empty plain-digest class does not relax named-reference verification.
+
 The verifier loads trusted shared contract, certification, event, and policy registries; validates strict schemas and the
 certificate body; checks run scope and unique logical transition identities; walks prior-head, event, authorization, and
-receipt links; resolves every sealed reference from the supplied local bundle; recomputes canonical body digests and the
-registered replay fingerprint; folds the certificate-pinned event range with the declared reducer and projection versions;
+receipt links; resolves every sealed reference from the supplied local bundle; checks declared kind and any borne epoch,
+lifecycle, freshness, real-state, visibility, and authority-liveness constraints; recomputes canonical body digests and the
+registered replay fingerprint over the ordered dependency closure; folds the certificate-pinned event range with the declared reducer and projection versions;
 checks synthesis, artifact, bias, independence, minority, and test-gate evidence; and confirms result dispositions match the
 certificate. It never fetches a URL, reruns a model, calls a search or memory provider, repairs a missing receipt, invents a
 seat result, or creates a new baseline. The output is a typed `valid`, `invalid`, `incomplete`, `unverifiable`, or `blocked`
-verdict with the first failed invariant and evidence digest; verification does not mutate history.
+verdict with the first failed invariant and evidence digest; absent sealed bytes in the offline bundle are
+`unverifiable`, never a silent pass. Because council sealed material carries `locator.selector`, the verifier also resolves
+selectors against real target context and keeps their text advisory and non-authoritative. Anti-vacuous fixtures use the
+real sealed store and reject shape-valid missing, fabricated, wrong-kind, stale, reordered, visibility-denied, and
+authority-dead references rather than accepting existence or shape alone. Verification does not mutate history.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

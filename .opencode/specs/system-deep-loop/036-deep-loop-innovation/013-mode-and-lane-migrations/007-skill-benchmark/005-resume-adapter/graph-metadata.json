@@ -96,13 +96,13 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "The Skill Benchmark",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Skill Contribution Certificate",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic.",
     "created_at": "2026-07-16T03:43:42.100Z",
-    "last_save_at": "2026-07-17T13:21:43.669Z",
+    "last_save_at": "2026-07-24T07:16:38.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e6046f21c7c8219cc1e051b4c29091a91c5a0da1d4e8e29bb8b0aa74f98d63f4",
+    "source_fingerprint": "sha256:5837bef50abe4378312af65013ff25fa562b4cb50558d9b514baf556dad6f553",
     "source_doc_hashes": {
-      "spec.md": "61c4a86ffde6ac43d2ba9fff57cd0d924ed914fe2067cedbfa8e7a7201f7edf7",
+      "spec.md": "af5f3761621df00c1b0ab9dd4fe932177928d0e927414af7725fccd7b67bad82",
       "plan.md": "d9d03b7fff5dacdfae62a2c0b368d2007746bc9143cdd7c036ed08c5d5f24d2f",
       "tasks.md": "e7f2fc6546f9caff5a62244e2e942877d5756664f628be2eadee20b131e91be5",
-      "checklist.md": "7cd24cd32ef76f28a457778efa3e6ea7a61999b8e1277495b0c427e3d6cbcdf2"
+      "checklist.md": "6f99a7359ffd3635d97a36bea43ad9883ec3cfa5acaf4d522bb69820be50abac"
     },
     "last_active_child_id": null,
     "last_active_at": null

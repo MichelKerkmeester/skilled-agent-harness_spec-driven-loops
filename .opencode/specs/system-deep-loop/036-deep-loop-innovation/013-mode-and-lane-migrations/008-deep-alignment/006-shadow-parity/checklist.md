@@ -42,7 +42,7 @@ unexpected authority side effect.
 - [ ] CHK-001 [P0] `005-resume-adapter`, the phase-014 shadow framework, and the phase-012 shared review-loop contract are version-pinned in the paired-run manifest
 - [ ] CHK-002 [P0] Legacy and ledger paths receive identical run, target, authority, verifier, lane, capability, budget, and fixture inputs; any mismatch blocks before execution
 - [ ] CHK-003 [P1] Deep Alignment event and projection inventories cover every active lane, finding state, applicability outcome, deviation state, authority conflict, terminal state, and public gauge
-- [ ] CHK-004 [P1] The comparator's semantic field allowlist, event pairing key, causal-order rule, projection identities, and unknown-field policy are versioned and reviewed
+- [ ] CHK-004 [P1] The event pairing key, causal-order rule, projection identities, and unknown-field policy are reviewed; the closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`, each with presence, type, and non-interference checks
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -57,15 +57,16 @@ unexpected authority side effect.
 ## Testing
 
 - [ ] CHK-008 [P0] Execute legacy and ledger paths from one frozen paired-run manifest and record the exact manifest, authority capsule, verifier, review-loop, and comparator fingerprints
-- [ ] CHK-009 [P0] Every legacy event has exactly one ledger counterpart and every ledger event has exactly one legacy counterpart; missing, extra, duplicate, and unpaired events fail the gate
+- [ ] CHK-009 [P0] Every legacy event has exactly one ledger counterpart by logical identity rather than raw `eventId`, so independent streams still pair; missing, extra, duplicate, and unpaired events fail the gate
 - [ ] CHK-010 [P0] Paired events match on logical identity, type, lane, subject, authority epoch, causal parent, sequence/barrier position, and terminal transition
-- [ ] CHK-011 [P0] Canonical event payloads match under the explicit allowlist; unknown fields, dropped fields, changed evidence, changed applicability, and changed verdict semantics fail closed
+- [ ] CHK-011 [P0] Canonical event payloads have zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, while unknown fields, dropped evidence, changed applicability, and changed verdict semantics fail closed
 - [ ] CHK-012 [P0] Finding lifecycle and public projections match by stable identity, including applicability, evidence bindings, known-deviation disposition, authority conflicts, terminal status, and gauges
 - [ ] CHK-013 [P0] Both paths use the same valid authority capsule and verifier identity; stale, expired, rolled-back, mixed-version, or unbound authority material returns `PARITY_BLOCKED`
 - [ ] CHK-014 [P0] Repeated capture and replay produce identical event fingerprints, projection fingerprints, first-divergence location, mismatch class, and parity disposition
 - [ ] CHK-015 [P0] The fixture matrix covers deterministic runs, concurrent lane arrival, retries, late events, resume/replay, authority epoch changes, applicability, known deviations, and authority conflicts
-- [ ] CHK-016 [P0] Seeded missing, extra, duplicate, reordered, changed-payload, changed-applicability, and changed-verdict fixtures produce actionable blocking mismatch reports
-- [ ] CHK-017 [P1] A green run emits a parity receipt containing exact inputs, comparator version, fixture coverage, event/projection digests, mismatch count, and explicit legacy-authoritative status
+- [ ] CHK-016 [P0] Seeded missing, extra, duplicate, reordered, changed-payload, changed-applicability, and changed-verdict faults traverse the real paired runner, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert exact typed failure classes
+- [ ] CHK-017 [P1] A green run emits a manifest-bound parity receipt containing exact inputs, comparator version, fixture coverage, event/projection digests, mismatch count, and explicit legacy-authoritative status; the authenticated mode gate re-verifies the binding and does not self-trust computed status
+- [ ] CHK-023 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

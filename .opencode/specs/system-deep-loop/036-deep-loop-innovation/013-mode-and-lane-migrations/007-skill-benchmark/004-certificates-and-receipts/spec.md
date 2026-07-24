@@ -42,7 +42,9 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-improvement-common / skill-benchmark |
 | **Origin** | Phase 013 Skill Benchmark migration: certificates and receipts after typed ledger, reducers, and sealed artifacts |
-| **Inputs** | Parent program spec, phase-tree manifest, findings registries, Skill Benchmark siblings 001-002, and common mode-004 service contracts |
+| **Depends on** | `[]`; sibling adjacency remains a planning/composition boundary rather than a hard runtime dependency |
+| **Consumes** | LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts plus common mode-004 services; all remain additive-dark and non-authoritative |
+| **Inputs** | Parent program spec, phase-tree manifest, findings registries, and common mode-004 service contracts |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -55,7 +57,8 @@ show whether its gold was valid and whether the observed lift survived the decla
 dependency, and environment slice. The intended product is a versioned effect certificate with a validity domain, not a
 global score.
 
-This phase plans the Skill Benchmark specialization of the shared certificate and receipt contract. A per-run `CERTIFICATE`
+The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and
+non-authoritative while this leaf stays Planned. This phase plans the Skill Benchmark specialization of the shared certificate and receipt contract. A per-run `CERTIFICATE`
 attests what skill scenarios and scoring policy were evaluated, which sealed artifacts and raw observations support the
 result, which paired treatment cells and component ablations were covered, what hard vetoes or insufficiencies were found,
 and which bounded verdict is valid for the declared slice. A per-transition `RECEIPT` attests each authorized operation from
@@ -101,7 +104,7 @@ fan-out after phase 012 freezes shared contracts and emits the executable depend
 | REQ-006 | Raw scoring observations remain independently auditable | Per-item checks, dynamic reference results, raw score axes, evaluator identity, normalization/reducer versions, constraint coverage, cost, latency, tokens, and workload observations remain immutable inputs rather than only a summary score |
 | REQ-007 | Compatibility, risk, and validity are certificate claims with bounded scope | Bundle, registry, executor, tool, permission, environment, dependency, workload, composition, security, negative-transfer, evaluator, and canary digests are bound; incompatible or stale slices withhold or expire the certificate |
 | REQ-008 | Mode replay uses the shared fingerprint contract plus explicit Skill Benchmark inputs | The same canonical semantic inputs reproduce the same fingerprint; changes to treatment, evidence ordering, gold, scoring, bundle, capability, dependency, environment, budget, policy, or predecessor evidence produce a mismatch; storage-local values are excluded |
-| REQ-009 | An independent verifier re-checks the mode result offline | The verifier resolves content-addressed references, recomputes hashes and score derivations, checks receipt-chain continuity and hard vetoes, validates paired coverage and gold mutation sensitivity, and returns typed pass/fail/incomplete/unsupported outcomes without live execution |
+| REQ-009 | An independent verifier re-checks the complete cross-artifact closure offline | Given the declared per-plain-field expected-kind map, the verifier resolves every deferred named value to actually sealed bytes of that kind; checks borne evaluator/canary epoch, lifecycle, freshness, real state, visibility, and authority liveness; recomputes rather than trusts the replay fingerprint over the ordered closure; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and returns typed fail-closed outcomes for missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence without live execution |
 | REQ-010 | Common services remain single-sourced and dark | Skill Benchmark supplies only scenario/scoring adapters; shared certificate fields, receipt vocabulary, fingerprint rules, verifier stages, hard-veto ordering, and effect recovery have one owner and do not change authority before the later cutover |
 | REQ-011 | The 013 fan-out consumes a frozen, conflict-safe contract | The phase records the 012 contract-freeze and write-set-graph gate; no per-mode implementation is accepted while shared field ownership or conflicting writes remain unresolved |
 <!-- /ANCHOR:requirements -->
@@ -132,11 +135,24 @@ not fingerprint inputs.
 
 ### Offline verification contract
 
+The accepted sealed-artifact boundary in [`../003-sealed-artifacts/decision-record.md`](../003-sealed-artifacts/decision-record.md)
+defers `EXPOSURE_OBSERVATION.assignmentId`, `EXPOSURE_OBSERVATION.assignmentDigest`,
+`CAUSAL_SCORE_OBSERVATION.assignmentId`, `CAUSAL_SCORE_OBSERVATION.assignmentDigest`,
+`RUN_ASSIGNMENT.skillBundleRef`, and `RUN_ASSIGNMENT.skillBundleDigest`. The certificate contract must declare a
+machine-readable map from each `(containing artifact kind, field)` to the exact registered expected kind:
+assignment pairs resolve to `RUN_ASSIGNMENT`, and skill-bundle pairs resolve to `SKILL_BUNDLE_SNAPSHOT`. Scalar pairs
+must resolve to the same sealed identity; kind inference from field spelling or digest shape is forbidden.
+
 The verifier first checks shared schema support and sealed-reference retrieval, then recomputes the mode fingerprint, receipt-chain
 links, raw-observation manifest, gold-integrity and mutation-sensitivity checks, deterministic final-state and milestone relations,
 paired treatment coverage, score reductions, compatibility/security gates, and validity/expiry rules. It distinguishes `PASS`,
 `FAIL`, `VETOED`, `INCOMPLETE`, and `UNSUPPORTED_VERSION`, preserves `UNKNOWN` for unresolved effect or evidence states, and
 emits a verifier receipt bound to the certificate fingerprint, verifier version, ruleset digest, and all evidence digests.
+Missing sealed bytes in the offline bundle are typed `unverifiable`, never a silent pass. Every named reference is checked
+for kind plus borne epoch, lifecycle, freshness, real state, visibility, and authority liveness. Because Skill Benchmark
+sealed material carries `locator.selector`, selectors are resolved against real target context and remain advisory.
+Anti-vacuous fixtures use the real store to reject shape-valid missing, fabricated, wrong-kind, stale, reordered,
+visibility-denied, and authority-dead references.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

@@ -43,6 +43,8 @@ _memory:
 | **Owner skill** | system-deep-loop (deep-review mode migration) |
 | **Origin** | Phase 013 deep-review fan-out; resume-adapter concern from the typed ledger migration |
 | **Planning authority** | Phase 012 shared review-loop contract, phase 012 mode contracts and write-set conflict graph |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Deep Review `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -52,7 +54,10 @@ Deep Review runs a structured loop: establish review scope, execute per-dimensio
 
 This phase plans a **resume adapter** whose only authoritative input is the sealed event-ledger frontier. It must fold the accepted ledger through the shared reducers, rebuild the Deep Review continuity ladder, and return an explicit re-entry decision for the next safe operation. The adapter must preserve raw `FindingCandidate`, challenge, proof, disposition, convergence, and report events while keeping P0/P1/P2 as a derived presentation projection over orthogonal evidence fields. It must also distinguish compatible reuse from re-execution, compensation, or rejection when the replay fingerprint or artifact receipt does not match.
 
-The adapter consumes the review-loop backbone frozen in phase 012 and the shared mode contract emitted by phase 012. It does not fork the loop for Deep Review, move authority, or solve the other six sibling concerns.
+The adapter consumes the review-loop backbone frozen in phase 012 and the shared mode contract emitted by phase 012. The
+Deep Review schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this Planned
+adapter consumes them without moving authority. It does not fork the loop for Deep Review, move authority, or solve the
+other six sibling concerns.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -86,6 +91,9 @@ The adapter consumes the review-loop backbone frozen in phase 012 and the shared
 | REQ-006 | Resume decisions use stable logical identities | Pass, finding, proof, and effect decisions retain stable logical IDs while attempt IDs may change; changed manifests cannot inherit success by label alone |
 | REQ-007 | Deep Review findings preserve evidence semantics | Raw candidates and proof receipts remain immutable; impact, confidence, evidence kind, reachability, lifecycle, and P0/P1/P2 presentation remain distinguishable after recovery |
 | REQ-008 | The adapter shares the frozen loop backbone | The design references the phase-012 review-loop contract and phase-012 write-set ownership, with no mode-local lifecycle or conflicting event application path |
+| REQ-009 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked |
+| REQ-010 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed |
+| REQ-011 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

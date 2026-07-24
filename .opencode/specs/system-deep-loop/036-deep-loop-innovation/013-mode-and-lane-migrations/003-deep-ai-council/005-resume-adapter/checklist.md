@@ -65,6 +65,10 @@ semantic application, missing event, or unexpected authority change.
 - [ ] CHK-018 [P0] A continuity field, checkpoint, or mutable transcript cannot override the sealed ledger or authorize a new semantic transition
 - [ ] CHK-019 [P1] The adapter output is consumable by shadow parity while the legacy path remains authoritative and no authority-cutover event is emitted
 - [ ] CHK-020 [P1] Resume behavior is invariant to worker completion order when logical branch IDs and the sealed event order are unchanged
+- [ ] CHK-022 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
+- [ ] CHK-023 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
+- [ ] CHK-024 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
+- [ ] CHK-025 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

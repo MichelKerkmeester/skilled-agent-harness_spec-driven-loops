@@ -80,6 +80,8 @@ unadjudicated conformance activation, an offline verifier dependency on live ser
 - [ ] CHK-024 [P0] Unknown event or receipt versions, invalid or expired authority, missing sealed references, mutable references, unresolved applicability, and contradictory receipt chains fail closed without a guessed decoder or passing certificate
 - [ ] CHK-025 [P0] The offline verifier completes with model, network, external tool, and mutable workspace access unavailable
 - [ ] CHK-026 [P1] Unknown external effects and incomplete proof remain unknown or recovery-required and cannot become successful conformance through retry or certificate generation
+- [ ] CHK-038 [P0] The declared closure map covers every predecessor-deferred plain scalar/array digest field, including applicability/subject, convergence, report, and additional registered fields in that class, checks arrays element-wise, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
+- [ ] CHK-039 [P0] Real-store fixtures reject missing, fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named evidence; missing offline bytes are typed `unverifiable`, direct provenance remains intact, and selectors pass only after real target-context resolution
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

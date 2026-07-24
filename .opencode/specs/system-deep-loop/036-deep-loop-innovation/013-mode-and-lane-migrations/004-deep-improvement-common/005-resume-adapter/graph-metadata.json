@@ -90,20 +90,20 @@
         "source": "derived"
       },
       {
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "In Scope",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder mapping, idempotent re-entry, and the shared evaluator, canary, and guarded-promotion service contracts reused by the three benchmark variants.",
     "created_at": "2026-07-16T03:43:36.808Z",
-    "last_save_at": "2026-07-19T18:09:52.370Z",
+    "last_save_at": "2026-07-24T07:16:37.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,12 +191,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:634af7f34ed0d50b890d671cc1cc006518c7e5fe553a47fad849801948dafe35",
+    "source_fingerprint": "sha256:336bc1598f9d914806e362a5ca423273cefd5f2483f18840a465513e2f5dbdd2",
     "source_doc_hashes": {
-      "spec.md": "dcdf0cd42c08f92226f448ce67d2b0cdda178872b5fa58ba29faddaad75ee2f1",
+      "spec.md": "a74e92109f2816ab2fc443b64f1b6d532d82752088805b7cdb96b430022504e4",
       "plan.md": "4f2642f7cfa686c57a4ada61c30656f17b172962e7423d2c57becc5cae6f5673",
       "tasks.md": "de814324f66bed0b23f4630017bad8103cd71679e0117d435bc196be00b54fcd",
-      "checklist.md": "865b22554b6678b7c6a680fbd032577c8e9e07caee374992e249285d6a5f174a"
+      "checklist.md": "6b49c15ddb41b9da5c0a566a0b35beff28e680a84d4af01eeebf0768c8988184"
     },
     "last_active_child_id": null,
     "last_active_at": null

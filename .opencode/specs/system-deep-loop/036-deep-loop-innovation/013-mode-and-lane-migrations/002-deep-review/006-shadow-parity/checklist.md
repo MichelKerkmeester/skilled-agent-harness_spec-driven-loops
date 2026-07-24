@@ -41,7 +41,7 @@ unexpected publication mutation fails the phase.
 - [ ] CHK-001 [P0] The phase-012 shared review-loop contract and phase-014 shadow framework are frozen and their fingerprints are recorded
 - [ ] CHK-002 [P0] The pinned legacy Deep Review lifecycle and all scope, dimension, finding, convergence, and report boundaries are inventoried
 - [ ] CHK-003 [P1] The paired-run envelope records identical source, scope, dimensions, execution, budget, replay, and contract fingerprints
-- [ ] CHK-004 [P1] The normalization allowlist is explicit and excludes event identity, causal order, lineage, evidence, severity, disposition, receipts, and report order
+- [ ] CHK-004 [P1] The closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`; each field is checked for presence, type, and non-interference, while event identity, causal order, lineage, evidence, severity, disposition, receipts, and report order remain protected
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -57,12 +57,12 @@ unexpected publication mutation fails the phase.
 ## Testing
 
 - [ ] CHK-009 [P0] The clean lifecycle fixture covers scope -> dimension pass -> candidate -> validation -> impact -> convergence -> review-report with matching causal order
-- [ ] CHK-010 [P0] Event-stream comparison reports zero unexplained missing, extra, reordered, duplicate, stale, or payload-divergent events
+- [ ] CHK-010 [P0] Event-stream comparison reports zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, and any unaccountable tolerance blocks parity
 - [ ] CHK-011 [P0] Projection comparison matches stable finding identity, introduced/fixed/pre-existing lineage, impact, evidence attributes, disposition, and report ordering
 - [ ] CHK-012 [P0] Duplicate-candidate and cross-pass fixtures preserve one stable finding identity without losing source evidence or validation history
 - [ ] CHK-013 [P0] Moved, renamed, updated, fixed, and pre-existing finding fixtures use versioned semantic fingerprints rather than absolute lines alone
 - [ ] CHK-014 [P0] Replay and every supported checkpoint-resume fixture reproduce the original normalized event stream, projection, and replay fingerprint
-- [ ] CHK-015 [P0] Invalid-transition, stale-receipt, incomplete-validation, and phase-014 fault fixtures fail closed with typed discrepancy evidence
+- [ ] CHK-015 [P0] Invalid-transition, stale-receipt, incomplete-validation, and fault injections traverse the real paired execution, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert the exact typed failure class
 - [ ] CHK-016 [P0] The legacy path remains the only publication authority in every fixture; a shadow mismatch cannot publish or authorize
 - [ ] CHK-017 [P1] Repeated execution with identical inputs produces identical event comparison output, projection hashes, discrepancy ordering, and certificate bytes
 - [ ] CHK-018 [P1] The fixture corpus includes normal, duplicate, update, resume, replay, invalid-transition, and fault-injection cases with no missing class
@@ -71,9 +71,9 @@ unexpected publication mutation fails the phase.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-019 [P0] Every required Deep Review lifecycle event and projection is listed in the adapter mapping and comparator manifest
+- [ ] CHK-019 [P0] Every required Deep Review lifecycle event and projection is listed in the adapter mapping and comparator manifest, and every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks
 - [ ] CHK-020 [P0] Every discrepancy is classified, retained with raw evidence, and either resolved or keeps the result at `PARITY_BLOCKED`
-- [ ] CHK-021 [P1] The parity certificate binds fixture digest, contract fingerprints, comparator version, candidate SHA, and all four verdicts
+- [ ] CHK-021 [P1] The manifest-bound parity receipt binds fixture digest, contract fingerprints, comparator version, candidate SHA, and all four verdicts as evidence; the authenticated mode gate re-verifies that binding and does not self-trust the computed parity status
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -102,7 +102,7 @@ unexpected publication mutation fails the phase.
 ## Verification Summary
 
 The phase is complete only when every P0 check passes, event-stream and projection parity are green, replay/resume and
-safety parity are green, the certificate is reproducible and content-addressed, and the legacy path remains authoritative.
+safety parity are green, the receipt is reproducible and manifest-bound, and the legacy path remains authoritative.
 Any unexplained diff, missing fixture, or stale contract changes the result to `PARITY_BLOCKED` and prevents the next mode
 gate from treating this phase as evidence of cutover readiness.
 <!-- /ANCHOR:summary -->

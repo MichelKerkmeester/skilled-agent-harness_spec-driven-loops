@@ -47,6 +47,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the shared ledger, sealed-artifact, and review-loop contracts are frozen |
+| **Depends on** | `[]`; sibling adjacency remains a planning/composition boundary rather than a hard runtime dependency |
+| **Consumes** | LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts; all remain additive-dark and non-authoritative |
 | **Inputs** | `036-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, the Deep Review typed-ledger sibling, `findings-registry*.json`, phase `003-sealed-artifacts`, and the shared review-loop contract from phase 012 |
 | **Output** | A ratifiable per-run certificate, per-transition receipt, replay-fingerprint input, and independent offline-verifier plan; no authority cutover |
 <!-- /ANCHOR:metadata -->
@@ -56,7 +58,7 @@ _memory:
 
 The Deep Review loop currently records scope, per-dimension passes, candidate findings, evidence, adjudication, convergence, blocked stops, synthesis, and `review-report.md` through a mixture of JSONL state, iteration artifacts, reducer-owned views, and handoff files. Those records preserve useful history, but the loop has no single per-run attestation proving which immutable inputs, transitions, evidence references, and policy versions produced a report. It also lacks a uniform receipt for each state-changing transition, leaving retries, late evidence, blocked stops, and effect ambiguity difficult to verify without rerunning the live mode.
 
-The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts, versioned replay fingerprints, and receipts/certificates before authority moves. Phase `003-sealed-artifacts` supplies the receipt and certificate primitives consumed here. Phase 012 freezes the shared review-loop backbone used by Deep Review and deep-alignment; this phase must specialize that contract rather than fork it. The mode findings research reinforces the boundary: review passes emit candidates before independent validation activates P0/P1/P2 findings; impact and evidential confidence remain orthogonal; cross-pass identity uses versioned semantic anchors; and deterministic failures remain first-class receipts (`findings-registry-modes.json:2619-2876`).
+The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts, versioned replay fingerprints, and receipts/certificates before authority moves. The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but their outputs remain additive-dark and non-authoritative; this Planned leaf consumes those frozen contracts without changing legacy behavior. Phase 012 freezes the shared review-loop backbone used by Deep Review and deep-alignment; this phase must specialize that contract rather than fork it. The mode findings research reinforces the boundary: review passes emit candidates before independent validation activates P0/P1/P2 findings; impact and evidential confidence remain orthogonal; cross-pass identity uses versioned semantic anchors; and deterministic failures remain first-class receipts (`findings-registry-modes.json:2619-2876`).
 
 This phase plans two related attestations. A **CERTIFICATE** is one per completed or explicitly incomplete Deep Review run and attests the declared run outcome, immutable scope, finalized event range, receipt set, replay fingerprint, and report handoff. A **RECEIPT** is one per authorized transition and attests the transition decision, input and output references, authorization result, effect status, and append-chain position. Neither attestation claims that a semantic finding is true merely because a model or aggregate accepted it; each preserves the evidence and adjudication boundary needed for an independent verifier.
 <!-- /ANCHOR:problem -->
@@ -94,7 +96,7 @@ This phase plans two related attestations. A **CERTIFICATE** is one per complete
 | REQ-006 | Certificate and receipt fingerprints distinguish immutable history from the current installation | Offline replay uses certificate-pinned versions and input digests; a changed implementation, policy, target, tool surface, or artifact yields exact, compatible, migrate, pin-old-runtime, or blocked rather than silent reuse |
 | REQ-007 | Candidate production cannot masquerade as adjudicated severity | Candidate receipts preserve raw observations and independent evidence classes; P0/P1/P2 activation requires a separate typed adjudication receipt with impact, confidence, reachability, exploitability, evidence strength, and evidence scope kept distinct |
 | REQ-008 | Late evidence, retries, supersession, and unresolved states remain auditable | A later receipt references the prior receipt and records the new observation or disposition; no certificate or receipt rewrites raw evidence, erases a failed transition, or turns unknown external effects into success |
-| REQ-009 | An independent verifier can validate a run without live model, tool, network, or mutable workspace access | The verifier accepts a certificate, ledger range, sealed-artifact references, and trusted contract registry; it recomputes digests, receipt closure, event order, fingerprints, authorization references, and report inputs with fail-closed outcomes |
+| REQ-009 | An independent verifier can validate the complete cross-artifact closure without live model, tool, network, or mutable workspace access | The verifier accepts a certificate, ledger range, receipt bundle, sealed-artifact bundle, trusted registries, and the declared per-plain-digest-field expected-kind map; resolves every deferred digest to actually sealed bytes of its declared kind; checks epoch, lifecycle, freshness, real state, visibility, and authority liveness where borne; recomputes rather than trusts the replay fingerprint over the ordered dependency closure; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and returns typed fail-closed outcomes for missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence |
 | REQ-010 | Deep Review and deep-alignment continue to share one review-loop backbone | The contract comparison identifies inherited shared fields and mode-specific extensions; no Deep Review-only copy of shared scope, dimension, convergence, lineage, or report transitions is introduced |
 | REQ-011 | The phase remains planning-only and ownership-complete | The packet defines schemas, input matrices, verifier behavior, and fixtures only; no reducer, report generator, resume adapter, cutover, rollback switch, or mode gate is implemented here |
 <!-- /ANCHOR:requirements -->
@@ -113,7 +115,32 @@ The per-transition receipt plan uses these required evidence groups:
 
 The fingerprint input registry must distinguish stable identity inputs from versioned behavior inputs. Stable inputs include logical run, transition, target, dimension, candidate, finding, evidence, and report identifiers plus content-addressed digests. Behavior inputs include envelope and payload schema versions, shared review-loop and mode-contract revisions, authorization and certificate policy revisions, ordered scope and dimensions, protocol plan, executor/model/tool/analyzer/evaluator fingerprints, reducer and report codec versions, convergence policy, and the exact included receipt set. A verifier must report the first mismatching input class rather than returning a generic replay failure.
 
-The offline verifier follows this order: load the trusted contract and certificate primitive registry; validate certificate schema and signature/seal reference; load the certificate-pinned event range; verify event hashes, causal links, transition authorization references, receipt sequence, and effect states; recompute the run and transition fingerprints; verify scope, pass, evidence, adjudication, convergence, synthesis, and report coverage; confirm unresolved and blocked states are represented; then return a typed result with evidence references. Missing inputs, unknown versions, unresolvable sealed artifacts, mutable references, and contradictory receipt chains fail closed as `blocked` or `invalid`, never as a passing certificate.
+The offline verifier follows this order: load the trusted contract and certificate primitive registry; validate certificate schema and signature/seal reference; load the certificate-pinned event range; verify event hashes, causal links, transition authorization references, receipt sequence, and effect states; resolve the declared digest closure from actually sealed bytes; recompute the run and transition fingerprints over the ordered closure; verify scope, pass, evidence, adjudication, convergence, synthesis, and report coverage; confirm unresolved and blocked states are represented; then return a typed result with evidence references. Missing required fields remain distinct from bundle-absent sealed bytes: the former is a typed missing-input refusal, while the latter is typed `unverifiable`; neither can pass silently.
+
+### Plain-digest closure acceptance input
+
+The accepted sealed-artifact boundary in [`../003-sealed-artifacts/decision-record.md`](../003-sealed-artifacts/decision-record.md)
+defers the following plain scalar or array fields to this leaf. Before implementation, the certificate contract must
+declare a machine-readable map from every `(containing artifact kind, field)` below to one or more exact registered
+artifact-kind literals from the Deep Review sealed-artifact taxonomy. Array entries are checked element by element;
+wildcards, caller-supplied kinds, and kind inference from digest shape are forbidden.
+
+| Containing artifact kind | Deferred closure-map keys |
+|--------------------------|---------------------------|
+| `DIMENSION_PASS` | `orderedInputDigests`, `selectedTargetDigests`, `searchLedgerDigest`, `diagnosticsDigest`, `observationDigests`, `graphEventDigest`, `iterationDigest`, `deltaDigest` |
+| `CANDIDATE_EVIDENCE`, `ADJUDICATION_EVIDENCE` | `claimDigest`, `evidenceDigests`, `intermediateFactDigests`, `reproductionDigest`, `refutationDigest` |
+| `CONVERGENCE_WITNESS` | `orderedInputDigests`, `gateResultDigests` |
+| `SYNTHESIS_VIEW`, `SYNTHESIS_REPORT` | `reportDigest` |
+| `RESUME_HANDOFF` | `priorReferenceSetDigest`, `changedInputDigest` |
+
+Every other named certificate, receipt, artifact, ledger, authority, or report reference is also resolved against the real
+sealed substrate and checked for declared kind plus epoch, lifecycle, freshness, and real state where the referenced kind
+bears them; visibility and role redaction are enforced before bytes are exposed, and the authorizing principal or epoch
+must still be live. Because Deep Review sealed material carries `locator.selector`, structural selector syntax is
+insufficient: the verifier resolves it against the target document, treats it as advisory only, and never derives severity
+or authority from selector text. Anti-vacuous fixtures must exercise real store reads with shape-valid missing,
+never-sealed, wrong-kind, stale, reordered, visibility-denied, and authority-dead references rather than mocks that merely
+echo the claimed digest.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

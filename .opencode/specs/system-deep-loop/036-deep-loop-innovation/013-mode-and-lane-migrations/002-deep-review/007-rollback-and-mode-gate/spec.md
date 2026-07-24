@@ -49,6 +49,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
+| **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
+| **Consumes** | Planned certificate/receipt, resume-adapter, and phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -67,6 +69,10 @@ witness until stability, causal proximity, and relevance checks pass, and cheap 
 judging (`findings-registry-modes.json:2619-2876`; `findings-registry.json:2690-2970`). The existing loop also requires
 coverage across dimensions and traceability protocols, nine legal-stop gates, fail-closed blocked stops, and a reproducible
 report (`deep-review/SKILL.md:289-329,420-435`).
+
+The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and non-authoritative.
+This Planned leaf may consume those contracts and the later receipt, resume, and parity evidence, but none of those inputs
+may move authority or bypass the real transition and fencing substrates.
 
 This phase plans the mode-local **rollback switch** and **Deep Review mode gate**. The switch is an externally authorized,
 fail-closed control that keeps legacy authority on any invalid, stale, or incomplete cutover input, records a bounded window
@@ -97,6 +103,11 @@ Deep Review exit gate into phase 014; it does not itself flip authority, retire 
   write-set behavior is consumed from phase 012 rather than copied into a Deep Review-only state machine.
 - Planning fixtures for valid gate evidence, missing evidence, stale evidence, parity drift, malformed switch state, rollback
   at every declared boundary, expired windows, and safe legacy fallback.
+- An exception-safe caller boundary that authenticates the complete rollback request shape, guards every digest and validator
+  invocation, snapshots validated primitives, and converts circular, non-finite, forbidden-prototype, or wrong-shape input
+  into a typed denial rather than a thrown exception.
+- Required phase-009 parity-receipt verification followed by independent readiness derivation through the real
+  `TransitionAuthorizationGateway` and deterministic ledger replay.
 
 ### Out of Scope
 - Implementing the phase-012 shared review-loop contract, typed ledger, transition gateway, replay fingerprint, sealing
@@ -109,6 +120,8 @@ Deep Review exit gate into phase 014; it does not itself flip authority, retire 
 - Treating a final report, aggregate score, nominal parity count, or generic deep-loop green result as a substitute for the
   independent Deep Review gate.
 - Hand-writing `description.json` or `graph-metadata.json` for this folder.
+- Re-running the phase-009 parity harness inside this leaf, adopting its computed `exitStatus` as the gate verdict, or
+  claiming authenticity for evidence classes that the accepted substrate boundaries leave to phase 014.
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -116,18 +129,20 @@ Deep Review exit gate into phase 014; it does not itself flip authority, retire 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The authority-cutover toggle fails closed | Missing, malformed, stale, unauthorized, or contract-mismatched control resolves to `legacy_authoritative`; no ledger result becomes live by default, environment fallback, prompt flag, or process-local state |
+| REQ-001 | The authority-cutover toggle is never-throw and fails closed | Missing, stale, unauthorized, contract-mismatched, circular, non-finite, forbidden-prototype, non-plain, or wrong-shape caller input resolves to a typed denial and `legacy_authoritative`; every caller-controlled digest and validation site is guarded and no exception escapes the decision contract |
 | REQ-002 | The rollback switch is external and auditable | A rollback is one authorized `ledger -> legacy` transition bound to mode, authority epoch, healthy anchor, reason, observed tail, gate state, and receipt; a local boolean cannot self-authorize or self-clear rollback |
 | REQ-003 | The rollback window is bounded | The window has a start event, expiry deadline, maximum logical operations or attempts, last healthy sealed frontier, legacy checkpoint, and explicit expiry disposition; renewal requires a new authorized transition and evidence |
 | REQ-004 | Rollback triggers preserve safety | Any unexplained semantic parity difference, replay mismatch, seal or receipt failure, unknown effect, stale fence, target or contract drift, integrity violation, health quarantine, or unexpected canonical write blocks promotion and invokes legacy fallback within the window |
 | REQ-005 | Rollback does not erase evidence | The failed ledger tail, parity receipt, seal references, rollback reason, and legacy restoration receipt remain append-only and replay-addressable; rollback never truncates or rewrites the evidence ledger |
 | REQ-006 | The mode gate covers the full Deep Review lifecycle | The gate matrix covers scope, each dimension pass, candidate emission, evidence and adjudication, P0/P1/P2 projection, convergence and blocked stop, synthesis, `review-report.md`, resume, and continuity handoff |
-| REQ-007 | Shadow parity is a blocking gate input | Every required Deep Review fixture has equal canonical event and projection fingerprints after only declared volatility normalization; unexplained or missing parity evidence yields `BLOCKED` or `INDETERMINATE`, never pass |
-| REQ-008 | Sealed artifacts are complete and verified | Scope inputs, pass observations, candidate and adjudication evidence, convergence snapshot, synthesis/report inputs, and resume references have verified shared seal references with no mutable path-only dependency |
+| REQ-007 | The phase-009 shadow-parity receipt is required evidence, not the verdict | The gate re-verifies receipt integrity, mode/frontier/manifest binding, and every typed disposition, ignores the receipt's computed `exitStatus` as authority, does not re-run the parity harness, and independently re-derives readiness through the real `TransitionAuthorizationGateway` plus deterministic ledger replay |
+| REQ-008 | Sealed artifacts are complete and referentially verified | Every named cross-artifact reference is resolved and checked for expected KIND plus EPOCH, LIFECYCLE, freshness, real STATE, VISIBILITY/role redaction, and AUTHORITY liveness wherever the referenced artifact carries that property; existence or shape alone cannot pass |
 | REQ-009 | Certificates and receipts are emitted and independently verifiable | The mode gate receives a verified run certificate, receipt-set closure, replay fingerprint, and certificate policy digest; process integrity is not overclaimed as semantic truth |
 | REQ-010 | Deep Review reuses the shared review loop | The gate consumes phase-012 shared scope, dimension, lineage, convergence, report, and write-set contracts and records their digest; no Deep Review-local lifecycle fork can pass the gate |
 | REQ-011 | The gate is independent from cutover and from other modes | Deep Review produces its own `PASS`, `BLOCKED`, or `INDETERMINATE` result and certificate; deep-alignment status, a generic mode count, or a shared dashboard cannot substitute for its evidence |
 | REQ-012 | The gate handoff is phase-safe | A `PASS` certifies `MIGRATED_SHADOW_READY` and enables the phase-014 handoff only; it cannot set ledger authority, close the rollback window, remove legacy writers, or authorize another mode |
+| REQ-013 | Request-field authentication is complete by construction | A closed request schema classifies every field as gateway-authenticated, independently re-derived, cross-checked against verified evidence, validated closed value, or deterministic constant; unknown or inert fields are rejected, and validated snapshots—not caller-owned objects—drive authorization and certificate emission |
+| REQ-014 | Writer supersession and rollback anchoring use real evidence | The stale token must be a positive safe integer strictly below the coordinator's durable high-water mark and the rollback token newly issued for the canonical writer resource; the requested rollback anchor must equal the anchor in the independently re-verified migration certificate |
 
 The authority-control record is resolved by a single fail-closed function over the requested posture, toggle, mode-gate
 certificate, authority epoch, contract digests, rollback-window record, and current health witness. `legacy_authoritative` is
@@ -145,6 +160,19 @@ The mode gate passes only when all P0 evidence is present and independently veri
 full lifecycle has shadow parity, all required artifact references verify, the certificate and receipt chain closes, resume and
 rollback fixtures are green, and the authority guard remains non-authoritative. A tolerated difference must have a typed
 disposition, owner, reason, expiry, and proof of non-interference; it cannot be silently counted as parity.
+
+Parity supplies mandatory evidence only. The gate first authenticates the phase-009 receipt and its bindings, then independently
+replays the deterministic ledger and asks the real transition gateway to evaluate the locally re-derived evidence. A green
+receipt `exitStatus` cannot become the verdict, and this leaf does not re-run the parity harness.
+
+The complete rollback request is authenticated structurally before authorization. Every named reference must resolve through the
+real substrate and satisfy its kind, epoch/lifecycle/freshness/state, visibility, and authority obligations. Stale-writer denial
+compares the caller-attested predecessor token with the coordinator's durable high-water mark and newly issued rollback token;
+rollback anchoring compares the request with the re-verified migration certificate. The accepted provenance limits are carried
+forward from the golden leaf's [decision record](../../001-deep-research/007-rollback-and-mode-gate/decision-record.md), especially
+its retained-store observation, lifecycle-label semantics, health/resume/window/risk authenticity, and historical lease-identity
+boundaries. Their provenance must be verified before propagation, and phase 014 must verify those sources before treating the
+readiness certificate as sufficient.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -158,6 +186,7 @@ disposition, owner, reason, expiry, and proof of non-interference; it cannot be 
 - **SC-006**: Required Deep Review artifacts are sealed and verified, and a run certificate plus complete receipt chain is independently verifiable from pinned inputs.
 - **SC-007**: The gate emits a mode certificate with `MIGRATED_SHADOW_READY` and phase-014 handoff evidence without moving authority or retiring legacy writers.
 - **SC-008**: Deep Review consumes the phase-012 shared review-loop contract used by deep-alignment and records the contract digest and write-set fence in its gate evidence.
+- **SC-009**: Malformed caller objects never escape as exceptions; complete request authentication, reference-integrity checks, independent gateway/replay derivation, strict coordinator supersession, and certificate-anchor equality all fail closed with typed evidence.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -179,8 +208,12 @@ disposition, owner, reason, expiry, and proof of non-interference; it cannot be 
   Mitigation: consume the frozen phase-012 shared review-loop contract and the write-set fence rather than defining local lifecycle rules.
 - **Cutover scope leakage** - a mode gate could accidentally flip authority, close rollback, or remove legacy writers.
   Mitigation: constrain the output to `MIGRATED_SHADOW_READY`; reserve authority and retirement for later phases.
+- **Provenance overclaim** - a well-formed health aggregate, historical lease tuple, retained count, resume bundle, or
+  rollback-window history could be mistaken for substrate-authenticated evidence. Mitigation: preserve the golden 007
+  decision-record boundaries and require phase-014 correlation against the real stores and coordinator history.
 - **Dependencies**: the 036 parent and phase tree; phase-012 shared mode interfaces, cross-mode closures, mixed-version fixtures,
-  and write-set conflict graph; the phase-006 ledger and authorization spine; the six Deep Review siblings; the existing Deep Review
+  and write-set conflict graph; the phase-006 ledger and authorization spine; LANDED additive-dark siblings `001` through `003`;
+  planned evidence inputs `004` through `006`; the existing Deep Review
   lifecycle and blocked-stop fixtures; the mode research registries; and the spec-kit validator.
 <!-- /ANCHOR:risks -->
 

@@ -38,7 +38,7 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase 015 shared contracts, mode 004 common services, predecessor `006-shadow-parity`, and the phase-013 write-set conflict graph are pinned at BASE
+- [ ] CHK-001 [P0] Phase 012 shared contracts, mode 004 common services, LANDED additive-dark siblings `001` through `003`, planned evidence siblings `004` through `006`, and the phase-013 write-set conflict graph are pinned at BASE
 - [ ] CHK-002 [P1] The Skill Benchmark legacy recipe, stable legacy target, scenario IDs, and baseline fingerprint are recorded in the candidate report
 - [ ] CHK-003 [P2] Mode-specific ownership is separated from shared ledger, receipt, sealing, budget, gauge, lock, continuity, and parity ownership
 <!-- /ANCHOR:pre-impl -->
@@ -47,8 +47,8 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 ## Code Quality
 
 - [ ] CHK-004 [P0] Skill Benchmark adds only scenario, scoring, rollback, and gate logic; no deep-improvement-common service is reimplemented
-- [ ] CHK-005 [P1] Every scenario, treatment, evaluator, environment, and certificate input has a stable fingerprint or explicit unsupported disposition
-- [ ] CHK-006 [P2] Scope remains limited to this mode concern; sibling concerns and phase-017 authority movement are not absorbed
+- [ ] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and legacy authority without throwing
+- [ ] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -63,17 +63,17 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 - [ ] CHK-013 [P0] The bounded rollback window records start, expiry, stable target, cutover fingerprint, trigger, recovery action, receipts, and verification result
 - [ ] CHK-014 [P0] Unknown or irreversible effects enter quarantine; no automatic retry or silent authority selection occurs without a typed recovery decision
 - [ ] CHK-015 [P0] Rollback drill restores the stable legacy path within the declared window with no duplicate logical commits and reconciled receipts
-- [ ] CHK-016 [P0] The independent Skill Benchmark GATE refuses failed shadow parity, missing or unsealed artifacts, invalid certificates, fingerprint drift, incomplete evidence, and rollback unreadiness
-- [ ] CHK-017 [P0] The green mode gate emits a mode certificate only after parity, artifact, certificate, rollback, scope, and handoff checks pass
+- [ ] CHK-016 [P0] The required phase-009 parity receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
+- [ ] CHK-017 [P0] Every required scenario, scoring, effect-certificate, receipt, rollback, and handoff reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, seal, and content digest before the mode certificate can pass
 - [ ] CHK-018 [P0] The phase-014 handoff contains the certificate, artifact manifest, parity receipt, rollback decision record, and residual-risk disposition
-- [ ] CHK-019 [P0] Mixed-version fixtures prove the gate cannot authorize production authority movement owned by phase 017
+- [ ] CHK-019 [P0] Rollback drills require a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-check the request anchor against the re-verified migration certificate, restore legacy, preserve history, and emit a receipt without authorizing phase-014 authority movement
 - [ ] CHK-020 [P1] Exact-SHA replay, fault injection, build, type, unit, and benchmark verification reports non-zero evidence and no unexpected tracked mutation
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-021 [P1] The verifier report maps every REQ-001 through REQ-009 to a named fixture, command, result, and artifact digest
+- [ ] CHK-021 [P1] The verifier report maps every requirement to a named fixture, command, result, and artifact digest
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
@@ -87,7 +87,7 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-025 [P1] The mode certificate, rollback decision record, phase-014 handoff, and residual-risk disposition are reflected in the packet docs
+- [ ] CHK-025 [P1] The mode certificate, rollback decision record, phase-014 handoff, LANDED additive-dark predecessors, residual-risk disposition, and provenance limits cited from the golden 007 decision record are reflected in the packet docs
 - [ ] CHK-026 [P2] The implementation report names the shared services consumed and records every intentionally deferred question
 <!-- /ANCHOR:docs -->
 
@@ -104,7 +104,7 @@ scenarios, zero evidence, missing raw observations, unsealed artifacts, unsafe f
 The phase is complete when every P0 verifier check passes, the candidate report binds the exact SHAs and artifact hashes,
 shadow parity is green, the Skill Benchmark effect certificate is valid, the rollback drill restores the stable legacy
 target within the bounded window, and the independent mode gate emits the phase-014 handoff without authorizing production
-authority. Phase 017 remains the sole owner of staged authority cutover.
+authority. Phase 014 remains the sole owner of staged authority cutover.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

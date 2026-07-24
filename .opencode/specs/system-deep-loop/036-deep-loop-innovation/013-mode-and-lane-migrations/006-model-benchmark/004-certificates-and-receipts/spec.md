@@ -43,7 +43,7 @@ _memory:
 | **Owner skill** | system-deep-loop (model-benchmark variant over the deep-improvement-common backbone) |
 | **Origin** | Phase 004 of the model-benchmark mode migration: per-run certificates, per-transition receipts, replay fingerprints, and offline verification |
 | **Manifest dependency** | `depends_on: []`; sibling adjacency is navigation and ordering, not a hard runtime dependency |
-| **Shared inputs** | `003-sealed-artifacts`, deep-improvement-common evaluator/canary/promotion services, typed ledger and reducer contracts |
+| **Consumes** | LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts plus deep-improvement-common evaluator/canary/promotion services; all remain additive-dark and non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -56,7 +56,8 @@ identifies model-by-task reversals, candidate-specific judge calibration, contam
 adaptive evaluation after minimum coverage, and the distinction between pairwise rank and operational value as load-bearing
 model-benchmark concerns (`findings-registry-modes.json`, model-benchmark insights from iterations 31-35).
 
-The shared ledger and sealed-artifact primitives are established by earlier phases, and deep-improvement-common owns the
+The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and
+non-authoritative while this leaf stays Planned. Deep-improvement-common owns the
 evaluator, canary, and guarded-promotion services. This phase plans only the model-benchmark attestation layer over those
 contracts. A per-run `CERTIFICATE` must state which model/executor cells were evaluated, which sealed benchmark recipe and
 workload profile governed them, how the scoring matrix was reduced, and what selection claim the evidence supports. A
@@ -115,7 +116,7 @@ consumes the receipt and fingerprint boundary; the later mode gate consumes pari
 | REQ-001 | A complete model-benchmark run emits one typed `CERTIFICATE` | The certificate identifies run lineage, benchmark recipe, sealed task pools, model/executor matrix, workload profile, evaluator/canary/promotion references, raw evidence, scoring matrix, calibration, contamination state, realized cost/latency, replay fingerprint, and explicit outcome; missing required evidence blocks certification |
 | REQ-002 | Every benchmark state-changing or selection-relevant transition emits a `RECEIPT` | Each receipt records transition kind, predecessor receipt(s), service/version, effect identity, input/output digests, attempt, fingerprint, authorization result, and `completed`, `vetoed`, `uncertain`, or `recovered` outcome; duplicate delivery is idempotent |
 | REQ-003 | Certificate and receipt fingerprints include all semantic model-benchmark inputs | Changing the recipe, task family, sealed item pool, model build, executor path, workload, metric, rubric, calibration, contamination evidence, seed, budget, retry, reducer, or predecessor receipt changes the fingerprint; storage offsets and wall-clock values do not |
-| REQ-004 | An independent verifier can validate the run offline | The verifier resolves sealed digests, recomputes canonical serialization, matrix and score reductions, statistical uncertainty, calibration, contamination and workload checks, receipt continuity, and hard gates without live model, judge, router, or network calls |
+| REQ-004 | An independent verifier validates the complete ordered dependency closure offline | Given the lane's declared plain-digest expected-kind map, the verifier resolves named references to actually sealed bytes; checks kind plus borne epoch, lifecycle, freshness, contamination/real state, visibility, and authority liveness; recomputes canonical serialization, matrix and score reductions, receipt continuity, hard gates, and the replay fingerprint; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and fails closed on missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence without live calls |
 | REQ-005 | Matrix evidence preserves the correct experimental unit | Common sealed anchors support paired candidate comparison, adaptive diagnostic cells follow family-coverage quotas, seeds and perturbations remain nested under task families, and the certificate records the matrix rather than flattening correlated rows |
 | REQ-006 | Scoring distinguishes rank from operational selection value | Pairwise or preference estimates, task-family deltas, quality floors, latency, cost, abstention, switching overhead, and uncertainty remain separately addressable; a small or weight-sensitive gap yields `INSUFFICIENT_EVIDENCE`, a Pareto set, or a conditional route rather than an unjustified winner |
 | REQ-007 | Judge, rubric, contamination, and protocol validity are explicit | Candidate-specific calibration and model-build provenance are bound to the evidence; rubric axes are tested for isolation; contamination includes exposure lineage; protocol variations are crossed with model and task rather than averaged away |
@@ -160,12 +161,21 @@ mismatching input class and refuses substituted, partial, or current-checkout-de
 
 ### Offline verification contract
 
+The Model Benchmark sealed leaf recorded no deferred plain-digest closure and has no sealed-leaf decision record for that
+class. Its closure-map acceptance input is therefore the explicit empty map `{}`; this leaf must not invent Deep
+Review-shaped fields.
+
 An independent verifier first checks schema support and content-addressed retrieval, then validates sealed-artifact digests
 and dependency closure, recomputes the certificate fingerprint, receipt-chain links, matrix axes and coverage quotas, raw
 observation manifests, metric and normalization results, candidate-specific calibration, clustered uncertainty, contamination
 lineage, protocol robustness, cost/latency accounting, and hard policy gates. It must distinguish `PASS`, `FAIL`, `VETOED`,
 `INCOMPLETE`, and `UNSUPPORTED_VERSION`; it may not convert an absent cell to a zero score, ignore an unknown field, treat a
-public ranking as proof of deployment fitness, or call a model to fill missing evidence. The verifier emits its own
+public ranking as proof of deployment fitness, or call a model to fill missing evidence. Missing sealed bytes in the
+offline bundle are typed `unverifiable`, never a silent pass. Every named reference is checked for kind plus borne epoch,
+lifecycle, freshness, contamination/real state, visibility, and authority liveness. Because Model Benchmark sealed
+material carries `locator.selector`, selectors are resolved against real target context and remain advisory. Anti-vacuous
+fixtures use the real store to reject shape-valid missing, fabricated, wrong-kind, stale, reordered, visibility-denied,
+and authority-dead references. The verifier emits its own
 verification receipt bound to the certificate fingerprint, verifier version, ruleset digest, and evidence digests so later
 audits can identify verifier drift.
 <!-- /ANCHOR:requirements -->

@@ -42,6 +42,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the shared deep-improvement backbone and its typed event-ledger contracts) |
 | **Origin** | Child 004 of the deep-improvement-common mode migration: certificates, receipts, replay fingerprints, and offline verification |
+| **Depends on** | `[]`; sibling adjacency remains a planning/composition boundary rather than a hard runtime dependency |
+| **Consumes** | LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts; all remain additive-dark and non-authoritative |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -53,7 +55,8 @@ promotion services. If each variant defines its own evidence record, replay inpu
 backbone will have incompatible audit semantics and a later resume or authority cutover will not know whether two
 apparently successful runs are comparable.
 
-The shared ledger and sealed-artifact primitives are established by the earlier common-service phases. This phase
+The shared typed ledger, reducers/projections, and sealed-artifact predecessors are LANDED, but remain additive-dark and
+non-authoritative while this leaf stays Planned. This phase
 plans the attestations that sit on those primitives. A per-run `CERTIFICATE` must state what the run evaluated, which
 immutable inputs and policies it used, what evidence was retained, and what verdict the evidence authorizes. A
 per-transition `RECEIPT` must state what state transition was attempted, what predecessor evidence authorized it,
@@ -108,7 +111,7 @@ workstream.
 | REQ-001 | A completed evaluator-first run emits one typed `CERTIFICATE` | The certificate identifies the run, lineage, base/candidate digests, evaluator capsule, canary epoch, raw evidence manifest, policy versions, budget record, replay fingerprint, and verdict; omitted required evidence blocks certification |
 | REQ-002 | Every state-changing evaluator, canary, score, promotion, abort, or rollback transition emits a `RECEIPT` | Each receipt names the transition, predecessor receipt(s), actor/service version, effect identity, input evidence boundary, outcome, and uncertainty state; duplicate delivery is idempotent by receipt identity |
 | REQ-003 | Certificates and receipts share a deterministic replay fingerprint | Recomputing the fingerprint from the same canonical inputs yields the same value across processes; changed artifact, fixture, evaluator, policy, reducer, environment, seed, budget, or predecessor evidence yields a mismatch |
-| REQ-004 | An independent verifier can validate the evidence offline | The verifier resolves digests, recomputes canonical serialization and derived values, checks receipt-chain continuity and hard vetoes, reruns deterministic checks, and returns typed pass, fail, or insufficient-evidence results without live agent calls |
+| REQ-004 | An independent verifier validates the complete cross-artifact closure offline | Given the declared per-plain-digest-field expected-kind map, the verifier resolves every deferred digest to actually sealed bytes of that kind; checks borne evaluator epoch, lifecycle, canary freshness, real state, visibility, and authority liveness; recomputes canonical serialization, derived values, and the replay fingerprint over the ordered closure; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and fails closed on missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence without live agent calls |
 | REQ-005 | The evaluator preserves evidence layers | Raw per-item observations and metadata remain immutable and separately addressable from normalization, calibration, aggregation, and final policy decisions; a summary score cannot replace the raw evidence |
 | REQ-006 | The canary service is versioned, isolated, and freshness-aware | Canary fixtures are bound to an epoch digest, include deterministic and adversarial/metamorphic cases, detect proposer-visible leakage, and rotate or retire before repeated adaptation makes them stale |
 | REQ-007 | Promotion is guarded by independent evidence and hard vetoes | Schema, build, security, regression, canary-leak, and integrity failures veto promotion; soft score aggregation cannot rescue a hard failure; `INSUFFICIENT_EVIDENCE` is not `PASS` |
@@ -148,12 +151,25 @@ one of them semantic. A verifier reports the first mismatching input class and r
 
 ### Offline verification contract
 
+The accepted sealed-artifact boundary in [`../003-sealed-artifacts/decision-record.md`](../003-sealed-artifacts/decision-record.md)
+assigns named plain-digest closure to this leaf. The certificate contract must declare a machine-readable
+`(containing artifact kind, field) -> expected registered artifact kind(s)` map over the six-kind common taxonomy, with
+array fields checked element by element and no wildcard or caller-supplied kind. The current minimum deferred targets are
+`PROMOTION_EVIDENCE.unresolvedEvidenceDigests` and `PROMOTION_EVIDENCE.vetoEvidenceDigests`; the map must also enumerate
+any other plain scalar or array digest whose registered field semantics names sealed content, rather than treating digest
+shape as proof.
+
 An independent verifier first checks schema support and content-addressed retrieval, then recomputes the certificate
 fingerprint, receipt-chain links, raw-observation manifest, normalization and reduction, canary and metamorphic
 relations, policy hard gates, and declared transition outcome. It must distinguish `PASS`, `FAIL`, `VETOED`,
 `INCOMPLETE`, and `UNSUPPORTED_VERSION`; it may not downgrade missing evidence to a score of zero or treat an unknown
-field as an ignored extension. The verifier emits its own verification receipt bound to the certificate fingerprint,
-verifier version, ruleset digest, and evidence digests, allowing later audits to identify verifier drift.
+field as an ignored extension. Absence of required sealed bytes from the offline bundle is typed `unverifiable`, not a
+pass. Every named reference is checked for kind plus borne epoch, lifecycle, freshness, real state, visibility, and
+authority liveness. Because common sealed material carries `locator.selector`, the verifier resolves selectors against
+real target context and keeps selector text advisory and non-authoritative. Anti-vacuous fixtures use real store reads to
+reject shape-valid missing, fabricated, wrong-kind, stale, reordered, visibility-denied, and authority-dead references.
+The verifier emits its own verification receipt bound to the certificate fingerprint, verifier version, ruleset digest,
+and evidence digests, allowing later audits to identify verifier drift.
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

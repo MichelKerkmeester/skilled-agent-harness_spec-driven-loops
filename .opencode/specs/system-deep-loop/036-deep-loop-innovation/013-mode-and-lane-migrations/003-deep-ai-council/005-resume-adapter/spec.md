@@ -42,7 +42,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
 | **Origin** | Phase 013 Deep AI Council migration: resume adapter for the typed event-ledger substrate |
-| **Depends on** | None in `phase-tree.json`; consumes the shared contracts supplied by the mode-migration parent |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Deep AI Council `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -59,6 +60,8 @@ ledger through deterministic Deep AI Council reducers, maps the resulting state 
 idempotent re-entry decision. The adapter must distinguish completed work, pending work, unknown effects, incompatible
 history, and blocked recovery without consulting mutable prose, current model output, or an unsealed tail. It plans the
 resume boundary only; it does not move authority, redesign council scoring, or implement the shared ledger substrate.
+The Deep AI Council schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
+Planned adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -95,6 +98,9 @@ resume boundary only; it does not move authority, redesign council scoring, or i
 | REQ-007 | Replay compatibility is explicit and version-bound | The adapter compares the persisted replay fingerprint, reducer version, event schema, judge configuration, and artifact codecs, returning exact, compatible, migrate, pin-old-runtime, or blocked outcomes through the shared registry. |
 | REQ-008 | Resume preserves council information boundaries | Blinded provenance, private pre-discussion estimates, dissenting messages, minority claims, judge observations, and order-swapped outcomes remain associated with stable IDs during reduction. |
 | REQ-009 | The council gate is deterministic after interruption | When all required immutable inputs and receipts exist, the gate reducer can be rerun without new model calls; incomplete or stale inputs produce a typed wait, widen, reconcile, or block decision. |
+| REQ-010 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked. |
+| REQ-011 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed. |
+| REQ-012 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->

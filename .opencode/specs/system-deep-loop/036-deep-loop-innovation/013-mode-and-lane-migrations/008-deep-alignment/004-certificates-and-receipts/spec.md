@@ -51,7 +51,8 @@ _memory:
 | **Owner skill** | system-deep-loop / deep-alignment |
 | **Formal depends_on** | [] |
 | **Origin** | Deep Alignment mode migration after the shared ledger, sealed-artifact, and review-loop contracts are frozen |
-| **Inputs** | `036-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, the Deep Alignment typed-ledger sibling, `findings-registry*.json`, phase `003-sealed-artifacts`, and the shared review-loop contract from phase 012 |
+| **Consumes** | LANDED `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` contracts plus the shared phase-012 review-loop; all remain additive-dark and non-authoritative |
+| **Inputs** | `036-deep-loop-innovation/spec.md`, `manifest/phase-tree.json`, `findings-registry*.json`, and the shared review-loop contract from phase 012 |
 | **Output** | A ratifiable per-run certificate, per-transition receipt, replay-fingerprint input, and independent offline-verifier plan; no authority cutover |
 <!-- /ANCHOR:metadata -->
 
@@ -66,7 +67,8 @@ deviations, or shared review-loop transitions produced it. Without a run attesta
 cannot distinguish changed authority from changed subject, missing evidence from non-conformance, or an unresolved effect from
 a successful check.
 
-The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts,
+The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and
+non-authoritative while this leaf stays Planned. The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts,
 versioned replay fingerprints, and receipts/certificates before authority moves. Phase `003-sealed-artifacts` supplies the
 receipt and certificate primitives consumed here. Phase 012 freezes the shared review-loop backbone used by Deep Alignment
 and Deep Review; this phase specializes that contract rather than forking it. The research inputs require authority validity
@@ -118,7 +120,7 @@ it; the evidence and independent verification boundary remains explicit.
 | REQ-006 | Certificate and receipt fingerprints distinguish immutable history from the current installation and authority epoch | Offline replay uses pinned versions and digests; changed authority, verifier, target, policy, tool surface, artifact, or witness yields exact, compatible, migrate, degraded, pin-old-runtime, or blocked rather than silent reuse |
 | REQ-007 | Applicability and candidate production cannot masquerade as conformance | Applicability receipts preserve `applicable`, `not_applicable`, `unresolved`, and `blocked`; candidate receipts preserve raw observations; a separate verification, proof, and adjudication chain is required before a blocking conformance disposition |
 | REQ-008 | Deviations, late evidence, retries, supersession, and unresolved states remain auditable | A later receipt references the prior receipt and records the new observation or disposition; no certificate or receipt rewrites raw evidence, erases an authority failure, or turns unknown external effects into success |
-| REQ-009 | An independent verifier can validate a run without live model, tool, network, or mutable workspace access | The verifier accepts a certificate, ledger range, sealed-artifact references, and trusted contract registry; it recomputes digests, authority validity, receipt closure, event order, fingerprints, proof links, and report or handoff inputs with fail-closed outcomes |
+| REQ-009 | An independent verifier validates the complete cross-artifact closure without live model, tool, network, or mutable workspace access | Given the declared per-plain-digest-field expected-kind map, the verifier resolves every deferred digest to actually sealed bytes of that kind; checks authority epoch, lifecycle, freshness, real state, visibility, and authority liveness where borne; recomputes rather than trusts the replay fingerprint over the ordered closure; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and returns typed fail-closed outcomes for missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence |
 | REQ-010 | Deep Alignment and Deep Review continue to share one review-loop backbone | The contract comparison identifies inherited shared fields and mode-specific extensions; no Deep Alignment-only copy of shared run, scope, pass, convergence, continuity, or terminal transitions is introduced |
 | REQ-011 | The phase remains planning-only and ownership-complete | The packet defines schemas, input matrices, verifier behavior, and fixtures only; no reducer, projection, sealed-artifact implementation, resume adapter, shadow harness, rollback switch, authority cutover, or mode gate is implemented here |
 <!-- /ANCHOR:requirements -->
@@ -148,14 +150,29 @@ versions, profile and applicability policy, ordered lane and rule plans, verifie
 generator and minimizer versions, deviation policy, reducer and handoff codec versions, and the exact included receipt set.
 A verifier must report the first mismatching input class rather than returning a generic replay failure.
 
+The accepted sealed-artifact boundary in [`../003-sealed-artifacts/decision-record.md`](../003-sealed-artifacts/decision-record.md)
+assigns every plain scalar or array digest that names another sealed artifact to this leaf. The certificate contract must
+declare a machine-readable `(containing artifact kind, field) -> expected registered artifact kind(s)` map with
+element-wise array checks and no wildcard or caller-supplied kind. Its current required keys include
+`applicabilityDecisionDigest`, `subjectSnapshotDigest`; `CONVERGENCE_SNAPSHOT.orderedInputDigests`,
+`findingsViewDigest`, `exceptionViewDigest`, `unresolvedFindingDigests`; and
+`ALIGNMENT_REPORT.orderedInputDigests`, `convergenceSnapshotDigest`, `findingsViewDigest`, `exceptionViewDigest`,
+`unresolvedFindingDigests`, and the report digest set including `reportDigest`. The map must enumerate every additional
+registered field in the same semantic class. Direct finding `authorityDigest` and governed-exception `findingDigest`,
+`authorityDigest`, and `issuerId` provenance remain predecessor-verified and are rechecked rather than weakened.
+
 The offline verifier follows this order: load the trusted contract and phase-007 certificate primitive registry; validate the
 certificate schema, seal, and immutable reference bundle; load the certificate-pinned event range; verify event hashes, causal
-links, transition authorization, receipt sequence, authority validity, and effect states; recompute the run and transition
-fingerprints; resolve applicability and coverage; verify observation, candidate, proof, verification, adjudication, deviation,
+links, transition authorization, receipt sequence, authority validity, and effect states; resolve named references from
+actually sealed bytes; recompute the run and transition fingerprints over the ordered dependency closure; resolve applicability and coverage; verify observation, candidate, proof, verification, adjudication, deviation,
 convergence, and handoff coverage; replay old-authority witnesses against the new epoch when required; confirm unresolved and
 blocked states are represented; then return a typed result with evidence references. Missing inputs, unknown versions,
 unresolvable sealed artifacts, mutable references, invalid authority, and contradictory receipt chains fail closed as `blocked`
-or `invalid`, never as a passing certificate.
+or `invalid`, never as a passing certificate; sealed bytes absent from the offline bundle are typed `unverifiable`.
+Every named reference is checked for kind plus authority epoch, lifecycle, freshness, real state, visibility, and
+authority liveness where borne. Because Deep Alignment sealed material carries `locator.selector`, selectors are resolved
+against real target context and remain advisory. Anti-vacuous fixtures use the real store to reject shape-valid missing,
+fabricated, wrong-kind, stale, reordered, visibility-denied, and authority-dead references.
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA

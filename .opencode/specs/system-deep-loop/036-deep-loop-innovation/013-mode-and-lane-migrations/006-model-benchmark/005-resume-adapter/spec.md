@@ -42,7 +42,8 @@ _memory:
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 005 of the Model Benchmark migration under phase 013; the resume, replay, and model-benchmark findings in the 036/002 registries |
-| **Depends on** | `[]` as a sibling planning contract; consumes frozen shared and preceding mode contracts when implementation begins |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Model Benchmark `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -77,6 +78,8 @@ continuity ladder. It defines an idempotent re-entry contract in which the same 
 duplicate application is a no-op, conflicting duplicates fail closed, and no event or effect is lost or replayed by a crash.
 This phase is planning only. The per-mode 013 migrations land after phase 012 freezes the shared contracts and emits the
 write-set conflict graph; the six sibling concerns and the mode gate integrate the rest of Model Benchmark.
+The Model Benchmark schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
+Planned adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -129,6 +132,9 @@ write-set conflict graph; the six sibling concerns and the mode gate integrate t
 | REQ-008 | Scoring-matrix state is restored without score laundering | Re-entry preserves task/model/path/treatment identity, paired blocks, workload profile, evaluator epoch, raw scores, usage, latency, calibration, contamination, validity, abstention, and underpowered states |
 | REQ-009 | Shared service authority remains single-source | The adapter references common evaluator, canary, promotion, receipt, budget, lock, effect-recovery, and status decisions and cannot clear a shared veto or emit shared promotion authority |
 | REQ-010 | The handoff supports later shadow parity and mode integration | The resume plan exposes deterministic inputs, fingerprints, action decisions, and receipts required by `006-shadow-parity`, phase 015 contracts, and the later mode gate without implementing those concerns here |
+| REQ-011 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked |
+| REQ-012 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed |
+| REQ-013 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance |
 <!-- /ANCHOR:requirements -->
 
 ### Continuity-ladder mapping

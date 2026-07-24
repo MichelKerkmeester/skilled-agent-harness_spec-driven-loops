@@ -72,6 +72,10 @@ mutation fails the gate.
 - [ ] CHK-020 [P0] Resume restoration retains raw outputs and scores, usage, latency, calibration, contamination, validity, abstention, underpowered, stale, and uncertainty states
 - [ ] CHK-021 [P0] The adapter cannot clear common evaluator, canary, promotion, receipt, budget, lock, effect-recovery, veto, rollback, or status blockers
 - [ ] CHK-022 [P1] The shadow-parity handoff records source seal, frontier, replay fingerprint, projection hash, selected logical cells, excluded reasons, and shared receipt references
+- [ ] CHK-033 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
+- [ ] CHK-034 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
+- [ ] CHK-035 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
+- [ ] CHK-036 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

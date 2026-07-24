@@ -44,6 +44,8 @@ _memory:
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Resume Adapter child of the deep-improvement common migration under phase 013 |
 | **Inputs** | 036 parent spec; phase-tree manifest; findings registries from 036/002; typed ledger, receipts, and reducer contracts frozen by earlier program phases |
+| **Depends on** | `[]` in `manifest/phase-tree.json`; sibling adjacency remains navigation only |
+| **Consumes** | LANDED Deep Improvement Common `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` outputs through the additive-dark path |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -61,6 +63,9 @@ reducers. It maps the reconstructed state onto the continuity ladder, exposes an
 stable logical identities plus idempotency receipts to prevent double-apply, lost events, or replayed side effects. The adapter
 must treat immutable LLM or executor observations as history inputs; replay re-runs orchestration over those observations rather
 than regenerating them.
+
+The Deep Improvement Common schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark;
+this Planned adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -104,6 +109,9 @@ than regenerating them.
 | REQ-010 | Promotion is a guarded evidence decision | Promotion requires the receipt lattice for target repair, baseline-pass preservation, known failures, environment and policy freshness, and canary health; `UNKNOWN` or `INSUFFICIENT_EVIDENCE` cannot become `PROMOTE` |
 | REQ-011 | The three variants consume one common contract | `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` can call the same evaluator, canary, promotion, and resume interfaces while retaining variant-owned payloads and projections |
 | REQ-012 | Dark-mode authority boundaries remain intact | Resume and promotion decisions affect only the typed shadow path before phase 017; legacy state, live control flow, and user-visible authority remain unchanged |
+| REQ-013 | Compatibility classification is adapter-owned | Exact, compatible, migrate, pin-old-runtime, and blocked outcomes are evaluated by the adapter from persisted fingerprints; the selected outcome is appended as an immutable resume decision, unknown versions never fall through to reuse, and the caller provides only the authenticated migration registry against which registration is checked |
+| REQ-014 | Effect application is descriptor-bound | An effect is `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; a bare effect-ID match, forged intent, or forged postcondition fails closed |
+| REQ-015 | Every resumed reference is semantically verified | Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, and real state; visibility and role-redaction rules and authority liveness also verify, so existence or shape alone cannot satisfy acceptance |
 <!-- /ANCHOR:requirements -->
 
 ### Continuity-ladder and re-entry contract
