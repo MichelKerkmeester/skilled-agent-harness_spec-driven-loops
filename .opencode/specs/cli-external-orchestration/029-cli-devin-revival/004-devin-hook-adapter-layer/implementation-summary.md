@@ -1,15 +1,15 @@
 ---
 title: "Implementation Summary: Devin hook adapter layer"
-description: "SessionStart/UserPromptSubmit adapters built, typechecked, and directly-invocation-verified, but confirmed dormant: Devin's hook system never fires under devin -p dispatch, ruled out across every registration path tested."
+description: "SessionStart/UserPromptSubmit adapters built, typechecked, and directly-invocation-verified; .devin/hooks.v1.json committed per operator direction mirroring .codex/hooks.json's tracked precedent, but confirmed dormant: Devin's hook system never fires under devin -p dispatch, ruled out across every registration path tested."
 trigger_phrases: ["devin hook adapter summary", "devin hook dormancy finding"]
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
-    last_updated_at: "2026-07-24T16:00:00Z"
+    last_updated_at: "2026-07-24T17:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed out phase 004: adapters built dormant, finding documented"
+    recent_action: "Committed .devin/hooks.v1.json per operator direction; re-tested, still dormant"
     next_safe_action: "Phase 008 can begin; same dormant-hooks caveat applies to its 6 remaining adapters"
     blockers: []
     key_files: [".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md", ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md", "decision-record.md"]
@@ -46,8 +46,8 @@ Devin hook adapters for the 2 events this phase scopes (`SessionStart`, `UserPro
 - `spec-gate-classify.mjs`: `UserPromptSubmit` hook, calls `classifyIntent()` against the shared `spec-gate-core.mjs`.
 - `README.md`: documents the dormancy finding and why `spec-gate-enforce.mjs` (`PreToolUse`) is NOT built here.
 
-### Not created
-- `.devin/hooks.v1.json` -- deliberately not authored/committed. Registering a config path confirmed dead under `-p` dispatch would misrepresent this phase's coverage as active.
+### `.devin/hooks.v1.json` (project root)
+- Registers both adapters (`SessionStart` → `session-start.js`, `UserPromptSubmit` → `user-prompt-submit.js` + `spec-gate-classify.mjs`), mirroring `.codex/hooks.json`'s real tracked shape. **Committed 2026-07-24 per operator direction**, after the confirmed-dormant finding below -- the file is present so the wiring exists the moment a future `devin` build honors it, not as a claim of current live coverage.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -68,7 +68,7 @@ Devin hook adapters for the 2 events this phase scopes (`SessionStart`, `UserPro
 ## KEY DECISIONS
 - **`PreToolUse` (`spec-gate-enforce.mjs`) descoped to phase 008.** The original Files-to-Change table listed it under this phase, contradicting this phase's own explicit "starting with SessionStart/UserPromptSubmit" scope statement. Resolved in favor of the scope statement.
 - **Adapters built anyway despite confirmed dormancy** (operator's explicit choice). Rationale: the code is ready the moment a future `devin` build adds `-p` hook support -- registration becomes the only remaining step, not a rewrite.
-- **`.devin/hooks.v1.json` not committed.** Registering a config path proven dead under `-p` dispatch would misrepresent this phase's actual coverage as active, contradicting the packet's own "verify live, never assume" discipline.
+- **`.devin/hooks.v1.json` committed anyway, per operator direction.** Registering a config path proven dead under `-p` dispatch initially seemed to contradict the packet's own "verify live, never assume" discipline -- resolved by keeping the dormancy finding explicit and dated in every doc that references the file, so "committed" never gets misread as "verified live."
 - **Direct invocation substitutes for live-fire testing.** Since no dispatch path can trigger these adapters, correctness is verified by piping realistic, malformed, and incomplete payloads directly into the compiled outputs -- proving the adapters behave correctly in isolation, distinct from (and not a substitute for) proving they fire in production.
 <!-- /ANCHOR:decisions -->
 
@@ -90,6 +90,7 @@ Devin hook adapters for the 2 events this phase scopes (`SessionStart`, `UserPro
 | Live dispatch: `.devin/config.json`'s `"hooks"` key | **Confirmed dead** -- zero probe firings |
 | Live dispatch: malformed `hooks.v1.json` JSON | `devin -p` succeeded, zero parse errors -- file isn't read in this mode |
 | Live dispatch: `--agent-config` with a `hooks` field | Rejected by strict parser: `unknown field 'hooks'` |
+| Final re-test with the actual committed `.devin/hooks.v1.json` in place (real compiled paths, not a temp probe) | `devin -p "list files with ls"` completed normally, no additionalContext injected, no error -- consistent with the confirmed dormancy finding |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

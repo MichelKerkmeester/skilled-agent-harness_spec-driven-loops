@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
-    last_updated_at: "2026-07-24T13:00:45Z"
+    last_updated_at: "2026-07-24T17:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All 26 checklist items verified with concrete evidence markers"
+    recent_action: "CHK-051 revised: hooks.v1.json now committed, re-tested still dormant"
     next_safe_action: "Phase 008 can begin; same dormant-hooks caveat applies"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "decision-record.md"]
@@ -87,7 +87,7 @@ N/A - this phase adds new adapters, it is not a bug fix.
 <!-- ANCHOR:file-org -->
 ## File Organization
 - [x] CHK-050 [P1] All new adapter files live under `mcp-server/hooks/devin/` and `runtime/hooks/devin/`, matching the `codex` sibling layout exactly.
-- [x] CHK-051 [P1] **Revised**: `.devin/hooks.v1.json` is deliberately NOT created at the project root -- committing a config path confirmed dead under `-p` dispatch would misrepresent coverage as active. The documented shape is recorded in both README.md files instead.
+- [x] CHK-051 [P1] **Revised twice**: `.devin/hooks.v1.json` IS created at the project root (per operator direction, mirroring `.codex/hooks.json`'s tracked precedent), registering both adapters; re-tested live after committing and still confirmed dormant under `-p` dispatch, documented as such everywhere it's referenced.
 <!-- /ANCHOR:file-org -->
 
 ---

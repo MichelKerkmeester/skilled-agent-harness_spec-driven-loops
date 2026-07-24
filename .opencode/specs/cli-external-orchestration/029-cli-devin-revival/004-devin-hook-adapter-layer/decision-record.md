@@ -10,13 +10,13 @@ _memory:
     last_updated_at: "2026-07-24T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Live-verified: hooks never fire under devin -p; adapters built dormant"
-    next_safe_action: "Re-run the probe methodology before ever registering .devin/hooks.v1.json"
+    next_safe_action: "Re-run the probe methodology if the installed devin version ever changes"
     blockers: ["No headless -p attachment point for hooks exists in devin 3000.2.17"]
     key_files: ["spec.md", "plan.md", "../../../../.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 100
     open_questions: ["Does hook firing work in true interactive mode (untestable from this environment, no TTY)?"]
-    answered_questions: ["read_config_from.claude fidelity became moot: hooks.v1.json/config.json hooks key are never read at all under -p, confirmed via malformed-JSON and --agent-config strict-parser tests."]
+    answered_questions: ["read_config_from.claude fidelity became moot: hooks.v1.json/config.json hooks key are never read at all under -p.", "Operator directed committing .devin/hooks.v1.json anyway, mirroring .codex/hooks.json's tracked precedent, despite confirmed dormancy."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -93,7 +93,7 @@ We needed to choose between building the adapter layer by hand, mirroring the co
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| `-p` hook support is added in a future `devin` build but this dormant status is never re-checked, so the adapters ship silently believing they're still dead code | M | Re-verification trigger recorded in both README.md files (`mcp-server/hooks/devin/`, `runtime/hooks/devin/`); re-run the exact probe methodology before registering `.devin/hooks.v1.json` |
+| `-p` hook support is added in a future `devin` build but this dormant status is never re-checked, so the adapters ship silently believing they're still dead code | M | Re-verification trigger recorded in both README.md files (`mcp-server/hooks/devin/`, `runtime/hooks/devin/`); re-run the exact probe methodology whenever the installed `devin` version changes, since `.devin/hooks.v1.json` is already committed and would silently start working with no prompt to re-verify |
 | Interactive mode (untested from this environment) turns out to already fire hooks, meaning coverage exists today for human-run sessions specifically, and this ADR's "zero coverage" framing is too pessimistic | L | Explicitly flagged as the one unconfirmed gap; operator can test interactively and update this ADR with the result |
 | `read_config_from.claude` turns out to be fully faithful, and hand-built adapters become redundant maintenance once `-p` hook support exists | L | Explicit re-evaluation trigger recorded here; not a silent abandonment of the simpler path |
 <!-- /ANCHOR:adr-001-consequences -->
@@ -122,9 +122,9 @@ We needed to choose between building the adapter layer by hand, mirroring the co
 **What changes**:
 - `system-spec-kit/mcp-server/hooks/devin/` created: `shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `README.md` -- built, typechecked (`tsc --noEmit` 0 errors), compiled, directly-invocation-verified. Dormant (see README.md §2).
 - `system-spec-kit/runtime/hooks/devin/` created: `spec-gate-classify.mjs`, `README.md` -- built, directly-invocation-verified. Dormant. `spec-gate-enforce.mjs` is NOT created here; it belongs to phase 008.
-- `.devin/hooks.v1.json` is **NOT created/committed** -- registering a config path confirmed dead under `-p` dispatch would misrepresent this phase's actual coverage as active. The exact JSON shape is documented in both README.md files for whoever re-verifies `-p` hook support later.
+- `.devin/hooks.v1.json` **committed 2026-07-24 per operator direction**, mirroring `.codex/hooks.json`'s real, tracked precedent, registering both adapters. Confirmed dormant under `-p` dispatch, same as the adapters themselves - not a claim of active coverage, just the wiring ready for a future build.
 
-**How to roll back**: Delete `hooks/devin/` and `runtime/hooks/devin/`. The neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) were never modified, so no reversal is needed there - confirm with `git diff` showing no changes to those paths.
+**How to roll back**: Delete `hooks/devin/`, `runtime/hooks/devin/`, and `.devin/hooks.v1.json`. The neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) were never modified, so no reversal is needed there - confirm with `git diff` showing no changes to those paths.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

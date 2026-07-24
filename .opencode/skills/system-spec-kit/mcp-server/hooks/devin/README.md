@@ -36,7 +36,7 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, and 
 
 ## 4. CONSUMERS
 
-- A project `.devin/hooks.v1.json` would register the compiled `dist/hooks/devin/*.js` outputs of `session-start.ts` and `user-prompt-submit.ts` against `SessionStart`/`UserPromptSubmit`. **Not committed** -- registering a config path confirmed dead under `-p` dispatch would misrepresent this phase's actual coverage.
+- The project's `.devin/hooks.v1.json` registers the compiled `dist/hooks/devin/*.js` outputs of `session-start.ts` and `user-prompt-submit.ts` against `SessionStart`/`UserPromptSubmit`, mirroring `.codex/hooks.json`'s real tracked shape. **Committed per operator direction** despite the confirmed dormancy above -- re-tested live after committing (`devin -p "list files with ls"`) and still confirmed dormant, no different from before the file existed. Requires `npm run build` in `mcp-server/` for the referenced `dist/` paths to exist.
 
 ## 5. RELATED
 

@@ -27,7 +27,7 @@ Live-probed 2026-07-24 against the installed `devin 3000.2.17` binary: neither `
 
 ## 4. CONSUMERS
 
-- A project `.devin/hooks.v1.json` would wire `spec-gate-classify.mjs` to the `UserPromptSubmit` event. **Not committed** -- registering a config path confirmed dead under `-p` dispatch would misrepresent this phase's actual coverage.
+- The project's `.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to the `UserPromptSubmit` event. **Committed per operator direction** despite the confirmed dormancy above -- re-tested live after committing and still confirmed dormant, no different from before the file existed.
 
 ## 5. RELATED
 

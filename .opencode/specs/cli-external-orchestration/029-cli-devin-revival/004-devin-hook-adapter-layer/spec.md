@@ -79,7 +79,7 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 |---|---|---|---|
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/devin/**` (`shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `README.md`) | Create | 004 | Thin Devin-host adapters delegating to the existing `hooks/claude/*.ts` implementations, mirroring `hooks/codex/`. Built, typechecked, dormant. |
 | `.opencode/skills/system-spec-kit/runtime/hooks/devin/**` (`spec-gate-classify.mjs`, `README.md`) | Create | 004 | Devin-side `UserPromptSubmit` wiring into the shared `runtime/lib/spec-gate/spec-gate-core.mjs`, mirroring `runtime/hooks/codex/`. `spec-gate-enforce.mjs` (`PreToolUse`) is NOT built here -- it belongs to phase 008, matching this phase's own 2-event scope. Built, dormant. |
-| `.devin/hooks.v1.json` (project-level) | **Not created** | 004 | Registering a config path confirmed dead under `-p` dispatch would misrepresent coverage as active. Exact JSON shape documented in both README.md files instead. |
+| `.devin/hooks.v1.json` (project-level) | Created | 004 | **Committed 2026-07-24 per operator direction** (mirroring `.codex/hooks.json`'s tracked precedent), registering both adapters. Confirmed dormant under `-p` dispatch (see decision-record.md ADR-001) - present so the wiring exists the moment a future `devin` build honors it. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -89,7 +89,7 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 | ID | Requirement | Priority |
 |---|---|---|
 | REQ-001 | Adapters exist for at least `SessionStart` and `UserPromptSubmit`, matching the two events the codex precedent proved out first. | P0 |
-| REQ-002 | **Superseded 2026-07-24 by live evidence**: `.devin/hooks.v1.json` is NOT created/committed, because live-probing confirmed Devin never consults it (or `.devin/config.json`'s `"hooks"` key) under `-p` dispatch. The documented `{type, matcher?, command\|prompt, timeout?}` shape is recorded in both adapter README.md files for future registration once `-p` hook support exists. | P0 |
+| REQ-002 | **Superseded 2026-07-24 by live evidence, then committed anyway per operator direction**: `.devin/hooks.v1.json` registers both adapters using the documented `{type, matcher?, command\|prompt, timeout?}` shape. Live-probing confirmed Devin never consults it (or `.devin/config.json`'s `"hooks"` key) under `-p` dispatch — the file is committed as ready wiring for a future build, not as a claim of current live coverage. | P0 |
 | REQ-003 | **Superseded 2026-07-24 by live evidence**: no live smoke test against a fired event is possible -- confirmed no `-p`-mode attachment point exists. Direct invocation of the compiled adapters with realistic payloads substitutes as the achievable verification (see implementation-summary.md). | P0 |
 | REQ-004 | This phase does not modify `ADVISOR_RUNTIME_VALUES`, does not touch `system-skill-advisor/hooks/devin/`, and does not touch `runtime-parity.vitest.ts`. | P0 |
 

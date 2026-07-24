@@ -43,6 +43,8 @@
     "key_files": [
       "decision-record.md",
       "implementation-summary.md",
+      ".devin/hooks.v1.json",
+      ".codex/hooks.json",
       "spec.md",
       "tasks.md",
       "checklist.md",
@@ -58,9 +60,7 @@
       "hooks/devin/session-start.ts",
       "hooks/devin/user-prompt-submit.ts",
       "runtime/hooks/devin/spec-gate-classify.mjs",
-      "runtime/hooks/codex/spec-gate-enforce.mjs",
-      "hooks/devin/README.md",
-      "runtime/hooks/devin/README.md"
+      "runtime/hooks/codex/spec-gate-enforce.mjs"
     ],
     "entities": [
       {
@@ -73,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Thin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
     "created_at": "2026-07-23T19:51:58.883Z",
-    "last_save_at": "2026-07-24T13:00:59.725Z",
+    "last_save_at": "2026-07-24T13:48:54.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf8f62ff4f63d8d597c6aa535d99be1d318baa1555974ebe60284b154bc22fcb",
+    "source_fingerprint": "sha256:47581029353f2d3f500b10663e2d8c1fea325249a3171adb6717dcdc8a244c21",
     "source_doc_hashes": {
-      "spec.md": "a4e718ac1900ebcd5d385737107c7f5e66d505626343ed9fe7ad0d23690e4887",
+      "spec.md": "8983bbe6440aa0212997337bdf03dede00477cea5c07ad9cbbd72cc3d861278c",
       "plan.md": "2c7c9c2d5e03943ea51b6d2946b49e5ff17df5605a1353acf788a6630819fd53",
-      "tasks.md": "6f837d5f31786efbd3183319ba67455b64f68d09621ee5d95f9286ff0d6c2532",
-      "checklist.md": "8e218864063e3b9c61c062628ab009562c98b1e63ad75f5a1198b1d6c65b02af",
-      "decision-record.md": "4085b3ecd358be1821565ed14e4dfc6bcad816ca99747a3348956e6132ef77f8",
-      "implementation-summary.md": "799697187115d04d17286a30996b9be193679367838edaf081dd85732f12830b"
+      "tasks.md": "00aa1ad6365494f2cfca55fe27075339be387d20fb2b0151150db8402d8066ca",
+      "checklist.md": "2492a17482e9cb83c185155da19bf41abbb536bfb238a8ac4f2b8534b8f3ea44",
+      "decision-record.md": "7d5313a6b92a7a252445223a95e3f68da3c779948c017ec3a7f568f96d3f3fef",
+      "implementation-summary.md": "7a7a5c7aba963db5996168f464e32a59bd0aed304d9b296e3823e9cc9afbe72f"
     },
     "last_active_child_id": null,
     "last_active_at": null

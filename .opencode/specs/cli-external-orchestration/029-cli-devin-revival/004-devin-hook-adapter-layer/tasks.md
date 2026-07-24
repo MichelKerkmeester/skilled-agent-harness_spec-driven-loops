@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
-    last_updated_at: "2026-07-24T16:00:00Z"
+    last_updated_at: "2026-07-24T17:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All 13 tasks complete; T012 live-smoke returned a confirmed negative"
+    recent_action: "T009 revised: hooks.v1.json now committed per operator direction"
     next_safe_action: "Phase 008 can begin; same dormant-hooks caveat applies"
     blockers: []
     key_files: ["spec.md", "plan.md", "checklist.md", "decision-record.md"]
@@ -55,7 +55,7 @@ _memory:
 - [x] T006 [P] Create `hooks/devin/user-prompt-submit.ts` delegating to `user-prompt-submit.js` (`.opencode/skills/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.ts`)
 - [x] T007 [P] Create `runtime/hooks/devin/spec-gate-classify.mjs` wired to `spec-gate-core.mjs` (`.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs`)
 - [x] T008 Descoped to phase 008: `spec-gate-enforce.mjs` (`PreToolUse`) contradicted this phase's own 2-event scope statement in the original Files-to-Change table; resolved in favor of the scope statement, not the table.
-- [x] T009 `.devin/hooks.v1.json` deliberately NOT authored/committed -- registering a config path confirmed dead under `-p` dispatch would misrepresent coverage as active. The shape is documented in both README.md files instead.
+- [x] T009 `.devin/hooks.v1.json` authored and committed per operator direction, mirroring `.codex/hooks.json`'s real tracked precedent, registering both adapters. Re-tested live after committing: still confirmed dormant under `-p` dispatch, exactly as before -- the file's presence doesn't change the finding, only the wiring's readiness for a future build.
 - [x] T010 [P] Author `hooks/devin/README.md` and `runtime/hooks/devin/README.md`, documenting the dormant status and full live-verification evidence table (`.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md`, `.opencode/skills/system-spec-kit/runtime/hooks/devin/README.md`)
 <!-- /ANCHOR:phase-2 -->
 
