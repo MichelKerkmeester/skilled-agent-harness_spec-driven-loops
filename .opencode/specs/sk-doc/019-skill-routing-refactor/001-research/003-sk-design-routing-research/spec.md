@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/016-sk-design-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the sk-design routing-research charter for a bound /deep:research run"
@@ -23,7 +23,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "016-sk-design-routing-research-scaffold"
+      session_id: "001-research/003-sk-design-routing-research-scaffold"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -45,9 +45,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Research Complete |
 | **Created** | 2026-07-16 |
-| **Branch** | `016-sk-design-routing-research` |
+| **Branch** | `001-research/003-sk-design-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 | **Type** | Research packet (deep-research loop complete) |
 <!-- /ANCHOR:metadata -->
 
@@ -149,3 +149,10 @@ Deep research is complete for this topic. `research/research.md` remains the can
 Canonical detail: `research/research.md`.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `002-skill-advisor-routing-research` |
+| **Successor** | `004-system-code-graph-routing-research` |

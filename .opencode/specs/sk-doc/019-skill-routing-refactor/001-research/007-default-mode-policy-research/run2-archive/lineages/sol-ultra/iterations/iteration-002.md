@@ -106,7 +106,7 @@ The existing live executor has no startup resource manifest, so stated routing i
 
 ## Dead Ends
 
-- Re-deriving the run-1 keep/flip table was excluded by the strategy's saturated-directions rule. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/deep-research-strategy.md:41-59]
+- Re-deriving the run-1 keep/flip table was excluded by the strategy's saturated-directions rule. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/deep-research-strategy.md:41-59]
 - Repository playbooks cannot supply natural hub-request frequencies: they are authored contracts whose purpose is deliberate axis and boundary coverage. [SOURCE: .opencode/skills/sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md:155-184]
 
 ## What This Experiment Cannot Infer

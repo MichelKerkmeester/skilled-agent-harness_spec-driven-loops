@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), pushed to v4"
@@ -113,7 +113,7 @@ The blocked hubs were not uniform stale gold. Diagnosis split into:
 - **Working tree clean; all 6 commits pushed to `skilled/v4.0.0.0`.**
 - **Not touched**: shared scorer (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`), any `mcp_server/`, any `dist/`.
 
-### Remaining (packet 020, beyond this milestone)
+### Remaining (packet 015, beyond this milestone)
 - **REQ-001**: de-skill-specific the shared harness (classifier + gold-derivation) so tiers score identically.
 - **REQ-002 (full)**: converge every unit to one router shape + frontmatter typed-gold (index-table → frontmatter).
 - **REQ-006**: fleet verification with teeth — mutation test, blind independently-authored holdout, live-mode with precision + confusion matrices, Layer-0 right-skill pass. The route-gold gate is deterministic coherence with real teeth (it caught genuine router bugs), but **live routing quality remains inferred, not measured**.

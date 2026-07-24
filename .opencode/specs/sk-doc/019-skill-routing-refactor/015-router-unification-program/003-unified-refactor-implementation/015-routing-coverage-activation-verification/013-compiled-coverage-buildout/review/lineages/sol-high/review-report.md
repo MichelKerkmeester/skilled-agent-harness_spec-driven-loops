@@ -40,10 +40,10 @@ The promoted runtime is fresh and compiled-serving for all seven hubs, the fleet
   "activeFindings": [
     {"id":"F001","severity":"P1","title":"Refresh can overwrite a concurrent serving-state update","file":".opencode/bin/lib/compiled-route-manifest.cjs","line":550},
     {"id":"F002","severity":"P1","title":"Cutover gate false-passes compiled clarify and reject decisions","file":".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs","line":207},
-    {"id":"F003","severity":"P1","title":"Packet claims completion while required completion gates remain open","file":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md","line":52},
+    {"id":"F003","severity":"P1","title":"Packet claims completion while required completion gates remain open","file":".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md","line":52},
     {"id":"F005","severity":"P1","title":"sk-doc compiled matcher over-routes preview as review","file":".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs","line":23},
     {"id":"F007","severity":"P1","title":"Current manifest suite fails its authored-closure sync assertion","file":".opencode/bin/tests/compiled-route-manifest.test.cjs","line":378},
-    {"id":"F004","severity":"P2","title":"SD-015 test limitation is stale","file":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md","line":204},
+    {"id":"F004","severity":"P2","title":"SD-015 test limitation is stale","file":".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md","line":204},
     {"id":"F006","severity":"P2","title":"Benchmark flag telemetry still encodes the pre-cutover cohort","file":".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs","line":783}
   ],
   "remediationWorkstreams": [

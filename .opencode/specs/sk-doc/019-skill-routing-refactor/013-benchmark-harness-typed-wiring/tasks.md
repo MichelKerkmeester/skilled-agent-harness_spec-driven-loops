@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Rewrote task list to ten phases for the Option 3 collapse (ADR-005)"
@@ -20,7 +20,7 @@ _memory:
       - "plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "014-benchmark-harness-typed-wiring-authoring"
+      session_id: "013-benchmark-harness-typed-wiring-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -117,5 +117,5 @@ Plan Section 4 Phases 2–9, dependency-ordered.
 - **Plan**: See `plan.md`
 - **Decisions**: See `decision-record.md` (ADR-005 supersedes ADR-001)
 - **Model reviews**: `reviews/sol-5.6-ultra-amendment-verdict.md`, `reviews/glm-5.2-max-amendment-review.md`, `reviews/fable-5-xhigh-parent-skill-opinion.md`
-- **Sibling (record correction)**: `../012-sk-doc-routing-fixes`
+- **Sibling (record correction)**: `../011-sk-doc-routing-fixes`
 <!-- /ANCHOR:cross-refs -->

@@ -1,28 +1,30 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/001-compiled-policy-collapse",
-  "description": "Five-iteration SOL xhigh-fast deep-research lineage on collapsing the two hand-authored routing maps (INTENT_SIGNALS + RESOURCE_MAP + hub-router.json",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "description": "Parent-hub routing is represented in both prose tables and JSON metadata, so equivalent rules can drift and no single immutable artifact identifies",
   "keywords": [
-    "five-iteration",
-    "sol",
-    "xhigh-fast",
-    "deep-research",
-    "lineage",
-    "collapsing",
-    "two",
-    "hand-authored",
+    "parent-hub",
     "routing",
-    "maps",
-    "hub-router",
-    "json"
+    "represented",
+    "prose",
+    "tables",
+    "json",
+    "metadata",
+    "equivalent",
+    "rules",
+    "drift",
+    "single",
+    "immutable",
+    "artifact",
+    "identifies"
   ],
-  "lastUpdated": "2026-07-23T11:35:31.238Z",
+  "lastUpdated": "2026-07-24T10:53:31.890Z",
   "specId": "001",
   "folderSlug": "compiled-policy-collapse",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "005-oob-idea-deep-dives"
+    "001-research",
+    "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

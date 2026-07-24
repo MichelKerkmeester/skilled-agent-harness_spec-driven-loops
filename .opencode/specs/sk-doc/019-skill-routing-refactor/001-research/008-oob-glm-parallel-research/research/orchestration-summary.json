@@ -1,8 +1,8 @@
 {
   "run_id": "1784347200936-r7aos1",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel",
-  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research",
+  "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "glm-oob",
-      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research/lineages/glm-oob/deep-research-state.jsonl",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/research/lineages/glm-oob/deep-research-state.jsonl",
       "window": {
         "start_at_iso": "2026-07-18T04:00:00.939Z",
         "end_at_iso": "2026-07-18T04:27:13.558Z",

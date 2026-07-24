@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -122,8 +122,8 @@
         "source": "derived"
       },
       {
-        "name": "no",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -166,17 +166,17 @@
     ],
     "causal_summary": "`defaultMode = <child>` auto-commits the hub to one mode when nothing specific fires",
     "created_at": "2026-07-18T14:47:46.181Z",
-    "last_save_at": "2026-07-23T12:42:21.534Z",
+    "last_save_at": "2026-07-24T11:06:40.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9e1c26ec0e845d5363a063355bc5db7f67960f0d5ac72bc0fcf84e59b8336628",
+    "source_fingerprint": "sha256:26bf9885ba67d9ea9ccd58b5c35cacc4ff2ee5fef94a133aec5786bc19121ef8",
     "source_doc_hashes": {
-      "spec.md": "a634e15088a39973e7455e8e65b9bbae126679164b29af7208951ab71ab2efe1",
-      "research/research.md": "13a1fffe64e94f72617ace827c30d59fb97621e363e2ba02b8859fc219840979"
+      "spec.md": "89e33bc2432e7cbbe3fad2ef86f17a1024303b9d4e81d997907cb46dfbbefde4",
+      "research/research.md": "1c90820f9d0f4dd41a3460d08a9619f9ec13556fe36e36fedfc37bdb79c538b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

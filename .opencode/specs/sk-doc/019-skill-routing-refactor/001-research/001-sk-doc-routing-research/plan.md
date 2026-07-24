@@ -9,11 +9,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research"
     last_updated_at: "2026-07-16T08:08:19Z"
     last_updated_by: "claude"
     recent_action: "Authored plan.md documenting the executed research approach"
-    next_safe_action: "Plan 012-sk-doc-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 011-sk-doc-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/research.md"
@@ -122,7 +122,7 @@ Iteration prompt reads prior findings plus the benchmark report, produces a delt
 |-----------|-------|-------|
 | Evidence verification | Every claim cites file:line against current configs | Grep, direct file reads |
 | Cross-check | Alias diff re-run at iteration 1 and re-confirmed at iteration 7 | Node diff script |
-| Deferred | Fresh Mode-B live benchmark re-run to confirm repair | Deferred to `012-sk-doc-routing-fixes`, out of scope here |
+| Deferred | Fresh Mode-B live benchmark re-run to confirm repair | Deferred to `011-sk-doc-routing-fixes`, out of scope here |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -134,7 +134,7 @@ Iteration prompt reads prior findings plus the benchmark report, produces a delt
 |------------|------|--------|-------------------|
 | `tier2-sk-doc-luna-opencode.report.json` | Internal (system-deep-loop/068) | Green | Findings need a scored run to ground the failure profile |
 | `router-replay.cjs` / `live-executor.cjs` / `score-skill-benchmark.cjs` scorer chain | Internal | Green | Every technical claim about scoring behavior traces to this chain |
-| Implementation packet `012-sk-doc-routing-fixes` | Internal, not yet created | Yellow | The fix plan has no effect until it is planned and built |
+| Implementation packet `011-sk-doc-routing-fixes` | Internal, not yet created | Yellow | The fix plan has no effect until it is planned and built |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/005-calibration",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration",
   "description": "Phase parent integrating Idea 5 (calibrated negotiation) into the unified router refactor as a first-class build — NOT deferred.",
   "keywords": [
     "phase",
@@ -14,14 +14,14 @@
     "first-class",
     "deferred"
   ],
-  "lastUpdated": "2026-07-23T11:35:36.304Z",
+  "lastUpdated": "2026-07-24T10:53:31.649Z",
   "specId": "005",
   "folderSlug": "calibration",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "007-unified-refactor-implementation"
+    "015-router-unification-program",
+    "003-unified-refactor-implementation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage",
+  "specFolder": "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
   "description": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
   "keywords": [
     "sk-doc",
@@ -14,8 +14,8 @@
     "times",
     "weight"
   ],
-  "lastUpdated": "2026-07-23T11:32:36.890Z",
-  "specId": "007",
+  "lastUpdated": "2026-07-24T11:02:43.096Z",
+  "specId": "008",
   "folderSlug": "hub-intent-keyword-coverage",
   "parentChain": [
     "sk-doc",

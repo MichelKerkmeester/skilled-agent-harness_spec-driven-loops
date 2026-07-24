@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded 015 with the corrected Wave 2 scope (no map bugs; measurement-only)"
@@ -23,7 +23,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "015-sk-code-router-alignment-authoring"
+      session_id: "014-sk-code-router-alignment-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -227,6 +227,13 @@ Deep research is active on the typed-pair contract, benchmark scoring, shared pr
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Parent**: `../spec.md` (031 router-alignment program)
-- **Preceding phase (map order)**: `../014-benchmark-harness-typed-wiring/spec.md`
-- **Sibling fan-out targets**: `../016`…`../019` (sk-design, system-code-graph, system-deep-loop, sk-prompt)
+- **Parent**: `../spec.md` (019 skill-routing refactor)
+- **Preceding phase (map order)**: `../013-benchmark-harness-typed-wiring/spec.md`
+- **Sibling research targets**: `../001-research/003-sk-design-routing-research`, `../001-research/004-system-code-graph-routing-research`, `../001-research/005-system-deep-loop-routing-research`, `../001-research/006-sk-prompt-routing-research`
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `013-benchmark-harness-typed-wiring` |
+| **Successor** | `015-router-unification-program` |

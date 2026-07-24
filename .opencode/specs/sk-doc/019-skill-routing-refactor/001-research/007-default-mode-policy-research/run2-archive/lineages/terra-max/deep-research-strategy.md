@@ -230,8 +230,8 @@ Follow up on: **Proposed replacement contracts and assertions:** (a) define a `H
 
 ## 12. KNOWN CONTEXT
 
-- The packet spec defines the seven parent hubs, five child defaults, two null models, and the divergent threads. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:19-103]
-- Run 1 is a baseline to challenge, not a conclusion to reproduce. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:87-103]
+- The packet spec defines the seven parent hubs, five child defaults, two null models, and the divergent threads. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:19-103]
+- Run 1 is a baseline to challenge, not a conclusion to reproduce. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:87-103]
 - `resource-map.md` is absent at the parent packet; resource-map coverage is informational only for this detached lineage.
 - The workflow's normal parent-spec, graph, memory, and continuity operations are intentionally excluded to honor the detached write boundary.
 

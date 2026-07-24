@@ -10,19 +10,19 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the nine-phase dependency-ordered implementation plan from research.md Section 8"
     next_safe_action: "Await operator authorization, then start Phase 1 (contract library)"
     blockers:
-      - "Sequenced after sibling packet 011-skill-advisor-routing-research per the 031 parent"
+      - "Sequenced after sibling research child 002-skill-advisor-routing-research per the 019 parent"
     key_files:
       - "plan.md"
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "012-sk-doc-routing-fixes-authoring"
+      session_id: "011-sk-doc-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -58,8 +58,8 @@ The fix lands as nine sequential steps, each one building on the previous step's
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- Research packet `010-sk-doc-routing-research` is complete with all 10 iterations and a frozen fix plan (confirmed, `research.md` Sections 8-11).
-- Operator authorizes implementation start (currently pending, per the 031 parent's sequencing against sibling packet 011).
+- Research packet `001-research/001-sk-doc-routing-research` is complete with all 10 iterations and a frozen fix plan (confirmed, `research.md` Sections 8-11).
+- Operator authorizes implementation start (currently pending, per the 019 parent's sequencing against sibling packet 011).
 
 ### Definition of Done
 - All 9 fix-plan steps (Section 8) land in the dependency order below.
@@ -185,7 +185,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Contract library (Phase 1) | Internal | Not started | Every later phase reads its functions. Nothing else can start |
-| Sibling packet 011-skill-advisor-routing-research | Internal | In progress | 031 parent sequences this packet's start after it. Do not begin Phase 1 without authorization |
+| Sibling research child 002-skill-advisor-routing-research | Internal | In progress | 019 parent sequences this packet's start after it. Do not begin Phase 1 without authorization |
 | `system-deep-loop` skill-benchmark scripts | Internal | Stable, owned by a different packet family | Read-only dependency for Phases 5 and 7. No blocking risk expected |
 | `create-skill` authoring stack | Internal | Stable | Phase 8 edits three of its files. Low risk, doc-only change |
 <!-- /ANCHOR:dependencies -->
@@ -347,7 +347,7 @@ Phase 8 (Layer B Doctrine) ◄── Phase 7 (Scoring/Reporting) ◄── Phase
 ## L3: AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirm the 031 parent authorized Phase 1 start (currently blocked on sibling packet 011)
+- [ ] Confirm the 019 parent authorized Phase 1 start (currently blocked on sibling packet 011)
 - [ ] Read decision-record.md ADR-001 and ADR-005 before touching any emitter or fixture
 - [ ] Confirm the prior phase's own Section 5 test command passed before starting the next phase
 

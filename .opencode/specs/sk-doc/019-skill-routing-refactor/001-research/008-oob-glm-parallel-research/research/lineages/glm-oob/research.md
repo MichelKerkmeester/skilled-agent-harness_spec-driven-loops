@@ -1,12 +1,12 @@
 ---
 title: "OOB GLM Parallel Lineage — Radical Lateral Rethinks of Parent-Hub Routing"
-description: "A 5-iteration GLM-5.2 lateral-research lineage run concurrently with the SOL-ultra sibling to diversify the idea space over the 8-item out-of-box agenda in 023-oob-glm-parallel/spec.md. stopPolicy=max-iterations (non-converge, lateral). Finds: typed-handoff primitive (closed-loop routing), (T,R,P) decomposition of routing knob space, and the contrarian claim that defaultMode was a documented bug compensating for the missing recovery primitive. Run-1/run-2's keep-1/flip-4 verdict subsumes cleanly as corners of the (T,R,P) space."
+description: "A 5-iteration GLM-5.2 lateral-research lineage run concurrently with the SOL-ultra sibling to diversify the idea space over the 8-item out-of-box agenda in 001-research/008-oob-glm-parallel-research/spec.md. stopPolicy=max-iterations (non-converge, lateral). Finds: typed-handoff primitive (closed-loop routing), (T,R,P) decomposition of routing knob space, and the contrarian claim that defaultMode was a documented bug compensating for the missing recovery primitive. Run-1/run-2's keep-1/flip-4 verdict subsumes cleanly as corners of the (T,R,P) space."
 lineage: glm-oob
 session_id: fanout-glm-oob-1784347200936-r7aos1
 executor: cli-opencode (zai-coding-plan/glm-5.2)
 sibling_lineage: sol-ultra
-parent_packet: 023-oob-glm-parallel
-combined_synthesis_target: 021-default-mode-policy-research
+parent_packet: 001-research/008-oob-glm-parallel-research
+combined_synthesis_target: 001-research/007-default-mode-policy-research
 trigger_phrases:
   - "glm oob lateral routing lineage"
   - "typed handoff routing primitive"
@@ -20,7 +20,7 @@ contextType: research
 # OOB GLM Parallel Lineage — Radical Lateral Rethinks of Parent-Hub Routing
 
 > **Provenance (honest, up front).** This lineage is a 5-iteration, non-converge, lateral-research
-> pass over the 8-item agenda in `023-oob-glm-parallel/spec.md`, run by GLM-5.2 via cli-opencode
+> pass over the 8-item agenda in `001-research/008-oob-glm-parallel-research/spec.md`, run by GLM-5.2 via cli-opencode
 > concurrently with a SOL-ultra sibling lineage. **Convergence is telemetry only**
 > (`stopPolicy: max-iterations`, `convergenceMode: off`); the lineage was explicitly chartered to
 > *diverge* from the established run-1/run-2 answer in `021/run2-archive/research.md`, not to
@@ -64,7 +64,7 @@ reasons; (T, R, P) gives the right reasons.
 ## Method
 
 **Setup.** A 5-iteration GLM-5.2 lateral lineage in
-`.opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research/lineages/glm-oob/`,
+`.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/research/lineages/glm-oob/`,
 chartered to diverge from the run-1/run-2 keep-1/flip-4 verdict in
 `021/run2-archive/research.md`. Each iteration proposes one genuinely out-of-the-box idea and
 stress-tests it (what breaks, what improves, second-order effects). Convergence is telemetry only
@@ -578,7 +578,7 @@ Ordered by blast-radius, lowest first.
 - **Registry:** `findings-registry.json`.
 - **Sibling lineage (SOL-ultra):** `../sol-ultra/` (for cross-lineage convergence check).
 - **Established answer (do not re-derive):**
-  `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md`.
+  `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md`.
 - **Source files cited (verified at iteration time):**
   - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:709,2572,2810-2812,2815-2866,4009`
   - `.opencode/skills/sk-doc/hub-router.json` (full file)
@@ -586,7 +586,7 @@ Ordered by blast-radius, lowest first.
   - `.opencode/skills/cli-external-orchestration/hub-router.json` (full file)
   - `.opencode/skills/system-deep-loop/hub-router.json` (full file)
   - `.opencode/skills/sk-doc/create-skill/assets/skill/skill_smart_router.md` (canon)
-  - `.opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/spec.md` (agenda)
+  - `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/spec.md` (agenda)
 
 ---
 

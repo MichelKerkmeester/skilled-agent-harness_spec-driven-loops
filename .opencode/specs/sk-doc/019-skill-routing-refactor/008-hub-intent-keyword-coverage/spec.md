@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage"
     last_updated_at: "2026-07-13T15:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Added hub keyword coverage for two intents"
@@ -37,7 +37,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-13 |
 | **Parent Packet** | `sk-doc/019-skill-routing-refactor` |
-| **Sibling** | `006-create-skill-router-marker-gap` |
+| **Sibling** | `007-create-skill-router-marker-gap` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -107,3 +107,10 @@ Add artifact-noun keyword coverage to the `create-agent` and `create-changelog` 
 
 - The `create-benchmark` mis-route resolution (accept a documented vocab exception vs. trim its word-capped SKILL.md) is deferred to the operator; see the follow-up note in `implementation-summary.md`.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `007-create-skill-router-marker-gap` |
+| **Successor** | `009-create-benchmark-routing-fix` |

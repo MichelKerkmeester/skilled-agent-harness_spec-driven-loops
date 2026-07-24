@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/003-default-mode-implementation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/003-default-mode-implementation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -70,6 +70,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -77,12 +83,6 @@
       },
       {
         "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -118,19 +118,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implement the vetted defaultMode recs from 021 research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast.",
+    "causal_summary": "Implement the vetted defaultMode recommendations from research child 001-research/007-default-mode-policy-research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast.",
     "created_at": "2026-07-18T14:47:45.777Z",
-    "last_save_at": "2026-07-23T12:42:20.598Z",
+    "last_save_at": "2026-07-24T11:03:16.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:892c5ac96935eefa1fae7f323d00d597f1b4fbda485dc859e7b0e5b6081c17dc",
+    "source_fingerprint": "sha256:dad8910fe4d710331142b82af0f7db710d1b5f5a5af6c63245518193b5873ef0",
     "source_doc_hashes": {
-      "spec.md": "1401ad3ee89d964b465522723a1ea48f5a72260f35722e18db9465d26febeaa3",
-      "implementation-summary.md": "b130d255493ac4f0b2feab1dc9a2b2e591c6fad0838253e5a412a1e588707550"
+      "spec.md": "fdc9490c0df364a751b29eeab2f37501af050b8ff3e5bd92fc58a6c2ffaef44f",
+      "implementation-summary.md": "54a1f8b85124e8adc080dc36032ffb6ebd8a51eade68e0281169c1719e43d6e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/003-doc-tooling-and-template-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes"
     last_updated_at: "2026-07-22T12:50:05Z"
     last_updated_by: "claude"
     recent_action: "Fixed the validate_document.py symlink path; added two template clarifications."
@@ -137,7 +137,7 @@ Make the documented validator command run from either the symlink or the real pa
 ## RELATED DOCUMENTS
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
-- `../spec.md` and `../context-index.md` (the 021 program parent).
+- `../spec.md` and `../context-index.md` (the 016 program parent).
 - Previous phase: [`002-reference-asset-template-alignment`](../002-reference-asset-template-alignment/spec.md). Next phase: [`004-skill-mode-readme-overhaul`](../004-skill-mode-readme-overhaul/spec.md).
 
 <!-- /ANCHOR:related-docs -->

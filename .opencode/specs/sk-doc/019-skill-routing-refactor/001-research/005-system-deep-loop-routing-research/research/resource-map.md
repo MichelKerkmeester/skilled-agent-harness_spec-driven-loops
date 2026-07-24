@@ -13,7 +13,7 @@ description: "Auto-generated research resource map from convergence evidence."
 - **Total references**: 28
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=25, Specs=3, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 10
-- **Scope**: research convergence output for 018-system-deep-loop-routing-research
+- **Scope**: research convergence output for 001-research/005-system-deep-loop-routing-research
 - **Generated**: 2026-07-17T05:07:01.725Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -59,8 +59,8 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-state.jsonl | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/deep-research-strategy.md | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/specs/sk-doc/019-sk-doc-router-alignment/018-system-deep-loop-routing-research/research/iterations/iteration-005.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research/research/deep-research-state.jsonl | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research/research/deep-research-strategy.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research/research/iterations/iteration-005.md | Cited | OK | Citations=1; Iterations=1 |
 
 ---

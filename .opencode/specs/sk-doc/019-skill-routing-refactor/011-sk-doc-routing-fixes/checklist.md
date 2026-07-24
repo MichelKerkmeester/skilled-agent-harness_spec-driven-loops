@@ -9,19 +9,19 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored checklist from research.md Section 9 gates and Section 10 matrix"
     next_safe_action: "Leave unchecked until implementation lands. Verify with evidence, not by inspection"
     blockers:
-      - "Sequenced after sibling packet 011-skill-advisor-routing-research per the 031 parent"
+      - "Sequenced after sibling research child 002-skill-advisor-routing-research per the 019 parent"
     key_files:
       - "checklist.md"
       - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "012-sk-doc-routing-fixes-authoring"
+      session_id: "011-sk-doc-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -51,7 +51,7 @@ _memory:
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md, traced to research.md Section 8's nine-step fix plan
 - [ ] CHK-002 [P0] Technical approach defined in plan.md, nine dependency-ordered phases matching the fix plan
-- [ ] CHK-003 [P1] Dependencies identified: contract library (Phase 1) gates every other phase and sibling packet 011-skill-advisor-routing-research gates implementation start
+- [ ] CHK-003 [P1] Dependencies identified: contract library (Phase 1) gates every other phase and sibling research child 002-skill-advisor-routing-research gates implementation start
 <!-- /ANCHOR:pre-impl -->
 
 ---

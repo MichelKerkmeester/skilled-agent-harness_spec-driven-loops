@@ -1,31 +1,28 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition",
-  "description": "Candidate 8th idea (from the GLM-5.2 parallel lineage): decompose routing policy into three orthogonal knobs — Threshold (how much evidence to",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition",
+  "description": "The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick",
   "keywords": [
     "candidate",
-    "8th",
-    "idea",
-    "glm-5",
-    "parallel",
-    "lineage",
-    "decompose",
-    "routing",
-    "policy",
-    "three",
-    "orthogonal",
-    "knobs",
-    "threshold",
+    "hypothesis",
+    "defaultmode",
+    "conflates",
     "much",
-    "evidence"
+    "evidence",
+    "needed",
+    "commit",
+    "happens",
+    "uncertainty",
+    "wrong",
+    "pick"
   ],
-  "lastUpdated": "2026-07-23T11:35:33.664Z",
+  "lastUpdated": "2026-07-24T10:53:31.886Z",
   "specId": "008",
   "folderSlug": "trp-decomposition",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "005-oob-idea-deep-dives"
+    "001-research",
+    "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

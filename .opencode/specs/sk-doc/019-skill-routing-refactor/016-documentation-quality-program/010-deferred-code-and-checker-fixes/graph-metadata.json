@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/010-deferred-code-and-checker-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The closeout deferred five follow-ups",
     "created_at": "2026-07-22T16:53:39.311Z",
-    "last_save_at": "2026-07-23T12:42:23.240Z",
+    "last_save_at": "2026-07-24T10:55:17.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09e58d4540aeb8258182a025695f0e7fac7e4e1b0f828ad8d520a29c052325cb",
+    "source_fingerprint": "sha256:cec067327dc4a2f6892a2c828546307ef1eb6e87edcb73477c42ab972efc24e6",
     "source_doc_hashes": {
-      "spec.md": "b6312e3c3d902f3d51267e8c36db99c88496e631bbb70e667ffc9ee8ad1104dc",
-      "plan.md": "b689b10c22464539107d2d14f6c97e3881213b51289d8d93970dc9c7ec0406ea",
-      "tasks.md": "d626728afd364d41708b4fbda6b28bd15d2313d222b6061ba368cfa18e661fbd",
-      "checklist.md": "a73db3be235b539bb4c21465987e09a5515c72adbee1f62dcd9ba99a5b4584e7",
-      "implementation-summary.md": "bc56063f1cbf95e1adbf4ade6b031118f868f37f07111a3b735a7da56837440c"
+      "spec.md": "b2a9f3b1e7f579ed2b58227b97b4042309fb04ce81b23108a143aed0995d1764",
+      "plan.md": "87377f5944163ad027c0fa582a4c384eab2d6e5234f28218a6e545cd1f7b4fbc",
+      "tasks.md": "a153acea449e8b4ec917b2486c12bea924973343882724b4956941c88d28d196",
+      "checklist.md": "3f07717a0af20656d9682599912585d2b9ed8c82af580e60ca481f72c73d8192",
+      "implementation-summary.md": "57289156e37e6cfafe3817d8f201580a121a077bcf834d7504730430f1763e7f"
     },
     "last_active_child_id": null,
     "last_active_at": null

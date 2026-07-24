@@ -83,7 +83,7 @@
       "thread": 12,
       "answered": true,
       "answer": "Strongest falsifiable steelman: a default is justified when self-correcting (env-determined) OR genuinely catch-all. This OVERTURNS one flip — cli should be detection-defaulted, not null (its in-runtime default is env-determined and self-correcting). The three pure-defer nulls (deep-loop/mcp-tooling/sk-design) SURVIVE but are downgraded to directional-pending-measurement (Run 1's no-corpus method leaves them unfalsified in the over-deferring direction). Constructive output: a falsifiable four-shape decision rule replacing Run 1's uniform third archetype.",
-      "evidence": ["iteration-001.md", "iteration-002.md", "iteration-003.md", "iteration-004.md", "file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md"],
+      "evidence": ["iteration-001.md", "iteration-002.md", "iteration-003.md", "iteration-004.md", "file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md"],
       "iteration": 5
     }
   ],

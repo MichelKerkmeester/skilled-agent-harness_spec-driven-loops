@@ -35,7 +35,7 @@ This iteration tested the narrowest reading of abolishing the hub-router layer: 
 
 ## Sources Consulted
 
-- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:107`
+- `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:107`
 - `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:49`
 - `.opencode/skills/sk-code/SKILL.md:48`
 - `.opencode/skills/system-skill-advisor/feature_catalog/scorer_fusion/projection.md:20`

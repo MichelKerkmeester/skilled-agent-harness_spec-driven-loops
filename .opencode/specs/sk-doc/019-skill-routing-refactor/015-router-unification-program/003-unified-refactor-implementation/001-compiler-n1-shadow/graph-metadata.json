@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The fleet has no single, verifiable representation of routing policy",
     "created_at": "2026-07-18T13:13:16.652Z",
-    "last_save_at": "2026-07-23T12:42:23.831Z",
+    "last_save_at": "2026-07-24T10:52:42.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:444be699219418341d9821afd429f014c00199dab8445bde59c29131f01b7440",
+    "source_fingerprint": "sha256:b20601382685ad8e90496b81a4dc6735437499f87d33345a7a4f986761578fde",
     "source_doc_hashes": {
-      "spec.md": "cb579ce594ca61af81794e5569c6d7a098d342a11fe8b3b9085d04fea7bb8719",
-      "plan.md": "0a8a050c694bb09f2747c3fea7627d85ffd3dc864b5f526364a4f6efbecd4520",
-      "tasks.md": "998a6199151296f95625e908a0a26048a0a69fc9c44ebd5689739f54788f46c4",
-      "checklist.md": "93f3bb047230be12daa6d218d274c21ad0f68097332531521f20daa4693e1335",
+      "spec.md": "3850e9c344fd9b4327dbbd33ff007076f0ec8adeb0fca2e9223ab80356115166",
+      "plan.md": "61721f68a7e4861372157caaaa135195c70397b21a2043170a3f5dde013f498e",
+      "tasks.md": "58b1a7f056dbce46d5597a222a40f172c59cf686f415ab03664741ea9e00841f",
+      "checklist.md": "e7c8a9296b836565ed30fac4266b17c59d5fba3a6c7af02d606c5215bba52905",
       "implementation-summary.md": "d03f6341a023a49a87171688bdac27b512833fb8dd769471b916a3e1181348f7"
     },
     "last_active_child_id": null,

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the Level 3 verification checklist from research.md Sections 9-10"
@@ -20,7 +20,7 @@ _memory:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "013-skill-advisor-routing-fixes-authoring"
+      session_id: "012-skill-advisor-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -51,7 +51,7 @@ _memory:
 - [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001 through REQ-008)
 - [ ] CHK-002 [P0] Technical approach and phase dependencies defined in plan.md
 - [ ] CHK-003 [P1] The P0-1 output-contract decision made per decision-record.md ADR-007 before Phase 1 code lands
-- [ ] CHK-004 [P1] Fixture format and location for T005 (P1-5) confirmed jointly with sibling packet 012-sk-doc-routing-fixes
+- [ ] CHK-004 [P1] Fixture format and location for T005 (P1-5) confirmed jointly with sibling packet 011-sk-doc-routing-fixes
 <!-- /ANCHOR:pre-impl -->
 
 ---

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/006-create-skill-router-marker-gap"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/007-create-skill-router-marker-gap"
     last_updated_at: "2026-07-13T14:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Analyzed the create-skill router-marker gap across all ten packets from live checker output"
@@ -38,7 +38,7 @@ _memory:
 | **Status** | Analysis complete — decision pending |
 | **Created** | 2026-07-13 |
 | **Parent Packet** | `sk-doc/019-skill-routing-refactor` |
-| **Sibling** | `005-create-skill-smart-routing-notes` |
+| **Sibling** | `006-create-skill-smart-routing-notes` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -97,7 +97,7 @@ Produce a per-packet gap analysis grounded in live checker output, state whether
 ## 6. RISKS & DEPENDENCIES
 
 - **Risk:** treating the advisory warning as a defect would pressure a force-fit that misrepresents flat-resource packets — explicitly the anti-goal here.
-- **Dependency:** sibling `005-create-skill-smart-routing-notes` (the N/A-note posture under analysis) and the create-skill authority (`§2` SMART ROUTING + `skill_smart_router.md`).
+- **Dependency:** sibling `006-create-skill-smart-routing-notes` (the N/A-note posture under analysis) and the create-skill authority (`§2` SMART ROUTING + `skill_smart_router.md`).
 <!-- /ANCHOR:risks -->
 
 ---
@@ -107,3 +107,10 @@ Produce a per-packet gap analysis grounded in live checker output, state whether
 
 - **The decision:** keep the honest N/A-note posture (accept the advisory warning as documented), or wire the create-skill keyed-discovery markers into the eight flat-resource packets to clear the warning? See `implementation-summary.md` for the framing and recommendation.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `006-create-skill-smart-routing-notes` |
+| **Successor** | `008-hub-intent-keyword-coverage` |

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Created the placeholder implementation-summary for the pending research loop"
@@ -22,7 +22,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "019-sk-prompt-routing-research-scaffold"
+      session_id: "001-research/006-sk-prompt-routing-research-scaffold"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-sk-prompt-routing-research |
+| **Spec Folder** | 001-research/006-sk-prompt-routing-research |
 | **Completed** | Research Complete (100%) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

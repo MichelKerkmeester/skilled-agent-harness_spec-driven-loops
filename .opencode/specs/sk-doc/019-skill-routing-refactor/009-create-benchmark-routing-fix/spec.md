@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/009-create-benchmark-routing-fix"
     last_updated_at: "2026-07-13T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Swapped a redundant benchmark alias for benchmark package"
@@ -37,7 +37,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-13 |
 | **Parent Packet** | `sk-doc/019-skill-routing-refactor` |
-| **Sibling** | `007-hub-intent-keyword-coverage` |
+| **Sibling** | `008-hub-intent-keyword-coverage` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -105,3 +105,10 @@ Fix the route within the constraints by swapping the **redundant** `skill-benchm
 
 None. The word-cap constraint is resolved by the word-neutral swap.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `008-hub-intent-keyword-coverage` |
+| **Successor** | `010-create-packet-routing-conformance` |

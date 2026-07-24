@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/004-cli-external-orchestration",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The authored hub declares three equally weighted external CLI executors and supports explicit multi-executor dispatch, but its compiled contract needs a deterministic representation that the shared decision parser, projector, scorer, and execution plane can all consume",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-23T12:42:29.701Z",
+    "last_save_at": "2026-07-24T10:52:39.553Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2b97e80ce285d7b33e4d417b53475d02baebb6c6e2b67c198113e7c94ac1f14",
+    "source_fingerprint": "sha256:42b9df41f809fce1db8afa8e15a8eee5cc2cfed9c5d37a1ba4ab8e43410bf50c",
     "source_doc_hashes": {
-      "spec.md": "0a61e6c4930d74df96d6908a7f60beb4895b6f77a42bc4f871dae610c04e6745",
-      "plan.md": "940c47ef4d935e0ff74b4d4037237feeaf07cefa977c0d523d66606298d3f40f",
-      "tasks.md": "7b6a2c50819228d20dfbced480fdaed8925bad2bfd7b43a3100e2df90ca18e95",
-      "checklist.md": "d1a2770f8bb45009e4ab0e7e37774b9d5e100e3d45233da17730a255c4185a0b",
-      "implementation-summary.md": "a5fc6b9726b1da85eddf55ab798cc406174e896ddf973ae13fc5f2f4fe8378ba"
+      "spec.md": "e2d0e2df0db97040c1fdce090fbe6637bdd1c0d9eba5bd70791a5eb089880af1",
+      "plan.md": "ce1e1dab3a7949a66c8a9e974e9852b6ab50f0b38b08b0757554a194ba56798b",
+      "tasks.md": "5f003468e277f52b6a891b18beddff00466e3c3e13072b78421430d1510bb719",
+      "checklist.md": "54923151d5132eafee1b53f24dda6c146c860ac9b3944087ae7361ab5e1d6af8",
+      "implementation-summary.md": "0da3703b83ca6a7f2f17e8f4d26ab42e6b02432deadd0e9b3e4386d00407c928"
     },
     "last_active_child_id": null,
     "last_active_at": null

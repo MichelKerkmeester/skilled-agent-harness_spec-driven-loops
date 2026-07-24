@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout (spec-folder)
+- Review Target: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout (spec-folder)
 - Started: 2026-07-22T03:54:41.300Z
 - Status: COMPLETE
 - Iteration: 10 of 10

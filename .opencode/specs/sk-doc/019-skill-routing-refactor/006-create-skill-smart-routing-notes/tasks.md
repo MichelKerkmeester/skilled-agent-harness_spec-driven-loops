@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/005-create-skill-smart-routing-notes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes"
     last_updated_at: "2026-07-12T14:23:42Z"
     last_updated_by: "claude-code"
     recent_action: "Notes added + verified; 10/10 PASS"

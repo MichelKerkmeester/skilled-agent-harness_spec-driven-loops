@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "description": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs,",
   "keywords": [
     "sk-doc",
@@ -19,8 +19,8 @@
     "metadata",
     "jsons"
   ],
-  "lastUpdated": "2026-07-23T11:35:48.621Z",
-  "specId": "021",
+  "lastUpdated": "2026-07-24T11:02:43.140Z",
+  "specId": "016",
   "folderSlug": "documentation-quality-program",
   "parentChain": [
     "sk-doc",

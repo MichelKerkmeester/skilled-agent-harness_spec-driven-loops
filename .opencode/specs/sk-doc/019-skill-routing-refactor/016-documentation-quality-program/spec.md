@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program"
     last_updated_at: "2026-07-22T16:53:38Z"
     last_updated_by: "claude"
     recent_action: "Shipped 001-010; deep-review + remediation (011) landed the P0 fixes and validator hardening."
@@ -49,3 +49,10 @@ Templates and tooling land first so all authoring runs against a correct, enforc
 | 011 | `011-review-remediation` | Remediate the deep-review FAIL blockers: NUL-byte header corruption, non-runnable commands, and validator correctness |
 
 > **Phase-parent note:** this `spec.md` is the only authored document at the parent level. Per-phase scope, plans, tasks, and evidence live in the phase children. A per-phase cross-reference is maintained in `context-index.md`.
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `015-router-unification-program` |
+| **Successor** | `None` |

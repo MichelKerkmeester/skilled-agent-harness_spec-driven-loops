@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/007-hub-intent-keyword-coverage",
+  "packet_id": "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/008-hub-intent-keyword-coverage",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -104,8 +104,8 @@
         "source": "derived"
       },
       {
-        "name": "zero",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
     "created_at": "2026-07-13T13:09:09.451Z",
-    "last_save_at": "2026-07-23T12:42:17.384Z",
+    "last_save_at": "2026-07-24T11:03:16.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec5f7c946ba493a90e13851ec74256ae357fcf514e323e812085a42b39b2b549",
+    "source_fingerprint": "sha256:52d03c1597640b92f6cbf02a37401a7e6a4131945d2107e587131dfc938bb88b",
     "source_doc_hashes": {
-      "spec.md": "70ce8cc84da9e4422b732af782b2cb833508b056b2580e55744ec7e77530bcef",
-      "plan.md": "09d5d19e4f6350ad8f5ec0ef56f499fbdb3f5fd3a7cc0bbb9db2b934c893472e",
-      "tasks.md": "b2ee2eda28630c1477c78f1dd48b34da211e14806a3036f20d8814501b1365fe",
-      "checklist.md": "8ab6fb2ebc2a0e20af5fab399e60c67c9866f72dc6cc6ad7bd637c2203a010f7",
-      "implementation-summary.md": "f7cdb729a25114a013ce44d0caf3f083e3d1da82bab3fd48c2d8e19d1c0d9a5a"
+      "spec.md": "6197259629b9f6a2e194777e0f44d56f3425ada87d733ebded6441ca5199cb60",
+      "plan.md": "59da700d259c0e8d96b7d38e4caf8a60036640caa92e08508e26a8666b7831c4",
+      "tasks.md": "2f6ba8af43a483fbee24af86bcacdda033363b638a0bcf304ada7728a1052dc2",
+      "checklist.md": "b7e797d8c36efb0c1a33d59cc72572f2ee59828e7bcadf7a9406805cfcb54d2b",
+      "implementation-summary.md": "4a664dc4645d85efa4ba51cf579e6e335eb88ce543c7c791a90a734cf20d9e01"
     },
     "last_active_child_id": null,
     "last_active_at": null

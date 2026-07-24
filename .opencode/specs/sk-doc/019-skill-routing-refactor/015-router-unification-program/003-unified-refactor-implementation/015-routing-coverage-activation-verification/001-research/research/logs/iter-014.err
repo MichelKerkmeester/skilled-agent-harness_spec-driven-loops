@@ -3,7 +3,7 @@
 [0m
 [0m→ [0mRead .opencode/bin/compiled-route.cjs
 [0m
-[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/ 2>/dev/null && echo "---" && ls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/ 2>/dev/null
+[0m$ [0mls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/ 2>/dev/null && echo "---" && ls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/ 2>/dev/null
 total 152
 drwxr-xr-x@ 12 michelkerkmeester  staff    384 Jul 20 19:45 .
 drwxr-xr-x@ 21 michelkerkmeester  staff    672 Jul 20 21:09 ..
@@ -25,13 +25,13 @@ drwxr-xr-x@ 10 michelkerkmeester  staff   320 Jul 20 19:45 ..
 -rw-r--r--@  1 michelkerkmeester  staff  7015 Jul 20 19:45 flip-serving.cjs
 -rw-r--r--@  1 michelkerkmeester  staff  2560 Jul 20 19:45 resolve.cjs
 [0m
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
-[0m✗ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/lib/activate-hub.cjs failed
-[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/lib/activate-hub.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
+[0m✗ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/lib/activate-hub.cjs failed
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/lib/activate-hub.cjs
 [0m
-[0m$ [0mls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/ && echo "---LIB---" && ls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/lib/ && echo "---FENCE/FLIP per hub---" && for h in sk-code system-deep-loop mcp-tooling cli-external-orchestration sk-prompt sk-design sk-doc; do echo "=== $h ==="; ls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$h/ 2>/dev/null; done
+[0m$ [0mls .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/ && echo "---LIB---" && ls .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/lib/ && echo "---FENCE/FLIP per hub---" && for h in sk-code system-deep-loop mcp-tooling cli-external-orchestration sk-prompt sk-design sk-doc; do echo "=== $h ==="; ls .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/$h/ 2>/dev/null; done
 cli-external-orchestration
 mcp-tooling
 sk-code
@@ -40,160 +40,160 @@ sk-doc
 sk-prompt
 system-deep-loop
 ---LIB---
-ls: .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/lib/: No such file or directory
+ls: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/lib/: No such file or directory
 [0m
-[0m$ [0mfind .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation -type f | sort && echo "---" && find .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation -name "activate-hub.cjs" && echo "---SPEC TREE lib---" && ls .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/activation-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/activation-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/activation-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-design/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/activation-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-doc/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/activation-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-prompt/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/fence-state.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.candidate.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.serving-prior.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/serving-flip-record.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/checklist.md
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/description.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/graph-metadata.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/implementation-summary.md
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/plan.md
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/prompts.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/run-log.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-design/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-doc/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-1-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-1-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-2-1.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-2-2.txt
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/verdict.json
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/tasks.md
+[0m$ [0mfind .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation -type f | sort && echo "---" && find .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation -name "activate-hub.cjs" && echo "---SPEC TREE lib---" && ls .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/activation-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/cli-external-orchestration/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/activation-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/mcp-tooling/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/activation-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-design/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/activation-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-doc/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/activation-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-prompt/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/fence-state.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.candidate.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/manifest.serving-prior.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/serving-flip-record.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/checklist.md
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/description.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/graph-metadata.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/implementation-summary.md
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/plan.md
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/cli-external-orchestration/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/mcp-tooling/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/prompts.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/run-log.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-design/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-doc/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-prompt/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/luna-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/minimax-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-1-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-1-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-2-1.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/raw/sol-2-2.txt
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/system-deep-loop/verdict.json
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/tasks.md
 ---
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
 ---SPEC TREE lib---
 000-contract-schemas
 001-compiler-n1-shadow
@@ -215,13 +215,13 @@ description.json
 graph-metadata.json
 spec.md
 [0m
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.serving-prior.json
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.serving-prior.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
 [0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 0 matches[0m
 [0m
-[0m$ [0mfor h in sk-code system-deep-loop mcp-tooling cli-external-orchestration sk-prompt sk-design sk-doc; do echo "=== $h ==="; dir=".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$h"; echo "[manifest.json]"; cat "$dir/manifest.json" 2>/dev/null; echo; echo "[manifest.serving-prior.json]"; cat "$dir/manifest.serving-prior.json" 2>/dev/null; echo; echo "[manifest.prior.json]"; cat "$dir/manifest.prior.json" 2>/dev/null; echo; echo "[fence-state.json]"; cat "$dir/fence-state.json" 2>/dev/null; echo; echo "[manifest.candidate.json]"; cat "$dir/manifest.candidate.json" 2>/dev/null; echo; done
+[0m$ [0mfor h in sk-code system-deep-loop mcp-tooling cli-external-orchestration sk-prompt sk-design sk-doc; do echo "=== $h ==="; dir=".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/$h"; echo "[manifest.json]"; cat "$dir/manifest.json" 2>/dev/null; echo; echo "[manifest.serving-prior.json]"; cat "$dir/manifest.serving-prior.json" 2>/dev/null; echo; echo "[manifest.prior.json]"; cat "$dir/manifest.prior.json" 2>/dev/null; echo; echo "[fence-state.json]"; cat "$dir/fence-state.json" 2>/dev/null; echo; echo "[manifest.candidate.json]"; cat "$dir/manifest.candidate.json" 2>/dev/null; echo; done
 === sk-code ===
 [manifest.json]
 {"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c","generation":2},"servingAuthority":"compiled","shadowOnly":false}
@@ -358,7 +358,7 @@ exit=0
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=1, limit=60][0m
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=320, limit=90][0m
 [0m
-[0m$ [0mecho "=== resolve.cjs FLAG constant ==="; rg -n "FLAG|flagEnabled|process\.env" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs; echo; echo "=== Where is 'n=1' mentioned in SKILL.md (exact context) ==="; rg -n "Compiled routing|n=1|SPECKIT_COMPILED_ROUTING" .opencode/skills/sk-code/SKILL.md | head -20
+[0m$ [0mecho "=== resolve.cjs FLAG constant ==="; rg -n "FLAG|flagEnabled|process\.env" .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs; echo; echo "=== Where is 'n=1' mentioned in SKILL.md (exact context) ==="; rg -n "Compiled routing|n=1|SPECKIT_COMPILED_ROUTING" .opencode/skills/sk-code/SKILL.md | head -20
 === resolve.cjs FLAG constant ===
 20:const FLAG = 'SPECKIT_COMPILED_ROUTING';
 22:function flagEnabled() {
@@ -470,11 +470,11 @@ Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output
 [0m✱ [0mGlob "**/mk-skill-advisor-bridge*"[90m 1 match[0m
 [0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [limit=130, offset=1][0m
-[0m✗ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/activation-record.json failed
-[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/activation-record.json
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/serving-flip-record.json
+[0m✗ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/activation-record.json failed
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0089-sk-doc-default-routing-cutover/.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/activation-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/system-deep-loop/serving-flip-record.json
 [0m
-[0m$ [0mecho "=== Check for any activate-hub rollback flag or path ==="; rg -n "rollback|--rollback|rolledBack" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs; echo; echo "=== Are fence epochs ever DECREMENTED anywhere? ==="; rg -rn "fence.*-\s*1|fencingEpoch.*-|fenceEpoch.*decrement" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/ 2>/dev/null; echo; echo "=== Confirm launcher allowlist excludes SPECKIT_COMPILED_ROUTING ==="; rg -n "SPECKIT_COMPILED_ROUTING" .opencode/bin/mk-skill-advisor-launcher.cjs .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs; echo "(no match = absent from allowlist)"
+[0m$ [0mecho "=== Check for any activate-hub rollback flag or path ==="; rg -n "rollback|--rollback|rolledBack" .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs; echo; echo "=== Are fence epochs ever DECREMENTED anywhere? ==="; rg -rn "fence.*-\s*1|fencingEpoch.*-|fenceEpoch.*decrement" .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/ 2>/dev/null; echo; echo "=== Confirm launcher allowlist excludes SPECKIT_COMPILED_ROUTING ==="; rg -n "SPECKIT_COMPILED_ROUTING" .opencode/bin/mk-skill-advisor-launcher.cjs .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs; echo "(no match = absent from allowlist)"
 === Check for any activate-hub rollback flag or path ===
 112:  // Non-zero exit throws — the canary asserts route-gold GREEN, rollback pass,
 122:    throw new Error('temporary rollback directory failed scope validation');
@@ -487,24 +487,24 @@ Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output
 256:        `rollback.byteExact=${rollback.byteExact} scorerFrozen=true canaryGreen=true\n`,
 
 === Are fence epochs ever DECREMENTED anywhere? ===
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit/lib/idempotency-ledger.cjs:   * @param {number} n Newly opened planning epoch.
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/003-execution-verify-commit/tests/execution-plane.test.cjs:  check(assertionState, readCommit.nonly commit must not advance epoch');
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow/activation/fenced-manifest.cjs: * @param {number} n Last consumed activation epoch.
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-010.md:2. **Ship `compiled-route-status` as a new `.opencode/bin/compiled-route-status.cjs` CLI** with `--hub <id>` and `--all` modes that read the seven activation manifests and emit `{hubId, servingAuthority, shadowOnly, selectedPolicy.generation, effectivePolicyHash, n0-7)
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-009.err:.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-011.err:   191	  for (let i = n; i >= 0; i -= 1) {
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-011.err:191-  for (let i = n; i >= 0; i -= 1) {
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-003.err:.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-005.err:.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-005.err:.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-015.err:.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-016.err:.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/003-execution-verify-commit/lib/idempotency-ledger.cjs:   * @param {number} n Newly opened planning epoch.
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/003-execution-verify-commit/tests/execution-plane.test.cjs:  check(assertionState, readCommit.nonly commit must not advance epoch');
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow/activation/fenced-manifest.cjs: * @param {number} n Last consumed activation epoch.
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/iterations/iteration-010.md:2. **Ship `compiled-route-status` as a new `.opencode/bin/compiled-route-status.cjs` CLI** with `--hub <id>` and `--all` modes that read the seven activation manifests and emit `{hubId, servingAuthority, shadowOnly, selectedPolicy.generation, effectivePolicyHash, n0-7)
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-009.err:.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-011.err:   191	  for (let i = n; i >= 0; i -= 1) {
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-011.err:191-  for (let i = n; i >= 0; i -= 1) {
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-003.err:.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-005.err:.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-005.err:.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-015.err:.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research/research/logs/iter-016.err:.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/spec.md:101:| REQ-001 | Bind each of the seven hubs' compiled generation as `selectedPolicy` via a fenced CAS, advancing `nprior.json` for rollback. |
 
 === Confirm launcher allowlist excludes SPECKIT_COMPILED_ROUTING ===
 (no match = absent from allowlist)
 [0m
-[0m$ [0mecho "=== Verify .env loader runs at module top-level (before any spawn) ==="; rg -n "loadEnvFile|createChildEnv|for \(const fname" .opencode/bin/mk-skill-advisor-launcher.cjs | head -20; echo; echo "=== Confirm resolve.cjs has no warning/log on absent flag or fail-safe ==="; rg -n "stderr|warn|log|console" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs .opencode/bin/compiled-route.cjs; echo "(no match = silent fail-safe)"; echo; echo "=== Confirm no --rollback or env-strip validation in activate-hub args ==="; rg -n "parseArgs|rollback|SPECKIT_COMPILED_ROUTING" .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+[0m$ [0mecho "=== Verify .env loader runs at module top-level (before any spawn) ==="; rg -n "loadEnvFile|createChildEnv|for \(const fname" .opencode/bin/mk-skill-advisor-launcher.cjs | head -20; echo; echo "=== Confirm resolve.cjs has no warning/log on absent flag or fail-safe ==="; rg -n "stderr|warn|log|console" .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs .opencode/bin/compiled-route.cjs; echo "(no match = silent fail-safe)"; echo; echo "=== Confirm no --rollback or env-strip validation in activate-hub args ==="; rg -n "parseArgs|rollback|SPECKIT_COMPILED_ROUTING" .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
 === Verify .env loader runs at module top-level (before any spawn) ===
 42:function loadEnvFile(filePath) {
 70:for (const fname of ['.env.local', '.env']) {
@@ -518,7 +518,7 @@ Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output
 
 === Confirm resolve.cjs has no warning/log on absent flag or fail-safe ===
 .opencode/bin/compiled-route.cjs:29:    process.stderr.write('usage: compiled-route.cjs --hub <hubId> --prompt <text>\n');
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:61:    process.stderr.write('usage: resolve.cjs --hub <hubId> --prompt <text>\n');
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:61:    process.stderr.write('usage: resolve.cjs --hub <hubId> --prompt <text>\n');
 (no match = silent fail-safe)
 
 === Confirm no --rollback or env-strip validation in activate-hub args ===

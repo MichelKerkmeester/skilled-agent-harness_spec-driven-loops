@@ -51,7 +51,7 @@ The contrarian pass must name its own falsifier or it is rhetoric:
 ## Sources Consulted
 
 - Accumulated: `iteration-001.md` (advisor coupling), `iteration-002.md` (per-axis archetype, sk-design not detectable), `iteration-003.md` (hub-identity-on-default canon, anti-patterns), `iteration-004.md` (cli detection-defaulted, detection on default axis).
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md` (Run 1 verdict + "deliberately routes around needing a corpus" + benchmark-blind finding).
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md` (Run 1 verdict + "deliberately routes around needing a corpus" + benchmark-blind finding).
 
 ## Assessment
 

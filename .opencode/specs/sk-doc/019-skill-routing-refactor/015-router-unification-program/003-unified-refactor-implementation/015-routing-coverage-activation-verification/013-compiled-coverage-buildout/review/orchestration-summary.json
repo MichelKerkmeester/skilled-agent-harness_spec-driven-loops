@@ -1,8 +1,8 @@
 {
   "run_id": "1784691838667-iv78vk",
   "loop_type": "review",
-  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout",
-  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review",
+  "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review",
   "total_cli_lineages": 2,
   "orphaned_lineages": [],
   "total": 2,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "luna-xhigh",
-      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review/lineages/luna-xhigh/deep-review-state.jsonl",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review/lineages/luna-xhigh/deep-review-state.jsonl",
       "window": {
         "start_at_iso": "2026-07-22T03:43:58.671Z",
         "end_at_iso": "2026-07-22T04:17:34.920Z",
@@ -69,7 +69,7 @@
     },
     {
       "label": "sol-high",
-      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review/lineages/sol-high/deep-review-state.jsonl",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/review/lineages/sol-high/deep-review-state.jsonl",
       "window": {
         "start_at_iso": "2026-07-22T03:43:58.730Z",
         "end_at_iso": "2026-07-22T04:35:41.344Z",

@@ -31,8 +31,8 @@ The runtime surfaces are substantially fail-closed and the seven-hub default-on 
   "hasAdvisories": true,
   "activeFindings": [
     {"id":"F001","severity":"P1","title":"Concurrent refreshes can lose a generation/policy update","file":".opencode/bin/lib/compiled-route-manifest.cjs","line":588},
-    {"id":"F002","severity":"P1","title":"Completion status conflicts with required packet gates","file":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md","line":58},
-    {"id":"F003","severity":"P2","title":"SD-015 limitation and follow-up are stale","file":".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md","line":208},
+    {"id":"F002","severity":"P1","title":"Completion status conflicts with required packet gates","file":".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md","line":58},
+    {"id":"F003","severity":"P2","title":"SD-015 limitation and follow-up are stale","file":".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary.md","line":208},
     {"id":"F004","severity":"P2","title":"Default-on cohort is maintained in multiple independently edited sources","file":".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs","line":34}
   ],
   "remediationWorkstreams": [

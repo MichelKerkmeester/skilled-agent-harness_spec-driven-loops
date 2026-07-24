@@ -13,7 +13,7 @@ description: "Auto-generated research resource map from convergence evidence."
 - **Total references**: 14
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=13, Specs=1, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: research convergence output for 016-sk-design-routing-research
+- **Scope**: research convergence output for 001-research/003-sk-design-routing-research
 - **Generated**: 2026-07-17T05:17:42.397Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -47,6 +47,6 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/specs/sk-doc/019-sk-doc-router-alignment/012-sk-doc-routing-fixes/decision-record.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/specs/sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes/decision-record.md | Cited | OK | Citations=1; Iterations=1 |
 
 ---

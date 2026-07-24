@@ -1,29 +1,28 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/004-oob-glm-parallel-research",
-  "description": "A parallel GLM-5.2-max out-of-box research lineage (5 iterations, non-converge, lateral) run alongside the SOL-ultra lineage in packet 021, so two",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "description": "The prior routing study answered the practical `defaultMode` question, but that answer stayed within the existing parent-hub routing frame",
   "keywords": [
-    "parallel",
-    "glm-5",
-    "2-max",
-    "out-of-box",
-    "research",
-    "lineage",
-    "iterations",
-    "non-converge",
-    "lateral",
-    "run",
-    "alongside",
-    "sol-ultra",
-    "packet",
-    "two"
+    "prior",
+    "routing",
+    "study",
+    "answered",
+    "practical",
+    "defaultmode",
+    "question",
+    "answer",
+    "stayed",
+    "within",
+    "existing",
+    "parent-hub",
+    "frame"
   ],
-  "lastUpdated": "2026-07-23T11:35:30.619Z",
-  "specId": "004",
+  "lastUpdated": "2026-07-24T11:05:24.223Z",
+  "specId": "008",
   "folderSlug": "oob-glm-parallel-research",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program"
+    "001-research"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

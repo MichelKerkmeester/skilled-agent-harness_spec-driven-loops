@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: system-skill-advisor Routing Research"
-description: "Research outcome for the skill-advisor routing diagnosis: the advisor is useful but its confidence is policy-quantized at the 0.82 floor, three P0 correctness defects are named with fixes, and the prioritized plan hands off to 013-skill-advisor-routing-fixes."
+description: "Research outcome for the skill-advisor routing diagnosis: the advisor is useful but its confidence is policy-quantized at the 0.82 floor, three P0 correctness defects are named with fixes, and the prioritized plan hands off to 012-skill-advisor-routing-fixes."
 trigger_phrases:
   - "skill advisor routing research outcome"
   - "advisor confidence policy floor"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research"
     last_updated_at: "2026-07-16T08:20:00Z"
     last_updated_by: "claude"
     recent_action: "Documented research outcome and fix-plan handoff"
-    next_safe_action: "Plan 013-skill-advisor-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 012-skill-advisor-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/research.md"
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-skill-advisor-routing-research |
+| **Spec Folder** | 001-research/002-skill-advisor-routing-research |
 | **Completed** | 2026-07-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -72,7 +72,7 @@ Routing-registry-drift-guard exists and works, but it only covers system-deep-lo
 
 ### Threshold Tuning Ruled Out, Fix Plan Handed Off
 
-A 12-cell grid over confidence {0.78, 0.80, 0.82} and uncertainty {0.30, 0.35, 0.40} produced identical holdout outcomes, and pushing confidence to 0.84 cost 24 points of coverage for 2.85 points of precision. External threshold tuning cannot fix any of the findings above. The prioritized, dependency-ordered plan (P0-1 through P2-8) names target files, verification commands and an acceptance matrix in `research/research.md` Section 8 through Section 10, and hands off to sibling packet `013-skill-advisor-routing-fixes` for the build.
+A 12-cell grid over confidence {0.78, 0.80, 0.82} and uncertainty {0.30, 0.35, 0.40} produced identical holdout outcomes, and pushing confidence to 0.84 cost 24 points of coverage for 2.85 points of precision. External threshold tuning cannot fix any of the findings above. The prioritized, dependency-ordered plan (P0-1 through P2-8) names target files, verification commands and an acceptance matrix in `research/research.md` Section 8 through Section 10, and hands off to sibling packet `012-skill-advisor-routing-fixes` for the build.
 
 ### Files Changed
 
@@ -103,7 +103,7 @@ The work ran as an autonomous deep-research loop against 10 of 10 planned iterat
 | Bundle the three P0 correctness defects into one implementation packet | They're small, evidenced and unblock trustworthy testing of everything else downstream (research.md Recommendation 1) |
 | Rule out threshold tuning as a fix path | A 12-cell grid over confidence and uncertainty produced identical holdout outcomes, and raising confidence to 0.84 cost 24 points of coverage for 2.85 points of precision |
 | Scope the metadata-hub discovery gap as a behavioral fixture battery, not alias mirroring | Mirroring all 113 hub aliases into `graph-metadata.json` would duplicate registry-owned vocabulary, inflate lexical evidence and encode the wrong invariant for two-stage routing |
-| Hand the fix plan to sibling packet 013-skill-advisor-routing-fixes instead of applying changes here | This packet's charter was research only. Researched files stayed read-only for the whole loop |
+| Hand the fix plan to sibling packet 012-skill-advisor-routing-fixes instead of applying changes here | This packet's charter was research only. Researched files stayed read-only for the whole loop |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -125,7 +125,7 @@ The work ran as an autonomous deep-research loop against 10 of 10 planned iterat
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No code changed.** Every improvement in `research/research.md` Section 8 is a proposal. Implementation is scoped to sibling packet `013-skill-advisor-routing-fixes`, which does not exist yet.
+1. **No code changed.** Every improvement in `research/research.md` Section 8 is a proposal. Implementation is scoped to sibling packet `012-skill-advisor-routing-fixes`, which does not exist yet.
 2. **Empirical numbers come from a frozen filesystem projection.** Built-in semantic scoring was disabled for the ratchet run, so live daemon-backed numbers may differ modestly from the 73.08% holdout figure.
 3. **The Spec Kit Memory daemon was unhealthy for the whole session** (exit 75 warm-only timeouts). Prior packet memory did not auto-load. This became direct evidence for the transport-resilience findings rather than blocking the research.
 4. **A better-sqlite3 Node ABI mismatch** forced the executor-delegation test into filesystem-projection fallback during iteration 10. The red stale-fixture failure is consistent with checked-in hub metadata, not a defect in the fallback path itself.

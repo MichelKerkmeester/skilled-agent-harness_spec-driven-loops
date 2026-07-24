@@ -53,7 +53,7 @@ Produce one evidence-backed contract family that assigns each idea a distinct au
 
 ### Research Context
 
-Source (do NOT re-derive the individual ideas): the eight sibling presentations + their dives in `../001..008/`, and `../GLM-cross-lineage-notes.md`. The likely spine (validate/revise, don't assume): compiled content-addressed policy (1) expressed as a typed contract (6) with a PREPARE/VERIFY/COMMIT lifecycle (7); the "no clear route" branch is a typed outcome (3) that can escalate to bounded handoff (4) or a calibrated one-turn clarification (5); a replayable learning overlay (2) improves it offline; the whole policy is parameterized by the (T,R,P) knob-space (8) so each skill picks its corner.
+Source (do NOT re-derive the individual ideas): the eight sibling presentations + their dives in `../009-oob-idea-deep-dives/001..008/`, and `../GLM-cross-lineage-notes.md`. The likely spine (validate/revise, don't assume): compiled content-addressed policy (1) expressed as a typed contract (6) with a PREPARE/VERIFY/COMMIT lifecycle (7); the "no clear route" branch is a typed outcome (3) that can escalate to bounded handoff (4) or a calibrated one-turn clarification (5); a replayable learning overlay (2) improves it offline; the whole policy is parameterized by the (T,R,P) knob-space (8) so each skill picks its corner.
 
 ### Idea-Specific Agenda
 
@@ -210,3 +210,10 @@ Per-iteration narrative in `research/`; the fresh OPUS 4.8 xhigh ai-council synt
 8. How should cross-hub judgment approvals cross process or machine boundaries?
 
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `009-oob-idea-deep-dives` |
+| **Successor** | `None` |

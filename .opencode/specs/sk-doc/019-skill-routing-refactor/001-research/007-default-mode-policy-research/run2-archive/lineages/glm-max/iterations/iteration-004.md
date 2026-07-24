@@ -46,7 +46,7 @@ The generalization from F4.1: iter 2 said "detection applies where an environmen
 - `file:.opencode/skills/system-skill-advisor/SKILL.md:87` (single-mode standalone skill; no mode-registry)
 - `file:.opencode/skills/sk-code/SKILL.md:113-115` (registry-miss → UNKNOWN_FALLBACK)
 - `file:.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:2` (bidirectional alignment checker)
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md` (Run 1 "cli runtime-dependent" framing)
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md` (Run 1 "cli runtime-dependent" framing)
 
 ## Assessment
 

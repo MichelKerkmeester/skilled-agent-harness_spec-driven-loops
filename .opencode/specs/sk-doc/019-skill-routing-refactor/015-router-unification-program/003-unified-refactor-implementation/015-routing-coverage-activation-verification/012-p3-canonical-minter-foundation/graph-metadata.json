@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-07-23T12:42:32.452Z",
+    "last_save_at": "2026-07-24T10:52:36.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6117a4c32c7df7da67e2125c0a1e4f48e6b856103e4476357fd2a96f73d4c43",
+    "source_fingerprint": "sha256:d8757eca016b957428305dc9fa0235d883e353646bf5c5766146bd54e7792db5",
     "source_doc_hashes": {
-      "spec.md": "825e881156876896a5c5e66e87a8c723fcb5b9a5b79a9f85849211c3bd912429",
-      "plan.md": "0b46a21f62e5d0894fdc69025997783bac2bd458a248ccfc278c9efa02566a94",
-      "tasks.md": "cb746d46ebe189c0a874801ee14020146f347e5cd9383b476dab4bec7786223a",
-      "checklist.md": "35f34d33959fd84c1cb1be0451b29249ad55c6e3697f7e38f236d5a32bc799fb",
-      "decision-record.md": "d3d25a8816ef92ea0d6710863782c4672a91daea19f0035c2eb4390f7d188a2e",
-      "implementation-summary.md": "c6d142f1874439c46d18781d4d001dc86f87caeda0542f4fff68740724ca3c74"
+      "spec.md": "6cf734f4504f6e9aaad7f81924159a6a6e8ed43ab8ec634a63df5300dae80420",
+      "plan.md": "129fe37174e12b04603be33668c2f88aa451a97d02bf02345b728a63025a9f43",
+      "tasks.md": "4445a465fdf2a765ab28574671e848b2b4ad7dc5b564a490e2bbe3a993cb5503",
+      "checklist.md": "58e196dc4dc2930977521106180799bcc59c5524b6efc5c17f8a2d4c370dca4d",
+      "decision-record.md": "e8d69529c640bc2123b82878bdb77e9752fbbf245fe9a66e005e2852dd70cd7b",
+      "implementation-summary.md": "92d7950477cce7f19ffae4f3525e6356e9a40161b16b180314d87c8b5da8a7c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

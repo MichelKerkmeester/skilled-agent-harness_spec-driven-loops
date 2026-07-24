@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment",
+  "packet_id": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
     "created_at": "2026-07-16T19:43:16.256Z",
-    "last_save_at": "2026-07-24T09:23:11.406Z",
+    "last_save_at": "2026-07-24T11:03:16.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d5732a67e9c413b1d6e5af1e59f05f494880e6657b4623ac6fccdd312021f348",
+    "source_fingerprint": "sha256:e7f232f0b16541f3d0a48b3793a411c0ac113adfc6f985a0859a883c7330794c",
     "source_doc_hashes": {
-      "spec.md": "406f6ac1d54881c80bd6c096dfcdcd9d9250aefc89f7c541414cf69865e8594b",
-      "plan.md": "60efee902beebf1b0dbeb5b452b746380d8a9c6bcd77647b56f573fa54de3783",
-      "tasks.md": "4b2ae3e521c8541bbed745a433180025ab02ca452462d8c4502e129933638ae8",
-      "checklist.md": "baac1eedb035b37c6dc8758b013fbab485528d340e4f50c59fb05c203fd5c83f",
-      "implementation-summary.md": "55a7bad337d5cb53467f3236ae3612baae2f5ccd512c73e94cde54f3621b8764",
-      "research/research.md": "8ad4d3aaabe8eb884946404f57153975a8bb89c61f5848288368ce5e595d3e19"
+      "spec.md": "619e34f5c8d6ad557173d2d7cd661bcd45100e13665fc7b38b80b5037b4c080e",
+      "plan.md": "11876e1e66eb25210a216d02e520f1f3720151510f71ee999d48ab9b78435799",
+      "tasks.md": "bfcdb8c37b0c37402c2122052a726d1dc28ff3b19556e93f9412b6f01a24e6a0",
+      "checklist.md": "e78b449f742343e089fa0a5714bd990d4f2faa7906c4e8d5b286ae282b9bc8a8",
+      "implementation-summary.md": "3127490b6c28b9bdc5937285aef326612b60a31304ca2a5e6de1977731ac9d44",
+      "research/research.md": "a2769b0ed8db0a8599510acd2796ca610d2b38973ac8820c41b36f4c022033b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

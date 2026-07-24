@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix",
+  "packet_id": "sk-doc/019-skill-routing-refactor/009-create-benchmark-routing-fix",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/009-create-benchmark-routing-fix",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -111,8 +111,8 @@
         "source": "derived"
       },
       {
-        "name": "redundant-alias",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "redundant-alias",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -181,17 +187,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`create a benchmark package` mis-routed to `create-skill`: create-benchmark's alias class held only artifact-path terms (`benchmarkreport.md`, `skill-benchmark`, `model-benchmark`, …) and no phrase matching that prompt, so it tied on the generic authoring verb and lost the tiebreak",
     "created_at": "2026-07-13T13:51:00.677Z",
-    "last_save_at": "2026-07-23T12:42:20.180Z",
+    "last_save_at": "2026-07-24T11:03:16.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:378be4871952c87b120184da0ccfb052b0eb36eaa2159f7974bc2d7d9b60671b",
+    "source_fingerprint": "sha256:27d0be30f243f623181e1faf19bf314b9ea99a6965b1e99dfe96e6e23ddb03bb",
     "source_doc_hashes": {
-      "spec.md": "bd56befbd8011bb6b51c97863fe8f61b99f9b0367ec185a9c5cf0e137a922af0",
-      "plan.md": "9496509a1a9abf7707135dc5b0c7b3ba364c29b0ac1305131e45758740459fca",
-      "tasks.md": "1b99c310a38976b6b8182078fc9a48d15ae1e52640813a32b85f0fe736d6c871",
-      "checklist.md": "56c93a42feeb6b586b5b302fab00f2bef215c022851fc9fbb4e120a2d465d337",
-      "implementation-summary.md": "e7fb277f7611f3c211c376eec56e4058a103ba908e47e8db9649a3e16d6d3e8c"
+      "spec.md": "5ccbbf961d05ad3f23c0b14489c475b6eb932acd3a700d01a702bc9a9809f7ca",
+      "plan.md": "5fcf2cbae448e697b839ea0609ab5660e454d37d48a5ead9a5e11a3902033ec5",
+      "tasks.md": "15ccce091fd388021227828654df3a3c7714bfd7b02332933b15117d83be1ab3",
+      "checklist.md": "0f1a0db2654d963a614a93fe23ac2621613843cb91a733d814ed046a6b654425",
+      "implementation-summary.md": "a332938689163668f28eed6221e9070cb669dcf077c16eb582094d963f44bd9f"
     },
     "last_active_child_id": null,
     "last_active_at": null

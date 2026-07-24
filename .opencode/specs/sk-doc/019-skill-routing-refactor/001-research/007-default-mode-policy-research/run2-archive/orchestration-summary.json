@@ -1,8 +1,8 @@
 {
   "run_id": "1784313510669-wn3vsj",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
-  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research",
+  "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research",
   "total_cli_lineages": 4,
   "orphaned_lineages": [],
   "total": 4,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "glm-max",
-      "state_log": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/glm-max/deep-research-state.jsonl",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/glm-max/deep-research-state.jsonl",
       "window": {
         "start_at_iso": "2026-07-17T18:38:30.675Z",
         "end_at_iso": "2026-07-17T19:02:58.935Z",

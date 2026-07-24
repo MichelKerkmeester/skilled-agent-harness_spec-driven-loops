@@ -9,19 +9,19 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored one task per fix-plan step with its research.md Section 9 command"
     next_safe_action: "Await operator authorization, then start T001"
     blockers:
-      - "Sequenced after sibling packet 011-skill-advisor-routing-research per the 031 parent"
+      - "Sequenced after sibling research child 002-skill-advisor-routing-research per the 019 parent"
     key_files:
       - "tasks.md"
       - "plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "012-sk-doc-routing-fixes-authoring"
+      session_id: "011-sk-doc-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [B] T000 Confirm operator authorization to start implementation. Blocked on the 031 parent's sequencing against sibling packet `011-skill-advisor-routing-research`
+- [B] T000 Confirm operator authorization to start implementation. Blocked on the 019 parent's sequencing against sibling packet `001-research/002-skill-advisor-routing-research`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -100,5 +100,5 @@ Fix-plan steps 1-9, dependency-ordered per research.md Section 8.
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Research Source**: `../010-sk-doc-routing-research/research/research.md` (Sections 8-11)
+- **Research Source**: `../001-research/001-sk-doc-routing-research/research/research.md` (Sections 8-11)
 <!-- /ANCHOR:cross-refs -->

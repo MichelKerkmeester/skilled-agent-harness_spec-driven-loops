@@ -62,7 +62,7 @@ alone collapses to run-2. Confidence-first + handoff is the new design space. Th
 cross-iteration dependency the divergence charter wanted surfaced: agenda #6 is not independently
 radical; it is radical only as the second turn of a two-turn reframe.
 
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread B)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread B)]
 [SOURCE: iterations/iteration-003.md#F1]
 
 ### F3. The learned router does not learn weights — it learns the vocabulary-to-mode assignment.
@@ -109,7 +109,7 @@ perfect cold-start prior.
    on a build, the table is committed, and the live path is read-only. This matches the
    charter's "deterministic-offline learned router" exactly.
 
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread A — router-replay)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread A — router-replay)]
 
 ### F5. The reframe that survives stress: routing has three knobs, not two.
 

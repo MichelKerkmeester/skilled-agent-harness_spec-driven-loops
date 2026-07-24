@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the sk-prompt routing-research charter for a bound /deep:research run"
@@ -23,7 +23,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "019-sk-prompt-routing-research-scaffold"
+      session_id: "001-research/006-sk-prompt-routing-research-scaffold"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -45,9 +45,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Research Complete |
 | **Created** | 2026-07-16 |
-| **Branch** | `019-sk-prompt-routing-research` |
+| **Branch** | `001-research/006-sk-prompt-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 | **Type** | Research packet (deep-research loop complete) |
 <!-- /ANCHOR:metadata -->
 
@@ -146,3 +146,10 @@ Deep research is active for this topic. `research/research.md` remains the canon
 - Implementation order: freeze baseline and fallback behavior, add the second-layer router and packet maps, generate/check the manifest, author the two-row seed, validate topology, capture the first typed baseline, then expand and tune.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `005-system-deep-loop-routing-research` |
+| **Successor** | `007-default-mode-policy-research` |

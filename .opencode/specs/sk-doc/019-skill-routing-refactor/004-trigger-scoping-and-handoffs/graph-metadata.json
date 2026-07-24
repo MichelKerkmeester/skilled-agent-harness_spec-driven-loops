@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/003-trigger-scoping-and-handoffs",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/003-trigger-scoping-and-handoffs",
+  "packet_id": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-07-23T12:42:18.446Z",
+    "last_save_at": "2026-07-24T11:03:16.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:102f1c34a65348a9115747b024e46131b088e446d0c0e6ad1c6cc004fb64abc9",
+    "source_fingerprint": "sha256:53e9f701be1e2d0f5a9ca1cb3ac8a2e59adac10f8ab0241ed3bbe76740263b8e",
     "source_doc_hashes": {
-      "spec.md": "d788736074f0e63ac949bca407c869095c07faf1f650e42d26c633bfde386b2e",
-      "plan.md": "368d88374acd965b63e8f2abb8efdc093991bcfa219a0c62f228cfba51a22fd7",
-      "tasks.md": "25b492ad5023d4a71861f0046bbfe34a1e609d1786a963511840347c4b2eb9ad",
-      "checklist.md": "d3983b225b5212110f4eb1e1f002f63a7047247c9b152f415ac2c1d339d4828b",
-      "decision-record.md": "beee3b684ba4dc8fa3cc5b50c212ca356b020e9561e70b87833b10c7e0321a02",
-      "implementation-summary.md": "6b3a5edcce868386fd7918e7a19f82f153ba45636d0d82c0cc432463a3ec3b4a"
+      "spec.md": "d15b557d56f69a1f3a46f91e2f563100cab4c886ed4ab386fe32db9a55ccf059",
+      "plan.md": "af30bab8458ebc51498f169a7dbf0788f23de03a328576bcc32b3b6c6cb6ee17",
+      "tasks.md": "ee09c5c22501713ad780f75f2204256e2f056c625bd1fee9f5fd0ea43101082d",
+      "checklist.md": "8304b131a29880d9306967b30c8666e8c9dcfe423b1df8ce0983265608cc735d",
+      "decision-record.md": "ece89c5c8b32ce85b8d2e0666a5c77083525023e082f6efdef827ca21920e4d0",
+      "implementation-summary.md": "c46616d7d87f40e8c98cd679d2cacdf62873e09d2a68d844c89e587a24eb481b"
     },
     "last_active_child_id": null,
     "last_active_at": null

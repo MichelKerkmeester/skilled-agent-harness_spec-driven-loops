@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-07-23T12:42:32.150Z",
+    "last_save_at": "2026-07-24T10:52:37.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc00cf2e0b37ec20d11d676375c30cb9c108dc62a0d4a95e923a4b6eae4b31e4",
+    "source_fingerprint": "sha256:563c2405b0e2f15f55301984faad980993b07f37d6552e31d624cd271877013c",
     "source_doc_hashes": {
-      "spec.md": "952492a5070e03cc6bc33247dc8b407d5cbd0776da794c82dae70101384a4ad2",
-      "plan.md": "fb1538560f9ce4ae5ccbe7410afa6952f2f7f3a587a6350497d99564985080f8",
-      "tasks.md": "3292001dbabf362ecdc2bd2c5b9dd05e0426135a68a951d7c39f70d9a438d2e4",
-      "checklist.md": "043497ea8db7ed08c0895d5d300e1e4792bee09e46153d49f2fcea5ec3610215",
-      "decision-record.md": "274603aba712e5bc36f6d1caea575f99fa55e36eb60c1c078e3811de4a9bbde1",
-      "implementation-summary.md": "47f04cdc10a672998abedfb08f7053d8776114fc40a4d04cc967b35eed525157"
+      "spec.md": "64c70a6afa238f95e35bb89dd9655c4dc6e024902e62f384aa582abb6d2d6641",
+      "plan.md": "90ca1f8830606c5cf4122951e65a8377851174aed0a1216e761365b6a96965d4",
+      "tasks.md": "cb48d95e0ae385d3f6d549029866103077e6606feb4d55850e1a98253863603f",
+      "checklist.md": "1a08d8d8e8f50ca4a767d1305b631ee4d04fb38691550ba00c2fbf4f077446a9",
+      "decision-record.md": "6fa4df5f61a9b7b26cd3609f0fca9956edd820eea03bd67e8fe715b67416012c",
+      "implementation-summary.md": "d1e8f5a37c82c2c7938768f9ac0fa7cef78420ee8844639dcf52525c2e9f400c"
     },
     "last_active_child_id": null,
     "last_active_at": null

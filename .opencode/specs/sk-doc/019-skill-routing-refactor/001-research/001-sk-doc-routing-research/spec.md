@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-doc Routing Foundation Research"
-description: "Deep-research packet that diagnosed why sk-doc scored 20/100 on the Tier-2 gpt-5.6-luna skill-benchmark. Falsified the ~34-alias-gap premise (113/113 equality) and isolated the real defect: a three-part path-contract problem. Hands a dependency-ordered fix plan to sibling packet 012-sk-doc-routing-fixes."
+description: "Deep-research packet that diagnosed why sk-doc scored 20/100 on the Tier-2 gpt-5.6-luna skill-benchmark. Falsified the ~34-alias-gap premise (113/113 equality) and isolated the real defect: a three-part path-contract problem. Hands a dependency-ordered fix plan to sibling packet 011-sk-doc-routing-fixes."
 trigger_phrases:
   - "sk-doc routing research"
   - "hub router alias coverage"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research"
     last_updated_at: "2026-07-16T08:08:19Z"
     last_updated_by: "claude"
     recent_action: "Closed research packet with dependency-ordered fix plan"
-    next_safe_action: "Plan 012-sk-doc-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 011-sk-doc-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/research.md"
@@ -49,9 +49,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete (research) |
 | **Created** | 2026-07-16 |
-| **Branch** | `010-sk-doc-routing-research` |
+| **Branch** | `001-research/001-sk-doc-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 | **Type** | Research packet (deep-research loop, 10/10 iterations complete) |
 <!-- /ANCHOR:metadata -->
 
@@ -71,7 +71,7 @@ The starting premise did not survive contact with the data. The current tree has
 
 The real defect, classified across all 19 benchmark rows, is a three-part path-contract problem: 6 rows return the wrong path root, 6 rows return the wrong or a missing leaf resource, 5 rows over-bundle (one primary failure plus four "passing" rows that hide the same waste), and 2 rows already come back clean. The root cause behind the wrong-root class is an undefined handoff between two coordinate systems that sk-doc's own authoring stack teaches side by side: packet routers emit packet-root-relative leaf IDs while the parent-hub schema declares hub-root-relative, packet-qualified addresses, and nothing says which one the public answer should use. The routing-registry-drift-guard does not catch any of this. It is scoped to system-deep-loop's own advisor projections and never inspects sk-doc.
 
-The dependency-ordered fix plan, verification commands, and 19-row acceptance matrix live in `research/research.md` Section 8 through Section 10. Implementation is out of scope for this packet and hands off to sibling packet `012-sk-doc-routing-fixes`.
+The dependency-ordered fix plan, verification commands, and 19-row acceptance matrix live in `research/research.md` Section 8 through Section 10. Implementation is out of scope for this packet and hands off to sibling packet `011-sk-doc-routing-fixes`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -87,8 +87,8 @@ The dependency-ordered fix plan, verification commands, and 19-row acceptance ma
 - Q5: a prioritized, implementable fix list tied to each benchmark failure mode
 
 ### Out of Scope
-- Routing research for skills other than sk-doc, a follow-on phase covered by sibling packet `011-skill-advisor-routing-research`
-- Applying the fixes. The deliverable here is findings. The build goes to `012-sk-doc-routing-fixes`
+- Routing research for skills other than sk-doc, a follow-on phase covered by sibling packet `001-research/002-skill-advisor-routing-research`
+- Applying the fixes. The deliverable here is findings. The build goes to `011-sk-doc-routing-fixes`
 - Re-running the full Tier-2 benchmark suite or redesigning the scorer
 
 ### Files to Change
@@ -128,7 +128,7 @@ Research packet, no source changes. Deliverables live under `research/`: `resear
 | Dependency | Tier-2 gpt-5.6-luna benchmark artifact (`tier2-sk-doc-luna-opencode.report.json`) | Findings need grounding in a scored run | Located under `system-deep-loop/068-skill-benchmark-codex-executor` and cited throughout. It predates today's configs and carries no config fingerprints, so a fresh live run is required after the fix lands to claim repair |
 | Risk | Scorer internals change during research | Findings could target stale scorer behavior | Every claim carries a file:line citation pinned to the current scorer chain (`router-replay.cjs`, `live-executor.cjs`, `score-skill-benchmark.cjs`, and siblings) |
 | Risk | `memory_context` timed out at init | Prior packet findings (001-009) not auto-loaded | Iterations read sibling packets directly instead |
-| Dependency | Implementation packet `012-sk-doc-routing-fixes` | The fix plan has no effect until it is built | Section 8's Layer A names the smallest safe file set, and research.md Section 17 lists the four next steps in order |
+| Dependency | Implementation packet `011-sk-doc-routing-fixes` | The fix plan has no effect until it is built | Section 8's Layer A names the smallest safe file set, and research.md Section 17 lists the four next steps in order |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -136,9 +136,16 @@ Research packet, no source changes. Deliverables live under `research/`: `resear
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None blocking research. Two operator-policy calls are deferred to `012-sk-doc-routing-fixes`: when the legacy dual-read bridge for path-contract migration gets cut off, and whether the manifest `--check` runs path-filtered pre-commit or unconditional CI-only (research recommends unconditional CI).
+- None blocking research. Two operator-policy calls are deferred to `011-sk-doc-routing-fixes`: when the legacy dual-read bridge for path-contract migration gets cut off, and whether the manifest `--check` runs path-filtered pre-commit or unconditional CI-only (research recommends unconditional CI).
 - Historical scenario SD-016 stays provenance-inconclusive by design. The benchmark report truncates responses at 300 characters, so its two-candidate contradiction cannot be reconstructed after the fact. It becomes attributable only once future runs carry provenance.
 
 ### Research Status
-Complete: 10 of 10 iterations, 5 of 5 key questions answered, zero remaining research frontier within scope. `research/research.md` is the canonical synthesis. See its Section 8 for the dependency-ordered fix plan handed off to `012-sk-doc-routing-fixes`.
+Complete: 10 of 10 iterations, 5 of 5 key questions answered, zero remaining research frontier within scope. `research/research.md` is the canonical synthesis. See its Section 8 for the dependency-ordered fix plan handed off to `011-sk-doc-routing-fixes`.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `None` |
+| **Successor** | `002-skill-advisor-routing-research` |

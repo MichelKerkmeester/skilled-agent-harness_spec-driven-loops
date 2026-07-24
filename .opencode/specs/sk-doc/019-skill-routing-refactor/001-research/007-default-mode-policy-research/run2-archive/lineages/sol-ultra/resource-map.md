@@ -2,7 +2,7 @@
 
 ## Documents
 
-- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md` - research charter and Divergent Exploration Agenda.
+- `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md` - research charter and Divergent Exploration Agenda.
 - `.opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md` - current parent-hub canon and routing archetypes.
 - `.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md` - evidence grading and terminal outcome contract.
 - `.opencode/skills/sk-doc/create-benchmark/references/behavior_benchmark/behavior_benchmark_guide.md` - corpus coverage doctrine.

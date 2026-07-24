@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: defaultMode Policy Implementation"
-description: "Implement the vetted defaultMode recs from 021 research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast."
+description: "Implement the vetted defaultMode recommendations from research child 001-research/007-default-mode-policy-research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast."
 trigger_phrases:
   - "default mode implementation"
   - "flip hubs to null default"
@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-Apply the `defaultMode` recommendations synthesized in the sibling research packet (`021`). A parent hub is a pure router that defers on a zero-signal request; a non-null `defaultMode` is only a defer-time lean plus a catch-all vocabulary anchor. For four hubs that lean is a presumption (or dead metadata), so they flip to `null`; `sk-prompt` keeps its default because it genuinely anchors the `hub-identity` catch-all. When a hub cannot pick a mode, its `defaultResource` fallback should load the routing helper (the mode-map: `smart_routing.md` + `mode-registry.json`), pointing the request at how to choose — never a guessed child.
+Apply the `defaultMode` recommendations synthesized in research child `../../001-research/007-default-mode-policy-research/`. A parent hub is a pure router that defers on a zero-signal request; a non-null `defaultMode` is only a defer-time lean plus a catch-all vocabulary anchor. For four hubs that lean is a presumption (or dead metadata), so they flip to `null`; `sk-prompt` keeps its default because it genuinely anchors the `hub-identity` catch-all. When a hub cannot pick a mode, its `defaultResource` fallback should load the routing helper (the mode-map: `smart_routing.md` + `mode-registry.json`), pointing the request at how to choose — never a guessed child.
 
 ---
 
@@ -31,7 +31,7 @@ Apply the `defaultMode` recommendations synthesized in the sibling research pack
 | **Status** | Complete — 4 hubs flipped, sk-design over-emission fixed, defer-routed archetype added; route-gold held all baselines |
 | **Created** | 2026-07-17 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor/020-router-unification-program` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
 | **Executor** | GPT-5.6-SOL high fast (independently verified) |
 <!-- /ANCHOR:metadata -->
 
@@ -110,7 +110,7 @@ Route-gold baselines (must hold after): sdl 20/20, mcp 13/13, cli 7/7, sk-design
 
 | Dependency | Status |
 |------------|--------|
-| 021 defaultMode research (keep-1/flip-4 recs) | Vetted; drives this packet |
+| `001-research/007-default-mode-policy-research` (keep-1/flip-4 recs) | Vetted; drives this packet |
 | Route-gold baselines (sdl 20/20, mcp 13/13, cli 7/7, sk-design 0/0) | Green; gate for every change |
 <!-- /ANCHOR:risks -->
 
@@ -122,3 +122,10 @@ Route-gold baselines (must hold after): sdl 20/20, mcp 13/13, cli 7/7, sk-design
 - `defaultApplied` dual-write telemetry lives in the shared scorer (off-limits) — the constraint conflict is unresolved and needs an operator decision.
 - Live measurement (a sol-ultra 2x4 keep-vs-null benchmark) would turn the directional confidence into measured — not yet run.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `001-3-tier-consistency-standard` |
+| **Successor** | `003-unified-refactor-implementation` |

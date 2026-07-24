@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/006-unified-refactor-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/006-unified-refactor-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -80,15 +80,15 @@
     ],
     "causal_summary": "The eight source ideas overlap at their most important boundaries: outcome typing, uncertainty recovery, policy posture, compiled identity, authority, and migration",
     "created_at": "2026-07-18T10:28:55.781Z",
-    "last_save_at": "2026-07-23T11:35:34.147Z",
+    "last_save_at": "2026-07-24T11:03:16.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e945c0662324f16b941763ec71a4b59345a3408649dfa64e19f4ce05273358ad",
+    "source_fingerprint": "sha256:5d3317d50cf6245ee12adde083d7861a16781dba97010b41e7f13edefd88ef4f",
     "source_doc_hashes": {
-      "spec.md": "e1702ca66b624258ce00c9bdb6eef157042ac51726531ab830cd7f44764c541d"
+      "spec.md": "b41865c9e9bf3385e1d71b557e79f8db5bf32865f2370b02eb2ec723d6a10039"
     },
     "last_active_child_id": null,
     "last_active_at": null

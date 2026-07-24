@@ -9,11 +9,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research"
     last_updated_at: "2026-07-16T08:20:00Z"
     last_updated_by: "claude"
     recent_action: "Authored plan.md documenting the executed research approach"
-    next_safe_action: "Plan 013-skill-advisor-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 012-skill-advisor-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/research.md"
@@ -124,7 +124,7 @@ Iteration prompt reads prior findings plus the four investigation lanes from the
 | Evidence verification | Every claim cites file:line against current configs | Grep, direct file reads |
 | Calibration re-run | Iteration 8 ran a fresh joined evaluation instead of trusting two stale committed baselines | Node scorer-eval scripts |
 | Threshold-grid sensitivity | 12-cell grid over confidence x uncertainty, confirming tuning alone cannot fix the calibration finding | Node grid-sweep script |
-| Deferred | Applying the P0-1 through P2-8 fix plan | Deferred to `013-skill-advisor-routing-fixes`, out of scope here |
+| Deferred | Applying the P0-1 through P2-8 fix plan | Deferred to `012-skill-advisor-routing-fixes`, out of scope here |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -136,7 +136,7 @@ Iteration prompt reads prior findings plus the four investigation lanes from the
 |------------|------|--------|-------------------|
 | Tier-2 gpt-5.6-luna skill-benchmark grounding finding | Internal (system-deep-loop) | Green | Charter's premise needs this grounding to justify researching the advisor |
 | `advisor-server.ts` / `lib/scorer/fusion.ts` / `lib/compat/contract.ts` source | Internal | Green | Every technical claim about scoring and threshold behavior traces to this chain |
-| Implementation packet `013-skill-advisor-routing-fixes` | Internal, not yet created | Yellow | The fix plan has no effect until it is planned and built |
+| Implementation packet `012-skill-advisor-routing-fixes` | Internal, not yet created | Yellow | The fix plan has no effect until it is planned and built |
 <!-- /ANCHOR:dependencies -->
 
 ---

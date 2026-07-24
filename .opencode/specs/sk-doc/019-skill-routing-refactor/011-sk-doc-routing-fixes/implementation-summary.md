@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes"
     last_updated_at: "2026-07-24T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Layer A built (T001-T006, T008-T009); deliverables verified present"
@@ -32,7 +32,7 @@ _memory:
 |-------|-------|
 | **Status** | In Progress |
 | **Level** | 3 |
-| **Packet** | sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes |
+| **Packet** | sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes |
 | **Completed** | Layer A (8 of the task set) |
 | **Remaining** | T007 scorer taxonomy + T010-T012 verification gate |
 <!-- /ANCHOR:metadata -->

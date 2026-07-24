@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/006-code-readmes-design-prompt-speckit",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The repo-wide scan flagged forty-five code and script folders without a README across sk-design (13), sk-prompt (14) and system-spec-kit (18)",
     "created_at": "2026-07-22T13:27:47.875Z",
-    "last_save_at": "2026-07-23T12:42:23.644Z",
+    "last_save_at": "2026-07-24T11:06:41.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5b58de3b72bf328ee141339e7de1b2124e18de9d132640ac48584d040cf420d",
+    "source_fingerprint": "sha256:e102c7a6c4a585d63044fd055e1a620319449b7b443fc5bc929c6e24f1bcf72a",
     "source_doc_hashes": {
-      "spec.md": "96df81cf3e580445c669455e5ac54f60e49132978cb2fe839d029236193e1ad7",
-      "plan.md": "3097054483eb7ed45d7bb4f6f2e5f68478d9fa5eb44e456daa35c0c67cbc5737",
-      "tasks.md": "34d2ac2a986d3358368aa567661b365aed5c2e95a646b5b58345b96119496bb2",
-      "checklist.md": "bac16a42acc515f0cd956642f8effc5246a86b10f90018abbc6743caaf8460fb",
-      "implementation-summary.md": "8d45a8707c86d8bc6eccc8787797ff491ab2f96c3a83fe4881fb1092b2239ba7"
+      "spec.md": "beab95b63222a53af1b973057781674ecea87d1f2669fd310a403c420f523579",
+      "plan.md": "d4ad4f50e70484904e8a11efcb2f6d9ffea93c7f0aeb4f0fc9b095c4e0839fd9",
+      "tasks.md": "719535d04159e0d148524fa469c61add0faf00f5fa0e31f25cc4fd56fe42089d",
+      "checklist.md": "438f5d53925afd316b6cc9dcd25185890640e2dcbc12d26a731aed2481aa7441",
+      "implementation-summary.md": "35e12fe9558864a98dfeffe3646bd95dc5db51cf4098aa2f35eee9d41d67177c"
     },
     "last_active_child_id": null,
     "last_active_at": null

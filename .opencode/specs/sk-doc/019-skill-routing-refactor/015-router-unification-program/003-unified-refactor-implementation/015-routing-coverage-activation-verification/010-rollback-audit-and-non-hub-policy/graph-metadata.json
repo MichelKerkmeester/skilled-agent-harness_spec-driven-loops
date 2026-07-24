@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
     "created_at": "2026-07-20T21:51:45.508Z",
-    "last_save_at": "2026-07-23T12:42:31.025Z",
+    "last_save_at": "2026-07-24T10:52:36.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:514a5596f78fa31acaef8bb953e83fe86ed6465cbe5c93f88afd7c3308ebf7e7",
+    "source_fingerprint": "sha256:871ce1c3e9e92ac23546bd4403f81f800efd8976cee1ad3ddcb1ff80d3dcea2b",
     "source_doc_hashes": {
       "spec.md": "88a261564338b0f080d97b29ead13c193d1a526931be0a60384fcda7a1bead50",
       "plan.md": "51d9f4bbedabf39a6c88f40be565da0ca44db6eb0f8d32a67f8bffb3459f5369",
       "tasks.md": "031e5cb3727bd1ca6c35b62a3f677d0f1d7d2d4c441e94b997c0aa2f56af9983",
-      "checklist.md": "7abe3ea2eab69e7297485d6ced4a3ebdfe26ed7298a112f49ed167ae776cf09a",
-      "implementation-summary.md": "e73871b311a836eb7c64ed5ae612afdf0849d241719391d95773ad224a647244"
+      "checklist.md": "8a35ef8e4651ad36a463fe43ed179d7891fa56501aee87d49746ac658c457121",
+      "implementation-summary.md": "8c0d021d69f2ae10f5bda032d74347d3ad0b1fafee3b97da6731a9f4e9d329cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

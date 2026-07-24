@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [
       {
-        "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
+        "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow",
         "reason": "Reuses the generic compiler, projection, parity, and activation modules.",
         "source": "authored",
-        "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow"
+        "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow"
       }
     ],
     "supersedes": [],
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer fixtures, or fenced rollback proof for it",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-23T12:31:28.119Z",
+    "last_save_at": "2026-07-24T10:52:38.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2afa1b87f4639cd5030602ec6c00f885e2cc97cfc12d1f16ed9443979b5e2646",
+    "source_fingerprint": "sha256:0b6cc3b409e2f1fd009dd5a7b3205c20df8cf6b9ad6e36e7e9e3db5f70bf3823",
     "source_doc_hashes": {
-      "spec.md": "5b97e63c750cecf52e7dc72a3c68de9155d2ab2ac555f988f568f0113445380e",
-      "plan.md": "e2ff715141fb2b49ce8aacf14e15c914cb5f763239c1daf4bddac9f308263f55",
-      "tasks.md": "9d426e8b1e69c17c608746ba45ceee879f0c1b7ef08ef712d669567860b8fcd1",
-      "checklist.md": "1f306e8f3ddc7c2c91722287c6f6a064079e4cdca7eb56af80fdb68a43cdf55e",
-      "implementation-summary.md": "58681716fb21a2b98e85fad846948b676be077a242e4b97551693fbc074cecf5"
+      "spec.md": "98cbb38e5b0ddd0e17da362c9a9a0a4014b007d0fcde144cd7aebca52bff4a8a",
+      "plan.md": "6417dcb59c96e213a4c96cb30f7e84bef3e5f1e8d1f8c0ab8da0300d384cbaa3",
+      "tasks.md": "e027e54ead9e663e445ebb6596e25085afd59586c0c8fb87177741746cd84f24",
+      "checklist.md": "c5ebbe4e1f28de01f4bc59d1c0c9e1dae8dd95faf4c996211697ce62883d27a8",
+      "implementation-summary.md": "e8f81f29a2396cb28030cf51ac34655e0486a7e68320dba1c30c0de580a5c296"
     },
     "last_active_child_id": null,
     "last_active_at": null

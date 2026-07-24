@@ -63,7 +63,7 @@ it via two independent analogies is mild cross-domain convergence.
 
 [SOURCE: .opencode/skills/sk-doc/hub-router.json:11-35 (weight=4 on every signal)]
 [SOURCE: .opencode/skills/sk-design/hub-router.json:25-83 (weight=4 on every signal)]
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread G, A3)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread G, A3)]
 
 ### F2. The lateral claim — every mode has a runtime health score, weights adapt.
 
@@ -89,7 +89,7 @@ What this *buys* that no static router can:
    *runtime-visible*: a stale `mode-registry.json` shows up as degraded health before it
    becomes a user-facing lie.
 
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread G, A3)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread G, A3)]
 
 ### F3. What breaks (four structural costs, none of which the load-balancer literature flags
 because backends there do not argue back)
@@ -152,7 +152,7 @@ measurement infrastructure run-2 said was missing.
 
 - All hub `hub-router.json` files (uniform `weight: 4`, no feedback field anywhere).
 - `021/run2-archive/research.md` threads G (A3 drift) and D (the falsifiable-measurement gap).
-- `021-default-mode-policy-research/spec.md` §3 ("the falsifiable live experiment run-1 said it
+- `001-research/007-default-mode-policy-research/spec.md` §3 ("the falsifiable live experiment run-1 said it
   was routing around").
 - General (no live URL): load-balancer health-check literature — weighted round-robin with
   passive health checks (Envoy/Nginx shapes); DNS resolver RFC 1034 hierarchical cache + TTL.

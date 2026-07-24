@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/008-create-benchmark-routing-fix"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/009-create-benchmark-routing-fix"
     last_updated_at: "2026-07-13T16:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Swap verified across battery and guards"
@@ -66,7 +66,7 @@ Redundant-alias swap: replace a longer alias that a shorter retained alias alrea
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-- Sibling `007-hub-intent-keyword-coverage` (same root cause; deferred this case).
+- Sibling `008-hub-intent-keyword-coverage` (same root cause; deferred this case).
 - `parent-hub-vocab-sync.cjs`, `router-replay.cjs`, `d5-connectivity.cjs`.
 - Second-opinion review via `cli-codex` (GPT-5.6-sol) that proposed the swap.
 <!-- /ANCHOR:dependencies -->
@@ -82,4 +82,4 @@ Single alias swap across three files. Rollback = revert the commit; the prior al
 
 ## RELATED DOCUMENTS
 - `./spec.md`, `./tasks.md`, `./checklist.md`, `./implementation-summary.md`
-- Sibling: `../007-hub-intent-keyword-coverage/`
+- Sibling: `../008-hub-intent-keyword-coverage/`

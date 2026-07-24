@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/001-json-cleanup-and-conventions",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/001-json-cleanup-and-conventions",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/001-json-cleanup-and-conventions",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas: spec-folder continuity metadata and skill-advisor hub-identity metadata",
     "created_at": "2026-07-22T08:55:19.438Z",
-    "last_save_at": "2026-07-23T12:42:23.395Z",
+    "last_save_at": "2026-07-24T11:06:41.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0df29476d378d077191cd7ee1d04817a23dcf8d9011ad22f7243218715017b2",
+    "source_fingerprint": "sha256:851463a15b42f179d58d3a31e31518a9c4304444716ce6b2d660c6d15d3bb7ff",
     "source_doc_hashes": {
-      "spec.md": "2dfa8afd5da3137bb5c89acadaa78b26700d2185eed839227e778ba2fbe5b108",
-      "plan.md": "d009bb27f2b55a11345051295b198dfd390c5473e948dc18aa1ae3a2ed000731",
-      "tasks.md": "bd6d2fa909152054ffb3c1c178d39f8bf3f81b82010220311a8356b04640fdf0",
-      "checklist.md": "0af451a4500b53e7b0becd252c6d77372a1ecc14080389cc3d4b8233fa7460f2",
-      "implementation-summary.md": "3d31638c957f6705ad8a3bc79ec8a9721731f459b29ab6815b37be787d2f23e9"
+      "spec.md": "c72ee79587f490817c0b1857dd465b61b2cbabe1d12e37feb74242335c896018",
+      "plan.md": "f5e41fefb2e52f01aef931d597900df9d203fb4cf305e607b9b4ca801b9430ab",
+      "tasks.md": "beb3cc41d620508ff2a5082a1aee488995fa19caa668905dd65c9ad297841d55",
+      "checklist.md": "3a5f639059f8820053de992c329dde49da7d23f64e7cc78f679d53ceb4b5b598",
+      "implementation-summary.md": "bbf4d396921b0e510ebf1e715e177a6483df99d9012176da17896aa3b0fc7a42"
     },
     "last_active_child_id": null,
     "last_active_at": null

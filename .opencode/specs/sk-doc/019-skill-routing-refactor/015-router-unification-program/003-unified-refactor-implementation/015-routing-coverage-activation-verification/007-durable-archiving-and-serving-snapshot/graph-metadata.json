@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact answers \"what is this hub's compiled-routing state right now,\" reports carry a stale absolute path the moment they are copied anywhere else, and nothing stops a future archive run from being generated against a `006` shadow candidate instead of the actually-serving `010` manifest — which would archive a decision that was never live",
     "created_at": "2026-07-20T21:51:37.595Z",
-    "last_save_at": "2026-07-23T12:42:32.612Z",
+    "last_save_at": "2026-07-24T10:52:37.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd7508f14b39ecb9601e62ee139f61043337f8dd32656f339a947f2ab0edcf0a",
+    "source_fingerprint": "sha256:3cf28ce78a5ba8f122d08390713c01b66bdb27b657b730c9a4cdb3a8d2b03c64",
     "source_doc_hashes": {
-      "spec.md": "3346a15be2d6643307dab381eccc6cbbce6c82941bb3c0d8abe88cb70e7d0d76",
+      "spec.md": "73da4efd05a756d7293c889d53242211a27cdcf454a4c2088c68d49a45cb5162",
       "plan.md": "d7c2c122a6dea5c59c060755e9d1126981919fca404154b3c267ece9bede0349",
       "tasks.md": "4050d15a4be8bd8a01cdc977ea4db11441c7a2aef422b9445239bdc6a5ffd4a2",
-      "checklist.md": "d8f86ef13a1c122453abc45730adc148660d90c860bca4bfab62f7f6fd9c235f",
-      "implementation-summary.md": "6467eaf7d5c58c699f4a8486e220af09844e6c1b064a33b35fae1ffdc22f18c4"
+      "checklist.md": "12ef2ef50cf4cd7b23186d0bc09f39c6eed8326511124bca8a15db571dfe45a7",
+      "implementation-summary.md": "f5642e8acc286fdb9d8cb2a7708d8a87b6e232f06cdeff396e05d828fbaf1660"
     },
     "last_active_child_id": null,
     "last_active_at": null

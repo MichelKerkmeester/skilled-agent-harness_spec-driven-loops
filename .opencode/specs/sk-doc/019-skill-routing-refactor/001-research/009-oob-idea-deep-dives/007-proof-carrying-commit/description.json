@@ -1,30 +1,23 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/007-proof-carrying-commit",
-  "description": "Five-iteration SOL xhigh-fast deep-research lineage on a proof-carrying route lifecycle that splits one opaque commitment into PREPARE (read-only",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit",
+  "description": "A route decision can blur classification, authority acquisition, and execution",
   "keywords": [
-    "five-iteration",
-    "sol",
-    "xhigh-fast",
-    "deep-research",
-    "lineage",
-    "proof-carrying",
     "route",
-    "lifecycle",
-    "splits",
-    "one",
-    "opaque",
-    "commitment",
-    "prepare",
-    "read-only"
+    "decision",
+    "blur",
+    "classification",
+    "authority",
+    "acquisition",
+    "execution"
   ],
-  "lastUpdated": "2026-07-23T11:35:33.348Z",
+  "lastUpdated": "2026-07-24T10:53:31.879Z",
   "specId": "007",
   "folderSlug": "proof-carrying-commit",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "005-oob-idea-deep-dives"
+    "001-research",
+    "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/014-benchmark-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/014-benchmark-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The original gap was that Lane C validated authored routing but not the compiled-serving path",
     "created_at": "2026-07-20T17:46:53.368Z",
-    "last_save_at": "2026-07-23T12:42:25.019Z",
+    "last_save_at": "2026-07-24T10:52:40.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7651f1733a736b8ffd3d928fc3f3d21aa4faf3e2d195fabd3372e86070da3df0",
+    "source_fingerprint": "sha256:e78fdab31c9b301563a9bae6771d90df2470741d1fc3358eeccb734aa0fb783d",
     "source_doc_hashes": {
-      "spec.md": "b40ee3130558cd314ca705f4c11b04c318a8d84c47d47bbd2037f9a2135a0ac5",
-      "plan.md": "9a243514033b928928402cd2c378300cd311f9bc5e0f5dc08fb8b0f44fd6a705",
-      "tasks.md": "c6c5fc398ca5492a1dfe1acc6d63ac30ef511ff08e043ee2e517e971806cae89",
-      "checklist.md": "f62441412aa94d9db999b397b72b8e1819eb58fba927555191fed3d003f0c957",
-      "implementation-summary.md": "caedf4d0f282f474664015c9dc2c98fecfa1b16fddc9a539d427c19c4de3eee6"
+      "spec.md": "325456fbcc28a79abbca39119fc5e54d210c4bb282d4b6663c105e28f24c011b",
+      "plan.md": "9f23cb39bd317145e7d97a9b77ad1e0db65a7cec0cd21ee890dda39ea00b4f12",
+      "tasks.md": "1748396a048b9fc76c4f94585d3bc2795014df6f69559aed1a90c593482ed1f6",
+      "checklist.md": "6f0b8fb7b6262ea6135aba9b6895bafa322697abca176832ed6c572a07921e36",
+      "implementation-summary.md": "cd80c8fce40d4a05dbb899337969af902c6e6a481dfe34a13474f287989b6e69"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/008-existing-readme-cleanup"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup"
     last_updated_at: "2026-07-22T16:00:57Z"
     last_updated_by: "claude"
     recent_action: "Repaired 64 older READMEs (broken refs + OVERVIEW) and deleted the stale __tests__ duplicate."
@@ -140,7 +140,7 @@ Surgically repair the genuine skill and code READMEs: trace each real stale refe
 ## RELATED DOCUMENTS
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
-- `../spec.md` and `../context-index.md` (the 021 program parent).
+- `../spec.md` and `../context-index.md` (the 016 program parent).
 - Previous phase: [`007-code-readmes-deep-loop`](../007-code-readmes-deep-loop/spec.md). Next phase: [`009-titlecase-config-and-closeout`](../009-titlecase-config-and-closeout/spec.md).
 
 <!-- /ANCHOR:related-docs -->

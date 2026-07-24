@@ -21,7 +21,7 @@ contextType: "research"
 | Session | fanout-sol-oob-1784345122095-1gku9b (generation 1) |
 | Iterations | 7 of 7 (stop: maxIterationsReached; stopPolicy=max-iterations) |
 | Executor | cli-codex / gpt-5.6-sol |
-| Spec folder | .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research |
+| Spec folder | .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research |
 | Artifact root | research/lineages/sol-oob (direct override; no root-resolution step) |
 | Research topic | Parent-hub routing, out-of-box run 3: radical lateral rethinks over the Out-of-Box Agenda |
 | Key questions | 5/5 answered; 35 reducer-indexed findings |
@@ -151,7 +151,7 @@ node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/s
 # Lineage evidence integrity
 node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs \
   --loop-type research \
-  --artifact-dir .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob \
+  --artifact-dir .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob \
   --iteration 7 --json
 ~~~
 

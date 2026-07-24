@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/008-trp-decomposition",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -80,7 +80,7 @@
     ],
     "causal_summary": "The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick",
     "created_at": "2026-07-18T10:05:19.988Z",
-    "last_save_at": "2026-07-23T11:35:33.827Z",
+    "last_save_at": "2026-07-24T10:52:33.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

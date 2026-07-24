@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Built + guard-tested the manifest-gated typed-gold derivation; typed baseline mean recall 0.729"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 015-sk-code-router-alignment |
+| **Spec Folder** | 014-sk-code-router-alignment |
 | **Completed** | In Progress (~70%) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

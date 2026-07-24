@@ -40,7 +40,7 @@ For the four flipped hubs (`cli-external-orchestration`, `system-deep-loop`, `mc
 - `file:.opencode/skills/system-skill-advisor/SKILL.md` (advisor routing model, fallback contract, DEFAULT_RESOURCE_SEMANTICS)
 - `file:.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2700-2867` (deep-routing layer, clarifying_question, mode projection)
 - `file:.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83` (`MODE_REGISTRY_PATH` → system-deep-loop)
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md` (Run 1 baseline, the verdict diverged-from)
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md` (Run 1 baseline, the verdict diverged-from)
 
 ## Assessment
 

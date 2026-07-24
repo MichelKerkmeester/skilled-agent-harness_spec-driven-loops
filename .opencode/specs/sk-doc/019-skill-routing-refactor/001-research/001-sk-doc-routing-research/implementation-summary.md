@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-doc Routing Foundation Research"
-description: "Research outcome for the sk-doc routing diagnosis: the alias-gap premise was falsified, the real defect is a three-part path-contract problem, and the dependency-ordered fix plan hands off to 012-sk-doc-routing-fixes."
+description: "Research outcome for the sk-doc routing diagnosis: the alias-gap premise was falsified, the real defect is a three-part path-contract problem, and the dependency-ordered fix plan hands off to 011-sk-doc-routing-fixes."
 trigger_phrases:
   - "sk-doc routing research outcome"
   - "sk-doc benchmark root cause"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research"
     last_updated_at: "2026-07-16T08:08:19Z"
     last_updated_by: "claude"
     recent_action: "Documented research outcome and fix-plan handoff"
-    next_safe_action: "Plan 012-sk-doc-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 011-sk-doc-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/research.md"
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-sk-doc-routing-research |
+| **Spec Folder** | 001-research/001-sk-doc-routing-research |
 | **Completed** | 2026-07-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -66,7 +66,7 @@ With that premise gone, iteration 3 classified all 19 benchmark rows individuall
 
 ### Dependency-Ordered Fix Plan
 
-Iterations 6 through 10 turned the diagnosis into something buildable instead of stopping at "here's what's wrong." The settled design fixes the public identity as the typed pair `(workflowMode, leafResourceId)`, adds an authored `leaf-aliases.json` plus a generated, byte-stable `leaf-manifest.json`, extends `parent-skill-check.cjs` with ordered guard codes, migrates all 19 fixtures to typed gold with a pre-dispatch topology gate, and updates `router-replay.cjs`/`executor-dispatch.cjs` to emit canonical pairs under a dual-read, single-write migration. Nine of sk-doc's eleven packets need their maps corrected. `create-benchmark` and `create-diff` have no failing row and stay untouched. `research/research.md` Section 8 carries the full nine-item Layer A plan plus two Layer B doctrine-propagation items. Section 9 lists six verification commands. Section 10 is the 19-row acceptance matrix. This packet does not build any of it. That work is scoped to sibling packet `012-sk-doc-routing-fixes`, which does not exist yet and needs a `/speckit:plan` pass against Section 8 before implementation starts.
+Iterations 6 through 10 turned the diagnosis into something buildable instead of stopping at "here's what's wrong." The settled design fixes the public identity as the typed pair `(workflowMode, leafResourceId)`, adds an authored `leaf-aliases.json` plus a generated, byte-stable `leaf-manifest.json`, extends `parent-skill-check.cjs` with ordered guard codes, migrates all 19 fixtures to typed gold with a pre-dispatch topology gate, and updates `router-replay.cjs`/`executor-dispatch.cjs` to emit canonical pairs under a dual-read, single-write migration. Nine of sk-doc's eleven packets need their maps corrected. `create-benchmark` and `create-diff` have no failing row and stay untouched. `research/research.md` Section 8 carries the full nine-item Layer A plan plus two Layer B doctrine-propagation items. Section 9 lists six verification commands. Section 10 is the 19-row acceptance matrix. This packet does not build any of it. That work is scoped to sibling packet `011-sk-doc-routing-fixes`, which does not exist yet and needs a `/speckit:plan` pass against Section 8 before implementation starts.
 
 ### Files Changed
 

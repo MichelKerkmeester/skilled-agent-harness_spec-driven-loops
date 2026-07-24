@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-sk-code-router-alignment",
+  "specFolder": "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
   "description": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
   "keywords": [
     "sk-code",
@@ -15,8 +15,8 @@
     "actively",
     "misleads"
   ],
-  "lastUpdated": "2026-07-23T11:35:27.554Z",
-  "specId": "015",
+  "lastUpdated": "2026-07-24T11:02:43.130Z",
+  "specId": "014",
   "folderSlug": "sk-code-router-alignment",
   "parentChain": [
     "sk-doc",

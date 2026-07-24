@@ -147,6 +147,6 @@ The strongest *falsifiable* steelman: a default is justified when self-correctin
 - `file:.opencode/skills/cli-external-orchestration/hub-router.json:4-14` — static default; no runtime field.
 - `file:.opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json:2,5,37,60` — canon: bidirectional alignment, hub-identity-on-default-only.
 - `file:.opencode/skills/system-skill-advisor/SKILL.md:87` — single-mode standalone skill precedent.
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md` — Run 1 baseline.
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md` — Divergent Exploration Agenda (§5).
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md` — Run 1 baseline.
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md` — Divergent Exploration Agenda (§5).
 - Iteration evidence: `iterations/iteration-001.md` … `iteration-005.md` (this lineage).

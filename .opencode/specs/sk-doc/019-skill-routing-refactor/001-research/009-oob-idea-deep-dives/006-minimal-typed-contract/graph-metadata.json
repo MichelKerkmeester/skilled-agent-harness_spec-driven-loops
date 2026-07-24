@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/006-minimal-typed-contract",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/006-minimal-typed-contract",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -80,7 +80,7 @@
     ],
     "causal_summary": "`defaultMode` conflates missing evidence, a policy prior, and authority to execute",
     "created_at": "2026-07-18T04:39:05.620Z",
-    "last_save_at": "2026-07-23T11:35:33.189Z",
+    "last_save_at": "2026-07-24T10:52:33.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

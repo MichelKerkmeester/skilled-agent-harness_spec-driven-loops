@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-doc skill-routing refactor — routing correctness across the skill fleet"
-description: "Phase parent for the sk-doc skill-routing history: create-* packet routing conformance, benchmark-driven routing research and fixes, per-hub routing research across the fleet, the fleet-wide router-unification program (including the promoted compiled-routing runtime), and the documentation-quality program."
+description: "Phase parent for the sk-doc skill-routing program: router audits, create-* conformance, benchmark and typed-pair fixes, a shared research layer, the fleet-wide router-unification program, and the documentation-quality program."
 trigger_phrases:
   - "019-skill-routing-refactor"
   - "sk-doc skill routing refactor"
@@ -52,7 +52,7 @@ Routing across the skill fleet was neither uniform nor measurable. It began as a
 ### Purpose
 Make routing correct, measurable, and consistent across the skill fleet, and restore documentation conformance. Concretely: give each `create-*` packet a uniform routing contract; root-cause and fix the benchmark-measurable routing defects for sk-doc and the skill-advisor; instrument per-hub routing on the typed-pair surface across the fleet; run the fleet-wide router-unification program that standardizes routing config and promotes a compiled-routing runtime that serves byte-identically to legacy behind a reversible flag; and run the documentation-quality program that returns the tree to sk-doc's standards.
 
-> **Phase-parent note:** This spec.md documents root purpose and the sub-phase list only — all detailed planning, tasks, checklists, decisions, and continuity live in the child phase folders below. The parent level also carries three companion docs (never heavy per-phase docs): `context-index.md` (folder provenance + rename history) and the two routing references `routing-config-and-advisor-reference.md` and `routing-before-after.md`.
+> **Phase-parent note:** This spec.md documents root purpose and the sub-phase list only — all detailed planning, tasks, checklists, decisions, and continuity live in the child phase folders below. The parent level also carries three companion docs (never heavy per-phase docs): `context-index.md` (folder provenance + structural history) and the two routing references `routing-config-and-advisor-reference.md` and `routing-before-after.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -61,17 +61,17 @@ Make routing correct, measurable, and consistent across the skill fleet, and res
 ## 3. SCOPE
 
 ### In Scope
-- **Group A — Router audit and fixes (001-004):** audit the routing sources, resolve trigger collisions and ownership, scope triggers and correct sibling handoffs, and standardize packet shape with synchronized router projections.
-- **Group B — create-skill routing conformance (005-009):** document each flat-resource packet's smart-routing posture, analyze the residual router-marker gap, close hub keyword-coverage and benchmark-routing gaps, and normalize packets to the create-skill canon.
-- **Group C — Benchmark-driven routing research and fixes (010-014):** research sk-doc and skill-advisor routing behavior, implement the resulting path-contract and advisor fixes, and wire the benchmark harness to typed gold behind offline and live gates.
-- **Group D — Per-hub routing research (015-019):** make routing measurable on the canonical typed-pair surface for sk-code, sk-design, system-code-graph, system-deep-loop, and sk-prompt.
-- **Group E — Router-unification program (020):** a nested program standardizing fleet routing config, resolving the defaultMode policy, and designing plus implementing the unified router — including the promoted compiled-routing runtime.
-- **Group F — Documentation-quality program (021):** a nested program restoring the skill tree to sk-doc's documentation standards across metadata, templates, READMEs, tooling, and validators.
+- **Group A — Router audit and fixes (002-005):** audit the routing sources, resolve trigger collisions and ownership, scope triggers and correct sibling handoffs, and standardize packet shape with synchronized router projections.
+- **Group B — create-skill routing conformance (006-010):** document each flat-resource packet's smart-routing posture, analyze the residual router-marker gap, close hub keyword-coverage and benchmark-routing gaps, and normalize packets to the create-skill canon.
+- **Group C — Benchmark and typed-pair routing fixes (011-014):** implement the sk-doc and skill-advisor fixes, wire typed gold through the benchmark harness, and run the sk-code measurement pilot.
+- **Group D — Research layer (`001-research`):** hold the ten research lineages covering sk-doc, skill-advisor, the per-hub surfaces, defaultMode policy, out-of-box alternatives, and unified-router design.
+- **Group E — Router-unification program (015):** a nested program standardizing fleet routing config, resolving the defaultMode policy, and designing plus implementing the unified router — including the promoted compiled-routing runtime.
+- **Group F — Documentation-quality program (016):** a nested program restoring the skill tree to sk-doc's documentation standards across metadata, templates, READMEs, tooling, and validators.
 
 ### Out of Scope
 - Any change outside routing correctness/measurement, the router-unification runtime, and documentation quality.
 - Rewriting historical research, benchmark, or lineage artifacts.
-- Committing the fleet compiled-routing cutover as a default is owned by Group E (`020`), not this parent. (That cutover is now complete — default-on for all seven hubs via `servingAuthority: compiled` manifests, reversible via the `SPECKIT_COMPILED_ROUTING=0` kill-switch.)
+- Committing the fleet compiled-routing cutover as a default is owned by Group E (`015`), not this parent. (That cutover is now complete — default-on for all seven hubs via `servingAuthority: compiled` manifests, reversible via the `SPECKIT_COMPILED_ROUTING=0` kill-switch.)
 
 ### Files to Change
 Aggregate scope; per-phase detail lives in child plans.
@@ -80,7 +80,7 @@ Aggregate scope; per-phase detail lives in child plans.
 |-----------|-------------|-------|-------------|
 | `.opencode/skills/sk-doc/create-*/SKILL.md` and `.opencode/skills/sk-doc/{mode-registry.json,hub-router.json}` | Modify | A, B | Routing contracts, sibling handoffs, and synchronized router projections |
 | `.opencode/skills/<hub>/**` routing surfaces + typed-pair benchmark fixtures | Modify | C, D | Path-contract fixes, advisor fixes, and typed-gold measurement wiring |
-| `.opencode/bin/lib/compiled-routing/**` and the authored source under `020-router-unification-program/007-unified-refactor-implementation/**` | Modify | E | The promoted compiled-routing runtime and its authored source |
+| `.opencode/bin/lib/compiled-routing/**` and the authored source under `015-router-unification-program/003-unified-refactor-implementation/**` | Modify | E | The promoted compiled-routing runtime and its authored source |
 | Skill/mode READMEs, metadata, templates, and doc validators across the tree | Modify | F | Documentation-quality remediation |
 <!-- /ANCHOR:scope -->
 
@@ -89,35 +89,30 @@ Aggregate scope; per-phase detail lives in child plans.
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> Phased decomposition. Each phase is an independently executable child spec folder; all implementation detail lives inside the phase children. The flat `001-021` filesystem is grouped into six narrative workstreams (A-F) — the grouping is expository, not a physical nesting.
+> Phased decomposition. Each phase is an independently executable child spec folder; all implementation detail lives inside the phase children. The direct tree is `001-research` plus numbered phases `002`–`016`, grouped into six narrative workstreams (A-F).
 
 | Phase | Group | Focus | Status |
 |-------|-------|-------|--------|
-| 001-router-audit-and-fix-map | A | Audit the routing sources, baseline the queries, and map the prioritized fixes before edits | Complete |
-| 002-router-collision-fixes | A | Move existing-document audit/validation ownership from README/flowchart creators to quality control | Complete |
-| 003-trigger-scoping-and-handoffs | A | Remove broad selector tokens and replace vague exclusions with exact sibling handoffs | Complete |
-| 004-router-standardization-and-regen | A | Standardize packet trigger/handoff shapes and synchronize both router JSON projections with zero drift | Complete |
-| 005-create-skill-smart-routing-notes | B | Document honest smart-routing postures for flat-resource packets instead of force-fitting keyed discovery | Complete |
-| 006-create-skill-router-marker-gap | B | Analyze the residual router-marker warnings and frame the keep-N/A-versus-wire decision from live evidence | Research; decision pending |
-| 007-hub-intent-keyword-coverage | B | Add artifact-noun keyword coverage so agent/changelog prompts avoid generic create-skill tie-breaking | Complete |
-| 008-create-benchmark-routing-fix | B | Swap a redundant benchmark alias for `benchmark package` across synced surfaces under the word cap | Complete |
-| 009-create-packet-routing-conformance | B | Normalize the flat-resource packets to the canonical create-skill contract so `package_skill.py --check` passes | Complete |
-| 010-sk-doc-routing-research | C | Root-cause sk-doc benchmark failures and define the dependency-ordered path-contract fix plan | Research-complete |
-| 011-skill-advisor-routing-research | C | Measure skill-advisor usefulness, isolate its correctness defects, and hand off prioritized fixes | Research-complete |
-| 012-sk-doc-routing-fixes | C | Enforce the canonical typed leaf-resource contract across sk-doc routing, fixtures, replay, and doctrine | Planned |
-| 013-skill-advisor-routing-fixes | C | Repair advisor correctness, calibration measurement, discovery guards, and transport diagnostics | Planned |
-| 014-benchmark-harness-typed-wiring | C | Wire typed routing through dispatch and blind benchmarks behind offline+live gates before propagation | Planned |
-| 015-sk-code-router-alignment | D | Pilot typed-gold derivation, refresh sk-code's baseline, and establish a reusable fan-out recipe | In progress |
-| 016-sk-design-routing-research | D | Diagnose six-mode sk-design routing, manifest feasibility, and a dependency-ordered measurement plan | Research-complete |
-| 017-system-code-graph-routing-research | D | Map resource domains into a proposed standalone mode, typed leaf contract, and benchmark plan | Research-complete |
-| 018-system-deep-loop-routing-research | D | Investigate seven-mode path collisions, packet ownership, manifest design, and scenario normalization | In progress |
-| 019-sk-prompt-routing-research | D | Diagnose both sk-prompt modes, propose prompt-models leaf routing, and seed typed-gold implementation | Research-complete |
-| 020-router-unification-program | E | Fleet router-unification: 3-tier config standard, defaultMode policy, and the unified compiled-routing runtime (reversible, route-gold-gated) | Active (nested program) |
-| 021-documentation-quality-program | F | Restore documentation conformance across metadata, templates, READMEs, tooling, and validators, plus review remediation | In progress (nested program) |
+| 001-research | D | Research parent for ten routing lineages spanning benchmark, per-hub, defaultMode, out-of-box, and unified-refactor questions | Research layer |
+| 002-router-audit-and-fix-map | A | Audit the routing sources, baseline the queries, and map the prioritized fixes before edits | Complete |
+| 003-router-collision-fixes | A | Move existing-document audit/validation ownership from README/flowchart creators to quality control | Complete |
+| 004-trigger-scoping-and-handoffs | A | Remove broad selector tokens and replace vague exclusions with exact sibling handoffs | Complete |
+| 005-router-standardization-and-regen | A | Standardize packet trigger/handoff shapes and synchronize both router JSON projections with zero drift | Complete |
+| 006-create-skill-smart-routing-notes | B | Document honest smart-routing postures for flat-resource packets instead of force-fitting keyed discovery | Complete |
+| 007-create-skill-router-marker-gap | B | Analyze the residual router-marker warnings and frame the keep-N/A-versus-wire decision from live evidence | Research; decision pending |
+| 008-hub-intent-keyword-coverage | B | Add artifact-noun keyword coverage so agent/changelog prompts avoid generic create-skill tie-breaking | Complete |
+| 009-create-benchmark-routing-fix | B | Swap a redundant benchmark alias for `benchmark package` across synced surfaces under the word cap | Complete |
+| 010-create-packet-routing-conformance | B | Normalize the flat-resource packets to the canonical create-skill contract so `package_skill.py --check` passes | Complete |
+| 011-sk-doc-routing-fixes | C | Enforce the canonical typed leaf-resource contract across sk-doc routing, fixtures, replay, and doctrine | Planned |
+| 012-skill-advisor-routing-fixes | C | Repair advisor correctness, calibration measurement, discovery guards, and transport diagnostics | Planned |
+| 013-benchmark-harness-typed-wiring | C | Wire typed routing through dispatch and blind benchmarks behind offline+live gates before propagation | Planned |
+| 014-sk-code-router-alignment | C | Pilot typed-gold derivation, refresh sk-code's baseline, and establish a reusable fan-out recipe | In progress |
+| 015-router-unification-program | E | Fleet router-unification: 3-tier config standard, defaultMode policy, and the unified compiled-routing runtime (reversible, route-gold-gated) | Active (nested program) |
+| 016-documentation-quality-program | F | Restore documentation conformance across metadata, templates, READMEs, tooling, and validators, plus review remediation | In progress (nested program) |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently. Within a sequential workstream (Group A→B, Group C research→fixes) a phase gates the one after it; the workstreams themselves (Groups D, E, F) run concurrently, so this ordering is per-workstream, not a single global sequence.
+- Each phase MUST pass `validate.sh` independently. Within the sequential workstreams, Groups A→B and research→Group C fixes are dependency-ordered; Groups E and F run concurrently. The grouping is per-workstream, not a single global sequence.
 - The parent tracks aggregate progress via this map; run `validate.sh --recursive` on the parent to validate all phases as an integrated unit.
 - Groups E and F are nested sub-programs with their own children; resume them at their own parent spec.
 
@@ -125,12 +120,12 @@ Aggregate scope; per-phase detail lives in child plans.
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-router-audit-and-fix-map | 002-router-collision-fixes | Exact fix map and before-state recorded | Phase 001 plan/tasks contain the fix map |
-| Group A (001-004) | Group B (005-009) | Registries synchronized with zero drift; every packet has a documented smart-routing posture | Extractor drift check + `package_skill.py --check` |
-| Group C research (010-011) | Group C fixes (012-014) | Root causes recorded with a dependency-ordered fix plan | Research docs' fix plans |
-| Group D research (016/017/019) | Implementation | Typed-pair measurement plan and typed-gold seed recorded | Per-hub research docs |
-| Group D pilot (015-sk-code) | Group D fan-out (016-019) | Reusable typed-gold derivation recipe + refreshed sk-code baseline | 015 implementation-summary |
-| Groups E, F (020, 021) | (nested) | Each nested program gates internally at its own parent spec | `020/spec.md`, `021/spec.md` |
+| 002-router-audit-and-fix-map | 003-router-collision-fixes | Exact fix map and before-state recorded | Phase 002 plan/tasks contain the fix map |
+| Group A (002-005) | Group B (006-010) | Registries synchronized with zero drift; every packet has a documented smart-routing posture | Extractor drift check + `package_skill.py --check` |
+| Research `001-research/001-002` | Group C fixes (011-013) | Root causes recorded with dependency-ordered fix plans | Research child fix plans |
+| Research `001-research/003-006` | Group C pilot (014) | Typed-pair measurement plan and typed-gold seed recorded | Per-hub research docs |
+| Group C pilot (014) | Later per-hub implementation | Reusable typed-gold derivation recipe + refreshed sk-code baseline | 014 implementation-summary |
+| Groups E, F (015, 016) | (nested) | Each nested program gates internally at its own parent spec | `015/spec.md`, `016/spec.md` |
 | All workstreams (A–F) | Parent closeout | Every workstream meets its §1 Handoff Criteria | `validate.sh --recursive` + per-workstream evidence |
 <!-- /ANCHOR:phase-map -->
 
@@ -139,8 +134,8 @@ Aggregate scope; per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- The create-skill router-marker posture for the flat-resource packets (Group B) — the keep-N/A-versus-wire decision framed in child `006-create-skill-router-marker-gap`.
-- The fleet compiled-routing cutover is now **default-on** for all seven eligible hubs (activation manifests flipped to `compiled`; unset `SPECKIT_COMPILED_ROUTING` serves compiled), reversible via the `=0` kill-switch; the formal default-on decision finalizes in `020/007/012-default-on-decision`.
+- The create-skill router-marker posture for the flat-resource packets (Group B) — the keep-N/A-versus-wire decision framed in child `007-create-skill-router-marker-gap`.
+- The fleet compiled-routing cutover is now **default-on** for all seven eligible hubs (activation manifests flipped to `compiled`; unset `SPECKIT_COMPILED_ROUTING` serves compiled), reversible via the `=0` kill-switch; the formal default-on decision is recorded in `015/003/012-default-on-decision`.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -169,6 +164,6 @@ Stop the blocked gate, preserve verified work, record the exact error, and never
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: the twenty-one numbered child folders above hold per-phase canonical docs.
+- **Phase children**: the `001-research` parent plus the fifteen numbered child folders above hold per-phase canonical docs.
 - **Provenance & rename history**: see `./context-index.md` for the folder-history bridge and the old→new rename map.
 - **Parent Spec**: none — this is a top-level packet on the `sk-doc` track.

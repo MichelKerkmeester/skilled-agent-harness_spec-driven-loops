@@ -8,7 +8,7 @@
 
 ## Files Reviewed
 - `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs:29-42`
-- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`
+- `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`
 - `.opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts:11-40`
 - `.opencode/bin/compiled-route-sync.cjs:1-25,103-137,300-399`
 - `.opencode/bin/compiled-routing-foundation.vitest.ts:50-99,165-181`

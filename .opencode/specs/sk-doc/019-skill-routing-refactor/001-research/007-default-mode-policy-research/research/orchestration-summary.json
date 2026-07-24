@@ -1,8 +1,8 @@
 {
   "run_id": "1784345122095-1gku9b",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
-  "base_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research",
+  "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,

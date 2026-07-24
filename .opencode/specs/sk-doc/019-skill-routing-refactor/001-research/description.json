@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research",
+  "description": "Lean phase parent for the ten research lineages that define the skill-routing program's benchmark, per-hub, defaultMode, out-of-box, and",
+  "keywords": [
+    "lean",
+    "phase",
+    "parent",
+    "ten",
+    "research",
+    "lineages",
+    "define",
+    "skill-routing",
+    "program",
+    "benchmark",
+    "per-hub",
+    "defaultmode",
+    "out-of-box"
+  ],
+  "lastUpdated": "2026-07-24T11:02:43.050Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -32,7 +32,7 @@ A parent hub is a pure router: its `SKILL.md` never handles a request itself, it
 | **Status** | Research — run 1 (4 iters) answered keep-1/flip-4; runs 2-3 (divergent + OOB agendas) open |
 | **Created** | 2026-07-18 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor/020-router-unification-program` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -185,3 +185,10 @@ Runs 1-2 answered the practical question. Run 3 must be RADICAL and lateral — 
 7. **Radical simplification.** Is the INTENT_SIGNALS + RESOURCE_MAP two-layer scheme even necessary, or an accident? A minimal replacement.
 8. **Contrarian frame-break.** Argue the entire defaultMode debate is a symptom of a deeper design smell; name the smell and the reframe.
 <!-- /ANCHOR:oob-agenda -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `006-sk-prompt-routing-research` |
+| **Successor** | `008-oob-glm-parallel-research` |

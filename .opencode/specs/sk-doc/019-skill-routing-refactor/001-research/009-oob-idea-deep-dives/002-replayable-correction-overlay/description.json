@@ -1,30 +1,30 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/002-replayable-correction-overlay",
-  "description": "Five-iteration SOL xhigh-fast deep-research lineage on a two-plane learning system for routing: an immutable content-addressed base policy served in",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/002-replayable-correction-overlay",
+  "description": "Routing cannot safely learn by mutating serving rules online because mutable policy destroys deterministic replay",
   "keywords": [
-    "five-iteration",
-    "sol",
-    "xhigh-fast",
-    "deep-research",
-    "lineage",
-    "two-plane",
-    "learning",
-    "system",
     "routing",
-    "immutable",
-    "content-addressed",
-    "base",
+    "cannot",
+    "safely",
+    "learn",
+    "mutating",
+    "serving",
+    "rules",
+    "online",
+    "because",
+    "mutable",
     "policy",
-    "served"
+    "destroys",
+    "deterministic",
+    "replay"
   ],
-  "lastUpdated": "2026-07-23T11:35:31.507Z",
+  "lastUpdated": "2026-07-24T10:53:31.883Z",
   "specId": "002",
   "folderSlug": "replayable-correction-overlay",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "005-oob-idea-deep-dives"
+    "001-research",
+    "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

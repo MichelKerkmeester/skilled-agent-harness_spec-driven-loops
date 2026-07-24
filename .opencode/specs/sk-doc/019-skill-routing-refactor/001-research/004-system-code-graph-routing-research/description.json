@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research",
   "description": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at",
   "keywords": [
     "system-code-graph",
@@ -16,12 +16,13 @@
     "measurement",
     "scaffolding"
   ],
-  "lastUpdated": "2026-07-23T11:35:28.290Z",
-  "specId": "017",
+  "lastUpdated": "2026-07-24T11:02:43.163Z",
+  "specId": "004",
   "folderSlug": "system-code-graph-routing-research",
   "parentChain": [
     "sk-doc",
-    "019-skill-routing-refactor"
+    "019-skill-routing-refactor",
+    "001-research"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

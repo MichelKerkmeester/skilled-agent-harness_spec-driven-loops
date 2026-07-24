@@ -13,7 +13,7 @@ description: "Auto-generated research resource map from convergence evidence."
 - **Total references**: 3
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=3, Specs=0, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: research convergence output for 021-default-mode-policy-research
+- **Scope**: research convergence output for 001-research/007-default-mode-policy-research
 - **Generated**: 2026-07-18T04:18:01.806Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.

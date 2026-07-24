@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/002-router-collision-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/002-router-collision-fixes",
+  "packet_id": "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality work",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-07-23T12:42:18.619Z",
+    "last_save_at": "2026-07-24T11:03:16.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f1c32f20625cccf6cd861c687a26bd27b538146118f71bf7b1cbf2541b6bebb",
+    "source_fingerprint": "sha256:6d810efe2f00dfd9975c54d49402e4a666834f6597e0626329dc81983085d196",
     "source_doc_hashes": {
-      "spec.md": "12b9c3958ff33b0eaf7e142e6b48d2a45af0029ac460f6e1bb71b2a1bd34f320",
-      "plan.md": "32fd6cb09cdce3a93d3607db08691b1bb34e79c223df80d795ff59cafcf16fc0",
-      "tasks.md": "4485b0c398caf53511d7f574c0db1342d733d0b746c7527db11625d969eae416",
-      "checklist.md": "2f0ed5178ee78c4e0ebbca1ac87e2419eaeb676649547f7b91f73767c0a372c3",
-      "decision-record.md": "d406fee16f3ded15cbbf452b37c824c71329af772ea137a7959a7ecb0e142950",
-      "implementation-summary.md": "57d879b350ca4a4596e09e01e0280247022452206d1832122f87f87ecbbefcec"
+      "spec.md": "a631ae1095bd306f98c634322e96bbec9b3791a4b7e304e2e05495032cce3268",
+      "plan.md": "8a5d4b48dad6283700b5bc3cc27da9f02d705179b7dba3963db44c2219f4ffd3",
+      "tasks.md": "8d10df4a6544f8d2ddbb919c42edbc3c03af20b10fd203d658580d8f505713d3",
+      "checklist.md": "205f29c629806afd555f6f0e8d09c7425f3e092def373808dddcbf7676577344",
+      "decision-record.md": "2e7351b00c919c163c4710ebee116fa4616a05c35d8da4c8230cd8662f1e3068",
+      "implementation-summary.md": "a6bd64e4c370c7cb7db236e38306c8e810368d277754d631bc124256d78fdc03"
     },
     "last_active_child_id": null,
     "last_active_at": null

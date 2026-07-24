@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: system-skill-advisor Routing Research"
-description: "Deep-research packet that establishes how system-skill-advisor works, how useful it is (73.08% holdout accuracy, confidence policy-quantized at the 0.82 floor), and how it integrates into skill routing. Surfaces three P0 correctness defects and an unguarded metadata-hub discovery boundary. Hands a prioritized fix plan to sibling packet 013-skill-advisor-routing-fixes."
+description: "Deep-research packet that establishes how system-skill-advisor works, how useful it is (73.08% holdout accuracy, confidence policy-quantized at the 0.82 floor), and how it integrates into skill routing. Surfaces three P0 correctness defects and an unguarded metadata-hub discovery boundary. Hands a prioritized fix plan to sibling packet 012-skill-advisor-routing-fixes."
 trigger_phrases:
   - "skill advisor routing research"
   - "advisor recommend confidence calibration"
@@ -11,11 +11,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research"
     last_updated_at: "2026-07-16T08:20:00Z"
     last_updated_by: "claude"
     recent_action: "Closed research packet with prioritized fix-plan handoff"
-    next_safe_action: "Plan 013-skill-advisor-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 012-skill-advisor-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/research.md"
@@ -50,9 +50,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete (research) |
 | **Created** | 2026-07-16 |
-| **Branch** | `011-skill-advisor-routing-research` |
+| **Branch** | `001-research/002-skill-advisor-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 | **Type** | Research packet (deep-research loop, 10/10 iterations complete) |
 <!-- /ANCHOR:metadata -->
 
@@ -65,14 +65,14 @@ _memory:
 The Tier-2 gpt-5.6-luna skill-benchmark found routing quality is strongly skill-specific, and system-skill-advisor is the front-line router that decides which skill fires. Whether the correct skill is found easily and confidently, at the right moment, depends on the advisor_recommend MCP path's 5-lane RRF fusion confidence pipeline, the 0.05 ambiguity margin, and the compat-contract thresholds that back CLAUDE.md Gate 2 (>=0.8 must-invoke) and Gate 1 (dual-threshold >=0.70 / <=0.35). Going in, it was unestablished whether that confidence was well-calibrated, whether the Claude-side hook brief and its CLI fallback held up when the MCP/daemon transport went unhealthy, whether the hook's shouldFireAdvisor gate and the MCP tool's threshold resolution stayed provably in sync, and whether the advisor's vocabulary stayed aligned with the hubs it routes to.
 
 ### Purpose
-Establish how system-skill-advisor works today, how genuinely useful it is, and how it integrates into skill routing, then produce concrete, implementable improvements. This was a FOUNDATION phase running parallel to sibling packet `010-sk-doc-routing-research`. Its findings needed to land before the remaining per-skill routing phases could be researched.
+Establish how system-skill-advisor works today, how genuinely useful it is, and how it integrates into skill routing, then produce concrete, implementable improvements. This was a FOUNDATION phase running parallel to sibling packet `001-research/001-sk-doc-routing-research`. Its findings needed to land before the remaining per-skill routing phases could be researched.
 
 ### Outcome
 Ten iterations answered all five charter questions with file:line evidence. The advisor is genuinely useful: current-source holdout accuracy sits at 73.08% (57/78) with 85.25% selective precision, and 78.21% coverage means its abstention behavior is meaningful rather than noise. But the confidence number CLAUDE.md Gate 2 treats as an >=0.8 must-invoke signal is dominated by categorical policy floors. The `0.82` task-intent floor led 31% of the full corpus and 48% of the frozen ambiguity slice at only 58-65% plateau correctness, so confidence >=0.8 means "policy floors fired," not "80% posterior."
 
 The research surfaced three P0 correctness defects. The Claude hook's no-brief output contract drifted, leaving 4 of 11 targeted hook tests red. The CLI fallback can starve to 1 millisecond because the primary producer claims the full 2500 ms hook budget before the fallback gets whatever remains. Result-level `ambiguous: true` can coexist with an unattributed leader, because the executor-delegation override mutates rankings after `ambiguousWith` attribution but before the final ambiguity boolean, reproducing on 7 of 8 frozen executor routes. A fourth finding is architectural rather than a bug: routing-registry-drift-guard checks only system-deep-loop's projection, so metadata-routed hubs like sk-doc carry zero advisor-discovery coverage even while their hub-internal vocabulary stays perfectly aligned.
 
-A 12-cell grid over confidence {0.78, 0.80, 0.82} and uncertainty {0.30, 0.35, 0.40} produced identical holdout outcomes, and pushing confidence to 0.84 destroyed 24 points of coverage for 2.85 points of precision. Threshold tuning cannot fix any of the four findings above. The prioritized fix plan (P0-1 through P2-8, `research/research.md` Section 8 through Section 10) hands off to sibling packet `013-skill-advisor-routing-fixes` for implementation.
+A 12-cell grid over confidence {0.78, 0.80, 0.82} and uncertainty {0.30, 0.35, 0.40} produced identical holdout outcomes, and pushing confidence to 0.84 destroyed 24 points of coverage for 2.85 points of precision. Threshold tuning cannot fix any of the four findings above. The prioritized fix plan (P0-1 through P2-8, `research/research.md` Section 8 through Section 10) hands off to sibling packet `012-skill-advisor-routing-fixes` for implementation.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -87,9 +87,9 @@ A 12-cell grid over confidence {0.78, 0.80, 0.82} and uncertainty {0.30, 0.35, 0
 - How routing-registry-drift-guard exercises parity against sk-doc's `hub-router.json` / `mode-registry.json` vocabulary, and whether the advisor's vocabulary stays aligned with the hubs it routes to
 
 ### Out of Scope
-- Applying the fixes. The deliverable here is implementable findings. The build goes to `013-skill-advisor-routing-fixes`
+- Applying the fixes. The deliverable here is implementable findings. The build goes to `012-skill-advisor-routing-fixes`
 - Per-skill routing research beyond the advisor's integration surface, a follow-on set of phases
-- sk-doc hub-internal routing diagnosis, owned by sibling packet `010-sk-doc-routing-research`
+- sk-doc hub-internal routing diagnosis, owned by sibling packet `001-research/001-sk-doc-routing-research`
 
 ### Files to Change
 Research packet, no source changes. Deliverables live under `research/`: `research.md`, `deep-research-dashboard.md`, `findings-registry.json`, `iterations/`, `deltas/`.
@@ -106,7 +106,7 @@ Research packet, no source changes. Deliverables live under `research/`: `resear
 | REQ-002 | Establish how the Claude hook advisor brief works and whether the CLI fallback path survives an unhealthy MCP/daemon transport | Documented fallback chain traced in code with failure-mode evidence | Answered: fallback chain traced (iteration 3). Fallback budget starves to 1 ms and the no-brief output contract drifted, leaving 4/11 hook tests red |
 | REQ-003 | Prove sync or find drift between shouldFireAdvisor gating and MCP threshold resolution | Both call paths traced to compat-contract sources, any divergence named with file:line | Answered: no drift. shouldFireAdvisor is a separate eligibility gate over the same `contract.ts` resolver (iteration 4) |
 | REQ-004 | Assess routing-registry-drift-guard parity coverage against hub vocabulary | Yes/no with the specific missing check named if no | Answered: no. The guard hard-codes system-deep-loop's registry only. Metadata-routed hubs like sk-doc carry zero advisor-discovery coverage (iteration 2) |
-| REQ-005 | Deliver prioritized, implementable improvements to usefulness, confidence calibration, transport resilience, and routing integration | Each improvement names target file(s) and concrete change, tied to an evidenced failure mode | Delivered: P0-1 through P2-8 with target files, verification commands and an acceptance matrix, `research.md` Section 8 through Section 10, handed to `013-skill-advisor-routing-fixes` |
+| REQ-005 | Deliver prioritized, implementable improvements to usefulness, confidence calibration, transport resilience, and routing integration | Each improvement names target file(s) and concrete change, tied to an evidenced failure mode | Delivered: P0-1 through P2-8 with target files, verification commands and an acceptance matrix, `research.md` Section 8 through Section 10, handed to `012-skill-advisor-routing-fixes` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -142,5 +142,12 @@ Research packet, no source changes. Deliverables live under `research/`: `resear
 - Is env-override freezing at module load acceptable for long-lived daemon processes, or should threshold resolution become read-per-call?
 
 ### Research Status
-Complete: 10 of 10 iterations, 5 of 5 key questions answered, zero remaining research frontier within scope. `research/research.md` is the canonical synthesis. See its Section 8 for the prioritized fix plan handed off to `013-skill-advisor-routing-fixes`.
+Complete: 10 of 10 iterations, 5 of 5 key questions answered, zero remaining research frontier within scope. `research/research.md` is the canonical synthesis. See its Section 8 for the prioritized fix plan handed off to `012-skill-advisor-routing-fixes`.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `001-sk-doc-routing-research` |
+| **Successor** | `003-sk-design-routing-research` |

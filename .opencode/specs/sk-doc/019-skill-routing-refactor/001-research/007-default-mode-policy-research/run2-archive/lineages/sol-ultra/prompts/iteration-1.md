@@ -18,12 +18,12 @@ Saturated Directions: re-deriving run 1 without new evidence
 
 ## STATE FILES
 
-- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/iterations/iteration-001.md
-- Write per-iteration delta to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/deltas/iter-001.jsonl
+- Config: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/iterations/iteration-001.md
+- Write per-iteration delta to: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/deltas/iter-001.jsonl
 
 ## CONSTRAINTS
 

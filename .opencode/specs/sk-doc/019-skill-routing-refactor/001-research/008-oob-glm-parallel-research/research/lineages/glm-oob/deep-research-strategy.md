@@ -13,7 +13,7 @@ version: 1
 
 ## 1. TOPIC
 Parent-hub routing, **radical lateral rethinks** over the 8-item out-of-box agenda in
-`.opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/spec.md`. Runs concurrently
+`.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/spec.md`. Runs concurrently
 with the SOL-ultra sibling lineage to diversify the idea space before the combined `021` defaultMode
 synthesis.
 
@@ -26,7 +26,7 @@ flip four hubs (`cli-external-orchestration`, `system-deep-loop`, `mcp-tooling`,
 "detection-defaulted" via a runtime-detection block. Full study: `021/run2-archive/research.md`.
 This lineage must **diverge**, not re-litigate.
 
-### Out-of-box agenda (from `023-oob-glm-parallel/spec.md` §3)
+### Out-of-box agenda (from `001-research/008-oob-glm-parallel-research/spec.md` §3)
 1. **Abolish the hub-router layer** — advisor (Layer 0) picks the mode directly; hubs become pure packet containers.
 2. **Learned / adaptive routing** — weights that update from observed corrections; deterministic-offline learned router.
 3. **Cross-domain analogies** — OS schedulers, IP routers, DNS resolvers, load balancers, a human receptionist.
@@ -167,7 +167,7 @@ New carry-forwards for the combined-021 synthesis (outside this lineage):
 - Per-iteration budget: 12 tool calls, 10 minutes
 - Progressive synthesis: true
 - Convergence mode: off (divergence charter)
-- Artifact dir: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/023-oob-glm-parallel/research/lineages/glm-oob`
+- Artifact dir: `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/research/lineages/glm-oob`
 - All writes confined to this lineage dir
 - Current generation: 1
 - Started: 2026-07-18T06:00:00Z

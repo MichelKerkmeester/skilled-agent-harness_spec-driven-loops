@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance"
     last_updated_at: "2026-07-14T08:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "7/7 packets normalized + verified PASS; committed on the goal worktree branch"
@@ -101,3 +101,10 @@ The canonical nested-packet SKILL.md contract is defined by `.opencode/skills/sk
 
 None. Fix-files-not-checker decision is set by the goal; the substring-match root cause is confirmed against `package_skill.py:232-241`.
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `009-create-benchmark-routing-fix` |
+| **Successor** | `011-sk-doc-routing-fixes` |

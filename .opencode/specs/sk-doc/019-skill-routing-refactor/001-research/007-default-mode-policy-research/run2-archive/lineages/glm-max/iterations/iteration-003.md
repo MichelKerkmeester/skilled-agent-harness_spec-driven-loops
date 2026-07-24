@@ -46,7 +46,7 @@ The mode-menu for disambiguation does not need to be the full machine-readable `
 - `file:.opencode/skills/sk-design/shared/references/smart_routing.md:72-75,146` (DEFAULT_RESOURCE=[]; zero-signal → default or disambiguate)
 - `file:.opencode/skills/sk-design/mode-registry.json:55-118` (aliases are mode-specific, not hub-generic)
 - `file:.opencode/skills/sk-design/hub-router.json` (routerSignals; hub-identity class on modes — the live sk-design over-emission bug)
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md` (Run 1 "load both" recommendation)
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md` (Run 1 "load both" recommendation)
 
 ## Assessment
 

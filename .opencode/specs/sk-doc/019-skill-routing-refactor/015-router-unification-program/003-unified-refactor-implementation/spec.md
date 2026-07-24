@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-Implement the unified router refactor designed by the Opus-4.8 council in the sibling research packet (`../006-unified-refactor-research/unified-refactor-synthesis.md`). The refactor is **not a router rewrite** — it is a shadow compiler plus additive semantic gates, activated one skill at a time behind a fenced activation selector, with legacy serving-authoritative until each gate passes. Route-gold stays green at every step; the shared benchmark scorer is never edited.
+Implement the unified router refactor designed by the Opus-4.8 council in the sibling research packet (`../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`). The refactor is **not a router rewrite** — it is a shadow compiler plus additive semantic gates, activated one skill at a time behind a fenced activation selector, with legacy serving-authoritative until each gate passes. Route-gold stays green at every step; the shared benchmark scorer is never edited.
 
 **Idea 5 (calibrated negotiation) is fully integrated here, not deferred.** The synthesis parked calibration for lack of a held-out corpus; this plan builds that corpus as a first-class sub-phase (`005/001`) so calibrated auto-routing ships as a real capability rather than a future note. The learning overlay (Idea 2) remains optional/offline/last — but is included so "all of it" has a home.
 
@@ -67,6 +67,13 @@ Authority moves in gates, not file conversions. The synthesis's seven migration 
 **Hard constraints (every phase):** deterministic route-gold replay preserved; NEVER touch the shared scorer (`router-replay.cjs`); authority stays destination-local; reversible + gated; no over-emission. Each activation is a fenced CAS on the activation manifest; requests pin one generation; rollback swaps to the byte-identical prior manifest and CANNOT undo an external COMMITted effect (post-effect recovery is destination-owned).
 
 ## RELATED DOCUMENTS
-- **Source design**: `../006-unified-refactor-research/unified-refactor-synthesis.md` + `../006-unified-refactor-research/ai-council/`
-- **The eight fused ideas**: `../001-*` … `../008-*/presentation.md`
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` + `../../001-research/010-unified-refactor-research/ai-council/`
+- **The eight fused ideas**: `../../001-research/009-oob-idea-deep-dives/001-*` … `../../001-research/009-oob-idea-deep-dives/008-*/presentation.md`
 - **Parent Spec**: `../spec.md`
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `002-default-mode-implementation` |
+| **Successor** | `None` |

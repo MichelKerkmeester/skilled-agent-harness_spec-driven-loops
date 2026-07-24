@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
   "description": "Phase parent for implementing the council-synthesized unified router refactor: one content-addressed compiled policy, one closed decision algebra, one",
   "keywords": [
     "phase",
@@ -17,13 +17,13 @@
     "decision",
     "algebra"
   ],
-  "lastUpdated": "2026-07-23T11:35:34.304Z",
-  "specId": "007",
+  "lastUpdated": "2026-07-24T11:02:43.217Z",
+  "specId": "003",
   "folderSlug": "unified-refactor-implementation",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program"
+    "015-router-unification-program"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

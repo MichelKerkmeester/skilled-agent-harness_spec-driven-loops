@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/006-create-skill-router-marker-gap",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/006-create-skill-router-marker-gap",
+  "packet_id": "sk-doc/019-skill-routing-refactor/007-create-skill-router-marker-gap",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/007-create-skill-router-marker-gap",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -104,8 +104,8 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The create-skill conformance checker (`packageskill.py --check`) emits an advisory warning — `SMART ROUTING section missing smart-router marker(s): discovermarkdownresources, guardinskill, UNKNOWNFALLBACK` — on eight of the ten `create-` packets",
     "created_at": "2026-07-13T12:05:59.813Z",
-    "last_save_at": "2026-07-23T12:42:18.273Z",
+    "last_save_at": "2026-07-24T11:03:16.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efb1d6e3d401ab62d9b7ddd61b598578824f46545545a96f01772fa699069447",
+    "source_fingerprint": "sha256:9f1d69ed435055584f0fbbde9068e0506a1934e7cb534ae603385cfbbbb2bb21",
     "source_doc_hashes": {
-      "spec.md": "54fbcefa11f616aca36ab673ceae4ae830b7514672c0483dd70d8b2ba60acbdb",
-      "plan.md": "fc18984bfa005d36f799d5a8d4b5812098b1037507345b3df655c8a280131d3f",
-      "tasks.md": "d6f3330194225bc5140b4527870ac3f6f666b8dc94c35fdd8c0edc17f8fdcc08",
-      "checklist.md": "6feda2d9cc940eb9944ba91133fe2a6a54e914aec46c828209c06f4dd0fd9c3a",
-      "implementation-summary.md": "989b20f62f897d5a334957d6437d1e5a35bc8b726b5c7fbabb341f363f938c1d"
+      "spec.md": "95ea6fae489aa90033240523696eed175ff8e7f73758ecbaa2a66ae36c1ec89d",
+      "plan.md": "ec91f6d5addee2c007e6993aae1775d3787d6fdc347ba49454f2c74ae19569b6",
+      "tasks.md": "992280621f44328a78aea308938ac10c990eb497ad8420b5ff512e5afd46a5ff",
+      "checklist.md": "f36d007cd2073747c2e9d6295fcb98e43c837b6b833a8f4b5c568f3ee5e144fd",
+      "implementation-summary.md": "57acae96123b3b8e6ee55854d6b8d271cb34293ed74dc0c8966dcee812ed8e3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

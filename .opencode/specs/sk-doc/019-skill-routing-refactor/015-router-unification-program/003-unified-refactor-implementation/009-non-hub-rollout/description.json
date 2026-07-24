@@ -1,29 +1,26 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/009-non-hub-rollout",
-  "description": "Coordinate independently verified compiled-policy rollouts for standalone non-hub skills while preserving zero live authority.",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout",
+  "description": "Compile standalone skills that carry their own inline router into the unified policy contract",
   "keywords": [
-    "coordinate",
-    "independently",
-    "verified",
-    "compiled-policy",
-    "rollouts",
+    "compile",
     "standalone",
-    "non-hub",
     "skills",
-    "while",
-    "preserving",
-    "zero",
-    "live",
-    "authority"
+    "carry",
+    "own",
+    "inline",
+    "router",
+    "unified",
+    "policy",
+    "contract"
   ],
-  "lastUpdated": "2026-07-23T11:35:40.409Z",
+  "lastUpdated": "2026-07-24T10:53:31.686Z",
   "specId": "009",
   "folderSlug": "non-hub-rollout",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "007-unified-refactor-implementation"
+    "015-router-unification-program",
+    "003-unified-refactor-implementation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

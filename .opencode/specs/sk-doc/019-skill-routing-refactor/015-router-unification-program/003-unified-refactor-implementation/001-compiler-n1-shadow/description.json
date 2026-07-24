@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/001-compiler-n1-shadow",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow",
   "description": "The fleet has no single, verifiable representation of routing policy",
   "keywords": [
     "fleet",
@@ -9,14 +9,14 @@
     "routing",
     "policy"
   ],
-  "lastUpdated": "2026-07-23T11:35:34.942Z",
+  "lastUpdated": "2026-07-24T10:53:31.617Z",
   "specId": "001",
   "folderSlug": "compiler-n1-shadow",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "007-unified-refactor-implementation"
+    "015-router-unification-program",
+    "003-unified-refactor-implementation"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

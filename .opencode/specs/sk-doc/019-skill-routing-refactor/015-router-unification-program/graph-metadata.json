@@ -1,16 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard",
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/002-default-mode-policy-research",
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/003-default-mode-implementation",
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/004-oob-glm-parallel-research",
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives",
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/006-unified-refactor-research",
-    "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation"
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation"
   ],
   "manual": {
     "depends_on": [],
@@ -35,26 +31,19 @@
       "alignment",
       "parent",
       "router-unification",
-      "every"
+      "3-tier"
     ],
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "006-unified-refactor-research/unified-refactor-synthesis.md",
-      "007-unified-refactor-implementation/spec.md"
+      "003-unified-refactor-implementation/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "unified-refactor-synthesis.md",
-        "kind": "doc",
-        "path": "006-unified-refactor-research/unified-refactor-synthesis.md",
         "source": "derived"
       },
       {
@@ -76,6 +65,12 @@
         "source": "derived"
       },
       {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -86,27 +81,21 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "PHASE DOCUMENTATION MAP",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The fleet router-unification program: from making every skill's router consistent (3-tier standard), through the defaultMode policy question and its shipped fix, through two parallel out-of-box exploration lineages, to the unified router refactor — one compiled policy, one closed decision algebra, one shared recovery budget, destination-local prepare/verify/commit, calibrated negotiation, and an optional offline correction overlay — and its phased implementation plan.",
+    "causal_summary": "The fleet router-unification program: from a 3-tier consistency standard and the defaultMode policy fix through the unified router refactor — one compiled policy, one closed decision algebra, one shared recovery budget, destination-local prepare/verify/commit, calibrated negotiation, and an optional offline correction overlay — with three implementation children. Research evidence is maintained in the sibling 001-research parent.",
     "created_at": "2026-07-18T04:39:04.759Z",
-    "last_save_at": "2026-07-23T15:09:40.321Z",
+    "last_save_at": "2026-07-24T11:03:16.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7cb0007a9ff26de300a58d55fef9e5a4a6e0ea1450a06f6fd26755836497d148",
+    "source_fingerprint": "sha256:00f41d272857a662452c0fd746357a873daf114a4411b45f83d5a001699ffd8c",
     "source_doc_hashes": {
-      "spec.md": "f7ccb8911192c00e30ca764cf99da3ca9692ec94f7705a1425405f446ef0f991"
+      "spec.md": "cdda20627a18ce1161c5d121f1c1b9078ddc11390a6d1a416dafee20e8b610ac"
     },
-    "last_active_child_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation",
-    "last_active_at": "2026-07-19T16:09:54.603Z"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -97,7 +97,7 @@ The question is concretely: **what breaks, what improves, what does the canon be
    which is already shipped. No new artefact.
 
 [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2572,2810-2812,2865-2866]
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread G)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread G)]
 
 ### F4. The real shape of abolition: a tier-split, not a deletion.
 
@@ -138,7 +138,7 @@ in-hub. The radical answer is "in-advisor, for every skill."
 - `.opencode/skills/system-deep-loop/hub-router.json` (7 modes, the hub the advisor already bypasses).
 - `.opencode/skills/sk-doc/create-skill/assets/skill/skill_smart_router.md` — the canonized router
   template abolition would invert.
-- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md`
+- `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md`
   (thread G, A2) — established the "null recreates the disease" second-order risk; abolition changes
   the shape of that risk, doesn't remove it.
 

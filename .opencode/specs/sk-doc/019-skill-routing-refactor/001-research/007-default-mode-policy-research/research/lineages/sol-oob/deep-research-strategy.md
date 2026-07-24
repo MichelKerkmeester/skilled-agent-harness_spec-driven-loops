@@ -300,8 +300,8 @@ Parent-hub routing, out-of-box run 3: radical lateral rethinks over the Out-of-B
 
 ## 12. KNOWN CONTEXT
 
-- The run-3 agenda requires seven non-converging lateral iterations and explicitly invites abolishing hubs, adaptive routing, cross-domain analogies, recoverable handoff, dialogue, confidence-first routing, radical simplification, and a frame-breaking diagnosis. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:107]
-- The packet forbids implementing router changes; proposals must stay research-only. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:59]
+- The run-3 agenda requires seven non-converging lateral iterations and explicitly invites abolishing hubs, adaptive routing, cross-domain analogies, recoverable handoff, dialogue, confidence-first routing, radical simplification, and a frame-breaking diagnosis. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:107]
+- The packet forbids implementing router changes; proposals must stay research-only. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:59]
 - Current hub-router files may already differ from the historical premise, so each iteration must verify the working tree instead of assuming the executive summary is current.
 - Likely integration points: hub `SKILL.md` files, `hub-router.json`, `mode-registry.json`, create-skill parent templates, route-gold replay, and the Layer-0 skill advisor.
 - `resource-map.md` is absent; the coverage-map gate is skipped.

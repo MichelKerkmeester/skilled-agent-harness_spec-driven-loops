@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/004-oob-glm-parallel-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/004-oob-glm-parallel-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -127,16 +127,16 @@
     ],
     "causal_summary": "The prior routing study answered the practical `defaultMode` question, but that answer stayed within the existing parent-hub routing frame",
     "created_at": "2026-07-18T14:47:45.373Z",
-    "last_save_at": "2026-07-23T11:35:30.798Z",
+    "last_save_at": "2026-07-24T11:06:40.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ae0e599f5589b14d9dc4dc14742da2ddca6aab2f1c50346282209096d4ee6d1b",
+    "source_fingerprint": "sha256:d09f496efee62db5d54223032d3c0606756eee6ed55b908ba75f35b08e708921",
     "source_doc_hashes": {
-      "spec.md": "512ae05cf7807460edcfc0c11beef6a2a6ef76f6ec5d8a02ed461e117ff482cd",
+      "spec.md": "5b5d268b118af12a4649f22930af0c2b401466f49ec1ff9cd08e142e4d286677",
       "research/research.md": "3e3ef5843f777dd08f41316c42424f7efd2c7e84f08a088bf9166efd3707dbbb"
     },
     "last_active_child_id": null,

@@ -49,7 +49,7 @@ The crucial refinement of Run 1: **sk-code already demonstrates the "detection-o
 - `file:.opencode/skills/sk-code/SKILL.md:120-122` (detection axis nulls defaultMode; surface detection from environment)
 - `file:.opencode/skills/sk-code/SKILL.md:50-57` (registry-driven routing; advisor routes single identity sk-code, hub picks mode)
 - `file:.opencode/skills/sk-design/mode-registry.json:39-164` (six modes; all discriminators are lexical aliases, no environmental signal)
-- `file:.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run1-archive/research.md` (Run 1's "third archetype" proposal)
+- `file:.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run1-archive/research.md` (Run 1's "third archetype" proposal)
 
 ## Assessment
 

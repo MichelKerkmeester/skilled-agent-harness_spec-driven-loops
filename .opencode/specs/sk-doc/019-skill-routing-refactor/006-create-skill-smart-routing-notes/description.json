@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/005-create-skill-smart-routing-notes",
+  "specFolder": "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes",
   "description": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note",
   "keywords": [
     "request",
@@ -18,8 +18,8 @@
     "honest",
     "note"
   ],
-  "lastUpdated": "2026-07-23T11:35:24.052Z",
-  "specId": "005",
+  "lastUpdated": "2026-07-24T11:02:43.083Z",
+  "specId": "006",
   "folderSlug": "create-skill-smart-routing-notes",
   "parentChain": [
     "sk-doc",

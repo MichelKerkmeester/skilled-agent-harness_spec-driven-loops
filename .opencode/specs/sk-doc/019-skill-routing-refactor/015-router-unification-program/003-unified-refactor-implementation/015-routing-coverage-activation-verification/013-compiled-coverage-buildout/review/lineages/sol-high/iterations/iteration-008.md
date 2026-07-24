@@ -7,7 +7,7 @@
 
 ## Files Reviewed
 - `.opencode/bin/compiled-route-sync.cjs`
-- `.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs`
+- `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs`
 - `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs`
 - Authored and promoted router pairs for sk-code, system-deep-loop, mcp-tooling, cli-external-orchestration, sk-design, and sk-doc
 - Authored and promoted activation manifests for sk-code, sk-design, and sk-doc

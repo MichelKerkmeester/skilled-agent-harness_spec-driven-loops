@@ -77,7 +77,7 @@ because the cost of one wrong default justifies it." NWD says "the cost of a wro
 longer a misroute, it is a handoff — so recompute the inequality." The inequality may flip back,
 but the *terms* changed.
 
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (bottom-line table)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (bottom-line table)]
 
 ### F3. What breaks under NWD (four concrete costs)
 
@@ -99,7 +99,7 @@ but the *terms* changed.
    `skill_md_template.md`) does not have a slot for it; adding it touches every mode template.
 
 [SOURCE: .opencode/skills/sk-doc/create-skill/assets/skill/skill_smart_router.md]
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread D — unmeasured base rate)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread D — unmeasured base rate)]
 
 ### F4. Routing as dialogue (RaD) gives the zero-signal case a shape that is neither silent nor open-ended.
 
@@ -123,7 +123,7 @@ that a wrong pick is recoverable. Run-2's card was a *commitment gate* (no pick 
 RaD's card is a *non-blocking suggestion*.
 
 [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2810-2812]
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread B)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread B)]
 
 ### F5. The unexpected convergence with iteration 2's feedback channel.
 

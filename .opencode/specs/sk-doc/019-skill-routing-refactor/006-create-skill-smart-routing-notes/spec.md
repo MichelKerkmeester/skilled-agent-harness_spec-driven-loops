@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/005-create-skill-smart-routing-notes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes"
     last_updated_at: "2026-07-12T14:23:42Z"
     last_updated_by: "claude-code"
     recent_action: "Complete; verified and pushed to v4"
@@ -37,7 +37,7 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-12 |
 | **Track** | sk-doc |
-| **Sibling** | 009-create-packet-routing-conformance |
+| **Sibling** | 010-create-packet-routing-conformance |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -97,3 +97,10 @@ Packet 015 split the merged Smart Routing header so all 10 sk-doc create-* packe
 
 None. Per-packet wire-vs-note decision resolved by the keyed-subdir analysis (all 7 in scope are keyed:0 → note).
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `005-router-standardization-and-regen` |
+| **Successor** | `007-create-skill-router-marker-gap` |

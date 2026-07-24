@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/006-code-readmes-design-prompt-speckit"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit"
     last_updated_at: "2026-07-22T13:46:50Z"
     last_updated_by: "claude"
     recent_action: "Shipped and validated the thirty-eight in-scope code READMEs; honored the seven exclusions."
@@ -141,7 +141,7 @@ Author a lean per-folder code README for the thirty-eight in-scope folders, sour
 ## RELATED DOCUMENTS
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
-- `../spec.md` and `../context-index.md` (the 021 program parent).
+- `../spec.md` and `../context-index.md` (the 016 program parent).
 - Previous phase: [`005-code-readmes-infra-and-sk`](../005-code-readmes-infra-and-sk/spec.md). Next phase: [`007-code-readmes-deep-loop`](../007-code-readmes-deep-loop/spec.md).
 
 <!-- /ANCHOR:related-docs -->

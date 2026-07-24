@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research"
     last_updated_at: "2026-07-17T05:41:36Z"
     last_updated_by: "opencode"
     recent_action: "Deep-research synthesis + bounded spec findings write-back done"
@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-system-code-graph-routing-research |
+| **Spec Folder** | 001-research/004-system-code-graph-routing-research |
 | **Completed** | 2026-07-17 (100% research scope) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

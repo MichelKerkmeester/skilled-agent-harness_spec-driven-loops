@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/009-titlecase-config-and-closeout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout"
     last_updated_at: "2026-07-22T16:53:38Z"
     last_updated_by: "claude"
     recent_action: "Refined the uppercase check, flipped the config, uppercased 270 headers."
@@ -140,7 +140,7 @@ Refine the validator so the uppercase check only enforces ALL-CAPS on prose word
 ## RELATED DOCUMENTS
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
-- `../spec.md` and `../context-index.md` (the 021 program parent).
+- `../spec.md` and `../context-index.md` (the 016 program parent).
 - Previous phase: [`008-existing-readme-cleanup`](../008-existing-readme-cleanup/spec.md). Next phase: [`010-deferred-code-and-checker-fixes`](../010-deferred-code-and-checker-fixes/spec.md).
 
 <!-- /ANCHOR:related-docs -->

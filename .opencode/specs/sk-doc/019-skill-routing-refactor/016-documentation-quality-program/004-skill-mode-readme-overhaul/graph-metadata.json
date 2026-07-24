@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/004-skill-mode-readme-overhaul",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/004-skill-mode-readme-overhaul",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/004-skill-mode-readme-overhaul",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
     "created_at": "2026-07-22T12:50:05.876Z",
-    "last_save_at": "2026-07-23T12:42:21.885Z",
+    "last_save_at": "2026-07-24T10:55:17.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c54657b73d8ecfcfe03e2d3f4055d33533df55cb63c8bf2d93862c4a1816cb4e",
+    "source_fingerprint": "sha256:f5c3901f5553a6d5f4206b6d17a266bc2f4b1fca632a11ef18b42f08d1893dcc",
     "source_doc_hashes": {
-      "spec.md": "520ec8d759ae0db519c5ff7e7589e270ed7ad1dcd7f5a8e7581aa52ad5b4450c",
-      "plan.md": "80c1414df832140b4b0ca1ff29eb71323c4e9a6ccfe05a6a92a84f3695b4ea2a",
-      "tasks.md": "3c10e1767599e4d3cd1f595c8f22f73586ae1e38df5d7021fe9d84d62d7d9a9f",
-      "checklist.md": "89322b1fa56ef0cb5594adf48256e3309dc7d46d46b7170fd4ea2aee43f93363",
-      "implementation-summary.md": "7abd88d58a1135afe0c13a9da2c3aca417a2f9949fe933c20c022b99f3ab14b2"
+      "spec.md": "ba2a79b8bb8fd95afdb72eafbaf843e218dc552c9017fa72eb22ca352292cecd",
+      "plan.md": "2c4e9bececca6bacdc6a0d53a015981bf0ff0c1688524810fcecb1dcbb8bd5c2",
+      "tasks.md": "15e295ed2c33bc6eaff029c945cc8ef0ca1d944e0ede1e0580697eb1ac13934b",
+      "checklist.md": "12ce832fa4e7992df84a5d763e0e689e325877a113c3d75c1f92ec4be366fc0b",
+      "implementation-summary.md": "01960d0f6540e6020459626be3b9ecac9d3f0b42ea6160b0adb20c6b90948c1a"
     },
     "last_active_child_id": null,
     "last_active_at": null

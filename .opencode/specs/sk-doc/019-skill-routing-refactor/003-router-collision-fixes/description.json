@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/002-router-collision-fixes",
+  "specFolder": "sk-doc/019-skill-routing-refactor/003-router-collision-fixes",
   "description": "README and flowchart packets advertised standalone audit or validation actions even though `create-quality-control` owns existing-document quality",
   "keywords": [
     "readme",
@@ -18,8 +18,8 @@
     "existing-document",
     "quality"
   ],
-  "lastUpdated": "2026-07-23T11:35:22.905Z",
-  "specId": "002",
+  "lastUpdated": "2026-07-24T11:02:43.064Z",
+  "specId": "003",
   "folderSlug": "router-collision-fixes",
   "parentChain": [
     "sk-doc",

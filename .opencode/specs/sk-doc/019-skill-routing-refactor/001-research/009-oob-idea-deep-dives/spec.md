@@ -23,12 +23,12 @@ The `sol-oob` out-of-box research lineage (sibling phase `002-default-mode-polic
 
 The goal is depth-per-idea. Run 3 (in `002`) explored breadth: one iteration per direction. This layer inverts that — one full five-iteration study **per** direction, so each candidate is stress-tested on its own terms. These eight directions are the raw material the unified refactor design (sibling phase `006-unified-refactor-research`) fuses into one coherent contract.
 
-> **Position in the program:** this is the *exploration* layer. Its conclusions live on in the presentations here and, fused, in `../006-unified-refactor-research/`. The raw per-idea research iterations were distilled into those presentations and are not retained verbatim.
+> **Position in the program:** this is the *exploration* layer. Its conclusions live on in the presentations here and, fused, in `../010-unified-refactor-research/`. The raw per-idea research iterations were distilled into those presentations and are not retained verbatim.
 
 ## 3. RESEARCH CONTEXT
 
 Source material (do NOT re-derive): the seven `sol-oob` iterations and their lineage synthesis in
-`../002-default-mode-policy-research/research/lineages/sol-oob/` (`iteration-001.md`..`iteration-007.md` and `research.md`). The prior practical answer — keep sk-prompt, flip four hubs to `defaultMode: null` with a routing-helper fallback — is already implemented in sibling phase `../003-default-mode-implementation/` and is NOT the subject here.
+`../007-default-mode-policy-research/research/lineages/sol-oob/` (`iteration-001.md`..`iteration-007.md` and `research.md`). The prior practical answer — keep sk-prompt, flip four hubs to `defaultMode: null` with a routing-helper fallback — is already implemented in sibling phase `../../015-router-unification-program/002-default-mode-implementation/` and is NOT the subject here.
 
 Each child deepens exactly one direction. The presentation is the operator-facing deliverable; the child research lineage was the evidence that backed (and could revise) it.
 
@@ -59,13 +59,20 @@ Each child deepens exactly one direction. The presentation is the operator-facin
 - The distilled findings of each idea's 5-iteration SOL xhigh-fast deep-research lineage (folded into the presentations).
 
 ### Out of Scope
-- Implementation of any idea (that is the unified plan in `../007-unified-refactor-implementation/`).
-- Re-deriving the run-1/run-2/run-3 `defaultMode` answer already shipped in `../003-default-mode-implementation/`.
+- Implementation of any idea (that is the unified plan in `../../015-router-unification-program/003-unified-refactor-implementation/`).
+- Re-deriving the run-1/run-2/run-3 `defaultMode` answer already shipped in `../../015-router-unification-program/002-default-mode-implementation/`.
 - Any change to live routing config, shared benchmark machinery, or the scorer.
 
 ## RELATED DOCUMENTS
-- **Source research**: `../002-default-mode-policy-research/research/lineages/sol-oob/`
-- **Shipped baseline**: `../003-default-mode-implementation/`
-- **Parallel GLM lineage**: `../004-oob-glm-parallel-research/` → distilled in `../GLM-cross-lineage-notes.md`
-- **Where these ideas were fused**: `../006-unified-refactor-research/`
+- **Source research**: `../007-default-mode-policy-research/research/lineages/sol-oob/`
+- **Shipped baseline**: `../../015-router-unification-program/002-default-mode-implementation/`
+- **Parallel GLM lineage**: `../008-oob-glm-parallel-research/` → distilled in `../GLM-cross-lineage-notes.md`
+- **Where these ideas were fused**: `../010-unified-refactor-research/`
 - **Parent Spec**: `../spec.md`
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `008-oob-glm-parallel-research` |
+| **Successor** | `010-unified-refactor-research` |

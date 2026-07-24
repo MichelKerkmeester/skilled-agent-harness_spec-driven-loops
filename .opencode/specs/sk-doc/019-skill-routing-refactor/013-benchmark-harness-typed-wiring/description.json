@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring",
+  "specFolder": "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
   "description": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real",
   "keywords": [
     "shared",
@@ -18,8 +18,8 @@
     "works",
     "real"
   ],
-  "lastUpdated": "2026-07-23T11:35:27.208Z",
-  "specId": "014",
+  "lastUpdated": "2026-07-24T11:02:43.124Z",
+  "specId": "013",
   "folderSlug": "benchmark-harness-typed-wiring",
   "parentChain": [
     "sk-doc",

@@ -10,19 +10,19 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the eight-phase dependency-ordered implementation plan from research.md Section 8"
     next_safe_action: "Await operator authorization, then start Phase 1 (P0-1 output contract)"
     blockers:
-      - "P1-5 (Phase 5) needs joint fixture design with sibling packet 012-sk-doc-routing-fixes before it starts"
+      - "P1-5 (Phase 5) needs joint fixture design with sibling packet 011-sk-doc-routing-fixes before it starts"
     key_files:
       - "plan.md"
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "013-skill-advisor-routing-fixes-authoring"
+      session_id: "012-skill-advisor-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -58,7 +58,7 @@ The fix lands as eight sequential phases. The first four repair correctness and 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- Research packet `011-skill-advisor-routing-research` is complete with all 10 iterations and a frozen fix plan (confirmed, `research.md` Sections 5-11).
+- Research packet `001-research/002-skill-advisor-routing-research` is complete with all 10 iterations and a frozen fix plan (confirmed, `research.md` Sections 5-11).
 - Operator authorizes implementation start.
 
 ### Definition of Done
@@ -140,7 +140,7 @@ Required inventories:
 - [ ] No scorer weight, floor or margin change in this phase, measurement repair only
 
 ### Phase 5: Metadata-Hub Discovery Battery (P1-5, coordinated with packet 012)
-- [ ] Fixture format and location confirmed jointly with sibling packet `012-sk-doc-routing-fixes` before any fixture file is written
+- [ ] Fixture format and location confirmed jointly with sibling packet `011-sk-doc-routing-fixes` before any fixture file is written
 - [ ] New suite enumerates registry-bearing hubs, one representative prompt plus hard negatives per workflow mode
 - [ ] Fixtures route the hub identity at compat thresholds through the real scorer
 - [ ] `parent-skill-check.cjs` extended to fail when a metadata-routed mode lacks a fixture
@@ -191,8 +191,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Research packet `011-skill-advisor-routing-research` | Internal | Complete | This packet's fix plan is sourced directly from it. No blocking risk expected |
-| Sibling packet `012-sk-doc-routing-fixes` | Internal | Planned | Phase 5 (P1-5) needs joint fixture design before it starts. Do not write fixtures unilaterally |
+| Research packet `001-research/002-skill-advisor-routing-research` | Internal | Complete | This packet's fix plan is sourced directly from it. No blocking risk expected |
+| Sibling packet `011-sk-doc-routing-fixes` | Internal | Planned | Phase 5 (P1-5) needs joint fixture design before it starts. Do not write fixtures unilaterally |
 | Joined calibration evaluator (Phase 4 output) | Internal | Not started | Phase 8 (P2-8) cannot run without it. Nothing downstream of Phase 4 can claim calibration-based done status |
 | `better-sqlite3` native module health | External | Unknown | If the ABI mismatch from the research session persists, Phase 3's live verification runs in filesystem-projection fallback mode. Confirm before claiming REQ-003 done |
 <!-- /ANCHOR:dependencies -->

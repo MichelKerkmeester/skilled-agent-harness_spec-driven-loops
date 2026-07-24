@@ -23,7 +23,7 @@ contextType: "research"
 | Iterations | 7 of 7 |
 | Stop reason | maxIterationsReached |
 | Executor | cli-codex / gpt-5.6-sol / ultra / fast |
-| Spec folder | `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research` |
+| Spec folder | `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research` |
 | Detailed lineage | `research/lineages/sol-oob/` |
 | Questions | 5/5 answered |
 | Detailed findings | 35 in the lineage registry |
@@ -127,7 +127,7 @@ The route decision algebra should expose `single`, `orderedBundle`, `surfaceBund
 ```bash
 node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-code
 node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/system-deep-loop
-node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob --iteration 7 --json
+node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob --iteration 7 --json
 ```
 
 Implementation acceptance additionally needs route-gold fixtures for single, ordered-bundle, surface-bundle, clarify, defer, reject, stale-proof, concurrent-acceptance, mutation-invalidation, and destination-disappearance outcomes.

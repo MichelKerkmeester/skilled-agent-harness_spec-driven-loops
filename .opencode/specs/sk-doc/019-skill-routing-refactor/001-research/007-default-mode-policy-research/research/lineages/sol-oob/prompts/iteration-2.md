@@ -22,12 +22,12 @@ Saturated Directions: practical keep-versus-null tuning and full hub deletion wi
 
 ## STATE FILES
 
-- Config: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/deep-research-config.json
-- State Log: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/deep-research-state.jsonl
-- Strategy: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/deep-research-strategy.md
-- Registry: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/findings-registry.json
-- Write iteration narrative to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-002.md
-- Write per-iteration delta file to: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/deltas/iter-002.jsonl
+- Config: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob/deep-research-config.json
+- State Log: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob/deep-research-state.jsonl
+- Strategy: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob/deep-research-strategy.md
+- Registry: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob/findings-registry.json
+- Write iteration narrative to: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-002.md
+- Write per-iteration delta file to: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob/deltas/iter-002.jsonl
 
 ## CONSTRAINTS
 

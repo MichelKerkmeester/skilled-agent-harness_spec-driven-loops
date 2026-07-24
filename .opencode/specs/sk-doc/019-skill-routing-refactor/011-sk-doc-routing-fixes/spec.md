@@ -10,13 +10,13 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded shared discovery-fixture ownership: this packet owns, 013 consumes read-only"
     next_safe_action: "Kick off Phase 1 (contract library, includes discovery-fixture format/location)"
     blockers:
-      - "Implementation start awaits explicit operator authorization. The 031 parent sequences this after the concurrent skill-advisor routing research (011-skill-advisor-routing-research)"
+      - "Implementation start awaits explicit operator authorization. The 019 parent sequences this after the concurrent skill-advisor routing research (001-research/002-skill-advisor-routing-research)"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -25,7 +25,7 @@ _memory:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "012-sk-doc-routing-fixes-authoring"
+      session_id: "011-sk-doc-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -61,7 +61,7 @@ sk-doc scored 20/100 with roughly 19 percent exact-resource recall on the Tier-2
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
-| **Research Source** | `../010-sk-doc-routing-research/research/research.md` |
+| **Research Source** | `../001-research/001-sk-doc-routing-research/research/research.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,7 +86,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 ### In Scope
 
 - Layer A, the runtime-critical minimum: a pure contract library and manifest generator, hub topology artifacts (`resourceContractVersion`, `leaf-aliases.json`, `leaf-manifest.json`), extended `parent-skill-check.cjs` enforcement, typed-gold migration of all 19 sk-doc scenario fixtures plus a pre-dispatch topology validator, canonical typed-pair emission in `router-replay.cjs` and `executor-dispatch.cjs`, correction of the nine affected packet maps and a scorer/report error taxonomy.
-- **Shared discovery-fixture boundary (with sibling packet `013-skill-advisor-routing-fixes`).** This packet OWNS the single canonical discovery-fixture set for the metadata-hub advisor-discovery boundary. Format is typed gold, the same typed-pair format this packet already uses for its 19 sk-doc scenario fixtures, and location is under the sk-doc tree. Layer A defines the format and location early. Packet 013's P1-5 metadata-hub advisor-discovery battery and `parent-skill-check.cjs` build on top of and consume these fixtures read-only, they do not author a competing set.
+- **Shared discovery-fixture boundary (with sibling packet `012-skill-advisor-routing-fixes`).** This packet OWNS the single canonical discovery-fixture set for the metadata-hub advisor-discovery boundary. Format is typed gold, the same typed-pair format this packet already uses for its 19 sk-doc scenario fixtures, and location is under the sk-doc tree. Layer A defines the format and location early. Packet 013's P1-5 metadata-hub advisor-discovery battery and `parent-skill-check.cjs` build on top of and consume these fixtures read-only, they do not author a competing set.
 - Layer B, authoring doctrine: the `pathContract` declaration in create-skill's hub-router templates and schema doc, plus the second-layer router scaffold and sk-doc's own `shared/references/smart-routing.md`. It also fixes the stale "~34 alias" canon text.
 - The six verification test files these steps introduce or extend and the eight verification commands in Section 9 of the research.
 
@@ -171,7 +171,7 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Contract library (REQ-001) | Every downstream step reads its normalization and canonical-bytes functions. A bug here corrupts the whole chain | Land REQ-001 first, gate it behind its own unit test (command 4), before any consumer starts |
-| Dependency | Sibling packet 011-skill-advisor-routing-research | Operator sequenced this packet's implementation start after that concurrent research finishes | Track via the 031 parent's `graph-metadata.json`. Do not start Phase 1 until authorized |
+| Dependency | Sibling research child 002-skill-advisor-routing-research | Operator sequenced this packet's implementation start after that concurrent research finishes | Track via the 019 parent's `graph-metadata.json`. Do not start Phase 1 until authorized |
 | Risk | Historical 20/100 report has no config fingerprint | It supports the failure profile but cannot attribute today's configs to it | Treat it as directional only. The fresh Mode-B run is the sole proof of repair (SC-002) |
 | Risk | Report evidence truncates responses at 300 characters | SD-015's full 65-path bundle and SD-016's contradiction are not reconstructable after the fact | Accept the gap. Do not retroactively relabel SD-016's gold until a provenance-carrying run exists |
 | Risk | Fixture migration to typed gold could silently corrupt one of 19 scenarios | A bad migration produces a false pass or false fail in the acceptance matrix | Run the topology validator (REQ-004) against every migrated fixture, before the fresh benchmark run |
@@ -262,8 +262,15 @@ Close all three failure classes by giving sk-doc a canonical, enforced leaf-reso
 
 ## RELATED DOCUMENTS
 
-- **Research Source**: `../010-sk-doc-routing-research/research/research.md`
+- **Research Source**: `../001-research/001-sk-doc-routing-research/research/research.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `010-create-packet-routing-conformance` |
+| **Successor** | `012-skill-advisor-routing-fixes` |

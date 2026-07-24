@@ -111,7 +111,7 @@ So a 24-line `routerPolicy` block collapses to a 3-field config plus the vocabul
    is a valid (T, R, P) triple plus a vocabulary table." Today's equivalent assertion would have
    to enumerate every field combination — which is why no such benchmark exists.
 
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (run-2's "directional-pending-measurement" downgrade)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (run-2's "directional-pending-measurement" downgrade)]
 [SOURCE: .opencode/skills/sk-doc/create-skill/assets/skill/skill_smart_router.md (canon)]
 
 ### F4. What breaks (four concrete costs, two of which are about migration)
@@ -135,7 +135,7 @@ So a 24-line `routerPolicy` block collapses to a 3-field config plus the vocabul
    every new skill uses. Rewriting it changes what every new skill inherits. This is a feature
    (F3.2) and a cost (one-shot fleet-wide rewrite).
 
-[SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md (thread C — terra-max one-hub-at-a-time migration)]
+[SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md (thread C — terra-max one-hub-at-a-time migration)]
 [SOURCE: .opencode/skills/sk-doc/hub-router.json:18-24]
 [SOURCE: .opencode/skills/sk-design/hub-router.json:17-23]
 

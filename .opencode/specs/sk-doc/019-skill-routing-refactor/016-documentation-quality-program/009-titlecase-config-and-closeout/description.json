@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/009-titlecase-config-and-closeout",
+  "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout",
   "description": "The `h2UppercaseRequired` config was off for the reference and asset types, so Title-Case header drift only showed in the advisory score",
   "keywords": [
     "h2uppercaserequired",
@@ -16,13 +16,13 @@
     "advisory",
     "score"
   ],
-  "lastUpdated": "2026-07-23T11:35:51.127Z",
+  "lastUpdated": "2026-07-24T11:05:24.995Z",
   "specId": "009",
   "folderSlug": "titlecase-config-and-closeout",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "021-documentation-quality-program"
+    "016-documentation-quality-program"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

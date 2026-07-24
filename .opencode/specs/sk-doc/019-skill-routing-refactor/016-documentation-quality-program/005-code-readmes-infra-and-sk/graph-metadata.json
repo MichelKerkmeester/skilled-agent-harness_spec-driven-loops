@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/005-code-readmes-infra-and-sk",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/005-code-readmes-infra-and-sk",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/005-code-readmes-infra-and-sk",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "A repo-wide scan found one hundred thirty-one code and script folders under `.opencode/skills` that contain source files but no `README.md`, so a developer opening one gets no orientation before reading the code",
     "created_at": "2026-07-22T13:08:27.050Z",
-    "last_save_at": "2026-07-23T12:42:22.755Z",
+    "last_save_at": "2026-07-24T10:55:17.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8bc514ec07ca49de40b4cd7d2fb3f225e2da9b69254ea6bcf7e20a877e920d9",
+    "source_fingerprint": "sha256:9a24b9096a580cfc4292784f99680e544c8a807c1681d59eeaa78ec241b677f2",
     "source_doc_hashes": {
-      "spec.md": "c909cd2a5d1e505ec4d5083fdcb14a3dde25dc43403564cb7180d8ee05d45e03",
-      "plan.md": "653b66debde111dce9db24c01fd5ad17fe0fab198fb58993b411c60a7396b074",
-      "tasks.md": "040e00827cc2c2560c6b3f4014321b814cd619789be3c3d7e72fe8fa8b052174",
-      "checklist.md": "9c699bc87bf80982d2399dde9eb7f2bff284fa65f34e979b084c6dbbacde72b1",
-      "implementation-summary.md": "6ce16754ad2cb333478d5867742cc2ced5cc7a9eaf68b976b751d9e0f4d550d2"
+      "spec.md": "c53978d6ae8c04aaaa0089574000ad335f634ac0d0508f7c8d548f057a662406",
+      "plan.md": "d497b6db5e975b854ecfb514a5e7deb7dc1c20069626aa1659e118fd557d5ffa",
+      "tasks.md": "dc445d8ca5c97ffeb0da0bdd8a706417b90896ef0c70b6b44423e739f8ef9d9b",
+      "checklist.md": "16d257b5a09c4514531dedf8e789095bdbcfc9ed3bfb0193a29b5bd5b889efe6",
+      "implementation-summary.md": "4e78f3e4eea0bfc07c27d4ecadba75efd5ccfc35169a66608aa793c06aabbd84"
     },
     "last_active_child_id": null,
     "last_active_at": null

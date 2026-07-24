@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored eight ADRs from research.md Section 5 decisions and Section 11 alternatives"
@@ -21,7 +21,7 @@ _memory:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "012-sk-doc-routing-fixes-authoring"
+      session_id: "011-sk-doc-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []

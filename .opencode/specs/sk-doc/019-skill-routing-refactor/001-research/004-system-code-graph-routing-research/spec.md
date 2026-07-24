@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the system-code-graph routing-research charter for a bound /deep:research run"
@@ -23,7 +23,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "017-system-code-graph-routing-research-scaffold"
+      session_id: "001-research/004-system-code-graph-routing-research-scaffold"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -45,9 +45,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-07-16 |
-| **Branch** | `017-system-code-graph-routing-research` |
+| **Branch** | `001-research/004-system-code-graph-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 | **Type** | Research packet (deep-research loop, complete) |
 <!-- /ANCHOR:metadata -->
 
@@ -143,3 +143,10 @@ The eight-iteration loop completed at the configured maximum with all five resea
 The recommended target is a standalone `system-code-graph` mode, a versioned four-root leaf contract, deterministic standalone manifest generation, one explicit intent-to-path `RESOURCE_MAP`, and separate compatibility, selected-leaf, support, and navigation channels. Twenty-three of 28 scenarios are eligible for positive typed gold; five remain behavior/integration coverage. No numeric baseline is claimed. The dependency-ordered implementation and promotion gates are canonical in `research/research.md`.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `003-sk-design-routing-research` |
+| **Successor** | `005-system-deep-loop-routing-research` |

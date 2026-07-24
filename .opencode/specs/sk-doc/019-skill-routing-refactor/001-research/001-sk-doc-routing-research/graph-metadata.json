@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/010-sk-doc-routing-research",
-  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
     "created_at": "2026-07-16T07:29:53.884Z",
-    "last_save_at": "2026-07-23T12:42:19.816Z",
+    "last_save_at": "2026-07-24T11:03:16.509Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:176c3cf57edfce5d8f3abe0792541eb5fdd3dd319be046ebe601fdd78a04d417",
+    "source_fingerprint": "sha256:3e467bad675e613ea8ef5795175136c52dbda54ee4fe5db2cad70da40424e7f7",
     "source_doc_hashes": {
-      "spec.md": "7688187ea8c958b6acfbf14d8452ddd55a172fbd4c38696613024b0dfdb97f5e",
-      "plan.md": "31b390086bcd8ddd4dccbd4103a48bf5c9a4ae098a697278644e5deaae33b13a",
-      "tasks.md": "92004096bf3bf93616c00ad2d29310c1f64ffcd0186c91d30120a522fa39653b",
-      "implementation-summary.md": "dbdc9e1298de9941f91e004b49f4ce6216ad26f7153384672444a44005088641",
-      "research/research.md": "f963f43006548f6cb49ac7557dcb7e512f980e85b790acf66432a53657dd5c14"
+      "spec.md": "2071f55315bfb483b8cef0ad4fa8d9a562a16907f908a1fad758662862dfa22a",
+      "plan.md": "2e3f23276758e001d707fbe44d5d219327271f95d236718cf6921c9a434ce9b9",
+      "tasks.md": "1bbccd254fe762e0a9019d0bcd4a7b4e280400f15bd47f77f8f129805c5c554b",
+      "implementation-summary.md": "cc56dc34f17227df6f71a432357d23930eb528ba46015058515f9850d9f28d12",
+      "research/research.md": "991295513681cbb3fb11cd2383afb375bfed66a25360a6aca30ada34f008422e"
     },
     "last_active_child_id": null,
     "last_active_at": null

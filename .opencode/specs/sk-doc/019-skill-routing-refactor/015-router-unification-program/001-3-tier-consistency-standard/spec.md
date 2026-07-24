@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Route-gold gate full-fix: 7/7 hubs PASS (91 scenarios), pushed to v4"
@@ -21,7 +21,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "020-fleet-routing-consistency-authoring"
+      session_id: "015-router-unification-program/001-3-tier-consistency-standard-authoring"
       parent_session_id: null
     completion_pct: 45
     open_questions: []
@@ -56,8 +56,8 @@ This packet makes the in-document routers and the routing JSON artifacts **consi
 | **Status** | In Progress (route-gold gate: 7/7 hubs PASS; REQ-001/002-full/006/007 remain) |
 | **Created** | 2026-07-17 |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
-| **Parent Spec** | ../../spec.md |
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | ../spec.md |
 | **Evidence Source** | This session's fleet inventory scan; 3-model critical review (SOL/LUNA/Fable-5) |
 <!-- /ANCHOR:metadata -->
 
@@ -228,6 +228,13 @@ Fleet-wide: per-unit `SKILL.md` routers, `leaf-manifest.json`/`leaf-manifest.con
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
-- **Parent**: `../../spec.md` (031 router-alignment program)
+- **Parent**: `../../spec.md` (019 skill-routing refactor)
 - **Preceding phases**: `../../015`…`../../019` (per-skill research + the 5 shipped implementations)
 - **Reference**: `../../routing-config-and-advisor-reference.md` (what every routing artifact does)
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `None` |
+| **Successor** | `002-default-mode-implementation` |

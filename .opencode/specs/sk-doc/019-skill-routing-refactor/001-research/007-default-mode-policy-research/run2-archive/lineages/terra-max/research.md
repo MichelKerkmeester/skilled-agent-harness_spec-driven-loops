@@ -12,12 +12,12 @@ The proposed policy consequence is not "default everything to null." It is: trea
 
 - This lineage investigated policy, benchmark, and migration design only.
 - It did not change any shipped `defaultMode`, router signal, registry, benchmark, or canonical parent-packet document.
-- It treats Run 1's per-hub verdict as a baseline to stress-test, not a conclusion to reproduce. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:87-103]
+- It treats Run 1's per-hub verdict as a baseline to stress-test, not a conclusion to reproduce. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:87-103]
 - All artifacts are confined to the detached lineage directory.
 
 ## 3. Method
 
-Five isolated iterations inspected the actual hub router, mode registry, deterministic replay, route-gold benchmark, and existing ambiguity playbook. Each iteration wrote cited evidence, an append-only state record, and a delta before reducer refresh. The investigation used the packet's divergent agenda threads 1, 3, 4, 8, and 10. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:86-103]
+Five isolated iterations inspected the actual hub router, mode registry, deterministic replay, route-gold benchmark, and existing ambiguity playbook. Each iteration wrote cited evidence, an append-only state record, and a delta before reducer refresh. The investigation used the packet's divergent agenda threads 1, 3, 4, 8, and 10. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:86-103]
 
 ## 4. Confirmed Runtime Behavior
 
@@ -78,7 +78,7 @@ Adopt a three-archetype policy at the router-canon level:
 | Defer-routed keyword hub | `defaultMode: null`; explain and ask through a neutral helper |
 | Detection-routed hub | route from a declared contextual detector; defer if its detector is inconclusive |
 
-This preserves the existing pure-router boundary: the parent does not become a mode and no fallback secretly selects a child. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md:59-63] [INFERENCE: derived from the confirmed outcome and identity boundaries]
+This preserves the existing pure-router boundary: the parent does not become a mode and no fallback secretly selects a child. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md:59-63] [INFERENCE: derived from the confirmed outcome and identity boundaries]
 
 ## 11. Contract And Benchmark Proposal
 
@@ -118,7 +118,7 @@ The create-skill parent-hub template should require an explicit archetype, the f
 
 - What compact-card content and token budget measurably improve post-defer resolution without increasing wrong-mode selection?
 - Does the proposed Z/W/A matrix demonstrate stable model behavior under live, blinded scoring?
-- The first state record has `iteration: 1` but `run: 2`; completion and synthesis use the canonical iteration count, while the dashboard displays the duplicate run number. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/terra-max/deep-research-state.jsonl:2]
+- The first state record has `iteration: 1` but `run: 2`; completion and synthesis use the canonical iteration count, while the dashboard displays the duplicate run number. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/terra-max/deep-research-state.jsonl:2]
 
 ## 15. Evidence Limits
 
@@ -126,7 +126,7 @@ No inspected source contains a numeric dominance threshold, a live routing outco
 
 ## 16. References
 
-- Parent research packet and divergent agenda: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/spec.md`
+- Parent research packet and divergent agenda: `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/spec.md`
 - Hub policy and modes: `.opencode/skills/sk-doc/hub-router.json`, `.opencode/skills/sk-doc/mode-registry.json`, `.opencode/skills/sk-doc/SKILL.md`
 - Router and benchmark seams: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs`
 - Existing ambiguity playbook: `.opencode/skills/sk-doc/manual_testing_playbook/unknown_fallback/ambiguous_multi_intent.md`

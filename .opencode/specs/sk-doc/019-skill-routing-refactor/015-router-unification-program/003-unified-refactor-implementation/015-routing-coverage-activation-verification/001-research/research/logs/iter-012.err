@@ -3,7 +3,7 @@
 [0m
 [0m→ [0mRead .opencode/bin/compiled-route.cjs
 [0m
-[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/ 2>/dev/null | head -50
+[0m$ [0mls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/ 2>/dev/null | head -50
 total 40
 drwxr-xr-x@ 21 michelkerkmeester  staff   672 Jul 20 21:09 .
 drwxr-xr-x@ 15 michelkerkmeester  staff   480 Jul 20 19:45 ..
@@ -27,25 +27,25 @@ drwxr-xr-x@  3 michelkerkmeester  staff    96 Jul 20 21:09 015-routing-coverage-
 -rw-r--r--@  1 michelkerkmeester  staff  5007 Jul 20 19:47 graph-metadata.json
 -rw-r--r--@  1 michelkerkmeester  staff  6099 Jul 20 19:45 spec.md
 [0m
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib
-[0m✱ [0mGlob ".opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/**/*.md"[90m 100 matches[0m
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/spec.md
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/tasks.md
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/plan.md
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/014-benchmark-alignment/spec.md
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/012-default-on-decision/decision-record.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib
+[0m✱ [0mGlob ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/**/*.md"[90m 100 matches[0m
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision/tasks.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision/plan.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/014-benchmark-alignment/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision/decision-record.md
 [0m→ [0mRead .opencode/skills/sk-code/benchmark
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json
 [0m
 [0m$ [0mls -la .opencode/skills/sk-code/benchmark/full .opencode/skills/sk-code/benchmark/live-final 2>/dev/null
 .opencode/skills/sk-code/benchmark/full:
@@ -65,7 +65,7 @@ drwxr-xr-x@ 14 michelkerkmeester  staff    448 Jul 20 19:45 ..
 [0m
 [0m→ [0mRead .opencode/skills/sk-code/benchmark/README.md
 [0m
-[0m$ [0mls -la .opencode/skills/sk-code/benchmark/live-final .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark 2>/dev/null | head -80
+[0m$ [0mls -la .opencode/skills/sk-code/benchmark/live-final .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark 2>/dev/null | head -80
 .opencode/skills/sk-code/benchmark/live-final:
 total 40
 drwxr-xr-x@  5 michelkerkmeester  staff    160 Jul 20 19:45 .
@@ -99,7 +99,7 @@ drwxr-xr-x@ 10 michelkerkmeester  staff    320 Jul 20 19:45 ..
 -rw-r--r--@  1 michelkerkmeester  staff  84243 Jul 20 19:45 score-skill-benchmark.cjs
 drwxr-xr-x@ 20 michelkerkmeester  staff    640 Jul 20 19:45 tests
 
-.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code:
+.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code:
 total 56
 drwxr-xr-x@ 9 michelkerkmeester  staff   288 Jul 20 19:45 .
 drwxr-xr-x@ 9 michelkerkmeester  staff   288 Jul 20 19:45 ..
@@ -114,8 +114,8 @@ drwxr-xr-x@ 9 michelkerkmeester  staff   288 Jul 20 19:45 ..
 [0m→ [0mRead .opencode/skills/sk-code/benchmark/live-final/skill-benchmark-report.json[90m [limit=120][0m
 [0m✱ [0mGrep "serving-status|servingStatus|compiled-serving|legacy-fallback|drifted|SERVING_STATUS|status-probe|servingStatus\("[90m in .opencode · 100 matches[0m
 [0m→ [0mRead .opencode/skills/sk-code/benchmark/live-final/d4-ablation.json
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.prior.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/serving-flip-record.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/manifest.prior.json
 [0m✱ [0mGrep "010-live-activation|compiled-serving|legacy-fallback|drifted|readActivationManifest|isCompiledServing"[90m in .opencode · 95 matches[0m
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts[90m [offset=320, limit=100][0m
 [0m→ [0mRead .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs[90m [limit=200][0m
@@ -144,7 +144,7 @@ drwxr-xr-x@ 13 michelkerkmeester  staff     416 Jul 20 19:45 routing-accuracy
 [0m
 [0m→ [0mRead .opencode/skills/sk-code/SKILL.md[90m [offset=40, limit=90][0m
 [0m✱ [0mGrep "SPECKIT_COMPILED_ROUTING|compiledRoute|servingAuthority|advisor_recommend|env-var"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 10 matches[0m
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/013-create-skill-alignment/spec.md
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/013-create-skill-alignment/spec.md
 [0m
 [0m$ [0mls -la .opencode/plugins 2>/dev/null | head -30
 total 672
@@ -174,9 +174,9 @@ drwxr-xr-x@ 24 michelkerkmeester  staff     768 Jul 20 19:45 tests
 [0m→ [0mRead .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs[90m [offset=40, limit=100][0m
 [0m→ [0mRead .opencode/plugins/mk-skill-advisor.js[90m [offset=820, limit=100][0m
 [0m
-[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model 2>/dev/null | head -20
+[0m$ [0mls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model 2>/dev/null | head -20
 echo "---"
-ls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code 2>/dev/null
+ls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code 2>/dev/null
 echo "---"
 ls -la .opencode/skills/sk-code/benchmark/full 2>/dev/null | head -10
 total 40
@@ -224,11 +224,11 @@ drwxr-xr-x@ 14 michelkerkmeester  staff    448 Jul 20 19:45 ..
 -rw-r--r--@  1 michelkerkmeester  staff  75186 Jul 20 19:45 skill-benchmark-report.json
 -rw-r--r--@  1 michelkerkmeester  staff   4082 Jul 20 19:45 skill-benchmark-report.md
 [0m
-[0m→ [0mRead .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/verdict.json
+[0m→ [0mRead .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/verdict.json
 [0m
-[0m$ [0mls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw 2>/dev/null
+[0m$ [0mls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw 2>/dev/null
 echo "---"
-ls -la .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna 2>/dev/null | head -20
+ls -la .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/real-model/sk-code/raw/luna 2>/dev/null | head -20
 total 96
 drwxr-xr-x@ 14 michelkerkmeester  staff  448 Jul 20 19:45 .
 drwxr-xr-x@  4 michelkerkmeester  staff  128 Jul 20 19:45 ..
@@ -248,7 +248,7 @@ drwxr-xr-x@  4 michelkerkmeester  staff  128 Jul 20 19:45 ..
 [0m
 [0m✱ [0mGrep "SPECKIT_"[90m in .opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md · 100 matches[0m
 [0m
-[0m$ [0mcat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json 2>/dev/null | python3 -m json.tool 2>/dev/null | head -80
+[0m$ [0mcat .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/sk-code/activation-record.json 2>/dev/null | python3 -m json.tool 2>/dev/null | head -80
 {
     "activated": true,
     "candidatePolicy": {
@@ -332,10 +332,10 @@ drwxr-xr-x@  4 michelkerkmeester  staff  128 Jul 20 19:45 ..
 [0m
 [0m$ [0mfor hub in cli-external-orchestration mcp-tooling sk-code sk-design sk-doc sk-prompt system-deep-loop; do
   echo "=== $hub ==="
-  cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/manifest.json 2>/dev/null
+  cat .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/$hub/manifest.json 2>/dev/null
   echo ""
-  echo "fence: $(cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/fence-state.json 2>/dev/null)"
-  echo "serving-flip: $(cat .opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/010-live-activation/activation/$hub/serving-flip-record.json 2>/dev/null)"
+  echo "fence: $(cat .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/$hub/fence-state.json 2>/dev/null)"
+  echo "serving-flip: $(cat .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/010-live-activation/activation/$hub/serving-flip-record.json 2>/dev/null)"
   echo ""
 done
 === cli-external-orchestration ===

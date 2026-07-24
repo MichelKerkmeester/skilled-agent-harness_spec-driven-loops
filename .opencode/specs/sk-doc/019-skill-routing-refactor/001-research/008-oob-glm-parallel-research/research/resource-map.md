@@ -32,7 +32,7 @@
 | `.opencode/skills/cli-external-orchestration/hub-router.json` | CLI hub routing policy |
 | `.opencode/skills/system-deep-loop/hub-router.json` | Deep-loop routing policy |
 | `.opencode/skills/sk-doc/create-skill/assets/skill/skill_smart_router.md` | Canonical smart-router template |
-| `.opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/run2-archive/research.md` | Prior answer and evidence boundary |
+| `.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/run2-archive/research.md` | Prior answer and evidence boundary |
 
 ## Coverage Note
 

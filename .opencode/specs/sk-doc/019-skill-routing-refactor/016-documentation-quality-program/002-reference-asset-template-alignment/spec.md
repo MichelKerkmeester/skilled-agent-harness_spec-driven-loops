@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/002-reference-asset-template-alignment"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/002-reference-asset-template-alignment"
     last_updated_at: "2026-07-22T12:29:01Z"
     last_updated_by: "claude"
     recent_action: "Renamed 15 headers to ALL-CAPS and restructured the asset file; all three now VALID."
@@ -138,7 +138,7 @@ Bring the three files into conformance so they match the standard the template a
 ## RELATED DOCUMENTS
 
 - `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` (this phase).
-- `../spec.md` and `../context-index.md` (the 021 program parent).
+- `../spec.md` and `../context-index.md` (the 016 program parent).
 - Previous phase: [`001-json-cleanup-and-conventions`](../001-json-cleanup-and-conventions/spec.md). Next phase: [`003-doc-tooling-and-template-fixes`](../003-doc-tooling-and-template-fixes/spec.md).
 
 <!-- /ANCHOR:related-docs -->

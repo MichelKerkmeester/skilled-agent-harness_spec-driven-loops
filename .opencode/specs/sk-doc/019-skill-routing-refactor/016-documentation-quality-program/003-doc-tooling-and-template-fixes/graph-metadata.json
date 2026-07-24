@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/003-doc-tooling-and-template-fixes",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/003-doc-tooling-and-template-fixes",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The documented top-level validator path `sk-doc/scripts/validatedocument.py` is a symlink to the real `sk-doc/shared/scripts/validatedocument.py`",
     "created_at": "2026-07-22T12:21:14.835Z",
-    "last_save_at": "2026-07-23T12:42:23.096Z",
+    "last_save_at": "2026-07-24T11:06:41.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7ec1ef6cf03c096f49bf5720e8d5d166045fa5f9a2a9553cc432a87a23f83a0",
+    "source_fingerprint": "sha256:0ea57c7402170969200d7468f1dbe3bd8ca9ad94efbeb00dc852f2db9ec23480",
     "source_doc_hashes": {
-      "spec.md": "b5f04b1119449e582e62e1618ea81363de64bff593c7389c3428becca2e63fb5",
-      "plan.md": "d992d6b4c807460919858fa58eb7fe9591f7f6737caab12793f83b17da17141f",
-      "tasks.md": "93065bc1a143b3a176ebc9718572beba593368dcf46720a981ea9908f4149904",
-      "checklist.md": "5fcc4514262e8bf1d72ac2c6f6e156738d5b5bd55bf7a9b8b365a41ee12004ed",
-      "implementation-summary.md": "8dd623db82fc1894c69506ec54a3ac9857861bca01e3266279a1ba4e451945ae"
+      "spec.md": "9f8836abe31c3192cc59c36074fbf3edddc1300a36e6a54d01acc74b5137f2ce",
+      "plan.md": "afa96afaa7196167700c2070b34edd88cb804500b00027892c1a9c76058ff59b",
+      "tasks.md": "b2dd68c9e483a7f70718e67f036134203afe57cabd4ebf066a2b30e62f344fcf",
+      "checklist.md": "9351c62813f5bdb03787d3be756efd04b33047ea685ce31a5c1516eebd5b226d",
+      "implementation-summary.md": "d2fee82acb09327236848a12e2d73d2632592b04fc19af08584d6860962c00d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

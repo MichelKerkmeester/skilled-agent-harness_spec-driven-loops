@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Out-of-Box Routing Research — GLM Parallel Lineage"
-description: "A parallel GLM-5.2-max out-of-box research lineage (5 iterations, non-converge, lateral) run alongside the SOL-ultra lineage in packet 021, so two models explore radical routing rethinks concurrently. Findings merge into the 021 defaultMode synthesis."
+description: "A parallel GLM-5.2-max out-of-box research lineage (5 iterations, non-converge, lateral) run alongside the SOL-ultra lineage in research child 007, so two models explore radical routing rethinks concurrently. Findings merge into the 007 defaultMode synthesis."
 trigger_phrases:
   - "out-of-box routing glm parallel"
   - "glm-5.2 lateral routing ideas"
@@ -14,7 +14,7 @@ contextType: "research"
 
 ## EXECUTIVE SUMMARY
 
-A second, concurrent out-of-box research lineage (GLM-5.2 at max effort, via opencode) exploring the same radical/lateral agenda as the SOL-ultra lineage in the sibling packet `021`. Two models explore in parallel to diversify the idea space. Prior answer (do NOT re-derive): keep sk-prompt, flip four hubs to `defaultMode: null` with a routing-helper fallback; the full study is in `../002-default-mode-policy-research/run2-archive/research.md`.
+A second, concurrent out-of-box research lineage (GLM-5.2 at max effort, via opencode) exploring the same radical/lateral agenda as the SOL-ultra lineage in sibling `../007-default-mode-policy-research/`. Two models explore in parallel to diversify the idea space. Prior answer (do NOT re-derive): keep sk-prompt, flip four hubs to `defaultMode: null` with a routing-helper fallback; the full study is in `../007-default-mode-policy-research/run2-archive/research.md`.
 
 ---
 
@@ -158,3 +158,10 @@ Canonical synthesis: `research/research.md`.
 - **Delivery summary**: See `implementation-summary.md`
 - **Canonical synthesis**: `research/research.md`
 - **Detailed lineage report**: `research/lineages/glm-oob/research.md`
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `007-default-mode-policy-research` |
+| **Successor** | `009-oob-idea-deep-dives` |

@@ -1,22 +1,22 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
-  "description": "The fleet router-unification program: from making every skill's router consistent (3-tier standard), through the defaultMode policy question and its",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "description": "The fleet router-unification program: from a 3-tier consistency standard and the defaultMode policy fix through the unified router refactor — one",
   "keywords": [
     "fleet",
     "router-unification",
     "program",
-    "every",
-    "skill",
-    "router",
-    "consistent",
     "3-tier",
+    "consistency",
     "standard",
     "defaultmode",
     "policy",
-    "question"
+    "unified",
+    "router",
+    "refactor",
+    "one"
   ],
-  "lastUpdated": "2026-07-23T11:35:29.336Z",
-  "specId": "020",
+  "lastUpdated": "2026-07-24T11:02:43.135Z",
+  "specId": "015",
   "folderSlug": "router-unification-program",
   "parentChain": [
     "sk-doc",

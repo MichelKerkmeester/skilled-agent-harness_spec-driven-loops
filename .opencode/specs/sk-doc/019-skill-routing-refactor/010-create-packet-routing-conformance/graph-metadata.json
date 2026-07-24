@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance",
+  "packet_id": "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check): split the merged 'WHEN TO USE + SMART_ROUTING' header into separate WHEN TO USE and SMART ROUTING H2s, ensure a REFERENCES H2, add missing keyword-trigger and SUCCESS CRITERIA content, renumber, version-bump, and changelog. Fix the files, not the validator.",
     "created_at": "2026-07-12T10:23:20.067Z",
-    "last_save_at": "2026-07-23T12:42:19.634Z",
+    "last_save_at": "2026-07-24T11:03:16.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:286b2223d4298f961c517769688b42776075c38d7c6e5c52b2c31bb8ceef2980",
+    "source_fingerprint": "sha256:4da2fa0abfe3f220c0cdcc265455b65cd66dca9cff8eb406ed4952e8e47e2eed",
     "source_doc_hashes": {
-      "spec.md": "b4bd7fc575478cab0a054c841ec530e160339e16f4194a2526764b2107863b08",
-      "plan.md": "54f6fb76453ca024b8548c8de414a823c334111d769e78888e11033b826cc181",
-      "tasks.md": "1f94925bace39ddb1d303e4317d85eba1e33b7350ca6d067b348e16f02dd6689",
-      "checklist.md": "836cdd8b72a0eab4b53db9ca8d75423c7379908716414edd83b506a78493c26e",
-      "implementation-summary.md": "cf685afd68c3463f25b892287863719ffea973875b716b0111687d01003636be"
+      "spec.md": "18428b7375d388978ed2adc9d9a2976113361d34daea7af9b7501b194a1b159b",
+      "plan.md": "4d8f0e07220aae5d2258716621b438d38ce536a0a7c1d01b4b1cf59eaa3bf603",
+      "tasks.md": "893912e8dbe45b08e9d25da4d797316efdbbe8aa2ae3f0dc4ea0e8c8b3ee7f40",
+      "checklist.md": "d26c9def6772a98435a9ea2bdd599e864e14acdf8361051526b2a556c0addd60",
+      "implementation-summary.md": "e682d00eef35f0d7082822b4867d3c39cfc7c6b9a295c8c2e5bb197691d7a635"
     },
     "last_active_child_id": null,
     "last_active_at": null

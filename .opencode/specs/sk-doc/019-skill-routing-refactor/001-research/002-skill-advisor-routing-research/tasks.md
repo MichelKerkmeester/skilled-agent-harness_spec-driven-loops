@@ -8,11 +8,11 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/011-skill-advisor-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research"
     last_updated_at: "2026-07-16T08:20:00Z"
     last_updated_by: "claude"
     recent_action: "Authored tasks.md documenting the executed iteration workplan"
-    next_safe_action: "Plan 013-skill-advisor-routing-fixes against research.md Section 8"
+    next_safe_action: "Plan 012-skill-advisor-routing-fixes against research.md Section 8"
     blockers: []
     key_files:
       - "research/iterations/iteration-001.md"

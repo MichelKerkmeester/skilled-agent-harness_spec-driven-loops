@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Rewrote 014 to the ratified Option 3 collapse (ADR-005)"
@@ -25,7 +25,7 @@ _memory:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "014-benchmark-harness-typed-wiring-authoring"
+      session_id: "013-benchmark-harness-typed-wiring-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -42,7 +42,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Sibling packet `012-sk-doc-routing-fixes` built a sound typed-pair namespace foundation (contract library, `leaf-manifest.json`, aliases, guards) and a hand-authored `smart_routing.md` that resolved 18 of 19 fixtures to their typed gold under deterministic router-replay. An independent GPT-5.6-SOL review, adversarially verified against the committed tree, established that the 18/19 is a **fitted replay artifact**: it bypasses the 2-mode dispatch cap, and through the real dispatcher core scenarios resolve to **zero** leaves and collapse entirely off the 19 fixtures. The verification ledger closed at **8 findings confirmed, 3 plausible, 1 refuted** — no core finding was refuted.
+Sibling packet `011-sk-doc-routing-fixes` built a sound typed-pair namespace foundation (contract library, `leaf-manifest.json`, aliases, guards) and a hand-authored `smart_routing.md` that resolved 18 of 19 fixtures to their typed gold under deterministic router-replay. An independent GPT-5.6-SOL review, adversarially verified against the committed tree, established that the 18/19 is a **fitted replay artifact**: it bypasses the 2-mode dispatch cap, and through the real dispatcher core scenarios resolve to **zero** leaves and collapse entirely off the 19 fixtures. The verification ledger closed at **8 findings confirmed, 3 plausible, 1 refuted** — no core finding was refuted.
 
 This packet makes the typed contract actually flow end-to-end and, critically, makes routing quality **falsifiable** against blind scenarios before it is propagated to any other skill.
 
@@ -64,7 +64,7 @@ This packet makes the typed contract actually flow end-to-end and, critically, m
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
-| **Evidence Source** | Verified SOL-redirect ledger (this session); `../012-sk-doc-routing-fixes/decision-record.md` |
+| **Evidence Source** | Verified SOL-redirect ledger (this session); `../011-sk-doc-routing-fixes/decision-record.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -111,7 +111,7 @@ Make the typed routing contract flow through the real dispatch path (not just re
 - **Deleting the hub keyword pass entirely.** ADR-005 demotes it to shadow telemetry (it still feeds the `intentRecall`/`hubRoute` dimensions); removing it outright is deferred until the telemetry shows it earns no independent value.
 - **Wave-2 propagation to sk-code, sk-design, system-code-graph, system-deep-loop, sk-prompt.** Explicitly held until this packet's gates pass. Copying the fitted `smart_routing.md` pattern into five more skills is forbidden until then.
 - **Re-authoring 012's contract library internals.** 012's namespace/topology foundation is sound and reused as-is, except for the relocation and the two minor fixes named above.
-- **Record correction of 012's "18/19 fixed" claim.** That belongs in `012-sk-doc-routing-fixes` (its tasks and completion metadata), cross-referenced from here, not re-litigated in this packet.
+- **Record correction of 012's "18/19 fixed" claim.** That belongs in `011-sk-doc-routing-fixes` (its tasks and completion metadata), cross-referenced from here, not re-litigated in this packet.
 
 ### Files to Change
 
@@ -296,10 +296,17 @@ Make the typed routing contract flow through the real dispatch path (not just re
 ## RELATED DOCUMENTS
 
 - **Evidence Source**: The verified SOL-redirect ledger (this session)
-- **Preceding phase (map order)**: `../013-skill-advisor-routing-fixes/spec.md`
+- **Preceding phase (map order)**: `../012-skill-advisor-routing-fixes/spec.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-- **Sibling (record correction)**: `../012-sk-doc-routing-fixes`
-- **Parent**: `../spec.md` (031 router-alignment program)
+- **Sibling (record correction)**: `../011-sk-doc-routing-fixes`
+- **Parent**: `../spec.md` (019 skill-routing refactor)
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `012-skill-advisor-routing-fixes` |
+| **Successor** | `014-sk-code-router-alignment` |

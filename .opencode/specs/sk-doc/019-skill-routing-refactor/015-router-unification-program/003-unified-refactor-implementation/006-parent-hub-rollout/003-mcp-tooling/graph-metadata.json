@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/006-parent-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The three preceding parent-hub activations (`sk-code`, `system-deep-loop`) exercise evidence composition (`surfaceBundle`) and shared-packet/backend projections, but none of them has an effect-ordered transport chain or a cross-hub judgment approval that must precede an external commit",
     "created_at": "2026-07-18T13:13:20.120Z",
-    "last_save_at": "2026-07-23T11:35:38.494Z",
+    "last_save_at": "2026-07-24T10:52:39.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

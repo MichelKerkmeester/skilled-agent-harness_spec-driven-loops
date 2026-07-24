@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/009-create-packet-routing-conformance"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance"
     last_updated_at: "2026-07-14T08:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All checklist items verified with evidence"

@@ -4,7 +4,7 @@ Headline: P4 cannot make compiled routing effective in the OpenCode hook as writ
 
 Nine direct absent→legacy consumers:
 
-- Runtime resolver: flag must equal `'1'`; missing or malformed manifests resolve to legacy, and all non-serving states return `null`. `.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:22-46`
+- Runtime resolver: flag must equal `'1'`; missing or malformed manifests resolve to legacy, and all non-serving states return `null`. `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs:22-46`
 - Public front door converts that `null` or any throw into the legacy sentinel. `.opencode/bin/compiled-route.cjs:32-39`
 - Advisor enrichment returns legacy output unless the flag equals `'1'`, then drops the sentinel. `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts:326-373`
 - Seven agent-facing hub directives independently say “invoke compiled only when `=1`; otherwise use legacy”: `cli-external-orchestration/SKILL.md:41-45`, `mcp-tooling/SKILL.md:44-48`, `sk-code/SKILL.md:52-56`, `sk-design/SKILL.md:56-60`, `sk-doc/SKILL.md:50-54`, `sk-prompt/SKILL.md:36-40`, and `system-deep-loop/SKILL.md:40-44`.

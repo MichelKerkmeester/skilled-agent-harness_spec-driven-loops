@@ -1,28 +1,24 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/005-oob-idea-deep-dives/006-minimal-typed-contract",
-  "description": "Five-iteration SOL xhigh-fast deep-research lineage on the smallest information-preserving router contract — RouteRequest facts + content-addressed",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/006-minimal-typed-contract",
+  "description": "`defaultMode` conflates missing evidence, a policy prior, and authority to execute",
   "keywords": [
-    "five-iteration",
-    "sol",
-    "xhigh-fast",
-    "deep-research",
-    "lineage",
-    "smallest",
-    "information-preserving",
-    "router",
-    "contract",
-    "routerequest",
-    "facts",
-    "content-addressed"
+    "defaultmode",
+    "conflates",
+    "missing",
+    "evidence",
+    "policy",
+    "prior",
+    "authority",
+    "execute"
   ],
-  "lastUpdated": "2026-07-23T11:35:32.996Z",
+  "lastUpdated": "2026-07-24T10:53:31.888Z",
   "specId": "006",
   "folderSlug": "minimal-typed-contract",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "020-router-unification-program",
-    "005-oob-idea-deep-dives"
+    "001-research",
+    "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

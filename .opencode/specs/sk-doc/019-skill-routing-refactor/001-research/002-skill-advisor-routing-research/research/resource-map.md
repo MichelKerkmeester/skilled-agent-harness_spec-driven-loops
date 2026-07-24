@@ -13,7 +13,7 @@ description: "Auto-generated research resource map from convergence evidence."
 - **Total references**: 0
 - **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=0, Specs=0, Scripts=0, Tests=0, Config=0, Meta=0
 - **Missing on disk**: 0
-- **Scope**: research convergence output for 011-skill-advisor-routing-research
+- **Scope**: research convergence output for 001-research/002-skill-advisor-routing-research
 - **Generated**: 2026-07-16T07:46:48.381Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.

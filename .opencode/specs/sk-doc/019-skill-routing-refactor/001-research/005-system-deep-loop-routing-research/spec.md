@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/018-system-deep-loop-routing-research"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the system-deep-loop routing-research charter for a bound /deep:research run"
@@ -23,7 +23,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "018-system-deep-loop-routing-research-scaffold"
+      session_id: "001-research/005-system-deep-loop-routing-research-scaffold"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -45,9 +45,9 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-07-16 |
-| **Branch** | `018-system-deep-loop-routing-research` |
+| **Branch** | `001-research/005-system-deep-loop-routing-research` |
 | **Track** | sk-doc |
-| **Parent** | `sk-doc/019-skill-routing-refactor` |
+| **Parent** | `sk-doc/019-skill-routing-refactor/001-research` |
 | **Type** | Research packet (deep-research loop, pending) |
 <!-- /ANCHOR:metadata -->
 
@@ -57,7 +57,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous. It is a parent hub with seven `workflowModes` (research, review, ai-council, alignment, and the improvement/benchmark modes) spread over five child packets. Its per-mode pseudocode routers emit flat, child-relative leaf paths that are not packet-qualified, so the same relative leaf ID (`references/README.md` and similar) is non-unique across the five children — the exact coordinate-collision class that the sk-doc research (packet 010) identified as its wrong-path-root failure. The committed baseline aggregate is roughly 71, and none of the roughly 319 playbook scenarios carry typed gold, so the typed-pair and mode-routing dimensions never compute across the largest scenario surface of any skill in the program.
+system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous. It is a parent hub with seven `workflowModes` (research, review, ai-council, alignment, and the improvement/benchmark modes) spread over five child packets. Its per-mode pseudocode routers emit flat, child-relative leaf paths that are not packet-qualified, so the same relative leaf ID (`references/README.md` and similar) is non-unique across the five children — the exact coordinate-collision class that the research child 001-sk-doc-routing-research identified as its wrong-path-root failure. The committed baseline aggregate is roughly 71, and none of the roughly 319 playbook scenarios carry typed gold, so the typed-pair and mode-routing dimensions never compute across the largest scenario surface of any skill in the program.
 
 ### Purpose
 Diagnose system-deep-loop's routing on the typed-pair surface and apply the sk-doc typed-pair routing optimizations: packet-qualify the child-relative leaf paths so `(workflowMode, leafResourceId)` pairs are unique across the five children, generate a leaf-manifest, and stand up manifest-gated typed gold on the genuine routing scenarios. This packet is the diagnosis; it hands a prioritized, implementable fix plan to a sibling implementation packet.
@@ -144,3 +144,10 @@ The ten-iteration research loop confirmed that canonical routing identity is `{w
 The production loader currently recognizes 21 routing rows; repairing the hub index should yield 39 normalized rows total (35 routing and 4 browser). A proposed seven-mode seed comprises `MR-001..003`, `IL-001..003`, and new alignment scenario `DA-R01`, with 43 candidate typed pairs requiring author approval. Implementation is ordered through loader support, index repair, manifest generation, typed-gold authoring, topology validation, hub resource routing, fallback regression gates, and same-corpus benchmark comparison. `research/research.md` is canonical for the full evidence and acceptance matrix.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `004-system-code-graph-routing-research` |
+| **Successor** | `006-sk-prompt-routing-research` |

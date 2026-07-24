@@ -16,8 +16,8 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
-  "fanout_lineage_artifact_dir": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob",
+  "specFolder": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
+  "fanout_lineage_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-oob",
   "resource_map_present": false,
   "resource_map": {
     "emit": true

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -127,17 +127,17 @@
     ],
     "causal_summary": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
     "created_at": "2026-07-18T14:47:46.609Z",
-    "last_save_at": "2026-07-23T12:42:21.713Z",
+    "last_save_at": "2026-07-24T11:06:40.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c038029df45cb071ba8d4586f1874a5c7f3a193f3501ebe609528289678bbca7",
+    "source_fingerprint": "sha256:4a7d98cb02017cc7aa83cc5627b535793337c40ec22238da7641b95b17d397b7",
     "source_doc_hashes": {
-      "spec.md": "5efb832601f6a78e18f118770f99880183c378b2139a316c5a56683381e58545",
-      "implementation-summary.md": "76dbe2b98c400e3aebac53fc952cbea40302f6db5df63f61a871f766eb19bd58"
+      "spec.md": "edcb689ffb2cdcff7853570b06361e13ba3b496926c63b09bd54506fbffdbc5a",
+      "implementation-summary.md": "70b8e1c83a7d5caf1d477fd2cc1411c51145d367fe9c4d9b77e4d42b78629119"
     },
     "last_active_child_id": null,
     "last_active_at": null

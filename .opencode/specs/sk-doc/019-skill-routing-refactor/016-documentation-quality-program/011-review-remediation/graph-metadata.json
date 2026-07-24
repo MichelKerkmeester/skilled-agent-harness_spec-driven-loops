@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/011-review-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program/011-review-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/021-documentation-quality-program",
+  "packet_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The forced 20-iteration deep review of the 021 program returned FAIL",
     "created_at": "2026-07-22T20:53:39.733Z",
-    "last_save_at": "2026-07-23T12:42:22.215Z",
+    "last_save_at": "2026-07-24T10:55:17.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7d64030c204194c463c658094885e4cce1e7d8b457f660d8595af4aa5917ce6",
+    "source_fingerprint": "sha256:e02d63f08dbbf59e8c50b4b4fa29f6b7ae7d9b44952a4027fd3c220bff59e79a",
     "source_doc_hashes": {
-      "spec.md": "ab5e9cfc38beccabb3fa12dcb4075bb9ca2573f7ac391cc381b25cfa038c6103",
-      "plan.md": "79bc16ee3eed36a2236da447c48ebdb62c143076a8caf40c30a92f7116c2c9ca",
-      "tasks.md": "e7e9f16db725060640285136f79143d0e6b7e10c604a5ef070208d0ce6ae0698",
-      "checklist.md": "5970e96469ec687f15d9a01ed68a55a651e21c6c7ba836e01c77b64b42f6bb8f",
-      "implementation-summary.md": "3e7e38ff0f9729e9d3de3d0197f037a879dd32756289c4356b9170174889f104"
+      "spec.md": "0c45087dbd7e406ca94d6532c4fec3f7153a6630074610168eb36d3987ffca95",
+      "plan.md": "bb8f7b24a2e50cff25a004eceb8d359a9c15d474f35048e295e32f20d5060773",
+      "tasks.md": "5f7d801523cdb42f500ffd41e996d22bcbad4b7fe05f0be91ab57e9b6a20d879",
+      "checklist.md": "aa7bd3fbd02acd9f8da5430f92831ed3ac2adcab63962d29f1a74f07ee2cdefd",
+      "implementation-summary.md": "180866c830ee373ab55a71b6c823ad9cc38a228f79b34bceb7f5cf5e16b95233"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -23,7 +23,7 @@
 {"type":"invariant","id":"inv-iter008-002","label":"No fixture enters scoring until its typed gold resolves through the committed manifest and selected map under frozen digests","iteration":8}
 {"type":"observation","id":"obs-iter008-001","packet":"sk-doc","classification":"real","label":"create-skill and create-skill-parent each expose the same 18 discovered packet leaves","iteration":8}
 {"type":"observation","id":"obs-iter008-002","packet":"sk-doc","classification":"real","label":"Current second-layer replay unions untyped leaf strings across shared and packet root bags","iteration":8}
-{"type":"observation","id":"obs-iter008-003","packet":"010-sk-doc-routing-research","classification":"real","label":"Iteration artifact schema passed while strict packet validation reported three out-of-scope documentation-structure errors","iteration":8}
+{"type":"observation","id":"obs-iter008-003","packet":"001-research/001-sk-doc-routing-research","classification":"real","label":"Iteration artifact schema passed while strict packet validation reported three out-of-scope documentation-structure errors","iteration":8}
 {"type":"ruled_out","direction":"Store authored aliases only inside generated leaf-manifest.json","reason":"Regeneration would either erase semantic declarations or preserve stale output as input","iteration":8}
 {"type":"ruled_out","direction":"Treat a topology-invalid fixture as a zero-recall routing row","reason":"The oracle must be validated before measuring router behavior","iteration":8}
 {"type":"ruled_out","direction":"Run manifest validation only when generating the artifact","reason":"Later registry, packet, alias, map, or fixture edits can stale the committed projection","iteration":8}

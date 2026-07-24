@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring",
+  "packet_id": "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real dispatch path it does not",
     "created_at": "2026-07-16T14:14:43.463Z",
-    "last_save_at": "2026-07-23T12:42:17.564Z",
+    "last_save_at": "2026-07-24T11:03:16.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9fc093ef7563cb888c0eab602c1cf4ea5001a65a426aaf833e3b7866435bf058",
+    "source_fingerprint": "sha256:cd346d7fd7baebb0df64e88dba693aca674a920def0fb3cac9f6f8d707495457",
     "source_doc_hashes": {
-      "spec.md": "06bebf698dfe715a7a3cf1b2feac25fced19d0aed158009aa3e62048476aa645",
-      "plan.md": "f4c319567aad2f57a2ff9160861fb730c36c616e927523228a2301fe248c62b4",
-      "tasks.md": "14f89a985ac9bf6cc18f156dffe9bedd07cce8d3579a258393ed71387c562685",
-      "checklist.md": "6e8f6400a90dee8ccff5c93d96559e5d96cd409869e38752f801352c0d010cbe",
-      "decision-record.md": "78837e296606268fb402015b36c95b8275a61c5a89f195f0f62f7193a4373a3f"
+      "spec.md": "5a04141c8e47668860b3ad9ebd50367f22bef0cb780e0b90a662121117919f4f",
+      "plan.md": "f919cc5a6d3b0b219579c49df16271cfe29b7b8f499ac9af4cf5665b4c54e840",
+      "tasks.md": "c1d78d82c0f1ef52f4c1c0346766ce7f76bacf1b902c81f56daf5c439155d668",
+      "checklist.md": "e4ec396f866b2b529ceae5774a742f977994db69c87dc4bf77ad5b41455fd459",
+      "decision-record.md": "69cf2d53f93d254cd580e2fd646b8c0c30d07d09634d0e1d55ec499303f13494"
     },
     "last_active_child_id": null,
     "last_active_at": null

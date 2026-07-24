@@ -1,7 +1,7 @@
 {
   "topic": "Parent-hub routing, out-of-box run 3: radical lateral rethinks over the Out-of-Box Agenda in the packet spec.md.",
   "researchTopic": "Parent-hub routing, out-of-box run 3: radical lateral rethinks over the Out-of-Box Agenda in the packet spec.md.",
-  "specFolder": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research",
+  "specFolder": ".opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
   "maxIterations": 7,
   "minIterations": 3,
   "convergenceThreshold": 0.05,

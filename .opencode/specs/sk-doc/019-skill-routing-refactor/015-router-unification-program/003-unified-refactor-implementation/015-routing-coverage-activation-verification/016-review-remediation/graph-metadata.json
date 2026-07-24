@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
     "created_at": "2026-07-22T06:15:19.898Z",
-    "last_save_at": "2026-07-23T12:42:31.695Z",
+    "last_save_at": "2026-07-24T10:52:36.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b82fcd5c111ba7c9eca713c7cc3d37cf546ae120c9acc36470170c920c2a6aa9",
+    "source_fingerprint": "sha256:7c7c0a9f0c4d103aa26a46ba89cac69b39c897fc9ea7947f8717edf4e0f011fe",
     "source_doc_hashes": {
-      "spec.md": "fea13ac908eac736968947cc7b75cc13033ef865bc5eb504de6e6fd1516a35b0",
-      "plan.md": "59b6b0b2cff21271082a2cbb711483adef97dcc9f272b247961267ea88520405",
-      "tasks.md": "692ed0c6ffdfb5e2156dfcd158358f10fb0967d59a494a7f0403b27a35c9a6b9",
-      "checklist.md": "77c53204fb2241105d2f1cd293bae1417fd78987c81da662d7fce2d2a1ee7bc9",
-      "implementation-summary.md": "e9928640d25de44aa05253910cd8b604ab8b45d786c63a4d71200a6faeb4aead"
+      "spec.md": "791c43bf72db3dc103527c4d4e1e2a43bf4d5fe779e22567b8069044247c9e21",
+      "plan.md": "f5f95459704f5aafb2a303c8e71f6c4d59e7c228cc46655f84a159f75fb398df",
+      "tasks.md": "3be48fef2d956fcc405794c2ce05fc0c4ffa8278859adfc54af7ae0b65b51874",
+      "checklist.md": "48d3689920228bea4eb0fe9baa0217fe5879fed2e805ee0c60360fd578579fd8",
+      "implementation-summary.md": "f861ee99e47cb3126b177bdb112d6d23208b767b3570a557ec4f066c00f2722e"
     },
     "last_active_child_id": null,
     "last_active_at": null

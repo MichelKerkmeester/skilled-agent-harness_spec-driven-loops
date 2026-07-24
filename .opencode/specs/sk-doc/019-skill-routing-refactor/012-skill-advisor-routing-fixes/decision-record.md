@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored 8 ADRs from research.md Section 5 findings and Eliminated Alternatives table"
@@ -21,7 +21,7 @@ _memory:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "013-skill-advisor-routing-fixes-authoring"
+      session_id: "012-skill-advisor-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions:

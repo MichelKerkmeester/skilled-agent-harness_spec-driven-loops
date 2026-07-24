@@ -21,7 +21,7 @@ This iteration steelmanned named defaults, inspected deterministic replay semant
 
 ## Dead Ends
 
-- Re-deriving the run-1 per-hub keep/flip table was not pursued because it is explicitly saturated in strategy. [SOURCE: .opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-ultra/deep-research-strategy.md:40-54]
+- Re-deriving the run-1 per-hub keep/flip table was not pursued because it is explicitly saturated in strategy. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research/research/lineages/sol-ultra/deep-research-strategy.md:40-54]
 
 ## Edge Cases
 

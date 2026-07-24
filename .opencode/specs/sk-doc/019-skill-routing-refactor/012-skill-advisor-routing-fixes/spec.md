@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes"
     last_updated_at: "2026-07-16T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored Level 3 scaffold (spec/plan/tasks/checklist/decision-record) from 011 research"
@@ -26,7 +26,7 @@ _memory:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "013-skill-advisor-routing-fixes-authoring"
+      session_id: "012-skill-advisor-routing-fixes-authoring"
       parent_session_id: null
     completion_pct: 0
     open_questions:
@@ -50,7 +50,7 @@ The system-skill-advisor routes 73.08 percent of holdout prompts correctly, but 
 
 **Key Decisions**: Land the three P0 correctness fixes plus the P0-4 measurement-freshness repair first, since they unblock trustworthy testing of everything downstream. Freeze the public confidence, uncertainty and ambiguity thresholds, and pursue floor calibration only through a single gated shadow experiment (P2-8).
 
-**Critical Dependencies**: P0-4's joined calibration evaluator gates P2-8 outright. P1-5's metadata-hub discovery battery is a shared boundary with sibling packet 012-sk-doc-routing-fixes and needs joint fixture design.
+**Critical Dependencies**: P0-4's joined calibration evaluator gates P2-8 outright. P1-5's metadata-hub discovery battery is a shared boundary with sibling packet 011-sk-doc-routing-fixes and needs joint fixture design.
 
 ---
 
@@ -66,7 +66,7 @@ The system-skill-advisor routes 73.08 percent of holdout prompts correctly, but 
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
-| **Research Source** | `../011-skill-advisor-routing-research/research/research.md` |
+| **Research Source** | `../001-research/002-skill-advisor-routing-research/research/research.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -98,7 +98,7 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 - **P0-2 Fallback-budget reservation.** Reserve a fallback slice out of the hook timeout instead of handing the primary the whole budget, and add timing tests for the primary-timeout, probe-timeout, skipped and daemon-absent cases.
 - **P0-3 Executor-delegation coherence.** Fix the stale `suppressed-codex-abstain` fixture, add coverage for the never-exercised existing-candidate branch, and enforce one finalization boundary so `result.ambiguous` derives from the same final cluster as `ambiguousWith`.
 - **P0-4 Calibration measurement freshness.** Reconcile the 193-row corpus with both committed baselines and produce one joined evaluator report with holdout top-1, ambiguity accuracy, floor frequency and Brier/ECE reliability bins. Measurement repair only, no scorer changes here.
-- **P1-5 Metadata-hub advisor-discovery battery.** A new suite enumerating registry-bearing hubs, with one representative prompt plus hard negatives per workflow mode, routing at compat thresholds through the real scorer. Extends `parent-skill-check.cjs` to fail when a metadata-routed mode lacks a fixture. **This is the same shared boundary as sk-doc's "unguarded advisor-discovery boundary" finding in sibling packet `012-sk-doc-routing-fixes`.** The research packet names it from the advisor side, an unguarded routing-registry-drift-guard boundary for metadata-routed hubs. The sk-doc packet names it from the hub side, hub discoverability fixtures. Both point at the same missing artifact: behavioral discovery fixtures per sk-doc workflow mode, checked from both the advisor test suite and `parent-skill-check.cjs`. Ownership is settled: packet 012 owns the single canonical typed-gold fixture set under the sk-doc tree, defined in its early Layer-A phase. Phase 5 of this packet's plan builds the P1-5 battery on top of those fixtures, read-only.
+- **P1-5 Metadata-hub advisor-discovery battery.** A new suite enumerating registry-bearing hubs, with one representative prompt plus hard negatives per workflow mode, routing at compat thresholds through the real scorer. Extends `parent-skill-check.cjs` to fail when a metadata-routed mode lacks a fixture. **This is the same shared boundary as sk-doc's "unguarded advisor-discovery boundary" finding in sibling packet `011-sk-doc-routing-fixes`.** The research packet names it from the advisor side, an unguarded routing-registry-drift-guard boundary for metadata-routed hubs. The sk-doc packet names it from the hub side, hub discoverability fixtures. Both point at the same missing artifact: behavioral discovery fixtures per sk-doc workflow mode, checked from both the advisor test suite and `parent-skill-check.cjs`. Ownership is settled: packet 012 owns the single canonical typed-gold fixture set under the sk-doc tree, defined in its early Layer-A phase. Phase 5 of this packet's plan builds the P1-5 battery on top of those fixtures, read-only.
 - **P1-6 Threshold-surface-parity suite.** A two-layer matrix across MCP dispatch, shared brief, Claude hook entry and CLI fallback args (env rows), plus MCP and shared brief only (call-override rows, since the hook exposes no threshold input). Also absorbs or renames the mislabeled `runtime-parity.vitest.ts`.
 - **P1/P2-7 Transport diagnostic taxonomy and docs.** Split `mcp_channel_unavailable`, `warm_daemon_unavailable`, `probe_timeout` and `cli_timeout`, state which are CLI-recoverable, and fix the stale/mixed ownership paths in `references/hooks/skill_advisor_hook.md` and the manual playbook.
 - **P2-8 Shadow calibration experiment, gated on P0-4.** Public thresholds stay unchanged. Single candidate: `SCORING_CALIBRATION.confidence.taskIntentFloor` 0.82 to 0.80, accepted only if holdout stays at or above 57/78, coverage at or above 61/78 and ambiguity slice at or above 16/25.
@@ -185,7 +185,7 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | P0-4 joined calibration evaluator | P2-8 cannot run without it. Every later phase's calibration claims stay unverifiable | Land P0-4 before starting P2-8, gate the phase in plan.md explicitly |
-| Dependency | Sibling packet 012-sk-doc-routing-fixes | P1-5 builds on 012's canonical typed-gold fixture set. If 012's Layer-A fixture work slips, Phase 5 has nothing to build on top of | Sequence Phase 5 after 012's early Layer-A fixture phase lands; ownership is already settled (012 owns, this packet consumes read-only) |
+| Dependency | Sibling packet 011-sk-doc-routing-fixes | P1-5 builds on 012's canonical typed-gold fixture set. If 012's Layer-A fixture work slips, Phase 5 has nothing to build on top of | Sequence Phase 5 after 012's early Layer-A fixture phase lands; ownership is already settled (012 owns, this packet consumes read-only) |
 | Risk | RESOLVED: the no-brief output contract (P0-1) is now Accepted (ADR-007), adopting the governance fallback directive | None remaining, the risk was picking the wrong default before the consumer check ran | Decision recorded in decision-record.md ADR-007, Phase 1 aligns the 4 stale tests and the reference doc to it |
 | Risk | The Spec Kit Memory daemon was unhealthy for the whole research session (exit 75 warm-only timeouts) | Live transport-lane evidence for P1/P2-7 is thinner than the source-loaded scorer evidence | Treat transport findings as directional, verify the diagnostic taxonomy split against source, not against a live daemon session |
 | Risk | A `better-sqlite3` Node ABI mismatch forced the executor-delegation test into filesystem-projection fallback during research | The red-fixture failure is consistent with checked-in metadata, but P0-3's live-run confirmation still needs a working native module | Confirm the ABI issue is resolved, or re-run P0-3's verification command in filesystem-projection mode explicitly, before claiming REQ-003 done |
@@ -281,10 +281,17 @@ Repair the three P0 correctness defects and the P0-4 measurement freshness gap f
 
 ## RELATED DOCUMENTS
 
-- **Research Source**: `../011-skill-advisor-routing-research/research/research.md`
-- **Sibling Fix Packet (shared P1-5 boundary)**: `../012-sk-doc-routing-fixes/spec.md`
-- **Following phase (map order)**: `../014-benchmark-harness-typed-wiring/spec.md`
+- **Research Source**: `../001-research/002-skill-advisor-routing-research/research/research.md`
+- **Sibling Fix Packet (shared P1-5 boundary)**: `../011-sk-doc-routing-fixes/spec.md`
+- **Following phase (map order)**: `../013-benchmark-harness-typed-wiring/spec.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
+
+
+## Structural phase links
+
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `011-sk-doc-routing-fixes` |
+| **Successor** | `013-benchmark-harness-typed-wiring` |

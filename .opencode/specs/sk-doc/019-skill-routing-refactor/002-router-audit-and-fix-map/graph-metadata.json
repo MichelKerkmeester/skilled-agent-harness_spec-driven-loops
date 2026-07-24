@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/001-router-audit-and-fix-map",
+  "packet_id": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Trigger ownership was inconsistent across packet source files and router projections",
     "created_at": "2026-07-13T04:45:46Z",
-    "last_save_at": "2026-07-23T12:42:17.225Z",
+    "last_save_at": "2026-07-24T11:03:16.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fc9bdee424d68c7dd4d5ccdbf3a67445431eec4938060d718ae0d21b32b4211",
+    "source_fingerprint": "sha256:e9dc4993241485797b46bc3a324fbfac70be6c1b449fa1ae6753360e1f16ba53",
     "source_doc_hashes": {
-      "spec.md": "8a9a67ad7048c5ac945cc2e7184324c61f4a989138bc82f83d4d4729f518814e",
-      "plan.md": "0f80d8b66c76b4917f0337ef5807770b6e25d28f4dc6be546b0271987b666000",
-      "tasks.md": "b2dd30fb277b5e140f0c709f1ff272231236330569a4304a94df5f303171a1d0",
-      "checklist.md": "9e04085d9591e236f3ac6c5e11b3baf43d09a778800466e91d9ee86bf9421b34",
-      "decision-record.md": "12702f51284565c9e074fa74185b954c3359274cf923110bf1018fdc4087d16f",
-      "implementation-summary.md": "292d87e511d6cbe170af801dbaaee80590936e28220dbf0479b44281deba2506"
+      "spec.md": "ad2ccca66dc0656017ccd17d3ec1fa4d1db47ee6220f6dc5bd991e554164b199",
+      "plan.md": "5413770d85e99dc0d5c02d9228533e56da046f06c39a61fc7d06326be3448e59",
+      "tasks.md": "8b44d76f2b61d4229c61fd72e7fe566bb645db512a77e607143e0f15ad2fff02",
+      "checklist.md": "4d831562bc8618b23ec4ba9d49640084d9f89814d92ed8847d924a8b9b04df3a",
+      "decision-record.md": "49e5fdeb0785d20dae78068abe954a398404b2085611cd09abbb8b093c969b3d",
+      "implementation-summary.md": "c9ec57551d47b6cab95f716637aa48be77369f194dc8d81d25f45539e1fe1db0"
     },
     "last_active_child_id": null,
     "last_active_at": null

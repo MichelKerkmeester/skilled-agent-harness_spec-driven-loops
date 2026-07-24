@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes",
+  "packet_id": "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [],
   "manual": {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The advisor's current-source holdout accuracy is 73.08 percent (57/78) with 85.25 percent selective precision, so it routes correctly far more often than not",
     "created_at": "2026-07-16T08:23:16.276Z",
-    "last_save_at": "2026-07-24T06:39:56.807Z",
+    "last_save_at": "2026-07-24T11:03:16.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e4151c3a9098b15400f80b9b41c15b85b28b84b9a833d2b875707ea87fb74a1c",
+    "source_fingerprint": "sha256:f2f55c7f8a42fc47a91aea6b47caddd1fa9089b283c7ba95b689e24294a41dbb",
     "source_doc_hashes": {
-      "spec.md": "e0240bc044eb3022c09d99cc451337d94bff340290c9c6ff7a2d1fd26f334c65",
-      "plan.md": "0a9ed1decc0626b1ca24b33dbd14d1522ed51dfbd0e4c742dc4b26d02173c3ef",
-      "tasks.md": "dfee5c21e7322f8ad705699f4ad2f6a50958bc37d0a65301650f72dd7ab45b60",
-      "checklist.md": "39ee31148483d80ab97e97cd6f2db349009d3c16e6e4d584614cadc6d15c574b",
-      "decision-record.md": "1c9d5d210aeabcbf3256e06ac85ec4198f7a5b91f1b0666f1222fb3373395edc"
+      "spec.md": "1de8e735bf7c452a84f7c8c32aa163f30e1a489ffedfc713c46ae46778be3695",
+      "plan.md": "dbf136062275311b400bc3a57f7d985211e5a556e900c704793b80c79c05636b",
+      "tasks.md": "5b4734caf68a268909656b76a3043fadda937f5bb75781ad2dd1d15749af3fa9",
+      "checklist.md": "4bf40e913978ab81b91c0418662f84e717b98734ba0abd8cf50527dda7920309",
+      "decision-record.md": "a1163cd4d60bf8dde2dc4d2d3b8ac3ab3fcfdc1d430e58f16f4ea0aca9c59b69"
     },
     "last_active_child_id": null,
     "last_active_at": null
