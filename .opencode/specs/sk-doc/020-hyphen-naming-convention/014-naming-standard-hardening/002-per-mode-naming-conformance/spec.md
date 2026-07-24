@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/022-naming-standard-hardening/002-per-mode-naming-conformance"
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance"
     last_updated_at: "2026-07-20T12:28:09Z"
     last_updated_by: "codex"
     recent_action: "Implemented shared kebab checker and wired generating mode workflows"
@@ -36,7 +36,7 @@ _memory:
 | **Status** | Implemented |
 | **Created** | 2026-07-20 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `sk-doc/022-naming-standard-hardening` |
+| **Parent Packet** | `sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening` |
 | **Phase** | 2 of 2 |
 | **Predecessor** | `../001-fix-shared-standard-and-wire-guards/spec.md` |
 | **Successor** | None |

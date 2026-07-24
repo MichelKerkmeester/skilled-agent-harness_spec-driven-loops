@@ -1,5 +1,6 @@
 {
-  "specFolder": "sk-doc/021-install-guide-canonical-naming",
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming",
   "description": "Normalize every skill install-guide document filename to the single canonical form INSTALL-GUIDE.md (uppercase + hyphen), resolving three inconsistent",
   "keywords": [
     "normalize",
@@ -17,13 +18,13 @@
     "three",
     "inconsistent"
   ],
-  "lastUpdated": "2026-07-17T16:39:35.368Z",
-  "specId": "021",
+  "lastUpdated": "2026-07-24T14:39:52.289Z",
+  "specId": "013",
   "folderSlug": "install-guide-canonical-naming",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "020-hyphen-naming-convention"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

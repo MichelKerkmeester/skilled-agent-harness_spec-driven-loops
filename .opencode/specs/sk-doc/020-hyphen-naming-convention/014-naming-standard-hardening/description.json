@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "sk-doc/022-naming-standard-hardening",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening",
   "description": "The kebab-case naming canon (`shared/references/filesystem-naming-convention.md`) is enforced by the code but not by the standard docs or the gates",
   "keywords": [
     "kebab-case",
@@ -15,11 +15,12 @@
     "docs",
     "gates"
   ],
-  "lastUpdated": "2026-07-20T11:57:10.511Z",
-  "specId": "022",
+  "lastUpdated": "2026-07-24T14:39:52.297Z",
+  "specId": "014",
   "folderSlug": "naming-standard-hardening",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "020-hyphen-naming-convention"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

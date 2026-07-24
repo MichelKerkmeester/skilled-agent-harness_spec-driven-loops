@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/022-naming-standard-hardening/001-fix-shared-standard-and-wire-guards"
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards"
     last_updated_at: "2026-07-20T12:06:56Z"
     last_updated_by: "codex"
     recent_action: "Resolved and implemented the CI-only shared naming gate"
@@ -37,7 +37,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Implemented; central validation pending |
 | **Created** | 2026-07-20 |
-| **Parent** | `sk-doc/022-naming-standard-hardening` |
+| **Parent** | `sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 2 |
 | **Predecessor** | None |

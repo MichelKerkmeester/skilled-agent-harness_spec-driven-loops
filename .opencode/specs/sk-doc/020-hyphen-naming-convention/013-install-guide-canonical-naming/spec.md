@@ -7,10 +7,10 @@ trigger_phrases:
   - "install guide uppercase hyphen"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc"
+parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/021-install-guide-canonical-naming"
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the INSTALL-GUIDE canonical-naming spec and classifier-coupling plan"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Packet** | sk-doc/021-install-guide-canonical-naming |
+| **Packet** | sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming |
 | **Level** | 1 |
 | **Priority** | P2 |
 | **Status** | Planned |
