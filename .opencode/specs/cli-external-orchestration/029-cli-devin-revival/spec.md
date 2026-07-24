@@ -124,6 +124,10 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - No documented technical/reliability reason was found for the 2026-06-08 deprecation (commit `17ee3bb83ab`) — it reads as a pure operator-directed retirement, not a failure response. Confirm the reversal is still desired knowing this (answered informally by this task's request, but worth an explicit record).
 - Are the separate Devin IDE-runtime hooks (the deleted D5 surface) in scope for this revival, or strictly the `cli-devin` CLI-dispatch mode? Scoped **out** by default (see §3).
 - Is the "Devin-as-MCP-host" surface (`.devin/config.json` in `INSTALL_GUIDE`s) in scope? Scoped **out** by default (see §3), matching the original deprecation's own boundary.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+**Resolution Status (deep-research 2026-07-24, generation 1, 5 iterations, `--stop-policy=max-iterations`):** Open Question 3 is **RESOLVED PROVISIONALLY** — the Devin CLI's current MCP-host surface (`devin mcp add/list/get/remove/login/logout/enable/disable`, stdio `command`/`args`/`env` schema) is real, protocol-aligned with the three repository servers, and worth bringing into scope as an additive phase (`008-devin-mcp-host-integration`). Four operational gaps require a clean Linux Devin session before phase 008 opens: (P1) no MCP `cwd` field, (P1) cold bootstrap / native modules, (P1) memory embedding/network, (P1) advisor/memory-write trust boundary. Recommended policy is two-tier: shared project config with exact read-only MCP allows + explicit memory/graph mutation denies, plus maintainer-local override in `.devin/config.local.json`. **Do NOT copy `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` into shared Devin config.** Canonical synthesis: `research/research.md` §1–§15. Acceptance matrix (forwarded to phase 008): clean Devin Linux `tools/list` for the three servers, exact namespace spelling captured, deny-rule survival against session-level wildcard grants, root-relative launcher invocation across fresh/resumed/sandboxed/handoff sessions.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

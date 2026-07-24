@@ -1,0 +1,1080 @@
+{
+  "sessionId": "dr-devin-hooks-portability-2026-07-24-001",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-enumerate-every-claude-code-hook-registered-in-this-repo-s-claude-settings-se",
+      "inboxId": null,
+      "text": "Q1. Enumerate every Claude Code hook registered in this repo's .claude settings (settings.json hooks.* keys, plus any plugin-bundled hooks), with event name + matcher + cwd + handler command for each.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-enumerate-every-opencode-plugin-registered-under-opencode-plugin-manifests-ho",
+      "inboxId": null,
+      "text": "Q2. Enumerate every OpenCode plugin registered under .opencode/ (plugin manifests, hook registrations, runtime-neutral cores referenced by cli-codex hook-contract.md: spec-gate-enforce/classify, dispatch-preflight-lint, post-edit-quality, code-graph-freshness, dispatch-audit, completion-evidence-sentinel, mcp-route-guard).",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-enumerate-devin-cli-s-8-lifecycle-hooks-pretooluse-posttooluse-permissionrequ",
+      "inboxId": null,
+      "text": "Q3. Enumerate Devin CLI's 8 lifecycle hooks (PreToolUse, PostToolUse, PermissionRequest, UserPromptSubmit, Stop, PostCompaction, SessionStart, SessionEnd), the JSON schema each receives on stdin, and the .devin/hooks.v1.json entry shape (type, matcher, command|prompt, timeout).",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-per-hook-per-plugin-classify-portable-1-1-needs-adaptation-cannot-port-with-r",
+      "inboxId": null,
+      "text": "Q4. Per hook + per plugin: classify portable 1:1 / needs adaptation / cannot port, with rationale grounded in matching shapes, missing payload fields, cwd/env differences, and Devin's missing equivalent events.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-evaluate-whether-devin-native-read-config-from-claude-true-import-could-subst",
+      "inboxId": null,
+      "text": "Q5. Evaluate whether Devin native read_config_from.claude:true import could substitute for hand-built adapters in part or in full (which hooks it covers vs misses, and why).",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-q6-produce-a-per-hook-per-plugin-port-verdict-table-ready-to-be-cited-as-adr-001",
+      "inboxId": null,
+      "text": "Q6. Produce a per-hook per-plugin port verdict table ready to be cited as ADR-001 evidence by phase 004-devin-hook-adapter-layer/plan.md.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-enumerate-every-claude-code-hook-registered-in-this-repo-s-claude-settings-se",
+      "inboxId": null,
+      "text": "Q1. Enumerate every Claude Code hook registered in this repo's .claude settings (settings.json hooks.* keys, plus any plugin-bundled hooks), with event name + matcher + cwd + handler command for each.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-enumerate-every-opencode-plugin-registered-under-opencode-plugin-manifests-ho",
+      "inboxId": null,
+      "text": "Q2. Enumerate every OpenCode plugin registered under .opencode/ (plugin manifests, hook registrations, runtime-neutral cores referenced by cli-codex hook-contract.md: spec-gate-enforce/classify, dispatch-preflight-lint, post-edit-quality, code-graph-freshness, dispatch-audit, completion-evidence-sentinel, mcp-route-guard).",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-enumerate-devin-cli-s-8-lifecycle-hooks-pretooluse-posttooluse-permissionrequ",
+      "inboxId": null,
+      "text": "Q3. Enumerate Devin CLI's 8 lifecycle hooks (PreToolUse, PostToolUse, PermissionRequest, UserPromptSubmit, Stop, PostCompaction, SessionStart, SessionEnd), the JSON schema each receives on stdin, and the .devin/hooks.v1.json entry shape (type, matcher, command|prompt, timeout).",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-per-hook-per-plugin-classify-portable-1-1-needs-adaptation-cannot-port-with-r",
+      "inboxId": null,
+      "text": "Q4. Per hook + per plugin: classify portable 1:1 / needs adaptation / cannot port, with rationale grounded in matching shapes, missing payload fields, cwd/env differences, and Devin's missing equivalent events.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-evaluate-whether-devin-native-read-config-from-claude-true-import-could-subst",
+      "inboxId": null,
+      "text": "Q5. Evaluate whether Devin native read_config_from.claude:true import could substitute for hand-built adapters in part or in full (which hooks it covers vs misses, and why).",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-produce-a-per-hook-per-plugin-port-verdict-table-ready-to-be-cited-as-adr-001",
+      "inboxId": null,
+      "text": "Q6. Produce a per-hook per-plugin port verdict table ready to be cited as ADR-001 evidence by phase 004-devin-hook-adapter-layer/plan.md.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Smoke-test command stdout/exit handling for the imported Claude shell wrappers and the seven new Devin adapters; this iteration intentionally did not implement or run them.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Verify the exact behavior of Devin's Claude-settings import against this repository with `/hooks`, especially whether unsupported `PreCompact` entries are ignored or surfaced as warnings.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the exact Devin tool name and payload for subagent dispatch before deciding whether the `Task` guard can be adapted to `PreToolUse`.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Fold this confirmed subagent row into the complete per-hook/per-plugin matrix and ADR-001 evidence table in a later synthesis pass.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run Devin `/hooks` against this repository with a working session and determine whether the imported `PreCompact` entry is ignored, warned, or rejected, and whether `async` is ignored or surfaced.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test stdout/exit handling for the imported shell wrappers and the future Devin adapters, especially top-level `decision` versus Claude `hookSpecificOutput.permissionDecision`.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm `run_subagent` required fields and the runtime representation of `resume` with one real `PreToolUse` capture; the installed binary schema names the fields but does not expose all validation constraints through `strings`.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test Devin stdout/exit parsing for deny-capable `PreToolUse`, advisory `PostToolUse`, `UserPromptSubmit`, and `Stop` outputs.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Decide how the completion sentinel obtains the final assistant claim and active spec folder under Devin `Stop`.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Live-test Devin's imported Claude settings with `/hooks`, especially whether unsupported `PreCompact` and `async` fields are ignored, warned, or rejected.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Fold this core table and the confirmed `run_subagent` mapping into the complete per-hook/per-plugin matrix for ADR-001.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the live Devin tool vocabulary for file writes (`edit` versus any additional write tool) and whether `tool_use_id`/`cwd` are present on every relevant event.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Decide how the completion sentinel obtains `last_assistant_message` and the active spec folder under Devin `Stop`.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Fold the confirmed live-import result into `004-devin-hook-adapter-layer/decision-record.md` before implementation claims parity.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run Devin `/hooks` in a real session and record whether `PreCompact` is ignored, warned, or rejected, and whether `async` is ignored or surfaced.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test stdout and exit handling for imported `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop`, `PostCompaction`, `SessionStart`, and `SessionEnd` commands, especially Claude nested `permissionDecision` output.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Capture one real Devin `PreToolUse` event to confirm `run_subagent`, `edit`, tool identity, `cwd`, and the exact edit input fields.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Capture one live Devin `PreToolUse(run_subagent)` payload to confirm required fields and the runtime representation of `resume`.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test stdout/exit parsing for imported shell wrappers and representative explicit adapters, especially top-level Devin `decision` versus Claude nested `hookSpecificOutput.permissionDecision`.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the live Devin file-write vocabulary and whether `tool_use_id`/`cwd` are present on every relevant post-tool event before implementation freezes matchers.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run Devin `/hooks` against this repository with an authenticated working session to determine whether the imported `PreCompact` entry is ignored, warned on, or rejected, and how `async` is handled.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the actual process cwd used by Devin command hooks; the docs guarantee `DEVIN_PROJECT_DIR`, but not the inherited cwd.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine whether the implementation phase can provide an explicit Devin-owned cleanup PID, or whether SessionEnd cleanup must remain safe no-op/orphan-only.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test plain stdout, stderr, exit `2`, and top-level JSON decisions for imported commands and explicit Devin wrappers.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run authenticated Devin `/hooks` in this repository and record whether imported `PreCompact` and `async` entries are ignored, warned on, or rejected.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the exact Devin process cwd and representative stdout/exit handling for the new adapter before implementation freezes the wrapper contract.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm whether Devin fires a `SessionStart` or `UserPromptSubmit` immediately after compaction; the adapter must not rely on a Claude-only follow-up event without evidence.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test whether a Devin `PostCompaction` command's `hookSpecificOutput.additionalContext` is injected when tagged with `PostCompaction`, including the null-summary case.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run authenticated Devin `/hooks` in this repository and record whether imported `PreCompact` is ignored, warned on, or rejected.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test the `UserPromptSubmit`/`PostCompaction` context envelopes and verify whether the CLI alternatives can remain warm-only without changing the fail-open behavior.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run an authenticated Devin `/hooks` inspection to verify the imported Claude-settings behavior and the exact handling of unsupported `PreCompact`/`async` entries.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the live Devin `mcpServers` registration shape for the repository's daemon launchers, including relative working directory and environment propagation.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Fold this five-row alternative table into the complete per-hook/per-plugin matrix and ADR-001 synthesis.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the actual process cwd used by Devin command hooks.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test `PostCompaction` context injection, including the null-summary case, and verify whether a follow-up `SessionStart` or `UserPromptSubmit` fires.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm Devin's live file-write vocabulary and whether `tool_use_id`/`cwd` exist on relevant post-tool events.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Have the reducer promote iteration-5, iteration-8, and iteration-9 findings and reconcile the six key-question statuses before ADR-001 is treated as registry-complete.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Capture one live `PreToolUse(run_subagent)` event to confirm required fields and `resume` representation.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Run authenticated Devin `/hooks` in this repository and record whether imported `PreCompact` is ignored, warned on, or rejected, and how `async` is handled.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine the safe Devin-owned source for completion claims and active spec-folder state at `Stop`.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test plain stdout, stderr, exit `2`, and top-level JSON decisions for imported commands and explicit Devin adapters.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine the safe Devin-owned source for the final assistant claim and active spec folder at `Stop`.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Promote the iteration-005, iteration-008, and iteration-009 evidence into the registry and reconcile the six key-question statuses before calling ADR-001 registry-complete.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test plain stdout, stderr, exit `2`, and top-level JSON decisions for imported commands and explicit adapters.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the live `mcpServers` registration shape for repository daemon launchers, including relative working directory and environment propagation.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm Devin's file-write vocabulary, `tool_use_id`/`cwd` presence, and the actual process cwd for command hooks.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Smoke-test `PostCompaction` context injection, including a null summary, and verify whether a follow-up `SessionStart` or `UserPromptSubmit` occurs.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Update phase 004 ADR-001 with the consolidated evidence, then implement the adapters and run the phase checklist. This research pass claims neither implementation nor runtime parity.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Capture one live `PreToolUse(run_subagent)` event to confirm required fields and the runtime representation of `resume`.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1. Enumerate every Claude Code hook registered in this repo's .claude settings (settings.json hooks.* keys, plus any plugin-bundled hooks), with event name + matcher + cwd + handler command for each.",
+    "Q2. Enumerate every OpenCode plugin registered under .opencode/ (plugin manifests, hook registrations, runtime-neutral cores referenced by cli-codex hook-contract.md: spec-gate-enforce/classify, dispatch-preflight-lint, post-edit-quality, code-graph-freshness, dispatch-audit, completion-evidence-sentinel, mcp-route-guard).",
+    "Q3. Enumerate Devin CLI's 8 lifecycle hooks (PreToolUse, PostToolUse, PermissionRequest, UserPromptSubmit, Stop, PostCompaction, SessionStart, SessionEnd), the JSON schema each receives on stdin, and the .devin/hooks.v1.json entry shape (type, matcher, command|prompt, timeout).",
+    "Q4. Per hook + per plugin: classify portable 1:1 / needs adaptation / cannot port, with rationale grounded in matching shapes, missing payload fields, cwd/env differences, and Devin's missing equivalent events.",
+    "Q5. Evaluate whether Devin native read_config_from.claude:true import could substitute for hand-built adapters in part or in full (which hooks it covers vs misses, and why).",
+    "Q6. Produce a per-hook per-plugin port verdict table ready to be cited as ADR-001 evidence by phase 004-devin-hook-adapter-layer/plan.md."
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-claude-specific-matcher-names-bash-write-edit-task-mcp-claude-ai-when-the-devin-",
+      "text": "Claude-specific matcher names (`Bash`, `Write`, `Edit`, `Task`, `mcp__claude_ai_.*`) when the Devin tool names are different;",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-opencode-plugin-factories-registered-tools-experimental-chat-transforms-session-",
+      "text": "OpenCode plugin factories, registered tools, `experimental.chat.*` transforms, `session.idle`, arbitrary OpenCode disposal events, or `dispose`;",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-payload-normalization-where-the-scripts-expect-claude-fields-or-claude-output-se",
+      "text": "payload normalization where the scripts expect Claude fields or Claude output semantics.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-claude-claude-project-dir-wrapper-and-async-true-fields-without-a-compatibil",
+      "text": "the Claude `CLAUDE_PROJECT_DIR` wrapper and `async: true` fields without a compatibility decision;",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-repo-s-precompact-key-as-a-before-compaction-hook-the-devin-equivalent-is-af",
+      "text": "the repo's `PreCompact` key as a before-compaction hook; the Devin equivalent is after-compaction `PostCompaction`;",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-precompact-has-no-devin-equivalent-devin-exposes-postcompaction-which-runs-after",
+      "text": "`PreCompact` has no Devin equivalent. Devin exposes `PostCompaction`, which runs after compaction and supplies `summary`; it cannot preserve a before-compaction invariant through import.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-task-bash-write-edit-and-mcp-claude-ai-are-claude-matcher-names-devin-s-matching",
+      "text": "`Task`, `Bash`, `Write|Edit`, and `mcp__claude_ai_.*` are Claude matcher names. Devin's matching surface is `run_subagent`, `exec`, `edit`, and Devin-visible MCP names, so imported matchers do not select the same calls.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-userpromptsubmit-has-a-matching-devin-event-but-imported-handlers-must-consume-d",
+      "text": "`UserPromptSubmit` has a matching Devin event, but imported handlers must consume Devin's `prompt` payload and Devin output semantics; an empty matcher alone does not normalize Claude-specific fields.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-devin-documents-command-prompt-matcher-and-timeout-in-its-hook-entry-shape-the-r",
+      "text": "Devin documents `command`, `prompt`, `matcher`, and `timeout` in its hook entry shape; the repository's Claude `async` fields and Claude-specific decision/output forms still require live compatibility testing.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-opencode-plugins-are-not-imported-as-plugins-devin-s-configuration-import-refere",
+      "text": "OpenCode plugins are not imported as plugins. Devin's configuration-import reference lists OpenCode MCP-server import, not OpenCode plugin factories, `tool.execute.before/after`, chat transforms, session events, or disposal hooks.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-the-imported-shell-wrappers-use-claude-project-dir-but-fall-back-to-pwd-while-de",
+      "text": "The imported shell wrappers use `CLAUDE_PROJECT_DIR` but fall back to `$PWD`, while Devin documents `DEVIN_PROJECT_DIR`. This is a plausible compatibility path for cwd-only scripts, not a confirmed 1:1 contract for all wrappers.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-claude-precompact-remains-unmatched-devin-s-postcompaction-runs-after-compaction",
+      "text": "Claude `PreCompact` remains unmatched: Devin's `PostCompaction` runs after compaction and supplies `summary`, so import cannot preserve the before-compaction timing.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-claude-matchers-bash-write-edit-task-mcp-claude-ai-do-not-select-devin-s-exec-ed",
+      "text": "Claude matchers (`Bash`, `Write`, `Edit`, `Task`, `mcp__claude_ai_.*`) do not select Devin's `exec`, `edit`, `run_subagent`, or generic `mcp__.*` calls.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-claude-s-pretooluse-stop-output-envelopes-are-not-devin-s-top-level-decision-rea",
+      "text": "Claude's `PreToolUse`/Stop output envelopes are not Devin's top-level decision/reason contract. Copying the current stdout unchanged risks silent non-enforcement or rejected output.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-imported-handlers-still-receive-devin-s-event-payload-and-environment-while-seve",
+      "text": "Imported handlers still receive Devin's event payload and environment, while several current wrappers read Claude-specific assumptions such as `CLAUDE_PROJECT_DIR`, `tool_input.file_path`, `tool_response` layout, or `last_assistant_message`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-opencode-plugin-factories-tool-execute-session-idle-system-transforms-and-dispos",
+      "text": "OpenCode plugin factories, `tool.execute.*`, `session.idle`, system transforms, and disposal hooks are not imported from `.opencode/plugins/`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-anchor-execution-at-devin-project-dir",
+      "text": "anchor execution at `DEVIN_PROJECT_DIR`;",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-convert-warnings-intended-for-the-agent-into-devin-s-json-context-envelope-and",
+      "text": "convert warnings intended for the agent into Devin's JSON context envelope; and",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-keep-session-cleanup-disabled-or-explicitly-pid-bound-unless-devin-exposes-a-saf",
+      "text": "keep session cleanup disabled or explicitly PID-bound unless Devin exposes a safe process-identity bridge.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-preserve-each-handler-s-fail-open-blocking-intent-rather-than-blindly-forwarding",
+      "text": "preserve each handler's fail-open/blocking intent rather than blindly forwarding exit `2`;",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-a-bounded-memory-context-mode-resume-or-equivalent-fallback-when-summary-is-null",
+      "text": "a bounded `memory_context(mode=resume)` or equivalent fallback when `summary` is null, stale, or incomplete;",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-9-a-direct-devin-hookspecificoutput-additionalcontext-response-tagged-postcompacti",
+      "text": "a direct Devin `hookSpecificOutput.additionalContext` response tagged `PostCompaction`, subject to live output smoke testing because the lifecycle page promises re-injection but the general output table only enumerates `additionalContext` examples for other events.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-6-authoritative-continuity-rehydrated-from-the-active-session-spec-state-including",
+      "text": "authoritative continuity rehydrated from the active session/spec state, including active spec folder, current files or structural status, constraints, and next safe action;",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-12-change-the-handler-from-cache-only-stdout-behavior-to-devin-s-context-envelope",
+      "text": "change the handler from cache-only stdout behavior to Devin's context envelope;",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-4-deliberately-emits-no-stdout-leaving-sessionstart-source-compact-to-inject-the-c",
+      "text": "deliberately emits no stdout, leaving `SessionStart(source=compact)` to inject the cached payload later (`session-prime.ts:47-109, 394-439`).",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-14-import-opencode-plugin-factories-and-transforms",
+      "text": "import OpenCode plugin factories and transforms.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-11-map-devin-s-summary-into-the-handler-s-transcript-path-session-state-model",
+      "text": "map Devin's `summary` into the handler's `transcript_path`/session-state model;",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-8-provenance-and-semantic-safety-filtering-equivalent-to-the-existing-pending-comp",
+      "text": "provenance and semantic-safety filtering equivalent to the existing pending-compact validation before model-visible injection; and",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-1-reads-session-id-transcript-path-and-trigger-from-claude-stdin-compact-inject-ts",
+      "text": "reads `session_id`, `transcript_path`, and `trigger` from Claude stdin (`compact-inject.ts:561-578`);",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-10-rename-precompact-to-devin-postcompaction",
+      "text": "rename `PreCompact` to Devin `PostCompaction`;",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-13-synthesize-claude-s-later-sessionstart-source-compact-event-or",
+      "text": "synthesize Claude's later `SessionStart(source=compact)` event; or",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-2-tails-the-transcript-and-builds-a-baseline-plus-enriched-compact-brief-compact-i",
+      "text": "tails the transcript and builds a baseline plus enriched compact brief (`compact-inject.ts:580-607`);",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-5-the-compactor-produced-summary-retained-as-the-first-recovery-section",
+      "text": "the compactor-produced summary, retained as the first recovery section;",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-7-3-writes-the-result-to-pendingcompactprime-in-per-session-hook-state-compact-injec",
+      "text": "writes the result to `pendingCompactPrime` in per-session hook state (`compact-inject.ts:480-502`); and",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.claude/settings.json:79-89`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts:317-451, 480-629`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts:47-109, 394-439`",
+        "`.opencode/skills/system-spec-kit/shared/compact-merger.ts:139-225`",
+        "`.opencode/plugins/mk-code-graph.js:486-512`",
+        "`.opencode/plugins/mk-dist-freshness-guard.js:188-233`",
+        "`.opencode/plugins/mk-skill-advisor.js:780-901`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/context/opencode-transport.ts:258-270`",
+        "[Devin lifecycle hooks](https://docs.devin.ai/cli/extensibility/hooks/lifecycle-hooks)",
+        "[Devin hooks overview and import behavior](https://docs.devin.ai/cli/extensibility/hooks/overview)"
+      ]
+    },
+    {
+      "id": "finding-9-2-anchor-repository-relative-commands-at-devin-project-dir",
+      "text": "Anchor repository-relative commands at `DEVIN_PROJECT_DIR`.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-10-apply-provenance-and-semantic-safety-filtering-before-model-visible-injection-an",
+      "text": "apply provenance and semantic-safety filtering before model-visible injection; and",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-1-devin-guarantees-devin-project-dir-it-does-not-guarantee-that-command-hooks-star",
+      "text": "Devin guarantees `DEVIN_PROJECT_DIR`; it does not guarantee that command hooks start in the project root, that `PWD` is project-root, or that every event has a universal stdin `cwd` field.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-4-do-not-forward-exit-2-from-an-advisory-source-check-when-the-claude-wrapper-inte",
+      "text": "Do not forward exit `2` from an advisory source check when the Claude wrapper intentionally made it non-blocking.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-11-emit-bounded-hookspecificoutput-additionalcontext-directly-from-postcompaction",
+      "text": "emit bounded `hookSpecificOutput.additionalContext` directly from `PostCompaction`.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-3-exit-0-continues-exit-2-blocks-and-other-nonzero-exits-fail-open-while-logging-a",
+      "text": "Exit `0` continues, exit `2` blocks, and other nonzero exits fail open while logging a hook error.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-5-plain-stdout-stderr-is-not-the-documented-agent-context-injection-path-convert-a",
+      "text": "Plain stdout/stderr is not the documented agent-context injection path; convert agent-facing warnings to `hookSpecificOutput.additionalContext` when they must be visible in-session.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-8-rehydrate-authoritative-continuity-from-active-session-spec-state",
+      "text": "rehydrate authoritative continuity from active session/spec state;",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-7-retain-summary-as-the-first-recovery-section",
+      "text": "retain `summary` as the first recovery section;",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-6-session-cleanup-cannot-infer-an-os-process-tree-from-devin-session-id-keep-clean",
+      "text": "Session cleanup cannot infer an OS process tree from Devin `session_id`. Keep cleanup safe no-op/orphan-only or supply an explicit PID owned by the Devin adapter.",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-9-9-use-bounded-memory-context-mode-resume-or-an-equivalent-fallback-when-summary-is",
+      "text": "use bounded `memory_context(mode=resume)` or an equivalent fallback when summary is null or incomplete;",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan.md`",
+        "`research/iterations/iteration-003.md` through `iteration-008.md`",
+        "`research/deltas/iter-003.jsonl` through `iter-008.jsonl`",
+        "`research/findings-registry.json`",
+        "`.claude/settings.json`",
+        "`.opencode/plugins/README.md`"
+      ]
+    },
+    {
+      "id": "finding-10-1-claude-settings-seven-registered-event-keys-and-19-command-handlers-are-enumerat",
+      "text": "Claude settings: seven registered event keys and 19 command handlers are enumerated in the consolidated C-01–C-20 table. The source handlers are not production-portable 1:1: the usable rows need Devin matcher, payload, cwd/env, output, or lifecycle adaptation; `PreCompact` has no 1:1 Devin event; `PermissionRequest` has no Claude source row.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-4-devin-lifecycle-the-eight-event-contract-and-devin-hooks-v1-json-entry-shape-are",
+      "text": "Devin lifecycle: the eight-event contract and `.devin/hooks.v1.json` entry shape are pinned. The proposed skeleton deliberately omits `PreCompact`, `async`, OpenCode registrations, and a fabricated `PermissionRequest` handler.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-6-freeze-the-adapter-contract-for-devin-project-dir-exec-edit-run-subagent-generic",
+      "text": "Freeze the adapter contract for `DEVIN_PROJECT_DIR`, `exec`, `edit`, `run_subagent`, generic `mcp__.*`, and the actual Stop/PostCompaction evidence inputs.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-3-guard-cores-all-seven-g-01-g-07-policy-cores-are-reusable-but-every-current-tran",
+      "text": "Guard cores: all seven G-01–G-07 policy cores are reusable, but every current transport needs a Devin boundary. Six are thin transport adaptations; completion evidence has an additional semantic input gap at `Stop`.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-7-implement-thin-adapters-around-the-seven-neutral-cores-starting-with-userprompts",
+      "text": "Implement thin adapters around the seven neutral cores, starting with `UserPromptSubmit`/`PreToolUse` and `PostToolUse`, then Stop/PostCompaction and SessionEnd.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-8-keep-native-claude-import-opt-in-and-diagnostic-until-live-hooks-evidence-proves",
+      "text": "Keep native Claude import opt-in and diagnostic until live `/hooks` evidence proves a row's fidelity; do not use it as the enforcement path by default.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-2-opencode-15-plugin-entrypoints-are-enumerated-in-p-01-p-15-none-is-imported-by-d",
+      "text": "OpenCode: 15 plugin entrypoints are enumerated in P-01–P-15. None is imported by Devin's Claude configuration path. Plugin-only host behavior is not a hook-port target; use MCP, daemon CLI, Devin rules/skills, or bounded lifecycle adapters as the row-specific alternative.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    },
+    {
+      "id": "finding-10-5-run-the-authenticated-devin-smoke-tests-for-imported-claude-settings-matcher-beh",
+      "text": "Run the authenticated Devin smoke tests for imported Claude settings, matcher behavior, stdin fields, stdout/stderr, exit `2`, and top-level JSON decisions.",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/deep-research-state.jsonl`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/findings-registry.json`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/iterations/iteration-001.md` through `iteration-009.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`",
+        "`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 6,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 49,
+    "keyFindings": 53,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.08,
+    "coverageBySources": {
+      "code": 20,
+      "other": 11
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}
