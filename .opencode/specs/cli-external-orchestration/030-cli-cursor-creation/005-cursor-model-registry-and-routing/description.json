@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
+  "description": "`sk-prompt/prompt-models` is this repo's canonical registry of per-model prompt-craft profiles (`assets/model-profiles.json` +",
+  "keywords": [
+    "sk-prompt",
+    "prompt-models",
+    "repo",
+    "canonical",
+    "registry",
+    "per-model",
+    "prompt-craft",
+    "profiles",
+    "assets",
+    "model-profiles",
+    "json"
+  ],
+  "lastUpdated": "2026-07-24T04:49:16.067Z",
+  "specId": "005",
+  "folderSlug": "cursor-model-registry-and-routing",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
