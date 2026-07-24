@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
     last_updated_at: "2026-07-24T19:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Consolidated phase 004 + 008 hook test evidence into one cross-cutting doc"
+    recent_action: "Added SWE-1.7 free-tier re-test; dormancy confirmed model-independent"
     next_safe_action: "Re-run this same matrix if a future devin build changes -p hook-firing behavior"
     blockers: []
     key_files: ["004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
     completion_pct: 100
     open_questions: ["Does true interactive devin mode (untestable here, no TTY) fire hooks where -p does not?"]
-    answered_questions: ["All 13 adapters across both phases are confirmed fail-open on malformed and missing-field payloads; devin -p itself never fires any hook, confirmed before and after the full 7-event-category extension."]
+    answered_questions: ["All 13 adapters across both phases are confirmed fail-open on malformed and missing-field payloads; devin -p itself never fires any hook, confirmed before and after the full 7-event-category extension.", "The -p dormancy is model-independent: re-probed under swe-1-7 (SWE-1.7 Max, free beta) with all 8 events instrumented and a real exec tool call -- zero firings, malformed hook JSON still unparsed."]
 ---
 # Hook Testing Results: cli-devin revival
 
@@ -40,8 +40,13 @@ Every Devin hook adapter this packet has built so far -- 3 from phase 004 (`sess
 | 4 | `--agent-config <file>` with a `hooks` field | 3000.2.17 | Rejected outright by the config parser: `unknown field 'hooks', expected one of system_instructions, allowed_tools, permissions, mcp_servers, extensions` |
 | 5 | (Phase 004 close) Final re-test with the real committed 2-event `.devin/hooks.v1.json` in place | 3000.2.17 | `devin -p "list files with ls"` completed normally, no `additionalContext` injected |
 | 6 | (Phase 008 close) Re-test after extending `.devin/hooks.v1.json` to all 7 event categories (15 command entries) | 3000.2.17 | `devin -p "echo hook-parity-probe-..."` completed normally -- still zero hook output |
+| 7 | **SWE-1.7 model re-test**: `devin --model swe-1-7 -p` (SWE-1.7 Max, free beta tier) with a mutating prompt, asking the model to report any injected context | 3000.2.17 | Model answered it received Devin's own `<rules type="always-on">` blob but **"No SPEC FOLDER question was received"** -- `spec-gate-classify.mjs` (UserPromptSubmit) did not fire |
+| 8 | **SWE-1.7 all-event probe**: temporary probe entry prepended to all 8 events in `.devin/hooks.v1.json`, then a real dispatched `exec` tool call | 3000.2.17 | Tool call executed (`echo swe17-hook-probe` returned output) yet **zero probe firings across all 8 events** -- no probe log created at all |
+| 9 | **SWE-1.7 probe sanity + malformed-JSON control**: probe script invoked directly, then deliberately malformed `hooks.v1.json` under `--model swe-1-7` | 3000.2.17 | Probe script writes correctly when invoked directly (ruling out a false negative); malformed JSON produced **zero parse errors** -- the file is not read in this mode |
 
 `PostCompaction` and `SessionEnd` were **not** independently live-triggered (would require inducing an actual compaction or session-termination event, not just a dispatched command). Their dormancy is inferred from test 1-4/6's packet-wide finding that `-p` never consults hook config at all -- not independently observed for these two specific events. True interactive mode remains untested (no TTY in this environment) -- the one open gap.
+
+**Model-independence (tests 7-9, 2026-07-24).** The dormancy is a property of `-p` mode, not of any one model. Re-running the full probe methodology under `swe-1-7` (SWE-1.7 Max, free beta) reproduced the finding exactly: a real `exec` tool call ran to completion while all 8 probe-instrumented events stayed silent, and deliberately malformed hook JSON still raised no parse error. The probe script was separately verified to write correctly when invoked directly, so the silence is a genuine negative rather than broken instrumentation. `.devin/hooks.v1.json` was restored byte-identical afterwards (SHA-256 prefix `2ed5bc110188bab1` before and after).
 
 ---
 
