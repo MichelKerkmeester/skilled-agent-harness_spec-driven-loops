@@ -335,6 +335,10 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 - [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
 - [prompt-quality-card.md](./assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
 
+### Manual Testing
+
+- [manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) - 19 CU-NNN scenarios across 9 categories; the canonical no-mocking PASS/FAIL/SKIP validation gate for this skill
+
 ### Shared (cli-* family)
 
 - [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
