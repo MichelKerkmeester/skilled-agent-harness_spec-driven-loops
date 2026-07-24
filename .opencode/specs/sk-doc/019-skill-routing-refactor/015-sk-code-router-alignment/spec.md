@@ -57,7 +57,7 @@ sk-code's map therefore needs **no correctness edits**. The real gap is measurem
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-16 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
