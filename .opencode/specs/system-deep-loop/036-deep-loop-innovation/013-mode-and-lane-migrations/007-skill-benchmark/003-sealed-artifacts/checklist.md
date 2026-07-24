@@ -48,10 +48,10 @@ overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dep
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every Skill Benchmark artifact uses the phase-007 sealing adapter; no second digest, signature, chain, manifest, storage, canonicalization, or verification scheme exists
+- [x] CHK-006 [P0] Every Skill Benchmark artifact uses the phase-007 sealing adapter; no second digest, signature, chain, manifest, storage, canonicalization, or verification scheme exists [Evidence: the all-kinds real-store test asserts `substrateImportsReal === true`, and the mode registry composes the shared canonicalizer profiles.]
 - [ ] CHK-007 [P0] Digest coverage includes canonical bytes, artifact kind, schema version, and ordered dependency closure; bundle, task, gold, evaluator, executor, environment, registry, tool, permission, dependency, and workload omissions are rejected
 - [ ] CHK-008 [P0] Sealed bytes are immutable, writes are atomic, incomplete artifacts are unreadable, and every content or dependency change requires a new reference or explicit expiry
-- [ ] CHK-009 [P1] Scope is limited to Skill Benchmark sealed references, scenario and scoring evidence, common service boundaries, fixtures, and verification; no adjacent cleanup or authority cutover is included
+- [x] CHK-009 [P1] Scope is limited to Skill Benchmark sealed references, scenario and scoring evidence, common service boundaries, fixtures, and verification; no adjacent cleanup or authority cutover is included [Evidence: the scoped status audit contains only `runtime/lib/skill-benchmark-sealed-artifacts/`, `runtime/tests/unit/skill-benchmark-sealed-artifacts.vitest.ts`, and this leaf's documentation.]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -59,15 +59,15 @@ overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dep
 
 - [ ] CHK-010 [P0] Equivalent canonical inputs produce identical references and every covered design, bundle, task, gold, evaluator, executor, environment, registry, tool, permission, dependency, or workload mutation produces a new identity
 - [ ] CHK-011 [P0] Interrupted, retried, duplicate, and concurrent writes never publish partial content or overwrite an existing sealed reference
-- [ ] CHK-012 [P0] Tampered bytes, manifests, dependency references, treatment assignments, gold policy, hidden commitments, lifecycle, common epochs, and compatibility metadata fail closed with typed read results
+- [x] CHK-012 [P0] Tampered bytes, manifests, dependency references, treatment assignments, gold policy, hidden commitments, lifecycle, common epochs, and compatibility metadata fail closed with typed read results [Evidence: the 11-test Vitest suite covers tampered/truncated bytes, missing dependencies, wrong-kind gold, pending gold, the false-eligibility gold-state bypass, and evaluator-epoch divergence with typed refusal codes.]
 - [ ] CHK-013 [P0] Treatment-design and assignment fixtures bind off/auto/forced/placebo/distractor/ablation arms, seed, replicate, blocking, propensity, paired task, executor, and environment identity
 - [ ] CHK-014 [P0] Skill-bundle and scenario fixtures bind skill resources, registry, resource classes, dependency compatibility, workload profile, task recipe, deterministic checks, dynamic references, and negative controls
-- [ ] CHK-015 [P0] Gold-integrity fixtures cover scored, negative, structural-only, pending, empty, stale, and changed-gold cases; required empty or pending gold blocks positive scoring
+- [x] CHK-015 [P0] Gold-integrity fixtures cover scored, negative, structural-only, pending, empty, stale, and changed-gold cases; required empty or pending gold blocks positive scoring [Evidence: the real-gold-state tests seal scored controls plus pending, blocked, and zero-coverage gold through the real store; the latter is rejected even when the score self-declares `numeratorEligible: false`.]
 - [ ] CHK-016 [P0] Gold mutation-sensitivity proves changing meaningful gold changes the score or produces a typed blocked result; inert gold never passes as evidence
 - [ ] CHK-017 [P0] Exposure fixtures separate discovery, progressive loading, invocation, resource canaries, key-point coverage/order, intermediate milestones, final state, cost, latency, tokens, and security probes
 - [ ] CHK-018 [P0] Raw scoring fixtures preserve deterministic checks, dynamic reference outputs, raw score axes, constraint coverage, evaluator identity, usage, cost, latency, and environment before reduction
 - [ ] CHK-019 [P0] Certificate-input fixtures require paired intervals, component ablations, compatibility slices, negative-transfer cases, cost/security deltas, validity domain, expiry triggers, and all dependency digests
-- [ ] CHK-020 [P0] Missing, stale, leaked, quarantined, incompatible, expired, unsupported, and epoch-mismatched references cannot reach positive scoring or certificate-input eligibility
+- [x] CHK-020 [P0] Missing, stale, leaked, quarantined, incompatible, expired, unsupported, and epoch-mismatched references cannot reach positive scoring or certificate-input eligibility [Evidence: `skill-benchmark-sealed-artifacts.vitest.ts` rejects a default-read score whose declared epoch diverges from its bound evaluator capsule, while the matching control succeeds.]
 - [ ] CHK-021 [P0] Candidate-facing reads exclude hidden gold, exact canaries, evaluator internals, terminal evidence, and mutable service state; any access violation creates a non-overridable veto reference
 - [ ] CHK-022 [P1] Re-reduction and evaluator-epoch fixtures preserve raw sealed references while creating new derived references without mutation or silent reinterpretation
 - [ ] CHK-023 [P1] Common, agent, model, and skill adapters pass identical seal, evaluator, canary, replay, budget, receipt, read-failure, and evidence-reference fixtures
@@ -91,7 +91,7 @@ overwrite, accepted tampered read, inert gold, hidden-evidence leak, missing dep
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-029 [P1] The artifact matrix, shared sealing ownership, treatment lattice, bundle and scenario references, gold-integrity gate, exposure evidence, read failures, validity inputs, and successor expectations are reflected in the phase docs
+- [x] CHK-029 [P1] The artifact matrix, shared sealing ownership, treatment lattice, bundle and scenario references, gold-integrity gate, exposure evidence, read failures, validity inputs, and successor expectations are reflected in the phase docs [Evidence: `implementation-summary.md` records the ungated real-state gold check, and `decision-record.md` assigns plain-digest closure for `assignmentId`, `assignmentDigest`, `skillBundleRef`, and `skillBundleDigest` to the certificates-and-receipts leaf.]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->

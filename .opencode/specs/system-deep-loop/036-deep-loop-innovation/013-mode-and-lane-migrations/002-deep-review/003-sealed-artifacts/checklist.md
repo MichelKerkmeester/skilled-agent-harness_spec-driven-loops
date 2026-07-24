@@ -10,10 +10,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined the Deep Review sealed-artifact mode gate"
-    next_safe_action: "Run the Deep Review artifact matrix and verified-read fixtures"
+    last_updated_at: "2026-07-24T04:59:17Z"
+    last_updated_by: "codex"
+    recent_action: "Recorded selector structural-semantic boundary"
+    next_safe_action: "Leaf-004 attests target-document span validity and named digest closure"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -40,16 +40,16 @@ watermarks, changed legacy behavior, or unexpected tracked mutation.
 
 - [ ] CHK-001 [P0] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for Deep Review
 - [ ] CHK-002 [P0] The lifecycle artifact matrix covers scope/init, dimension-pass, candidate/adjudication, convergence, synthesis, resume, and save boundaries
-- [ ] CHK-003 [P0] The mode consumes the shared phase-007 sealing primitives and names no alternate digest, descriptor, store, or verifier
+- [x] CHK-003 [P0] The mode consumes the shared phase-007 sealing primitives and names no alternate digest, descriptor, store, or verifier [evidence: `implementation-summary.md`; focused Vitest 15 tests; shared-store verification]
 - [ ] CHK-004 [P1] Predecessor `002-reducers-and-projections` owns findings, dashboard, strategy, and report projection semantics, while this phase owns only artifact binding
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P1] Changes stay inside the Deep Review mode binding and integration surfaces with no shared-service cleanup or authority transfer
-- [ ] CHK-006 [P1] Artifact-kind registration, descriptor references, canonicalization versions, media types, and reference ordering are explicit
-- [ ] CHK-007 [P1] Failure paths are typed, bounded, non-destructive, and never return fallback, nearest-match, repaired, or partially verified content
+- [x] CHK-005 [P1] Changes stay inside the Deep Review mode binding and integration surfaces with no shared-service cleanup or authority transfer [evidence: `implementation-summary.md`; additive-dark delivery; no authority transfer]
+- [x] CHK-006 [P1] Artifact-kind registration, descriptor references, canonicalization versions, media types, and reference ordering are explicit [evidence: `deep-review-sealed-artifact-types.ts`; focused Vitest 15 tests]
+- [x] CHK-007 [P1] Failure paths are typed, bounded, non-destructive, and never return fallback, nearest-match, repaired, or partially verified content [evidence: `deep-review-sealed-artifacts.vitest.ts`; 15 tests cover tamper, partial publication, and structured-selector shape rejection for bare-word and combinator-prose inputs; ADR-003 records the semantic boundary]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -63,7 +63,7 @@ watermarks, changed legacy behavior, or unexpected tracked mutation.
 - [ ] CHK-013 [P0] Synthesis seals findings/dashboard views, optional resource-map coverage, unresolved obligations, verdict metadata, and `review-report.md` whose bytes reproduce from identical verified inputs and reducer versions
 - [ ] CHK-014 [P0] Changed-target and resume fixtures classify unchanged, changed, missing, and unverifiable references, identify affected findings or report views, and preserve old artifacts
 - [ ] CHK-015 [P0] Continuity-save or handoff releases no trusted bytes after a failed seal or verified read and emits no silent completion or new baseline
-- [ ] CHK-016 [P0] Missing, changed, truncated, substituted, wrong-kind, wrong-size, descriptor-drifted, corrupted, and unsupported artifacts return typed failures before consumer release
+- [x] CHK-016 [P0] Missing, changed, truncated, substituted, wrong-kind, wrong-size, descriptor-drifted, corrupted, and unsupported artifacts return typed failures before consumer release [evidence: `deep-review-sealed-artifacts.vitest.ts`; 15 tests cover missing, removed, substituted, tampered, truncated, wrong-kind, stale, and shape-invalid selector references]
 - [ ] CHK-017 [P0] Replay and shadow parity bind the same ordered verified reference set and report input-equivalence failure before comparing different sets
 - [ ] CHK-018 [P0] Identical sealed inputs plus registered review-loop, replay, reducer, and projection contracts reproduce byte-identical events, findings views, convergence evidence, report bytes, and verdict metadata
 - [ ] CHK-019 [P0] Finding lineage preserves original observations across moved lines, renamed symbols, resolution, suppression, severity changes, and append-only supersession
@@ -90,6 +90,24 @@ watermarks, changed legacy behavior, or unexpected tracked mutation.
 
 - [ ] CHK-026 [P2] The mode artifact matrix, seal/read failure behavior, candidate evidence rules, reference-set ordering, report reproducibility, and resume drift rules are documented for successor consumers
 <!-- /ANCHOR:docs -->
+
+<!-- ANCHOR:boundary -->
+## Scope Reconciliation
+
+Leaf-003 owns sealing exact canonical bytes, lowercase 64-hex shape validation, backing its own `materialDigest`,
+kind-checking declared `SealedArtifactReference` values, and tamper-evident verified reads. The plain scalar and array
+digest fields named in ADR-002 are immutable shape-validated values only. Cross-artifact closure for those named values is
+an accepted leaf-004 forward obligation, not an incomplete leaf-003 verifier check.
+
+`locator.selector` is also a structural-shape boundary. The validator rejects bare-word and combinator-joined prose
+that fails the structured selector grammar, but it cannot prove that a syntactically valid CSS class, id, or attribute
+identifier resolves to a real evidence span without target-document context. The selector is advisory only; downstream
+consumer or leaf-004 attestation must resolve it and MUST NOT activate severity from selector text. The separately
+validated `rawScore`, `confidence`, `impact`, `reachability`, `exploitability`, digest, and reference fields remain
+the authority-bearing inputs [evidence: `decision-record.md` ADR-003; `implementation-summary.md` selector limitations].
+
+- [x] CHK-028 [P1] Locator selector validation is documented as structural shape validation only, with semantic target-document resolution and selector-independent severity authority deferred downstream [evidence: `decision-record.md` ADR-003; `implementation-summary.md`; no runtime or test changes in this documentation update]
+<!-- /ANCHOR:boundary -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization

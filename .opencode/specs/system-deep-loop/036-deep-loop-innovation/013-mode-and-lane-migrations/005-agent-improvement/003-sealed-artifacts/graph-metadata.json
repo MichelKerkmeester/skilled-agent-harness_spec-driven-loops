@@ -19,7 +19,9 @@
       "agent improvement sealed artifacts tasks",
       "agent improvement AgentIR sealing tasks",
       "agent improvement sealed artifacts checklist",
-      "agent improvement tamper evident verification"
+      "agent improvement tamper evident verification",
+      "agent improvement sealed artifact implementation",
+      "agent improvement artifact binding"
     ],
     "key_topics": [
       "agent",
@@ -36,10 +38,11 @@
       "checklist"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
@@ -54,6 +57,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -87,12 +96,6 @@
         "source": "derived"
       },
       {
-        "name": "Defined Agent Improvement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -101,6 +104,12 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sealed",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -117,13 +126,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "identical",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "identical",
+        "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -175,25 +184,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references, content-addressed proposal and trial outputs, and a tamper-evident read path layered on the deep-improvement-common sealing and evaluator services.",
     "created_at": "2026-07-16T03:43:38.008Z",
-    "last_save_at": "2026-07-19T18:09:54.691Z",
+    "last_save_at": "2026-07-23T21:11:23.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26cb6c0c44f13fe076c973cd7b9b3a9f736c5213ba57c0572a23edd61035cbf6",
+    "source_fingerprint": "sha256:04843ed6191301d66311943904149cd559a9ae9f654a46910e71fdfe6fe447d2",
     "source_doc_hashes": {
-      "spec.md": "9077460e9fe1f32f70751fb18972c8c4e304ec8fa5ce329c00ae91f1462d5dd2",
-      "plan.md": "dfdba7acc8fcc2fe08292acc1a7415d0ac332266a7c1509ade48f2d45df55f15",
-      "tasks.md": "6ac8cc07175c58f20e816c3849949ec9599d8b57d6fba646cd67d22d5227bbb6",
-      "checklist.md": "7794b9fe9582f5cc5296092d9e38c04070edfd6af76b5156eeb8cc1e0ebfb65a"
+      "spec.md": "2b5dc0ac76ff160b3c867718beddc8fb0bb9b61b18bef178906e082c19d10bd5",
+      "plan.md": "41da5bfe964478ccda43933c428d55033d21c712cf426977501bf940bbdecf7d",
+      "tasks.md": "4ae464d9775c4ecc9ab9f4e3696f85a0c47ece679b649e24f2db17678b7d5e7c",
+      "checklist.md": "1512efea6b7c34cdfe46176f24966ea8dc14dd376e7571ea9b374c3e289ad95f",
+      "implementation-summary.md": "bed36fc9b722e8ce4440a2dd0dbc56edfe267f96bfb59ce29b9a0f16264f36c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

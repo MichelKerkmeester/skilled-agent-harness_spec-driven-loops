@@ -23,7 +23,7 @@ _memory:
 # Tasks: Deep Improvement Common Services - Sealed Reference Artifacts
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 
 <!-- ANCHOR:notation -->
 ## Task Notation

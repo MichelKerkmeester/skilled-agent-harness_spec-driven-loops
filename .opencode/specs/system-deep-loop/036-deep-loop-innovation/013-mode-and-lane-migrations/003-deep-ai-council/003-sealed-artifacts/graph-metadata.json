@@ -21,7 +21,8 @@
       "Deep AI Council sealed artifacts tasks",
       "deep-ai-council seal-on-write tasks",
       "Deep AI Council sealed artifacts checklist",
-      "deep-ai-council tamper-evident read gate"
+      "deep-ai-council tamper-evident read gate",
+      "deep ai council sealed artifacts implementation"
     ],
     "key_topics": [
       "deep",
@@ -43,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -177,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-007 sealing primitives and phase-012 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme.",
     "created_at": "2026-07-16T03:43:34.470Z",
-    "last_save_at": "2026-07-19T18:09:56.158Z",
+    "last_save_at": "2026-07-23T20:01:37.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9ae0aace1c20749acdb2cfc6d08ad225b0869f9d1259e71d05122c4a0ec2ef30",
+    "source_fingerprint": "sha256:b31b1f7611300dc10eb3e18c258be3d0d02480cd38d2d1c9c73fcba71b255e00",
     "source_doc_hashes": {
       "spec.md": "b048de6139793b87d52fd7e854186442887b922ad5bb49425e4a8d7e7090d16e",
       "plan.md": "cb5f95bb8ac3227bd5641a0c103142513deaab17b2631d60ceee60cc593cf225",
       "tasks.md": "236d03be344fc851e48bf7a486b7e827230ee3af921b397d90dceaf84c8593f7",
-      "checklist.md": "f0cd86c1d9e4508a551f7ef88f448577da96e639620f5aee22840bef70210f9a"
+      "checklist.md": "f0cd86c1d9e4508a551f7ef88f448577da96e639620f5aee22840bef70210f9a",
+      "implementation-summary.md": "df73175f2b8a307c5efe973694fc2abee00b9a7a6493d9acb1eb95359d226277"
     },
     "last_active_child_id": null,
     "last_active_at": null

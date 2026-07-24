@@ -12,11 +12,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts"
     last_updated_at: "2026-07-15T21:10:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined model-matrix, validity, workload, and tamper-read verification gates"
-    next_safe_action: "Run the matrix verifier after common sealing and reducer contracts are frozen"
+    recent_action: "Verified sealed visibility and matrix identity read boundaries"
+    next_safe_action: "Close the remaining broad phase-verifier checklist items"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 10
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,8 @@ This checklist is the blocking verifier contract for the model-benchmark sealed 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-006 [P0] Every model-benchmark artifact uses the phase-007 sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists
+- [x] CHK-006 [P0] Every model-benchmark artifact uses the phase-007 sealing adapter; no second digest, signature, chain, manifest, storage, or verification scheme exists [evidence: the adapter composes the common canonicalizer registry and the real filesystem-backed store suite passes 12/12 serially]
+  - Evidence: targeted Vitest seals and reads all 11 registered artifact kinds through the real filesystem-backed `SealedArtifactStore`; `MODEL_BENCHMARK_SUBSTRATE_IMPORTS_REAL` is `true`.
 - [ ] CHK-007 [P0] Recipe and cell digest coverage includes canonical bytes, artifact kind, schema version, matrix ordering, model/executor identity, workload, and ordered dependency closure
 - [ ] CHK-008 [P0] Sealed recipe, matrix, cell, observation, and scoring bytes are immutable, writes are atomic, incomplete cells are unreadable, and every semantic change requires a new identity
 - [ ] CHK-009 [P1] Scope is limited to model-benchmark run/scoring artifacts, validity, contamination, workload evidence, fixtures, shared-service adapters, and verification; no authority cutover or adjacent cleanup is included
@@ -56,7 +57,8 @@ This checklist is the blocking verifier contract for the model-benchmark sealed 
 
 - [ ] CHK-010 [P0] Equivalent canonical recipes, matrix orderings, and dependency closures produce identical references while every semantic model, executor, fixture, sample, seed, scoring, visibility, workload, or dependency mutation produces a new identity
 - [ ] CHK-011 [P0] Interrupted, retried, duplicate, and concurrent writes never publish partial content or overwrite an existing sealed recipe, cell, observation, or scoring artifact
-- [ ] CHK-012 [P0] Tampered bytes, manifests, model descriptors, capability fingerprints, hidden commitments, cell membership, scoring revisions, contamination state, and workload fields fail closed with typed read results
+- [x] CHK-012 [P0] Tampered bytes, manifests, model descriptors, capability fingerprints, hidden commitments, cell membership, scoring revisions, contamination state, and workload fields fail closed with typed read results [evidence: the real-store suite passes 12/12, including typed corruption, dependency, policy, matrix, effective-visibility, and normalized-role failures with no released bytes]
+  - Evidence: targeted Vitest rejects tampered/truncated/unsealed references and returns typed `MATRIX_MISMATCH` with the actual nested cell matrix digest for a wrong required digest.
 - [ ] CHK-013 [P0] Run fixtures bind mode, profile version, model/provider/build/variant, executor, framework, fixtures, samples, seeds, matrix order, visibility, scoring, reporting, and workload
 - [ ] CHK-014 [P0] Model-cell fixtures retain frozen workflow/environment state, capabilities, permissions, prompt/framework and fixture references, raw responses or traces, usage, cost, latency, errors, retries, and integrity observations
 - [ ] CHK-015 [P0] Scoring fixtures retain raw item and family rows beside rubric axes, correctness gates, judge observations, paired deltas, intervals, rank probabilities, multiplicity treatment, and selection status
@@ -64,7 +66,8 @@ This checklist is the blocking verifier contract for the model-benchmark sealed 
 - [ ] CHK-017 [P0] Judge and rubric validity fixtures cover candidate/task-cluster calibration, axis perturbations, oracle uncertainty, protocol robustness, and invalid-score refusal
 - [ ] CHK-018 [P0] Contamination fixtures cover source date, first exposure, visibility, matched or semantic evidence, disclosure, retirement, replacement lineage, reference-model difficulty, and hidden-case isolation
 - [ ] CHK-019 [P0] Missing, stale, contaminated, quarantined, unsupported, calibration-invalid, epoch-mismatched, incomplete, or workload-mismatched artifacts cannot reach winner or ship eligibility
-- [ ] CHK-020 [P0] Candidate-facing reads exclude hidden fixtures, exact evaluator internals, protected judge evidence, terminal scoring evidence, and mutable service state
+- [x] CHK-020 [P0] Candidate-facing reads exclude hidden fixtures, exact evaluator internals, protected judge evidence, terminal scoring evidence, and mutable service state [evidence: candidate/scorer reads reject public-base private-case, withheld-prompt, restricted-view, scoring, judge, and oracle artifacts while evaluator and genuinely public controls return full verified material]
+  - Evidence: real-store tests block normalized candidate/scorer roles, case and whitespace variants, and unknown roles from sealed scoring matrices, raw judge observations, and oracle validity evidence with `VISIBILITY_MISMATCH`; evaluator and downstream controls receive the full verified material.
 - [ ] CHK-021 [P0] Workload fixtures retain quality, latency tails, throughput, SLO violations, realized cost, error, abstention, and switching evidence; output-word or quality-per-dollar ratios cannot stand alone
 - [ ] CHK-022 [P1] Complete and checkpointed matrix replay preserves raw sealed artifacts while new reducer, calibration, normalization, or scoring-policy revisions create new derived references
 - [ ] CHK-023 [P1] Model-only claims use independent model and execution crossings, while complete-stack comparisons carry an explicit complete-stack estimand

@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts"
-    last_updated_at: "2026-07-15T21:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined the Deep Alignment sealed-artifact mode gate"
-    next_safe_action: "Run the Deep Alignment authority and verified-read fixtures"
+    last_updated_at: "2026-07-24T03:11:05Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled adapter evidence with the accepted plain cross-digest boundary"
+    next_safe_action: "Leaf 004 must verify deferred applicability and target digest closure"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 14
     open_questions: []
     answered_questions: []
 ---
@@ -41,16 +41,16 @@ pass, blanket exception suppression, mixed reference watermarks, changed legacy 
 
 - [ ] CHK-001 [P0] Phase-012 shared review-loop contracts and the executable write-set conflict graph are frozen for Deep Alignment
 - [ ] CHK-002 [P0] The lifecycle artifact matrix covers init/scope, discover, iterate/check, witness/exception, convergence/report, and resume/save boundaries
-- [ ] CHK-003 [P0] The mode consumes the shared phase-007 sealing primitives and names no alternate digest, descriptor, store, or verifier
+- [x] CHK-003 [P0] The mode consumes the shared phase-007 sealing primitives and names no alternate digest, descriptor, store, or verifier. [evidence: the adapter and its real-store fixture use `SealedArtifactStore` for seal and verified-read paths; verification receipt: targeted Vitest 17/17 passed.]
 - [ ] CHK-004 [P1] Predecessor `002-reducers-and-projections` owns findings, coverage, exception, lane-verdict, and report projection semantics, while this phase owns only artifact binding
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P1] Changes stay inside the Deep Alignment mode binding and integration surfaces with no shared-service cleanup, remediation, or authority transfer
-- [ ] CHK-006 [P1] Artifact-kind registration, authority-capsule fields, descriptor references, canonicalization versions, media types, expiry rules, and reference ordering are explicit
-- [ ] CHK-007 [P1] Failure paths are typed, bounded, non-destructive, and never return fallback, nearest-match, repaired, partially verified, expired, or authority-unverified content
+- [x] CHK-005 [P1] Changes stay inside the Deep Alignment mode binding and integration surfaces with no shared-service cleanup, remediation, or authority transfer. [evidence: the implementation summary lists only mode-specific adapter and fixture surfaces; the shared sealer remains the authority; verification receipt: targeted Vitest 17/17 passed.]
+- [x] CHK-006 [P1] Artifact-kind registration, authority-capsule fields, descriptor references, canonicalization versions, media types, expiry rules, rollback state, and reference ordering are explicit. [evidence: the registered kind matrix, closed material validators, and authority-liveness reads are exercised by the lifecycle registration, deterministic-seal, rolled-back, and live-authority tests; verification receipt: targeted Vitest 17/17 passed.]
+- [x] CHK-007 [P1] Failure paths are typed, bounded, non-destructive, and never return fallback, nearest-match, repaired, partially verified, expired, rolled-back, or authority-unverified content. [evidence: missing, unsealed, tampered, truncated, stale-epoch, rolled-back, and wrong-kind paths fail closed before verified bytes are released; verification receipt: targeted Vitest 17/17 passed.]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -102,17 +102,18 @@ pass, blanket exception suppression, mixed reference watermarks, changed legacy 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 verifier check passes, the lifecycle matrix is non-empty, every consumer receives only
-shared verified bytes, authority validity gates discovery and conformance, witness and exception evidence is digest-
-reproducible, replay and shadow parity use equivalent reference sets, changed inputs do not silently rebaseline, and the
-legacy path remains authoritative with no unexpected tracked mutation.
+The adapter slice has evidence for CHK-003, CHK-005, CHK-006, and CHK-007, including direct and provenance-bound
+authority-liveness reads. This checklist is not a full phase sign-off:
+the remaining P0 lifecycle, witness, convergence, replay, parity, mode-gate, and cross-leaf integration checks remain
+unclaimed. Plain applicability-decision and subject-snapshot digest closure is intentionally deferred to leaf 004 and
+must be verified there before any authority cutover.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
 
-Signed off when the mode verifier binds the authority-capsule and artifact-kind matrices, shared descriptor and
-canonicalization versions, digest references, lane and witness results, exception dispositions, replay/parity evidence,
-drift result, handoff result, candidate SHA, and clean post-gate worktree state into one mode receipt for the later
-certificate phase.
+The adapter documentation is reconciled, but the phase is not signed off. Later sign-off requires the mode verifier to
+bind the authority-capsule and artifact-kind matrices, shared descriptor and canonicalization versions, digest references,
+lane and witness results, exception dispositions, replay/parity evidence, deferred plain-digest closure, drift result,
+handoff result, candidate SHA, and clean post-gate worktree state into one mode receipt for the later certificate phase.
 <!-- /ANCHOR:sign-off -->

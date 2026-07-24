@@ -19,7 +19,10 @@
       "deep review sealed artifacts tasks",
       "deep-review verified read tasks",
       "deep review sealed artifacts checklist",
-      "deep-review tamper-evident artifact checklist"
+      "deep-review tamper-evident artifact checklist",
+      "deep review material reference integrity",
+      "deep-review store-backed material digest",
+      "deep review fabricated reference rejection"
     ],
     "key_topics": [
       "deep",
@@ -38,12 +41,20 @@
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
+      "decision-record.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -54,6 +65,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -169,25 +186,35 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:32.713Z",
-    "last_save_at": "2026-07-19T18:01:24.461Z",
+    "last_save_at": "2026-07-24T05:01:21.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05691b50be19b4f79061d8cdb9893c71e0154ab6dd7b13a0789e7474330a2548",
+    "source_fingerprint": "sha256:8c5c193542cb0c44241390c3d959595e4bf3470c4c9591c69365a9b262fa020e",
     "source_doc_hashes": {
       "spec.md": "00687b51c6d313f7c3104e341817a6928442a84adc3cd6a5cebb3ba2a0876e37",
       "plan.md": "e09b2115cd3ce3a26636c4b1eeeca1bd7e75e4932b74759580e3efa797b9bbe7",
       "tasks.md": "23900ccb0183bd53e2d290941defa445a70fffbb3a9a03f2de23b7122c95c60c",
-      "checklist.md": "d001bd8e519fc08e8951d8000539ea4bebe055bf235155f54e448de4bf5c3722"
+      "checklist.md": "36503ef0e5ad83776e3503a3768210cdda5bf7dc782d20b308cf27dc914f1855",
+      "decision-record.md": "2adf2183d4080bc5ace4827cb210ef912bbd28792e574557be00a5f17b45ee9e",
+      "implementation-summary.md": "e2993fa5233017baf2c65bd8155b3bf5c8bb73a029c038ce883de8975c71ba44"
     },
     "last_active_child_id": null,
     "last_active_at": null
