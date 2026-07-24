@@ -1,0 +1,32 @@
+{
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout",
+  "description": "Adding a 4th CLI mode is not complete when the packet and runtime wiring exist \u2014 the new executor must also appear wherever its 3 siblings already do:",
+  "keywords": [
+    "4th",
+    "cli",
+    "mode",
+    "complete",
+    "packet",
+    "runtime",
+    "wiring",
+    "exist",
+    "new",
+    "executor",
+    "must",
+    "also",
+    "appear",
+    "wherever",
+    "siblings",
+    "already"
+  ],
+  "lastUpdated": "2026-07-24T04:55:56.564Z",
+  "specId": "007",
+  "folderSlug": "docs-agents-governance-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

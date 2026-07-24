@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-cursor closeout",
+      "cli-cursor governance docs",
+      "cli-cursor agent roster",
+      "cli-cursor closeout plan",
+      "cli-cursor closeout tasks",
+      "cli-cursor closeout checklist"
+    ],
+    "key_topics": [
+      "cli-cursor",
+      "closeout",
+      "governance",
+      "docs",
+      "agent",
+      "roster",
+      "plan",
+      "tasks",
+      "checklist",
+      "4th",
+      "cli",
+      "mode"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/agents/context.md",
+      ".opencode/agents/deep-research.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Adding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adding a 4th CLI mode is not complete when the packet and runtime wiring exist — the new executor must also appear wherever its 3 siblings already do: in the agent rosters (per-runtime `context`/`deep-research`/`deep-review`/`deep-improvement` agent docs across `.opencode/`, `.claude/`, `.codex/`), in governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and in cross-skill sibling mentions",
+    "created_at": "2026-07-24T04:56:11.705Z",
+    "last_save_at": "2026-07-24T04:56:11.705Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:11bc22d571bf24bc1b0a6096ce8fddc87fcfa97eac0732ac8e887c15a487ed56",
+    "source_doc_hashes": {
+      "spec.md": "e9a78b99b7e13d70414928e411de8d98baa68bd6c5965e7a9755c758ad4d34b7",
+      "plan.md": "ebfd597921ead0a3459b9fdbb6d66daa2d79e91d494254564e03c1784cdec305",
+      "tasks.md": "28fe3bfb622f6b4569d18ba2cf3ab3b0f557017248a0611b822ae81f960f7dfb",
+      "checklist.md": "af82832d7f94e035a76e48e2724499335b01dafc7b23f45a004bf4c17397a599"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
