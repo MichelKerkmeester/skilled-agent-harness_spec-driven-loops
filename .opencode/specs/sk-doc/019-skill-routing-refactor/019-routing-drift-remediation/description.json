@@ -1,0 +1,27 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
+  "description": "A post-019 survey of every skill hub surfaced drift that had accumulated against the authorities packet 019",
+  "keywords": [
+    "post-019",
+    "survey",
+    "every",
+    "skill",
+    "hub",
+    "surfaced",
+    "drift",
+    "accumulated",
+    "against",
+    "authorities",
+    "packet"
+  ],
+  "lastUpdated": "2026-07-24T18:19:29.121Z",
+  "specId": "019",
+  "folderSlug": "routing-drift-remediation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

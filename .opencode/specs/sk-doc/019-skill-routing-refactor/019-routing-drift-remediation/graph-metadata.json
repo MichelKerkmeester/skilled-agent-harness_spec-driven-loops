@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing drift remediation",
+      "compiled serving false green",
+      "post-019 drift fixes",
+      "routing drift remediation plan",
+      "compiled serving fix plan",
+      "routing drift remediation tasks",
+      "routing drift remediation checklist",
+      "routing drift remediation outcome",
+      "compiled serving fix status"
+    ],
+    "key_topics": [
+      "routing",
+      "drift",
+      "remediation",
+      "compiled",
+      "serving",
+      "false",
+      "green",
+      "post-019",
+      "plan",
+      "tasks",
+      "checklist",
+      "outcome"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/compiled-route-status.cjs",
+      ".opencode/bin/lib/compiled-route-manifest.cjs",
+      ".opencode/skills/sk-prompt/leaf-manifest.json",
+      ".opencode/skills/sk-design/description.json",
+      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Drift Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Observability",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A post-019 survey of every skill hub surfaced drift that had accumulated against the authorities packet 019",
+    "created_at": "2026-07-24T18:15:58.637Z",
+    "last_save_at": "2026-07-24T18:20:07.834Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:40713f2a402af31836fa929b440d0a9ef12344f75afa5b4ce7d7e6939aafb66e",
+    "source_doc_hashes": {
+      "spec.md": "fa3603351d4c71ccded353b305bcf074b513bfe787c9ea3a3c2e350d87e8a052",
+      "plan.md": "874511f3239918f789f1b1c4784bc326d909405b5d2caeae1d74b3bb84120baa",
+      "tasks.md": "7372657d0330bbea8b269fad1068cd349d63fe7e0796203ecbc8c9fab5431b82",
+      "checklist.md": "c27a3950bfcd889f380cbe44ce0c2bdfe788140ba64ce82f34a70db4278bedda",
+      "implementation-summary.md": "db58b82b652517a71bf38c2a205cf48645d7981f09568233858032c7d3c69319"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
