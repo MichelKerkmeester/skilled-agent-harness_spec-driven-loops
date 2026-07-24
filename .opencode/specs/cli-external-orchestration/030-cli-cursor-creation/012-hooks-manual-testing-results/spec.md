@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results"
-    last_updated_at: "2026-07-24T17:07:47Z"
+    last_updated_at: "2026-07-24T17:34:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 4 hooks scenarios executed for real and results recorded"
     next_safe_action: "Run validate.sh --strict, commit"
@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../011-cursor-hooks-claude-parity/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../013-hooks-sk-code-alignment/spec.md` |
 | **Handoff Criteria** | All 4 hooks-category scenarios (`CU-013`, `CU-014`, `CU-020`, `CU-021`) executed for real against the live `cursor-agent` binary in this session (not cited from an earlier phase's build report), each with a PASS/FAIL/SKIP verdict and concrete evidence, and the repo's own committed `.cursor/hooks.json` confirmed untouched by every run. |
 <!-- /ANCHOR:metadata -->
 

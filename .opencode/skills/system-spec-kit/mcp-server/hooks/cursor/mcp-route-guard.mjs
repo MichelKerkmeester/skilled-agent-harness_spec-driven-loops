@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-// beforeMCPExecution advisory hook for Cursor CLI -- Cursor's counterpart to
-// Claude's mcp-route-guard.cjs (PreToolUse `mcp__claude_ai_.*` matcher).
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Cursor beforeMCPExecution Route Guard                         ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Advise routing an MCP call through Code Mode on a match.        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// Cursor's counterpart to Claude's mcp-route-guard.cjs (PreToolUse `mcp__claude_ai_.*` matcher).
 //
 // STATUS: BUILT, UNWIRED -- NOT in .cursor/hooks.json. No MCP server is
 // configured for Cursor CLI on this machine: repo `.cursor/mcp.json` does not
@@ -21,7 +25,6 @@
 // assumption re-checked -- mirrors spec-gate-classify.mjs's own "register...
 // ONLY after re-confirming live delivery" precedent, applied here one step
 // earlier (before ANY registration, not just before trusting the result).
-'use strict';
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';

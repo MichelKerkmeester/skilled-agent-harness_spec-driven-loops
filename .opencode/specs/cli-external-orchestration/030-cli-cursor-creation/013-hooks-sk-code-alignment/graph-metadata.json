@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/013-hooks-sk-code-alignment",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/013-hooks-sk-code-alignment",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-cursor hooks sk-code alignment",
+      "code-opencode hooks.md cursor",
+      "cursor hook box header",
+      "cli-cursor hooks sk-code alignment plan",
+      "cli-cursor hooks sk-code alignment tasks",
+      "cli-cursor hooks sk-code alignment checklist",
+      "cli-cursor hooks sk-code alignment implementation",
+      "cursor hook box header fix"
+    ],
+    "key_topics": [
+      "cli-cursor",
+      "hooks",
+      "sk-code",
+      "alignment",
+      "code-opencode",
+      "cursor",
+      "hook",
+      "box",
+      "header",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      ".cursor/hooks.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+      ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-tool-use.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "task-dispatch-guard.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Sources",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Parity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator asked directly: \"make sure all hook code aligns with sk-code code-opencode standards.\" `sk-code`'s `code-opencode` surface packet is the canonical evidence base for `.opencode/` system code (TypeScript/JavaScript/Python/shell/config standards, and — specifically relevant here — a dedicated `references/shared/hooks.md` covering \"runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability.\"",
+    "created_at": "2026-07-24T17:25:17.654Z",
+    "last_save_at": "2026-07-24T17:34:01.230Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2bf5b9ebf483087d20946011a78d2299ad57df89dccd868eb130ce15e4b03078",
+    "source_doc_hashes": {
+      "spec.md": "cebbc57cf32512c6a277770d205a1244cf7a49361b50dba17651c58fabd31f94",
+      "plan.md": "cb391d83f85a217a304229418cfa0463af79eed6a44e37bc8124b6317384821f",
+      "tasks.md": "027d51f66c2d009a5fb9ff653d9b7cb1343d46a8c0978e73a8fa78443adb5201",
+      "checklist.md": "5405c243e66edb063100d7ce4c29041364bb5cdd3fd6baf4adda96ec99344cb6",
+      "implementation-summary.md": "6f27ba46e63683c63af67d7af246c8ccd66e8108b9f7d2427061d15f480e8c4a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

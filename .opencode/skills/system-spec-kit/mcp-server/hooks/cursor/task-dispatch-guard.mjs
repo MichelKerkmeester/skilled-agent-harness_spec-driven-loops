@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-// preToolUse(Task) deep-loop dispatch guard for Cursor CLI -- Cursor's
-// counterpart to Claude's task-dispatch-guard.cjs. Wired under a SEPARATE
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Cursor preToolUse Task Dispatch Guard                         ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Evaluate deep-loop dispatch policy for a Task tool call.        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// Cursor's counterpart to Claude's task-dispatch-guard.cjs. Wired under a SEPARATE
 // preToolUse array entry with `"matcher": "Task"` (a confirmed hooks.json
 // schema field -- hook-contract.md §2) so it runs alongside, not instead of,
 // the existing unmatched spec-gate-enforce.mjs entry that already covers
@@ -23,7 +27,6 @@
 // plain-.mjs style. FAILS OPEN -- any missing payload, spawn error, or
 // internal error approves silently, so a bug here never blocks a
 // correctly-scoped Task dispatch.
-'use strict';
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';

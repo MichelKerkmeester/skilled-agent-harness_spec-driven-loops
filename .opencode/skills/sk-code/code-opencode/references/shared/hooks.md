@@ -5,15 +5,15 @@ trigger_phrases:
   - "runtime hook authoring"
   - "hook entrypoints registration"
   - "dynamic load hook pattern"
-  - "claude opencode copilot hooks"
+  - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.14
+version: 1.0.0.15
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
 
-Reference for the current runtime-hook surfaces in this workspace: checked-in Claude Code hook wiring, OpenCode plugin-bridge delivery, and GitHub/Copilot-adjacent hook wrappers. Keep this file aligned with the authoritative hook contract in `system-spec-kit/references/config/hook-system.md` and the live runtime wiring in `.claude/settings.json`.
+Reference for the current runtime-hook surfaces in this workspace: checked-in Claude Code hook wiring, checked-in Cursor CLI/editor hook wiring, OpenCode plugin-bridge delivery, and GitHub/Copilot-adjacent hook wrappers. Keep this file aligned with the authoritative hook contract in `system-spec-kit/references/config/hook-system.md` and the live runtime wiring in `.claude/settings.json` / `.cursor/hooks.json`.
 
 ---
 
@@ -33,7 +33,7 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 - Adding a new hook to one or more runtimes
 - Removing a hook (must update both source and runtime registration)
 - Triaging a static analysis report flagging hook code as dead
-- Reviewing parity across the three runtimes
+- Reviewing parity across the four runtimes
 
 ### Key Sources (Evidence)
 
@@ -42,6 +42,8 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 | Hook system reference | `.opencode/skills/system-spec-kit/references/config/hook-system.md` | Runtime-specific hook system deep-dive |
 | Hook helper inventory | `.opencode/skills/system-spec-kit/mcp-server/hooks/README.md` | Current hook helper tree; states OpenCode advice is delivered by plugin bridge |
 | Claude settings | `.claude/settings.json` | Live checked-in Claude hook wiring |
+| Cursor hooks | `.cursor/hooks.json` | Live checked-in Cursor CLI/editor hook wiring |
+| Cursor hook contract | `.opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md` | Cursor-specific hook schema, discovery order, and event-delivery caveats |
 | OpenCode skill-advisor plugin | `.opencode/plugins/mk-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
 | OpenCode skill-advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Subprocess bridge from plugin to the advisor server |
 
@@ -56,6 +58,7 @@ Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks
 | Surface | Registration source | Wiring shape |
 |---|---|---|
 | Claude Code | `.claude/settings.json` | Nested `hooks.<Event>[].hooks[]` array; each entry has `type: "command"` + `command` string |
+| Cursor CLI | `.cursor/hooks.json` (project scope; merges with `~/.cursor/hooks.json` user scope, shared with the Cursor editor) | Flat `hooks.<event>[]` array; each entry has `command`, `type: "command"`, `timeout`, and an optional `matcher` for tool-name-scoped routing |
 | OpenCode | `.opencode/plugins/*.js` and user/workspace OpenCode runtime config | Plugin objects exposing `experimental.chat.system.transform`, `event`, and/or tools |
 | GitHub/Copilot side | lifecycle scripts under `.github/hooks/scripts/` | Copilot session-priming scripts; no checked-in wrapper config |
 
@@ -108,7 +111,55 @@ The nested shape (`hooks.<Event>[].hooks[]`) is required. A flat shape with top-
 
 ---
 
-## 4. OPENCODE HOOKS
+## 4. CURSOR HOOKS
+
+Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Unlike every sibling runtime, this file is **the exact same hooks.json the Cursor desktop editor reads** — project scope merges with (does not shadow) the pre-existing `~/.cursor/hooks.json` user scope, so registering a hook here also applies to any teammate opening this repo in the editor. Use `.cursor/hooks.json` as the live wiring source for matchers, command strings, and timeouts.
+
+| Event | Matcher | Command | Timeout | Purpose |
+|---|---|---:|---:|---|
+| `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-start.js` | 10 | Startup context priming (proxies to `session-prime.js`). |
+| `sessionStart` | none | `bash .opencode/bin/worktree-guard.sh` | 10 | Workspace safety guard. |
+| `sessionStart` | none | `bash .opencode/bin/check-git-hooks.sh` | 10 | Git-hooks-installed guard. |
+| `sessionStart` | none | `python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all` | 10 | Dist-staleness warning across every watched package. |
+| `sessionStart` | none | `node .opencode/bin/install-codex-hooks.mjs --check` | 10 | Codex hook-drift warning. |
+| `sessionEnd` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-end.js` | 10 | Session-stop accounting (proxies to `session-stop.js`; Cursor's `stop` event never fires under the CLI, so `sessionEnd` is the confirmed substitute). |
+| `sessionEnd` | none | `bash .opencode/scripts/session-cleanup.sh` | 10 | Session-scoped MCP-helper cleanup. |
+| `preToolUse` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | 10 | Evaluates the shared spec-gate mutation policy before every tool call (`Shell`/`Write`). |
+| `preToolUse` | `Task` | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs` | 10 | Deep-loop dispatch policy for a delegated subagent (`Task`) tool call; fires alongside the unmatched entry above, not instead of it. |
+| `postToolUse` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | 10 | Chains `Write`/`Shell` tool calls into the Claude post-edit-quality, code-graph-freshness, and CLI-dispatch-audit hooks. |
+| `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | 10 | Advisory Gate-3 classification. Registered for parity; confirmed dormant under the installed CLI build (event never fires). |
+| `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js` | 10 | Prompt-time skill-advisor brief. Registered for parity; confirmed dormant alongside the classify hook above. |
+| `preCompact` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/precompact.js` | 10 | Compaction payload pre-caching (proxies to `compact-inject.js`). Registered for parity; delivery unconfirmed and untestable in isolation (no CLI-reachable compaction trigger exists). |
+
+Helper module (statically imported by every entrypoint, NOT directly wired): `shared.ts` — the Cursor-to-Claude payload bridge (`readCursorHookInput`, `toClaudeShape`, `runClaudeHookAdapter`, `emitCursorResponse`).
+
+### Wiring Shape
+
+```jsonc
+"preToolUse": [
+  {
+    "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+    "type": "command",
+    "timeout": 10
+  },
+  {
+    "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+    "type": "command",
+    "matcher": "Task",
+    "timeout": 10
+  }
+]
+```
+
+The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is Cursor's own schema — distinct from Claude's nested `hooks.<Event>[].hooks[]` shape above. A `matcher`-scoped entry fires alongside an unmatched entry for the same event, not instead of it (confirmed live: a `Task` tool call fires both the unmatched `spec-gate-enforce.mjs` entry and the `matcher: "Task"` entry).
+
+### Not Wired
+
+`spec-gate-prebind.mjs` (`sessionStart` — opens the Gate-3 enforcement state Cursor structurally cannot open via `beforeSubmitPrompt`) and `mcp-route-guard.mjs` (`beforeMCPExecution` — built, standalone-tested, but no MCP server is configured on the reference machine to confirm its payload shape) both exist in the source tree but are deliberately absent from `.cursor/hooks.json`. Do not add either without first satisfying its own file-header precondition (review/commit status for the former; a live payload capture for the latter).
+
+---
+
+## 5. OPENCODE HOOKS
 
 The removed `system-spec-kit/mcp-server/hooks/opencode/` suite is not present in this checkout. Current OpenCode prompt-time advice is delivered by plugin bridge:
 
@@ -123,7 +174,7 @@ Deprecated/stale references to `system-spec-kit/mcp-server/hooks/opencode/*` sho
 
 ---
 
-## 5. GITHUB / COPILOT SIDE
+## 6. GITHUB / COPILOT SIDE
 
 The removed `system-spec-kit/mcp-server/hooks/copilot/` suite is not present in this checkout. There is no longer a checked-in Copilot bridge wrapper; the `.github/hooks/scripts/` lifecycle scripts remain and run the spec-kit Copilot session-priming.
 
@@ -131,7 +182,7 @@ Do not copy the Claude nested hook block into GitHub/Copilot-facing files. `hook
 
 ---
 
-## 6. MAINTENANCE CHECKLIST
+## 7. MAINTENANCE CHECKLIST
 
 ### Editing an Existing Hook
 
@@ -169,13 +220,14 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 | Question | Action |
 |---|---|
-| Does the feature need session-start priming? | Add to the runtime's startup/session surface; for Claude this is `SessionStart` in `.claude/settings.json`. |
-| Does the feature run per-prompt? | Add to the runtime's prompt surface; for OpenCode advisor context this is the plugin bridge. |
-| Does the feature run on compaction? | Map runtime-specific event names; for Claude this is `PreCompact` in `.claude/settings.json`. |
+| Does the feature need session-start priming? | Add to the runtime's startup/session surface; for Claude this is `SessionStart` in `.claude/settings.json`, for Cursor this is `sessionStart` in `.cursor/hooks.json`. |
+| Does the feature run per-prompt? | Add to the runtime's prompt surface; for OpenCode advisor context this is the plugin bridge, for Cursor this is `beforeSubmitPrompt` (confirmed dormant under the current CLI build — register for parity, do not assume delivery). |
+| Does the feature run on compaction? | Map runtime-specific event names; for Claude this is `PreCompact` in `.claude/settings.json`, for Cursor this is `preCompact` in `.cursor/hooks.json` (also unconfirmed/untestable in isolation). |
+| Does the feature need per-tool routing? | Only Cursor's schema supports a `matcher` field for a SECOND entry on the same event (e.g. `preToolUse` + `matcher: "Task"`) that fires alongside, not instead of, an unmatched entry; Claude achieves the same via its own nested `matcher` field per event. |
 
 ---
 
-## 7. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Canonical Evidence
 

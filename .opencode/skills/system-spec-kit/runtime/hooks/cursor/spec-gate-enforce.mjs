@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-// preToolUse enforce hook for Cursor CLI -- the Cursor sibling of the Codex
-// spec-gate-enforce hook. Intercepts a Cursor tool call BEFORE it runs and
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Cursor preToolUse Enforce Hook                                ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Evaluate the spec-gate mutation policy before a tool call runs. ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// The Cursor sibling of the Codex spec-gate-enforce hook. Intercepts a Cursor tool call BEFORE it runs and
 // evaluates the shared spec-gate core's evaluateMutation() policy. Wired to
 // `preToolUse` (confirmed live to fire before every tool call: Shell, Read,
 // Grep, Write), NOT `beforeShellExecution` alone -- preToolUse is Cursor's
@@ -9,7 +13,6 @@
 // alongside the Claude hook, the OpenCode plugin, and the Codex hook -- no
 // core change. FAILS OPEN -- any missing payload, unmapped tool, or internal
 // error approves silently, so a bug here never blocks correctly-scoped work.
-'use strict';
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
 

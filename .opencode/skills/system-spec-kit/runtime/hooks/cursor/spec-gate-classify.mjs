@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-// beforeSubmitPrompt classify hook for Cursor CLI -- the Cursor sibling of the
-// Codex spec-gate-classify hook. Runs the shared spec-gate core against each
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Cursor beforeSubmitPrompt Classify Hook                       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Surface the Gate-3 advisory question for a mutating turn.       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// The Cursor sibling of the Codex spec-gate-classify hook. Runs the shared spec-gate core against each
 // user turn: opens the session gate and surfaces the bounded Gate-3 question
 // as an agent_message when the turn triggers file-mutation intent.
 //
@@ -15,7 +19,6 @@
 // established with. Advisory only -- no deny capability; the enforce hook
 // (wired to the confirmed-firing preToolUse) is the sole deny surface. FAILS
 // OPEN -- any missing payload or internal error approves silently.
-'use strict';
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
 

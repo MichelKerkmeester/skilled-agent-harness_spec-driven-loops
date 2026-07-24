@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 004, 006, 009, 010, and 011 each captured live-fire evidence for the hooks category's events as part of their own build/wiring work, but no single session had independently re-executed the hooks category's playbook scenarios end-to-end afterward, purely as a verification exercise separate from any build",
     "created_at": "2026-07-24T17:05:15.833Z",
-    "last_save_at": "2026-07-24T17:07:52.828Z",
+    "last_save_at": "2026-07-24T17:34:01.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a222c1a56638218f0bb9d01bc5dec888a461aad8e1c40708c46fc81be62a975b",
+    "source_fingerprint": "sha256:6b6477f0607cb755f7f427db34699de665c0fe4a1dacafd897efb6e7b34b9db7",
     "source_doc_hashes": {
-      "spec.md": "2f50deb010cb08db9f3e33d4f391b848465e7e1b7977b09088af21922d18e69d",
-      "plan.md": "2a07d6eb47e60dc3512fbe2455aa832c9e00382da9b16fecb89d94bdb9ed1244",
-      "tasks.md": "91480ace0704aecef8659dd34489e764a53a36d3642548b2731e43e410a7397b",
-      "checklist.md": "438d98feffbee6159d2c34cf057f718c6f9d45567b6cc3d2865c661f259f7bc2",
-      "implementation-summary.md": "fa53b01d816a6eecce2e0f9e965f941affa546387818ee566bbc78a6a0c950d9"
+      "spec.md": "5899d6e825e49500d898de2654705ccea553c6d9f972685e6b806f49edc35e88",
+      "plan.md": "2de1b87b0f0445a1f90b392b9665ae811ecea49603f371f6834cdeb9331e3e0e",
+      "tasks.md": "7f91ee63d5c3bd72fc294884e44fc75b74f55d1aaabafd792bc784f1e7369f81",
+      "checklist.md": "0237a78a70eee0b4e26aa7ca663fc7001b401e9d683164f778e714e9a1c3a377",
+      "implementation-summary.md": "752916185353e6641b4ea224575ccaa65633812e2866e45049060741dfaaa988"
     },
     "last_active_child_id": null,
     "last_active_at": null

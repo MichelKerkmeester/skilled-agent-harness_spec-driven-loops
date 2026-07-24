@@ -1,6 +1,10 @@
 #!/usr/bin/env node
-// postToolUse hook for Cursor CLI -- proxies to the Claude PostToolUse
-// counterparts. Confirmed live via a temporary probe-hook dispatch against
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Cursor postToolUse Hook                                       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Chain Write/Shell tool calls into the Claude quality hooks.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// Proxies to the Claude PostToolUse counterparts. Confirmed live via a temporary probe-hook dispatch against
 // cursor-agent 2026.07.23-e383d2b: `postToolUse` fires for both `Write` and
 // `Shell` tool_name payloads (plus `postToolUseFailure` for failed calls,
 // not handled here -- that variant carries no `tool_output`, only
@@ -20,7 +24,6 @@
 // mirroring spec-gate-enforce.mjs's plain-.mjs style. FAILS OPEN -- a
 // spawn/parse error on any one chained hook must never affect the tool call
 // already completed, and never affects the other chained hook.
-'use strict';
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
