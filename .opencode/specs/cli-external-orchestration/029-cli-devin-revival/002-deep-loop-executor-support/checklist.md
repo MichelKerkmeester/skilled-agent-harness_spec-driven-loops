@@ -7,10 +7,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored checklist.md P0/P1 items for phase 002 compile and regression gates"
-    next_safe_action: "Verify items in order once tasks.md T001-T025 are implemented."
+    recent_action: "Corrected permission-mode item; added CHK-021-024 for the 7-model allowlist enforcement"
+    next_safe_action: "Verify items in order once tasks.md T001-T029 are implemented."
     blockers: []
     key_files: ["spec.md", "tasks.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
@@ -41,9 +41,12 @@ _memory:
 ## CODE QUALITY
 - [ ] CHK-003 [P0] `EXECUTOR_KINDS` contains exactly 5 members (`native`, `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-devin`); no existing member removed or reordered.
 - [ ] CHK-004 [P0] `EXECUTOR_KIND_FLAG_SUPPORT` and `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX` both carry a `cli-devin` row; strict typecheck reports no missing-property error against the `Record<ExecutorKind, ...>` / `satisfies Record<ExecutorKind, ...>` constraints.
-- [ ] CHK-005 [P1] `DevinPermissionMode` has exactly 4 members (`normal`/`accept-edits`/`bypass`/`autonomous`); the archived 2-mode (`auto`/`dangerous`) shape does not reappear anywhere in the diff.
+- [ ] CHK-005 [P1] `DevinPermissionMode` has exactly 4 members (`auto`/`accept-edits`/`smart`/`dangerous`); neither the archived 2-mode (`auto`/`dangerous`) shape nor the earlier-corrected `normal`/`bypass`/`autonomous` names reappear anywhere in the diff.
 - [ ] CHK-006 [P0] `buildDevinLineageCommand` is registered in `LINEAGE_COMMAND_ADAPTERS`; `buildLineageCommand({kind:'cli-devin', ...})` no longer throws `Unknown fan-out executor kind`.
 - [ ] CHK-007 [P0] `buildDevinLineageCommand` fails closed (`command -v devin` preflight) before any command array is constructed, mirroring `isCodexBinaryAvailable` exactly.
+- [ ] CHK-021 [P0] `DEVIN_SUPPORTED_MODELS` contains exactly the 7-model allowlist (`grok-4-5-high`/`glm-5-2`/`glm-5-2-max`/`glm-5-2-1m`/`glm-5-2-max-1m`/`swe-1-7-medium`/`swe-1-7`), re-verified against a live `devin models list`, not a stale copy of phase 005's table.
+- [ ] CHK-022 [P0] `buildDevinLineageCommand` throws before constructing any command when `model` is not in `DEVIN_SUPPORTED_MODELS` (REQ-014).
+- [ ] CHK-023 [P0] `dispatch-model.cjs`'s `case 'cli-devin':` performs the same allowlist check before building its spawn spec (REQ-015) — the model-benchmark lane cannot bypass CHK-022's restriction.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
@@ -54,6 +57,7 @@ _memory:
 - [ ] CHK-011 [P1] `remediation.vitest.ts` passes with `cli-devin` present in both `dispatch-model.cjs` and `profile-validator.cjs` `KNOWN_EXECUTORS` sets.
 - [ ] CHK-012 [P0] Zero pre-existing assertions for `native`/`cli-codex`/`cli-claude-code`/`cli-opencode` changed value or were deleted (regression guard).
 - [ ] CHK-013 [P1] Strict typecheck on `executor-config.ts` and `executor-audit.ts` exits 0.
+- [ ] CHK-024 [P0] An off-allowlist model test exists and passes for BOTH `buildDevinLineageCommand` (`fanout-run.vitest.ts`) and `dispatch-model.cjs`'s `cli-devin` case, proving each throws before any subprocess spawn attempt (SC-006).
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->

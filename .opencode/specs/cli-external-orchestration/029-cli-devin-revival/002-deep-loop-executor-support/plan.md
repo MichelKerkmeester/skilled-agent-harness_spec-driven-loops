@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md for phase 002 mapping REQs onto affected surfaces and 3 phases"
+    recent_action: "Added the 7-model allowlist enforcement to buildDevinLineageCommand's architecture"
     next_safe_action: "Execute Phase 1 (confirm the two open unknowns) before starting Phase 2 core implementation."
     blockers: []
     key_files: ["spec.md"]
@@ -37,7 +37,7 @@ Widen the deep-loop runtime's typed executor union from 4 to 5 members by re-add
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-`executor-config.ts` stays the accepted-kind and flag-support schema authority (`EXECUTOR_KINDS`, `EXECUTOR_KIND_FLAG_SUPPORT`, `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX`), now widened to 5 members plus the re-created `DevinPermissionMode`/`resolveDevinPermissionMode()` pair. `executor-audit.ts` owns provenance and recursion-guard metadata (binary/session/state/home-dir/env-prefix maps) and gains a `cli-devin` row in each. `fanout-run.cjs` owns process construction: a new `buildDevinLineageCommand` joins `LINEAGE_COMMAND_ADAPTERS` alongside the existing native/codex/claude/opencode adapters, with its own fail-closed preflight. `dispatch-model.cjs` (the model-benchmark scoped dispatcher, which already omits `native`/`cli-codex` from its own `KNOWN_EXECUTORS`) and its sibling `profile-validator.cjs` each gain a `cli-devin` entry in their independently hand-maintained sets — this phase adds parity for the new kind only; it does not reconcile their pre-existing mutual asymmetry for other kinds.
+`executor-config.ts` stays the accepted-kind and flag-support schema authority (`EXECUTOR_KINDS`, `EXECUTOR_KIND_FLAG_SUPPORT`, `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX`), now widened to 5 members plus the re-created `DevinPermissionMode`/`resolveDevinPermissionMode()` pair. `executor-audit.ts` owns provenance and recursion-guard metadata (binary/session/state/home-dir/env-prefix maps) and gains a `cli-devin` row in each. `fanout-run.cjs` owns process construction: a new `buildDevinLineageCommand` joins `LINEAGE_COMMAND_ADAPTERS` alongside the existing native/codex/claude/opencode adapters, with its own fail-closed preflight AND a fail-closed model-allowlist check (`model` must be a `DEVIN_SUPPORTED_MODELS` member, the 7-model list phase 005 documents canonically) — the operator's hard restriction on which models `cli-devin` may ever be invoked with. `dispatch-model.cjs` (the model-benchmark scoped dispatcher, which already omits `native`/`cli-codex` from its own `KNOWN_EXECUTORS`) and its sibling `profile-validator.cjs` each gain a `cli-devin` entry in their independently hand-maintained sets — this phase adds parity for the new kind only; it does not reconcile their pre-existing mutual asymmetry for other kinds.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:affected-surfaces -->
@@ -62,7 +62,7 @@ Widen the deep-loop runtime's typed executor union from 4 to 5 members by re-add
 - [ ] Widen `EXECUTOR_KINDS`; add `cli-devin` rows to `EXECUTOR_KIND_FLAG_SUPPORT` and `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX`.
 - [ ] Re-create `DEVIN_SUPPORTED_MODELS`, `DevinSupportedModel`, `DevinPermissionMode`, `resolveDevinPermissionMode()` in `executor-config.ts`, modeled on the current 4-mode contract.
 - [ ] Add `cli-devin` rows to all 4 maps in `executor-audit.ts`.
-- [ ] Add `cli-devin` to `SPECKIT_STATE_ENV_BY_KIND` and implement `buildDevinLineageCommand` (plus its fail-closed preflight) in `fanout-run.cjs`; register it in `LINEAGE_COMMAND_ADAPTERS`.
+- [ ] Add `cli-devin` to `SPECKIT_STATE_ENV_BY_KIND` and implement `buildDevinLineageCommand` (plus its fail-closed binary-availability preflight AND fail-closed model-allowlist check) in `fanout-run.cjs`; register it in `LINEAGE_COMMAND_ADAPTERS`.
 - [ ] Add `cli-devin` to `dispatch-model.cjs`'s `KNOWN_EXECUTORS` and a new `buildSpawnSpec` case.
 - [ ] Add `cli-devin` to `profile-validator.cjs`'s `KNOWN_EXECUTORS` in the same change.
 

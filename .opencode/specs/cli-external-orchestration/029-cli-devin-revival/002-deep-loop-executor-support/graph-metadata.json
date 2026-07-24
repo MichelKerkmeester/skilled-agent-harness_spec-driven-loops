@@ -14,6 +14,7 @@
       "cli-devin deep-loop executor",
       "cli-devin executor kind",
       "Devin fan-out adapter",
+      "devin model allowlist enforcement",
       "cli-devin executor support plan",
       "cli-devin executor support tasks",
       "cli-devin executor support checklist"
@@ -26,11 +27,11 @@
       "devin",
       "fan-out",
       "adapter",
+      "model",
+      "allowlist",
+      "enforcement",
       "support",
-      "plan",
-      "tasks",
-      "checklist",
-      "fully"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -188,7 +189,7 @@
     ],
     "causal_summary": "`cli-devin` was fully removed as a deep-loop executor kind on 2026-06-08",
     "created_at": "2026-07-23T19:51:58.603Z",
-    "last_save_at": "2026-07-23T20:02:20.053Z",
+    "last_save_at": "2026-07-24T11:23:03.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +198,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2ffd7c46e356f2296048850f9d5ee584f6c8fc882066dc87ad75714073368849",
+    "source_fingerprint": "sha256:e0a62af956708ec4bc23caca181141668841316924083709d55596d45980a6cc",
     "source_doc_hashes": {
-      "spec.md": "05e88e1a64dd8244aa9ce655e5a2e678f7589845c52d6b83def80e8cd7b52407",
-      "plan.md": "fb19f168d7e7f23d62fbba0a0ee37619010cf4abe2c153aa6be4622d4b8c74af",
-      "tasks.md": "7a2d296e937ecc083eb2f3df19c69f178e1c004baff96a090553e576ef3a9793",
-      "checklist.md": "5c54630df0f5aab245949c2aa6676bad0f5d3f795e2aba0c1dcfb1307e5404d8"
+      "spec.md": "695fc66b1c3dd97295440ed639ac0cb0afb1085a2b700fc079f9a86acfad8ac8",
+      "plan.md": "7291ee1a403c25b941e8ddfc79b3cf546611ca390708b5bf37776ff868421a20",
+      "tasks.md": "882b7a65269272354fd4a2c24e47077fdf901cfe8446cc5184e2b3011dd91ea4",
+      "checklist.md": "42481aec8f4830f0b2d7ca57f1f0f4a931ebe74e7ede4cb2169c7235d67e7a3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

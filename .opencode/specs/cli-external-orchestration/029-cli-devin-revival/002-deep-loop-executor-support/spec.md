@@ -1,22 +1,22 @@
 ---
 title: "Feature Specification: Devin deep-loop executor support"
-description: "Restore cli-devin as the 5th typed deep-loop executor kind across executor-config.ts, executor-audit.ts, fanout-run.cjs, dispatch-model.cjs, and profile-validator.cjs, with a new fail-closed buildDevinLineageCommand adapter, grounded in phase 001's live-verified 4-mode Devin CLI contract rather than the archived pre-deprecation assumptions."
-trigger_phrases: ["cli-devin deep-loop executor", "cli-devin executor kind", "Devin fan-out adapter"]
+description: "Restore cli-devin as the 5th typed deep-loop executor kind across executor-config.ts, executor-audit.ts, fanout-run.cjs, dispatch-model.cjs, and profile-validator.cjs, with a new fail-closed buildDevinLineageCommand adapter and a hard 7-model dispatch allowlist, grounded in phase 001's live-verified 4-mode Devin CLI contract rather than the archived pre-deprecation assumptions."
+trigger_phrases: ["cli-devin deep-loop executor", "cli-devin executor kind", "Devin fan-out adapter", "devin model allowlist enforcement"]
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec.md for phase 002 with REQ-001 through REQ-012 grounded in code research"
+    recent_action: "Corrected permission-mode names; added REQ-013/014/015 for the 7-model allowlist enforcement"
     next_safe_action: "Begin tasks.md T001: confirm Devin session-env var and sandbox flag mapping"
     blockers: []
     key_files: ["system-deep-loop/runtime/lib/deep-loop/executor-config.ts", "system-deep-loop/runtime/lib/deep-loop/executor-audit.ts", "system-deep-loop/runtime/scripts/fanout-run.cjs", "system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs", "system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 0
     open_questions: ["Devin's session-id environment variable (the cli-devin analog to CODEX_SESSION_ID/CLAUDE_CODE_SESSION_ID/OPENCODE_SESSION_ID) was not found in the fetched docs.devin.ai pages during phase 001 - verify via `devin --help` or a live session's environment at implementation time; do not invent a name.", "Exact mapping from the runtime's 3-value SandboxMode enum (read-only/workspace-write/danger-full-access) to Devin's --sandbox flag (a presence/absence toggle per phase 001, not a valued enum like Codex's --sandbox <mode>) is not yet decided.", "Whether EXECUTOR_ENV_PREFIXES_BY_KIND['cli-devin'] should allowlist both COGNITION_ and DEVIN_ prefixes, or just COGNITION_ (the only one confirmed via COGNITION_API_KEY so far)."]
-    answered_questions: []
+    answered_questions: ["Permission modes corrected 2026-07-24: auto/accept-edits/smart/dangerous, not normal/bypass/autonomous.", "7-model dispatch allowlist confirmed live 2026-07-24; see phase 005 REQ-011."]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -45,7 +45,7 @@ _memory:
 
 Two of the union's dependent maps are compile-time hard blockers, not style preferences: `EXECUTOR_KIND_FLAG_SUPPORT` is typed `Record<ExecutorKind, ...>` and `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX` is typed `satisfies Record<ExecutorKind, ...>` (`executor-config.ts` line 99) — TypeScript will refuse to compile either file without a matching `cli-devin` entry once the union is widened.
 
-The archived removal also deleted a `DEVIN_SUPPORTED_MODELS` const, a `DevinSupportedModel` type, a `DevinPermissionMode` type, and a `resolveDevinPermissionMode()` function, all modeled on a stale 2-permission-mode assumption (`auto`/`dangerous`). Phase 001 confirmed the real, currently-shipping Devin CLI (v3000.2.17) has a materially different 4-mode permission system (`normal`, `accept-edits`, `bypass`, `autonomous`), selected via `--permission-mode` or `/mode`. Recreating the deleted types against the old 2-mode shape would restore an inaccurate contract.
+The archived removal also deleted a `DEVIN_SUPPORTED_MODELS` const, a `DevinSupportedModel` type, a `DevinPermissionMode` type, and a `resolveDevinPermissionMode()` function, all modeled on a stale 2-permission-mode assumption (`auto`/`dangerous`). Phase 001 confirmed the real, currently-shipping Devin CLI (v3000.2.17) has a materially different 4-mode permission system, selected via `--permission-mode` or `/mode` — **corrected 2026-07-24**: re-verified directly against `devin --help`'s own flag description as `auto`/`accept-edits`/`smart`/`dangerous`, not the `normal`/`accept-edits`/`bypass`/`autonomous` names phase 001 originally recorded from `docs.devin.ai` prose (which don't match the live binary's actual `--permission-mode` values). Recreating the deleted types against the old 2-mode shape, or the wrong 4-mode names, would both restore an inaccurate contract.
 
 ### Purpose
 Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-devin`'s audit/dispatch metadata across every hand-synced consumer, and add a real fan-out command adapter (`buildDevinLineageCommand`) with an explicit fail-closed preflight — all grounded in phase 001's live-verified contract, not a mechanical replay of the archived removal diff. Leave the `cli-devin` self-invocation guard's signal design and the skill packet itself to phase 003; this phase is the runtime-typing layer only.
@@ -62,6 +62,7 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 - Add `cli-devin` to `KNOWN_EXECUTORS` and a new `buildSpawnSpec` case in `dispatch-model.cjs`.
 - Add `cli-devin` to the separate, hand-synced `KNOWN_EXECUTORS` set in `profile-validator.cjs`, in the same change as the `dispatch-model.cjs` edit.
 - Add or extend `cli-devin` coverage in `executor-config.vitest.ts`, `executor-audit.vitest.ts`, `fanout-run.vitest.ts` (which carries the actual `isCodexBinaryAvailable` fail-closed test precedent this phase must mirror), and `remediation.vitest.ts`.
+- Enforce the operator's 7-model native-dispatch allowlist (documented canonically in phase 005 spec.md REQ-011) as a hard, fail-closed restriction in both `buildDevinLineageCommand` and `dispatch-model.cjs`'s `cli-devin` case — no dispatch route may request an off-allowlist model.
 
 ### Out of Scope
 - The `cli-devin` skill packet, hub registry wiring (`mode-registry.json`/`hub-router.json`/`leaf-manifest.json`), and `SKILL.md`/`README.md` authoring (phase 003).
@@ -88,7 +89,7 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 |---|---|---|
 | REQ-001 | `EXECUTOR_KINDS` gains `'cli-devin'` as its 5th member; `EXECUTOR_KIND_FLAG_SUPPORT` (`Record<ExecutorKind, ...>`) and `EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX` (`satisfies Record<ExecutorKind, ...>`) each gain a matching `cli-devin` row so `executor-config.ts` compiles cleanly with no missing-property error. | P0 |
 | REQ-002 | The `cli-devin` row in `EXECUTOR_KIND_FLAG_SUPPORT` lists only fields Devin's CLI actually supports per phase 001's live contract (`model`, `sandboxMode` for permission-mode mapping, `timeoutSeconds`, `liveTools`); `configDir` is included only if a Devin config-dir CLI flag is confirmed at implementation time, never assumed. | P0 |
-| REQ-003 | `DEVIN_SUPPORTED_MODELS`, a `DevinSupportedModel` type, a `DevinPermissionMode` type (exactly 4 members: `normal`, `accept-edits`, `bypass`, `autonomous`), and a `resolveDevinPermissionMode()` function are re-created in `executor-config.ts`, modeled on phase 001's confirmed 4-mode contract. The archived 2-mode (`auto`/`dangerous`) shape is not resurrected anywhere in the diff. | P1 |
+| REQ-003 | `DEVIN_SUPPORTED_MODELS`, a `DevinSupportedModel` type, a `DevinPermissionMode` type (exactly 4 members: `auto`, `accept-edits`, `smart`, `dangerous`), and a `resolveDevinPermissionMode()` function are re-created in `executor-config.ts`, modeled on phase 001's live-verified 4-mode contract. Neither the archived 2-mode (`auto`/`dangerous`) shape nor the earlier-recorded-then-corrected `normal`/`bypass`/`autonomous` names are resurrected anywhere in the diff. | P1 |
 | REQ-004 | `executor-audit.ts` gains a `cli-devin` row in `EXECUTOR_BINARY_BY_KIND` (`'devin'`), `EXECUTOR_STATE_ENV_BY_KIND`, `EXECUTOR_DEFAULT_HOME_DIR_BY_KIND` (`'.devin'`), and `EXECUTOR_ENV_PREFIXES_BY_KIND` (`COGNITION_` and, if confirmed, `DEVIN_`). `EXECUTOR_SESSION_ENV_BY_KIND` gains a row only once Devin's session-id env var is confirmed (REQ-011); it stays unset otherwise, which the existing `Partial<Record<...>>` typing already permits. | P0 |
 | REQ-005 | `fanout-run.cjs` gains a `cli-devin` row in `SPECKIT_STATE_ENV_BY_KIND` and a new `buildDevinLineageCommand` function registered in `LINEAGE_COMMAND_ADAPTERS`; `buildLineageCommand({kind:'cli-devin', ...})` no longer throws `Unknown fan-out executor kind: cli-devin`. | P0 |
 | REQ-006 | `buildDevinLineageCommand` constructs a non-interactive command shaped `devin -p "<prompt>" --model <id> --permission-mode <mode> [--sandbox]`, using phase 001's confirmed flag set (`--model`, `--permission-mode`, `--print`/`-p`, `--sandbox`). The family-wide `</dev/null` stdin-redirect convention (used on `cli-codex`/`cli-opencode` to prevent silent stdin theft) is documented as recommended-for-stability on the real `devin` binary, not asserted as load-bearing — phase 001-era testing (on an older `devin 2026.5.6-8` build, not the current 3000.2.17) found it did not reproduce as a hard requirement; this must be re-verified against the current build at implementation time, not assumed either way. | P0 |
@@ -98,6 +99,9 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 | REQ-010 | Every pre-existing assertion in `executor-config.vitest.ts`, `executor-audit.vitest.ts`, `fanout-run.vitest.ts`, and `remediation.vitest.ts` that exercises `native`, `cli-codex`, `cli-claude-code`, or `cli-opencode` continues to pass unchanged after `cli-devin` is added — no existing assertion's expected value changes (regression guard). | P0 |
 | REQ-011 | Devin's session-id environment variable (the `cli-devin` analog to `CODEX_SESSION_ID`/`CLAUDE_CODE_SESSION_ID`/`OPENCODE_SESSION_ID`) is confirmed at implementation time — e.g. via `devin --help` output or inspecting a live session's environment — before `EXECUTOR_SESSION_ENV_BY_KIND['cli-devin']` is populated. A variable name is never invented. | P2 |
 | REQ-012 | A new fail-closed test for `cli-devin` is added to `fanout-run.vitest.ts`, mirroring the existing `'fails closed before command construction when codex is absent'` case in the same file (the actual `isCodexBinaryAvailable` precedent, not the 3 files named in the initial scope note), proving `buildLineageCommand({kind:'cli-devin', ...})` throws before any subprocess spawn attempt when `devin` is absent from a scoped `PATH`. | P1 |
+| REQ-013 | `DEVIN_SUPPORTED_MODELS`/`DevinSupportedModel` in `executor-config.ts` contains EXACTLY the 7-model native-dispatch allowlist documented as canonical in phase 005 spec.md REQ-011: `grok-4-5-high`, `glm-5-2`, `glm-5-2-max`, `glm-5-2-1m`, `glm-5-2-max-1m`, `swe-1-7-medium`, `swe-1-7` — no more, no fewer. Re-verify against a live `devin models list` at implementation time (the roster can drift); never carry forward a stale or re-guessed list. | P0 |
+| REQ-014 | `buildDevinLineageCommand` fails closed — throws a clean, typed error before constructing or launching the command — when the requested `model` is not a member of `DEVIN_SUPPORTED_MODELS`, mirroring the binary-availability fail-closed pattern (REQ-007) exactly. This is the operator's explicit "prevent anyone using cli-devin from using a different model" requirement; no dispatch route may bypass it. | P0 |
+| REQ-015 | `dispatch-model.cjs`'s new `case 'cli-devin'` (REQ-008) validates `model` against the same `DEVIN_SUPPORTED_MODELS` allowlist before constructing its spawn spec, so the model-benchmark dispatch lane cannot silently bypass the restriction REQ-014 enforces on the fan-out lane. | P0 |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -107,6 +111,7 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 - **SC-003**: With `devin` absent from a scoped `PATH`, `buildLineageCommand`/`buildDevinLineageCommand` throws before any subprocess spawn attempt (mirroring the existing `cli-codex` absent-binary test in `fanout-run.vitest.ts`).
 - **SC-004**: `dispatch-model.cjs` and `profile-validator.cjs` `KNOWN_EXECUTORS` both contain `'cli-devin'` after the change.
 - **SC-005**: A focused Vitest run across `executor-config.vitest.ts`, `executor-audit.vitest.ts`, `fanout-run.vitest.ts`, and `remediation.vitest.ts` passes 100%, with zero regressions in existing `native`/`cli-codex`/`cli-claude-code`/`cli-opencode` assertions.
+- **SC-006**: A dispatch requesting any model outside the 7-model allowlist throws before any subprocess spawn attempt, via BOTH `buildDevinLineageCommand` (fan-out) and `dispatch-model.cjs`'s `case 'cli-devin'` (model-benchmark) — proven with a dedicated test per path, not assumed from one alone.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -125,7 +130,7 @@ Widen the deep-loop runtime's typed executor union to 5 members, restore `cli-de
 
 ## 8. EDGE CASES
 - `devin` absent from `PATH` entirely at dispatch time (handled by the fail-closed preflight, REQ-007).
-- A `--permission-mode` value supplied that isn't one of the 4 confirmed modes (`normal`/`accept-edits`/`bypass`/`autonomous`) — `resolveDevinPermissionMode()` must reject or map deterministically, not silently pass through an invalid string.
+- A `--permission-mode` value supplied that isn't one of the 4 confirmed modes (`auto`/`accept-edits`/`smart`/`dangerous`) — `resolveDevinPermissionMode()` must reject or map deterministically, not silently pass through an invalid string.
 - `model` omitted from the lineage config — the adapter needs an explicit default; `docs.devin.ai/cli/models.md` documents `adaptive` (the intelligent auto-router) as Devin's own recommended default per phase 001, a reasonable adapter-default candidate, TBD confirm at implementation time.
 - `sandboxMode` requesting `danger-full-access` when Devin's own `--sandbox` flag is a presence/absence toggle, not a 3-value enum like Codex's `--sandbox <mode>` — the mapping from the runtime's generic `SandboxMode` to Devin's boolean `--sandbox` flag needs an explicit implementation-time decision, not an implicit one.
 
