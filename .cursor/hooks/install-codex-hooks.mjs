@@ -1,0 +1,1 @@
+../../.opencode/bin/install-codex-hooks.mjs

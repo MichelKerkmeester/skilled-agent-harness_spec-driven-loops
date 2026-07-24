@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.15
+version: 1.0.0.16
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -156,6 +156,10 @@ The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is 
 ### Not Wired
 
 `spec-gate-prebind.mjs` (`sessionStart` — opens the Gate-3 enforcement state Cursor structurally cannot open via `beforeSubmitPrompt`) and `mcp-route-guard.mjs` (`beforeMCPExecution` — built, standalone-tested, but no MCP server is configured on the reference machine to confirm its payload shape) both exist in the source tree but are deliberately absent from `.cursor/hooks.json`. Do not add either without first satisfying its own file-header precondition (review/commit status for the former; a live payload capture for the latter).
+
+### Discovery Mirror — `.cursor/hooks/`
+
+`.cursor/hooks/` holds a symlink to every file `.cursor/hooks.json` invokes, purely so the scripts are visible at Cursor's own documented conventional path (`.cursor/hooks/<script>`). `.cursor/hooks.json`'s `command` fields still point at the real paths above, not these symlinks — confirmed by direct testing, invoking `session-start.js`/`session-end.js`/`user-prompt-submit.js`/`precompact.js` through the symlink produces **zero output**, because each compiles from a `.ts` source ending in `runCursorHook(import.meta.url, main)`, whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against the ESM-loader-resolved `import.meta.url` (resolves through the symlink to the real path) — they never match, so `main()` never runs. The plain `.mjs` files have no such guard and work through either path, but every `command` entry stays pointed at the real path for consistency. See `.cursor/hooks/README.md` for the full explanation.
 
 ---
 

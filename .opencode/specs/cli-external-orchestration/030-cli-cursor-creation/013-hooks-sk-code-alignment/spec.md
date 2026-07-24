@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../012-hooks-manual-testing-results/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../014-cursor-hooks-discovery-mirror/spec.md` |
 | **Handoff Criteria** | Every Cursor `.mjs` hook file this packet owns has the P0 box header and no `'use strict'` directive; `python3 verify_alignment_drift.py` reports 0 findings/errors/warnings against both hook directories; `sk-code/code-opencode`'s canonical `hooks.md` documents Cursor CLI wiring on par with its existing Claude/OpenCode/GitHub-Copilot sections. |
 <!-- /ANCHOR:metadata -->
 
