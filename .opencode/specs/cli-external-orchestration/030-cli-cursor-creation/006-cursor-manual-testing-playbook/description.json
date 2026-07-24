@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
+  "description": "`cli-codex` ships a split-document manual-testing-playbook (1 root + per-feature scenario files across categories) as its canonical, no-mocking,",
+  "keywords": [
+    "cli-codex",
+    "ships",
+    "split-document",
+    "manual-testing-playbook",
+    "root",
+    "per-feature",
+    "scenario",
+    "files",
+    "across",
+    "categories",
+    "canonical",
+    "no-mocking"
+  ],
+  "lastUpdated": "2026-07-24T04:53:14.905Z",
+  "specId": "006",
+  "folderSlug": "cursor-manual-testing-playbook",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

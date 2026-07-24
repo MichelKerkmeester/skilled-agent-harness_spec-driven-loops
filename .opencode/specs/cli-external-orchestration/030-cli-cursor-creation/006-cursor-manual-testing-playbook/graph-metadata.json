@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cursor manual testing playbook",
+      "CU-NNN scenarios",
+      "cli-cursor playbook categories",
+      "cursor manual testing playbook plan",
+      "cursor manual testing playbook tasks",
+      "cursor manual testing playbook checklist"
+    ],
+    "key_topics": [
+      "cursor",
+      "manual",
+      "testing",
+      "playbook",
+      "cu-nnn",
+      "scenarios",
+      "cli-cursor",
+      "categories",
+      "plan",
+      "tasks",
+      "checklist",
+      "cli-codex"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Global Preconditions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Cross",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Index",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-codex` ships a split-document manual-testing-playbook (1 root + per-feature scenario files across categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism — there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
+    "created_at": "2026-07-24T04:52:26.644Z",
+    "last_save_at": "2026-07-24T04:53:30.415Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:9a2f62d1a544e71a327d8af0066eb7ef8a929755627f9698c3f084b1a69787d4",
+    "source_doc_hashes": {
+      "spec.md": "6e43ff2428aef3f941d8ab9e50c1fce8c16f780583738837fc539530c69a238e",
+      "plan.md": "9bdd23f313707ef3363791333ae888f510bc04a3d329a604a01ec34729381215",
+      "tasks.md": "bfa219c7c425a8f0fefdb2dae5c244b92b946bef9528ea7f92aa4f9ec748fded",
+      "checklist.md": "0346e227ba9d17e791f06f52f16391df9083d5b3b061249d5416d266788a7210"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
