@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-cursor hooks test results",
+      "CU-013 CU-014 CU-020 CU-021 results",
+      "hooks manual testing playbook run",
+      "cli-cursor hooks test results plan",
+      "cli-cursor hooks test results tasks",
+      "cli-cursor hooks test results checklist",
+      "cli-cursor hooks test results implementation",
+      "CU-013 CU-014 CU-020 CU-021 verdicts"
+    ],
+    "key_topics": [
+      "cli-cursor",
+      "hooks",
+      "test",
+      "results",
+      "cu-013",
+      "cu-014",
+      "cu-020",
+      "cu-021",
+      "manual",
+      "testing",
+      "playbook",
+      "run"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".cursor/hooks.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-fires-smoke-test.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
+        "source": "derived"
+      },
+      {
+        "name": "confirmed-non-delivery-documentation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-prebind-unreviewed.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
+        "source": "derived"
+      },
+      {
+        "name": "task-dispatch-guard-live-fire.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Command Sequence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 004, 006, 009, 010, and 011 each captured live-fire evidence for the hooks category's events as part of their own build/wiring work, but no single session had independently re-executed the hooks category's playbook scenarios end-to-end afterward, purely as a verification exercise separate from any build",
+    "created_at": "2026-07-24T17:05:15.833Z",
+    "last_save_at": "2026-07-24T17:07:52.828Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a222c1a56638218f0bb9d01bc5dec888a461aad8e1c40708c46fc81be62a975b",
+    "source_doc_hashes": {
+      "spec.md": "2f50deb010cb08db9f3e33d4f391b848465e7e1b7977b09088af21922d18e69d",
+      "plan.md": "2a07d6eb47e60dc3512fbe2455aa832c9e00382da9b16fecb89d94bdb9ed1244",
+      "tasks.md": "91480ace0704aecef8659dd34489e764a53a36d3642548b2731e43e410a7397b",
+      "checklist.md": "438d98feffbee6159d2c34cf057f718c6f9d45567b6cc3d2865c661f259f7bc2",
+      "implementation-summary.md": "fa53b01d816a6eecce2e0f9e965f941affa546387818ee566bbc78a6a0c950d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

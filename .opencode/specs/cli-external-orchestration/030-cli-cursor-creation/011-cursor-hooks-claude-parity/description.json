@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity",
   "description": "Phase 010 registered exactly the 4 adapters ADR-001 originally scoped (`sessionStart`/`sessionEnd`/`preToolUse`/`beforeSubmitPrompt`), deliberately",
   "keywords": [
@@ -15,7 +16,7 @@
     "beforesubmitprompt",
     "deliberately"
   ],
-  "lastUpdated": "2026-07-24T14:07:00.003Z",
+  "lastUpdated": "2026-07-24T17:02:47.107Z",
   "specId": "011",
   "folderSlug": "cursor-hooks-claude-parity",
   "parentChain": [
@@ -23,6 +24,5 @@
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

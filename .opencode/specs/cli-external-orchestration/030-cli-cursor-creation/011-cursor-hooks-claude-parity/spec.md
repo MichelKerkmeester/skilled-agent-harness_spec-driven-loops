@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../010-cursor-hooks-live-wiring/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../012-hooks-manual-testing-results/spec.md` |
 | **Handoff Criteria** | Every newly wired adapter is live-fire confirmed or explicitly documented as registered-but-unconfirmed/dormant; `spec-gate-prebind.mjs`'s Tier-1c analog (`completion-evidence-stop.cjs`) and the unconfigured-MCP `mcp-route-guard.mjs` stay unwired with the reason stated; `.cursor/hooks.json` is restored byte-identical to its clean, intended content (no leftover diagnostic wrapper) before commit. |
 <!-- /ANCHOR:metadata -->
 
