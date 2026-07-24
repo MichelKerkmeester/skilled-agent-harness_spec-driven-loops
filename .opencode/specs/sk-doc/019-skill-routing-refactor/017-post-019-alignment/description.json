@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
+  "description": "Packet 019 established authorities across the skill fleet — a compiled serving contract, typed",
+  "keywords": [
+    "packet",
+    "established",
+    "authorities",
+    "across",
+    "skill",
+    "fleet",
+    "compiled",
+    "serving",
+    "contract",
+    "typed"
+  ],
+  "lastUpdated": "2026-07-24T19:26:14.468Z",
+  "specId": "017",
+  "folderSlug": "post-019-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

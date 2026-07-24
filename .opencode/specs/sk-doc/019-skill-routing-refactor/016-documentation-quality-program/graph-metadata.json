@@ -92,15 +92,15 @@
     ],
     "causal_summary": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs, reference/asset template alignment, per-folder code READMEs repo-wide, and bare skill/mode READMEs) plus the doc-tooling bugs the audits surfaced. Phases sequenced hardest and highest-leverage first, each a reviewable commit, with agent-swarm authoring against the current templates.",
     "created_at": "2026-07-22T08:55:19.119Z",
-    "last_save_at": "2026-07-24T11:03:17.182Z",
+    "last_save_at": "2026-07-24T19:26:23.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2b6553fb6421526899d8732331c0b1050d78fee1950d9610f16548b44ffd4eb5",
+    "source_fingerprint": "sha256:0a2bdf7a4db0e6a9cba34df8c24db207ec0ae0ae658916e715215d0e7ed094aa",
     "source_doc_hashes": {
-      "spec.md": "6718fd9ec41ffddc770347705ced623fb8c38cc563da8c111eb08631a0584969"
+      "spec.md": "914c7ef6c4bd6a1339c0c46d972f3cd2e47a13fe5a78e9004406c4b9e831aeeb"
     },
     "last_active_child_id": null,
     "last_active_at": null

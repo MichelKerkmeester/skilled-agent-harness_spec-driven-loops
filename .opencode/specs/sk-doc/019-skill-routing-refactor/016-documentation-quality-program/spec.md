@@ -55,4 +55,4 @@ Templates and tooling land first so all authoring runs against a correct, enforc
 
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `015-router-unification-program` |
-| **Successor** | `None` |
+| **Successor** | `017-post-019-alignment` (folder-order adjacency; independent follow-on) |

@@ -9,6 +9,7 @@ trigger_phrases:
   - "route holdout"
 importance_tier: "important"
 contextType: "research"
+parent: "sk-doc/019-skill-routing-refactor"
 ---
 # Feature Specification: Post-019 Skill-Routing Research
 
@@ -27,6 +28,9 @@ contextType: "research"
 | **Status** | In Progress |
 | **Created** | 2026-07-24 |
 | **Branch** | Current workspace |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `017-post-019-alignment` (folder-order adjacency) |
+| **Successor** | `019-routing-drift-remediation` |
 <!-- /ANCHOR:metadata -->
 
 ---

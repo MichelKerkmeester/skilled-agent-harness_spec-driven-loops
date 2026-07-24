@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/018-post-019-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/018-post-019-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-019 skill routing",
+      "threshold recovery provenance",
+      "advisor confidence calibration",
+      "leaf telemetry",
+      "route holdout"
+    ],
+    "key_topics": [
+      "post-019",
+      "skill",
+      "routing",
+      "threshold",
+      "recovery",
+      "provenance",
+      "advisor",
+      "confidence",
+      "calibration",
+      "leaf",
+      "telemetry",
+      "route"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 019 surfaced high-value questions about fleet-wide routing decomposition, confidence calibration, leaf-use telemetry, route-budget selection, and fixture generalization, but did not settle them with operational evidence",
+    "created_at": "2026-07-24T19:26:22.922Z",
+    "last_save_at": "2026-07-24T19:26:22.922Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:896a2e2fd51b448a206f8d722817bb2a47a2f4cb959f5f9938b6771cbff9723f",
+    "source_doc_hashes": {
+      "spec.md": "bf6c3fdb4169ccfbfbf9f2097167d6ada76a4635f5ff0dc0a685c2c0063f6e2a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

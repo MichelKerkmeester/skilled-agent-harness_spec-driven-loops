@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-019 alignment run",
+      "routing conformance audit",
+      "compiled serving conformance"
+    ],
+    "key_topics": [
+      "post-019",
+      "alignment",
+      "run",
+      "routing",
+      "conformance",
+      "audit",
+      "compiled",
+      "serving",
+      "packet",
+      "established",
+      "authorities",
+      "across"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Conformance Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 019 established authorities across the skill fleet — a compiled serving contract, typed",
+    "created_at": "2026-07-24T19:26:22.689Z",
+    "last_save_at": "2026-07-24T19:26:22.689Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a400e69a3bb5550b31ed1eac64d44d51e447493ff9a703fd1c05d92454a48ad4",
+    "source_doc_hashes": {
+      "spec.md": "9612a793f26255b9a09a917db97063afc7e0daa2eb2d37641aff3e3fae2c26a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

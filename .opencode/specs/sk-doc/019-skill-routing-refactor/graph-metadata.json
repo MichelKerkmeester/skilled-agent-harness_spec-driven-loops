@@ -19,7 +19,10 @@
     "sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring",
     "sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment",
     "sk-doc/019-skill-routing-refactor/015-router-unification-program",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program"
+    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
+    "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
+    "sk-doc/019-skill-routing-refactor/018-post-019-research",
+    "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -30,7 +33,10 @@
     "trigger_phrases": [
       "019-skill-routing-refactor",
       "sk-doc skill routing refactor",
-      "phase parent"
+      "phase parent",
+      "post-019 handover",
+      "where did we leave the routing work",
+      "resume post-019 loops"
     ],
     "key_topics": [
       "019-skill-routing-refactor",
@@ -40,17 +46,19 @@
       "refactor",
       "phase",
       "parent",
-      "across",
-      "fleet",
-      "uniform",
-      "measurable",
-      "feature"
+      "post-019",
+      "handover",
+      "leave",
+      "work",
+      "resume"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "context-index.md",
-      "spec.md"
+      "017-post-019-alignment/alignment/alignment-report.md",
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -60,9 +68,21 @@
         "source": "derived"
       },
       {
+        "name": "alignment-report.md",
+        "kind": "doc",
+        "path": "017-post-019-alignment/alignment/alignment-report.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -100,19 +120,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Drift Remediation",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Runs",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary Four",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Next Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Checklist",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-24T12:00:50.737Z",
+    "last_save_at": "2026-07-24T19:22:45.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:2d34c48bc5e2970581904aef2f73a30043fa10b588daf6670ef4e10532d95ff7",
+    "source_fingerprint": "sha256:d6fdbdab2a7373d2f4bf4a4b244998f634b86ce086f853bc2bcc87757b0ca9f6",
     "source_doc_hashes": {
-      "spec.md": "bf96c14e030b4987885a96e89982d099ad7a6e7809c54749a41c91a19f9ab06a"
+      "spec.md": "bf96c14e030b4987885a96e89982d099ad7a6e7809c54749a41c91a19f9ab06a",
+      "handover.md": "532f48eed409eabc4fff3fab00ca96584db791ab5ab7ea93423c511facb39e99"
     },
     "last_active_child_id": null,
     "last_active_at": null

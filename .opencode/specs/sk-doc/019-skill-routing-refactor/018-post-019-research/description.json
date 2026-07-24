@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/018-post-019-research",
+  "description": "Packet 019 surfaced high-value questions about fleet-wide routing decomposition, confidence calibration, leaf-use telemetry, route-budget selection,",
+  "keywords": [
+    "packet",
+    "surfaced",
+    "high-value",
+    "questions",
+    "about",
+    "fleet-wide",
+    "routing",
+    "decomposition",
+    "confidence",
+    "calibration",
+    "leaf-use",
+    "telemetry",
+    "route-budget",
+    "selection"
+  ],
+  "lastUpdated": "2026-07-24T19:25:45.474Z",
+  "specId": "018",
+  "folderSlug": "post-019-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
