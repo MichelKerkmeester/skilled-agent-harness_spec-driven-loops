@@ -1,6 +1,6 @@
 {
-  "version": "1.5",
-  "description": "Shared small-model profile registry for cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`), GLM-5.2 (Z.AI GLM Coding Plan via provider `zai-coding-plan`). Optional unverified separate-pool stub: Claude Haiku.",
+  "version": "1.6",
+  "description": "Shared small-model profile registry for cli-opencode dispatch, plus Cursor-native Composer via cli-cursor. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`), GLM-5.2 (Z.AI GLM Coding Plan via provider `zai-coding-plan`). Composer-2.5 (Cursor's own native model, dedicated `cursor-subscription` quota pool via provider `cursor`, executor `cli-cursor`). Optional unverified separate-pool stub: Claude Haiku.",
   "models": [
     {
       "id": "deepseek-v4-pro",
@@ -316,6 +316,56 @@
         },
         "profile_ref": "prompt-models/references/models/glm-5.2.md",
         "status": "empirical"
+      }
+    },
+    {
+      "id": "composer-2.5",
+      "context_length": null,
+      "tool_calling": "native",
+      "chat_template": "default",
+      "executors": [
+        {
+          "executor": "cli-cursor",
+          "provider": "cursor",
+          "quota_pool": "cursor-subscription",
+          "status": "active",
+          "notes": "Cursor's own native model, dispatched via `cursor-agent -p --model composer-2.5` (fast variant: `composer-2.5-fast`). Live slugs confirmed via `cursor-agent --list-models` on an authenticated Pro-tier account 2026-07-24; smoke dispatch (`--mode ask`, read-only) returned 'pong'. No `--variant`/`--reasoning-effort` flag exists on this CLI and the parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright — effort tiers are baked into other models' id suffixes (e.g. `gpt-5.2-high`), not into Composer's. Context window and pricing are not exposed by `cursor-agent --list-models`/`models` even authenticated — remains TBD, re-verify at implementation time if a task depends on it. Billing is subscription-based (confirmed Pro tier via `cursor-agent about`); exact quota/rate-limit semantics unconfirmed."
+        }
+      ],
+      "primary_quota_pool": "cursor-subscription",
+      "fallback_target": null,
+      "free_tier": false,
+      "strengths": [
+        "Cursor-exclusive — the direct analog to a provider's own house model (same role Cognition's swe-1.6 plays for cli-devin)",
+        "dedicated Cursor subscription pool, independent of the small-model rotation's provider pools",
+        "confirmed live and dispatchable via cli-cursor as of 2026-07-24 (authenticated Pro-tier smoke test)"
+      ],
+      "weaknesses": [
+        "zero prior empirical dispatch data in this repo — no framework bakeoff, no benchmark run",
+        "context window, pricing, and rate-limit semantics unconfirmed — not exposed by the CLI even authenticated",
+        "no reasoning-effort dial beyond picking the `-fast` id variant (no `--reasoning-effort` flag, bracket syntax rejected)"
+      ],
+      "avg_iter_wall_clock_min": null,
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "no model-specific benchmark",
+          "confidence": "low"
+        },
+        "profile_ref": "prompt-models/references/models/composer-2.5.md",
+        "status": "default-unverified"
+      },
+      "capability": {
+        "modalities": [
+          "text"
+        ]
       }
     },
     {

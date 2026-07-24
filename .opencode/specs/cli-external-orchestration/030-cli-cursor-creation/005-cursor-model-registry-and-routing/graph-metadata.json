@@ -16,7 +16,9 @@
       "cursor model routing",
       "cli-cursor model registry plan",
       "cli-cursor model registry tasks",
-      "cli-cursor model registry checklist"
+      "cli-cursor model registry checklist",
+      "cli-cursor model registry summary",
+      "composer profile implementation"
     ],
     "key_topics": [
       "cli-cursor",
@@ -29,20 +31,22 @@
       "plan",
       "tasks",
       "checklist",
-      "sk-prompt",
-      "prompt-models"
+      "summary",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
-      ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-prompt/prompt-models/references/models/glm-5.2.md",
-      "spec.md"
+      ".opencode/skills/sk-prompt/prompt-models/references/models/deepseek-v4-pro.md",
+      ".opencode/skills/sk-prompt/prompt-models/references/models/composer-2.5.md",
+      ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -58,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "_index.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -82,15 +86,27 @@
         "source": "derived"
       },
       {
-        "name": "glm-5.2.md",
+        "name": "deepseek-v4-pro.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/glm-5.2.md",
+        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/deepseek-v4-pro.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "composer-2.5.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/composer-2.5.md",
+        "source": "derived"
+      },
+      {
+        "name": "_index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -154,7 +170,7 @@
         "source": "derived"
       },
       {
-        "name": "Add Composer",
+        "name": "Added Composer",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,41 +188,31 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Only Composer",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`sk-prompt/prompt-models` is this repo's canonical registry of per-model prompt-craft profiles (`assets/model-profiles.json` + `references/models/.md`), consumed when dispatching to a specific model through any executor",
     "created_at": "2026-07-24T04:49:31.694Z",
-    "last_save_at": "2026-07-24T04:49:31.694Z",
+    "last_save_at": "2026-07-24T08:08:44.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b83205077e78ce9e9147f95f57d40e5404271525aad2923315c4695b32c11b5",
+    "source_fingerprint": "sha256:6a6605bd1327c6aa46b720b05a0289b629aadda332b8f8e1c11b22dd57f1ad1d",
     "source_doc_hashes": {
-      "spec.md": "408ddbd44e7dcdf2032611b22537c174f0da5fe0c7a8ff1bce17155048a6f0e2",
-      "plan.md": "76bd9c16e591b5edeca27ef52cc68e892faadc4624ad27b010ffe459c91155f9",
-      "tasks.md": "b3be5aa0f165eae5aec01bd22ab06c0694163c37ee66b860e94c3aff5cd79e14",
-      "checklist.md": "30044bbbbfce7c4014cc3c381883718e27ece9527706b857f281fff5760deb09"
+      "spec.md": "7eb1fc89356939ea23afd4a81c8043fc2bca8d46502e52f1bddd3ea63e04432d",
+      "plan.md": "d181100b194f86a7fccd3a9f9a5ddb0c83710d968319781f08f7fdb581c2d14f",
+      "tasks.md": "1ac11ad713b488c95a8dfb5b9771ffcb60d2ff4acb8af2d0f608cec2da05de21",
+      "checklist.md": "32f85877141451ffb3e6cd92994373626e798f439dd41f62698df9246db69148",
+      "implementation-summary.md": "fbe6b200867e54962bea76e85a10ed85435029d7e285ead0412f95a8d11ce3e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

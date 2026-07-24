@@ -61,6 +61,7 @@ has_clear_matrix() {
 cli_cards=(
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md"
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md"
+  "$ROOT/.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -88,7 +89,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code)
+cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
@@ -152,6 +153,7 @@ for p in sorted(glob.glob(f"{H}/references/models/*.md")):
 CLI_EXECUTOR_HUB_METADATA = {
     "cli-opencode": "cli-external-orchestration/graph-metadata.json",
     "cli-claude-code": "cli-external-orchestration/graph-metadata.json",
+    "cli-cursor": "cli-external-orchestration/graph-metadata.json",
 }
 gm_cache = {}
 def gm(executor):

@@ -28,6 +28,7 @@ These per-model profiles are the WEIGHT of `prompt-models` — its prompt-craft 
 | `deepseek-v4-pro` | [`deepseek-v4-pro.md`](./deepseek-v4-pro.md) | RCAF; no fallback | medium | default-unverified |
 | `kimi-k2.7-code` | [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) | COSTAR; TIDD-EC fallback (avoid rcaf) | lean | empirical (benchmark 007; perfect tier tied, rcaf weakest) |
 | `glm-5.2` | [`glm-5.2.md`](./glm-5.2.md) | COSTAR; TIDD-EC fallback (avoid RCAF) | lean | empirical (benchmark 008; perfect tier tied, rcaf weakest) |
+| `composer-2.5` | [`composer-2.5.md`](./composer-2.5.md) | RCAF; no fallback | medium | default-unverified (Cursor-native, dispatched via `cli-cursor`; no benchmark run) |
 
 ### Historical
 
@@ -38,7 +39,7 @@ Status legend mirrors the registry's `recommended_frameworks.status`:
 - **carried** — inherited from a sibling model's benchmark; `carried_from` names the source. NOT a fresh run on this model.
 - **default-unverified** — convention default (RCAF + mandatory caller-side pre-planning); no model-specific benchmark yet.
 
-Optional, not-yet-adopted (no active profile): Claude Haiku. Frontier models (Opus, Sonnet, gpt-5.5) are out of scope.
+Optional, not-yet-adopted (no active profile): Claude Haiku. Frontier models (Opus, Sonnet, gpt-5.5) are out of scope — this includes the hosted frontier ids Cursor can also drive (`gpt-5.6-sol-*`, `claude-opus-4-8-*`, `cursor-grok-4.5-*`); only Composer, Cursor's own native model, gets a profile here.
 
 ---
 
