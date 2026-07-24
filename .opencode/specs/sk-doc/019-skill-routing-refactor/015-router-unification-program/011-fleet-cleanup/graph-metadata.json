@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fleet cleanup dual-read retirement",
+      "per-skill deletion gate router refactor",
+      "remove compatibility aliases hot card",
+      "fleet cleanup build plan",
+      "per-skill deletion driver plan",
+      "dual-read retirement approach",
+      "fleet cleanup tasks",
+      "per-skill deletion checklist",
+      "dual-read retirement tasks",
+      "fleet cleanup readiness checklist",
+      "committed manifest binding verification",
+      "shadow rollout cleanup block"
+    ],
+    "key_topics": [
+      "fleet",
+      "cleanup",
+      "dual-read",
+      "retirement",
+      "per-skill",
+      "deletion",
+      "gate",
+      "router",
+      "refactor",
+      "remove",
+      "compatibility",
+      "aliases"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "compiled/final-manifest.json",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-manifest.json",
+        "kind": "config",
+        "path": "compiled/final-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Dual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unification Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After Stage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Retire",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Preflight",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Legacy",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Cleanup",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
+    "created_at": "2026-07-18T13:13:20.991Z",
+    "last_save_at": "2026-07-24T12:11:58.586Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a0767afe8a084c69dd76792970024223691b0307bb374808f1e3787d8e492833",
+    "source_doc_hashes": {
+      "spec.md": "c2d037aff0e267240a691d273e90cc0801b3dc7f2579859c70ad7cc7436b95f0",
+      "plan.md": "77e50932f6537b53a7a6a9900dbf7c26edd9f19a41e2be1a75b0253a57070005",
+      "tasks.md": "58dbb0fac4e7295b75218e2c17fa3a22a4f071d206e67b4c39362b83220b6b1e",
+      "checklist.md": "1da2c4f122b32ad3c8e835739a9583083e30fbb826b878dd5acd649f4fd8a251",
+      "implementation-summary.md": "921351d28b83846e9b46f8c6f61428f2e202e51b641341505ce6e4a1e7d79435"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

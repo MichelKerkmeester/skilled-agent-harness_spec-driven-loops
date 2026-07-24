@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder",
+  "description": "The synthesis named \"two ways to handle uncertainty\" as an open seam: Idea 4 (bounded handoff to a better destination) and Idea 5 (a calibrated",
+  "keywords": [
+    "synthesis",
+    "named",
+    "two",
+    "ways",
+    "handle",
+    "uncertainty",
+    "open",
+    "seam",
+    "idea",
+    "bounded",
+    "handoff",
+    "better",
+    "destination",
+    "calibrated"
+  ],
+  "lastUpdated": "2026-07-24T12:10:59.575Z",
+  "specId": "007",
+  "folderSlug": "recovery-ladder",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

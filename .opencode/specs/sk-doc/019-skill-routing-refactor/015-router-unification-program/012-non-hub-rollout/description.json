@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+  "description": "Compile standalone skills that carry their own inline router into the unified policy contract",
+  "keywords": [
+    "compile",
+    "standalone",
+    "skills",
+    "carry",
+    "own",
+    "inline",
+    "router",
+    "unified",
+    "policy",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-24T12:10:59.309Z",
+  "specId": "012",
+  "folderSlug": "non-hub-rollout",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

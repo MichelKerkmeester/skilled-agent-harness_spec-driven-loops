@@ -128,4 +128,4 @@ Route-gold baselines (must hold after): sdl 20/20, mcp 13/13, cli 7/7, sk-design
 
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `001-3-tier-consistency-standard` |
-| **Successor** | `003-unified-refactor-implementation` |
+| **Successor** | `003-contract-schemas` |

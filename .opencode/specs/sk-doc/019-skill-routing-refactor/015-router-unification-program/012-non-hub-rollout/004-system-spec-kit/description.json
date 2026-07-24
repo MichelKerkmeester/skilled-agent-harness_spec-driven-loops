@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
+  "description": "The unified compiler was proven on one standalone skill, but `system-spec-kit` has a materially larger authored router: 17 intent classes, 48 manifest",
+  "keywords": [
+    "unified",
+    "compiler",
+    "proven",
+    "one",
+    "standalone",
+    "skill",
+    "system-spec-kit",
+    "materially",
+    "larger",
+    "authored",
+    "router",
+    "intent",
+    "classes",
+    "manifest"
+  ],
+  "lastUpdated": "2026-07-24T12:10:59.308Z",
+  "specId": "004",
+  "folderSlug": "system-spec-kit",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "012-non-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

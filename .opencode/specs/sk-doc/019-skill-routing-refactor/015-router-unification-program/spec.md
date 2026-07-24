@@ -1,60 +1,83 @@
 ---
-title: "Feature Specification: Router-Unification Program (phase parent)"
-description: "The fleet router-unification program: from a 3-tier consistency standard and the defaultMode policy fix through the unified router refactor — one compiled policy, one closed decision algebra, one shared recovery budget, destination-local prepare/verify/commit, calibrated negotiation, and an optional offline correction overlay — with three implementation children. Research evidence is maintained in the sibling 001-research parent."
+title: "Feature Specification: Router-Unification Program"
+description: "Phase parent for the fleet router-unification program: a reversible compiled policy, closed route decision algebra, shared recovery budget, destination-local execution, calibrated negotiation, offline correction, and the rollout, cleanup, onboarding, benchmark, and activation gates that make the contract operational."
 trigger_phrases:
   - "router unification program"
   - "fleet routing consistency to unified refactor"
-  - "router alignment program parent"
+  - "compiled policy migration gates"
+  - "router activation verification"
 importance_tier: "critical"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT
-  FORBIDDEN: merge/migration/consolidation narratives (see context-index.md); heavy docs (plan/tasks/checklist/decision-record/implementation-summary belong in children).
-  REQUIRED: root purpose; the phase map; the current-vs-historic context map.
+  This parent stays lean: purpose, direct-child map, shared gates, and constraints.
+  Detailed scope, plans, tasks, checklists, and evidence live in the child folders.
 -->
 
 # Feature Specification: Router-Unification Program
 
 ## EXECUTIVE SUMMARY
 
-This is the umbrella program for making the fleet's parent-hub routing **consistent, correct, and — ultimately — unified under one contract**. It runs as a historic-to-current arc: it began as a fleet-wide consistency push (one 3-tier routing standard for all 49 units), surfaced and answered a sharp policy question (should a hub `defaultMode` guess a child, or defer?), shipped that answer, then opened two parallel out-of-box exploration lineages that questioned the whole two-layer routing frame. Those explorations fused into a single **unified router refactor** — one content-addressed compiled policy, one closed `route | clarify | defer | reject` decision algebra, one shared recovery budget, destination-local PREPARE→VERIFY→COMMIT, calibrated negotiation, and an optional offline correction overlay — which now has a phased, reversible implementation plan.
+Implement the unified router refactor as a shadow compiler plus additive semantic gates, not as a router rewrite. The program freezes one content-addressed compiled policy, one closed `route | clarify | defer | reject` decision algebra, one shared recovery budget, destination-local `PREPARE → VERIFY → COMMIT`, calibrated negotiation, and an optional offline correction overlay. Legacy remains serving-authoritative until each activation gate passes; route-gold stays green and the shared benchmark scorer remains untouched.
 
-Every phase holds two invariants: the deterministic route-gold benchmark stays green, and the shared benchmark scorer is never edited. Live-routing changes are reversible and gated one hub at a time.
+Calibration is a first-class capability in this program. The held-out corpus and calibrated controller live under phase `008`, while the optional learning overlay remains offline and last under phase `010`. Parent-hub and non-hub rollout, live activation, the promoted runtime, cutover hardening, default-on policy, create-skill onboarding, benchmark alignment, and final coverage verification are separate direct children so each gate has one executable owner.
 
-> **Phase-parent note:** this `spec.md` is the only authored document at the parent level. Per-phase scope, plans, tasks, and evidence live in the phase children below. A per-phase index cross-reference for this parent is maintained in `context-index.md`.
+The design source is the sibling research synthesis at `../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`. This parent records the unified contract and its migration gates; the children record implementation detail and evidence.
 
 ## PHASE DOCUMENTATION MAP
 
-| Phase | Folder | Focus | Kind |
-|-------|--------|-------|------|
-| 1 | 001-3-tier-consistency-standard/ | The origin program: one universal 3-tier routing standard across all 49 units; route-gold gate; de-skill-specific the shared harness; fleet verification | Implementation (in progress) |
-| 2 | 002-default-mode-implementation/ | The shipped defaultMode fix: keep sk-prompt; flip four hubs to `defaultMode: null` with a routing-helper fallback; fix sk-design hub-identity over-emission | Implementation (shipped) |
-| 3 | 003-unified-refactor-implementation/ | **Sub-parent (16 children, 000–015).** The phased, reversible build of the unified refactor — compiler/evaluator/execution/recovery/calibration/per-hub rollout/cleanup plus non-hub rollout, live activation, the promoted runtime engine, cutover hardening, and routing-coverage verification. The runtime cutover is live. | Implementation (in progress) |
+| Phase | Folder | Focus |
+|-------|--------|-------|
+| 001 | `001-3-tier-consistency-standard/` | Establish the fleet-wide three-tier routing standard and its route-gold and freshness gates. |
+| 002 | `002-default-mode-implementation/` | Ship the parent-hub `defaultMode` policy and its routing-helper fallback behavior. |
+| 003 | `003-contract-schemas/` | Define versioned contract schemas, canonical serialization, domain-separated hashes, and offline validation. |
+| 004 | `004-compiler-n1-shadow/` | Compile the N=1 case and prove shadow parity, fencing, and byte-exact rollback. |
+| 005 | `005-decision-evaluator/` | Emit and validate the closed four-action decision algebra and typed route-gold projection. |
+| 006 | `006-execution-verify-commit/` | Implement destination-local prepare, verify, commit, proof, receipts, idempotency, and stale-proof rejection. |
+| 007 | `007-recovery-ladder/` | Implement the ordered clarify-to-handoff recovery ladder on one shared uncertainty budget. |
+| 008 | `008-calibration/` | Build the held-out corpus, calibrated contract, and selective-classification controller. |
+| 009 | `009-parent-hub-rollout/` | Activate the compiled contract per parent hub in blast-radius order with canary and rollback gates. |
+| 010 | `010-learning-overlay/` | Build the optional offline correction overlay with independent promotion and pointer-CAS gates. |
+| 011 | `011-fleet-cleanup/` | Retire legacy dual-read paths only after per-skill deletion gates pass. |
+| 012 | `012-non-hub-rollout/` | Roll the compiled contract out to standalone non-hub skills with independent verification. |
+| 013 | `013-live-activation/` | Bind the shadow-complete compiled contract to fenced live serving. |
+| 014 | `014-runtime-engine/` | Promote the runtime resolver and engine to a stable path decoupled from the spec tree. |
+| 015 | `015-cutover-hardening/` | Harden runtime cutover, no-spec-import guarantees, and drift-versus-breakage status reporting. |
+| 016 | `016-default-on-decision/` | Decide and verify the effective default-on behavior and its reversible kill-switch. |
+| 017 | `017-create-skill-alignment/` | Teach create-skill onboarding to express the compiled-ready contract deliberately. |
+| 018 | `018-benchmark-alignment/` | Extend benchmark validation to the compiled-serving path and its parity evidence. |
+| 019 | `019-routing-coverage-activation-verification/` | Build remaining hub coverage, verify activation, and close the end-to-end parity and rollback gates. This child retains its own internal children unchanged. |
 
-## CURRENT vs HISTORIC CONTEXT
+## SHARED MIGRATION-GATE MODEL
 
-**Start here (current, actionable):**
-- **`003-unified-refactor-implementation/`** — the live plan of record. The phased, gated build of the unified router refactor. This is what "do the work" points at now.
-- **`../001-research/010-unified-refactor-research/`** — the design the plan implements (read its synthesis first, then `ai-council/`).
+Authority moves through gates, not file conversions. Each child must clear its stage before the next serving authority can activate, and every stage has a reversible rollback path.
 
-**Background (historic, the trail that produced the design — read only if tracing *why*):**
-- **`001-3-tier-consistency-standard/`** — where the program started; the consistency baseline the whole fleet still rests on (its own REQ work is separately in progress).
-- **`../001-research/007-default-mode-policy-research/`** — the defaultMode policy question; its shipped answer is implemented in child `002` and is not re-opened by the refactor.
-- **`../001-research/008-oob-glm-parallel-research/`** and **`../001-research/009-oob-idea-deep-dives/`** — the two exploration lineages. Their conclusions survive, fused in `../001-research/010-unified-refactor-research/`; the raw research iterations were distilled into the presentations rather than kept verbatim.
+| Stage | Gate | Owned by phase(s) |
+|-------|------|-------------------|
+| 0 — Baseline freeze | Record the full legacy baseline and frozen inputs. | `003`, `004` |
+| 1 — Shadow compile | Canonical bytes regenerate, typed fixtures parse, and route-gold stays green. | `004` |
+| 2 — Dual-read | Every legacy input resolves; unmapped inputs fail closed. | `004`, `009` |
+| 3 — Shadow evaluate | Typed replay is deterministic, compatibility projection matches route-gold, and gold never auto-updates. | `005`, `009` |
+| 4 — Per-hub canary | Hard mismatches are zero, identity/parity gates pass, and rollback is proven. | `009`, `019` |
+| 5 — Offline overlay | Offline replay, safety/parity, independent approval, and byte-stable promotion pass. | `010` |
+| 6 — Destination rollout | Proof, expiry, read-set, authority, epoch, idempotency, and receipt fixtures pass; read-only legs precede mutating legs. | `006`, `009`, `012` |
+| 7 — Fleet cleanup | Each skill passes its deletion gate before legacy artifacts are retired. | `011` |
 
-## HARD CONSTRAINTS (every phase)
-- Deterministic route-gold replay preserved; the shared scorer (`router-replay.cjs`) is never edited.
-- Live-routing changes are reversible and gated on route-gold staying green; no over-emission.
-- Authority stays destination-local (a proof or recommendation is never a capability).
+## HARD CONSTRAINTS
+
+- Deterministic route-gold replay remains green; `router-replay.cjs` and the shared benchmark scorer are never edited.
+- Serving authority remains destination-local. A proof or recommendation is evidence, never capability.
+- Requests pin one activation generation; rollback swaps to the byte-identical prior manifest and cannot undo an external commit.
+- Runtime serving paths do not read from the spec tree after promotion.
+- Every default-on change is fenced, observable, reversible, and verified one hub at a time.
 
 ## RELATED DOCUMENTS
-- **Phase index cross-reference**: `context-index.md`
-- **The unified design**: `../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
-- **The current plan**: `003-unified-refactor-implementation/spec.md`
-- **Parent Spec**: `../spec.md`
 
+- **Design source:** `../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
+- **Research layer:** `../001-research/`
+- **Root packet:** `../spec.md`
 
 ## Structural phase links
 

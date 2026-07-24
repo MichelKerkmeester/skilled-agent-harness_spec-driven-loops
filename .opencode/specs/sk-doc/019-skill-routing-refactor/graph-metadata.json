@@ -104,15 +104,15 @@
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-24T11:03:16.492Z",
+    "last_save_at": "2026-07-24T12:00:50.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e8c9a1ad41ff2beb22cad5f5e179c003b8ad03d80359cb58e9fe0b096668af78",
+    "source_fingerprint": "sha256:2d34c48bc5e2970581904aef2f73a30043fa10b588daf6670ef4e10532d95ff7",
     "source_doc_hashes": {
-      "spec.md": "9c71791be74bb8c411318f5975515347885adf155344874e97347c190635ffca"
+      "spec.md": "bf96c14e030b4987885a96e89982d099ad7a6e7809c54749a41c91a19f9ab06a"
     },
     "last_active_child_id": null,
     "last_active_at": null

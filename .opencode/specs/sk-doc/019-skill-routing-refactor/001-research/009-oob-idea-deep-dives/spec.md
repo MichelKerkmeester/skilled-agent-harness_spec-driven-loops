@@ -59,7 +59,7 @@ Each child deepens exactly one direction. The presentation is the operator-facin
 - The distilled findings of each idea's 5-iteration SOL xhigh-fast deep-research lineage (folded into the presentations).
 
 ### Out of Scope
-- Implementation of any idea (that is the unified plan in `../../015-router-unification-program/003-unified-refactor-implementation/`).
+- Implementation of any idea (that is the unified plan in `../../015-router-unification-program/`).
 - Re-deriving the run-1/run-2/run-3 `defaultMode` answer already shipped in `../../015-router-unification-program/002-default-mode-implementation/`.
 - Any change to live routing config, shared benchmark machinery, or the scorer.
 

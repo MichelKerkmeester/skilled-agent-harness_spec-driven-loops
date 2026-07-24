@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/005-sk-prompt",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/006-sk-design",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent hub rollout phase parent",
+      "compiled contract per-hub canary",
+      "unified router activation order"
+    ],
+    "key_topics": [
+      "parent",
+      "hub",
+      "rollout",
+      "phase",
+      "compiled",
+      "contract",
+      "per-hub",
+      "canary",
+      "unified",
+      "router",
+      "activation",
+      "order"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "distinct",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent that activates the compiled unified-router contract on the parent hubs one at a time, in increasing blast-radius order: sk-code (evidence composition), then system-deep-loop (shared packet/backend projections), then mcp-tooling (external effects + cross-hub judgment). Each hub is a fenced-CAS canary gated on route-gold staying green, advisor identity matching-or-ignored, document parity, and a proven rollback drill. The shared scorer is never touched; rollback swaps to the byte-identical prior manifest and cannot undo a committed external effect.",
+    "created_at": "2026-07-18T13:13:20.416Z",
+    "last_save_at": "2026-07-24T12:11:56.905Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0217905a9f2e8e534e9637bf2099c0b9ccf6e81dc1a2ce2d2d00ccae70b0f759",
+    "source_doc_hashes": {
+      "spec.md": "cf46ce2f3124f6da85b747794e9b0ca108c51500d19f93f3232a8c59d6b1bd85"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "canonical manifest minter",
+      "compiled routing freshness predicate",
+      "new hub activation manifest",
+      "implement canonical manifest minter",
+      "compiled manifest freshness plan",
+      "new hub manifest store",
+      "canonical minter tasks",
+      "manifest freshness implementation tasks",
+      "canonical minter checklist",
+      "manifest freshness QA gate",
+      "canonical minter decisions",
+      "manifest freshness architecture"
+    ],
+    "key_topics": [
+      "canonical",
+      "manifest",
+      "minter",
+      "compiled",
+      "routing",
+      "freshness",
+      "predicate",
+      "new",
+      "hub",
+      "activation",
+      "implement",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/bin/lib/compiled-route-manifest.cjs",
+      ".opencode/bin/compiled-route-manifest.cjs",
+      ".opencode/bin/compiled-route-status.cjs",
+      ".opencode/bin/compiled-route-sync.cjs",
+      ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+      ".opencode/bin/compiled-route.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Manifest Minter Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Public Module Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
+    "created_at": "2026-07-21T04:50:51Z",
+    "last_save_at": "2026-07-24T12:11:49.556Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2ebc6fcdeb76992c967070cfb42bdca82040385ac5348ddd0f2465ac93c2b79b",
+    "source_doc_hashes": {
+      "spec.md": "dd27c16059ad432a057e3ed2422a194d416d6a9ba97834a4fa202a9fa61025f1",
+      "plan.md": "379b9006e6067e4da27fdf4ed4e86934705592a04eb4f7fa0d7ccef030e0ccd9",
+      "tasks.md": "4070b0e5645927a964b502af02b7156cf77f1b953026f2ae57dbe3399a66e210",
+      "checklist.md": "309f25598a9458eae3ddc1d31ef70f0268c801099d4ea087569f3487c4e05789",
+      "decision-record.md": "d690052ca7be28f1bf8c5a9875f03b491fb371d58ea56028afc75e325aede7b0",
+      "implementation-summary.md": "407d02aa6689223afe9b9c924ac92eb2d774ab2ace9b2e3a1f06a9d2b40387b2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

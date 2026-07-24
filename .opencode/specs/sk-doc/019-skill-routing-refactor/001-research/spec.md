@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill-Routing Research Layer"
-description: "Lean phase parent for the ten research lineages that define the skill-routing program's benchmark, per-hub, defaultMode, out-of-box, and unified-refactor evidence base."
+description: "Lean phase parent for the eleven research lineages that define the skill-routing program's benchmark, per-hub, sk-code, defaultMode, out-of-box, and unified-refactor evidence base."
 trigger_phrases:
   - "skill-routing research layer"
   - "routing research phase parent"
@@ -32,7 +32,7 @@ contextType: "research"
 
 ## 2. PURPOSE
 
-This phase parent holds the shared research layer for the skill-routing program. It provides the evidence and handoffs for the benchmark-driven fixes, per-hub typed-pair routing work, and the router-unification program. The ten children remain independent research lineages; this parent only defines their shared topology and purpose.
+This phase parent holds the shared research layer for the skill-routing program. It provides the evidence and handoffs for the benchmark-driven fixes, per-hub typed-pair routing work, and the router-unification program. The eleven children remain independent research lineages; this parent only defines their shared topology and purpose.
 
 ## PHASE DOCUMENTATION MAP
 
@@ -48,11 +48,13 @@ This phase parent holds the shared research layer for the skill-routing program.
 | `008-oob-glm-parallel-research` | Explore radical routing alternatives through the parallel GLM out-of-box lineage. |
 | `009-oob-idea-deep-dives` | Deepen eight out-of-box routing directions through focused research children and presentations. |
 | `010-unified-refactor-research` | Fuse the out-of-box findings into one evidence-backed unified-router design. |
+| `011-sk-code-routing-research` | Establish the sk-code typed-pair, leaf-recall, universal-preamble, and ordered-live-read evidence base. |
 
 ## HANDOFFS
 
 - `001` and `002` hand off their benchmark and advisor findings to implementation phases `../011-sk-doc-routing-fixes/` and `../012-skill-advisor-routing-fixes/`.
 - `003`–`006` provide the per-hub research basis for `../014-sk-code-router-alignment/` and subsequent typed-pair routing work.
+- `011` provides the sk-code leaf-routing research basis for `../014-sk-code-router-alignment/` and its follow-on typed-pair work.
 - `007`–`010` provide the policy and design basis for `../015-router-unification-program/`.
 
 ## RELATED DOCUMENTS

@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller",
+  "description": "The evaluator (`002`) can already emit the closed four-action algebra, and the recovery ladder (`004`) already orders `clarify → handoff →",
+  "keywords": [
+    "evaluator",
+    "already",
+    "emit",
+    "closed",
+    "four-action",
+    "algebra",
+    "recovery",
+    "ladder",
+    "orders",
+    "clarify",
+    "handoff"
+  ],
+  "lastUpdated": "2026-07-24T12:10:59.641Z",
+  "specId": "003",
+  "folderSlug": "selective-controller",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "008-calibration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

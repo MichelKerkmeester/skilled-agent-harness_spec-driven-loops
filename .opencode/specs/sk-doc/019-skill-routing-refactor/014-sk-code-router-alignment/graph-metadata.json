@@ -47,15 +47,6 @@
       "checklist.md",
       ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
       ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
-      "research/research.md",
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      "research/iterations/iteration-001.md",
-      "research/resource-map.md",
-      "research/deep-research-state.jsonl",
-      "research/findings-registry.json",
-      "research/deep-research-strategy.md",
-      "research/deep-research-dashboard.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -93,54 +84,6 @@
         "name": "skill-benchmark-report.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-dashboard.md",
-        "kind": "doc",
-        "path": "research/deep-research-dashboard.md",
         "source": "derived"
       },
       {
@@ -202,11 +145,59 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "absent",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
     "created_at": "2026-07-16T19:43:16.256Z",
-    "last_save_at": "2026-07-24T11:03:16.813Z",
+    "last_save_at": "2026-07-24T12:00:50.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,17 +205,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7f232f0b16541f3d0a48b3793a411c0ac113adfc6f985a0859a883c7330794c",
+    "source_fingerprint": "sha256:39340d765e9759cda5800e8e7395959187757db8b437781dc3f915cfed97c07a",
     "source_doc_hashes": {
-      "spec.md": "619e34f5c8d6ad557173d2d7cd661bcd45100e13665fc7b38b80b5037b4c080e",
+      "spec.md": "c78cf921fe96ebf5ba98189e739671af5cec4517e3499854392a56ea87ba3f41",
       "plan.md": "11876e1e66eb25210a216d02e520f1f3720151510f71ee999d48ab9b78435799",
       "tasks.md": "bfcdb8c37b0c37402c2122052a726d1dc28ff3b19556e93f9412b6f01a24e6a0",
       "checklist.md": "e78b449f742343e089fa0a5714bd990d4f2faa7906c4e8d5b286ae282b9bc8a8",
-      "implementation-summary.md": "3127490b6c28b9bdc5937285aef326612b60a31304ca2a5e6de1977731ac9d44",
-      "research/research.md": "a2769b0ed8db0a8599510acd2796ca610d2b38973ac8820c41b36f4c022033b5"
+      "implementation-summary.md": "3127490b6c28b9bdc5937285aef326612b60a31304ca2a5e6de1977731ac9d44"
     },
     "last_active_child_id": null,
     "last_active_at": null

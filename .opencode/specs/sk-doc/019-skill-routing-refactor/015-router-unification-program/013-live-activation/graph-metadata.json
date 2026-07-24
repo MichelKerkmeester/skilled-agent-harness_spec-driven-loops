@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unified router live activation",
+      "design-faithful fenced-CAS activation",
+      "hub activation manifest selectedPolicy binding",
+      "live activation plan",
+      "fenced-CAS driver plan",
+      "P4a P4b staging",
+      "live activation tasks",
+      "hub activation task list",
+      "live activation checklist",
+      "hub activation QA gate",
+      "live activation implementation summary",
+      "seven hubs activated design-faithful"
+    ],
+    "key_topics": [
+      "unified",
+      "router",
+      "live",
+      "activation",
+      "design-faithful",
+      "fenced-cas",
+      "hub",
+      "manifest",
+      "selectedpolicy",
+      "binding",
+      "plan",
+      "driver"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "lib/activate-hub.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "activate-hub.cjs",
+        "kind": "file",
+        "path": "lib/activate-hub.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Refactor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Activation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bind",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The compiled router contract is shadow-complete but never bound",
+    "created_at": "2026-07-19T12:15:36.154Z",
+    "last_save_at": "2026-07-24T12:11:57.899Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f28afef19e8382747d142d118dc01f5a95fe2e03efb3113eebf3f607a37503e9",
+    "source_doc_hashes": {
+      "spec.md": "94b59037863e04e39c36b86cef8bba19de111d60737e830e0fa6064bbd09bf13",
+      "plan.md": "8570982dc43210da9b33a4a6f53aebc7577ea305ad926e5c0d6b2e5f00824ef4",
+      "tasks.md": "31232cb84d3e6bd262935ce4474f7f36c4fb36fdd7c75b5708ca630e5561b71c",
+      "checklist.md": "215a48bd036e54808d18bdbeb6135695068a4e4b2bc7aebcf0846d7bc0edb118",
+      "implementation-summary.md": "9a18527056d2e2dc12ef519997591a6b060ace26356a60c6a9ef08fd9f693218"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

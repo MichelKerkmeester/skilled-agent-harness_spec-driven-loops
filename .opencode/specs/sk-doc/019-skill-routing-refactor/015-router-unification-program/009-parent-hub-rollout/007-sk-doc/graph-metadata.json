@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc compiled router rollout",
+      "sk-doc ordered documentation bundle",
+      "sk-doc real route gold canary",
+      "sk-doc rollout plan",
+      "compile sk-doc router",
+      "validate sk-doc canary",
+      "sk-doc rollout tasks",
+      "sk-doc canary status",
+      "sk-doc router tasks",
+      "sk-doc checklist",
+      "sk-doc real green evidence",
+      "sk-doc scorer verification"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "compiled",
+      "router",
+      "rollout",
+      "ordered",
+      "documentation",
+      "bundle",
+      "real",
+      "route",
+      "gold",
+      "canary",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "harness/validate-canary.cjs",
+      "compiled/policy.json",
+      "harness/build-artifacts.cjs",
+      "activation/manifest.candidate.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "activation/manifest.prior.json",
+      "lib/registry-compiler.cjs",
+      "activation/acceptance.json",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate-canary.cjs",
+        "kind": "file",
+        "path": "harness/validate-canary.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": "compiled/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-artifacts.cjs",
+        "kind": "file",
+        "path": "harness/build-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.candidate.json",
+        "kind": "config",
+        "path": "activation/manifest.candidate.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.prior.json",
+        "kind": "config",
+        "path": "activation/manifest.prior.json",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": "lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance.json",
+        "kind": "config",
+        "path": "activation/acceptance.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compiled Router Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Node",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "null",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "writeback",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the shared projector and real scorer, and retain legacy authority behind a fenced rollback path.",
+    "created_at": "2026-07-19T00:00:00.000Z",
+    "last_save_at": "2026-07-24T12:11:54.309Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:31e008c5797da374cb370af3ceeb983cab753e4d966b8fbe0d2110373172c37b",
+    "source_doc_hashes": {
+      "spec.md": "1c551de60c4a0843cd2827a6cc830bd2ec350eab8d570237ecd8fcc662654f99",
+      "plan.md": "16c711da9ede730911c3738ecfab3ce1b8e84d5857c483b43736e23570ce7fad",
+      "tasks.md": "9f0295b6e5ae296aed36b0c401431fa9315e433af7bde3ffce164e5b98e5c9da",
+      "checklist.md": "f9f28e48785fe7f739c455199ed4f884dd4770b918dcdea13bfa694a2c68a9c0",
+      "implementation-summary.md": "9bd4c9b1bf2b17af0a0bd2d6975c48786f962d52bfbe8c168affc4e9a0056965"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

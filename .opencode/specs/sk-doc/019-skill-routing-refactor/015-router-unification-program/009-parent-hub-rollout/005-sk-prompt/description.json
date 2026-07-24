@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/005-sk-prompt",
+  "description": "The authored hub cannot be represented by treating every zero-signal request as a defer",
+  "keywords": [
+    "authored",
+    "hub",
+    "cannot",
+    "represented",
+    "treating",
+    "every",
+    "zero-signal",
+    "request",
+    "defer"
+  ],
+  "lastUpdated": "2026-07-24T12:10:59.412Z",
+  "specId": "005",
+  "folderSlug": "sk-prompt",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "009-parent-hub-rollout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

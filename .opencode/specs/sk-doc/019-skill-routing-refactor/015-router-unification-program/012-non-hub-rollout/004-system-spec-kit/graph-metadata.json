@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system spec kit router rollout",
+      "system spec kit compiled policy",
+      "non hub real scorer parity",
+      "system spec kit rollout plan",
+      "non hub compiled policy plan",
+      "real scorer fenced rollback plan",
+      "system spec kit rollout tasks",
+      "system spec kit compiled router checklist",
+      "non hub scorer parity tasks",
+      "system spec kit rollout verification",
+      "system spec kit scorer parity checklist",
+      "bounded default rollback evidence"
+    ],
+    "key_topics": [
+      "system",
+      "spec",
+      "kit",
+      "router",
+      "rollout",
+      "compiled",
+      "policy",
+      "non",
+      "hub",
+      "real",
+      "scorer",
+      "parity"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "harness/run-rollout.cjs",
+      "compiled/system-spec-kit/policy.json",
+      "implementation-summary.md",
+      "parity/shadow-parity.cjs",
+      "references/workflows/quick-reference.md",
+      "harness/support.cjs",
+      "activation/fenced-manifest.cjs",
+      "harness/protected-replay.cjs",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "run-rollout.cjs",
+        "kind": "file",
+        "path": "harness/run-rollout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy.json",
+        "kind": "config",
+        "path": "compiled/system-spec-kit/policy.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-parity.cjs",
+        "kind": "file",
+        "path": "parity/shadow-parity.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "support.cjs",
+        "kind": "file",
+        "path": "harness/support.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fenced-manifest.cjs",
+        "kind": "file",
+        "path": "activation/fenced-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "protected-replay.cjs",
+        "kind": "file",
+        "path": "harness/protected-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Router Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exit Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The unified compiler was proven on one standalone skill, but `system-spec-kit` has a materially larger authored router: 17 intent classes, 48 manifest leaves, multiline resource arrays, and an explicit always-loaded default resource",
+    "created_at": "2026-07-19T10:37:32.836Z",
+    "last_save_at": "2026-07-24T12:11:52.368Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bbcb60d161ed27a956910a804ee0c6b18d8d0b191562e50946e029e8e3779151",
+    "source_doc_hashes": {
+      "spec.md": "dd49a23d2cbb441d12d00c2021fa8ab80d14a337d47b1614d6cd094f41123af3",
+      "plan.md": "12f1a97f3adf445de89eed8bb4f343c7388afa3bfb4f59d6445abae333496c71",
+      "tasks.md": "58847c23788dd92a80ac58d92b18676889f142d18ac032ee3ae4f072628a9be7",
+      "checklist.md": "0dfe4323a0781c14d6c4b92d82a6a974b5805f5e131a9c0e70f8c0742ea2e05c",
+      "implementation-summary.md": "770489dd479338f73ad57c9dd9ef2aa35dc24288944f1a006a6ea502504d0d0e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
