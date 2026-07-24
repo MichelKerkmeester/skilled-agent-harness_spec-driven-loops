@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.16
+version: 1.0.0.17
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -129,6 +129,7 @@ Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Un
 | `postToolUse` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | 10 | Chains `Write`/`Shell` tool calls into the Claude post-edit-quality, code-graph-freshness, and CLI-dispatch-audit hooks. |
 | `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | 10 | Advisory Gate-3 classification. Registered for parity; confirmed dormant under the installed CLI build (event never fires). |
 | `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js` | 10 | Prompt-time skill-advisor brief. Registered for parity; confirmed dormant alongside the classify hook above. |
+| `beforeMCPExecution` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs` | 10 | Advises routing an external MCP call through Code Mode. Recombines Cursor's split `mcp_server_name` + bare `tool_name` into the packed shape the shared core parses (see the split-shape caveat below). |
 | `preCompact` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/precompact.js` | 10 | Compaction payload pre-caching (proxies to `compact-inject.js`). Registered for parity; delivery unconfirmed and untestable in isolation (no CLI-reachable compaction trigger exists). |
 
 Helper module (statically imported by every entrypoint, NOT directly wired): `shared.ts` — the Cursor-to-Claude payload bridge (`readCursorHookInput`, `toClaudeShape`, `runClaudeHookAdapter`, `emitCursorResponse`).
@@ -155,7 +156,13 @@ The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is 
 
 ### Not Wired
 
-`spec-gate-prebind.mjs` (`sessionStart` — opens the Gate-3 enforcement state Cursor structurally cannot open via `beforeSubmitPrompt`) and `mcp-route-guard.mjs` (`beforeMCPExecution` — built, standalone-tested, but no MCP server is configured on the reference machine to confirm its payload shape) both exist in the source tree but are deliberately absent from `.cursor/hooks.json`. Do not add either without first satisfying its own file-header precondition (review/commit status for the former; a live payload capture for the latter).
+`spec-gate-prebind.mjs` (`sessionStart` — opens the Gate-3 enforcement state Cursor structurally cannot open via `beforeSubmitPrompt`) exists in the source tree but is deliberately absent from `.cursor/hooks.json`. Do not add it without first satisfying its file-header precondition (review/commit status).
+
+### MCP Config And The Split-Shape Caveat
+
+`.cursor/mcp.json` is a symlink to the repo's own `.mcp.json`. Cursor's documented MCP schema is byte-compatible with Claude's (`mcpServers` / `command` string / `args` array / `env` object), so one file serves both. `opencode.json` cannot participate — its schema differs (`mcp` key, `command` as an array, `environment` rather than `env`).
+
+Cursor's MCP hook payloads split the server and tool across **two** fields — `mcp_server_name: "sequential_thinking"` alongside a BARE `tool_name: "sequentialthinking"` — where Claude packs both into one `mcp__<server>__<tool>` string. The shared `mcp-route-guard` core parses only the packed forms, so a Cursor adapter MUST recombine the two fields before forwarding; passing the bare tool name through matches nothing and the guard silently never advises. Confirmed by testing the core directly: `mcp__figma__get_screenshot` and `figma_get_screenshot` both advise, bare `get_screenshot` does not. `afterMCPExecution` also fires (adding `result_json` + `duration`) but has no Claude-side counterpart to proxy to, so nothing is wired for it.
 
 ### Discovery Mirror — `.cursor/hooks/`
 

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror",
   "description": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked",
   "keywords": [
@@ -16,7 +17,7 @@
     "repo",
     "symlinked"
   ],
-  "lastUpdated": "2026-07-24T17:40:21.810Z",
+  "lastUpdated": "2026-07-24T18:05:09.638Z",
   "specId": "014",
   "folderSlug": "cursor-hooks-discovery-mirror",
   "parentChain": [
@@ -24,6 +25,5 @@
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

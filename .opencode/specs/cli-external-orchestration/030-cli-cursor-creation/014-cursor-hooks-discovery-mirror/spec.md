@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror"
-    last_updated_at: "2026-07-24T17:37:51Z"
+    last_updated_at: "2026-07-24T18:05:09Z"
     last_updated_by: "claude-code"
     recent_action: "13 symlinks created; entrypoint-guard gotcha found and documented"
     next_safe_action: "Run validate.sh --strict, commit"
@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../013-hooks-sk-code-alignment/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../015-hook-code-style-cross-runtime/spec.md` |
 | **Handoff Criteria** | `.cursor/hooks/` exists with a symlink to every file `.cursor/hooks.json` currently invokes, none broken; `.cursor/hooks.json`'s own `command` paths are unchanged; the symlink-vs-real-path behavioral difference for the 4 `runCursorHook`-guarded files is documented in both `.cursor/hooks/README.md` and the canonical `hooks.md` reference. |
 <!-- /ANCHOR:metadata -->
 

@@ -78,6 +78,13 @@
         "type": "command",
         "timeout": 10
       }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+        "type": "command",
+        "timeout": 10
+      }
     ]
   }
 }

@@ -17,7 +17,10 @@
     "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity",
     "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
     "cli-external-orchestration/030-cli-cursor-creation/013-hooks-sk-code-alignment",
-    "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror"
+    "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror",
+    "cli-external-orchestration/030-cli-cursor-creation/015-cursor-mcp-wiring-and-route-guard-fix",
+    "cli-external-orchestration/030-cli-cursor-creation/015-hook-code-style-cross-runtime",
+    "cli-external-orchestration/030-cli-cursor-creation/016-cursor-mcp-wiring-and-route-guard-fix"
   ],
   "manual": {
     "depends_on": [],
@@ -176,7 +179,7 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-07-24T17:40:29.369Z",
+    "last_save_at": "2026-07-24T18:05:10.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
