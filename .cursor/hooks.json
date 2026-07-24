@@ -6,11 +6,36 @@
         "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-start.js",
         "type": "command",
         "timeout": 10
+      },
+      {
+        "command": "bash .opencode/bin/worktree-guard.sh",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "bash .opencode/bin/check-git-hooks.sh",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "node .opencode/bin/install-codex-hooks.mjs --check",
+        "type": "command",
+        "timeout": 10
       }
     ],
     "sessionEnd": [
       {
         "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-end.js",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "bash .opencode/scripts/session-cleanup.sh",
         "type": "command",
         "timeout": 10
       }
@@ -20,11 +45,36 @@
         "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
         "type": "command",
         "timeout": 10
+      },
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+        "type": "command",
+        "matcher": "Task",
+        "timeout": 10
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+        "type": "command",
+        "timeout": 10
       }
     ],
     "beforeSubmitPrompt": [
       {
         "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+        "type": "command",
+        "timeout": 10
+      },
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js",
+        "type": "command",
+        "timeout": 10
+      }
+    ],
+    "preCompact": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/precompact.js",
         "type": "command",
         "timeout": 10
       }

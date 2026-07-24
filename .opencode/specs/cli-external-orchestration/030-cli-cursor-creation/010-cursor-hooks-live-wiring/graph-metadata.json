@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 004's ADR-001 explicitly decided to register the guard adapters in a committed, project-level `.cursor/hooks.json`, but the operator deferred the actual file to \"a later, separately-approved step.\" That step never happened: no `.cursor/` directory existed anywhere in this repo",
     "created_at": "2026-07-24T13:32:31.907Z",
-    "last_save_at": "2026-07-24T13:34:29.977Z",
+    "last_save_at": "2026-07-24T14:10:06.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1cdaeb7b54ef3c9e25ce01c7f74b684694ce070ab6155c4824c18436d65cb24",
+    "source_fingerprint": "sha256:5c95d365f88bb01429553a0977da2bc27b36c1fe2fd147daec78711315f3826a",
     "source_doc_hashes": {
-      "spec.md": "ed162d72b33af6f8d73a290c39fbe0dfe637527ad758a2bc12b5be9411ecfad5",
+      "spec.md": "4aadcaa7597bf3a56a4ade2c095dceada31ac5326e5f167180b835a79cff5282",
       "plan.md": "8142cedb3e73b7dd90e279eacb5ffe6396b90344de40dd296c81408117152bd8",
       "tasks.md": "85acc4d692837b6b851b1f22eaf21d8d62feab607caf8defda798997b669a89b",
       "checklist.md": "a6095839fe5c6e9b4b8b1bfe986a78e876bfbdc68e56b5232a18159e8c3ab0c5",

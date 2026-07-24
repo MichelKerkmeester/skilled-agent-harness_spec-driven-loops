@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../009-cursor-hooks-catalog-and-playbook-coverage/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../011-cursor-hooks-claude-parity/spec.md` |
 | **Handoff Criteria** | `.cursor/hooks.json` exists, is committed, wires the 4 confirmed adapters with correct event names and portable relative paths, is live-fire proven against the real repo (not just an isolated workspace), and every stale "not yet registered" / "deliberately uncommitted" claim across the skill's docs is corrected. |
 <!-- /ANCHOR:metadata -->
 

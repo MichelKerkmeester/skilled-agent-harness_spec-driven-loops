@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-cursor hooks Claude parity",
+      "cursor postToolUse wiring",
+      "cursor task-dispatch-guard",
+      ".cursor/hooks.json Claude parity expansion",
+      "cli-cursor hooks Claude parity plan",
+      "cli-cursor hooks Claude parity tasks",
+      "cli-cursor hooks Claude parity checklist",
+      "cli-cursor hooks Claude parity implementation",
+      "cursor postToolUse task-dispatch-guard live-fire"
+    ],
+    "key_topics": [
+      "cli-cursor",
+      "hooks",
+      "claude",
+      "parity",
+      "cursor",
+      "posttooluse",
+      "wiring",
+      "task-dispatch-guard",
+      "json",
+      "expansion",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".cursor/hooks.json",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+      ".opencode/logs/cli-dispatch-audit.log",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/precompact.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+      "mcp-server/hooks/cursor/shared.ts",
+      "mcp-server/hooks/cursor/user-prompt-submit.ts",
+      "mcp-server/hooks/cursor/post-tool-use.mjs",
+      "mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+      "mcp-server/hooks/cursor/precompact.ts"
+    ],
+    "entities": [
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.log",
+        "kind": "file",
+        "path": ".opencode/logs/cli-dispatch-audit.log",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-tool-use.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "task-dispatch-guard.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "precompact.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/precompact.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-hooks-and-spec-gate.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 010 registered exactly the 4 adapters ADR-001 originally scoped (`sessionStart`/`sessionEnd`/`preToolUse`/`beforeSubmitPrompt`), deliberately excluding everything else pending further review",
+    "created_at": "2026-07-24T14:11:06.037Z",
+    "last_save_at": "2026-07-24T14:11:06.037Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec84e580b17c31403d86a1bc69a4b21d344cfcdb902151c12bbd6aee0beccfbe",
+    "source_doc_hashes": {
+      "spec.md": "755ef993c624231ca2a3f6a33d2073655ae84cf70e5520551c8d87abaf73b6a0",
+      "plan.md": "cf98550872cb701820d7e447feb4c702c8a44be03aa40c661b496cbe18502381",
+      "tasks.md": "4ef10e84bd3af59be029bc2256f19821d155bd38c63aea9c1f4a4abf351169b3",
+      "checklist.md": "3642559ad15eb39dd339eb7aff5538c113db7551edad338a27564c6f994a2d3c",
+      "implementation-summary.md": "ac8d45b69ba5f84323970a7cc0c51807137db029e349fdc66beeb7c4314986aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

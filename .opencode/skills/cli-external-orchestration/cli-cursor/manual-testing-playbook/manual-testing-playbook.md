@@ -32,9 +32,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 9 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 21 deterministic scenarios across 9 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-07-24): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (both its confirmed-fires and confirmed-non-delivery halves, per phase 004's live event-delivery table), session continuity (`--continue`/`--resume`), and prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch). Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
+Coverage note (2026-07-24): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (confirmed-fires, confirmed-non-delivery, the unreviewed prebind design, and phase 011's live-fire-confirmed `Task`-matcher dispatch guard), session continuity (`--continue`/`--resume`), and prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch). Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
 ### Realistic Test Model
 
@@ -132,7 +132,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios (`CU-001`, `CU-002`, `CU-004`, `CU-006`) are `PASS`.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_FEATURES == TOTAL_FEATURES`, currently 20).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_FEATURES == TOTAL_FEATURES`, currently 21).
 4. No unresolved blocking triage item remains, and every `SKIP` verdict carries a documented, still-valid blocker.
 
 ### Root-vs-Feature Rule
@@ -164,7 +164,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### Recommended Wave Layout
 
-- Wave 1 (parallel-safe, read-only or isolated-`/tmp`): `CU-001`, `CU-002`, `CU-003`, `CU-004`, `CU-005`, `CU-009`, `CU-011`, `CU-012`, `CU-013`, `CU-014`, `CU-017`, `CU-018`, `CU-019`, `CU-020`
+- Wave 1 (parallel-safe, read-only or isolated-`/tmp`): `CU-001`, `CU-002`, `CU-003`, `CU-004`, `CU-005`, `CU-009`, `CU-011`, `CU-012`, `CU-013`, `CU-014`, `CU-017`, `CU-018`, `CU-019`, `CU-020`, `CU-021`
 - Wave 2 (write-capable, serial on overlapping paths and shared approval/sandbox state): `CU-006`, `CU-007`, `CU-008`
 - Wave 3 (session continuity, requires a prior session id): `CU-015`, `CU-016`
 - Wave 4 (DESTRUCTIVE/opt-in, isolated, requires approval): `CU-010`
@@ -425,9 +425,9 @@ Desired user-visible outcome: Confirmation of the precedence rule and that `--ap
 
 ---
 
-## 12. HOOKS (`CU-013..CU-014, CU-020`)
+## 12. HOOKS (`CU-013..CU-014, CU-020..CU-021`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract, exercising the shared `.cursor/hooks.json` events live-verified in phase 004 of this creation packet and documenting the fifth adapter's unreviewed status. The [Cursor Hooks And Spec-Gate Integration](../../feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md) feature-catalog entry is authoritative for the status wording of all five adapters.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract, exercising the shared `.cursor/hooks.json` events live-verified in phase 004 and phase 011 of this creation packet and documenting the unreviewed prebind adapter's status. The [Cursor Hooks And Spec-Gate Integration](../../feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md) feature-catalog entry is authoritative for the status wording of every adapter, including phase 011's `postToolUse`/`Task`-matcher/`beforeSubmitPrompt`/`preCompact`/`beforeMCPExecution` additions.
 
 ### CU-013 | Confirmed-fires smoke test
 
@@ -482,6 +482,24 @@ Desired user-visible outcome: An honest documentation record for the fifth adapt
 #### Test Execution
 
 > **Feature File:** [CU-020](../manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md)
+
+### CU-021 | Task-matcher preToolUse dispatch guard live-fire
+
+#### Description
+
+Verify a second `preToolUse` array entry scoped with `"matcher": "Task"` (`task-dispatch-guard.mjs`, phase 011) fires alongside the pre-existing unmatched `preToolUse` entry for the SAME `Task` tool call, under an isolated-workspace dispatch that explicitly requests subagent delegation.
+
+#### Scenario Contract
+
+Prompt: `In an isolated temp workspace with its own hooks.json wiring two preToolUse entries (one unmatched, one matcher: "Task") to a logging probe, dispatch a task that explicitly requests subagent delegation and confirm both entries fire for the same Task call.`
+
+Expected signals: The probe log shows at least one entry from the unmatched wiring AND at least one entry from the `matcher: "Task"` wiring for the same dispatched `Task` tool call - matching phase 011's live-fire dispatch 3 evidence (`preToolUse-Task-fired` and `preToolUse-unmatched-fired` for the same call, captured in `../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity/implementation-summary.md`).
+
+Desired user-visible outcome: A reproduced, first-hand confirmation that Cursor's `matcher` schema field routes a second `preToolUse` entry by `tool_name` without shadowing the pre-existing unmatched entry, independent of trusting the phase 011 summary alone.
+
+#### Test Execution
+
+> **Feature File:** [CU-021](../manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md)
 
 ---
 
@@ -602,6 +620,7 @@ The `cli-cursor` skill is an orchestrator wrapper around a third-party binary (`
 | Upstream Cursor CLI product (`https://cursor.com/docs/cli/overview`) | `cursor-agent` binary correctness | Out of scope for this playbook. We validate that our skill dispatches the binary correctly, not that the binary itself is correct |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/{session-start,session-end,shared}.ts` (compiled to `dist/hooks/cursor/*.js`) | Hook adapter contract integration | `CU-013` exercises the confirmed-fires adapters |
 | `.opencode/skills/system-spec-kit/runtime/hooks/cursor/{spec-gate-enforce,spec-gate-classify}.mjs` | Runtime hook enforcement/advisory | `CU-013` (enforce, wired to `preToolUse`); `CU-014` (classify, dormant - documented, never wired) |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs` | `Task`-matcher `preToolUse` dispatch guard (phase 011) | `CU-021` exercises the confirmed live-fire `matcher: "Task"` entry |
 | `.opencode/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root and every scenario file MUST validate cleanly) |
 
 There is no automated coverage for default-invocation, execution-mode, approval/sandbox, worktree, MCP, or session-continuity scenarios. Manual playbook execution IS the canonical validation surface for those features. Re-run the wave plan in §6 before each release.
@@ -642,6 +661,7 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 - CU-013: [Confirmed-fires smoke test](../manual-testing-playbook/hooks/confirmed-fires-smoke-test.md)
 - CU-014: [Confirmed-non-delivery documentation](../manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md)
 - CU-020: [spec-gate-prebind.mjs (authored by a concurrent session, uncommitted, not yet reviewed or tested)](../manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md)
+- CU-021: [Task-matcher preToolUse dispatch guard live-fire](../manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md)
 
 ### SESSION CONTINUITY
 

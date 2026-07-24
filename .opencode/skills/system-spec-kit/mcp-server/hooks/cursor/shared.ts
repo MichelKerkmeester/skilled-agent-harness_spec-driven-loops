@@ -16,13 +16,27 @@ const MAX_STDIO_BYTES = 1024 * 1024;
 /**
  * Cursor lifecycle/tool events this adapter set targets. Confirmed live via a
  * temporary probe-hook dispatch against cursor-agent 2026.07.23-e383d2b:
- * sessionStart, preToolUse, and sessionEnd all fire under `cursor-agent -p`
- * (single-turn and --continue). beforeSubmitPrompt and stop do NOT fire in
- * that mode across 3 separate live dispatches — there is no confirmed CLI
- * attachment point for either today; do not add them here until re-verified
- * against a future cursor-agent build.
+ * sessionStart, preToolUse, sessionEnd, and postToolUse (Write + Shell tool
+ * names, plus postToolUseFailure) all fire under `cursor-agent -p`
+ * (single-turn and --continue).
+ *
+ * beforeSubmitPrompt and preCompact are added to this union for wiring
+ * parity even though delivery is NOT confirmed as of this pass: prior
+ * live-fire testing (3 separate cursor-agent -p dispatches) found
+ * beforeSubmitPrompt never firing under the installed CLI build, and
+ * preCompact has no reachable forcing mechanism from a single-turn `-p`
+ * dispatch to test at all (no compaction-triggering flag/env var exists).
+ * `stop` is deliberately NOT added — sessionEnd is the confirmed-firing
+ * substitute for it (see session-end.ts), so there is no adapter here that
+ * needs the `stop` event name. Re-verify beforeSubmitPrompt/preCompact
+ * against a future cursor-agent build before treating either as confirmed.
  */
-export type CursorHookEvent = 'sessionStart' | 'preToolUse' | 'sessionEnd';
+export type CursorHookEvent =
+  | 'sessionStart'
+  | 'preToolUse'
+  | 'sessionEnd'
+  | 'beforeSubmitPrompt'
+  | 'preCompact';
 
 /** Bounded subset of the Cursor hook payload used by the adapters. */
 export interface CursorHookInput {
@@ -47,7 +61,8 @@ export interface CursorHookResponse {
 type ClaudeHookAdapterFilename =
   | 'session-prime.js'
   | 'user-prompt-submit.js'
-  | 'session-stop.js';
+  | 'session-stop.js'
+  | 'compact-inject.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. INPUT
