@@ -13,12 +13,12 @@
 // the same runtime-neutral policy (Deep Route mode mismatch + loop-like repeated
 // hand-offs to command-owned loop executors) through the shared dispatch-guard
 // core. FAILS OPEN -- any missing payload or internal error approves silently.
-//
-// STATUS: DORMANT -- see ../../../../system-spec-kit/mcp-server/hooks/devin/README.md
-// for the packet-wide -p hook-firing finding. `run_subagent`'s exact tool_input
-// field names are unconfirmed (research §12 item 3, no live capture yet) -- this
-// adapter tries the same field-name fallbacks the shared core already tolerates
-// rather than assuming one exact shape.
+// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
+// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
+// SessionEnd all fire, and the real adapters' output reaches the model. An
+// earlier revision of this file claimed the hook system was dormant; that was a
+// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
+// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────

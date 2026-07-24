@@ -9,15 +9,12 @@
 // opens the session gate and surfaces the bounded Gate-3 question as
 // additionalContext when the turn triggers file-mutation intent, or parses an
 // answer to an already-open gate. Advisory only -- no deny capability.
-//
-// STATUS: DORMANT. Live-verified 2026-07-24 against installed devin 3000.2.17:
-// .devin/hooks.v1.json is never consulted under `devin -p` (confirmed via a
-// real dispatched tool call, and via deliberately malformed hook JSON producing
-// zero parse errors -- the file isn't even read). --agent-config's own strict
-// parser separately confirms `hooks` is not a valid field there either. No
-// headless attachment point for this hook exists in this build. Ready and
-// fail-open by design; re-run the same probe methodology before registering
-// this against a future devin build that documents -p hook support.
+// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
+// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
+// SessionEnd all fire, and the real adapters' output reaches the model. An
+// earlier revision of this file claimed the hook system was dormant; that was a
+// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
+// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS

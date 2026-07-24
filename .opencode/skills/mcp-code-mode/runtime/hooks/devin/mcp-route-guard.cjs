@@ -10,12 +10,12 @@
 // match against the Code Mode manifest emits an additionalContext advisory
 // nudging the call toward call_tool_chain. NEVER emits a permissionDecision --
 // warn-only is the only path this guard can ever take. FAILS OPEN.
-//
-// STATUS: DORMANT for two independent reasons -- see
-// ../../../../system-spec-kit/mcp-server/hooks/devin/README.md for the
-// packet-wide -p hook-firing finding. Additionally dormant like its Codex
-// sibling: no external MCP family is registered under cli-devin today --
-// re-evaluate once real MCP servers exist.
+// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
+// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
+// SessionEnd all fire, and the real adapters' output reaches the model. An
+// earlier revision of this file claimed the hook system was dormant; that was a
+// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
+// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────

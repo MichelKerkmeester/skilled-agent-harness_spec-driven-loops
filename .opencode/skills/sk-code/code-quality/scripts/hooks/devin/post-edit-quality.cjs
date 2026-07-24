@@ -10,9 +10,12 @@
 // the hook budget; separately preserves the dist-staleness coverage. Warn-only,
 // fail-open: a checker bug, a missing binary, or a malformed payload must never
 // block the tool call this hook observes.
-//
-// STATUS: DORMANT -- see ../../../../../system-spec-kit/mcp-server/hooks/devin/README.md.
-// Devin's `edit` tool_name is a proposed matcher (research §10), not live-confirmed.
+// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
+// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
+// SessionEnd all fire, and the real adapters' output reaches the model. An
+// earlier revision of this file claimed the hook system was dormant; that was a
+// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
+// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────

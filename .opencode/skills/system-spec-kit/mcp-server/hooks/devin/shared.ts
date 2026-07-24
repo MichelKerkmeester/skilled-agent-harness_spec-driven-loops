@@ -1,17 +1,12 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Devin Hook Adapter Utilities
 // ───────────────────────────────────────────────────────────────────
-//
-// STATUS: DORMANT. Live-verified 2026-07-24 against the installed devin
-// binary (3000.2.17): .devin/hooks.v1.json (and the "hooks" key inside
-// .devin/config.json) is never consulted under `devin -p` -- confirmed via
-// a real dispatched tool call producing zero probe firings, and via
-// deliberately malformed hook JSON producing zero parse errors. --agent-config's
-// own strict parser separately confirms `hooks` is not a valid field in that
-// schema at all (rejects it as unknown). No headless/dispatched attachment
-// point for hooks exists in this build. These adapters exist ready and
-// typechecked for a future devin build that adds one -- re-run the same
-// probe methodology before trusting any of this code to actually fire.
+// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
+// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
+// SessionEnd all fire, and the real adapters' output reaches the model. An
+// earlier revision of this file claimed the hook system was dormant; that was a
+// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
+// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
