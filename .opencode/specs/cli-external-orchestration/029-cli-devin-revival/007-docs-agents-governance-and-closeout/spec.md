@@ -7,7 +7,7 @@ contextType: general
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T06:50:25Z"
     last_updated_by: "claude-code"
     recent_action: "Authored phase 007 spec.md restoring Devin docs/agents/governance against the current tree"
     next_safe_action: "Wait for phases 002-006, then restore agent rosters and governance docs per spec.md"
@@ -149,6 +149,7 @@ Restore every live agent-roster and governance-doc mention against the CURRENT t
 ## RELATED DOCUMENTS
 - `../spec.md` (phase-parent packet spec)
 - `../006-devin-manual-testing-playbook/spec.md` (predecessor phase)
+- `../008-devin-hook-parity/spec.md` (sequential-numbering neighbor only, not a dependency - its real predecessor is `004-devin-hook-adapter-layer`; see Phase Transition Rules in `../spec.md`)
 - `../z_archive/022-cli-devin-deprecation/spec.md` and `context/context-report.md` (the archived removal this phase restores against -- as an INPUT for what to restore, not a verbatim replay of its paths/line numbers)
 - `../../027-cli-codex-revival/006-docs-and-closeout/spec.md` (structural precedent for a revival packet's closeout phase)
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh` (cross-referenced, owned by phase 005, not duplicated here)

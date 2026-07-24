@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The 2026-06-08 deprecation (`zarchive/022-cli-devin-deprecation`) stripped `cli-devin`/`devin` mentions from all 3 runtime agent rosters, top-level governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and cross-skill sibling docs, and its own removal touch-list recorded the exact file paths and line numbers it edited",
     "created_at": "2026-07-23T19:51:59.259Z",
-    "last_save_at": "2026-07-23T19:51:59.259Z",
+    "last_save_at": "2026-07-24T06:50:52.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,9 +217,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:1765eb84a0db2734c7e39155633d79f443f9f9e3c5167e893f72e6b46e16612c",
+    "source_fingerprint": "sha256:55af1f1cd0f88bc27c395f5c2a9f9bbcdd3a7709d66ca319fdd4a20c01f95f88",
     "source_doc_hashes": {
-      "spec.md": "0f4d6ee57ffabcf628281e7d5851dc5b494061043dc4e78dbd8bb01c8dfc56f3",
+      "spec.md": "97f2abe63b8df10a90ad9cdbbec67af2dd4204a00fdf087b6c380d576ef3da63",
       "plan.md": "d1fe01a5220b7468275d835c48976ad7f8462f7cde698d9abc4d3d16b5fedbd0",
       "tasks.md": "b389ca9acff389a386299db2a5939dd32633f7db118e6ed1b83a7e4747a8b820",
       "checklist.md": "8af3cefe6e6fe5d3a3ede16ac83f3ccf19acd28f593d7843d05d979a5d2f4a3c"

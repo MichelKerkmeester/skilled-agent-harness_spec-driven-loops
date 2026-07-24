@@ -1,20 +1,20 @@
 ---
 title: "Feature Specification: cli-devin revival"
-description: "Coordinate a seven-phase revival of the cli-devin CLI-dispatch mode inside cli-external-orchestration, restoring executor support, skill packet, hook adapters, model registry, and playbook against the current (2026-07) Devin CLI product rather than pre-deprecation assumptions. Phase 001 is complete with live-verification evidence; phases 002-007 are planned."
+description: "Coordinate a nine-phase revival of the cli-devin CLI-dispatch mode inside cli-external-orchestration, restoring executor support, skill packet, hook adapters, model registry, playbook, full hook parity, and MCP-host integration against the current (2026-07) Devin CLI product rather than pre-deprecation assumptions. Phase 001 is complete with live-verification evidence; phases 002-009 are planned."
 trigger_phrases: ["cli-devin revival", "Devin CLI executor", "Devin hooks", "Devin agents", "cognition devin"]
 importance_tier: important
 contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T06:43:46Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored parent spec.md and all 7 phase children"
-    next_safe_action: "Confirm open questions, then start phase 002"
-    blockers: ["devin auth login needs an interactive OAuth flow"]
-    key_files: ["001-devin-contract-pin/implementation-summary.md", "002-deep-loop-executor-support/spec.md", "003-cli-devin-skill-packet/spec.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
-    completion_pct: 14
+    recent_action: "Added phases 008-009 (hook parity, mcp-host); 9 phases total now"
+    next_safe_action: "Devin auth login, then start phase 002"
+    blockers: ["devin auth login needed - blocks phases 004, 008, and 009 alike"]
+    key_files: ["001-devin-contract-pin/implementation-summary.md", "008-devin-hook-parity/spec.md", "009-devin-mcp-host-integration/spec.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
+    completion_pct: 11
     open_questions: ["No technical reason recorded for the 2026-06-08 deprecation - confirm reversal is still desired.", "Devin IDE-runtime hooks (deleted D5 surface) in scope? Scoped OUT by default.", "Devin-as-MCP-host surface in scope? Scoped OUT by default."]
     answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target."]
 ---
@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | Active — phase 001 complete (live-verified); phases 002-007 planned |
+| **Status** | Active — phase 001 complete (live-verified); phases 002-009 planned |
 | **Created** | 2026-07-23 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/029-cli-devin-revival` |
@@ -98,6 +98,8 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 5 | `005-devin-model-registry-and-quota/` | Restore `swe-1.6` + sibling executor rows (current slugs) and the CI gate arrays. | Planned |
 | 6 | `006-devin-manual-testing-playbook/` | Author a Devin-native manual-testing playbook. | Planned |
 | 7 | `007-docs-agents-governance-and-closeout/` | Restore agent/governance/sibling doc mentions; full recursive validation and closeout. | Planned |
+| 8 | `008-devin-hook-parity/` | Give every Claude hook and OpenCode plugin a correct Devin adapter, native-import equivalent, or documented gap — the remaining 6 guard cores, 2 lifecycle-completion adapters, and 1 dispatch-guard adapter phase 004 deferred. | Planned |
+| 9 | `009-devin-mcp-host-integration/` | Register this repo's 3 MCP servers with Devin's native `devin mcp` surface under a two-tier deny-by-default permission policy — resolves Open Question 3. | Planned |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -105,6 +107,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - Every routing surface must check `command -v devin` before advertising or dispatching Devin, mirroring the `cli-codex` fail-closed precedent.
 - Phase 005 must use **current** model slugs (`kimi-k2.7-code`, `glm-5.2`) — the archived deprecation docs reference their now-superseded predecessors (`kimi-k2.6`, `glm-5.1`).
 - Phase 007 must build its touch-list by grepping the **current** tree, not by replaying archived line numbers verbatim — several unrelated later changes (a hyphen-case filesystem-naming pass, a hub folder move, an agent filename change) landed between 2026-06-08 and today.
+- Phase 008 depends only on phase 004 (not 005-007); phase 009 depends only on phase 001 (not 002-008) — neither 008 nor 009 sits in the original 1-7 linear chain, matching the precedent set by `027-cli-codex-revival`'s own later-added 007-009 phases. Phases 004, 008, and 009 all share one blocker: none can complete live verification without an authenticated `devin` session (see Open Questions and the packet's `blockers` field).
 
 ### Phase Handoff Criteria
 | From | To | Criteria | Verification |
@@ -124,9 +127,10 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - No documented technical/reliability reason was found for the 2026-06-08 deprecation (commit `17ee3bb83ab`) — it reads as a pure operator-directed retirement, not a failure response. Confirm the reversal is still desired knowing this (answered informally by this task's request, but worth an explicit record).
 - Are the separate Devin IDE-runtime hooks (the deleted D5 surface) in scope for this revival, or strictly the `cli-devin` CLI-dispatch mode? Scoped **out** by default (see §3).
 - Is the "Devin-as-MCP-host" surface (`.devin/config.json` in `INSTALL_GUIDE`s) in scope? Scoped **out** by default (see §3), matching the original deprecation's own boundary.
+- `mk-goal.js` and `mk-speckit-completion.js` (2 of the 15 OpenCode plugins from the hooks-portability research) have no hook-based Devin target at all — no phase currently owns an alternative for either. Not solved by inventing a speculative new phase; recorded here so it isn't silently dropped. See `008-devin-hook-parity/spec.md` §3 Out of Scope.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
-**Resolution Status (deep-research 2026-07-24, generation 1, 5 iterations, `--stop-policy=max-iterations`):** Open Question 3 is **RESOLVED PROVISIONALLY** — the Devin CLI's current MCP-host surface (`devin mcp add/list/get/remove/login/logout/enable/disable`, stdio `command`/`args`/`env` schema) is real, protocol-aligned with the three repository servers, and worth bringing into scope as an additive phase (`008-devin-mcp-host-integration`). Four operational gaps require a clean Linux Devin session before phase 008 opens: (P1) no MCP `cwd` field, (P1) cold bootstrap / native modules, (P1) memory embedding/network, (P1) advisor/memory-write trust boundary. Recommended policy is two-tier: shared project config with exact read-only MCP allows + explicit memory/graph mutation denies, plus maintainer-local override in `.devin/config.local.json`. **Do NOT copy `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` into shared Devin config.** Canonical synthesis: `research/research.md` §1–§15. Acceptance matrix (forwarded to phase 008): clean Devin Linux `tools/list` for the three servers, exact namespace spelling captured, deny-rule survival against session-level wildcard grants, root-relative launcher invocation across fresh/resumed/sandboxed/handoff sessions.
+**Resolution Status (deep-research 2026-07-24, generation 1, 5 iterations, `--stop-policy=max-iterations`):** Open Question 3 is **RESOLVED PROVISIONALLY** — the Devin CLI's current MCP-host surface (`devin mcp add/list/get/remove/login/logout/enable/disable`, stdio `command`/`args`/`env` schema) is real, protocol-aligned with the three repository servers, and worth bringing into scope as an additive phase (`009-devin-mcp-host-integration`). Four operational gaps require a clean Linux Devin session before phase 009 opens: (P1) no MCP `cwd` field, (P1) cold bootstrap / native modules, (P1) memory embedding/network, (P1) advisor/memory-write trust boundary. Recommended policy is two-tier: shared project config with exact read-only MCP allows + explicit memory/graph mutation denies, plus maintainer-local override in `.devin/config.local.json`. **Do NOT copy `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` into shared Devin config.** Canonical synthesis: `research/research.md` §1–§15. Acceptance matrix (forwarded to phase 009): clean Devin Linux `tools/list` for the three servers, exact namespace spelling captured, deny-rule survival against session-level wildcard grants, root-relative launcher invocation across fresh/resumed/sandboxed/handoff sessions.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
@@ -135,6 +139,8 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 ## RELATED DOCUMENTS
 - `001-devin-contract-pin/spec.md`, `.../implementation-summary.md`
 - `002-deep-loop-executor-support/spec.md` through `007-docs-agents-governance-and-closeout/spec.md`
+- `008-devin-hook-parity/spec.md` (added 2026-07-24 — full guard-hook coverage, depends only on 004)
+- `009-devin-mcp-host-integration/spec.md` (added 2026-07-24 — resolves Open Question 3, depends only on 001)
 - `../z_archive/022-cli-devin-deprecation/spec.md` (the decision this reverses) + `context/context-report.md` (the authoritative original removal touch-list)
 - `../z_archive/016-cli-devin-creation/`, `../z_archive/017-cli-devin-effectiveness-improvements/`, `../z_archive/018-cli-devin-prompt-quality/` (original build + validated prompt-craft findings to fold in, not re-derive)
 - `../027-cli-codex-revival/spec.md` (structural precedent for this packet)

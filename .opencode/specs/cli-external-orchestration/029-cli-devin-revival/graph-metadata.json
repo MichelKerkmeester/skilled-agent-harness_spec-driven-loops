@@ -10,7 +10,9 @@
     "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
     "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota",
     "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
-    "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"
+    "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
+    "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
+    "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration"
   ],
   "manual": {
     "depends_on": [],
@@ -50,11 +52,12 @@
     "status": "planned",
     "key_files": [
       "001-devin-contract-pin/implementation-summary.md",
-      "002-deep-loop-executor-support/spec.md",
-      "003-cli-devin-skill-packet/spec.md",
+      "008-devin-hook-parity/spec.md",
+      "009-devin-mcp-host-integration/spec.md",
       ".opencode/agents/context.md",
       "research/research.md",
       "001-devin-contract-pin/spec.md",
+      "002-deep-loop-executor-support/spec.md",
       "007-docs-agents-governance-and-closeout/spec.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md",
       "research/resource-map.md",
@@ -211,16 +214,16 @@
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-24T06:02:56.642Z",
+    "last_save_at": "2026-07-24T06:44:17.421Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7657a81cf449b7aba6e63f6923c949d2eca0581ff4455f36f3ed2d75c7d1f345",
+    "source_fingerprint": "sha256:b3e6d801f8364363ef561ec776d1f3fa0ab3c6079f471272fcc643d22b637909",
     "source_doc_hashes": {
-      "spec.md": "1c34b5142dd10361ab9258970587c555f2f482eb64b77af91a3e07c8ac925759",
+      "spec.md": "11cb6617a8ce505969242dfb267cf5e52598078c5368e632f63dcee9dff7a48a",
       "research/research.md": "65003631e5154758de221824cf53bf1a152f7eb262c3e09c87bcca2b44be5708"
     },
     "last_active_child_id": null,
