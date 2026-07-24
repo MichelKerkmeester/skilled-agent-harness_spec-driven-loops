@@ -14,7 +14,7 @@ contextType: "reference"
 
 > Two questions the router answers: **which skill/mode** handles a request, and **which files** it should load. This walks the parent-hub router, the normal/child-mode router, the JSON files behind them, and the benchmark that scores them — what each looked like before the consistency work, and what changed.
 
-**Snapshot:** 6 hubs fixed · route-gold 7/7 hubs PASS · 91 of 106 scenarios carry route-gold and match · `create-skill` canon aligned.
+**Snapshot:** 6 hubs fixed · route-gold benchmark 7/7 hubs PASS (route-gold is *applicable* on 6 hubs) · 91 of 106 scenarios carry route-gold and match · `create-skill` canon aligned.
 
 Legend: 🟠 **Before** · 🟢 **After** · 💡 plain-terms note.
 
@@ -151,7 +151,7 @@ The benchmark replays the router deterministically (no model) and compares what 
 
 | 🟠 Before — blocked & skill-specific | 🟢 After — green & tier-neutral |
 |---|---|
-| 6/7 hubs `BLOCKED-BY-ROUTE-GOLD` — the routers genuinely mis-selected. | 7/7 hubs PASS (aggregates 90–100); the 91 of 106 scenarios that carry route-gold all match. |
+| 6/7 hubs `BLOCKED-BY-ROUTE-GOLD` — the routers genuinely mis-selected. | 7/7 hubs PASS the benchmark (aggregates 90–100); the 91 of 106 scenarios that carry route-gold — across the 6 route-gold-applicable hubs — all match. |
 | The shared harness hard-coded an `MR-`/`CB-` id prefix meaning "browser test" — an `sk-code` convention that collided with other skills reusing `MR-`. | The prefix hard-code is gone — replaced by an explicit `declaredKind` frontmatter signal any skill can set. |
 | Committed scorecards held stale numbers from before the reorg. | A CI freshness gate regenerates every manifest and fails on drift, so scorecards can't silently rot. |
 

@@ -45,7 +45,7 @@ Skill routing exists to satisfy one North Star: **the right skill + the right fi
 │ LAYER 2 — RIGHT FILES        smart-routing.md (INTENT_SIGNALS +          │
 │                              RESOURCE_MAP + DEFAULT_RESOURCE)            │
 │  intent → the exact leaf resource paths for that surface.               │
-│  Present at hub level on sk-code + sk-doc ONLY.                          │
+│  Present at hub level on all seven parent hubs.                          │
 └────────────────────────────────────────────────────────────────────────┘
      │  (emits raw leaf paths)
      ▼
@@ -53,7 +53,7 @@ Skill routing exists to satisfy one North Star: **the right skill + the right fi
 │ TYPED-PAIR CONTRACT          leaf-manifest.json  (+ leaf-aliases.json)  │
 │  each leaf path → canonical (workflowMode, leafResourceId) pair, cross-  │
 │  checked against the committed manifest → stable identity for scoring.  │
-│  Populated on sk-code + sk-doc ONLY.                                    │
+│  Populated on all seven parent hubs.                                    │
 └────────────────────────────────────────────────────────────────────────┘
 
  ADJACENT PLANE (not skill routing): description.json + graph-metadata.json
@@ -133,7 +133,7 @@ Skill routing exists to satisfy one North Star: **the right skill + the right fi
   - `RESOURCE_MAP` — dict of intent → `[leaf path strings]`. `sk-code` paths are surface-prefixed (`code-webflow/…`, `code-opencode/…`, `references/universal/…`); `sk-doc` paths are packet-qualified (`<packet>/references|assets/…`) or shared-alias disk paths (`shared/…`).
   - `FULL_INVENTORY` (`sk-doc` only) — the single explicit full-toolkit intent; when selected, the typed contract is built from the whole manifest rather than the routed subset.
 - **Exactly how it feeds routing.** Consumed by `router-replay.cjs`. For a hub whose router resolved to `hub-router.json`, `routeSkillResources()` calls `loadSurfaceRouter()` (`router-replay.cjs:524-540`) which probes `shared/references/smart-routing.md` then `references/smart-routing.md` and parses the same three dicts — **the hub picks the mode (telemetry), the surface router supplies the resource gold.** `parseIntentSignals()`/`parseResourceMap()` (`:71-97`) extract the dicts by regex over quoted strings; `scoreIntents()` (`:435`) sums weight per `keywordHits()`, `selectIntents()` (`:455`) keeps intents within `AMBIGUITY_DELTA=1` of the top, and `assembleResources()` (`:563-600`) unions `DEFAULT_RESOURCE` + `RESOURCE_MAP[intent]`, then for `sk-code` applies surface slicing (`detectSurface` + `detectOpencodeLanguages`; drops the non-detected surface + all `/assets/`). A leaf path becomes a typed pair only when the hub ships a manifest (§2.3).
-- **Which skills carry it (hub level).** **Only `sk-code` + `sk-doc`.** Many other `SKILL.md` files carry an **inline** per-mode `INTENT_SIGNALS`/`DEFAULT_RESOURCE` dict (mcp-tooling's mode children, sk-design mode children, system-deep-loop children) — those are per-mode routers without the surface `RESOURCE_MAP`→leaf contract. Two authored shapes exist: **index-table** (`sk-code` — human prose tables §2/§4-6 above a single §11 "MACHINE-READABLE ROUTER" fenced projection, explicitly documented as lossy) vs **leaner per-intent-leaf-set** (`sk-doc` — short header then the fenced dict with the `FULL_INVENTORY` intent).
+- **Which skills carry it (hub level).** **All 7 parent hubs** — each ships a `shared/references/smart-routing.md` (historically only `sk-code` + `sk-doc` did; the other five closed the gap through the per-hub routing research). Many other `SKILL.md` files also carry an **inline** per-mode `INTENT_SIGNALS`/`DEFAULT_RESOURCE` dict (mcp-tooling's mode children, sk-design mode children, system-deep-loop children) — those are per-mode routers without the surface `RESOURCE_MAP`→leaf contract. Two authored shapes exist: **index-table** (`sk-code` — human prose tables §2/§4-6 above a single §11 "MACHINE-READABLE ROUTER" fenced projection, explicitly documented as lossy) vs **leaner per-intent-leaf-set** (`sk-doc` — short header then the fenced dict with the `FULL_INVENTORY` intent).
 - **Generated / kept in sync.** Hand-authored. `sk-code` has a drift-guard vitest (`skill-benchmark/tests/sk-code-router-sync.vitest.ts`) that fails if a mapped path is missing on disk or a routable doc is uncovered; the manifest side is guarded by `generate-leaf-manifest --check`.
 - **LIVE vs ASPIRATIONAL.** Both surface routers are LIVE — real, parseable, replayed today. **Authoring caveat (verified in sk-code's map):** several `RESOURCE_MAP` arrays are missing comma separators between consecutive quoted paths; the `quotedStrings()` regex tolerance means the replay still extracts them, but the source is fragile.
 
@@ -200,6 +200,8 @@ Skill routing exists to satisfy one North Star: **the right skill + the right fi
 - **Live but single-hub:** `leaf-aliases.json` (`sk-doc`); `command-metadata.json` (`sk-design`). (`resourceContractVersion` is now fleet-wide — all 7 registries declare `= 1`.)
 - **Declared but consumed by nothing in the replay:** `bundleRules` (populated on `sk-doc` + `sk-design`, empty `[]` on `sk-prompt`); the `surfaceBundle` outcome (`sk-code` only).
 - **The collapse is now fleet-wide.** Hub-router demotion-to-telemetry holds on all 7 compiled-routing hubs: each hub's mode selection is computed but consumed only as `routeTelemetry`, and `smart-routing.md` + the leaf-manifest own resource selection. Every hub can now score sub-packet leaf recall against its own manifest. The broad framing ("the whole fleet routes via surface routers and typed pairs") is now literally **7-of-7**, not aspirational.
+
+> **Replay vs live serving (do not conflate).** The "demoted to telemetry" model above describes the deterministic benchmark **replay** (`router-replay.cjs`) — how the route-gold scorer weighs Layer-1 mode selection against Layer-2 resources. The **live** runtime serving path is separate and now default-on: `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` → `compiled-route.cjs` serves each hub's compiled policy (all seven activation manifests are `servingAuthority: compiled`), falling back to the prose smart-router only on the `SPECKIT_COMPILED_ROUTING=0` kill-switch, a missing manifest, or an identity/generation drift.
 - **Stale prose to ignore (behavior is correct):** in-code comments in `router-replay.cjs` (`:169-172`) and `load-playbook-scenarios.cjs` still say "Only sk-doc ships a leaf-manifest.json today" — all 7 compiled-routing hubs now ship one; the code is data-driven via `hasLeafManifest()`, only the comments lag. The symbol `classifyTypedGoldFixture` named in older summaries **does not exist**; the live equivalents are `validate-playbook-topology.cjs::classifyFixture` and `load-playbook-scenarios.cjs::deriveTypedGoldFromBodyGold`.
 
 ---
