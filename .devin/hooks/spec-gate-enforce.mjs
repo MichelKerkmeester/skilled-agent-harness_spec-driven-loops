@@ -1,0 +1,1 @@
+../../.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs

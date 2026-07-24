@@ -91,6 +91,18 @@ Full matrix: 10 adapters x {malformed-JSON, missing-field} = 20/20 fail-open cas
 
 ---
 
+## 6. `.devin/hooks/` SYMLINK CONVENIENCE FOLDER
+
+Devin's own docs (`docs.devin.ai/cli/extensibility/hooks/overview`, `.../lifecycle-hooks`, fetched 2026-07-24) document no conventional folder name for hook scripts -- their own example commands use a project-root `./scripts/` path, not anything nested under `.devin/`. `.devin/hooks/` was chosen to match this repo's existing `.codex/`/`.cursor/` sibling-folder convention rather than an upstream standard; neither `.codex/` nor `.cursor/` has an equivalent symlink folder today, so this is a new pattern, not a mirrored one.
+
+Contains one relative symlink per adapter phases 004 and 008 actually built and registered in `.devin/hooks.v1.json` -- 13 files, 1:1 with the registration, excluding the 5 pre-existing wiring-only scripts (`worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs`, `session-cleanup.sh`) since those are shared repo hygiene scripts, not Devin-specific adapters.
+
+Symlinks are **relative** (`../../.opencode/skills/...`), not absolute -- absolute paths would hardcode this machine's checkout location and break across git worktrees or a different developer's clone. Verified empirically before wiring: Node resolves both CommonJS `require()` and ESM `import` relative specifiers against the symlink's REAL target directory, not the symlink's own directory, so no adapter's relative import to a shared `lib/` core or to `shared.js` needed a second symlink alongside it. All 13 symlinks were then directly invoked through their `.devin/hooks/` path with realistic payloads and returned identical results to invoking the real file directly.
+
+The three `.js` symlinks (`session-start.js`, `user-prompt-submit.js`, `session-stop.js`) point into the gitignored `mcp-server/dist/` build output, not their `.ts` source -- that matches what `.devin/hooks.v1.json` itself invokes. Git tracks only the symlink (a `120000`-mode blob storing the target path string), not the gitignored target's content, so this is safe to commit; a fresh checkout still needs `npm run build` in `mcp-server/` before those three resolve to real content, matching the existing `.devin/hooks.v1.json` fallback message.
+
+---
+
 ## RELATED DOCUMENTS
 - `004-devin-hook-adapter-layer/implementation-summary.md` (full narrative + decisions for the 3 phase-004 adapters)
 - `008-devin-hook-parity/implementation-summary.md`, `.../checklist.md`, `.../decision-record.md` (full narrative + decisions for the 10 phase-008 adapters)
