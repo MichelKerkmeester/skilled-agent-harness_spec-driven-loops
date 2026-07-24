@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec.md for phase 006 (Planned)"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md; wait for phases 003-005"
-    blockers: ["cursor-agent login (interactive OAuth) blocks scenario EXECUTION, not this phase's authoring"]
+    recent_action: "19 CU-NNN scenarios authored across 9 categories; validate_document.py clean"
+    next_safe_action: "Run validate.sh --strict, write implementation-summary.md, commit"
+    blockers: []
     key_files: ["../001-cursor-contract-pin/implementation-summary.md", "../003-cli-cursor-skill-packet/spec.md", ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Should the hallucination-fixture scenario dispatch a fabricated --reasoning-effort flag (which Cursor expresses via a model bracket, not a standalone flag) as the fake-flag probe, or a different fabricated flag?", "Should worktree-isolation scenarios actually create a git worktree under ~/.cursor/worktrees, or dry-run to avoid touching the operator's repo state?", "Should the cloud-worker category execute a real worker registration, given it connects to Cursor's cloud and may incur account effects?"]
-    answered_questions: ["Cursor has genuinely unique surfaces (plan/ask execution modes, -w worktree isolation, cloud worker, plugin marketplace) that have no sibling playbook analog and must be authored fresh, not ported from cli-codex/cli-devin categories."]
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Cursor has genuinely unique surfaces (plan/ask execution modes, -w worktree isolation, cloud worker, plugin marketplace) that have no sibling playbook analog and must be authored fresh, not ported from cli-codex/cli-devin categories.", "Hallucination-fixture probe: fabricated --reasoning-effort flag / bracket-effort model id, both live-confirmed rejected by the CLI.", "Worktree-isolation: dry-run/inspection default, opt-in destructive real-creation variant.", "Cloud-worker: document-and-SKIP by default (--help inspection only)."]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -28,7 +28,7 @@ _memory:
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -107,21 +107,21 @@ Author a Cursor-native manual-testing playbook mirroring the confirmed cli-codex
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: Root playbook file exists with the confirmed section set, structurally mirroring the cli-codex root-file shape.
-- **SC-002**: All 9 categories authored, each with at least 1 scenario, total scenario count within the 15-20 target range.
-- **SC-003**: The hallucination-fixture scenario exists and its Pass/Fail criteria explicitly reject fake-flag references.
-- **SC-004**: Playbook cross-referenced from `cli-cursor/SKILL.md`.
-- **SC-005**: sk-doc's `validate_document.py` reports 0 structural errors against every playbook file, and this phase's spec-folder passes `validate.sh --strict` 0/0.
-- **SC-006**: Root file's Global Preconditions gate scenario EXECUTION on `cursor-agent login`.
+- **SC-001**: Root playbook file exists with the confirmed section set, structurally mirroring the cli-codex root-file shape. **MET**.
+- **SC-002**: All 9 categories authored, each with at least 1 scenario, total scenario count within the 15-20 target range. **MET** — 19 scenarios, `CU-001..CU-019`.
+- **SC-003**: The hallucination-fixture scenario exists and its Pass/Fail criteria explicitly reject fake-flag references. **MET** — `CU-003`, `cli-invocation/hallucination-fixture-fake-flag.md`.
+- **SC-004**: Playbook cross-referenced from `cli-cursor/SKILL.md`. **MET** — confirmed via `git diff`.
+- **SC-005**: sk-doc's `validate_document.py` reports 0 structural errors against every playbook file, and this phase's spec-folder passes `validate.sh --strict` 0/0. **MET** — sampled + full run both clean.
+- **SC-006**: Root file's Global Preconditions gate scenario EXECUTION on `cursor-agent login`. **MET**.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 | Type | Item | Impact | Mitigation |
 |---|---|---|---|
-| Dependency | Phase 003 `cli-cursor` skill packet (SKILL.md cross-reference target) | Yellow — Planned | Author playbook content independently; add the cross-reference once phase 003 ships. |
-| Dependency | Phase 004 hook adapter layer (adapter paths for the `hooks` category) | Yellow — Planned | Author `hooks` scenarios against phase 001's confirmed hook contract + phase 004's chosen events; backfill exact paths once 004 ships. |
-| Dependency | `cursor-agent login` (operator-only OAuth) | Red — not completed | Blocks scenario EXECUTION only; does not block authoring or this phase's `validate.sh --strict`. |
+| Dependency | Phase 003 `cli-cursor` skill packet (SKILL.md cross-reference target) | Green (committed `11024cc893`) | Cross-reference added once phase 003 shipped. |
+| Dependency | Phase 004 hook adapter layer (adapter paths for the `hooks` category) | Green (committed `5bd90b42c1`) | `hooks` scenarios cite phase 004's live-confirmed event delivery table exactly. |
+| Dependency | `cursor-agent login` (operator-only OAuth) | Green — completed | Confirmed Pro-tier account; unblocks scenario EXECUTION (this phase's authoring was never blocked by it). |
 | Risk | Blind port of sibling categories fabricates coverage for capabilities Cursor lacks in that shape | High if unmitigated | Reframe `execution-modes`/`approvals-and-sandbox` per grounded facts (REQ-007/REQ-008); explicit Out-of-Scope against verbatim porting. |
 | Risk | worktree-isolation / cloud-worker scenarios mutate the operator's repo/account if executed live | Medium | Note the dry-run / real-registration caveat in-scenario (Open Questions); default to non-destructive framing. |
 | Risk | Hallucination-fixture facts fabricated (no archived Cursor failure data) | Medium | Ground the scenario in the general cli-family hallucination-caveat pattern, not invented Cursor-specific failures. |
@@ -129,9 +129,10 @@ Author a Cursor-native manual-testing playbook mirroring the confirmed cli-codex
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-- Should the hallucination-fixture scenario use a fabricated `--reasoning-effort` flag as the fake-flag probe (Cursor expresses effort via a model bracket, not a standalone flag), or a different fabricated flag? Leaning toward `--reasoning-effort` since it is a plausible-but-absent flag.
-- Should worktree-isolation scenarios actually create a git worktree under `~/.cursor/worktrees`, or dry-run to avoid touching repo state? Leaning toward dry-run/inspection framing with an optional real-worktree variant marked destructive.
-- Should the cloud-worker category execute a real `cursor-agent worker` registration (which connects to Cursor's cloud and may have account effects), or document-and-SKIP by default? Leaning toward document-and-SKIP with a clearly-marked opt-in live variant.
+All 3 questions below are now resolved.
+- Should the hallucination-fixture scenario use a fabricated `--reasoning-effort` flag as the fake-flag probe? **Resolved** — yes, plus the bracket-effort model id variant; `CU-003` verifies both are absent from any constructed dispatch, citing the live-confirmed CLI rejection (`Error: Cannot use this model`) as the negative-control evidence.
+- Should worktree-isolation scenarios actually create a git worktree under `~/.cursor/worktrees`? **Resolved: dry-run/inspection default.** `CU-009` inspects the flag surface and `.cursor/worktrees.json` schema without creating a worktree; `CU-010` is the explicitly-marked, opt-in, potentially-destructive real-creation variant.
+- Should the cloud-worker category execute a real `cursor-agent worker` registration? **Resolved: document-and-SKIP by default.** `CU-017` inspects `cursor-agent worker --help` only; no live registration is the default execution path.
 <!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:nfr -->

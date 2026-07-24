@@ -9,12 +9,12 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/006-cursor-manual-testing-playbook"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md for phase 006"
-    next_safe_action: "Author tasks.md, checklist.md"
-    blockers: ["scenario EXECUTION gated on cursor-agent login"]
-    key_files: ["spec.md"]
+    recent_action: "All 3 phases complete; 19 scenarios authored, validate_document.py clean"
+    next_safe_action: "Write implementation-summary.md, run validate.sh --strict, commit"
+    blockers: []
+    key_files: ["spec.md", "checklist.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -29,10 +29,10 @@ Author a Cursor-native manual-testing playbook mirroring the cli-codex split-doc
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- [ ] 9 categories present; total scenarios 15-20; `CU-NNN` IDs gap-free.
-- [ ] Cursor-unique categories (execution-modes, worktree-isolation, cloud-worker) authored fresh, not ported.
-- [ ] Global Preconditions gate EXECUTION on `cursor-agent login`; fail-closed-without-auth noted.
-- [ ] `validate_document.py` reports 0 structural errors on every playbook file.
+- [x] 9 categories present; total scenarios 15-20 (19); `CU-NNN` IDs gap-free.
+- [x] Cursor-unique categories (execution-modes, worktree-isolation, cloud-worker) authored fresh, not ported.
+- [x] Global Preconditions gate EXECUTION on `cursor-agent login`; fail-closed-without-auth noted.
+- [x] `validate_document.py` reports 0 structural errors on every playbook file.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -53,16 +53,16 @@ Split-document catalog under `cli-cursor/manual-testing-playbook/`: a root `manu
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read cli-codex's root playbook file + one scenario file as the structural template.
-- [ ] Resolve the 3 open questions (hallucination-flag choice, worktree dry-run vs. real, cloud-worker SKIP vs. live).
+- [x] Read cli-codex's root playbook file + one scenario file as the structural template.
+- [x] Resolved the 3 open questions (hallucination-flag: fabricated `--reasoning-effort`/bracket; worktree: dry-run default; cloud-worker: document-and-SKIP default).
 
 ### Phase 2: Core Implementation
-- [ ] Author the root `manual-testing-playbook.md` (banners + sections + preconditions gating on `cursor-agent login`).
-- [ ] Author the 9 category folders with 15-20 `CU-NNN` scenarios, including the hallucination-fixture scenario.
+- [x] Authored the root `manual-testing-playbook.md` (banners + sections + preconditions gating on `cursor-agent login`).
+- [x] Authored the 9 category folders with 19 `CU-NNN` scenarios, including the hallucination-fixture scenario (`CU-003`).
 
 ### Phase 3: Verification
-- [ ] Run `validate_document.py` on every playbook file; confirm 0 structural errors.
-- [ ] Confirm CU-NNN sequence is gap-free; confirm the cross-reference into `cli-cursor/SKILL.md`.
+- [x] Ran `validate_document.py` on every playbook file; 0 structural errors.
+- [x] Confirmed CU-NNN sequence is gap-free (`CU-001..CU-019`); confirmed the cross-reference into `cli-cursor/SKILL.md`.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -74,10 +74,10 @@ Structural validation only (no scenario execution — execution is auth-gated). 
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phase 003 (skill packet) | Internal | Planned | SKILL.md cross-reference target must exist |
-| Phase 004 (hook adapters) | Internal | Planned | `hooks` category exact event/paths depend on it |
-| Phase 005 (Composer profile) | Internal | Planned | model-roster note in the root file |
-| `cursor-agent login` | External | Red — operator-only | Blocks scenario EXECUTION, not authoring |
+| Phase 003 (skill packet) | Internal | Green (committed `11024cc893`) | SKILL.md cross-reference target exists |
+| Phase 004 (hook adapters) | Internal | Green (committed `5bd90b42c1`) | `hooks` category cites the live delivery table |
+| Phase 005 (Composer profile) | Internal | Green (committed `4914f2bea3`) | model-roster note cites `composer-2.5.md` |
+| `cursor-agent login` | External | Green — completed | Unblocks scenario EXECUTION |
 | cli-codex playbook | Internal | Green (live) | Structural template |
 <!-- /ANCHOR:dependencies -->
 
