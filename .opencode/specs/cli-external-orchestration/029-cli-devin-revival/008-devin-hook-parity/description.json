@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
+  "description": "This repo enforces its scope-lock and quality discipline through 7 shared runtime-neutral guard cores, each with existing Claude and OpenCode",
+  "keywords": [
+    "repo",
+    "enforces",
+    "scope-lock",
+    "quality",
+    "discipline",
+    "shared",
+    "runtime-neutral",
+    "guard",
+    "cores",
+    "existing",
+    "claude",
+    "opencode"
+  ],
+  "lastUpdated": "2026-07-24T06:50:30.892Z",
+  "specId": "008",
+  "folderSlug": "devin-hook-parity",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
