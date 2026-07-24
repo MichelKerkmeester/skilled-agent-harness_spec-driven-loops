@@ -1,22 +1,22 @@
 ---
 title: "Feature Specification: Devin model registry and quota restoration"
-description: "Restore the swe-1.6 model entry and cli-devin executor rows removed by the 2026-06-08 deprecation, recreate the swe-1.6.md model card, and re-add the CI gate script's cli-devin arrays, all grounded against current model identifiers rather than the archived docs' stale slugs."
-trigger_phrases: ["devin model registry restoration", "swe-1.6 model card", "devin quota tiers", "cli-devin executor rows"]
+description: "Restore the swe-1.6 model entry and cli-devin executor rows removed by the 2026-06-08 deprecation, recreate the swe-1.6.md model card, re-add the CI gate script's cli-devin arrays, and document the operator's 7-model native-dispatch allowlist (grok-4-5-high/glm-5-2/glm-5-2-max/glm-5-2-1m/glm-5-2-max-1m/swe-1-7-medium/swe-1-7) that phase 002 enforces, all grounded against current model identifiers rather than the archived docs' stale slugs."
+trigger_phrases: ["devin model registry restoration", "swe-1.6 model card", "devin quota tiers", "cli-devin executor rows", "devin model allowlist"]
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec/plan/tasks/checklist for this Planned phase"
+    recent_action: "Added the 7-model native-dispatch allowlist addendum, live-verified against devin models list"
     next_safe_action: "Confirm phase 003 hub registration, then run tasks.md"
     blockers: ["Depends on phase 003 registering cli-devin in the shared hub graph-metadata.json"]
-    key_files: ["sk-prompt/prompt-models/assets/model-profiles.json", "sk-prompt/prompt-models/references/models/swe-1.6.md", "system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"]
+    key_files: ["sk-prompt/prompt-models/assets/model-profiles.json", "sk-prompt/prompt-models/references/models/swe-1.6.md", "system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh", "../002-deep-loop-executor-support/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 0
     open_questions: ["SKILL.md model-executor table not updated - in scope?", "cli-codex CI-gate gap - fix now or defer?", "Permanent phantom-wording CI guard - add now or defer?", "swe-1.6 context_length/avg_iter_wall_clock_min unconfirmed"]
-    answered_questions: ["Registry today: 6 models, swe-1.6 absent, all cli-opencode/cli-claude-code", "haiku shape (no recommended_frameworks) is the swe-1.6 precedent"]
+    answered_questions: ["Registry today: 6 models, swe-1.6 absent, all cli-opencode/cli-claude-code", "haiku shape (no recommended_frameworks) is the swe-1.6 precedent", "7-model native-dispatch allowlist live-verified 2026-07-24 against devin models list; Grok 4.5 High Fast dropped (never existed)."]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -47,6 +47,22 @@ The 2026-06-08 deprecation deleted the `swe-1.6` model entirely from `model-prof
 
 ### Purpose
 Restore `swe-1.6` and the 3 sibling `cli-devin` executor rows using current model identifiers, recreate `swe-1.6.md` as a proper model card, and restore the CI gate script's `cli-devin` coverage (including a newly-identified dependency the restored rows will exercise), so the model registry accurately reflects both current model names and the current CI gate's actual data structures.
+
+### Addendum (2026-07-24): Devin native-model dispatch allowlist
+Separately from the `model-profiles.json` restoration above, the operator specified a hard allowlist for which models `cli-devin` may itself be invoked with (the actual `devin --model <id>` value, not the cross-CLI framework-recommendation registry). These are two distinct, coexisting mechanisms: `model-profiles.json`'s `cli-devin` executor rows say "this shared-registry model CAN be dispatched through the cli-devin transport"; this allowlist says "the cli-devin transport itself MAY ONLY ever invoke Devin's own agent with one of these exact model IDs." Live-verified against `devin models list` (35 families, installed `devin 3000.2.17`) on 2026-07-24, cross-checked against the operator's requested names:
+
+| Requested | Live status | Model ID | Display name |
+|---|---|---|---|
+| Grok 4.5 High | Exists | `grok-4-5-high` | Grok 4.5 High |
+| Grok 4.5 High Fast | **Does not exist** — Grok 4.5 has no Fast/priority tier at all (only Low/Medium/High); dropped, not substituted | — | — |
+| GLM 5.2 High | Exists | `glm-5-2` | GLM-5.2 High |
+| GLM 5.2 Max | Exists | `glm-5-2-max` | GLM-5.2 Max |
+| GLM 5.2 High 1M | Exists (operator opted in) | `glm-5-2-1m` | GLM-5.2 High 1M |
+| GLM 5.2 Max 1M | Exists (operator opted in) | `glm-5-2-max-1m` | GLM-5.2 Max 1M |
+| SWE 1.7 Medium | Exists | `swe-1-7-medium` | SWE-1.7 Medium |
+| SWE 1.7 Max | Exists | `swe-1-7` (bare ID) | SWE-1.7 Max |
+
+The final allowlist is 7 model IDs, not 6: `grok-4-5-high`, `glm-5-2`, `glm-5-2-max`, `glm-5-2-1m`, `glm-5-2-max-1m`, `swe-1-7-medium`, `swe-1-7`. Excluded, deliberately: GLM-5.2's "No Thinking" variants, Grok 4.5 Low/Medium, "SWE-1.7 Lightning" (a separate sibling family, not a subtype of SWE-1.7), and the legacy SWE-1.6/SWE-1.6 Fast family this phase's *other* mechanism (above) restores into a completely different registry for a completely different purpose. Enforcement (fail-closed rejection of any other `--model` value) is implemented in phase 002's `buildDevinLineageCommand`, not here — this phase is the canonical documented source of truth phase 002 validates against; see phase 002 REQ-013/REQ-014.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -61,6 +77,7 @@ Restore `swe-1.6` and the 3 sibling `cli-devin` executor rows using current mode
 - Restore the `cli-devin` entry in `check-prompt-quality-card-sync.sh`'s `cli_cards[]` and `cli_skills[]` arrays (current 2-entry arrays become 3).
 - Add a `"cli-devin": "cli-external-orchestration/graph-metadata.json"` entry to the same script's `CLI_EXECUTOR_HUB_METADATA` dict, so CHECK 4 resolves `cli-devin` through the shared hub identity instead of a nonexistent per-skill `graph-metadata.json` once the 3 sibling models carry `cli-devin` rows.
 - Run a one-time grep of this phase's new prose for the phantom permission-mode wording bug ("auto, dangerous, or dangerous") before closeout.
+- Document the 7-model native-dispatch allowlist above as the canonical source of truth for phase 002's `buildDevinLineageCommand` enforcement (this phase documents WHY and WHICH; phase 002 implements the actual fail-closed check).
 
 ### Out of Scope
 - Registering `swe-1.6`/`cli-devin` in `sk-prompt/prompt-models/SKILL.md`'s own model-executor table, Keywords comment, or "in-scope model set" prose - not in the parent packet's declared Files to Change table for this phase; recorded as an Open Question.
@@ -107,6 +124,7 @@ Restore `swe-1.6` and the 3 sibling `cli-devin` executor rows using current mode
 |----|-------------|---------------------|
 | REQ-009 | `model-profiles.json`'s top-level `version` and `description` fields are updated to mention the `swe-1.6` cli-devin-exclusive stub, mirroring how the existing description already calls out Haiku as an "Optional unverified separate-pool stub". | The `description` field's prose includes an `swe-1.6` clause; `version` is bumped from `"1.5"` to a documented next value. |
 | REQ-010 | The out-of-scope SKILL.md table gap and the pre-existing cli-codex CI-gate gap are both recorded as explicit Open Questions/follow-ups rather than silently left undiscovered. | Both appear in this spec's Open Questions section. |
+| REQ-011 | The 7-model native-dispatch allowlist (`grok-4-5-high`/`glm-5-2`/`glm-5-2-max`/`glm-5-2-1m`/`glm-5-2-max-1m`/`swe-1-7-medium`/`swe-1-7`) is documented here as the canonical source phase 002's enforcement validates against, with the live-verification table and the dropped "Grok 4.5 High Fast" (never existed) explicitly recorded, not silently omitted. | This spec's Addendum section contains the full table; phase 002's spec cross-references this phase by number. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -117,6 +135,7 @@ Restore `swe-1.6` and the 3 sibling `cli-devin` executor rows using current mode
 - **SC-002**: `swe-1.6.md` exists, matches the sibling format, and documents both the re-verification-needed reliability notes and the 2-layer sequential-thinking pattern.
 - **SC-003**: `check-prompt-quality-card-sync.sh` passes all 4 checks - including the newly-dependent CHECK 4 on the 3 sibling models' new `cli-devin` rows - with the `CLI_EXECUTOR_HUB_METADATA` fix in place.
 - **SC-004**: No `cli-opencode` executor row, no unrelated model entry, and no file outside the declared 3-file scope changed.
+- **SC-005**: The 7-model native-dispatch allowlist table is present in this spec with live-verification evidence; phase 002's spec cross-references it by phase number for its enforcement requirement.
 <!-- /ANCHOR:success-criteria -->
 
 ---

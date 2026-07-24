@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the verification checklist for this Planned phase; no items verified yet."
+    recent_action: "Added CHK-024 for the 7-model native-dispatch allowlist (REQ-011)."
     next_safe_action: "Verify items once tasks.md executes; require evidence before marking done"
     blockers: []
     key_files: ["sk-prompt/prompt-models/assets/model-profiles.json", "sk-prompt/prompt-models/references/models/swe-1.6.md", "system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"]
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in `spec.md` (REQ-001 through REQ-010).
+- [ ] CHK-001 [P0] Requirements documented in `spec.md` (REQ-001 through REQ-011).
 - [ ] CHK-002 [P0] Technical approach defined in `plan.md`, including the affected-surfaces inventory.
 - [ ] CHK-003 [P1] Phase 003 predecessor precondition confirmed: `cli-devin` registered in the hub's shared `graph-metadata.json` with `deepseek`/`kimi`/`glm` family tokens reachable.
 <!-- /ANCHOR:pre-impl -->
@@ -62,6 +62,7 @@ _memory:
 - [ ] CHK-021 [P0] `bash check-prompt-quality-card-sync.sh` exits 0 with `GUARD PASS`, including CHECK 4 for the 3 sibling models' new `cli-devin` rows.
 - [ ] CHK-022 [P1] The phantom permission-mode wording bug ("auto, dangerous, or dangerous") is absent from `swe-1.6.md` and any other new/modified prose in this phase (0 `rg` matches).
 - [ ] CHK-023 [P1] `validate.sh --strict` on this phase folder returns Errors: 0.
+- [ ] CHK-024 [P0] The 7-model native-dispatch allowlist table (REQ-011) is present with live-verification evidence; phase 002's `DEVIN_SUPPORTED_MODELS` matches it exactly at implementation time, not a stale or re-guessed list.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -113,7 +114,7 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
+| P0 Items | 10 | 0/10 |
 | P1 Items | 11 | 0/11 |
 | P2 Items | 1 | 0/1 |
 

@@ -15,6 +15,7 @@
       "swe-1.6 model card",
       "devin quota tiers",
       "cli-devin executor rows",
+      "devin model allowlist",
       "devin model registry plan",
       "devin model registry tasks",
       "devin model registry checklist"
@@ -31,7 +32,7 @@
       "cli-devin",
       "executor",
       "rows",
-      "plan"
+      "allowlist"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -73,6 +74,12 @@
         "source": "derived"
       },
       {
+        "name": "High Fast",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -92,12 +99,6 @@
       },
       {
         "name": "Purpose Restore",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,7 +190,7 @@
     ],
     "causal_summary": "The 2026-06-08 deprecation deleted the `swe-1.6` model entirely from `model-profiles.json` (it was cli-devin-exclusive; no `cli-opencode` alternative existed) and stripped `cli-devin` executor rows from 3 sibling models",
     "created_at": "2026-07-23T19:51:59.010Z",
-    "last_save_at": "2026-07-23T19:51:59.010Z",
+    "last_save_at": "2026-07-24T11:25:05.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +199,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:74812625cd60e6a8747daf5b4b581f1fdd360830010736db2a23558172de7142",
+    "source_fingerprint": "sha256:7776407297b6645251a279202b27adfb01230ffb61d5eaee01d80619ee71a267",
     "source_doc_hashes": {
-      "spec.md": "5b76f5e34ca5a0ab216b4ee72943051e63258f71e4a668e574669d3b1feace8c",
-      "plan.md": "a6fb941258c5032b5ba06a8a07a98d4d4b2aeff15cc1cd9b8e309469d661a875",
-      "tasks.md": "26d66880aa4c8af68dcf73047fee4d4a00f8df3d4219ce49f013a2b2fe1da9f9",
-      "checklist.md": "29e1384e605f8614bbb0827cc41d0a8a00c1c9f22d166717806eb63ca4d115e2"
+      "spec.md": "07bc280883fc934b66a2d1cfbeeabbd866907ad2b39315004355344d8792d77e",
+      "plan.md": "407cf5f439affdb401f7daa217a59e4af3e43234b7b4ddc2cd14e4ede30b514f",
+      "tasks.md": "87fcc7facdf70f50e2f57733fb4e6ef4d553825c8f8ed950b8a1f04ff757c1cd",
+      "checklist.md": "de794fed17f75e4bcdb30aae8b9387addf52935153ced21f877089fce924843d"
     },
     "last_active_child_id": null,
     "last_active_at": null

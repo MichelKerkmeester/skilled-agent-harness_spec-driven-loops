@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the task breakdown for this Planned phase; no tasks executed yet."
+    recent_action: "Added T016: re-verify allowlist against phase 002 before hard-coding."
     next_safe_action: "Begin Phase 1 (Setup): confirm the phase 003 predecessor precondition before any edit."
     blockers: ["T002 must confirm cli-devin's trigger_phrases are reachable in the hub's shared graph-metadata.json before Phase 2 starts, else Phase 3's CHECK 4 verification will fail."]
     key_files: ["sk-prompt/prompt-models/assets/model-profiles.json", "sk-prompt/prompt-models/references/models/swe-1.6.md", "system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"]
@@ -69,6 +69,7 @@ _memory:
 - [ ] T013 [P] Grep `swe-1.6.md` (and any other touched prose) for the phantom permission-mode wording bug ("auto, dangerous, or dangerous"); confirm 0 matches {deps: T007}.
 - [ ] T014 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-phase-folder> --strict`; confirm Errors: 0 {deps: T011-T013}.
 - [ ] T015 Finalize `implementation-summary.md` with citable evidence for every REQ in `spec.md`; reconcile completion metadata {deps: T014}.
+- [ ] T016 Re-verify the 7-model native-dispatch allowlist (`spec.md`'s Addendum) against a fresh `devin models list` if the installed `devin` version has changed since 2026-07-24, before phase 002 hard-codes it; confirm phase 002's `DEVIN_SUPPORTED_MODELS` matches this phase's table exactly, not a stale copy.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the implementation plan for this Planned phase"
+    recent_action: "Added the 7-model native-dispatch allowlist addendum, cross-referencing phase 002's enforcement"
     next_safe_action: "Confirm the phase 003 predecessor precondition, then execute Phase 1 (Setup) of tasks.md."
     blockers: ["Depends on phase 003 having registered cli-devin's trigger_phrases in the hub's shared graph-metadata.json."]
     key_files: ["sk-prompt/prompt-models/assets/model-profiles.json", "sk-prompt/prompt-models/references/models/swe-1.6.md", "system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"]
@@ -36,6 +36,8 @@ _memory:
 
 ### Overview
 Restore the `swe-1.6` model entry and 3 sibling `cli-devin` executor rows in `model-profiles.json` against current model slugs, recreate `swe-1.6.md`, and restore + extend `check-prompt-quality-card-sync.sh`'s `cli_cards[]`/`cli_skills[]` arrays and its `CLI_EXECUTOR_HUB_METADATA` map so CHECK 4 correctly resolves `cli-devin` through the shared hub identity instead of a nonexistent per-skill file.
+
+**Addendum (2026-07-24)**: this phase also documents (spec.md REQ-011) the operator's 7-model native-dispatch allowlist, live-verified against `devin models list`. That allowlist is a separate mechanism from the `model-profiles.json` restoration above — this phase is documentation-only for it; phase 002 owns the actual `DEVIN_SUPPORTED_MODELS` enforcement.
 <!-- /ANCHOR:summary -->
 
 ---
