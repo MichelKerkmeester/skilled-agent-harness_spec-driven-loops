@@ -19,7 +19,9 @@
       "devin hook parity tasks",
       "devin hook parity checklist",
       "devin hook parity ADR",
-      "devin hooks.v1.json discovery"
+      "devin hooks.v1.json discovery",
+      "devin hook parity summary",
+      "devin hooks.v1.json full coverage"
     ],
     "key_topics": [
       "devin",
@@ -36,38 +38,52 @@
       "adr"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".codex/hooks.json",
+      ".devin/hooks.v1.json",
+      ".claude/settings.json",
+      "dist/hooks/devin/session-stop.js",
+      "hooks/devin/README.md",
       "spec.md",
-      "decision-record.md",
-      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
+      ".codex/hooks.json",
+      "plan.md",
+      "implementation-summary.md",
+      "runtime/hooks/devin/README.md"
     ],
     "entities": [
       {
-        "name": "hooks.json",
+        "name": "hooks.v1.json",
         "kind": "config",
-        "path": ".codex/hooks.json",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.js",
+        "kind": "code",
+        "path": "dist/hooks/devin/session-stop.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/devin/README.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -83,13 +99,31 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Open Questions",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,6 +148,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -159,41 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "rationale",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "all T005-T014",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "observed",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock and quality discipline through 7 shared runtime-neutral guard cores, each with existing Claude and OpenCode transports",
     "created_at": "2026-07-24T06:43:36.045Z",
-    "last_save_at": "2026-07-24T13:03:14.017Z",
+    "last_save_at": "2026-07-24T16:39:05.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,15 +211,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8db674f4e920558c40b5e5eba83fe235f934c18e1c22e0143a3ad575d671e173",
+    "source_fingerprint": "sha256:cfd86c7e0749ffebc15fbf742e6a32d5111a0a1570744a90635726f3530fe767",
     "source_doc_hashes": {
-      "spec.md": "32e898e3a158cebe740cc1c118b13368882e003207033c919c7d0565779b036a",
+      "spec.md": "912297ccf9a7fced0449e640c1508c757d032b622b6a1cd34b7f6ccac98eb39b",
       "plan.md": "4c73f9788092388191c34a8bc5bb71d31fa37435b61920b5dce0e119b20cf903",
-      "tasks.md": "0788edd32b61615e7340ca423d2ea5bc45c0cdd6526d43387917017d0628d930",
-      "checklist.md": "d3a53b2b53caa5245ae3bcbe6483d57638c7f2f02d73cb063b04929a870f88d8",
-      "decision-record.md": "6e9751961805b31935420b8339fad29a0c3e2a542d333e12e5ea4f40dd0f93e5"
+      "tasks.md": "e16df5b9a5294f39d0b5b16b1dd69789111ae280c11f1a3534c1b2595fc38217",
+      "checklist.md": "a3402f216c3b77811c7d1409cfcf8c6338526e94a90f2581c52cf7c6365d8c3a",
+      "decision-record.md": "398687b1097dabceb7b24af18eddbaee44a05f5bdc7ed95fb4faaadc656e3bb6",
+      "implementation-summary.md": "9cef5acdac9b3e5864365eff8daf4fdd5d7741e67e8723253825f4eb0bf23cc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

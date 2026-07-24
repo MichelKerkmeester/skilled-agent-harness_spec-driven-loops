@@ -33,10 +33,13 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, and 
 | `shared.ts` | Reads and validates a bounded Devin hook payload, spawns the matching `../claude/*.js` adapter, and emits Devin's `hookSpecificOutput` response envelope. |
 | `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Devin envelope. |
+| `session-stop.ts` | `Stop` adapter (phase 008). Delegates to the compiled `../claude/session-stop.js` via the same `shared.ts` pattern above -- no core change needed, `DevinHookEvent` already included `'Stop'`. |
+| `completion-evidence-stop.cjs` | `Stop` adapter (phase 008), plain directly-runnable `.cjs` (no build step). Reads the Stop payload, resolves the active packet from the shared `lastSpecFolder` state file, and delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Advisory only -- never emits a block/continue decision. |
+| `post-compaction.cjs` | `PostCompaction` adapter (phase 008) -- **bespoke, not a port**. Devin fires `PostCompaction` *after* compaction with only `session_id` + a possibly-null `summary`, unlike Claude's before-compaction `PreCompact`. Implements a 5-step recovery chain: retain `summary` first, rehydrate spec-folder continuity from the shared `lastSpecFolder` state, a bounded `memory_context(mode=resume)` CLI fallback (only when `summary` is empty), provenance/length sanitization (4096-byte cap + control-char strip), then emits `additionalContext` directly. |
 
 ## 4. CONSUMERS
 
-- The project's `.devin/hooks.v1.json` registers the compiled `dist/hooks/devin/*.js` outputs of `session-start.ts` and `user-prompt-submit.ts` against `SessionStart`/`UserPromptSubmit`, mirroring `.codex/hooks.json`'s real tracked shape. **Committed per operator direction** despite the confirmed dormancy above -- re-tested live after committing (`devin -p "list files with ls"`) and still confirmed dormant, no different from before the file existed. Requires `npm run build` in `mcp-server/` for the referenced `dist/` paths to exist.
+- The project's `.devin/hooks.v1.json` registers the compiled `dist/hooks/devin/*.js` outputs of `session-start.ts`/`user-prompt-submit.ts`/`session-stop.ts` against `SessionStart`/`UserPromptSubmit`/`Stop`, plus the plain `.cjs` files directly against `Stop`/`PostCompaction`, mirroring `.codex/hooks.json`'s real tracked shape. **Committed per operator direction** despite the confirmed dormancy above -- re-tested live after the phase 008 extension (`devin -p "echo hook-parity-probe-..."`) and still confirmed dormant, no different from before the file existed. The `.ts` adapters require `npm run build` in `mcp-server/` for the referenced `dist/` paths to exist.
 
 ## 5. RELATED
 
@@ -44,3 +47,4 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, and 
 - [`../codex/README.md`](../codex/README.md) -- structural precedent; Devin's envelope shape matches Codex's, unlike Cursor's distinct `{permission, user_message, agent_message}` shape.
 - [`../../runtime/hooks/devin/README.md`](../../runtime/hooks/devin/README.md)
 - [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md`](../../../../../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record.md) -- ADR-001, revised with this finding.
+- [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md`](../../../../../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md) -- ADRs for `session-stop.ts`, `completion-evidence-stop.cjs`, `post-compaction.cjs`.

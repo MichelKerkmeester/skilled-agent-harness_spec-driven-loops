@@ -194,7 +194,7 @@
     ],
     "causal_summary": "No `cli-external-orchestration` sibling mode has a feature-catalog package today -- `cli-codex` and `cli-cursor` both ship only a `manual-testing-playbook/`",
     "created_at": "2026-07-24T13:08:08.318Z",
-    "last_save_at": "2026-07-24T13:15:06.640Z",
+    "last_save_at": "2026-07-24T16:41:28.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +204,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:945b1f4b6b5f2e83216b2231ff9c5348cfb2259a4538eea1e45cd47426f6141a",
+    "source_fingerprint": "sha256:72ca5a98ef1cb838fe3b382b6fb6dfdb8b46dff4e0892516f7090c99fe4ca259",
     "source_doc_hashes": {
-      "spec.md": "7bbcda3bb27b2926a412ddf57539416156fc87dcf073e9503a4b307ba83073b9",
+      "spec.md": "a76bbc5e6cf1c1a0ba501bdb9d9b3e627cc6b52a966206b5f2ed8771ddbd53a2",
       "plan.md": "eec1cf00af37bf398fdef710648114cd0336a4ccf94a42d2d0b9b85dec05263f",
       "tasks.md": "6f35feff170984dcf4d4ac81dc3982f1e55f2800d5e2570fa6baf5baabefefe8",
       "checklist.md": "5914a3dd2ec8a0df5ea466e414c6f6485d093226470297d57e778e5b9a17e38e",

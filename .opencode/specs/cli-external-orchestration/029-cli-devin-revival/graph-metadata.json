@@ -53,9 +53,12 @@
     "status": "planned",
     "key_files": [
       "001-devin-contract-pin/implementation-summary.md",
-      "008-devin-hook-parity/spec.md",
+      "004-devin-hook-adapter-layer/implementation-summary.md",
+      "008-devin-hook-parity/implementation-summary.md",
       "009-devin-mcp-host-integration/spec.md",
+      ".devin/hooks.v1.json",
       ".opencode/agents/context.md",
+      "008-devin-hook-parity/spec.md",
       "research/research.md",
       "001-devin-contract-pin/spec.md",
       "002-deep-loop-executor-support/spec.md",
@@ -68,12 +71,15 @@
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".opencode/bin/mk-skill-advisor-launcher.cjs",
       "research/deep-research-config.json",
-      "research/deep-research-state.jsonl",
-      "research/deep-research-strategy.md",
-      "research/deep-research-dashboard.md",
-      "research/findings-registry.json"
+      "research/deep-research-state.jsonl"
     ],
     "entities": [
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
       {
         "name": "context.md",
         "kind": "doc",
@@ -120,24 +126,6 @@
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-dashboard.md",
-        "kind": "doc",
-        "path": "research/deep-research-dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
         "source": "derived"
       },
       {
@@ -215,16 +203,16 @@
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-24T13:13:51.392Z",
+    "last_save_at": "2026-07-24T16:41:28.098Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e1ce58688b1cbfde8811ff5e92d7c49063ffcba687e61efc4e7b4abc40f1443d",
+    "source_fingerprint": "sha256:bc9a0f660b496ef0dacfdde70b4ebe9f81cf985cbd1ea67a1bd16bd5ee281e9b",
     "source_doc_hashes": {
-      "spec.md": "ad5612bc2fee9fc78ac67436158a82deebe520856527c580684aecb0d3d00be5",
+      "spec.md": "0383256130262633526e0e14ed268e22f1e194683b76605c20f3a98fc318f2fa",
       "research/research.md": "65003631e5154758de221824cf53bf1a152f7eb262c3e09c87bcca2b44be5708"
     },
     "last_active_child_id": null,

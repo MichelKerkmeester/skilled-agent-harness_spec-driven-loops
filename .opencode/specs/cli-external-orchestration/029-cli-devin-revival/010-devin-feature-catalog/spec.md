@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog"
-    last_updated_at: "2026-07-24T17:00:00Z"
+    last_updated_at: "2026-07-24T18:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec.md for phase 010 (Planned) - spec only, no catalog content yet"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md, decision-record.md"
-    blockers: ["Depends on phases 003/005/009 landing for real content to catalog, not just phase 004/008's hooks"]
-    key_files: [".opencode/skills/sk-doc/create-feature-catalog/SKILL.md", "../004-devin-hook-adapter-layer/implementation-summary.md", "../008-devin-hook-parity/spec.md"]
+    recent_action: "Phase 008 shipped Complete (dormant) - refreshed REQ-004/005/006 + risk table"
+    next_safe_action: "Author plan.md, tasks.md, checklist.md, decision-record.md next"
+    blockers: ["Depends on phases 003/005/009 landing for non-hooks category content; the hooks category itself is unblocked"]
+    key_files: [".opencode/skills/sk-doc/create-feature-catalog/SKILL.md", "../004-devin-hook-adapter-layer/implementation-summary.md", "../008-devin-hook-parity/implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
     completion_pct: 0
     open_questions: ["Should the catalog be authored incrementally as each dependency phase (003/005/009) lands, or held until all land? Leaning toward incremental with an explicit per-category completeness note."]
-    answered_questions: ["No cli-external-orchestration sibling mode (cli-codex, cli-cursor) has a feature-catalog package today -- this is a new artifact type for the hub, not a precedent replay."]
+    answered_questions: ["No cli-external-orchestration sibling mode (cli-codex, cli-cursor) has a feature-catalog package today -- this is a new artifact type for the hub, not a precedent replay.", "Phase 008 (the remaining 6 lifecycle events) is Complete (dormant) as of 2026-07-24, not Planned - the hooks category's REQ-004 status enum was updated accordingly."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -87,9 +87,9 @@ Define the catalog's category taxonomy, the mandatory per-hook-event entries and
 | REQ-001 | The catalog package follows `create-feature-catalog`'s exact contract: root `feature-catalog/feature-catalog.md`, kebab-case category folders with no numeric prefix, one per-feature file per root entry, no `graph-metadata.json` inside the package. | P0 |
 | REQ-002 | 7 categories: `hooks`, `cli-invocation`, `permission-modes`, `model-dispatch`, `subagents`, `mcp-host-integration`, `sequential-thinking`. | P0 |
 | REQ-003 | The `hooks` category contains exactly 8 per-feature files, one per Devin lifecycle event, no fewer and no more (no event silently merged or split). | P0 |
-| REQ-004 | Every `hooks` per-feature file states its dormancy status as one of exactly 3 values: `built, confirmed dormant` (phase 004's 2 events today), `planned, will inherit the same dormancy finding` (phase 008's 6 events until built), or `status unknown, re-verify live` (only if a future re-test changes the picture) -- never `active`/`working` while the confirmed `-p` dormancy finding stands. | P0 |
-| REQ-005 | Each `hooks` per-feature file's Implementation Source table cites the exact adapter file path (e.g. `mcp-server/hooks/devin/session-start.ts`) and the exact phase that built or will build it. | P0 |
-| REQ-006 | Each `hooks` per-feature file's Validation And Tests table cites the direct-invocation test evidence (phase 004's `implementation-summary.md` Verification table) for built events, or states "no test evidence yet, not implemented" for phase-008-pending events -- never a fabricated test reference. | P0 |
+| REQ-004 | **Updated 2026-07-24 - phase 008 shipped, all 8 events now have adapters or a documented gap.** Every `hooks` per-feature file states its dormancy status as one of: `built, confirmed dormant` (all 8 events - `SessionStart`/`UserPromptSubmit` from phase 004, `PreToolUse`/`PostToolUse`/`Stop`/`PostCompaction`/`SessionEnd` from phase 008), `no adapter - no Claude source handler to port` (`PermissionRequest`, an explicit empty registration, not a dormant adapter), or `status unknown, re-verify live` (only if a future re-test changes the picture) -- never `active`/`working` while the confirmed `-p` dormancy finding stands. | P0 |
+| REQ-005 | Each `hooks` per-feature file's Implementation Source table cites the exact adapter file path (e.g. `mcp-server/hooks/devin/session-start.ts`) and the exact phase that built it (004 or 008). | P0 |
+| REQ-006 | Each `hooks` per-feature file's Validation And Tests table cites the direct-invocation test evidence (phase 004's or phase 008's `implementation-summary.md` Verification table, as applicable) -- never a fabricated test reference. | P0 |
 | REQ-007 | The `model-dispatch` category's single per-feature file documents the 7-model allowlist (phase 005 REQ-011) and the fail-closed enforcement (phase 002 REQ-014/015), cross-referencing both phases by number in prose, not duplicating the model table itself (link to phase 005's spec.md instead). | P1 |
 | REQ-008 | Categories for capabilities not yet shipped (`mcp-host-integration` if phase 009 hasn't landed, `model-dispatch` if phase 002 hasn't landed) are authored as explicitly-labeled "Planned capability" stubs per `create-feature-catalog`'s own anti-roadmap rule, never described as current shipped behavior. | P1 |
 | REQ-009 | The actual authoring dispatch uses `cli-codex` with `--model gpt-5.6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast"`, the spec folder pre-approved in the dispatch prompt (Gate 3 already resolved for this packet), and the local `cli-codex` prompt-quality-card's 3-tier precedence rule. | P1 |
@@ -108,8 +108,8 @@ Define the catalog's category taxonomy, the mandatory per-hook-event entries and
 ## 6. RISKS & DEPENDENCIES
 | Type | Item | Impact | Mitigation |
 |---|---|---|---|
-| Dependency | Real content depends on phases 003 (skill packet), 005 (model registry), 009 (MCP host) landing, not just 004/008's hooks | Catalog could be authored against capabilities that don't exist on disk yet | REQ-008: explicit "Planned capability" stubs for anything not yet shipped, re-authored for real once each dependency lands |
-| Risk | The `hooks` category drifts stale the next time phase 004/008's dormancy status is re-verified (e.g. a future `devin` build adds `-p` hook support) | Catalog silently states an outdated dormancy status | REQ-004's 3-value enum forces an explicit re-verification trigger rather than a vague "check the code" note |
+| Dependency | Real content depends on phases 003 (skill packet), 005 (model registry), 009 (MCP host) landing - the `hooks` category itself is now fully unblocked (004 + 008 both Complete (dormant) as of 2026-07-24) | Catalog could be authored against non-hooks capabilities that don't exist on disk yet | REQ-008: explicit "Planned capability" stubs for anything not yet shipped, re-authored for real once each dependency lands |
+| Risk | The `hooks` category drifts stale the next time phase 004/008's dormancy status is re-verified (e.g. a future `devin` build adds `-p` hook support) | Catalog silently states an outdated dormancy status | REQ-004's status-value set forces an explicit re-verification trigger rather than a vague "check the code" note |
 | Risk | LUNA dispatch (future implementation step) invents plausible-sounding hook behavior instead of citing phase 004/008's actual evidence | Catalog states unverified claims as fact | REQ-006 requires citing the exact `implementation-summary.md` evidence table, not free-form description |
 | Dependency | Sequential-numbering neighbor is `006`, but the real dependency is 003/004/005/008/009 | A future reader could assume 006 must complete first | Phase Transition Rules note in the parent `spec.md` states this explicitly, mirroring phases 008/009's own precedent |
 <!-- /ANCHOR:risks -->
