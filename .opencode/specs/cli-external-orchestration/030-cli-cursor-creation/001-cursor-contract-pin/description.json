@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/001-cursor-contract-pin",
+  "description": "Cursor CLI has never existed in this repo before \u2014 this is a first-time creation, not a revival",
+  "keywords": [
+    "cursor",
+    "cli",
+    "never",
+    "existed",
+    "repo",
+    "first-time",
+    "creation",
+    "revival"
+  ],
+  "lastUpdated": "2026-07-24T04:19:36.661Z",
+  "specId": "001",
+  "folderSlug": "cursor-contract-pin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

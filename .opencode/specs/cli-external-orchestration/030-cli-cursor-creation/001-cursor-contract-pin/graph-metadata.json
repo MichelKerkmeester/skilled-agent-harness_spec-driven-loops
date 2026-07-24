@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/001-cursor-contract-pin",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/001-cursor-contract-pin",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cursor cli contract pin",
+      "cursor-agent verification",
+      "cursor cli hooks contract",
+      "cursor cli contract pin plan",
+      "cursor cli contract pin tasks",
+      "cursor cli contract pin checklist",
+      "cursor cli contract pin summary"
+    ],
+    "key_topics": [
+      "cursor",
+      "cli",
+      "contract",
+      "pin",
+      "cursor-agent",
+      "verification",
+      "hooks",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "never"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Install",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Install Cursor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cursor CLI has never existed in this repo before — this is a first-time creation, not a revival",
+    "created_at": "2026-07-24T04:20:23.355Z",
+    "last_save_at": "2026-07-24T04:20:23.355Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:02f70e454cfc50606b2f039947350c70df1bc6e06f6581fa45ff64f9eba7e2bf",
+    "source_doc_hashes": {
+      "spec.md": "4258ac672ed366c830a649769aa3535895c03d99de36326f301cccacd1c1461c",
+      "plan.md": "b69cd3073c9f5b99c5830523d16ca35bcc1217bb900c7a91d9cdee974554e129",
+      "tasks.md": "016cd00e998d3ec156767c435c0902baa051512e7628a078efec55344a06a8c2",
+      "checklist.md": "6474729b2df68c9dbaa5c25f041db0fedfce3fab3d348d34edbaca063db48953",
+      "implementation-summary.md": "971e260d801decf4bb627a95a4c949b2770ef97df017a7c2cfeeed549ea4719b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
