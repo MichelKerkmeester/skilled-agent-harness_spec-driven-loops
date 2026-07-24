@@ -9,12 +9,12 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md for phase 007"
-    next_safe_action: "Author tasks.md, checklist.md"
-    blockers: ["depends on phases 002-006 landing"]
-    key_files: ["spec.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 0
+    recent_action: "All 3 phases complete; whole packet validate --recursive --strict 0/0"
+    next_safe_action: "Write implementation-summary.md, commit"
+    blockers: []
+    key_files: ["spec.md", "checklist.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -29,10 +29,10 @@ Grep the current tree for every roster/governance/cross-skill surface that enume
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- [ ] Touch-list built from a fresh grep of the current tree, not a replayed template.
-- [ ] No surface left in a "3-of-4" state (a grep sweep confirms `cli-cursor` wherever all 3 siblings appear).
-- [ ] `validate.sh --recursive --strict` on the packet returns 0/0.
-- [ ] `parent-skill-check.cjs` + `validate_skill_package.py` against the hub both return 0 fails.
+- [x] Touch-list built from a fresh grep of the current tree, not a replayed template.
+- [x] No surface left in a "3-of-4" state (a grep sweep confirms `cli-cursor` wherever all 3 siblings appear).
+- [x] `validate.sh --recursive --strict` on the packet returns 0/0.
+- [x] `parent-skill-check.cjs` + `validate_skill_package.py` against the hub both return 0 fails.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -55,17 +55,17 @@ No new components — this phase adds symmetric peer mentions across existing ro
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] `rg -l 'cli-codex|cli-claude-code|cli-opencode'` over rosters/governance/cross-skill trees to build the touch-list.
-- [ ] Decide the root-`AGENTS.md`-as-Cursor-rules question; record it.
+- [x] Ran `rg -l 'cli-codex|cli-claude-code|cli-opencode'` over rosters/governance/cross-skill trees; narrowed to live surfaces (excluding historical spec docs/changelogs/archives).
+- [x] Decided the root-`AGENTS.md`-as-Cursor-rules question: executor-agnostic.
 
 ### Phase 2: Core Implementation
-- [ ] Add a symmetric `cli-cursor` mention to each grep-identified roster/governance/cross-skill surface.
-- [ ] Reconcile completion metadata across the packet (001 Complete; 002-006 Planned; 007 status truthful).
+- [x] Added a symmetric `cli-cursor` mention to each grep-identified surface: `.opencode/agents/deep-improvement.md` + `.claude` mirror, root `README.md`, `cli-external-orchestration/README.md`.
+- [x] Reconciled completion metadata across the packet (001-006 all Complete — implemented this session, not deferred; 007 Complete).
 
 ### Phase 3: Verification
-- [ ] Run `validate.sh --recursive --strict` on the packet; confirm 0/0.
-- [ ] Run `parent-skill-check.cjs` and `validate_skill_package.py` against the hub; confirm 0 fails.
-- [ ] Grep sweep: confirm `cli-cursor` present wherever all 3 siblings are.
+- [x] Ran `validate.sh --recursive --strict` on the packet; 0/0 across parent + all 7 children.
+- [x] Ran `parent-skill-check.cjs` and `validate_skill_package.py` against the hub; 0 fails (fixed a stale compiled-routing bookkeeping hash to get there).
+- [x] Grep sweep: confirmed `cli-cursor` present wherever all 3 siblings are.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -77,9 +77,9 @@ Primary evidence is three greps and three validators: (1) the touch-list grep be
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phases 002-006 | Internal | Planned | Their surfaces should exist before their mentions are added |
-| Clean tree on governance docs | External | Varies | Do not edit a concurrently-dirty `AGENTS.md`/`CLAUDE.md`/`README.md` |
-| Hub skill validators | Internal | Green (0/0 baseline) | Closeout cannot claim done without them |
+| Phases 002-006 | Internal | Green (all Complete, committed and pushed) | Their surfaces exist and their mentions are added |
+| Clean tree on governance docs | External | Green — verified clean before each edit | Avoided editing a concurrently-dirty file |
+| Hub skill validators | Internal | Green (0/0 after the manifest-hash fix) | Closeout confirmed done |
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

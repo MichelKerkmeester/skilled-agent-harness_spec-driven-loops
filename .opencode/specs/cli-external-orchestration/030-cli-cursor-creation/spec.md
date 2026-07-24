@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | Active — phase 001 complete (live-verified); phases 002-007 planned |
+| **Status** | Complete — all 7 phases implemented, validated, and closed out |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
@@ -94,12 +94,12 @@ The phase count matches `029-cli-devin-revival`'s 7-phase shape because Cursor's
 | Phase | Folder | Focus | Status |
 |---|---|---|---|
 | 1 | `001-cursor-contract-pin/` | Verify the live Cursor CLI, hook, config, permission, model, and auth contract. | Complete |
-| 2 | `002-deep-loop-executor-support/` | Add `cli-cursor` as a new typed deep-loop executor kind, incl. dispatch builder. | Planned |
-| 3 | `003-cli-cursor-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Planned |
-| 4 | `004-cursor-hook-adapter-layer/` | Add thin Cursor hook adapters over the repo guard cores; decide registration scope + event mapping. | Planned |
-| 5 | `005-cursor-model-registry-and-routing/` | Add a Composer profile + `cli-cursor` executor rows and the CI gate coverage. | Planned |
-| 6 | `006-cursor-manual-testing-playbook/` | Author a Cursor-native manual-testing playbook. | Planned |
-| 7 | `007-docs-agents-governance-and-closeout/` | Add roster/governance/sibling doc mentions; full recursive validation and closeout. | Planned |
+| 2 | `002-deep-loop-executor-support/` | Add `cli-cursor` as a new typed deep-loop executor kind, incl. dispatch builder. | Complete |
+| 3 | `003-cli-cursor-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Complete |
+| 4 | `004-cursor-hook-adapter-layer/` | Add thin Cursor hook adapters over the repo guard cores; decide registration scope + event mapping. | Complete (`.cursor/hooks.json` registration deferred by operator choice) |
+| 5 | `005-cursor-model-registry-and-routing/` | Add a Composer profile + `cli-cursor` executor rows and the CI gate coverage. | Complete |
+| 6 | `006-cursor-manual-testing-playbook/` | Author a Cursor-native manual-testing playbook. | Complete |
+| 7 | `007-docs-agents-governance-and-closeout/` | Add roster/governance/sibling doc mentions; full recursive validation and closeout. | Complete |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.

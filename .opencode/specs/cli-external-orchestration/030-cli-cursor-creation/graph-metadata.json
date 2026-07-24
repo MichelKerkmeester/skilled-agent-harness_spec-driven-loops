@@ -23,7 +23,10 @@
       "Cursor CLI executor",
       "cursor-agent mode",
       "delegate to cursor",
-      "cursor cli hub mode"
+      "cursor cli hub mode",
+      "cli-cursor handover",
+      "030 handover",
+      "cursor cli continuation"
     ],
     "key_topics": [
       "cli-cursor",
@@ -35,9 +38,9 @@
       "mode",
       "delegate",
       "hub",
-      "real",
-      "actively-developed",
-      "terminal"
+      "handover",
+      "continuation",
+      "real"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -49,7 +52,9 @@
       "001-cursor-contract-pin/spec.md",
       "007-docs-agents-governance-and-closeout/spec.md",
       ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      "spec.md"
+      "mcp-server/hooks/cursor/README.md",
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -65,9 +70,21 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp-server/hooks/cursor/README.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -105,19 +122,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Handover Document",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Time",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-07-24T05:00:33.109Z",
+    "last_save_at": "2026-07-24T09:12:55.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:7a5e2c07179d14e100e607083db5c865c17da9c997653c356b516aadfab734e4",
+    "source_fingerprint": "sha256:f4b7656a731645bc7cad0aeda9ba326895a016f32432af0e555297b018ba4fd1",
     "source_doc_hashes": {
-      "spec.md": "b118e633bb3daafa0faef8be47df4358d6060ec3314001fd38edc838ee838979"
+      "spec.md": "0ef69d77b625797a85ae52d65120fc7589f6dc697f64cb8d09dbf138a0e9ca60",
+      "handover.md": "263ec030aee655938061ec483f260b88a439c22913305e5fea7bc977c0fbe2c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

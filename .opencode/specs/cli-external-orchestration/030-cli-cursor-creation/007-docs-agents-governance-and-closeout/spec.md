@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/007-docs-agents-governance-and-closeout"
     last_updated_at: "2026-07-24T04:16:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 007 spec; status Planned"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md; run after phases 002-006"
-    blockers: ["depends on phases 002-006 landing for their surfaces to reference"]
+    recent_action: "cli-cursor added wherever siblings appear; whole packet 0/0"
+    next_safe_action: "Write implementation-summary.md, commit"
+    blockers: []
     key_files: ["AGENTS.md", "CLAUDE.md", "README.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Should the repo's own root AGENTS.md (which the Cursor CLI reads as rules if run here) gain any Cursor-specific note, or stay executor-agnostic?", "Which agent roster files (context/deep-research/deep-review/deep-improvement across .opencode/.claude/.codex) currently enumerate the sibling executors and therefore need a cli-cursor row - resolved by grepping the current tree, not replaying a template."]
-    answered_questions: ["This is a first-time creation, so 007 ADDS cli-cursor mentions rather than restoring deleted ones; the touch-list is built by grepping the current tree."]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["This is a first-time creation, so 007 ADDS cli-cursor mentions rather than restoring deleted ones; the touch-list is built by grepping the current tree.", "AGENTS.md-as-Cursor-rules: stays executor-agnostic - no CLI-specific special-casing exists there for any sibling today.", "Roster files enumerating siblings: only .opencode/agents/deep-improvement.md + .claude mirror (model-benchmark lane executor list); context/deep-research/deep-review carry no sibling enumeration."]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -28,7 +28,7 @@ _memory:
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -87,15 +87,15 @@ Add `cli-cursor` to every roster/governance/cross-skill surface where its siblin
 | REQ-004 | `validate.sh --recursive --strict` on `030-cli-cursor-creation` returns 0 errors, 0 warnings across the phase-parent and every phase child. | P0 |
 | REQ-005 | `parent-skill-check.cjs` and `validate_skill_package.py` against the hub both return 0 fails after all mentions are added. | P0 |
 | REQ-006 | No fabricated Cursor changelog/version-history narrative is introduced in any closeout doc. | P1 |
-| REQ-007 | Completion metadata across the packet is reconciled (no doc claims a conflicting completion state); phases 002-006 remain Planned, phase 001 remains Complete, and this phase's status is set truthfully. | P1 |
+| REQ-007 | Completion metadata across the packet is reconciled (no doc claims a conflicting completion state); phase 001 remains Complete, and this phase's status is set truthfully. **Superseded at implementation time**: this session implemented and completed phases 002-006 (not deferred as originally assumed at authoring time), so the correct reconciliation is 001-006 all Complete, 007 Complete on closeout — not the stale "002-006 remain Planned" premise. | P1 |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: A grep for the sibling executor names across rosters/governance/cross-skill docs shows `cli-cursor` present wherever all 3 siblings are.
-- **SC-002**: `validate.sh --recursive --strict` on the packet returns 0/0.
-- **SC-003**: `parent-skill-check.cjs` and `validate_skill_package.py` against the hub both return 0 fails.
-- **SC-004**: The `AGENTS.md`-as-Cursor-rules decision is recorded.
+- **SC-001**: A grep for the sibling executor names across rosters/governance/cross-skill docs shows `cli-cursor` present wherever all 3 siblings are. **MET**.
+- **SC-002**: `validate.sh --recursive --strict` on the packet returns 0/0. **MET**.
+- **SC-003**: `parent-skill-check.cjs` and `validate_skill_package.py` against the hub both return 0 fails. **MET** (default invocation, matching REQ-005's literal wording; a separate `--strict` invocation of `validate_skill_package.py` surfaces 2 pre-existing, out-of-scope contract warnings predating this packet — description length, smart-router markers — documented in `implementation-summary.md`, not fixed).
+- **SC-004**: The `AGENTS.md`-as-Cursor-rules decision is recorded. **MET** — executor-agnostic.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -134,8 +134,9 @@ Add `cli-cursor` to every roster/governance/cross-skill surface where its siblin
 - As the operator, I want the whole packet to pass `validate.sh --recursive --strict` 0/0 and the hub to pass both skill validators, so the creation is provably complete.
 
 ## 12. OPEN QUESTIONS
-- Should the repo's own root `AGENTS.md` (which the Cursor CLI reads as rules if `cursor-agent` runs here) gain a Cursor-specific note, or stay executor-agnostic? Resolve with a recorded decision; leaning executor-agnostic unless a concrete Cursor-rules need is identified.
-- Which exact roster files across `.opencode/`/`.claude/`/`.codex/` enumerate the sibling executors and thus need a `cli-cursor` row is resolved by grepping the current tree at implementation time, not from this spec's list.
+Both questions below are now resolved.
+- Should the repo's own root `AGENTS.md` gain a Cursor-specific note, or stay executor-agnostic? **Resolved: executor-agnostic.** Neither `AGENTS.md` nor `CLAUDE.md` carries any per-CLI special-casing for the 3 existing siblings today, so Cursor gets none either.
+- Which exact roster files enumerate the sibling executors? **Resolved via fresh grep**: only `.opencode/agents/deep-improvement.md` + its `.claude` mirror (the model-benchmark lane's executor list); `context.md`/`deep-research.md`/`deep-review.md` carry no sibling enumeration in the current tree. `.codex/agents/deep-improvement.md` does not exist.
 <!-- /ANCHOR:questions -->
 
 ---
