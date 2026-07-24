@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T17:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored checklist.md for phase 006 (Planned): 24 items across 8 categories, all unchecked."
+    recent_action: "Added CHK-024 for the 8-event hooks + catalog cross-ref requirement"
     next_safe_action: "Wait for phases 003-005, then verify each item with real evidence"
     blockers: ["devin auth login requires an interactive OAuth browser flow only the operator can complete - blocks scenario EXECUTION, not this phase's authoring work"]
     key_files: ["spec.md", "plan.md", "tasks.md"]
@@ -65,6 +65,7 @@ _memory:
 - [ ] CHK-021 [P0] Total scenario file count falls within the 15-20 target range.
 - [ ] CHK-022 [P1] The hallucination-fixture scenario exists and its Pass/Fail criteria explicitly name the FAIL condition (a referenced non-existent flag).
 - [ ] CHK-023 [P1] Root file's 17 numbered sections are all present, in the confirmed order, including both banners.
+- [ ] CHK-024 [P0] `hooks` category has exactly 8 scenarios (one per Devin lifecycle event); each states its real dormancy status per phase 004's confirmed finding (no hook fires under `devin -p`) and cross-references its phase 010 feature-catalog entry, or explicitly notes "no catalog entry yet".
 <!-- /ANCHOR:testing -->
 
 ---
@@ -115,7 +116,7 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
+| P0 Items | 12 | 0/12 |
 | P1 Items | 11 | 0/11 |
 | P2 Items | 2 | 0/2 |
 

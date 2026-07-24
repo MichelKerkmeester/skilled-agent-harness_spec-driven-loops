@@ -7,9 +7,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-24T17:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored tasks.md for phase 006 (Planned): all 19 tasks unchecked, none yet executed."
+    recent_action: "T008 strengthened to all 8 hooks events + phase 010 catalog cross-ref"
     next_safe_action: "Author checklist.md; wait for phases 003-005 before starting T004"
     blockers: ["devin auth login requires an interactive OAuth browser flow only the operator can complete - blocks scenario EXECUTION, not this phase's authoring work"]
     key_files: ["spec.md", "plan.md"]
@@ -57,7 +57,7 @@ _memory:
 - [ ] T005 Author the `cli-invocation` category: default invocation, `--print` single-turn mode, model selection via `--model`/short names, and the flag-hallucination-fixture scenario. (`cli-invocation/*.md`)
 - [ ] T006 Author the `permission-modes` category: auto, accept-edits, smart, dangerous, plus the separate `--sandbox` OS-level flag. (`permission-modes/*.md`)
 - [ ] T007 Author the `subagents` category: `subagent_explore`, `subagent_general`, and a custom `.devin/agents/[name]/AGENT.md` profile. (`subagents/*.md`)
-- [ ] T008 Author the `hooks` category: `SessionStart`/`UserPromptSubmit` smoke tests at minimum, against phase 004's adapter layer. (`hooks/*.md`)
+- [ ] T008 Author the `hooks` category: exactly 8 scenarios, one per lifecycle event, each stating its real dormancy status per phase 004's confirmed finding and cross-referencing its phase 010 feature-catalog entry (or noting "no catalog entry yet"). (`hooks/*.md`)
 - [ ] T009 Author the `session-continuity` category: `--continue`/`-c`, `--resume`/`-r`, `/fork`, `/revert`. (`session-continuity/*.md`)
 - [ ] T010 Author the `cloud-handoff` category: `/handoff` tested thoroughly across at least 2 scenarios. (`cloud-handoff/*.md`)
 - [ ] T011 Author the `prompt-templates` category, ported near-verbatim from cli-codex's CLEAR/RCAF scoring apparatus. (`prompt-templates/*.md`)
