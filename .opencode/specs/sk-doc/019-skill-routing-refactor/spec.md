@@ -71,7 +71,7 @@ Make routing correct, measurable, and consistent across the skill fleet, and res
 ### Out of Scope
 - Any change outside routing correctness/measurement, the router-unification runtime, and documentation quality.
 - Rewriting historical research, benchmark, or lineage artifacts.
-- Committing the fleet compiled-routing cutover as a default (it stays reversible and operator-gated inside Group E).
+- Committing the fleet compiled-routing cutover as a default is owned by Group E (`020`), not this parent. (That cutover is now complete — default-on for all seven hubs via `servingAuthority: compiled` manifests, reversible via the `SPECKIT_COMPILED_ROUTING=0` kill-switch.)
 
 ### Files to Change
 Aggregate scope; per-phase detail lives in child plans.
@@ -140,7 +140,7 @@ Aggregate scope; per-phase detail lives in child plans.
 ## 4. OPEN QUESTIONS
 
 - The create-skill router-marker posture for the flat-resource packets (Group B) — the keep-N/A-versus-wire decision framed in child `006-create-skill-router-marker-gap`.
-- The fleet compiled-routing cutover default remains operator-gated inside Group E (`020`); it stays reversible until explicitly promoted.
+- The fleet compiled-routing cutover is now **default-on** for all seven eligible hubs (activation manifests flipped to `compiled`; unset `SPECKIT_COMPILED_ROUTING` serves compiled), reversible via the `=0` kill-switch; the formal default-on decision finalizes in `020/007/012-default-on-decision`.
 <!-- /ANCHOR:questions -->
 
 ---

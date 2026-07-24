@@ -109,7 +109,10 @@ phases 001-010 are complete and phase 011 (review remediation) remains in progre
   `**/lineages/**`, `*.out`, `*.log`, run configs, event logs) record their paths as-of-when-written
   and were intentionally left unchanged by the rename.
 - The fleet compiled-routing cutover (Group E) is verified byte-identical to legacy and stays
-  reversible; making it the fleet default is operator-gated.
+  reversible. It is now **default-on**: all seven hubs' activation manifests are
+  `servingAuthority: compiled`, so an unset `SPECKIT_COMPILED_ROUTING` resolves to compiled
+  fleet-wide (`=0` is the kill-switch back to legacy). The formal default-on decision finalizes
+  in `020/007/012-default-on-decision`.
 - **Lifecycle-status authority.** When a parent phase-map row and a child's own status disagree,
   the child's `graph-metadata.json` is the machine-authoritative surface for automated resume and
   traversal; the parent `spec.md` rows and this bridge are human-readable intent summaries that must

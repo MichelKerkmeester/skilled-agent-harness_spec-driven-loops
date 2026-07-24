@@ -109,15 +109,15 @@
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-23T18:18:06.635Z",
+    "last_save_at": "2026-07-24T06:16:14.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a77945fa3ff685813d99f3333ab216edfdf77f367d50bae6f1f4884da450ef54",
+    "source_fingerprint": "sha256:8ef7ee7ed2ae8cb493c31dc48b4fb5baa68a4e5bddbf33120229eae6fa6066a6",
     "source_doc_hashes": {
-      "spec.md": "1b91bc7bea837330d7467aadf4ea0e2f6f20518b775779c23ac5219002c0e1ff"
+      "spec.md": "b18f41914a23c73701937fab3b90e9630c2dd2a99918319eb8eb4d1539f79920"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/020-router-unification-program",
     "last_active_at": "2026-07-16T16:38:55.308Z"
