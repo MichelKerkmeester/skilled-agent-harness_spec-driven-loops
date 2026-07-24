@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/022-naming-standard-hardening/002-per-mode-naming-conformance"
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance"
     last_updated_at: "2026-07-20T12:21:56Z"
     last_updated_by: "codex"
     recent_action: "Completed implementation tasks and captured focused verification"

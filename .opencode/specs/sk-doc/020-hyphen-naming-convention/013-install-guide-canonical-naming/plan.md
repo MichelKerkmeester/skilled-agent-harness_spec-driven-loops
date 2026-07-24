@@ -6,10 +6,10 @@ trigger_phrases:
   - "INSTALL-GUIDE rename plan"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/021-install-guide-canonical-naming"
+parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/021-install-guide-canonical-naming"
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
     last_updated_at: "2026-07-17T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the plan for the INSTALL-GUIDE canonical-naming migration"
@@ -28,6 +28,8 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
+### Technical Context
+
 | Aspect | Value |
 |--------|-------|
 | **Surface** | sk-doc classifier + skill install-guide documents under `.opencode/skills/**` |
@@ -41,8 +43,42 @@ additive recognition of the `install-guide` (hyphen) stem before the rename to a
 internal doc-type identifier `install_guide` is preserved everywhere it is a code contract.
 <!-- /ANCHOR:summary -->
 
+---
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+### Definition of Ready
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
+<!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+### Pattern
+Additive classifier recognition followed by filename normalization and reference updates.
+
+### Key Components
+- **`detect_document_type`**: Recognizes the hyphenated filename stem while preserving the `install_guide` document-type identifier.
+- **Install-guide files and references**: Renamed to `INSTALL-GUIDE.md`, with `.md`-suffixed references updated to the canonical name.
+
+### Data Flow
+The classifier accepts the hyphen stem first, the 14 files are renamed, and old `.md`-suffixed filename references are replaced without changing the bare `install_guide` contract.
+<!-- /ANCHOR:architecture -->
+
+---
+
 <!-- ANCHOR:phases -->
-## 2. IMPLEMENTATION PHASES
+## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Classifier
 - Add `or 'install-guide' in Path(path_lower).stem` to the install_guide branch of `detect_document_type`.
@@ -57,8 +93,36 @@ internal doc-type identifier `install_guide` is preserved everywhere it is a cod
 - Classify a renamed `INSTALL-GUIDE.md` fixture → expect `install_guide`; scan for over-reach (prefixed `*INSTALL-GUIDE.md`) and revert; confirm no install-guide link breakage; baseline the pre-existing validator test state.
 <!-- /ANCHOR:phases -->
 
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | Classifier result for an `INSTALL-GUIDE.md` path | Direct `detect_document_type` test |
+| Integration | Filename references and markdown links after renaming | Grep and markdown link-check |
+| Manual | Over-reach scan and validator baseline comparison | Shell checks |
+
+The checks are planned for the implementation phases; this packet is currently Planned.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| `validate_document.py` classifier | Internal | Planned | Renamed files could be typed as `readme` |
+| 14 skill install-guide files | Internal | Planned | The canonical filename set cannot be completed |
+| Filename references under `.opencode` and root `README.md` | Internal | Planned | Links and setup pointers could remain stale |
+<!-- /ANCHOR:dependencies -->
+
+---
+
 <!-- ANCHOR:rollback -->
-## 3. ROLLBACK PLAN
+## 7. ROLLBACK PLAN
 
 - **Trigger**: A renamed file misclassifies, or a filename reference breaks.
 - **Procedure**: Revert the path-scoped commit (`git revert`); the renames are `git mv` (history preserved) and the classifier change is a single additive line.

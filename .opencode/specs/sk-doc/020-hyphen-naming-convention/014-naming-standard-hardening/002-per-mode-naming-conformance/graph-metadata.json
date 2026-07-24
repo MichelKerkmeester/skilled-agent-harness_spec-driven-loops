@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/022-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
-  "spec_folder": "sk-doc/022-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
-  "parent_id": "sk-doc/022-naming-standard-hardening",
+  "packet_id": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,56 +11,42 @@
   },
   "derived": {
     "trigger_phrases": [
-      "core-standards kebab reconciliation",
-      "wire kebab guards",
-      "no-new-snake gate",
-      "core-standards kebab plan",
-      "kebab guard wiring plan",
-      "no-new-snake gate plan",
-      "core-standards kebab tasks",
-      "kebab guard wiring tasks",
-      "no-new-snake gate tasks",
-      "core-standards kebab summary",
-      "kebab guard wiring summary",
-      "phase 001 implemented"
+      "per-mode naming conformance",
+      "kebab conformance check",
+      "mode naming enforcement",
+      "per-mode conformance plan",
+      "shared kebab checker",
+      "mode naming plan",
+      "per-mode conformance tasks",
+      "kebab checker tasks",
+      "mode naming tasks",
+      "per-mode conformance summary",
+      "implemented phase 002",
+      "kebab conformance implemented"
     ],
     "key_topics": [
-      "core-standards",
+      "per-mode",
+      "naming",
+      "conformance",
       "kebab",
-      "reconciliation",
-      "wire",
-      "guards",
-      "no-new-snake",
-      "gate",
+      "check",
+      "mode",
+      "enforcement",
       "plan",
-      "guard",
-      "wiring",
+      "shared",
+      "checker",
       "tasks",
       "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/references/core-standards.md",
-      ".github/workflows/naming-standard-guard.yml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "core-standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/core-standards.md",
-        "source": "derived"
-      },
-      {
-        "name": "naming-standard-guard.yml",
-        "kind": "config",
-        "path": ".github/workflows/naming-standard-guard.yml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,19 +78,19 @@
         "source": "derived"
       },
       {
-        "name": "Shared Naming Standard",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Kebab Guards",
+        "name": "Mode Naming Conformance",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -128,19 +114,25 @@
         "source": "derived"
       },
       {
+        "name": "Executed Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Rewrite",
+        "name": "Overview Give",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Documentation",
+        "name": "Pattern Shared",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -158,7 +150,7 @@
         "source": "derived"
       },
       {
-        "name": "Safe Auto",
+        "name": "Confirm Phase",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -166,6 +158,12 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -182,21 +180,21 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built The",
+        "name": "What Was Built One",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Changed Files",
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`shared/references/core-standards.md` taught snakecase as the `.md` filename rule: §2 (`:41` \"lowercase snakecase for all `.md` files\"; `:44-48` \"Hyphens to underscores\"), §4 (`:103` \"Filename violations - Convert to snakecase\" under Safe Auto-Fixes), and §5 (`:163-164` table \"Hyphenated filename .",
-    "created_at": "2026-07-20T09:49:52Z",
-    "last_save_at": "2026-07-20T12:06:56.911Z",
+    "causal_summary": "Only two of about ten sk-doc modes verify kebab filenames in code: create-skill (`packageskill.py checkgeneratedpaths`, blocking only under `--strict`/packaging and invoked manually) and create-diff (its engine)",
+    "created_at": "2026-07-20T09:49:53Z",
+    "last_save_at": "2026-07-24T14:40:15.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88de2c2508c5266b9fc38de05d61b66e47ede80b2d9d7dab657b093837cb20ec",
+    "source_fingerprint": "sha256:51747743fdddf0a7b25e57c5de95ce9c1adca012d425e949c13a95e10f71a270",
     "source_doc_hashes": {
-      "spec.md": "fee993e7d0dc15ae7b869950a1b56ab22080d7adc30e479e496f78a4fd6fa595",
-      "plan.md": "a446282167864c4fde171b1b4cd6706a93e91ec985586aa3110c0d8c4862c091",
-      "tasks.md": "4111be05d7721107c53f289f3e10a7da803cf6af95615bcafdabcc0a069804d8",
-      "implementation-summary.md": "1ba6c3ad982df01daafb29753639eb14492ad778fd8de92b6876cae72b973f9d"
+      "spec.md": "03672bb9a4b44fe4017fea780cf1cbd9be7776e4180e85a29dbc9a66a50cf32c",
+      "plan.md": "3545b363e62aca88d5994b71e5f2046614b40fcceb9f8cd8fa491694e3f143c5",
+      "tasks.md": "c3b68aef0ff9040568e31a23440d2825c400fec9ce55622743adc4191dbc5b49",
+      "implementation-summary.md": "d3abd74f83f668fbc1504b1699197fa426cdc9a862a2eea55b02020f06170123"
     },
     "last_active_child_id": null,
     "last_active_at": null

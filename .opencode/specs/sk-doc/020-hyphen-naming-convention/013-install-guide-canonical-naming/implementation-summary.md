@@ -6,11 +6,11 @@ trigger_phrases:
   - "INSTALL-GUIDE migration complete"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/021-install-guide-canonical-naming"
+parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/021-install-guide-canonical-naming"
-    last_updated_at: "2026-07-17T00:00:00Z"
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
+    last_updated_at: "2026-07-24T15:09:05Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Completed the INSTALL-GUIDE migration; classifier test PASS, suite pre-existing-red baselined"
     next_safe_action: "Commit path-scoped and push"
@@ -24,18 +24,33 @@ _memory:
 # Implementation Summary: INSTALL-GUIDE canonical filename normalization
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
-<!-- ANCHOR:outcome -->
-## 1. OUTCOME
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 013-install-guide-canonical-naming |
+| **Status** | Planned — not yet implemented |
+| **Completed** | Not completed |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet records the intended normalization and classifier coupling. The implementation itself remains Planned — not yet implemented.
+
+### Recorded Outcome
 
 All skill install-guide documents now use the single canonical filename `INSTALL-GUIDE.md` (uppercase like `README.md`/`CHANGELOG.md`,
 hyphenated per the naming program), resolving three prior casings. The change is a documentation rename plus a one-line additive
 classifier update; no behavioral logic changed.
-<!-- /ANCHOR:outcome -->
-
-<!-- ANCHOR:changes -->
-## 2. WHAT CHANGED
 
 - **Classifier** (`validate_document.py`, `detect_document_type`): the `install_guide` branch now matches an `install-guide`
   (hyphen) stem in addition to `install_guide` (underscore), so renamed files still type as `install_guide` rather than
@@ -46,11 +61,34 @@ classifier update; no behavioral logic changed.
   `system-spec-kit/mcp_server`, `sk-doc/manual_testing_playbook/intent_detection`.
 - **References**: `.md`-suffixed filename references updated to `INSTALL-GUIDE.md` across `.opencode` (excl. `specs/`) and root `README.md`.
 - **Preserved (out of scope)**: the `install_guide` doc-type identifier (classifier return, `--type` choices, deep-alignment adapter
-  list, `template_rules.json` key, validator tests), the JSON `install_guide` data key, and prose mentions of the install-guide concept.
-<!-- /ANCHOR:changes -->
+list, `template_rules.json` key, validator tests), the JSON `install_guide` data key, and prose mentions of the install-guide concept.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The planned delivery sequence is classifier recognition first, then the 14 file renames, then `.md`-suffixed filename reference updates, followed by direct classifier, over-reach, link, and validator checks.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Preserve the `install_guide` document-type identifier and JSON key | The identifier is a code contract, so only `.md`-suffixed filename references are normalized. |
+| Add hyphen-stem recognition before renaming | The renamed files must continue to classify as `install_guide` rather than silently downgrading to `readme`. |
+<!-- /ANCHOR:decisions -->
+
+---
 
 <!-- ANCHOR:verification -->
-## 3. VERIFICATION
+## Verification
+
+**Current status:** Planned — not yet implemented. The verification statements below are preserved from the existing packet as recorded evidence and are not new implementation claims from this conformance pass.
 
 - **Classifier (CONFIRMED)**: `detect_document_type` returns `install_guide` for `INSTALL-GUIDE.md` paths across three skills (direct test PASS).
 - **No old references (CONFIRMED)**: zero `INSTALL_GUIDE.md`/`install-guide.md`/`install_guide.md` `.md`-suffixed references remain outside `specs/` (repo-wide grep = 0).
@@ -59,10 +97,12 @@ classifier update; no behavioral logic changed.
 - **No test regression (CONFIRMED via baseline)**: `test_validator.py` is 0/11 both WITH and WITHOUT the classifier change (fixtures fail on unrelated rule drift, e.g. missing "overview"); the migration introduces no regression.
 <!-- /ANCHOR:verification -->
 
-<!-- ANCHOR:followups -->
-## 4. FOLLOW-UPS
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
 
 - The pre-existing red `test_validator.py` suite (fixture/rule drift) is out of scope here and worth a separate fix.
 - The `.worktrees/*` copies keep their old casings (separate branches); they normalize when rebased/merged.
 - The uppercase-hyphen `INSTALL-GUIDE` convention could be recorded in the hyphen-naming program's decision record.
-<!-- /ANCHOR:followups -->
+<!-- /ANCHOR:limitations -->

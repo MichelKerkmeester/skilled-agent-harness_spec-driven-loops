@@ -16,7 +16,9 @@
     "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases",
     "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate",
     "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout",
-    "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement"
+    "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
+    "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming",
+    "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -97,15 +99,15 @@
     ],
     "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
     "created_at": "2026-07-13T11:48:37.060Z",
-    "last_save_at": "2026-07-20T10:44:43.066Z",
+    "last_save_at": "2026-07-24T14:42:54.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ea62500267adc5ee32888b2add5023a632c5f71bed4478545add4d81b5616cc8",
+    "source_fingerprint": "sha256:dc36ae2d85cc0b60b643573f5c613caeb55ba1f3ea44512d2454b9629484d3a0",
     "source_doc_hashes": {
-      "spec.md": "e41fa39384dd1d1b0efc3a8115e208e04e54c33d3156a5cfdaf513ff03d63843"
+      "spec.md": "8f6e15481e45f63f8c158eacd243f62108670b986422de7b6f57c348187b19d0"
     },
     "last_active_child_id": null,
     "last_active_at": null
