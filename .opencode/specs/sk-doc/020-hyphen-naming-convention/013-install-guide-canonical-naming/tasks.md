@@ -25,29 +25,48 @@ _memory:
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Classifier
+## Phase 1: Setup
 - [x] T001 Add hyphen-stem recognition (`install-guide`) to the `install_guide` branch of `detect_document_type`.
 <!-- /ANCHOR:phase-1 -->
 
+---
+
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Rename
+## Phase 2: Implementation
 - [x] T002 `git mv` the 3 case-only `install-guide.md` files → `INSTALL-GUIDE.md` via a temp name.
 - [x] T003 `git mv` the 9 `INSTALL_GUIDE.md` + 2 `install_guide.md` files → `INSTALL-GUIDE.md`.
 <!-- /ANCHOR:phase-2 -->
 
+---
+
 <!-- ANCHOR:phase-3 -->
-## Phase 3: References
+## Phase 3: Verification
 - [x] T004 Replace `.md`-suffixed filename references across `.opencode` (excl. `specs/`) + root `README.md`.
 - [x] T005 Preserve the bare `install_guide` doc-type id (classifier return, `--type` choices, adapter list, `template_rules.json`, tests) and the JSON key.
-<!-- /ANCHOR:phase-3 -->
-
-<!-- ANCHOR:phase-4 -->
-## Phase 4: Verify
 - [x] T006 Verify: a renamed `INSTALL-GUIDE.md` path classifies as `install_guide` (direct `detect_document_type` test).
 - [x] T007 Verify: no prefixed `*INSTALL-GUIDE.md` over-reach remains (reverted the one test-fixture reference).
 - [x] T008 Verify: no install-guide markdown link breakage; validator test suite is pre-existing-red (0/11 with and without the change).
-<!-- /ANCHOR:phase-4 -->
+<!-- /ANCHOR:phase-3 -->
+
+---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
@@ -55,3 +74,12 @@ _memory:
 - [x] Renamed files classify as `install_guide`; doc-type contract preserved.
 - [x] No old `.md`-suffixed filename reference remains outside `specs/`.
 <!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->

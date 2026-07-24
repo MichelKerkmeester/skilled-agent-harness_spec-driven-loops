@@ -7,6 +7,7 @@ trigger_phrases:
   - "filesystem naming conformance"
 importance_tier: "important"
 contextType: "implementation"
+parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening"
@@ -35,8 +36,9 @@ _memory:
 | **Status** | Draft |
 | **Created** | 2026-07-20 |
 | **Track** | sk-doc |
-| **Predecessor** | None |
-| **Successor** | None |
+| **Predecessor** | `013-install-guide-canonical-naming` (folder-order adjacency; independent follow-on) |
+| **Successor** | None (last phase) |
+| **Parent Spec** | `../spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

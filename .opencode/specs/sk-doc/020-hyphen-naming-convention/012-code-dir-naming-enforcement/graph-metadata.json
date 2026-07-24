@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The canonical rule (`shared/references/filesystem-naming-convention.md`) says kebab-case is the sole in-scope form, but three enforcement gaps let non-canonical code directories ship — as seen in `sk-design/styles/{db,engine,harness,tests}`:",
     "created_at": "2026-07-20T10:44:42.471Z",
-    "last_save_at": "2026-07-20T10:44:42.471Z",
+    "last_save_at": "2026-07-24T15:15:39.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,9 +199,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b129885092980a2e4ccc8560a2aac10d74e6e4d0713bfde0f3f974b193f1e78",
+    "source_fingerprint": "sha256:c20621099c96469cf622880b79cbe3ca19979fcad883f4d75759b4c792d7be9c",
     "source_doc_hashes": {
-      "spec.md": "60c76f06547f62ac360c26e18a2a75b4fba8441bfc3b3f8439b7b35cccc57f7e",
+      "spec.md": "e79408ce21847239ca841c2920f5e4f3be0025b9137ff2914fd6590a8ec067bb",
       "plan.md": "55b591c6b697a63965dee116569e1c3cb74d0f2ce45b451a6ff9dbec3a3cdd3f",
       "tasks.md": "666b83da1fb7a69b8edf3a4e2cfd1407e04898e5a582287bc31bc67fef675448",
       "checklist.md": "c3d4b269de448415d544642f00db9be19fe8f97146c7c2ec78db226b5cfb70b9",

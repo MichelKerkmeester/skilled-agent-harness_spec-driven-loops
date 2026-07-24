@@ -33,6 +33,8 @@ _memory:
 
 # Feature Specification: INSTALL-GUIDE canonical filename normalization
 
+> Phase adjacency under the 020 parent (folder order): predecessor `012-code-dir-naming-enforcement`, successor `014-naming-standard-hardening`. Absorbed from former top-level packet 021 as an independent naming-convention follow-on. Parent back-reference: `../spec.md`.
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 

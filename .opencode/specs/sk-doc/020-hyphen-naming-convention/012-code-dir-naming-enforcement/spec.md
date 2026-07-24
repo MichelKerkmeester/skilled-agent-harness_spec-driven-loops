@@ -42,7 +42,7 @@ _memory:
 - **Parent Spec:** `../spec.md`
 - **Origin:** Phase 012 of the 020 kebab-case filesystem-naming program (follow-on, post-`011-integrate-and-closeout`)
 - **Predecessor:** `011-integrate-and-closeout` (the migration closeout)
-- **Successor:** none (last phase)
+- **Successor:** `013-install-guide-canonical-naming` (independent follow-on; folder-order adjacency)
 - **Level:** 2 (Planned — nothing built in this phase yet)
 
 <!-- /ANCHOR:metadata -->
