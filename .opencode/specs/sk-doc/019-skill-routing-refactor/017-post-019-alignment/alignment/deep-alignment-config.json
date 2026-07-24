@@ -1,0 +1,120 @@
+{
+  "alignmentTarget": "Post-019 routing conformance across all 12 skill hubs, against the authorities packet 019 established (compiled serving contract, typed leaf identity, create-* packet canon, hub routing metadata)",
+  "sessionId": "2026-07-24T18:08:39.726Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "createdAt": "2026-07-24T18:08:39.726Z",
+  "status": "initialized",
+  "maxIterations": 10,
+  "convergence": {
+    "coverageThreshold": 1,
+    "stabilityWindow": 2,
+    "mode": "off",
+    "combination": "AND"
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 900,
+    "configDir": null,
+    "governor": null,
+    "liveTools": {
+      "webSearch": "inherit"
+    }
+  },
+  "mode": "alignment",
+  "lanes": [
+    {
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "adapter": "sk-code",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/bin/compiled-route-status.cjs",
+          ".opencode/bin/compiled-route-sync.cjs",
+          ".opencode/bin/lib/compiled-route-manifest.cjs",
+          ".opencode/bin/lib/compiled-routing/010-live-activation/activation/**",
+          ".opencode/bin/lib/compiled-routing/011-runtime-engine/**"
+        ]
+      }
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/skills/*/feature-catalog/**",
+          ".opencode/skills/sk-doc/create-*/SKILL.md"
+        ]
+      }
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "globs",
+        "values": [
+          ".opencode/skills/*/SKILL.md",
+          ".opencode/skills/*/description.json",
+          ".opencode/skills/*/graph-metadata.json",
+          ".opencode/skills/*/mode-registry.json",
+          ".opencode/skills/*/hub-router.json",
+          ".opencode/skills/*/leaf-manifest.json"
+        ]
+      }
+    },
+    {
+      "authority": "sk-design",
+      "artifactClass": "designs",
+      "adapter": "sk-design",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design",
+          ".opencode/skills/mcp-tooling"
+        ]
+      }
+    }
+  ],
+  "batchSize": 5,
+  "fileProtection": {
+    "deep-alignment-config.json": "immutable",
+    "deep-alignment-corpus.json": "auto-generated",
+    "deep-alignment-state.jsonl": "append-only",
+    "deep-alignment-findings-registry.json": "auto-generated",
+    "alignment-report.md": "auto-generated",
+    ".deep-alignment.lock": "operator-controlled"
+  },
+  "reducer": {
+    "enabled": true,
+    "scriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+    "inputs": [
+      "latestJSONLDelta",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "alignmentReport"
+    ],
+    "metrics": [
+      "laneCount",
+      "applicableLaneCount",
+      "findingsBySeverity",
+      "compositeScore",
+      "verdict"
+    ]
+  },
+  "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+  "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+  "laneConfigPath": ".opencode/specs/sk-doc/019-skill-routing-refactor/017-post-019-alignment/alignment-lane-config.json"
+}

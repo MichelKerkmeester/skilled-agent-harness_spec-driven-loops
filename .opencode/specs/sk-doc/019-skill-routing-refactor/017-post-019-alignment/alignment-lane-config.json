@@ -1,0 +1,53 @@
+[
+  {
+    "authority": "sk-code",
+    "artifactClass": "code",
+    "scope": {
+      "type": "globs",
+      "values": [
+        ".opencode/bin/compiled-route-status.cjs",
+        ".opencode/bin/compiled-route-sync.cjs",
+        ".opencode/bin/lib/compiled-route-manifest.cjs",
+        ".opencode/bin/lib/compiled-routing/010-live-activation/activation/**",
+        ".opencode/bin/lib/compiled-routing/011-runtime-engine/**"
+      ]
+    }
+  },
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": {
+      "type": "globs",
+      "values": [
+        ".opencode/skills/*/feature-catalog/**",
+        ".opencode/skills/sk-doc/create-*/SKILL.md"
+      ]
+    }
+  },
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": {
+      "type": "globs",
+      "values": [
+        ".opencode/skills/*/SKILL.md",
+        ".opencode/skills/*/description.json",
+        ".opencode/skills/*/graph-metadata.json",
+        ".opencode/skills/*/mode-registry.json",
+        ".opencode/skills/*/hub-router.json",
+        ".opencode/skills/*/leaf-manifest.json"
+      ]
+    }
+  },
+  {
+    "authority": "sk-design",
+    "artifactClass": "designs",
+    "scope": {
+      "type": "paths",
+      "values": [
+        ".opencode/skills/sk-design",
+        ".opencode/skills/mcp-tooling"
+      ]
+    }
+  }
+]
