@@ -1,0 +1,28 @@
+{
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/002-deep-loop-executor-support",
+  "description": "The deep-loop runtime's typed executor union currently has 4 members (`native`, `cli-codex`, `cli-claude-code`, `cli-opencode`) defined in",
+  "keywords": [
+    "deep-loop",
+    "runtime",
+    "typed",
+    "executor",
+    "union",
+    "currently",
+    "members",
+    "native",
+    "cli-codex",
+    "cli-claude-code",
+    "cli-opencode",
+    "defined"
+  ],
+  "lastUpdated": "2026-07-24T04:24:17.306Z",
+  "specId": "002",
+  "folderSlug": "deep-loop-executor-support",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
