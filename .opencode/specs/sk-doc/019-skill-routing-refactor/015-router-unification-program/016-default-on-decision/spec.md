@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Settled ADR-001 and reconciled the packet to the phased path"
@@ -41,7 +41,7 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-The compiled skill-router is built, hardened, wired into the live advisor, and **inert behind a default-off flag**. The sibling P4b work (`011-runtime-engine`) already flipped all seven hubs' activation manifests to `servingAuthority: compiled`; what remains gated is whether the runtime *consumes* that state, and that gate is `SPECKIT_COMPILED_ROUTING`. The parent goal asks to make compiled routing "the effective default."
+The compiled skill-router is built, hardened, wired into the live advisor, and **inert behind a default-off flag**. The sibling P4b work (`014-runtime-engine`) already flipped all seven hubs' activation manifests to `servingAuthority: compiled`; what remains gated is whether the runtime *consumes* that state, and that gate is `SPECKIT_COMPILED_ROUTING`. The parent goal asks to make compiled routing "the effective default."
 
 This phase is a **decision packet**, not a flip. It records — against verified source evidence, not narrative — that flipping the repo default to ON **today changes zero routing decisions** and therefore trades real operational surface for no behavioral gain, and it specifies the four contracts (P0→P4) under which a global default-on becomes a safe, observable, reversible *outcome*. The single load-bearing finding: in the only live integration point, the compiled decision is attached as **additive metadata** to a recommendation the legacy path has already computed — so enabling the flag can only make an extra `compiledRoute` field appear or silently not-appear; it cannot change which skill is recommended (`advisor-recommend.ts:357-374`, decisive line `:371`).
 
@@ -78,7 +78,7 @@ The parent goal frames "compiled routing as the effective default" as a switch t
 4. **Undocumented flag = governance violation.** `SPECKIT_COMPILED_ROUTING` is absent from `ENV-REFERENCE.md`, which the project constitution (CLAUDE.md §6) mandates as the source of truth for flag defaults. Flipping an undocumented flag violates that mandate.
 5. **Kill-switch inversion.** Today, absence-of-var = legacy = safe. After a naive default-flip, absence = compiled, silently changing every runtime/hook/CI/launcher that assumed "absent = legacy."
 
-A sixth, structural fragility (found this phase, under-weighted in prior handovers): the runtime front door `bin/compiled-route.cjs` resolves its resolver from a path **inside the spec tree** (`compiled-route.cjs:16-21` → `007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`). A spec renumber/re-nest silently breaks every compiled route to the legacy sentinel — the repo's own reorganization is a drift engine.
+A sixth, structural fragility (found this phase, under-weighted in prior handovers): the runtime front door `bin/compiled-route.cjs` resolves its resolver from a path **inside the spec tree** (`compiled-route.cjs:16-21` → `015-router-unification-program/014-runtime-engine/lib/resolve.cjs`). A spec renumber/re-nest silently breaks every compiled route to the legacy sentinel — the repo's own reorganization is a drift engine.
 
 ### Purpose
 
@@ -104,15 +104,15 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 - Any change to routing **decisions** — [why] compiled must stay byte-identical to legacy; this program never changes what routes, only what is served and how it is observed.
 - Editing the frozen benchmark scorer (`router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`) — [why] pinned and non-negotiable across the whole program.
 - Actually flipping `SPECKIT_COMPILED_ROUTING` to a repo default in this phase — [why] this phase decides and contracts; the flip is the P4 execution phase, gated on P0–P3 landing green.
-- The `sk-doc:create-skill` generator alignment and the skill-benchmark alignment — [why] delivered in the sibling phases `013-create-skill-alignment` and `014-benchmark-alignment`, which consume this phase's fallback and eligibility contracts.
+- The `sk-doc:create-skill` generator alignment and the skill-benchmark alignment — [why] delivered in the sibling phases `017-create-skill-alignment` and `018-benchmark-alignment`, which consume this phase's fallback and eligibility contracts.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `012-default-on-decision/spec.md` | Create | This decision spec |
-| `012-default-on-decision/decision-record.md` | Create | The ruling, the verified evidence with file:line receipts, alternatives weighed, and the fallback/drift/observability contracts in full |
-| `012-default-on-decision/{plan.md, tasks.md, checklist.md, implementation-summary.md}` | Create | Level-3 planning, task breakdown, verification checklist, and Planned-state completion record |
+| `016-default-on-decision/spec.md` | Create | This decision spec |
+| `016-default-on-decision/decision-record.md` | Create | The ruling, the verified evidence with file:line receipts, alternatives weighed, and the fallback/drift/observability contracts in full |
+| `016-default-on-decision/{plan.md, tasks.md, checklist.md, implementation-summary.md}` | Create | Level-3 planning, task breakdown, verification checklist, and Planned-state completion record |
 
 > This phase authors documentation and contracts only. No runtime file, `SKILL.md`, manifest, or scorer is edited here.
 
@@ -138,7 +138,7 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-006 | Settle the ruling on the analysis (adopt phased path) and record it, leaving an explicit override (flip now) open to the operator. | The decision-record ADR-001 status reads Accepted (adopt the phased path, decided on the analysis, reversible); an operator override to flip-now can be recorded at any time. |
-| REQ-007 | Cross-link the two dependent alignment phases so the fallback and eligibility contracts have exactly one home. | `013-create-skill-alignment` and `014-benchmark-alignment` reference this phase's contracts rather than restating them; this spec's RELATED DOCUMENTS lists both. |
+| REQ-007 | Cross-link the two dependent alignment phases so the fallback and eligibility contracts have exactly one home. | `017-create-skill-alignment` and `018-benchmark-alignment` reference this phase's contracts rather than restating them; this spec's RELATED DOCUMENTS lists both. |
 
 <!-- /ANCHOR:requirements -->
 
@@ -252,7 +252,15 @@ Record the decision that default-on is a Phase-4 *outcome*, not a switch, and sp
 - **Task breakdown**: See `tasks.md`
 - **Verification checklist**: See `checklist.md`
 - **Completion record (Planned state)**: See `implementation-summary.md`
-- **Runtime front door**: `011-runtime-engine/lib/resolve.cjs` and `.opencode/bin/compiled-route.cjs`
+- **Runtime front door**: `014-runtime-engine/lib/resolve.cjs` and `.opencode/bin/compiled-route.cjs`
 - **Live integration point**: `system-skill-advisor/mcp-server/handlers/advisor-recommend.ts` (`enrichCompiledRoutes`, `compiledRouteForRecommendation`)
-- **Onboarding alignment (consumes fallback/eligibility contracts)**: `../013-create-skill-alignment/`
-- **Validation alignment (consumes fallback/eligibility contracts)**: `../014-benchmark-alignment/`
+- **Onboarding alignment (consumes fallback/eligibility contracts)**: `../017-create-skill-alignment/`
+- **Validation alignment (consumes fallback/eligibility contracts)**: `../018-benchmark-alignment/`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `015-cutover-hardening` |
+| **Successor** | `017-create-skill-alignment` |

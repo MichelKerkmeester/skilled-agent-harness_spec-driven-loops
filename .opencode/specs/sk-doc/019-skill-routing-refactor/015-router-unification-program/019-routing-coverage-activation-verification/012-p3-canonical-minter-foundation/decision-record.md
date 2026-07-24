@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Implemented the accepted compiler, storage, and readiness decisions"
@@ -118,7 +118,7 @@ The 006 `001-sk-code` registry compiler is located in a hub-specific rollout fol
 **What changes**:
 
 - Add `.opencode/bin/lib/compiled-route-manifest.cjs` as the shared adapter.
-- Import the promoted `006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs::compileRegistry` unchanged.
+- Import the promoted `009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs::compileRegistry` unchanged.
 
 **How to roll back**: Remove the adapter and CLI. No current routing path imports them, so existing serving behavior remains intact.
 <!-- /ANCHOR:adr-001-impl -->

@@ -19,7 +19,7 @@ const {
   computeEffectivePolicyHash,
   computeRequestFactsHash,
   hashArtifact,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const {
   DecisionValidationError,
   parseRouteDecision,
@@ -40,7 +40,7 @@ const {
 // 2. FIXTURES AND HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const CONTRACT_FIXTURES = path.resolve(__dirname, '..', '..', '000-contract-schemas', 'fixtures');
+const CONTRACT_FIXTURES = path.resolve(__dirname, '..', '..', '003-contract-schemas', 'fixtures');
 const FIXTURE_FILE = path.resolve(__dirname, '..', 'fixtures', 'evaluator-cases.v1.json');
 
 function readJson(filePath) {

@@ -101,7 +101,7 @@ contextType: "implementation"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2, §3 Idea 7, §4, §5.2, §8.2, §9 Stage 6, §10, §11 open-q 5)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2, §3 Idea 7, §4, §5.2, §8.2, §9 Stage 6, §10, §11 open-q 5)
 - **Master plan**: `../spec.md` (Shared Migration-Gate Model, Stage 6)
 
 <!-- /ANCHOR:cross-refs -->

@@ -19,7 +19,7 @@ const {
   DOMAIN_TAGS,
   canonicalize,
   hashArtifact,
-} = require('../000-contract-schemas/lib/canonical.cjs');
+} = require('../003-contract-schemas/lib/canonical.cjs');
 const { evaluateWithTrace } = require('./lib/evaluator.cjs');
 const { projectToRouteGold } = require('./lib/projector.cjs');
 
@@ -28,7 +28,7 @@ const { projectToRouteGold } = require('./lib/projector.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../../../..');
-const CONTRACT_FIXTURES = path.resolve(__dirname, '..', '000-contract-schemas', 'fixtures');
+const CONTRACT_FIXTURES = path.resolve(__dirname, '..', '003-contract-schemas', 'fixtures');
 const FIXTURE_FILE = path.resolve(__dirname, 'fixtures', 'evaluator-cases.v1.json');
 const PROTECTED_DIGESTS_FILE = path.resolve(__dirname, 'harness', 'protected-digests.json');
 const SCORER_FILE = path.resolve(

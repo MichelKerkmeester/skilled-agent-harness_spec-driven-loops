@@ -18,7 +18,7 @@ contextType: "research"
 ## 1. Verified spine (build the spec on these — all CONFIRMED)
 1. **Default-on is a structural no-op end-to-end.** Advisor attaches `compiledRoute` additively (`advisor-recommend.ts:371`); the OpenCode bridge rebuilds recommendations and drops it (`mk-skill-advisor-bridge.mjs:539-551`, 0 grep hits) — plus a **second drop site**: the CLI `subprocess.ts` `AdvisorRecommendation` interface has no `compiledRoute` field. Both must be threaded.
 2. **Flag can't reach the daemon** — omitted from BOTH `CHILD_ENV_ALLOWLIST` sets (launcher `:99`, bridge `:58`).
-3. **`HUB_CHILD` is a runtime engine-dispatch table** (`011-runtime-engine/lib/compiled-route.cjs:23-31,35-62`; `loadHubEngine` require()s from `006-*`), NOT a removable duplicate — ADR-002 must split eligibility from engine-discovery first.
+3. **`HUB_CHILD` is a runtime engine-dispatch table** (`014-runtime-engine/lib/compiled-route.cjs:23-31,35-62`; `loadHubEngine` require()s from `006-*`), NOT a removable duplicate — ADR-002 must split eligibility from engine-discovery first.
 4. **Runtime reads resolver/activation/engines from the mutable spec tree, fails silent fleet-wide** — ADR-003 promotion is a prerequisite and a *closure* (resolver + engine loader + activation manifests + per-hub bundles).
 5. **No per-hub serving-status observability; drifted==broken; the flag is bi-state** (needs tri-state for default-on + kill-switch).
 6. **All 7 activation manifests are already `servingAuthority: compiled`** (Sonnet `cat`'d all 7) — mandates per-hub cohort state before any fleet-wide unset=on flip.
@@ -27,7 +27,7 @@ contextType: "research"
 ## 2. Corrections to fold into the spec (from verification-v1)
 - **[SAFETY — highest priority] CF-BM-4 verdict sub-state:** implement in the NON-FROZEN orchestrator `run-skill-benchmark.cjs:300-310` (which already maps verdict->exit codes), **never** in the frozen `score-skill-benchmark.cjs`. Every child spec that touches benchmarking MUST restate: the 3 frozen scorer files are byte-identical, edits go in non-frozen siblings/orchestrators.
 - **Count:** ~47 consolidated findings (44 CF-IDs + 3 standalone), not 48.
-- **009 Phase Map (correct the mischaracterization):** `009-non-hub-rollout/` has 4 children (`001`-`004`); its Phase Map lists only 1 (3 built children are invisible). `mcp-code-mode` is a *separate, wholly unonboarded* non-hub candidate with **no directory** — do NOT invent a `005-mcp-code-mode`. Feeds 010's non-hub policy.
+- **009 Phase Map (correct the mischaracterization):** `012-non-hub-rollout/` has 4 children (`001`-`004`); its Phase Map lists only 1 (3 built children are invisible). `mcp-code-mode` is a *separate, wholly unonboarded* non-hub candidate with **no directory** — do NOT invent a `005-mcp-code-mode`. Feeds 010's non-hub policy.
 - **Line drift:** treat registry `file:line` as +/-2..10; re-anchor on the SYMBOL at build time (e.g. `subprocess.ts` interface at ~:25 not :16; `hub-router.json` surfaceBundle at ~:11).
 
 ## 3. Omissions to add as requirements
@@ -35,7 +35,7 @@ contextType: "research"
 - **F-16-4 -> 002 (or 008):** add a DURABLE lint/CI rule that fails any FUTURE `require`/import from `.opencode/specs/**` in runtime code — not just fixing the current instance.
 - **F-25-8 -> 004/010:** assign explicit ownership for the drift gate (exactly one blocking Lane-C-vs-drift-CI owner; other consumers report its shared classification).
 
-## 4. Confirmed child-spec breakdown (author these under `015-routing-coverage-activation-verification/`)
+## 4. Confirmed child-spec breakdown (author these under `019-routing-coverage-activation-verification/`)
 Full 002-011 DAG (granular; matches the P0->P4 safety graph in `synthesis-v1.md` §5-6). 015 root stays the lean phase-parent trio.
 - **002-runtime-promotion-and-status-foundation** (L3) — P0 foundation: promote the closure (ADR-003 binding; delete the residual-coupling branch + correct `012/implementation-summary.md:170`); split eligibility vs `HUB_CHILD` engine-dispatch + cross-check test; ship `compiled-route-status.cjs --all` + wire `advisor_status`/`session_bootstrap`; ENV-REFERENCE flag entry; tri-state flag in both read sites; stderr breadcrumbs; **the durable no-spec-import CI rule (F-16-4)**. Everything else consumes it.
 - **003-flag-propagation-and-effective-consumption** (L3) — both `CHILD_ENV_ALLOWLIST` sets; thread `compiledRoute` through `buildNativeBrief` + CLI `subprocess.ts` interface + hook render; cache invalidation; e2e bridge+plugin tests.

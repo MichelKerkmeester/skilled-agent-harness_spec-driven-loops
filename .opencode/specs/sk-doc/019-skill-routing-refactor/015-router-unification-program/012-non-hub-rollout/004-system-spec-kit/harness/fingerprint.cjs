@@ -1,7 +1,7 @@
 'use strict';
 
-const { canonicalBytes } = require('../../../000-contract-schemas/lib/canonical.cjs');
-const { compile } = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
+const { canonicalBytes } = require('../../../003-contract-schemas/lib/canonical.cjs');
+const { compile } = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
 const { loadAuthoredSources, sha256Bytes } = require('./support.cjs');
 
 const policy = compile(loadAuthoredSources());

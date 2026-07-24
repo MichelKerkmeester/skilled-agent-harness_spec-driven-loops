@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/014-benchmark-alignment",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
   "description": "The original gap was that Lane C validated authored routing but not the compiled-serving path",
   "keywords": [
     "original",
@@ -12,14 +12,13 @@
     "compiled-serving",
     "path"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.635Z",
-  "specId": "014",
+  "lastUpdated": "2026-07-24T12:10:59.228Z",
+  "specId": "018",
   "folderSlug": "benchmark-alignment",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "015-router-unification-program",
-    "003-unified-refactor-implementation"
+    "015-router-unification-program"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

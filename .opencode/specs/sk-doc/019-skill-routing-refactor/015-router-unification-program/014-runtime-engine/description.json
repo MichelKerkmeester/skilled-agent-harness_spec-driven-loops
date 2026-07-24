@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
   "description": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route",
   "keywords": [
     "p4a",
@@ -16,14 +16,13 @@
     "manifest",
     "route"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.630Z",
-  "specId": "011",
+  "lastUpdated": "2026-07-24T12:10:59.254Z",
+  "specId": "014",
   "folderSlug": "runtime-engine",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "015-router-unification-program",
-    "003-unified-refactor-implementation"
+    "015-router-unification-program"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/008-fleet-cleanup",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/008-fleet-cleanup",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -110,13 +110,13 @@
         "source": "derived"
       },
       {
-        "name": "Unified Router Refactor",
+        "name": "Unification Program",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phased Implementation Plan",
+        "name": "Problem Statement After Stage",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
     "created_at": "2026-07-18T13:13:20.991Z",
-    "last_save_at": "2026-07-24T10:52:41.786Z",
+    "last_save_at": "2026-07-24T12:11:58.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +206,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:887e3879aab8a01b1ae6317a70f2917f0759500015b73a58354b25c98f3a5e9d",
+    "source_fingerprint": "sha256:a0767afe8a084c69dd76792970024223691b0307bb374808f1e3787d8e492833",
     "source_doc_hashes": {
-      "spec.md": "510e2715e930fe3342b7f9de31ea75eb910b99c8aac33d358e53ef90c9e59724",
-      "plan.md": "203520c9ee5fac7195656cc699e1cbe5a3151be623851447ff0fb376d30c89f5",
-      "tasks.md": "f596e6b55c6c26295fcb6c4a08fbbbad639c10bf747b86538c2b32053ad575be",
+      "spec.md": "c2d037aff0e267240a691d273e90cc0801b3dc7f2579859c70ad7cc7436b95f0",
+      "plan.md": "77e50932f6537b53a7a6a9900dbf7c26edd9f19a41e2be1a75b0253a57070005",
+      "tasks.md": "58dbb0fac4e7295b75218e2c17fa3a22a4f071d206e67b4c39362b83220b6b1e",
       "checklist.md": "1da2c4f122b32ad3c8e835739a9583083e30fbb826b878dd5acd649f4fd8a251",
       "implementation-summary.md": "921351d28b83846e9b46f8c6f61428f2e202e51b641341505ce6e4a1e7d79435"
     },

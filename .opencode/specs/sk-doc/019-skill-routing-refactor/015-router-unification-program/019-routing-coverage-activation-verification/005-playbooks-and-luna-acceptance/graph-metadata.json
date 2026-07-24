@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-07-24T10:52:37.393Z",
+    "last_save_at": "2026-07-24T12:11:49.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0eefd9cfc45b617b3ad1d5187b63c3010544f3c04202c3405be28e4ac85ce38c",
+    "source_fingerprint": "sha256:55c4e7e6a9c01e03ae09ac71b813cd91b9a743b04ab89bef6486b61d01d6fbe7",
     "source_doc_hashes": {
-      "spec.md": "e5c37b3e57c7f4756ec2586c5475f89eca17c7ff7b122fe278b7574048000c87",
-      "plan.md": "1800bedd4c3c72d7742499fc9f3ecdeb5c55422fcdbd2b4443e14d332cd32316",
-      "tasks.md": "ba3c17a2cff0efc13ae2d916bf6bf5aa5a66ab327ce4883ab890d252d993002d",
-      "checklist.md": "78df35c9a98a6ee45c52f5c1b499c02361242bd74a52a21830c79e611188e82a",
-      "implementation-summary.md": "e0223b9d983060b54a819d5ce4efc7d0f4bb2db3cba9d8765fd70d4acff2f93a"
+      "spec.md": "e8ee96b058c2d556449e24cf27f42d95b660053264055b955a6276334056c56f",
+      "plan.md": "aab5b1a5205d51accfb85a36774584f542aa94476f82efce3b2e544f24b20907",
+      "tasks.md": "9121f6ca59657212d86a2cb82bdd6f4adcd1a3a31d0d2b42f2367f5bfb5fc7ab",
+      "checklist.md": "a08ca3fa1119de40a92e5dccc4bc7e907c4e5200be4142bdf61922b40ebee108",
+      "implementation-summary.md": "fbd7dc1af2c7f58177ee5087e78bbdce1e4944d2cb295a2c4eee78d6b2f2a3f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

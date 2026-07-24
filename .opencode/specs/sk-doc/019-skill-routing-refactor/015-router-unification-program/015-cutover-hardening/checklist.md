@@ -28,10 +28,10 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-090 [P0] The nine-finding deep-review report and every edit site (`010-live-activation/checklist.md`; both inline digest blocks; `flip-serving.cjs`, `activate-hub.cjs`, `resolve.cjs`, `compiled-route.cjs`, `verify-runtime-engine.cjs`; the new `shared/hub-lock.cjs`) were read/located before authoring each fix.
+- [x] CHK-090 [P0] The nine-finding deep-review report and every edit site (`013-live-activation/checklist.md`; both inline digest blocks; `flip-serving.cjs`, `activate-hub.cjs`, `resolve.cjs`, `compiled-route.cjs`, `verify-runtime-engine.cjs`; the new `shared/hub-lock.cjs`) were read/located before authoring each fix.
   - **Evidence**: `spec.md` SCOPE table cites all nine finding IDs + sites; `plan.md` FIX ADDENDUM traces every finding to its exact file and verification.
 - [x] CHK-091 [P0] All edits stayed inside the two named sibling folders plus the shared module — no unrelated file touched.
-  - **Evidence**: `implementation-summary.md` Files table lists exactly eight touched paths across `010-live-activation`, `011-runtime-engine`, and `shared/`: two new shared modules (`frozen-scorer-contract.cjs`, `hub-lock.cjs`), five modified runtime files, and one checklist correction.
+  - **Evidence**: `implementation-summary.md` Files table lists exactly eight touched paths across `013-live-activation`, `014-runtime-engine`, and `shared/`: two new shared modules (`frozen-scorer-contract.cjs`, `hub-lock.cjs`), five modified runtime files, and one checklist correction.
 
 <!-- /ANCHOR:pre-impl -->
 
@@ -41,7 +41,7 @@ contextType: "implementation"
 ## Code Quality
 
 - [x] CHK-001 [P0] CommonJS syntax is valid across all new modules and every edited runtime file.
-  - **Evidence**: `node --check` passes for all 7 touched files — `shared/frozen-scorer-contract.cjs`, `shared/hub-lock.cjs`, `010-live-activation/lib/activate-hub.cjs`, `011-runtime-engine/lib/flip-serving.cjs`, `011-runtime-engine/lib/resolve.cjs`, `011-runtime-engine/lib/compiled-route.cjs`, `011-runtime-engine/harness/verify-runtime-engine.cjs`.
+  - **Evidence**: `node --check` passes for all 7 touched files — `shared/frozen-scorer-contract.cjs`, `shared/hub-lock.cjs`, `013-live-activation/lib/activate-hub.cjs`, `014-runtime-engine/lib/flip-serving.cjs`, `014-runtime-engine/lib/resolve.cjs`, `014-runtime-engine/lib/compiled-route.cjs`, `014-runtime-engine/harness/verify-runtime-engine.cjs`.
 - [x] CHK-002 [P1] The frozen-scorer contract module is read-only and zero-dependency (Node built-ins).
   - **Evidence**: `frozen-scorer-contract.cjs` uses `fs`/`path`/`crypto` only; it reads and hashes the scorer, never writes it.
 - [x] CHK-003 [P1] No dead code left behind in the wired writers.
@@ -61,7 +61,7 @@ contextType: "implementation"
 - [x] CHK-011 [P0] Both gates still reject drift, with phase-specific messages.
   - **Evidence**: `assertScorerFrozen(repoRoot, phase)` throws `FROZEN SCORER DRIFT …` naming the phase; `flip-serving` passes `'the serving flip'`, `activate-hub` passes `'activation'`.
 - [x] CHK-012 [P0] The runtime-engine regression suite stays green and non-destructive, now running entirely in a sandbox.
-  - **Evidence**: `verify-runtime-engine.cjs` reports **9/9** (discriminated-union, both-decision coverage, flag-off inertness, serve-time identity match, serve-time identity mismatch, fenced-CAS byte-exact rollback+reflip, shared-lock live-holder refused, shared-lock stale-holder reclaimed, flip-time identity refused) — grown from 6/6; runs against a temp SANDBOX copy via `SPECKIT_ACTIVATION_ROOT_OVERRIDE`; the LIVE `010-live-activation/activation` tree is byte-identical before/after (git-dirty 0).
+  - **Evidence**: `verify-runtime-engine.cjs` reports **9/9** (discriminated-union, both-decision coverage, flag-off inertness, serve-time identity match, serve-time identity mismatch, fenced-CAS byte-exact rollback+reflip, shared-lock live-holder refused, shared-lock stale-holder reclaimed, flip-time identity refused) — grown from 6/6; runs against a temp SANDBOX copy via `SPECKIT_ACTIVATION_ROOT_OVERRIDE`; the LIVE `013-live-activation/activation` tree is byte-identical before/after (git-dirty 0).
 - [x] CHK-013 [P0] Sandbox isolation — the regression harness never mutates live activation state (P1-002).
   - **Evidence**: `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook added to `flip-serving.cjs` + `resolve.cjs`; the harness points the whole pipeline at a temp SANDBOX copy of `activation/` and deletes it on exit; the LIVE tree is byte-identical before/after (git-dirty 0).
 - [x] CHK-014 [P0] Both-decision coverage — the harness exercises a route AND a negative decision, not just the route path (P1-006).
@@ -113,7 +113,7 @@ A fresh 10-iteration `/deep:review` completed iteration 1, then halted on an unr
 ## Security
 
 - [x] CHK-094 [P0] No live activation manifest, serving-flip-record, fence, or frozen-scorer *data* file was hand-edited — only the *code* that operates on them changed, and the served routing decision stays gated behind `SPECKIT_COMPILED_ROUTING` (default off) with fail-safe-to-legacy on any identity mismatch.
-  - **Evidence**: `implementation-summary.md` Files table lists exactly the touched *code* files (two new shared modules, five modified runtime files, one checklist correction) — no manifest/record/fence data artifact was committed as an edit; the three pinned scorer digests are unchanged (CHK-010); P1-002 proof shows the LIVE `010-live-activation/activation` tree byte-identical before/after a harness run (git-dirty 0).
+  - **Evidence**: `implementation-summary.md` Files table lists exactly the touched *code* files (two new shared modules, five modified runtime files, one checklist correction) — no manifest/record/fence data artifact was committed as an edit; the three pinned scorer digests are unchanged (CHK-010); P1-002 proof shows the LIVE `013-live-activation/activation` tree byte-identical before/after a harness run (git-dirty 0).
 - [x] CHK-095 [P1] No network, package install, credential, or dynamic-code surface was introduced.
   - **Evidence**: All 7 touched files are zero-dependency CommonJS (`fs`/`path`/`crypto`/`os`/`child_process` built-ins only, plus internal `require`s between these files), per CHK-001/CHK-002/CHK-004.
 
@@ -129,7 +129,7 @@ A fresh 10-iteration `/deep:review` completed iteration 1, then halted on an unr
 - [x] CHK-021 [P1] All nine findings are documented with built-and-verified evidence, not left as acceptance seeds.
   - **Evidence**: `tasks.md` T003-T009 all `[x]` with evidence tags; `spec.md` REQ-004..007 marked Satisfied; `implementation-summary.md` Known Limitations records this is new runtime behavior, gated behind `SPECKIT_COMPILED_ROUTING` (default off) and reversible, and flags that a fresh `/deep:review` has not yet run over these fixes.
 - [x] CHK-022 [P0] Strict Level-2 packet validation passes on the three touched folders.
-  - **Evidence**: `validate.sh --strict` reports `Errors: 0` on `010-live-activation`, `011-runtime-engine`, and this packet.
+  - **Evidence**: `validate.sh --strict` reports `Errors: 0` on `013-live-activation`, `014-runtime-engine`, and this packet.
 
 <!-- /ANCHOR:docs -->
 
@@ -139,7 +139,7 @@ A fresh 10-iteration `/deep:review` completed iteration 1, then halted on an unr
 ## File Organization
 
 - [x] CHK-096 [P0] Shared modules live at the shared root, not duplicated per-hub.
-  - **Evidence**: `shared/frozen-scorer-contract.cjs` and `shared/hub-lock.cjs` both sit at `007-unified-refactor-implementation/shared/`, a sibling of `010-live-activation` and `011-runtime-engine`, imported by both writers rather than copy-pasted.
+  - **Evidence**: `shared/frozen-scorer-contract.cjs` and `shared/hub-lock.cjs` both sit at `015-router-unification-program/shared/`, a sibling of `013-live-activation` and `014-runtime-engine`, imported by both writers rather than copy-pasted.
 - [x] CHK-097 [P1] No stray temp or scratch files were left behind.
   - **Evidence**: This remediation touched exactly the eight files listed in `implementation-summary.md`; the harness's SANDBOX copy is deleted on exit and the LIVE activation tree is byte-identical before/after (git-dirty 0); no scratch artifacts were left.
 

@@ -95,5 +95,5 @@ contextType: "implementation"
 - **Plan**: `plan.md`
 - **Checklist**: `checklist.md`
 - **Implementation record**: `implementation-summary.md`
-- **Consumed eligibility authority**: `../012-default-on-decision/decision-record.md`
+- **Consumed eligibility authority**: `../016-default-on-decision/decision-record.md`
 <!-- /ANCHOR:cross-refs -->

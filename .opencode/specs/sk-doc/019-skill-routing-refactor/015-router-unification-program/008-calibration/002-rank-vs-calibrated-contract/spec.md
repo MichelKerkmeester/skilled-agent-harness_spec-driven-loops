@@ -235,4 +235,4 @@ Downstream note: the *actual per-hub flip* of calibrated auto-route (turning a v
 - **Downstream (consumer)**: `../003-*` (selective-classification controller) — fits `T`/`tau` per slice and issues `CalibrationCertificateV1` against this contract.
 - **Parent design (source of truth)**: `../../../006-unified-refactor-research/unified-refactor-synthesis.md` — Idea 5 (§3 table), §2.3 (closed decision algebra), §4 (recovery ladder), §8.1 (advisor read), §11 Q2 (parked corpus), §10 (constraint compliance).
 - **Master plan**: `../../spec.md` — Phase 5 map + shared migration-gate model.
-- **Sibling contracts**: `../../002-decision-evaluator/` (the algebra `calibration` attaches to); `../../000-contract-schemas/` (the schema family this certificate joins).
+- **Sibling contracts**: `../../005-decision-evaluator/` (the algebra `calibration` attaches to); `../../003-contract-schemas/` (the schema family this certificate joins).

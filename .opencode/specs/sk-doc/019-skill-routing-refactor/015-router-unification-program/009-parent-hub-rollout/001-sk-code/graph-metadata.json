@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a workflow mode with read-only surfaces [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`]",
     "created_at": "2026-07-18T13:13:19.473Z",
-    "last_save_at": "2026-07-24T10:52:40.022Z",
+    "last_save_at": "2026-07-24T12:11:53.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +212,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4d5a0ffd7f9e246bebe2e4800ea0699b1cae8ad347c912b6e33eb60b70a3c7e",
+    "source_fingerprint": "sha256:5a02392fd76c8d35e7447859fff2f8186d5c5c47f09805e3e50b3640af58d515",
     "source_doc_hashes": {
-      "spec.md": "657ee3253598b59999110cb15210157ed6ead664605abae52b19907c3c3ad0f1",
+      "spec.md": "281ac6ded5bcd5460514403922617fee9c7bfd024d37cc56237331da6a85d8fd",
       "plan.md": "9b0f1225a431b433b5064aab9ab9ddfd7cd1736467fa7bf3fc6fdb5b71a1bd5d",
       "tasks.md": "1154cbcb813c19f318c496ff6138f63257edb3aa41b4ed0d23c2dccb433ba7f9",
       "checklist.md": "e0f80f79666978eee55e9fd580620d6dcfad1a4f36798278a459f9104065d50d",

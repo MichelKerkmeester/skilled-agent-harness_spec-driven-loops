@@ -62,7 +62,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T012 Collision test: re-run against an existing `<run-label>`; confirm a fail-closed, non-zero, no-partial-write result. (REQ-001) — `COLLISION`; original bytes unchanged; empty label dir also refused.
-- [x] T013 Boundary test: point the capture step at a `006-parent-hub-rollout` shadow-candidate manifest; confirm rejection. (REQ-004) — `MANIFEST_SOURCE` for archiver and snapshot capture.
+- [x] T013 Boundary test: point the capture step at a `009-parent-hub-rollout` shadow-candidate manifest; confirm rejection. (REQ-004) — `MANIFEST_SOURCE` for archiver and snapshot capture.
 - [x] T014 Drift test: mutate the active manifest mid-capture; confirm the archive aborts rather than completing. (REQ-004) — `DRIFT`; no partial directory.
 - [x] T015 Confirm the three frozen scorer digests are unchanged and no `baseline/` directory was written to by this packet. (hard constraint restated) — pre/post SHA-256 identical; `baseline` run-label refused.
 - [x] T016 Portability test: copy a newly-archived artifact to a different path; confirm it still validates via `rootRel` + digests. (REQ-005) — archived pair carries no absolute worktree root (grep 0); `rootRel` = `.opencode/skills/sk-code`.

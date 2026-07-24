@@ -13,7 +13,8 @@
     "sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
     "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
     "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
-    "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research"
+    "sk-doc/019-skill-routing-refactor/001-research/010-unified-refactor-research",
+    "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research"
   ],
   "manual": {
     "depends_on": [],
@@ -38,7 +39,7 @@
       "unified",
       "refactor",
       "lean",
-      "ten",
+      "eleven",
       "lineages"
     ],
     "importance_tier": "critical",
@@ -90,17 +91,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Lean phase parent for the ten research lineages that define the skill-routing program's benchmark, per-hub, defaultMode, out-of-box, and unified-refactor evidence base.",
+    "causal_summary": "Lean phase parent for the eleven research lineages that define the skill-routing program's benchmark, per-hub, sk-code, defaultMode, out-of-box, and unified-refactor evidence base.",
     "created_at": "2026-07-24T10:52:35.915Z",
-    "last_save_at": "2026-07-24T11:03:16.498Z",
+    "last_save_at": "2026-07-24T12:00:50.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5b4e4a6268e10fed6d97433a67a431168e864601246fe9f5f1007355654bfc97",
+    "source_fingerprint": "sha256:558b6d89fe788234f7f12c4f5e69c9029e4f61fe4e227fc26f827f59fdd42535",
     "source_doc_hashes": {
-      "spec.md": "d8b15ff4bed010c901c26a6b3e44dc511cc0a278713b96678561a363e0b44b4b"
+      "spec.md": "c2f74d1693920e724929305112390f0ae5a366162c42ce4f97cd95854fbfa8e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

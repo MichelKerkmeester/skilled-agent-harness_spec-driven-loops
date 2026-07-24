@@ -2,7 +2,7 @@
   "generatedAt": "2026-07-21T02:25:15.880Z",
   "provenance": {
     "repoRelativeRoot": ".",
-    "harness": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4/verification/verify-cutover.cjs"
+    "harness": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4/verification/verify-cutover.cjs"
   },
   "frozenScorer": {
     "before": {
@@ -138,19 +138,19 @@
         "id": "non-hub-ineligibility-policy",
         "proven": true,
         "reason": "non-hub fixtures pass (5 ineligible, 7 eligible)",
-        "evidence": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/verification/non-hub-eligibility-fixtures.cjs"
+        "evidence": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/verification/non-hub-eligibility-fixtures.cjs"
       },
       {
         "id": "sibling-013-implemented-and-verified",
         "proven": false,
         "reason": "013 status: Planned",
-        "evidence": "013-create-skill-alignment/implementation-summary.md"
+        "evidence": "017-create-skill-alignment/implementation-summary.md"
       },
       {
         "id": "sibling-014-implemented-and-verified",
         "proven": false,
         "reason": "014 status: Planned",
-        "evidence": "014-benchmark-alignment/implementation-summary.md"
+        "evidence": "018-benchmark-alignment/implementation-summary.md"
       }
     ],
     "blockingReasons": [

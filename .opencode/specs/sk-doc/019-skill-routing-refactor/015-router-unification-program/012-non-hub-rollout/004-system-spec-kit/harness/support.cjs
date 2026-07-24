@@ -8,7 +8,7 @@ const {
   DOMAIN_TAGS,
   canonicalize,
   hashArtifact,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   buildAuthoredSources,
   compareUtf16,
@@ -17,7 +17,7 @@ const {
   projectLegacyObservation,
   projectTypedRouteGold,
   replayPolicyCard,
-} = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
 const {
   parseRouter,
 } = require('../../../../../../../../skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs');
@@ -46,8 +46,8 @@ const BENCHMARK_ROOT = path.join(
   'scripts',
   'skill-benchmark',
 );
-const CONTRACT_ROOT = path.resolve(PHASE_ROOT, '..', '..', '000-contract-schemas');
-const BASE_ROOT = path.resolve(PHASE_ROOT, '..', '..', '001-compiler-n1-shadow');
+const CONTRACT_ROOT = path.resolve(PHASE_ROOT, '..', '..', '003-contract-schemas');
+const BASE_ROOT = path.resolve(PHASE_ROOT, '..', '..', '004-compiler-n1-shadow');
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -174,7 +174,7 @@ function projectTargetTypedGold(policy, scenarioId, evaluation) {
   };
   const projection = projectTypedRouteGold(policy, scenarioId, projectionInput);
   projection.observedIntents = [];
-  projection.projectionHash = require('../../../000-contract-schemas/lib/canonical.cjs')
+  projection.projectionHash = require('../../../003-contract-schemas/lib/canonical.cjs')
     .computeProjectionHash('TypedRouteGoldV1', projection);
   return projection;
 }
@@ -191,7 +191,7 @@ function generateTargetPolicyCard(policy, authoredSources) {
     ],
     negativeReasons: ['forbidden'],
   };
-  frontmatter.humanViewHash = require('../../../000-contract-schemas/lib/canonical.cjs')
+  frontmatter.humanViewHash = require('../../../003-contract-schemas/lib/canonical.cjs')
     .computeProjectionHash('PolicyCardV1', frontmatter, 'humanViewHash');
   const tableMatch = /## Document-only routing table\n\n```json\n([^\n]+)\n```/m.exec(generated.markdown);
   if (!tableMatch) throw new Error('generated policy card has no routing table');

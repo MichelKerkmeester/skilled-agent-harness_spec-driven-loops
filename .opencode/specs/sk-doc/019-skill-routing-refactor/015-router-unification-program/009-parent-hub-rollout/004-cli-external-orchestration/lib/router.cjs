@@ -9,10 +9,10 @@
 
 const {
   computeRequestFactsHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   parseRouteDecision,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 const { destinationKey } = require('./registry-compiler.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────

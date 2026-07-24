@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Prepared the Planned build sequence for the P0 foundation"
@@ -72,7 +72,7 @@ Two invariants hold at every step: the three scorer files stay byte-pinned, and 
 
 ### Definition of Ready
 
-- [ ] The parent decisions are authoritative: ADR-002 (eligibility) and ADR-003 (promote resolver) in `../../012-default-on-decision/decision-record.md`.
+- [ ] The parent decisions are authoritative: ADR-002 (eligibility) and ADR-003 (promote resolver) in `../../016-default-on-decision/decision-record.md`.
 - [ ] Baseline SHA-256 digests for the three frozen scorer files are captured before implementation.
 - [ ] The complete inventory of flag reads, eligibility consumers, engine-entrypoint call sites, activation manifests, and resolver paths exists.
 - [ ] The stable runtime directory for the promoted closure is chosen (see OPEN QUESTIONS Q1).
@@ -132,8 +132,8 @@ compiled decision (byte-identical to legacy)  --->  status probe reads authority
 | Surface | Current Role | Planned Action | Verification |
 |---------|--------------|----------------|--------------|
 | `.opencode/bin/compiled-route.cjs` | Stable shim that requires into the spec tree | Require the promoted resolver from a stable runtime path; add a sentinel breadcrumb | Spec-tree-move simulation; fail-safe fallback check |
-| `011-runtime-engine/lib/resolve.cjs` (authored source) | Reads activation from the spec tree; bi-state flag; silent catch | Tri-state the flag; add a breadcrumb; remain the built/copied authored source | Truth-table fixtures; move simulation; breadcrumb capture |
-| `011-runtime-engine/lib/compiled-route.cjs` (authored source) | `HUB_CHILD` engine map + `loadHubEngine` | Standardize one stable per-hub engine entrypoint; keep the map decoupled from eligibility | Cross-check test; engine-load fixtures |
+| `014-runtime-engine/lib/resolve.cjs` (authored source) | Reads activation from the spec tree; bi-state flag; silent catch | Tri-state the flag; add a breadcrumb; remain the built/copied authored source | Truth-table fixtures; move simulation; breadcrumb capture |
+| `014-runtime-engine/lib/compiled-route.cjs` (authored source) | `HUB_CHILD` engine map + `loadHubEngine` | Standardize one stable per-hub engine entrypoint; keep the map decoupled from eligibility | Cross-check test; engine-load fixtures |
 | `advisor-recommend.ts` | Additive attach; bi-state flag; discarded child stderr | Tri-state the flag; add a breadcrumb; stop discarding the child stderr the breadcrumb needs | Truth-table fixtures; byte-identical attach; breadcrumb visible |
 | `compiled-route-status.cjs` (new) | None | Emit the stable per-hub JSON status contract for one hub or all seven | `causeCode` matrix over fresh/stale/missing/broken fixtures |
 | `advisor-status.ts` (both copies) + `mk-skill-advisor.js` | Emit plugin status, no compiled fields | Surface the per-hub serving status, prompt-safe and size-capped | Output-schema review; no-secret assertion |
@@ -141,7 +141,7 @@ compiled decision (byte-identical to legacy)  --->  status probe reads authority
 | `system-spec-kit/mcp-server/ENV-REFERENCE.md` | No `SPECKIT_COMPILED_ROUTING` entry | Add the feature-flag entry: default-off, tri-state, `=0` kill-switch, eligibility gating | Reference lint; default/override text assertion |
 | Runtime dirs (lint scope) | No guard against spec-imports | Add the durable no-spec-import CI rule | Positive (seeded import) and negative (clean) fixtures |
 | Frozen scorer trio | Stable route-gold baseline | Read and hash only; never edit | Before/after SHA-256 equality per step |
-| `../../012-default-on-decision/implementation-summary.md` | Carries a stale residual-coupling follow-up | Correct the `:170` line to match the Accepted ADR-003 | Cross-document status audit |
+| `../../016-default-on-decision/implementation-summary.md` | Carries a stale residual-coupling follow-up | Correct the `:170` line to match the Accepted ADR-003 | Cross-document status audit |
 
 Required inventories before implementation:
 
@@ -167,7 +167,7 @@ Required inventories before implementation:
 ### Phase 2: Implementation (promotion, split, observability, governance, guard)
 
 - [ ] Promote the closure (resolver + engine loader + seven manifests + seven bundles) to the stable runtime path; point the shim's require at it; keep the spec-tree copy as the authored source with a build/copy step.
-- [ ] Make promotion binding: delete the residual-coupling branch and correct `../../012-default-on-decision/implementation-summary.md:170`.
+- [ ] Make promotion binding: delete the residual-coupling branch and correct `../../016-default-on-decision/implementation-summary.md:170`.
 - [ ] Split manifest-derived eligibility from `HUB_CHILD`; standardize one stable per-hub engine entrypoint; add the `sort(COMPILED_ROUTING_HUBS)===sort(keys(HUB_CHILD))` cross-check test.
 - [ ] Ship `compiled-route-status.cjs --hub | --all` emitting the stable JSON contract with `causeCode`.
 - [ ] Wire the readout into `spec_kit_skill_advisor_status` (both copies) and `session_bootstrap`, prompt-safe, size-capped, no blocking spawn.
@@ -420,7 +420,7 @@ If parity diverges, a frozen digest changes, a hub lights under unset, a runtime
 <!-- ANCHOR:adr-summary -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
-The authoritative decisions live in this packet's `decision-record.md` and the parent `../../012-default-on-decision/decision-record.md`; this plan creates no alternatives to them.
+The authoritative decisions live in this packet's `decision-record.md` and the parent `../../016-default-on-decision/decision-record.md`; this plan creates no alternatives to them.
 
 | Decision | Status | Plan Consequence |
 |----------|--------|------------------|

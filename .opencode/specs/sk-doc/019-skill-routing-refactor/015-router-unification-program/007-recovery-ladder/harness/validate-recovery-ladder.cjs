@@ -18,7 +18,7 @@ const { spawnSync } = require('child_process');
 const {
   canonicalize,
   computeProjectionHash,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const {
   DEFER_REASONS,
   RUNG_NAMES,
@@ -56,11 +56,11 @@ const PLAYBOOK_LOADER_PATH = path.join(
 );
 const ROUTE_DECISION_SCHEMA_PATH = path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/schemas/route-decision.v1.schema.json'
+  '003-contract-schemas/schemas/route-decision.v1.schema.json'
 );
 const BUDGET_SCHEMA_PATH = path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/schemas/uncertainty-budget.v1.schema.json'
+  '003-contract-schemas/schemas/uncertainty-budget.v1.schema.json'
 );
 const TRUSTED_DIGESTS = Object.freeze({
   [ROUTER_REPLAY_PATH]: 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',

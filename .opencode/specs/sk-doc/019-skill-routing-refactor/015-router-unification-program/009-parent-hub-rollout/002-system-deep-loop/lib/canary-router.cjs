@@ -6,7 +6,7 @@
 // This router scores directly against the bespoke routingModel that
 // registry-compiler.cjs builds from hub-router.json (mirrors sk-code's and
 // sk-design's lib/router.cjs). It deliberately does NOT go through the generic
-// detector/selector evaluator (002-decision-evaluator/lib/evaluator.cjs): that
+// detector/selector evaluator (005-decision-evaluator/lib/evaluator.cjs): that
 // evaluator's candidates came from detectorGraph()'s alias-owned detectors,
 // whose vocabulary is mode-registry.json's own `aliases` field (plus
 // workflowMode/command), a source that diverges from the frozen legacy
@@ -38,10 +38,10 @@
 const {
   canonicalize,
   computeRequestFactsHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   parseRouteDecision,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS

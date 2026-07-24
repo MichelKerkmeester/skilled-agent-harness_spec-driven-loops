@@ -112,6 +112,6 @@ status: "blocked-shadow"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7, §10)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7, §10)
 - **Shared gate model**: `../spec.md`
 <!-- /ANCHOR:cross-refs -->

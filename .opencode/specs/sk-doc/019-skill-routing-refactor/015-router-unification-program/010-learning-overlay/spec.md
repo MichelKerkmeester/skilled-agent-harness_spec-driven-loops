@@ -31,9 +31,9 @@ Crucially, the phase is **gated on a demonstrated routing gain from real correct
 | **Priority** | P0 |
 | **Status** | Implemented and shadow-validated (`implemented-dormant`) — the offline `CorrectionOverlayV1` pipeline (sanitized ingestion → candidate compile → real-scorer replay → hard-gated shadow promotion → fenced rollback) is built; serving authority stays legacy/shadow-only and the overlay is dormant (`overlay=null` / `P=static`) until a demonstrated routing gain; repository-level strict validation reserved for the orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `007-learning-overlay` |
-| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
-| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2 learning plane, §4 seam D, §9 stage 5, §12) |
+| **Branch** | `010-learning-overlay` |
+| **Parent** | `../spec.md` (Router-Unification Program) |
+| **Design source** | `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2 learning plane, §4 seam D, §9 stage 5, §12) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -50,8 +50,8 @@ Provide a **safe, reversible, offline-only** learning channel: a candidate `Corr
 ## SCOPE
 
 ### In Scope
-- Consuming the `CorrectionOverlayV1` schema + canonical serialization defined in phase `000-contract-schemas`, and the `hash(base, overlay|null, schema, generation)` effective-identity contract from phase `001-compiler-n1-shadow`.
-- An **offline** correction/handoff record ingestion + sanitizer (privacy filter + retention policy, per synthesis open-q 7) that normalizes receipts from `003-execution-verify-commit` and handoff records from `004-recovery-ladder` into training records.
+- Consuming the `CorrectionOverlayV1` schema + canonical serialization defined in phase `003-contract-schemas`, and the `hash(base, overlay|null, schema, generation)` effective-identity contract from phase `004-compiler-n1-shadow`.
+- An **offline** correction/handoff record ingestion + sanitizer (privacy filter + retention policy, per synthesis open-q 7) that normalizes receipts from `006-execution-verify-commit` and handoff records from `007-recovery-ladder` into training records.
 - An **offline** candidate-overlay compiler that derives *only* vocabulary→destination adjustments, freezes them, and content-addresses the result.
 - A deterministic replay harness that reuses phase `002`'s pure evaluator + the **compatibility projector** to run the existing route-gold against `base` vs `base+candidate`, classifying every delta — the shared scorer is never touched.
 - Safety/parity gate definitions + an **independent human promotion** protocol (approver distinct from the proposer; approval recorded).
@@ -62,7 +62,7 @@ Provide a **safe, reversible, offline-only** learning channel: a candidate `Corr
 - Modifying any live routing config, registry, scorer, or skill — this phase is planning/design only.
 - Any **online / live** overlay mutation — eliminated alternative (synthesis §6); the serving policy is never edited online.
 - Learning *weights* or any field beyond vocabulary→destination — weights are a uniform inert `4`; whether other fields are learnable per hub is synthesis open-q 3 and needs live validation first.
-- Calibrated auto-route certificates — owned by phase `005-calibration`.
+- Calibrated auto-route certificates — owned by phase `008-calibration`.
 - Editing the shared benchmark scorer `router-replay.cjs` — a scorer edit to make an overlay pass is a migration failure (synthesis §8.2, §10).
 - **Building or promoting the overlay before a demonstrated routing gain from real correction-telemetry volume exists** (synthesis §12) — the phase may remain unbuilt or dormant indefinitely.
 
@@ -70,9 +70,9 @@ Provide a **safe, reversible, offline-only** learning channel: a candidate `Corr
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `007-learning-overlay/spec.md` | Create | This specification (planning/design only) |
-| `007-learning-overlay/plan.md` | Create | Build approach for the offline overlay plane |
-| `007-learning-overlay/tasks.md` | Create | Ordered, checkable task list |
+| `010-learning-overlay/spec.md` | Create | This specification (planning/design only) |
+| `010-learning-overlay/plan.md` | Create | Build approach for the offline overlay plane |
+| `010-learning-overlay/tasks.md` | Create | Ordered, checkable task list |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -133,7 +133,7 @@ Concretely, a promoted overlay (an `EffectivePolicy` with `overlay ≠ null`) ma
 
 Because this phase is **OPTIONAL / OFFLINE / LAST**, "before the next activates" has two readings, both enforced here:
 - **Meta-gate (before this phase runs at all):** promotion is blocked until a demonstrated routing gain from real correction-telemetry volume exists (synthesis §12). Until then the plane may be built but stays dormant, or is never built — `P = static` forever is a valid terminal state.
-- **Downstream (before phase `008-fleet-cleanup` retires legacy dual-read):** any overlay in service must already sit behind the fenced CAS with a proven rollback, so that fleet cleanup (Stage 7) never inherits an un-reversible learned generation.
+- **Downstream (before phase `011-fleet-cleanup` retires legacy dual-read):** any overlay in service must already sit behind the fenced CAS with a proven rollback, so that fleet cleanup (Stage 7) never inherits an un-reversible learned generation.
 
 **Non-negotiable constraints (apply to every phase of the refactor):** deterministic offline route-gold replay is preserved; the shared benchmark scorer `router-replay.cjs` is **never** touched; authority stays destination-local (a proof/recommendation is never a capability); every activation is reversible and gated (fenced CAS activation with a retained prior generation); and there is no over-emission. This phase adds one further self-imposed constraint from synthesis §12: **the overlay must never become load-bearing for the base contract.**
 
@@ -150,4 +150,12 @@ Because this phase is **OPTIONAL / OFFLINE / LAST**, "before the next activates"
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
 - **Phase parent**: `../spec.md` (phase map + shared migration-gate model)
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2 learning plane, §4 seam D, §9 stage 5, §12, open-q 3/7)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2 learning plane, §4 seam D, §9 stage 5, §12, open-q 3/7)
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `009-parent-hub-rollout` |
+| **Successor** | `011-fleet-cleanup` |

@@ -47,7 +47,7 @@ The decision plane is built type-first: a closed `RouteDecisionV1` discriminated
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-1. **Pin the consumed contracts.** Import `RouteRequestV1`, `CompiledPolicyV1`, and the `Target`/identity types from Phase 0 (`../000-contract-schemas/`) and the compiled artifact + projections from Phase 1 (`../001-compiler-n1-shadow/`). Confirm the request's `pinnedActivationGeneration` and the policy's `effectivePolicyHash` are both present and comparable (synthesis §2.1).
+1. **Pin the consumed contracts.** Import `RouteRequestV1`, `CompiledPolicyV1`, and the `Target`/identity types from Phase 0 (`../003-contract-schemas/`) and the compiled artifact + projections from Phase 1 (`../004-compiler-n1-shadow/`). Confirm the request's `pinnedActivationGeneration` and the policy's `effectivePolicyHash` are both present and comparable (synthesis §2.1).
 
 2. **Define `RouteDecisionV1` as a closed discriminated union.** Model `route | clarify | defer | reject` with `selectionKind` as an interior field of `route` only. Encode the negatives so they *cannot* carry `targets` or a non-`Withheld` authority — make the flat six-value enum and top-level `selectionKind` unrepresentable at the type level (synthesis §2.3, §4 seam A, §6). Encode the reason vocabularies: `defer.reason ∈ {idle, no-match, dependency-failure, handoff-required, stale-policy, evidence-unavailable}`; `route.basis ∈ {signal, bounded-default, degraded-fallback}`.
 
@@ -96,7 +96,7 @@ zero N=1 rank/bundle/handoff calls.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- **Upstream (read-only):** Phase 0 `../000-contract-schemas/` (schemas + `Target` identity) and Phase 1 `../001-compiler-n1-shadow/` (`CompiledPolicyV1` + projections).
+- **Upstream (read-only):** Phase 0 `../003-contract-schemas/` (schemas + `Target` identity) and Phase 1 `../004-compiler-n1-shadow/` (`CompiledPolicyV1` + projections).
 - **Fixed boundary:** the shared benchmark scorer `router-replay.cjs` and the existing route-gold rows — consumed, never edited; a required scorer edit is a migration failure.
 - **Downstream consumers:** Phases 3 (execution), 4 (recovery), 5 (calibration), 6 (rollout) bind to this decision type.
 <!-- /ANCHOR:dependencies -->
@@ -110,4 +110,4 @@ The evaluator holds no authority and mutates nothing, so rollback is disabling t
 ## CROSS-REFERENCES
 - **Specification**: `spec.md`
 - **Tasks**: `tasks.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`

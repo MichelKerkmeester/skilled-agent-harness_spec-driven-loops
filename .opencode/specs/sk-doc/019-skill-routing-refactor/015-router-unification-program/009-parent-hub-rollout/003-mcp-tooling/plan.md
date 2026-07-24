@@ -22,7 +22,7 @@ status: "executed; execution-plane idempotency alignment and teeth fixtures GREE
 | Aspect | Value |
 |--------|-------|
 | **Nature** | Planning/design packet — no live routing config, registry, scorer, or skill is modified |
-| **Consumes** | `EffectivePolicy` + 3 projections (phase `001`), evaluator + 4-action algebra (phase `002`), PREPARE→VERIFY→COMMIT + receipts + idempotency (phase `003-execution-verify-commit`), recovery ladder (phase `004`) |
+| **Consumes** | `EffectivePolicy` + 3 projections (phase `001`), evaluator + 4-action algebra (phase `002`), PREPARE→VERIFY→COMMIT + receipts + idempotency (phase `006-execution-verify-commit`), recovery ladder (phase `004`) |
 | **Produces** | The compiled `mcp-tooling` destination graph + composition edges, the fenced-selector activation procedure, the canary + destination-rollout gate definitions, and the fixture inventory — all as spec-folder documentation |
 | **Never touches** | `router-replay.cjs` (shared scorer); a required scorer edit is a migration failure [synthesis §8.2] |
 

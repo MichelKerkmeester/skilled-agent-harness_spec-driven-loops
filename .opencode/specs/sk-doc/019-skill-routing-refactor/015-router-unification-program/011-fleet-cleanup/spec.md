@@ -16,7 +16,7 @@ status: "blocked-shadow"
 
 ## EXECUTIVE SUMMARY
 
-This is **phase 8 (`008-fleet-cleanup/`)** and the **terminal stage** of the unified router refactor — Stage 7 "Fleet cleanup" of the synthesis migration table (`../../006-unified-refactor-research/unified-refactor-synthesis.md` §9). Every prior phase kept legacy resolution serving-authoritative and ran the compiled typed contract in shadow, then behind a fenced per-hub canary, then through a destination-local rollout. This phase does the opposite move exactly once: it **removes** the legacy dual-read path so the compiled `EffectivePolicy` becomes the sole resolver, deletes each skill's legacy artifacts one at a time behind its own gate, and strips the compatibility alias array out of the hot policy card (synthesis §5.3 — the alias bytes "compile out of the hot card once dual-read retires").
+This is **phase 8 (`011-fleet-cleanup/`)** and the **terminal stage** of the unified router refactor — Stage 7 "Fleet cleanup" of the synthesis migration table (`../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` §9). Every prior phase kept legacy resolution serving-authoritative and ran the compiled typed contract in shadow, then behind a fenced per-hub canary, then through a destination-local rollout. This phase does the opposite move exactly once: it **removes** the legacy dual-read path so the compiled `EffectivePolicy` becomes the sole resolver, deletes each skill's legacy artifacts one at a time behind its own gate, and strips the compatibility alias array out of the hot policy card (synthesis §5.3 — the alias bytes "compile out of the hot card once dual-read retires").
 
 Cleanup is not a big-bang teardown. It runs **per-skill deletion gates** in the same blast-radius order the fleet was activated in — `mcp-code-mode → sk-code → system-deep-loop → mcp-tooling` (§9) — with route-gold green after every deletion and the byte-identical prior generation retained through a bake window for fenced-CAS rollback (§9, Stage 7 rollback = "retain prior generation during window"). The N=1 `mcp-code-mode` is retired through the **identical compiler and deletion path** with no skill-name branch — it is the degenerate case of the same contract, never a special case (§1, §5, §5.3).
 
@@ -31,9 +31,9 @@ Cleanup is not a big-bang teardown. It runs **per-skill deletion gates** in the 
 | **Priority** | P0 |
 | **Status** | Planning/design authored — the terminal Stage-7 cleanup contract (per-skill deletion gates + hot-card alias strip + drift-checked final state) is specified; execution is BLOCKED until phase 006 is green fleet-wide (harness reports `PREFLIGHT_BLOCKED`); repository-level strict validation reserved for the orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `008-fleet-cleanup` |
-| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
-| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7) |
+| **Branch** | `011-fleet-cleanup` |
+| **Parent** | `../spec.md` (Router-Unification Program) |
+| **Design source** | `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -50,7 +50,7 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 ## 3. SCOPE
 
 ### In Scope
-- Retire the legacy dual-read resolution path once **every** hub has passed Stage 4 (per-hub canary) and Stage 6 (destination rollout) — i.e. after phase `006-parent-hub-rollout/` completes fleet-wide.
+- Retire the legacy dual-read resolution path once **every** hub has passed Stage 4 (per-hub canary) and Stage 6 (destination rollout) — i.e. after phase `009-parent-hub-rollout/` completes fleet-wide.
 - Per-skill deletion gates: remove each skill's legacy artifacts (dual-read resolver entries, registry adapters, compatibility alias arrays) **one skill at a time**, each behind its own gate, in the activation order `mcp-code-mode → sk-code → system-deep-loop → mcp-tooling` (§9).
 - Retire `mcp-code-mode` (N=1) through the **identical** compiler/deletion path — no `SingularRouter`, no `if skillId == mcp-code-mode` branch anywhere (§1, §5.2, §6 eliminated alternatives).
 - Strip the compatibility alias array out of the hot card; regenerate the card from the same compiled snapshot (§5.3, §8.3).
@@ -68,9 +68,9 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `008-fleet-cleanup/spec.md` | Create | This Level-2 spec-core (the cleanup contract). |
-| `008-fleet-cleanup/plan.md` | Create | Build approach, touched contracts, verification. |
-| `008-fleet-cleanup/tasks.md` | Create | Ordered, checkable execution list. |
+| `011-fleet-cleanup/spec.md` | Create | This Level-2 spec-core (the cleanup contract). |
+| `011-fleet-cleanup/plan.md` | Create | Build approach, touched contracts, verification. |
+| `011-fleet-cleanup/tasks.md` | Create | Ordered, checkable execution list. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -109,8 +109,8 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase `006-parent-hub-rollout/` (Stages 4 + 6) must be green for all four hubs | Deleting legacy while a hub is still legacy-authoritative would strand traffic | REQ-001 preflight gate refuses removal until the activation manifest shows all four hubs on the compiled generation with zero open canary mismatches |
-| Dependency | Phase `003-execution-verify-commit/` (Stage 6 destination rollout) | Cleanup must not precede destination-local PREPARE/VERIFY/COMMIT being live | Sequenced after 003/006; cleanup only removes the legacy read path, never a destination effect |
+| Dependency | Phase `009-parent-hub-rollout/` (Stages 4 + 6) must be green for all four hubs | Deleting legacy while a hub is still legacy-authoritative would strand traffic | REQ-001 preflight gate refuses removal until the activation manifest shows all four hubs on the compiled generation with zero open canary mismatches |
+| Dependency | Phase `006-execution-verify-commit/` (Stage 6 destination rollout) | Cleanup must not precede destination-local PREPARE/VERIFY/COMMIT being live | Sequenced after 003/006; cleanup only removes the legacy read path, never a destination effect |
 | Risk | A per-skill deletion changes route-gold output | Silent routing regression | Route-gold replay after every deletion; drift check on the compiled fingerprint; retained prior generation for immediate byte-exact rollback |
 | Risk | Alias removal opens a fallback/default-union path | Over-emission (violates hard constraint) | REQ-006 zero-signal + singular-omission fixtures assert typed `defer`, no union |
 | Risk | Pressure to edit the scorer so the cleaned route passes | Loss of baseline comparability | REQ-007: scorer edit is a cleanup FAILURE; only the compatibility projector may change fixtures |
@@ -152,9 +152,9 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 
 **Gate satisfied by this phase:** Stage 7 — *Fleet cleanup* of the master plan's SHARED MIGRATION-GATE MODEL (`../spec.md`, and synthesis §9). The gate to advance Stage 7 is **per-skill deletion gates** (incl. N=1 via the identical compiler path); the reverse gate is **retain prior generation during the window**.
 
-**Upstream gate this phase depends on:** Stage 6 — *Destination rollout* (owned by phases `003-execution-verify-commit/` and `006-parent-hub-rollout/*`) and Stage 4 — *Per-hub canary* (owned by `006-*`) must be green for **every** hub before any deletion here begins. Concretely: **nothing in this phase activates before phase 006 completes fleet-wide** (all four hubs canaried + rolled out on the compiled generation).
+**Upstream gate this phase depends on:** Stage 6 — *Destination rollout* (owned by phases `006-execution-verify-commit/` and `009-parent-hub-rollout/*`) and Stage 4 — *Per-hub canary* (owned by `006-*`) must be green for **every** hub before any deletion here begins. Concretely: **nothing in this phase activates before phase 006 completes fleet-wide** (all four hubs canaried + rolled out on the compiled generation).
 
-**Downstream:** none. `008-fleet-cleanup/` is the terminal phase; no later phase activates on its completion. Its own gate is therefore inward-facing — per-skill deletion cannot proceed to the next skill until the current skill's route-gold + drift check are green and its prior generation is retained.
+**Downstream:** none. `011-fleet-cleanup/` is the terminal phase; no later phase activates on its completion. Its own gate is therefore inward-facing — per-skill deletion cannot proceed to the next skill until the current skill's route-gold + drift check are green and its prior generation is retained.
 
 **Hard constraints (inherited, every phase):** deterministic offline route-gold replay preserved; **never** touch the shared scorer `router-replay.cjs`; authority stays destination-local (a proof/recommendation is never a capability); reversible + gated (fenced CAS activation, retained prior generation); no over-emission.
 
@@ -166,7 +166,15 @@ Retire the legacy dual-read resolution path fleet-wide behind reversible per-ski
 <!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7, §10)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§5.3, §9 Stage 7, §10)
 - **Phase parent / shared gate model**: `../spec.md`
-- **Upstream dependency**: `../006-parent-hub-rollout/` (Stages 4 + 6), `../003-execution-verify-commit/` (Stage 6)
+- **Upstream dependency**: `../009-parent-hub-rollout/` (Stages 4 + 6), `../006-execution-verify-commit/` (Stage 6)
 - **Plan**: `plan.md` · **Tasks**: `tasks.md`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `010-learning-overlay` |
+| **Successor** | `012-non-hub-rollout` |

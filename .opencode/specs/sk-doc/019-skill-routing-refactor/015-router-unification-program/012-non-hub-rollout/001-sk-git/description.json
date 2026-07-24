@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/001-sk-git",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git",
   "description": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer",
   "keywords": [
     "sk-git",
@@ -18,15 +18,14 @@
     "typed",
     "scorer"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.691Z",
+  "lastUpdated": "2026-07-24T12:10:59.340Z",
   "specId": "001",
   "folderSlug": "sk-git",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "009-non-hub-rollout"
+    "012-non-hub-rollout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

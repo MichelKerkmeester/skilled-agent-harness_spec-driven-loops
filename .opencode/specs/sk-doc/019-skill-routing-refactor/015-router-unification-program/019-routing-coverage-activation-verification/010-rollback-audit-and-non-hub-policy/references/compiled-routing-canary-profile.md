@@ -4,7 +4,7 @@
 > promotion-owner role, observation window, pass/fail thresholds, and rollback trigger,
 > so the staged cutover (`011-activation-cutover-p4`) has a concrete, findable contract
 > to execute against. **This child does not run the canary** — it only names it.
-> Satisfies the open `012-default-on-decision/checklist.md:66` CHK-004 (informational
+> Satisfies the open `016-default-on-decision/checklist.md:66` CHK-004 (informational
 > cross-reference; this child edits none of `012`'s files).
 
 ## Canary profile
@@ -69,7 +69,7 @@ the divergence is root-caused.
 
 ## Cross-references (informational — this child edits none of these)
 
-- `012-default-on-decision/checklist.md:66` CHK-004 — the sibling item this contract
+- `016-default-on-decision/checklist.md:66` CHK-004 — the sibling item this contract
   satisfies.
 - `011-activation-cutover-p4` — the owner/executor of the actual staged canary run.
 - `spec.md` REQ-006 / SC-006 and this packet's `checklist.md` CHK-033.

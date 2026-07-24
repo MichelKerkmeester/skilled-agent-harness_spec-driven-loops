@@ -12,13 +12,13 @@ const crypto = require('node:crypto');
 const {
   canonicalize,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   compile,
   deriveDegeneracy,
   destinationKey,
   qualifiedDestinationId,
-} = require('../../../001-compiler-n1-shadow/compiler/compiler.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/compiler.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

@@ -14,13 +14,13 @@ const path = require('node:path');
 const {
   canonicalize,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   projectToRouteGold,
-} = require('../../../002-decision-evaluator/lib/projector.cjs');
+} = require('../../../005-decision-evaluator/lib/projector.cjs');
 const {
   sealCertificate,
-} = require('../../../005-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
+} = require('../../../008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs');
 const {
   artifactBytes,
   compileRegistry,

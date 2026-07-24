@@ -6,7 +6,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation"
     last_updated_at: "2026-07-22T06:53:44Z"
     last_updated_by: "claude"
     recent_action: "All four workstreams shipped and verified; conformed plan to the Level-2 template."
@@ -64,7 +64,7 @@ Test-first per fix; verify the release invariants (frozen scorer SHAs, compiled-
 
 ### Pattern
 
-Two byte-faithful copies of the compiled engine: the promoted runtime under `.opencode/bin/lib/compiled-routing/` (what serves) and the authored spec-tree twin under `007-unified-refactor-implementation/` (the source of record). The frozen skill-benchmark replay is the parity oracle.
+Two byte-faithful copies of the compiled engine: the promoted runtime under `.opencode/bin/lib/compiled-routing/` (what serves) and the authored spec-tree twin under `015-router-unification-program/` (the source of record). The frozen skill-benchmark replay is the parity oracle.
 
 ### Key Components
 - **Per-hub router** (`00N-<hub>/lib/router.cjs`): matcher and scorer (F005).

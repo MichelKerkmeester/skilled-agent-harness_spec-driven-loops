@@ -16,10 +16,10 @@ const path = require('path');
 
 const {
   canonicalBytes,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   parseRouteDecisionShape,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 const {
   computeCorpusHash,
   validateCorpus,
@@ -305,9 +305,9 @@ function runStaticGates() {
   assert.deepStrictEqual(
     requireCalls,
     [
-      '../../../000-contract-schemas/lib/canonical.cjs',
-      '../../../002-decision-evaluator/lib/decision-contract.cjs',
-      '../../../004-recovery-ladder/recovery-ladder.v1.json',
+      '../../../003-contract-schemas/lib/canonical.cjs',
+      '../../../005-decision-evaluator/lib/decision-contract.cjs',
+      '../../../007-recovery-ladder/recovery-ladder.v1.json',
     ],
     'controller dependency boundary widened'
   );
@@ -614,7 +614,7 @@ function runReplay() {
     },
     hardFailures,
     externalOracle: {
-      validator: '002-decision-evaluator/lib/decision-contract.cjs#parseRouteDecisionShape',
+      validator: '005-decision-evaluator/lib/decision-contract.cjs#parseRouteDecisionShape',
       passingAssertions: rows.length,
     },
     sharedBudgetTeeth,

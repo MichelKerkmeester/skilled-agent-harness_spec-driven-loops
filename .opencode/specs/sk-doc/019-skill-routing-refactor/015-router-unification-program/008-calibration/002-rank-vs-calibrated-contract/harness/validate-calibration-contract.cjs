@@ -28,13 +28,13 @@ const { CertificateRegistry } = require('../lib/certificate-registry.cjs');
 const { projectAll } = require('../lib/compatibility-projector.cjs');
 const {
   canonicalBytes,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   computeCorpusHash,
 } = require('../../001-holdout-corpus/lib/calibration-corpus.cjs');
 const {
   parseRouteDecisionShape,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TRUSTED PATHS AND DIGESTS
@@ -55,15 +55,15 @@ const FIXTURE_PATH = path.join(PHASE_ROOT, 'fixtures/calibration-cases.v1.json')
 const IMPLEMENTATION_ROOT = path.join(
   REPO_ROOT,
   '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
-  '007-unified-refactor-implementation'
+  '015-router-unification-program'
 );
 const CORPUS_DIRECTORY = path.join(
   IMPLEMENTATION_ROOT,
-  '005-calibration/001-holdout-corpus/fixtures/corpora'
+  '008-calibration/001-holdout-corpus/fixtures/corpora'
 );
 const SERVING_POLICY_PATH = path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/fixtures/compiled-policy.multimode.json'
+  '003-contract-schemas/fixtures/compiled-policy.multimode.json'
 );
 const PROTECTED_DIGESTS = Object.freeze({
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs':
@@ -253,7 +253,7 @@ function assertSourceDiscipline() {
       const isLocal = dependency.startsWith('.');
       const isBuiltin = allowedBuiltins.has(dependency);
       assert.ok(isLocal || isBuiltin, `external dependency ${dependency} in ${file}`);
-      if (dependency.includes('000-contract-schemas')) {
+      if (dependency.includes('003-contract-schemas')) {
         assert.ok(
           dependency.endsWith('/lib/canonical.cjs'),
           `non-canonical contract dependency in ${file}`
@@ -327,7 +327,7 @@ assert.strictEqual(
 );
 assert.strictEqual(
   calibrationEnvelopeSchema.properties.decision.$ref,
-  '../../../000-contract-schemas/schemas/route-decision.v1.schema.json#/$defs/routeDecision'
+  '../../../003-contract-schemas/schemas/route-decision.v1.schema.json#/$defs/routeDecision'
 );
 const checklistContent = assertDocumentAnchors('checklist.md', [
   'protocol',
@@ -900,7 +900,7 @@ const report = {
   },
   negativeReasons,
   externalOracle: {
-    validator: '002-decision-evaluator/lib/decision-contract.cjs#parseRouteDecisionShape',
+    validator: '005-decision-evaluator/lib/decision-contract.cjs#parseRouteDecisionShape',
     rankOnlyRoute: 'pass',
     licensedDecision: 'pass',
     evidenceKinds: licensed.decision.route.evidence.map((entry) => entry.kind),

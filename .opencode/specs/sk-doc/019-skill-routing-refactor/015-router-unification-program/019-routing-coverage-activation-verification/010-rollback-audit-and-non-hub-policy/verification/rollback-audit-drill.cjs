@@ -25,9 +25,9 @@ const path = require('path');
 const crypto = require('crypto');
 
 const IMPL_ROOT = path.resolve(__dirname, '..', '..', '..');
-const activateHub = require(path.join(IMPL_ROOT, '010-live-activation', 'lib', 'activate-hub.cjs'));
-const flipServing = require(path.join(IMPL_ROOT, '011-runtime-engine', 'lib', 'flip-serving.cjs'));
-const REAL_HUB_DIR = path.join(IMPL_ROOT, '010-live-activation', 'activation', 'cli-external-orchestration');
+const activateHub = require(path.join(IMPL_ROOT, '013-live-activation', 'lib', 'activate-hub.cjs'));
+const flipServing = require(path.join(IMPL_ROOT, '014-runtime-engine', 'lib', 'flip-serving.cjs'));
+const REAL_HUB_DIR = path.join(IMPL_ROOT, '013-live-activation', 'activation', 'cli-external-orchestration');
 
 function sha256File(p) {
   return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');

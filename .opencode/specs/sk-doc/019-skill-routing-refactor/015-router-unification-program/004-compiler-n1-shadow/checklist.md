@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the second-review compiler, projection, activation, parity, and harness findings"
@@ -58,7 +58,7 @@ FAILURE MODES:
 - [x] CHK-002 [P0] Technical approach defined in plan.md (compiler → projections → parity → activation)
   - **Evidence**: `plan.md` defines the pure compiler, three projections, read-only parity lane, and fenced activation sequence.
 - [x] CHK-003 [P0] Phase 0 schemas + deterministic serialization frozen and importable; else fail closed (spec REQ-002)
-  - **Evidence**: Phase 0 harness passed 11/11 groups; the compiler imports `../000-contract-schemas/lib/canonical.cjs`, and the missing-schema test returns `ENOENT` with no artifact.
+  - **Evidence**: Phase 0 harness passed 11/11 groups; the compiler imports `../003-contract-schemas/lib/canonical.cjs`, and the missing-schema test returns `ENOENT` with no artifact.
 - [x] CHK-004 [P1] `mcp-code-mode` authored sources confirmed against synthesis §5 line refs
   - **Evidence**: Source ingestion confirms seven leaves, six selector classes, near-tie and zero-signal clauses, and the advisory guard behavior described in synthesis §5.1–§5.2.
 <!-- /ANCHOR:pre-impl -->

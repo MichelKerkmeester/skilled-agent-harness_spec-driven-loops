@@ -5,11 +5,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-const { canonicalize } = require('../../../000-contract-schemas/lib/canonical.cjs');
+const { canonicalize } = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   buildAuthoredSources,
   compareUtf16,
-} = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
 
 const PHASE_ROOT = path.resolve(__dirname, '..');
 
@@ -27,8 +27,8 @@ function findRepoRoot(startPath) {
 
 const REPO_ROOT = findRepoRoot(PHASE_ROOT);
 const SKILL_ROOT = path.join(REPO_ROOT, '.opencode', 'skills', 'system-code-graph');
-const CONTRACT_ROOT = path.resolve(PHASE_ROOT, '..', '..', '000-contract-schemas');
-const BASE_PHASE_ROOT = path.resolve(PHASE_ROOT, '..', '..', '001-compiler-n1-shadow');
+const CONTRACT_ROOT = path.resolve(PHASE_ROOT, '..', '..', '003-contract-schemas');
+const BASE_PHASE_ROOT = path.resolve(PHASE_ROOT, '..', '..', '004-compiler-n1-shadow');
 const BENCHMARK_ROOT = path.join(
   REPO_ROOT,
   '.opencode',

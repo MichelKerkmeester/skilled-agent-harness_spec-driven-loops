@@ -36,9 +36,9 @@ It also resolves **synthesis open-question 4** — "Canonical JSON serialization
 | **Priority** | P0 |
 | **Status** | Implemented — local harness green; strict packet validation delegated to orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `000-contract-schemas` |
-| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
-| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` |
+| **Branch** | `003-contract-schemas` |
+| **Parent** | `../spec.md` (Router-Unification Program) |
+| **Design source** | `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,9 +86,9 @@ Freeze one versioned schema family, one canonical-JSON serialization rule, and o
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `000-contract-schemas/spec.md` | Create | This specification |
-| `000-contract-schemas/plan.md` | Create | Build approach for the schema set, serialization/hashing rules, and harness |
-| `000-contract-schemas/tasks.md` | Create | Ordered, checkable task list |
+| `003-contract-schemas/spec.md` | Create | This specification |
+| `003-contract-schemas/plan.md` | Create | Build approach for the schema set, serialization/hashing rules, and harness |
+| `003-contract-schemas/tasks.md` | Create | Ordered, checkable task list |
 
 > Schema artifacts, the serialization/hashing reference, and the harness are *design deliverables described* by these docs; their concrete file layout is proposed in `plan.md`. No live routing surface is touched by this phase.
 <!-- /ANCHOR:scope -->
@@ -232,4 +232,12 @@ This phase satisfies **Stage 0 — Baseline freeze** of the shared migration-gat
 - **Build approach**: See `plan.md`
 - **Task breakdown**: See `tasks.md`
 - **Phase parent**: `../spec.md`
-- **Design source**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2, §2.1, §2.3, §5, §8, §9, §10, §11.4)
+- **Design source**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2, §2.1, §2.3, §5, §8, §9, §10, §11.4)
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `002-default-mode-implementation` |
+| **Successor** | `004-compiler-n1-shadow` |

@@ -33,5 +33,13 @@ Activate the compiled contract on the parent hubs, **one hub at a time, in incre
 001 → 002 → 003. Each satisfies migration Stage 4 (per-hub canary) and, for effect-capable legs, Stage 6 (destination rollout). No hub activates before its predecessor's canary + rollback drill pass.
 
 ## RELATED DOCUMENTS
-- **Design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§7 archetype mapping, §2.2 identity)
+- **Design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§7 archetype mapping, §2.2 identity)
 - **Parent Spec**: `../spec.md`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `008-calibration` |
+| **Successor** | `010-learning-overlay` |

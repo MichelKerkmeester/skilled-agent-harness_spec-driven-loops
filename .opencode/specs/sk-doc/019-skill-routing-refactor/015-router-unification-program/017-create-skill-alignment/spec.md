@@ -24,7 +24,7 @@ FAILURE MODES:
 
 `sk-doc:create-skill` now generates parent hubs in an explicit legacy or compiled-ready state. Both templates emit the additive directive; ready generation uses the canonical manifest minter and freshness predicate, while legacy remains the no-manifest compatibility default.
 
-This packet implements the onboarding-side contract owned by `../012-default-on-decision/decision-record.md`. A generated parent hub is born in one of two explicit states: **compiled-ready**, where create-skill mints and verifies the canonical fresh manifest, or **legacy**, where no manifest is emitted and the hub follows the existing routing path by construction.
+This packet implements the onboarding-side contract owned by `../016-default-on-decision/decision-record.md`. A generated parent hub is born in one of two explicit states: **compiled-ready**, where create-skill mints and verifies the canonical fresh manifest, or **legacy**, where no manifest is emitted and the hub follows the existing routing path by construction.
 
 ---
 
@@ -38,7 +38,7 @@ This packet implements the onboarding-side contract owned by `../012-default-on-
 | **Status** | Implemented |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Consumed decision** | `../012-default-on-decision/decision-record.md` (eligibility and fallback authority) |
+| **Consumed decision** | `../016-default-on-decision/decision-record.md` (eligibility and fallback authority) |
 | **Blast radius** | Generator and templates only during implementation; existing skills remain unchanged unless regenerated explicitly |
 <!-- /ANCHOR:metadata -->
 
@@ -238,11 +238,19 @@ Both parent-hub templates must render this block inside `## 2. SMART ROUTING`, i
 
 ## RELATED DOCUMENTS
 
-- **Eligibility and fallback authority**: `../012-default-on-decision/decision-record.md`
-- **Default-on program**: `../012-default-on-decision/spec.md`
+- **Eligibility and fallback authority**: `../016-default-on-decision/decision-record.md`
+- **Default-on program**: `../016-default-on-decision/spec.md`
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
 - **Verification checklist**: `checklist.md`
 - **Implementation record**: `implementation-summary.md`
 - **Current create-skill workflow**: `.opencode/skills/sk-doc/create-skill/SKILL.md`
 - **Current parent initializer**: `.opencode/skills/sk-doc/create-skill/scripts/init_skill.py`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `016-default-on-decision` |
+| **Successor** | `018-benchmark-alignment` |

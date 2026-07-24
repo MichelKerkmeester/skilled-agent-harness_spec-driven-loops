@@ -2,7 +2,7 @@
 
 const {
   ExecutionProtocolError,
-} = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
+} = require('../../../006-execution-verify-commit/lib/execution-plane.cjs');
 
 function commitActor(plane, leg, verification, destination, options) {
   if (leg.target.role !== 'actor' || leg.target.mutatesWorkspace !== true) {

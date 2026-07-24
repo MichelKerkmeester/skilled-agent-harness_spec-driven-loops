@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/006-feature-catalogs",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/006-feature-catalogs",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
     "created_at": "2026-07-20T21:51:34.999Z",
-    "last_save_at": "2026-07-24T10:52:37.259Z",
+    "last_save_at": "2026-07-24T12:11:50.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:243739725431d63d0fded853ee5806204cd7ba1060156cea2a1637251c237c0b",
+    "source_fingerprint": "sha256:2c72d9d72293cadd2549fcd7919da8d53ddd4066ab86ad8da8e626aad618a12c",
     "source_doc_hashes": {
-      "spec.md": "edbabcb9108b776c487379d7da39b1313ada441307b53fdfdb8579732bfba888",
+      "spec.md": "474f5219e63a86ee791b7523bf90d5eecf7d3e990604ac71a6827a31a41a8b9b",
       "plan.md": "9290a50302cf01365ea1af27392388a1161803c66570b734eed67cc0205651f1",
       "tasks.md": "d2a8f7e5e77a18b6e071cf3894b88d18cde20d858ea6d16cf3ed508f62bdb59f",
       "checklist.md": "7511a831eb2bce81888408ce1ff7a76acd9c751ffef8ccf027b3a00cb88a5ec3",

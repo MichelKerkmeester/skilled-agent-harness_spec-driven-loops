@@ -7,7 +7,7 @@ const {
   computeBasePolicyHash,
   computeEffectivePolicyHash,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 
 const ROLE_BY_PACKET_KIND = Object.freeze({
   transport: 'transport',
@@ -127,7 +127,7 @@ function assertNoTransportApprover(destinationGraph) {
 
 // A same-hub tie can only ever be `surfaceBundle` when it carries exactly one
 // actor-role target alongside one-or-more evidence-role targets (the shared
-// decision-contract's own definition, 002-decision-evaluator/lib/evaluator.cjs
+// decision-contract's own definition, 005-decision-evaluator/lib/evaluator.cjs
 // isValidPolicy). mcp-tooling declares no evidence-role destination of its own
 // (its modes are actor/transport only), so this always resolves orderedBundle
 // here -- computed generically, like sk-design/sk-code's registry-compiler,

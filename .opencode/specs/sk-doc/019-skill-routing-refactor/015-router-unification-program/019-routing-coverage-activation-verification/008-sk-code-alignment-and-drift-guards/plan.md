@@ -94,7 +94,7 @@ This child corrects a documentation claim and adds test/orchestration surface ov
 | `alignment-verification-automation.md §5` (~L48-52) | Describes verification automation with no backlink to the real guard | Add an explicit backlink to `sk-code-router-sync.vitest.ts` | Backlink present; §5 names the file by path |
 | `verify_alignment_drift.py` (SUPPORTED_EXTENSIONS L39-51) | Markdown-blind by construction; frozen extension set for TS/JS/Py/Shell/Rust/JSON | Add `--check-router` (default off) markdown RESOURCE_MAP parser (P1) | Default invocation byte-behavior-identical; `--check-router` catches a seeded drift fixture |
 | `leaf-resource-contract.cjs` / `selectResourceContract` | No `qualifiedIdToLeaf` export | Add the bidirectional lookup | New Vitest asserts zero orphans in both directions |
-| Promoted runtime request contract (post-002; pre-promotion `011-runtime-engine/lib/compiled-route.cjs:73`) | Prompt-text-only front door | Add an additive optional composite-routing context field (P1) | One LUNA-high case returns a `surfaceBundle` containing `sk-code:code-opencode`; field absence is a no-op on every other hub |
+| Promoted runtime request contract (post-002; pre-promotion `014-runtime-engine/lib/compiled-route.cjs:73`) | Prompt-text-only front door | Add an additive optional composite-routing context field (P1) | One LUNA-high case returns a `surfaceBundle` containing `sk-code:code-opencode`; field absence is a no-op on every other hub |
 | Frozen scorer trio | Read-only digest evidence for the orchestrator's own integrity, never invoked or edited | **Unchanged — not a consumer** | Pre/post SHA-256 identical |
 
 Required inventories before implementation:
@@ -155,7 +155,7 @@ Required inventories before implementation:
 | `002-runtime-promotion-and-status-foundation` | Internal | Planned (not started) | REQ-006 (P1) cannot target a stable path; REQ-001..REQ-004 (P0) are unaffected and proceed independently |
 | `sk-code-router-sync.vitest.ts` (existing guard) | Internal | Confirmed present, 193 lines | No target file for REQ-002's bijection additions or REQ-003's orchestration |
 | `leaf-resource-contract.cjs` (existing module) | Internal | Confirmed present | No target for the `qualifiedIdToLeaf` export |
-| `013-create-skill-alignment` (Planned) | Internal | Planned (not started) | Its "single-authority interface" language must reference the same interface this child publishes; sequencing risk only, not a hard block |
+| `017-create-skill-alignment` (Planned) | Internal | Planned (not started) | Its "single-authority interface" language must reference the same interface this child publishes; sequencing risk only, not a hard block |
 
 <!-- /ANCHOR:dependencies -->
 

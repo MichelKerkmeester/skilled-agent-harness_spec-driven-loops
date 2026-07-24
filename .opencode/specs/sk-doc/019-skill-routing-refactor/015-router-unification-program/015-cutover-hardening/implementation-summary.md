@@ -33,10 +33,10 @@ contextType: "implementation"
 
 A 10-iteration `/deep:review` of the P4b compiled-routing cutover returned **CONDITIONAL** with nine findings (0 P0, 7 P1, 2 P2) — the routing correctness itself confirmed sound, the rest robustness/evidence hardening. This packet now closes all nine.
 
-- **P1-004 — release-readiness reconciliation.** The `010-live-activation` checklist claimed advisor-hook machine-enforcement was *complete* and asserted a "fresh 3-model × 7-hub sweep," contradicting `spec.md` (which says enforcement is *in progress* and treats post-flip verification as T9 + flag-off inertness) and both impl-summaries. Corrected the checklist downward: machine-enforcement reads *in progress* (the enrichment is committed with flag-off byte-parity proven), and the post-flip sweep is framed as the bounded 2-prompt-per-hub sample it was, citing `real-model/<hub>/verdict.json`. The spec and checklist now agree, and every retained claim is traceable.
+- **P1-004 — release-readiness reconciliation.** The `013-live-activation` checklist claimed advisor-hook machine-enforcement was *complete* and asserted a "fresh 3-model × 7-hub sweep," contradicting `spec.md` (which says enforcement is *in progress* and treats post-flip verification as T9 + flag-off inertness) and both impl-summaries. Corrected the checklist downward: machine-enforcement reads *in progress* (the enrichment is committed with flag-off byte-parity proven), and the post-flip sweep is framed as the bounded 2-prompt-per-hub sample it was, citing `real-model/<hub>/verdict.json`. The spec and checklist now agree, and every retained claim is traceable.
 - **P2-005 — one frozen-scorer contract.** `flip-serving.cjs` and `activate-hub.cjs` each embedded the same three pinned scorer digests and their own `assertScorerFrozen`. Extracted `shared/frozen-scorer-contract.cjs` — a read-only module exporting `PINNED_SCORER_DIGESTS` and a phase-parameterized `assertScorerFrozen(repoRoot, phase)`. Both writers now import it; each keeps a phase-specific failure message (`'the serving flip'` / `'activation'`). The pinned digests are byte-identical to the prior copies and the scorer files are never touched.
 - **P1-001 — crash-safe tuple reconciliation.** `flip-serving.cjs` now runs a `reconcileTuple()` on the idempotent no-op path, under the shared hub lock: a crash-left half-committed tuple (missing/stale serving-flip-record or fence) is rebuilt from the authoritative manifest before the no-op returns.
-- **P1-002 — sandboxed regression harness.** `011-runtime-engine/harness/verify-runtime-engine.cjs` was rewritten to run entirely against a temp SANDBOX copy of `activation/`, via a new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook added to `flip-serving.cjs` and `resolve.cjs`. The harness never touches live state and deletes the sandbox on exit.
+- **P1-002 — sandboxed regression harness.** `014-runtime-engine/harness/verify-runtime-engine.cjs` was rewritten to run entirely against a temp SANDBOX copy of `activation/`, via a new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook added to `flip-serving.cjs` and `resolve.cjs`. The harness never touches live state and deletes the sandbox on exit.
 - **P1-003 — activation confinement.** `activate-hub.cjs` gained a `confineArgs()` gate that runs before any side effect: the hub id must match `^[a-z0-9][a-z0-9-]*$`, the hub dir must resolve inside the activation root, and `--child` must resolve inside the repo.
 - **P1-006 — harness matrix completeness.** The harness adds explicit both-decision coverage (asserts a route AND a negative decision are exercised) and a serve-time identity-MISMATCH fixture (a tampered manifest fails safe to legacy).
 - **P1-007 — single per-hub lock.** `shared/hub-lock.cjs` (new) is the one lock both `flip-serving.cjs` and `activate-hub.cjs` now take, so activation and flip can no longer consume one fence epoch independently.
@@ -61,12 +61,12 @@ Round 2's write-ahead journal rebuilds the serving-flip record only during recov
 |------|------|--------|
 | Shared contract | `shared/frozen-scorer-contract.cjs` | Create — single source of the pinned digests + drift check |
 | Shared lock | `shared/hub-lock.cjs` | Create — single per-hub lock with owner identity (pid + nonce + timestamp) + 10-min lease and guarded stale reclaim. **Round 2**: rewritten on an atomic `mkdir` lock directory + `owner.json` for a real winner election (RR-P1-A); header comment corrected to the honest mechanism + residual (RR-P2-C) |
-| Serving flip | `011-runtime-engine/lib/flip-serving.cjs` | Import the frozen-scorer contract (drop local digest copy + unused `crypto`/`sha256`/`fileHash`); add `reconcileTuple()` on the idempotent no-op path; take the shared hub lock; add `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook. **Round 2**: `reconcileTuple()` replaced by a write-ahead journal (`.flip-journal.json`) + `recoverFromJournal()`, so an interrupted flip recovers to the intended advanced fence, not a stale one (RR-P1-B) |
-| Activation driver | `010-live-activation/lib/activate-hub.cjs` | Import the frozen-scorer contract (drop local digest copy); add `confineArgs()` pre-effect gate; take the shared hub lock |
-| Runtime resolver | `011-runtime-engine/lib/resolve.cjs` | Add `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook so the harness can sandbox activation reads |
-| Compiled-route cache | `011-runtime-engine/lib/compiled-route.cjs` | Document the process-lifetime engine cache as a contract (comment); no behavior change |
-| Regression harness | `011-runtime-engine/harness/verify-runtime-engine.cjs` | Rewritten to run entirely against a temp SANDBOX copy of `activation/`; adds both-decision, serve-time identity-mismatch, and shared-lock (live-holder-refused / stale-holder-reclaimed) fixtures; deletes the sandbox on exit. **Round 2**: adds a write-ahead-journal recovery fixture; the two shared-lock fixtures re-verified against the rebuilt mkdir-dir lock; harness now **10/10** (grown from 9/9) |
-| Evidence | `010-live-activation/checklist.md` | Reconcile CHK-051 + Completion Boundary down to the honest, spec-consistent claim |
+| Serving flip | `014-runtime-engine/lib/flip-serving.cjs` | Import the frozen-scorer contract (drop local digest copy + unused `crypto`/`sha256`/`fileHash`); add `reconcileTuple()` on the idempotent no-op path; take the shared hub lock; add `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook. **Round 2**: `reconcileTuple()` replaced by a write-ahead journal (`.flip-journal.json`) + `recoverFromJournal()`, so an interrupted flip recovers to the intended advanced fence, not a stale one (RR-P1-B) |
+| Activation driver | `013-live-activation/lib/activate-hub.cjs` | Import the frozen-scorer contract (drop local digest copy); add `confineArgs()` pre-effect gate; take the shared hub lock |
+| Runtime resolver | `014-runtime-engine/lib/resolve.cjs` | Add `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook so the harness can sandbox activation reads |
+| Compiled-route cache | `014-runtime-engine/lib/compiled-route.cjs` | Document the process-lifetime engine cache as a contract (comment); no behavior change |
+| Regression harness | `014-runtime-engine/harness/verify-runtime-engine.cjs` | Rewritten to run entirely against a temp SANDBOX copy of `activation/`; adds both-decision, serve-time identity-mismatch, and shared-lock (live-holder-refused / stale-holder-reclaimed) fixtures; deletes the sandbox on exit. **Round 2**: adds a write-ahead-journal recovery fixture; the two shared-lock fixtures re-verified against the rebuilt mkdir-dir lock; harness now **10/10** (grown from 9/9) |
+| Evidence | `013-live-activation/checklist.md` | Reconcile CHK-051 + Completion Boundary down to the honest, spec-consistent claim |
 
 <!-- /ANCHOR:what-built -->
 
@@ -105,11 +105,11 @@ The remaining seven findings (P1-001, P1-002, P1-003, P1-006, P1-007, P1-008, P2
 - `node --check` — clean on all 7 touched runtime files: `hub-lock.cjs`, `frozen-scorer-contract.cjs`, `flip-serving.cjs`, `resolve.cjs`, `compiled-route.cjs`, `activate-hub.cjs`, `verify-runtime-engine.cjs`.
 - Pinned digests byte-identical to the prior inline copies; `assertScorerFrozen` reports no drift on the live scorer (3 files hashed).
 - `harness/verify-runtime-engine.cjs` — **9/9 at round-1 close** (discriminated-union, both-decision coverage, flag-off inertness, serve-time identity match, serve-time identity mismatch, fenced-CAS byte-exact rollback+reflip, shared-lock live-holder refused, shared-lock stale-holder reclaimed, flip-time identity refused) — now **10/10**, see Round 2 below.
-- P1-002 proof: the LIVE `010-live-activation/activation` tree is byte-identical before and after a harness run (git-dirty 0) — the harness ran only in its sandbox.
+- P1-002 proof: the LIVE `013-live-activation/activation` tree is byte-identical before and after a harness run (git-dirty 0) — the harness ran only in its sandbox.
 - P1-003 teeth: `activate-hub --hub "../../evil"` fails with "unsafe hub id" before any effect.
 - P1-001 teeth (round-1 mechanism, superseded by the Round 2 write-ahead journal below — `reconcileTuple()` no longer exists in the code): with sk-code's serving-flip-record deleted in a sandbox, `flip-serving --hub sk-code` printed "ALREADY-COMPILED (reconciled: serving-flip-record)" and rebuilt a record matching the manifest with `reconciled:true`.
 - `activate-hub --verify` still works under the new lock+confinement (sandbox): "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock`.
-- `validate.sh --strict` — Errors: 0 on `010-live-activation`, `011-runtime-engine`, and this packet.
+- `validate.sh --strict` — Errors: 0 on `013-live-activation`, `014-runtime-engine`, and this packet.
 
 ### Round 2 (re-review remediation)
 
@@ -134,7 +134,7 @@ The remaining seven findings (P1-001, P1-002, P1-003, P1-006, P1-007, P1-008, P2
 <!--
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-cutover-hardening"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening"
     last_updated_at: "2026-07-20T00:00:00.000Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Round 3: restored the audit-record self-heal Round 2's journal had dropped for the deleted-after-clean-flip case — flip-serving.cjs rebuilds a missing serving-flip-record from the manifest on the idempotent path (reconstructed:true); harness 11/11 (new record-self-heal check), node --check clean, live activation tree untouched (git-dirty 0). The external reducer/strategy-anchor blocker that halted Round 2's re-review is now fixed (system-deep-loop/033, commit 208f43f641); a 3-iteration confirming /deep:review cleared the reducer end-to-end"

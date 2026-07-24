@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled the completion record to the implemented+committed state (code landed in 4153cbebd8)"
@@ -70,7 +70,7 @@ Implemented and committed in 4153cbebd8. The list below is the delivered scope, 
 
 ### Runtime stabilization
 
-Promoted the resolver, engine loader, seven activation manifests, and seven per-hub bundles to a stable runtime path at `.opencode/bin/lib/compiled-routing/` (verified on disk); pointed the shim at it via `.opencode/bin/compiled-route-sync.cjs`; kept the spec-tree copy as the authored source that builds/copies into place; deleted the residual-coupling branch and corrected the stale parent follow-up line at `../../012-default-on-decision/implementation-summary.md`.
+Promoted the resolver, engine loader, seven activation manifests, and seven per-hub bundles to a stable runtime path at `.opencode/bin/lib/compiled-routing/` (verified on disk); pointed the shim at it via `.opencode/bin/compiled-route-sync.cjs`; kept the spec-tree copy as the authored source that builds/copies into place; deleted the residual-coupling branch and corrected the stale parent follow-up line at `../../016-default-on-decision/implementation-summary.md`.
 
 ### Separation and observability
 
@@ -96,7 +96,7 @@ Delivery follows the ordered steps in `plan.md`: an operator go-ahead to begin, 
 <!-- ANCHOR:arch-decisions -->
 ## Architecture Decisions Summary
 
-The full context, alternatives, and consequences live in this packet's `decision-record.md` and the parent `../../012-default-on-decision/decision-record.md`.
+The full context, alternatives, and consequences live in this packet's `decision-record.md` and the parent `../../016-default-on-decision/decision-record.md`.
 
 | Decision | Status | Planned Effect |
 |----------|--------|----------------|
@@ -135,7 +135,7 @@ The full context, alternatives, and consequences live in this packet's `decision
 | Route-gold compiled-versus-legacy parity | Compiled byte-identical to legacy on all seven hubs (invariant held at 4153cbebd8); frozen scorer consumed read-only |
 | Frozen scorer digest comparison | The three scorer SHA-256 digests unchanged, 3/3 (invariant held at 4153cbebd8) |
 | Durable no-spec-import rule fixtures | Shipped and wired into CI in 4153cbebd8 |
-| Spec-folder strict validation | Re-run during this reconciliation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation --strict`; Errors 0 on this folder |
+| Spec-folder strict validation | Re-run during this reconciliation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation --strict`; Errors 0 on this folder |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -169,7 +169,7 @@ The full context, alternatives, and consequences live in this packet's `decision
 - [x] Choose the stable runtime directory for the promoted closure — `.opencode/bin/lib/compiled-routing/` (OPEN QUESTIONS Q1 answered; landed in 4153cbebd8).
 - [x] Phase 1 inventory and baseline capture — completed (4153cbebd8).
 - [x] Implement the closure promotion, eligibility split, status probe, ENV entry, tri-state flag, breadcrumbs, and durable rule — completed (4153cbebd8).
-- [x] Correct the stale residual-coupling follow-up at `../../012-default-on-decision/implementation-summary.md` to bind the Accepted ADR-003 promotion — completed (4153cbebd8).
+- [x] Correct the stale residual-coupling follow-up at `../../016-default-on-decision/implementation-summary.md` to bind the Accepted ADR-003 promotion — completed (4153cbebd8).
 - [ ] Hand the stable status contract to the downstream benchmark, playbooks, archiving, and cutover children (consumed by 003-011).
 - [ ] Wire the promoted-copy freshness check in the downstream P1 drift CI (`../010-rollback-audit-and-non-hub-policy/`) without editing the frozen scorer files.
 <!-- /ANCHOR:follow-up -->

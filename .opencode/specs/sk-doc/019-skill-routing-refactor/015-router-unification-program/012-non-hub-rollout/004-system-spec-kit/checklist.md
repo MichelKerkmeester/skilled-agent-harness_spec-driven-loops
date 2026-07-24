@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit"
     last_updated_at: "2026-07-19T10:39:28Z"
     last_updated_by: "codex"
     recent_action: "Verified every P0 and P1 rollout check"
@@ -62,7 +62,7 @@ _memory:
 ## Code Quality
 
 - [x] CHK-010 [P0] The compiler is reused, not copied or edited.
-  - **Evidence**: Target code imports `../../../001-compiler-n1-shadow/compiler/index.cjs`; there is no target-local compiler implementation.
+  - **Evidence**: Target code imports `../../../004-compiler-n1-shadow/compiler/index.cjs`; there is no target-local compiler implementation.
 - [x] CHK-011 [P0] The adapter is identity-agnostic at the policy layer.
   - **Evidence**: The frozen compiler contains no `system-spec-kit` literal or `skillId` equality branch; target identity comes from authored frontmatter and the one-mode leaf manifest.
 - [x] CHK-012 [P0] Actual authored source hashes survive parser projection.

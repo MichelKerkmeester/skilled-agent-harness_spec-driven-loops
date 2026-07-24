@@ -33,7 +33,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the hub manifest schema (`010-live-activation/activation/<hub>/manifest.json`) and confirm the 3 frozen-trio digest values against `010-live-activation/implementation-summary.md`.
+- [ ] T001 Read the hub manifest schema (`013-live-activation/activation/<hub>/manifest.json`) and confirm the 3 frozen-trio digest values against `013-live-activation/implementation-summary.md`.
 - [ ] T002 [P] Confirm `leaf-resource-contract.cjs`'s current export surface for an additive `qualifiedIdToLeaf`.
 - [ ] T003 [P] Re-anchor `run-skill-benchmark.cjs`'s verdict switch on the named symbol (not the ±2-10 line citation) before editing.
 - [ ] T004 [P] Confirm `build-report.cjs`'s current renderer entrypoints for an additive `compiledRouting` block.

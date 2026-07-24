@@ -32,7 +32,7 @@ contextType: "implementation"
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A complete, verified research base for the `015-routing-coverage-activation-verification` program: 25 deep-research iterations across four models and two dispatch queues investigated how to fully integrate, enable-by-default, and verify the compiled skill-router, and dug for gaps beyond the four originally-named coverage gaps. The loop reframed the entire program — default-on is a structural no-op end-to-end (the OpenCode bridge and the CLI `subprocess.ts` interface both drop the compiled decision before any agent sees it, and the flag is stripped from both daemon child-env allowlists), so the load-bearing work is a P0 activation foundation, and the four named coverage gaps (catalogs, benchmark, playbooks, durable archiving) are a downstream P3 join gate, not parallel busywork.
+A complete, verified research base for the `019-routing-coverage-activation-verification` program: 25 deep-research iterations across four models and two dispatch queues investigated how to fully integrate, enable-by-default, and verify the compiled skill-router, and dug for gaps beyond the four originally-named coverage gaps. The loop reframed the entire program — default-on is a structural no-op end-to-end (the OpenCode bridge and the CLI `subprocess.ts` interface both drop the compiled decision before any agent sees it, and the flag is stripped from both daemon child-env allowlists), so the load-bearing work is a P0 activation foundation, and the four named coverage gaps (catalogs, benchmark, playbooks, durable archiving) are a downstream P3 join gate, not parallel busywork.
 
 A fresh-Opus synthesis consolidated the 143 raw findings into ranked, deduplicated findings across seven workstreams plus 14 ranked unnamed risks, a P0→P4 enable-by-default safety dependency graph, and a confirmed 002-011 child-spec breakdown. A fresh Sonnet 5 agent with no prior context then adversarially re-verified the load-bearing spine — all 8 must-verify claims plus 12 more top recommendations — against live source with exact line ranges, confirming everything and upgrading two claims from the synthesis's own INFERRED/partial status to fully CONFIRMED. An orchestrator review reconciled both into the authoring brief this program's children (`002`-`011`, including the sibling `006-feature-catalogs` and `007-durable-archiving-and-serving-snapshot` packets authored alongside this summary) are built from.
 
@@ -97,7 +97,7 @@ Strict Level-2 packet validation:
 
 ```
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/001-research \
+  .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/001-research \
   --strict
 ```
 <!-- /ANCHOR:verification -->

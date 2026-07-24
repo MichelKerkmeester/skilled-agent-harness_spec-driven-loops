@@ -9,7 +9,7 @@
 
 const {
   canonicalBytes,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 
 const { buildAuthoredSources, compile } = require('../compiler/index.cjs');
 const { loadAuthoredSources, sha256Bytes } = require('./support.cjs');

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:31:00Z"
     last_updated_by: "claude"
     recent_action: "Reconciled to COMPLETE: all 7 hubs compiled-serving, flipped default-on"
@@ -19,7 +19,7 @@ _memory:
       - "None — all 6 phases shipped; remaining items are follow-ups, not blockers"
     key_files:
       - "system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs"
-      - ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs"
+      - ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
       - "handover.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

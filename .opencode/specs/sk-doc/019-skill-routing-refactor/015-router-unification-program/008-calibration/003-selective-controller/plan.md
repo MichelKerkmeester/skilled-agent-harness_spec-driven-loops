@@ -100,8 +100,8 @@ Design-only phase; no runtime surface is mutated. The table records the *contrac
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `RouteDecisionV1` 4-action algebra (`002`) | The closed decision shape the controller emits | Consume unchanged | Cross-read `../../002-decision-evaluator/` spec; controller adds no new top-level action |
-| `UncertaintyBudgetV1` (`004`) | The single shared clarify/handoff budget | Draw from, do not redefine | Cross-read `../../004-recovery-ladder/`; controller references `userTurns: 1`, adds no second budget |
+| `RouteDecisionV1` 4-action algebra (`002`) | The closed decision shape the controller emits | Consume unchanged | Cross-read `../../005-decision-evaluator/` spec; controller adds no new top-level action |
+| `UncertaintyBudgetV1` (`004`) | The single shared clarify/handoff budget | Draw from, do not redefine | Cross-read `../../007-recovery-ladder/`; controller references `userTurns: 1`, adds no second budget |
 | `CalibrationCertificate` (`005/002`) | Per-slice rank→risk validation artifact | Consume by handle | Cross-read `../002-*`; controller never recomputes calibration, only validates identity |
 | Held-out corpus (`005/001`) | Promotion-metric measurement substrate | Measure against | Cross-read `../001-*`; metrics defined over its slices only |
 | `router-replay.cjs` (shared scorer) | Deterministic route-gold gate | **Not a consumer — never edited** | Confirm no fixture requires a scorer change; a required edit = migration failure (synthesis §8.2, §10) |
@@ -176,7 +176,7 @@ dependencies, so this checkbox remains open.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Design contradiction with the synthesis or an upstream sibling contract (logic-sync), or a fixture that can only pass by editing the shared scorer.
-- **Procedure**: This phase writes only three docs into its own folder. Rollback is deletion/revert of `spec.md`, `plan.md`, `tasks.md` in `005-calibration/003-selective-controller/` — no live artifact is touched, so there is nothing else to unwind.
+- **Procedure**: This phase writes only three docs into its own folder. Rollback is deletion/revert of `spec.md`, `plan.md`, `tasks.md` in `008-calibration/003-selective-controller/` — no live artifact is touched, so there is nothing else to unwind.
 - **Reversibility note (design invariant carried into build)**: the eventual controller activation is a fenced CAS with the prior generation retained; a rollback swaps to the byte-identical prior manifest and cannot undo an already-COMMITted external effect — post-effect recovery is destination-owned (synthesis §9, §10).
 <!-- /ANCHOR:rollback -->
 

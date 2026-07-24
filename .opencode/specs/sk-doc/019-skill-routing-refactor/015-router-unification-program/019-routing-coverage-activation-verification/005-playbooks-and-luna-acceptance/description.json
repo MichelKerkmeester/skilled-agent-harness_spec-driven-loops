@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
   "description": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the",
   "keywords": [
     "frozen",
@@ -18,15 +18,14 @@
     "noncritical",
     "status"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.718Z",
+  "lastUpdated": "2026-07-24T12:10:59.490Z",
   "specId": "005",
   "folderSlug": "playbooks-and-luna-acceptance",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "015-routing-coverage-activation-verification"
+    "019-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

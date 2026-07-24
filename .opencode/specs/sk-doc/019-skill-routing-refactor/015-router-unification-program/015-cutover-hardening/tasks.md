@@ -34,7 +34,7 @@ contextType: "implementation"
 
 **Tranche 1 — Quick wins (built)**
 
-- [x] T001 Reconcile P1-004 — correct the `010` checklist so advisor-hook machine-enforcement reads *in progress* (not complete) and the post-flip sweep is framed as the bounded 2-prompt-per-hub sample it was, citing `real-model/<hub>/verdict.json` - [evidence: `010-live-activation/checklist.md` CHK-051 + Completion Boundary now match `spec.md` + both impl-summaries; no remaining spec/checklist contradiction]
+- [x] T001 Reconcile P1-004 — correct the `010` checklist so advisor-hook machine-enforcement reads *in progress* (not complete) and the post-flip sweep is framed as the bounded 2-prompt-per-hub sample it was, citing `real-model/<hub>/verdict.json` - [evidence: `013-live-activation/checklist.md` CHK-051 + Completion Boundary now match `spec.md` + both impl-summaries; no remaining spec/checklist contradiction]
 - [x] T002 Close P2-005 — extract `shared/frozen-scorer-contract.cjs` (pinned digests + phase-parameterized `assertScorerFrozen`); wire `flip-serving.cjs` and `activate-hub.cjs` to it, removing both local digest copies - [evidence: pinned digests byte-identical to prior; `assertScorerFrozen` reports no drift; `verify-runtime-engine.cjs` 6/6 non-destructive; `node --check` clean on all three files]
 
 <!-- /ANCHOR:phase-1 -->
@@ -45,7 +45,7 @@ contextType: "implementation"
 
 **Tranches 2-4 — Crash-safety, harness, trust boundary, cache lifecycle (built)**
 
-- [x] T003 [REQ-005] Isolate the regression harness activation root (env override) so it never mutates live state (P1-002) - [evidence: new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook added to `flip-serving.cjs` + `resolve.cjs`; `verify-runtime-engine.cjs` rewritten to run entirely against a temp SANDBOX copy of `activation/` and delete it on exit; LIVE `010-live-activation/activation` tree byte-identical before/after a harness run (git-dirty 0)]
+- [x] T003 [REQ-005] Isolate the regression harness activation root (env override) so it never mutates live state (P1-002) - [evidence: new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook added to `flip-serving.cjs` + `resolve.cjs`; `verify-runtime-engine.cjs` rewritten to run entirely against a temp SANDBOX copy of `activation/` and delete it on exit; LIVE `013-live-activation/activation` tree byte-identical before/after a harness run (git-dirty 0)]
 - [x] T004 [REQ-005] Add both-decision and per-gate flip-time/serve-time identity-mismatch fixtures to the harness (P1-006) - [evidence: harness now asserts explicit both-decision coverage (a route AND a negative decision are both exercised) and a serve-time identity-MISMATCH fixture (tampered manifest fails safe to legacy); part of the 9/9 harness pass]
 - [x] T005 [REQ-004] Reconcile the manifest/fence/record tuple on the idempotent path before no-op success (P1-001) - [evidence: `reconcileTuple()` in `flip-serving.cjs` runs under the shared hub lock on the idempotent no-op path, rebuilding a missing/stale serving-flip-record or fence from the authoritative manifest; teeth test — with sk-code's serving-flip-record deleted in a sandbox, `flip-serving --hub sk-code` prints "ALREADY-COMPILED (reconciled: serving-flip-record)" and rebuilds a record matching the manifest with `reconciled:true`]
 - [x] T006 [REQ-004] Require one lock/ownership protocol for every manifest/fence writer, incl. `activate-hub` (P1-007) - [evidence: `shared/hub-lock.cjs` (new) is the single per-hub lock; both `flip-serving.cjs` and `activate-hub.cjs` now take it, so activation and flip can't consume one fence epoch]
@@ -59,7 +59,7 @@ A fresh 10-iteration `/deep:review` of the tranches above completed iteration 1,
 
 - [x] T010 Rebuild the per-hub lock's stale reclaim as an atomic winner election, and correct its comment (RR-P1-A, RR-P2-C) - [evidence: `shared/hub-lock.cjs` rebuilt on an atomic `mkdir` lock directory (mkdir is an atomic exclusive create); owner identity (pid + nonce + lease) lives in `owner.json` inside the lock dir; stale reclaim re-checks staleness immediately before clearing the dead dir and re-races the mkdir; header comment corrected to describe the real mechanism (mkdir lock + lease + `kill(pid,0)`) and honestly documents the residual (OS-flock needed for perfect reclaim; PID reuse within an unexpired lease is lease-bounded, not detected); `node --check` clean]
 - [x] T011 Replace `reconcileTuple` with a write-ahead journal so a crash-interrupted flip recovers to the intended advanced fence, not a stale one (RR-P1-B) - [evidence: `flip-serving.cjs` writes `.flip-journal.json` (intent + selectedPolicy + before/after fence) BEFORE mutating the tuple and clears it only AFTER all writes; `recoverFromJournal()` completes an interrupted flip deterministically to the journal's intended fence on the next run; `node --check` clean]
-- [x] T012 Update the harness for the mkdir-dir lock and add write-ahead-journal recovery coverage (RR-P1-A, RR-P1-B) - [evidence: `verify-runtime-engine.cjs` now **10/10** — adds `write-ahead journal: interrupted flip recovered to the intended advanced fence`; the two shared-lock checks (`a live holder is refused`, `a stale holder is reclaimed`) re-verified against the rebuilt mkdir-dir lock; LIVE `010-live-activation/activation` tree byte-identical after the run (git-dirty 0); `activate-hub --verify` still works under the new lock (sandbox): "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock` dir]
+- [x] T012 Update the harness for the mkdir-dir lock and add write-ahead-journal recovery coverage (RR-P1-A, RR-P1-B) - [evidence: `verify-runtime-engine.cjs` now **10/10** — adds `write-ahead journal: interrupted flip recovered to the intended advanced fence`; the two shared-lock checks (`a live holder is refused`, `a stale holder is reclaimed`) re-verified against the rebuilt mkdir-dir lock; LIVE `013-live-activation/activation` tree byte-identical after the run (git-dirty 0); `activate-hub --verify` still works under the new lock (sandbox): "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock` dir]
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -91,8 +91,8 @@ Verification for all nine findings is evidence-based, not task-based — see `ch
 - **Completion record**: See `implementation-summary.md`
 - **Shared contract**: `shared/frozen-scorer-contract.cjs`
 - **Shared lock**: `shared/hub-lock.cjs`
-- **Serving flip**: `011-runtime-engine/lib/flip-serving.cjs`
-- **Activation driver**: `010-live-activation/lib/activate-hub.cjs`
-- **Regression harness**: `011-runtime-engine/harness/verify-runtime-engine.cjs`
+- **Serving flip**: `014-runtime-engine/lib/flip-serving.cjs`
+- **Activation driver**: `013-live-activation/lib/activate-hub.cjs`
+- **Regression harness**: `014-runtime-engine/harness/verify-runtime-engine.cjs`
 
 <!-- /ANCHOR:cross-refs -->

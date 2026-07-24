@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/009-sk-doc-template-alignment",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/009-sk-doc-template-alignment",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
     "created_at": "2026-07-20T21:51:42.834Z",
-    "last_save_at": "2026-07-24T10:52:36.793Z",
+    "last_save_at": "2026-07-24T12:11:50.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:185f196b218f44a7763bbf44c59528b81b276a2341f97a23eccffec897cc5d3e",
+    "source_fingerprint": "sha256:93048855061fc6e860b7c6a15b1f943c4c240a32cd74c11e9d9372d76c3fb856",
     "source_doc_hashes": {
-      "spec.md": "7ef782e48a210e8f2a39d6c8d4fb205f75778a36a530c2e90152120a9b1679d2",
-      "plan.md": "ed307975c49033ab43f8f44dc4613b8e1b788473aa85747789752ef5acdfb6bc",
+      "spec.md": "b69e8bfe4ead89e16070607812312f3b9528a7bc92891567b3b59fb95ffc74d2",
+      "plan.md": "dbd83504936faef6e43d46fcc2c4c291f54c39ef18e5b503a6600acc220251f0",
       "tasks.md": "017cce8e5439d44d69e3e82192809894c194b19963004dba1a3a0311bb192626",
       "checklist.md": "2e023e89251c3d59852672553740df90e547094558fd1266e96de45d3a6b8e0a",
       "implementation-summary.md": "5e54515104d05a859f7e114951ec5d2407c12545478e6da760b86dc7b82d0afc"

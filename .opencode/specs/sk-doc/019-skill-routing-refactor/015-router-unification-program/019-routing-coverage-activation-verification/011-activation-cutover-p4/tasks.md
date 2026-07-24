@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4"
     last_updated_at: "2026-07-21T02:20:48Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Built the controller; setup + mechanism tasks done, execution tasks gated"
@@ -140,5 +140,5 @@ _memory:
 - **Planned-state record**: `implementation-summary.md`
 - **Foundation consumed**: `../002-runtime-promotion-and-status-foundation/`
 - **Rollback + non-hub policy consumed**: `../010-rollback-audit-and-non-hub-policy/`
-- **Siblings required implemented-and-verified**: `../../013-create-skill-alignment/`, `../../014-benchmark-alignment/`
+- **Siblings required implemented-and-verified**: `../../017-create-skill-alignment/`, `../../018-benchmark-alignment/`
 <!-- /ANCHOR:cross-refs -->

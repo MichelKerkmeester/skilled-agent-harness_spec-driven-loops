@@ -11,15 +11,15 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Reconciled status to Complete: all 6 phases shipped and serving (7/7 hubs compiled-serving, parity 49/49). Subsequent deep-review remediation hardened the runtime."
     next_safe_action: "None; core deliverable complete. Tracked follow-up: full 7-hub LUNA-HIGH acceptance sweep (checklist CHK-025)."
     blockers: []
     key_files:
-      - ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
-      - ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs"
+      - ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
+      - ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
       - ".opencode/bin/lib/compiled-route-manifest.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -128,7 +128,7 @@ match | safe-defer | unsafe-misroute | stale
 | `compiled-route-manifest.cjs` | Mint is create-if-absent only; no refresh verb | Update: add a safe refresh path for stale manifests | sk-doc/system-deep-loop manifest `{gen, hash}` matches `compileCanonicalParent(current inputs)` |
 
 Required inventories:
-- Same-class producers: `rg -n 'registry-compiler|canary-router' .opencode/bin/lib/compiled-routing/006-parent-hub-rollout` - every hub's compiler/router pair, so the same over-detection class can be checked in each, not just the 2 known bugs.
+- Same-class producers: `rg -n 'registry-compiler|canary-router' .opencode/bin/lib/compiled-routing/009-parent-hub-rollout` - every hub's compiler/router pair, so the same over-detection class can be checked in each, not just the 2 known bugs.
 - Consumers of changed symbols: `rg -n 'DEFAULT_ON_HUBS|compiled-route-sync' .opencode/bin --glob '*.cjs'` - resolver cohort consumers before the flip.
 - Matrix axes: hub (7) x {coverage build-out, over-detection fix, re-mint, default-on flip} - not every hub needs every axis (sk-design only needs the fix; sk-doc/system-deep-loop need re-mint first).
 - Algorithm invariant: the compiled route set must always be a subset of what legacy would route for the same prompt (never add, never drop) - verified per scenario by the route-gold parity harness.

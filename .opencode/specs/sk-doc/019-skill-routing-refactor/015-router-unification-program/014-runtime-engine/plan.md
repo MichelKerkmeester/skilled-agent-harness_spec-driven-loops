@@ -48,7 +48,7 @@ P4b adds the runtime consumer P4a left out, as three small modules. `compiled-ro
 
 ### Definition of Ready
 - [x] Each hub's rollout child exposes `harness/build-artifacts.cjs` (`loadSnapshot`) and `lib/canary-router.cjs` (`evaluateCanary`).
-- [x] Each hub is P4a-bound: `010-live-activation/activation/<hub>/manifest.json` carries the compiled generation as `selectedPolicy`.
+- [x] Each hub is P4a-bound: `013-live-activation/activation/<hub>/manifest.json` carries the compiled generation as `selectedPolicy`.
 - [x] The three shared scorer files are pinned to known digests.
 
 ### Definition of Done
@@ -72,7 +72,7 @@ Consume-then-serve, gated. A pure engine consumes the compiled contract by reusi
 
 ### Key Components
 - **`lib/compiled-route.cjs`**: archetype-adaptive pure runtime engine. Maps each hub to its rollout child, loads `{ snapshot } = loadSnapshot()` and the child's archetype engine (`evaluateCanary` or `evaluateRoute`), routes `taskText`, and normalizes the result to `{hubId, action, selectionKind, targets, effectivePolicyHash, generation}`. Caches per-hub engines; side-effect-free.
-- **`lib/resolve.cjs`**: serving resolver + CLI. `resolveRoute(hubId, taskText)` returns the compiled decision only when `flagEnabled()` and `servingAuthority(hubId) === 'compiled'`; else null. Reads `010-live-activation/activation/<hub>/manifest.json`. Fails safe (try/catch → null). CLI: `--hub <id> --prompt <text>`.
+- **`lib/resolve.cjs`**: serving resolver + CLI. `resolveRoute(hubId, taskText)` returns the compiled decision only when `flagEnabled()` and `servingAuthority(hubId) === 'compiled'`; else null. Reads `013-live-activation/activation/<hub>/manifest.json`. Fails safe (try/catch → null). CLI: `--hub <id> --prompt <text>`.
 - **`lib/flip-serving.cjs`**: per-hub serving flip. Fenced CAS on the activation manifest (`legacy → compiled`, `shadowOnly true → false`); gates on P4a-binding, `validate-canary.cjs`, pinned scorer digests, and `assertEngineRoutes` (≥1 designed scenario). Retains `manifest.serving-prior.json`; `--rollback`; emits `serving-flip-record.json`.
 
 ### Data Flow
@@ -91,7 +91,7 @@ This phase introduces the first runtime consumer of the compiled contract and an
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | Rollout child engines (`harness/build-artifacts.cjs`, `lib/canary-router.cjs`) | Proven compiled snapshot + canary algebra | Reused read-only by the engine | The engine defines no routing algebra; children stay byte-unchanged |
-| P4a activation manifest (`010-live-activation/activation/<hub>/manifest.json`) | Bound `selectedPolicy`; now `servingAuthority: compiled` (post-flip) | Read by the resolver; CAS target of the flip | Flip asserted compiled `selectedPolicy` and retained a byte-identical serving-prior; all 7 now read `compiled` |
+| P4a activation manifest (`013-live-activation/activation/<hub>/manifest.json`) | Bound `selectedPolicy`; now `servingAuthority: compiled` (post-flip) | Read by the resolver; CAS target of the flip | Flip asserted compiled `selectedPolicy` and retained a byte-identical serving-prior; all 7 now read `compiled` |
 | Three shared scorer files | Frozen route-gold scorer | Re-hashed by the flip, never edited | Pinned digests unchanged; drift aborts before any write |
 | Runtime flag `SPECKIT_COMPILED_ROUTING` | Off by default | Read by the resolver | Flag off ⇒ resolver returns null everywhere (inert) |
 | Live `SKILL.md` (per hub) | Authoritative serving routing | **Wired — additive, flag-gated compiled-routing directive added** | Each of the 7 hubs' `SKILL.md` shells to the resolver front-door under `SPECKIT_COMPILED_ROUTING=1`, self-gating on serving authority; existing prose routing unchanged |

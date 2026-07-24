@@ -68,7 +68,7 @@ contextType: "implementation"
 - [x] T013 Prove byte-exact rollback: `--rollback` restores `manifest.serving-prior.json` byte-for-byte (the retained serving-prior reads `servingAuthority: legacy`, `shadowOnly: true`). The rollback mechanism was exercised and proven; `sk-code` was then flipped for the production cutover and is currently `servingAuthority: compiled` at fence epoch 4, with the byte-identical serving-prior retained so the same byte-exact rollback remains available.
 - [x] T014 Confirm the three frozen scorer digests are unchanged after the full proof and the seven-hub cutover.
 
-**Evidence**: The `sk-code` end-to-end proof is complete, and the cutover was then executed across all seven hubs — each flipped `legacy → compiled` and left compiled-serving but inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. Evidence lives in `010-live-activation/activation/<hub>/{serving-flip-record.json, manifest.serving-prior.json, manifest.json, fence-state.json}`.
+**Evidence**: The `sk-code` end-to-end proof is complete, and the cutover was then executed across all seven hubs — each flipped `legacy → compiled` and left compiled-serving but inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. Evidence lives in `013-live-activation/activation/<hub>/{serving-flip-record.json, manifest.serving-prior.json, manifest.json, fence-state.json}`.
 
 <!-- /ANCHOR:phase-3 -->
 

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/002-system-code-graph",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode packets",
     "created_at": "2026-07-19T12:00:00.000Z",
-    "last_save_at": "2026-07-24T10:52:38.660Z",
+    "last_save_at": "2026-07-24T12:11:52.075Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:139f31cc8f44a26038fd8dec03d7709ab1f46c6e9c29002291833cd705528617",
+    "source_fingerprint": "sha256:83204ea57535aa13a3d54e667bed5c1d5e0e21985cb9b088f4fd368c84ad01d5",
     "source_doc_hashes": {
-      "spec.md": "b77287bf96cf2f955af2c818e818c5fb1987fbe4051687d43824d04914531b16",
-      "plan.md": "b5078415f53d75e137128ee33ed636b3f3a8a84ae33b10c70a9cab05bc5976ca",
-      "tasks.md": "486941c79a8fd477c262cac73c96faef3ed6de4318f2eab5f8d77f1d89fc8c30",
-      "checklist.md": "4cad9b405be01d324a7f65a6e1c46fe5069d81e6b2aa0d97e3cb532e4821cf71",
-      "implementation-summary.md": "1341760b7f8245a0bc43a1620debc5fab37486cf51c8d5dfd0759ab84ad6eaa5"
+      "spec.md": "40f6e27eb14fa877fc2c2a12af4108d290054340f73a0e3a83872a406f2a5b1a",
+      "plan.md": "c5e820b1c246bcaee30963078a280846e1cbf23e33d9459feb48dc1823838610",
+      "tasks.md": "80937da5f27a72be4cd9072b3854f0b9bf61fef734cb0288c9a039e74bacda3a",
+      "checklist.md": "d870a2dcd718616bbeb2286f7f9b4cb8aa8bca5006692b2a49215c927569bb72",
+      "implementation-summary.md": "f0df4cd08522420dcbae8e5bdecfc59f67d0268b2e706df58a1675d28f628ac9"
     },
     "last_active_child_id": null,
     "last_active_at": null

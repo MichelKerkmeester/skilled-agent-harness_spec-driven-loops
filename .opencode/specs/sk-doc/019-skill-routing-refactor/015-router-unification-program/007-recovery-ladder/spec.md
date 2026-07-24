@@ -35,9 +35,9 @@ Six rungs, fixed order: (1) eligibility + authority gate before ranking; (2) det
 | **Priority** | P0 |
 | **Status** | Correctness-remediated and phase-locally verified (`shadow-partial`) — one ordered six-rung ladder on one shared `UncertaintyBudgetV1 { userTurns: 1 }`, proven via typed fixtures; no live routing/registry/scorer/skill change; repository-level strict validation reserved for the orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `004-recovery-ladder` |
-| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
-| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§4 Seam B, §3 Ideas 4-5, §2.1) |
+| **Branch** | `007-recovery-ladder` |
+| **Parent** | `../spec.md` (Router-Unification Program) |
+| **Design source** | `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§4 Seam B, §3 Ideas 4-5, §2.1) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -68,9 +68,9 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 
 ### Out of Scope
 
-- The risk certificate / held-out corpus / selective-classification controller — owned by phase 005 (`005-calibration`); this phase only defines the fall-through when no certificate is present. — [why: the synthesis parks calibration for lack of a corpus (synthesis §11 open-q 2); the master plan builds it as phase 005 (`spec.md` PHASE DOCUMENTATION MAP)].
-- Destination-local PREPARE/VERIFY/COMMIT, receipts, idempotency, stale-proof rejection — owned by phase 003 (`003-execution-verify-commit`). — [why: authority is consumed at the destination, not in the ladder; the ladder only routes/defers/rejects (synthesis §2, Execution plane vs Recovery plane)].
-- The pure evaluator and the closed four-action algebra definition itself — owned by phase 002 (`002-decision-evaluator`); this phase orders that evaluator's negative branches into a ladder. — [why: the ladder is behavior over the algebra, not a new algebra (synthesis §4 Seam A: "Idea 3 supplies the invariant … not a second enum")].
+- The risk certificate / held-out corpus / selective-classification controller — owned by phase 005 (`008-calibration`); this phase only defines the fall-through when no certificate is present. — [why: the synthesis parks calibration for lack of a corpus (synthesis §11 open-q 2); the master plan builds it as phase 005 (`spec.md` PHASE DOCUMENTATION MAP)].
+- Destination-local PREPARE/VERIFY/COMMIT, receipts, idempotency, stale-proof rejection — owned by phase 003 (`006-execution-verify-commit`). — [why: authority is consumed at the destination, not in the ladder; the ladder only routes/defers/rejects (synthesis §2, Execution plane vs Recovery plane)].
+- The pure evaluator and the closed four-action algebra definition itself — owned by phase 002 (`005-decision-evaluator`); this phase orders that evaluator's negative branches into a ladder. — [why: the ladder is behavior over the algebra, not a new algebra (synthesis §4 Seam A: "Idea 3 supplies the invariant … not a second enum")].
 - The learning overlay (Idea 2) — owned by phase 007; offline, last, gated on a demonstrated routing gain. — [why: synthesis §12; at N=1 there is nothing to learn].
 - Any edit to the shared benchmark scorer `router-replay.cjs`, live routing config, mode registries, hub routers, or skill files. — [why: hard constraint; a required scorer edit is a migration failure (synthesis §8.2, §10)].
 
@@ -86,9 +86,9 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `004-recovery-ladder/spec.md` | Create | This specification (planning artifact) |
-| `004-recovery-ladder/plan.md` | Create | Build approach for the ladder + budget + fixtures |
-| `004-recovery-ladder/tasks.md` | Create | Ordered, checkable task list |
+| `007-recovery-ladder/spec.md` | Create | This specification (planning artifact) |
+| `007-recovery-ladder/plan.md` | Create | Build approach for the ladder + budget + fixtures |
+| `007-recovery-ladder/tasks.md` | Create | Ordered, checkable task list |
 
 > No live routing config, registry, scorer, or skill file is in scope. This phase is planning/design only; downstream implementation phases own the runtime edits behind their own gates.
 <!-- /ANCHOR:scope -->
@@ -107,7 +107,7 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 | REQ-007 | **(P0)** Handoff acceptance transfers ownership, not completion; a handed-off destination returning `NEEDS_INPUT` does NOT reopen the shared user-turn budget (synthesis §3 Idea 4; §4 Seam-B row). | A fixture shows accepted handoff records ownership transfer (not effect completion); downstream `NEEDS_INPUT` terminates without allocating a new user turn. |
 | REQ-008 | **(P1)** Rung 5 typed `defer` for recoverable missing evidence/dependency, reason ∈ {idle, no-match, dependency-failure, handoff-required, stale-policy, evidence-unavailable}; NO default/fallback union emitted (synthesis §2.3; §10). | A zero-signal fixture yields `defer` with empty `targets` and no registry/default union; each defer reason is exercised by at least one fixture. |
 | REQ-009 | **(P1)** Rung 6 `reject` for invalid/forbidden requests; structurally target-free and authority-free (synthesis §2.3). | A forbidden-request fixture yields `reject` with no target and no authority field populated. |
-| REQ-010 | **(P0, cross-cutting)** No live routing artifact is modified; route-gold replay preserved; `router-replay.cjs` untouched; authority stays destination-local; the phase output is planning docs + typed fixtures via the compatibility projector only (synthesis §8.2, §10). | `git` diff for this phase touches only `004-recovery-ladder/**` planning docs and (downstream) typed fixtures; `router-replay.cjs` is hash-identical; a required scorer edit is logged as a migration failure, not applied. |
+| REQ-010 | **(P0, cross-cutting)** No live routing artifact is modified; route-gold replay preserved; `router-replay.cjs` untouched; authority stays destination-local; the phase output is planning docs + typed fixtures via the compatibility projector only (synthesis §8.2, §10). | `git` diff for this phase touches only `007-recovery-ladder/**` planning docs and (downstream) typed fixtures; `router-replay.cjs` is hash-identical; a required scorer edit is logged as a migration failure, not applied. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
@@ -136,14 +136,14 @@ Ship one ordered, budget-bounded recovery ladder such that every uncertain reque
 
 **Shared gate this phase must satisfy before the next phase activates:** **Stage 3 — Shadow evaluate** from the master plan's SHARED MIGRATION-GATE MODEL (`../spec.md`): *"full typed replay deterministic; compatibility projection matches route-gold; gold never auto-updates."*
 
-The recovery ladder is the negative-branch behavior of the phase-002 evaluator, so its `clarify | defer | reject` decisions ride the **same** Stage 3 shadow-evaluate gate that phase 002 owns. The master plan's stage-ownership column enumerates Stage 3 under phases 002 and 006 and does not list phase 004 explicitly; this phase inherits Stage 3 because it extends — rather than replaces — the evaluated algebra. It must satisfy Stage 3 (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 (`005-calibration`) may activate its calibrated auto-route path, since rung 2's certificate-gated auto-route is inert until 005 ships and must not be reachable before it is proven.
+The recovery ladder is the negative-branch behavior of the phase-002 evaluator, so its `clarify | defer | reject` decisions ride the **same** Stage 3 shadow-evaluate gate that phase 002 owns. The master plan's stage-ownership column enumerates Stage 3 under phases 002 and 006 and does not list phase 004 explicitly; this phase inherits Stage 3 because it extends — rather than replaces — the evaluated algebra. It must satisfy Stage 3 (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 (`008-calibration`) may activate its calibrated auto-route path, since rung 2's certificate-gated auto-route is inert until 005 ships and must not be reachable before it is proven.
 
 In addition, this phase contributes three **hard gates** to the shared activation model that hard-block activation of any downstream phase if violated (synthesis §9): (a) a handoff revisiting a destination or exceeding the shared budget; (b) an exact route emitting clarification/handoff artifacts; (c) a negative decision carrying a target/authority. Each is a fenced-CAS activation blocker, reversible by swapping to the byte-identical prior generation; rollback cannot undo an external COMMITted effect, but the ladder itself commits no external effect (authority is destination-local), so ladder rollback is byte-exact.
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Rung 2's calibrated auto-route depends on a validated risk certificate produced by Phase 5 (`005-calibration`); the certificate's held-out corpus and selective-classification threshold are open-question 2 and are not decided here — this phase only encodes the certificate-absent fall-through [synthesis §11 open-q 2].
+- Rung 2's calibrated auto-route depends on a validated risk certificate produced by Phase 5 (`008-calibration`); the certificate's held-out corpus and selective-classification threshold are open-question 2 and are not decided here — this phase only encodes the certificate-absent fall-through [synthesis §11 open-q 2].
 - The exact `clarify` option-ranking heuristic (which ≤3 options to surface when several discriminate) is left to the evaluator's ranking evidence; this phase fixes only the cardinality and the single-rescore rule.
 - Whether an additional `defer` reason is needed once downstream destinations report richer `NEEDS_INPUT` causes; the current reason vocabulary is fixed here and revisited only if a real destination need appears.
 <!-- /ANCHOR:questions -->
@@ -152,7 +152,15 @@ In addition, this phase contributes three **hard gates** to the shared activatio
 
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
-- **Source design (single source of truth)**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.1, §2.3, §3 Ideas 4-5, §4 Seam B, §8.1-8.2, §9, §10)
+- **Source design (single source of truth)**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2.1, §2.3, §3 Ideas 4-5, §4 Seam B, §8.1-8.2, §9, §10)
 - **Master plan (phase map + shared gate model)**: `../spec.md`
-- **Upstream evaluator**: `../002-decision-evaluator/` (the algebra + compatibility projector this ladder rides)
-- **Downstream calibration**: `../005-calibration/` (the risk certificate rung 2 defers to)
+- **Upstream evaluator**: `../005-decision-evaluator/` (the algebra + compatibility projector this ladder rides)
+- **Downstream calibration**: `../008-calibration/` (the risk certificate rung 2 defers to)
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `006-execution-verify-commit` |
+| **Successor** | `008-calibration` |

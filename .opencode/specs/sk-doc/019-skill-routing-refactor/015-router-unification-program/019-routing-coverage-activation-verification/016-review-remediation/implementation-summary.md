@@ -10,14 +10,14 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation"
     last_updated_at: "2026-07-22T06:53:44Z"
     last_updated_by: "claude"
     recent_action: "Remediated all 8 confirmed deep-review findings; re-verified every release invariant."
     next_safe_action: "Operator sign-off; merge to v4 remains operator-gated."
     blockers: []
     key_files:
-      - ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs"
+      - ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/router.cjs"
       - ".opencode/bin/lib/compiled-route-manifest.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs"
       - ".opencode/bin/compiled-routing-foundation.vitest.ts"
@@ -88,7 +88,7 @@ Reconciled the sibling 013 packet's lifecycle metadata (three docs carried a sta
 | `tests/compiled-routing-cutover-luna.test.cjs` | Modified | F002 clarify/reject cases |
 | `compiled-route-manifest.cjs` | Modified | F001 re-read serving + atomic write |
 | `bin/tests/compiled-route-manifest.test.cjs` | Modified | F001 concurrent-refresh regression |
-| 12 authored engine files under `006-parent-hub-rollout` + `011-runtime-engine` | Modified | F007 reconcile to bin twins |
+| 12 authored engine files under `009-parent-hub-rollout` + `014-runtime-engine` | Modified | F007 reconcile to bin twins |
 | `compiled-routing-foundation.vitest.ts` | Modified | DOC-3 four-copy cohort guard |
 | `compiled-routing-parity.cjs` + `tests/compiled-routing-parity.vitest.ts` | Modified | F006 telemetry + locking test |
 | `013-compiled-coverage-buildout/{plan,tasks,decision-record,checklist,implementation-summary}.md` | Modified | DOC-1 and DOC-2 reconciliation |

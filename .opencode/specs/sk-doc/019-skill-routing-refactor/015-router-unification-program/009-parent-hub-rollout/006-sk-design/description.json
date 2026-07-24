@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/006-sk-design",
   "description": "`sk-design` has six public design-axis modes, one authored named bundle, a null default, and a",
   "keywords": [
     "sk-design",
@@ -15,15 +15,14 @@
     "null",
     "default"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.785Z",
+  "lastUpdated": "2026-07-24T12:10:59.430Z",
   "specId": "006",
   "folderSlug": "sk-design",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "006-parent-hub-rollout"
+    "009-parent-hub-rollout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

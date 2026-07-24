@@ -26,22 +26,22 @@ const {
   hashArtifact,
 } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/lib/canonical.cjs'
+  '003-contract-schemas/lib/canonical.cjs'
 ));
 const { parseRouteDecisionShape } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '002-decision-evaluator/lib/decision-contract.cjs'
+  '005-decision-evaluator/lib/decision-contract.cjs'
 ));
 const { scoreRouteGoldReadOnly } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '002-decision-evaluator/replay-driver.cjs'
+  '005-decision-evaluator/replay-driver.cjs'
 ));
 const {
   DestinationExecutionPlane,
   prepareRoute,
 } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '003-execution-verify-commit/lib/execution-plane.cjs'
+  '006-execution-verify-commit/lib/execution-plane.cjs'
 ));
 const { routeSkillResources } = require(path.join(
   REPO_ROOT,
@@ -69,11 +69,11 @@ const {
 const FIXTURE_FILE = path.join(PHASE_ROOT, 'fixtures', 'learning-overlay-cases.v1.json');
 const MULTIMODE_POLICY_FILE = path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/fixtures/compiled-policy.multimode.json'
+  '003-contract-schemas/fixtures/compiled-policy.multimode.json'
 );
 const N1_POLICY_FILE = path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/fixtures/compiled-policy.n1.json'
+  '003-contract-schemas/fixtures/compiled-policy.n1.json'
 );
 const SCORER_FILES = Object.freeze([
   'router-replay.cjs',

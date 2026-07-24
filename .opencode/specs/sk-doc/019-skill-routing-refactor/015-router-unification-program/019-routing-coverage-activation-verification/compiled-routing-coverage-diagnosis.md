@@ -30,8 +30,8 @@ Two earlier reads were wrong and are corrected here: it is NOT a harness artifac
 5. **Harness bar mismatch.** `compiled-routing-parity.cjs` blocks on `defer≠route` (compiled DECISION), not effective routing. Correct bar = block only on UNSAFE-misroute. Valid ONLY after #4. (`qualifiedIdToLeaf` bridge in `sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs` is editable, not frozen.)
 
 ## Key files
-- Cohort (persist flip): `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs:26` (+ authored twin under `.../007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`; sync via `.opencode/bin/compiled-route-sync.cjs`).
-- Engine: `.../011-runtime-engine/lib/compiled-route.cjs` → per-hub `006-parent-hub-rollout/00N-<hub>/{lib/router.cjs|canary-router.cjs, fixtures/canary-cases.v1.json, lib/registry-compiler.cjs}`.
+- Cohort (persist flip): `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:26` (+ authored twin under `.../015-router-unification-program/014-runtime-engine/lib/resolve.cjs`; sync via `.opencode/bin/compiled-route-sync.cjs`).
+- Engine: `.../014-runtime-engine/lib/compiled-route.cjs` → per-hub `009-parent-hub-rollout/00N-<hub>/{lib/router.cjs|canary-router.cjs, fixtures/canary-cases.v1.json, lib/registry-compiler.cjs}`.
 - Parity harness (non-frozen): `system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs`; driver `run-skill-benchmark.cjs --compiled-routing-parity on`.
 - FROZEN (never edit): `router-replay.cjs` `d5e13da…`, `score-skill-benchmark.cjs` `d5a9cc7…`, `load-playbook-scenarios.cjs` `5029f22…`.
 

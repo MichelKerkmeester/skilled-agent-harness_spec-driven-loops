@@ -2,7 +2,7 @@
 
 This bridge records the packet's identity history and the completed folder
 restructuring. The current topology is authoritative on disk: one research
-phase parent, fifteen numbered implementation/program children, and the nested
+phase parent, sixteen numbered implementation/program children, and the nested
 topologies documented below.
 
 ## Rename history
@@ -47,6 +47,7 @@ The former top-level research packets now live under `001-research/`.
 | `020/004-oob-glm-parallel-research` | `001-research/008-oob-glm-parallel-research` |
 | `020/005-oob-idea-deep-dives` | `001-research/009-oob-idea-deep-dives` |
 | `020/006-unified-refactor-research` | `001-research/010-unified-refactor-research` |
+| `014-sk-code-router-alignment/research` | `001-research/011-sk-code-routing-research/research` |
 
 ### Top-level renumbering
 
@@ -77,7 +78,7 @@ shared research parent. Its remaining children are directly under `015`.
 |---|---|
 | `020/001-3-tier-consistency-standard` | `015/001-3-tier-consistency-standard` |
 | `020/003-default-mode-implementation` | `015/002-default-mode-implementation` |
-| `020/007-unified-refactor-implementation` | `015/003-unified-refactor-implementation` |
+| `020/007-unified-refactor-implementation` | `015-router-unification-program` (flat children `003`–`019`) |
 
 ## Workstream grouping
 
@@ -86,20 +87,17 @@ shared research parent. Its remaining children are directly under `015`.
 | A — Router audit and fixes | `002`–`005` | Trigger ownership, collision fixes, handoffs, standardization, and registry regeneration |
 | B — create-skill routing conformance | `006`–`010` | Smart-routing posture, marker gap, keyword coverage, benchmark routing, and packet conformance |
 | C — Benchmark and typed-pair routing fixes | `011`–`014` | sk-doc and advisor fixes, typed benchmark wiring, and the sk-code measurement pilot |
-| D — Consolidated research | `001-research` | Ten research lineages covering benchmark, per-hub, defaultMode, out-of-box, and unified-refactor questions |
-| E — Router-unification program | `015` | Three-tier standard, defaultMode implementation, and unified-router implementation |
+| D — Consolidated research | `001-research` | Eleven research lineages covering benchmark, per-hub, sk-code, defaultMode, out-of-box, and unified-refactor questions |
+| E — Router-unification program | `015` | Nineteen flat children covering the three-tier standard, defaultMode implementation, unified-router implementation, rollout, activation, onboarding, benchmark, and coverage verification |
 | F — Documentation-quality program | `016` | Metadata, templates, READMEs, tooling, validators, and review remediation |
 
 ## Nested topology
 
-`015-router-unification-program/` now has exactly three direct children: `001`,
-`002`, and `003`. Its former research children are the research children
-`001-research/007`–`010`; research readers should start at `../001-research/`.
-
-The `015/003-unified-refactor-implementation/` sub-parent retains its internal
-`000`–`015` children unchanged. Its nested
-`015-routing-coverage-activation-verification/001-research` remains inside that
-subtree and is unrelated to the top-level `001-research` phase parent.
+`015-router-unification-program/` now has nineteen direct children, `001`–`019`.
+The former implementation grouping was dissolved; the promoted children are
+listed in the 015 parent context index and its old-to-new map. Child `019`
+keeps its internal children unchanged, including its nested `001-research`
+which is unrelated to the top-level `001-research` phase parent.
 
 The `001-research/009-oob-idea-deep-dives/` sub-parent retains its eight idea
 children `001`–`008`.
@@ -117,14 +115,16 @@ causes. Phases `011`–`013` carry the corresponding implementation and benchmar
 work, while `014` is the sk-code typed-pair measurement pilot.
 
 **Group D — consolidated research (`001-research`).** Children `003`–`006`
+and `011`
 cover per-hub routing surfaces. Children `007`–`010` cover defaultMode policy,
 the parallel out-of-box lineage, the eight idea dives, and the unified-router
-synthesis. All ten lineages now share one research parent and their child
+synthesis. All eleven lineages now share one research parent and their child
 handoffs point to the current implementation phases.
 
-**Group E — router-unification (`015`).** The program now reads as a three-child
-arc: the fleet consistency standard, the shipped defaultMode implementation,
-and the unified-refactor implementation. The compiled-routing cutover is
+**Group E — router-unification (`015`).** The program now reads as a flat
+nineteen-child arc: the fleet consistency and defaultMode foundations, the
+unified-router implementation stages, rollout, activation, onboarding,
+benchmark, and coverage verification. The compiled-routing cutover is
 default-on and remains reversible through its documented kill-switch.
 
 **Group F — documentation quality (`016`).** The documentation-quality program
@@ -138,7 +138,7 @@ through its eleven children.
   repaired in this migration pass.
 - The fleet compiled-routing cutover is verified byte-identical to legacy and
   remains reversible. The formal default-on decision is in
-  `015/003/012-default-on-decision`.
+  `015/016-default-on-decision`.
 - When a parent phase-map row and a child's status disagree, the child's
   `graph-metadata.json` is machine-authoritative for resume and traversal. The
   parent map and this bridge are human-readable summaries that must be reconciled

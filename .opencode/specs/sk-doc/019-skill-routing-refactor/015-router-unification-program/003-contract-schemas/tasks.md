@@ -140,6 +140,6 @@ contextType: "implementation"
 - **Plan**: See `plan.md`
 - **Verification checklist**: See `checklist.md`
 - **Completion record**: See `implementation-summary.md`
-- **Design source**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Design source**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
 - **Phase parent**: `../spec.md`
 <!-- /ANCHOR:cross-refs -->

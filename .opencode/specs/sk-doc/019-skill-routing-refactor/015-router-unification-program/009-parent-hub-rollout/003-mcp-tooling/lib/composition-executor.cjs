@@ -7,7 +7,7 @@ const {
   canonicalize,
   computeProofHash,
   hashArtifact,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const { destinationKey } = require('./registry-compiler.cjs');
 
 class CompositionExecutionError extends Error {

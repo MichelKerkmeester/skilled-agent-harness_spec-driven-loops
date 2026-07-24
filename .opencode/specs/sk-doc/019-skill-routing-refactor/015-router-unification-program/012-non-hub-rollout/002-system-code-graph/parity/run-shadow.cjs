@@ -1,7 +1,7 @@
 'use strict';
 
-const { evaluatePolicy } = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
-const { runShadowParity } = require('../../../001-compiler-n1-shadow/parity/shadow-parity.cjs');
+const { evaluatePolicy } = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
+const { runShadowParity } = require('../../../004-compiler-n1-shadow/parity/shadow-parity.cjs');
 
 function runTargetShadowParity(input) {
   let legacyIndex = 0;

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Unified Router Refactor — Live Activation"
-description: "How the fenced-CAS activation driver binds each hub's compiled generation, proves byte-exact rollback, and stages the now-complete runtime cutover (P4b executed in 011-runtime-engine)."
+description: "How the fenced-CAS activation driver binds each hub's compiled generation, proves byte-exact rollback, and stages the now-complete runtime cutover (P4b executed in 014-runtime-engine)."
 trigger_phrases:
   - "live activation plan"
   - "fenced-CAS driver plan"
@@ -36,7 +36,7 @@ FAILURE MODES:
 
 ### Overview
 
-A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful activation for every hub: it seeds a phase-local activation manifest byte-for-byte from the hub's shadow rollout child, then binds the hub's compiled generation as `selectedPolicy` via a fenced CAS that advances the fence epoch while `servingAuthority` stays `legacy`. Every activation is gated on a frozen-scorer pin and a green canary, and proves a byte-exact rollback. Stage P4b — the runtime resolver plus the `servingAuthority` flip — is complete, delivered in the sibling `011-runtime-engine`: all seven hubs were flipped `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag, with the byte-identical legacy manifest retained per hub.
+A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful activation for every hub: it seeds a phase-local activation manifest byte-for-byte from the hub's shadow rollout child, then binds the hub's compiled generation as `selectedPolicy` via a fenced CAS that advances the fence epoch while `servingAuthority` stays `legacy`. Every activation is gated on a frozen-scorer pin and a green canary, and proves a byte-exact rollback. Stage P4b — the runtime resolver plus the `servingAuthority` flip — is complete, delivered in the sibling `014-runtime-engine`: all seven hubs were flipped `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag, with the byte-identical legacy manifest retained per hub.
 
 <!-- /ANCHOR:summary -->
 
@@ -56,7 +56,7 @@ A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful act
 - [x] Frozen-scorer pin and canary green gate enforced as hard preconditions.
 - [x] Completed rollout children remain byte-unchanged; activation state confined to `activation/`.
 - [x] P4a T9 real-model routing verification recorded per hub (complete; 40/42 pass, **0 wrong-hub routes** across 3 models × 7 hubs).
-- [x] P4b runtime resolver + serving-authority flip complete in `011-runtime-engine` (all 7 hubs flipped `legacy → compiled`, inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag, byte-exact rollback retained).
+- [x] P4b runtime resolver + serving-authority flip complete in `014-runtime-engine` (all 7 hubs flipped `legacy → compiled`, inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag, byte-exact rollback retained).
 
 <!-- /ANCHOR:quality-gates -->
 
@@ -67,7 +67,7 @@ A single shared driver, `lib/activate-hub.cjs`, performs the design-faithful act
 
 ### Pattern
 
-Bind-then-serve, split into two stages. Activation is a fenced compare-and-swap that moves `selectedPolicy` from the legacy generation to the compiled generation on a phase-local manifest; it never edits a serving policy. Serving authority stayed legacy through P4a; the separate P4b resolver (`011-runtime-engine`) has since been built and flipped all seven hubs to `compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag.
+Bind-then-serve, split into two stages. Activation is a fenced compare-and-swap that moves `selectedPolicy` from the legacy generation to the compiled generation on a phase-local manifest; it never edits a serving policy. Serving authority stayed legacy through P4a; the separate P4b resolver (`014-runtime-engine`) has since been built and flipped all seven hubs to `compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag.
 
 ### Key Components
 - **`lib/activate-hub.cjs`**: the shared, zero-dependency fenced-CAS driver — one code path, run once per hub.
@@ -94,7 +94,7 @@ This phase introduces a new activation layer over shared, content-addressed poli
 | `harness/validate-canary.cjs` (per child) | Canary green gate | Executed as an activation precondition | Non-zero exit aborts; records report `canaryGreen=true` |
 | Three shared scorer files | Frozen route-gold scorer | Re-hashed, never edited | Pinned digests unchanged; drift aborts before any write |
 | `activation/<hub>/manifest.json` | New per-hub serving manifest | Fenced CAS writes `selectedPolicy`, advances fence; P4b (`011`) later flips serving authority | P4a: `servingAuthority: legacy`, `shadowOnly: true`, fence epoch 1 → post-P4b (current committed): `servingAuthority: compiled`, `shadowOnly: false` |
-| Live `SKILL.md` / `hub-router.json` / `mode-registry.json` | Authoritative serving routing | **Unchanged — not a consumer** | Activation confined to `010-live-activation/activation/` |
+| Live `SKILL.md` / `hub-router.json` / `mode-registry.json` | Authoritative serving routing | **Unchanged — not a consumer** | Activation confined to `013-live-activation/activation/` |
 
 Required inventories before activation:
 - Seed integrity: confirm the seeded prior hash equals the accepted `priorManifestHash` for every hub.

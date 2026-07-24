@@ -14,7 +14,7 @@ const {
   canonicalize,
   computeProofHash,
   hashArtifact,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const { InMemoryIdempotencyLedger } = require('./idempotency-ledger.cjs');
 
 /* ─────────────────────────────────────────────────────────────

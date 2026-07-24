@@ -22,7 +22,7 @@ contextType: "implementation"
 |--------|-------|
 | **Language/Stack** | Zero-dependency CommonJS (Node built-ins only) across all new/modified modules; Markdown for the doc correction |
 | **Fix shape** | Four risk-ordered tranches: a doc correction (P1-004), a pure extract-and-import refactor (P2-005), a sandboxed/expanded regression harness (P1-002, P1-006), a shared per-hub lock with crash-safe reconcile (P1-001, P1-007, P1-008), and an activation trust boundary + documented cache contract (P1-003, P2-009) |
-| **Touched sites** | `010-live-activation/checklist.md`; `010-live-activation/lib/activate-hub.cjs`; `011-runtime-engine/lib/flip-serving.cjs`; `011-runtime-engine/lib/resolve.cjs`; `011-runtime-engine/lib/compiled-route.cjs`; `011-runtime-engine/harness/verify-runtime-engine.cjs`; new `shared/frozen-scorer-contract.cjs`; new `shared/hub-lock.cjs` |
+| **Touched sites** | `013-live-activation/checklist.md`; `013-live-activation/lib/activate-hub.cjs`; `014-runtime-engine/lib/flip-serving.cjs`; `014-runtime-engine/lib/resolve.cjs`; `014-runtime-engine/lib/compiled-route.cjs`; `014-runtime-engine/harness/verify-runtime-engine.cjs`; new `shared/frozen-scorer-contract.cjs`; new `shared/hub-lock.cjs` |
 | **Frozen inputs** | The three pinned scorer digests — re-exported, never edited |
 
 ### Overview
@@ -46,7 +46,7 @@ All four tranches now carry cited verification (`node --check`, the 9/9 harness,
 
 ### Definition of Ready
 - [x] The nine-finding deep-review report was read; P1-004 and P2-005 are the two findings with no runtime routing risk.
-- [x] Both edit sites — `010-live-activation/checklist.md` and the two writers' inline digest blocks — were located before editing.
+- [x] Both edit sites — `013-live-activation/checklist.md` and the two writers' inline digest blocks — were located before editing.
 - [x] The remaining seven findings' fix sites — `flip-serving.cjs`, `activate-hub.cjs`, `resolve.cjs`, `compiled-route.cjs`, `verify-runtime-engine.cjs`, and the new `shared/hub-lock.cjs` — were located and scoped to their exact finding before editing.
 
 ### Definition of Done
@@ -74,11 +74,11 @@ Four risk-ordered layers on top of the existing activation/flip/resolve pipeline
 ### Key Components
 - **`shared/frozen-scorer-contract.cjs` (new)**. A read-only module exporting `PINNED_SCORER_DIGESTS` (the three pinned digests) and a phase-parameterized `assertScorerFrozen(repoRoot, phase)`. Zero-dependency (Node built-ins only); reads and hashes the scorer, never writes it.
 - **`shared/hub-lock.cjs` (new)**. A single per-hub lock module exporting `{ withHubLock, isStale, pidAlive, LEASE_MS }`. Records owner identity (pid + random nonce + timestamp) and a `LEASE_MS` (10-minute) lease; refuses acquisition against a live holder, but safely reclaims a stale holder (dead pid OR expired lease). Both `flip-serving.cjs` and `activate-hub.cjs` take this lock via `withHubLock`, so activation and the serving flip can no longer consume one fence epoch independently. Zero-dependency (Node built-ins only). **Round 2**: the stale-reclaim winner election is rebuilt on an atomic `mkdir` lock directory (owner identity in `owner.json` inside the dir) instead of a write-then-read, closing RR-P1-A; the header comment now honestly documents the residual instead of overclaiming (RR-P2-C).
-- **`011-runtime-engine/lib/flip-serving.cjs`**. Imports the shared frozen-scorer contract in place of its own inline digest block (drops its now-unused `crypto`/`sha256`/`fileHash` helpers); calls `assertScorerFrozen(repoRoot, 'the serving flip')`; takes the shared hub lock via `withHubLock`; honors the new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env var so the harness can sandbox it. **Round 2**: the round-1 `reconcileTuple(hubDir, manifest, fence)` (rebuilt the record but did not advance the fence — RR-P1-B) is replaced by a write-ahead journal — `.flip-journal.json` (intent + selectedPolicy + before/after fence) is written before the tuple mutates and cleared only after every write; `recoverFromJournal()` completes an interrupted flip deterministically to the journal's intended fence on the next run.
-- **`011-runtime-engine/lib/resolve.cjs`**. Honors the new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook so the harness can resolve routes against a sandboxed activation root instead of the live one.
-- **`011-runtime-engine/lib/compiled-route.cjs`**. The process-lifetime engine cache now carries a comment documenting its safety contract: it is safe because the resolver's serve-time identity gate fails a drifted snapshot to legacy, and a process restart picks up a new policy.
-- **`010-live-activation/lib/activate-hub.cjs`**. Imports the shared frozen-scorer contract in place of its own inline digest block (keeps `fileHash`, still used by seed + rollback proof); calls `assertScorerFrozen(repoRoot, 'activation')`; runs a `confineArgs(hub, childRoot)` gate before any side effect (hub id must match `^[a-z0-9][a-z0-9-]*$`, the hub dir must resolve inside the activation root, `--child` must resolve inside the repo); takes the shared hub lock via `withHubLock`.
-- **`011-runtime-engine/harness/verify-runtime-engine.cjs`**. Rewritten to run entirely against a temp SANDBOX copy of `activation/` via `SPECKIT_ACTIVATION_ROOT_OVERRIDE`; never touches live state and deletes the sandbox on exit; adds both-decision coverage and a serve-time identity-MISMATCH fixture (tampered manifest fails safe to legacy), plus shared-lock live-holder-refused and stale-holder-reclaimed checks.
+- **`014-runtime-engine/lib/flip-serving.cjs`**. Imports the shared frozen-scorer contract in place of its own inline digest block (drops its now-unused `crypto`/`sha256`/`fileHash` helpers); calls `assertScorerFrozen(repoRoot, 'the serving flip')`; takes the shared hub lock via `withHubLock`; honors the new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env var so the harness can sandbox it. **Round 2**: the round-1 `reconcileTuple(hubDir, manifest, fence)` (rebuilt the record but did not advance the fence — RR-P1-B) is replaced by a write-ahead journal — `.flip-journal.json` (intent + selectedPolicy + before/after fence) is written before the tuple mutates and cleared only after every write; `recoverFromJournal()` completes an interrupted flip deterministically to the journal's intended fence on the next run.
+- **`014-runtime-engine/lib/resolve.cjs`**. Honors the new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook so the harness can resolve routes against a sandboxed activation root instead of the live one.
+- **`014-runtime-engine/lib/compiled-route.cjs`**. The process-lifetime engine cache now carries a comment documenting its safety contract: it is safe because the resolver's serve-time identity gate fails a drifted snapshot to legacy, and a process restart picks up a new policy.
+- **`013-live-activation/lib/activate-hub.cjs`**. Imports the shared frozen-scorer contract in place of its own inline digest block (keeps `fileHash`, still used by seed + rollback proof); calls `assertScorerFrozen(repoRoot, 'activation')`; runs a `confineArgs(hub, childRoot)` gate before any side effect (hub id must match `^[a-z0-9][a-z0-9-]*$`, the hub dir must resolve inside the activation root, `--child` must resolve inside the repo); takes the shared hub lock via `withHubLock`.
+- **`014-runtime-engine/harness/verify-runtime-engine.cjs`**. Rewritten to run entirely against a temp SANDBOX copy of `activation/` via `SPECKIT_ACTIVATION_ROOT_OVERRIDE`; never touches live state and deletes the sandbox on exit; adds both-decision coverage and a serve-time identity-MISMATCH fixture (tampered manifest fails safe to legacy), plus shared-lock live-holder-refused and stale-holder-reclaimed checks.
 
 ### Data Flow
 
@@ -95,12 +95,12 @@ Before either writer touches the manifest, fence, or serving-flip-record, it fir
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `010-live-activation/checklist.md` (CHK-051, Completion Boundary) | Overstated release-readiness claim | Corrected downward to match `spec.md` + both impl-summaries | No remaining spec/checklist contradiction |
-| `011-runtime-engine/lib/flip-serving.cjs` | Inline pinned-digest copy + local `assertScorerFrozen`; no tuple reconcile; no shared lock; no sandbox hook | Imports the shared frozen-scorer contract; drops the local copy + now-unused `crypto`/`sha256`/`fileHash`; adds `reconcileTuple()` on the idempotent no-op path; takes the shared hub lock; honors `SPECKIT_ACTIVATION_ROOT_OVERRIDE` | `node --check`; `verify-runtime-engine.cjs` 9/9; reconcile teeth test |
-| `010-live-activation/lib/activate-hub.cjs` | Inline pinned-digest copy + local `assertScorerFrozen`; identifiers unconstrained before effects; no shared lock | Imports the shared frozen-scorer contract; drops the local copy; adds `confineArgs()` pre-effect gate; takes the shared hub lock | `node --check`; confinement teeth test; `--verify` still passes under sandbox |
-| `011-runtime-engine/lib/resolve.cjs` | Always resolved against the live activation root | Honors `SPECKIT_ACTIVATION_ROOT_OVERRIDE` | `node --check`; harness sandbox proof (live tree untouched) |
-| `011-runtime-engine/lib/compiled-route.cjs` | Process-lifetime cache with no documented refresh contract | Adds a comment documenting the cache as a safe contract (serve-time identity gate covers drift) | `node --check` |
-| `011-runtime-engine/harness/verify-runtime-engine.cjs` | Ran against live `activation/`; matrix missing both-decision + identity-mismatch + lock coverage | Rewritten to run in a temp SANDBOX; adds both-decision, serve-time identity-mismatch, shared-lock live/stale fixtures | 9/9; 0 dirty live files after a run |
+| `013-live-activation/checklist.md` (CHK-051, Completion Boundary) | Overstated release-readiness claim | Corrected downward to match `spec.md` + both impl-summaries | No remaining spec/checklist contradiction |
+| `014-runtime-engine/lib/flip-serving.cjs` | Inline pinned-digest copy + local `assertScorerFrozen`; no tuple reconcile; no shared lock; no sandbox hook | Imports the shared frozen-scorer contract; drops the local copy + now-unused `crypto`/`sha256`/`fileHash`; adds `reconcileTuple()` on the idempotent no-op path; takes the shared hub lock; honors `SPECKIT_ACTIVATION_ROOT_OVERRIDE` | `node --check`; `verify-runtime-engine.cjs` 9/9; reconcile teeth test |
+| `013-live-activation/lib/activate-hub.cjs` | Inline pinned-digest copy + local `assertScorerFrozen`; identifiers unconstrained before effects; no shared lock | Imports the shared frozen-scorer contract; drops the local copy; adds `confineArgs()` pre-effect gate; takes the shared hub lock | `node --check`; confinement teeth test; `--verify` still passes under sandbox |
+| `014-runtime-engine/lib/resolve.cjs` | Always resolved against the live activation root | Honors `SPECKIT_ACTIVATION_ROOT_OVERRIDE` | `node --check`; harness sandbox proof (live tree untouched) |
+| `014-runtime-engine/lib/compiled-route.cjs` | Process-lifetime cache with no documented refresh contract | Adds a comment documenting the cache as a safe contract (serve-time identity gate covers drift) | `node --check` |
+| `014-runtime-engine/harness/verify-runtime-engine.cjs` | Ran against live `activation/`; matrix missing both-decision + identity-mismatch + lock coverage | Rewritten to run in a temp SANDBOX; adds both-decision, serve-time identity-mismatch, shared-lock live/stale fixtures | 9/9; 0 dirty live files after a run |
 | `shared/frozen-scorer-contract.cjs` (new) | — | Single source of the pinned digests + drift check | Digests byte-identical to the prior inline copies; drift check still throws |
 | `shared/hub-lock.cjs` (new) | — | Single per-hub lock with owner identity + lease + guarded stale reclaim | Shared-lock live-holder-refused + stale-holder-reclaimed harness checks |
 
@@ -112,7 +112,7 @@ Before either writer touches the manifest, fence, or serving-flip-record, it fir
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [x] Read the nine-finding deep-review report and locate both edit sites: `010-live-activation/checklist.md` (P1-004) and the two inline digest blocks in `flip-serving.cjs` / `activate-hub.cjs` (P2-005).
+- [x] Read the nine-finding deep-review report and locate both edit sites: `013-live-activation/checklist.md` (P1-004) and the two inline digest blocks in `flip-serving.cjs` / `activate-hub.cjs` (P2-005).
 - [x] Located the remaining seven findings' fix sites — `flip-serving.cjs`, `activate-hub.cjs`, `resolve.cjs`, `compiled-route.cjs`, `verify-runtime-engine.cjs`, and the new `shared/hub-lock.cjs` — before authoring tranches 2-4.
 
 ### Phase 2: Core Implementation
@@ -123,7 +123,7 @@ Before either writer touches the manifest, fence, or serving-flip-record, it fir
 
 **Why these two first.** Neither changes a routing decision, a manifest write, or the frozen scorer. P1-004 is prose; P2-005 is a pure extract-and-import refactor whose behavior is proven identical by the existing regression suite. Both are reversible and carry no cutover risk.
 
-**P1-002 (harness sandboxing).** The regression harness ran its reset→reflip cycle against the live `010-live-activation/activation` tree, so a concurrent activation change could be erased by its unconditional whole-tree restore. Fix: a new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook (read by `flip-serving.cjs` and `resolve.cjs`) lets the harness point the whole pipeline at a temp SANDBOX copy instead; the harness copies `activation/` into the sandbox, runs its full matrix there, and deletes the sandbox on exit. The live tree is never touched.
+**P1-002 (harness sandboxing).** The regression harness ran its reset→reflip cycle against the live `013-live-activation/activation` tree, so a concurrent activation change could be erased by its unconditional whole-tree restore. Fix: a new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook (read by `flip-serving.cjs` and `resolve.cjs`) lets the harness point the whole pipeline at a temp SANDBOX copy instead; the harness copies `activation/` into the sandbox, runs its full matrix there, and deletes the sandbox on exit. The live tree is never touched.
 
 **P1-006 (harness matrix completeness).** The harness omitted both-decision coverage and an isolated serve-time identity-mismatch fixture. Fix: added an explicit assertion that a route AND a negative decision are both exercised, plus a fixture that tampers with the manifest and confirms the resolver fails safe to legacy.
 
@@ -157,9 +157,9 @@ Before either writer touches the manifest, fence, or serving-flip-record, it fir
 
 - `node --check` on all 7 touched runtime files (`hub-lock.cjs`, `frozen-scorer-contract.cjs`, `flip-serving.cjs`, `resolve.cjs`, `compiled-route.cjs`, `activate-hub.cjs`, `verify-runtime-engine.cjs`).
 - The shared frozen-scorer module's pinned digests are byte-identical to the prior inline copies, and `assertScorerFrozen` reports no drift on the live scorer.
-- `harness/verify-runtime-engine.cjs` — **9/9**: discriminated-union, both-decision coverage, flag-off inertness, serve-time identity match, serve-time identity mismatch, fenced-CAS byte-exact rollback+reflip, shared-lock live-holder refused, shared-lock stale-holder reclaimed, flip-time identity refused. Runs entirely against a temp SANDBOX; the LIVE `010-live-activation/activation` tree is byte-identical before/after (git-dirty 0).
+- `harness/verify-runtime-engine.cjs` — **9/9**: discriminated-union, both-decision coverage, flag-off inertness, serve-time identity match, serve-time identity mismatch, fenced-CAS byte-exact rollback+reflip, shared-lock live-holder refused, shared-lock stale-holder reclaimed, flip-time identity refused. Runs entirely against a temp SANDBOX; the LIVE `013-live-activation/activation` tree is byte-identical before/after (git-dirty 0).
 - Targeted teeth tests: `activate-hub --hub "../../evil"` fails with "unsafe hub id" before any effect; with sk-code's serving-flip-record deleted in a sandbox, `flip-serving --hub sk-code` prints "ALREADY-COMPILED (reconciled: serving-flip-record)" and rebuilds with `reconciled:true`; `activate-hub --verify` still works under the new lock+confinement (sandbox) — "ACTIVATION BOUND … rollback.byteExact=true", no lingering `.flip.lock`.
-- `validate.sh --strict` on `010-live-activation`, `011-runtime-engine`, and this packet.
+- `validate.sh --strict` on `013-live-activation`, `014-runtime-engine`, and this packet.
 
 <!-- /ANCHOR:testing -->
 
@@ -170,11 +170,11 @@ Before either writer touches the manifest, fence, or serving-flip-record, it fir
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `010-live-activation/checklist.md` CHK-051 + Completion Boundary (P1-004's edit target) | Internal | Green | No sibling doc to reconcile against |
+| `013-live-activation/checklist.md` CHK-051 + Completion Boundary (P1-004's edit target) | Internal | Green | No sibling doc to reconcile against |
 | The two inline frozen-scorer digest copies in `flip-serving.cjs` / `activate-hub.cjs` (P2-005's extraction source) | Internal | Green | No prior implementation to extract from |
 | `harness/verify-runtime-engine.cjs` (regression gate) | Internal | Green (9/9) | No non-destructive proof that the extraction and later fixes changed nothing they shouldn't |
 | `shared/hub-lock.cjs` (P1-007/P1-008's new shared lock) | Internal | Green | Both writers would need independent, drift-prone lock logic |
-| `011-runtime-engine/lib/resolve.cjs` + `flip-serving.cjs`'s `SPECKIT_ACTIVATION_ROOT_OVERRIDE` hook (P1-002's sandboxing) | Internal | Green | Harness could not prove live-state isolation |
+| `014-runtime-engine/lib/resolve.cjs` + `flip-serving.cjs`'s `SPECKIT_ACTIVATION_ROOT_OVERRIDE` hook (P1-002's sandboxing) | Internal | Green | Harness could not prove live-state isolation |
 
 <!-- /ANCHOR:dependencies -->
 

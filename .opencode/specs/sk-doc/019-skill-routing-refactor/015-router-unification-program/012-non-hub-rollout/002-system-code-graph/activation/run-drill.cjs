@@ -8,7 +8,7 @@ const {
   manifestBytes,
   pinManifest,
   validateActivationManifest,
-} = require('../../../001-compiler-n1-shadow/activation/fenced-manifest.cjs');
+} = require('../../../004-compiler-n1-shadow/activation/fenced-manifest.cjs');
 const { sha256Bytes } = require('../harness/support.cjs');
 
 function clone(value) {

@@ -6,12 +6,12 @@ const path = require('node:path');
 const {
   canonicalize,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   compile,
   destinationKey,
   qualifiedDestinationId,
-} = require('../../../001-compiler-n1-shadow/compiler/compiler.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/compiler.cjs');
 
 function fail(code, message) {
   const error = new TypeError(message);

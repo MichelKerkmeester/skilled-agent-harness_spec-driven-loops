@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/006-sk-design",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/006-sk-design",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/006-sk-design",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`sk-design` has six public design-axis modes, one authored named bundle, a null default, and a",
     "created_at": "2026-07-19T11:06:53.314Z",
-    "last_save_at": "2026-07-24T10:52:39.137Z",
+    "last_save_at": "2026-07-24T12:11:53.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f0a854291140599bb57722818fdda1094daf8be6607d24416e4bc3b2ddb4256",
+    "source_fingerprint": "sha256:08b3cddc1a8240e03775709a6aab34e700b2242310cd6fc9fbed90e7a34d4a18",
     "source_doc_hashes": {
-      "spec.md": "743bec1a41fb64112b2ec4d40a57191195c98b97b2072df5bfa8cbfda38cd3de",
-      "plan.md": "833df343dc764b61ed4147a348ecc92232697297f1b5854626294c8c2ce794a9",
-      "tasks.md": "1ab1a5a536eb963c08da3629eaa5f8b3d3ebd35bf125f7e1ba29fc439b85ab11",
-      "checklist.md": "407f9c9dfaa3e3df5e4693d2d9659da7795ed6abfc9dd962878cfb72d160e84c",
-      "implementation-summary.md": "984c2abc1316b53f55571f1a5b31d1e97f9e1d2f72f46f6bf0948effc8c65f7b"
+      "spec.md": "e77f2e8593b6d8ad7adcdd873fe00d1d9e7164569f52a6493bee8fa705a76fe7",
+      "plan.md": "3f2560234c4f4d1462d65e14fc1bb53f9d5808675624f382fbb3de673cf6ebb0",
+      "tasks.md": "df3c934b43591635553cfcbd79f0e45807ca6af62801156b79be045974a7a4e7",
+      "checklist.md": "1e56c69ff522044624d4cfd664ae300f873c1a96882c9dea1f424e8a4deaced2",
+      "implementation-summary.md": "74bed0838dc4799e83a7c7f5770d01d38abe71e2128325d90230a66db11bcfbe"
     },
     "last_active_child_id": null,
     "last_active_at": null

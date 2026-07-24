@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled the task breakdown to the implemented+committed state (code landed in 4153cbebd8)"
@@ -80,9 +80,9 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T005 Promote the closure (resolver + engine loader + seven manifests + seven bundles) to the stable runtime path; point the shim's require at it; keep the spec-tree copy as the authored source with a build/copy step. (REQ-001; `.opencode/bin/compiled-route.cjs`, runtime dir) {deps: T004}
-- [x] T006 Make promotion binding: delete the residual-coupling branch and correct `../../012-default-on-decision/implementation-summary.md:170` to match the Accepted ADR-003. (REQ-001; parent implementation-summary) {deps: T005}
+- [x] T006 Make promotion binding: delete the residual-coupling branch and correct `../../016-default-on-decision/implementation-summary.md:170` to match the Accepted ADR-003. (REQ-001; parent implementation-summary) {deps: T005}
 - [x] T007 Add a spec-tree-move simulation asserting no runtime path reads under `.opencode/specs`. (REQ-001; simulation test) {deps: T005}
-- [x] T008 [P] Split manifest-derived eligibility from `HUB_CHILD`; standardize one stable per-hub engine entrypoint; keep the map decoupled from eligibility. (REQ-002; `011-runtime-engine/lib/compiled-route.cjs`) {deps: T005}
+- [x] T008 [P] Split manifest-derived eligibility from `HUB_CHILD`; standardize one stable per-hub engine entrypoint; keep the map decoupled from eligibility. (REQ-002; `014-runtime-engine/lib/compiled-route.cjs`) {deps: T005}
 - [x] T009 [P] Add the cross-check test asserting `sort(COMPILED_ROUTING_HUBS)===sort(keys(HUB_CHILD))`, failing with the diverging hub named. (REQ-002; cross-check test) {deps: T008}
 - [x] T010 [P] Ship `.opencode/bin/compiled-route-status.cjs --hub | --all` emitting `{hubId, servingAuthority, shadowOnly, selectedPolicy.generation, effectivePolicyHash, fenceEpoch, manifestFingerprint, causeCode}`. (REQ-003; new status CLI) {deps: T005}
 - [x] T011 Wire the readout into `spec_kit_skill_advisor_status` (both copies) and `session_bootstrap`, prompt-safe, size-capped, no blocking spawn. (REQ-003, REQ-009; advisor-status + session-bootstrap) {deps: T010}
@@ -134,6 +134,6 @@ _memory:
 - **Verification gate**: `checklist.md`
 - **Planned-state record**: `implementation-summary.md`
 - **Upstream evidence**: `../001-research/synthesis-v1.md`, `../001-research/verification-v1.md`, `../001-research/review-v1.md`
-- **Parent decisions**: `../../012-default-on-decision/decision-record.md`
+- **Parent decisions**: `../../016-default-on-decision/decision-record.md`
 - **Downstream consumers**: `../003-flag-propagation-and-effective-consumption/`, `../004-benchmark-compiled-lane-c/`, `../011-activation-cutover-p4/`
 <!-- /ANCHOR:cross-refs -->

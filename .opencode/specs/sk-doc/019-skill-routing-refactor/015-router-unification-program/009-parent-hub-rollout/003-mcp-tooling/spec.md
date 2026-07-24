@@ -16,7 +16,7 @@ status: "implemented; execution-plane idempotency binding aligned; Stage-4 and S
 
 ## EXECUTIVE SUMMARY
 
-This phase activates the unified compiled router contract on `mcp-tooling` — deliberately **last** in the fleet activation order `mcp-code-mode → sk-code → system-deep-loop → mcp-tooling` because it carries the highest semantic blast radius: external effects plus cross-hub judgment [synthesis §9, §11 Q1]. Activation is not a rewrite of the tooling hub; it binds the already-compiled `EffectivePolicy` (produced by phase `001`, evaluated by phase `002`, executed through the PREPARE→VERIFY→COMMIT machinery of phase `003-execution-verify-commit`) to `mcp-tooling` behind a fenced activation-manifest selector, with legacy staying serving-authoritative until each gate passes [master plan SHARED MIGRATION-GATE MODEL; synthesis §9].
+This phase activates the unified compiled router contract on `mcp-tooling` — deliberately **last** in the fleet activation order `mcp-code-mode → sk-code → system-deep-loop → mcp-tooling` because it carries the highest semantic blast radius: external effects plus cross-hub judgment [synthesis §9, §11 Q1]. Activation is not a rewrite of the tooling hub; it binds the already-compiled `EffectivePolicy` (produced by phase `001`, evaluated by phase `002`, executed through the PREPARE→VERIFY→COMMIT machinery of phase `006-execution-verify-commit`) to `mcp-tooling` behind a fenced activation-manifest selector, with legacy staying serving-authoritative until each gate passes [master plan SHARED MIGRATION-GATE MODEL; synthesis §9].
 
 `mcp-tooling` is the one archetype the synthesis models with **composition edges** and a **judgment dependency** [synthesis §7]. It needs exactly two edge kinds in compiled data:
 
@@ -36,7 +36,7 @@ This is planning/design only. No live routing config, registry, scorer, or skill
 | **Priority** | P0 |
 | **Status** | Implemented — execution-plane idempotency binding aligned; Stage-4 and Stage-6 GREEN; legacy remains serving-authoritative; repository-level strict validation reserved for the orchestrator (blocked by legacy template/runtime prerequisites) |
 | **Created** | 2026-07-18 |
-| **Branch** | `006-parent-hub-rollout/003-mcp-tooling` |
+| **Branch** | `009-parent-hub-rollout/003-mcp-tooling` |
 | **Migration stage** | Stage 4 — Per-hub canary (highest blast radius, activated last) (synthesis §9) |
 | **Blast radius** | External effects + cross-hub judgment (`composeAfter` + `requiresAuthorityFrom`) — reversible, gated |
 <!-- /ANCHOR:metadata -->
@@ -84,9 +84,9 @@ Activate the compiled contract on `mcp-tooling` such that: composition edges (`c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `006-parent-hub-rollout/003-mcp-tooling/spec.md` | Create | This specification |
-| `006-parent-hub-rollout/003-mcp-tooling/plan.md` | Create | Build approach, contracts touched, verification |
-| `006-parent-hub-rollout/003-mcp-tooling/tasks.md` | Create | Ordered, checkable task list |
+| `009-parent-hub-rollout/003-mcp-tooling/spec.md` | Create | This specification |
+| `009-parent-hub-rollout/003-mcp-tooling/plan.md` | Create | Build approach, contracts touched, verification |
+| `009-parent-hub-rollout/003-mcp-tooling/tasks.md` | Create | Ordered, checkable task list |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

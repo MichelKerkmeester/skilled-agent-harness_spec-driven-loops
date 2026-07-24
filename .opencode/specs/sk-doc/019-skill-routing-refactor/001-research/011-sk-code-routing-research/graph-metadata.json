@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/001-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code leaf recall research",
+      "sk-code typed-pair routing findings",
+      "universal preamble ownership research",
+      "sk-code routing research plan",
+      "sk-code leaf recall research method",
+      "sk-code routing research tasks",
+      "sk-code routing research outcome",
+      "sk-code leaf recall research status",
+      "universal preamble ownership",
+      "two-tier resource map",
+      "ordered live leaf reads"
+    ],
+    "key_topics": [
+      "sk-code",
+      "leaf",
+      "recall",
+      "research",
+      "typed-pair",
+      "routing",
+      "findings",
+      "universal",
+      "preamble",
+      "ownership",
+      "plan",
+      "method"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      "spec.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pair Routing",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leaf Recall Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outcome Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "file-level",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti-gamed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code routing could not be measured honestly on the canonical typed-pair surface",
+    "created_at": "2026-07-24T12:00:18.909Z",
+    "last_save_at": "2026-07-24T12:27:28.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:40843ff5b63ae7622c9a1a207d3e89b6ea9d5e15fa75f1047017456d65d77d1a",
+    "source_doc_hashes": {
+      "spec.md": "a5b662a28b95fff106dda5eadf541e1367d701e38848eb4905ee2bf079ec1eb3",
+      "plan.md": "24fa54595a3722553b655db1e92b9c7e4816fea036dca8d77e2b00f025d0d5f1",
+      "tasks.md": "8d5a9142ec6b3498283022859cdc5fb29cf8b7f562ccd102c43a304dd7613283",
+      "implementation-summary.md": "835a0893a8b3fdeb1d1bdbffa68867462746b09d35dd3c0a7d4f3a0b6b219365",
+      "research/research.md": "a2769b0ed8db0a8599510acd2796ca610d2b38973ac8820c41b36f4c022033b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

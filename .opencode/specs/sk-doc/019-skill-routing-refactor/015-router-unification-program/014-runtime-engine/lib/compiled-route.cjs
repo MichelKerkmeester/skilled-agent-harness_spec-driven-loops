@@ -26,15 +26,15 @@ const IMPL_ROOT = path.resolve(__dirname, '..', '..');
 // manifest lets the engine cache invalidate when the manifest flips, so a
 // serving-authority or selected-policy change never serves an engine cached
 // against the prior manifest.
-const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
+const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '013-live-activation', 'activation');
 const HUB_CHILD = Object.freeze({
-  'sk-code': '006-parent-hub-rollout/001-sk-code',
-  'system-deep-loop': '006-parent-hub-rollout/002-system-deep-loop',
-  'mcp-tooling': '006-parent-hub-rollout/003-mcp-tooling',
-  'cli-external-orchestration': '006-parent-hub-rollout/004-cli-external-orchestration',
-  'sk-prompt': '006-parent-hub-rollout/005-sk-prompt',
-  'sk-design': '006-parent-hub-rollout/006-sk-design',
-  'sk-doc': '006-parent-hub-rollout/007-sk-doc',
+  'sk-code': '009-parent-hub-rollout/001-sk-code',
+  'system-deep-loop': '009-parent-hub-rollout/002-system-deep-loop',
+  'mcp-tooling': '009-parent-hub-rollout/003-mcp-tooling',
+  'cli-external-orchestration': '009-parent-hub-rollout/004-cli-external-orchestration',
+  'sk-prompt': '009-parent-hub-rollout/005-sk-prompt',
+  'sk-design': '009-parent-hub-rollout/006-sk-design',
+  'sk-doc': '009-parent-hub-rollout/007-sk-doc',
 });
 
 const engineCache = new Map();

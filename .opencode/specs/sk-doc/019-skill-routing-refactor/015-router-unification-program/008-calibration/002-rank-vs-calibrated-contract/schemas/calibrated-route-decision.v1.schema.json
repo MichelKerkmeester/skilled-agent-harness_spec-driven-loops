@@ -9,7 +9,7 @@
   "properties": {
     "schemaVersion": { "const": "CalibrationEvidenceEnvelopeV1" },
     "decision": {
-      "$ref": "../../../000-contract-schemas/schemas/route-decision.v1.schema.json#/$defs/routeDecision"
+      "$ref": "../../../003-contract-schemas/schemas/route-decision.v1.schema.json#/$defs/routeDecision"
     },
     "calibration": { "$ref": "#/$defs/calibration" }
   },

@@ -7,10 +7,10 @@ const {
   canonicalize,
   computeProjectionHash,
   computeRequestFactsHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   parseRouteDecisionShape,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 
 function target(destination) {
   return {

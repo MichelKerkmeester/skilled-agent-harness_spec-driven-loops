@@ -45,8 +45,8 @@ This is a Planned, not-yet-implemented packet. Once built, a single new non-froz
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The hub activation manifest shape (`servingAuthority`, `selectedPolicy`, `shadowOnly` at `010-live-activation/activation/<hub>/manifest.json`) is confirmed stable enough to read directly, independent of whether `002`'s wired probe has shipped.
-- [ ] The three frozen-trio digest values to pin are confirmed against `010-live-activation/implementation-summary.md`.
+- [ ] The hub activation manifest shape (`servingAuthority`, `selectedPolicy`, `shadowOnly` at `013-live-activation/activation/<hub>/manifest.json`) is confirmed stable enough to read directly, independent of whether `002`'s wired probe has shipped.
+- [ ] The three frozen-trio digest values to pin are confirmed against `013-live-activation/implementation-summary.md`.
 - [ ] `leaf-resource-contract.cjs`'s current export surface is confirmed so `qualifiedIdToLeaf` can be added additively, not as a rename.
 
 ### Definition of Done
@@ -95,11 +95,11 @@ This phase introduces a new comparison layer over the existing benchmark orchest
 | `run-skill-benchmark.cjs` | Non-frozen orchestrator; already maps verdict → exit codes | Attach `row.compiledParity`; add the verdict sub-state; add `BLOCKED-BY-COMPILED-DRIFT` exit 3 | Vitest: 3 distinct sub-verdicts, never OR-collapsed into one `BLOCKED` |
 | `build-report.cjs` | Renderer; no template today for this block | Add the `compiledRouting` JSON→Markdown block | Rendered-report fixture test |
 | `leaf-resource-contract.cjs` | Hosts `buildResourceContract`/`selectResourceContract` | Add `qualifiedIdToLeaf` reverse lookup (additive) | Bijection Vitest against every eligible hub's `leaf-manifest.json` |
-| `010-live-activation/activation/<hub>/manifest.json` (7 files) | Per-hub `servingAuthority` record | Read-only precondition input | Vacuous-guard fixture: `servingAuthority !== 'compiled'` → hard fail |
+| `013-live-activation/activation/<hub>/manifest.json` (7 files) | Per-hub `servingAuthority` record | Read-only precondition input | Vacuous-guard fixture: `servingAuthority !== 'compiled'` → hard fail |
 | `loop-host.cjs` + both skill-benchmark workflow dispatches | CLI/workflow option whitelist | Add `--compiled-routing-parity`, or record the unconditional `auto` mode | Flag (or fallback marker) reaches the orchestrator in an integration run |
 
 Required inventories before build:
-- Confirm the pinned digest values match `010-live-activation/implementation-summary.md`'s three hashes before writing the pin into this harness.
+- Confirm the pinned digest values match `013-live-activation/implementation-summary.md`'s three hashes before writing the pin into this harness.
 - `rg -n "compiledParity|targetQualifiedIds" .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/` — confirm no prior partial implementation exists to conflict with.
 - Confirm `leaf-resource-contract.cjs`'s current exports so `qualifiedIdToLeaf` is additive, not a rename.
 
@@ -111,7 +111,7 @@ Required inventories before build:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Read the hub manifest schema and pin the frozen-trio digests against `010-live-activation/implementation-summary.md`.
+- [ ] Read the hub manifest schema and pin the frozen-trio digests against `013-live-activation/implementation-summary.md`.
 - [ ] Confirm `leaf-resource-contract.cjs`'s current export surface (additive-only plan for `qualifiedIdToLeaf`).
 - [ ] Re-anchor `run-skill-benchmark.cjs`'s verdict switch on the named symbol, not the ±2-10 line citation (review-v1 §2 line-drift note), before editing.
 
@@ -210,7 +210,7 @@ Phase 1 (Setup / read + pin + re-anchor) ──► Phase 2 (Core / harness + hoo
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation checklist
-- [ ] Frozen-trio digests pinned and confirmed against `010-live-activation/implementation-summary.md`.
+- [ ] Frozen-trio digests pinned and confirmed against `013-live-activation/implementation-summary.md`.
 - [ ] Hub manifest shape confirmed stable for direct reads.
 - [ ] `leaf-resource-contract.cjs` export surface confirmed additive-safe.
 

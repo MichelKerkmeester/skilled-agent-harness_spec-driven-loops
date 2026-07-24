@@ -48,7 +48,7 @@ contextType: "implementation"
 - [x] CHK-011 [P0] Comment hygiene reports zero violations.
   - **Evidence**: The project checker exits 0 for each CJS file; the harness independently scans all five code files and reports `commentViolations: 0`.
 - [x] CHK-012 [P0] Frozen canonical serialization/hashing is reused without a local implementation.
-  - **Evidence**: Protocol and harness imports resolve to `../000-contract-schemas/lib/canonical.cjs`; proof and replay hashes match fixed fixture oracles across 25 runs.
+  - **Evidence**: Protocol and harness imports resolve to `../003-contract-schemas/lib/canonical.cjs`; proof and replay hashes match fixed fixture oracles across 25 runs.
 - [x] CHK-013 [P1] Public boundaries are documented and invalid inputs fail with stable codes.
   - **Evidence**: Exported PREPARE, projector, ledger operations, VERIFY, evidence resolution, and COMMIT carry JSDoc; unsafe paths assert exact codes rather than bare throws.
 - [x] CHK-014 [P1] The two cohesive protocol/test files exceed the 500-line style target without mixing runtime responsibilities.

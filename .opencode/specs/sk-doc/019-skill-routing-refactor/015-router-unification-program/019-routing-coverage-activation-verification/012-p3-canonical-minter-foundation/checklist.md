@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Verified the complete minter, freshness, status, and sync matrix"
@@ -146,7 +146,7 @@ Inline evidence descriptions below map to the command, artifact, hash, and sourc
 - [x] CHK-051 [P0] ADR-002 allowlist removal and P4 cohort advancement remain explicitly deferred. [Evidence: paired detail below maps to `implementation-summary.md` verification ledger]
   - **Evidence**: Scope and decision-record citations.
 - [x] CHK-052 [P1] Downstream packet 013 references this interface rather than recreating it. [Evidence: paired detail below maps to `implementation-summary.md` verification ledger]
-  - **Evidence**: `../../013-create-skill-alignment/spec.md:75`, `:130`, and `:162` require the canonical minter and forbid emulation.
+  - **Evidence**: `../../017-create-skill-alignment/spec.md:75`, `:130`, and `:162` require the canonical minter and forbid emulation.
 - [x] CHK-053 [P1] Strict packet validation reports zero errors and warnings. [Evidence: paired detail below maps to `implementation-summary.md` verification ledger]
   - **Evidence**: Final `validate.sh --strict` output records 0 errors and 0 warnings in `implementation-summary.md`.
 <!-- /ANCHOR:docs -->

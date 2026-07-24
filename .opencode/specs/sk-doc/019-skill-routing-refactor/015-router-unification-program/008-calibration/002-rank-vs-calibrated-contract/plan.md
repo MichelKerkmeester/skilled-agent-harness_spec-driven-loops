@@ -58,9 +58,9 @@ This phase authors **specification and fixture artifacts inside this packet fold
 | `spec.md` | contract spec | yes | The route-evidence shape, certificate schema, legality rule, method envelope. |
 | `plan.md` / `tasks.md` | build docs | yes | This plan + its ordered task list. |
 | Fixture spec (families F1–F9, described in tasks) | test contract (described, not executed) | yes | Enumerated as a contract for `005/003` and the route-gold lane to implement. |
-| `RouteDecisionV1` evidence block | schema (sibling) | no | Extended *by contract* in `../../000-contract-schemas/`; this phase specifies the delta. |
-| `CalibrationCertificateV1` | schema (sibling) | no | Joins the contract family in `../../000-contract-schemas/`. |
-| Compatibility projector | adapter (sibling) | no | `../../002-decision-evaluator/`; this phase specifies that it MUST drop `calibration`. |
+| `RouteDecisionV1` evidence block | schema (sibling) | no | Extended *by contract* in `../../003-contract-schemas/`; this phase specifies the delta. |
+| `CalibrationCertificateV1` | schema (sibling) | no | Joins the contract family in `../../003-contract-schemas/`. |
+| Compatibility projector | adapter (sibling) | no | `../../005-decision-evaluator/`; this phase specifies that it MUST drop `calibration`. |
 | `router-replay.cjs` | shared scorer | **NEVER** | Read-only reference; editing it to pass is a migration failure (synthesis §8.2, §10). |
 <!-- /ANCHOR:architecture -->
 

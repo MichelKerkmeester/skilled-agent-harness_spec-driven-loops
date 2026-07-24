@@ -30,7 +30,7 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Zero-dependency CommonJS (`activate-hub.cjs`, `flip-serving.cjs`), JSONL (new `flip-history.jsonl`), Markdown (policy + canary docs), TypeScript (`session-snapshot.ts`), YAML (`speckit-resume-auto.yaml`) |
-| **Touched driver status** | `activate-hub.cjs` is an already-shipped, Status: Complete driver (`010-live-activation`) that has activated all seven hubs; `flip-serving.cjs` is the P4b driver that flipped all seven hubs to `servingAuthority: compiled` |
+| **Touched driver status** | `activate-hub.cjs` is an already-shipped, Status: Complete driver (`013-live-activation`) that has activated all seven hubs; `flip-serving.cjs` is the P4b driver that flipped all seven hubs to `servingAuthority: compiled` |
 | **Frozen inputs** | Three pinned scorer digests — read-only evidence only; both drivers already re-hash these on every invocation, unchanged by this child |
 | **Dependency** | `002-runtime-promotion-and-status-foundation` (sequencing baseline; REQ-007's `skillRouterStatus` shape cross-references 002's status-probe contract) |
 
@@ -47,7 +47,7 @@ Four tracks, each additive to already-shipped, live drivers. First, add `--rollb
 
 ### Definition of Ready
 - [ ] `activate-hub.cjs` and `flip-serving.cjs` are re-read in full immediately before implementation (this planning pass already read both in full this session; re-confirm no drift before editing).
-- [ ] The seven hubs' current activation state (`servingAuthority: compiled` for all 7, per `010-live-activation`'s implementation-summary.md) is confirmed unchanged before and after this child's work.
+- [ ] The seven hubs' current activation state (`servingAuthority: compiled` for all 7, per `013-live-activation`'s implementation-summary.md) is confirmed unchanged before and after this child's work.
 - [ ] The three frozen scorer digests are confirmed unchanged immediately before work starts.
 
 ### Definition of Done
@@ -168,9 +168,9 @@ Required inventories before implementation:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|--------------------|
 | `002-runtime-promotion-and-status-foundation` | Internal | Planned (not started) | REQ-007's `skillRouterStatus` shape cross-references 002's contract; REQ-001..REQ-006 have no confirmed hard dependency on 002 |
-| `010-live-activation` (already Complete) | Internal | Complete — all 7 hubs activated | This child directly modifies its `activate-hub.cjs`; any regression here risks the seven already-shipped activations |
-| `011-runtime-engine` (already built; flipped all 7 hubs) | Internal | Complete | This child directly modifies its `flip-serving.cjs`; same regression risk as above |
-| `009-non-hub-rollout/` (4 real children, cross-referenced only) | Internal | Shadow-only, in progress | REQ-005's policy document must accurately describe these children's real state; no edit to them from this child |
+| `013-live-activation` (already Complete) | Internal | Complete — all 7 hubs activated | This child directly modifies its `activate-hub.cjs`; any regression here risks the seven already-shipped activations |
+| `014-runtime-engine` (already built; flipped all 7 hubs) | Internal | Complete | This child directly modifies its `flip-serving.cjs`; same regression risk as above |
+| `012-non-hub-rollout/` (4 real children, cross-referenced only) | Internal | Shadow-only, in progress | REQ-005's policy document must accurately describe these children's real state; no edit to them from this child |
 
 <!-- /ANCHOR:dependencies -->
 

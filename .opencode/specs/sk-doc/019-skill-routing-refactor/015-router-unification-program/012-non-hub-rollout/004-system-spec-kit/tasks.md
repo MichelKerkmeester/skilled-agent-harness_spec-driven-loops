@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit"
     last_updated_at: "2026-07-19T10:39:28Z"
     last_updated_by: "codex"
     recent_action: "Completed every rollout implementation and verification task"
@@ -52,7 +52,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read the complete frozen compiler template, target router, leaf inventory, scorer interfaces, and design authority.
-  - Evidence: `001-compiler-n1-shadow`, the target `SKILL.md`, 48/48 leaf files, and the frozen scorer entrypoints were read before writes.
+  - Evidence: `004-compiler-n1-shadow`, the target `SKILL.md`, 48/48 leaf files, and the frozen scorer entrypoints were read before writes.
 - [x] T002 Capture initial SHA-256 for the three protected scorer files.
   - Evidence: 3/3 initial digests are recorded in `implementation-summary.md` and asserted by `harness/run-rollout.cjs`.
 - [x] T003 Confirm the exact child is absent and the requested phase parent already has its lean trio.

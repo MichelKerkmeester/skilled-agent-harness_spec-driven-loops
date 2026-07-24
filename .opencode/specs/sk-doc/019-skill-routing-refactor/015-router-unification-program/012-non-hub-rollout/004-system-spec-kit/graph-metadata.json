@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The unified compiler was proven on one standalone skill, but `system-spec-kit` has a materially larger authored router: 17 intent classes, 48 manifest leaves, multiline resource arrays, and an explicit always-loaded default resource",
     "created_at": "2026-07-19T10:37:32.836Z",
-    "last_save_at": "2026-07-24T10:52:38.267Z",
+    "last_save_at": "2026-07-24T12:11:52.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9d8af65b1107694d842e8a03ee69d7ac86990a0200c856f0e4b733d38c6eeca",
+    "source_fingerprint": "sha256:bbcb60d161ed27a956910a804ee0c6b18d8d0b191562e50946e029e8e3779151",
     "source_doc_hashes": {
-      "spec.md": "544450d5a8085fd1f05ea3d276efce1645fa9b07e18c57520fc5949b62bdb795",
-      "plan.md": "09f51d754c9033506a9486fc589b99776be4d5406596bf818bc3ce35fb811882",
-      "tasks.md": "40ca248b454a8454a8c9bb2e86530f048edf010815e2a20d41b0f563c8903b6e",
-      "checklist.md": "078131f5f4337038ad0cabc8103ddc9fab543e53de043b577c6e8835356eae85",
-      "implementation-summary.md": "fab00f7808268ef9f39489fed4e2ab42b36b3cf473d837ea568ddee02ebe423b"
+      "spec.md": "dd49a23d2cbb441d12d00c2021fa8ab80d14a337d47b1614d6cd094f41123af3",
+      "plan.md": "12f1a97f3adf445de89eed8bb4f343c7388afa3bfb4f59d6445abae333496c71",
+      "tasks.md": "58847c23788dd92a80ac58d92b18676889f142d18ac032ee3ae4f072628a9be7",
+      "checklist.md": "0dfe4323a0781c14d6c4b92d82a6a974b5805f5e131a9c0e70f8c0742ea2e05c",
+      "implementation-summary.md": "770489dd479338f73ad57c9dd9ef2aa35dc24288944f1a006a6ea502504d0d0e"
     },
     "last_active_child_id": null,
     "last_active_at": null

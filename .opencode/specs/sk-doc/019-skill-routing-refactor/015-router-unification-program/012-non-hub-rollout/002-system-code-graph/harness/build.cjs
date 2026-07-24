@@ -3,18 +3,18 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { canonicalize } = require('../../../000-contract-schemas/lib/canonical.cjs');
+const { canonicalize } = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   compile,
   evaluatePolicy,
   generatePolicyCard,
   projectAdvisor,
   projectTypedRouteGold,
-} = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
 const {
   fenceStateBytes,
   manifestBytes,
-} = require('../../../001-compiler-n1-shadow/activation/fenced-manifest.cjs');
+} = require('../../../004-compiler-n1-shadow/activation/fenced-manifest.cjs');
 const {
   PHASE_ROOT,
   canonicalJsonBytes,

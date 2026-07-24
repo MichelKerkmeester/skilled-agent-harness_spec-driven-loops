@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Settled ADR-001 on the analysis to adopt the phased path"
@@ -54,7 +54,7 @@ _memory:
 
 The parent goal asks to make compiled routing the effective default, framing it as flipping `SPECKIT_COMPILED_ROUTING` from off to on. Reading the live integration point shows that framing buys nothing and costs real surface. The advisor enters compiled routing only through `enrichCompiledRoutes()` at `advisor-recommend.ts:357`. With the flag unset that function returns its input untouched (`:362`). With the flag set it maps over recommendations the legacy path already computed and attaches `compiledRoute` as an additive sibling field, `{ ...recommendation, compiledRoute }` at `:371`, and never recomputes the chosen `skillId` or `workflowMode`. Turning the flag on can only make that extra field appear or, on drift, silently not appear. It cannot change which skill is recommended.
 
-The sibling `011-runtime-engine` already flipped all seven hubs' manifests to `servingAuthority: compiled`, held inert behind the default-off flag. So the destination machinery exists. What does not exist is the reason to flip: today the flip is behavior-neutral by construction.
+The sibling `014-runtime-engine` already flipped all seven hubs' manifests to `servingAuthority: compiled`, held inert behind the default-off flag. So the destination machinery exists. What does not exist is the reason to flip: today the flip is behavior-neutral by construction.
 
 ### Constraints
 
@@ -270,7 +270,7 @@ Which hubs are compiled-eligible is hardcoded in two places: `COMPILED_ROUTING_H
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-The runtime front door `.opencode/bin/compiled-route.cjs` resolves its resolver from a path inside the spec tree: `compiled-route.cjs:16-21` points at `007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs`. This repo renumbers and re-nests spec folders constantly (the memory index records repeated hyphen migrations, renumbers, and re-nests). A single such move silently breaks every compiled route to the legacy sentinel, with no observable signal. The repo's own reorganization is a latent drift engine independent of hub-config edits.
+The runtime front door `.opencode/bin/compiled-route.cjs` resolves its resolver from a path inside the spec tree: `compiled-route.cjs:16-21` points at `015-router-unification-program/014-runtime-engine/lib/resolve.cjs`. This repo renumbers and re-nests spec folders constantly (the memory index records repeated hyphen migrations, renumbers, and re-nests). A single such move silently breaks every compiled route to the legacy sentinel, with no observable signal. The repo's own reorganization is a latent drift engine independent of hub-config edits.
 
 ### Constraints
 

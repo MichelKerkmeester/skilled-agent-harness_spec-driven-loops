@@ -7,7 +7,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const { canonicalize } = require('../../../000-contract-schemas/lib/canonical.cjs');
+const { canonicalize } = require('../../../003-contract-schemas/lib/canonical.cjs');
 const { evaluateRoute } = require('./router.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -10,7 +10,7 @@ This document is the structured plan of record for the next program. A condensed
 
 ### 1.1 What already exists (done + verified)
 - **Design authority:** `../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (the 8-idea fusion, 4 seams, 7-stage migration model).
-- **Shadow implementation:** `003-unified-refactor-implementation/` — phases `000-008` plus 7 cross-phase coherence fixes and one re-review corner fix. All phase harnesses green against the real scorer (read-only); two independent xhigh re-reviews (one ALL-CLOSED, one 6/7 + the empty-overlay corner, now fixed).
+- **Shadow implementation:** direct children `003-contract-schemas` through `010-learning-overlay`, plus the rollout and activation children that follow. All phase harnesses are green against the real scorer (read-only); two independent xhigh re-reviews covered the remaining implementation corners.
 - **Key invariant already held:** the shadow branch changed **0 files under `.opencode/skills/`**; the shared scorer trio is byte-identical; `route-gold` is deterministically green. Nothing is wired into live routing yet.
 
 ### 1.2 Per-hub readiness map (measured by the 006 canaries)
@@ -48,7 +48,7 @@ Unlike the shadow refactor, **this program edits live skills** — `SKILL.md`, `
 
 ## 3. Phase plan
 
-Author the new work as a **fresh sub-parent under `015/003`** with phase children, each meeting spec-kit doc levels. Gate-3 = extend this program (not a new top-level packet). Build → gate → commit per phase; STRICT SEQUENTIAL where noted. Fan out per §5.
+The implementation work is organized as direct children of `015`; no additional grouping parent is required. Gate-3 extends this program, not a new top-level packet. Build → gate → commit per phase; STRICT SEQUENTIAL where noted. Fan out per §5.
 
 ### P1 — Hyphen-naming migration (FIRST PRIORITY)
 - **P1.1 Scope** the rename: ALL non-Python filesystem names snake_case → hyphen-case, EXCEPT (a) Python files/modules, (b) tool-mandated names (`__tests__`, `__fixtures__`, leading-`_`, framework-required dirs), (c) already-migrated hyphen-pilot trees.

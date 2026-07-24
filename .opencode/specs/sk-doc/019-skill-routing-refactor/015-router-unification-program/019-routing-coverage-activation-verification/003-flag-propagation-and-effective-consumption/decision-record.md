@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the three threading/cache/render decisions as Proposed"
@@ -157,7 +157,7 @@ The advisor attaches the compiled decision additively as `{ ...recommendation, c
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-Once the compiled decision flows to the brief, two caches can serve it staleley. The advisor-brief cache keys on the prompt (`mk-skill-advisor.js` `cacheKeyForPrompt`, `:271`) with no serving-state input; the runtime `engineCache` is a bare `Map` with no invalidation hook (`011-runtime-engine/lib/compiled-route.cjs:33`). After a manifest flip or a `=0` kill, a cached compiled brief would be re-served — defeating the very kill-switch the program is named for (CF-ACT-10). The 002 foundation ships a serving-status probe that already computes an effective-serving-state / manifest fingerprint per hub.
+Once the compiled decision flows to the brief, two caches can serve it staleley. The advisor-brief cache keys on the prompt (`mk-skill-advisor.js` `cacheKeyForPrompt`, `:271`) with no serving-state input; the runtime `engineCache` is a bare `Map` with no invalidation hook (`014-runtime-engine/lib/compiled-route.cjs:33`). After a manifest flip or a `=0` kill, a cached compiled brief would be re-served — defeating the very kill-switch the program is named for (CF-ACT-10). The 002 foundation ships a serving-status probe that already computes an effective-serving-state / manifest fingerprint per hub.
 
 ### Constraints
 

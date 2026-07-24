@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Completed the shadow compiler, N=1 projections, parity lane, and rollback drill"
@@ -64,7 +64,7 @@ Build the compiler as a **total, side-effect-free function** that reads authored
 
 ### Definition of Ready
 
-- [x] Phase 0 (`../000-contract-schemas/`) schema + deterministic serialization frozen and importable; else fail closed (spec REQ-002). Evidence: the Phase 0 harness passed 11/11 groups and the missing-schema path fails with `ENOENT` before emission.
+- [x] Phase 0 (`../003-contract-schemas/`) schema + deterministic serialization frozen and importable; else fail closed (spec REQ-002). Evidence: the Phase 0 harness passed 11/11 groups and the missing-schema path fails with `ENOENT` before emission.
 - [x] `mcp-code-mode` authored sources confirmed against synthesis §5 line references (SKILL.md, leaf-manifest.json, mcp-route-guard.cjs). Evidence: seven leaves, six selector classes, near-tie and zero-signal rules, and advisory guard behavior were parsed and asserted.
 - [x] Legacy route-gold baseline captured and green *before* any shadow artifact exists (Stage 0 handshake with Phase 0). Evidence: protected source/playbook checksums and the legacy exact/zero/setup replay outputs were captured in `harness/protected-baseline.json`.
 
@@ -174,7 +174,7 @@ Every success criterion is proven by a concrete check, not an assertion (synthes
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 0 canonical schemas + deterministic serialization (`../000-contract-schemas/`) | Internal | Green (frozen and verified) | Compiler fails closed if the import or schema is absent |
+| Phase 0 canonical schemas + deterministic serialization (`../003-contract-schemas/`) | Internal | Green (frozen and verified) | Compiler fails closed if the import or schema is absent |
 | `mcp-code-mode` authored sources (SKILL.md, leaf-manifest.json, mcp-route-guard.cjs) | Internal | Green (confirmed, synthesis §5) | Wrong inputs invalidate the N=1 degeneracy proof |
 | Existing route-gold gate + fixtures | Internal | Green | No baseline to compare shadow parity against |
 | Shared scorer `router-replay.cjs` | Internal (read-only) | Green — MUST NOT touch | A required edit is a migration failure, not a dependency to change (synthesis §8.2, §10) |
@@ -198,4 +198,4 @@ Every success criterion is proven by a concrete check, not an assertion (synthes
 - **Task Breakdown**: `tasks.md`
 - **Verification Checklist**: `checklist.md`
 - **Master plan**: `../spec.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.1, §5, §8, §9, §10)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2.1, §5, §8, §9, §10)

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration/003-selective-controller",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration/003-selective-controller",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The evaluator (`002`) can already emit the closed four-action algebra, and the recovery ladder (`004`) already orders `clarify → handoff → defer/reject` on one budget",
     "created_at": "2026-07-18T13:13:18.777Z",
-    "last_save_at": "2026-07-24T10:52:40.160Z",
+    "last_save_at": "2026-07-24T12:11:52.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c465a143ef41006075cd68636728e3f3032513a2daf438bd533d71c6d3a745e",
+    "source_fingerprint": "sha256:212967d52b28ea93010e80b68adc646331566030d191f153efecd887c4500664",
     "source_doc_hashes": {
-      "spec.md": "ca54abbc70911e56e3e4c5c5f94744eac945dc83d41d2ccc2a1b3ba2638a75ba",
-      "plan.md": "9b620cb4c7761e4bee85ad74ca7916dbac07a101c7a3cb2c46a7556cf00b9c2c",
+      "spec.md": "d13eae89aaeab755bf7fa837b760bba866bc753b4db1b1b75aee05d1c015028f",
+      "plan.md": "ecfa393bdd2b205923687b7686b3db05597ec5e115e5cb0ed436eda959b94569",
       "tasks.md": "63c2be21f3f23dda78ee5c4f42a4e7a5f283d09eb370c4062dbfe8fc11dbdbc5",
       "checklist.md": "550ec3acbe9b1ed142951e1452b80d7b18b7bb88ff128ea5c77e772b8a6bc2ac",
       "implementation-summary.md": "3ed104303280db7d9f6feba7cc15c0d78a90624b4713dd2961af195bd3a849df"

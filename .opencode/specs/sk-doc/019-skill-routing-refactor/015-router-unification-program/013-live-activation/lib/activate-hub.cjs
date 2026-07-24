@@ -22,7 +22,7 @@ const { execFileSync } = require('child_process');
 const { assertScorerFrozen } = require('../../shared/frozen-scorer-contract.cjs');
 const { withHubLock } = require('../../shared/hub-lock.cjs');
 
-const PHASE_ROOT = path.resolve(__dirname, '..'); // .../010-live-activation
+const PHASE_ROOT = path.resolve(__dirname, '..'); // .../013-live-activation
 const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
   || path.join(PHASE_ROOT, 'activation');
 

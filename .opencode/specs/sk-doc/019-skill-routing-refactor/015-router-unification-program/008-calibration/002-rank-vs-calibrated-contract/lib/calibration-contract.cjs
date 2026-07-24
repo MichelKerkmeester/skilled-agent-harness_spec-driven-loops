@@ -16,13 +16,13 @@ const {
   canonicalize,
   hashArtifact,
   omitFields,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   computeCorpusHash,
 } = require('../../001-holdout-corpus/lib/calibration-corpus.cjs');
 const {
   parseRouteDecisionShape,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXED CONTRACT DATA

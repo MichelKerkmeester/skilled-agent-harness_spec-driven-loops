@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance"
     last_updated_at: "2026-07-21T07:50:27Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Reran 7-hub LUNA-HIGH sweep with real dispatch: 13/14 PASS, 1 FAIL, 0 SKIP"
@@ -57,7 +57,7 @@ This is a Planned, not-yet-implemented packet. Once built, it delivers two layer
 
 ### Definition of Ready
 - [ ] `004`'s planned `row.compiledParity` evidence shape is reconciled with this child's evidence-contract field names (or an explicit adapter is planned) before scenario authoring starts.
-- [ ] The hub activation manifest shape (`servingAuthority` at `010-live-activation/activation/<hub>/manifest.json`) is confirmed as the direct-read stopgap for serving-status evidence, independent of `002`'s wired probe.
+- [ ] The hub activation manifest shape (`servingAuthority` at `013-live-activation/activation/<hub>/manifest.json`) is confirmed as the direct-read stopgap for serving-status evidence, independent of `002`'s wired probe.
 - [ ] The existing `validate-playbook-topology.cjs` and each hub's current `manual-testing-playbook.md` structure are read before any new file is authored, so additions are additive, not duplicative.
 
 ### Definition of Done
@@ -105,7 +105,7 @@ This phase adds a new scenario layer and a new live-model acceptance layer over 
 | Frozen `load-playbook-scenarios.cjs` (+ 2 other frozen files) | Sole scenario-loading authority | Read-only input, never edited | Pinned digests unchanged before and after every change |
 | `validate-playbook-topology.cjs` | Existing topology validator, root-only | Modify: recurse into per-feature files; unify verdict enum | Recursion fixture test against a hub with nested per-feature files |
 | 7 hub `manual-testing-playbook/` directories | Existing per-hub playbook packages | Add one compiled-routing scenario file each | Content validator passes on all 7; each scenario's route shape is distinct |
-| `010-live-activation/activation/<hub>/manifest.json` (7 files) | Per-hub `servingAuthority` record | Read-only precondition input for evidence-contract fields | Evidence contract's serving-status field matches the manifest at capture time |
+| `013-live-activation/activation/<hub>/manifest.json` (7 files) | Per-hub `servingAuthority` record | Read-only precondition input for evidence-contract fields | Evidence contract's serving-status field matches the manifest at capture time |
 | `sk-doc` / `mcp-tooling` / `sk-prompt` root `manual-testing-playbook.md` | Root playbook directories | Realign to current routing sources of record (CF-PB-4) | No reference to the retired flat RESOURCE_MAP remains in `sk-doc`'s root; Figma+Refero appears as a primary row in `mcp-tooling`'s |
 | `system-skill-advisor` | Existing flag/fallback/status home | Consumed, not modified, by this child's evidence contract | This child's docs cite `system-skill-advisor` as the single source for those mechanics, never re-deriving them |
 

@@ -173,5 +173,5 @@ This phase writes only docs, schemas, fixtures, and the harness under its own fo
 ## RELATED DOCUMENTS
 - **Specification**: `spec.md`
 - **Tasks**: `tasks.md`
-- **Design source**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Design source**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
 - **Phase parent**: `../spec.md`

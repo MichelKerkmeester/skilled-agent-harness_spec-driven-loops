@@ -24,10 +24,10 @@ const cleanup = require('../lib/fleet-cleanup.cjs');
 const PHASE_ROOT = path.resolve(__dirname, '..');
 const IMPLEMENTATION_ROOT = path.resolve(PHASE_ROOT, '..');
 const REPO_ROOT = path.resolve(PHASE_ROOT, '../../../../../../..');
-const N1_ROOT = path.join(IMPLEMENTATION_ROOT, '001-compiler-n1-shadow');
-const EVALUATOR_ROOT = path.join(IMPLEMENTATION_ROOT, '002-decision-evaluator');
-const EXECUTION_ROOT = path.join(IMPLEMENTATION_ROOT, '003-execution-verify-commit');
-const HUB_ROOT = path.join(IMPLEMENTATION_ROOT, '006-parent-hub-rollout');
+const N1_ROOT = path.join(IMPLEMENTATION_ROOT, '004-compiler-n1-shadow');
+const EVALUATOR_ROOT = path.join(IMPLEMENTATION_ROOT, '005-decision-evaluator');
+const EXECUTION_ROOT = path.join(IMPLEMENTATION_ROOT, '006-execution-verify-commit');
+const HUB_ROOT = path.join(IMPLEMENTATION_ROOT, '009-parent-hub-rollout');
 const FIXTURE = readJson(path.join(PHASE_ROOT, 'fixtures', 'deletion-cases.v1.json'));
 const EXPECTED_SCORER_DIGESTS = Object.freeze({
   'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',

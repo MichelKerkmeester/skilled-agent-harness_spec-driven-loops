@@ -11,7 +11,7 @@ const {
   computeBasePolicyHash,
   computeEffectivePolicyHash,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   compile,
   deriveDegeneracy,
@@ -22,7 +22,7 @@ const {
   projectTypedRouteGold,
   replayPolicyCard,
   validateReferenceClosure,
-} = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
 const {
   ActivationManifestError,
   fenceStateBytes,
@@ -32,7 +32,7 @@ const {
   validateActivationManifest,
 } = require('../activation/fenced-manifest.cjs');
 const { runShadowParity } = require('../parity/shadow-parity.cjs');
-const { assertSchema } = require('../../../001-compiler-n1-shadow/harness/json-schema.cjs');
+const { assertSchema } = require('../../../004-compiler-n1-shadow/harness/json-schema.cjs');
 const {
   BENCHMARK_ROOT,
   CHILD_ROOT,

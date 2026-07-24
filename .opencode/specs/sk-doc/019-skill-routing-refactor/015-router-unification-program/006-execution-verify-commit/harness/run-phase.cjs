@@ -20,7 +20,7 @@ const {
   DOMAIN_TAGS,
   canonicalize,
   hashArtifact,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const { prepareRoute } = require('../lib/execution-plane.cjs');
 const { projectExecutionToRouteGold } = require('../lib/projector.cjs');
 const { runTests } = require('../tests/execution-plane.test.cjs');

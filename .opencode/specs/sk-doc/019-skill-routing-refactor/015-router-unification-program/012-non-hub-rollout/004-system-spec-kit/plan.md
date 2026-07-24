@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/009-non-hub-rollout/004-system-spec-kit"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit"
     last_updated_at: "2026-07-19T10:39:28Z"
     last_updated_by: "codex"
     recent_action: "Executed the isolated compile, scorer, parity, and rollback plan"

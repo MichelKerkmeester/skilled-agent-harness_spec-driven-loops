@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Completed the canonical minter implementation and verification tasks"
@@ -116,5 +116,5 @@ All tasks are complete. Each checked item is backed by the evidence ledger in `i
 - **QA gate**: `checklist.md`
 - **Architecture decisions**: `decision-record.md`
 - **Implementation record**: `implementation-summary.md`
-- **Downstream consumer**: `../../013-create-skill-alignment/`
+- **Downstream consumer**: `../../017-create-skill-alignment/`
 <!-- /ANCHOR:cross-refs -->

@@ -3,7 +3,7 @@
 const {
   canonicalize,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const { evaluateCanary } = require('./router.cjs');
 
 const CARD_MARKER = 'sk-doc-policy-card-v1';

@@ -10,7 +10,7 @@
 const {
   canonicalize,
   computeProjectionHash,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 
 const { qualifiedDestinationId } = require('./compiler.cjs');
 const { compareUtf16 } = require('./order.cjs');

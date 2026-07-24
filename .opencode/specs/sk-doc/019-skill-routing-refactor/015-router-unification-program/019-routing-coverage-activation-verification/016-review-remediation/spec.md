@@ -12,7 +12,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation"
     last_updated_at: "2026-07-22T06:53:44Z"
     last_updated_by: "claude"
     recent_action: "Remediated all 8 findings and re-verified invariants; conformed spec to the Level-2 template."
@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/bin/lib/compiled-route-manifest.cjs"
-      - ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs"
+      - ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/router.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs"
 ---
 

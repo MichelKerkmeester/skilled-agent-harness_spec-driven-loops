@@ -49,3 +49,11 @@ A **25-iteration deep-research pass** (`001-research/`; 143 findings → 47 cons
 ## SHARED MIGRATION-GATE MODEL
 
 Every child builds behind the still-off flag and clears the same gates before completion: (1) frozen scorer SHA-256 unchanged; (2) compiled == legacy on all routing fields (legacy Lane C replay byte-identical); (3) `validate.sh --strict` Errors:0; (4) a named, proven rollback (flag=`0` or the byte-exact prior manifest); (5) no runtime read under `.opencode/specs`. P4 adds per-hub, stop-on-first-failure staging with per-hub route-gold parity + compiled-serving status + clean fallback + `=0` drill before that hub's catalog wording is atomically rewritten to default-on. The full P0→P4 safety dependency graph and per-child findings live in `001-research/synthesis-v1.md` §5-6 and `review-v1.md`.
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `018-benchmark-alignment` |
+| **Successor** | `None` |

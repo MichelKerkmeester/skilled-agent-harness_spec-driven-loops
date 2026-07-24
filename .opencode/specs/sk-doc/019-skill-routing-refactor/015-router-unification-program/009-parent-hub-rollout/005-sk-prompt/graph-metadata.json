@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/005-sk-prompt",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/005-sk-prompt",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/005-sk-prompt",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/005-sk-prompt",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The authored hub cannot be represented by treating every zero-signal request as a defer",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-24T10:52:39.372Z",
+    "last_save_at": "2026-07-24T12:11:53.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0253e6dedc513e35ee44382dfd4218056f38c678b8fff179cc0d32075c943864",
+    "source_fingerprint": "sha256:c5d883c9cea12a8c594c1be58afe4d1261e55a106abff2cdecd8e4f8848431c6",
     "source_doc_hashes": {
-      "spec.md": "1ca4f3380984ff08231dac76b982cdb4f98bac5c3727e0a58822af6613caddc4",
-      "plan.md": "ac4473262da522070b870d5c5e8a970eefbd40bc8302b4d1974a0436937e79cf",
-      "tasks.md": "68bd7ea95b9c322962493905092a7b6a905f5d80e1baa6112cb4a4e914dbd280",
-      "checklist.md": "3ecc0c4602461699f3435ffb2194fbe725d1438eef167955ca6c5c9e110fc995",
-      "implementation-summary.md": "f23c4db3bcbe8ec572fcef0bb5e344b5917cbc140eb17c586143b8617630d1e6"
+      "spec.md": "d7fed079a8d5851ff68bf835941234717cc876d1fdb41d53259aabb83d440c8f",
+      "plan.md": "47c93b3148e12b7524358acd9a2131217cfd5822984518350dc7559d5c05c78d",
+      "tasks.md": "2ce62a38b174d3d6a20199429fa65867ad4915233dcf93e00e01daa93adca4a4",
+      "checklist.md": "a6658b1a13f203afacaef5e13d18cc420b169b9dcc2947cc321569d5a827ac00",
+      "implementation-summary.md": "da25dafa1a9bec31c65a040853469bc7b4c445cbf20dcf24c895d4114fb07b45"
     },
     "last_active_child_id": null,
     "last_active_at": null

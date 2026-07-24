@@ -33,7 +33,7 @@ contextType: "implementation"
 - [x] CHK-001 [P0] Authoritative design-of-record, per-hub rollout children, and frozen contracts were read before authoring the driver.
   - **Evidence**: Intake covered the two-stage activation design (bind vs serve), each hub's `manifest.prior/candidate.json`, and the three pinned scorer digests.
 - [x] CHK-002 [P0] All writes remained inside this phase folder.
-  - **Evidence**: The driver and all activation state are rooted under `010-live-activation/`; the rollout children, live routing files, and shared scorer were read-only.
+  - **Evidence**: The driver and all activation state are rooted under `013-live-activation/`; the rollout children, live routing files, and shared scorer were read-only.
 - [x] CHK-003 [P1] Each hub's shadow rollout canary was green before activation.
   - **Evidence**: The driver executes each child's `harness/validate-canary.cjs` as a precondition and aborts on a non-zero exit.
 
@@ -95,7 +95,7 @@ contextType: "implementation"
 ## Security
 
 - [x] CHK-040 [P0] No live routing file was edited.
-  - **Evidence**: No `SKILL.md`, `hub-router.json`, or `mode-registry.json` was changed; activation state is confined to `010-live-activation/activation/`.
+  - **Evidence**: No `SKILL.md`, `hub-router.json`, or `mode-registry.json` was changed; activation state is confined to `013-live-activation/activation/`.
 - [x] CHK-041 [P0] The shared benchmark scorer is untouched.
   - **Evidence**: The three pinned scorer digests are unchanged after the full seven-hub run.
 - [x] CHK-042 [P1] No network, package install, credential, or dynamic-code surface was introduced.
@@ -144,6 +144,6 @@ contextType: "implementation"
 
 **Verification Date**: 2026-07-19
 **Verification Scope**: Phase-local fenced-CAS activation of all seven hubs — binding, fence advance, byte-exact rollback, frozen-scorer pin, canary green gate, child immutability, and audit records.
-**Completion Boundary**: Real-model routing verification (T9) is complete (0 wrong-hub routes across 3 models), and the P4b runtime resolver + serving-authority flip (T16-T17) is complete in `011-runtime-engine` — all 7 hubs flipped `legacy → compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag and byte-exact-reversible. The advisor-hook enrichment is committed (flag-off byte-parity proven); program-level machine-enforcement **remains in progress**, not complete. A bounded post-flip real-model sweep (2 prompts/hub × 3 models) was re-run — 0 wrong-hub routes — recorded in `real-model/<hub>/verdict.json` (a sample, not the full corpus).
+**Completion Boundary**: Real-model routing verification (T9) is complete (0 wrong-hub routes across 3 models), and the P4b runtime resolver + serving-authority flip (T16-T17) is complete in `014-runtime-engine` — all 7 hubs flipped `legacy → compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag and byte-exact-reversible. The advisor-hook enrichment is committed (flag-off byte-parity proven); program-level machine-enforcement **remains in progress**, not complete. A bounded post-flip real-model sweep (2 prompts/hub × 3 models) was re-run — 0 wrong-hub routes — recorded in `real-model/<hub>/verdict.json` (a sample, not the full corpus).
 
 <!-- /ANCHOR:summary -->

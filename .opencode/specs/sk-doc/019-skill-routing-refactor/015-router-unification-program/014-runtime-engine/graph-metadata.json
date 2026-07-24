@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/011-runtime-engine",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route time, no gate that decides when the compiled decision is authoritative, and no operated switch to move a hub from legacy to compiled serving",
     "created_at": "2026-07-19T14:22:34.516Z",
-    "last_save_at": "2026-07-24T10:52:41.345Z",
+    "last_save_at": "2026-07-24T12:11:58.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c42108fc942ac29156142df8fa30a492c06a09d227ce1bcd3ac51de60152229e",
+    "source_fingerprint": "sha256:64191e66e3fffeca34859820c6b733a633d1226570923890455941e0b1dceca9",
     "source_doc_hashes": {
-      "spec.md": "cda1932f5f28ca0dca7937f1bad28549ce7804a16c1eb5a2cb444167be2e5b8c",
-      "plan.md": "c39319bdc29bce6b3a3d04f2d4346101e82f96316f0090eeff547df66e7a5907",
-      "tasks.md": "15323349525b99ff9018343e324d497e51c2011a37b5c7fbbc421b095751943f",
-      "checklist.md": "301ddf6023b414995efd4174cd928952262268888fc08834a5a1d673d989b5d2",
-      "implementation-summary.md": "3846f1aec9abba2e717b3b6be8596655fb811725db3640acb85daf71e18adb27"
+      "spec.md": "1fd18dbf76f072b9f1c70407dd6e99c5fda8bd31ae16743d3433efa7a845ea7c",
+      "plan.md": "a6fa7da94db228e816aa8c1e91446044625db750689412279883695730477ae4",
+      "tasks.md": "372854a282d03f48f8aee9c383cdcc6e3d30448d53d1bd08d606cacb4ed65450",
+      "checklist.md": "821c625b227764243669de1cd597fbb053d7d9ca076c808439ebb973c6eedd59",
+      "implementation-summary.md": "d99dcbdf55fbfce31b2dd07d2fa67c169ace202c43a4d9c6dfac6ea77786a839"
     },
     "last_active_child_id": null,
     "last_active_at": null

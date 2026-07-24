@@ -36,9 +36,9 @@ This phase is a **shadow implementation with zero live authority**. It authors a
 | **Priority** | P0 |
 | **Status** | Implemented — phase-local shadow plane (PREPARE→VERIFY→COMMIT + idempotency ledger + receipt/fencing epoch) built and proven via deterministic route-gold fixtures under zero live authority; repository-level strict validation reserved for the orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `003-execution-verify-commit` |
-| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
-| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§3 Idea 7, §9 Stage 6, §11 open-q 5) |
+| **Branch** | `006-execution-verify-commit` |
+| **Parent** | `../spec.md` (Router-Unification Program) |
+| **Design source** | `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§3 Idea 7, §9 Stage 6, §11 open-q 5) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -71,7 +71,7 @@ Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `Route
 
 ### Out of Scope
 
-- The recovery ladder, the shared `UncertaintyBudgetV1`, and user-turn accounting — owned by phase `004-recovery-ladder`. A destination-precondition `NEEDS_INPUT` returned here is routed **back through** the ladder and never itself opens a user turn [synthesis §4 Seam B].
+- The recovery ladder, the shared `UncertaintyBudgetV1`, and user-turn accounting — owned by phase `007-recovery-ladder`. A destination-precondition `NEEDS_INPUT` returned here is routed **back through** the ladder and never itself opens a user turn [synthesis §4 Seam B].
 - Calibrated auto-route certificates (phase `005`), the learning overlay (phase `007`), and the actual per-hub live activation (phase `006/*`). This phase proves the plane under **zero live authority**.
 - Any **router-owned atomic rollback across external effects** — explicitly rejected; post-COMMIT recovery is destination-owned [synthesis §9 Stage 6; §6 eliminated-alternatives].
 - Editing the shared benchmark scorer `router-replay.cjs`, or modifying any live routing config, registry, or skill. A scorer edit required to make execution fixtures pass is a **migration failure**, not a license [synthesis §8.2; §10].
@@ -144,7 +144,7 @@ Deliver the destination-local PREPARE → VERIFY → COMMIT protocol, the `Route
 
 This phase owns the **Stage 6 — Destination rollout** gate from the master plan's Shared Migration-Gate Model [`../spec.md` §"SHARED MIGRATION-GATE MODEL", stage row 6, "Owned by phase(s): 003, 006/*"; synthesis §9 Stage 6].
 
-**Gate to satisfy before the next phase activates:** the execution-plane fixtures — **proof / expiry / read-set / authority / epoch / idempotency / receipt** — must parse and replay deterministically, with **read-only legs proven to run before mutating legs**, all under **zero live authority** (shadow only). Concretely, before phase `004-recovery-ladder` activates, the stale-proof-rejected and duplicate-key-single-receipt `TypedRouteGoldV1` fixtures must replay green through the compatibility projector with `router-replay.cjs` unmodified.
+**Gate to satisfy before the next phase activates:** the execution-plane fixtures — **proof / expiry / read-set / authority / epoch / idempotency / receipt** — must parse and replay deterministically, with **read-only legs proven to run before mutating legs**, all under **zero live authority** (shadow only). Concretely, before phase `007-recovery-ladder` activates, the stale-proof-rejected and duplicate-key-single-receipt `TypedRouteGoldV1` fixtures must replay green through the compatibility projector with `router-replay.cjs` unmodified.
 
 **Reversibility (Stage 6 rollback column):** `disable pre-effect adapter`. The pre-effect PREPARE/VERIFY adapter can be switched off to fall back to legacy serving authority; a **post-effect external COMMIT cannot be undone by the router** — that recovery is destination-owned. This phase therefore builds and proves the destination-rollout *mechanism and fixtures* here; the actual per-hub live destination rollout is consumed downstream by phases `006/*`, which reuse this identical execution plane [`../spec.md` §"SHARED MIGRATION-GATE MODEL"].
 
@@ -162,7 +162,15 @@ This phase owns the **Stage 6 — Destination rollout** gate from the master pla
 
 - **Build approach**: See `plan.md`
 - **Task breakdown**: See `tasks.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` — §2 execution plane, §3 Idea 7, §4 seams, §5.2 N=1 retention, §8.2 benchmark fixtures, §9 Stage 6, §10 constraints, §11 open-q 5
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` — §2 execution plane, §3 Idea 7, §4 seams, §5.2 N=1 retention, §8.2 benchmark fixtures, §9 Stage 6, §10 constraints, §11 open-q 5
 - **Master plan (phase parent)**: `../spec.md` — Phase Documentation Map (phase 3) + Shared Migration-Gate Model (Stage 6)
-- **Upstream contracts**: phase `000-contract-schemas` (`RouteProofV1` schema + deterministic hashing), phase `002-decision-evaluator` (the `route` decision this plane consumes)
-- **Downstream consumers**: phase `004-recovery-ladder` (routes `NEEDS_INPUT`/`DEFER` through the budget), phases `006/*` (per-hub live destination rollout on this same plane)
+- **Upstream contracts**: phase `003-contract-schemas` (`RouteProofV1` schema + deterministic hashing), phase `005-decision-evaluator` (the `route` decision this plane consumes)
+- **Downstream consumers**: phase `007-recovery-ladder` (routes `NEEDS_INPUT`/`DEFER` through the budget), phases `006/*` (per-hub live destination rollout on this same plane)
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `005-decision-evaluator` |
+| **Successor** | `007-recovery-ladder` |

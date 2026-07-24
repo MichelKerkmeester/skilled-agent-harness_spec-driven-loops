@@ -35,7 +35,7 @@ contextType: "implementation"
 
 ### Contract Intake
 
-- [x] T001 Pin the consumed contracts — import `RouteRequestV1`, `CompiledPolicyV1`, `Target`/identity types from `../000-contract-schemas/` and the compiled artifact + projections from `../001-compiler-n1-shadow/` (REQ-005, REQ-013)
+- [x] T001 Pin the consumed contracts — import `RouteRequestV1`, `CompiledPolicyV1`, `Target`/identity types from `../003-contract-schemas/` and the compiled artifact + projections from `../004-compiler-n1-shadow/` (REQ-005, REQ-013)
 - [x] T002 Confirm `pinnedActivationGeneration` and `effectivePolicyHash` are present and comparable on the pinned request/policy (REQ-013; synthesis §2.1)
 
 **Evidence**: The evaluator imports the frozen canonical library and consumes only the two frozen
@@ -120,5 +120,5 @@ N=1 rank/bundle/handoff calls.
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
 <!-- /ANCHOR:cross-refs -->

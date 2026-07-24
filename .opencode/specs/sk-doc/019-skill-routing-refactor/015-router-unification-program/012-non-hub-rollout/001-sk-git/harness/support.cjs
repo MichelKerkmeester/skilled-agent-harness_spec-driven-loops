@@ -8,14 +8,14 @@ const {
   DOMAIN_TAGS,
   canonicalize,
   hashArtifact,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   buildAuthoredSources,
   compareUtf16,
-} = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
 
 const CHILD_ROOT = path.resolve(__dirname, '..');
-const CONTRACT_ROOT = path.resolve(CHILD_ROOT, '..', '..', '000-contract-schemas');
+const CONTRACT_ROOT = path.resolve(CHILD_ROOT, '..', '..', '003-contract-schemas');
 
 function findRepoRoot(startPath) {
   let candidate = path.resolve(startPath);

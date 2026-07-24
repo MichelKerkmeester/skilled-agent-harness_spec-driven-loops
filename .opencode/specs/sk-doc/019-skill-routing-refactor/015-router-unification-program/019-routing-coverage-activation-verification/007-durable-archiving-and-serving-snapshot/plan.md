@@ -32,7 +32,7 @@ FAILURE MODES:
 | **Archive convention** | `<hub>/benchmark/compiled-routing/<run-label>/{skill-benchmark-report.json,skill-benchmark-report.md}`, fail-closed on collision |
 | **Joined artifact** | `serving-snapshot.json` — one file per hub joining manifest, fence, flag, freshness, and parity state |
 | **Frozen inputs** | The three pinned scorer files are read-only inputs; never edited |
-| **Archive source of truth** | The active `010-live-activation/activation/<hub>/manifest.json`, never a `006` shadow candidate |
+| **Archive source of truth** | The active `013-live-activation/activation/<hub>/manifest.json`, never a `006` shadow candidate |
 
 ### Overview
 
@@ -48,7 +48,7 @@ The plan adds one durable path convention, one joined schema plus renderer, one 
 
 - [ ] `../002-runtime-promotion-and-status-foundation/` has landed and named the durable status-probe fields this packet's schema consumes.
 - [ ] `../004-benchmark-compiled-lane-c/` emits a `compiledRoute` parity JSON this packet can archive.
-- [ ] The `serving-snapshot.json` field list is pinned and approved against the actual `010-live-activation/activation/<hub>/manifest.json` shape.
+- [ ] The `serving-snapshot.json` field list is pinned and approved against the actual `013-live-activation/activation/<hub>/manifest.json` shape.
 
 ### Definition of Done
 
@@ -82,7 +82,7 @@ Capture-then-render, gated on the active manifest. A capture step reads the live
 ### Data Flow
 
 ```text
-active 010-live-activation/activation/<hub>/manifest.json (read-only source)
+active 013-live-activation/activation/<hub>/manifest.json (read-only source)
               |
               v
    snapshot capture --> serving-snapshot.json (joined artifact)
@@ -108,8 +108,8 @@ active 010-live-activation/activation/<hub>/manifest.json (read-only source)
 
 | Surface | Current Role | Planned Action | Verification |
 |---------|--------------|------------------|----------------|
-| `010-live-activation/activation/<hub>/manifest.json` | Active serving manifest (7 hubs) | Read-only source for every snapshot/archive | Digest re-checked at capture-start and archive-commit; drift aborts |
-| `006-parent-hub-rollout/*/activation/` | Shadow-candidate manifests | **Never read as the archive source** | Boundary asserted in the capture step; a negative fixture proves it is rejected if pointed at by mistake |
+| `013-live-activation/activation/<hub>/manifest.json` | Active serving manifest (7 hubs) | Read-only source for every snapshot/archive | Digest re-checked at capture-start and archive-commit; drift aborts |
+| `009-parent-hub-rollout/*/activation/` | Shadow-candidate manifests | **Never read as the archive source** | Boundary asserted in the capture step; a negative fixture proves it is rejected if pointed at by mistake |
 | `run-skill-benchmark.cjs` / Lane C outputs | Caller-supplied `--outputs-dir` only | Add the durable convention as an additional, fail-closed archive target | Collision test: re-running a used `<run-label>` fails closed |
 | `build-report.cjs` (non-frozen) | JSON→Markdown report renderer | Add the `report.compiledRouting` block | Rendered-report fixture test |
 | Three frozen scorer files | Frozen route-gold scorer | **Unchanged — not a consumer** | Pre/post SHA-256 comparison stays identical |
@@ -117,7 +117,7 @@ active 010-live-activation/activation/<hub>/manifest.json (read-only source)
 | 7 hub `benchmark/README.md` | Existing archive-directory index | Add the compiled-routing convention row | Diff review per hub |
 
 Required inventories before implementation:
-- Confirm the exact shape of `010-live-activation/activation/<hub>/manifest.json` for all 7 hubs (fields feeding `serving-snapshot.json`).
+- Confirm the exact shape of `013-live-activation/activation/<hub>/manifest.json` for all 7 hubs (fields feeding `serving-snapshot.json`).
 - Confirm `../004-benchmark-compiled-lane-c/`'s `compiledRoute` parity JSON shape before wiring the `report.compiledRouting` block.
 - Confirm every hub's `benchmark/` directory naming family before adding new labels, to avoid an accidental collision with an existing directory name.
 <!-- /ANCHOR:affected-surfaces -->
@@ -177,7 +177,7 @@ Required inventories before implementation:
 |------------|------|--------|---------------------|
 | `../002-runtime-promotion-and-status-foundation/` | Internal | Planned | `serving-snapshot.json`'s `freshness`/`engineResolverPath` fields lack a stable source |
 | `../004-benchmark-compiled-lane-c/` | Internal | Planned | Nothing to archive under `report.compiledRouting` |
-| `010-live-activation/activation/<hub>/manifest.json` (7 hubs) | Internal | Available | The archive's entire source-of-truth; without it, no snapshot can be captured |
+| `013-live-activation/activation/<hub>/manifest.json` (7 hubs) | Internal | Available | The archive's entire source-of-truth; without it, no snapshot can be captured |
 | `build-report.cjs` (non-frozen orchestrator) | Internal | Available | The correct, safe extension point for the render block |
 | Three frozen scorer files (read-only) | Internal | Available (pinned) | Any required edit to them is treated as a migration failure, not license to edit |
 <!-- /ANCHOR:dependencies -->

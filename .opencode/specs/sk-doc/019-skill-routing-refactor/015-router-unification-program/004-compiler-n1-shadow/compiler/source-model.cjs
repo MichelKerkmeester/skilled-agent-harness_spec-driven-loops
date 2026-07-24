@@ -11,7 +11,7 @@ const {
   DOMAIN_TAGS,
   canonicalize,
   hashArtifact,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 
 const { CompileError } = require('./errors.cjs');
 const { compareUtf16 } = require('./order.cjs');

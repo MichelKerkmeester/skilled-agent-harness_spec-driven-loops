@@ -48,8 +48,8 @@ const IMPL_ROOT = path.resolve(COVERAGE_ROOT, '..');
 const REPO_ROOT = findRepoRoot(CONTROLLER_DIR);
 
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
-const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
-const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'compiled-route.cjs');
+const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '014-runtime-engine', 'lib', 'resolve.cjs');
+const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '014-runtime-engine', 'lib', 'compiled-route.cjs');
 const STATUS_PROBE = path.join(REPO_ROOT, '.opencode', 'bin', 'compiled-route-status.cjs');
 const SKILLS_ROOT = path.join(REPO_ROOT, '.opencode', 'skills');
 
@@ -463,12 +463,12 @@ function evaluateJoinGate() {
   // lockstep-surfaces manifest.
   const lockstepSurfaces = path.join(
     SKILLS_ROOT, 'sk-doc', 'create-skill', 'references', 'parent-skill', 'compiled-routing-lockstep-surfaces.json');
-  const s013Fixture = siblingVerified('013-create-skill-alignment');
+  const s013Fixture = siblingVerified('017-create-skill-alignment');
   inputs.push({
     id: 'create-skill-ready-fixture', proven: s013Fixture.verified,
     reason: s013Fixture.verified ? 'create-skill ready fixture verified'
       : `create-skill owner not implemented-and-verified (${s013Fixture.status}); dedicated ready fixture absent`,
-    evidence: exists(lockstepSurfaces) ? repoRel(lockstepSurfaces) : '013-create-skill-alignment/',
+    evidence: exists(lockstepSurfaces) ? repoRel(lockstepSurfaces) : '017-create-skill-alignment/',
   });
 
   // 6. verify_alignment_drift markdown gate live.
@@ -497,15 +497,15 @@ function evaluateJoinGate() {
   });
 
   // 9. Siblings implemented-and-verified (not merely "available").
-  const s013 = siblingVerified('013-create-skill-alignment');
-  const s014 = siblingVerified('014-benchmark-alignment');
+  const s013 = siblingVerified('017-create-skill-alignment');
+  const s014 = siblingVerified('018-benchmark-alignment');
   inputs.push({
     id: 'sibling-013-implemented-and-verified', proven: s013.verified,
-    reason: `013 status: ${s013.status}`, evidence: '013-create-skill-alignment/implementation-summary.md',
+    reason: `013 status: ${s013.status}`, evidence: '017-create-skill-alignment/implementation-summary.md',
   });
   inputs.push({
     id: 'sibling-014-implemented-and-verified', proven: s014.verified,
-    reason: `014 status: ${s014.status}`, evidence: '014-benchmark-alignment/implementation-summary.md',
+    reason: `014 status: ${s014.status}`, evidence: '018-benchmark-alignment/implementation-summary.md',
   });
 
   const green = inputs.every((i) => i.proven);
@@ -544,7 +544,7 @@ function repoDefaultUnchanged() {
   const resolverSrc = fs.readFileSync(PROMOTED_RESOLVER, 'utf8');
   const cohortEmptyOnDisk = /DEFAULT_ON_HUBS\s*=\s*new Set\(\)\s*;/.test(resolverSrc);
   const cohortEmptyInMemory = resolver.DEFAULT_ON_HUBS.size === 0;
-  const activationRoot = path.join(RUNTIME_ROOT, '010-live-activation', 'activation');
+  const activationRoot = path.join(RUNTIME_ROOT, '013-live-activation', 'activation');
   const manifests = HUBS.map((h) => {
     const p = path.join(activationRoot, h, 'manifest.json');
     let servingAuthority = 'missing';

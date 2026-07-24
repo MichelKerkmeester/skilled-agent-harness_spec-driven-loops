@@ -48,7 +48,7 @@ The compiled-routing *mechanism* works and is byte-identical, but **coverage was
 
 ## 3. The plan
 
-**A. Per-hub coverage build-out (the core work).** For each thin hub (sk-code, cli-ext, mcp-tooling, sk-prompt, then sk-doc/system-deep-loop post-remint): grow the hub's compiled policy — `registry-compiler.cjs` detectors + `router.cjs`/`canary-router.cjs` + `fixtures/canary-cases.v1.json` — so the compiled decision routes == legacy on the hub's full playbook + route-gold scenario set. **Model on sk-design** (`006-parent-hub-rollout/006-sk-design`, 562-line compiler). Compiled must route the SAME targets legacy routes; never add or drop a target.
+**A. Per-hub coverage build-out (the core work).** For each thin hub (sk-code, cli-ext, mcp-tooling, sk-prompt, then sk-doc/system-deep-loop post-remint): grow the hub's compiled policy — `registry-compiler.cjs` detectors + `router.cjs`/`canary-router.cjs` + `fixtures/canary-cases.v1.json` — so the compiled decision routes == legacy on the hub's full playbook + route-gold scenario set. **Model on sk-design** (`009-parent-hub-rollout/006-sk-design`, 562-line compiler). Compiled must route the SAME targets legacy routes; never add or drop a target.
 
 **B. Fix the 2 over-detection bugs.** sk-design TV-003 and mcp-tooling MT-008 — compiled adds a 2nd target legacy doesn't. Make compiled route ⊆ legacy exactly.
 
@@ -73,5 +73,5 @@ The compiled-routing *mechanism* works and is byte-identical, but **coverage was
 ## 6. Execution
 - **Workspace:** worktree `.worktrees/0089-sk-doc-default-routing-cutover` (branch `sk-doc/0089-default-routing-cutover`). Commit there.
 - **Models:** prefer **GPT-5.6 xhigh (fast)** for implementation via cli-codex; **native Claude Sonnet 5 xhigh** alongside; verify every dispatched fix independently (frozen SHA, compiled==legacy, no flip until green, 247 tests, git scope) before committing.
-- **Reference:** sk-design's `006-parent-hub-rollout/006-sk-design` is the worked example of full coverage — copy its structure.
+- **Reference:** sk-design's `009-parent-hub-rollout/006-sk-design` is the worked example of full coverage — copy its structure.
 - **Context:** best run **fresh** (this session is heavy + post-compaction); use `compiled-routing-coverage-diagnosis.md` as the technical handoff.

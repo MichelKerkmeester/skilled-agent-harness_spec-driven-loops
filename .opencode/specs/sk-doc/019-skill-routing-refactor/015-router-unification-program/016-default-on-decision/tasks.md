@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "gpt-5.6-sol"
     recent_action: "Prepared the Planned requirement-mapped task breakdown"
@@ -134,7 +134,7 @@ _memory:
 - **Build sequence**: `plan.md`
 - **Verification gate**: `checklist.md`
 - **Planned-state record**: `implementation-summary.md`
-- **Onboarding consumer**: `../013-create-skill-alignment/`
-- **Benchmark consumer**: `../014-benchmark-alignment/`
+- **Onboarding consumer**: `../017-create-skill-alignment/`
+- **Benchmark consumer**: `../018-benchmark-alignment/`
 <!-- /ANCHOR:cross-refs -->
 

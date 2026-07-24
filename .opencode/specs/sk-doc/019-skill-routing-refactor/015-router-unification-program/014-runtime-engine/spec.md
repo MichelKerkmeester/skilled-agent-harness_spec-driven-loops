@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Unified Router Refactor — Runtime Engine (P4b Literal Cutover)"
-description: "The runtime engine that consumes the compiled router contract at route time, plus the per-hub serving-authority flip that makes it authoritative. Stage P4b — the literal cutover — built on top of P4a (010-live-activation, which bound each hub's compiled generation as selectedPolicy while serving authority stayed legacy). Three zero-dependency modules: an archetype-adaptive compiled-route engine that reuses each rollout child's proven closed-decision-algebra engine (evaluateCanary or evaluateRoute, by archetype — so the runtime path and the shadow-validated path are the same code), a double-gated fail-safe resolver plus CLI front-door that only serves the compiled route when the runtime flag SPECKIT_COMPILED_ROUTING=1 AND the hub's manifest reads servingAuthority: compiled, and a fenced compare-and-swap flip that moves a hub legacy→compiled behind green gates with a byte-exact rollback. The literal cutover is complete: all seven hubs are flipped legacy→compiled (each with a flag-gated compiled-routing directive in its live SKILL.md and archetype-adaptive re-certification), held inert behind the default-off SPECKIT_COMPILED_ROUTING flag; the frozen benchmark scorer is pinned throughout."
+description: "The runtime engine that consumes the compiled router contract at route time, plus the per-hub serving-authority flip that makes it authoritative. Stage P4b — the literal cutover — built on top of P4a (013-live-activation, which bound each hub's compiled generation as selectedPolicy while serving authority stayed legacy). Three zero-dependency modules: an archetype-adaptive compiled-route engine that reuses each rollout child's proven closed-decision-algebra engine (evaluateCanary or evaluateRoute, by archetype — so the runtime path and the shadow-validated path are the same code), a double-gated fail-safe resolver plus CLI front-door that only serves the compiled route when the runtime flag SPECKIT_COMPILED_ROUTING=1 AND the hub's manifest reads servingAuthority: compiled, and a fenced compare-and-swap flip that moves a hub legacy→compiled behind green gates with a byte-exact rollback. The literal cutover is complete: all seven hubs are flipped legacy→compiled (each with a flag-gated compiled-routing directive in its live SKILL.md and archetype-adaptive re-certification), held inert behind the default-off SPECKIT_COMPILED_ROUTING flag; the frozen benchmark scorer is pinned throughout."
 trigger_phrases:
   - "unified router runtime engine"
   - "compiled-route resolver serving flip"
@@ -22,7 +22,7 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-This phase builds the **runtime consumer** of the compiled router contract — the piece P4a deliberately left out — and the per-hub switch that makes it authoritative. P4a (`010-live-activation`) bound each hub's compiled generation as `selectedPolicy` on a fenced activation manifest while `servingAuthority` stayed `legacy`; nothing yet *read* that binding at route time. P4b is that reader plus the flip that turns it on.
+This phase builds the **runtime consumer** of the compiled router contract — the piece P4a deliberately left out — and the per-hub switch that makes it authoritative. P4a (`013-live-activation`) bound each hub's compiled generation as `selectedPolicy` on a fenced activation manifest while `servingAuthority` stayed `legacy`; nothing yet *read* that binding at route time. P4b is that reader plus the flip that turns it on.
 
 Three zero-dependency modules do the work. An archetype-adaptive **compiled-route engine** answers `(hubId, taskText)` by loading the hub's compiled policy and reusing the **same** closed-decision-algebra engine the shadow canary already validates — the export name varies by archetype (`evaluateCanary` for the surfaceBundle canary-router, `evaluateRoute` for the plain router), so the runtime path and the shadow-validated path are literally the same code, with no reimplementation to drift. A double-gated **resolver + CLI front-door** returns the compiled decision only when the runtime flag `SPECKIT_COMPILED_ROUTING=1` is set (default off) **and** the hub's activation manifest reads `servingAuthority: compiled`; otherwise it returns a legacy sentinel and the caller keeps the prose smart-router. A fenced-CAS **serving flip** moves one hub `legacy → compiled` behind green gates, retaining a byte-identical pre-flip manifest for a byte-exact rollback. The mechanism was proven end-to-end on `sk-code`, then the literal cutover was executed across all seven hubs: each hub's live `SKILL.md` gained a flag-gated compiled-routing directive, was recompiled with archetype-adaptive re-certification, and had serving authority flipped `legacy → compiled`. The cutover is inert by default and reversible two ways, and the frozen benchmark scorer is pinned untouched throughout — so live routing is unchanged until `SPECKIT_COMPILED_ROUTING` is enabled (compiled routing is route-gold byte-identical to legacy).
 
@@ -35,9 +35,9 @@ Three zero-dependency modules do the work. An archetype-adaptive **compiled-rout
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete — the P4b runtime engine (archetype-adaptive compiled-route engine + resolver/CLI front-door + per-hub serving flip) is built, and the literal cutover is executed across all seven hubs: each hub carries a flag-gated compiled-routing directive in its live `SKILL.md`, was recompiled with archetype-adaptive re-certification, and had serving authority flipped `legacy → compiled` (`servingAuthority: compiled` in each `010-live-activation/activation/<hub>/manifest.json`). Each flip is canary-green via the real scorer, route-gold ROUTING byte-identical (only hashes changed), with a byte-exact rollback retained (`manifest.serving-prior.json`). The runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off), so live routing is unchanged until the flag is enabled. Advisor-hook machine-enforcement remains in progress. Commits: engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4). |
+| **Status** | Complete — the P4b runtime engine (archetype-adaptive compiled-route engine + resolver/CLI front-door + per-hub serving flip) is built, and the literal cutover is executed across all seven hubs: each hub carries a flag-gated compiled-routing directive in its live `SKILL.md`, was recompiled with archetype-adaptive re-certification, and had serving authority flipped `legacy → compiled` (`servingAuthority: compiled` in each `013-live-activation/activation/<hub>/manifest.json`). Each flip is canary-green via the real scorer, route-gold ROUTING byte-identical (only hashes changed), with a byte-exact rollback retained (`manifest.serving-prior.json`). The runtime path is inert by default (`SPECKIT_COMPILED_ROUTING` off), so live routing is unchanged until the flag is enabled. Advisor-hook machine-enforcement remains in progress. Commits: engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4). |
 | **Created** | 2026-07-19 |
-| **Branch** | `011-runtime-engine` |
+| **Branch** | `014-runtime-engine` |
 | **Migration stage** | Stage P4b — literal cutover (build the runtime consumer, flip serving authority per hub) |
 | **Blast radius** | HIGH — the only stage that changes runtime routing — held inert behind a default-off flag and a per-hub serving-authority gate; reversible fleet-wide (unset the flag) or per hub (byte-exact rollback) |
 <!-- /ANCHOR:metadata -->
@@ -67,13 +67,13 @@ Deliver the P4b runtime engine as three small, zero-dependency modules: a pure c
 - The archetype-adaptive runtime **compiled-route engine** `lib/compiled-route.cjs` — routes `(hubId, taskText)` through the hub's compiled policy by reusing the rollout child's `loadSnapshot` + its archetype engine (`evaluateCanary` or `evaluateRoute`), and returns a normalized decision (`action`, `selectionKind`, `targets`, `effectivePolicyHash`, `generation`).
 - The **resolver + CLI front-door** `lib/resolve.cjs` — double-gated (`SPECKIT_COMPILED_ROUTING=1` AND manifest `servingAuthority: compiled`), fail-safe (errors → null), with a `--hub/--prompt` CLI that prints the compiled decision or a legacy sentinel.
 - The per-hub **serving flip** `lib/flip-serving.cjs` — a fenced compare-and-swap that moves the hub's activation manifest `legacy → compiled` behind green gates, retains a byte-identical `manifest.serving-prior.json`, supports `--rollback`, and emits `serving-flip-record.json`.
-- The end-to-end proof on `sk-code` (flip → compiled-served route via the front-door → byte-exact rollback) and the subsequent seven-hub cutover (flip all hubs `legacy → compiled` behind the default-off flag), with each flip's serving state living on the P4a activation manifest under `010-live-activation/activation/<hub>/`.
+- The end-to-end proof on `sk-code` (flip → compiled-served route via the front-door → byte-exact rollback) and the subsequent seven-hub cutover (flip all hubs `legacy → compiled` behind the default-off flag), with each flip's serving state living on the P4a activation manifest under `013-live-activation/activation/<hub>/`.
 - The frozen-scorer pin, the canary green gate, and the "engine routes ≥1 designed scenario" gate that every flip must clear.
 
 ### Out of Scope
 
 - Wiring each hub's live `SKILL.md` routing directive to call the resolver - [note] beyond the initial engine build, but now **complete**: each of the seven hubs carries an additive, flag-gated compiled-routing directive that shells to the resolver front-door and self-gates on serving authority (inert while `SPECKIT_COMPILED_ROUTING` is off).
-- Flipping all seven hubs' serving authority to `compiled` - [note] now **complete**: executed one-hub-at-a-time; all seven `010-live-activation` manifests read `servingAuthority: compiled`, each byte-exact-reversible via a retained `manifest.serving-prior.json`.
+- Flipping all seven hubs' serving authority to `compiled` - [note] now **complete**: executed one-hub-at-a-time; all seven `013-live-activation` manifests read `servingAuthority: compiled`, each byte-exact-reversible via a retained `manifest.serving-prior.json`.
 - Post-flip real-model re-verification across the hubs - [note] treated as satisfied by the P4a T9 result (0 wrong-hub routes) plus flag-off inertness; compiled routing is route-gold byte-identical to legacy, so enabling the flag changes hashes only, not routing decisions. A separate post-flip real-model sweep was not re-run.
 - Re-deriving or editing the compiled contract, or editing any `hub-router.json`, `mode-registry.json`, or the frozen benchmark scorer - [why] the engine consumes the compiled contract read-only and never edits a protected input. The cutover's one authored edit per hub is the additive, flag-gated `SKILL.md` compiled-routing directive above — never a change to existing prose routing.
 
@@ -81,12 +81,12 @@ Deliver the P4b runtime engine as three small, zero-dependency modules: a pure c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `011-runtime-engine/lib/compiled-route.cjs` | Create | Pure runtime compiled-route engine (reuses each rollout child's canary engine read-only) |
-| `011-runtime-engine/lib/resolve.cjs` | Create | Double-gated, fail-safe serving resolver + `--hub/--prompt` CLI front-door |
-| `011-runtime-engine/lib/flip-serving.cjs` | Create | Fenced-CAS per-hub serving flip (`legacy → compiled`) with byte-exact `--rollback` and `serving-flip-record.json` |
-| `011-runtime-engine/{spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md}` | Create | Level-2 spec docs, verification evidence, and completion record |
+| `014-runtime-engine/lib/compiled-route.cjs` | Create | Pure runtime compiled-route engine (reuses each rollout child's canary engine read-only) |
+| `014-runtime-engine/lib/resolve.cjs` | Create | Double-gated, fail-safe serving resolver + `--hub/--prompt` CLI front-door |
+| `014-runtime-engine/lib/flip-serving.cjs` | Create | Fenced-CAS per-hub serving flip (`legacy → compiled`) with byte-exact `--rollback` and `serving-flip-record.json` |
+| `014-runtime-engine/{spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md}` | Create | Level-2 spec docs, verification evidence, and completion record |
 
-> The engine and resolver are pure and read-only. Only the flip mutates state, and it does so on the P4a activation manifest under `010-live-activation/activation/<hub>/` (the serving pointer the resolver reads) — never on a live routing file or the scorer. The runtime path stays inert until `SPECKIT_COMPILED_ROUTING=1` is set for a hub that has been flipped.
+> The engine and resolver are pure and read-only. Only the flip mutates state, and it does so on the P4a activation manifest under `013-live-activation/activation/<hub>/` (the serving pointer the resolver reads) — never on a live routing file or the scorer. The runtime path stays inert until `SPECKIT_COMPILED_ROUTING=1` is set for a hub that has been flipped.
 
 <!-- /ANCHOR:scope -->
 
@@ -99,9 +99,9 @@ Deliver the P4b runtime engine as three small, zero-dependency modules: a pure c
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The compiled-route engine reuses each rollout child's proven canary engine rather than reimplementing routing. | `compiled-route.cjs` loads the hub's `harness/build-artifacts.cjs` `loadSnapshot` and `lib/canary-router.cjs` `evaluateCanary` from `006-parent-hub-rollout/<child>` and routes through them; it defines no independent routing algebra. |
+| REQ-001 | The compiled-route engine reuses each rollout child's proven canary engine rather than reimplementing routing. | `compiled-route.cjs` loads the hub's `harness/build-artifacts.cjs` `loadSnapshot` and `lib/canary-router.cjs` `evaluateCanary` from `009-parent-hub-rollout/<child>` and routes through them; it defines no independent routing algebra. |
 | REQ-002 | The engine routes WITHIN a hub and defers on prompts that lack the policy's detector signals. | `compiledRoute(hubId, taskText)` returns a normalized `{action, selectionKind, targets, effectivePolicyHash, generation}`; `action` is one of route/clarify/defer/reject, and an off-signal prompt returns `defer` (the conservative outcome) so the caller can fall back to legacy. |
-| REQ-003 | The resolver serves the compiled route ONLY when both gates hold, and is otherwise inert. | `resolveRoute(hubId, taskText)` returns null unless `SPECKIT_COMPILED_ROUTING=1` AND the hub's `010-live-activation` manifest reads `servingAuthority: compiled`; with the flag off it returns null / the CLI prints a legacy sentinel. |
+| REQ-003 | The resolver serves the compiled route ONLY when both gates hold, and is otherwise inert. | `resolveRoute(hubId, taskText)` returns null unless `SPECKIT_COMPILED_ROUTING=1` AND the hub's `013-live-activation` manifest reads `servingAuthority: compiled`; with the flag off it returns null / the CLI prints a legacy sentinel. |
 | REQ-004 | The resolver fails safe: any error resolving the compiled route yields null, never a throw into the routing hot path. | A malformed or missing manifest, or any engine error, returns null (legacy fallback); `servingAuthority()` defaults to `legacy` on a missing/unparseable manifest. |
 | REQ-005 | The serving flip is a fenced compare-and-swap gated on P4a-binding, a green canary, the frozen scorer, and a live route. | `flip-serving.cjs --hub <id>` aborts unless `selectedPolicy` is the compiled generation, `validate-canary.cjs` exits zero, the three pinned scorer digests match, and the engine routes ≥1 designed scenario; on success it writes `servingAuthority: compiled`, `shadowOnly: false`, and advances the fence epoch. |
 | REQ-006 | Every flip is reversible byte-exact and audited. | The flip retains a byte-identical `manifest.serving-prior.json` before the swap; `--rollback` restores those exact bytes and advances the monotonic fence; each flip emits `serving-flip-record.json` with the gate proof. |
@@ -136,7 +136,7 @@ Deliver the P4b runtime engine as three small, zero-dependency modules: a pure c
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Per-hub rollout children (`harness/build-artifacts.cjs`, `lib/canary-router.cjs`) | The engine cannot route without each child's snapshot + canary engine | Reused read-only; the engine caches each hub's frozen engine and never mutates a child |
-| Dependency | P4a activation manifests (`010-live-activation/activation/<hub>/manifest.json`) | The resolver's serving gate and the flip's CAS both read/write this pointer | Present and P4a-bound; the flip asserts `selectedPolicy` is compiled before flipping |
+| Dependency | P4a activation manifests (`013-live-activation/activation/<hub>/manifest.json`) | The resolver's serving gate and the flip's CAS both read/write this pointer | Present and P4a-bound; the flip asserts `selectedPolicy` is compiled before flipping |
 | Dependency | Frozen benchmark scorer (three pinned digests) | A drifted scorer would invalidate the canary baseline behind every flip | The flip re-hashes all three files and aborts on any drift before writing |
 | Risk | The serving flip is the only stage that changes runtime routing | A wrong or premature flip changes what actually routes | Inert by default (`SPECKIT_COMPILED_ROUTING` off), per-hub gate, fenced CAS, byte-exact rollback, one hub at a time |
 | Risk | Re-implementing the routing algebra in the engine | A forked runtime path could route differently from the proven canary | Structural rule: the engine reuses the child's `evaluateCanary`; it defines no independent algebra |
@@ -218,4 +218,12 @@ Deliver the P4b runtime engine as three small, zero-dependency modules: a pure c
 - **Compiled-route engine**: `lib/compiled-route.cjs`
 - **Resolver + CLI front-door**: `lib/resolve.cjs`
 - **Per-hub serving flip**: `lib/flip-serving.cjs`
-- **P4a activation state (serving pointer)**: `../010-live-activation/activation/<hub>/`
+- **P4a activation state (serving pointer)**: `../013-live-activation/activation/<hub>/`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `013-live-activation` |
+| **Successor** | `015-cutover-hardening` |

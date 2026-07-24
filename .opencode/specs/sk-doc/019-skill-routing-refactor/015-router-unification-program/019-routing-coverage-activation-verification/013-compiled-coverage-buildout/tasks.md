@@ -10,14 +10,14 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Reconciled status to Complete: coverage-buildout tasks shipped and serving (7/7 hubs compiled-serving, parity 49/49)."
     next_safe_action: "None; core deliverable complete. Tracked follow-up: full 7-hub LUNA-HIGH acceptance sweep (checklist CHK-025)."
     blockers: []
     key_files:
-      - ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
+      - ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "packet-013-authoring"
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read sk-design's reference compiler (`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs`)
+- [ ] T001 Read sk-design's reference compiler (`.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs`)
 - [ ] T002 Capture the 3 frozen scorer SHA-256 hashes as the pre-program baseline
 <!-- /ANCHOR:phase-1 -->
 
@@ -61,7 +61,7 @@ _memory:
 ## Phase 2: Implementation
 
 ### 2a. sk-code Pilot Build-Out
-- [ ] T003 Grow sk-code's detectors to legacy parity (`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/00N-sk-code/lib/registry-compiler.cjs`) {deps: T001}
+- [ ] T003 Grow sk-code's detectors to legacy parity (`.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/00N-sk-code/lib/registry-compiler.cjs`) {deps: T001}
 - [ ] T004 Grow sk-code's router or canary-router to route the new detectors {deps: T003}
 - [ ] T005 Extend sk-code's canary fixtures to the full scenario set (`fixtures/canary-cases.v1.json`) {deps: T003}
 - [ ] T006 Run route-gold parity for sk-code; confirm `compiled-serving` {deps: T004, T005}

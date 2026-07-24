@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled to the implemented+committed state (code landed in a1cdb65d90)"
@@ -80,7 +80,7 @@ With the flag on and a hub compiled-serving, `SPECKIT_COMPILED_ROUTING` today ch
 1. **Dual flag-strip (CF-ACT-2).** Both spawn paths filter the child environment through an explicit `Set` allowlist that omits the flag. The native launcher builds the child env by `Object.entries(sourceEnv).filter(([key]) => CHILD_ENV_ALLOWLIST.has(key) ...)` (`mk-skill-advisor-launcher.cjs:99` declaration, `:269` filter); the OpenCode bridge does the same (`mk-skill-advisor-bridge.mjs:58` declaration, `:212` filter). Neither Set contains `SPECKIT_COMPILED_ROUTING` and neither uses prefix matching, so there is no indirect path for the flag to reach either spawned child. An operator who sets the flag in `.env` sees it silently dropped at the process boundary.
 2. **Dual decision-drop (CF-ACT-1).** The advisor's `enrichCompiledRoutes` (`handlers/advisor-recommend.ts:357`) attaches the compiled decision additively — `{ ...recommendation, compiledRoute }` (`:371`) — and returns `undefined` for a legacy sentinel (`:351`), so the field exists on the recommendation the bridge receives. But `buildNativeBrief` rebuilds the recommendation list via `data.recommendations.map((recommendation) => ({ ... }))` with a hand-listed field allowlist (`skill, kind, confidence, uncertainty, score, passes_threshold, reason, ambiguousWith`) that omits `compiledRoute` (`mk-skill-advisor-bridge.mjs:539-551`). The CLI path is a **second, independent drop**: the `AdvisorRecommendation` TypeScript interface in `subprocess.ts` declares no `compiledRoute` field, so anything routed through the CLI brief loses it too. The compiled decision never survives to the brief a hook injects into an agent's system-context.
 
-A consequence for correctness (the CF-ACT-10 cache slice): once the decision does flow, a cached advisor brief keyed only on the prompt (`mk-skill-advisor.js` `cacheKeyForPrompt`, `:271`) and an engine cache with no invalidation hook (`011-runtime-engine/lib/compiled-route.cjs:33` `engineCache = new Map()`) would serve a stale compiled decision after a manifest flip or a `=0` kill. The cache keys must incorporate a manifest/serving-state fingerprint so consumption tracks the currently-served authority.
+A consequence for correctness (the CF-ACT-10 cache slice): once the decision does flow, a cached advisor brief keyed only on the prompt (`mk-skill-advisor.js` `cacheKeyForPrompt`, `:271`) and an engine cache with no invalidation hook (`014-runtime-engine/lib/compiled-route.cjs:33` `engineCache = new Map()`) would serve a stale compiled decision after a manifest flip or a `=0` kill. The cache keys must incorporate a manifest/serving-state fingerprint so consumption tracks the currently-served authority.
 
 ### Purpose
 
@@ -119,7 +119,7 @@ Make `SPECKIT_COMPILED_ROUTING` reach the advisor daemon child and make the comp
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Modify | Add the flag to the bridge `CHILD_ENV_ALLOWLIST` (`:58`); carry `compiledRoute`/`metadata.compiledRouteSummary` through the `buildNativeBrief` rebuild (`:539-551`) |
 | `.opencode/skills/system-skill-advisor/mcp-server/lib/subprocess.ts` | Modify | Add `compiledRoute` (optional) to the `AdvisorRecommendation` interface — the CLI-path second drop site |
 | `.opencode/plugins/mk-skill-advisor.js` | Modify | Render the compiled 4-action outcome into the injected brief; add the serving-state fingerprint to `cacheKeyForPrompt` (`:271`) |
-| `011-runtime-engine/lib/compiled-route.cjs` | Modify | Add a manifest-fingerprint invalidation input to `engineCache` (`:33`) so a flip/kill does not serve a stale engine (coordinated with 002's promoted closure) |
+| `014-runtime-engine/lib/compiled-route.cjs` | Modify | Add a manifest-fingerprint invalidation input to `engineCache` (`:33`) so a flip/kill does not serve a stale engine (coordinated with 002's promoted closure) |
 | `003-flag-propagation-and-effective-consumption/{spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md}` | Create | This Level-3 planning set (authored now; implementation is future work) |
 | e2e test fixtures (path chosen at build time, non-frozen) | Create | Bridge+plugin e2e with a real compiled decision (native + no-dist fallback) and the `=0` propagation kill test |
 

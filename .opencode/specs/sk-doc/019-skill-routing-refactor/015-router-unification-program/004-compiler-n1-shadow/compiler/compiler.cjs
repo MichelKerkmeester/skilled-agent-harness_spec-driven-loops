@@ -11,9 +11,9 @@ const {
   canonicalize,
   computeBasePolicyHash,
   computeEffectivePolicyHash,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const COMPILED_POLICY_SCHEMA = require(
-  '../../000-contract-schemas/schemas/compiled-policy.v1.schema.json'
+  '../../003-contract-schemas/schemas/compiled-policy.v1.schema.json'
 );
 
 const { CompileError } = require('./errors.cjs');

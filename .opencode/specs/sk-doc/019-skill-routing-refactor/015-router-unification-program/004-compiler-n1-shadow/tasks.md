@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Executed and verified all 26 shadow-compiler tasks"
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm Phase 0 schema + deterministic serialization is frozen and importable; if absent, fail closed and halt (dependency; spec REQ-002) (`../000-contract-schemas/`)
+- [x] T001 Confirm Phase 0 schema + deterministic serialization is frozen and importable; if absent, fail closed and halt (dependency; spec REQ-002) (`../003-contract-schemas/`)
 - [x] T002 Capture the Stage-0 legacy route-gold baseline and confirm it is green BEFORE any shadow artifact exists (Stage 0 handshake; synthesis §9)
 - [x] T003 Ingest `mcp-code-mode` authored sources read-only and verify against synthesis §5 confirmed line refs (`.../mcp-code-mode/SKILL.md`, `.../mcp-code-mode/leaf-manifest.json`)
 - [x] T004 Confirm `mcp-route-guard.cjs` is advisory (`allow`/`warn`, fails open) and record that it MUST NOT become destination VERIFY (synthesis §5.2)
@@ -96,7 +96,7 @@ _memory:
 - [x] T023 Fail-closed: run the three negative fixtures (T007–T009) and assert typed error + zero artifacts written (SC-003)
 - [x] T024 Scorer untouched: protected `router-replay.cjs` checksum is exact; route-gold evaluator green with projected fields and a deliberate falsifier red; existing gold byte-unchanged (SC-004; synthesis §8.2, §10)
 - [x] T025 Standalone document-only route from `PolicyCardV1.md` alone reaches single/clarify/defer/reject + `PREPARED_DRAFT` and honestly terminates `DOCUMENT_ONLY_UNATTESTED` (spec REQ-010; synthesis §8.3)
-- [x] T026 Confirm the Migration Stage-1 gate (spec §6) is satisfied and dual-read fail-closed resolution holds for `mcp-code-mode`, so Phase 2 (`../002-decision-evaluator/`) may activate
+- [x] T026 Confirm the Migration Stage-1 gate (spec §6) is satisfied and dual-read fail-closed resolution holds for `mcp-code-mode`, so Phase 2 (`../005-decision-evaluator/`) may activate
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -120,5 +120,5 @@ _memory:
 - **Plan**: `plan.md`
 - **Verification Checklist**: `checklist.md`
 - **Master plan**: `../spec.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
 <!-- /ANCHOR:cross-refs -->

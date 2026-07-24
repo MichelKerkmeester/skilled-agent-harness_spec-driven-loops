@@ -95,9 +95,9 @@ Make the RESOURCE_MAP-equality claim true by naming and backlinking the real gua
 | `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs` | Modify | Add `qualifiedIdToLeaf`, exposed via `selectResourceContract` |
 | `.opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs` | Modify | Unit coverage for the new `qualifiedIdToLeaf` lookup |
 | `.opencode/skills/sk-code/leaf-manifest.json` | Read-only | Bijection target — the leaf identities both directions must resolve against |
-| `007-unified-refactor-implementation/006-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json` | Read-only | Bijection source — the compiled `targetQualifiedIds` under test |
+| `015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json` | Read-only | Bijection source — the compiled `targetQualifiedIds` under test |
 | `.opencode/skills/sk-code/code-opencode/assets/scripts/run-all-drift-guards.sh` | Create | New orchestrator invoking all three drift guards; non-zero on any failure |
-| The promoted runtime request contract (post-002; pre-promotion `007-unified-refactor-implementation/011-runtime-engine/lib/compiled-route.cjs:73`) | Modify (P1) | Add the additive optional composite-routing context field for `surfaceBundle` proof |
+| The promoted runtime request contract (post-002; pre-promotion `015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs:73`) | Modify (P1) | Add the additive optional composite-routing context field for `surfaceBundle` proof |
 
 <!-- /ANCHOR:scope -->
 
@@ -146,7 +146,7 @@ Make the RESOURCE_MAP-equality claim true by naming and backlinking the real gua
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `002-runtime-promotion-and-status-foundation` (ADR-003 promotion) | REQ-006's target file does not exist at its stable path until 002 ships | REQ-006 cites both the pre- and post-promotion path and is sequenced strictly after 002; REQ-001..REQ-004 (P0) do not depend on the promoted path and can proceed independently |
-| Dependency | `013-create-skill-alignment` (Planned; CF-SC-5 evidence `013/spec.md:127,162`) | 013's "single-authority interface" language must describe the same authority this child publishes | This child's authority-interface note explicitly cross-links 013's requirement so both packets name the same interface, not two competing ones |
+| Dependency | `017-create-skill-alignment` (Planned; CF-SC-5 evidence `013/spec.md:127,162`) | 013's "single-authority interface" language must describe the same authority this child publishes | This child's authority-interface note explicitly cross-links 013's requirement so both packets name the same interface, not two competing ones |
 | Risk | `--check-router`'s markdown parser scope-creeps into general markdown parsing | Would risk changing default validator behavior, violating the additive/reversible invariant | Flag stays default-off; parser is scoped to RESOURCE_MAP tables only; positive + drift fixtures required before merge |
 | Risk | The bijection Vitest suite misses a leaf due to cited-line drift in the actual manifest shape | False-negative gate (passes when it should fail, or vice versa) | Re-anchor on `leaf-manifest.json`'s live schema and `route-gold.typed.json`'s live shape at build time, never on a cited line number |
 | Risk | `run-all-drift-guards.sh` masks which of the three guards actually failed | Harder triage during CI failures | Script echoes a per-guard PASS/FAIL line before the aggregate non-zero exit |

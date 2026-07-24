@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/007-sk-doc",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the shared projector and real scorer, and retain legacy authority behind a fenced rollback path.",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-24T10:52:38.975Z",
+    "last_save_at": "2026-07-24T12:11:54.309Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:406c292b12ca1ef9963bdb8b5eedba8c95d108a1af225576e4995a388dc75c0a",
+    "source_fingerprint": "sha256:31e008c5797da374cb370af3ceeb983cab753e4d966b8fbe0d2110373172c37b",
     "source_doc_hashes": {
-      "spec.md": "9b2e9b44e27f81f99fbd8e1cd88331a88148ea91e39cf9d20ad45aec23619d55",
-      "plan.md": "e25135b4f032ca0f308d802a45e31b87d3126c5dc13a0d4015445eddf97f01f5",
-      "tasks.md": "aec9f35e582c04561670b64977783cd978ce92b9745644f8ba7d46c3f0b695e6",
-      "checklist.md": "f377437e2b1c60b93b48b40ef4b3c1616788f94a41897897b529b56a31857488",
-      "implementation-summary.md": "de2a6429b698729f68aeb35f2bee536d457ea818e197edd5991061a5d2edd34e"
+      "spec.md": "1c551de60c4a0843cd2827a6cc830bd2ec350eab8d570237ecd8fcc662654f99",
+      "plan.md": "16c711da9ede730911c3738ecfab3ce1b8e84d5857c483b43736e23570ce7fad",
+      "tasks.md": "9f0295b6e5ae296aed36b0c401431fa9315e433af7bde3ffce164e5b98e5c9da",
+      "checklist.md": "f9f28e48785fe7f739c455199ed4f884dd4770b918dcdea13bfa694a2c68a9c0",
+      "implementation-summary.md": "9bd4c9b1bf2b17af0a0bd2d6975c48786f962d52bfbe8c168affc4e9a0056965"
     },
     "last_active_child_id": null,
     "last_active_at": null

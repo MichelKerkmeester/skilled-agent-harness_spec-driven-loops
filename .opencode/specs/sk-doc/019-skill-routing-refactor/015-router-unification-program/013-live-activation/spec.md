@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Unified Router Refactor — Live Activation"
-description: "Activate the compiled router contract across all seven parent hubs in two ordered stages. Stage P4a (design-faithful): a fenced compare-and-swap binds each hub's compiled policy generation as the SELECTED policy on a dedicated per-hub activation manifest, advancing a monotonic fence epoch, while serving authority stays legacy and no runtime consumer is touched; rollback restores the byte-identical prior manifest. Stage P4b (literal cutover, now complete in the sibling 011-runtime-engine): a runtime resolver consumes the compiled contract and serving authority was flipped hub-by-hub across all seven hubs, re-verified, with the byte-identical legacy manifest retained for rollback and the compiled path held inert behind the default-off SPECKIT_COMPILED_ROUTING flag. The shared benchmark scorer is frozen and pinned throughout; every activation proves a byte-exact rollback and rides a green canary."
+description: "Activate the compiled router contract across all seven parent hubs in two ordered stages. Stage P4a (design-faithful): a fenced compare-and-swap binds each hub's compiled policy generation as the SELECTED policy on a dedicated per-hub activation manifest, advancing a monotonic fence epoch, while serving authority stays legacy and no runtime consumer is touched; rollback restores the byte-identical prior manifest. Stage P4b (literal cutover, now complete in the sibling 014-runtime-engine): a runtime resolver consumes the compiled contract and serving authority was flipped hub-by-hub across all seven hubs, re-verified, with the byte-identical legacy manifest retained for rollback and the compiled path held inert behind the default-off SPECKIT_COMPILED_ROUTING flag. The shared benchmark scorer is frozen and pinned throughout; every activation proves a byte-exact rollback and rides a green canary."
 trigger_phrases:
   - "unified router live activation"
   - "design-faithful fenced-CAS activation"
@@ -24,7 +24,7 @@ FAILURE MODES:
 
 This phase turns the shadow-complete compiled router contract into an **activated** one, in two deliberately separated stages so the highest-blast change is isolated and gated.
 
-Every parent hub already owns a real-green rollout canary: its authored routing (`SKILL.md` + `hub-router.json` + `mode-registry.json`) is projected into a content-addressed `CompiledPolicyV1`, proven route-gold byte-green against the real read-only benchmark scorer, closed-algebra-valid, and reversible by a byte-exact shadow rollback. What did **not** exist was an activation layer: a place where the compiled generation is *bound* as authoritative, distinct from where it is *served*. Stage P4a builds exactly that layer, and it is this phase's shipped work; Stage P4b — the only stage that changes what actually routes — is now complete: executed in the sibling `011-runtime-engine`, which flipped all seven hubs' serving authority `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag (route-gold ROUTING byte-identical — only hashes changed), with a byte-identical legacy manifest retained per hub for a byte-exact rollback.
+Every parent hub already owns a real-green rollout canary: its authored routing (`SKILL.md` + `hub-router.json` + `mode-registry.json`) is projected into a content-addressed `CompiledPolicyV1`, proven route-gold byte-green against the real read-only benchmark scorer, closed-algebra-valid, and reversible by a byte-exact shadow rollback. What did **not** exist was an activation layer: a place where the compiled generation is *bound* as authoritative, distinct from where it is *served*. Stage P4a builds exactly that layer, and it is this phase's shipped work; Stage P4b — the only stage that changes what actually routes — is now complete: executed in the sibling `014-runtime-engine`, which flipped all seven hubs' serving authority `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag (route-gold ROUTING byte-identical — only hashes changed), with a byte-identical legacy manifest retained per hub for a byte-exact rollback.
 
 ---
 
@@ -35,9 +35,9 @@ Every parent hub already owns a real-green rollout canary: its authored routing 
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete — P4a design-faithful activation + T9 real-model verification (0 wrong-hub routes) complete for all 7 hubs, and the P4b literal cutover (`011-runtime-engine`) is complete: all 7 hubs flipped `legacy → compiled` (`servingAuthority: compiled`, `shadowOnly: false`), inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag, byte-exact rollback retained. Advisor-hook machine-enforcement remains in progress |
+| **Status** | Complete — P4a design-faithful activation + T9 real-model verification (0 wrong-hub routes) complete for all 7 hubs, and the P4b literal cutover (`014-runtime-engine`) is complete: all 7 hubs flipped `legacy → compiled` (`servingAuthority: compiled`, `shadowOnly: false`), inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag, byte-exact rollback retained. Advisor-hook machine-enforcement remains in progress |
 | **Created** | 2026-07-19 |
-| **Branch** | `010-live-activation` |
+| **Branch** | `013-live-activation` |
 | **Migration stage** | Stage P4a — design-faithful activation (bind, do not serve); the sibling P4b flip (`011`) has since advanced serving authority to compiled |
 | **Blast radius** | Governance binding (selectedPolicy CAS) — reversible, pre-effect; the P4b runtime flip (`011`) is complete but held inert by default behind `SPECKIT_COMPILED_ROUTING` and reversible per-hub or fleet-wide |
 <!-- /ANCHOR:metadata -->
@@ -53,7 +53,7 @@ The compiled router contract is shadow-complete but never *bound*. "Shadow-compl
 
 ### Purpose
 
-Establish a phase-local activation layer that binds each hub's compiled generation as `selectedPolicy` through a fenced compare-and-swap while leaving `servingAuthority` at `legacy`, proves a byte-exact rollback for every activation, and provides the proven, reversible foundation that the subsequent P4b flip (executed in `011-runtime-engine`) built on to move all seven hubs to compiled serving behind the default-off `SPECKIT_COMPILED_ROUTING` flag.
+Establish a phase-local activation layer that binds each hub's compiled generation as `selectedPolicy` through a fenced compare-and-swap while leaving `servingAuthority` at `legacy`, proves a byte-exact rollback for every activation, and provides the proven, reversible foundation that the subsequent P4b flip (executed in `014-runtime-engine`) built on to move all seven hubs to compiled serving behind the default-off `SPECKIT_COMPILED_ROUTING` flag.
 
 <!-- /ANCHOR:problem -->
 
@@ -72,18 +72,18 @@ Establish a phase-local activation layer that binds each hub's compiled generati
 ### Out of Scope
 
 - The four non-hub single-skill routers - [why] different archetype (`fenced-manifest.cjs`, no `acceptance.json`), not in the seven-hub activation order.
-- Stage P4b's runtime resolver build - [why] delivered in the sibling `011-runtime-engine`, not authored in this phase. (P4b has since consumed this phase's binding and flipped these activation manifests `legacy → compiled`; that flip is 011's work, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag.)
+- Stage P4b's runtime resolver build - [why] delivered in the sibling `014-runtime-engine`, not authored in this phase. (P4b has since consumed this phase's binding and flipped these activation manifests `legacy → compiled`; that flip is 011's work, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag.)
 - Any edit to a live `SKILL.md`, `hub-router.json`, `mode-registry.json`, or the frozen benchmark scorer - [why] activation binds a generation; it never edits a serving policy or a protected input.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `010-live-activation/lib/activate-hub.cjs` | Create | Shared fenced-CAS activation driver (authored in this phase) |
-| `010-live-activation/activation/<hub>/manifest.json` | Create | Per-hub serving manifest with the bound `selectedPolicy` and fence epoch |
-| `010-live-activation/activation/<hub>/{manifest.prior.json, manifest.candidate.json, fence-state.json}` | Create | Seeded prior/candidate manifests and fence state |
-| `010-live-activation/activation/<hub>/activation-record.json` | Create | Per-hub audit trail (eligibility, CAS transition, rollback proof, real-model slot) |
-| `010-live-activation/{spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md}` | Create | Level-2 spec docs, verification evidence, and completion record |
+| `013-live-activation/lib/activate-hub.cjs` | Create | Shared fenced-CAS activation driver (authored in this phase) |
+| `013-live-activation/activation/<hub>/manifest.json` | Create | Per-hub serving manifest with the bound `selectedPolicy` and fence epoch |
+| `013-live-activation/activation/<hub>/{manifest.prior.json, manifest.candidate.json, fence-state.json}` | Create | Seeded prior/candidate manifests and fence state |
+| `013-live-activation/activation/<hub>/activation-record.json` | Create | Per-hub audit trail (eligibility, CAS transition, rollback proof, real-model slot) |
+| `013-live-activation/{spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md}` | Create | Level-2 spec docs, verification evidence, and completion record |
 
 > All activation state is phase-local under `activation/`. Live runtime routing files remain read-only. P4a bound the candidate shadow-only with legacy serving; the sibling P4b flip (`011`) has since advanced these manifests to `servingAuthority: compiled`, `shadowOnly: false` behind the default-off `SPECKIT_COMPILED_ROUTING` flag.
 
@@ -102,7 +102,7 @@ Establish a phase-local activation layer that binds each hub's compiled generati
 | REQ-002 | Gate every activation on the frozen benchmark scorer: re-hash the three shared scorer files and abort on any drift from the pinned digests. | The driver re-hashes `router-replay.cjs`, `score-skill-benchmark.cjs`, and `load-playbook-scenarios.cjs`; a digest mismatch aborts before any manifest write; records report `scorerFrozen=true`. |
 | REQ-003 | Gate every activation on the child's canary: run the child's `harness/validate-canary.cjs` and abort on a non-zero exit. | A non-GREEN canary (route-gold not green, rollback not pass, serving-authority not legacy, or protected-digest drift) aborts activation; records report `canaryGreen=true`. |
 | REQ-004 | Prove a byte-exact rollback for every hub in a scope-validated temp dir without disturbing the committed activated state. | Each record shows `rollbackProof.byteExact: true` and `restoredHash` equal to the accepted `priorManifestHash`; the committed `manifest.json` is unchanged by the drill. |
-| REQ-005 | Treat the completed rollout children as read-only inputs; confine all activation state to `010-live-activation/activation/`. | The driver never writes under a child path; seed is a byte-for-byte copy; the seeded prior hash equals the accepted `priorManifestHash`. |
+| REQ-005 | Treat the completed rollout children as read-only inputs; confine all activation state to `013-live-activation/activation/`. | The driver never writes under a child path; seed is a byte-for-byte copy; the seeded prior hash equals the accepted `priorManifestHash`. |
 | REQ-006 | Emit a per-hub `activation-record.json` audit trail (eligibility, CAS transition, rollback proof, real-model verification slot). | Each `activation/<hub>/activation-record.json` records `activated`, `shippedThisRun`, the CAS transition, the rollback proof, and a `realModelVerification` slot. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -110,7 +110,7 @@ Establish a phase-local activation layer that binds each hub's compiled generati
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-007 | P4a T9 — real-model routing verification per hub on playbook prompts (GPT-5.6-LUNA high/fast, GPT-SOL medium/fast, MiniMax M3). | Complete: recorded in `real-model/<hub>/verdict.json` and each record's `realModelVerification` field; 40/42 pass across 3 models × 7 hubs, **0 wrong-hub routes** (the 2 non-passes are LUNA transport timeouts, correct on run2). Breadth is bounded (2 playbook prompts per hub) and honestly labeled — a sample, not full-corpus. |
-| REQ-008 | Stage P4b — a runtime resolver that consumes `selectedPolicy`, plus a `servingAuthority` `legacy → compiled` flip, one hub at a time, with post-flip re-verification and proven rollback — delivered in the sibling `011-runtime-engine`. | Complete: the P4b runtime engine (`011`) is built and all 7 hubs are flipped `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag; each flip is canary-green via the real scorer, route-gold ROUTING byte-identical (only hashes changed), the 3 frozen scorer digests are unchanged, and the byte-exact rollback is retained (`manifest.serving-prior.json`). Commits: engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4). |
+| REQ-008 | Stage P4b — a runtime resolver that consumes `selectedPolicy`, plus a `servingAuthority` `legacy → compiled` flip, one hub at a time, with post-flip re-verification and proven rollback — delivered in the sibling `014-runtime-engine`. | Complete: the P4b runtime engine (`011`) is built and all 7 hubs are flipped `legacy → compiled` behind the default-off `SPECKIT_COMPILED_ROUTING` flag; each flip is canary-green via the real scorer, route-gold ROUTING byte-identical (only hashes changed), the 3 frozen scorer digests are unchanged, and the byte-exact rollback is retained (`manifest.serving-prior.json`). Commits: engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4). |
 
 <!-- /ANCHOR:requirements -->
 
@@ -123,7 +123,7 @@ Establish a phase-local activation layer that binds each hub's compiled generati
 - **SC-002**: Every activation proves a byte-exact rollback (`restoredHash` = accepted `priorManifestHash`) that leaves the committed activated state untouched.
 - **SC-003**: The frozen-scorer pin and the canary green gate are enforced as hard preconditions; drift or a non-green canary aborts activation before any write.
 - **SC-004**: The completed rollout children remain byte-unchanged; all activation state is confined to `activation/`.
-- **SC-005**: Stage P4b (runtime resolver + serving-authority flip) is complete in the sibling `011-runtime-engine` — all 7 hubs flipped `legacy → compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag (routing byte-identical, so live routing is unchanged until the flag is enabled) and byte-exact-reversible — and T9 real-model verification is complete (0 wrong-hub routes). Post-flip real-model re-verification is treated as satisfied by the T9 result plus flag-off inertness; the advisor-hook machine-enforcement layer remains in progress — no premature "machine-enforced" claim.
+- **SC-005**: Stage P4b (runtime resolver + serving-authority flip) is complete in the sibling `014-runtime-engine` — all 7 hubs flipped `legacy → compiled`, held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag (routing byte-identical, so live routing is unchanged until the flag is enabled) and byte-exact-reversible — and T9 real-model verification is complete (0 wrong-hub routes). Post-flip real-model re-verification is treated as satisfied by the T9 result plus flag-off inertness; the advisor-hook machine-enforcement layer remains in progress — no premature "machine-enforced" claim.
 
 <!-- /ANCHOR:success-criteria -->
 
@@ -216,3 +216,11 @@ Establish a phase-local activation layer that binds each hub's compiled generati
 - **Completion record**: See `implementation-summary.md`
 - **Activation driver**: `lib/activate-hub.cjs`
 - **Per-hub activation state**: `activation/<hub>/`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `012-non-hub-rollout` |
+| **Successor** | `014-runtime-engine` |

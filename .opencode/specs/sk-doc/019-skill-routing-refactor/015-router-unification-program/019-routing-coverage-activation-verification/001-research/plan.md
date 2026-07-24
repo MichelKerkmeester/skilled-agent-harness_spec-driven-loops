@@ -105,8 +105,8 @@ This phase is read-only research; the "surfaces" are the live source files inves
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `advisor-recommend.ts`, `mk-skill-advisor-bridge.mjs`, `mk-skill-advisor-launcher.cjs`, `subprocess.ts` | Compiled-decision attach/drop path | Read-only investigation | Cited `file:line` re-opened with exact ranges in `verification-v1.md` §1 |
-| `011-runtime-engine/lib/compiled-route.cjs`, `resolve.cjs` | Runtime engine-dispatch + resolver | Read-only investigation | `HUB_CHILD` map and `ACTIVATION_ROOT` resolution independently re-confirmed |
-| `010-live-activation/activation/<hub>/manifest.json` (all 7) | Per-hub serving manifest | Read-only investigation (`cat`'d all 7) | Upgraded from the synthesis's own 1/7-confirmed + 6-inferred to a full 7/7 CONFIRMED |
+| `014-runtime-engine/lib/compiled-route.cjs`, `resolve.cjs` | Runtime engine-dispatch + resolver | Read-only investigation | `HUB_CHILD` map and `ACTIVATION_ROOT` resolution independently re-confirmed |
+| `013-live-activation/activation/<hub>/manifest.json` (all 7) | Per-hub serving manifest | Read-only investigation (`cat`'d all 7) | Upgraded from the synthesis's own 1/7-confirmed + 6-inferred to a full 7/7 CONFIRMED |
 | `activate-hub.cjs`, `flip-serving.cjs` | Fenced-CAS activation driver | Read-only investigation | Rollback/audit-integrity citations (`CF-ACT-8`) re-verified line-exact |
 | `run-skill-benchmark.cjs`, `score-skill-benchmark.cjs`, `build-report.cjs` | Lane C benchmark orchestrator + frozen scorer + renderer | Read-only investigation | Frozen-file boundary re-confirmed; the safe non-frozen fix-site for `CF-BM-4` identified |
 | `verify_alignment_drift.py`, `sk-code-router-sync.vitest.ts` | RESOURCE_MAP drift guards | Read-only investigation | Markdown-blindness and cross-reference gap both re-confirmed |
@@ -147,7 +147,7 @@ No live routing config, mode registry, hub router, manifest, or skill file was w
 | Cross-check | All 143 raw findings vs. the synthesis's 7 workstream tables + unnamed-gaps section | Programmatic severity/area distribution + full P0 text dump comparison |
 | Completeness critic | The run's own self-critique iteration | Full read of `iteration-025.md` |
 | Citation spot-check | Highest-impact `file:line` citations | Direct re-open against the live repo, recorded in `synthesis-v1.md` Appendix A |
-| Manual (complete) | 010-live-activation's all-7-manifests-compiled claim | `cat`'d all 7 `010-live-activation/activation/<hub>/manifest.json` directly, upgrading it from partial to full CONFIRMED |
+| Manual (complete) | 013-live-activation's all-7-manifests-compiled claim | `cat`'d all 7 `013-live-activation/activation/<hub>/manifest.json` directly, upgrading it from partial to full CONFIRMED |
 <!-- /ANCHOR:testing -->
 
 ---

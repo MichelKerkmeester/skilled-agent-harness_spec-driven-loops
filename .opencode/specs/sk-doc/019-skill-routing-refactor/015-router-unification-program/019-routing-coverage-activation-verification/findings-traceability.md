@@ -99,7 +99,7 @@
 | Absolute worktree paths | = CF-ARC-3 | 007 | ✅ |
 | `routingRecommendation` collision | = CF-ACT-11 | 010 | ⏸️ deferred P1 (REQ-007) |
 | Catalog census off-by-case (`FEATURE-CATALOG.md` uppercase) | 006 authored fleet-wide incl. the case-variant | 006 | ✅ |
-| 009-non-hub-rollout Phase Map lists 1 of 4 children | Cross-referenced by 010's non-hub policy; sibling-doc fix out of 015 scope | 010 (note) | ⏸️ noted |
+| 012-non-hub-rollout Phase Map lists 1 of 4 children | Cross-referenced by 010's non-hub policy; sibling-doc fix out of 015 scope | 010 (note) | ⏸️ noted |
 | Research JSONL omits canonical fields | Reducer-side canonicalization for future automation | — | ⏸️ noted (self/tooling) |
 
 ## The activation gap this session discovered (not in the original research)

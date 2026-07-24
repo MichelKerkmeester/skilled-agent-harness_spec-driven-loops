@@ -31,9 +31,9 @@ contextType: "implementation"
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] The P4a activation design, the rollout children's canary engines, and the frozen scorer digests were read before authoring the engine.
-  - **Evidence**: Intake covered `010-live-activation`'s bound manifests, each child's `harness/build-artifacts.cjs` + `lib/canary-router.cjs`, and the three pinned scorer digests.
+  - **Evidence**: Intake covered `013-live-activation`'s bound manifests, each child's `harness/build-artifacts.cjs` + `lib/canary-router.cjs`, and the three pinned scorer digests.
 - [x] CHK-002 [P0] All authored code stayed inside this phase folder.
-  - **Evidence**: `lib/compiled-route.cjs`, `lib/resolve.cjs`, and `lib/flip-serving.cjs` are rooted under `011-runtime-engine/`; the rollout children, live routing files, and shared scorer were read-only.
+  - **Evidence**: `lib/compiled-route.cjs`, `lib/resolve.cjs`, and `lib/flip-serving.cjs` are rooted under `014-runtime-engine/`; the rollout children, live routing files, and shared scorer were read-only.
 - [x] CHK-003 [P1] Each hub is P4a-bound before it can be flipped.
   - **Evidence**: `flip-serving.cjs` asserts `selectedPolicy` is the compiled generation and aborts if the hub is not P4a-bound.
 
@@ -97,7 +97,7 @@ contextType: "implementation"
 ## Security
 
 - [x] CHK-040 [P0] No live routing file was edited.
-  - **Evidence**: No `SKILL.md`, `hub-router.json`, or `mode-registry.json` was changed; the flip mutates only the P4a activation manifest under `010-live-activation/activation/<hub>/`.
+  - **Evidence**: No `SKILL.md`, `hub-router.json`, or `mode-registry.json` was changed; the flip mutates only the P4a activation manifest under `013-live-activation/activation/<hub>/`.
 - [x] CHK-041 [P0] The shared benchmark scorer is untouched.
   - **Evidence**: The three pinned scorer digests are unchanged after the `sk-code` proof; the flip re-hashes and aborts on drift.
 - [x] CHK-042 [P1] No network, package install, credential, or dynamic-code surface was introduced.
@@ -115,7 +115,7 @@ contextType: "implementation"
 - [x] CHK-051 [P1] Remaining in-progress work is labeled honestly, not as done.
   - **Evidence**: The per-hub `SKILL.md` wiring and the seven-hub flip are recorded as complete across `tasks.md` and `implementation-summary.md`; post-flip real-model re-verification is honestly framed as satisfied by the P4a T9 result plus flag-off inertness (routing byte-identical), and the still-open advisor-hook machine-enforcement layer is labeled in progress.
 - [x] CHK-052 [P1] The end-to-end proof and cutover are recorded with concrete evidence.
-  - **Evidence**: `serving-flip-record.json` (fence `3 → 4`, gates green, routed 1/5), the byte-identical retained `manifest.serving-prior.json`, and the current compiled `manifest.json` (fence epoch 4) are cited as the proof + cutover artifacts under `010-live-activation/activation/<hub>/`.
+  - **Evidence**: `serving-flip-record.json` (fence `3 → 4`, gates green, routed 1/5), the byte-identical retained `manifest.serving-prior.json`, and the current compiled `manifest.json` (fence epoch 4) are cited as the proof + cutover artifacts under `013-live-activation/activation/<hub>/`.
 - [x] CHK-053 [P0] Strict Level-2 packet validation passes on this phase folder.
   - **Evidence**: `validate.sh --strict` reports `Errors: 0` (advisory warnings only: absent `_memory` continuity blocks + evidence-marker lint).
 

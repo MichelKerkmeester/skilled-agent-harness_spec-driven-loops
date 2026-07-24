@@ -10,31 +10,31 @@ const {
   canonicalize,
   computeBasePolicyHash,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
-const POLICY_SCHEMA = require('../../../000-contract-schemas/schemas/compiled-policy.v1.schema.json');
-const ADVISOR_SCHEMA = require('../../../000-contract-schemas/schemas/advisor-projection.v1.schema.json');
-const CARD_SCHEMA = require('../../../000-contract-schemas/schemas/policy-card.v1.schema.json');
-const TYPED_GOLD_SCHEMA = require('../../../000-contract-schemas/schemas/typed-route-gold.v1.schema.json');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
+const POLICY_SCHEMA = require('../../../003-contract-schemas/schemas/compiled-policy.v1.schema.json');
+const ADVISOR_SCHEMA = require('../../../003-contract-schemas/schemas/advisor-projection.v1.schema.json');
+const CARD_SCHEMA = require('../../../003-contract-schemas/schemas/policy-card.v1.schema.json');
+const TYPED_GOLD_SCHEMA = require('../../../003-contract-schemas/schemas/typed-route-gold.v1.schema.json');
 const {
   atomicFencedSwap,
   fenceStateBytes,
   manifestBytes,
   pinRequest,
-} = require('../../../001-compiler-n1-shadow/activation/fenced-manifest.cjs');
+} = require('../../../004-compiler-n1-shadow/activation/fenced-manifest.cjs');
 const {
   validateNode,
-} = require('../../../001-compiler-n1-shadow/harness/json-schema.cjs');
+} = require('../../../004-compiler-n1-shadow/harness/json-schema.cjs');
 const {
   DecisionValidationError,
   parseRouteDecision,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 const {
   scoreRouteGoldReadOnly,
-} = require('../../../002-decision-evaluator/replay-driver.cjs');
+} = require('../../../005-decision-evaluator/replay-driver.cjs');
 const {
   DestinationExecutionPlane,
   ExecutionProtocolError,
-} = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
+} = require('../../../006-execution-verify-commit/lib/execution-plane.cjs');
 const {
   CanaryActivationError,
   HARD_BLOCKS,
@@ -228,7 +228,7 @@ function assertCompiledArtifacts(snapshot) {
     defaultMode: snapshot.routingModel.defaultMode,
     destinationCount: snapshot.policy.destinations.length,
     orderedBundleTargets: [...snapshot.routingModel.tieBreak],
-    sharedCompilerPath: '001-compiler-n1-shadow/compiler/compiler.cjs',
+    sharedCompilerPath: '004-compiler-n1-shadow/compiler/compiler.cjs',
     sourceIdentityGuard: true,
     weights: { 'prompt-improve': 4, 'prompt-models': 6 },
   };

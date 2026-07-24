@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/007-learning-overlay",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/007-learning-overlay",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -95,13 +95,7 @@
         "source": "derived"
       },
       {
-        "name": "Unified Router Refactor",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phased Implementation Plan",
+        "name": "Unification Program",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,6 +108,12 @@
       },
       {
         "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-07-24T10:52:41.934Z",
+    "last_save_at": "2026-07-24T12:11:57.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:692977a0f62815844f4d47bcae6d94b9a01d9ed0141c7f956b3495eae9dab22a",
+    "source_fingerprint": "sha256:68c8d584dce42821d1c0fa0a52e4f0eb6543215b12fcbbf8a2ae7657cffcc46c",
     "source_doc_hashes": {
-      "spec.md": "e8f5a7f179818be406efe655ca247ca200c0275cf2693a3189321ab9a56d0fb0",
-      "plan.md": "4dc3a83dee0e9e985498aa2729bf1e5c9fd94722158c16bb15deb903ba449d3a",
-      "tasks.md": "e9236ac7ccfbb67df6be244231bf9216aabba7c55f4d944cf0258c27d633282b",
+      "spec.md": "cdf14fa361b5229c357491be61067c19bc20bd16ac23a327ff00e0875cf7c969",
+      "plan.md": "3186062d848419d074a03cb1442459f62b6c3c8c8d999e3d3ba702edff035d60",
+      "tasks.md": "9499bc20e8229ee0322630117663a87972834efc298c53c42781b660848b6eb7",
       "checklist.md": "a99e0709f3378fe41f1a1bfd994bde260915b1b091b539a5cb56af9df2fcac45",
       "implementation-summary.md": "00519e47be886be586f7187283d4cf46166cc2bb7dc3c0be33b93c27c105ef32"
     },

@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "codex-gpt-5.6"
     recent_action: "Reconciled delivery evidence to commit a1cdb65d90"
@@ -62,8 +62,8 @@ _memory:
 
 | Area | Files | Purpose |
 |------|-------|---------|
-| Rollback | `007-unified-refactor-implementation/010-live-activation/lib/activate-hub.cjs` | New `--rollback` verb reusing `proveRollback()` |
-| Serving-flip fixes | `007-unified-refactor-implementation/011-runtime-engine/lib/flip-serving.cjs` | Unconditional `serving-prior` resave; persisted fence `direction` |
+| Rollback | `015-router-unification-program/013-live-activation/lib/activate-hub.cjs` | New `--rollback` verb reusing `proveRollback()` |
+| Serving-flip fixes | `015-router-unification-program/014-runtime-engine/lib/flip-serving.cjs` | Unconditional `serving-prior` resave; persisted fence `direction` |
 | Audit | `flip-history.jsonl` (per hub, new) | Append-only history shared by both drivers |
 | Policy | `non-hub-router-eligibility-policy.md` (new, location TBD at build time) | Named non-hub ineligibility policy + negative fixtures |
 | Canary | `references/compiled-routing-canary-profile.md` | P2 canary profile, window, thresholds, rollback trigger, and operator-fill owner |
@@ -92,7 +92,7 @@ Commit `a1cdb65d90` modified the two drivers additively, then added the shared l
 |----------|-----------|
 | Reuse `proveRollback()` rather than write new hash-validation logic | It already exists in `activate-hub.cjs` as a pre-flight check; exposing it as a real command is the minimal, lowest-risk change |
 | Fix `flip-serving.cjs`'s `serving-prior` guard as an intended behavior change, not a "regression" | CF-ACT-8 explicitly identifies the first-flip-only guard as the bug; the fix changes behavior only for the previously-broken rollback-then-reflip case |
-| Do not edit `009-non-hub-rollout/`, `012-default-on-decision/`, or `013-create-skill-alignment/` | Scope-lock — this child's write authority is limited to its own three-child authoring pass; those packets' own fixes (e.g., 009's Phase Map undercount) are cross-referenced, not performed here |
+| Do not edit `012-non-hub-rollout/`, `016-default-on-decision/`, or `017-create-skill-alignment/` | Scope-lock — this child's write authority is limited to its own three-child authoring pass; those packets' own fixes (e.g., 009's Phase Map undercount) are cross-referenced, not performed here |
 | Owner field in the canary-profile document is an explicit placeholder | This child has no authority to name a human organizational owner; fabricating one would violate the no-fabrication mandate |
 | `flip-history.jsonl` is additive alongside the existing single-record files, not a replacement | Keeps the existing "latest snapshot" consumers working unchanged while adding the missing history dimension |
 

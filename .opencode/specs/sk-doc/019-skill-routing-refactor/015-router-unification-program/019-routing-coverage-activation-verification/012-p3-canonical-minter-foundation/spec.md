@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified the canonical minter foundation"
@@ -61,9 +61,9 @@ The implementation is deliberately smaller than ADR-002's eventual data-driven e
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 12 of 12 |
 | **Predecessor** | `011-activation-cutover-p4/` by phase order |
-| **Successor** | None inside packet 015; packet `../../013-create-skill-alignment/` is the consumer |
+| **Successor** | None inside packet 015; packet `../../017-create-skill-alignment/` is the consumer |
 | **Depends On** | `002-runtime-promotion-and-status-foundation/` and the promoted 006 parent-hub compiler |
-| **Consumer** | `../../013-create-skill-alignment/` |
+| **Consumer** | `../../017-create-skill-alignment/` |
 | **Handoff Criteria** | The shared mint and freshness contracts pass their matrix and return a canonical manifest path. |
 <!-- /ANCHOR:metadata -->
 
@@ -96,11 +96,11 @@ Provide one shared, fail-closed initial-minter and one exact freshness predicate
 
 | Finding | Evidence | Consequence |
 |---------|----------|-------------|
-| The registry compiler accepts authored registry, router, skill Markdown, source bytes, and generation without hardcoding a hub ID. | `.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:230` | Its `compileRegistry()` function can compile a newly generated registry-driven parent hub. |
-| The current build harness hardcodes the `sk-code` skill root and rollout child. | `.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs:31` | The harness itself is not a canonical new-hub minter. |
+| The registry compiler accepts authored registry, router, skill Markdown, source bytes, and generation without hardcoding a hub ID. | `.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:230` | Its `compileRegistry()` function can compile a newly generated registry-driven parent hub. |
+| The current build harness hardcodes the `sk-code` skill root and rollout child. | `.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs:31` | The harness itself is not a canonical new-hub minter. |
 | Status records manifest fingerprints and authority but does not recompile current inputs. | `.opencode/bin/compiled-route-status.cjs:91` | Fingerprint presence is not freshness. |
 | Runtime sync deletes the promoted root before copying the fixed closure. | `.opencode/bin/compiled-route-sync.cjs:140` | A minted manifest needs explicit preservation across sync. |
-| Engine dispatch remains a fixed seven-hub map. | `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs:30` | Minting cannot honestly mean runtime-serving. |
+| Engine dispatch remains a fixed seven-hub map. | `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:30` | Minting cannot honestly mean runtime-serving. |
 <!-- /ANCHOR:problem -->
 
 ---
@@ -113,7 +113,7 @@ Provide one shared, fail-closed initial-minter and one exact freshness predicate
 - A shared CommonJS module with `canonicalManifestPath()`, `evaluateManifestFreshness()`, `mintCanonicalManifest()`, and `checkCanonicalManifestFreshness()`.
 - A `compiled-route-manifest.cjs` CLI with `mint` and `freshness` verbs for cross-language use by create-skill.
 - Initial generation only: generation `1`, atomic create-if-absent, and no overwrite or refresh behavior.
-- The canonical store at `.opencode/bin/lib/compiled-routing/010-live-activation/activation/<hub-id>/manifest.json`.
+- The canonical store at `.opencode/bin/lib/compiled-routing/013-live-activation/activation/<hub-id>/manifest.json`.
 - Exact freshness based on a new compile of final `SKILL.md`, `mode-registry.json`, and `hub-router.json` inputs at the manifest generation.
 - Reuse of `compileRegistry()` from the generic 006 `sk-code` compiler and the existing canonical JSON/hash helpers.
 - An additive `manifestFreshness` object in `compiled-route-status.cjs` and union discovery for status visibility only.
@@ -124,7 +124,7 @@ Provide one shared, fail-closed initial-minter and one exact freshness predicate
 
 - Removing or deriving `COMPILED_ROUTING_HUBS` and `HUB_CHILD`. That is the named future ADR-002 allowlist-removal work.
 - Adding a new hub to `DEFAULT_ON_HUBS`, changing `servingAuthority` to `compiled`, or performing the P4 staged flip.
-- Implementing create-skill `legacy|ready` behavior. Packet `013-create-skill-alignment/` consumes this interface after it exists.
+- Implementing create-skill `legacy|ready` behavior. Packet `017-create-skill-alignment/` consumes this interface after it exists.
 - Dynamic runtime engine discovery or serving for a new hub.
 - Refresh, overwrite, generation increment, rollback, or promotion verbs.
 - Generalizing the minter to the specialized existing hub archetypes. This contract targets the registry-driven parent shape emitted by create-skill.
@@ -272,7 +272,7 @@ This implementation did not modify `resolve.cjs`, `compiled-route.cjs`, the advi
 ## RELATED DOCUMENTS
 
 - `../002-runtime-promotion-and-status-foundation/implementation-summary.md`
-- `../../013-create-skill-alignment/spec.md`
-- `../../013-create-skill-alignment/plan.md`
-- `../../012-default-on-decision/decision-record.md`
+- `../../017-create-skill-alignment/spec.md`
+- `../../017-create-skill-alignment/plan.md`
+- `../../016-default-on-decision/decision-record.md`
 - `decision-record.md`

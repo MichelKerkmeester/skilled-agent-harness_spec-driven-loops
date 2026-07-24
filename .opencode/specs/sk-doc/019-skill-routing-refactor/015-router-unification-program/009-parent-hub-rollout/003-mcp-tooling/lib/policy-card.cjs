@@ -1,6 +1,6 @@
 'use strict';
 
-const { canonicalize } = require('../../../000-contract-schemas/lib/canonical.cjs');
+const { canonicalize } = require('../../../003-contract-schemas/lib/canonical.cjs');
 const { evaluateRoute } = require('./router.cjs');
 
 const CARD_MARKER = 'mcp-tooling-policy-card-v1';

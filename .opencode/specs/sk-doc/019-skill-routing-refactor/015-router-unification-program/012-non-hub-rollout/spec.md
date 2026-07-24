@@ -28,3 +28,11 @@ Compile standalone skills that carry their own inline router into the unified po
 - The phase does not modify live skills, routing configuration, shared compiler code, or scorer code.
 - Heavy implementation documentation belongs in each child.
 - Legacy remains serving-authoritative throughout shadow verification.
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `011-fleet-cleanup` |
+| **Successor** | `013-live-activation` |

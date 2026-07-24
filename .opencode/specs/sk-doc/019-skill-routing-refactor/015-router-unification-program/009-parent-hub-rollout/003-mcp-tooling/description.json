@@ -1,5 +1,5 @@
 {
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/006-parent-hub-rollout/003-mcp-tooling",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling",
   "description": "The three preceding parent-hub activations (`sk-code`, `system-deep-loop`) exercise evidence composition (`surfaceBundle`) and shared-packet/backend",
   "keywords": [
     "three",
@@ -15,15 +15,14 @@
     "shared-packet",
     "backend"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.769Z",
+  "lastUpdated": "2026-07-24T12:10:59.371Z",
   "specId": "003",
   "folderSlug": "mcp-tooling",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "006-parent-hub-rollout"
+    "009-parent-hub-rollout"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

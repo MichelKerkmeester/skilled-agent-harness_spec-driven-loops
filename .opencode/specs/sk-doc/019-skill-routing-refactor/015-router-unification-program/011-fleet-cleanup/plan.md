@@ -134,8 +134,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `006-parent-hub-rollout/*` (Stages 4 + 6) | Internal | Must be green fleet-wide | Preflight gate blocks all deletion (REQ-001) |
-| `003-execution-verify-commit/` (Stage 6) | Internal | Must be live | Destination legs must precede legacy-read removal |
+| `009-parent-hub-rollout/*` (Stages 4 + 6) | Internal | Must be green fleet-wide | Preflight gate blocks all deletion (REQ-001) |
+| `006-execution-verify-commit/` (Stage 6) | Internal | Must be live | Destination legs must precede legacy-read removal |
 | Retained-generation storage + bake-window policy | Internal | Required | No safe rollback path without it |
 <!-- /ANCHOR:dependencies -->
 

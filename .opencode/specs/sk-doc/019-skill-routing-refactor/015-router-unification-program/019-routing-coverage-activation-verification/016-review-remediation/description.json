@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation",
   "description": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet",
   "keywords": [
     "two",
@@ -20,15 +20,14 @@
     "landing",
     "packet"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.726Z",
+  "lastUpdated": "2026-07-24T12:10:59.500Z",
   "specId": "016",
   "folderSlug": "review-remediation",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "015-routing-coverage-activation-verification"
+    "019-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

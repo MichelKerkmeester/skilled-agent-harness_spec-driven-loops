@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/001-compiler-n1-shadow"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow"
     last_updated_at: "2026-07-18T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Implemented and verified the shadow compiler and mcp-code-mode N=1 artifacts"
@@ -38,13 +38,13 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-This is Phase 1 — the **recommended first slice** — of the unified router refactor synthesized by the Opus-4.8 council (`../../006-unified-refactor-research/unified-refactor-synthesis.md` §9). The refactor is *not a router rewrite*; it is a shadow compiler plus additive semantic gates activated one hub at a time behind a fenced selector, with legacy serving-authoritative throughout (synthesis §1).
+This is Phase 1 — the **recommended first slice** — of the unified router refactor synthesized by the Opus-4.8 council (`../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` §9). The refactor is *not a router rewrite*; it is a shadow compiler plus additive semantic gates activated one hub at a time behind a fenced selector, with legacy serving-authoritative throughout (synthesis §1).
 
 This phase builds the **pure shadow compiler** (authored sources → `CompiledPolicyV1`, content-addressed, fail-closed) and exercises it against the single smallest input in the fleet: `mcp-code-mode`, the **degenerate N=1 case** of the same contract — one destination, empty selection/bundle/handoff collections, no overlay, `P = static` (synthesis §5.1). It emits the three read-only projections (advisor / route-gold / policy card), the legacy-gold compatibility fields, and typed fixtures; runs **shadow parity** against the legacy router with **zero live authority**; and proves a **one-generation fenced activation-manifest selection** with **byte-exact rollback** (synthesis §9 "Recommended first slice").
 
 **Key decisions**: the N=1 empties arise from *partial evaluation over empty collections*, never a `skillId == mcp-code-mode` branch (synthesis §5.1); the base contract is complete and correct with `overlay = null` and `P = static`, and *that configuration is exactly the N=1 case* (synthesis §5.3, §12).
 
-**Critical dependency**: the canonical `CompiledPolicyV1` schema and deterministic serialization/hashing are authored in Phase 0 (`../000-contract-schemas/`) and consumed here; this phase does not define them.
+**Critical dependency**: the canonical `CompiledPolicyV1` schema and deterministic serialization/hashing are authored in Phase 0 (`../003-contract-schemas/`) and consumed here; this phase does not define them.
 
 This implementation is **shadow-only**. No live routing config, mode registry, hub router, benchmark scorer, or skill was modified.
 
@@ -59,7 +59,7 @@ This implementation is **shadow-only**. No live routing config, mode registry, h
 | **Priority** | P0 |
 | **Status** | Implemented and phase-locally verified |
 | **Created** | 2026-07-18 |
-| **Phase** | 001-compiler-n1-shadow (Phase 1 of 010-unified-refactor-implementation) |
+| **Phase** | 004-compiler-n1-shadow (Phase 1 of the 015 router-unification program) |
 | **Migration stage owned** | Stage 1 Shadow compile (+ opens Stage 2 Dual-read fail-closed) |
 | **Blast radius** | Low — additive shadow artifacts only, legacy stays authoritative, fully reversible |
 <!-- /ANCHOR:metadata -->
@@ -96,14 +96,14 @@ Ship a pure shadow compiler that turns authored sources into a byte-stable `Comp
 
 ### Out of Scope
 
-- The canonical schema definitions and deterministic serialization/hashing themselves — owned by Phase 0 (`../000-contract-schemas/`); consumed here, not authored here.
-- The pure decision evaluator emitting the four-action algebra at runtime — Phase 2 (`../002-decision-evaluator/`). This phase emits typed fixtures, not the live evaluator.
-- Destination-local PREPARE → VERIFY → COMMIT, receipts, idempotency — Phase 3 (`../003-execution-verify-commit/`).
-- The clarify→handoff recovery ladder and the shared uncertainty budget — Phase 4 (`../004-recovery-ladder/`). `handoffEdges = []` here.
-- Calibrated auto-route and its held-out corpus — Phase 5 (`../005-calibration/`). No calibration threshold exists at N=1 (synthesis §5.1).
-- Any hub other than `mcp-code-mode` (`sk-code`, `system-deep-loop`, `mcp-tooling`) — Phase 6 (`../006-parent-hub-rollout/`).
-- The correction overlay / learning plane — Phase 7 (`../007-learning-overlay/`). `overlay = null` here; nothing to learn at N=1 (synthesis §5.1, §12).
-- Legacy dual-read retirement and per-skill deletion gates — Phase 8 (`../008-fleet-cleanup/`).
+- The canonical schema definitions and deterministic serialization/hashing themselves — owned by Phase 0 (`../003-contract-schemas/`); consumed here, not authored here.
+- The pure decision evaluator emitting the four-action algebra at runtime — Phase 2 (`../005-decision-evaluator/`). This phase emits typed fixtures, not the live evaluator.
+- Destination-local PREPARE → VERIFY → COMMIT, receipts, idempotency — Phase 3 (`../006-execution-verify-commit/`).
+- The clarify→handoff recovery ladder and the shared uncertainty budget — Phase 4 (`../007-recovery-ladder/`). `handoffEdges = []` here.
+- Calibrated auto-route and its held-out corpus — Phase 5 (`../008-calibration/`). No calibration threshold exists at N=1 (synthesis §5.1).
+- Any hub other than `mcp-code-mode` (`sk-code`, `system-deep-loop`, `mcp-tooling`) — Phase 6 (`../009-parent-hub-rollout/`).
+- The correction overlay / learning plane — Phase 7 (`../010-learning-overlay/`). `overlay = null` here; nothing to learn at N=1 (synthesis §5.1, §12).
+- Legacy dual-read retirement and per-skill deletion gates — Phase 8 (`../011-fleet-cleanup/`).
 - **Any mutation of live routing config, mode registry, hub router, the shared scorer, or any skill.** This phase is planning/design; when built, all live surfaces stay read-only sources.
 
 ### Files to Change
@@ -172,14 +172,14 @@ All emitted artifacts are **new, additive, and isolated** in this phase folder; 
 This phase owns **Stage 1 — Shadow compile** of the shared seven-stage migration-gate model in the master plan (`../spec.md` "SHARED MIGRATION-GATE MODEL"; synthesis §9 migration table), and it *opens* **Stage 2 — Dual-read** by establishing fail-closed input resolution.
 
 - **Serving authority during this phase**: **legacy** (unchanged). The compiled tuple has zero live authority.
-- **Gate that MUST pass before Phase 2 (`../002-decision-evaluator/`) activates**:
+- **Gate that MUST pass before Phase 2 (`../005-decision-evaluator/`) activates**:
   1. Canonical bytes regenerate deterministically (SC-001).
   2. Typed fixtures parse (`TypedRouteGoldV1`).
   3. Route-gold stays green via the compatibility projector, scorer untouched (SC-004).
   4. Every legacy `mcp-code-mode` input resolves through a declared mode/alias, and any unmapped input **fails closed** (opens Stage 2; synthesis §9 Stage 2 gate).
 - **Rollback for this phase**: discard the inactive generation (Stage 1) / disable the dual-read adapter (Stage 2) — both reversible, no external effect to undo (synthesis §9 rollback column).
 
-Per the master plan, Stage 2 (Dual-read) is co-owned with Phase 6 (`../006-parent-hub-rollout/`); this phase satisfies it only for `mcp-code-mode`.
+Per the master plan, Stage 2 (Dual-read) is co-owned with Phase 6 (`../009-parent-hub-rollout/`); this phase satisfies it only for `mcp-code-mode`.
 
 ---
 
@@ -222,7 +222,7 @@ These are non-negotiable for this phase and every later phase (synthesis §10 co
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 0 canonical schemas + deterministic serialization (`../000-contract-schemas/`) | Compiler cannot emit a byte-stable policy without them | Gate Phase 1 start on Phase 0's Stage-0 baseline + schema freeze; fail closed if absent |
+| Dependency | Phase 0 canonical schemas + deterministic serialization (`../003-contract-schemas/`) | Compiler cannot emit a byte-stable policy without them | Gate Phase 1 start on Phase 0's Stage-0 baseline + schema freeze; fail closed if absent |
 | Dependency | Confirmed `mcp-code-mode` authored sources (`SKILL.md`, `leaf-manifest.json`, `mcp-route-guard.cjs`) | Wrong inputs invalidate the N=1 proof | Read-only ingestion; verify against synthesis §5 confirmed line refs before compiling |
 | Risk | Accidental name-based special-casing creeping into the compiler | Would fork common semantics and violate the degeneracy proof (synthesis §5.1, §6) | Grep gate in SC-002; code review for any `skillId`/name conditional |
 | Risk | A scorer edit "needed" to make gold pass | Loses baseline comparability — a hard-constraint violation (synthesis §8.2, §10) | Treat as migration failure; block; fix the projector, never the scorer |
@@ -248,4 +248,12 @@ These are non-negotiable for this phase and every later phase (synthesis §10 co
 - **Task breakdown**: `tasks.md`
 - **Verification checklist**: `checklist.md`
 - **Master plan (phase map + shared gate model)**: `../spec.md`
-- **Source design (single source of truth)**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (esp. §1, §2.1, §5, §8, §9, §10)
+- **Source design (single source of truth)**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (esp. §1, §2.1, §5, §8, §9, §10)
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `003-contract-schemas` |
+| **Successor** | `005-decision-evaluator` |

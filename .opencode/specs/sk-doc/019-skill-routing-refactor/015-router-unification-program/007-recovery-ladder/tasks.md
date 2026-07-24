@@ -96,7 +96,7 @@ contract violation, gate absence, targetless candidate, invalidity, authority, a
 - [x] T021 Assert budget finiteness across all fixtures: ≤1 user turn (clarify+handoff), hop count ≤1, no visited-set revisit (SC-002)
 - [x] T022 Assert authority-withheld on every `clarify | defer | reject` fixture (empty targets, no authority field) (SC-003)
 - [x] T023 Compare `router-replay.cjs` hash before/after — MUST be hash-identical; a required scorer edit is logged as a migration failure, not applied (REQ-010, synthesis §8.2)
-- [x] T024 Confirm the phase diff touches only `004-recovery-ladder/**` planning docs + typed fixtures; no live routing config/registry/skill modified (REQ-010, SC-005)
+- [x] T024 Confirm the phase diff touches only `007-recovery-ladder/**` planning docs + typed fixtures; no live routing config/registry/skill modified (REQ-010, SC-005)
 - [B] T025 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` and record exit code
 
 **Evidence**: The phase harness reports 22/22 real read-only `evaluateRouteGold` verdicts, 25
@@ -137,6 +137,6 @@ hard gates are asserted, and `recovery-ladder.v1.json` keeps certificate-backed 
 
 - **Specification**: `spec.md`
 - **Build approach**: `plan.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
 - **Master plan**: `../spec.md`
 <!-- /ANCHOR:cross-refs -->

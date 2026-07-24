@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/006-feature-catalogs",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
   "description": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
   "keywords": [
     "compiled",
@@ -14,15 +14,14 @@
     "eligible",
     "hubs"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.712Z",
+  "lastUpdated": "2026-07-24T12:10:59.486Z",
   "specId": "006",
   "folderSlug": "feature-catalogs",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "015-routing-coverage-activation-verification"
+    "019-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

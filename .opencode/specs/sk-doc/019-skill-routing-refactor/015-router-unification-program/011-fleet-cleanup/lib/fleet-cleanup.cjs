@@ -17,16 +17,16 @@ const {
   computeBasePolicyHash,
   computeEffectivePolicyHash,
   computeRequestFactsHash,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const {
   fenceStateBytes,
-} = require('../../001-compiler-n1-shadow/activation/fenced-manifest.cjs');
+} = require('../../004-compiler-n1-shadow/activation/fenced-manifest.cjs');
 const {
   evaluate,
-} = require('../../002-decision-evaluator/lib/evaluator.cjs');
+} = require('../../005-decision-evaluator/lib/evaluator.cjs');
 const {
   scoreRouteGoldReadOnly,
-} = require('../../002-decision-evaluator/replay-driver.cjs');
+} = require('../../005-decision-evaluator/replay-driver.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS AND ERRORS
@@ -45,42 +45,42 @@ const CARD_MARKER = 'fleet-policy-card-v1';
 const IMPLEMENTATION_ROOT = path.resolve(__dirname, '..', '..');
 const COMMITTED_ACTIVATION_MANIFESTS = Object.freeze([
   {
-    filePath: path.join(IMPLEMENTATION_ROOT, '001-compiler-n1-shadow', 'activation', 'manifest.json'),
+    filePath: path.join(IMPLEMENTATION_ROOT, '004-compiler-n1-shadow', 'activation', 'manifest.json'),
     skillId: 'mcp-code-mode',
-    sourceId: '001-compiler-n1-shadow/activation/manifest.json',
+    sourceId: '004-compiler-n1-shadow/activation/manifest.json',
   },
   {
     filePath: path.join(
       IMPLEMENTATION_ROOT,
-      '006-parent-hub-rollout',
+      '009-parent-hub-rollout',
       '001-sk-code',
       'activation',
       'manifest.json',
     ),
     skillId: 'sk-code',
-    sourceId: '006-parent-hub-rollout/001-sk-code/activation/manifest.json',
+    sourceId: '009-parent-hub-rollout/001-sk-code/activation/manifest.json',
   },
   {
     filePath: path.join(
       IMPLEMENTATION_ROOT,
-      '006-parent-hub-rollout',
+      '009-parent-hub-rollout',
       '002-system-deep-loop',
       'activation',
       'manifest.json',
     ),
     skillId: 'system-deep-loop',
-    sourceId: '006-parent-hub-rollout/002-system-deep-loop/activation/manifest.json',
+    sourceId: '009-parent-hub-rollout/002-system-deep-loop/activation/manifest.json',
   },
   {
     filePath: path.join(
       IMPLEMENTATION_ROOT,
-      '006-parent-hub-rollout',
+      '009-parent-hub-rollout',
       '003-mcp-tooling',
       'activation',
       'manifest.json',
     ),
     skillId: 'mcp-tooling',
-    sourceId: '006-parent-hub-rollout/003-mcp-tooling/activation/manifest.json',
+    sourceId: '009-parent-hub-rollout/003-mcp-tooling/activation/manifest.json',
   },
 ]);
 

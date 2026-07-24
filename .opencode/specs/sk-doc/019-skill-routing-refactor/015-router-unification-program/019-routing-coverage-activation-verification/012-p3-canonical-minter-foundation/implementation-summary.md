@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified the canonical minter foundation"
@@ -49,7 +49,7 @@ _memory:
 | **Date** | 2026-07-21 |
 | **Level** | 3 |
 | **Implementation** | Shared module, CLI, status integration, sync preservation, and contract tests |
-| **Consumer** | `../../013-create-skill-alignment/` |
+| **Consumer** | `../../017-create-skill-alignment/` |
 | **Routing impact** | None; resolver bytes and pre/post new-hub legacy sentinel are unchanged |
 | **Strict validation** | Final metadata refresh and strict validation recorded below |
 <!-- /ANCHOR:metadata -->
@@ -115,7 +115,7 @@ Freshness validates the manifest shape, recompiles at the selected generation, a
 | Sync durability | The focused suite exercises actual capture/root-removal/restore helpers with byte equality, invalid/conflict rejection, and fixed-hub exclusion. Real `--check` reports 72 authored closure paths and all 7 hubs resolved; real `--verify` reports all 7 resolved and 0 reads under `.opencode/specs`. |
 | Quality workflow | `run-all-drift-guards.sh` passed alignment drift, stack folders, and router sync (10/10); per-file comment hygiene passed with zero findings. |
 | Frozen files and defaults | End hashes equal the recorded scorer baselines; all seven committed manifest hashes are unchanged; `DEFAULT_ON_HUBS` remains empty; no `SKILL.md`, resolver, engine dispatch, or eligibility source changed. |
-| Downstream boundary | `../../013-create-skill-alignment/spec.md:75` and `:130` require this canonical interface and forbid a synthetic replacement; its plan routes `ready` through the canonical minter. |
+| Downstream boundary | `../../017-create-skill-alignment/spec.md:75` and `:130` require this canonical interface and forbid a synthetic replacement; its plan routes `ready` through the canonical minter. |
 | Strict packet validation | `validate.sh --strict` completed with 0 errors and 0 warnings after metadata regeneration. |
 
 ### Frozen scorer SHA-256 equality

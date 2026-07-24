@@ -6,8 +6,8 @@ const path = require('node:path');
 
 const TARGET_ROOT = path.resolve(__dirname, '..');
 const IMPLEMENTATION_ROOT = path.resolve(TARGET_ROOT, '..', '..');
-const BASE_ROOT = path.join(IMPLEMENTATION_ROOT, '001-compiler-n1-shadow');
-const CONTRACT_ROOT = path.join(IMPLEMENTATION_ROOT, '000-contract-schemas');
+const BASE_ROOT = path.join(IMPLEMENTATION_ROOT, '004-compiler-n1-shadow');
+const CONTRACT_ROOT = path.join(IMPLEMENTATION_ROOT, '003-contract-schemas');
 
 function findRepoRoot(startPath) {
   let candidate = path.resolve(startPath);

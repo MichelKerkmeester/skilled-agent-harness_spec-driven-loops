@@ -10,7 +10,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { canonicalize } = require('../../000-contract-schemas/lib/canonical.cjs');
+const { canonicalize } = require('../../003-contract-schemas/lib/canonical.cjs');
 
 const DIGEST_PATTERN = /^[a-f0-9]{64}$/;
 

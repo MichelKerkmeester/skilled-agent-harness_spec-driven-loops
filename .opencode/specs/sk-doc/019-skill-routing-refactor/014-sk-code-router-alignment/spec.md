@@ -208,7 +208,7 @@ Make sk-code's routing measurable on the typed-pair surface and via live-mode, r
 
 ### Research Context
 
-Deep research is active on the typed-pair contract, benchmark scoring, shared preamble qualification, and leaf-recall optimization. `research/research.md` remains the canonical findings source.
+Deep research is active on the typed-pair contract, benchmark scoring, shared preamble qualification, and leaf-recall optimization. `../001-research/011-sk-code-routing-research/research/research.md` remains the canonical findings source.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 - Surface routing and leaf routing are separate: the verified 18/18 surface result does not establish strong leaf-file recall.
@@ -216,7 +216,7 @@ Deep research is active on the typed-pair contract, benchmark scoring, shared pr
 - Prefer truthful single-owner aliases where possible; genuinely mode-neutral preamble files need an explicit validated non-routable shared owner before typed-contract errors can be cleared without claiming a routing gain.
 - Repair measurement first: capture a same-revision baseline, declare minimum versus exhaustive gold, add sealed holdouts, and record ordered successful live reads plus route-decision provenance.
 - The leading router candidate is a two-tier `RESOURCE_MAP` with small required sets and predicate-gated supplements; test specificity-aware signal weighting only after that split.
-- Accept candidates only when fitted, holdout, negative, D3, typed-contract, topology, live-read, and exact 18/18 surface gates all pass. See `research/research.md` for canonical evidence and recommendations.
+- Accept candidates only when fitted, holdout, negative, D3, typed-contract, topology, live-read, and exact 18/18 surface gates all pass. See `../001-research/011-sk-code-routing-research/research/research.md` for canonical evidence and recommendations.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 

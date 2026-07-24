@@ -167,7 +167,7 @@ Required inventories before implementation:
 |------------|------|--------|--------------------|
 | `002-runtime-promotion-and-status-foundation` | Internal | Planned (not started) | Sequencing baseline only; no REQ in this child has a confirmed hard technical dependency on 002's promoted path |
 | `011-activation-cutover-p4` (Planned) | Internal | Planned (not started) | REQ-004's lockstep manifest has no consumer until 011 ships; the manifest and parity test still validate independently |
-| `013-create-skill-alignment` (Planned) | Internal | Planned (not started) | REQ-004's parity test compares whatever wording exists at run time; 013 shipping first would make the comparison meaningful sooner, but is not a hard block |
+| `017-create-skill-alignment` (Planned) | Internal | Planned (not started) | REQ-004's parity test compares whatever wording exists at run time; 013 shipping first would make the comparison meaningful sooner, but is not a hard block |
 | Live sk-doc corpus (catalogs, playbooks) | Internal | Present, uncensused | REQ-003/REQ-005 need a fresh census before the taxonomy/validator can be finalized |
 
 <!-- /ANCHOR:dependencies -->

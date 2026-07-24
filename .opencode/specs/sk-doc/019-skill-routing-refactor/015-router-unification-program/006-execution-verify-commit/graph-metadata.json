@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/003-execution-verify-commit",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/003-execution-verify-commit",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -133,13 +133,7 @@
         "source": "derived"
       },
       {
-        "name": "Unified Router Refactor",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phased Implementation Plan",
+        "name": "Unification Program",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -152,6 +146,12 @@
       },
       {
         "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A route decision is not an effect",
     "created_at": "2026-07-18T13:13:17.358Z",
-    "last_save_at": "2026-07-24T10:52:42.482Z",
+    "last_save_at": "2026-07-24T12:11:56.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18c05f2f41f5391632939e768ed6998a1728e8dbe2060ab823b74e2ff507f89b",
+    "source_fingerprint": "sha256:70d1192bbe7416fbd85f78829ef4459ef4d5cea79f4f75983c6aec5252f31432",
     "source_doc_hashes": {
-      "spec.md": "0c2631b60e0c4d9c0642174aad667f5dfbc36e9cb0c936320f5460440c2c5116",
+      "spec.md": "fdf70a3ae25d85294b59cf1ed8737a1ed19034049fbfe5305c4bf4e1822df862",
       "plan.md": "619e7c7bfda73b635920a9841948e49257961c8ead6c34fc6ff648c206ba36e3",
-      "tasks.md": "403babf08ef26cdbe703bd958e772361d768f972325730cf47ab9c3b15f4aad5",
-      "checklist.md": "1174c2f30c3933257460f7bb6b02e9e54ef2e99b29fefc4aa418a4ab674bf6d0",
+      "tasks.md": "c512ae979040b55c85bc346245ff903c6976780406698ba8251c0f396dc85c58",
+      "checklist.md": "19290be6c4ea94b013b08dffca1925241b998ae6ee4f74d7330ce88947006c23",
       "implementation-summary.md": "52b7d2a0a2bb2dd63ffcc2b174b11f5ad4c3391ddabdf0b2b869edf64c345edb"
     },
     "last_active_child_id": null,

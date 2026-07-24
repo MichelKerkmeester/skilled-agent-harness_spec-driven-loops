@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural reasons this phase is scoped to fix:",
     "created_at": "2026-07-20T21:51:27.075Z",
-    "last_save_at": "2026-07-24T10:52:37.687Z",
+    "last_save_at": "2026-07-24T12:11:48.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3cd8108ec2a3c779ef7d05fa70f19411c39321730ec3c7c6c0afe55eaf5dcd83",
+    "source_fingerprint": "sha256:1598101478be8477439300eb4b6dc289af58f286b1f28b8adc3356329692a0ea",
     "source_doc_hashes": {
-      "spec.md": "784c1a3b4430ce91ffef7f0cc2bfd4cdcf1617a64e6de3a956be4ed1de2ae80a",
-      "plan.md": "6c4ea5a5d5fa911ea844539e63caa09742b1322c3c8ff3a80697e9f25b9b7f14",
-      "tasks.md": "c4202b7c26b6ee5963c3906cacbcb87468805fec4425f2a9ade9ac335a22ee2c",
-      "checklist.md": "a84e74406d5b07cda7600a83bc27dd2d7b7759deb93a58f5ebcd7256508d02c9",
-      "decision-record.md": "539e67b7610ba05d9d592389488ed7842673c2d4c662c2084799c175f9390f76",
-      "implementation-summary.md": "e92144852da654e180d46d45927a5e2fd59088f202cb8943c1586323874878f6"
+      "spec.md": "9494d74620dc78ce6e0fe7225fdc748e4456231a0e191090072ac0f660001dcf",
+      "plan.md": "097d4f0dac0e51dc92c7e951b2d0e49058e3bc66a7b27f5615aeeee1efb05c55",
+      "tasks.md": "7d1f66058e34c6aad46b151d9624988c5389b500ff913ac2fa4762bbf27d1c45",
+      "checklist.md": "cdce0bac1a3a5a00ed319b2424ad6b665da04c5f5bad944842d300c59bb659fa",
+      "decision-record.md": "efc3497700f38f0f36767ba0d76d506596b8d412efb63d49fa4687e29ff9d256",
+      "implementation-summary.md": "f189fc3c6358fb8e214e1f0f33093da20e1ef979d73899e6b10115c8349b037c"
     },
     "last_active_child_id": null,
     "last_active_at": null

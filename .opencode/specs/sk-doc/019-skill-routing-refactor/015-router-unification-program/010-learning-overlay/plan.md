@@ -24,7 +24,7 @@ Build the learning plane as a **strictly offline, additive, dormant-by-default**
 
 | Aspect | Value |
 |--------|-------|
-| **Consumes (upstream phases)** | `000-contract-schemas` (`CorrectionOverlayV1` schema + canonical serialization); `001-compiler-n1-shadow` (`hash(base, overlay\|null, schema, generation)` effective identity + fenced `ActivationManifestV1` selector); `002-decision-evaluator` (pure evaluator + compatibility projector + typed route-gold); `003-execution-verify-commit` (receipts); `004-recovery-ladder` (handoff records) |
+| **Consumes (upstream phases)** | `003-contract-schemas` (`CorrectionOverlayV1` schema + canonical serialization); `004-compiler-n1-shadow` (`hash(base, overlay\|null, schema, generation)` effective identity + fenced `ActivationManifestV1` selector); `005-decision-evaluator` (pure evaluator + compatibility projector + typed route-gold); `006-execution-verify-commit` (receipts); `007-recovery-ladder` (handoff records) |
 | **Serving-side surface** | The activation pointer only — a fenced CAS that flips which frozen overlay is active |
 | **Never touches** | `router-replay.cjs` (shared scorer); any live routing config, registry, or skill; the serving policy in place |
 | **Runtime posture** | `P = offline-learned` corner of `(T,R,P)` — an optional corner; the base runs `P = static` (synthesis §8/§12) |
@@ -103,7 +103,7 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- **Upstream (read-only):** `000-contract-schemas` (`CorrectionOverlayV1` schema + canonical serialization); `001-compiler-n1-shadow` (effective-identity hash + fenced `ActivationManifestV1` selector); `002-decision-evaluator` (pure evaluator + compatibility projector + typed route-gold); `003-execution-verify-commit` (receipts) and `004-recovery-ladder` (handoff records) as the correction-signal source.
+- **Upstream (read-only):** `003-contract-schemas` (`CorrectionOverlayV1` schema + canonical serialization); `004-compiler-n1-shadow` (effective-identity hash + fenced `ActivationManifestV1` selector); `005-decision-evaluator` (pure evaluator + compatibility projector + typed route-gold); `006-execution-verify-commit` (receipts) and `007-recovery-ladder` (handoff records) as the correction-signal source.
 - **Fixed boundary:** the shared benchmark scorer `router-replay.cjs` and the existing route-gold — invoked read-only, never edited; a required scorer edit is a migration failure [synthesis §8.2].
 - **Meta-gate:** a demonstrated routing gain from real correction-telemetry volume plus an independent human approver — absent either, the plane stays dormant (`overlay=null` / `P=static`) [synthesis §12].
 <!-- /ANCHOR:dependencies -->
@@ -125,4 +125,4 @@ Each arrow is a stage boundary; no arrow runs during a live request. The serving
 ## RELATED DOCUMENTS
 - **Specification**: `spec.md`
 - **Task breakdown**: `tasks.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2, §4 seam D, §9 stage 5, §12, open-q 3/7)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2, §4 seam D, §9 stage 5, §12, open-q 3/7)

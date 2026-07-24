@@ -13,32 +13,32 @@ const {
   computeEffectivePolicyHash,
   computeProofHash,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   atomicFencedSwap,
   fenceStateBytes,
   manifestBytes,
   pinRequest,
-} = require('../../../001-compiler-n1-shadow/activation/fenced-manifest.cjs');
+} = require('../../../004-compiler-n1-shadow/activation/fenced-manifest.cjs');
 const {
   validateNode,
-} = require('../../../001-compiler-n1-shadow/harness/json-schema.cjs');
-const POLICY_SCHEMA = require('../../../000-contract-schemas/schemas/compiled-policy.v1.schema.json');
-const ADVISOR_SCHEMA = require('../../../000-contract-schemas/schemas/advisor-projection.v1.schema.json');
-const PROOF_SCHEMA = require('../../../000-contract-schemas/schemas/route-proof.v1.schema.json');
+} = require('../../../004-compiler-n1-shadow/harness/json-schema.cjs');
+const POLICY_SCHEMA = require('../../../003-contract-schemas/schemas/compiled-policy.v1.schema.json');
+const ADVISOR_SCHEMA = require('../../../003-contract-schemas/schemas/advisor-projection.v1.schema.json');
+const PROOF_SCHEMA = require('../../../003-contract-schemas/schemas/route-proof.v1.schema.json');
 const {
   DecisionValidationError,
   parseRouteDecision,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 const {
   projectToRouteGold,
-} = require('../../../002-decision-evaluator/lib/projector.cjs');
+} = require('../../../005-decision-evaluator/lib/projector.cjs');
 const {
   scoreRouteGoldReadOnly,
-} = require('../../../002-decision-evaluator/replay-driver.cjs');
+} = require('../../../005-decision-evaluator/replay-driver.cjs');
 const {
   prepareRoute: prepareExecutionRoute,
-} = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
+} = require('../../../006-execution-verify-commit/lib/execution-plane.cjs');
 const {
   ActivationGateError,
   HARD_BLOCKS,

@@ -19,8 +19,8 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const IMPL_ROOT = path.resolve(__dirname, '..', '..', '..');
-const { HUB_CHILD } = require(path.join(IMPL_ROOT, '011-runtime-engine', 'lib', 'compiled-route.cjs'));
-const FLIP_SERVING = path.join(IMPL_ROOT, '011-runtime-engine', 'lib', 'flip-serving.cjs');
+const { HUB_CHILD } = require(path.join(IMPL_ROOT, '014-runtime-engine', 'lib', 'compiled-route.cjs'));
+const FLIP_SERVING = path.join(IMPL_ROOT, '014-runtime-engine', 'lib', 'flip-serving.cjs');
 
 // The eligibility discriminator the drivers enforce implicitly.
 function isCompiledRoutingEligible(id) {
@@ -31,13 +31,13 @@ function isCompiledRoutingEligible(id) {
 }
 
 // The five non-hub candidates. Four are real, built shadow-only children under
-// 009-non-hub-rollout/; mcp-code-mode is a fifth candidate with NO rollout child
+// 012-non-hub-rollout/; mcp-code-mode is a fifth candidate with NO rollout child
 // and NO activation manifest (unonboarded — must NOT be invented as 005-…).
 const NON_HUBS = [
-  { id: 'sk-git', child: '009-non-hub-rollout/001-sk-git', real: true },
-  { id: 'system-code-graph', child: '009-non-hub-rollout/002-system-code-graph', real: true },
-  { id: 'system-skill-advisor', child: '009-non-hub-rollout/003-system-skill-advisor', real: true },
-  { id: 'system-spec-kit', child: '009-non-hub-rollout/004-system-spec-kit', real: true },
+  { id: 'sk-git', child: '012-non-hub-rollout/001-sk-git', real: true },
+  { id: 'system-code-graph', child: '012-non-hub-rollout/002-system-code-graph', real: true },
+  { id: 'system-skill-advisor', child: '012-non-hub-rollout/003-system-skill-advisor', real: true },
+  { id: 'system-spec-kit', child: '012-non-hub-rollout/004-system-spec-kit', real: true },
   { id: 'mcp-code-mode', child: null, real: false },
 ];
 
@@ -78,7 +78,7 @@ for (const c of NON_HUBS) {
   } else {
     // mcp-code-mode: zero rollout/activation presence; must not be invented.
     check(`${c.id}: has NO 009 rollout child`,
-      !fs.existsSync(path.join(IMPL_ROOT, '009-non-hub-rollout', '005-mcp-code-mode')));
+      !fs.existsSync(path.join(IMPL_ROOT, '012-non-hub-rollout', '005-mcp-code-mode')));
     check(`${c.id}: no 005-mcp-code-mode folder anywhere in the impl tree`,
       !dirExistsNamed(IMPL_ROOT, '005-mcp-code-mode'));
   }

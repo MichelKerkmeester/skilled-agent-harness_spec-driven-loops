@@ -11,7 +11,7 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { canonicalize } = require('../../000-contract-schemas/lib/canonical.cjs');
+const { canonicalize } = require('../../003-contract-schemas/lib/canonical.cjs');
 const { buildAuthoredSources } = require('../compiler/index.cjs');
 const { compareUtf16 } = require('../compiler/order.cjs');
 
@@ -43,7 +43,7 @@ const BENCHMARK_ROOT = path.join(
   'scripts',
   'skill-benchmark',
 );
-const CONTRACT_ROOT = path.resolve(PHASE_ROOT, '..', '000-contract-schemas');
+const CONTRACT_ROOT = path.resolve(PHASE_ROOT, '..', '003-contract-schemas');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. SOURCE AND ARTIFACT HELPERS

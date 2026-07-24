@@ -216,4 +216,4 @@ Per-iteration narrative in `research/`; the fresh OPUS 4.8 xhigh ai-council synt
 
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `009-oob-idea-deep-dives` |
-| **Successor** | `None` |
+| **Successor** | `011-sk-code-routing-research` |

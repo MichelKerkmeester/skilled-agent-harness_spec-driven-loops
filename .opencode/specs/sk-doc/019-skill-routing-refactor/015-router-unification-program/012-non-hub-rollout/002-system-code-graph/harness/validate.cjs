@@ -11,14 +11,14 @@ const {
   computeBasePolicyHash,
   computeEffectivePolicyHash,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   deriveDegeneracy,
   projectLegacyObservation,
   replayPolicyCard,
   validateReferenceClosure,
-} = require('../../../001-compiler-n1-shadow/compiler/index.cjs');
-const { assertSchema } = require('../../../001-compiler-n1-shadow/harness/json-schema.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/index.cjs');
+const { assertSchema } = require('../../../004-compiler-n1-shadow/harness/json-schema.cjs');
 const { runActivationDrill } = require('../activation/run-drill.cjs');
 const { runTargetShadowParity } = require('../parity/run-shadow.cjs');
 const { FIXTURE_SCENARIOS, buildArtifacts } = require('./build.cjs');
@@ -274,7 +274,7 @@ function verifyProtectedScorer() {
 }
 
 function verifyGenericCompiler() {
-  const root = path.resolve(PHASE_ROOT, '..', '..', '001-compiler-n1-shadow', 'compiler');
+  const root = path.resolve(PHASE_ROOT, '..', '..', '004-compiler-n1-shadow', 'compiler');
   const source = walkFiles(root)
     .filter((filePath) => filePath.endsWith('.cjs'))
     .map((filePath) => fs.readFileSync(filePath, 'utf8'))

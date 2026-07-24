@@ -9,7 +9,7 @@
 
 const {
   ExecutionProtocolError,
-} = require('../../../003-execution-verify-commit/lib/execution-plane.cjs');
+} = require('../../../006-execution-verify-commit/lib/execution-plane.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. EXECUTION FENCE

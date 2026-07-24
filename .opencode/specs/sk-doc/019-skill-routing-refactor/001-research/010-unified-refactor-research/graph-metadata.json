@@ -80,15 +80,15 @@
     ],
     "causal_summary": "The eight source ideas overlap at their most important boundaries: outcome typing, uncertainty recovery, policy posture, compiled identity, authority, and migration",
     "created_at": "2026-07-18T10:28:55.781Z",
-    "last_save_at": "2026-07-24T11:03:16.697Z",
+    "last_save_at": "2026-07-24T12:11:59.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5d3317d50cf6245ee12adde083d7861a16781dba97010b41e7f13edefd88ef4f",
+    "source_fingerprint": "sha256:28a875a7c294492ae90f2f3dcd89aadfcca6bb0c0b5ef5e6e505df7a4ba4e722",
     "source_doc_hashes": {
-      "spec.md": "b41865c9e9bf3385e1d71b557e79f8db5bf32865f2370b02eb2ec723d6a10039"
+      "spec.md": "e905c17c965df1884ecebb0b49090fb349420056b1f66ed94d7d90a49f44a017"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -36,10 +36,10 @@ status: "implemented-dormant"
 
 ### Bind upstream contracts
 
-- [x] T001 Confirm `CorrectionOverlayV1` schema + canonical serialization exist and are byte-stable (`000-contract-schemas`).
-- [x] T002 Confirm the effective-identity hash `hash(base, overlay|null, schema, generation)` and the fenced `ActivationManifestV1` selector exist (`001-compiler-n1-shadow`).
-- [x] T003 [P] Confirm the pure evaluator, compatibility projector, and typed route-gold fixtures exist (`002-decision-evaluator`); record that `router-replay.cjs` is untouched (baseline hash).
-- [x] T004 [P] Confirm receipts (`003-execution-verify-commit`) and accepted-handoff records (`004-recovery-ladder`) are available as a correction signal source.
+- [x] T001 Confirm `CorrectionOverlayV1` schema + canonical serialization exist and are byte-stable (`003-contract-schemas`).
+- [x] T002 Confirm the effective-identity hash `hash(base, overlay|null, schema, generation)` and the fenced `ActivationManifestV1` selector exist (`004-compiler-n1-shadow`).
+- [x] T003 [P] Confirm the pure evaluator, compatibility projector, and typed route-gold fixtures exist (`005-decision-evaluator`); record that `router-replay.cjs` is untouched (baseline hash).
+- [x] T004 [P] Confirm receipts (`006-execution-verify-commit`) and accepted-handoff records (`007-recovery-ladder`) are available as a correction signal source.
 - [x] T005 Assert the base is complete and correct with `overlay = null` / `P = static` (the N=1 configuration) before adding any overlay machinery (synthesis §5.3, §12).
 <!-- /ANCHOR:phase-1 -->
 
@@ -116,6 +116,6 @@ status: "implemented-dormant"
 - **Build approach**: See `plan.md`
 - **Verification checklist**: See `checklist.md`
 - **Completion record**: See `implementation-summary.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md`
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`
 - **Phase parent**: `../spec.md`
 <!-- /ANCHOR:cross-refs -->

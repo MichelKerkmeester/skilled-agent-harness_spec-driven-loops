@@ -12,7 +12,7 @@ const {
   canonicalize,
   computeBasePolicyHash,
   computeEffectivePolicyHash,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

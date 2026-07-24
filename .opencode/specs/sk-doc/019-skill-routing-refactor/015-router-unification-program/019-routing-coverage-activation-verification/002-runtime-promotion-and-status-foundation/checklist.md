@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconciled verification evidence to commit 4153cbebd8"
@@ -104,7 +104,7 @@ Rows are reconciled to the implemented+committed state (landed in 4153cbebd8). V
 |------|------------------------|------------------|--------|
 | [x] CHK-030 [P0] | Every flag read site is tri-state (both `resolve.cjs` and `advisor-recommend.ts`) | Tri-state in both read sites via a shared flag module; 4153cbebd8 | Done |
 | [x] CHK-031 [P0] | All three silent catches emit a breadcrumb | DEBUG-gated stderr breadcrumbs in the three catches; 4153cbebd8 | Done |
-| [x] CHK-032 [P0] | The residual-coupling branch is deleted and the parent summary line is corrected | `../../012-default-on-decision/implementation-summary.md` corrected to bind ADR-003; 4153cbebd8 | Done |
+| [x] CHK-032 [P0] | The residual-coupling branch is deleted and the parent summary line is corrected | `../../016-default-on-decision/implementation-summary.md` corrected to bind ADR-003; 4153cbebd8 | Done |
 | [x] CHK-033 [P1] | The status contract field set and causeCode enum are documented as stable for downstream | Status contract shipped and consumed by children 003-011; 4153cbebd8 | Done |
 <!-- /ANCHOR:fix-completeness -->
 

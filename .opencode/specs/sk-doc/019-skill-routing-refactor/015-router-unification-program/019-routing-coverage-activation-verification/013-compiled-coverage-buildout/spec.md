@@ -11,15 +11,15 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:49:16Z"
     last_updated_by: "claude"
     recent_action: "Reconciled spec.md status to Complete (matches implementation-summary.md; 7dfffa0c93)"
     next_safe_action: "None; 011-activation-cutover-p4 (P4, operator-gated) consumes this coverage"
     blockers: []
     key_files:
-      - ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
-      - ".opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs"
+      - ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/006-sk-design/lib/registry-compiler.cjs"
+      - ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs"
       - "system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ The compiled skill-router mechanism is byte-identical to legacy where it has cov
 
 **Key Decisions**: Path 1 (build full coverage, no concessions) chosen over Path 2 (byte-identical via legacy fallback) and Path 3 (hold, rejected by operator). See `decision-record.md` ADR-001.
 
-**Critical Dependencies**: sk-design's `006-parent-hub-rollout/006-sk-design` compiler as the proven reference implementation; the frozen scorer trio (read-only); the non-frozen route-gold parity harness.
+**Critical Dependencies**: sk-design's `009-parent-hub-rollout/006-sk-design` compiler as the proven reference implementation; the frozen scorer trio (read-only); the non-frozen route-gold parity harness.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -107,12 +107,12 @@ Grow every thin or stale hub's compiled policy to the same production-grade cove
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/00N-<hub>/lib/registry-compiler.cjs` | Modify | Grow detectors per hub so compiled routes reach legacy parity |
-| `.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/00N-<hub>/lib/router.cjs` or `canary-router.cjs` | Modify | Route the newly compiled destinations |
-| `.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/00N-<hub>/fixtures/canary-cases.v1.json` | Modify | Extend canary coverage to the hub's full scenario set |
+| `.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/lib/registry-compiler.cjs` | Modify | Grow detectors per hub so compiled routes reach legacy parity |
+| `.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/lib/router.cjs` or `canary-router.cjs` | Modify | Route the newly compiled destinations |
+| `.opencode/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/fixtures/canary-cases.v1.json` | Modify | Extend canary coverage to the hub's full scenario set |
 | `.opencode/bin/lib/compiled-route-manifest.cjs` | Modify | Add a safe re-mint/refresh path (write current `{gen+1, hash}`) |
 | sk-design `006-sk-design/lib/registry-compiler.cjs` (TV-003) and mcp-tooling's compiler (MT-008) | Modify | Remove the extra over-detected target |
-| `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` (+ authored twin) | Modify | Persist `DEFAULT_ON_HUBS` per hub at flip time |
+| `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` (+ authored twin) | Modify | Persist `DEFAULT_ON_HUBS` per hub at flip time |
 | 7 hub `SKILL.md` files + 2 create-skill parent templates + catalog wording | Modify | Move the default-on directive lockstep with the flip |
 | This packet's `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` | Create | Level-3 documentation for the build-out program |
 <!-- /ANCHOR:scope -->

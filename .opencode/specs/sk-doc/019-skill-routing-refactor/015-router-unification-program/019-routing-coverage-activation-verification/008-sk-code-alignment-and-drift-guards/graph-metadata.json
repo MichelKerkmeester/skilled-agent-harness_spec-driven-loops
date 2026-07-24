@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-07-24T10:52:36.951Z",
+    "last_save_at": "2026-07-24T12:11:49.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7bd9e653a868ba185c64751bb34fcf366b226e16097cf6e162a049a21de9148",
+    "source_fingerprint": "sha256:080ff65d090ab7fba9506f4338490432eeb860d884d7e58759f53a56eb2e6c1b",
     "source_doc_hashes": {
-      "spec.md": "d6271471813c4f9e55e5149816cc8c235bb60c16548bca8715eeb0cad4256c4e",
-      "plan.md": "bc6d08a7c828dbd6b0db39a51af540b792e745759c6a0b8a95fea2a4dae4c9fb",
+      "spec.md": "7d65508aaab85344a22ed035592ad0068b88f707f30f07200e07a4c6e35bbda8",
+      "plan.md": "dd1702c373f602aee225ce3cd0b0c86f2d892288909c8308e3d9a57111659a65",
       "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
-      "checklist.md": "4c3ddab30d21293b235c3c857f5b33b8ebd32df2104a446e4a0158bc685be871",
-      "implementation-summary.md": "f4d2555e0b32772e9946b31c0507965c0ec55de77f45e2a2da307a9aeeefc0b3"
+      "checklist.md": "be7aeb84f2abded0e4eb93f6e2e0bac929f26644d690e9a48e35233fcebf168e",
+      "implementation-summary.md": "f14c0be4101f9919cf10f40ec8308c80250ae349067c499da00ee1cdd29b6b0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

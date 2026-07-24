@@ -28,7 +28,7 @@ const crypto = require('crypto');
 const HARNESS = __dirname;
 const LIB = path.resolve(HARNESS, '..', 'lib');
 const IMPL = path.resolve(HARNESS, '..', '..'); // the implementation root
-const LIVE_ACTIVATION = path.join(IMPL, '010-live-activation', 'activation');
+const LIVE_ACTIVATION = path.join(IMPL, '013-live-activation', 'activation');
 const FLIP = path.join(LIB, 'flip-serving.cjs');
 
 // --- sandbox isolation (must happen before requiring the engine modules) ---
@@ -62,7 +62,7 @@ function main() {
   // 1. Discriminated union: route-only fields present iff action === 'route', AND
   //    the fixture exercises BOTH a route and a negative decision.
   {
-    const child = path.join(IMPL, '006-parent-hub-rollout', '001-sk-code');
+    const child = path.join(IMPL, '009-parent-hub-rollout', '001-sk-code');
     const { loadSnapshot } = require(path.join(child, 'harness', 'build-artifacts.cjs'));
     const prompts = (loadSnapshot().fixture.cases || [])
       .slice(0, 6)

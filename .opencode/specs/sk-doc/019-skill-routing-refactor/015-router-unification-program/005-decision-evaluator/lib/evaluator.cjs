@@ -12,7 +12,7 @@ const {
   computeBasePolicyHash,
   computeEffectivePolicyHash,
   computeRequestFactsHash,
-} = require('../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../003-contract-schemas/lib/canonical.cjs');
 const { destinationKey, parseRouteDecision } = require('./decision-contract.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────

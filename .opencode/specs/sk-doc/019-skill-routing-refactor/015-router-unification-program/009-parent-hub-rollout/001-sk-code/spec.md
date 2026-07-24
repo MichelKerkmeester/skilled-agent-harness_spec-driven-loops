@@ -37,7 +37,7 @@ The authored shape is now compiled into a `surfaceBundle` route inside the close
 | **Priority** | P0 |
 | **Status** | Implemented — certificate-gated phase harness GREEN; strict packet validation blocked; legacy serving-authoritative |
 | **Created** | 2026-07-18 |
-| **Branch** | `006-parent-hub-rollout/001-sk-code` |
+| **Branch** | `009-parent-hub-rollout/001-sk-code` |
 | **Migration stage** | Stage 4 — Per-hub canary (synthesis §9) |
 | **Blast radius** | Evidence composition (surfaceBundle) — reversible, gated |
 <!-- /ANCHOR:metadata -->
@@ -79,13 +79,13 @@ Prove that `sk-code`'s workflow-plus-evidence archetype compiles into a `surface
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `006-parent-hub-rollout/001-sk-code/spec.md` | Create | This specification |
-| `006-parent-hub-rollout/001-sk-code/plan.md` | Create | Build approach for the sk-code canary |
-| `006-parent-hub-rollout/001-sk-code/tasks.md` | Create | Ordered, checkable task list |
-| `006-parent-hub-rollout/001-sk-code/lib/*.cjs` | Create | Compiler, router, authority, policy-card, and activation logic |
-| `006-parent-hub-rollout/001-sk-code/fixtures/`, `harness/` | Create | Real-hub fixtures, artifact builder, and Stage-4 validator |
-| `006-parent-hub-rollout/001-sk-code/compiled/`, `activation/` | Create | Generated snapshot, accepted candidate, retained prior, and fence state |
-| `006-parent-hub-rollout/001-sk-code/checklist.md`, `implementation-summary.md` | Create | Level-2 verification evidence and completion record |
+| `009-parent-hub-rollout/001-sk-code/spec.md` | Create | This specification |
+| `009-parent-hub-rollout/001-sk-code/plan.md` | Create | Build approach for the sk-code canary |
+| `009-parent-hub-rollout/001-sk-code/tasks.md` | Create | Ordered, checkable task list |
+| `009-parent-hub-rollout/001-sk-code/lib/*.cjs` | Create | Compiler, router, authority, policy-card, and activation logic |
+| `009-parent-hub-rollout/001-sk-code/fixtures/`, `harness/` | Create | Real-hub fixtures, artifact builder, and Stage-4 validator |
+| `009-parent-hub-rollout/001-sk-code/compiled/`, `activation/` | Create | Generated snapshot, accepted candidate, retained prior, and fence state |
+| `009-parent-hub-rollout/001-sk-code/checklist.md`, `implementation-summary.md` | Create | Level-2 verification evidence and completion record |
 
 > All implementation files are phase-local. Live runtime files remain read-only; the accepted candidate is shadow-only and legacy remains serving-authoritative.
 <!-- /ANCHOR:scope -->
@@ -226,5 +226,5 @@ This phase must satisfy the shared migration model's **Stage 4 — Per-hub canar
 - **Task breakdown**: See `tasks.md`
 - **Source design**: `../../../006-unified-refactor-research/unified-refactor-synthesis.md` (§7 sk-code archetype; §9 stages 4/6; §2.3 closed algebra; §8.1–§8.3 three-dimension read; §10 constraint compliance)
 - **Master plan**: `../../spec.md` (Phase Documentation Map; Shared Migration-Gate Model)
-- **Prior phase (base case)**: `../../001-compiler-n1-shadow/` — the `mcp-code-mode` N=1 activation this canary builds on
+- **Prior phase (base case)**: `../../004-compiler-n1-shadow/` — the `mcp-code-mode` N=1 activation this canary builds on
 - **Next phase**: `../002-system-deep-loop/` — activates only after this canary's Stage-4 gate is green

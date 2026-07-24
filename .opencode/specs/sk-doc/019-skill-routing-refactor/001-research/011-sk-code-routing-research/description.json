@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research",
+  "description": "sk-code routing could not be measured honestly on the canonical typed-pair surface",
+  "keywords": [
+    "sk-code",
+    "routing",
+    "measured",
+    "honestly",
+    "canonical",
+    "typed-pair",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-24T12:22:50.718Z",
+  "specId": "011",
+  "folderSlug": "sk-code-routing-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "001-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

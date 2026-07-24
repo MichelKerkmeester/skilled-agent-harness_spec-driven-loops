@@ -33,5 +33,13 @@ Integrate **Idea 5 (calibrated negotiation)** into the unified refactor as a rea
 001 → 002 → 003 (the corpus gates the contract; the certificate gates the controller). This phase satisfies migration Stage 3 (shadow-evaluate parity for calibrated paths) and unblocks the Stage-4 canary's calibrated auto-route.
 
 ## RELATED DOCUMENTS
-- **Design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (Idea 5, §8.1)
+- **Design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (Idea 5, §8.1)
 - **Parent Spec**: `../spec.md`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `007-recovery-ladder` |
+| **Successor** | `009-parent-hub-rollout` |

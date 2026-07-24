@@ -22,7 +22,7 @@ const { compiledRoute } = require('./compiled-route.cjs');
 // Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
 // copy so the harness never reads or mutates live committed state.
 const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
-  || path.resolve(__dirname, '..', '..', '010-live-activation', 'activation');
+  || path.resolve(__dirname, '..', '..', '013-live-activation', 'activation');
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 

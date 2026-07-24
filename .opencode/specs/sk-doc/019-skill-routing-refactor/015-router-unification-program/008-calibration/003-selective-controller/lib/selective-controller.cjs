@@ -11,12 +11,12 @@ const {
   DOMAIN_TAGS,
   hashArtifact,
   omitFields,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   parseRouteDecisionShape,
-} = require('../../../002-decision-evaluator/lib/decision-contract.cjs');
+} = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 const RECOVERY_LADDER_CONTRACT = require(
-  '../../../004-recovery-ladder/recovery-ladder.v1.json'
+  '../../../007-recovery-ladder/recovery-ladder.v1.json'
 );
 
 // ─────────────────────────────────────────────────────────────────────────────

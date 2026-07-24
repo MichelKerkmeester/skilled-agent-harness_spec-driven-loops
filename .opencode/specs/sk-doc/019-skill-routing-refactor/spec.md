@@ -64,7 +64,7 @@ Make routing correct, measurable, and consistent across the skill fleet, and res
 - **Group A — Router audit and fixes (002-005):** audit the routing sources, resolve trigger collisions and ownership, scope triggers and correct sibling handoffs, and standardize packet shape with synchronized router projections.
 - **Group B — create-skill routing conformance (006-010):** document each flat-resource packet's smart-routing posture, analyze the residual router-marker gap, close hub keyword-coverage and benchmark-routing gaps, and normalize packets to the create-skill canon.
 - **Group C — Benchmark and typed-pair routing fixes (011-014):** implement the sk-doc and skill-advisor fixes, wire typed gold through the benchmark harness, and run the sk-code measurement pilot.
-- **Group D — Research layer (`001-research`):** hold the ten research lineages covering sk-doc, skill-advisor, the per-hub surfaces, defaultMode policy, out-of-box alternatives, and unified-router design.
+- **Group D — Research layer (`001-research`):** hold the eleven research lineages covering sk-doc, skill-advisor, sk-code, the per-hub surfaces, defaultMode policy, out-of-box alternatives, and unified-router design.
 - **Group E — Router-unification program (015):** a nested program standardizing fleet routing config, resolving the defaultMode policy, and designing plus implementing the unified router — including the promoted compiled-routing runtime.
 - **Group F — Documentation-quality program (016):** a nested program restoring the skill tree to sk-doc's documentation standards across metadata, templates, READMEs, tooling, and validators.
 
@@ -80,7 +80,7 @@ Aggregate scope; per-phase detail lives in child plans.
 |-----------|-------------|-------|-------------|
 | `.opencode/skills/sk-doc/create-*/SKILL.md` and `.opencode/skills/sk-doc/{mode-registry.json,hub-router.json}` | Modify | A, B | Routing contracts, sibling handoffs, and synchronized router projections |
 | `.opencode/skills/<hub>/**` routing surfaces + typed-pair benchmark fixtures | Modify | C, D | Path-contract fixes, advisor fixes, and typed-gold measurement wiring |
-| `.opencode/bin/lib/compiled-routing/**` and the authored source under `015-router-unification-program/003-unified-refactor-implementation/**` | Modify | E | The promoted compiled-routing runtime and its authored source |
+| `.opencode/bin/lib/compiled-routing/**` and the authored source under `015-router-unification-program/**` | Modify | E | The promoted compiled-routing runtime and its authored source |
 | Skill/mode READMEs, metadata, templates, and doc validators across the tree | Modify | F | Documentation-quality remediation |
 <!-- /ANCHOR:scope -->
 
@@ -93,7 +93,7 @@ Aggregate scope; per-phase detail lives in child plans.
 
 | Phase | Group | Focus | Status |
 |-------|-------|-------|--------|
-| 001-research | D | Research parent for ten routing lineages spanning benchmark, per-hub, defaultMode, out-of-box, and unified-refactor questions | Research layer |
+| 001-research | D | Research parent for eleven routing lineages spanning benchmark, per-hub, sk-code, defaultMode, out-of-box, and unified-refactor questions | Research layer |
 | 002-router-audit-and-fix-map | A | Audit the routing sources, baseline the queries, and map the prioritized fixes before edits | Complete |
 | 003-router-collision-fixes | A | Move existing-document audit/validation ownership from README/flowchart creators to quality control | Complete |
 | 004-trigger-scoping-and-handoffs | A | Remove broad selector tokens and replace vague exclusions with exact sibling handoffs | Complete |
@@ -135,7 +135,7 @@ Aggregate scope; per-phase detail lives in child plans.
 ## 4. OPEN QUESTIONS
 
 - The create-skill router-marker posture for the flat-resource packets (Group B) — the keep-N/A-versus-wire decision framed in child `007-create-skill-router-marker-gap`.
-- The fleet compiled-routing cutover is now **default-on** for all seven eligible hubs (activation manifests flipped to `compiled`; unset `SPECKIT_COMPILED_ROUTING` serves compiled), reversible via the `=0` kill-switch; the formal default-on decision is recorded in `015/003/012-default-on-decision`.
+- The fleet compiled-routing cutover is now **default-on** for all seven eligible hubs (activation manifests flipped to `compiled`; unset `SPECKIT_COMPILED_ROUTING` serves compiled), reversible via the `=0` kill-switch; the formal default-on decision is recorded in `015/016-default-on-decision`.
 <!-- /ANCHOR:questions -->
 
 ---

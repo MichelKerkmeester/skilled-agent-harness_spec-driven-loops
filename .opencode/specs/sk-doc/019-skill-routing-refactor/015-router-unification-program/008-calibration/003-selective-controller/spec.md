@@ -30,7 +30,7 @@ This is a design/planning artifact. It authors the controller contract, the fric
 | **Priority** | P0 |
 | **Status** | Shadow-partial implementation; 17-row targeted validator green, strict validation run but blocked by packet-template drift and unavailable repository validator tooling |
 | **Created** | 2026-07-18 |
-| **Branch** | `005-calibration/003-selective-controller` |
+| **Branch** | `008-calibration/003-selective-controller` |
 | **Phase** | 5 (calibration), child 003 of 3 |
 | **Depends on** | `005/001` (held-out corpus), `005/002` (rank-vs-calibrated contract), `002` (evaluator + 4-action algebra), `004` (recovery ladder + shared budget) |
 <!-- /ANCHOR:metadata -->
@@ -72,9 +72,9 @@ Ship a controller whose auto-route branch is *gated on a per-slice calibration c
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `005-calibration/003-selective-controller/spec.md` | Create | This specification |
-| `005-calibration/003-selective-controller/plan.md` | Create | Build approach, contracts touched, verification |
-| `005-calibration/003-selective-controller/tasks.md` | Create | Ordered, checkable task list |
+| `008-calibration/003-selective-controller/spec.md` | Create | This specification |
+| `008-calibration/003-selective-controller/plan.md` | Create | Build approach, contracts touched, verification |
+| `008-calibration/003-selective-controller/tasks.md` | Create | Ordered, checkable task list |
 
 > Design-only phase. No source, config, registry, scorer, or skill file is in scope. The contracts named below (`SelectiveControllerV1`, the assertion set, the metric set) are *authored as specification*, not implemented against the live tree.
 <!-- /ANCHOR:scope -->
@@ -149,5 +149,5 @@ This phase rides one shared gate from the master plan's **SHARED MIGRATION-GATE 
 - **Source design**: `../../../006-unified-refactor-research/unified-refactor-synthesis.md` — Idea 5 (§3, §5 table), recovery ladder rung 2 (§4), advisor certificate read (§8.1)
 - **Master plan**: `../../spec.md` — phase map + shared migration-gate model
 - **Sibling calibration phases**: `../001-*` (held-out corpus), `../002-*` (rank-vs-calibrated contract)
-- **Upstream contracts**: `../../002-decision-evaluator/` (4-action algebra), `../../004-recovery-ladder/` (shared uncertainty budget)
+- **Upstream contracts**: `../../005-decision-evaluator/` (4-action algebra), `../../007-recovery-ladder/` (shared uncertainty budget)
 - **Plan / Tasks**: `plan.md`, `tasks.md`

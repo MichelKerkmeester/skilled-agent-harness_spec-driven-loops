@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-cutover-hardening",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-cutover-hardening",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `011-runtime-engine`, the activation layer `010-live-activation`, and the regression harness added in the same review cycle) returned CONDITIONAL: 0 P0, 7 P1, 2 P2",
+    "causal_summary": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `014-runtime-engine`, the activation layer `013-live-activation`, and the regression harness added in the same review cycle) returned CONDITIONAL: 0 P0, 7 P1, 2 P2",
     "created_at": "2026-07-20T05:26:38.974Z",
-    "last_save_at": "2026-07-24T10:52:41.201Z",
+    "last_save_at": "2026-07-24T12:11:57.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03481b6feb47de570a5b6c4287a549695b6436ad787d9f7529b7f8272808bcc0",
+    "source_fingerprint": "sha256:7e38b21740c05e4a730db8a970277be8ba3bcf77654bca70df4c8f83860be816",
     "source_doc_hashes": {
-      "spec.md": "97e450f99b4861383d48d6671acb9b53250541a444b7d80aed2c01c22abf052a",
-      "plan.md": "0d5d914ab18212d8905ca52cda5b5acf4bfa0ec8a1866f26a78516215c1a3b63",
-      "tasks.md": "ddfe96cf88df5265177087dc0d49b8b06f19a4b1acf32c2a623a8b987f284fbc",
-      "checklist.md": "85a27b998b85a2b89e22ee76269d9a8f15dda74acd14a8efe9f4845dc1f0c21f",
-      "implementation-summary.md": "83bf8107e81e13b028f1643615478ba898140ac228863ae96191f6b6c2b45b0d"
+      "spec.md": "1629ebdf396572ed298eec601efdce950e3226ccde2137823b263fd2426aa451",
+      "plan.md": "f995a3a371c3d7995ef6964efceee9a77f2216709e590c5546ba18c7287c95d4",
+      "tasks.md": "2675b9034eebf09f8c1c16717ac98316585066a855499203dd3944bcb130d46c",
+      "checklist.md": "d730b336c8a6b4184f154dc83f5b9b2100012b48baf46201b510b1d03c84debb",
+      "implementation-summary.md": "3e2a66e751877f046f5dcaa751f217b5d90f5aab6b049b4dd5bf93b81e64668f"
     },
     "last_active_child_id": null,
     "last_active_at": null

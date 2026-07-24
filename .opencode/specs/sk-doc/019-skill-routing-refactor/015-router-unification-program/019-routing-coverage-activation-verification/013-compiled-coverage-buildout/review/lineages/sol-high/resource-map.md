@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout"
+title: "Resource Map — .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
 description: "Auto-generated review resource map from convergence evidence."
 ---
 # Resource Map

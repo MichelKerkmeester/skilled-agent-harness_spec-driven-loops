@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/016-review-remediation",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +39,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/bin/lib/compiled-route-manifest.cjs",
-      ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
       "plan.md",
       "checklist.md",
@@ -52,12 +51,6 @@
         "name": "compiled-route-manifest.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "router.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
     "created_at": "2026-07-22T06:15:19.898Z",
-    "last_save_at": "2026-07-24T10:52:36.064Z",
+    "last_save_at": "2026-07-24T12:11:50.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c7c0a9f0c4d103aa26a46ba89cac69b39c897fc9ea7947f8717edf4e0f011fe",
+    "source_fingerprint": "sha256:61983b370386a78f69c03b7913bc0b60ec93d72a66616fa97feebccae9a7816b",
     "source_doc_hashes": {
-      "spec.md": "791c43bf72db3dc103527c4d4e1e2a43bf4d5fe779e22567b8069044247c9e21",
-      "plan.md": "f5f95459704f5aafb2a303c8e71f6c4d59e7c228cc46655f84a159f75fb398df",
-      "tasks.md": "3be48fef2d956fcc405794c2ce05fc0c4ffa8278859adfc54af7ae0b65b51874",
-      "checklist.md": "48d3689920228bea4eb0fe9baa0217fe5879fed2e805ee0c60360fd578579fd8",
-      "implementation-summary.md": "f861ee99e47cb3126b177bdb112d6d23208b767b3570a557ec4f066c00f2722e"
+      "spec.md": "21cbae70e46dd35ddfc385f34a902b278226ce8c16b5d3f1e7b7046a8cdc84fa",
+      "plan.md": "33ea9976131b93f66613a990208b511ef632640b0336b7b2ef98d80f5feeb5d2",
+      "tasks.md": "958a16621449779cfcc36e7449929721d4ee1a1623ceaf5a341edcce243e1f4c",
+      "checklist.md": "7b6b4cc49915209b6b727934d0e5e81da89437b8d85bacce4ec431b27c0dc2b1",
+      "implementation-summary.md": "1fa5a8e1b2e6ca3e05735ae6714d9f33edd71c4ce0568d0137b7de9ad4b1ba60"
     },
     "last_active_child_id": null,
     "last_active_at": null

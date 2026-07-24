@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration/001-holdout-corpus",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration/002-rank-vs-calibrated-contract",
-    "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/005-calibration/003-selective-controller"
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/002-rank-vs-calibrated-contract",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/003-selective-controller"
   ],
   "manual": {
     "depends_on": [],
@@ -64,6 +64,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -74,25 +80,19 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "PHASE DOCUMENTATION MAP",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase parent integrating Idea 5 (calibrated negotiation) into the unified router refactor as a first-class build — NOT deferred. Three children: build the sealed held-out routing corpus (the artifact whose absence made the synthesis park calibration), specify the rank-vs-calibrated route contract (rankScore/scoreMargin always, estimatedError only with a validated certificate), and build the selective-classification controller that auto-routes under a validated risk budget else clarifies/defers.",
     "created_at": "2026-07-18T13:13:19.110Z",
-    "last_save_at": "2026-07-24T10:55:17.188Z",
+    "last_save_at": "2026-07-24T12:11:58.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c0432d5c543574d8bde5d37a1c72704990527ac75711152438e0af225d4b5130",
+    "source_fingerprint": "sha256:9648f7dece1581aad5be503cbb4658955127469b20edafdf0ed92436455d803c",
     "source_doc_hashes": {
-      "spec.md": "c74be250679a76972c031c6ccaadb95d8b51c1325a2523ea70776d9ae0ed2d47"
+      "spec.md": "34394178b0abd3a6f71ae7768d0aa9900d6b71f0eb9364e04de720560dc48a4a"
     },
     "last_active_child_id": null,
     "last_active_at": null

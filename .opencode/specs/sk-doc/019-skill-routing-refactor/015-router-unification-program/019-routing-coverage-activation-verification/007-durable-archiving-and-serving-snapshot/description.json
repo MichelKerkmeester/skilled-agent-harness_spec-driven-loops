@@ -1,6 +1,6 @@
 {
   "level": 2,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
   "description": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact",
   "keywords": [
     "compiled-routing",
@@ -17,15 +17,14 @@
     "single",
     "artifact"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.754Z",
+  "lastUpdated": "2026-07-24T12:10:59.544Z",
   "specId": "007",
   "folderSlug": "durable-archiving-and-serving-snapshot",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
     "015-router-unification-program",
-    "003-unified-refactor-implementation",
-    "015-routing-coverage-activation-verification"
+    "019-routing-coverage-activation-verification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

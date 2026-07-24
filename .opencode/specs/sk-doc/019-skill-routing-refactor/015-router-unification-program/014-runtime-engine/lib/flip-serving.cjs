@@ -34,7 +34,7 @@ const IMPL_ROOT = path.resolve(__dirname, '..', '..');
 // Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
 // copy so the harness never mutates live committed state (see verify-runtime-engine).
 const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
-  || path.join(IMPL_ROOT, '010-live-activation', 'activation');
+  || path.join(IMPL_ROOT, '013-live-activation', 'activation');
 
 function findRepoRoot(start) {
   let dir = start;

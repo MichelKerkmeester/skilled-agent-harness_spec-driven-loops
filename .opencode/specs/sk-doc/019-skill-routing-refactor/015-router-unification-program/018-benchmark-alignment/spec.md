@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/014-benchmark-alignment"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment"
     last_updated_at: "2026-07-21T06:48:08Z"
     last_updated_by: "codex-gpt-5.6"
     recent_action: "Restored default-off benchmark parity isolation"
@@ -253,10 +253,18 @@ For each route-gold scenario on a valid fresh eligible hub:
 
 ## RELATED DOCUMENTS
 
-- **Fallback, eligibility, drift, and observability authority**: `../012-default-on-decision/decision-record.md`
-- **Default-on program**: `../012-default-on-decision/spec.md`
+- **Fallback, eligibility, drift, and observability authority**: `../016-default-on-decision/decision-record.md`
+- **Default-on program**: `../016-default-on-decision/spec.md`
 - **Build approach**: `plan.md`
 - **Task breakdown**: `tasks.md`
 - **Verification checklist**: `checklist.md`
 - **Implementation record**: `implementation-summary.md`
 - **Current Lane C architecture**: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `017-create-skill-alignment` |
+| **Successor** | `019-routing-coverage-activation-verification` |

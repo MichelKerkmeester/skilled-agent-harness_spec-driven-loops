@@ -32,7 +32,7 @@ The work is therefore **not** a router rewrite. It is: compile the four explicit
 | **Priority** | P0 |
 | **Status** | Implemented (2026-07-19) — Stage-4 route-gold fully `real-green` (11/11 rows, 7/7 positive routes, 0 `shadow-partial`); seven modes compile to 19 typed leaf pairs against 584 manifest identities; document parity, fencing, mixed-generation refusal, and byte-exact rollback pass; legacy remains serving-authoritative and the candidate shadow-only; repository-level strict validation reserved for the orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `006-parent-hub-rollout/002-system-deep-loop` |
+| **Branch** | `009-parent-hub-rollout/002-system-deep-loop` |
 | **Migration stage** | Stage 4 — Per-hub canary (synthesis §9) |
 | **Blast radius** | Shared packet/backend projections (public-mode / packet / backend / runtime archetype) — reversible, gated |
 <!-- /ANCHOR:metadata -->

@@ -33,9 +33,9 @@ The benchmark seam is the load-bearing constraint of this phase. Typed decisions
 | **Priority** | P0 |
 | **Status** | Implemented — phase-local verification passing (`replay-driver.cjs` 11/11 route-gold matches; N=1 zero rank/bundle/handoff calls); repository-level strict validation reserved for the orchestrator |
 | **Created** | 2026-07-18 |
-| **Branch** | `002-decision-evaluator` |
-| **Parent** | `../spec.md` (Unified Router Refactor — Phased Implementation Plan) |
-| **Design source** | `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.3, §4 seam A, §8.2) |
+| **Branch** | `005-decision-evaluator` |
+| **Parent** | `../spec.md` (Router-Unification Program) |
+| **Design source** | `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2.3, §4 seam A, §8.2) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -60,9 +60,9 @@ Ship a pure, offline, deterministic evaluator whose only output type is the clos
 - The N=1 degeneracy assertion: at `candidateCount = 1` the evaluator walks empty ranking/bundle/handoff collections and never invokes that machinery (synthesis §5, §9 hard gate).
 
 ### Out of Scope
-- Destination PREPARE/VERIFY/COMMIT, proof objects, receipts, idempotency — owned by Phase 3 (`003-execution-verify-commit/`). The evaluator only *labels* `route.authority = WithheldUntilVerify`; it never consumes authority.
-- The recovery ladder's budget accounting (`UncertaintyBudgetV1`, `H=1`, acceptance≠completion) and the live handoff transfer — owned by Phase 4 (`004-recovery-ladder/`). This phase emits the typed `clarify` and `defer(handoff-required)` shapes; it does not debit a persistent budget or execute a hop.
-- Calibrated auto-route and any certificate that would let `rankScore` act as a probability — owned by Phase 5 (`005-calibration/`). Here, rank is inert evidence only.
+- Destination PREPARE/VERIFY/COMMIT, proof objects, receipts, idempotency — owned by Phase 3 (`006-execution-verify-commit/`). The evaluator only *labels* `route.authority = WithheldUntilVerify`; it never consumes authority.
+- The recovery ladder's budget accounting (`UncertaintyBudgetV1`, `H=1`, acceptance≠completion) and the live handoff transfer — owned by Phase 4 (`007-recovery-ladder/`). This phase emits the typed `clarify` and `defer(handoff-required)` shapes; it does not debit a persistent budget or execute a hop.
+- Calibrated auto-route and any certificate that would let `rankScore` act as a probability — owned by Phase 5 (`008-calibration/`). Here, rank is inert evidence only.
 - The correction overlay and any online learning — Phase 7. The evaluator is complete and correct with `overlay = null` (synthesis §5.3, §12).
 - Editing `router-replay.cjs`, the existing route-gold rows, live registries, or any skill — explicitly forbidden.
 
@@ -155,13 +155,21 @@ router replay, and frozen typed-gold fixtures before and after execution.
 
 - Advisor-evidence consumption is treated here as one optional evidence record; the full advisor-projection ingestion contract (recommendation strength, staleness handling) is Phase 6 scope and is not settled in this phase [synthesis §8.1].
 - Whether the `defer(handoff-required)` reason vocabulary needs extension once Phase 4's recovery ladder debits a persistent `UncertaintyBudgetV1` — this phase only emits the typed shape, it does not debit a budget.
-- Calibrated auto-route thresholds that would let `rankScore` act as a probability are deferred to Phase 5 (`005-calibration/`); the evaluator is correct with rank as inert evidence only.
+- Calibrated auto-route thresholds that would let `rankScore` act as a probability are deferred to Phase 5 (`008-calibration/`); the evaluator is correct with rank as inert evidence only.
 <!-- /ANCHOR:questions -->
 
 ## RELATED DOCUMENTS
 - **Build approach**: see `plan.md`
 - **Task breakdown**: see `tasks.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.3, §4 seam A, §8.2, §6, §5, §9)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2.3, §4 seam A, §8.2, §6, §5, §9)
 - **Master plan / phase map + shared gate model**: `../spec.md`
-- **Upstream contracts**: `../000-contract-schemas/` (schemas), `../001-compiler-n1-shadow/` (CompiledPolicy + projections)
-- **Downstream consumers**: `../003-execution-verify-commit/`, `../004-recovery-ladder/`, `../005-calibration/`, `../006-parent-hub-rollout/`
+- **Upstream contracts**: `../003-contract-schemas/` (schemas), `../004-compiler-n1-shadow/` (CompiledPolicy + projections)
+- **Downstream consumers**: `../006-execution-verify-commit/`, `../007-recovery-ladder/`, `../008-calibration/`, `../009-parent-hub-rollout/`
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `004-compiler-n1-shadow` |
+| **Successor** | `006-execution-verify-commit` |

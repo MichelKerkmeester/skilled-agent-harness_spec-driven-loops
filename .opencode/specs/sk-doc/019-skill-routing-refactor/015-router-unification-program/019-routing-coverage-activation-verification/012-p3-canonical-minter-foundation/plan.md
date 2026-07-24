@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"
     last_updated_at: "2026-07-21T05:29:04Z"
     last_updated_by: "codex"
     recent_action: "Delivered the shared minter, freshness, status, and sync foundation"
@@ -46,7 +46,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Node.js CommonJS; existing Python create-skill consumer shells out to JSON CLI |
 | **Framework** | Compiled-routing runtime and system-spec-kit verification |
-| **Storage** | Promoted activation directory under `.opencode/bin/lib/compiled-routing/010-live-activation/activation/` |
+| **Storage** | Promoted activation directory under `.opencode/bin/lib/compiled-routing/013-live-activation/activation/` |
 | **Testing** | Node contract tests, current compiled-routing suites, strict spec validation |
 
 ### Overview
@@ -112,7 +112,7 @@ Both verbs emit one JSON object. Exit `0` means the returned manifest is valid a
 ```json
 {
   "hubId": "example-hub",
-  "manifestPath": ".opencode/bin/lib/compiled-routing/010-live-activation/activation/example-hub/manifest.json",
+  "manifestPath": ".opencode/bin/lib/compiled-routing/013-live-activation/activation/example-hub/manifest.json",
   "manifestValid": true,
   "fresh": true,
   "causeCode": "fresh",
@@ -161,8 +161,8 @@ No timestamp, absolute source path, or environment-derived value enters the cano
 
 | Surface | Current Role | Implemented Action | Verification |
 |---------|--------------|----------------|--------------|
-| `006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Generic registry-driven policy compiler | Reuse unchanged through `compileRegistry()` | Import/call-path test and policy hash fixture |
-| `006-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs` | Fixed sk-code artifact harness | Leave unchanged | Diff audit |
+| `009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Generic registry-driven policy compiler | Reuse unchanged through `compileRegistry()` | Import/call-path test and policy hash fixture |
+| `009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs` | Fixed sk-code artifact harness | Leave unchanged | Diff audit |
 | `.opencode/bin/lib/compiled-route-manifest.cjs` | Missing shared contract | Add three public functions and private input loader | Unit and integration tests |
 | `.opencode/bin/compiled-route-manifest.cjs` | Missing cross-language entry point | Add two verbs and stable exits | CLI contract tests |
 | `.opencode/bin/compiled-route-status.cjs` | Authority and engine status | Add nested `manifestFreshness`; union fixed hubs with manifest directories | Status fixture matrix |
@@ -225,7 +225,7 @@ The implementation records baseline counts before claiming no regression, then r
 | Generic 006 `compileRegistry()` | Internal | Confirmed reusable | No truthful policy hash can be minted without it |
 | Existing V1 manifest field contract | Internal | Confirmed | Canonical bytes would diverge from activation tooling |
 | 002 status foundation | Internal | Shipped, lacks freshness | Status integration has no stable consumer surface without it |
-| `013-create-skill-alignment/` | Downstream consumer | Planned | Its canonical minter dependency is now available |
+| `017-create-skill-alignment/` | Downstream consumer | Planned | Its canonical minter dependency is now available |
 | Runtime discovery and allowlist removal | Future work | Deferred | A fresh manifest does not make a new hub runtime-serving |
 <!-- /ANCHOR:dependencies -->
 

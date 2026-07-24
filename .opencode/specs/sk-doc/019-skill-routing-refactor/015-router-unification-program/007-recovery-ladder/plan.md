@@ -139,5 +139,5 @@ Fixtures are produced through the **phase-002 compatibility projector** only (sy
 
 - **Specification**: `spec.md`
 - **Task breakdown**: `tasks.md`
-- **Source design**: `../../006-unified-refactor-research/unified-refactor-synthesis.md` (§2.1, §2.3, §3, §4, §8.2, §9, §10)
+- **Source design**: `../../001-research/010-unified-refactor-research/unified-refactor-synthesis.md` (§2.1, §2.3, §3, §4, §8.2, §9, §10)
 - **Master plan**: `../spec.md`

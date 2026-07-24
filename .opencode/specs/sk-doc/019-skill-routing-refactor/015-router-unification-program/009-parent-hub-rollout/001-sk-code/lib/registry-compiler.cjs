@@ -14,12 +14,12 @@ const {
   computeBasePolicyHash,
   computeEffectivePolicyHash,
   computeProjectionHash,
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 const {
   destinationKey,
   qualifiedDestinationId,
   validateReferenceClosure,
-} = require('../../../001-compiler-n1-shadow/compiler/compiler.cjs');
+} = require('../../../004-compiler-n1-shadow/compiler/compiler.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -169,7 +169,7 @@ function buildSelectors(registry, hubRouter, destinations) {
 
 // A bundle is `surfaceBundle` only when it carries exactly one actor alongside
 // one or more evidence destinations (the decision-contract's own definition
-// in 002-decision-evaluator/lib/evaluator.cjs's isValidPolicy). Every other
+// in 005-decision-evaluator/lib/evaluator.cjs's isValidPolicy). Every other
 // multi-target tie (two-or-more actors, or evidence with no actor at all) is
 // `orderedBundle`, which carries no role restriction.
 function bundleKindForModes(modeWorkflowModes, byMode) {

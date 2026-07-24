@@ -18,7 +18,7 @@ const { spawnSync } = require('child_process');
 
 const {
   canonicalBytes
-} = require('../../../000-contract-schemas/lib/canonical.cjs');
+} = require('../../../003-contract-schemas/lib/canonical.cjs');
 
 const {
   CorpusValidationError,
@@ -56,12 +56,12 @@ const LOAD_PLAYBOOK_SCENARIOS_PATH = path.join(
 const TYPED_PROJECTOR_PATH = path.join(
   REPO_ROOT,
   '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
-  '007-unified-refactor-implementation/001-compiler-n1-shadow/compiler/projections.cjs'
+  '015-router-unification-program/004-compiler-n1-shadow/compiler/projections.cjs'
 );
 const CANONICAL_PATH = path.join(
   REPO_ROOT,
   '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
-  '007-unified-refactor-implementation/000-contract-schemas/lib/canonical.cjs'
+  '015-router-unification-program/003-contract-schemas/lib/canonical.cjs'
 );
 const TRUSTED_SCORER_DIGEST =
   'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c';

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/011-activation-cutover-p4",
-  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification",
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
     "created_at": "2026-07-20T21:44:54.891Z",
-    "last_save_at": "2026-07-24T10:52:36.480Z",
+    "last_save_at": "2026-07-24T12:11:50.370Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c0504f062b10924c8b3b3ae3567b3be1cc6f832df7fe03499d37bf3297fb68b",
+    "source_fingerprint": "sha256:7287d02fccc26ed333f829e133f17613457cbd18c525072a7af7ff5bf5c6fade",
     "source_doc_hashes": {
-      "spec.md": "e2fb8ec3ab0c1930844bd735ba97cb5d186f2ff74ff0b5c7a47bf85878ac0050",
-      "plan.md": "bddd1c5277cb7f5cbe563bdd9bac278d76ad2c213bfcfbe54477735660793113",
-      "tasks.md": "979a4c5a163f1998cd25b12ded323464d5e1f9eaa8e56a1f7e5ae609ca575ef3",
-      "checklist.md": "2b37d2d87823366572927f08f9729eb9517a13369acbdba2bde66262f6f1a7d1",
-      "decision-record.md": "d57f9e457657ebc83669e93bac823cc54c8fe77e5c71424f3153d32b7fff5af4",
-      "implementation-summary.md": "61428dc731a5d6b56045713e67a36ea023f2fd651d8cc64b0ee39fe5991bd30f"
+      "spec.md": "b5b48d037bcde6024cf12818573d183c6b521c39d7a4e89f434c014bfbcbc95f",
+      "plan.md": "24d82a3f36e14fd161986f81a5effd5a8df01353f009b6786ddc214c73022509",
+      "tasks.md": "c85fa387894b7b9e6c17780eb2d81191800a786c97a4a9fe8bb843e210eba418",
+      "checklist.md": "29a873c1282904cf27a1031c8fd100e5fd661f842e6a564e7e2c66ddf56832f1",
+      "decision-record.md": "d542005cf8a1b1eeba803a3923803e0dfb8bdd902a8a33bbfeb8ed00ce49fa03",
+      "implementation-summary.md": "f9828f90e7cf1e0d980f2b2b1ef0049e384bbe911812d0c45600cae202b8022a"
     },
     "last_active_child_id": null,
     "last_active_at": null

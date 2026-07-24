@@ -1,6 +1,6 @@
 {
   "level": 3,
-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/012-default-on-decision",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
   "description": "The parent goal frames \"compiled routing as the effective default\" as a switch to flip",
   "keywords": [
     "parent",
@@ -13,14 +13,13 @@
     "switch",
     "flip"
   ],
-  "lastUpdated": "2026-07-24T10:53:31.659Z",
-  "specId": "012",
+  "lastUpdated": "2026-07-24T12:10:59.557Z",
+  "specId": "016",
   "folderSlug": "default-on-decision",
   "parentChain": [
     "sk-doc",
     "019-skill-routing-refactor",
-    "015-router-unification-program",
-    "003-unified-refactor-implementation"
+    "015-router-unification-program"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

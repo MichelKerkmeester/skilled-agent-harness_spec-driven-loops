@@ -5,7 +5,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented + committed all ten children 002-011 behind the off flag; ran the closeout (status reconciliation + goal/handover completion update)"
@@ -39,7 +39,7 @@ Received a directive to research and then build the full coverage + activation +
 1. Default-on is a **structural no-op end-to-end**: `advisor-recommend.ts:371` attaches `compiledRoute` additively; `mk-skill-advisor-bridge.mjs:539-551` rebuilds recommendations and drops it (0 grep hits); the CLI `subprocess.ts` interface has no such field.
 2. The flag is stripped from BOTH `CHILD_ENV_ALLOWLIST` sets (launcher `:99`, bridge `:58`) — it can't reach the daemon.
 3. Runtime reads resolver/activation/engines from the mutable spec tree; three nested silent catches; fails legacy fleet-wide with no telemetry. ADR-003 promotion = a closure move.
-4. `HUB_CHILD` is an engine-dispatch table (`011-runtime-engine/lib/compiled-route.cjs:23-31,35-62`; `loadHubEngine` requires `006-*`), not a removable allowlist. ADR-002 must split eligibility from engine-discovery.
+4. `HUB_CHILD` is an engine-dispatch table (`014-runtime-engine/lib/compiled-route.cjs:23-31,35-62`; `loadHubEngine` requires `006-*`), not a removable allowlist. ADR-002 must split eligibility from engine-discovery.
 5. Bi-state flag; no per-hub serving-status; drifted==broken; **all 7 activation manifests already `servingAuthority: compiled`** → P4 must be per-hub cohort-staged.
 6. The four named coverage gaps are downstream of the P0 foundation (a P3 join gate).
 

@@ -22,27 +22,27 @@ const {
   hashArtifact,
 } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/lib/canonical.cjs'
+  '003-contract-schemas/lib/canonical.cjs'
 ));
 const OVERLAY_SCHEMA = require(path.join(
   IMPLEMENTATION_ROOT,
-  '000-contract-schemas/schemas/correction-overlay.v1.schema.json'
+  '003-contract-schemas/schemas/correction-overlay.v1.schema.json'
 ));
 const { destinationKey } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '002-decision-evaluator/lib/decision-contract.cjs'
+  '005-decision-evaluator/lib/decision-contract.cjs'
 ));
 const { evaluate } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '002-decision-evaluator/lib/evaluator.cjs'
+  '005-decision-evaluator/lib/evaluator.cjs'
 ));
 const { projectToRouteGold } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '002-decision-evaluator/lib/projector.cjs'
+  '005-decision-evaluator/lib/projector.cjs'
 ));
 const { scoreRouteGoldReadOnly, scorerScenario } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '002-decision-evaluator/replay-driver.cjs'
+  '005-decision-evaluator/replay-driver.cjs'
 ));
 const {
   fencedSwapInMemory,
@@ -50,7 +50,7 @@ const {
   pinManifest,
 } = require(path.join(
   IMPLEMENTATION_ROOT,
-  '001-compiler-n1-shadow/activation/fenced-manifest.cjs'
+  '004-compiler-n1-shadow/activation/fenced-manifest.cjs'
 ));
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -34,7 +34,7 @@ contextType: "implementation"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `011-runtime-engine`, the activation layer `010-live-activation`, and the regression harness added in the same review cycle) returned **CONDITIONAL**: 0 P0, 7 P1, 2 P2. The routing correctness itself is sound — the review's ruled-out list confirms the discriminated-union decision shape is consistent, a hash/generation mismatch fails safe to legacy, and no P0 survived adversarial replay. The seven P1s are robustness, evidence, and isolation gaps, six of them in code added during the fix cycle. None blocks the shipped cutover (flag default-off, fail-safe, reversible), but each is independently closable before a PASS.
+A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `014-runtime-engine`, the activation layer `013-live-activation`, and the regression harness added in the same review cycle) returned **CONDITIONAL**: 0 P0, 7 P1, 2 P2. The routing correctness itself is sound — the review's ruled-out list confirms the discriminated-union decision shape is consistent, a hash/generation mismatch fails safe to legacy, and no P0 survived adversarial replay. The seven P1s are robustness, evidence, and isolation gaps, six of them in code added during the fix cycle. None blocks the shipped cutover (flag default-off, fail-safe, reversible), but each is independently closable before a PASS.
 
 ### Purpose
 Closed the nine findings in risk order — the two zero-risk quick wins first (doc reconciliation and contract centralization), then the harness-integrity gaps, then the coordinated crash-safety / single-writer-ownership change, then the activation trust boundary — without weakening the proven routing correctness or touching the frozen benchmark scorer.
@@ -71,7 +71,7 @@ A fresh 10-iteration `/deep:review` of this packet's round-1 hardening completed
 | ID | Sev | Finding | Site |
 |----|-----|---------|------|
 | RR-P1-A | P1 | `shared/hub-lock.cjs` reclaim was a write-then-read, not an atomic winner election — two stale-lock reclaimers could both enter the critical section | `shared/hub-lock.cjs` |
-| RR-P1-B | P1 | Flip-serving `reconcileTuple` rebuilt the record but did not advance the fence, certifying a crash-interrupted flip with a stale epoch | `011-runtime-engine/lib/flip-serving.cjs` |
+| RR-P1-B | P1 | Flip-serving `reconcileTuple` rebuilt the record but did not advance the fence, certifying a crash-interrupted flip with a stale epoch | `014-runtime-engine/lib/flip-serving.cjs` |
 | RR-P2-C | P2 | `hub-lock.cjs` comment overclaimed a PID-reuse/start-stamp check the code did not implement | `shared/hub-lock.cjs` |
 
 **Fixes (all built and verified):**
@@ -105,7 +105,7 @@ A fresh 10-iteration `/deep:review` of this packet's round-1 hardening completed
 | ID | Requirement | Acceptance Evidence |
 |----|-------------|---------------------|
 | REQ-004 | Crash-safe tuple ownership + lock reclaim (P1-001, P1-007, P1-008) | **Satisfied.** `shared/hub-lock.cjs` (new) is the single per-hub lock — owner identity (pid + random nonce + timestamp) + 10-min lease; both `flip-serving.cjs` and `activate-hub.cjs` take it. `reconcileTuple()` in `flip-serving.cjs` runs on the idempotent no-op path under that lock, rebuilding a half-committed tuple from the manifest. Harness: shared-lock live-holder refused, shared-lock stale-holder reclaimed (part of 9/9). Teeth: sk-code's serving-flip-record deleted in a sandbox → `flip-serving --hub sk-code` prints "ALREADY-COMPILED (reconciled: serving-flip-record)", rebuilds with `reconciled:true` |
-| REQ-005 | Deterministic regression evidence (P1-002, P1-006) | **Satisfied.** `verify-runtime-engine.cjs` rewritten to run entirely against a temp SANDBOX copy of `activation/` via a new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook (added to `flip-serving.cjs` and `resolve.cjs`); LIVE `010-live-activation/activation` tree byte-identical before/after a harness run (git-dirty 0). Harness adds explicit both-decision coverage and a serve-time identity-MISMATCH fixture (tampered manifest fails safe to legacy); part of the 9/9 pass |
+| REQ-005 | Deterministic regression evidence (P1-002, P1-006) | **Satisfied.** `verify-runtime-engine.cjs` rewritten to run entirely against a temp SANDBOX copy of `activation/` via a new `SPECKIT_ACTIVATION_ROOT_OVERRIDE` env hook (added to `flip-serving.cjs` and `resolve.cjs`); LIVE `013-live-activation/activation` tree byte-identical before/after a harness run (git-dirty 0). Harness adds explicit both-decision coverage and a serve-time identity-MISMATCH fixture (tampered manifest fails safe to legacy); part of the 9/9 pass |
 | REQ-006 | Activation trust boundary (P1-003) | **Satisfied.** `confineArgs()` in `activate-hub.cjs` runs before any side effect: hub id must match `^[a-z0-9][a-z0-9-]*$`, the hub dir must resolve inside the activation root, `--child` must resolve inside the repo. Teeth: `activate-hub --hub "../../evil"` fails with "unsafe hub id" before any effect |
 | REQ-007 | Engine cache lifecycle (P2-009) | **Satisfied.** `compiled-route.cjs` — the process-lifetime engine cache is now a documented contract (comment); safe because the resolver's serve-time identity gate fails a drifted snapshot to legacy, and a restart picks up a new policy |
 
@@ -128,7 +128,7 @@ A fresh 10-iteration `/deep:review` of this packet's round-1 hardening completed
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `010-live-activation/checklist.md` (CHK-051, Completion Boundary) | REQ-002's reconciliation edits a sibling packet's doc, not this packet's own | Read-only intake of the sibling's `spec.md` + both impl-summaries before editing; only the checklist's claim is corrected, no evidence is invented |
+| Dependency | `013-live-activation/checklist.md` (CHK-051, Completion Boundary) | REQ-002's reconciliation edits a sibling packet's doc, not this packet's own | Read-only intake of the sibling's `spec.md` + both impl-summaries before editing; only the checklist's claim is corrected, no evidence is invented |
 | Dependency | The two inline frozen-scorer digest copies in `flip-serving.cjs` and `activate-hub.cjs` | REQ-003's extraction must not change either gate's behavior | The shared module is a pure extract-and-import; both gates keep their own `assertScorerFrozen` call and phase-specific failure message |
 | Risk | A downward doc correction could be misread as regressing prior work | Confuses "the code path is fine" with "the doc overstated it" | The checklist correction narrows only the claim (advisor-hook enforcement, sweep breadth); the underlying flag-off inertness and byte-identical routing proof are untouched |
 | Risk (resolved) | The seven previously-deferred findings were real robustness gaps until built | A reader could have assumed CONDITIONAL → PASS meant all nine findings were closed before they actually were | Resolved this session: `spec.md` REQ-004..007 and `tasks.md` T003-T009 now record built-and-verified evidence (harness 9/9, `node --check` clean on 7 files, live tree untouched); a fresh `/deep:review` is recommended as follow-up since the prior review is what surfaced these findings |
@@ -176,3 +176,11 @@ No NFRs beyond REQ-001 (every touched file keeps its proven behavior and the thr
 None. All nine findings were fully specified by the deep-review findings and built without an open design question surfacing. The one follow-up item — a fresh `/deep:review` pass over the nine fixes — is tracked as a recommendation, not an open question.
 
 <!-- /ANCHOR:questions -->
+
+## Structural phase links
+
+| **Parent** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `sk-doc/019-skill-routing-refactor/015-router-unification-program` |
+| **Predecessor** | `014-runtime-engine` |
+| **Successor** | `016-default-on-decision` |

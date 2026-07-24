@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-unified-refactor-implementation/015-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the five local ADRs for the P0 foundation"
@@ -35,7 +35,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
-> These ADRs are local to the 002 foundation packet. They operationalize two parent decisions in `../../012-default-on-decision/decision-record.md`: ADR-001 below binds that packet's ADR-003 (promote the resolver), and ADR-002 below corrects that packet's ADR-002 premise (that `HUB_CHILD` is a removable duplicate). Parent ADRs are cited by path; local ADR numbers restart at 001.
+> These ADRs are local to the 002 foundation packet. They operationalize two parent decisions in `../../016-default-on-decision/decision-record.md`: ADR-001 below binds that packet's ADR-003 (promote the resolver), and ADR-002 below corrects that packet's ADR-002 premise (that `HUB_CHILD` is a removable duplicate). Parent ADRs are cited by path; local ADR numbers restart at 001.
 
 ---
 
@@ -55,9 +55,9 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The parent packet Accepted "promote the resolver to a stable runtime location" (`../../012-default-on-decision/decision-record.md:264,287`). But a stale escape hatch survives in the same packet's `implementation-summary.md:170`, which still frames the choice as "promote the resolver to a stable runtime location or approve a guarded residual coupling." Two live documents disagree, and the adversarial pass confirmed the ADR is authoritative and the residual-coupling language is stale (`../001-research/verification-v1.md`, claim 8, CONFIRMED).
+The parent packet Accepted "promote the resolver to a stable runtime location" (`../../016-default-on-decision/decision-record.md:264,287`). But a stale escape hatch survives in the same packet's `implementation-summary.md:170`, which still frames the choice as "promote the resolver to a stable runtime location or approve a guarded residual coupling." Two live documents disagree, and the adversarial pass confirmed the ADR is authoritative and the residual-coupling language is stale (`../001-research/verification-v1.md`, claim 8, CONFIRMED).
 
-Research also proved the coupling is wider than one file. The runtime front door `.opencode/bin/compiled-route.cjs` requires into the spec tree (`:16-21`); the resolver points `ACTIVATION_ROOT` at `010-live-activation/activation` (`resolve.cjs:19`); and the engine loads hub modules from `006-*` (`011-runtime-engine/lib/compiled-route.cjs:35-62`). Promoting only `resolve.cjs` would leave the activation manifests and per-hub bundles inside the mutable spec tree, so a spec renumber would still sever routing. The promotion has to move the whole closure.
+Research also proved the coupling is wider than one file. The runtime front door `.opencode/bin/compiled-route.cjs` requires into the spec tree (`:16-21`); the resolver points `ACTIVATION_ROOT` at `013-live-activation/activation` (`resolve.cjs:19`); and the engine loads hub modules from `006-*` (`014-runtime-engine/lib/compiled-route.cjs:35-62`). Promoting only `resolve.cjs` would leave the activation manifests and per-hub bundles inside the mutable spec tree, so a spec renumber would still sever routing. The promotion has to move the whole closure.
 
 ### Constraints
 
@@ -74,7 +74,7 @@ Research also proved the coupling is wider than one file. The runtime front door
 
 **We chose**: Promote the whole closure, resolver plus engine loader plus the seven activation manifests plus the seven per-hub bundles, to a stable runtime path, and make that promotion binding.
 
-**How it works**: The closure moves to a durable runtime location (for example `.opencode/bin/lib/`), and the shim requires it from there. The spec-tree copy becomes the authored source that a build or copy step keeps current in the runtime location, so a spec renumber no longer moves the files the runtime depends on. The residual-coupling branch is deleted, and `../../012-default-on-decision/implementation-summary.md:170` is corrected to state promotion is binding.
+**How it works**: The closure moves to a durable runtime location (for example `.opencode/bin/lib/`), and the shim requires it from there. The spec-tree copy becomes the authored source that a build or copy step keeps current in the runtime location, so a spec renumber no longer moves the files the runtime depends on. The residual-coupling branch is deleted, and `../../016-default-on-decision/implementation-summary.md:170` is corrected to state promotion is binding.
 
 **Scope note**: This packet copies the manifests and bundles verbatim to preserve byte-identity and a trivial rollback. Assembling them into a consolidated serving snapshot is the job of `../007-durable-archiving-and-serving-snapshot/`, not this foundation.
 
@@ -164,7 +164,7 @@ Research also proved the coupling is wider than one file. The runtime front door
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-The parent packet's ADR-002 treats `HUB_CHILD` as one of two duplicate eligibility allowlists that a single manifest-derived rule can replace. The research corrected that premise. `HUB_CHILD` (`011-runtime-engine/lib/compiled-route.cjs:23-31`) maps each hub to its `006-parent-hub-rollout/00N-*` child, and `loadHubEngine()` (`:35-62`) requires the engine modules from that path (CONFIRMED, `../001-research/verification-v1.md` claim 3). It is a runtime engine-location map, not a removable duplicate. Deleting it via manifest eligibility alone would break engine loading. Separately, `COMPILED_ROUTING_HUBS` (`advisor-recommend.ts:41-49`) and `HUB_CHILD` have no cross-check, so they can drift apart silently.
+The parent packet's ADR-002 treats `HUB_CHILD` as one of two duplicate eligibility allowlists that a single manifest-derived rule can replace. The research corrected that premise. `HUB_CHILD` (`014-runtime-engine/lib/compiled-route.cjs:23-31`) maps each hub to its `009-parent-hub-rollout/00N-*` child, and `loadHubEngine()` (`:35-62`) requires the engine modules from that path (CONFIRMED, `../001-research/verification-v1.md` claim 3). It is a runtime engine-location map, not a removable duplicate. Deleting it via manifest eligibility alone would break engine loading. Separately, `COMPILED_ROUTING_HUBS` (`advisor-recommend.ts:41-49`) and `HUB_CHILD` have no cross-check, so they can drift apart silently.
 
 ### Constraints
 
