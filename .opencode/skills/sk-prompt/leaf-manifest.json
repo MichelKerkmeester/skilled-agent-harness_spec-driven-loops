@@ -21,6 +21,7 @@
         "assets/per-model-budgets.json",
         "references/context-budget.md",
         "references/models/_index.md",
+        "references/models/composer-2.5.md",
         "references/models/deepseek-v4-pro.md",
         "references/models/glm-5.2.md",
         "references/models/kimi-k2.7-code.md",

@@ -1,6 +1,6 @@
 ---
 title: "sk-prompt: Feature Catalog"
-description: "Current-state inventory for the sk-prompt hub, covering its registry-driven prompt-packet routing and the opt-in compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the sk-prompt hub, covering its registry-driven prompt-packet routing and the default-on compiled-routing fast path that resolves ahead of it."
 trigger_phrases:
   - "sk-prompt feature catalog"
   - "sk-prompt hub capabilities"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # sk-prompt: Feature Catalog
 
-This catalog inventories the live `sk-prompt` hub surface. The skill advisor routes any prompt-engineering query to the single identity `sk-prompt`; the hub resolves one of two workflow packets (`prompt-improve`, `prompt-models`) declaratively from `mode-registry.json`. An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-prompt` hub surface. The skill advisor routes any prompt-engineering query to the single identity `sk-prompt`; the hub resolves one of two workflow packets (`prompt-improve`, `prompt-models`) declaratively from `mode-registry.json`. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -46,11 +46,11 @@ See [`prompt-packet-routing/prompt-packet-routing.md`](prompt-packet-routing/pro
 
 #### Description
 
-An opt-in, flag-gated, additive directive in `sk-prompt`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the prompt packet routing above.
+A default-on, flag-gated, additive directive in `sk-prompt`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the prompt packet routing above.
 
 #### Current Reality
 
-The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `sk-prompt` continues to route entirely through `mode-registry.json`. When the flag is force-enabled and `sk-prompt`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub sk-prompt --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing unchanged.
+The directive is on by default for `sk-prompt`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub sk-prompt --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `mode-registry.json` routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 

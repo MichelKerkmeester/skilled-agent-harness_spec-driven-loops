@@ -16,10 +16,15 @@
 //     manifestFreshness: { manifestValid, fresh, causeCode, currentPolicyHash } }
 //
 // causeCode:
-//   'compiled-serving'  flag permits + manifest is compiled + engine routes (served compiled)
+//   'compiled-serving'  flag permits + manifest is compiled + engine routes the
+//                       selected generation (genuinely served compiled)
 //   'flag-off'          manifest is compiled but the flag does not permit it (drift/expected)
 //   'legacy-authority'  the hub's manifest is on legacy authority (drift/expected)
 //   'missing-manifest'  no manifest for the hub (drift/expected)
+//   'stale-manifest'    manifest is compiled but no longer matches the current
+//                       policy, so the resolver falls back to legacy (drift/expected)
+//   'identity-mismatch' the engine routed a generation other than the one the
+//                       manifest selected, so the resolver falls back to legacy (drift)
 //   'engine-throw'      flag permits + manifest is compiled but the engine throws (BROKEN)
 //
 // Usage: compiled-route-status.cjs --hub <hubId> | --all [--no-probe] [--pretty]
@@ -196,13 +201,31 @@ function computeHubStatus(hubId, {
     record.causeCode = 'flag-off';
     return record;
   }
+  // A manifest that no longer matches the current policy cannot be served: the
+  // resolver's serve-time identity binding rejects it and falls back to legacy.
+  // Reporting compiled serving here would be a false green over a legacy hot path.
+  if (record.manifestFreshness && record.manifestFreshness.fresh === false) {
+    record.causeCode = 'stale-manifest';
+    return record;
+  }
   if (probeEngine) {
     const engine = loadEngine();
+    let probed;
     try {
       if (!engine || typeof engine.compiledRoute !== 'function') throw new Error('engine unavailable');
-      engine.compiledRoute(hubId, 'compiled-route-status probe');
+      probed = engine.compiledRoute(hubId, 'compiled-route-status probe');
     } catch {
       record.causeCode = 'engine-throw';
+      return record;
+    }
+    // Mirror the resolver's identity binding exactly: routing through a snapshot
+    // other than the one the manifest selected means the hot path serves legacy,
+    // so the probe must not claim compiled serving.
+    const selected = manifest.selectedPolicy || {};
+    if (!probed
+      || probed.effectivePolicyHash !== selected.effectivePolicyHash
+      || probed.generation !== selected.generation) {
+      record.causeCode = 'identity-mismatch';
       return record;
     }
   }

@@ -564,7 +564,12 @@ function refreshCanonicalManifest({ hubId, skillRoot }) {
   const newGeneration = existingManifest.selectedPolicy.generation + 1;
   let currentPolicy;
   try {
-    currentPolicy = compileCanonicalParent({ hubId, skillRoot, generation: newGeneration });
+    // Prefer a graduated hub's own shadow-child snapshot, exactly as the freshness
+    // check does. The generic canonical compiler throws on those hubs' packet kinds
+    // (or yields a different hash), so refreshing through it can never produce a
+    // manifest the resolver's serve-time identity binding will accept.
+    currentPolicy = shadowChildPolicyFor({ hubId, skillRoot })
+      ?? compileCanonicalParent({ hubId, skillRoot, generation: newGeneration });
   } catch (error) {
     return failureRecord(hubId, causeFrom(error), {
       ...inspected,
@@ -595,7 +600,10 @@ function refreshCanonicalManifest({ hubId, skillRoot }) {
     schemaVersion: 'V1',
     selectedPolicy: {
       effectivePolicyHash: currentPolicy.effectivePolicyHash,
-      generation: newGeneration,
+      // Select the generation the compiled policy actually carries, normalizing
+      // because a snapshot names it `activationGeneration`. Selecting any other
+      // value leaves the identity binding mismatched and the hub silently on legacy.
+      generation: normalizeCurrentPolicy(currentPolicy)?.generation ?? newGeneration,
     },
     servingAuthority: latest.manifest.servingAuthority,
     shadowOnly: latest.manifest.shadowOnly,

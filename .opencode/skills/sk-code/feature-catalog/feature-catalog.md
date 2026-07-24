@@ -1,6 +1,6 @@
 ---
 title: "sk-code: Feature Catalog"
-description: "Current-state inventory for the sk-code hub, covering its two-axis workflow/surface registry-driven routing and the opt-in compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the sk-code hub, covering its two-axis workflow/surface registry-driven routing and the default-on compiled-routing fast path that resolves ahead of it."
 trigger_phrases:
   - "sk-code feature catalog"
   - "sk-code hub capabilities"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # sk-code: Feature Catalog
 
-This catalog inventories the live `sk-code` hub surface. The skill advisor routes any code-related prompt to the single identity `sk-code`; the hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-opencode`) declaratively from `mode-registry.json`. An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-code` hub surface. The skill advisor routes any code-related prompt to the single identity `sk-code`; the hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-opencode`) declaratively from `mode-registry.json`. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -46,11 +46,11 @@ See [`two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`](two
 
 #### Description
 
-An opt-in, flag-gated, additive directive in `sk-code`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the two-axis registry-driven routing above.
+A default-on, flag-gated, additive directive in `sk-code`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the two-axis registry-driven routing above.
 
 #### Current Reality
 
-The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `sk-code` continues to route entirely through `mode-registry.json`. When the flag is force-enabled and `sk-code`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing unchanged.
+The directive is on by default for `sk-code`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `mode-registry.json` routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 

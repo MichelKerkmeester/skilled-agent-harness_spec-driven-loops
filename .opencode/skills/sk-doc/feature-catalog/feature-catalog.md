@@ -1,6 +1,6 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across twelve documentation-authoring packets and the opt-in compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across twelve documentation-authoring packets and the default-on compiled-routing fast path that resolves ahead of it."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of twelve packets whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of twelve packets whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -46,11 +46,11 @@ See [`packet-authored-registry-routing/packet-authored-registry-routing.md`](pac
 
 #### Description
 
-An opt-in, flag-gated, additive directive in `sk-doc`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the packet routing above.
+A default-on, flag-gated, additive directive in `sk-doc`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the packet routing above.
 
 #### Current Reality
 
-The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `sk-doc` continues to route entirely through its packet-authored, registry-projected mapping. When the flag is force-enabled and `sk-doc`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing unchanged.
+The directive is on by default for `sk-doc`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy packet-authored, registry-projected routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 

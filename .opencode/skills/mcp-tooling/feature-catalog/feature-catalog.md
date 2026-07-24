@@ -1,6 +1,6 @@
 ---
 title: "mcp-tooling: Feature Catalog"
-description: "Current-state inventory for the mcp-tooling hub, covering its workflow-vs-transport two-axis registry routing and the opt-in compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the mcp-tooling hub, covering its workflow-vs-transport two-axis registry routing and the default-on compiled-routing fast path that resolves ahead of it."
 trigger_phrases:
   - "mcp-tooling feature catalog"
   - "mcp-tooling hub capabilities"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # mcp-tooling: Feature Catalog
 
-This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches six MCP-bridge packets across a workspace-mutating workflow axis (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`) and a non-mutating transport axis (`mcp-figma`, `mcp-refero`, `mcp-mobbin`). An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches six MCP-bridge packets across a workspace-mutating workflow axis (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`) and a non-mutating transport axis (`mcp-figma`, `mcp-refero`, `mcp-mobbin`). A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -46,11 +46,11 @@ See [`workflow-vs-transport-routing/workflow-vs-transport-routing.md`](workflow-
 
 #### Description
 
-An opt-in, flag-gated, additive directive in `mcp-tooling`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the workflow-vs-transport routing above.
+A default-on, flag-gated, additive directive in `mcp-tooling`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the workflow-vs-transport routing above.
 
 #### Current Reality
 
-The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `mcp-tooling` continues to route entirely through `hub-router.json`/`mode-registry.json`. When the flag is force-enabled and `mcp-tooling`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing unchanged.
+The directive is on by default for `mcp-tooling`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `hub-router.json`/`mode-registry.json` routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 

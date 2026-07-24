@@ -1,6 +1,6 @@
 ---
 title: "system-deep-loop: Feature Catalog"
-description: "Current-state inventory for the system-deep-loop hub, covering its registry-driven deep-loop mode classification and the opt-in compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the system-deep-loop hub, covering its registry-driven deep-loop mode classification and the default-on compiled-routing fast path that resolves ahead of it."
 trigger_phrases:
   - "system-deep-loop feature catalog"
   - "system-deep-loop hub capabilities"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # system-deep-loop: Feature Catalog
 
-This catalog inventories the live `system-deep-loop` hub surface. The hub classifies a request into one of seven `workflowMode` packets (`research`, `review`, `ai-council`, `alignment`, and the three improvement lanes) through a three-tier discriminator, holding no per-mode logic itself. An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven classification without changing what it resolves to.
+This catalog inventories the live `system-deep-loop` hub surface. The hub classifies a request into one of seven `workflowMode` packets (`research`, `review`, `ai-council`, `alignment`, and the three improvement lanes) through a three-tier discriminator, holding no per-mode logic itself. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven classification without changing what it resolves to.
 
 ---
 
@@ -46,11 +46,11 @@ See [`deep-loop-mode-classification/deep-loop-mode-classification.md`](deep-loop
 
 #### Description
 
-An opt-in, flag-gated, additive directive in `system-deep-loop`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above.
+A default-on, flag-gated, additive directive in `system-deep-loop`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the deep-loop mode classification above.
 
 #### Current Reality
 
-The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `system-deep-loop` continues to classify entirely through `mode-registry.json`. When the flag is force-enabled and `system-deep-loop`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing unchanged.
+The directive is on by default for `system-deep-loop`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `mode-registry.json` classification; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 

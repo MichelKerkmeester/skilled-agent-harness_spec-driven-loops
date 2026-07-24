@@ -1,3 +1,15 @@
+---
+title: Onboarding Guide After Fixture
+description: Revised onboarding-guide fixture used to demonstrate create-diff before-and-after comparisons.
+trigger_phrases:
+  - "create-diff onboarding after fixture"
+  - "onboarding comparison fixture"
+  - "before and after markdown fixture"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Onboarding Guide
 
 Welcome to the platform. This short guide walks new users through account setup and first login.

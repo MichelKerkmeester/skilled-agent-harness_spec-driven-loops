@@ -1,6 +1,6 @@
 ---
 title: "sk-design: Feature Catalog"
-description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, the opt-in compiled-routing fallback, indexed style retrieval, canonical interface creation commands, transport separation, and private procedure-card selection."
+description: "Unified current-state inventory for the sk-design hub, covering manager-shell routing, proof gates, the default-on compiled-routing fast path and legacy fallback, indexed style retrieval, canonical interface creation commands, transport separation, and private procedure-card selection."
 trigger_phrases:
   - "sk-design feature catalog"
   - "design family hub capabilities"
@@ -76,11 +76,11 @@ See [`manager-shell/transport-vs-taste-separation.md`](manager-shell/transport-v
 
 #### Description
 
-An opt-in, flag-gated, additive directive in `sk-design`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the manager shell's own registry-driven routing above.
+A default-on, flag-gated, additive directive in `sk-design`'s `SKILL.md` asks the compiled per-hub router contract to resolve the mode before falling through to the manager shell's own registry-driven routing above.
 
 #### Current Reality
 
-The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal operation, so `sk-design` continues to route entirely through `mode-registry.json`. When the flag is force-enabled and `sk-design`'s promoted activation manifest authorizes compiled serving, `node .opencode/bin/compiled-route.cjs --hub sk-design --prompt "<task>"` returns the authoritative decision instead; any error or a `{"servingAuthority":"legacy"}` sentinel leaves routing — and every manager-shell intake and proof-gate requirement above — unchanged.
+The directive is on by default for `sk-design`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .opencode/bin/compiled-route.cjs --hub sk-design --prompt "<task>"` returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy `mode-registry.json` routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing — and every manager-shell intake and proof-gate requirement above — unchanged.
 
 #### Source Files
 
