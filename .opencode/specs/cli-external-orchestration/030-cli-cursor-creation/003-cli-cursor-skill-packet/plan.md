@@ -47,15 +47,15 @@ Build `cli-cursor` as a new 4th mode following the `cli-codex`/`cli-devin` prece
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 002 (deep-loop-executor-support) landed and `cli-cursor` compiles as an `ExecutorKind`.
-- [ ] `cli-codex` packet available as the literal structural precedent (`cli-external-orchestration/cli-codex/`).
-- [ ] `parent-skill-check.cjs` baseline confirmed 0 fails / 0 warnings against the hub before any edit.
+- [x] Phase 002 (deep-loop-executor-support) landed and `cli-cursor` compiles as an `ExecutorKind`.
+- [x] `cli-codex` packet available as the literal structural precedent (`cli-external-orchestration/cli-codex/`).
+- [x] `parent-skill-check.cjs` baseline confirmed 0 fails / 0 warnings against the hub before any edit.
 
 ### Definition of Done
-- [ ] Both `parent-skill-check.cjs` and `validate_skill_package.py` report 0 fails against the whole hub.
-- [ ] `leaf-manifest.json` regenerated and matches the new tree with no byte-drift.
-- [ ] All 14 grounded-fact steps complete.
-- [ ] No `cli-cursor/graph-metadata.json` or `cli-cursor/description.json` exists anywhere under the new packet.
+- [x] Both `parent-skill-check.cjs` and `validate_skill_package.py` report 0 fails against the whole hub.
+- [x] `leaf-manifest.json` regenerated and matches the new tree with no byte-drift.
+- [x] All 14 grounded-fact steps complete.
+- [x] No `cli-cursor/graph-metadata.json` or `cli-cursor/description.json` exists anywhere under the new packet.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -108,19 +108,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the 0-fail/0-warning baseline before any edit.
-- [ ] Read the `create-skill` packet-level templates fresh.
-- [ ] Create the `cli-cursor/` directory structure.
+- [x] Confirm the 0-fail/0-warning baseline before any edit.
+- [x] Read the `create-skill` packet-level templates fresh.
+- [x] Create the `cli-cursor/` directory structure.
 
 ### Phase 2: Core Implementation
-- [ ] Author `SKILL.md`, `README.md`, all 6 `references/*.md`, both `assets/*.md`.
-- [ ] Wire `mode-registry.json` and `hub-router.json`.
-- [ ] Update the hub's own `description.json`, `SKILL.md`, `graph-metadata.json`.
+- [x] Author `SKILL.md`, `README.md`, all 6 `references/*.md`, both `assets/*.md`.
+- [x] Wire `mode-registry.json` and `hub-router.json`.
+- [x] Update the hub's own `description.json`, `SKILL.md`, `graph-metadata.json`.
 
 ### Phase 3: Verification
-- [ ] Regenerate `leaf-manifest.json`.
-- [ ] Confirm no `executor-delegation.ts` code change is needed.
-- [ ] Run both validators; confirm 0 fails.
+- [x] Regenerate `leaf-manifest.json`.
+- [x] Confirm no `executor-delegation.ts` code change is needed.
+- [x] Run both validators; confirm 0 fails.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -193,8 +193,8 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline validator run captured before edits (0/0 confirmed).
-- [ ] `git status` clean before starting.
+- [x] Baseline validator run captured before edits (0/0 confirmed).
+- [x] `git status` clean before starting.
 
 ### Rollback Procedure
 1. Remove the `cli-cursor/` directory via `git`.
@@ -274,9 +274,9 @@ Three ADRs govern this phase's architectural choices: packet-kind classification
 ## AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirmed phase 002 has landed (`cli-cursor` compiles as a deep-loop executor kind)
-- [ ] Confirmed all 3 ADRs in `decision-record.md` are Accepted before authoring packet content
-- [ ] Confirmed baseline `parent-skill-check.cjs` + `validate_skill_package.py` run against the hub (0 fails)
+- [x] Confirmed phase 002 has landed (`cli-cursor` compiles as a deep-loop executor kind)
+- [x] Confirmed all 3 ADRs in `decision-record.md` are Accepted before authoring packet content
+- [x] Confirmed baseline `parent-skill-check.cjs` + `validate_skill_package.py` run against the hub (0 fails)
 
 ### Execution Rules
 | Rule | Requirement |

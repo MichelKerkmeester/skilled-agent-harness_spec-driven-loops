@@ -1,7 +1,7 @@
 {
   "name": "cli-external-orchestration",
-  "description": "Parent hub for external CLI dispatch: routes to three workflow modes, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback), cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), and cli-codex (Codex CLI executor: OpenAI-backed coding, review, and web research; fails closed when codex is absent), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. All three modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace, so none is a transport packet.",
-  "version": "1.1.0.0",
+  "description": "Parent hub for external CLI dispatch: routes to four workflow modes, cli-opencode (OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback), cli-claude-code (Claude Code CLI executor: Anthropic-backed reasoning, edits, reviews, structured cross-AI handoff), cli-codex (Codex CLI executor: OpenAI-backed coding, review, and web research; fails closed when codex is absent), and cli-cursor (Cursor CLI executor: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when cursor-agent is absent), through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. All four modes orchestrate a CLI binary and their dispatched writes land in this repo's workspace, so none is a transport packet.",
+  "version": "1.2.0.0",
   "importance_tier": "high",
   "keywords": [
     "cli-external-orchestration",
@@ -15,6 +15,10 @@
     "codex-cli",
     "codex-exec",
     "openai",
+    "cli-cursor",
+    "cursor-cli",
+    "cursor-agent",
+    "composer",
     "cli dispatch",
     "cross-ai delegation",
     "executor delegation"
@@ -24,7 +28,8 @@
     "Use cli-claude-code to get an Anthropic-backed second opinion",
     "Run this task through opencode run with the deepseek provider",
     "Use cli-codex for an OpenAI-backed code review and web-research pass",
+    "Use cli-cursor to get Composer's opinion on this diff",
     "Route this CLI dispatch request"
   ],
-  "lastUpdated": "2026-07-14T06:23:02Z"
+  "lastUpdated": "2026-07-24T09:00:00Z"
 }

@@ -1,10 +1,10 @@
 {
   "skill": "cli-external-orchestration",
-  "version": "1.0.0.1",
+  "version": "1.1.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["cli-opencode", "cli-claude-code", "cli-codex"],
+    "tieBreak": ["cli-opencode", "cli-claude-code", "cli-codex", "cli-cursor"],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
       "orderedBundle": "multiple explicitly requested executors route in tie-break order",
@@ -27,6 +27,11 @@
       "weight": 4,
       "classes": ["cli-codex-aliases", "codex-dispatch"],
       "resources": ["cli-codex/SKILL.md"]
+    },
+    "cli-cursor": {
+      "weight": 4,
+      "classes": ["cli-cursor-aliases", "cursor-dispatch"],
+      "resources": ["cli-cursor/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -47,6 +52,12 @@
     },
     "codex-dispatch": {
       "keywords": ["openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]
+    },
+    "cli-cursor-aliases": {
+      "keywords": ["cursor", "cursor cli", "delegate to cursor", "cursor agent", "cli-cursor"]
+    },
+    "cursor-dispatch": {
+      "keywords": ["composer", "cursor composer", "cursor plan mode", "cursor ask mode", "cursor worktree", "cursor cloud worker"]
     }
   }
 }

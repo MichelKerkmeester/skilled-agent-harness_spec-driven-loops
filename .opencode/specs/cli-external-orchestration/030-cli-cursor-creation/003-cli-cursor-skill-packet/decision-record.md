@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-24 |
 | **Deciders** | claude-code (authoring), operator (approval pending) |
 
@@ -134,7 +134,7 @@ Cursor complicates this more than its siblings because it ships two surfaces tha
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-24 |
 | **Deciders** | claude-code (authoring), operator (approval pending) |
 
@@ -145,12 +145,12 @@ Cursor complicates this more than its siblings because it ships two surfaces tha
 
 Every mode in this hub carries a non-negotiable, packet-owned self-invocation guard (`cli-external-orchestration/SKILL.md` §4: "the self-invocation guard is packet-owned and non-negotiable"). `cli-codex` and its siblings each implement this with a 3-layer pattern: (1) an env-var namespace lookup (e.g. `CODEX_SESSION_ID` / any `CODEX_*` var), (2) a process-ancestry grep for the binary name in the parent process tree, and (3) a state-dir/lock-file check.
 
-Cursor's confirmed contract (phase 001, live-verified against the installed `2026.07.23-e383d2b` binary and `cursor.com/docs`) documents auth env vars (`CURSOR_API_KEY`/`CURSOR_AUTH_TOKEN`) and a `--resume [chatId]`/`--continue` session model, but does **not** document a session-scoped env-var convention analogous to `CODEX_SESSION_ID`, nor a lock-file convention. It also has a naming wrinkle: the canonical binary is `cursor-agent` with an `agent` alias symlink, so a process-ancestry grep must match `cursor-agent` (the real process name), not just `agent`. Building the guard as a literal copy of a sibling's 3-layer pattern would fabricate the session-env-var and lock-file signals.
+At authoring time, Cursor's confirmed contract documented auth env vars (`CURSOR_API_KEY`/`CURSOR_AUTH_TOKEN`) and a `--resume [chatId]`/`--continue` session model, but not a session-scoped env-var convention analogous to `CODEX_SESSION_ID`. That gap has since closed: an authenticated live dispatch (`cursor-agent -p --force "env | grep -i cursor"`) surfaced `CURSOR_AGENT=1` — set unconditionally whenever the current process runs under `cursor-agent` — and `CURSOR_CONVERSATION_ID`, matching the `--output-format json` `session_id` field exactly. `CURSOR_AGENT=1` is a stronger signal than `CODEX_SESSION_ID`: it doesn't depend on a session having a live conversation id, it fires the instant the binary is running. No lock-file convention is documented for Cursor, so that third layer stays a best-effort session probe rather than a real lock check. It also has a naming wrinkle: the canonical binary is `cursor-agent` with an `agent` alias symlink, so a process-ancestry grep must match `cursor-agent` (the real process name), not just `agent`.
 
 ### Constraints
 
 - The guard is a hard, non-negotiable requirement of the hub — it cannot be omitted.
-- Only confirmed facts from phase 001 may be used to design the guard; anything else must be documented as an open, unconfirmed gap rather than invented.
+- Only confirmed facts may be used to design the guard; anything else must be documented as an open, unconfirmed gap rather than invented.
 <!-- /ANCHOR:adr-002-context -->
 
 ---
@@ -158,9 +158,9 @@ Cursor's confirmed contract (phase 001, live-verified against the installed `202
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Design the guard around confirmed signals only — (1) an env-var namespace lookup for `CURSOR_*` (pending live verification of the exact variable Cursor sets during an active session; `CURSOR_API_KEY`/`CURSOR_AUTH_TOKEN` are auth, not a session marker), (2) a process-ancestry grep for `cursor-agent` (the confirmed canonical process name) in the parent process tree, and (3) a best-effort session probe in place of a lock file, since no lock-file convention is documented for Cursor.
+**We chose**: Design the guard around confirmed signals only — (1) an env-var namespace lookup, checking `CURSOR_AGENT=1` first (confirmed set unconditionally whenever the current process runs under `cursor-agent`) and `CURSOR_CONVERSATION_ID` second (confirmed session-id marker, matching the `--output-format json` `session_id` field), (2) a process-ancestry grep for `cursor-agent` (the confirmed canonical process name) in the parent process tree, and (3) a best-effort session probe in place of a lock file, since no lock-file convention is documented for Cursor.
 
-**How it works**: The guard function runs all three checks in sequence and refuses to dispatch if any signal fires. It explicitly documents, in both the `SKILL.md` guard comment and `references/cli-reference.md`, that "absence of a detected signal is not proof no session is active" — matching the honest caveat the sibling packets use. The process-ancestry check matches `cursor-agent`, not the `agent` alias, to avoid both false negatives (missing the real process) and false positives (matching an unrelated `agent` command).
+**How it works**: The guard function runs all three checks in sequence and refuses to dispatch if any signal fires. Layer 1 and layer 2 are both fully confirmed (not best-effort); only layer 3 (no documented lock-file convention) stays a best-effort probe. The guard still documents, in both the `SKILL.md` guard comment and `references/cli-reference.md`, that "absence of a detected signal is not proof no session is active" for the lock-file layer specifically — matching the honest caveat the sibling packets use. The process-ancestry check matches `cursor-agent`, not the `agent` alias, to avoid both false negatives (missing the real process) and false positives (matching an unrelated `agent` command).
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -170,11 +170,11 @@ Cursor's confirmed contract (phase 001, live-verified against the installed `202
 
 | Option | Pros | Cons | Score |
 |---|---|---|---|
-| **Confirmed-signals-only guard with honest caveat (chosen)** | Never fabricates an unconfirmed mechanism; matches the repo's "Never fabricate" mandate | Weaker guarantee than a true lock-file check; documented as best-effort | 8/10 |
-| Invent a session-env-var or lock-file convention (e.g. assume `CURSOR_SESSION_ID` / `~/.cursor/state/<id>/lock`) | Would give a 3rd signal matching the sibling shape | Rejected — fabricates a mechanism with no evidence; violates "Never fabricate" and risks silently checking a signal that never exists | 2/10 |
+| **Confirmed-signals-only guard, 2 of 3 layers fully confirmed (chosen)** | Never fabricates an unconfirmed mechanism; matches the repo's "Never fabricate" mandate; env + ancestry layers are both live-verified, stronger than the sibling pattern's single env-var layer | Lock-file layer still best-effort (no documented convention) | 9/10 |
+| Invent a lock-file convention (e.g. assume `~/.cursor/state/<id>/lock`) | Would give a 3rd fully-confirmed signal matching the sibling shape | Rejected — fabricates a mechanism with no evidence; violates "Never fabricate" and risks silently checking a signal that never exists | 2/10 |
 | No guard at all | Simplest implementation | Rejected — violates the hub's non-negotiable "self-invocation guard is packet-owned" rule | 0/10 |
 
-**Why this one**: Using only what phase 001 confirmed, plus a best-effort probe in place of the unconfirmed lock file, is the only option that neither fabricates a mechanism nor skips the hub's hard requirement.
+**Why this one**: Using only confirmed facts, with a best-effort probe in place of the unconfirmed lock file, is the only option that neither fabricates a mechanism nor skips the hub's hard requirement. A live dispatch confirmed `CURSOR_AGENT=1` before implementation began, so 2 of the 3 layers ship fully confirmed rather than pending.
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -185,15 +185,16 @@ Cursor's confirmed contract (phase 001, live-verified against the installed `202
 **What improves**:
 - The guard never claims a certainty it cannot back with evidence — consistent with the "Never fabricate" mandate.
 - The process-ancestry check uses the confirmed canonical binary name (`cursor-agent`), avoiding the alias ambiguity.
+- The env-var layer is fully confirmed (`CURSOR_AGENT=1`), not best-effort — 2 of 3 guard layers are hard signals, only the lock-file layer stays best-effort.
 
 **What it costs**:
-- The guard is weaker than the siblings' lock-file layer where no reliable session signal surfaces. Mitigation: the explicit "absence is not proof" caveat is stated in both `SKILL.md` and `references/cli-reference.md`.
+- The guard's lock-file layer is weaker than the siblings' where no reliable session signal surfaces. Mitigation: the explicit "absence is not proof" caveat is stated for that layer specifically, in both `SKILL.md` and `references/cli-reference.md`.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| A real Cursor session env-var convention exists but was not surfaced by phase 001 | Medium | Flagged as an explicit Open Question in `spec.md` §12; upgrade the guard once confirmed, without a new ADR. |
+| A Cursor lock-file convention exists but is undocumented | Low | Flagged in `references/cli-reference.md`; upgrade the guard once confirmed, without a new ADR. |
 | The process-ancestry grep matches the `agent` alias and false-positives on an unrelated `agent` command | Low | Guard matches `cursor-agent` specifically, not bare `agent`. |
 <!-- /ANCHOR:adr-002-consequences -->
 
@@ -206,7 +207,7 @@ Cursor's confirmed contract (phase 001, live-verified against the installed `202
 |---|---|---|---|
 | 1 | **Necessary?** | PASS | The hub hard-requires a packet-owned self-invocation guard for every mode. |
 | 2 | **Beyond Local Maxima?** | PASS | A lock-file/session-env convention and "no guard" were both considered and rejected with reasons. |
-| 3 | **Sufficient?** | PASS | 1 of 3 signals (process-ancestry) is fully confirmed; the env-var signal is documented as pending, not silently assumed. |
+| 3 | **Sufficient?** | PASS | 2 of 3 signals (env-var, process-ancestry) are fully confirmed; the lock-file signal is documented as best-effort, not silently assumed. |
 | 4 | **Fits Goal?** | PASS | Matches the parent packet's "unavailable cursor-agent binary never becomes routable (fail-closed)" handoff criterion. |
 | 5 | **Open Horizons?** | PASS | Designed to be upgraded in place once the env-var signal is confirmed. |
 
@@ -235,7 +236,7 @@ Cursor's confirmed contract (phase 001, live-verified against the installed `202
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-24 |
 | **Deciders** | claude-code (authoring), operator (approval pending) |
 

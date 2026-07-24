@@ -29,32 +29,32 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] T001 Capture the baseline `parent-skill-check.cjs` + `validate_skill_package.py` run (0 fails) before any edit
-- [ ] T002 Read the `create-skill` packet-level templates (`skill-md-template.md`, `skill-readme-template.md`) fresh
-- [ ] T003 Create `cli-external-orchestration/cli-cursor/` with `references/`, `assets/`, `changelog/`, `manual-testing-playbook/` subdirectories
+- [x] T001 Capture the baseline `parent-skill-check.cjs` + `validate_skill_package.py` run (0 fails) before any edit
+- [x] T002 Read the `create-skill` packet-level templates (`skill-md-template.md`, `skill-readme-template.md`) fresh — read `cli-codex/SKILL.md`+`README.md` as the direct conformant instance
+- [x] T003 Create `cli-external-orchestration/cli-cursor/` with `references/`, `assets/`, `changelog/`, `manual-testing-playbook/` subdirectories
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] T004 Author `SKILL.md` (frontmatter `name: cli-cursor`, `version: "1.0.0.0"`, `allowed-tools`, hard_rules triad, §2 self-invocation guard, `command -v cursor-agent` probe)
-- [ ] T005 Author `README.md` (9-section AT A GLANCE → RELATED DOCUMENTS)
-- [ ] T006 [P] Author `references/cli-reference.md`, `integration-patterns.md`, `agent-delegation.md`, `cursor-tools.md`, `hook-contract.md`, `shared-editor-config.md` (kebab-case, ≥100 LOC each)
-- [ ] T007 [P] Author `assets/prompt-quality-card.md` (thin delegator) and `assets/prompt-templates.md`
-- [ ] T008 Wire `mode-registry.json` (`cli-cursor` `modes[]` entry; verify aliases don't collide case-folded with siblings)
-- [ ] T009 Wire `hub-router.json` (`routerSignals.cli-cursor` weight 4, vocab-class pair, append `tieBreak`)
-- [ ] T010 [P] Update hub `description.json` (keywords/trigger_examples/prose only), hub `SKILL.md` (mode-table + layout-tree rows), hub `graph-metadata.json` (derived arrays)
+- [x] T004 Author `SKILL.md` (frontmatter `name: cli-cursor`, `version: "1.0.0.0"`, `allowed-tools`, hard_rules triad, §2 self-invocation guard, `command -v cursor-agent` probe)
+- [x] T005 Author `README.md` (9-section AT A GLANCE → RELATED DOCUMENTS)
+- [x] T006 [P] Author `references/cli-reference.md`, `integration-patterns.md`, `agent-delegation.md`, `cursor-tools.md`, `hook-contract.md`, `shared-editor-config.md` (kebab-case, ≥100 LOC each) — all 6 confirmed ≥100 LOC (92→119 after expanding shared-editor-config.md)
+- [x] T007 [P] Author `assets/prompt-quality-card.md` (thin delegator) and `assets/prompt-templates.md`
+- [x] T008 Wire `mode-registry.json` (`cli-cursor` `modes[]` entry; verify aliases don't collide case-folded with siblings) — check 3d-alias confirms 20/20 unique
+- [x] T009 Wire `hub-router.json` (`routerSignals.cli-cursor` weight 4, vocab-class pair, append `tieBreak`)
+- [x] T010 [P] Update hub `description.json` (keywords/trigger_examples/prose only), hub `SKILL.md` (mode-table + layout-tree rows), hub `graph-metadata.json` (derived arrays)
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T011 Regenerate `leaf-manifest.json` via `generate-leaf-manifest.cjs --write .opencode/skills/cli-external-orchestration`
-- [ ] T012 Confirm no `cli-cursor/graph-metadata.json` or `cli-cursor/description.json` exists anywhere under the packet
-- [ ] T013 Run `parent-skill-check.cjs` and `validate_skill_package.py`; both 0 fails
+- [x] T011 Regenerate `leaf-manifest.json` via `generate-leaf-manifest.cjs --write .opencode/skills/cli-external-orchestration`
+- [x] T012 Confirm no `cli-cursor/graph-metadata.json` or `cli-cursor/description.json` exists anywhere under the packet — checks 2a/2b PASS
+- [x] T013 Run `parent-skill-check.cjs` and `validate_skill_package.py`; both 0 fails — required fixing 2 real latent bugs the 4th mode exposed in the compiled-routing shadow-child harness (missing `cli-cursor/SKILL.md` source path; stale live-activation policy-hash pin), documented in `implementation-summary.md`
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] T014 `validate.sh 003-cli-cursor-skill-packet --strict` passes 0/0; SC-001..SC-004 met; write `implementation-summary.md`
+- [x] T014 `validate.sh 003-cli-cursor-skill-packet --strict` passes 0/0; SC-001..SC-004 met; write `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

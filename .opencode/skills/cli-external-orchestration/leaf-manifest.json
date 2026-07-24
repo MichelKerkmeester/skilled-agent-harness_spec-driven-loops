@@ -27,6 +27,20 @@
     },
     {
       "leaves": [
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
+        "references/agent-delegation.md",
+        "references/cli-reference.md",
+        "references/cursor-tools.md",
+        "references/hook-contract.md",
+        "references/integration-patterns.md",
+        "references/shared-editor-config.md"
+      ],
+      "packet": "cli-cursor",
+      "workflowMode": "cli-cursor"
+    },
+    {
+      "leaves": [
         "assets/permissions-matrix.example-packet-local.json",
         "assets/permissions-matrix.example-readonly.json",
         "assets/permissions-matrix.example-repo-wide.json",

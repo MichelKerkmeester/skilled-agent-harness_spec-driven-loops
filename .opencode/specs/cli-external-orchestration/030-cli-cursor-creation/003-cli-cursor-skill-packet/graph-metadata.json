@@ -39,18 +39,20 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/sk-prompt/prompt-models/assets/cli-prompt-quality-card.md",
       ".opencode/skills/sk-doc/create-skill/SKILL.md",
       ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py"
+      ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -84,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
         "name": "cli-prompt-quality-card.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt/prompt-models/assets/cli-prompt-quality-card.md",
@@ -111,6 +119,12 @@
         "name": "validate_skill_package.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,23 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) has no presence in this repo — no standalone skill, no hub mode, no archived packet",
     "created_at": "2026-07-24T04:34:03.998Z",
-    "last_save_at": "2026-07-24T04:34:03.998Z",
+    "last_save_at": "2026-07-24T07:23:12.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +210,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d3fc9b4fc67a82b5200b8a920acf28facd99da37bfc6550997b0b4aabeedf21",
+    "source_fingerprint": "sha256:e7d1c07080d01a91baa55b4c37a94380ca1d46e97529f44035c8d0369ffd8b13",
     "source_doc_hashes": {
-      "spec.md": "de38698b75664723f56be1795ef32dc0ce06407f38d3418778189869f159843c",
-      "plan.md": "2e024ae5f2e0223d71badcbd3a554c5dc4bc088dee3aad12a4eedbc3229ddd20",
-      "tasks.md": "372fb198a1ace74e32f5ef36e19ea21bbd5a307c4b4f82a1edc3e848ce238aa4",
-      "checklist.md": "0d0206c8a7d4461bd7b44dec0f16d99035b5d3ccb436eb18c68f24b1e41a9179",
-      "decision-record.md": "b11d950c5f25699929fb0521c2bb3b0eb6e188f54c009e89626feb2d80d2467c"
+      "spec.md": "927c511b0e93c507a2e6d068bde7c72b47035195ea7ec98722282bcc9c4c27da",
+      "plan.md": "361576a31671948c8e1f41b6f36c62a64667fc1cf5e9760e8bebe4706e5b512b",
+      "tasks.md": "b5c1cdd2cadc8bc4e40287ebf80f8d5057c70504ac7a698bd702c1835fba699d",
+      "checklist.md": "f78cf9189004e46e094f7b3f1273d004437512a9368aabe382b1adf92988afb1",
+      "decision-record.md": "331bba3896ed3ab4c3dbcf32c5ad04e2cedaedb9c685fa725eafebc3aa1540b9",
+      "implementation-summary.md": "39de1884522858e8b905d1f67dbca357de1d69484889f7556e9052c4fc70b4b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

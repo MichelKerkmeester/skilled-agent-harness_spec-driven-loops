@@ -42,7 +42,7 @@ Cursor CLI has never existed as a mode inside `cli-external-orchestration` (or a
 |---|---|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -244,9 +244,9 @@ Build `cli-cursor` as a new packet under `cli-external-orchestration/cli-cursor/
 
 ## 12. OPEN QUESTIONS
 
-- The exact env-var Cursor sets during an active session (a `CURSOR_*` variable vs. none) is unconfirmed — ADR-002 designs the guard around confirmed signals only and documents this gap rather than fabricating a lock-file convention.
-- Whether a dispatched `cursor-agent` should carry an explicit `--workspace`/config-isolation flag so it does not silently inherit the operator's shared `~/.cursor/` hooks/mcp/rules — flagged for a decision when the dispatch command is finalized (interacts with phases 002/004).
-- Whether the bare alias `"cli-cursor"` could collide with an identically-named alias in a skill outside this hub — check 3d-alias only covers intra-hub collisions; a repo-wide alias search is recommended at implementation time.
+- **ANSWERED**: The exact env-var Cursor sets during an active session is now confirmed — a live authenticated dispatch surfaced `CURSOR_AGENT=1` (unconditional, whenever running under `cursor-agent`) and `CURSOR_CONVERSATION_ID` (session-id marker). ADR-002 updated to use these as fully-confirmed guard signals rather than best-effort.
+- Whether a dispatched `cursor-agent` should carry an explicit `--workspace`/config-isolation flag so it does not silently inherit the operator's shared `~/.cursor/` hooks/mcp/rules — still open, deferred to the dispatch-command finalization (interacts with phases 002/004); documented as an open mitigation-flags-exist-but-no-policy-decided gap in `references/shared-editor-config.md` §4.
+- **ANSWERED**: A repo-wide `mode-registry.json` search (`grep -rn '\bcursor\b' .opencode/skills/*/mode-registry.json`) at implementation time found zero collisions with `cli-cursor`'s aliases outside this hub.
 <!-- /ANCHOR:questions -->
 
 ---
