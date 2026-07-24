@@ -1,123 +1,167 @@
 {
-  "version": 1,
-  "hooks": {
-    "SessionStart": [
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
-        "timeout": 10
-      },
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
-        "timeout": 3
-      },
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh'",
-        "timeout": 3
-      },
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all'",
-        "timeout": 5
-      },
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/bin/install-codex-hooks.mjs --check >/dev/null 2>&1 || echo \"[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check\"'",
-        "timeout": 5
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
-        "timeout": 10
-      },
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs'",
-        "timeout": 10
-      }
-    ],
-    "PreToolUse": [
-      {
-        "type": "command",
-        "matcher": "^exec$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-preflight-lint.mjs'",
-        "timeout": 5
-      },
-      {
-        "type": "command",
-        "matcher": "^exec$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
-        "timeout": 5
-      },
-      {
-        "type": "command",
-        "matcher": "^edit$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
-        "timeout": 5
-      },
-      {
-        "type": "command",
-        "matcher": "^run_subagent$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs'",
-        "timeout": 5
-      },
-      {
-        "type": "command",
-        "matcher": "^mcp__.*$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs'",
-        "timeout": 5
-      }
-    ],
-    "PostToolUse": [
-      {
-        "type": "command",
-        "matcher": "^edit$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/devin/post-edit-quality.cjs'",
-        "timeout": 10
-      },
-      {
-        "type": "command",
-        "matcher": "^edit$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/devin/code-graph-freshness.cjs'",
-        "timeout": 5
-      },
-      {
-        "type": "command",
-        "matcher": "^exec$",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-audit-posttooluse.mjs'",
-        "timeout": 5
-      }
-    ],
-    "PermissionRequest": [],
-    "Stop": [
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-stop.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
-        "timeout": 10
-      },
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs'",
-        "timeout": 10
-      }
-    ],
-    "PostCompaction": [
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs'",
-        "timeout": 5
-      }
-    ],
-    "SessionEnd": [
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh'",
-        "timeout": 10
-      }
-    ]
-  }
+  "SessionStart": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+          "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
+          "timeout": 3
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh'",
+          "timeout": 3
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all'",
+          "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/bin/install-codex-hooks.mjs --check >/dev/null 2>&1 || echo \"[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check\"'",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "UserPromptSubmit": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+          "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs'",
+          "timeout": 10
+        }
+      ]
+    }
+  ],
+  "PreToolUse": [
+    {
+      "matcher": "^exec$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-preflight-lint.mjs'",
+          "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "^edit$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "^run_subagent$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs'",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "^mcp__.*$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs'",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "PostToolUse": [
+    {
+      "matcher": "^edit$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/devin/post-edit-quality.cjs'",
+          "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/devin/code-graph-freshness.cjs'",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "^exec$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-audit-posttooluse.mjs'",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "PermissionRequest": [],
+  "Stop": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-stop.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+          "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs'",
+          "timeout": 10
+        }
+      ]
+    }
+  ],
+  "PostCompaction": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs'",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "SessionEnd": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh'",
+          "timeout": 10
+        }
+      ]
+    }
+  ]
 }

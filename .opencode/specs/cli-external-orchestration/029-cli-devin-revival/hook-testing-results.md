@@ -46,7 +46,21 @@ Every Devin hook adapter this packet has built so far -- 3 from phase 004 (`sess
 
 `PostCompaction` and `SessionEnd` were **not** independently live-triggered (would require inducing an actual compaction or session-termination event, not just a dispatched command). Their dormancy is inferred from test 1-4/6's packet-wide finding that `-p` never consults hook config at all -- not independently observed for these two specific events. True interactive mode remains untested (no TTY in this environment) -- the one open gap.
 
-**Model-independence (tests 7-9, 2026-07-24).** The dormancy is a property of `-p` mode, not of any one model. Re-running the full probe methodology under `swe-1-7` (SWE-1.7 Max, free beta) reproduced the finding exactly: a real `exec` tool call ran to completion while all 8 probe-instrumented events stayed silent, and deliberately malformed hook JSON still raised no parse error. The probe script was separately verified to write correctly when invoked directly, so the silence is a genuine negative rather than broken instrumentation. `.devin/hooks.v1.json` was restored byte-identical afterwards (SHA-256 prefix `2ed5bc110188bab1` before and after).
+### 2a. RESOLUTION -- schema fix and live confirmation (2026-07-24, `glm-5-2` free tier)
+
+| # | Test | Result |
+|---|---|---|
+| 10 | Rewrote `.devin/hooks.v1.json` to the documented schema (top-level events, nested `{matcher, hooks:[...]}`), all 19 command entries preserved verbatim | JSON valid; structure confirmed |
+| 11 | Mutating prompt under `devin --model glm-5-2 -p` | Model quoted the injected text verbatim: `"SPEC FOLDER QUESTION: this turn looks like it will mutate a file..."` -- `spec-gate-classify.mjs` **fires** |
+| 12 | All 8 events probe-instrumented + a real `exec` tool call | **6 fired**: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop`, `SessionEnd`. `PermissionRequest` and `PostCompaction` did not occur in the session (no permission prompt, no compaction) -- not evidence of breakage |
+| 13 | Captured real payload shapes | `tool_name: "exec"` / `"edit"` / `"read"`; `tool_input.command`, `tool_input.file_path`; plus `session_id`, `prompt_id`, `tool_use_id`, `tool_response`, `stop_hook_active`, `hook_event_name` -- every field the adapters already read |
+| 14 | Real (non-probe) adapter end to end | `session-start.js` delivered the genuine Spec Kit startup brief (Memory status, Code Graph status, Recovery Tools, CLI fallbacks) into the model's context |
+
+**What this validates.** The adapters were never the problem -- their tool-vocabulary assumptions (`exec`, `edit`, `file_path`) are all confirmed correct against real payloads. Only the registration file was malformed. The `PostCompaction` 5-step chain and `run_subagent` guard remain the two surfaces not yet observed live, since neither event occurred in these sessions.
+
+**Superseded below.** Tests 1-9 are retained as the historical record of how the wrong conclusion was reached. Their observations were accurate; the inference drawn from them ("no headless attachment point exists") was not.
+
+**Model-independence (tests 7-9, 2026-07-24) -- superseded by §2a.** The dormancy is a property of `-p` mode, not of any one model. Re-running the full probe methodology under `swe-1-7` (SWE-1.7 Max, free beta) reproduced the finding exactly: a real `exec` tool call ran to completion while all 8 probe-instrumented events stayed silent, and deliberately malformed hook JSON still raised no parse error. The probe script was separately verified to write correctly when invoked directly, so the silence is a genuine negative rather than broken instrumentation. `.devin/hooks.v1.json` was restored byte-identical afterwards (SHA-256 prefix `2ed5bc110188bab1` before and after).
 
 ---
 
