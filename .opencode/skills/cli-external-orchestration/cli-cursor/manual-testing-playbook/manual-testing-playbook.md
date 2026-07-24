@@ -6,7 +6,7 @@ version: 1.0.0.0
 
 # cli-cursor: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `cursor-agent -p` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific blocker documented). "UNAUTOMATABLE" is not a valid status, and neither is "PARTIAL" - this playbook uses strict 3-state PASS/FAIL/SKIP discipline throughout, including the Review Protocol.
+> **EXECUTION POLICY**: Every executable scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `cursor-agent -p` invocations, inspect real outputs, capture real exit codes and verify real behavior. CU-020 is documentation-only by design; it uses source and documentation inspection instead of a live dispatch and defaults to `SKIP` with its named blocker. The only acceptable classifications are PASS, FAIL or SKIP (with a specific blocker documented). "UNAUTOMATABLE" is not a valid status, and neither is "PARTIAL" - this playbook uses strict 3-state PASS/FAIL/SKIP discipline throughout, including the Review Protocol.
 
 > **SELF-INVOCATION GUARD**: This playbook validates the `cli-cursor` skill from a non-Cursor runtime (Claude Code, Codex, OpenCode or shell). Operators MUST NOT execute these scenarios from inside Cursor CLI itself. The skill refuses to load when Cursor env vars (`CURSOR_AGENT`/`CURSOR_CONVERSATION_ID`) or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
 
@@ -32,7 +32,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 19 deterministic scenarios across 9 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 20 deterministic scenarios across 9 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-07-24): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (both its confirmed-fires and confirmed-non-delivery halves, per phase 004's live event-delivery table), session continuity (`--continue`/`--resume`), and prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch). Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
@@ -76,6 +76,7 @@ Coverage note (2026-07-24): Covers the canonical default invocation (`composer-2
 - Cursor stdout (and stderr captured via `2>&1`)
 - Exit code from `cursor-agent`, noted alongside output-text auth/availability evidence (never exit code alone)
 - The final user-facing outcome and a PASS, FAIL, or SKIP verdict with rationale
+- For CU-020, source-text and repository-documentation inspection replace Cursor stdout and exit-code evidence; the default verdict is `SKIP` pending review of a concurrent session's uncommitted work
 
 ---
 
@@ -131,7 +132,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios (`CU-001`, `CU-002`, `CU-004`, `CU-006`) are `PASS`.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_FEATURES == TOTAL_FEATURES`, currently 19).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_FEATURES == TOTAL_FEATURES`, currently 20).
 4. No unresolved blocking triage item remains, and every `SKIP` verdict carries a documented, still-valid blocker.
 
 ### Root-vs-Feature Rule
@@ -163,7 +164,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### Recommended Wave Layout
 
-- Wave 1 (parallel-safe, read-only or isolated-`/tmp`): `CU-001`, `CU-002`, `CU-003`, `CU-004`, `CU-005`, `CU-009`, `CU-011`, `CU-012`, `CU-013`, `CU-014`, `CU-017`, `CU-018`, `CU-019`
+- Wave 1 (parallel-safe, read-only or isolated-`/tmp`): `CU-001`, `CU-002`, `CU-003`, `CU-004`, `CU-005`, `CU-009`, `CU-011`, `CU-012`, `CU-013`, `CU-014`, `CU-017`, `CU-018`, `CU-019`, `CU-020`
 - Wave 2 (write-capable, serial on overlapping paths and shared approval/sandbox state): `CU-006`, `CU-007`, `CU-008`
 - Wave 3 (session continuity, requires a prior session id): `CU-015`, `CU-016`
 - Wave 4 (DESTRUCTIVE/opt-in, isolated, requires approval): `CU-010`
@@ -424,9 +425,9 @@ Desired user-visible outcome: Confirmation of the precedence rule and that `--ap
 
 ---
 
-## 12. HOOKS (`CU-013..CU-014`)
+## 12. HOOKS (`CU-013..CU-014, CU-020`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract, exercising the shared `.cursor/hooks.json` events live-verified in phase 004 of this creation packet.
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract, exercising the shared `.cursor/hooks.json` events live-verified in phase 004 of this creation packet and documenting the fifth adapter's unreviewed status. The [Cursor Hooks And Spec-Gate Integration](../../feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md) feature-catalog entry is authoritative for the status wording of all five adapters.
 
 ### CU-013 | Confirmed-fires smoke test
 
@@ -463,6 +464,24 @@ Desired user-visible outcome: A reproduced confirmation of the documented gap, s
 #### Test Execution
 
 > **Feature File:** [CU-014](../manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md)
+
+### CU-020 | spec-gate-prebind.mjs (authored by a concurrent session, uncommitted, not yet reviewed or tested)
+
+#### Description
+
+Document `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs`, authored by a concurrent session, uncommitted, and not yet reviewed or tested. Reading the file records its designed `sessionStart` purpose: satisfy Gate 3 for a valid `MK_SPEC_FOLDER` or open Gate-3 enforcement state when `MK_SPEC_GATE_ENFORCE=1`, because `beforeSubmitPrompt` never fires. This is documentation-only; it does not assert runtime behavior.
+
+#### Scenario Contract
+
+Prompt: `Read spec-gate-prebind.mjs, authored by a concurrent session, uncommitted, and not yet reviewed or tested, and document its designed sessionStart Gate-3 prebind intent without executing it.`
+
+Expected signals: The file exists, its source text states the session-start design intent, and repository documentation retains the required unreviewed status wording. The default verdict is `SKIP` with the specific blocker `pending review of a concurrent session's uncommitted work`.
+
+Desired user-visible outcome: An honest documentation record for the fifth adapter that preserves the feature-catalog status language and does not overstate its runtime status.
+
+#### Test Execution
+
+> **Feature File:** [CU-020](../manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md)
 
 ---
 
@@ -622,6 +641,7 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 
 - CU-013: [Confirmed-fires smoke test](../manual-testing-playbook/hooks/confirmed-fires-smoke-test.md)
 - CU-014: [Confirmed-non-delivery documentation](../manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md)
+- CU-020: [spec-gate-prebind.mjs (authored by a concurrent session, uncommitted, not yet reviewed or tested)](../manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md)
 
 ### SESSION CONTINUITY
 

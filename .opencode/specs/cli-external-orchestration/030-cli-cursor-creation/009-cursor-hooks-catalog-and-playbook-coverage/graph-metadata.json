@@ -16,7 +16,9 @@
       "cursor hook adapter inventory",
       "cli-cursor hooks catalog plan",
       "cli-cursor hooks catalog tasks",
-      "cli-cursor hooks catalog checklist"
+      "cli-cursor hooks catalog checklist",
+      "cli-cursor hooks catalog implementation",
+      "CU-020 spec-gate-prebind"
     ],
     "key_topics": [
       "cli-cursor",
@@ -33,17 +35,25 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
       ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
       ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+      "mcp-server/hooks/cursor/session-start.ts",
+      "mcp-server/hooks/cursor/session-end.ts",
+      "runtime/hooks/cursor/spec-gate-enforce.mjs",
+      "runtime/hooks/cursor/spec-gate-classify.mjs",
       "runtime/hooks/cursor/spec-gate-prebind.mjs",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,15 +69,45 @@
         "source": "derived"
       },
       {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/cursor/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-end.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/cursor/session-end.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/cursor/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": "runtime/hooks/cursor/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
         "name": "spec-gate-prebind.mjs",
         "kind": "file",
         "path": "runtime/hooks/cursor/spec-gate-prebind.mjs",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -89,9 +129,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "cursor-hooks-and-spec-gate.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-prebind-unreviewed.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -141,73 +199,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Estimated Effort",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-doc",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-codex",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "confirmed-working",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-external-orchestration/feature-catalog/feature-catalog.md` (the hub-level feature catalog) was never updated for `cli-cursor` at all — it still describes \"three packets\" (`cli-opencode`, `cli-claude-code`, `cli-codex`) and covers only routing concerns (two-axis dispatch, compiled routing)",
     "created_at": "2026-07-24T11:47:21.101Z",
-    "last_save_at": "2026-07-24T11:47:51.560Z",
+    "last_save_at": "2026-07-24T12:27:02.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9318c8259b941809e3fccd229c899ad547bc267caeec97698cf40b0c7fadafda",
+    "source_fingerprint": "sha256:6b365a044c10439ad5caed14ad04c9596307c243effff76776b6307c07e4b5d2",
     "source_doc_hashes": {
-      "spec.md": "2f80976bbb0ffe19ec4075c084f383d96d7a38b2b7f92dd0b50da5269ae47dcc",
-      "plan.md": "59b1ca3379c66a90f30d5b42ae2ea42f60df19fa87c321f197d1cf11b60ba2aa",
-      "tasks.md": "835ebd194095b5b14568a189aa054a1d3ab3671dcdbecdb4505823f5382da730",
-      "checklist.md": "e16c9487a635f07e0619dbbbb34f6ac4b1155bf293ec39696359cf5901dd7821"
+      "spec.md": "b4c16c8c0ad1d70d852b8a8c6ceaa867a0f3814fc67cbecd6b7041a9ba2240d4",
+      "plan.md": "76f43b5be8ddbbbfba620f763759a9729f00760c8f8b93707e9301ff6bc14496",
+      "tasks.md": "0ccc79096e83c21952dfdfdfe211ed3a397c178f1f56e105c1a76716b7cb5b09",
+      "checklist.md": "7947497c732fc7d734d48f04ba63ab62296dfa28cfa9c29f14b822a3ff318e63",
+      "implementation-summary.md": "5592e88b790c3b1f4358ca499b0c7dfe149f6723dbab1733d41ae80a249655ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

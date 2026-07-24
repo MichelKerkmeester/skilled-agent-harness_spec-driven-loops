@@ -9,12 +9,12 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage"
     last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md for phase 009"
-    next_safe_action: "Author tasks.md, checklist.md; wait for operator go-ahead before dispatching LUNA"
-    blockers: ["spec-gate-prebind.mjs review status unresolved"]
-    key_files: ["spec.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-catalog-planning", parent_session_id: null }
-    completion_pct: 0
+    recent_action: "All 3 phases complete; both LUNA dispatches verified"
+    next_safe_action: "None - phase complete"
+    blockers: []
+    key_files: ["spec.md", "checklist.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-catalog-implementation", parent_session_id: null }
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -29,11 +29,11 @@ Add a new hook/spec-gate feature category to the hub-level feature catalog and e
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- [ ] All 5 hook adapter files named with source anchors in the feature catalog.
-- [ ] All 5 hook adapter files named in the playbook's `hooks/` category.
-- [ ] `spec-gate-prebind.mjs` explicitly labeled unreviewed/uncommitted, never presented as confirmed-working.
-- [ ] Both docs authored per their sk-doc sub-skill's exact package contract.
-- [ ] `validate_document.py` clean on all new/modified files; whole packet `validate.sh --recursive --strict` 0/0.
+- [x] All 5 hook adapter files named with source anchors in the feature catalog.
+- [x] All 5 hook adapter files named in the playbook's `hooks/` category.
+- [x] `spec-gate-prebind.mjs` explicitly labeled unreviewed/uncommitted, never presented as confirmed-working.
+- [x] Both docs authored per their sk-doc sub-skill's exact package contract.
+- [x] `validate_document.py` clean on all new/modified files; whole packet `validate.sh --recursive --strict` 0/0.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -56,20 +56,20 @@ Two independent doc packages, each following its own sk-doc sub-skill's canonica
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Re-read `spec-gate-prebind.mjs` fresh (it is another session's in-flight work; re-confirm it still exists and read its current content before authoring anything about it).
-- [ ] Decide: extend `CU-013`/`CU-014` in place, or add `CU-020` — based on whether `spec-gate-prebind.mjs`'s `sessionStart` pre-bind role fits either existing scenario's contract without diluting its focus.
-- [ ] Confirm feature-catalog placement (hub-level, extending the existing single catalog per the spec's leaning) before creating any new directory.
+- [x] Re-read `spec-gate-prebind.mjs` fresh — confirmed unchanged (3261 bytes, same timestamp) and still uncommitted.
+- [x] Decided: added a new `CU-020` (documentation-only, SKIP-by-default) rather than extending `CU-013`/`CU-014` in place.
+- [x] Confirmed feature-catalog placement — hub-level, extending the existing single catalog.
 
 ### Phase 2: Core Implementation (dispatched to LUNA)
-- [ ] Read `cli-codex/SKILL.md` in full (mandatory per this repo's CLI-dispatch rule) before composing the dispatch prompt.
-- [ ] Dispatch a `gpt-5.6-luna` (`cli-codex`, `-c model_reasoning_effort="xhigh" -c service_tier="fast"`) agent to author the feature-catalog category + per-feature file(s), briefed with: the 5 adapter files, their exact confirmed/dormant/unreviewed status, `create-feature-catalog/SKILL.md`'s contract, and the explicit instruction never to present `spec-gate-prebind.mjs` as confirmed-working.
-- [ ] Dispatch a `gpt-5.6-luna` agent (same effort/tier) to extend the playbook's `hooks/` category per the Phase 1 decision, briefed identically on hedging language for the unreviewed adapter.
-- [ ] Independently re-verify both agents' output before accepting it — do not trust a subagent's self-report of "done" (finding-is-a-hypothesis discipline).
+- [x] Read `cli-codex/SKILL.md` in full (392 lines) before composing either dispatch prompt.
+- [x] Dispatched `gpt-5.6-luna` (`cli-codex`, `xhigh` effort, `service_tier="fast"`) to author the feature-catalog category + per-feature file, briefed on all 5 adapters' exact status.
+- [x] Dispatched a second `gpt-5.6-luna` (same effort/tier, sequential per single-dispatch discipline) to extend the playbook's `hooks/` category with new `CU-020`.
+- [x] Independently re-verified both agents' output by direct file read before accepting either as done.
 
 ### Phase 3: Verification
-- [ ] Run `validate_document.py` on every new/modified file in both packages.
-- [ ] Grep sweep: confirm all 5 adapter files are named in both docs, with `spec-gate-prebind.mjs` explicitly hedged.
-- [ ] Run `validate.sh 030-cli-cursor-creation --recursive --strict`; confirm 0/0.
+- [x] Ran `validate_document.py` on all 4 new/modified files — all `✅ VALID`.
+- [x] Grep sweep: all 5 adapter files named in both docs; `spec-gate-prebind.mjs` hedged 21/21 times, 0 unhedged mentions.
+- [x] Ran `validate.sh 030-cli-cursor-creation --recursive --strict` — `10 RESULT: PASSED`.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -83,7 +83,7 @@ Structural validation via each sk-doc sub-skill's own validator (`validate_docum
 |---|---|---|---|
 | Phase 004 (hook adapter layer) | Internal | Green (committed `5bd90b42c1`) | Source of the 4 confirmed adapters + event-delivery table |
 | Phase 006 (manual-testing playbook) | Internal | Green (committed `78ab7a573d`/`4b6bf6fc10`) | The `hooks/` category this phase extends |
-| `spec-gate-prebind.mjs` | External (concurrent session) | Yellow — uncommitted, unreviewed | Documented with explicit hedging regardless; re-check freshness before dispatch |
+| `spec-gate-prebind.mjs` | External (concurrent session) | Yellow — still uncommitted, unreviewed (confirmed unchanged at implementation time) | Documented with explicit hedging; 21 hedged mentions across both new docs |
 | `gpt-5.6-luna` via `cli-codex` | External | Green — documented in `cli-codex/SKILL.md`'s model table | Dispatch mechanism for Phase 2 |
 <!-- /ANCHOR:dependencies -->
 

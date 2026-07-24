@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage"
     last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 009 spec; status Planned, not yet implemented"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md, then dispatch LUNA xhigh-fast agents per the plan"
-    blockers: ["spec-gate-prebind.mjs is uncommitted, unreviewed work from a concurrent session - do not document it as a confirmed/working feature until reviewed"]
+    recent_action: "Implemented via 2 dispatched LUNA agents; both independently verified"
+    next_safe_action: "None - phase complete"
+    blockers: []
     key_files: [".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md", ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/", ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md", ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-catalog-planning", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Should this phase wait for spec-gate-prebind.mjs to be committed and reviewed before documenting it, or document it now labeled explicitly as unreviewed/in-progress?", "Does the feature-catalog entry live at the hub level (cli-external-orchestration/feature-catalog/, alongside the existing routing-only categories) or should cli-cursor gain its own nested feature-catalog/ - no sibling packet (cli-opencode/cli-claude-code/cli-codex) has a nested one today."]
-    answered_questions: ["Execution mechanism: dispatched LUNA agents (gpt-5.6-luna via cli-codex) at xhigh reasoning effort + service_tier=fast, per the user's explicit instruction - not composer-2.5 via cli-cursor (LUNA is a cli-codex model, confirmed via cli-codex/SKILL.md's model table).", "Spec-folder placement: new child under the existing 030-cli-cursor-creation phase-parent, matching phases 006/007/008's precedent."]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-catalog-implementation", parent_session_id: null }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Execution mechanism: dispatched LUNA agents (gpt-5.6-luna via cli-codex) at xhigh reasoning effort + service_tier=fast, per the user's explicit instruction - not composer-2.5 via cli-cursor (LUNA is a cli-codex model, confirmed via cli-codex/SKILL.md's model table).", "Spec-folder placement: new child under the existing 030-cli-cursor-creation phase-parent, matching phases 006/007/008's precedent.", "spec-gate-prebind.mjs documented now with explicit hedging rather than waiting for review - it remained unchanged and uncommitted throughout this phase.", "Feature-catalog placement: hub-level, extending the existing single catalog with a new category - no sibling packet has a nested one.", "CU-013/CU-014 extension vs new CU-020: new CU-020, documentation-only and SKIP-by-default, to avoid asserting runtime behavior for an unreviewed file."]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -28,7 +28,7 @@ _memory:
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -95,10 +95,10 @@ Add a feature-catalog entry documenting cli-cursor's hook/spec-gate integration 
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: `grep -rn "spec-gate-prebind"` across the feature-catalog and manual-testing-playbook trees returns at least 1 hit in each, with an explicit unreviewed/uncommitted-status label.
-- **SC-002**: `grep -c` for each of the other 4 adapter files (`session-start.ts`, `session-end.ts`, `spec-gate-enforce.mjs`, `spec-gate-classify.mjs`) across both docs returns `>=1`.
-- **SC-003**: `validate_document.py` on the new/modified feature-catalog and playbook files returns 0 structural errors.
-- **SC-004**: `validate.sh 030-cli-cursor-creation --recursive --strict` returns 0/0 after this phase lands.
+- **SC-001**: `grep -rn "spec-gate-prebind"` across the feature-catalog and manual-testing-playbook trees returns at least 1 hit in each, with an explicit unreviewed/uncommitted-status label. **MET** — 21 hits, 100% hedged.
+- **SC-002**: `grep -c` for each of the other 4 adapter files (`session-start.ts`, `session-end.ts`, `spec-gate-enforce.mjs`, `spec-gate-classify.mjs`) across both docs returns `>=1`. **MET**.
+- **SC-003**: `validate_document.py` on the new/modified feature-catalog and playbook files returns 0 structural errors. **MET** — 4/4 files `✅ VALID`.
+- **SC-004**: `validate.sh 030-cli-cursor-creation --recursive --strict` returns 0/0 after this phase lands. **MET** — 10/10 folders PASSED.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -136,8 +136,9 @@ Add a feature-catalog entry documenting cli-cursor's hook/spec-gate integration 
 - As a maintainer, I want an unreviewed adapter labeled honestly as unreviewed, so the catalog never implies more confidence than the evidence supports.
 
 ## 12. OPEN QUESTIONS
-- Should this phase wait for `spec-gate-prebind.mjs` to be committed/reviewed before documenting it, or document it now with explicit unreviewed-status hedging? Leaning toward documenting now with hedging — waiting indefinitely on another session's uncommitted work would block this phase with no clear resolution timeline, and honest hedging (not silence) is the standard this whole packet has used for genuinely-unconfirmed facts throughout.
-- Does the feature-catalog entry belong at the hub level (`cli-external-orchestration/feature-catalog/`, alongside the existing routing-only categories) or should `cli-cursor` gain its own nested `feature-catalog/`? Leaning toward hub-level, extending the existing single catalog, since no sibling packet has a nested one and `create-feature-catalog`'s contract does not require one-per-packet.
+Both questions below are now resolved.
+- Should this phase wait for `spec-gate-prebind.mjs` to be committed/reviewed before documenting it, or document it now with explicit unreviewed-status hedging? **Resolved: documented now with hedging.** The file remained unchanged and uncommitted throughout this phase; both new docs carry 21 hedged mentions and 0 unhedged confirmed-working claims about it.
+- Does the feature-catalog entry belong at the hub level or should `cli-cursor` gain its own nested `feature-catalog/`? **Resolved: hub-level**, extending the existing single catalog with a new "Cursor Hooks And Spec-Gate Integration" category, matching the existing 2 categories' exact shape.
 <!-- /ANCHOR:questions -->
 
 ---

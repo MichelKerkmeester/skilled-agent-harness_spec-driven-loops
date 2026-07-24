@@ -1,18 +1,20 @@
 ---
 title: "cli-external-orchestration: Feature Catalog"
-description: "Current-state inventory for the cli-external-orchestration hub, covering its CLI executor two-axis dispatch routing and the opt-in compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the cli-external-orchestration hub, covering CLI executor two-axis dispatch routing, opt-in compiled routing, and cli-cursor's shared Cursor CLI/editor hook and spec-gate adapter surface."
 trigger_phrases:
   - "cli-external-orchestration feature catalog"
   - "cli-external-orchestration hub capabilities"
   - "cli executor dispatch routing"
   - "cli-external-orchestration compiled routing"
-last_updated: "2026-07-21"
-version: 1.0.0.0
+  - "cli-cursor hooks"
+  - "Cursor CLI spec-gate integration"
+last_updated: "2026-07-24"
+version: 1.2.0.0
 ---
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of three CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of four CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. An opt-in, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -55,3 +57,21 @@ The directive is off by default: `SPECKIT_COMPILED_ROUTING` is unset in normal o
 #### Source Files
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for resolution order, the tri-state flag, and serving-status anchors.
+
+---
+
+## 4. CURSOR HOOKS AND SPEC-GATE INTEGRATION
+
+### Cursor CLI Hooks And Spec-Gate Integration
+
+#### Description
+
+`cli-cursor`'s hook/spec-gate adapter layer maps Cursor lifecycle and tool events to session priming, completion evidence, and the shared Gate-3 mutation policy.
+
+#### Current Reality
+
+Live Cursor CLI dispatches confirm `sessionStart` through `session-start.ts`, `sessionEnd` through `session-end.ts`, and `preToolUse` through the deny-capable `spec-gate-enforce.mjs`; the latter's `permission: "deny"` response and exit code 2 were confirmed to block a real tool call. `spec-gate-classify.mjs` remains dormant because `beforeSubmitPrompt` never fires under the installed `cursor-agent` build. The `.cursor/hooks.json` configuration is shared with the Cursor desktop editor, so registration has cross-surface impact. `spec-gate-prebind.mjs` was authored by a concurrent session, is uncommitted, and has not yet been reviewed or tested in this catalog work; it is designed to pre-bind or open the Gate-3 state at `sessionStart`, but that design is not confirmed here.
+
+#### Source Files
+
+See [`cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`](cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md) for the five adapter statuses, event behavior, and validation anchors.
