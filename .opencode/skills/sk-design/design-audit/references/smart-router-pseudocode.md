@@ -13,6 +13,11 @@ version: 1.0.0.0
 
 # design-audit: Smart Router Pseudocode
 
+## 1. OVERVIEW
+
+"The full a11y/perf/critique/harden intent-classification, keyed routing-key derivation, and existence-guarded resource-loading implementation behind SKILL.md Section 2 (SMART ROUTING)."
+
+
 > **Resilience pattern:** see [sk-doc smart-router resilience template](../../sk-doc/create-skill/assets/skill/skill-smart-router.md) for the full runtime discovery, guarded load, routing-key, and fallback reference.
 
 This is the reference implementation behind [`SKILL.md`](../SKILL.md) Section 2 (SMART ROUTING): the keyword-weighted `INTENT_SIGNALS` classifier, the `RESOURCE_MAP` per audit intent, the routing-key-derived keyed folder lookup, and the existence-guarded `load_if_available()` loader.

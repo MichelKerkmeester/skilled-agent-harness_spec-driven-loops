@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T20:45:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Agent Improvement projections to pure replay and common-service references"
-    next_safe_action: "Freeze AgentIR event inputs and projection invariants against the typed-ledger schema"
+    last_updated_at: "2026-07-23T14:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark Agent Improvement reducer"
+    next_safe_action: "Use the reducer from the later mode integration leaf without granting authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
 | **Origin** | Phase 002 of the Agent Improvement migration under phase 013 |
@@ -193,14 +193,15 @@ status values.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Deferred to execution against the frozen predecessor and common-service contracts:
-- Which AgentIR component fields are reducer-addressable state and which remain opaque content-addressed artifacts?
-- Which event ordering and duplicate policy applies when a component mutation, failure gradient, or evaluator receipt is
-  observed more than once or arrives after a later profile-frontier event?
-- Is the Agent Improvement projection checkpointed as one composite snapshot or as independently checkpointed families
-  sharing one event frontier and reducer fingerprint?
-- Which behavior-family and authority-conflict coverage facts are safe for candidate generation, and which remain
-  terminal-only to avoid evaluator leakage?
-- How should profile-specific champions and a global incumbent be represented when the operational envelope is conditional
-  rather than universal?
+Resolved against the frozen predecessor and common reducer contracts:
+
+- AgentIR definitions, compiled IR, components, inheritance edges, loci, contracts, manifests, exposure records,
+  transfer trials, and content-addressed artifacts are reducer-addressable only through typed ledger fields.
+- Exact duplicate events are idempotent. Distinct event reuse, sequence reuse, per-stream gaps, and unresolved producer
+  references fail closed.
+- One composite checkpoint binds the immutable common and Agent Improvement projection families to the complete
+  per-stream source-tail map.
+- Candidate-facing state exposes only coverage and decision bands. Trace, fixture, raw-observation, score, receipt,
+  evidence, and failure-gradient details stay out of that view.
+- Profile champions remain a namespaced Agent Improvement map while the shared common status remains unchanged.
 <!-- /ANCHOR:questions -->

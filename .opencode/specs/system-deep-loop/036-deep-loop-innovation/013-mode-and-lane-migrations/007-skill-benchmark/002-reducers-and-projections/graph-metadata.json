@@ -19,7 +19,10 @@
       "skill benchmark reducers tasks",
       "skill-benchmark projection tasks",
       "skill benchmark reducers checklist",
-      "skill-benchmark projection verification"
+      "skill-benchmark projection verification",
+      "skill benchmark reducer implementation",
+      "skill benchmark projection contract",
+      "skill benchmark deterministic replay"
     ],
     "key_topics": [
       "skill",
@@ -36,12 +39,13 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -181,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure reducers and live projections for the skill-benchmark migration: replay the typed skill event ledger into deterministic iteration/convergence state, artifact indexes, and per-mode status while consuming deep-improvement-common services and preserving raw scenario and scoring evidence.",
     "created_at": "2026-07-16T03:43:41.343Z",
-    "last_save_at": "2026-07-19T18:01:18.481Z",
+    "last_save_at": "2026-07-23T13:54:58.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:115837c12c2beb0bd54f7d35c14e11fd4ec4140039eef3cc284380c9bf7338c1",
+    "source_fingerprint": "sha256:7339df82ce125f25510fe32fd49de9dd806076138bfb9d74a159c6ea402db67c",
     "source_doc_hashes": {
-      "spec.md": "44f8fe14e34e2a2c0f8bf51eec69912cbf7d8d4d1ea2169670d510c82250a80e",
-      "plan.md": "9c4b5804c9de36818a7a651b471a5e4cfee8f67a651a1a1158c8a7c56a32e4e5",
-      "tasks.md": "7afee08bf7144ad33fdb2e03478885e9ddc0d7e6338d12ef58a24a6bb0564187",
-      "checklist.md": "099e89d59bd74a5bdea17cf4bbc8253f1357553cd1a6255a0380c38a3af6c60e"
+      "spec.md": "71c84e9121fa0acf2d8c521f75fb23f5768919e52f666bda17f65259884c90ad",
+      "plan.md": "62e316f39e457848e96b955fd208cc06444b15354ba00db97e93cb8ec9131fd2",
+      "tasks.md": "ff44657d3f0d46fe05ed1669b11084867203a264a447c7cb65dfba3f4f5ffc4b",
+      "checklist.md": "92610856ff6eec759cd289d84478080193c7429fa19e1f8e2e019ae5d0aef1ec",
+      "implementation-summary.md": "7c49813df6aa2f40155e0eb2189c15f95aa8202670f850936d13e46480580d30"
     },
     "last_active_child_id": null,
     "last_active_at": null

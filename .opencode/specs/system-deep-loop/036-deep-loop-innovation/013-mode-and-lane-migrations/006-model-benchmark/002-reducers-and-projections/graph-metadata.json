@@ -39,14 +39,28 @@
       "projection"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -132,6 +146,12 @@
         "source": "derived"
       },
       {
+        "name": "schema",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -172,43 +192,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the model-benchmark reducers and projections on top of the deep-improvement-common services from mode 004",
     "created_at": "2026-07-16T03:43:39.522Z",
-    "last_save_at": "2026-07-19T18:09:51.191Z",
+    "last_save_at": "2026-07-23T14:37:23.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8dd5a662034aab28730a01f490714ea2efee4b2bbefb6faa3040dcd1c18fe3dc",
+    "source_fingerprint": "sha256:84afe612d5b99ddf6262c662328d47f8e21f607a48a45a836511f9fd7ca2a335",
     "source_doc_hashes": {
-      "spec.md": "6111c2fc03ca97da1d226dcd091216700ab4d9c53065ecd740077dce780e44e1",
-      "plan.md": "63c189e22a0d1876b942086ed47cd3622d8ae920e4eaae0a2cb3b08fbd25c3c7",
-      "tasks.md": "4f882c07956b8bdd7fb4a6cabdf37a65537d9e54e3281bb24dbc8e3a5ccb8a14",
-      "checklist.md": "d68c90439cb611fcbd55950b703bb08d8899eb4f2844fd365b308fea12b9051f"
+      "spec.md": "74b0fd17be7ee119af8a878d7143764a0b9cc8c526e8e07aa8c0b9857c0aca4b",
+      "plan.md": "e2dd9a6859d0e4feecb2f1437ced7f71c194e36c62e398ae669a653afb75e66b",
+      "tasks.md": "a3e04fe1df15081ae09dde6dcd163fd18f27db919d2a9f6d27f4c3c9e8572b62",
+      "checklist.md": "5a43d1a2c4103e8f443b0769c33608c2fa523873d862643cb58499b4972553d9",
+      "decision-record.md": "ab73f29afe8923c9a4e329b2d74090f7060566a0cb12a80828207b4fdb9feb79",
+      "implementation-summary.md": "6a2a7f3be970766fd5b91abd0766fa2397d9a0872e29f43a62cf3d01db8f9320"
     },
     "last_active_child_id": null,
     "last_active_at": null

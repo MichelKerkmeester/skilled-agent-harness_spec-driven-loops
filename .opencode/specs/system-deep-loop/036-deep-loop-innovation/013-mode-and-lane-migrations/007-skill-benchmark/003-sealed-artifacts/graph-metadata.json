@@ -19,7 +19,10 @@
       "Skill Benchmark sealed artifacts tasks",
       "skill benchmark reference sealing tasks",
       "Skill Benchmark sealed artifacts checklist",
-      "skill benchmark tamper evident verification"
+      "skill benchmark tamper evident verification",
+      "Skill Benchmark cross-artifact digest closure",
+      "skill benchmark plain digest backing",
+      "skill benchmark certificates closure boundary"
     ],
     "key_topics": [
       "skill",
@@ -36,14 +39,22 @@
       "tamper"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "decision-record.md",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -54,6 +65,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -169,25 +186,35 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
     "created_at": "2026-07-16T03:43:41.603Z",
-    "last_save_at": "2026-07-19T18:01:22.497Z",
+    "last_save_at": "2026-07-24T03:43:52.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82fa307a2289eebdf82d7dd1f0692b900173b01ef1f7be11117652a6f71c42ea",
+    "source_fingerprint": "sha256:a6ee79925fc96747a9c1fa2d87a666ba18a4bbaa3455f06ce144ccca4fd877f6",
     "source_doc_hashes": {
-      "spec.md": "7ab6cbcc0a227a5f39c7d1ec5035c7ffaac78723e4b7ff83aada48b4547f1259",
+      "spec.md": "1ea4e58210499681fbe375dbff0b8dc0c452f31aeef5a93a81f1e3612b9fb302",
       "plan.md": "019cc1f74e9777f65bc9745048fb76fbfa411477280053c5988a30d660753ed1",
       "tasks.md": "b67aa28ab8bbcbdd38f9a3c71cbb7b784d5fe3a2b0aaf2fc278eeffac658049e",
-      "checklist.md": "575d2c1e6ad7313f6b71e790db9e3284ac151e5ca839a285fc7af5f3240f274a"
+      "checklist.md": "24b7b646e7c58d5a665066aef3b1cea1fd31b9e47f8033ae5a1f0eae41357c22",
+      "decision-record.md": "52576ac95fedaf4fce6685c89d417cf496b9cd96db1be046d9f4318b93a6bd08",
+      "implementation-summary.md": "66b2f54909fe8fe35d303434864cdf0be9145874493bb1bf2baced352f066737"
     },
     "last_active_child_id": null,
     "last_active_at": null

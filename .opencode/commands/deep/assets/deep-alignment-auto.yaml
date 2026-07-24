@@ -423,14 +423,17 @@ workflow:
           command: |
             SPECKIT_TSX_LOADER="$(node -e "process.stdout.write(require.resolve('tsx',{paths:['.opencode/skills/system-deep-loop/runtime']}))")"
             node --import "$SPECKIT_TSX_LOADER" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
+            import { readFileSync, appendFileSync, unlinkSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
+            import { tmpdir } from 'node:os';
+            import { join } from 'node:path';
 
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
             } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+            import { writeLeafArtifacts } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts';
 
             // Fail closed: a requested codex executor must dispatch codex or abort,
             // never silently degrade to another executor. The branch exits non-zero
@@ -454,20 +457,54 @@ workflow:
               configDir: null,
               reasoningEffort,
               serviceTier,
-              sandboxMode: 'workspace-write',
+              sandboxMode: 'read-only',
               timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
               governor: null,
             };
 
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            // The codex leaf runs read-only so it can NEVER edit the tree: no
+            // apply_patch, no wrong-path artifact, no corruption, and nothing that
+            // trips the tool-mediated-write contract halt. A read-only leaf cannot
+            // Bash-write its own three artifacts either, so it reports them as one
+            // JSON object in its final message and the wrapper below persists them.
+            const iteration = Number('{current_iteration}');
+            const artifactDir = '{artifact_dir}';
+            const repoRoot = '{repo_root}';
+            const stateLogPath = '{state_paths.state_log}';
+            const nnn = String(iteration).padStart(3, '0');
+            const iterationMdPath = artifactDir + '/iterations/iteration-' + nnn + '.md';
+            const deltaPath = artifactDir + '/deltas/iter-' + nnn + '.jsonl';
 
-            // codex reads the iteration prompt from stdin via the trailing '-'. An
-            // alignment iteration must WRITE its own iteration file, delta and state
-            // record through Bash, so the sandbox is workspace-write -- read-only
-            // would block those required writes. approval_policy=never keeps the run
-            // non-interactive. The rendered prompt pack carries the DEEP-ALIGNMENT
-            // marker and resolved-route line, so the codex leaf emits the route-proof
-            // fields itself; no route preamble is prepended here.
+            const basePrompt = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const readOnlyOverride = [
+              '',
+              '## EXECUTOR OVERRIDE - READ-ONLY LEAF (supersedes the file-write OUTPUT CONTRACT above)',
+              '',
+              'You run under a read-only sandbox: every file write is denied. Do NOT write the iteration narrative, the state-log record, or the delta file, and do NOT use apply_patch. Audit read-only, then report your result as your FINAL MESSAGE - exactly one JSON object, nothing after it:',
+              '',
+              '```json',
+              '{',
+              '  "stateRecord": {',
+              '    "status": "complete",',
+              '    "laneId": "<the Lane Id from this iteration>",',
+              '    "authority": "<authority>", "artifactClass": "<artifactClass>", "scope": <the scope object>,',
+              '    "artifactsChecked": ["<every artifact path you audited this iteration>"],',
+              '    "findingsCount": 0, "findingsSummary": "<one line>", "findingsNew": 0,',
+              '    "findingDetails": [],',
+              '    "newFindingsRatio": 0,',
+              '    "sessionId": "<session id from STATE>", "generation": <generation int>, "lineageMode": "<lineage>",',
+              '    "timestamp": "<ISO-8601 now>", "durationMs": <int>',
+              '  },',
+              '  "deltaFindings": []',
+              '}',
+              '```',
+              '',
+              'Each findingDetails element is one finding object: severity (P0|P1|P2), summary, laneId, and a [SOURCE: path:line]. deltaFindings mirrors them - each a JSON object with type "finding", laneId, and finding (the raw finding object) - and both arrays are empty for a genuine zero-findings PASS. The route-proof fields (mode, target_agent, agent_definition_loaded, resolved_route, iteration) are stamped by the runtime; do not emit them. Report artifactsChecked and findings honestly.',
+              '',
+            ].join('\n');
+            const promptBody = basePrompt + '\n' + readOnlyOverride;
+
+            const lastMsgFile = join(tmpdir(), 'align-leaf-' + process.pid + '-' + Date.now() + '.txt');
             const args = ['exec'];
             if (model) {
               args.push('--model', model);
@@ -476,35 +513,63 @@ workflow:
             if (serviceTier) {
               args.push('-c', 'service_tier=' + serviceTier);
             }
-            args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
+            // -o captures the leaf's final message; the trailing '-' feeds the prompt
+            // on stdin. codex writes -o outside the model sandbox, so read-only is fine.
+            args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-o', lastMsgFile, '-');
 
             const dispatchId = 'alignment-i{current_iteration}-g{generation}';
-            const repoRoot = '{repo_root}';
-            const artifactDir = '{artifact_dir}';
             const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
             const dispatchExit = runAuditedExecutorCommand({
               command: 'codex',
               args,
               cwd: repoRoot,
               timeoutSeconds: executor.timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
+              stateLogPath,
               executor,
-              iteration: Number('{current_iteration}'),
+              iteration,
               input: promptBody,
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
             });
-            // Structural write-containment: a workspace-write codex leaf can write
-            // anywhere in the repo. Revert any NEW out-of-artifact-dir change it
-            // made, append a containment_violation event to the state log, and
-            // fail the iteration fail-closed. The leaf's own writes under
-            // artifactDir (iteration file/delta/state record) are never flagged.
+
+            // Persist the three iteration artifacts from the read-only leaf's final
+            // message. A malformed or incomplete report writes nothing and fails the
+            // iteration fail-closed so the loop redispatches - never a partial record.
+            let leafMessage = '';
+            try {
+              leafMessage = readFileSync(lastMsgFile, 'utf8');
+            } catch {}
+            try { unlinkSync(lastMsgFile); } catch {}
+            const written = writeLeafArtifacts(leafMessage, {
+              iteration,
+              iterationMdPath,
+              stateLogPath,
+              deltaPath,
+            });
+            if (!written.ok) {
+              const failEvent = {
+                type: 'event',
+                event: 'leaf_output_unpersisted',
+                mode: 'alignment',
+                iteration,
+                reason: 'read_only_leaf_report_invalid',
+                details: written.error || 'unknown',
+                timestamp: new Date().toISOString(),
+              };
+              try { appendFileSync(stateLogPath, JSON.stringify(failEvent) + '\n'); } catch {}
+              console.error('read-only leaf report could not be persisted: ' + (written.error || 'unknown'));
+              process.exit(1);
+            }
+
+            // Structural write-containment stays as belt-and-suspenders. Under a
+            // read-only leaf it is a guaranteed no-op, but the guard remains in place
+            // if the sandbox posture ever regresses.
             const containment = enforceWriteContainment({
               repoRoot,
               artifactDir,
               preDispatchDirtyPaths,
-              stateLogPath: '{state_paths.state_log}',
-              iteration: Number('{current_iteration}'),
+              stateLogPath,
+              iteration,
               label: dispatchId,
             });
             if (containment.violations.length > 0) {

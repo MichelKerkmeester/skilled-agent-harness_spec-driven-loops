@@ -19,7 +19,10 @@
       "model benchmark sealed artifacts tasks",
       "model benchmark matrix sealing tasks",
       "model benchmark sealed artifacts checklist",
-      "model benchmark tamper evident scoring verification"
+      "model benchmark tamper evident scoring verification",
+      "model benchmark sealed artifacts implementation",
+      "model benchmark verified sealed reads",
+      "model benchmark scoring evidence binding"
     ],
     "key_topics": [
       "model",
@@ -36,12 +39,13 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -87,6 +97,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Purpose Define",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -94,12 +110,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:39.766Z",
-    "last_save_at": "2026-07-19T18:09:55.867Z",
+    "last_save_at": "2026-07-24T04:18:52.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e49bf0ae69e2845ba74b6b369b9e3f784b7bfd5d20ef9d8be23e82f58cc80ccc",
+    "source_fingerprint": "sha256:cb3868af9997c8eda37ed9bf704b368e8ed4bd469928aeb3572d564b2a82fdd8",
     "source_doc_hashes": {
-      "spec.md": "e5fc3f17990662da6ff86e52dc9b3c45339838092f38deca8448f4bd1b93271c",
+      "spec.md": "a38b2d4f538c85bf921bd558a5ebe1607ac84d70a7d5f5e7ac6dbe0ee4788904",
       "plan.md": "a890dd394f802008e75c92ec55f8b0b49f4429918d6b78273e1bd6e978118182",
       "tasks.md": "ae062c64a835ea38582133e2c08851786f05a38d7e6b6148dc2951b1551810a4",
-      "checklist.md": "a81c3d407f440a83ff70408f5476f6c089c83f980e8278f5e4eb12eda59be8f8"
+      "checklist.md": "66d3b5ab35ee0a20b730358190e9cb2e035c734a5bc53be851eb54606caa3406",
+      "implementation-summary.md": "5c8a67dc829eeaf89613a7228542619d837956a33ed37239cd7f545dafb1942a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -19,7 +19,10 @@
       "agent improvement reducers tasks",
       "agent improvement projection tasks",
       "agent improvement reducers checklist",
-      "agent improvement projection verification"
+      "agent improvement projection verification",
+      "agent improvement reducer implementation",
+      "agent improvement projection replay",
+      "agent improvement common fold extension"
     ],
     "key_topics": [
       "agent",
@@ -36,12 +39,13 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -76,12 +86,6 @@
       },
       {
         "name": "Agent Improvement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scoped Agent Improvement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,13 +109,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "An Agent Improvement",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Resolve Agent Improvement",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -123,27 +127,21 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-improvement-common",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Mapped Agent Improvement",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "schema",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pin Agent Improvement",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -165,9 +163,9 @@
         "source": "derived"
       },
       {
-        "name": "Defined Agent Improvement",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -187,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "The Agent Improvement",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define the pure Agent Improvement fold and its three live projection families: iteration/convergence state, a",
     "created_at": "2026-07-16T03:43:37.764Z",
-    "last_save_at": "2026-07-19T18:01:17.061Z",
+    "last_save_at": "2026-07-23T13:55:31.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46f1c0b904f5bb5c56b8128b03503116cdc2992c6d271370737b48d898b5f7e0",
+    "source_fingerprint": "sha256:c2480e034dd1ac57828eb76469ac92a96bb37cc1cf2b9920f33fdac773bd2fb5",
     "source_doc_hashes": {
-      "spec.md": "dab6bc8656fe8b6b1034fb02fc559059719a6330b4617603c4341241a7f081a7",
-      "plan.md": "b6bcf512eefd7e582a15b0ce04aaaf4556a47b9bf7a2371a19d9280989d28aaa",
-      "tasks.md": "390543d4fb61f15b93ab06060201847e4d62f0f6d2cdcc983a31f0917e3ae6ef",
-      "checklist.md": "916227ef3b6ea1bc6c3108871625f2ad3aeefb3dbd7b5b833caa10469bbff05a"
+      "spec.md": "58a00620010b1f2642af6fb4e8c9d6212d15bc63f6918673b7a0d66dc3382b1d",
+      "plan.md": "fe75b7213e7e066b4e2ca525494935ed806d5243d43cbe707626a9b7832fd8b3",
+      "tasks.md": "c591fe48bed6832db59c112acfcfe532a2ae2e4e94f00e924306fa6b2009d196",
+      "checklist.md": "e3587d547d4854b51a77ee798e9aa8e5ae3ba8f7b170b18204b1e834417c5b8d",
+      "implementation-summary.md": "4b1113bcdf60b218c646045962d34a17c3de1550fdf2e0f8dde62ac225991276"
     },
     "last_active_child_id": null,
     "last_active_at": null

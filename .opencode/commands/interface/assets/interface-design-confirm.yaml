@@ -1,15 +1,166 @@
+# ─────────────────────────────────────────────────────────────────
+# SK-DESIGN INTERFACE: DIRECTION CREATION WORKFLOW (CONFIRM MODE)
+# ─────────────────────────────────────────────────────────────────
+# Mode: interactive (one consolidated confirmation prompt, then autonomous)
+# Delegates shared lifecycle/envelope/authority/proof vocabulary to
+# creation-contract.md; this file carries only the interface-direction
+# workflow and the command-standard scaffolding.
+# ─────────────────────────────────────────────────────────────────
 role: sk-design interface creation command, interactive execution
 purpose: Create or reshape an end-to-end interface direction
 action: Resolve confirmation-required fields once, then apply workflowMode=interface through the shared creation contract
 
 operating_mode:
+  workflow: sequential_creation_contract
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive_then_autonomous
   approvals: consolidated_prompt_once
   intake: progressive
+  tracking: progressive_step_outputs
+  validation: continuous_self_validation
   confirmation: "Wait for the bundled reply before design work"
+  description: |
+    Collects every confirmation-required decision once via the presentation
+    prompt, then runs the interface-direction workflow to completion,
+    delegating shared lifecycle/envelope/authority/proof vocabulary to
+    creation-contract.md.
 
 checkpoint:
   source: ".opencode/commands/interface/assets/interface-design-presentation.txt"
   wait_for: user_reply
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, record bounded assumptions" }
+    low: { range: "0-39%", action: "STOP - fold the unresolved field into the consolidated prompt" }
+  scoring_weights:
+    brief_clarity: 0.30
+    grounding_fit: 0.25
+    register_and_axes: 0.25
+    proof_bar: 0.20
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present the unresolved field to the operator with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUT CONTRACT
+# ─────────────────────────────────────────────────────────────────
+input_contract:
+  required:
+  - target
+  optional:
+  - register
+  - mode
+  - pinned_axes
+  - preserve_constraints
+  - fidelity
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve the resolved brief and continue"
+  - label: "Review"
+    description: "Show the resolved brief and grounding record"
+  - label: "Modify"
+    description: "Adjust register, axes, or constraints before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  confirmation_gate:
+    location: "step_0 before any design work"
+    purpose: "Collect all confirmation-required decisions in one bundled prompt"
+    requirements:
+    - "Consolidated prompt rendered from the presentation asset"
+    - "Operator reply received before step_1"
+    action_if_failed: "WAIT for the bundled reply"
+  creation_contract_gate:
+    location: "Between step_2 and step_3"
+    purpose: "Verify the shared creation contract is loaded before route proof and design work"
+    requirements:
+    - "creation-contract.md read (lifecycle, envelope, authority, proof vocabulary)"
+    - "route proof recorded (command, workflowMode, foundations bundle when building UI)"
+    action_if_failed: "STOP and return to the contract-load step"
+  critical_steps:
+    step_5_progressive_brief:
+      enforcement: "MUST classify every field as resolved, auto-resolvable, or confirmation-required"
+      verification: "No confirmation-required field left unresolved before creative work"
+    step_9_run_creative_work:
+      enforcement: "MUST produce the brief-specific interface artifact before any handoff"
+      verification: "Deliverable visible_blocks are populated, not placeholders"
+    step_11_proof:
+      enforcement: "MUST qualify evidence with typed levels and an explicit ceiling"
+      verification: "Evidence ledger present with an honest proof bar"
+
+gate_logic:
+  hard:
+    H0_confirmation:
+      description: "The consolidated confirmation reply must be received before design work"
+      fail_action: "WAIT for the bundled reply"
+    H1_route_proof:
+      description: "The canonical /interface:design route + workflowMode=interface must be proven"
+      fail_action: "STOP and record the route proof"
+    H2_creation_contract:
+      description: "The shared creation contract must be loaded before design work"
+      fail_action: "STOP and load creation-contract.md"
+    H3_acceptance_before_handoff:
+      description: "Implementation handoff only after accepted design output"
+      fail_action: "Hold handoff until acceptance"
+  soft:
+    S1_bounded_assumptions:
+      description: "Auto-resolvable fields may proceed with recorded bounded assumptions"
+      fail_action: "Proceed with rationale"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures - pause and report to the operator"
+    half_open: "Single retry before resuming"
+  on_open:
+    action: "Report failures with a summary of the unresolved brief"
+    suggest: "Resolve the blocked field or defer to a sibling route"
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION (after the consolidated confirmation)
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "After the bundled reply, execute the workflow steps sequentially without further approval gates"
+  decision_making: "Use the confidence framework to self-assess at each step"
+  self_validation_approach:
+    continuous: "Self-validate at each step output"
+    confidence_threshold: "Stop only if confidence < 40%"
+    error_handling: "Apply error_recovery strategies automatically"
+  uncertainty_handling: "If a confirmation-required field is unresolved, fold it into the consolidated prompt"
+  progress_tracking: "Record each step output"
+  completion_criteria: "All steps validated, deliverable produced, status contract emitted"
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ─────────────────────────────────────────────────────────────────
+quality_standards:
+  proof_first: true
+  anti_default_critique: required
+  evidence_typing: "Typed evidence levels with an explicit ceiling; no-fit is a valid outcome"
+  contract_references:
+    creation_contract: ".opencode/skills/sk-design/shared/creation-contract.md"
+    context_loading_contract: ".opencode/skills/sk-design/shared/context-loading-contract.md"
+    handoff_contract: ".opencode/skills/sk-design/shared/sk-code-handoff.md"
 
 task_projections:
   bolder: "Apply within workflowMode=interface."
@@ -82,6 +233,48 @@ status_contract:
   missing_input: "STATUS=ASK MISSING=<input>"
   cannot_run: "STATUS=FAIL ERROR=<named-cause>"
   route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  missing_target:
+    action: "Fold target into the consolidated prompt and wait"
+  no_fit_grounding:
+    action: "Record 'no-fit' as a valid grounding outcome and proceed with the owned system"
+  contract_not_loaded:
+    action: "Return to the creation-contract load step before continuing"
+  acceptance_conflict:
+    action: "Request explicit amendment for conflicting accepted decisions"
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: step_12_prepare_handoff
+  message: "Interface direction workflow complete."
+  next_steps:
+  - action: "Run /interface:foundations to build the static visual system"
+  - action: "Run /interface:motion for behavior"
+  - action: "Run /interface:audit to QA the direction"
+  - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - "Render the consolidated prompt and wait for the bundled reply before design work"
+  - "Load creation-contract.md before design work"
+  - "Prove the canonical route before producing artifacts"
+  - "Ground one decision without turning references into a style menu"
+  - "Run anti-default critique with one named criterion"
+  - "Qualify evidence with typed levels and an explicit ceiling"
+  NEVER:
+  - "Turn task_projection verbs into standalone commands"
+  - "Skip the creation contract or route proof"
+  - "Prepare handoff before design output is accepted"
+  - "Proceed past step_0 before the consolidated reply is received"
 
 pipeline:
   stage: "direction - frames the interface decision before static systems, behavior, audit, or build"

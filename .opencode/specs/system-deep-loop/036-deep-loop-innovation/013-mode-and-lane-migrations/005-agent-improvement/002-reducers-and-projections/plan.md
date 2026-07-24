@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T20:45:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped AgentIR lineage, coverage, frontier, and status projection boundaries"
-    next_safe_action: "Resolve Agent Improvement event ordering and checkpoint semantics with the schema sibling"
+    last_updated_at: "2026-07-23T14:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the composed fold, projections, and replay verification"
+    next_safe_action: "Keep the dark reducer non-authoritative until its integration phase"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,25 +49,25 @@ shape with Agent Improvement extensions for component lineage, behavior coverage
 
 ### Definition of Ready
 
-- [ ] `001-typed-ledger-schema` publishes the Agent Improvement event envelope, identity fields, ordering inputs,
+- [x] `001-typed-ledger-schema` publishes the Agent Improvement event envelope, identity fields, ordering inputs,
   version policy, and upcaster boundary
-- [ ] The common deep-improvement evaluator, canary, promotion, receipt, and status contracts are addressable and
+- [x] The common deep-improvement evaluator, canary, promotion, receipt, and status contracts are addressable and
   their semantics are reused rather than copied
-- [ ] The projection field matrix names every AgentIR field, event source, stability rule, redaction rule, and consumer
-- [ ] Pure-fold constraints prohibit I/O, time, randomness, network access, mutable evaluator reads, and hidden writes
-- [ ] AgentIR component lineage, failure-gradient attribution, behavior-family coverage, and profile frontier semantics
+- [x] The projection field matrix names every AgentIR field, event source, stability rule, redaction rule, and consumer
+- [x] Pure-fold constraints prohibit I/O, time, randomness, network access, mutable evaluator reads, and hidden writes
+- [x] AgentIR component lineage, failure-gradient attribution, behavior-family coverage, and profile frontier semantics
   are explicit before implementation begins
-- [ ] Replay, checkpoint, mixed-version, malformed-event, duplicate, epoch-mismatch, and shadow-parity fixtures are
+- [x] Replay, checkpoint, mixed-version, malformed-event, duplicate, epoch-mismatch, and shadow-parity fixtures are
   identified
 
 ### Definition of Done
 
-- [ ] Complete and checkpointed replay produce byte-identical Agent Improvement projections and fingerprints
-- [ ] Agent Improvement consumes common evaluator, canary, promotion, veto, rollback, and receipt semantics without a
+- [x] Complete and checkpointed replay produce byte-identical Agent Improvement projections and fingerprints
+- [x] Agent Improvement consumes common evaluator, canary, promotion, veto, rollback, and receipt semantics without a
   variant implementation of those services
-- [ ] Raw trials, component lineage, coverage evidence, and common-service references remain available after reductions
+- [x] Raw trials, component lineage, coverage evidence, and common-service references remain available after reductions
   or evaluator-epoch changes
-- [ ] Strict validation, replay/property checks, failure injection, and the phase verifier pass without out-of-scope
+- [x] Strict validation, replay/property checks, failure injection, and the phase verifier pass without out-of-scope
   tracked changes
 <!-- /ANCHOR:quality-gates -->
 

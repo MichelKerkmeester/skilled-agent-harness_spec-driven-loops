@@ -41,12 +41,49 @@
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-sealed-artifact-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-artifact-material.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-sealed-artifacts.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-sealed-artifacts.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "deep-alignment-sealed-artifact-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-sealed-artifact-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-artifact-material.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-artifact-material.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-sealed-artifacts.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-sealed-artifacts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-sealed-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-sealed-artifacts.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +106,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -148,49 +197,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Deep Alignment",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:43.383Z",
-    "last_save_at": "2026-07-19T18:01:22.996Z",
+    "last_save_at": "2026-07-24T04:18:47.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40343a20a36dbb183c3163a1d3e5f8dbf8d8b046fc4441cb6c21595b6bffd525",
+    "source_fingerprint": "sha256:d3f958875d18e0162a033d7f9b62d96c95320b7e44486f1eb75b9c9aa9b2fc60",
     "source_doc_hashes": {
       "spec.md": "885719d602849439f3513177fda45d1d35f61aa0382b8b6172dd2d916058a95a",
       "plan.md": "f9f1f7791e8b25b7eb7085a9e42eae76e66d34b80c8f0b618ea0a7e2f18d654c",
       "tasks.md": "07f21d9bb861146c0a267dfec9bd5120a8e0401e69315a25cc47cb7f9f05cc5a",
-      "checklist.md": "c154d94b08dbe241db906b03ce2e6994d282eee41874a09f1bdffd91c8be3a88"
+      "checklist.md": "b8e0626f615b006ba0e4458ca93fd7010f8cb043360d1a8dcb7996f29b8f5a00",
+      "decision-record.md": "448ded1fd4bfb3c9bb8277a35159aba4be90c73a109f547c676eafecdc3739fa",
+      "implementation-summary.md": "9bc9f0c2a2e55c842634763522b184509f4167f0a9fb34faf3b96aace47d415f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -51,11 +51,11 @@ An operator surface under `styles/_db/operator.mjs` exposes the persistent-path 
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/styles/_db/__tests__/schema.test.mjs` | Automated test | Covers database schema behavior. |
-| `.opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs` | Automated test | Covers indexing and generation publication. |
-| `.opencode/skills/sk-design/styles/_db/__tests__/retrieval.test.mjs` | Automated test | Covers indexed retrieval and rank fusion. |
-| `.opencode/skills/sk-design/styles/_db/__tests__/adapter.test.mjs` | Automated test | Covers adapter modes and the legacy default. |
-| `.opencode/skills/sk-design/styles/_db/__tests__/operator.test.mjs` | Automated test | Covers the operator lifecycle and current-plus-rollback retention. |
+| `.opencode/skills/sk-design/styles/_db/tests/schema.test.mjs` | Automated test | Covers database schema behavior. |
+| `.opencode/skills/sk-design/styles/_db/tests/indexer.test.mjs` | Automated test | Covers indexing and generation publication. |
+| `.opencode/skills/sk-design/styles/_db/tests/retrieval.test.mjs` | Automated test | Covers indexed retrieval and rank fusion. |
+| `.opencode/skills/sk-design/styles/_db/tests/adapter.test.mjs` | Automated test | Covers adapter modes and the legacy default. |
+| `.opencode/skills/sk-design/styles/_db/tests/operator.test.mjs` | Automated test | Covers the operator lifecycle and current-plus-rollback retention. |
 
 ---
 

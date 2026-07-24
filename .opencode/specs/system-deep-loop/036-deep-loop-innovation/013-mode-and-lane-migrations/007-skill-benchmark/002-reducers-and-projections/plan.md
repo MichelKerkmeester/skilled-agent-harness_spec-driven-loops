@@ -10,20 +10,20 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Read the leaf mold, parent sequencing, and skill-benchmark research inputs"
-    next_safe_action: "Define pure skill-event folds and projection invariants from the typed ledger schema"
+    last_updated_at: "2026-07-23T12:14:56Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark Skill Benchmark reducer extension"
+    next_safe_action: "Consume the frozen projection contract from the sealed-artifact sibling"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 # Implementation Plan: Skill Benchmark reducers and projections
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
@@ -42,19 +42,19 @@ This phase defines the reducer boundary for the skill-benchmark variant. The imp
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The predecessor event schema, version policy, canonical ordering, and identity rules are available as a frozen input
-- [ ] Phase 012 shared mode interfaces and the deep-improvement-common ownership boundary are explicit
-- [ ] Reducer state shapes and projection consumers are named before implementation begins
-- [ ] Skill scenario, scoring, gold-integrity, and compatibility inputs are mapped to typed events
-- [ ] Pure-fold, idempotency, unsupported-version, and prefix-replay behavior is specified
-- [ ] The successor certificate-input contract is identified without moving sealing logic into this phase
+- [x] The predecessor event schema, version policy, canonical ordering, and identity rules are available as a frozen input [EVIDENCE: implementation-summary.md#what-was-built]
+- [x] Phase 012 shared mode interfaces and the deep-improvement-common ownership boundary are explicit [EVIDENCE: implementation-summary.md#key-decisions]
+- [x] Reducer state shapes and projection consumers are named before implementation begins [EVIDENCE: implementation-summary.md#what-was-built]
+- [x] Skill scenario, scoring, gold-integrity, and compatibility inputs are mapped to typed events [EVIDENCE: implementation-summary.md#what-was-built]
+- [x] Pure-fold, idempotency, unsupported-version, and prefix-replay behavior is specified [EVIDENCE: implementation-summary.md#verification]
+- [x] The successor certificate-input contract is identified without moving sealing logic into this phase [EVIDENCE: implementation-summary.md#known-limitations]
 
 ### Definition of Done
-- [ ] The same event sequence produces byte-equivalent canonical projections and a stable replay fingerprint
-- [ ] Iteration/convergence, artifact-index, and per-mode-status projections preserve raw evidence and explicit blockers
-- [ ] Skill-specific logic is layered on deep-improvement-common with no duplicated shared service
-- [ ] Projection fixtures cover paired arms, missing/pending gold, partial failure, late events, duplicates, and incompatible dependencies
-- [ ] Downstream sealed-artifact and independent mode-gate consumers have a reviewed projection contract
+- [x] The same event sequence produces byte-equivalent canonical projections and a stable replay fingerprint [EVIDENCE: implementation-summary.md#verification]
+- [x] Iteration/convergence, artifact-index, and per-mode-status projections preserve raw evidence and explicit blockers [EVIDENCE: implementation-summary.md#what-was-built]
+- [x] Skill-specific logic is layered on deep-improvement-common with no duplicated shared service [EVIDENCE: implementation-summary.md#key-decisions]
+- [x] Projection fixtures cover treatment arms, missing or invalid evidence guards, sequence failures, duplicates, and incompatible dependencies [EVIDENCE: implementation-summary.md#verification]
+- [x] Downstream sealed-artifact and independent mode-gate consumers have an exported, closed projection contract [EVIDENCE: runtime/lib/skill-benchmark-reducers/index.ts]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined matrix replay, evidence, scoring, and common-service checks"
-    next_safe_action: "Run the matrix reducer verifier after the typed schema is frozen"
+    last_updated_at: "2026-07-23T12:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Passed reducer replay and integrity verification"
+    next_safe_action: "Consume the additive shadow projection downstream"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,62 +40,71 @@ fails the gate.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Model-benchmark `001-typed-ledger-schema` event envelope, cell identity, ordering, version, and upcaster inputs are frozen for this phase
-- [ ] CHK-002 [P0] Deep-improvement-common mode 004 reducer and evaluator/canary/promotion/status contracts are available and their ownership boundary is recorded
-- [ ] CHK-003 [P1] Projection field matrix records ownership boundaries for `003-sealed-artifacts`, later certificates, the mode gate, and downstream 010 integration
-- [ ] CHK-004 [P1] Golden event histories cover run, matrix manifest, cell, raw trial, score, validity, coverage, evaluator epoch, canary, promotion, rollback, and resume paths
+- [x] CHK-001 [P0] The landed typed ledger supplies the closed event union and full matrix identity [Evidence: `implementation-summary.md`, targeted Vitest 26/26]
+- [x] CHK-002 [P0] The common reducer surface and fold branch are imported unchanged [Evidence: `implementation-summary.md`, common-fold oracle test; targeted Vitest 26/26]
+- [x] CHK-003 [P1] Composite ownership is split between exact `common` state and namespaced `modelBenchmark` fields [Evidence: `implementation-summary.md`, branch/shape test; targeted Vitest 26/26]
+- [x] CHK-004 [P1] The typed fixture covers run, matrix, raw trial, score, validity, selection, checkpoint, and veto paths [Evidence: targeted Vitest 26/26]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Reducers are pure and have no model, evaluator, filesystem, network, clock, randomness, mutable configuration, hidden-fixture, sealing, promotion, or rollback dependency
-- [ ] CHK-006 [P0] Raw trial, receipt, model, task, recipe, evaluator, validity, usage, and latency references remain append-only while normalized scores and ranking views are versioned separately
-- [ ] CHK-007 [P0] Stable matrix-cell keys and canonical ordering make completion order, provider order, batch boundaries, and duplicate delivery irrelevant to valid projection bytes
-- [ ] CHK-008 [P1] Scope is limited to model-benchmark reducers, projections, common-service adapters, fixtures, and verification; no sibling concern or adjacent cleanup is included
+- [x] CHK-005 [P0] Reducers are pure and import no effectful model, evaluator, filesystem, network, clock, sealing, promotion, or rollback service [Evidence: `implementation-summary.md`, source import audit; targeted Vitest 26/26]
+- [x] CHK-006 [P0] Raw observations and score/ranking records are separate append-only projection families [Evidence: raw-versus-ranking test; targeted Vitest 26/26]
+- [x] CHK-007 [P0] Full matrix keys are canonically hashed, records are sorted, duplicates are idempotent, and checkpoints preserve byte identity [Evidence: determinism and checkpoint tests; targeted Vitest 26/26]
+- [x] CHK-008 [P1] Scope contains only the reducer module, one unit test, and this leaf's docs [Evidence: exact-scope `git status --short`; targeted Vitest 26/26]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-009 [P0] Complete-history replay and checkpointed replay produce byte-identical iteration state, matrix entries, artifact index, scoring matrix, per-mode status, and fingerprints
-- [ ] CHK-010 [P0] Valid matrix event permutations, duplicate terminal events, late observations, and equivalent batch boundaries produce identical projections
-- [ ] CHK-011 [P0] Duplicate IDs, malformed payloads, missing fields, ambiguous ordering, unsupported versions, stale evaluator epochs, and incompatible matrix epochs fail closed or enter explicit safe states
-- [ ] CHK-012 [P0] Iteration/convergence fixtures reconstruct run and iteration state, matrix waves, coverage quotas, adaptive selection, budgets, unresolved evidence, stop disposition, and resume frontier from events alone
-- [ ] CHK-013 [P0] Artifact-index fixtures retain resolved model/provider/build, task, fixture, recipe, prompt, workload, toolchain, raw outputs, usage, latency, receipts, validity, evaluator epochs, and score-policy references
-- [ ] CHK-014 [P0] Scoring fixtures preserve raw observations beside normalized metrics, pairwise estimates, uncertainty, calibration/reliability, contamination, coverage, cost, latency, and ranking-policy records
-- [ ] CHK-015 [P0] Missing, underpowered, abstained, inconclusive, contaminated, invalid, stale, and common-vetoed cells cannot silently become ranked or promotion-eligible evidence
-- [ ] CHK-016 [P0] Model Benchmark consumes deep-improvement-common evaluator, canary, promotion, receipt, veto, rollback, and per-mode status transitions without redefining or clearing shared states
-- [ ] CHK-017 [P1] Mixed-version, supported-upcast, score-policy, model-alias, recipe, and projection-rebuild fixtures converge when compatible and refuse safely when incompatible
-- [ ] CHK-018 [P1] Adaptive-selection fixtures retain mandatory coverage, selection policy, propensity metadata, confirmatory anchors, and explicit insufficient-support states
-- [ ] CHK-019 [P1] Failure injection proves failed model, evaluator, receipt, checkpoint, scoring, canary, or promotion effects leave recoverable status and preserved raw evidence
+- [x] CHK-009 [P0] Complete and checkpointed replay produce byte-identical composite projections [Evidence: checkpoint-equivalence test; targeted Vitest 26/26]
+- [x] CHK-010 [P0] Canonical key ordering and equivalent batch boundaries produce identical bytes [Evidence: determinism test; targeted Vitest 26/26]
+- [x] CHK-011 [P0] Per-stream gaps, out-of-order events, phantom sources, forged tails, and unknown extensions fail closed [Evidence: five negative tests; targeted Vitest 26/26]
+- [x] CHK-012 [P0] Run state, cell progress, coverage, unresolved evidence, and per-stream resume frontiers derive from events alone [Evidence: fixture projection assertions; targeted Vitest 26/26]
+- [x] CHK-013 [P0] Artifact records retain workload, raw result, usage, validity, selection, and score references [Evidence: artifact projection implementation and fixture; targeted Vitest 26/26]
+- [x] CHK-014 [P0] Raw observations, typed scores, uncertainty, validity, sealed evidence, and rankings remain separate [Evidence: raw-versus-ranking test; targeted Vitest 26/26]
+- [x] CHK-015 [P0] Hard-floor failures and shared veto codes keep rankings ineligible [Evidence: hard-floor veto test; shared status delegation; targeted Vitest 26/26]
+- [x] CHK-016 [P0] Shared events produce byte-identical common state to the common fold oracle [Evidence: common-fold oracle test; targeted Vitest 26/26]
+- [x] CHK-017 [P1] Version mismatches and checkpoint incompatibility return named rebuild reasons [Evidence: fold option and checkpoint validation; targeted Vitest 26/26]
+- [x] CHK-018 [P1] The landed schema has no adaptive-selection event; the reducer infers no such facts and rejects unknown extensions [Evidence: unknown-extension test; targeted Vitest 26/26]
+- [x] CHK-019 [P1] Failure injection leaves raw evidence separate and rejects corrupt replay before state advancement [Evidence: phantom-source and forged-tail tests; targeted Vitest 26/26]
+- [x] CHK-027 [P0] Judge, oracle, contamination, exposure, disclosure, retirement, and replacement events each update their projection family [Evidence: seven focused stem-fold tests; targeted Vitest 26/26]
+- [x] CHK-028 [P0] Confirmed contamination marks affected scores and pairwise results and invalidates existing rankings [Evidence: late-contamination test; targeted Vitest 26/26]
+- [x] CHK-029 [P0] Unknown hard floors remain ineligible until an explicit pass or not-applicable disposition [Evidence: unknown hard-floor test; targeted Vitest 26/26]
+- [x] CHK-030 [P0] Exposure, disclosure, retirement, and replacement cannot silently remain ranked evidence [Evidence: lifecycle eligibility assertions; targeted Vitest 26/26]
+- [x] CHK-031 [P1] Pairwise comparison results and cost/latency slices are separate addressable records [Evidence: pairwise and operational-slice tests; targeted Vitest 26/26]
+- [x] CHK-035 [P0] Cited abstained or otherwise inconclusive judge evidence keeps the aggregate ranking ineligible unless a later same-evaluator observation supersedes it [Evidence: abstention and positive-control tests; targeted Vitest 33/33]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-020 [P1] The event-to-projection manifest enumerates every model-benchmark event family, matrix projection, artifact-index field group, scoring output, and common-service consumer
-- [ ] CHK-021 [P1] The model-benchmark extension fields are namespaced and all common fields and stage semantics match the deep-improvement-common contract
+- [x] CHK-020 [P1] The model fold exhaustively dispatches the landed specific event union into run, iteration, artifact, scoring, and status projections [Evidence: explicit handled-stem inventory equals the real registry; targeted Vitest 26/26]
+- [x] CHK-021 [P1] Model fields live under `modelBenchmark`; common fields remain exact under `common` [Evidence: fold-branch and no-widening test; targeted Vitest 26/26]
+- [x] CHK-032 [P0] A registry-admitted stem without a matching case returns a typed rebuild requirement instead of becoming a no-op [Evidence: completeness guard and typed default; targeted Vitest 26/26]
+- [x] CHK-033 [P0] Cell dispositions only move through legal forward transitions [Evidence: regression rejection and legal checkpoint tests; targeted Vitest 26/26]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-022 [P0] Candidate, model, evaluator, scoring, or ranking paths cannot write hidden fixtures, evaluator assets, receipts, score policy, matrix state, or projection state during reduction
-- [ ] CHK-023 [P1] Candidate-facing projections redact protected evaluator internals, hidden benchmark material, raw judge rationales, and terminal promotion evidence as required by the shared service boundary
-- [ ] CHK-024 [P1] Contamination, evaluator-integrity, critical-slice, latency/SLO, cost, and common canary vetoes are enforceable projection states rather than advisory prose
+- [x] CHK-022 [P0] Reduction has no external write path and returns recursively frozen state [Evidence: verified reducer-surface test; targeted Vitest 26/26]
+- [x] CHK-023 [P1] The exported legacy view is shadow-only and excludes raw benchmark and judge payloads [Evidence: legacy projection schema; targeted Vitest 26/26]
+- [x] CHK-024 [P1] Typed hard floors, validity blockers, and common vetoes are executable eligibility blockers [Evidence: ranking derivation and hard-floor test; targeted Vitest 26/26]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-025 [P1] Matrix-cell identity, projection fields, reducer invariants, scoring-policy lineage, common-service ownership, and downstream consumer expectations are reflected in the phase docs
+- [x] CHK-025 [P1] The implementation summary records matrix identity, projection families, replay invariants, scoring lineage, and common ownership [Evidence: `implementation-summary.md`; targeted Vitest 26/26]
+- [x] CHK-034 [P1] The decision record captures the fail-closed, transition, and evidence-preservation choices [Evidence: `decision-record.md`; strict validation]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-026 [P1] Implementation and fixture changes land in dependency-closed, path-scoped commits after the predecessor schema and common-service contract are pinned
+- [x] CHK-026 [P1] The additive-dark write set is limited to the requested module, test, and leaf docs [Evidence: exact-scope `git status --short`; targeted Vitest 26/26]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

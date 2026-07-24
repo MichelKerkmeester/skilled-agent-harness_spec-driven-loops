@@ -19,7 +19,10 @@
       "deep improvement sealed artifacts tasks",
       "deep improvement common sealing tasks",
       "deep improvement sealed artifacts checklist",
-      "deep improvement tamper evident verification"
+      "deep improvement tamper evident verification",
+      "embedded artifact reference kind",
+      "evaluator capsule epoch integrity",
+      "mixed epoch promotion rejection"
     ],
     "key_topics": [
       "deep",
@@ -36,14 +39,23 @@
       "capsule"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "dist/spec-folder/generate-description.js",
       "spec.md",
       "plan.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "generate-description.js",
+        "kind": "code",
+        "path": "dist/spec-folder/generate-description.js",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -54,6 +66,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -169,31 +193,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the sealed reference-artifact contract for Deep Improvement Common Services",
     "created_at": "2026-07-16T03:43:36.310Z",
-    "last_save_at": "2026-07-19T18:09:51.443Z",
+    "last_save_at": "2026-07-24T03:44:12.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63eda529521133e917c7df119c82e95b699075a0206f7872492bf03bb20c3a8b",
+    "source_fingerprint": "sha256:081c9d0d2a91c3028238d85118f265a758a4d68c883c49d28275ab509c90de75",
     "source_doc_hashes": {
-      "spec.md": "804df21c9bf5a3cb621e170366ec50f5955ba2467779ac79b019fc2df474d0fe",
-      "plan.md": "db32a33ded69bc4db27d33e9bd5b312abf78121df045df738a27e227827e0602",
-      "tasks.md": "f1befc4513c53a62112fc5c8c01548da7f2d84d308e527c9c6ac93d334e583a6",
-      "checklist.md": "9ae7dae6988e838bba503d4924e85d249888a144ac8176638254329db64ad4a5"
+      "spec.md": "5970efdaa23a9fe75d56fd6233d99df20ab26099a2a583ae1dbf81a1543831af",
+      "plan.md": "206161e03905dbcb5e53a5c0d174a8ce45bbce65bba7b34a36329c23cd4d90dd",
+      "tasks.md": "6a86b6dbf9574a40b68c58f9633ec495ab32eb0fb37bf0a1dbe37e4a9d221b70",
+      "checklist.md": "27e0713a1645b43dc2476e3ab90b6f5273563efa8ae3ecc3f5dbeee53a1d244b",
+      "decision-record.md": "df5415d6e61b7cfbcdb07dc46410faebbd69d3422d37cda78d0111d5bc38e242",
+      "implementation-summary.md": "f57bf87587f0fb068615d2b9bdf8ca81ea1f9b803aa6bb14352adf8bdfacb4cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

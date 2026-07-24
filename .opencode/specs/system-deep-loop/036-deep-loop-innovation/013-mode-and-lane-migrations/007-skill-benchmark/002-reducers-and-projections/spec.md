@@ -11,19 +11,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Read the leaf mold, parent sequencing, and skill-benchmark research inputs"
-    next_safe_action: "Define pure skill-event folds and projection invariants from the typed ledger schema"
+    last_updated_at: "2026-07-23T12:14:56Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark Skill Benchmark reducer extension"
+    next_safe_action: "Consume the frozen projection contract from the sealed-artifact sibling"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 # Feature Specification: Skill Benchmark reducers and projections
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop, skill-benchmark migration lane |
 | **Origin** | Phase 013 mode-and-lane migration plan; reducer/projection child after the typed-ledger-schema child |
@@ -111,9 +111,11 @@ This phase plans deterministic reducers that replay one event sequence into stab
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact event names and payload fields from `001-typed-ledger-schema` represent scenario-cell creation, exposure, invocation, milestone evidence, scoring, gold blocking, and run terminality?
-- Which reducer helpers are guaranteed by deep-improvement-common phase 004, and which skill-specific score normalization or attribution functions are permitted in this child?
-- Does the artifact index expose only references and digests, or also a denormalized certificate-input view for successor `003-sealed-artifacts`?
-- What is the canonical policy for a late event after a projection has entered a terminal or withheld state: append a correction event, reopen the projection, or retain a superseding status?
-- Which projection fields are required for the phase 013 independent mode gate, and which remain diagnostic-only until the shared mode gate integrates them?
+None. Resolved decisions:
+
+- The landed event union supplies the complete scenario, exposure, invocation, milestone, raw-score, gold, compatibility, negative-transfer, security, and terminal vocabulary.
+- Common events delegate through `DEEP_IMPROVEMENT_COMMON_FOLD_BRANCH.reducerSurface`; only `skill_benchmark.*` events write namespaced sibling projections.
+- The artifact index exposes immutable references and digests plus separate raw-measurement and typed normalized-ranking records. It creates no certificate body.
+- Withheld and expired certificate states are terminal for this reducer version. Issued state accepts only a typed expiry event.
+- Collection, scoring, compatibility, certificate, blocker, ranking, and stream-frontier fields are diagnostic until a later mode gate explicitly consumes them.
 <!-- /ANCHOR:questions -->

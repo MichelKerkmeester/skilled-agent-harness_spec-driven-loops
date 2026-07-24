@@ -73,7 +73,7 @@ Capture the one-line JSON refusal and command exit status. Do not capture the pr
 | File | Role |
 |---|---|
 | `.opencode/skills/sk-design/styles/_engine/hydrate.mjs` | Live generation and record binding. |
-| `.opencode/skills/sk-design/styles/_engine/__tests__/hydrate-guard.test.mjs` | Mismatch and stale-record regressions. |
+| `.opencode/skills/sk-design/styles/_engine/tests/hydrate-guard.test.mjs` | Mismatch and stale-record regressions. |
 
 ---
 

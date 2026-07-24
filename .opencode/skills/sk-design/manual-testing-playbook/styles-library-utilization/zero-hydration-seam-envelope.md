@@ -39,7 +39,7 @@ Validate the positive corpus-context plan and report its hydration count. Pass o
 ### Exact Command Sequence
 
 ```bash
-node --input-type=module -e "import { POSITIVE_FIXTURE } from './.opencode/skills/sk-design/shared/corpus-context/__tests__/fixtures.mjs'; import { validateCorpusContextPlan } from './.opencode/skills/sk-design/shared/corpus-context/validate-context-plan.mjs'; const result = validateCorpusContextPlan(POSITIVE_FIXTURE.plan); console.log(JSON.stringify({ hydratedStyleCount: POSITIVE_FIXTURE.plan.hydration.hydratedStyleCount, ...result })); if (!result.valid || POSITIVE_FIXTURE.plan.hydration.hydratedStyleCount !== 0) process.exit(1);"
+node --input-type=module -e "import { POSITIVE_FIXTURE } from './.opencode/skills/sk-design/shared/corpus-context/tests/fixtures.mjs'; import { validateCorpusContextPlan } from './.opencode/skills/sk-design/shared/corpus-context/validate-context-plan.mjs'; const result = validateCorpusContextPlan(POSITIVE_FIXTURE.plan); console.log(JSON.stringify({ hydratedStyleCount: POSITIVE_FIXTURE.plan.hydration.hydratedStyleCount, ...result })); if (!result.valid || POSITIVE_FIXTURE.plan.hydration.hydratedStyleCount !== 0) process.exit(1);"
 ```
 
 ### Evidence
@@ -73,7 +73,7 @@ Capture the JSON validation result and confirm no source body, raw style or mode
 | File | Role |
 |---|---|
 | `.opencode/skills/sk-design/shared/corpus-context/corpus-context-plan.mjs` | Defines the zero-hydration envelope. |
-| `.opencode/skills/sk-design/shared/corpus-context/__tests__/validate-context-plan.test.mjs` | Proves zero hydration and payload rejection. |
+| `.opencode/skills/sk-design/shared/corpus-context/tests/validate-context-plan.test.mjs` | Proves zero hydration and payload rejection. |
 
 ---
 

@@ -12,9 +12,11 @@ version: 1.0.0.0
 
 # Motion Character Handoff
 
+## 1. OVERVIEW
+
 `motionCharacter` communicates temporal intent from an upstream design decision to the Motion owner. It never creates a duration, easing, spring, or theme token. Motion still chooses exact behavior from the existing timing bands and easing rules in `design-motion/references/motion-strategy.md` after the restraint gate passes.
 
-## 1. SEMANTIC ENUM
+## 2. SEMANTIC ENUM
 
 ```ts
 type MotionCharacter = 'quiet' | 'snappy' | 'elastic' | 'static-first';
@@ -29,7 +31,7 @@ type MotionCharacter = 'quiet' | 'snappy' | 'elastic' | 'static-first';
 
 The existing `500-800ms` entrance band remains available only for one earned brand or entrance moment. No `motionCharacter` value selects it automatically.
 
-## 2. HANDOFF SHAPE
+## 3. HANDOFF SHAPE
 
 ```json
 {
@@ -47,7 +49,7 @@ The existing `500-800ms` entrance band remains available only for one earned bra
 
 `timingBand` and `easingBand` cite existing Motion guidance. They do not mint aliases or write to the token vocabulary. Exact implementation values remain locked only after the Motion owner selects them for the target interaction.
 
-## 3. INTERRUPTION AND REVERSAL PROOF
+## 4. INTERRUPTION AND REVERSAL PROOF
 
 | Proof | Required evidence |
 |---|---|
@@ -59,7 +61,7 @@ The existing `500-800ms` entrance band remains available only for one earned bra
 
 Proof must exercise at least normal completion, rapid reversal before completion, repeated retriggering, keyboard access, and the reduced-motion path.
 
-## 4. ASYNC AND ROLLBACK PROOF
+## 5. ASYNC AND ROLLBACK PROOF
 
 Async work is specified as a state machine before animation is chosen. Record `idle`, `pending`, `success`, `error`, `retrying`, `cancelled`, and `disabled` when applicable, together with the events, guards, impossible combinations, entry actions, exit actions, and visible UI for each state.
 
@@ -75,7 +77,7 @@ An optimistic transition is ready only when:
 
 Required scenarios are fast success, sustained pending, rejection with rollback, retry after rejection, cancellation, duplicate trigger, reversed intent while pending, and reduced motion. Each scenario records expected state, visible output, and the observed result.
 
-## 5. AUTHORITY BOUNDARY
+## 6. AUTHORITY BOUNDARY
 
 - Upstream design may select `motionCharacter` and explain why.
 - Motion owns the restraint gate, timing band, easing/material, interruption model, and reduced-motion equivalent.

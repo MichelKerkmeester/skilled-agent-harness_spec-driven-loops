@@ -1,12 +1,12 @@
 {
-  "alignmentTarget": "sk-design hallmark adoption conformance",
-  "sessionId": "2026-07-23T05:28:48.357Z",
+  "alignmentTarget": "sk-design hallmark conformance",
+  "sessionId": "2026-07-23T16:36:04.817Z",
   "parentSessionId": null,
   "lineageMode": "new",
   "generation": 1,
-  "createdAt": "2026-07-23T05:28:48.357Z",
-  "status": "initialized",
-  "maxIterations": 3,
+  "createdAt": "2026-07-23T16:36:04.817Z",
+  "status": "complete",
+  "maxIterations": 22,
   "convergence": {
     "coverageThreshold": 1,
     "stabilityWindow": 2,
@@ -15,49 +15,54 @@
   },
   "executionMode": "auto",
   "executor": {
-    "kind": "cli-opencode",
-    "model": "zai-coding-plan/glm-5.2",
-    "reasoningEffort": "max",
-    "serviceTier": null,
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
     "sandboxMode": null,
     "timeoutSeconds": 900
   },
   "mode": "alignment",
   "lanes": [
     {
-      "authority": "sk-design",
-      "artifactClass": "designs",
-      "adapter": "sk-design",
-      "scope": {
-        "type": "paths",
-        "values": [
-          ".opencode/skills/sk-design/design-interface/references/design-process/",
-          ".opencode/skills/sk-design/design-audit/",
-          ".opencode/skills/sk-design/design-foundations/references/",
-          ".opencode/skills/sk-design/shared/evidence-envelopes/",
-          ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/",
-          ".opencode/skills/sk-design/shared/authored-brand/",
-          ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
-          ".opencode/skills/sk-design/design-md-generator/references/design-md-format.md",
-          ".opencode/skills/sk-design/styles/lib/database/",
-          ".opencode/skills/sk-design/SKILL.md"
-        ]
-      }
-    },
-    {
       "authority": "sk-doc",
       "artifactClass": "docs",
-      "adapter": "sk-doc",
       "scope": {
         "type": "paths",
         "values": [
-          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/"
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md",
+          ".opencode/skills/sk-design/shared/evidence-envelopes/",
+          ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/",
+          ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
+          ".opencode/skills/sk-design/design-audit/references/",
+          ".opencode/skills/sk-design/design-interface/references/design-process/"
         ]
-      }
+      },
+      "adapter": "sk-doc"
+    },
+    {
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design/design-md-generator/backend/scripts/",
+          ".opencode/skills/sk-design/styles/lib/database/",
+          ".opencode/skills/sk-design/shared/authored-brand/",
+          ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
+        ]
+      },
+      "adapter": "sk-code"
     }
   ],
   "batchSize": 5,
-  "laneConfigPath": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/40bb6fb5-1cfe-40a7-8015-7ee7675ff48c/scratchpad/hallmark-align-lanes.json",
   "fileProtection": {
     "deep-alignment-config.json": "immutable",
     "deep-alignment-corpus.json": "auto-generated",
@@ -87,5 +92,6 @@
   },
   "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
   "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
-  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs"
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+  "laneConfigPath": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/7b6b26f0-950f-454e-85cd-a52a298ec1bc/scratchpad/hallmark-align-lanes-v3-depolluted.json"
 }

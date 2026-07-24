@@ -23,7 +23,7 @@ _memory:
 # Implementation Plan: Deep Improvement Common Services - Sealed Reference Artifacts
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY

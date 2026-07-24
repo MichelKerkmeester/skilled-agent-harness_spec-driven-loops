@@ -15,5 +15,5 @@ the selected reference.
 Run from the repository root:
 
 ```bash
-node --test .opencode/skills/sk-design/design-motion/corpus/__tests__/*.test.mjs
+node --test .opencode/skills/sk-design/design-motion/corpus/tests/*.test.mjs
 ```

@@ -11,15 +11,22 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Bounded reducers scope to shared evaluator, canary, promotion, and status projections"
-    next_safe_action: "Freeze reducer inputs and projection invariants against 001-typed-ledger-schema"
+    last_updated_at: "2026-07-23T13:10:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the additive-dark common reducer surface"
+    next_safe_action: "Downstream variants wrap the exported common fold branch"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-reducers.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Common events fold into one closed state with three projection families"
+      - "Downstream variants wrap the common fold branch under a namespaced composite"
+      - "Raw observations remain separate from normalized score projections"
+      - "Hard vetoes cannot be cleared by aggregate scoring or authorization"
+      - "Checkpoint integrity binds projection identity to the source tail"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +45,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Child 002 of the deep-improvement common-services migration under phase 013 |
@@ -53,7 +60,7 @@ The current research inputs require more than a terminal score. Raw trial eviden
 
 ### Purpose
 
-Define the pure reducers and projections for Deep Improvement Common Services. A canonical event sequence from `001-typed-ledger-schema` must fold into an identical, versioned projection containing iteration/convergence state, candidate and artifact indexes, evaluator/canary/promotion status, and per-mode status. The shared evaluator, canary, and promotion services are owned here as one source for `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`; those variants consume the common contracts rather than redefining them. This is planning only. The per-mode 010 migrations land after the shared contracts and write-set conflict graph are frozen.
+Define the pure reducers and projections for Deep Improvement Common Services. A canonical event sequence from `001-typed-ledger-schema` folds into an identical, versioned projection containing iteration/convergence state, candidate and artifact indexes, evaluator/canary/promotion status, and per-mode status. The shared evaluator, canary, and promotion services are owned here as one source for `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`; those variants consume the common contracts rather than redefining them. The implementation is additive-dark, and the per-mode 010 migrations remain downstream.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -119,10 +126,10 @@ Define the pure reducers and projections for Deep Improvement Common Services. A
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Deferred to execution against the frozen predecessor contract:
-- Which event fields are canonical reducer inputs versus opaque receipt payloads, and which upcasters are permitted before the fold?
-- Is projection state materialized as one composite snapshot or independently checkpointed projection families with a shared event frontier?
-- What exact ordering and duplicate policy applies when a receipt, canary result, or rollback event is observed more than once or arrives after a later event?
-- Which evaluator and canary facts are safe to expose to candidate generators, and which remain terminal-only or redacted in the projection API?
-- Which status fields are common across all four workstreams, and which profile-specific or variant-specific fields remain outside the common projection?
+Resolved during implementation:
+- The reducer accepts only current, registry-validated common events; compatibility upcasts remain outside the fold.
+- One composite snapshot exposes independently owned iteration/convergence, artifact-index, and mode-status families at one event frontier.
+- Exact duplicates are idempotent, while gaps, distinct sequence reuse, and regressions fail closed.
+- Candidate-facing output is a separate closed redacted view without evaluator, fixture, observation, evidence, digest, receipt, or locator fields.
+- The common status shape is fixed for common, agent, model, and skill workstreams; variant metadata remains in a sibling-owned namespaced branch.
 <!-- /ANCHOR:questions -->

@@ -43,7 +43,7 @@ import {
 } from '../return-reconciliation.mjs';
 import {
   POSITIVE_FIXTURE as SHARED_POSITIVE_FIXTURE,
-} from '../../shared/corpus-context/__tests__/fixtures.mjs';
+} from '../../shared/corpus-context/tests/fixtures.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TEST HELPERS

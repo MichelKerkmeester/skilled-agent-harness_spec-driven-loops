@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Outlined the three Deep Review projection families and replay gates"
-    next_safe_action: "Draft the event-to-projection mapping against the frozen contracts"
+    last_updated_at: "2026-07-23T14:40:48Z"
+    last_updated_by: "codex"
+    recent_action: "Verified stable candidate-owned finding and evidence identities"
+    next_safe_action: "Consume the closed projection surface downstream"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,19 +42,19 @@ The phase will specify one deterministic fold over the typed Deep Review event s
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs.
-- [ ] The phase-012 shared review-loop contract and the Deep Alignment reuse boundary are identified.
-- [ ] The 013 write-set conflict graph is available for projection ownership and persistence boundaries.
-- [ ] The legacy Deep Review state, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
-- [ ] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects.
-- [ ] The boundary with `003-sealed-artifacts` is explicit: this phase indexes references and does not create sealed artifacts.
+- [x] The `001-typed-ledger-schema` event contract and version policy are available as read-only inputs. [Evidence: the reducer imports and validates the landed Deep Review event registry and envelopes.]
+- [x] The phase-012 shared review-loop contract and the Deep Alignment reuse boundary are identified. [Evidence: the module exports a mode-neutral shared review-loop configuration and backbone reducer.]
+- [x] The 013 write-set conflict graph is available for projection ownership and persistence boundaries. [Evidence: the closed field-ownership map covers every persisted projection field.]
+- [x] The legacy Deep Review state, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison. [Evidence: the unit suite freezes the complete canonical legacy projection as an inline snapshot.]
+- [x] The reducer input, initial state, output state, error result, and projection fingerprint are specified without side effects. [Evidence: the projection types and reducer exports define the complete pure-fold surface.]
+- [x] The boundary with `003-sealed-artifacts` is explicit: this phase indexes references and does not create sealed artifacts. [Evidence: artifact records are immutable references only; no sealing or certificate surface was added.]
 
 ### Definition of Done
-- [ ] A typed event-to-projection matrix covers every event consumed by Deep Review.
-- [ ] Iteration/convergence, artifact index, and per-mode status reducers have deterministic invariants and fail-closed rules.
-- [ ] P0/P1/P2 is derived from factored finding evidence and cannot override hard vetoes.
-- [ ] Replay, duplicate, late-event, schema-mismatch, and projection-drift fixtures are defined and pass in shadow mode.
-- [ ] The shared review-loop contract is reused by Deep Review and Deep Alignment without a mode-specific fork.
+- [x] A typed event-to-projection matrix covers every event consumed by Deep Review. [Evidence: `DEEP_REVIEW_EVENT_ROUTING` exhaustively satisfies the landed event-stem union.]
+- [x] Iteration/convergence, artifact index, and per-mode status reducers have deterministic invariants and fail-closed rules. [Evidence: all three closed projection families are folded by the real reducer and exercised by the unit suite.]
+- [x] P0/P1/P2 is derived from factored finding evidence and cannot override hard vetoes. [Evidence: adversarial tests prove perfect weighted signals cannot clear either an accepted security veto or an unadjudicated security candidate; only a typed terminal resolution unblocks it.]
+- [x] Replay, duplicate, late-event, schema-mismatch, projection-drift, verified-surface, reorder, per-stream cursor, finding-resolution ownership, identity collision/rename, transition from-state, and terminal blocker-freshness fixtures are defined and pass in shadow mode. [Evidence: the targeted 86-test Vitest suite passes through the real fold and verified-event exports, including cross-stream entity-lineage controls.]
+- [x] The shared review-loop contract is structurally reusable by Deep Review and Deep Alignment without a mode-specific fork. [Evidence: `reduceSharedReviewLoopBackbone` accepts mode-neutral input and configuration while mappings remain at the adapter edge; end-to-end cross-mode verification waits for the Deep Alignment reducer.]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

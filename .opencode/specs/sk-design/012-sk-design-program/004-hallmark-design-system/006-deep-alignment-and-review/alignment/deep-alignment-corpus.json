@@ -1,36 +1,26 @@
 {
   "lanes": [
     {
-      "laneId": "sk-design::designs::.opencode/skills/sk-design/design-interface/references/design-process/, .opencode/skills/sk-design/design-audit/, .opencode/skills/sk-design/design-foundations/references/, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-md-generator/references/design-md-format.md, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/SKILL.md",
-      "authority": "sk-design",
-      "artifactClass": "designs",
-      "adapter": "sk-design",
-      "scope": {
-        "type": "paths",
-        "values": [
-          ".opencode/skills/sk-design/design-interface/references/design-process/",
-          ".opencode/skills/sk-design/design-audit/",
-          ".opencode/skills/sk-design/design-foundations/references/",
-          ".opencode/skills/sk-design/shared/evidence-envelopes/",
-          ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/",
-          ".opencode/skills/sk-design/shared/authored-brand/",
-          ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
-          ".opencode/skills/sk-design/design-md-generator/references/design-md-format.md",
-          ".opencode/skills/sk-design/styles/lib/database/",
-          ".opencode/skills/sk-design/SKILL.md"
-        ]
-      },
-      "artifacts": []
-    },
-    {
-      "laneId": "sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/",
+      "laneId": "sk-doc::docs::.opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md, .opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md, .opencode/skills/sk-design/shared/evidence-envelopes/, .opencode/skills/sk-design/shared/references/structural-fingerprint-cards/, .opencode/skills/sk-design/shared/references/brand-first-lane.md, .opencode/skills/sk-design/design-audit/references/, .opencode/skills/sk-design/design-interface/references/design-process/",
       "authority": "sk-doc",
       "artifactClass": "docs",
       "adapter": "sk-doc",
       "scope": {
         "type": "paths",
         "values": [
-          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/"
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/001-surgical-fixes/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/002-evidence-envelopes/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets/",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md",
+          ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md",
+          ".opencode/skills/sk-design/shared/evidence-envelopes/",
+          ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/",
+          ".opencode/skills/sk-design/shared/references/brand-first-lane.md",
+          ".opencode/skills/sk-design/design-audit/references/",
+          ".opencode/skills/sk-design/design-interface/references/design-process/"
         ]
       },
       "artifacts": [
@@ -111,6 +101,242 @@
         },
         {
           "path": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/spec.md"
+        },
+        {
+          "path": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/handover.md"
+        },
+        {
+          "path": ".opencode/specs/sk-design/012-sk-design-program/004-hallmark-design-system/goal.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/evidence-envelopes/motion-character-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/evidence-envelopes/owned-asset-manifest.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-action-punctuation.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-deliberate-seams.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-heading-rail.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-image-counterweight.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-layered-body.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-reciprocal-frame.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/card-staged-reveal.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/index.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/structural-fingerprint-cards/schema.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/references/brand-first-lane.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/accessibility-performance.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/ai-fingerprint-tells.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/anti-patterns-production.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/audit-contract.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/corpus-map.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/critique-hardening.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/evidence-capture.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/hardening-edge-cases.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/smart-router-pseudocode.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-audit/references/transform-remediation.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/copy-and-mock-data.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/redesign-intake.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/resource-loading-notes.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/transform-application.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md"
+        }
+      ]
+    },
+    {
+      "laneId": "sk-code::code::.opencode/skills/sk-design/design-md-generator/backend/scripts/, .opencode/skills/sk-design/styles/lib/database/, .opencode/skills/sk-design/shared/authored-brand/, .opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs",
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "adapter": "sk-code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-design/design-md-generator/backend/scripts/",
+          ".opencode/skills/sk-design/styles/lib/database/",
+          ".opencode/skills/sk-design/shared/authored-brand/",
+          ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/cli.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/cluster.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/corpus-baseline-v3.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-tree.d.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/dark-mode-detect.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/design-boundary-detect.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/framework-detect.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/icon-detect.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/motion-extract.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/study-exemplars.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/types.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/typography-role-v3.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/canonical.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/indexer.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/operator.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/schema.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/stage-telemetry.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/styles/lib/database/vectors.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs"
+        },
+        {
+          "path": ".opencode/skills/sk-design/shared/scripts/brand-first-boundary.test.mjs"
         }
       ]
     }
