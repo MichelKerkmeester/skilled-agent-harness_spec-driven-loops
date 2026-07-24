@@ -1,0 +1,1 @@
+../../.opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/compact-inject.js

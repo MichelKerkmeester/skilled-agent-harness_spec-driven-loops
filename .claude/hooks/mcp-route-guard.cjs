@@ -1,0 +1,1 @@
+../../.opencode/skills/mcp-code-mode/runtime/hooks/claude/mcp-route-guard.cjs

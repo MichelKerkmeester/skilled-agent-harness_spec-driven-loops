@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/016-cursor-mcp-wiring-and-route-guard-fix"
-    last_updated_at: "2026-07-24T18:05:09Z"
+    last_updated_at: "2026-07-24T18:33:03Z"
     last_updated_by: "claude-code"
     recent_action: "mcp.json symlinked; route-guard shape fixed and wired"
     next_safe_action: "Run validate.sh --strict, commit"
@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../015-hook-code-style-cross-runtime/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../017-codex-claude-hooks-discovery-mirrors/spec.md` |
 | **Handoff Criteria** | `.cursor/mcp.json` resolves and `cursor-agent mcp list` sees the repo's servers; real `beforeMCPExecution`/`afterMCPExecution` payloads are captured and recorded; `mcp-route-guard.mjs` forwards a shape the shared core actually matches, proven by a before/after comparison against the core; the guard is wired and live-fire confirmed in the real repo. |
 <!-- /ANCHOR:metadata -->
 

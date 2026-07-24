@@ -1,0 +1,1 @@
+../../.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs
