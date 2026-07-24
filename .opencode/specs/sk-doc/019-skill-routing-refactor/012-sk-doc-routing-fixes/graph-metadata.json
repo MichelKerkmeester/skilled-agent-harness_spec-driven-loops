@@ -39,7 +39,7 @@
       "path-root"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
     "created_at": "2026-07-16T08:08:19.396Z",
-    "last_save_at": "2026-07-24T06:22:00.658Z",
+    "last_save_at": "2026-07-24T09:19:36.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bfc337f9a465983fb929e21908b221ca8c9c99ae11686b49b57d04a535ef362",
+    "source_fingerprint": "sha256:0d59b017a9612484f758c3b2d06cbab6f277b0c092a151771ec4f3e4997cf746",
     "source_doc_hashes": {
-      "spec.md": "4013b510e8ed06b1b72d015298359beec880556521f332f893b199689f88859b",
+      "spec.md": "dc93cf119588f2debc3d008f403a3b6f531983f786d315250c3ca6a6c2196a16",
       "plan.md": "4a0c17a76d3cd8cf534820b53cdd1c9438d09fb55d04c49080400223329957dd",
       "tasks.md": "e26cf253aae9faf1fa9dfdaf2596cb2d5c5b9718a794febfd81e149b50200f10",
       "checklist.md": "396542eb4cf18a026c037c502980a06f526cd8be0926944eb3ea7a8a55d54b81",
-      "decision-record.md": "b878c3657d45d1d7d7ba6ad86f34272233885377f0e8f5f9e0e9fe5c46f8892e"
+      "decision-record.md": "b878c3657d45d1d7d7ba6ad86f34272233885377f0e8f5f9e0e9fe5c46f8892e",
+      "implementation-summary.md": "f1366ea6247f8a230e53bd66485141c35f1b0760fb5bec2c58fa0dae63da19a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

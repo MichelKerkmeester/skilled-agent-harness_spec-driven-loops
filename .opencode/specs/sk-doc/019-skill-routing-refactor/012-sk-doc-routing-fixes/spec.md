@@ -56,7 +56,7 @@ sk-doc scored 20/100 with roughly 19 percent exact-resource recall on the Tier-2
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-16 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
