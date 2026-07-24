@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin"
-    last_updated_at: "2026-07-23T20:03:10Z"
+    last_updated_at: "2026-07-24T14:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase complete - all contract facts verified live."
-    next_safe_action: "Consume these facts in 002-007"
+    recent_action: "Corrected permission-mode names to auto/accept-edits/smart/dangerous"
+    next_safe_action: "Consume corrected facts in 002-007, not the original names"
     blockers: []
     key_files: []
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions: ["Permission-mode names re-verified against live `devin --help`: auto/accept-edits/smart/dangerous, not normal/accept-edits/bypass/autonomous."]
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -59,7 +59,7 @@ Native project-level hook contract, 8 lifecycle events: `PreToolUse`, `PostToolU
 Three-tier JSON-with-comments config: user (`~/.config/devin/config.json`), project (`.devin/config.json`, committed), local override (`.devin/config.local.json`, gitignored). Precedence (highest to lowest): org/enterprise settings → session grants → project-local → project → user. Project-level configs support only `permissions`, `mcpServers`, and `read_config_from` keys - all other settings (model, theme, sandbox, etc.) are user-only. Notably, `read_config_from: {cursor, windsurf, claude}` booleans let Devin CLI natively import rules/config from a `.claude/` directory - a real alternative (or complement) to hand-built hook adapters, to be weighed explicitly in phase 004. (`docs.devin.ai/cli/extensibility/configuration.md`, `docs.devin.ai/cli/reference/configuration/config-file.md`)
 
 ### Permissions
-4 modes - **normal** (default: reads auto-approve, writes/exec prompt), **accept-edits** (file edits auto-approve, shell still prompts), **bypass**/`yolo`/`dangerous` (everything auto-approves), **autonomous** (pairs with `--sandbox`: shell/network auto-approve within the sandbox boundary, file edits still prompt). Rule matchers: `Read(glob)`, `Write(glob)`, `Exec(prefix)`, `Fetch(pattern)`, plus tool-name and `mcp__server__tool` matchers, evaluated deny → ask → allow → default. This is materially different from the 2-mode (`auto`/`dangerous`) system the archived 016 packet documented - the archived docs are stale on this point and must not be mirrored. (`docs.devin.ai/cli/reference/permissions.md`, `docs.devin.ai/cli/essential-commands.md`)
+**Corrected 2026-07-24**: the 4 mode names below were re-verified directly against `devin --help`'s own `--permission-mode` flag description on the live installed binary (`3000.2.17`) - the `normal`/`bypass`/`autonomous` names this section originally recorded (sourced from `docs.devin.ai/cli/reference/permissions.md`, not the CLI itself) do not match the actual flag values the binary accepts and must not be used in any type/enum. 4 modes, live-confirmed: **auto** (default: read-only tools auto-approve, everything else prompts), **accept-edits** (also auto-approves workspace edits), **smart** (additionally auto-runs actions a fast model judges safe), **dangerous** (auto-approves all tools). `[env: DEVIN_PERMISSION_MODE=]`. The rule-matcher detail (`Read(glob)`, `Write(glob)`, `Exec(prefix)`, `Fetch(pattern)`, evaluated deny → ask → allow → default) was not re-checked in this pass and is carried over unverified-but-unchanged. This is materially different from the 2-mode (`auto`/`dangerous`) system the archived 016 packet documented - the archived docs are stale on this point and must not be mirrored either. (`devin --help`, `docs.devin.ai/cli/reference/permissions.md`, `docs.devin.ai/cli/essential-commands.md`)
 
 ### Sandbox
 `--sandbox` enables OS-level isolation (fail-closed: refuses to start if sandbox resolution fails rather than running unsandboxed). File access derives from `Read()`/`Write()` permission scopes; network access is domain-allowlist/denylist filtered through a managed proxy (`network_mode: "full"|"limited"`). Specific commands (e.g. `git` needing credentials) can be excluded from the sandbox via `sandbox.excluded`. (`docs.devin.ai/cli/sandbox.md`)

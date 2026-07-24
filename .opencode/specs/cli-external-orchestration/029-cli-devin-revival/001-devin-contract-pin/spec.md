@@ -41,7 +41,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06. Fourteen months of product evolution (current version `3000.2.17`) means several of that era's documented assumptions are now stale: a 2-mode permission system (now 4: normal/accept-edits/bypass/autonomous), no documented local hook contract for the IDE-runtime hooks vs. the CLI itself, no documented subagent/`AGENT.md` delegation mechanism, and older model slugs. Building the revival on the archived assumptions would restore an inaccurate skill.
+The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06. Fourteen months of product evolution (current version `3000.2.17`) means several of that era's documented assumptions are now stale: a 2-mode permission system (now 4: auto/accept-edits/smart/dangerous - corrected 2026-07-24 from an earlier docs-site-sourced normal/accept-edits/bypass/autonomous that didn't match the live `--help` flag values), no documented local hook contract for the IDE-runtime hooks vs. the CLI itself, no documented subagent/`AGENT.md` delegation mechanism, and older model slugs. Building the revival on the archived assumptions would restore an inaccurate skill.
 
 ### Purpose
 Install the CLI, verify its live version, and pin the current contract for every surface the later phases depend on: invocation/flags, hooks, config file format and precedence, permissions model, model roster, subagent delegation, sandbox, and auth - each confirmed against the official `docs.devin.ai` reference, not inferred.
