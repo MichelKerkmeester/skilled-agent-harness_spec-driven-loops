@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that `sessionStart`, `preToolUse`, and `sessionEnd` fire under a real `cursor-agent -p` dispatch for `CU-013`. It reproduces, first-hand, the live event-delivery evidence phase 004 of this creation packet captured, using an isolated temporary workspace so this repo's real (deliberately uncommitted) `.cursor/hooks.json` is never touched.
+This scenario validates that `sessionStart`, `preToolUse`, and `sessionEnd` fire under a real `cursor-agent -p` dispatch for `CU-013`. It reproduces, first-hand, the live event-delivery evidence phase 004 of this creation packet captured, using an isolated temporary workspace so this repo's real, committed `.cursor/hooks.json` (phase 010) and its live gate state are never touched by this scenario's own test run.
 
 ### Why This Matters
 

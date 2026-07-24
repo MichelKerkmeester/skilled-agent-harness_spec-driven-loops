@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../008-cursor-model-allowlist/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../010-cursor-hooks-live-wiring/spec.md` |
 | **Handoff Criteria** | Every cli-cursor hook adapter file is named, source-anchored, and delivery-status-labeled in both the hub feature-catalog and the manual-testing-playbook's `hooks/` category; both docs pass their respective sk-doc validators; the whole `030-cli-cursor-creation` packet re-validates `--recursive --strict` 0/0. |
 <!-- /ANCHOR:metadata -->
 

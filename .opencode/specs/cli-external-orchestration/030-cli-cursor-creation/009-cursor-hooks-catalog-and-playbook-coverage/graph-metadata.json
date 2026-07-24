@@ -52,6 +52,7 @@
       "checklist.md",
       ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
+      ".cursor/hooks.json",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
       "implementation-summary.md"
     ],
@@ -141,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-external-orchestration/feature-catalog/feature-catalog.md` (the hub-level feature catalog) was never updated for `cli-cursor` at all — it still describes \"three packets\" (`cli-opencode`, `cli-claude-code`, `cli-codex`) and covers only routing concerns (two-axis dispatch, compiled routing)",
     "created_at": "2026-07-24T11:47:21.101Z",
-    "last_save_at": "2026-07-24T12:27:02.181Z",
+    "last_save_at": "2026-07-24T13:37:48.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,9 +214,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b365a044c10439ad5caed14ad04c9596307c243effff76776b6307c07e4b5d2",
+    "source_fingerprint": "sha256:9852a74e1a91828e288083278a0b15c18d9158070fcca8dfdaf9b9a859c54316",
     "source_doc_hashes": {
-      "spec.md": "b4c16c8c0ad1d70d852b8a8c6ceaa867a0f3814fc67cbecd6b7041a9ba2240d4",
+      "spec.md": "ea62098b02bd930ae425d1f36ed79c637a3d2ad73eecb8bab22e4051f4ca0145",
       "plan.md": "76f43b5be8ddbbbfba620f763759a9729f00760c8f8b93707e9301ff6bc14496",
       "tasks.md": "0ccc79096e83c21952dfdfdfe211ed3a397c178f1f56e105c1a76716b7cb5b09",
       "checklist.md": "7947497c732fc7d734d48f04ba63ab62296dfa28cfa9c29f14b822a3ff318e63",

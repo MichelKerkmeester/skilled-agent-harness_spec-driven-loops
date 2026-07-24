@@ -433,7 +433,7 @@ This category covers 3 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `sessionStart`, `preToolUse`, and `sessionEnd` fire under a real `cursor-agent -p` dispatch, using an isolated temporary workspace so this repo's real, deliberately-uncommitted `.cursor/hooks.json` is never touched.
+Verify `sessionStart`, `preToolUse`, and `sessionEnd` fire under a real `cursor-agent -p` dispatch, using an isolated temporary workspace so this repo's real, committed `.cursor/hooks.json` (phase 010) and its live gate state are never touched by this scenario's own test run.
 
 #### Scenario Contract
 

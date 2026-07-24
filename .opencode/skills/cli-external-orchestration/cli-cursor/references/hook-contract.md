@@ -21,7 +21,7 @@ version: 1.0.0.0
 
 Cursor 1.7+ ships a native hook system, and — unlike every sibling CLI's hooks — Cursor CLI's hooks are **the exact same hooks the Cursor editor uses**, not a CLI-private surface. There is no separate "enable hooks" feature flag to set; the hooks system is native and always active once a `hooks.json` file exists at a discovered location.
 
-This packet does not yet ship a hook adapter layer of its own — that is a later phase of the same creation packet (`004-cursor-hook-adapter-layer`). This reference documents the confirmed contract those adapters will build against.
+This packet ships its own hook adapter layer (`004-cursor-hook-adapter-layer`) and a committed, project-level registration file (`.cursor/hooks.json`, `010-cursor-hooks-live-wiring`). This reference documents the confirmed contract those adapters were built against.
 
 ---
 

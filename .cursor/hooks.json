@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-start.js",
+        "type": "command",
+        "timeout": 10
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-end.js",
+        "type": "command",
+        "timeout": 10
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+        "type": "command",
+        "timeout": 10
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+        "type": "command",
+        "timeout": 10
+      }
+    ]
+  }
+}
