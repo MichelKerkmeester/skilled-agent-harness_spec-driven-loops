@@ -6,7 +6,7 @@ trigger_phrases:
   - "styles library retrieval"
   - "eligible style cards"
   - "generation guarded hydration"
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 # Retrieval Engine
@@ -39,19 +39,19 @@ Hydration binds the request to a re-derived live record, checks the generation a
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/styles/_engine/style-library.mjs` | Script | Exposes build, query and hydrate commands. |
-| `.opencode/skills/sk-design/styles/_engine/persistent-adapter.mjs` | Adapter | Selects `legacy`, `shadow` or `persistent`; defaults to `legacy`. |
-| `.opencode/skills/sk-design/styles/_engine/eligibility.mjs` | Shared | Decides deterministic membership before ranking. |
-| `.opencode/skills/sk-design/styles/_engine/hydrate.mjs` | Shared | Enforces live-record, generation, path and byte guards. |
-| `.opencode/skills/sk-design/styles/_engine/corpus-use-proof.mjs` | Shared | Validates manifest-bound corpus-use proof. |
+| `.opencode/skills/sk-design/styles/lib/engine/style-library.mjs` | Script | Exposes build, query and hydrate commands. |
+| `.opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs` | Adapter | Selects `legacy`, `shadow` or `persistent`; defaults to `legacy`. |
+| `.opencode/skills/sk-design/styles/lib/engine/eligibility.mjs` | Shared | Decides deterministic membership before ranking. |
+| `.opencode/skills/sk-design/styles/lib/engine/hydrate.mjs` | Shared | Enforces live-record, generation, path and byte guards. |
+| `.opencode/skills/sk-design/styles/lib/engine/corpus-use-proof.mjs` | Shared | Validates manifest-bound corpus-use proof. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/styles/_engine/tests/eligibility-first.test.mjs` | Automated test | Proves ranking cannot reintroduce an ineligible record. |
-| `.opencode/skills/sk-design/styles/_engine/tests/hydrate-guard.test.mjs` | Automated test | Covers generation mismatch, poisoned records and path escape. |
-| `.opencode/skills/sk-design/styles/_engine/tests/proof.test.mjs` | Automated test | Covers proof binding and ready-gate refusal. |
+| `.opencode/skills/sk-design/styles/tests/engine/eligibility-first.test.mjs` | Automated test | Proves ranking cannot reintroduce an ineligible record. |
+| `.opencode/skills/sk-design/styles/tests/engine/hydrate-guard.test.mjs` | Automated test | Covers generation mismatch, poisoned records and path escape. |
+| `.opencode/skills/sk-design/styles/tests/engine/proof.test.mjs` | Automated test | Covers proof binding and ready-gate refusal. |
 
 ---
 

@@ -6,7 +6,7 @@
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": ["accessibility", "performance", "responsive", "anti-slop", "scoring", "hardening"],
-    "argumentHint": "<target> [--scope] [--score] [--register brand|product] [:auto|:confirm]",
+    "argumentHint": "<target> [--scope a11y|performance|responsive|anti-slop] [--score] [--register brand|product] [:auto|:confirm]",
     "aliases": ["audit design quality", "critique ui surface", "score design readiness"],
     "userIntent": {
       "job": "I want to review, score, and harden the quality of a design surface I already have.",
@@ -30,7 +30,7 @@
         { "name": "--score", "required": false, "takesValue": false, "kind": "boolean" },
         { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
-      "render": "<target> [--scope] [--score] [--register brand|product] [:auto|:confirm]"
+      "render": "<target> [--scope a11y|performance|responsive|anti-slop] [--score] [--register brand|product] [:auto|:confirm]"
     },
     "choreography": [
       {
@@ -177,7 +177,7 @@
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": ["color", "typography", "layout", "spacing", "tokens", "theming"],
-    "argumentHint": "<axis> <target> [--register brand|product] [:auto|:confirm]",
+    "argumentHint": "<color|typography|layout|spacing|tokens|theming> <target> [--register brand|product] [:auto|:confirm]",
     "aliases": ["design visual system", "define design tokens", "plan static foundations"],
     "userIntent": {
       "job": "I want to design or repair the static visual system - color, type, layout, spacing, tokens - for a surface.",
@@ -200,7 +200,7 @@
       "flags": [
         { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
-      "render": "<axis> <target> [--register brand|product] [:auto|:confirm]"
+      "render": "<color|typography|layout|spacing|tokens|theming> <target> [--register brand|product] [:auto|:confirm]"
     },
     "choreography": [
       {
@@ -347,7 +347,7 @@
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": ["direction", "palette", "type", "layout", "motion"],
-    "argumentHint": "<target> [--mode] [--register brand|product] [:auto|:confirm]",
+    "argumentHint": "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]",
     "aliases": ["shape interface direction", "redesign ui surface", "make ui distinctive"],
     "userIntent": {
       "job": "I want to invent or reshape a distinctive interface direction for a surface.",
@@ -370,7 +370,7 @@
         { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" },
         { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
-      "render": "<target> [--mode] [--register brand|product] [:auto|:confirm]"
+      "render": "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]"
     },
     "choreography": [
       {
@@ -764,7 +764,7 @@
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": ["animation", "transitions", "micro-interactions", "reduced motion"],
-    "argumentHint": "<component-state> [--library] [--register brand|product] [:auto|:confirm]",
+    "argumentHint": "<component-state> [--library <name>] [--register brand|product] [:auto|:confirm]",
     "aliases": ["design motion behavior", "plan micro interactions", "specify animation states"],
     "userIntent": {
       "job": "I want to design purposeful animation, transitions, or reduced-motion behavior for a component or state.",
@@ -787,7 +787,7 @@
         { "name": "--library", "required": false, "takesValue": true, "valueName": "library", "kind": "library-hint" },
         { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
       ],
-      "render": "<component-state> [--library] [--register brand|product] [:auto|:confirm]"
+      "render": "<component-state> [--library <name>] [--register brand|product] [:auto|:confirm]"
     },
     "choreography": [
       {

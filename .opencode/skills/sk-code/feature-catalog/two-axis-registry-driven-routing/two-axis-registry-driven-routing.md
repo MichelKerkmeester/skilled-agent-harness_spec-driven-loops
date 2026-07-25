@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code workflow and surface axis"
   - "mode-registry.json single source of truth"
   - "sk-code smart routing"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
@@ -29,7 +29,7 @@ The WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `cod
 
 ### Registry-Driven, Not Keyed-Resource
 
-`sk-code` is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent at the hub level, and resource slicing lives inside the nested packets plus `shared/references/smart-routing.md`. Implement/debug/verify phase doctrine is consolidated once in `shared/references/workflow_*.md` and symlinked into each surface packet rather than duplicated per packet.
+`sk-code` is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent at the hub level, and resource slicing lives inside the nested packets plus `shared/references/smart-routing.md`. Implement/debug/verify phase doctrine is consolidated in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, then symlinked into each surface packet rather than duplicated per packet.
 
 ---
 

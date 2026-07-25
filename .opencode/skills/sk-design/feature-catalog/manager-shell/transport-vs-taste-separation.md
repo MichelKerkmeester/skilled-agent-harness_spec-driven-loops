@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma transport design judgment"
   - "open design transport"
   - "sk-design transport proof"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Transport Vs Taste Separation
@@ -42,7 +42,7 @@ When transport output conflicts with the proof plan, the mode contract decides t
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-md-generator/feature-catalog/feature-catalog.md` | Manual playbook | Existing md-generator catalog documents measured extraction and validation behavior. |
+| `.opencode/skills/sk-design/manual-testing-playbook/hub-manager-intake/verifier-cadence-pause.md` | Manual playbook | PASS/FAIL scenario proving transport-only evidence cannot authorize a ready claim. |
 
 ---
 

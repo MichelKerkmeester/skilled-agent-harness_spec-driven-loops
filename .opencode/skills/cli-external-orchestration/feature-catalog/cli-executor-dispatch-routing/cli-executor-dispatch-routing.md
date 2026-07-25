@@ -1,12 +1,12 @@
 ---
 title: "CLI Executor Two-Axis Dispatch Routing"
-description: "How the cli-external-orchestration hub scores and dispatches one of three CLI-executor workflow packets, with no surface, transport, or runtime-loop extension axis."
+description: "How the cli-external-orchestration hub scores and dispatches one of four CLI-executor workflow packets, with no surface, transport, or runtime-loop extension axis."
 trigger_phrases:
   - "cli executor two-axis dispatch routing"
   - "cli-external-orchestration hub-router scoring"
-  - "cli-opencode cli-claude-code cli-codex dispatch"
+  - "cli-opencode cli-claude-code cli-codex cli-cursor dispatch"
   - "cli-external-orchestration smart routing"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # CLI Executor Two-Axis Dispatch Routing (cli-external-orchestration)
@@ -15,9 +15,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`cli-external-orchestration` is registry-driven: `mode-registry.json` lists all three executor packets in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
+`cli-external-orchestration` is registry-driven: `mode-registry.json` lists all four executor packets in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
 
-All three packets — `cli-opencode`, `cli-claude-code`, `cli-codex` — are `packetKind: "workflow"` with zero extension axes: no surface axis, no transport axis, no runtime-loop. Each independently classifies dispatch intent, chooses or confirms a provider, and conducts the dispatched session.
+All four packets — `cli-opencode`, `cli-claude-code`, `cli-codex`, and `cli-cursor` — are `packetKind: "workflow"` with zero extension axes: no surface axis, no transport axis, no runtime-loop. Each independently classifies dispatch intent, chooses or confirms a provider, and conducts the dispatched session.
 
 ---
 
@@ -25,7 +25,7 @@ All three packets — `cli-opencode`, `cli-claude-code`, `cli-codex` — are `pa
 
 ### Two-Axis Model
 
-Every packet orchestrates a CLI binary whose dispatched writes land in this repository's own workspace (`mutatesWorkspace: true`); none is a transport packet. The three modes are primary, independently-routable dispatch workflows rather than variants layered on a shared backend.
+Every packet orchestrates a CLI binary whose dispatched writes land in this repository's own workspace (`mutatesWorkspace: true`); none is a transport packet. The four modes are primary, independently-routable dispatch workflows rather than variants layered on a shared backend.
 
 ### Routing Rule
 
@@ -44,7 +44,7 @@ The router resolves to `single` (one dominant executor signal routes to one mode
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/cli-external-orchestration/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
-| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the three executor packets. |
+| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the four executor packets. |
 | `.opencode/skills/cli-external-orchestration/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 
 ### Validation And Tests
