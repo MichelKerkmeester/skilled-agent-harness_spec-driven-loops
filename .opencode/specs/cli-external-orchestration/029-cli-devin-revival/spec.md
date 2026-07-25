@@ -1,22 +1,22 @@
 ---
 title: "Feature Specification: cli-devin revival"
-description: "Coordinate a nine-phase revival of the cli-devin CLI-dispatch mode inside cli-external-orchestration, restoring executor support, skill packet, hook adapters, model registry, playbook, full hook parity, and MCP-host integration against the current (2026-07) Devin CLI product rather than pre-deprecation assumptions. Phase 001 is complete with live-verification evidence; phases 002-009 are planned."
+description: "Coordinate the phased revival of cli-devin inside cli-external-orchestration, including executor support, skill packet, live hook adapters, model registry, playbook, MCP-host integration, feature catalog and current-state documentation reconciliation."
 trigger_phrases: ["cli-devin revival", "Devin CLI executor", "Devin hooks", "Devin agents", "cognition devin"]
 importance_tier: important
 contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
-    last_updated_at: "2026-07-24T18:30:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Phase 008 shipped Complete (dormant): 10 hook adapters + hooks.v1.json extension"
-    next_safe_action: "Devin auth login unblocks phase 009; phases 002/003/005/006/007 stay open"
-    blockers: ["devin auth login needed - blocks phase 009's live MCP-host verification and the one still-open interactive-mode hook-firing question; did NOT block phases 004/008, which completed via unauthenticated devin -p dispatch"]
-    key_files: ["001-devin-contract-pin/implementation-summary.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "009-devin-mcp-host-integration/spec.md"]
+    last_updated_at: "2026-07-25T09:57:33Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed phase 011 hook-truth, runtime README, Cursor mirror and local Zed MCP reconciliation"
+    next_safe_action: "Rotate the removed credentials at their providers, then select the next planned revival phase"
+    blockers: []
+    key_files: ["hook-testing-results.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "011-hook-truth-and-runtime-readmes/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
-    completion_pct: 30
-    open_questions: ["No technical reason recorded for the 2026-06-08 deprecation - confirm reversal is still desired.", "Devin IDE-runtime hooks (deleted D5 surface) in scope? Scoped OUT by default.", "Devin-as-MCP-host surface in scope? Scoped OUT by default.", "Does true interactive devin mode (untestable here, no TTY) fire hooks where -p does not? The one gap phases 001/004/008 all leave open."]
-    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "Phase 008 confirms the phase-004 hook-dormancy finding is packet-wide and extension-invariant: re-tested after growing .devin/hooks.v1.json from 2 to 7 event categories, still zero firings."]
+    completion_pct: 36
+    open_questions: ["Provider-side revocation and rotation of the credentials removed from Zed remains operator-only.", "Do PermissionRequest and PostCompaction fire when those events occur?", "Does run_subagent produce the registered tool name and expected payload shape?"]
+    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier packet-wide dormancy conclusion was caused by an unsupported hooks.v1.json wrapper shape."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | Active — phases 001, 004, 008 complete (live-verified / dormant); phases 002, 003, 005, 006, 007, 009, 010 planned |
+| **Status** | Active - phases 001, 004, 008 and 011 complete; phases 002, 003, 005, 006, 007, 009 and 010 planned |
 | **Created** | 2026-07-23 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/029-cli-devin-revival` |
@@ -94,22 +94,22 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 1 | `001-devin-contract-pin/` | Verify the live Devin CLI, hook, config, permission, model, and auth contract. | Complete |
 | 2 | `002-deep-loop-executor-support/` | Restore `cli-devin` as a 5th typed deep-loop executor kind, incl. dispatch builder. | Planned |
 | 3 | `003-cli-devin-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Planned |
-| 4 | `004-devin-hook-adapter-layer/` | Add thin Devin hook adapters for `SessionStart`/`UserPromptSubmit`; live-verified 2026-07-24 that no hook fires under `devin -p` in any registration path — adapters built dormant. | Complete (dormant) |
+| 4 | `004-devin-hook-adapter-layer/` | Add thin Devin hook adapters for `SessionStart` and `UserPromptSubmit`. Both events fire under `devin -p` with the corrected registration schema. | Complete |
 | 5 | `005-devin-model-registry-and-quota/` | Restore `swe-1.6` + sibling executor rows (current slugs) and the CI gate arrays. | Planned |
 | 6 | `006-devin-manual-testing-playbook/` | Author a Devin-native manual-testing playbook. | Planned |
 | 7 | `007-docs-agents-governance-and-closeout/` | Restore agent/governance/sibling doc mentions; full recursive validation and closeout. | Planned |
-| 8 | `008-devin-hook-parity/` | Give every Claude hook and OpenCode plugin a correct Devin adapter, native-import equivalent, or documented gap. Shipped 10 adapters (the 6 remaining guard cores + `spec-gate-enforce.mjs`, a gap the original plan missed + 2 lifecycle-completion adapters + 1 dispatch-guard adapter) and extended `.devin/hooks.v1.json` to all 7 event categories Claude covers; re-confirmed dormant post-extension, matching phase 004 exactly. | Complete (dormant) |
+| 8 | `008-devin-hook-parity/` | Give every Claude hook and OpenCode plugin a correct Devin adapter, native equivalent or documented gap. Shipped 10 adapters and full lifecycle registration; six event categories are observed live, with `PermissionRequest` and `PostCompaction` still unobserved. | Complete |
 | 9 | `009-devin-mcp-host-integration/` | Register this repo's 3 MCP servers with Devin's native `devin mcp` surface under a two-tier deny-by-default permission policy — resolves Open Question 3. | Planned |
-| 10 | `010-devin-feature-catalog/` | Author a `create-feature-catalog` package for cli-devin; the `hooks` category must enumerate all 8 lifecycle events with accurate dormancy status, never overstated. | Planned |
-
+| 10 | `010-devin-feature-catalog/` | Author a `create-feature-catalog` package for cli-devin; the `hooks` category must enumerate all 8 lifecycle events with accurate observed/unobserved status. | Planned |
+| 11 | `011-hook-truth-and-runtime-readmes/` | Reconcile hook truth, align runtime READMEs and mirrors, then remove obsolete secret-bearing Zed MCP registrations. | Complete |
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
 - Phase 003 must not start authoring `cli-devin/graph-metadata.json` or `cli-devin/description.json` — the hub stays the single advisor identity (`parent-skill-check.cjs` rules 2a/2b fail hard on a nested one).
 - Every routing surface must check `command -v devin` before advertising or dispatching Devin, mirroring the `cli-codex` fail-closed precedent.
 - Phase 005 must use **current** model slugs (`kimi-k2.7-code`, `glm-5.2`) — the archived deprecation docs reference their now-superseded predecessors (`kimi-k2.6`, `glm-5.1`).
 - Phase 007 must build its touch-list by grepping the **current** tree, not by replaying archived line numbers verbatim — several unrelated later changes (a hyphen-case filesystem-naming pass, a hub folder move, an agent filename change) landed between 2026-06-08 and today.
-- Phase 010's real dependencies are phases 003 (hosts `feature-catalog/`), 005 (model-dispatch content), and 009 (mcp-host-integration content) — not its numeric predecessor 006; its `hooks` category sources entirely from phases 004/008, both now Complete (dormant). Phase 008 carried phase 004's confirmed hook-dormancy finding forward rather than assuming its own remaining 6 events would fare differently without re-verification — confirmed 2026-07-24: same result (zero firings) after growing `.devin/hooks.v1.json` from 2 to 7 event categories.
-- Phase 008 depends only on phase 004 (not 005-007); phase 009 depends only on phase 001 (not 002-008) — neither 008 nor 009 sits in the original 1-7 linear chain, matching the precedent set by `027-cli-codex-revival`'s own later-added 007-009 phases. **Correction (2026-07-24)**: phases 004 and 008 did NOT require an authenticated `devin` session to reach Complete (dormant) status - unauthenticated `devin -p` dispatch was sufficient to confirm the packet-wide hook-dormancy finding. Only phase 009's live MCP-host verification and the still-open true-interactive-mode question remain gated on `devin auth login` (see Open Questions and the packet's `blockers` field).
+- Phase 010's real dependencies are phases 003 (hosts `feature-catalog/`), 005 (model-dispatch content) and 009 (MCP-host content), not its numeric predecessor 006. Its `hooks` category sources the built adapter inventory from phases 004/008 and the corrected live matrix from `hook-testing-results.md` tests 10-14.
+- Phase 008 depends only on phase 004, and phase 009 depends only on phase 001. The earlier no-firing tests used an unsupported wrapper schema. After the schema correction, unauthenticated `devin -p` observed six lifecycle events; authentication remains relevant to phase 009's MCP-host work, not hook availability.
 
 ### Phase Handoff Criteria
 | From | To | Criteria | Verification |
@@ -117,9 +117,10 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 001 | 002 | Live Devin CLI contract (version, hooks, config, permissions, models, auth) confirmed. | Met — `devin --version` (3000.2.17), `docs.devin.ai/cli/**` fetched and cross-checked (001 implementation-summary.md). |
 | 002 | 003 | `cli-devin` compiles as a 5th `ExecutorKind` and dispatches through `fanout-run.cjs` with a real `buildDevinLineageCommand`, rejecting cleanly when `devin` is absent from PATH. | Pending. |
 | 003 | 004 | `cli-devin/` exists under the hub, registered in `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`, and `parent-skill-check.cjs` + `validate_skill_package.py` both stay at 0 fails against the hub. | Pending. |
-| 004 | 005 | Devin hook adapters installed and smoke-tested against the live `devin` binary for at least the `SessionStart`/`UserPromptSubmit` events. | Pending. |
+| 004 | 005 | Devin hook adapters installed and smoke-tested against the live `devin` binary for at least the `SessionStart`/`UserPromptSubmit` events. | Met after schema correction; both events observed under `devin -p`. |
 | 005 | 006 | `swe-1.6` and the 3 sibling executor rows present in `model-profiles.json`; `check-prompt-quality-card-sync.sh` passes. | Pending. |
 | 006 | 007 | Manual-testing playbook authored with Devin-native scenario categories, cross-referenced from `cli-devin/SKILL.md`. | Pending. |
+| 008-devin-hook-parity | 011-hook-truth-and-runtime-readmes | Corrected schema and live evidence are available for current-state reconciliation; this is a source dependency, not a numeric phase transition. | Met - phase 011 reconciled the consumers and passed its bounded verification gates. |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -142,7 +143,8 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - `hook-testing-results.md` (direct-invocation + live `devin -p` evidence for every adapter phases 004 and 008 built)
 - `001-devin-contract-pin/spec.md`, `.../implementation-summary.md`
 - `002-deep-loop-executor-support/spec.md` through `007-docs-agents-governance-and-closeout/spec.md`
-- `008-devin-hook-parity/spec.md`, `.../implementation-summary.md` (Complete (dormant) 2026-07-24 — full guard-hook coverage across all 7 event categories Claude covers, depends only on 004)
+- `008-devin-hook-parity/spec.md`, `.../implementation-summary.md` (Complete - full guard-hook registration, six lifecycle events observed under corrected schema)
+- `011-hook-truth-and-runtime-readmes/implementation-summary.md` (completed hook-truth, runtime mirror and local MCP reconciliation)
 - `009-devin-mcp-host-integration/spec.md` (added 2026-07-24 — resolves Open Question 3, depends only on 001)
 - `../z_archive/022-cli-devin-deprecation/spec.md` (the decision this reverses) + `context/context-report.md` (the authoritative original removal touch-list)
 - `../z_archive/016-cli-devin-creation/`, `../z_archive/017-cli-devin-effectiveness-improvements/`, `../z_archive/018-cli-devin-prompt-quality/` (original build + validated prompt-craft findings to fold in, not re-derive)

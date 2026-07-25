@@ -1,7 +1,7 @@
 ---
 title: "Hook Testing Results: cli-devin revival"
-description: "Consolidated direct-invocation and live devin -p test evidence for every Devin hook adapter built across phases 004 and 008 -- one place to check adapter status instead of cross-referencing two implementation-summary.md files."
-trigger_phrases: ["devin hook test results", "devin hook adapter testing", "devin -p dormancy evidence"]
+description: "Consolidated direct-invocation and live devin -p evidence for every Devin hook adapter built across phases 004 and 008, including the corrected registration schema, six observed lifecycle events and explicitly superseded negative tests."
+trigger_phrases: ["devin hook test results", "devin hook adapter testing", "devin hook live evidence"]
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
     last_updated_at: "2026-07-24T19:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Added SWE-1.7 free-tier re-test; dormancy confirmed model-independent"
-    next_safe_action: "Re-run this same matrix if a future devin build changes -p hook-firing behavior"
+    recent_action: "Corrected the registration schema and observed six lifecycle events under devin -p"
+    next_safe_action: "Exercise PermissionRequest, PostCompaction, run_subagent and the deny branch when those conditions become available"
     blockers: []
     key_files: ["004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
     completion_pct: 100
-    open_questions: ["Does true interactive devin mode (untestable here, no TTY) fire hooks where -p does not?"]
-    answered_questions: ["All 13 adapters across both phases are confirmed fail-open on malformed and missing-field payloads; devin -p itself never fires any hook, confirmed before and after the full 7-event-category extension.", "The -p dormancy is model-independent: re-probed under swe-1-7 (SWE-1.7 Max, free beta) with all 8 events instrumented and a real exec tool call -- zero firings, malformed hook JSON still unparsed."]
+    open_questions: ["Do PermissionRequest and PostCompaction fire when those events actually occur?", "Does run_subagent emit the registered tool name and expected payload shape?", "Does the deny branch block a real tool call when a block-severity fixture exists?"]
+    answered_questions: ["All 13 adapters across both phases fail open on malformed and missing-field payloads.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier zero-firing result came from an unsupported registration wrapper, not a CLI limitation."]
 ---
 # Hook Testing Results: cli-devin revival
 
@@ -24,29 +24,31 @@ _memory:
 
 ## 1. SCOPE
 
-Every Devin hook adapter this packet has built so far -- 3 from phase 004 (`session-start.ts`, `user-prompt-submit.ts`, `spec-gate-classify.mjs`) and 10 from phase 008 (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `code-graph-freshness.cjs`, `mcp-route-guard.cjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs`, `session-stop.ts`, `post-compaction.cjs`, `task-dispatch-guard.cjs`) -- went through the same two-tier verification: **direct invocation** (piping realistic, malformed, and missing-field JSON straight into the compiled/plain script) and a **live `devin -p` re-dispatch** against the real installed binary with the actual `.devin/hooks.v1.json` in place. This doc consolidates both tiers' results in one place instead of requiring a reader to cross-reference two separate `implementation-summary.md` files.
+Every Devin hook adapter this packet has built so far -- 3 from phase 004 (`session-start.ts`, `user-prompt-submit.ts`, `spec-gate-classify.mjs`) and 10 from phase 008 (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `code-graph-freshness.cjs`, `mcp-route-guard.cjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs`, `session-stop.ts`, `post-compaction.cjs`, `task-dispatch-guard.cjs`) -- went through direct invocation with realistic, malformed and missing-field JSON. After the registration schema was corrected, a live `devin -p` session also proved the registration path and six lifecycle events end to end.
 
-**Headline finding, unchanged across both phases**: `devin -p` -- the only dispatch mode any orchestrator in this repo would ever use -- never fires a hook under any registration path tested. Every adapter below is built, tested in isolation, and confirmed correct; none has ever been observed firing in a real Devin session.
+**Current finding**: Devin hooks are live under `devin -p`. With top-level event arrays and nested `{matcher, hooks:[...]}` groups, `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop` and `SessionEnd` all fired, and real adapter output reached the model. `PermissionRequest` and `PostCompaction` remain unobserved because neither event occurred.
 
 ---
 
-## 2. LIVE `devin -p` DORMANCY EVIDENCE
+## 2. SUPERSEDED NEGATIVE TESTS AGAINST THE INVALID SCHEMA
+
+Tests 1-9 are retained as historical evidence. Their observations were accurate for the unsupported wrapper shape, but their packet-wide dormancy inference was wrong and is superseded by tests 10-14.
 
 | # | Test | Devin version | Result |
 |---|---|---|---|
 | 1 | Standalone `.devin/hooks.v1.json`, with and without a top-level `"version": 1` field, real dispatched `ls` tool call | 3000.2.17 | Zero probe firings for `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `Stop` |
 | 2 | `.devin/config.json`'s `"hooks"` key instead of the standalone file | 3000.2.17 | Same -- zero firings |
-| 3 | Deliberately malformed JSON in `.devin/hooks.v1.json` | 3000.2.17 | `devin -p` succeeded with **zero parse errors** -- proof the file isn't read at all in this mode, not merely ignored once read |
+| 3 | Deliberately malformed JSON in `.devin/hooks.v1.json` | 3000.2.17 | `devin -p` succeeded with zero parse errors. This was originally misread as proof the file was unread; tests 10-14 showed the invalid shape was silently discarded. |
 | 4 | `--agent-config <file>` with a `hooks` field | 3000.2.17 | Rejected outright by the config parser: `unknown field 'hooks', expected one of system_instructions, allowed_tools, permissions, mcp_servers, extensions` |
 | 5 | (Phase 004 close) Final re-test with the real committed 2-event `.devin/hooks.v1.json` in place | 3000.2.17 | `devin -p "list files with ls"` completed normally, no `additionalContext` injected |
 | 6 | (Phase 008 close) Re-test after extending `.devin/hooks.v1.json` to all 7 event categories (15 command entries) | 3000.2.17 | `devin -p "echo hook-parity-probe-..."` completed normally -- still zero hook output |
 | 7 | **SWE-1.7 model re-test**: `devin --model swe-1-7 -p` (SWE-1.7 Max, free beta tier) with a mutating prompt, asking the model to report any injected context | 3000.2.17 | Model answered it received Devin's own `<rules type="always-on">` blob but **"No SPEC FOLDER question was received"** -- `spec-gate-classify.mjs` (UserPromptSubmit) did not fire |
 | 8 | **SWE-1.7 all-event probe**: temporary probe entry prepended to all 8 events in `.devin/hooks.v1.json`, then a real dispatched `exec` tool call | 3000.2.17 | Tool call executed (`echo swe17-hook-probe` returned output) yet **zero probe firings across all 8 events** -- no probe log created at all |
-| 9 | **SWE-1.7 probe sanity + malformed-JSON control**: probe script invoked directly, then deliberately malformed `hooks.v1.json` under `--model swe-1-7` | 3000.2.17 | Probe script writes correctly when invoked directly (ruling out a false negative); malformed JSON produced **zero parse errors** -- the file is not read in this mode |
+| 9 | **SWE-1.7 probe sanity + malformed-JSON control**: probe script invoked directly, then deliberately malformed `hooks.v1.json` under `--model swe-1-7` | 3000.2.17 | Probe script writes correctly when invoked directly. The no-error result did not distinguish unread input from silently discarded invalid configuration. |
 
-`PostCompaction` and `SessionEnd` were **not** independently live-triggered (would require inducing an actual compaction or session-termination event, not just a dispatched command). Their dormancy is inferred from test 1-4/6's packet-wide finding that `-p` never consults hook config at all -- not independently observed for these two specific events. True interactive mode remains untested (no TTY in this environment) -- the one open gap.
+This historical pass did not independently trigger `PostCompaction` or `SessionEnd`. The corrected-schema pass later observed `SessionEnd`; `PostCompaction` still has not occurred. True interactive mode remains untested, but `-p` support is now directly confirmed.
 
-### 2a. RESOLUTION -- schema fix and live confirmation (2026-07-24, `glm-5-2` free tier)
+### 2A. CURRENT RESOLUTION: SCHEMA FIX AND LIVE CONFIRMATION (2026-07-24, `glm-5-2` free tier)
 
 | # | Test | Result |
 |---|---|---|
@@ -60,7 +62,7 @@ Every Devin hook adapter this packet has built so far -- 3 from phase 004 (`sess
 
 **Superseded below.** Tests 1-9 are retained as the historical record of how the wrong conclusion was reached. Their observations were accurate; the inference drawn from them ("no headless attachment point exists") was not.
 
-**Model-independence (tests 7-9, 2026-07-24) -- superseded by §2a.** The dormancy is a property of `-p` mode, not of any one model. Re-running the full probe methodology under `swe-1-7` (SWE-1.7 Max, free beta) reproduced the finding exactly: a real `exec` tool call ran to completion while all 8 probe-instrumented events stayed silent, and deliberately malformed hook JSON still raised no parse error. The probe script was separately verified to write correctly when invoked directly, so the silence is a genuine negative rather than broken instrumentation. `.devin/hooks.v1.json` was restored byte-identical afterwards (SHA-256 prefix `2ed5bc110188bab1` before and after).
+**Superseded model comparison (tests 7-9, 2026-07-24).** Re-running the invalid schema under `swe-1-7` reproduced the same silence. This proves the invalid registration failed consistently across those models, not that valid `-p` hooks are model-dependent or unavailable.
 
 ---
 
@@ -100,7 +102,7 @@ Full matrix: 10 adapters x {malformed-JSON, missing-field} = 20/20 fail-open cas
 ### 4a. What was NOT behaviorally proven
 
 - **`dispatch-preflight-lint.mjs`'s deny path**: only the warn path was exercised live (a real advisory was returned). The deny branch itself is structurally identical to the already-proven Claude/Codex sibling branches and calls the same `dispatch-rule-checks.mjs` core, whose own unit tests (`dispatch-rule-checks.test.mjs`, 6/6 passing) cover `severity: 'block'` classification directly -- but no skill in this repo currently declares a `severity: block` hard rule, so there was nothing to trigger an end-to-end deny against, independent of the dormancy finding.
-- **`SessionEnd`'s stdout-strictness**: registered `session-cleanup.sh` directly based on the structural fact that Devin has a real native `SessionEnd` event (Codex does not) -- not because live behavior was observed to be lenient.
+- **`SessionEnd`'s stdout-strictness**: the event fired under the corrected schema, but no dedicated adverse stdout-shape test was run. Direct registration remains structurally justified because Devin has a native `SessionEnd` event and Codex does not.
 
 ---
 
@@ -125,5 +127,5 @@ The three `.js` symlinks (`session-start.js`, `user-prompt-submit.js`, `session-
 ## RELATED DOCUMENTS
 - `004-devin-hook-adapter-layer/implementation-summary.md` (full narrative + decisions for the 3 phase-004 adapters)
 - `008-devin-hook-parity/implementation-summary.md`, `.../checklist.md`, `.../decision-record.md` (full narrative + decisions for the 10 phase-008 adapters)
-- `.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md`, `.opencode/skills/system-spec-kit/runtime/hooks/devin/README.md` (per-directory dormancy evidence)
+- `.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md`, `.opencode/skills/system-spec-kit/runtime/hooks/devin/README.md` (per-directory live wiring and caveats)
 - `spec.md` (parent packet status)

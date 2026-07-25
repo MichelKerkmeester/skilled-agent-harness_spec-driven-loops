@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Devin feature catalog"
-description: "Level 3 verification checklist for the cli-devin feature-catalog phase, with special emphasis on hooks-category dormancy-status accuracy."
+description: "Level 3 verification checklist for the cli-devin feature-catalog phase, with special emphasis on event-specific hook evidence accuracy."
 trigger_phrases: ["devin feature catalog checklist"]
 importance_tier: "normal"
 contextType: "general"
@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 - [ ] CHK-001 [P0] Current `Status` field of phases 003/005/009 confirmed before drafting any category content.
-- [ ] CHK-002 [P0] Phase 004's hook-dormancy finding re-verified if the installed `devin` version differs from `3000.2.17`.
+- [ ] CHK-002 [P0] Corrected-schema hook matrix re-verified if the installed Devin version differs from `3000.2.17`.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -42,7 +42,7 @@ _memory:
 - [ ] CHK-010 [P0] Root catalog exists at `feature-catalog/feature-catalog.md`, built from the packet template.
 - [ ] CHK-011 [P0] Exactly 7 category folders, kebab-case, no numeric prefix.
 - [ ] CHK-012 [P0] `hooks` category has exactly 8 per-feature files, one per Devin lifecycle event.
-- [ ] CHK-013 [P0] Every `hooks` per-feature file states a dormancy status from the 3-value enum (`built confirmed dormant` / `planned, inherits the finding` / `status unknown, re-verify`) -- never `active` while the finding stands.
+- [ ] CHK-013 [P0] Every hook file uses the 3-value evidence set (`observed live` / `registered, unobserved` / `no adapter, explicit empty registration`).
 - [ ] CHK-014 [P1] Every per-feature file has frontmatter with title, description, at least 3 `trigger_phrases`, and a four-part version.
 <!-- /ANCHOR:code-quality -->
 
@@ -52,7 +52,7 @@ _memory:
 - [ ] CHK-021 [P0] `validate_document.py` passes on the root catalog and every per-feature leaf.
 - [ ] CHK-022 [P1] `extract_structure.py` passes on the root catalog.
 - [ ] CHK-023 [P0] Every root entry links to exactly one per-feature file, manually verified.
-- [ ] CHK-024 [P0] Every `hooks` per-feature file's dormancy status manually cross-checked against phase 004/008's actual current state, not just structural presence.
+- [ ] CHK-024 [P0] Every hook evidence state cross-checked against `../hook-testing-results.md` tests 10-14 and the event-specific caveats.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -80,7 +80,7 @@ N/A - this phase authors a new package, it is not a bug fix.
 
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
-- [ ] CHK-100 [P0] ADR-001 (dormancy-status enum) documented in `decision-record.md` with Context, Decision, Alternatives, Consequences, Five Checks, and Implementation sections.
+- [ ] CHK-100 [P0] ADR-001 (event evidence-state set) documented in `decision-record.md` with Context, Decision, Alternatives, Consequences, Five Checks and Implementation sections.
 - [ ] CHK-101 [P1] ADR-001 has a recorded status.
 <!-- /ANCHOR:arch-verify -->
 

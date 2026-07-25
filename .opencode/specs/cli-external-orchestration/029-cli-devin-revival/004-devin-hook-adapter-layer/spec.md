@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
-    last_updated_at: "2026-07-24T16:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Built dormant adapters; live-verified hooks never fire under devin -p"
-    next_safe_action: "Phase 008: build remaining hooks, same dormant caveat applies"
-    blockers: ["No headless -p attachment point for hooks exists in devin 3000.2.17"]
+    last_updated_at: "2026-07-25T10:09:43Z"
+    last_updated_by: "opencode"
+    recent_action: "Corrected status after the documented hooks.v1.json schema produced live firings"
+    next_safe_action: "Use phase 011 as current hook evidence"
+    blockers: []
     key_files: ["decision-record.md", "implementation-summary.md", "../../../../.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 100
-    open_questions: ["Does hook firing work in true interactive mode? Untestable from this environment (no TTY)."]
-    answered_questions: ["Hooks never fire under devin -p, confirmed across every registration path (hooks.v1.json, config.json hooks key, --agent-config).", "cli-codex precedent confirmed live at mcp-server/hooks/codex/ and runtime/hooks/codex/, both directories exist exactly as described"]
+    open_questions: ["Do PermissionRequest and PostCompaction fire when those events occur?"]
+    answered_questions: ["SessionStart and UserPromptSubmit fire under devin -p when hooks.v1.json uses top-level event arrays with nested matcher groups.", "The earlier no-firing result came from an unsupported wrapper schema, not a missing headless attachment point.", "cli-codex precedent confirmed live at mcp-server/hooks/codex/ and runtime/hooks/codex/."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -27,6 +27,8 @@ _memory:
 ## EXECUTIVE SUMMARY
 
 Add thin Devin-host hook adapters over this repo's existing runtime-neutral guard-hook cores, mirroring the proven `cli-codex` adapter pattern, so all 7 guard hooks fire correctly when Devin is the dispatched CLI executor.
+
+**Status correction (2026-07-25)**: `SessionStart` and `UserPromptSubmit` are live under `devin -p` with the documented registration schema. The earlier zero-firing experiments used an unsupported `{"version":1,"hooks":...}` wrapper and are retained below only as superseded historical reasoning.
 
 **Key Decisions**: Start with hand-built adapters (ADR-001 in `decision-record.md`), deferring Devin's native `read_config_from.claude` import until its fidelity is verified.
 
@@ -40,7 +42,7 @@ Add thin Devin-host hook adapters over this repo's existing runtime-neutral guar
 |---|---|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Complete (dormant -- see §12) |
+| **Status** | Complete (live under corrected schema) |
 | **Created** | 2026-07-23 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -77,9 +79,9 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 ### Files to Change
 | File Path | Change Type | Phase | Description |
 |---|---|---|---|
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/devin/**` (`shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `README.md`) | Create | 004 | Thin Devin-host adapters delegating to the existing `hooks/claude/*.ts` implementations, mirroring `hooks/codex/`. Built, typechecked, dormant. |
-| `.opencode/skills/system-spec-kit/runtime/hooks/devin/**` (`spec-gate-classify.mjs`, `README.md`) | Create | 004 | Devin-side `UserPromptSubmit` wiring into the shared `runtime/lib/spec-gate/spec-gate-core.mjs`, mirroring `runtime/hooks/codex/`. `spec-gate-enforce.mjs` (`PreToolUse`) is NOT built here -- it belongs to phase 008, matching this phase's own 2-event scope. Built, dormant. |
-| `.devin/hooks.v1.json` (project-level) | Created | 004 | **Committed 2026-07-24 per operator direction** (mirroring `.codex/hooks.json`'s tracked precedent), registering both adapters. Confirmed dormant under `-p` dispatch (see decision-record.md ADR-001) - present so the wiring exists the moment a future `devin` build honors it. |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/devin/**` (`shared.ts`, `session-start.ts`, `user-prompt-submit.ts`, `README.md`) | Create | 004 | Thin Devin-host adapters delegating to existing Claude implementations. Built, typechecked, directly tested and observed live after the schema correction. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/devin/**` (`spec-gate-classify.mjs`, `README.md`) | Create | 004 | Devin-side `UserPromptSubmit` wiring into the shared spec-gate core. Built, directly tested and observed live; `spec-gate-enforce.mjs` belongs to phase 008. |
+| `.devin/hooks.v1.json` (project-level) | Created | 004 | Project registration, later extended by phase 008 and corrected to top-level event arrays with nested matcher groups. Current live matrix is in `../hook-testing-results.md` tests 10-14. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -89,8 +91,8 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 | ID | Requirement | Priority |
 |---|---|---|
 | REQ-001 | Adapters exist for at least `SessionStart` and `UserPromptSubmit`, matching the two events the codex precedent proved out first. | P0 |
-| REQ-002 | **Superseded 2026-07-24 by live evidence, then committed anyway per operator direction**: `.devin/hooks.v1.json` registers both adapters using the documented `{type, matcher?, command\|prompt, timeout?}` shape. Live-probing confirmed Devin never consults it (or `.devin/config.json`'s `"hooks"` key) under `-p` dispatch — the file is committed as ready wiring for a future build, not as a claim of current live coverage. | P0 |
-| REQ-003 | **Superseded 2026-07-24 by live evidence**: no live smoke test against a fired event is possible -- confirmed no `-p`-mode attachment point exists. Direct invocation of the compiled adapters with realistic payloads substitutes as the achievable verification (see implementation-summary.md). | P0 |
+| REQ-002 | **Corrected 2026-07-25**: `.devin/hooks.v1.json` uses top-level event arrays with nested `{matcher, hooks:[{type, command, timeout}]}` entries. The earlier wrapper shape was unsupported. | P0 |
+| REQ-003 | **Corrected 2026-07-25**: live smoke tests observed `SessionStart` and `UserPromptSubmit`; direct invocation still covers malformed and missing-field failure cases. | P0 |
 | REQ-004 | This phase does not modify `ADVISOR_RUNTIME_VALUES`, does not touch `system-skill-advisor/hooks/devin/`, and does not touch `runtime-parity.vitest.ts`. | P0 |
 
 ### P1 - Required
@@ -108,7 +110,7 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: **Revised** -- the installed `devin` binary does NOT fire either wired hook adapter under `-p` dispatch, confirmed across every registration path tested (see decision-record.md ADR-001). Direct invocation with realistic payloads confirms each adapter behaves correctly in isolation, which is the achievable substitute given this constraint.
+- **SC-001**: **Corrected 2026-07-25** -- both wired events fire under `devin -p` with the documented registration schema, and direct invocation confirms malformed and missing-field fail-open behavior.
 - **SC-002**: Neutral hook cores show zero behavioral diff (`git diff` empty for `hooks/claude/**`, `runtime/lib/spec-gate/**`, `lib/hooks/completion-evidence-sentinel.cjs` against pre-phase state).
 - **SC-003**: `decision-record.md`'s ADR-001 has a recorded status (Accepted) and an explicit re-evaluation trigger for both `read_config_from.claude` and the confirmed `-p` hook-firing gap.
 <!-- /ANCHOR:success-criteria -->
@@ -141,7 +143,7 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 
 ### Data Boundaries
 - `devin` binary absent from `PATH` entirely: hooks never fire because there is no host to invoke them; this is an accepted no-op, not a regression, per phase 002's fail-closed executor precedent.
-- `.devin/hooks.v1.json` present but malformed JSON: Devin's own loader behavior in that case is unconfirmed from the fetched documentation - verify at implementation time before shipping the file.
+- `.devin/hooks.v1.json` with a valid but unsupported shape may be discarded without a useful diagnostic. Validate both JSON syntax and the nested event schema before trusting a negative test.
 
 ### Error Scenarios
 - Nested `.devin/config.json` vs. `.devin/config.local.json` vs. standalone `hooks.v1.json`: Devin's documented discovery/precedence order must be confirmed live, not assumed, before choosing which file the adapters register against.
@@ -193,10 +195,10 @@ Add the equivalent sibling adapter directories (`mcp-server/hooks/devin/`, `runt
 
 ## 12. OPEN QUESTIONS
 
-- **ANSWERED 2026-07-24**: Devin's hook system (both `.devin/hooks.v1.json` and `.devin/config.json`'s `"hooks"` key) is never consulted under `devin -p`, live-confirmed via zero probe firings across 4 event types and a deliberately-malformed-JSON test producing zero parse errors. `--agent-config` separately confirmed `hooks` is not a valid field in its own schema. `read_config_from.claude`'s fidelity is therefore moot for dispatched use until `-p` hook support exists at all.
-- **UNRESOLVED**: Does hook firing work in true interactive mode? Not testable from this environment (no TTY available). This is the one remaining gap in an otherwise exhaustive live-verification pass.
+- **CORRECTED 2026-07-25**: Devin reads `.devin/hooks.v1.json` under `devin -p` when the file uses the documented top-level event schema. The earlier wrapper-shape tests are superseded.
+- **UNRESOLVED**: `PermissionRequest` and `PostCompaction` did not occur in the corrected-schema session, so their live behavior remains unobserved.
 - Exact function-by-function parity between the `hooks/devin/` adapters and the live `hooks/codex/` siblings was verified structurally (same envelope shape, same delegation pattern) but not re-derived line-by-line against a hypothetical future schema change.
-- Which of the remaining repo guard hooks map onto which of Devin's other lifecycle events is phase 008's job, not decided here - and is now conditioned on `-p` hook support existing at all, not just on mapping decisions.
+- Mapping the remaining repo guard hooks onto Devin lifecycle events was completed by phase 008.
 <!-- /ANCHOR:questions -->
 
 ---

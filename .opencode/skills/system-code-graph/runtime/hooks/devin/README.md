@@ -11,13 +11,13 @@ description: "Devin CLI PostToolUse hook that keeps the code graph self-healing 
 
 `runtime/hooks/devin/` holds the Devin CLI side of the code graph freshness guard, one `PostToolUse(^edit$)` hook that targets the `devin` runtime specifically (its siblings in `runtime/hooks/claude/` and `runtime/hooks/codex/` target the other two CLIs). All three share the same runtime-neutral policy in `runtime/lib/code-graph/freshness-core.cjs`.
 
-**STATUS: DORMANT** - `.devin/hooks.v1.json` is confirmed not consulted at all under `devin -p` (packet-wide finding, see `../../../../system-spec-kit/mcp-server/hooks/devin/README.md`). Built and directly tested against a real file edit; not yet observed firing in a real session.
+**STATUS: LIVE** - Devin `PostToolUse(^edit$)` fired under `devin -p` with the corrected registration schema. Live payload capture confirmed `tool_input.file_path`; the hook remains fail-open and dispatches scans only when the shared core returns `scan`.
 
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
-| `code-graph-freshness.cjs` | `PostToolUse(^edit$)` hook: reads `tool_input.file_path` (with `filePath`/`path` fallbacks - Devin's exact field name is unconfirmed), runs it through `freshness-core.evaluateEdit()`, and dispatches a detached warm-only incremental scan on a `scan` decision. |
+| `code-graph-freshness.cjs` | `PostToolUse(^edit$)` hook: reads the confirmed `tool_input.file_path` field with compatibility fallbacks, runs it through `freshness-core.evaluateEdit()` and dispatches a detached warm-only incremental scan on a `scan` decision. |
 
 ## 3. BEHAVIOR
 

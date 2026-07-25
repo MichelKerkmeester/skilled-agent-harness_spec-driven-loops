@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
-  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
   "parent_id": "cli-external-orchestration/029-cli-devin-revival",
   "children_ids": [],
   "manual": {
@@ -11,49 +11,50 @@
   },
   "derived": {
     "trigger_phrases": [
-      "devin hook parity",
-      "devin hooks.v1.json",
-      "devin postcompaction adapter",
-      "devin task-dispatch-guard",
-      "devin hook parity plan",
-      "devin hook parity tasks",
-      "devin hook parity checklist",
-      "devin hook parity ADR",
-      "devin hooks.v1.json discovery",
-      "devin hook parity summary",
-      "devin hooks.v1.json full coverage"
+      "Devin hook truth",
+      "runtime hook README parity",
+      "Cursor hook mirror",
+      "Zed MCP cleanup",
+      "Devin hook truth plan",
+      "runtime README alignment plan",
+      "Zed MCP cleanup plan",
+      "Devin hook truth tasks",
+      "runtime README parity tasks",
+      "Devin hook truth checklist",
+      "runtime README parity verification",
+      "Devin hook truth decision"
     ],
     "key_topics": [
       "devin",
       "hook",
+      "truth",
+      "runtime",
+      "readme",
       "parity",
-      "hooks",
-      "json",
-      "postcompaction",
-      "adapter",
-      "task-dispatch-guard",
-      "plan",
-      "tasks",
-      "checklist",
-      "adr"
+      "cursor",
+      "mirror",
+      "zed",
+      "mcp",
+      "cleanup",
+      "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".devin/hooks.v1.json",
-      ".claude/settings.json",
-      "dist/hooks/devin/session-stop.js",
-      "hooks/devin/README.md",
-      "spec.md",
+      ".claude/hooks/README.md",
+      ".cursor/hooks/README.md",
+      ".cursor/hooks.json",
+      ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
+      ".codex/hooks/README.md",
+      ".cursor/hooks/mcp-route-guard.mjs",
+      "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
-      ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
-      ".codex/hooks.json",
-      "plan.md",
-      "implementation-summary.md",
-      "runtime/hooks/devin/README.md"
+      "hooks/devin/README.md",
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,27 +64,33 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop.js",
-        "kind": "code",
-        "path": "dist/hooks/devin/session-stop.js",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": "hooks/devin/README.md",
+        "path": ".claude/hooks/README.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".cursor/hooks/mcp-route-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -105,15 +112,9 @@
         "source": "derived"
       },
       {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -129,13 +130,25 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Devin Hook Truth",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -147,49 +160,31 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Build",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Parallel Opportunities",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Success Criteria",
+        "name": "Spec Kit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Task Checklist",
+        "name": "Overview Use",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Execution Rules",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Resolve Phase",
+        "name": "Approved Zed",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,11 +194,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "This repo enforces its scope-lock and quality discipline through 7 shared runtime-neutral guard cores, each with existing Claude and OpenCode transports",
-    "created_at": "2026-07-24T06:43:36.045Z",
-    "last_save_at": "2026-07-25T10:11:05.087Z",
+    "causal_summary": "The registration file was originally written with an unsupported wrapper shape",
+    "created_at": "2026-07-25T09:17:23Z",
+    "last_save_at": "2026-07-25T10:22:16.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06402dd744e10c840020ca78a7eecac743672dd2a4cf08ad3cf5cedb0ad2098c",
+    "source_fingerprint": "sha256:a7569eac0d92524fd724c18cf99ead5bbeebec9852301d948ae63d81fc54dbb8",
     "source_doc_hashes": {
-      "spec.md": "34d426e975301452e2e95f8d91e19a1db17aed5f41540ecaf565419e01eb1a57",
-      "plan.md": "ff2f5c2d608deb95921492478c973b9a04da4b77e2dedb37013a4202ed45ddce",
-      "tasks.md": "38eddba585629f30839ca1aede3574d41279cca9cab55047ac92cbcd7c2181d5",
-      "checklist.md": "957837dda45d4cc76b35d899c50adc9340889198fe1bb3344ce0ff39debfad99",
-      "decision-record.md": "6b08c698263616a6f5fc2890039f7ea1ad6623bf402b933508d60d0ab7320a87",
-      "implementation-summary.md": "95a24fba952366789973b566e521acd7741656db5f4ad861894eee0ca7a65892"
+      "spec.md": "2a0d0c384c064a3f1a69d13698090d3cbef1f6a72df674ecb3f0fc1de6f8aa8e",
+      "plan.md": "052204d2d27170f957fdb08ee97bb83f42ce4d136cf3a290925b6dcae15c512f",
+      "tasks.md": "8b0df183fa40104ee75cbe1851b43cceaabc41fc31a507ae040e8bedacf1e083",
+      "checklist.md": "ef972e7ca674f500d83c1b7b6d4717da3887af6820277b781a1bd69eebfcf891",
+      "decision-record.md": "af61d0defe4eaeb712c2267184f7bb1730cf2967203d2de746da9c09edd43321",
+      "implementation-summary.md": "22b621bbf1e9c3aae863551af6d4b97c6c66cfb6571b16b63202e6daf8257dcf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
     last_updated_at: "2026-07-24T18:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 008 shipped Complete (dormant) - all 8 lifecycle events have adapter paths"
-    next_safe_action: "Wait for phases 003/005; author 8 hooks scenarios per phase 004+008 dormancy"
+    recent_action: "Phase 011 corrected hook status: six events observed, two remain unobserved or empty"
+    next_safe_action: "Wait for phases 003/005; author 8 hook scenarios using observed/unobserved status"
     blockers: ["devin auth login requires an interactive OAuth browser flow only the operator can complete - blocks scenario EXECUTION, not this phase's authoring work"]
     key_files: [".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 0
     open_questions: ["Should permission-modes include a destructive/approval-gated scenario analogous to cli-codex's CX-007, given smart/dangerous modes carry comparable risk?", "Once phase 003's skill packet lands, should this playbook's preconditions cite its reference/asset paths verbatim, or pre-draft and reconcile later?"]
-    answered_questions: ["Phase 004 is Complete (dormant), not Planned - hooks/ scenarios author against its real paths + confirmed no-op-under-p finding.", "Phase 008 is also Complete (dormant) as of 2026-07-24 - all 8 lifecycle events (not just phase 004's 2) now have a real adapter path or documented gap to cite."]
+    answered_questions: ["Phases 004 and 008 are Complete and supply real adapter paths.", "Corrected-schema devin -p observed SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "PermissionRequest is an explicit empty registration and PostCompaction remains registered but unobserved."]
 ---
 # Feature Specification: Devin manual-testing playbook
 
@@ -63,7 +63,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 - Target roughly 15-20 total scenario files - smaller than Codex's 26 since several Codex categories don't apply in the same shape.
 - Reframe Codex's `sandbox-modes` category as Devin's `permission-modes` category (the 4 permission modes - auto/accept-edits/smart/dangerous - plus the genuinely separate `--sandbox` OS-level flag), not a verbatim port of Codex's read-only/workspace-write/danger-full-access sandbox shape.
 - Reframe Codex's `agent-routing` (`config.toml` `-p profile`) category as Devin's `subagents` category (`subagent_explore`, `subagent_general`, custom `.devin/agents/[name]/AGENT.md` profiles), Devin's genuinely different delegation mechanism.
-- Add a `hooks` category with exactly 8 scenario files, one per Devin lifecycle event confirmed in phase 001, each stating its real dormancy status (phase 004 confirmed live 2026-07-24 that no hook fires under `devin -p`) rather than a smoke-test-only pass for 2 events and silence on the rest.
+- Add a `hooks` category with exactly 8 scenario files, one per Devin lifecycle event, each stating whether it is observed live, registered but unobserved or an explicit empty gap.
 - Add a `cloud-handoff` category testing `/handoff` thoroughly, since it may be one of Devin's primary invocation modes rather than a secondary one.
 - Add an `mcp-integration` category testing `devin mcp add/list/get/remove/login/logout/enable/disable` - a genuine Devin capability with no direct Codex analog in this shape.
 - Port the `prompt-templates` category near-verbatim from Codex's CLEAR/RCAF scoring apparatus - a shared, cli-family-generic pattern.
@@ -109,7 +109,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | REQ-006 | Scenario IDs use the `DV-NNN` prefix (Devin), globally unique and sequential with no gaps across all 8 categories | Extracting every `DV-\d{3}` token across all scenario files yields a sorted, gap-free, duplicate-free sequence starting at `DV-001`. |
 | REQ-007 | `permission-modes` category documents why it replaces Codex's `sandbox-modes` category (4 permission modes distinct from the separate `--sandbox` OS-level flag) | The category's overview text names all 4 modes (auto/accept-edits/smart/dangerous) and states `--sandbox` is a separate, OS-level mechanism, not a 5th mode. |
 | REQ-008 | `subagents` category documents why it replaces Codex's `agent-routing`/`-p profile`/`config.toml` category | The category's scenario files reference `subagent_explore`, `subagent_general`, and a custom `.devin/agents/[name]/AGENT.md` profile at least once each. |
-| REQ-009 | **Updated 2026-07-24 - phase 008 shipped**: `hooks` category contains exactly 8 scenario files, one per Devin lifecycle event (`SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `PostCompaction`, `SessionEnd`). All 8 now have a real adapter path (phase 004: 2 events; phase 008: the remaining 6) or a documented gap (`PermissionRequest`, explicit empty - no Claude source handler to port). Each scenario's Pass/Fail criteria states the event's real dormancy status per the confirmed finding (no hook fires under `devin -p`, re-confirmed by phase 008 after its full `.devin/hooks.v1.json` extension) rather than assuming a live-fire pass. | `find manual-testing-playbook/hooks -name "*.md" \| wc -l` returns exactly 8; each scenario's Pass/Fail section names its dormancy status explicitly, not a silent live-pass assumption. |
+| REQ-009 | **Updated 2026-07-25**: `hooks` contains exactly 8 scenarios. `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop` and `SessionEnd` start from observed-live evidence. `PostCompaction` is registered but unobserved; `PermissionRequest` is an explicit empty gap. Each scenario tests its own state and preserves adapter-specific caveats such as unobserved `run_subagent` and deny behavior. | Exactly 8 hook scenarios exist and each Pass/Fail section names its evidence state without inferring failure from an event that did not occur. |
 | REQ-013 | Every `hooks` scenario cross-references its matching `feature-catalog/hooks/*.md` entry (phase 010) when that catalog exists at scenario-authoring time; if phase 010 hasn't landed yet, the scenario explicitly notes "no catalog entry yet" rather than a broken or omitted link. | Each `hooks` scenario file contains either a working link to `../../feature-catalog/hooks/<event>.md` or the explicit no-catalog-yet note. |
 | REQ-010 | `cloud-handoff` category tests `/handoff` thoroughly, not as a single throwaway scenario | The category contains `>=2` scenario files. |
 | REQ-011 | Playbook cross-referenced from `cli-devin/SKILL.md` | `cli-devin/SKILL.md` contains at least one reference to `manual-testing-playbook`. |
@@ -127,7 +127,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 - **SC-004**: Playbook cross-referenced from `cli-devin/SKILL.md`.
 - **SC-005**: sk-doc's `validate_document.py` reports 0 structural errors against every playbook file, and this phase's own spec-folder passes `validate.sh <phase-folder> --strict` with 0 errors and 0 warnings.
 - **SC-006**: Root file's Global Preconditions explicitly gate scenario EXECUTION (not authoring) on `devin auth login`.
-- **SC-007**: `hooks` category has exactly 8 scenarios (one per lifecycle event), each stating its real dormancy status per phase 004's and phase 008's confirmed findings, and cross-referencing its matching phase 010 feature-catalog entry where one exists.
+- **SC-007**: `hooks` has exactly 8 scenarios, each stating its observed-live, registered-unobserved or explicit-empty status and linking its matching phase-010 catalog entry where one exists.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -138,7 +138,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | Type | Item | Impact | Mitigation |
 |---|---|---|---|
 | Dependency | Phase 003 `cli-devin` skill packet (SKILL.md cross-reference target) | Yellow - Planned, not yet built | Author playbook content independently of SKILL.md's existence; add the cross-reference once phase 003 ships. |
-| Dependency | Phase 004 + phase 008 hook adapters (adapter script paths + confirmed dormancy status for all 8 `hooks` events) | Green - both Complete (dormant), phase 004 as of 2026-07-24, phase 008 as of 2026-07-24 (same day, later) | Author all 8 `hooks` scenarios against phase 004's (2 events) and phase 008's (remaining 6) actual adapter paths and their confirmed dormancy findings, not phase 001's contract alone. Both phases' findings agree (dormant under `-p`, re-confirmed post-extension) - no per-event status divergence to reconcile. |
+| Dependency | Phase 004 + phase 008 hook adapters and phase 011 corrected event matrix | Green - adapter phases Complete; six events observed live under corrected schema | Author all 8 scenarios against actual adapter paths and the event-specific matrix in `../hook-testing-results.md`, not a packet-wide status assumption. |
 | Dependency | Phase 005 model registry (current model slugs for the root file's model roster note) | Yellow - Planned | Author against phase 001's confirmed facts (`swe-1.6`, Adaptive router); confirm current sibling-model slugs once phase 005 ships. |
 | Dependency | `devin auth login` (operator-only interactive OAuth) | Red - not completed | Blocks scenario EXECUTION only; does not block authoring this phase's docs or the playbook content itself. |
 | Risk | Blind port of Codex categories fabricates coverage for capabilities Devin doesn't have in that shape | High if unmitigated | Reframe `permission-modes` and `subagents` per grounded facts (REQ-007/REQ-008); explicit Out-of-Scope callout against verbatim porting. |

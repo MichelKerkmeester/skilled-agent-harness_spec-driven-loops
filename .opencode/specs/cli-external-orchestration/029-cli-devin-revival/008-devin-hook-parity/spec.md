@@ -9,21 +9,21 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity"
     last_updated_at: "2026-07-24T18:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Built+tested all 10 adapters, extended hooks.v1.json, re-confirmed dormant live"
-    next_safe_action: "Regenerate description/graph-metadata, validate --recursive --strict, commit"
-    blockers: ["devin auth login needs an interactive OAuth flow (true interactive-mode firing still untested)"]
+    recent_action: "Corrected phase status after documented-schema live verification"
+    next_safe_action: "Use phase 011 evidence for current event status and retained caveats"
+    blockers: []
     key_files: [".devin/hooks.v1.json", "../004-devin-hook-adapter-layer/decision-record.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
     completion_pct: 100
-    open_questions: ["Does true interactive devin mode (no TTY here) fire hooks where -p does not?"]
-    answered_questions: ["Codex's own phase 004 pre-shipped 4 lifecycle adapters before needing its 007; Devin's phase 004 only pre-shipped 2, so this phase is structurally bigger than its Codex analog.", "Is Devin SessionEnd stdout-lenient like SessionStart, or strict like Stop? Moot pending live verification (dormant under -p either way) -- registered session-cleanup.sh directly since Devin has a real SessionEnd event, unlike Codex which has none.", "Original file matrix (9 files) missed spec-gate-enforce.mjs -- the actual PreToolUse(exec|edit) gate-3 BLOCK, not just the UserPromptSubmit classify step. Research §10 (C-02/C-05/G-01) had already scoped it; added as a 10th file."]
+    open_questions: ["Do PermissionRequest and PostCompaction fire when those events occur?", "Does run_subagent produce the registered tool name and expected payload shape?", "Does the deny branch block a real tool call when a block-severity fixture exists?"]
+    answered_questions: ["Six lifecycle events fire under devin -p with the documented registration schema.", "SessionEnd fired and remains registered directly.", "The original file matrix missed spec-gate-enforce.mjs; it was added as the 10th adapter."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Devin hook parity
 
 ## EXECUTIVE SUMMARY
-Phase 004 deliberately proved out only 2 of Devin's 8 lifecycle events (`SessionStart`, `UserPromptSubmit`) before deferring the rest as P2/unscheduled. This phase closes that gap completely, mirroring `027-cli-codex-revival/007-codex-hook-parity`: every Claude hook and OpenCode plugin now has a correct Devin adapter, a documented native-import equivalent, or an explicit documented gap - never a silent omission. **Implemented and live-tested**: 10 new adapter files (9 originally planned + `spec-gate-enforce.mjs`, a real parity gap the original file matrix missed) plus a fully-extended `.devin/hooks.v1.json` covering all 7 event categories Claude registers (`PermissionRequest` explicit-empty, `PreCompact`↔`PostCompaction` is the one genuine naming/semantic divergence, not a gap). Re-tested live against `devin -p` after the extension - still confirmed dormant, matching phase 004's finding exactly; no new firing behavior introduced or discovered.
+Phase 004 built the first 2 Devin lifecycle adapters and this phase closed the remaining parity gaps with 10 new adapter files plus full lifecycle registration. **Status correction (2026-07-25)**: the original zero-firing pass used an unsupported wrapper schema. With top-level event arrays and nested matcher groups, `devin -p` observed `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop` and `SessionEnd`. `PermissionRequest`, `PostCompaction`, `run_subagent` and the deny branch retain explicit unobserved caveats.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -31,7 +31,7 @@ Phase 004 deliberately proved out only 2 of Devin's 8 lifecycle events (`Session
 |---|---|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Complete (dormant) |
+| **Status** | Complete (six lifecycle events observed live) |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -61,8 +61,8 @@ Build the remaining Devin hook adapters using the exact pattern already proven f
 - 1 new dispatch-guard adapter (`task-dispatch-guard.cjs`, PreToolUse `run_subagent`) - a deliberate divergence from Codex's fold-in, justified by Devin's real `run_subagent` tool.
 - Wiring-only registration of 4 existing shell/python scripts into `.devin/hooks.v1.json`'s `SessionStart` array (`worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check`), each anchored at `${DEVIN_PROJECT_DIR}`.
 - An explicit empty `"PermissionRequest": []` entry, documented as "no Claude source handler exists to port."
-- `SessionEnd` registered directly (`session-cleanup.sh`), since Devin - unlike Codex, which has no `SessionEnd` event at all - has a genuine native `SessionEnd` lifecycle event (confirmed phase 001 contract-pin); live stdout-strictness is untestable while hooks stay dormant under `-p`, so this is a structural decision, not a behavior-verified one.
-- Resolving phase 004's still-open REQ-007 (`.devin/hooks.v1.json` discovery/precedence order): confirmed moot, not resolved - the project-level file is never consulted at all under `-p`, so discovery-order between a project file and a user-global installer cannot matter until that changes.
+- `SessionEnd` registered directly (`session-cleanup.sh`) because Devin has a native `SessionEnd` event. The event fired under the corrected schema; no dedicated adverse stdout-shape test was run.
+- Resolve phase 004's discovery question: the project-level `.devin/hooks.v1.json` is consulted under `devin -p` when it uses the documented nested event schema.
 
 ### Out of Scope
 - Phase 004's already-built `spec-gate-classify.mjs`/`session-start.ts`/`user-prompt-submit.ts` - not modified, not duplicated here. (Correction: the original spec text assumed phase 004 had also built `spec-gate-enforce.mjs` - it hadn't. That file is genuinely new work in this phase; see Files to Change.)
@@ -77,13 +77,13 @@ Build the remaining Devin hook adapters using the exact pattern already proven f
 | `cli-opencode/scripts/hooks/devin/dispatch-audit-posttooluse.mjs` | Created (confirmed) | PostToolUse(`^exec$`), observe-only, wraps `dispatch-audit.mjs`. Tested happy-path + fail-open. |
 | `sk-code/code-quality/scripts/hooks/devin/post-edit-quality.cjs` | Created (confirmed) | PostToolUse(`^edit$`), advisory, wraps `post-edit-router.cjs`. Tested against a real file edit. |
 | `system-code-graph/runtime/hooks/devin/code-graph-freshness.cjs` | Created (confirmed) | PostToolUse(`^edit$`), wraps `freshness-core.cjs`. Tested against a real file edit. |
-| `mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs` | Created (confirmed) | PreToolUse(`^mcp__.*$`), warn-only, wraps `mcp-route-guard.cjs` core. Dormant for two reasons (packet-wide -p finding + no external MCP family registered yet); re-evaluated by phase 009. |
+| `mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs` | Created (confirmed) | PreToolUse(`^mcp__.*$`), warn-only, wraps the shared core. Registered and directly tested, but not currently exercised because no external non-`mk_` MCP family is registered under Devin. |
 | `system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` | Created (confirmed, 10th file, gap fix) | PreToolUse(`^exec$`\|`^edit$`), deny-capable, calls `spec-gate-core.mjs`'s `evaluateMutation()` directly. Original file matrix missed this - research §10 (C-02/C-05/G-01) had already scoped it as the real gate-3 BLOCK, distinct from `spec-gate-classify.mjs`'s advisory classify step. Tested: non-mutating tool, exec, edit-with-file_path, and malformed stdin - all fail open correctly. |
 | `system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs` | Created (confirmed) | Stop, advisory, wraps `completion-evidence-sentinel.cjs`. Tested with a completion-claim payload. |
 | `system-spec-kit/mcp-server/hooks/devin/session-stop.ts` | Created (confirmed) | Stop, delegates to compiled `../claude/session-stop.js` via the shared `shared.ts` phase 004 built. Typechecked 0 errors, compiled, tested. |
 | `system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs` | Created (confirmed) | PostCompaction, bespoke 5-step recovery chain (research §8). Tested with and without a `summary` field; two authoring bugs caught and fixed before testing (broken `&&`-chained `require()`, literal raw control-character bytes in the sanitizer regex). |
 | `system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs` | Created (confirmed) | PreToolUse(`^run_subagent$`), wraps `dispatch-guard.cjs`. Mirrors Claude's real Task adapter (not Codex's fold-in) since `run_subagent` is a first-class Devin tool. Tested happy-path + fail-open. |
-| `.devin/hooks.v1.json` | Modified (confirmed) | Extends phase 004's 2-event registration to all 7 event categories Claude covers (`SessionStart` +4 wiring-only scripts, `UserPromptSubmit` unchanged, `PreToolUse` x5 matchers, `PostToolUse` x3 matchers, explicit empty `PermissionRequest`, `Stop` x2, `PostCompaction` x1, `SessionEnd` x1 registered directly). JSON-validated; re-tested live against `devin -p` post-extension - still dormant, no regression. |
+| `.devin/hooks.v1.json` | Modified (confirmed) | Covers all 8 lifecycle events with 11 matcher groups and 19 commands. Corrected to top-level event arrays with nested matcher groups and observed live under `devin -p`. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -94,19 +94,19 @@ Build the remaining Devin hook adapters using the exact pattern already proven f
 | REQ-001 | Every one of the 6 remaining guard cores gets a Devin adapter, following the exact stdin-read/fail-open/translate/emit pattern already proven for Codex. | P0 | Done - all 6 built + tested. |
 | REQ-002 | `post-compaction.cjs` implements the full 5-step bespoke recovery chain from `research-devin-hooks-portability/research.md` §8, not a naive port. | P0 | Done - tested with and without `summary`; 2 authoring bugs fixed pre-test. |
 | REQ-003 | `task-dispatch-guard.cjs` is a real adapter, not folded into another recognizer - explicitly diverging from the Codex precedent with recorded rationale. | P0 | Done. |
-| REQ-004 | `.devin/hooks.v1.json` registers all 8 lifecycle events, including an explicit empty `PermissionRequest` array with a documented reason. | P0 | Done - JSON-validated, live re-tested, still dormant. |
-| REQ-005 | The `SessionEnd` decision (direct registration vs. fold into `Stop`) is made from live evidence of Devin's actual stdout-handling behavior, never assumed identical to Codex (which has no `SessionEnd` event at all). | P0 | Decided structurally (registered directly - Devin has a real `SessionEnd` event, Codex does not); live stdout-strictness evidence is unobtainable while hooks stay dormant under `-p`. |
-| REQ-006 | Phase 004's still-open discovery-order question (project-level `.devin/hooks.v1.json` vs. an idempotent installer into a user-global location) is resolved before this phase's registrations are finalized. | P0 | Resolved as moot - `-p` never consults hook config at all, so discovery-order between locations cannot matter until that changes. |
+| REQ-004 | `.devin/hooks.v1.json` registers all 8 lifecycle events, including an explicit empty `PermissionRequest` array with a documented reason. | P0 | Done - 8 events, 11 matcher groups and 19 commands; six events observed live. |
+| REQ-005 | The `SessionEnd` decision remains explicit and evidence-ranked. | P0 | Registered directly because Devin has the native event; event firing observed, adverse stdout handling not separately tested. |
+| REQ-006 | Phase 004's discovery question is resolved before registrations are trusted. | P0 | Resolved - project-level registration works under `devin -p` with the documented nested schema. |
 | REQ-007 | All 8 runtime-neutral guard cores (including `dispatch-guard.cjs` and `spec-gate-core.mjs`) remain byte-unchanged; adapters translate only. | P1 | Done - `git diff --stat` confirmed empty on every core. |
-| REQ-008 | `decision-record.md` records all 5 ADRs (contract/discovery, dual-pattern confirmation, deny-capability verification, registration location, honest divergent/dormant/empty handling). | P1 | Done. |
-| REQ-009 | `mcp-route-guard.cjs`'s dormancy (no external MCP family registered yet) is documented as provisional, explicitly re-evaluated by phase 009 once real MCP servers exist. | P2 | Done - documented, forwarded to 009. |
+| REQ-008 | `decision-record.md` records all 5 ADRs (contract/discovery, dual-pattern confirmation, deny-capability verification, registration location and honest divergent/unobserved/empty handling). | P1 | Done. |
+| REQ-009 | `mcp-route-guard.cjs`'s no-external-family condition is documented as provisional and re-evaluated by phase 009. | P2 | Done - documented and forwarded to 009. |
 | REQ-010 | `spec-gate-enforce.mjs` (PreToolUse `exec`/`edit` gate-3 BLOCK) is built - a real parity gap the original 9-file matrix missed despite the research already scoping it. | P0 | Done - added as a 10th file, tested (non-mutating/exec/edit/malformed-stdin). |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 - SC-001: DONE - all 11 new/modified files listed in §3 exist and pass syntax/type/lint checks (`tsc --noEmit` 0 errors for `session-stop.ts`; `node --check` for every `.cjs`; direct execution for every `.mjs`).
-- SC-002: DONE (with the packet-wide caveat) - every wired adapter was directly invoked with realistic and malformed/missing-field payloads and behaved as designed (allow/deny/advise/fail-open as appropriate); `devin -p` itself was re-run against the fully-extended `.devin/hooks.v1.json` and confirmed still dormant, matching phase 004's finding - no hook output was observed, consistent with every prior test in this packet.
+- SC-002: DONE - every wired adapter was directly invoked with realistic and malformed/missing-field payloads, and corrected-schema `devin -p` observed six lifecycle events end to end.
 - SC-003: DONE - `git diff --stat` on all 9 neutral cores (including `spec-gate-core.mjs`) is empty.
 <!-- /ANCHOR:success-criteria -->
 
@@ -115,7 +115,7 @@ Build the remaining Devin hook adapters using the exact pattern already proven f
 - **R-001**: Devin's project-level `.devin/hooks.v1.json` could be inert the way Codex's project-level `.codex/hooks.json` was - Codex needed an idempotent installer into `~/.codex/hooks.json`. Mitigation: REQ-006 resolves this as a blocking precondition, not an assumption.
 - **R-002**: Devin's `Stop`/`SessionEnd` stdout-parsing strictness is unconfirmed. Mitigation: REQ-005 gates the `SessionEnd` decision on live evidence.
 - **R-003**: `post-compaction.cjs`'s bespoke logic has no working precedent to copy (Codex has no `PostCompaction`-shaped adapter). Mitigation: the 5-step chain is already fully designed in the hooks-portability research, not invented fresh here.
-- **Dependency**: This phase depends only on `004-devin-hook-adapter-layer` landing first (not 005/006/007). It shares the packet-wide blocker of needing an authenticated `devin` session for any live verification.
+- **Dependency**: This phase depends only on `004-devin-hook-adapter-layer` landing first. Hook live verification succeeded without treating authentication as a hook-availability blocker.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
@@ -140,13 +140,13 @@ High - 9 new files across 6 different skill-packet directories, 1 genuinely nove
 
 ## 11. USER STORIES
 - As a maintainer, I want every guard hook that protects this repo to fire correctly regardless of which CLI executor (Claude, Codex, OpenCode, or Devin) is doing the work.
-- As the implementer of phase 009, I want `mcp-route-guard.cjs`'s dormancy status already documented so I know exactly what to re-evaluate once real MCP servers are registered.
+- As the implementer of phase 009, I want `mcp-route-guard.cjs`'s no-external-family status documented so I know what to re-evaluate once real MCP servers are registered.
 
 ## 12. OPEN QUESTIONS
-- **ANSWERED by phase 004 (2026-07-24)**: project-level `.devin/hooks.v1.json` does NOT work under `devin -p` -- confirmed dead across every registration path tested (standalone file with/without a version field, `.devin/config.json`'s `"hooks"` key, deliberately malformed JSON producing zero parse errors, and `--agent-config`'s own strict parser rejecting a `hooks` field outright). This applies to every hook this phase builds, not just `SessionStart`/`UserPromptSubmit`.
-- **ANSWERED by this phase (2026-07-24)**: re-tested the fully-extended `.devin/hooks.v1.json` (all 7 event categories, 15 command entries) live against `devin -p` after building all 10 adapters - still zero hook output observed. The dormancy finding is packet-wide and extension-invariant, not specific to phase 004's original 2-event registration.
-- **ANSWERED by this phase (2026-07-24)**: `SessionEnd` registered directly (`session-cleanup.sh`), not folded into `Stop`. Rationale is structural (Devin has a real native `SessionEnd` event per phase 001's contract-pin; Codex has none and had to fold), not behavior-verified - live stdout-strictness evidence is unobtainable while hooks stay dormant under `-p`.
-- **Only remaining open question**: does true interactive `devin` mode (untested here - no TTY available in this environment) fire hooks where `-p` does not? This is the one gap every dormancy finding in this packet (phases 001, 004, 008) has left unresolved.
+- **CORRECTED 2026-07-25**: project-level `.devin/hooks.v1.json` works under `devin -p` with top-level event arrays and nested matcher groups. The old wrapper-shape tests are superseded.
+- **ANSWERED**: the current registration contains 8 events, 11 matcher groups and 19 commands; six lifecycle events fired in one corrected-schema session.
+- **ANSWERED**: `SessionEnd` remains registered directly and its event firing was observed.
+- **OPEN**: `PermissionRequest`, `PostCompaction`, `run_subagent` and the deny branch remain unobserved end to end.
 - `mk-goal.js`/`mk-speckit-completion.js` have no hook-based Devin target at all - forwarded as a new open question on the parent `spec.md`, not solved here.
 <!-- /ANCHOR:questions -->
 
@@ -157,5 +157,5 @@ High - 9 new files across 6 different skill-packet directories, 1 genuinely nove
 - `../004-devin-hook-adapter-layer/` (real dependency/predecessor, do not modify)
 - `../007-docs-agents-governance-and-closeout/` (sequential-numbering neighbor only, not a dependency - see Phase Transition Rules in `../spec.md`)
 - `../research-devin-hooks-portability/research.md` (source research, esp. §8 PostCompaction design, §10 skeleton)
-- `../009-devin-mcp-host-integration/spec.md` (re-evaluates `mcp-route-guard.cjs` dormancy)
+- `../009-devin-mcp-host-integration/spec.md` (re-evaluates the MCP route guard when external families exist)
 - `../../027-cli-codex-revival/007-codex-hook-parity/` (structural + ADR precedent)

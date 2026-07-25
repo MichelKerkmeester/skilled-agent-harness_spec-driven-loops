@@ -9,9 +9,9 @@ description: "Devin CLI sibling adapters that lint a dispatch command before it 
 
 ## 1. OVERVIEW
 
-`devin/` holds the Devin CLI sibling of the parent `scripts/hooks/` adapters. Devin fires its hook events on the `exec` tool (matcher `^exec$` in `.devin/hooks.v1.json`) and calls the identical runtime-neutral cores in `../../lib/` that the Claude and Codex adapters call. Devin's tool_input field names are unconfirmed (no live capture yet - see phase 008 decision-record.md); each file tolerates the same field-name fallbacks the Claude/Codex siblings already use.
+`devin/` holds the Devin CLI sibling of the parent `scripts/hooks/` adapters. Devin fires its hook events on the `exec` tool (matcher `^exec$` in `.devin/hooks.v1.json`) and calls the identical runtime-neutral cores in `../../lib/` that the Claude and Codex adapters call. Live payload capture confirmed `tool_name: "exec"` and `tool_input.command`; the adapters retain tolerant field-name fallbacks for compatibility.
 
-**STATUS: DORMANT** - `.devin/hooks.v1.json` is confirmed not consulted at all under `devin -p` (packet-wide finding, see `../../../../../system-spec-kit/mcp-server/hooks/devin/README.md`). Built and live-tested for correctness anyway; not yet observed firing in a real session.
+**STATUS: LIVE** - Devin `PreToolUse` and `PostToolUse` fired under `devin -p` after `.devin/hooks.v1.json` was corrected to the documented top-level event schema. The dispatch adapters are directly tested; the warn path is observed, while no repository skill currently provides a block-severity fixture for an end-to-end deny test.
 
 ## 2. CONTENTS
 

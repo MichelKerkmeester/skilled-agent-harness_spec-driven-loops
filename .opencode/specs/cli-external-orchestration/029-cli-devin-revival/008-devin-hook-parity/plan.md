@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity"
     last_updated_at: "2026-07-24T06:43:46Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored Level 3 plan: dependency graph, critical path, milestones, ADR pointer"
-    next_safe_action: "Wait for phase 004, then resolve ADR-001 discovery order"
-    blockers: ["depends on phase 004 landing first", "devin auth login needed for live verification"]
+    recent_action: "Corrected plan outcome after documented-schema live verification"
+    next_safe_action: "Use phase 011 current-status evidence and retain historical decisions as superseded where marked"
+    blockers: []
     key_files: ["spec.md", "tasks.md", "decision-record.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Does project-level .devin/hooks.v1.json work, or is an installer needed?"]
-    answered_questions: []
+    completion_pct: 100
+    open_questions: ["Do PermissionRequest and PostCompaction fire when those events occur?"]
+    answered_questions: ["Project-level hooks.v1.json works under devin -p with the documented nested schema.", "Six lifecycle events were observed live."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -118,7 +118,7 @@ No feature flag needed - additive, Devin-only. No data migration involved.
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-5 ADRs govern this phase: contract/discovery resolution (ADR-001), dual adapter pattern confirmation (ADR-002), deny-capability verification (ADR-003), registration location (ADR-004), honest divergent/dormant/empty handling (ADR-005). See `decision-record.md` for full context, alternatives, consequences, and rollback notes.
+5 ADRs govern this phase: contract/discovery resolution (ADR-001), dual adapter pattern confirmation (ADR-002), deny-capability verification (ADR-003), registration location (ADR-004) and honest divergent/unobserved/empty handling (ADR-005). See `decision-record.md` for corrected outcomes and retained historical reasoning.
 
 <!-- ANCHOR:ai-execution -->
 ## AI EXECUTION PROTOCOL

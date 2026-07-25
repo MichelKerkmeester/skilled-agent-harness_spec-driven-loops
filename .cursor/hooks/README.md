@@ -1,10 +1,55 @@
-# .cursor/hooks/ — discovery mirror, not the wiring source
+---
+title: "Cursor Hook Discovery Mirror"
+description: "Discovery-only symlinks for the repository's Cursor hook scripts; runtime wiring remains in .cursor/hooks.json and points to real .opencode paths."
+---
+# Cursor Hook Discovery Mirror
 
-This folder exists purely so every Cursor hook script is visible in one place at the path Cursor's own docs name as conventional (`.cursor/hooks/<script>`). Every file here is a symlink to the real source, which still lives under `.opencode/skills/system-spec-kit/` (or `.opencode/bin/`, `.opencode/scripts/`, `.opencode/skills/sk-code/`) — see each link's target.
+> A filesystem index of Cursor hook entrypoints, not the runtime wiring source.
 
-**`.cursor/hooks.json`'s `command` fields still point at the original real paths, not these symlinks — do not repoint them.** Two independent reasons:
+## 1. OVERVIEW
 
-1. **Silent entrypoint-guard break, confirmed by testing.** `session-start.js`, `session-end.js`, `user-prompt-submit.js`, and `precompact.js` each compile from a `.ts` source that ends with `runCursorHook(import.meta.url, main)` (`shared.ts`). That guard compares `process.argv[1]` (the path Node was invoked with) against `fileURLToPath(import.meta.url)` (which Node's ESM loader resolves through symlinks to the real file). Invoked via a symlink, `process.argv[1]` stays the symlink path while `import.meta.url` resolves to the real path — the two never match, `main()` never runs, and the hook produces **zero output** (not even the documented fail-open `{"permission":"allow"}`). Verified directly: all 4 files return nothing through `.cursor/hooks/`, and work normally via their real path.
-2. **The plain `.mjs` files (`spec-gate-enforce.mjs`, `spec-gate-classify.mjs`, `post-tool-use.mjs`, `task-dispatch-guard.mjs`) don't have that guard and work fine through either path** — but keeping every entry pointed at one consistent, already-tested location (the real path) avoids a mixed, easy-to-get-wrong config.
+`.cursor/hooks/` contains 14 symlinks after including the `beforeMCPExecution` route guard. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
 
-If you need to manually smoke-test one of the 4 guarded hooks, invoke it via its real path, never via `.cursor/hooks/<name>`.
+Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
+
+## 2. ENTRYPOINT BEHAVIOR
+
+| Script | Through Mirror | Through Real Path |
+|--------|----------------|-------------------|
+| `session-start.js` | No output | Valid Cursor hook response |
+| `session-end.js` | No output | Valid Cursor hook response |
+| `user-prompt-submit.js` | No output | Valid Cursor hook response |
+| `precompact.js` | No output | Valid Cursor hook response |
+| Plain `.mjs` and shell files | Matches real-path behavior | Authoritative runtime behavior |
+
+## 3. INVENTORY
+
+| Group | Files |
+|-------|-------|
+| Session lifecycle | `session-start.js`, `session-end.js`, `session-cleanup.sh`, `precompact.js`, `user-prompt-submit.js` |
+| Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.mjs` |
+| Tool and MCP proxies | `post-tool-use.mjs`, `mcp-route-guard.mjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs` |
+
+`mcp-route-guard.mjs` recombines Cursor's split `mcp_server_name` and bare `tool_name` fields before delegating to the shared route-guard policy.
+
+## 4. VALIDATION
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .cursor/hooks/README.md
+```
+
+Expected result: exit 0 with zero document issues.
+
+```bash
+test -L .cursor/hooks/mcp-route-guard.mjs && test -e .cursor/hooks/mcp-route-guard.mjs
+```
+
+Expected result: exit 0, proving the discovery link exists and resolves.
+
+## 5. RELATED RESOURCES
+
+- [Cursor hook wiring](../hooks.json)
+- [Claude mirror](../../.claude/hooks/README.md)
+- [Codex mirror](../../.codex/hooks/README.md)
+- [Devin mirror](../../.devin/hooks/README.md)

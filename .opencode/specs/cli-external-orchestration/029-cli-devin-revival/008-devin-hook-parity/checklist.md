@@ -9,8 +9,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity"
     last_updated_at: "2026-07-24T18:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All checklist items verified; all 10 adapters malformed-JSON + missing-field tested"
-    next_safe_action: "Write implementation-summary.md, regenerate metadata, validate, commit"
+    recent_action: "Corrected verification outcomes after documented-schema live events"
+    next_safe_action: "Use phase 011 evidence for current status"
     blockers: []
     key_files: ["spec.md", "tasks.md", "decision-record.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
@@ -34,8 +34,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## PRE-IMPLEMENTATION
 - [x] CHK-001 [P0] Phase 004 landed and committed (`1a4b431dc7`) before this phase's adapter work began.
-- [x] CHK-002 [P0] **Resolved as moot, not silently skipped**: `devin -p` is confirmed (phase 004) to never consult hook config at all, so no live-fired event exists to re-verify a schema against for any of the 6 remaining events. Adapters use the same field-name-tolerant fallback pattern the Claude/Codex siblings already use for this exact reason.
-- [x] CHK-003 [P0] **Resolved as moot**: discovery/precedence order cannot matter while `-p` never consults hook config at either a project-level file or a hypothetical user-global installer location. Evidence: `../004-devin-hook-adapter-layer/decision-record.md` ADR-001's live probe table.
+- [x] CHK-002 [P0] Corrected-schema live tests observed six lifecycle events and captured real payload fields (`../hook-testing-results.md`, tests 10-14).
+- [x] CHK-003 [P0] Project-level `.devin/hooks.v1.json` discovery works under `devin -p` with the documented nested event schema.
 - [x] CHK-004 [P1] All 5 ADRs revised and accepted in `decision-record.md` for this phase's real implementation.
 <!-- /ANCHOR:pre-impl -->
 
@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## TESTING
 - [x] CHK-020 [P0] Direct stdin-pipe invocation (in place of automated fixtures, matching phase 004's own verification bar) covers payload validation, matcher-relevant tool_name branching, and envelope translation for all 10 new adapters, including one realistic dispatch-shaped command for `dispatch-preflight-lint.mjs` that produced a real advisory.
-- [x] CHK-021 [P0] Live `devin -p` re-dispatch after the full `.devin/hooks.v1.json` extension exercised `SessionStart`/`UserPromptSubmit`/`PreToolUse`/`PostToolUse`/`Stop` implicitly - zero hook output observed for any of them. **Honest caveat**: `PostCompaction` and `SessionEnd` were not independently live-triggered (would require inducing an actual compaction or session-termination event); their dormancy is inferred from the packet-wide finding that `-p` never consults hook config at all, not independently observed for these two specific events.
+- [x] CHK-021 [P0] Corrected-schema `devin -p` observed `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop` and `SessionEnd`. `PermissionRequest` and `PostCompaction` did not occur and remain unobserved.
 - [x] CHK-022 [P0] Malformed-JSON AND missing-field (`{}`) edge cases explicitly tested for every one of the 10 adapters - full matrix, not a subset. Evidence: same test run as CHK-011 -- 20/20 cases exit=0.
-- [x] CHK-023 [P1] `SessionEnd` lenient-vs-strict behavior **cannot be confirmed live** while hooks stay dormant under `-p` (no stdout is ever consulted for any event). Decision (register directly, matching Claude's own `SessionEnd` pattern rather than Codex's fold-into-`Stop`) made structurally from Devin's real native `SessionEnd` event (phase 001 contract-pin), documented as not behavior-verified.
+- [x] CHK-023 [P1] `SessionEnd` fired under the corrected schema and remains registered directly. No dedicated adverse stdout-shape test was performed.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -69,7 +69,7 @@ N/A - this phase is new-adapter creation, not a bug fix.
 <!-- ANCHOR:docs -->
 ## DOCUMENTATION
 - [x] CHK-040 [P0] `README.md` authored in each of the 5 new `hooks/devin/` sibling directories (`cli-opencode`, `mcp-code-mode`, `sk-code/code-quality`, `system-code-graph`, `system-deep-loop`), mirroring the Codex siblings; the 2 pre-existing `hooks/devin/README.md` files (`mcp-server/`, `runtime/`) updated to list the new files landed in those same directories, including correcting a stale claim in the `runtime/` README that `spec-gate-enforce.mjs` was "deliberately NOT built here."
-- [x] CHK-041 [P1] `mcp-route-guard.cjs`'s dormancy is documented as provisional for two independent reasons (packet-wide `-p` finding + no external MCP family registered), explicitly forwarded to phase 009.
+- [x] CHK-041 [P1] `mcp-route-guard.cjs`'s no-external-family condition is documented as provisional and forwarded to phase 009.
 - [x] CHK-042 [P1] `task-dispatch-guard.cjs`'s divergence from Codex's fold-in is documented in-file and in its README with rationale (Devin's `run_subagent` is a real first-class tool; Codex has none).
 <!-- /ANCHOR:docs -->
 
@@ -88,15 +88,15 @@ N/A - this phase is new-adapter creation, not a bug fix.
 
 <!-- ANCHOR:perf-verify -->
 ## L3: PERFORMANCE VERIFICATION
-- [x] CHK-110 [P1] Moot while dormant - no adapter is ever invoked under `-p`, so there is no live latency to measure. `boundedMemoryContextResume()`'s 2500ms timeout is the only adapter with a non-trivial worst case, and it is bounded by design.
+- [x] CHK-110 [P1] No dedicated latency benchmark was recorded; live hooks completed within normal dispatch and `boundedMemoryContextResume()` retains its 2500ms timeout.
 - [x] CHK-111 [P2] No load testing needed - hooks run at most once per lifecycle event, confirmed by design (not by load test, since none fire today).
 <!-- /ANCHOR:perf-verify -->
 
 <!-- ANCHOR:deploy-ready -->
 ## L3: DEPLOYMENT READINESS
 - [x] CHK-120 [P0] Rollback path confirmed by construction: every new file is additive under a `hooks/devin/` sibling directory and `.devin/hooks.v1.json` only gained new array entries: `git rm` the 10 files + `git checkout` the prior `hooks.v1.json` would cleanly revert with zero neutral-core impact (cores confirmed byte-unchanged, CHK-per SC-003).
-- [x] CHK-121 [P0] No feature flag needed - additive, Devin-only, and already inert under the only mode (`-p`) any dispatcher uses. Evidence: `.devin/hooks.v1.json` gained only new array entries, no existing entry modified.
-- [x] CHK-122 [P2] No monitoring/alerting configured - not required at this scale, and moot while dormant.
+- [x] CHK-121 [P0] No feature flag needed - additive, Devin-only and bounded by fail-open adapters. Evidence: `.devin/hooks.v1.json` contains only Devin registrations.
+- [x] CHK-122 [P2] No monitoring or alerting configured; bounded smoke tests and runtime READMEs are the current operational controls.
 <!-- /ANCHOR:deploy-ready -->
 
 <!-- ANCHOR:compliance-verify -->
@@ -119,7 +119,7 @@ N/A - this phase is new-adapter creation, not a bug fix.
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
-P0 Items: 12 total (12 verified). P1 Items: 12 total (12 verified). P2 Items: 3 total (3 verified). Verification Date: 2026-07-24. Phase status: Complete (dormant) - every item above cites the confirming evidence; the packet-wide `-p` dormancy finding (phase 004, re-confirmed here post-extension) is the one caveat that applies uniformly, not a gap in this phase's own verification.
+P0 Items: 12 total (12 verified). P1 Items: 12 total (12 verified). P2 Items: 3 total (3 verified). Verification correction date: 2026-07-25. Phase status: Complete, with six lifecycle events observed and four named surfaces still unobserved end to end.
 <!-- /ANCHOR:summary -->
 
 ---

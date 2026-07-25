@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Devin hook parity"
-description: "5 ADRs governing the Devin hook parity phase: contract/discovery resolution, dual adapter pattern, deny-capability verification, registration location, honest divergent/dormant/empty handling."
+description: "5 ADRs governing Devin hook parity: contract discovery, adapter patterns, deny verification, registration location and honest divergent, unobserved or empty surfaces."
 trigger_phrases: ["devin hook parity ADR", "devin hooks.v1.json discovery"]
 importance_tier: "normal"
 contextType: "general"
@@ -16,7 +16,7 @@ _memory:
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
     completion_pct: 100
     open_questions: []
-    answered_questions: ["Project-level .devin/hooks.v1.json is confirmed inert under -p regardless of an installer - the whole question was moot, not answerable by branching.", "SessionEnd registered directly (real native Devin event, unlike Codex)."]
+    answered_questions: ["Project-level .devin/hooks.v1.json works under devin -p with the documented schema.", "SessionEnd registered directly and observed live."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -26,7 +26,7 @@ _memory:
 <!-- ANCHOR:adr-001 -->
 ## ADR-001: Contract and discovery-order resolution for the 6 remaining events
 
-**STATUS: Accepted (resolved as moot, not by the planned branch-on-evidence test)** - see the Outcome note below the original Decision. This section is preserved as originally authored (pre-implementation) plus a dated addendum, per this repo's convention of superseding rather than deleting prior reasoning.
+**STATUS: Accepted, corrected 2026-07-25.** The original branch-on-evidence test used an unsupported wrapper schema. Its observations remain below as superseded history; current discovery is proven with the nested event schema.
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
@@ -41,7 +41,9 @@ Phase 004 already pinned `SessionStart` and `UserPromptSubmit`. Six events remai
 
 **How it works**: Write a minimal single-event `.devin/hooks.v1.json` test registration, launch a `devin` session in this repo, and confirm the hook actually fires. If it fires, proceed with project-level registration as planned. If it does not, build `install-devin-hooks.mjs` (T019) mirroring `install-codex-hooks.mjs`'s idempotent backup-and-merge pattern before any further registration work.
 
-**Outcome (2026-07-24)**: The planned live test was never reached as a branch point - phase 004 had *already* run this exact test (before phase 008 started) and found the file is never consulted at all under `devin -p`: a real dispatched tool call produced zero probe firings, deliberately malformed JSON produced zero parse errors (proof the file isn't read, not merely ignored once read), and `--agent-config`'s own strict schema rejects a `hooks` field outright. Phase 008 re-ran the same probe against the fully-extended, 7-event-category `.devin/hooks.v1.json` (15 command entries) and got the identical result: zero firings. This resolves ADR-001 as **moot** rather than as either of the two anticipated branches - there is no discovery-order question to answer while `-p` never reads hook config from any location at all. `install-devin-hooks.mjs` (T019) was correctly never built: an installer only helps if the *location* is wrong, and the actual problem is that `-p` mode doesn't consult hook config regardless of location.
+**Superseded outcome (2026-07-24)**: Wrapper-shaped registrations produced zero firings and the no-error malformed control was misread as proof the file was unread.
+
+**Corrected outcome (2026-07-25)**: The project-level file works under `devin -p` when events are top-level arrays containing nested matcher groups. Six lifecycle events fired. No installer is needed because project-level discovery is proven.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
@@ -76,7 +78,7 @@ Phase 004 already pinned `SessionStart` and `UserPromptSubmit`. Six events remai
 
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
-- What actually changed: `.devin/hooks.v1.json` was extended directly with all of T005-T017's registrations (no conditional installer path), per operator direction to commit the real file despite confirmed dormancy, mirroring phase 004's own precedent.
+- What actually changed: `.devin/hooks.v1.json` was extended directly with all registrations and later corrected to the documented nested schema; no conditional installer path is required.
 - How to roll back: `git checkout` the prior `.devin/hooks.v1.json`; no installer script exists to also roll back.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
@@ -120,7 +122,7 @@ Phase 004's own ADR-001 already established two adapter shapes for Devin, mirror
 - Risks table:
   | Risk | Impact | Mitigation |
   |---|---|---|
-  | The 5-step chain has never been live-tested against a real Devin session | M | Direct-invocation tested with/without `summary`; live-fire testing remains blocked by the packet-wide `-p` dormancy finding, not by anything specific to this adapter |
+| The 5-step chain has never been observed during a real `PostCompaction` event | M | Direct-invocation tested with and without `summary`; trigger a real compaction before claiming end-to-end proof. |
 <!-- /ANCHOR:adr-002-consequences -->
 
 <!-- ANCHOR:adr-002-five-checks -->
@@ -159,7 +161,7 @@ Unlike the 5 advisory/warn-only adapters in this phase, `dispatch-preflight-lint
 
 **How it works**: T021's live session matrix includes a specific case: dispatch a command matching a known-deny rule, and confirm the call is actually blocked (not just that the adapter emits a syntactically-correct deny envelope).
 
-**Outcome (2026-07-24) - honest downgrade, not a silent pass**: The planned live behavioral test could not be performed, for two independent reasons discovered during implementation: (1) the packet-wide `-p` dormancy finding means no Devin hook fires at all today, so there is no live call to actually block; (2) separately, a `grep` across every `SKILL.md` in this repo for `severity: block` found **zero** matches - no skill currently declares a hard rule at block severity, so even a live-firing Devin session would have nothing to trigger a deny against right now. What *was* verified instead: the deny branch (`result.decision === 'deny'` -> `permissionDecision: 'deny'`) is structurally identical to the already-proven Claude/Codex sibling branches and calls the identical `dispatch-rule-checks.mjs` core, whose own unit test suite (`dispatch-rule-checks.test.mjs`, 6/6 passing) exercises `severity: 'block'` classification directly. This is schema/logic-level confidence, not the behavioral proof Option (a) originally called for - recorded here explicitly rather than presented as equivalent.
+**Outcome, corrected 2026-07-25**: Hooks are live, but the behavioral deny test remains unperformed because no skill declares a `severity: block` hard rule. The deny branch is structurally equivalent to proven siblings and the shared core's 6/6 tests cover block classification; this remains logic-level evidence, not an end-to-end block.
 <!-- /ANCHOR:adr-003-decision -->
 
 <!-- ANCHOR:adr-003-alternatives -->
@@ -214,7 +216,7 @@ ADR-001 resolves *whether* project-level registration works. This ADR records *w
 ### Decision
 **We chose**: If ADR-001's live test confirms project-level `.devin/hooks.v1.json` works, all of phase 008's registrations (T005-T017) land there directly, extending phase 004's file. If it proves inert, build `install-devin-hooks.mjs` (T019) as an idempotent backup-and-merge installer into the real live location, mirroring `install-codex-hooks.mjs` exactly (same idempotency guarantee, same backup-before-merge safety).
 
-**Outcome (2026-07-24)**: ADR-001 resolved as moot, not as either anticipated branch - the conditional never had a live decision point to reach. All registrations landed directly in the project-level `.devin/hooks.v1.json` (per operator direction, matching phase 004's precedent of committing the file despite confirmed dormancy). `install-devin-hooks.mjs` was correctly never built: an installer only solves a *wrong-location* problem, and the actual problem (`-p` never consulting hook config at all) is not location-dependent, so an installer targeting any location would not help.
+**Outcome, corrected 2026-07-25**: Project-level registration is the proven live branch. All registrations remain in `.devin/hooks.v1.json`; `install-devin-hooks.mjs` was correctly never built.
 <!-- /ANCHOR:adr-004-decision -->
 
 <!-- ANCHOR:adr-004-alternatives -->
@@ -256,7 +258,7 @@ ADR-001 resolves *whether* project-level registration works. This ADR records *w
 ---
 
 <!-- ANCHOR:adr-005 -->
-## ADR-005: Honest handling of divergent, dormant, and empty surfaces
+## ADR-005: Honest handling of divergent, unobserved and empty surfaces
 
 **STATUS: Accepted, confirmed as built - plus one more surface (`spec-gate-enforce.mjs`) surfaced during implementation itself.**
 
@@ -270,10 +272,10 @@ Four surfaces in this phase don't fit a simple "port it" narrative: `PermissionR
 **We chose**, per surface:
 - `PermissionRequest`: ship an explicit empty `[]` array with an inline comment recording that no Claude source handler exists to port. Never silently omit the key.
 - `task-dispatch-guard.cjs`: build a **real** adapter, diverging deliberately from Codex's fold-in - Devin's `run_subagent` is a genuine first-class dispatch tool (unlike Codex, which has no native Task tool), so folding it into another recognizer would lose real signal.
-- `mcp-route-guard.cjs`: document as dormant today (no external MCP family registered), explicitly flagged provisional and forward-referenced to phase 009, which re-evaluates it once real MCP servers exist.
+- `mcp-route-guard.cjs`: document as registered but not currently exercised because no external non-`mk_` MCP family is registered, then re-evaluate in phase 009.
 - `SessionEnd`: decide from live evidence only (ADR-001/T001), never assume Codex's fold-into-`Stop` precedent applies - Codex made that choice because it has no `SessionEnd` event at all; Devin does.
 
-**Outcome (2026-07-24)**: All four built as decided. `PermissionRequest` ships as an explicit empty `[]` in `.devin/hooks.v1.json`. `task-dispatch-guard.cjs` was built as a real adapter (`system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs`), tested happy-path and fail-open. `mcp-route-guard.cjs` is documented dormant for two independent reasons (packet-wide `-p` finding + no external MCP family registered) in both its own file header and its README, forward-referenced to phase 009. `SessionEnd` was registered directly (`session-cleanup.sh`) since live evidence was unobtainable (T001 resolved as moot) - the decision rests on the structural fact that Devin has a real native `SessionEnd` event and Codex does not, not on observed stdout behavior.
+**Outcome, corrected 2026-07-25**: `PermissionRequest` remains an explicit empty array. `task-dispatch-guard.cjs` is built and directly tested, but no live `run_subagent` event was observed. `mcp-route-guard.cjs` is registered but lacks an applicable external MCP-family event. `SessionEnd` fired and remains registered directly.
 
 **A fifth surface surfaced during implementation itself, proving this ADR's own thesis**: the original phase 008 file matrix (9 files) omitted `spec-gate-enforce.mjs` - the actual `PreToolUse` gate-3 BLOCK, distinct from `spec-gate-classify.mjs`'s `UserPromptSubmit`-time advisory classify step. The hooks-portability research had already scoped this exact gap (§10, C-02/C-05/G-01, including a proposed skeleton with `^exec$`/`^edit$` matchers), but it never made it into this phase's own planning documents - discovered only when explicitly re-checking Devin's coverage against `.claude/settings.json`'s full hook inventory during implementation. Built as a 10th file, tested (non-mutating tool, exec, edit-with-file_path, malformed stdin), and the `runtime/hooks/devin/README.md`'s prior claim that this file was "deliberately NOT built here" was corrected rather than left stale.
 <!-- /ANCHOR:adr-005-decision -->
@@ -310,7 +312,7 @@ Four surfaces in this phase don't fit a simple "port it" narrative: `PermissionR
 
 <!-- ANCHOR:adr-005-impl -->
 ### Implementation
-- What actually changed: `.devin/hooks.v1.json`'s explicit empty `PermissionRequest`; `task-dispatch-guard.cjs` built as a real file; `mcp-route-guard.cjs`'s README documents dormancy; `SessionEnd` registered directly; `spec-gate-enforce.mjs` built as a 10th file with its sibling README corrected.
+- What actually changed: explicit empty `PermissionRequest`; real task-dispatch adapter; MCP route guard with its current applicability caveat; direct `SessionEnd`; and `spec-gate-enforce.mjs` as the 10th file.
 - How to roll back: each surface's decision is independently reversible without affecting the other four.
 <!-- /ANCHOR:adr-005-impl -->
 <!-- /ANCHOR:adr-005 -->

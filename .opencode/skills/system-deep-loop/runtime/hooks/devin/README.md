@@ -13,7 +13,7 @@ Devin CLI hook adapter for `system-deep-loop`. The single hook here intercepts a
 
 This is a **deliberate divergence from the Codex precedent, not a port**: Codex folds this concern into its `exec`-shape recognizer because Codex has no native subagent-dispatch tool. Devin's `run_subagent` is a real, first-class dispatch tool (confirmed in phase 001's contract-pin), so it gets a real adapter instead - there is no `../codex/` sibling for this concern.
 
-**STATUS: DORMANT** - `.devin/hooks.v1.json` is confirmed not consulted at all under `devin -p` (packet-wide finding, see `../../../../system-spec-kit/mcp-server/hooks/devin/README.md`). `run_subagent`'s exact `tool_input` field names are also unconfirmed (no live capture yet) - this adapter tries the same field-name fallbacks the shared core already tolerates rather than assuming one exact shape.
+**STATUS: REGISTERED, LIVE EVENT UNOBSERVED** - Devin hooks fire under `devin -p`, but the verification session did not call `run_subagent`. The adapter is directly tested and keeps tolerant `tool_input` field-name fallbacks until a real subagent payload is captured.
 
 ## 2. CONTENTS
 

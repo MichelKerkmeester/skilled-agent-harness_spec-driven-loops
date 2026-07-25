@@ -13,7 +13,8 @@
     "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
     "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
     "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration",
-    "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog"
+    "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog",
+    "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"
   ],
   "manual": {
     "depends_on": [],
@@ -52,10 +53,9 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "001-devin-contract-pin/implementation-summary.md",
       "004-devin-hook-adapter-layer/implementation-summary.md",
       "008-devin-hook-parity/implementation-summary.md",
-      "009-devin-mcp-host-integration/spec.md",
+      "011-hook-truth-and-runtime-readmes/spec.md",
       ".devin/hooks.v1.json",
       ".opencode/agents/context.md",
       "008-devin-hook-parity/spec.md",
@@ -63,6 +63,8 @@
       "001-devin-contract-pin/spec.md",
       "002-deep-loop-executor-support/spec.md",
       "007-docs-agents-governance-and-closeout/spec.md",
+      "011-hook-truth-and-runtime-readmes/implementation-summary.md",
+      "009-devin-mcp-host-integration/spec.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md",
       "research/resource-map.md",
       "spec.md",
@@ -70,8 +72,7 @@
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      "research/deep-research-config.json",
-      "research/deep-research-state.jsonl"
+      "research/deep-research-config.json"
     ],
     "entities": [
       {
@@ -120,12 +121,6 @@
         "name": "deep-research-config.json",
         "kind": "config",
         "path": "research/deep-research-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -207,13 +202,19 @@
         "source": "derived"
       },
       {
-        "name": "Handover Summary",
+        "name": "Handover Summary Phase",
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "Context Transfer",
+        "name": "The Cursor",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequential Thinking",
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
@@ -221,7 +222,7 @@
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-24T19:16:31.845Z",
+    "last_save_at": "2026-07-25T10:06:40.888Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,11 +230,11 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6d4748eb2c2e0717845da4dca83b1410858443c532a8929c5f42979a0f75a2df",
+    "source_fingerprint": "sha256:00f44c7d84fc8ead1edc02f91892f186600bd2a516304557ed0e16b59eb0ed7b",
     "source_doc_hashes": {
-      "spec.md": "fb8e579276ea8eb64b9cdeabd892736e4bf8b3238451ca600f49f6dfd4aa66b1",
+      "spec.md": "0468df9e0a3aa3affe0a1115dc6e8b85cfb3d6db7a89501de401965957eeb5d4",
       "research/research.md": "65003631e5154758de221824cf53bf1a152f7eb262c3e09c87bcca2b44be5708",
-      "handover.md": "ea8fd34ae203a049a9dc53b3325a5e0a5cf17e2e8df725493d6edf5562e518a2"
+      "handover.md": "87b21823d332f79741fc9affbcbd1d496e460797de89034a37a048e9e6446050"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-07-24T06:02:56.642Z"

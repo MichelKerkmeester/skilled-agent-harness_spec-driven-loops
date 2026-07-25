@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
+  "description": "The registration file was originally written with an unsupported wrapper shape",
+  "keywords": [
+    "registration",
+    "file",
+    "originally",
+    "written",
+    "unsupported",
+    "wrapper",
+    "shape"
+  ],
+  "lastUpdated": "2026-07-25T10:21:58.273Z",
+  "specId": "011",
+  "folderSlug": "hook-truth-and-runtime-readmes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

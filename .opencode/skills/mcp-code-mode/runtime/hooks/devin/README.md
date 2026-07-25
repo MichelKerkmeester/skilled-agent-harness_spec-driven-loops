@@ -11,7 +11,7 @@ description: "Devin CLI PreToolUse hook that advises routing native external MCP
 
 `runtime/hooks/devin/` holds the Devin CLI adapter for the mcp-route-guard core, the sibling of `../claude/` and `../codex/` targeting the Devin runtime instead. It reads a `PreToolUse(^mcp__.*$)` JSON payload from stdin and evaluates it against the same runtime-neutral guard in `../../lib/`.
 
-**STATUS: DORMANT for two independent reasons** - `.devin/hooks.v1.json` is confirmed not consulted at all under `devin -p` (packet-wide finding, see `../../../../system-spec-kit/mcp-server/hooks/devin/README.md`); additionally, like its Codex sibling, every MCP server registered under `cli-devin` today is `mk_`-prefixed and therefore exempt from the guard. This adapter only becomes practically relevant once an external, non-`mk_` MCP family is registered under Devin - re-evaluated by `../009-devin-mcp-host-integration/`.
+**STATUS: REGISTERED, NO APPLICABLE LIVE CALL YET** - Devin hooks fire under `devin -p`, and this adapter passes direct tests. Every MCP server registered under Devin today is `mk_`-prefixed and exempt from the guard, so the hook becomes practically relevant only after an external non-`mk_` family is registered. Phase 009 re-evaluates that condition.
 
 ## 2. CONTENTS
 

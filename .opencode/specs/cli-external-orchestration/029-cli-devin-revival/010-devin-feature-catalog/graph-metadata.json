@@ -18,7 +18,7 @@
       "devin feature catalog tasks",
       "devin feature catalog checklist",
       "devin feature catalog decision record",
-      "hooks dormancy status enum"
+      "hook evidence state"
     ],
     "key_topics": [
       "devin",
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "No `cli-external-orchestration` sibling mode has a feature-catalog package today -- `cli-codex` and `cli-cursor` both ship only a `manual-testing-playbook/`",
+    "causal_summary": "No sibling mode has a feature-catalog package today",
     "created_at": "2026-07-24T13:08:08.318Z",
-    "last_save_at": "2026-07-24T16:41:28.406Z",
+    "last_save_at": "2026-07-25T10:11:05.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:72ca5a98ef1cb838fe3b382b6fb6dfdb8b46dff4e0892516f7090c99fe4ca259",
+    "source_fingerprint": "sha256:0dc0ca2bcf0af45ebf8369a5e1fd18d47a2c26aeb774500d54a89ea794fcea59",
     "source_doc_hashes": {
-      "spec.md": "a76bbc5e6cf1c1a0ba501bdb9d9b3e627cc6b52a966206b5f2ed8771ddbd53a2",
+      "spec.md": "19dd793e3ce142a64266ca37158fa7632dc21ffbd39896a53188275e7cf07ec2",
       "plan.md": "eec1cf00af37bf398fdef710648114cd0336a4ccf94a42d2d0b9b85dec05263f",
       "tasks.md": "6f35feff170984dcf4d4ac81dc3982f1e55f2800d5e2570fa6baf5baabefefe8",
-      "checklist.md": "5914a3dd2ec8a0df5ea466e414c6f6485d093226470297d57e778e5b9a17e38e",
-      "decision-record.md": "b5a962e027630a595d033cc5e8eb100d6adebd606d276835517c43c85a4c21af"
+      "checklist.md": "7388d2004c88bdf9c6d7af8ff64a5c7a9a6f77f6c210ba74768370f47f0c0a6b",
+      "decision-record.md": "ececc4fbf11164117e73d84fd210251fddc897ad756b5140fdfe16721b644cf4"
     },
     "last_active_child_id": null,
     "last_active_at": null

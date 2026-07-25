@@ -10,13 +10,13 @@ _memory:
     last_updated_at: "2026-07-24T17:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "T009 revised: hooks.v1.json now committed per operator direction"
-    next_safe_action: "Phase 008 can begin; same dormant-hooks caveat applies"
+    next_safe_action: "Use corrected live evidence from phase 011 for current status"
     blockers: []
     key_files: ["spec.md", "plan.md", "checklist.md", "decision-record.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 100
     open_questions: []
-    answered_questions: ["Hooks never fire under devin -p; adapters built dormant per operator's explicit choice."]
+    answered_questions: ["The adapters fire under devin -p with the documented top-level event schema; the earlier wrapper-shape result is superseded."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -40,8 +40,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Re-verify Devin's live hook JSON schema for `SessionStart`/`UserPromptSubmit` against a real fired event -- **result: no event fires under `-p`**, confirmed via a real dispatched tool call producing zero probe log entries (verification task, no file)
-- [x] T002 Confirm `.devin/hooks.v1.json` discovery order against a live test project -- **result: never consulted in `-p` mode**, confirmed via deliberately malformed JSON producing zero parse errors; `.devin/config.json`'s `"hooks"` key and `--agent-config` were also tried and ruled out (verification task, no file)
+- [x] T001 Re-verify Devin's live hook JSON schema for `SessionStart`/`UserPromptSubmit`. **Correction 2026-07-25**: the original zero-firing result used an unsupported wrapper shape; both events fired after the documented top-level schema was installed.
+- [x] T002 Confirm `.devin/hooks.v1.json` discovery under `devin -p`. **Correction 2026-07-25**: the project file is consulted; the malformed and wrapper-shape controls did not prove otherwise.
 - [x] T003 Resolve ADR-001 (hand-built vs. native import vs. hybrid) before writing adapter code -- Accepted, revised with the confirmed dormancy finding (`decision-record.md`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -55,8 +55,8 @@ _memory:
 - [x] T006 [P] Create `hooks/devin/user-prompt-submit.ts` delegating to `user-prompt-submit.js` (`.opencode/skills/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.ts`)
 - [x] T007 [P] Create `runtime/hooks/devin/spec-gate-classify.mjs` wired to `spec-gate-core.mjs` (`.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs`)
 - [x] T008 Descoped to phase 008: `spec-gate-enforce.mjs` (`PreToolUse`) contradicted this phase's own 2-event scope statement in the original Files-to-Change table; resolved in favor of the scope statement, not the table.
-- [x] T009 `.devin/hooks.v1.json` authored and committed per operator direction, mirroring `.codex/hooks.json`'s real tracked precedent, registering both adapters. Re-tested live after committing: still confirmed dormant under `-p` dispatch, exactly as before -- the file's presence doesn't change the finding, only the wiring's readiness for a future build.
-- [x] T010 [P] Author `hooks/devin/README.md` and `runtime/hooks/devin/README.md`, documenting the dormant status and full live-verification evidence table (`.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md`, `.opencode/skills/system-spec-kit/runtime/hooks/devin/README.md`)
+- [x] T009 `.devin/hooks.v1.json` authored and committed, later corrected to the documented top-level event schema; both in-scope events are observed live under `devin -p`.
+- [x] T010 [P] Author `hooks/devin/README.md` and `runtime/hooks/devin/README.md`; phase 011 refreshes them with current live status and retained caveats.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,7 +65,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T011 Direct-invoke both compiled adapters plus `spec-gate-classify.mjs` with realistic payloads (valid, malformed, missing-required-field) -- all behave correctly (fail-open confirmed); a dedicated vitest file was not added since the adapters cannot be live-fired to test against (manual verification, no committed test file)
-- [x] T012 Live-smoke both events against the installed `devin` binary -- **result: zero firings across every registration path tested**; this negative result IS the captured evidence (see decision-record.md ADR-001, README.md §2)
+- [x] T012 Live-smoke both events against the installed `devin` binary. The original invalid-schema result is superseded; corrected-schema tests observed both events and model-visible adapter output.
 - [x] T013 Diff `hooks/claude/**` and `runtime/lib/spec-gate/**` against pre-phase state -- confirmed zero behavioral rewrite (`git diff --stat` empty)
 <!-- /ANCHOR:phase-3 -->
 
@@ -76,7 +76,7 @@ _memory:
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Both wired events were live-smoke-tested; the captured evidence is a confirmed negative (zero firings under `-p`), documented honestly rather than assumed positive
+- [x] Both wired events were live-smoke-tested and observed under `devin -p` after the registration schema correction.
 <!-- /ANCHOR:completion -->
 
 ---

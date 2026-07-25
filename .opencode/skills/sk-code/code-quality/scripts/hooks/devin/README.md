@@ -11,13 +11,13 @@ description: "The Devin CLI sibling of the Claude/Codex post-edit quality hook, 
 
 `devin/` holds the Devin CLI counterpart to `../claude-posttooluse.cjs` and `../codex/post-edit-quality.cjs`. It fires on Devin's `PostToolUse(^edit$)` event and calls the same shared dispatch table in `../../lib/post-edit-router.cjs`, so Claude Code, Codex, and Devin never drift on which checker runs for a given file.
 
-**STATUS: DORMANT** - `.devin/hooks.v1.json` is confirmed not consulted at all under `devin -p` (packet-wide finding, see `../../../../../system-spec-kit/mcp-server/hooks/devin/README.md`). Built and directly tested against a real file edit; not yet observed firing in a real session.
+**STATUS: LIVE** - Devin `PostToolUse(^edit$)` fired under `devin -p` with the corrected registration schema. Live payload capture confirmed `tool_input.file_path`, and direct invocation still covers malformed and missing-field fail-open behavior.
 
 ## 2. CONTENTS
 
 | File | Fires On | Purpose |
 |------|------|---------|
-| `post-edit-quality.cjs` | Devin CLI `PostToolUse(^edit$)`, registered in `.devin/hooks.v1.json` | Reads the hook's stdin JSON, extracts the edited file path (`tool_input.file_path`, with `filePath`/`path` fallbacks since Devin's exact field name is unconfirmed), resolves its checker through `post-edit-router.cjs` and prints findings plus the dist-staleness banner. Warn-only and always exits 0. |
+| `post-edit-quality.cjs` | Devin CLI `PostToolUse(^edit$)`, registered in `.devin/hooks.v1.json` | Reads stdin JSON, extracts the confirmed `tool_input.file_path` field with compatibility fallbacks, resolves its checker through `post-edit-router.cjs` and prints findings plus the dist-staleness banner. Warn-only and always exits 0. |
 
 ## 3. CONSUMERS
 

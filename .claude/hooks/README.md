@@ -1,18 +1,58 @@
-# .claude/hooks/ — discovery mirror, not the wiring source
+---
+title: "Claude Hook Discovery Mirror"
+description: "Discovery-only symlinks for the repository's Claude hook scripts; runtime wiring remains in .claude/settings.json and points to real .opencode paths."
+---
+# Claude Hook Discovery Mirror
 
-Every file here is a symlink to the real hook script, which lives under `.opencode/`. This folder exists so the full Claude hook inventory is visible in one place; it has no functional role in what actually executes.
+> A filesystem index of Claude hook entrypoints, not the runtime wiring source.
 
-**`.claude/settings.json`'s `command` fields point at the real `.opencode/` paths, and must keep doing so.** Two of the 18 mirrored scripts do **not** behave identically when invoked through a symlink:
+## 1. OVERVIEW
 
-| Script | Through symlink | Via real path |
-|---|---|---|
-| `session-prime.js` | no output | full `## Session Context` brief |
-| `install-codex-hooks.mjs` | differs | differs |
+`.claude/hooks/` contains 18 symlinks to hook scripts owned under `.opencode/`. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
 
-`session-prime.js` compiles from a `.ts` source whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against `import.meta.url` (which Node's ESM loader resolves through the symlink to the real path); they never match through a symlink, so `main()` never runs.
+Two compiled ESM entrypoints do not execute correctly through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Keep all runtime commands pointed at the real files.
 
-`install-codex-hooks.mjs` is a CLI utility rather than a stdin-driven hook — `settings.json` invokes it as `--check`, and it resolves its own repo root relative to its file location. Its differing output was not traced to a single root cause here; treat the real path as authoritative for it too.
+## 2. ENTRYPOINT BEHAVIOR
 
-The other 16 — `check-dist-staleness.sh`, `check-git-hooks.sh`, `claude-posttooluse.cjs`, `code-graph-freshness.cjs`, `compact-inject.js`, `completion-evidence-stop.cjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `mcp-route-guard.cjs`, `session-cleanup.sh`, `session-stop.js`, `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.cjs`, `user-prompt-submit.js`, `worktree-guard.sh` — produce byte-identical output through either path. Several correctly emit nothing on approve; that is their normal behavior, not a tripped guard (verified by comparing each against its own real-path invocation, not by assuming empty means broken).
+| Script                    | Through Mirror             | Through Real Path              |
+| ---------------------------| ----------------------------| --------------------------------|
+| `session-prime.js`        | No output                  | Full session context brief     |
+| `install-codex-hooks.mjs` | Different root resolution  | Authoritative check behavior   |
+| Other 16 scripts          | Matches real-path behavior | Authoritative runtime behavior |
 
-Note that `user-prompt-submit.js` works fine through the symlink even though its Codex sibling does not — it is a thin process-boundary shim that does not use the entrypoint guard. Do not generalize per file extension; the affected set was determined empirically.
+Empty output can be a normal allow decision. Compare a mirror invocation with its real target before treating silence as failure.
+
+## 3. INVENTORY
+
+| Group | Files |
+|-------|-------|
+| Session lifecycle | `session-prime.js`, `session-stop.js`, `session-cleanup.sh`, `compact-inject.js`, `user-prompt-submit.js` |
+| Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
+| Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `task-dispatch-guard.cjs`, `mcp-route-guard.cjs` |
+| Edit and graph quality | `claude-posttooluse.cjs`, `code-graph-freshness.cjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs` |
+
+## 4. VALIDATION
+
+Validate this README from the repository root:
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .claude/hooks/README.md
+```
+
+Expected result: exit 0 with zero document issues.
+
+Inspect tracked link modes:
+
+```bash
+git ls-files -s .claude/hooks
+```
+
+Expected result: hook scripts use mode `120000`; `README.md` uses mode `100644`.
+
+## 5. RELATED RESOURCES
+
+- [Claude hook wiring](../settings.json)
+- [Codex mirror](../../.codex/hooks/README.md)
+- [Cursor mirror](../../.cursor/hooks/README.md)
+- [Devin mirror](../../.devin/hooks/README.md)

@@ -9,14 +9,14 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer"
     last_updated_at: "2026-07-24T16:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Executed; Phase 3 live smoke test returned a confirmed negative"
-    next_safe_action: "Phase 008 can begin; same dormant-hooks caveat applies"
+    recent_action: "Corrected the phase outcome after live firings under the documented schema"
+    next_safe_action: "Use phase 011 evidence for current status and tests 1-9 only as superseded history"
     blockers: []
     key_files: ["spec.md", "tasks.md", "decision-record.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
     completion_pct: 100
     open_questions: []
-    answered_questions: ["Hooks never fire under devin -p; read_config_from.claude fidelity is moot until that changes."]
+    answered_questions: ["SessionStart and UserPromptSubmit fire under devin -p with the documented top-level event schema.", "The previous negative result used an unsupported wrapper shape."]
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -36,7 +36,7 @@ _memory:
 ### Overview
 Add thin Devin-host adapters over the existing runtime-neutral hook cores - the same `hooks/claude/*.ts` implementations and `runtime/lib/spec-gate/spec-gate-core.mjs` that `hooks/codex/` and `runtime/hooks/codex/` already delegate to - register them in `.devin/hooks.v1.json`, and live-smoke-test the JSON stdin/stdout round trip for `SessionStart` and `UserPromptSubmit` first.
 
-**Outcome (2026-07-24)**: the live smoke test in Phase 3 returned a confirmed negative -- `.devin/hooks.v1.json` (and `.devin/config.json`'s `"hooks"` key) is never consulted under `devin -p`, ruling out registration entirely for this build. Adapters were built, typechecked, and directly-invocation-tested per the plan below, but `.devin/hooks.v1.json` was never authored/committed, and every "register the config file" step below did not happen as originally planned. Full evidence: `decision-record.md` ADR-001.
+**Corrected outcome (2026-07-25)**: the Phase 3 negative test used an unsupported wrapper schema. `.devin/hooks.v1.json` was committed, later extended and corrected to the documented top-level event shape. `SessionStart` and `UserPromptSubmit` now fire under `devin -p`; full evidence is in `../hook-testing-results.md` tests 10-14.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -132,7 +132,7 @@ N/A - this is new-adapter work, not a bug fix. No existing consumer behavior cha
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-Remove `hooks/devin/` and `runtime/hooks/devin/`; leave the neutral cores (`hooks/claude/**`, `runtime/lib/spec-gate/**`) untouched, matching the codex-precedent rollback plan exactly. `.devin/hooks.v1.json` was never created (see Outcome note above), so there is nothing to remove there.
+Remove `hooks/devin/` and `runtime/hooks/devin/`; leave the neutral cores untouched. Revert only this phase's original registration entries if rolling back phase 004, accounting for the later phase-008 extension rather than deleting the shared current file wholesale.
 <!-- /ANCHOR:rollback -->
 
 ---

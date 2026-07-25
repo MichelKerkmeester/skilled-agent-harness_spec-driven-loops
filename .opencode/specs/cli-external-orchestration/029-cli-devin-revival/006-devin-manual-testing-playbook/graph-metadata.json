@@ -40,7 +40,6 @@
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md",
-      ".devin/hooks.v1.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -48,12 +47,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism - there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-23T19:51:59.132Z",
-    "last_save_at": "2026-07-24T16:41:28.258Z",
+    "last_save_at": "2026-07-25T10:06:40.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +203,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b3ee4a6cf7eda6ce6928034ac33913ff3b91a0d661e9d0993fd34c1d5ddeacfd",
+    "source_fingerprint": "sha256:0122abe028b81d9a31692d9116d8adfefa6adb800fe2141662a8cf4baf4a8a5e",
     "source_doc_hashes": {
-      "spec.md": "ff980693c66328832e649c85e07b0e751273ada5d0eaf24b09fae28d71a8a68a",
+      "spec.md": "1812e09890faa8f94f2ed21931d32c09e46c3e2b9599e17fe9ad29a327b7e1cc",
       "plan.md": "36f97bf44c5d26fdeb0a7e0dc7c460fdc6ebe1d5d3991efd8f8f9f05598e396b",
       "tasks.md": "9da3fd3d4682ad8c2afb1d8a859ff1ab0adff753484880eb2a18f5c6b756c784",
       "checklist.md": "e6f3f884a4742fabe9c04a748a721c494aab7879bbb6acc7c186dbc8b20708d7"

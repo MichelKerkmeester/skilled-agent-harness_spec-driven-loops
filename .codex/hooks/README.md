@@ -1,16 +1,52 @@
-# .codex/hooks/ — discovery mirror, not the wiring source
+---
+title: "Codex Hook Discovery Mirror"
+description: "Discovery-only symlinks for the repository's Codex hook scripts; runtime wiring remains in .codex/hooks.json and points to real .opencode paths."
+---
+# Codex Hook Discovery Mirror
 
-Every file here is a symlink to the real hook script, which lives under `.opencode/`. This folder exists so the full Codex hook inventory is visible in one place; it has no functional role in what actually executes.
+> A filesystem index of Codex hook entrypoints, not the runtime wiring source.
 
-**`.codex/hooks.json`'s `command` fields point at the real `.opencode/` paths, and must keep doing so.** Two of the 16 mirrored scripts do **not** behave identically when invoked through a symlink:
+## 1. OVERVIEW
 
-| Script | Through symlink | Via real path |
-|---|---|---|
-| `session-start.js` | no output | full `hookSpecificOutput` envelope |
-| `user-prompt-submit.js` | no output | full `hookSpecificOutput` envelope |
+`.codex/hooks/` contains 16 symlinks to hook scripts owned under `.opencode/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
 
-Both compile from a `.ts` source whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against `import.meta.url` (which Node's ESM loader resolves through the symlink to the real path). The two never match through a symlink, so `main()` never runs and the hook silently emits nothing.
+Two compiled ESM adapters do not execute through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Invoke those files through the real command path used by `hooks.json`.
 
-The other 14 — `check-dist-staleness.sh`, `check-git-hooks.sh`, `code-graph-freshness.cjs`, `compact-inject.js`, `completion-evidence-stop.cjs`, `dispatch-audit-posttooluse.mjs`, `dispatch-preflight-lint.mjs`, `mcp-route-guard.cjs`, `post-edit-quality.cjs`, `session-cleanup.sh`, `session-stop.js`, `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `worktree-guard.sh` — produce byte-identical output through either path. Several correctly emit nothing on approve; that is their normal behavior, not a tripped guard (verified by comparing each against its own real-path invocation, not by assuming empty means broken).
+## 2. ENTRYPOINT BEHAVIOR
 
-To smoke-test one of the two affected scripts, invoke it via its real path.
+| Script | Through Mirror | Through Real Path |
+|--------|----------------|-------------------|
+| `session-start.js` | No output | Valid `SessionStart` envelope |
+| `user-prompt-submit.js` | No output | Valid `UserPromptSubmit` envelope |
+| Other 14 scripts | Matches real-path behavior | Authoritative runtime behavior |
+
+## 3. INVENTORY
+
+| Group | Files |
+|-------|-------|
+| Session lifecycle | `session-start.js`, `session-stop.js`, `session-cleanup.sh`, `compact-inject.js`, `user-prompt-submit.js` |
+| Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
+| Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs` |
+| Edit and graph quality | `post-edit-quality.cjs`, `code-graph-freshness.cjs` |
+| Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh` |
+
+## 4. VALIDATION
+
+```bash
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .codex/hooks/README.md
+```
+
+Expected result: exit 0 with zero document issues.
+
+```bash
+node .opencode/bin/install-codex-hooks.mjs --check
+```
+
+Expected result: the managed Codex hook installation reports no drift.
+
+## 5. RELATED RESOURCES
+
+- [Codex project hook wiring](../hooks.json)
+- [Claude mirror](../../.claude/hooks/README.md)
+- [Cursor mirror](../../.cursor/hooks/README.md)
+- [Devin mirror](../../.devin/hooks/README.md)

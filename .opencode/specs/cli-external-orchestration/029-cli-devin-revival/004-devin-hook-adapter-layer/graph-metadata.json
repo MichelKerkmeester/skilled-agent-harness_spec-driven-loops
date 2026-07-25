@@ -22,7 +22,7 @@
       "devin hook adapter decision record",
       "read_config_from.claude decision",
       "devin hook adapter summary",
-      "devin hook dormancy finding"
+      "devin hook live evidence"
     ],
     "key_topics": [
       "devin",
@@ -44,11 +44,10 @@
       "decision-record.md",
       "implementation-summary.md",
       ".devin/hooks.v1.json",
-      ".codex/hooks.json",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "plan.md",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
       ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
       "runtime/lib/spec-gate/spec-gate-core.mjs",
@@ -60,7 +59,8 @@
       "hooks/devin/session-start.ts",
       "hooks/devin/user-prompt-submit.ts",
       "runtime/hooks/devin/spec-gate-classify.mjs",
-      "runtime/hooks/codex/spec-gate-enforce.mjs"
+      "runtime/hooks/codex/spec-gate-enforce.mjs",
+      "hooks/devin/README.md"
     ],
     "entities": [
       {
@@ -82,15 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -103,12 +103,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
     "created_at": "2026-07-23T19:51:58.883Z",
-    "last_save_at": "2026-07-24T13:48:54.138Z",
+    "last_save_at": "2026-07-25T10:11:05.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47581029353f2d3f500b10663e2d8c1fea325249a3171adb6717dcdc8a244c21",
+    "source_fingerprint": "sha256:3dddf8c864b800c8f980d323ad2edcf92c39534557abed85a1ae83551e04d3d9",
     "source_doc_hashes": {
-      "spec.md": "8983bbe6440aa0212997337bdf03dede00477cea5c07ad9cbbd72cc3d861278c",
-      "plan.md": "2c7c9c2d5e03943ea51b6d2946b49e5ff17df5605a1353acf788a6630819fd53",
-      "tasks.md": "00aa1ad6365494f2cfca55fe27075339be387d20fb2b0151150db8402d8066ca",
-      "checklist.md": "2492a17482e9cb83c185155da19bf41abbb536bfb238a8ac4f2b8534b8f3ea44",
-      "decision-record.md": "7d5313a6b92a7a252445223a95e3f68da3c779948c017ec3a7f568f96d3f3fef",
-      "implementation-summary.md": "7a7a5c7aba963db5996168f464e32a59bd0aed304d9b296e3823e9cc9afbe72f"
+      "spec.md": "5175fdee3a53e5ce211f6598b1b52be3ffcfc788e81408c4f502e937ae4fd625",
+      "plan.md": "2ef13c5854b010224d06fea37625ec133c8f3baad4bf47f0b2d1c2f9c7699987",
+      "tasks.md": "22da0bbf5154716a07b42ddfef7816a1ae754e429cdf3a5bcd98284b22a4ecde",
+      "checklist.md": "8b404f9f3767fffc53d645318f2cd67a6b2d7021b62434a7e27f4e6ba58999f3",
+      "decision-record.md": "53970dcee68f685bdffa5ca89709807bf0f36aaec39ba44ad2d1ca5a3f037082",
+      "implementation-summary.md": "c53f3c687b6f402cb3cb997f06dcc145b51839524237dd52858286bef430ef8b"
     },
     "last_active_child_id": null,
     "last_active_at": null
