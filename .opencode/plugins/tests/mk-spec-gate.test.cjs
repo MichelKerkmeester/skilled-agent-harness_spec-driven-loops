@@ -353,28 +353,54 @@ test('WS1 telemetry: MK_SPEC_GATE_DISABLED=1 writes no telemetry line at all', a
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WS4: a dispatched/child session (AI_SESSION_CHILD=1) never denies through
-// the OpenCode adapter, even with enforce on.
+// WS4: a dispatched/child session (AI_SESSION_CHILD=1) is a complete Gate-3
+// no-op through the OpenCode adapter, even with enforce on.
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('WS4: AI_SESSION_CHILD=1 + enforce on + open gate -> tool.execute.before never throws (advise, not deny)', async () => {
+test('WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the OpenCode adapter', async () => {
   const { default: MkSpecGatePlugin } = await loadPlugin();
+  const guardCore = await import(pathToFileURL(path.join(
+    __dirname,
+    '..',
+    '..',
+    'skills',
+    'system-spec-kit',
+    'runtime',
+    'lib',
+    'spec-gate',
+    'spec-gate-core.mjs',
+  )).href);
   const projectDir = makeProjectDir();
   try {
     await withEnv('MK_SPEC_GATE_ENFORCE', '1', async () => {
       await withEnv('AI_SESSION_CHILD', '1', async () => {
         const sessionID = 'child-session';
         const hooks = await MkSpecGatePlugin({ directory: projectDir });
+        const { stateDir } = guardCore.resolveGuardPaths(projectDir);
+        const statePath = path.join(stateDir, `${guardCore.sessionStateKey(sessionID)}.json`);
+        const warningLogPath = path.join(stateDir, 'spec-gate-warnings.log');
 
-        await hooks['experimental.chat.system.transform']({ prompt: 'implement the export pipeline', sessionID }, {});
+        const output = {};
+        await hooks['experimental.chat.system.transform'](
+          { prompt: 'implement the export pipeline', sessionID },
+          output,
+        );
+        assert.deepEqual(output.system, [], 'a child must not receive the Gate-3 question');
+        assert.equal(fs.existsSync(statePath), false, 'classify must not create child gate state');
+
+        assert.equal(
+          guardCore.writeGateStateAtomic(stateDir, sessionID, { status: 'open', askedAtMs: 1 }),
+          true,
+        );
 
         fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });
         fs.writeFileSync(path.join(projectDir, 'src', 'login.ts'), '// placeholder\n');
 
         await assert.doesNotReject(
           hooks['tool.execute.before']({ tool: 'write', sessionID }, { args: { filePath: 'src/login.ts' } }),
-          'a dispatched/child session must never be denied, even with enforce on',
+          'a dispatched/child session must remain a complete allow no-op',
         );
+        assert.equal(fs.existsSync(warningLogPath), false, 'a child must not emit gate telemetry');
       });
     });
   } finally {

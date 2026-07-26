@@ -19,17 +19,19 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 
 | Cursor event | CLI delivery | Adapter | Notes |
 |---|---|---|---|
-| `sessionStart` | **Confirmed fires** | `session-start.ts` → delegates to `../claude/session-prime.js` | Fires once per session with full payload |
+| `sessionStart` | **Confirmed fires** | `session-start.ts` plus `spec-gate-prebind.mjs` | Primes context and initializes opt-in Gate-3 state. |
 | `preToolUse` | **Confirmed fires** | `../../runtime/hooks/cursor/spec-gate-enforce.mjs` | Fires before every tool call (`Shell`, `Read`, `Grep`, `Write` all observed); the deny path (`permission:"deny"` + exit 2) was live-verified to actually block the tool call |
-| `postToolUse` | **Confirmed fires** | Not yet wired (no repo guard currently needs a post-tool observation point beyond what `afterFileEdit`/`afterShellExecution` already give) | Fires after every tool call |
+| `postToolUse` | **Confirmed fires** | `post-tool-use.mjs` | Runs post-edit, graph-freshness, and dispatch-audit adapters. |
 | `sessionEnd` | **Confirmed fires** | `session-end.ts` → delegates to `../claude/session-stop.js` | Fires once per process with `reason`/`final_status` and a real `transcript_path` |
 | `beforeShellExecution` / `afterShellExecution` | **Confirmed fires** | Covered by `preToolUse`/`postToolUse` instead (broader) | Not separately wired — `preToolUse` already gates shell calls |
 | `beforeReadFile` | **Confirmed fires** | Not wired (read-only, no mutation to gate) | — |
 | `afterFileEdit` | **Confirmed fires** | Not wired (post-hoc; `preToolUse` already gates the write before it happens) | — |
 | `afterAgentThought` | **Confirmed fires** | Not wired (no repo guard needs a reasoning-trace hook today) | — |
-| `beforeSubmitPrompt` | **Confirmed non-delivery** | `../../runtime/hooks/cursor/spec-gate-classify.mjs` exists but is DORMANT, not registered | Never fired across 3 separate dispatches including `--continue`; Gate-3 classify has no working CLI attachment point today |
+| `beforeSubmitPrompt` | **Confirmed non-delivery in tested build** | Classifier and prompt-submit adapters are registered for parity | Startup prebinding covers the enforcement-state gap. |
 | `stop` | **Confirmed non-delivery** | Replaced by `sessionEnd` (`session-end.ts`) | Never fired across all 3 dispatches; `sessionEnd` is the actual completion signal under `-p` |
-| `postToolUseFailure`, `beforeMCPExecution`, `afterMCPExecution`, `preCompact`, `subagentStart`, `subagentStop`, `afterAgentResponse` | **Untested** | Not wired | No failure/MCP/subagent/compaction scenario was triggered by the probe dispatches; do not assume delivery either way until re-tested |
+| `beforeMCPExecution` | **Confirmed fires** | `mcp-route-guard.mjs` | Normalizes Cursor's split MCP server/tool payload for the shared advisory guard. |
+| `preCompact` | **Registered, delivery unconfirmed** | `precompact.ts` | No CLI-reachable compaction trigger is available. |
+| `postToolUseFailure`, `afterMCPExecution`, `subagentStart`, `subagentStop`, `afterAgentResponse` | **Not wired** | None | No current repository guard consumes these events. |
 
 **Re-verification trigger**: re-run the probe methodology above (temporary `.cursor/hooks.json` + logging script + `cursor-agent -p` dispatches covering shell/read/write, plus a deny-path test) whenever the installed `cursor-agent` build changes, before trusting this table as still accurate.
 
@@ -40,11 +42,14 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `shared.ts` | Reads and validates a bounded Cursor hook payload, translates it into the shape the `../claude/*.js` adapters already expect, spawns the matching adapter, and emits Cursor's native `{permission, user_message, agent_message}` response envelope. |
 | `session-start.ts` | `sessionStart` adapter. Delegates to `session-prime.js` and returns its context as `agent_message`. |
 | `session-end.ts` | `sessionEnd` adapter (NOT `stop` — see the delivery table above). Delegates to `session-stop.js`. |
+| `post-tool-use.mjs` | Normalizes Cursor tool payloads for post-edit, graph-freshness, and dispatch-audit hooks. |
+| `task-dispatch-guard.mjs` | Proxies matched `Task` calls into the shared dispatch guard. |
+| `mcp-route-guard.mjs` | Normalizes split MCP identifiers before calling the shared advisory guard. |
 
 ## 4. CONSUMERS
 
-- A project `.cursor/hooks.json` would register the compiled `dist/hooks/cursor/*.js` outputs of `session-start.ts` and `session-end.ts` against `sessionStart`/`sessionEnd`. **This file has not been committed yet** — phase 004 built and live-verified the adapters but deferred the actual `.cursor/hooks.json` registration to a later, explicitly-approved step, because registering it also changes behavior for Cursor-editor users of this repo.
-- `../../runtime/hooks/cursor/spec-gate-enforce.mjs` would be registered against `preToolUse` in that same future `.cursor/hooks.json`.
+- `.cursor/hooks.json` is the committed registration authority for these adapters and the sibling runtime spec-gate scripts.
+- The file is shared by Cursor CLI and the Cursor editor, so every entry remains fail-open and enforcement remains opt-in.
 
 ## 5. RELATED
 

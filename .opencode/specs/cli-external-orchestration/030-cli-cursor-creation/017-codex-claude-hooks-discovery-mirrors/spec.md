@@ -7,10 +7,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/017-codex-claude-hooks-discovery-mirrors"
-    last_updated_at: "2026-07-24T18:33:03Z"
-    last_updated_by: "claude-code"
-    recent_action: "34 symlinks created across two runtimes; per-file sweep done"
-    next_safe_action: "Run validate.sh --strict, commit"
+    last_updated_at: "2026-07-25T17:05:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Linked successor phase 018."
+    next_safe_action: "None; phase remains Complete."
     blockers: []
     key_files: [".codex/hooks/README.md", ".claude/hooks/README.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "codex-claude-hooks-discovery-mirrors", parent_session_id: null }
@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../016-cursor-mcp-wiring-and-route-guard-fix/spec.md` |
-| **Successor** | None (packet extension) |
+| **Successor** | `../018-cursor-spec-gate-prebind/spec.md` |
 | **Handoff Criteria** | `.codex/hooks/` and `.claude/hooks/` each hold a symlink to every script their own runtime config invokes, none broken; both runtime configs are unchanged; and each mirror's README names the exact scripts that do NOT behave identically through a symlink, determined by a per-file real-path comparison rather than inherited from the Cursor finding. |
 <!-- /ANCHOR:metadata -->
 

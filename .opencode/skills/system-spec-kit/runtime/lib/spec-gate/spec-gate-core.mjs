@@ -792,6 +792,10 @@ export function isExemptTargetPath(filePath, projectDir) {
  * returned. Fails open: any internal error returns the current status with
  * no side effects.
  *
+ * A dispatched/child session is a complete Gate-3 no-op: it never reads or
+ * writes gate state and never surfaces the question, because it has no user
+ * turn to answer Gate 3 (see isChildSession).
+ *
  * @param {{ prompt?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv, classificationOptions?: { executionMode?: string, boundSpecFolder?: object|null, commandContract?: object|null } }} request
  * @returns {{ status: 'open'|'satisfied'|'skipped'|'closed', question: string|null }}
  */
@@ -811,6 +815,10 @@ export function classifyIntent(request) {
   try {
     const environment = safeRequest.env || process.env;
     if (environment[DISABLED_ENV] === '1') return { status: 'closed', question: null };
+    // A dispatched/child session is a complete no-op: it has no user turn to
+    // answer Gate 3, so it must never open the gate, persist state, or receive
+    // the question. Returning before any state read keeps it stateless.
+    if (isChildSession(environment)) return { status: 'closed', question: null };
 
     const { prompt, projectDir, classificationOptions } = safeRequest;
     sessionID = safeRequest.sessionID;
@@ -901,11 +909,14 @@ export function classifyIntent(request) {
  * calls validateSpecFolderBinding; this reads the already-persisted status.
  *
  * Deny is deterministic and opt-in: it fires only when the enforce env is
- * set, the session is not a dispatched/child session (see isChildSession --
- * a child has no user turn to answer Gate 3, so it can never be denied), the
- * tool is Write or Edit, the gate is open and unanswered, and the target is
- * a real in-repo, non-exempt file. Every other combination resolves to
- * advise (question surfaced, never blocking) or allow.
+ * set, the session is not a dispatched/child session, the tool is Write or
+ * Edit, the gate is open and unanswered, and the target is a real in-repo,
+ * non-exempt file. Every other combination resolves to advise (question
+ * surfaced, never blocking) or allow.
+ *
+ * A dispatched/child session is a complete Gate-3 no-op (see isChildSession):
+ * it short-circuits to allow before any state read or telemetry, because it
+ * has no user turn to answer Gate 3 and must never receive the question.
  *
  * `wouldDeny` is an additive telemetry signal, computed independent of the
  * enforce env: it answers "would this exact mutation be denied if enforce
@@ -924,6 +935,10 @@ export function evaluateMutation(request) {
   try {
     const environment = safeRequest.env || process.env;
     if (environment[DISABLED_ENV] === '1') return { decision: 'allow', detail: null, wouldDeny: false };
+    // A dispatched/child session short-circuits to a complete allow before any
+    // state read or telemetry: it has no user turn to answer Gate 3, so it must
+    // never be denied, advised, or recorded as a would-deny row.
+    if (isChildSession(environment)) return { decision: 'allow', detail: null, wouldDeny: false };
 
     const { filePath, sessionID, projectDir } = safeRequest;
     const tool = String(safeRequest.tool || '').toLowerCase();
@@ -946,7 +961,7 @@ export function evaluateMutation(request) {
     const denyCapable = DENY_CAPABLE_TOOLS.has(tool);
     const wouldDeny = denyCapable;
     const enforceOn = environment[ENFORCE_ENV] === '1';
-    if (denyCapable && enforceOn && !isChildSession(environment)) {
+    if (denyCapable && enforceOn) {
       return { decision: 'deny', detail: GATE_3_DENY_DETAIL, wouldDeny };
     }
     return { decision: 'advise', detail: GATE_3_QUESTION, wouldDeny };

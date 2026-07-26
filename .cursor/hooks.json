@@ -8,6 +8,11 @@
         "timeout": 10
       },
       {
+        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+        "type": "command",
+        "timeout": 10
+      },
+      {
         "command": "bash .opencode/bin/worktree-guard.sh",
         "type": "command",
         "timeout": 10

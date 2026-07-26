@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Cursor hook scripts; 
 
 ## 1. OVERVIEW
 
-`.cursor/hooks/` contains 14 symlinks after including the `beforeMCPExecution` route guard. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
+`.cursor/hooks/` contains 15 symlinks after including the session-start spec-gate prebind. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
 
 Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
 
@@ -27,11 +27,13 @@ Four compiled ESM lifecycle adapters do not execute through their symlink becaus
 | Group | Files |
 |-------|-------|
 | Session lifecycle | `session-start.js`, `session-end.js`, `session-cleanup.sh`, `precompact.js`, `user-prompt-submit.js` |
-| Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.mjs` |
+| Spec and dispatch gates | `spec-gate-prebind.mjs`, `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.mjs` |
 | Tool and MCP proxies | `post-tool-use.mjs`, `mcp-route-guard.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs` |
 
 `mcp-route-guard.mjs` recombines Cursor's split `mcp_server_name` and bare `tool_name` fields before delegating to the shared route-guard policy.
+
+`spec-gate-prebind.mjs` is wired on `sessionStart` through its real path. Its mirror is discovery-only, like every other entry here.
 
 ## 4. VALIDATION
 

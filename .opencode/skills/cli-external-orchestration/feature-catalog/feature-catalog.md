@@ -9,7 +9,7 @@ trigger_phrases:
   - "cli-cursor hooks"
   - "Cursor CLI spec-gate integration"
 last_updated: "2026-07-25"
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -70,7 +70,7 @@ See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.
 
 #### Current Reality
 
-The committed `.cursor/hooks.json` registers lifecycle, mutation-gate, post-tool, task-dispatch, prompt-submit, pre-compact, and MCP advisory adapters. `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution` have confirmed delivery paths. The MCP adapter is wired and recombines Cursor's split server/tool payload before calling the shared warn-only guard. Registration alone does not prove delivery: the prompt-submit and pre-compact adapters remain unconfirmed under the installed Cursor CLI.
+The committed `.cursor/hooks.json` registers lifecycle, session-start Gate-3 prebinding, mutation-gate, post-tool, task-dispatch, prompt-submit, pre-compact, and MCP advisory adapters. The prebind validates `MK_SPEC_FOLDER` or opens explicitly enabled state for top-level sessions while preserving disabled and child-session no-ops. `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution` have confirmed delivery paths; prompt-submit and pre-compact delivery remain unconfirmed.
 
 #### Source Files
 

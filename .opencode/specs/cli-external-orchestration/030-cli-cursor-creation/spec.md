@@ -1,22 +1,22 @@
 ---
 title: "Feature Specification: cli-cursor creation"
-description: "Coordinate a seven-phase first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, and a manual-testing playbook against the current (2026-07) Cursor CLI (cursor-agent). Phase 001 is complete with live-verification evidence; phases 002-007 are planned."
+description: "Coordinate an 18-phase first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, a manual-testing playbook, live hook wiring, Claude parity, discovery mirrors, and a session-start Gate-3 prebind against the current (2026-07) Cursor CLI (cursor-agent). Phases 001-017 are complete; phase 018 (spec-gate prebind) is in progress."
 trigger_phrases: ["cli-cursor creation", "Cursor CLI executor", "cursor-agent mode", "delegate to cursor", "cursor cli hub mode"]
 importance_tier: important
 contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
-    last_updated_at: "2026-07-24T04:16:30Z"
+    last_updated_at: "2026-07-25T17:05:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored parent spec.md and all 7 phase children"
-    next_safe_action: "Confirm open questions, then start phase 002"
-    blockers: ["cursor-agent login needs an interactive OAuth flow only the operator can complete"]
-    key_files: ["001-cursor-contract-pin/implementation-summary.md", "002-deep-loop-executor-support/spec.md", "003-cli-cursor-skill-packet/spec.md"]
+    recent_action: "Phase 018 (spec-gate prebind) in repair; phases 001-017 complete and pushed."
+    next_safe_action: "Finish phase 018 verification, then commit (no push without approval)."
+    blockers: []
+    key_files: ["018-cursor-spec-gate-prebind/spec.md", ".cursor/hooks.json", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 14
-    open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules? Deferred to the dispatch-command finalization.", "Does the Cursor CLI deliver every .cursor/hooks.json event, or only a subset? Verify per-event live at phase 004.", "Composer's exact context window/pricing/version slug is auth-gated until cursor-agent login."]
-    answered_questions: ["Phase 001 confirms Cursor CLI is real and current (cursor-agent build 2026.07.23-e383d2b), with a shared-with-the-editor config surface and unique worktree/worker/plugin surfaces."]
+    completion_pct: 94
+    open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?"]
+    answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | Complete — all 7 phases implemented, validated, and closed out |
+| **Status** | In Progress — phases 001-017 complete and pushed; phase 018 (spec-gate prebind) in repair |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
@@ -51,8 +51,8 @@ Adding `cli-cursor` means adding a 4th mode to the existing, already-conformant 
 ### Purpose
 Create `cli-cursor` through bounded phases grounded in the *current* Cursor CLI product (live-verified in phase 001, not assumed from Cursor-the-editor knowledge). Begin with a verified live contract (complete), extend to deep-loop executor support, build the mode's skill packet per this repo's `sk-doc create-skill` guidelines, add hook adapters for the repo guard hooks over Cursor's shared-config hooks surface, add a Composer model-profile and prompt-quality-card CI coverage, author a Cursor-native manual-testing playbook, and close out docs/agents/governance with full recursive validation.
 
-### Why seven phases (matches Devin's count, diverges in content)
-The phase count matches `029-cli-devin-revival`'s 7-phase shape because Cursor's real capabilities genuinely map onto the same seven bounded workstreams (contract-pin → executor → skill-packet → hooks → model-registry → playbook → closeout). The **content** diverges substantially and deliberately: phase 004's hook layer must handle Cursor's editor-shared `.cursor/hooks.json` and a documented CLI partial-event-delivery caveat (two ADRs, not one); phase 005 adds a Composer profile rather than restoring a deleted model; phase 006's playbook categories are Cursor-native (plan/ask modes, worktree isolation, cloud worker) with no sibling analog. Cursor's unique worktree/worker/plugin surfaces are documented in the skill-packet references and the playbook rather than given their own phase — wiring them into this repo's runtime would be scope creep, since the deep-loop executor only needs to dispatch `cursor-agent -p`.
+### Initial seven-phase decomposition and later extensions
+The original decomposition matched `029-cli-devin-revival`'s 7-phase shape because Cursor's core capabilities mapped onto seven bounded workstreams (contract-pin → executor → skill-packet → hooks → model-registry → playbook → closeout). Later phases added allowlist enforcement, live hook wiring, parity, manual evidence, discovery mirrors, MCP correction, and Gate-3 prebinding as distinct workstreams. Cursor's unique worktree/worker/plugin surfaces remain documented rather than wired into the deep-loop runtime.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -101,7 +101,16 @@ The phase count matches `029-cli-devin-revival`'s 7-phase shape because Cursor's
 | 6 | `006-cursor-manual-testing-playbook/` | Author a Cursor-native manual-testing playbook. | Complete |
 | 7 | `007-docs-agents-governance-and-closeout/` | Add roster/governance/sibling doc mentions; full recursive validation and closeout. | Complete |
 | 8 | `008-cursor-model-allowlist/` | Restrict cli-cursor dispatch to an enforced 10-id allowlist (Composer 2.5, Grok 4.5, GLM 5.2); remove `auto` as the default. | Complete |
-| 9 | `009-cursor-hooks-catalog-and-playbook-coverage/` | Add a feature-catalog entry and playbook coverage for every cli-cursor hook adapter. | Planned |
+| 9 | `009-cursor-hooks-catalog-and-playbook-coverage/` | Add a feature-catalog entry and playbook coverage for every cli-cursor hook adapter. | Complete |
+| 10 | `010-cursor-hooks-live-wiring/` | Create and commit the project `.cursor/hooks.json` registration (ADR-001). | Complete |
+| 11 | `011-cursor-hooks-claude-parity/` | Expand toward Claude parity: `postToolUse` chain, `Task`-matcher guard, repo-guard scripts. | Complete |
+| 12 | `012-hooks-manual-testing-results/` | Re-execute the hooks-category playbook independently. | Complete |
+| 13 | `013-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-opencode` P0 standards. | Complete |
+| 14 | `014-cursor-hooks-discovery-mirror/` | `.cursor/hooks/` discovery mirror. | Complete |
+| 15 | `015-hook-code-style-cross-runtime/` | Cross-runtime hook code-style alignment. | Complete |
+| 16 | `016-cursor-mcp-wiring-and-route-guard-fix/` | Wire `.cursor/mcp.json`; find and fix the `mcp-route-guard.mjs` dead wire. | Complete |
+| 17 | `017-codex-claude-hooks-discovery-mirrors/` | `.codex/hooks/` and `.claude/hooks/` discovery mirrors. | Complete |
+| 18 | `018-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | In Progress |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -130,15 +139,16 @@ The phase count matches `029-cli-devin-revival`'s 7-phase shape because Cursor's
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 - Should a dispatched `cursor-agent` carry an explicit `--workspace`/config-isolation flag so it does not silently inherit the operator's shared `~/.cursor/` hooks/mcp/rules? Deferred to the phase-002/003 dispatch-command finalization.
-- Does the Cursor CLI (as opposed to the editor) deliver every event registered in `.cursor/hooks.json`, or only a subset? A community report says not all — verify per-event live at phase 004.
-- Composer's exact context window, pricing, and version slug are auth-gated behind `cursor-agent login` — enumerate at implementation time (phase 005); TBD until then.
+- How should all Cursor hook adapters handle additional `workspace_roots` consistently? The current first-root-only behavior is deferred to a separate cross-hook phase.
+- **Answered:** Cursor CLI delivers only a subset of registered events; phase 004 captured the live event table.
+- **Answered in part:** Composer slugs are `composer-2.5`/`composer-2.5-fast`; context window and pricing remain unavailable from the authenticated CLI and are non-blocking.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 - `001-cursor-contract-pin/spec.md`, `.../implementation-summary.md`
-- `002-deep-loop-executor-support/spec.md` through `007-docs-agents-governance-and-closeout/spec.md`
+- `002-deep-loop-executor-support/spec.md` through `018-cursor-spec-gate-prebind/spec.md`
 - `../027-cli-codex-revival/spec.md`, `../029-cli-devin-revival/spec.md` (structural precedents for a hub-mode CLI packet)
 - `../z_archive/002-cli-codex-creation/`, `../z_archive/003-cli-claude-code-creation/` (naming precedent for a first-time "-creation" CLI packet)
 - `.opencode/skills/sk-doc/create-skill/SKILL.md`, `.../references/parent-skill/parent-skills-nested-packets.md` (hub doctrine)

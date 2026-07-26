@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.17
+version: 1.0.0.18
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -118,6 +118,7 @@ Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Un
 | Event | Matcher | Command | Timeout | Purpose |
 |---|---|---:|---:|---|
 | `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-start.js` | 10 | Startup context priming (proxies to `session-prime.js`). |
+| `sessionStart` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | 10 | Validates `MK_SPEC_FOLDER` or opens explicitly enabled Gate-3 state for an identifiable top-level session. |
 | `sessionStart` | none | `bash .opencode/bin/worktree-guard.sh` | 10 | Workspace safety guard. |
 | `sessionStart` | none | `bash .opencode/bin/check-git-hooks.sh` | 10 | Git-hooks-installed guard. |
 | `sessionStart` | none | `python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all` | 10 | Dist-staleness warning across every watched package. |
@@ -154,9 +155,9 @@ Helper module (statically imported by every entrypoint, NOT directly wired): `sh
 
 The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is Cursor's own schema — distinct from Claude's nested `hooks.<Event>[].hooks[]` shape above. A `matcher`-scoped entry fires alongside an unmatched entry for the same event, not instead of it (confirmed live: a `Task` tool call fires both the unmatched `spec-gate-enforce.mjs` entry and the `matcher: "Task"` entry).
 
-### Not Wired
+### Startup Prebinding Boundary
 
-`spec-gate-prebind.mjs` (`sessionStart` — opens the Gate-3 enforcement state Cursor structurally cannot open via `beforeSubmitPrompt`) exists in the source tree but is deliberately absent from `.cursor/hooks.json`. Do not add it without first satisfying its file-header precondition (review/commit status).
+`spec-gate-prebind.mjs` compensates only for Cursor CLI's missing prompt-classification delivery. It writes no state for disabled sessions, dispatched children, malformed input, or missing session identity; enforcement remains off unless `MK_SPEC_GATE_ENFORCE=1` is explicitly present.
 
 ### MCP Config And The Split-Shape Caveat
 

@@ -36,6 +36,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".codex/hooks/README.md",
+      ".claude/hooks/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -45,6 +47,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".codex/hooks/README.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -182,17 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `.cursor/hooks/` discovery mirror gave the Cursor runtime a single place to see its full hook inventory",
     "created_at": "2026-07-24T18:29:18.029Z",
-    "last_save_at": "2026-07-24T18:33:03.636Z",
+    "last_save_at": "2026-07-25T17:06:52.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:896999b54c7369f37ad453ff5ef69b61147b5154d2f2d1a6a1c2fa229e50d5fa",
+    "source_fingerprint": "sha256:34c9b027f87d9754aa0522c53bdf7ef3ef42d294be17d5557a32881b5f7fedc0",
     "source_doc_hashes": {
-      "spec.md": "f3c3ab90880ffb4a91da126f080816cc072de5e4369d13c92ec65517cad3cb84",
+      "spec.md": "df5c1a2d9f7f86b14d06d5588d9d95fcd0c31cd7422e582d0b62c222bc21c24d",
       "plan.md": "6adb87d257d3344e5864442eb7f215441d381f21d34e9b7f1fd0b8e58da06402",
       "tasks.md": "0825e9ae388e42472d74ba1f08340822412d5968b9c5e0f73517bc8c873ca03b",
       "checklist.md": "61b5b09348531137627bc1ed90297fd5dd12daa91b93144f29b98b5168679597",
-      "implementation-summary.md": "3cefc70d2f3381185de9cd3e4f9eb761ca9124b8b9d73a2a3f0d91bcd101b3f4"
+      "implementation-summary.md": "051e1b763af507df1e636edc0c189369761af85face68dd8c9339834c391b5aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

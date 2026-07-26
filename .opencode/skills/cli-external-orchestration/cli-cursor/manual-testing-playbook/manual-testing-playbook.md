@@ -76,7 +76,7 @@ Coverage note (2026-07-24): Covers the canonical default invocation (`composer-2
 - Cursor stdout (and stderr captured via `2>&1`)
 - Exit code from `cursor-agent`, noted alongside output-text auth/availability evidence (never exit code alone)
 - The final user-facing outcome and a PASS, FAIL, or SKIP verdict with rationale
-- For CU-020, source-text and repository-documentation inspection replace Cursor stdout and exit-code evidence; the default verdict is `SKIP` pending review of a concurrent session's uncommitted work
+- For CU-020, isolated Node process output replaces Cursor dispatch stdout; record the 9/9 TAP result plus config and symlink checks
 
 ---
 
@@ -427,7 +427,7 @@ Desired user-visible outcome: Confirmation of the precedence rule and that `--ap
 
 ## 12. HOOKS (`CU-013..CU-014, CU-020..CU-021`)
 
-This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract, exercising the shared `.cursor/hooks.json` events live-verified in phase 004 and phase 011 of this creation packet and documenting the unreviewed prebind adapter's status. The [Cursor Hooks And Spec-Gate Integration](../../feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md) feature-catalog entry is authoritative for the status wording of every adapter, including phase 011's `postToolUse`/`Task`-matcher/`beforeSubmitPrompt`/`preCompact`/`beforeMCPExecution` additions.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract, including the process-tested session-start prebind and the shared `.cursor/hooks.json` event surface.
 
 ### CU-013 | Confirmed-fires smoke test
 
@@ -465,23 +465,23 @@ Desired user-visible outcome: A reproduced confirmation of the documented gap, s
 
 > **Feature File:** [CU-014](../manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md)
 
-### CU-020 | spec-gate-prebind.mjs (authored by a concurrent session, uncommitted, not yet reviewed or tested)
+### CU-020 | Session-start spec-gate prebind matrix
 
 #### Description
 
-Document `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs`, authored by a concurrent session, uncommitted, and not yet reviewed or tested. Reading the file records its designed `sessionStart` purpose: satisfy Gate 3 for a valid `MK_SPEC_FOLDER` or open Gate-3 enforcement state when `MK_SPEC_GATE_ENFORCE=1`, because `beforeSubmitPrompt` never fires. This is documentation-only; it does not assert runtime behavior.
+Execute the prebind process suite to prove valid folder satisfaction, explicit top-level enforcement, disabled/child no-ops, malformed input handling, invalid binding behavior, and terminal-state preservation.
 
 #### Scenario Contract
 
-Prompt: `Read spec-gate-prebind.mjs, authored by a concurrent session, uncommitted, and not yet reviewed or tested, and document its designed sessionStart Gate-3 prebind intent without executing it.`
+Prompt: `Run the Cursor session-start spec-gate prebind matrix and report every state and exemption result.`
 
-Expected signals: The file exists, its source text states the session-start design intent, and repository documentation retains the required unreviewed status wording. The default verdict is `SKIP` with the specific blocker `pending review of a concurrent session's uncommitted work`.
+Expected signals: `node --test` reports 9/9 passing; valid binding is consumed as allow, enforce-only startup is consumed as deny, and no-op rows create no state.
 
-Desired user-visible outcome: An honest documentation record for the fifth adapter that preserves the feature-catalog status language and does not overstate its runtime status.
+Desired user-visible outcome: Evidence that opt-in Cursor enforcement is active without changing disabled or autonomous child behavior.
 
 #### Test Execution
 
-> **Feature File:** [CU-020](../manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md)
+> **Feature File:** [CU-020](../manual-testing-playbook/hooks/spec-gate-prebind-session-start.md)
 
 ### CU-021 | Task-matcher preToolUse dispatch guard live-fire
 
@@ -660,7 +660,7 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 
 - CU-013: [Confirmed-fires smoke test](../manual-testing-playbook/hooks/confirmed-fires-smoke-test.md)
 - CU-014: [Confirmed-non-delivery documentation](../manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md)
-- CU-020: [spec-gate-prebind.mjs (authored by a concurrent session, uncommitted, not yet reviewed or tested)](../manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md)
+- CU-020: [Session-start spec-gate prebind matrix](../manual-testing-playbook/hooks/spec-gate-prebind-session-start.md)
 - CU-021: [Task-matcher preToolUse dispatch guard live-fire](../manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md)
 
 ### SESSION CONTINUITY

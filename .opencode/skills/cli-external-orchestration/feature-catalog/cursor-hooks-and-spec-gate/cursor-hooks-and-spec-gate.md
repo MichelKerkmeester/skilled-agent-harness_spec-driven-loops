@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-cursor hook adapters"
   - "Cursor preToolUse spec gate"
   - "Cursor hooks.json shared configuration"
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # Cursor CLI Hooks And Spec-Gate Integration (cli-cursor)
@@ -29,11 +29,11 @@ Live dispatches confirm `sessionStart`, `sessionEnd`, generic `preToolUse`, `pos
 
 ### Gate-3 Enforcement And Classification
 
-`spec-gate-enforce.mjs` maps Cursor's `Shell` and `Write` tools to the shared mutation policy. Its deny path returns `permission: "deny"` and exits with code 2. `spec-gate-classify.mjs` is registered on `beforeSubmitPrompt`, but delivery remains unconfirmed under the installed Cursor CLI, so it is not treated as an active classification gate.
+`spec-gate-prebind.mjs` runs on confirmed `sessionStart` delivery. It satisfies a filesystem-validated `MK_SPEC_FOLDER`, or opens state only when `MK_SPEC_GATE_ENFORCE=1` is explicitly set for an identifiable top-level session. Disabled sessions, dispatched children, malformed input, and missing session identities write no state. `spec-gate-enforce.mjs` consumes that state on `preToolUse`; `spec-gate-classify.mjs` remains registered on the undelivered prompt event for forward compatibility.
 
 ### Current Hook Matrix
 
-The current configuration wires repo guards on `sessionStart` and `sessionEnd`, `post-tool-use.mjs` on `postToolUse`, and `task-dispatch-guard.mjs` alongside `spec-gate-enforce.mjs` on `preToolUse`. Prompt-submit and pre-compact adapters are registered but remain unconfirmed. `mcp-route-guard.mjs` is wired on `beforeMCPExecution`; it recombines Cursor's split `mcp_server_name` and bare `tool_name` fields before forwarding to the shared warn-only guard.
+The current configuration wires startup priming, spec-gate prebinding, and repo guards on `sessionStart`; cleanup on `sessionEnd`; post-tool checks on `postToolUse`; and dispatch plus mutation guards on `preToolUse`. Prompt-submit and pre-compact adapters are registered but remain unconfirmed. `mcp-route-guard.mjs` is wired on `beforeMCPExecution`.
 
 ### Shared Configuration Boundary
 
@@ -50,6 +50,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.cursor/hooks.json` | Configuration | Current event-to-adapter registration authority, including `beforeMCPExecution`. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/session-start.ts` | Handler | Delegates confirmed `sessionStart` delivery to session priming. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/session-end.ts` | Handler | Delegates confirmed `sessionEnd` delivery to session stop. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | Script | Initializes validated or explicitly enforced state on confirmed `sessionStart` delivery. |
 | `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | Script | Enforces Gate-3 policy on confirmed `preToolUse` delivery. |
 | `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | Script | Runs post-edit, code-graph freshness, and dispatch-audit checks on confirmed `postToolUse` delivery. |
@@ -66,6 +67,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md` | Manual playbook | Records the prompt-classification delivery limitation. |
 | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md` | Manual playbook | Reproduces the confirmed task-dispatch guard. |
 | `.opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.test.cjs` | Automated test | Exercises the shared allow/warn guard policy consumed by the Cursor adapter. |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` | Automated test | Exercises startup identity, environment, binding, terminal-state, and enforce-consumer behavior. |
 
 ---
 

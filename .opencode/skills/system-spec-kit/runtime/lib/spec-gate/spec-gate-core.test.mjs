@@ -1460,7 +1460,9 @@ test('WS3 scaffolded accept: MK_SPEC_GATE_DISABLED=1 short-circuits before the r
 
 // ─────────────────────────────────────────────────────────────────────────────
 // WS4: headless / subagent enforce scoping -- a dispatched/child session
-// (AI_SESSION_CHILD=1) never denies, even with enforce on.
+// (AI_SESSION_CHILD=1) is a COMPLETE Gate-3 no-op: it never denies, never
+// advises, never reads or writes gate state, and never surfaces the question,
+// even with enforce on, because it has no user turn to answer Gate 3.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('isChildSession: only the exact value "1" reads as a child session', () => {
@@ -1473,11 +1475,20 @@ test('isChildSession: only the exact value "1" reads as a child session', () => 
   assert.equal(core.isChildSession(null), false);
 });
 
-test('WS4 child matrix: enforce on + child session -> advise, never deny', () => {
+test('WS4 child matrix: enforce on + child session -> complete allow, no telemetry, no state read', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = nextSessionID();
-    core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
+    const classify = core.classifyIntent({
+      prompt: 'fix the login bug',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
+    });
+    // Classify is a no-op too: a child has no user turn, so the gate never
+    // opens and the question never surfaces.
+    assert.equal(classify.status, 'closed');
+    assert.equal(classify.question, null);
 
     const result = core.evaluateMutation({
       tool: 'write',
@@ -1486,11 +1497,36 @@ test('WS4 child matrix: enforce on + child session -> advise, never deny', () =>
       projectDir: root,
       env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
     });
-    assert.equal(result.decision, 'advise');
-    // wouldDeny still reports true -- it measures the underlying predicate
-    // independent of child status, so the telemetry line still records this
-    // as a would-deny row for operators sizing the flip.
-    assert.equal(result.wouldDeny, true);
+    assert.equal(result.decision, 'allow');
+    assert.equal(result.wouldDeny, false);
+    assert.equal(result.detail, null);
+
+    // A child must never persist or read session gate state.
+    const { stateDir } = core.resolveGuardPaths(root);
+    assert.equal(existsSync(join(stateDir, `${core.sessionStateKey(sessionID)}.json`)), false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS4 child matrix: a child ignores a pre-existing open state and still allows', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const { stateDir } = core.resolveGuardPaths(root);
+    // Seed open state as if an earlier interactive turn left it behind; a child
+    // must not consult it.
+    assert.equal(core.writeGateStateAtomic(stateDir, sessionID, { status: 'open', askedAtMs: 1 }), true);
+
+    const result = core.evaluateMutation({
+      tool: 'write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'allow');
+    assert.equal(result.wouldDeny, false);
   } finally {
     cleanup(root);
   }
@@ -1533,7 +1569,7 @@ test('WS4 child matrix: child + disabled -> allow (kill-switch still outranks ev
   }
 });
 
-test('WS4 child matrix: AI_SESSION_CHILD value variants -- only exact "1" suppresses deny', () => {
+test('WS4 child matrix: AI_SESSION_CHILD value variants -- only exact "1" becomes a no-op', () => {
   const { root } = makeWorkspace();
   try {
     for (const value of ['', '0', 'true', 'yes', '2']) {
@@ -1553,20 +1589,19 @@ test('WS4 child matrix: AI_SESSION_CHILD value variants -- only exact "1" suppre
   }
 });
 
-test('WS4 child matrix: bash stays advise-only for a child session too (never widens)', () => {
+test('WS4 child matrix: bash is a complete allow no-op for a child session too', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = nextSessionID();
-    core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
-
     const result = core.evaluateMutation({
       tool: 'bash',
       sessionID,
       projectDir: root,
       env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '1' },
     });
-    assert.equal(result.decision, 'advise');
+    assert.equal(result.decision, 'allow');
     assert.equal(result.wouldDeny, false);
+    assert.equal(result.detail, null);
   } finally {
     cleanup(root);
   }

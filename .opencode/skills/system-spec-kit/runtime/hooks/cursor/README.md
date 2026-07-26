@@ -1,6 +1,6 @@
 ---
 title: "Cursor Hooks: Gate-3 spec-gate wiring for Cursor CLI"
-description: "Cursor CLI preToolUse hook that calls the shared spec-gate core to enforce the spec-folder gate; the classify hook exists but is dormant pending confirmed beforeSubmitPrompt delivery."
+description: "Cursor CLI spec-gate adapters for session-start prebinding, pre-tool enforcement, and registered-but-undelivered prompt classification."
 ---
 
 # Cursor Hooks
@@ -9,21 +9,24 @@ description: "Cursor CLI preToolUse hook that calls the shared spec-gate core to
 
 ## 1. OVERVIEW
 
-`runtime/hooks/cursor/` holds the Cursor CLI side of the Gate-3 spec-folder discipline, mirroring `runtime/hooks/claude/` and `runtime/hooks/codex/` for Cursor's tool vocabulary and event set. Both files call into `runtime/lib/spec-gate/spec-gate-core.mjs` as a fourth consumer alongside the Claude hook, the OpenCode plugin, and the Codex hook, so the core never changes for a new runtime. Every entrypoint fails open: a missing or invalid stdin payload always resolves to approve.
+`runtime/hooks/cursor/` holds Cursor's Gate-3 adapters. The startup prebind establishes state that Cursor's undelivered prompt event cannot create, the pre-tool adapter consumes that state through the shared evaluator, and the prompt classifier remains registered for forward compatibility. Every entrypoint fails open.
 
-**Cursor's event set differs materially from Codex's**, confirmed by live probing (phase 004): Cursor has no distinct pre-write-file gate the way Codex's `apply_patch`-mapped `PreToolUse` does — the generic `preToolUse` event covers every tool call (`Shell`, `Read`, `Grep`, `Write`), so `spec-gate-enforce.mjs` is wired there instead of a shell-only event. `beforeSubmitPrompt` — the intended attachment point for the classify hook — is confirmed to never fire under the CLI, so `spec-gate-classify.mjs` exists as ready, documented, but dormant code.
+Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-gate-enforce.mjs` is wired there. `beforeSubmitPrompt` remains registered but has not fired under the installed CLI; `spec-gate-prebind.mjs` therefore uses confirmed `sessionStart` delivery to satisfy a validated `MK_SPEC_FOLDER` or open state only when `MK_SPEC_GATE_ENFORCE=1` is explicitly set for an identifiable top-level session.
+
+A dispatched/child session (`AI_SESSION_CHILD=1`) is a complete Gate-3 no-op enforced in the shared core (`spec-gate-core.mjs`): it never opens, reads, or writes gate state, never receives the question, and never denies or advises. Both spec-gate adapters resolve `workspace_roots[0]` only (like every other Cursor hook here), so multi-root Cursor workspaces are not enforced against secondary roots.
 
 ## 2. CONTENTS
 
 | File | Purpose | Status |
 |------|---------|--------|
+| `spec-gate-prebind.mjs` | `sessionStart` hook. Validates an explicit folder or opens opt-in top-level enforcement state. | **Active** - process-tested; disabled, child, malformed, and missing-session cases write no state. |
 | `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. | **Active** — live-verified: the deny path (`{"permission":"deny"}` + exit 2) was confirmed to actually block a real `cursor-agent` tool call during phase 004's probe. |
-| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Runs `classifyIntent()` against each user turn and would surface the bounded Gate-3 question as `agent_message`. | **Dormant** — `beforeSubmitPrompt` confirmed to never fire under `cursor-agent 2026.07.23-e383d2b` across 3 separate live dispatches (including a `--continue` turn). Not registered in any `.cursor/hooks.json`. Re-verify against a future `cursor-agent` build before wiring. |
+| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Runs `classifyIntent()` against each user turn and would surface the bounded Gate-3 question as `agent_message`. | **Registered, delivery unconfirmed** - `beforeSubmitPrompt` did not fire under the tested CLI build. |
 
 ## 3. CONSUMERS
 
-- A project `.cursor/hooks.json` would wire `spec-gate-enforce.mjs` to the `preToolUse` event. **This file has not been committed yet** (phase 004 built and live-verified the adapters but deferred the actual registration to a later, explicitly-approved step — see `mcp-server/hooks/cursor/README.md` §4).
-- `spec-gate-classify.mjs` has no consumer today; it ships as forward-compatible, honestly-labeled dormant code.
+- `.cursor/hooks.json` wires `spec-gate-prebind.mjs` on `sessionStart`, `spec-gate-enforce.mjs` on `preToolUse`, and `spec-gate-classify.mjs` on `beforeSubmitPrompt`.
+- `.cursor/hooks/` mirrors all three as discovery-only relative symlinks; runtime config continues to invoke their real paths.
 
 ## 4. WHY preToolUse INSTEAD OF beforeShellExecution
 

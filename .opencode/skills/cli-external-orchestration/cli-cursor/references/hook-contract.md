@@ -8,7 +8,7 @@ trigger_phrases:
   - "cursor hook events"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Cursor CLI Hook Contract
@@ -101,9 +101,9 @@ Command-based hooks return a JSON object on stdout:
 
 ---
 
-## 7. OPEN QUESTION — PARTIAL EVENT DELIVERY (CLI VS EDITOR)
+## 7. PARTIAL EVENT DELIVERY (CLI VS EDITOR)
 
-**This is the single most important caveat in this document.** A community report (not yet independently confirmed against this CLI build) states that the Cursor **CLI**, as opposed to the editor, may not deliver every event registered in `hooks.json` — an editor/CLI parity gap. Do not assume any event beyond what a later phase live-verifies actually fires under `cursor-agent -p`. The dedicated hook-adapter phase of this creation packet (`004-cursor-hook-adapter-layer`) is scoped specifically to live-verify per-event delivery against the installed binary before any adapter claims a guard is "active" for a given event. Until that verification lands, treat every event in §4 as documented-but-unconfirmed-under-the-CLI, not confirmed-active.
+Live probing confirmed that Cursor CLI delivers `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution`, but did not deliver `beforeSubmitPrompt` under the tested build. The repository therefore uses `sessionStart` for guarded spec-gate prebinding and keeps prompt classification registered only for forward compatibility. Do not treat registration alone as proof of delivery for any other event.
 
 ---
 

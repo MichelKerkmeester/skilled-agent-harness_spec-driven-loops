@@ -18,10 +18,10 @@
     "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
     "cli-external-orchestration/030-cli-cursor-creation/013-hooks-sk-code-alignment",
     "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror",
-    "cli-external-orchestration/030-cli-cursor-creation/015-cursor-mcp-wiring-and-route-guard-fix",
     "cli-external-orchestration/030-cli-cursor-creation/015-hook-code-style-cross-runtime",
     "cli-external-orchestration/030-cli-cursor-creation/016-cursor-mcp-wiring-and-route-guard-fix",
-    "cli-external-orchestration/030-cli-cursor-creation/017-codex-claude-hooks-discovery-mirrors"
+    "cli-external-orchestration/030-cli-cursor-creation/017-codex-claude-hooks-discovery-mirrors",
+    "cli-external-orchestration/030-cli-cursor-creation/018-cursor-spec-gate-prebind"
   ],
   "manual": {
     "depends_on": [],
@@ -57,15 +57,14 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "001-cursor-contract-pin/implementation-summary.md",
-      "002-deep-loop-executor-support/spec.md",
-      "003-cli-cursor-skill-packet/spec.md",
+      "018-cursor-spec-gate-prebind/spec.md",
       ".cursor/hooks.json",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
       ".opencode/agents/context.md",
-      "001-cursor-contract-pin/spec.md",
-      "007-docs-agents-governance-and-closeout/spec.md",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
       ".cursor/mcp.json",
+      "001-cursor-contract-pin/spec.md",
+      "002-deep-loop-executor-support/spec.md",
+      ".opencode/skills/sk-doc/create-skill/SKILL.md",
       ".codex/hooks.json",
       ".claude/settings.json",
       "spec.md",
@@ -82,21 +81,27 @@
         "source": "derived"
       },
       {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
         "name": "context.md",
         "kind": "doc",
         "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
         "source": "derived"
       },
       {
@@ -130,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -149,12 +160,6 @@
       },
       {
         "name": "Purpose Create",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,19 +203,19 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-07-24T19:20:13.655Z",
+    "last_save_at": "2026-07-26T06:03:17.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:02d1196dba1993c70ffd6457148694cbd14f08d1cdfe78c45fbedafaaf0ed8cc",
+    "source_fingerprint": "sha256:c41cc1c80625915af95cc399912dc2cee21dbfcebaa98f84b2ee4e94342ee7e4",
     "source_doc_hashes": {
-      "spec.md": "c3fc8597d6fb9d496b80ad909253d54b9a560ab0f67d286ddb52f70c395324b2",
+      "spec.md": "bd8b1582c122f8800f4e9947ced2a972686b1003d2507b5d77680e5b95cebcd5",
       "handover.md": "fc98e8115efa03c5dcb34f42be55ef11c2a08ec2031afc10f04ad830662fc33c"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "cli-external-orchestration/030-cli-cursor-creation/018-cursor-spec-gate-prebind",
+    "last_active_at": "2026-07-26T06:03:17.562Z"
   }
 }
