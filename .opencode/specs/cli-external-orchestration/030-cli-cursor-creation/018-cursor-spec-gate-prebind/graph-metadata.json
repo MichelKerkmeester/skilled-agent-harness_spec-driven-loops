@@ -38,7 +38,7 @@
       "wiring"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
       ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
@@ -152,13 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Problem Statement Cursor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
     "created_at": "2026-07-25T13:39:58Z",
-    "last_save_at": "2026-07-26T06:03:13.618Z",
+    "last_save_at": "2026-07-26T07:00:26.853Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbb7b175b3a4b3dd62077feb7e6f293f2a191cdb420fe2515c8b9d53def38321",
+    "source_fingerprint": "sha256:ee23aa5567e7e0a53ebfecd80814e5991dac674c32990081ffbb8556cf7350f7",
     "source_doc_hashes": {
-      "spec.md": "4bf519ffdb06942b97a1ffe64896eb6c522da630e494fc251c62ffc9397628a8",
-      "plan.md": "0a40a774a616c2752c2d3c58bbef9ac5723252c527ca92d2641b8f1faf348291",
-      "tasks.md": "24e77fbd2026d1a422b7f15b6a78675915ab6f05807f5ae659496d895431e5d0",
-      "checklist.md": "08fcf2215754bb5cd1a345d72669ef627137e2713d21d3ca9ea31ff13f418158",
-      "implementation-summary.md": "8bf143e43bb81ccbef3340e649efb79e8c36e858ac81b687a9b2dc1f03cdf104"
+      "spec.md": "ce6a9df63c7d79ed3889823dea17ae9f1cb578c34ffbbedc0ffa1a0531d8fd5d",
+      "plan.md": "c47b12924cee4237d631c6691d03385db1aaea4275cb3948ea73c866169b4720",
+      "tasks.md": "0f900195b6e1c5d0d205fa43b551384b0d8abdf842f6319ba86de6fae96a1da0",
+      "checklist.md": "ebf7467c52e36457f95e7c199cf1e565d4ab3055c9bfbead378fe946ed7d5a11",
+      "implementation-summary.md": "6678c1c35f10a15676b83148534c22fa4b4a1283fa4a732d87d20750fb061463"
     },
     "last_active_child_id": null,
     "last_active_at": null

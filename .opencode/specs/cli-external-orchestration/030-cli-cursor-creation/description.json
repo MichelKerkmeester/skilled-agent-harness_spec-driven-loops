@@ -1,26 +1,31 @@
 {
   "level": "3",
   "specFolder": "cli-external-orchestration/030-cli-cursor-creation",
-  "description": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this",
+  "description": "Complete 18-phase cli-cursor integration with executor support, hook wiring, validation coverage, discovery mirrors, and Gate-3 prebinding.",
   "keywords": [
-    "cursor",
-    "cli",
-    "cursor-agent",
-    "real",
-    "actively-developed",
-    "terminal",
-    "coding",
-    "agent",
-    "23-e383d2b",
-    "installed",
-    "live-verified"
+    "complete",
+    "18-phase",
+    "cli-cursor",
+    "integration",
+    "executor",
+    "support",
+    "hook",
+    "wiring",
+    "validation",
+    "coverage",
+    "discovery",
+    "mirrors",
+    "gate-3",
+    "prebinding"
   ],
-  "lastUpdated": "2026-07-24T19:20:06.360Z",
+  "lastUpdated": "2026-07-26T06:56:52.370Z",
   "specId": "030",
   "folderSlug": "cli-cursor-creation",
   "parentChain": [
     "cli-external-orchestration"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-07-26_07-56__the-18-phase-cli-cursor-creation-packet-is.md"
+  ]
 }

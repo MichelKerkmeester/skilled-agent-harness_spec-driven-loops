@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/018-cursor-spec-gate-prebind"
-    last_updated_at: "2026-07-26T06:02:44Z"
+    last_updated_at: "2026-07-26T06:54:58Z"
     last_updated_by: "opencode"
-    recent_action: "Phase and recursive strict validation pass with zero errors and warnings."
-    next_safe_action: "Pin final evidence to the resulting commit SHA after an explicit commit request."
-    blockers: ["Final P1 evidence requires a commit SHA; no commit has been requested."]
+    recent_action: "Implementation committed as 348b644283; all completion gates pass."
+    next_safe_action: "No further phase work; push only on explicit approval."
+    blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cursor-spec-gate-prebind"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -91,7 +91,7 @@ FAILURE MODES:
 - [x] CHK-FIX-004 [P0] Path and input validation include out-of-tree, malformed, missing, padded-id, and fallback rows. [EVIDENCE: 9/9 process suite covers each class.]
 - [x] CHK-FIX-005 [P1] Matrix axes listed before implementation. [EVIDENCE: `plan.md` names the independent axes, including padded-id and child-classify.]
 - [x] CHK-FIX-006 [P1] Environment variants run in isolated child processes. [EVIDENCE: `spawnSync` invokes each adapter with a fresh environment map.]
-- [ ] CHK-FIX-007 [P1] Final evidence is pinned to the resulting commit SHA.
+- [x] CHK-FIX-007 [P1] Final evidence is pinned to the resulting commit SHA. [EVIDENCE: implementation commit `348b644283`.]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -131,10 +131,10 @@ FAILURE MODES:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 14 | 14/14 |
-| P1 Items | 13 | 12/13 (CHK-FIX-007 commit SHA remains open) |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-07-25 (repair in progress; not yet Complete)
+**Verification Date**: 2026-07-26 (Complete)
 <!-- /ANCHOR:summary -->
 
 ---

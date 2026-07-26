@@ -1,20 +1,20 @@
 ---
 title: "Feature Specification: cli-cursor creation"
-description: "Coordinate an 18-phase first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, a manual-testing playbook, live hook wiring, Claude parity, discovery mirrors, and a session-start Gate-3 prebind against the current (2026-07) Cursor CLI (cursor-agent). Phases 001-017 are complete; phase 018 (spec-gate prebind) is in progress."
+description: "Coordinate an 18-phase first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, a manual-testing playbook, live hook wiring, Claude parity, discovery mirrors, and a session-start Gate-3 prebind against the current (2026-07) Cursor CLI (cursor-agent). All 18 phases are complete."
 trigger_phrases: ["cli-cursor creation", "Cursor CLI executor", "cursor-agent mode", "delegate to cursor", "cursor cli hub mode"]
 importance_tier: important
 contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
-    last_updated_at: "2026-07-25T17:05:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Phase 018 (spec-gate prebind) in repair; phases 001-017 complete and pushed."
-    next_safe_action: "Finish phase 018 verification, then commit (no push without approval)."
+    last_updated_at: "2026-07-26T06:54:58Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed phase 018 in implementation commit 348b644283."
+    next_safe_action: "No further packet work; push only on explicit approval."
     blockers: []
     key_files: ["018-cursor-spec-gate-prebind/spec.md", ".cursor/hooks.json", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 94
+    completion_pct: 100
     open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?"]
     answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op."]
 ---
@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | In Progress — phases 001-017 complete and pushed; phase 018 (spec-gate prebind) in repair |
+| **Status** | Complete — all 18 phases implemented, validated, and committed |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
@@ -110,7 +110,7 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 | 15 | `015-hook-code-style-cross-runtime/` | Cross-runtime hook code-style alignment. | Complete |
 | 16 | `016-cursor-mcp-wiring-and-route-guard-fix/` | Wire `.cursor/mcp.json`; find and fix the `mcp-route-guard.mjs` dead wire. | Complete |
 | 17 | `017-codex-claude-hooks-discovery-mirrors/` | `.codex/hooks/` and `.claude/hooks/` discovery mirrors. | Complete |
-| 18 | `018-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | In Progress |
+| 18 | `018-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | Complete |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
