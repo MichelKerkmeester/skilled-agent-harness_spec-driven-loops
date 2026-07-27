@@ -11,17 +11,17 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin"
     last_updated_at: "2026-07-27T08:03:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Plan authored from pi.dev live WebFetch documentation findings; not yet executed."
-    next_safe_action: "Execute Phase 1 (install) before any later phase of this plan."
-    blockers: ["Pi CLI is not yet installed on this machine."]
-    key_files: []
+    recent_action: "Plan executed; Pi CLI installed and live-verified against this plan"
+    next_safe_action: "Phase 002 may consume implementation-summary.md's confirmed facts"
+    blockers: ["No provider API key on this machine blocked the success-path portions"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 85
+    open_questions: ["Success-path dispatch and skill/prompt discovery remain unconfirmed"]
+    answered_questions: ["Plan's 3 phases executed; see implementation-summary.md for results"]
 ---
 # Implementation Plan: Pi CLI contract pin
 

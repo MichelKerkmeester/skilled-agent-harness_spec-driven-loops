@@ -18,7 +18,9 @@
       "pi cli contract pin plan",
       "pi headless dispatch verification plan",
       "pi cli contract pin tasks",
-      "pi cli contract pin checklist"
+      "pi cli contract pin checklist",
+      "pi cli contract pin results",
+      "pi live verification findings"
     ],
     "key_topics": [
       "cli",
@@ -35,14 +37,21 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -74,7 +83,7 @@
         "source": "derived"
       },
       {
-        "name": "Install Pi",
+        "name": "Installed Pi",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -110,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -140,6 +143,18 @@
         "source": "derived"
       },
       {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -152,13 +167,13 @@
         "source": "derived"
       },
       {
-        "name": "Event Stream Mode",
+        "name": "Install Pi",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Event Stream Mode",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -174,37 +189,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "All 10 downstream phases of this packet plan their work against pi.dev's live-fetched documentation, not against a locally-installed and tested binary",
     "created_at": "2026-07-27T06:48:17.288Z",
-    "last_save_at": "2026-07-27T06:57:37.191Z",
+    "last_save_at": "2026-07-27T07:41:00.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbc91c4a1b4b10baadb69182c41b9ead1160409349816e65a8ce49ce62d791b6",
+    "source_fingerprint": "sha256:e9c21bb260afd4b057e16f381a18ef981ec6d1947c027ac18499a09c1489b6f9",
     "source_doc_hashes": {
-      "spec.md": "ab754041ba7c80daae42ff43d64444262800ce11d7537329520509d0cab4b056",
-      "plan.md": "bad14450b5d9f30812a092ecaae9c5276e1cd7ce9b91c15a71efbbf38fafdd9a",
-      "tasks.md": "d79a7ed2b784330e888f535a55f0dcaf02f4ad84c5d85c8bc32e392c574a1286",
-      "checklist.md": "273d49c5188a4d3d667197c1e334f767c0b5f5a73e0838e90aec849ec5219fe0"
+      "spec.md": "c651b83a4290adc8b35080f54a579bab95d2a3787ab9cd88d824c3617b29507e",
+      "plan.md": "3a1457d481e91b3f7b7fe338c79b3bdb40414a1a5287ede29c820e326d18a426",
+      "tasks.md": "c2538e3d5cdface91388d5b8cb6836cebccab1f869826d9dc64bd9776c0a79a0",
+      "checklist.md": "368e10ba7d8d09353ac88909ffec1150ad43f4c077d0f2a4eb000e30cf384fbf",
+      "implementation-summary.md": "f92ffa6d9faf5f1052b44d86714803c02eb9bcfb1126fc73300ec6ae2083ca63"
     },
     "last_active_child_id": null,
     "last_active_at": null

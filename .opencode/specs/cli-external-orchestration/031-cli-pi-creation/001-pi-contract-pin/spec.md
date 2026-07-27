@@ -13,20 +13,24 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin"
     last_updated_at: "2026-07-27T08:03:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase content from pi.dev docs research; Pi CLI not yet installed"
-    next_safe_action: "Install Pi CLI and run the live verification tasks in tasks.md"
-    blockers: ["Pi CLI is not yet installed on this machine - every pi.dev-doc-sourced claim in this phase is unconfirmed until this phase actually executes."]
-    key_files: []
+    recent_action: "Installed Pi CLI and executed the live verification tasks"
+    next_safe_action: "Phase 002 may design against these confirmed facts"
+    blockers: ["No provider API key on this machine - successful-path dispatch unobserved"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions:
-      - "Exact invocation syntax and real exit-code behavior for Pi's headless/programmatic dispatch (SDK vs RPC mode vs JSON event stream mode) - UNKNOWN until live-probed."
-      - "Whether pointing settings.json 'skills' at .opencode/skills/ surfaces only the 12 hub-level SKILL.md files or also flattens every nested mode/reference SKILL.md as an independent skill - UNKNOWN until live-tested."
-      - "Exact `pi install npm:<pkg>` verb syntax - inferred from the pi.dev/packages catalog convention, not spelled out verbatim in any fetched doc page."
-    answered_questions: []
+      - "Skills-discovery flattening question (REQ-003) unresolved - owned by phase 004"
+      - "Prompt-template discovery/argument substitution (REQ-004) unresolved - owned by phase 005"
+      - "Successful-path dispatch exit code unobserved without provider credentials"
+    answered_questions:
+      - "Headless dispatch is --print/-p combined with --mode text/json/rpc; --mode rpc is a persistent JSONL protocol, not one-shot"
+      - "Pi shares the cursor-agent-class exit-0-on-failure gotcha - and worse, is inconsistent (0 then 1) across identical failed runs"
+      - "pi install npm:<pkg> -l --approve is the confirmed install verb; a project-trust gate blocks it without --approve"
+      - "Extensions are actively validated (must export a factory function) and fail the whole session, not just the bad extension, on an invalid one"
 ---
 # Feature Specification: Pi CLI contract pin
 
@@ -49,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete - 6/8 REQs live-confirmed; REQ-003 (skills flattening) and REQ-004 (prompt-template discovery) remain unconfirmed, owned by phases 004/005 |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -199,10 +203,12 @@ Install Pi for real, then convert every pi.dev-doc-sourced claim this packet cur
 
 ## 10. OPEN QUESTIONS
 
-- Exact invocation syntax and real exit-code behavior for Pi's headless/programmatic dispatch (SDK vs. RPC mode vs. JSON event stream mode) - UNKNOWN until live-probed; blocks phase 002's dispatch-builder design.
-- Whether pointing `settings.json` `"skills"` at `.opencode/skills/` surfaces only the 12 hub-level `SKILL.md` files or also flattens every nested mode/reference `SKILL.md` as an independent skill - UNKNOWN until live-tested; blocks phase 004.
-- Exact `pi install npm:<pkg>` verb syntax - inferred from the `pi.dev/packages` catalog convention, not spelled out verbatim in any fetched doc page; must be confirmed live in this phase before phases 006/007 depend on it.
-- Whether `pi-mcp-extension` supports a local stdio transport at all, given the only documented config example uses `streamable-http` - genuinely unconfirmed from docs; this phase can at most confirm the install-verb, full stdio-support verification is phase 007's job once the package is actually configured.
+- **RESOLVED**: Headless dispatch is `--print`/`-p`, structured output is `--mode json` (one-shot JSONL event stream: `session` header then `agent_start/end`/`turn_*`/`message_*`/`tool_execution_*` events) or `--mode rpc` (a **persistent** stdin/stdout JSON-Lines protocol, architecturally different from every sibling CLI's one-shot pattern - phase 002 should default to `--mode json -p`, not `--mode rpc`). Exit-code behavior is confirmed **unreliable**: the same auth failure returned exit 0 on the first invocation and exit 1 on every later one - phase 002's guard must inspect stderr content, never exit code alone.
+- **STILL UNKNOWN**: Whether pointing `settings.json` `"skills"` at `.opencode/skills/` surfaces only the 12 hub-level `SKILL.md` files or also flattens every nested mode/reference `SKILL.md` as an independent skill - could not be observed without a successful dispatch (no provider credentials on this machine); remains phase 004's live-verification burden.
+- **RESOLVED**: `pi install npm:<pkg> -l --approve` is the confirmed install verb (`-l` for project-local, `--approve` to pass the project-trust gate; omitting `--approve` fails cleanly with "Project is not trusted"). Confirmed against a real install of `pi-subagents`.
+- **STILL UNKNOWN**: Whether `pi-mcp-extension` supports a local stdio transport at all - not tested this phase (install-verb confirmation used `pi-subagents`, not `pi-mcp-extension`, since neither package needed full configuration here); phase 007's job once the package is actually installed and configured.
+- **NEW, UNPLANNED FINDING**: An invalid `.pi/extensions/*.ts` (not exporting a factory function) fails the entire session, not just that extension - `pi -ne` is the documented escape hatch. Phase 008's extension-bridge design must assume fail-closed-for-the-whole-session on a malformed guard-core translation, not fail-open-with-a-warning.
+- **NEW, UNPLANNED FINDING**: `--verbose` without `--offline` hung 2+ minutes with no reachable network path. Any automated dispatch (phase 002) should pass `--offline` explicitly rather than rely on a fast failure.
 <!-- /ANCHOR:questions -->
 
 ---
