@@ -45,7 +45,6 @@ Lexical decoy: `embedding-circuit-breaker.vitest.ts` (high term overlap with "em
 Semantic target: `mcp-server/lib/cache/embedding-cache.ts` (the actual cache impl)
 
 ```
-mcp__mk_code_index__code_graph_context({
   input: "where are embedding results cached by content hash to skip recomputation",
   queryMode: "neighborhood",
 })
@@ -58,7 +57,6 @@ Lexical decoy: `vector-index-impl.vitest.ts` (test file)
 Semantic target: `mcp-server/lib/search/vector-index-store.ts` (the impl)
 
 ```
-mcp__mk_code_index__code_graph_context({
   input: "core class that opens the sqlite-vec virtual table for runtime vector queries",
   queryMode: "neighborhood",
 })
@@ -71,7 +69,6 @@ Lexical decoy: `embeddings-ollama-factory.vitest.ts` (test file)
 Semantic target: `shared/embeddings/factory.ts` (the impl)
 
 ```
-mcp__mk_code_index__code_graph_context({
   input: "primary entry point that constructs concrete embedding provider instances and resolves auto cascade",
   queryMode: "neighborhood",
 })
@@ -112,7 +109,6 @@ messages_transform_mode=schema_aligned
 runtime_ready=false
 node_binary=node
 bridge_timeout_ms=15000
-bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs
 last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
 cache_entries=0
 cache=empty
@@ -121,13 +117,6 @@ cache=empty
 - Code Index CLI tool availability check:
 
 ```text
-code_graph_scan
-code_graph_query
-code_graph_status
-code_graph_context
-code_graph_classify_query_intent
-code_graph_verify
-code_graph_apply
 detect_changes
 ```
 
@@ -136,7 +125,6 @@ detect_changes
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -146,7 +134,6 @@ detect_changes
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -156,12 +143,10 @@ detect_changes
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
 
-- Top-10 result paths for each query: BLOCKED. No top-10 result paths were returned because every `code_graph_context` invocation failed with `exitCode: 75` and `connect ENOENT /tmp/mk-code-index/daemon-ipc.sock`.
 - Rank-pair table:
 
 ```text
@@ -194,4 +179,3 @@ A FAIL signal indicates one of:
 
 Differentiate (1)/(2) from (3) by inspecting the top-10 — if MANY test/decoy files cluster at the top and the impl is buried, it's (1)/(2). If the impl simply doesn't have rich content, it's (3) and the test is inconclusive.
 
-Result: BLOCKED — `code_graph_context` could not execute because the Code Index backend socket was absent, and `memory_health` could not provide the active provider because the native backend recycled and the CLI fallback reported stale dist.

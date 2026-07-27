@@ -308,7 +308,6 @@ OK  .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh
     },
     {
       "type": "command",
-      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs'",
       "timeout": 5
     }
   ]

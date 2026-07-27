@@ -36,26 +36,6 @@ const { loadMostRecentStateMock, loadMatchingStatesMock } = vi.hoisted(() => {
   return { loadMostRecentStateMock, loadMatchingStatesMock };
 });
 
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  getCodeGraphStatusViaRpc: vi.fn(async () => ({
-    status: 'ok',
-    data: {
-      totalFiles: 10,
-      totalNodes: 50,
-      totalEdges: 30,
-      staleFiles: 0,
-      lastScanAt: new Date().toISOString(),
-      dbFileSize: 2048,
-      schemaVersion: 1,
-      nodesByKind: {},
-      edgesByType: {},
-      parseHealth: {},
-      freshness: 'fresh',
-    },
-  })),
-  getGraphFreshnessFromMarker: vi.fn(() => 'fresh'),
-}));
-
 vi.mock('../lib/session/context-metrics.js', () => ({
   computeQualityScore: vi.fn(() => ({
     level: 'degraded',
@@ -72,7 +52,6 @@ vi.mock('../hooks/claude/hook-state.js', () => ({
 }));
 
 import { getCachedSessionSummaryDecision, handleSessionResume } from '../handlers/session-resume.js';
-import * as codeGraphBoundary from '../lib/code-graph-boundary.js';
 import { computeQualityScore, recordBootstrapEvent } from '../lib/session/context-metrics.js';
 
 function createWorkspace(): string {

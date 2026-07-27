@@ -1,7 +1,6 @@
 ---
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query]
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
 version: 1.11.0.0
 ---
@@ -439,4 +438,3 @@ Key integrations:
 
 ### Code Graph Integration
 
-`code_graph_query + Grep` is available to `@deep-review` for semantic code search when Grep/Glob exact matching is insufficient: finding usages by concept/intent, locating implementations when exact symbol names are unknown, and cross-referencing behavior across unfamiliar code paths.

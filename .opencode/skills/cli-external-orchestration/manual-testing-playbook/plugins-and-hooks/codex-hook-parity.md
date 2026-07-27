@@ -32,7 +32,6 @@ The adapters under test:
 |---|---|---|---|
 | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
 | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
-| `system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs` | PostToolUse | `freshness-core.cjs` · `evaluateEdit` | fire-and-forget |
 | `sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
 | `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
 | `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
@@ -223,13 +222,11 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
 - Guard adapters (this parity set):
   - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
   - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
-  - `.opencode/skills/system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs`
   - `.opencode/skills/sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs`
   - `.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs`
   - `.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs`
   - `.opencode/skills/system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs`
   - `.opencode/skills/mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs`
-- Runtime-neutral cores (byte-unchanged, third-consumer pattern): `system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs`, `system-code-graph/runtime/lib/code-graph/freshness-core.cjs`, `sk-code/code-quality/scripts/lib/post-edit-router.cjs`, `cli-opencode/scripts/lib/dispatch-rule-checks.mjs`, `cli-opencode/scripts/lib/dispatch-audit.mjs`, `system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs`, `mcp-code-mode/runtime/lib/mcp-route-guard.cjs`
 - Repo hook registration (versioned source of truth): `.codex/hooks.json`
 - Installer (merge into user-global `~/.codex/hooks.json`): `.opencode/bin/install-codex-hooks.mjs`
 - Spec packet: `.opencode/specs/skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity/`

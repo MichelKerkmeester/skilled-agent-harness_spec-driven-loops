@@ -39,8 +39,6 @@ Route code search queries using this priority order:
 
 | Query Type | Primary Tool | Fallback |
 |-----------|-------------|----------|
-| **Semantic/concept** (meaning-based) | `mcp__mk_code_index__code_graph_query` (Code Graph) | `Grep` / `Glob` |
-| **Structural** (callers, imports, deps) | `code_graph_query` (Code Graph) | `Grep` / `Glob` |
 | **Exact text/regex** (string literal) | `Grep` | `Glob` |
 
 ## Memory & Context Search
@@ -76,6 +74,5 @@ This ensures no query goes unanswered even when embeddings or the graph index ar
 
 ## Maintenance
 
-These routing tables are derived from the search handlers in `system-code-graph/` and `system-spec-kit/mcp-server/handlers/` (`memory-search`, `memory-context`, `memory-triggers`) plus the FTS5/BM25 search lib. When a handler's routing contract changes, update its docstring and this rule together.
 
 *Constitutional rule — always surfaces at top of search results*

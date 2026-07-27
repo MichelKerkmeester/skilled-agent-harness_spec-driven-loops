@@ -20,7 +20,6 @@ Validation runs entirely client-side, so the whole fuzz matrix is host-safe and 
 - Objective: Confirm valid numeric/boolean strings coerce (exit 75 in the sandbox) and malformed values are rejected with exit 64.
 - Real user request: `If a script passes --limit 1e3 or --limit abc to the CLI, do I get a clear usage error or does garbage reach the daemon?`
 - Prompt: `Fuzz code-index numeric and boolean argv coercion with edge values and report the 64/75 split against the expected matrix.`
-- Expected execution process: Run the edge matrix below against `code_graph_query` with `--warm-only` in an empty sandbox and record exit codes.
 - Expected signals: Each case lands on its expected side: coercible values (including out-of-range numbers, whose clamping is handler-owned) exit 75, while malformed values exit 64 with a clear `Invalid value for limit` style message.
 - Desired user-visible outcome: Argument mistakes produce immediate, named usage errors; valid values never get mangled.
 - Pass/fail: PASS only when the full matrix matches.
@@ -40,7 +39,6 @@ SANDBOX=$(mktemp -d /tmp/cli-playbook.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
 
-run() { node .opencode/bin/code-index.cjs code_graph_query --operation outline --subject foo.ts "$@" --warm-only >/dev/null 2>&1; echo "$* -> exit=$?"; }
 
 # Expect 75 (coerced, passed validation, stopped only by the absent daemon)
 run --limit 5
@@ -111,15 +109,11 @@ A malformed numeric reaching IPC means `coerceArgsToSchema` started passing unpa
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../system-code-graph/feature-catalog/mcp-tool-surface/code-index-cli.md` | Feature-catalog source for the code-index CLI |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | `coerceArgsToSchema` and the usage-error exit mapping |
-| `.opencode/skills/system-code-graph/mcp-server/tool-schemas.ts` | `code_graph_query` schema with `limit` 1-1000, `maxDepth` 1-20, `minConfidence` 0-1 |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-parity.vitest.ts` | Schema parity lock backing the matrix expectations |
 
 ## 5. SOURCE METADATA
 

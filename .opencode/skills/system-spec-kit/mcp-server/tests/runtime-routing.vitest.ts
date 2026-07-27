@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 import { createHash } from 'node:crypto';
 import { describe, it, expect, vi } from 'vitest';
-import { classifyQueryIntent } from '../lib/code-graph-boundary.js';
 import { createContentRouter } from '../lib/routing/content-router.js';
 
 function makeEmbeddingFn() {

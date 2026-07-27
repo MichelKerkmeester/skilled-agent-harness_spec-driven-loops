@@ -45,7 +45,6 @@ Fire a compound question about auto-migration + cascade fallback + warmup failur
 ### Commands
 
 ```
-mcp__mk_code_index__code_graph_query({
   query: "what happens when ollama auto-migration starts but the provider warmup fails — does the cascade fall back to hf-local or does migration error out?",
   num_results: 10,
 })
@@ -85,7 +84,6 @@ Summary:
   what happens when ollama auto-migration starts but the provider warmup fails — does the cascade fall back to hf-local or does migration error out?
   ```
 
-- Requested MCP command from this scenario could not be run exactly because `mcp__mk_code_index__code_graph_query` was not registered in this runtime. Native code graph status output was:
 
   ```
   plugin_id=mk-code-graph
@@ -97,29 +95,19 @@ Summary:
   runtime_ready=false
   node_binary=node
   bridge_timeout_ms=15000
-  bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs
   last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
   cache_entries=0
   cache=empty
   ```
 
-- Daemon-backed CLI tool discovery confirmed `code_graph_query` exists:
 
   ```
-  code_graph_scan
-  code_graph_query
-  code_graph_status
-  code_graph_context
-  code_graph_classify_query_intent
-  code_graph_verify
-  code_graph_apply
   detect_changes
   ```
 
 - Attempted CLI equivalent of the scenario command:
 
   ```bash
-  node ".opencode/bin/code-index.cjs" code_graph_query --json '{"query":"what happens when ollama auto-migration starts but the provider warmup fails — does the cascade fall back to hf-local or does migration error out?","num_results":10}' --format json --timeout-ms 120000
   ```
 
   Actual output:

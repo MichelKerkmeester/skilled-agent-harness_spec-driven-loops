@@ -31,13 +31,9 @@ Use this catalog as the canonical inventory for both current behavior and delive
 
 ### Hook contract coverage map
 
-Code-graph hook docs now point at the extracted `system-code-graph` skill for graph-owned package details. Skill-advisor hook docs point at the sibling `system-skill-advisor` skill and the system-spec-kit hook references that consume it.
 
 | Area | Shipped surface | Primary catalog / reference entry |
 |---|---|---|
-| Code graph | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | `.opencode/skills/system-code-graph/feature-catalog/feature-catalog.md`, `.opencode/skills/system-code-graph/README.md` |
-| Code graph | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature-catalog/feature-catalog.md` |
-| Code graph | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook-system.md` |
 | Code graph | Shared startup payload parity across Claude/Copilot/OpenCode | [`context-preservation/session-start-priming.md`](../feature-catalog/context-preservation/session-start-priming.md) (Claude slice), `references/config/hook-system.md` (Shared Startup Payload Parity section) |
 | Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp-server/README.md`, `references/hooks/skill-advisor-hook.md` |
 | Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp-server/README.md`, `references/hooks/skill-advisor-hook-validation.md` |
@@ -3648,11 +3644,9 @@ See [`pipeline-architecture/lease-probe-retry-reap-hardening.md`](../feature-cat
 
 #### Description
 
-mk-code-index bridged clients through a raw socket with no reconnect, so an owner death surfaced as a hard `Connection closed`. It now fronts its daemon with the same reconnecting session proxy as mk-spec-memory, so a code-index client reattaches to the respawned backend and replays in-flight read queries.
 
 #### How It Works
 
-A generic `createClassifyFrame({replayableToolNames, unsafeToolNames})` factory lets each server pass its own replay set (the default mk-spec-memory classifier is unchanged). mk-code-index replays read-only structural tools (`code_graph_query`/`context`/`status`/`classify_query_intent`/`detect_changes`) and never replays `code_graph_scan`, `code_graph_apply` or `code_graph_verify` (verify mutates when `persistBaseline=true`).
 
 #### Source Files
 
@@ -4035,7 +4029,6 @@ See [`tooling-and-scripts/standalone-admin-cli.md`](../feature-catalog/tooling-a
 
 #### Description
 
-The MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 41 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
 
 #### How It Works
 
@@ -4053,7 +4046,6 @@ See [`tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md`](../feature-
 
 #### Description
 
-The code graph daemon has a second CLI front door at `node .opencode/bin/code-index.cjs`. It exposes the mk-code-index tool set over the same daemon/IPC transport used by MCP, including warm-only reads for prompt-time fallback and maintenance-command guardrails.
 
 #### How It Works
 
@@ -4443,7 +4435,6 @@ A shared module compares each dist-producing package's newest watched source mti
 
 #### How It Works
 
-`checkPackageFreshness()` in `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` tracks 7 watched packages in its `DIST_PACKAGES` registry and decides staleness by a pure mtime comparison (newest watched source mtime versus the compiled dist entry's mtime), with a lazily-written same-session SHA256 hash cache as a performance short-circuit only — never a build-time pre-warm. `spec-memory.cjs`, `code-index.cjs`, and `skill-advisor.cjs` were migrated onto this module from their own prior inline freshness logic and fail closed with exit 69 on a stale or missing dist entry. `validate.sh`'s `run_node_orchestrator()` adds a new hard backstop: it refuses to fall through to a stale compiled validation orchestrator, exiting 3 with a rebuild instruction rather than grading a spec folder against outdated rules. The Claude Code PostToolUse hook (`check-dist-staleness.sh`, wired into `claude-posttooluse.sh`) and the OpenCode plugin (`mk-dist-freshness-guard.js`) are deliberately warn-only — they observe general editing and Bash activity across the whole repo and always exit 0 or use `console.warn`, never blocking.
 
 No consumer auto-rebuilds on detecting staleness. This is deliberate: a freshness check often runs concurrently with other active sessions writing into the same shared, gitignored `dist/` output, and an automatic rebuild risks compiling another session's unrelated uncommitted changes into that shared artifact — a failure mode that occurred once already in this repository's history. Failing closed (CLI shims, `validate.sh`) or warning (hook, plugin) and asking the operator to rebuild explicitly avoids that cross-session contamination.
 
@@ -4611,7 +4602,6 @@ Spec 007 standardized post-mutation automation and safety checks across mutation
 
 #### How It Works
 
-The value defaults to `30` minutes. Fractional values are allowed for tests, and `0` disables the monitor. Activity is refreshed from primary stdio input and secondary IPC socket connect/data/write events. The monitor runs in `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` server processes.
 
 #### Source Files
 

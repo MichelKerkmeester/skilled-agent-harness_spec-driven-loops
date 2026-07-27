@@ -20,11 +20,8 @@ This scenario validates SessionStart priming (startup).
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that the SessionStart hook, when triggered with `source=startup` (fresh session), outputs the current startup contract: a `Session Context` startup surface, `Recovery Tools`, `Structural Context`, and `Startup Payload Contract` sections when the startup brief is available; Spec Kit Memory tools (`memory_context`, `memory_match_triggers`, `memory_search`); Code Graph Code availability status; Code Graph tools (`code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`); graph-quality context sourced from `graphQualitySummary`; and resume instructions that point to `/speckit:resume` and the packet continuity chain; Output must stay within `SESSION_PRIME_TOKEN_BUDGET` (2000 tokens).
-- Real user request: `` Please validate SessionStart primes fresh session against cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/hook-session-start.vitest.ts and tell me whether the expected signals are present: All vitest tests in `hook-session-start.vitest.ts` pass for startup source; Startup output contains `Session Context` and `Recovery Tools`; Recovery tools mention `memory_context`, `memory_match_triggers`, `memory_search`; Recovery tools mention `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`; Code Graph status line shows either "available" or "missing" based on code-graph readiness; Startup output contains `Structural Context` when the startup brief is available; Startup output contains `Startup Payload Contract` when the startup brief is available; Startup payload transport identifies startup status, `"producer": "startup_brief"`, and `sectionKeys` containing `structural-context`; Startup brief fixture includes `graphQualitySummary`, and the startup formatter keeps graph-quality information on the structural-context path; Resume instruction: `/speckit:resume` with the `handover.md -> _memory.continuity -> spec docs` chain; Output length stays within 2000 tokens (8000 chars). ``
 - Prompt: `Validate SessionStart fresh-session priming with the hook-session-start vitest suite.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: All vitest tests in `hook-session-start.vitest.ts` pass for startup source; Startup output contains `Session Context` and `Recovery Tools`; Recovery tools mention `memory_context`, `memory_match_triggers`, `memory_search`; Recovery tools mention `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`; Code Graph status line shows either "available" or "missing" based on code-graph readiness; Startup output contains `Structural Context` when the startup brief is available; Startup output contains `Startup Payload Contract` when the startup brief is available; Startup payload transport identifies startup status, `"producer": "startup_brief"`, and `sectionKeys` containing `structural-context`; Startup brief fixture includes `graphQualitySummary`, and the startup formatter keeps graph-quality information on the structural-context path; Resume instruction: `/speckit:resume` with the `handover.md -> _memory.continuity -> spec docs` chain; Output length stays within 2000 tokens (8000 chars)
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: Startup sections, payload contract, tool references, graph-quality evidence, Code Graph status, and token budget all match the live startup contract; FAIL: Missing startup sections, missing payload or graph-quality evidence, incorrect Code Graph status, or output exceeds 2000 tokens
 
@@ -70,7 +67,6 @@ content: [
   '- `memory_context({ input, mode })` — unified context retrieval',
   '- `memory_match_triggers({ prompt })` — fast trigger matching',
   '- `memory_search({ query })` — semantic search',
-  '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
 ].join('\n'),
 ```
 
@@ -84,7 +80,6 @@ Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgb
 
 ### Pass / Fail
 
-- **PASS**: Serial scenario command passed, and the startup surface contains `Session Context`, `Recovery Tools`, `memory_context`, `memory_match_triggers`, `memory_search`, `code_graph_scan`, `code_graph_query`, `code_graph_context`, and `code_graph_status`.
 
 ### Failure Triage
 

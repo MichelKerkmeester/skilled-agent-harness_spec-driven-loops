@@ -53,7 +53,6 @@ Operators run the exact prompt and command sequence for `CO-006` and confirm the
 
 ### Optional Supplemental Checks
 
-For multi-MCP validation, repeat the test with a prompt that asks the session to call BOTH memory_health and `code_graph_status`. Confirm both `tool.call` events appear in the JSON event stream. This proves the entire MCP runtime loads correctly inside the dispatched session, not just one tool.
 
 ---
 

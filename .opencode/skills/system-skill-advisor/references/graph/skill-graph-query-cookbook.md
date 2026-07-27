@@ -187,7 +187,6 @@ Query examples should reflect live MCP semantics and remain tied to the package-
   "family": "system",
   "members": [
     { "skillId": "system-spec-kit", "category": "system" },
-    { "skillId": "system-code-graph", "category": "system" },
     { "skillId": "system-skill-advisor", "category": "system" }
   ]
 }
@@ -330,11 +329,9 @@ Query examples should reflect live MCP semantics and remain tied to the package-
   "graph": {
     "nodes": [
       { "skillId": "system-skill-advisor", "depth": 0 },
-      { "skillId": "system-code-graph", "depth": 1 },
       { "skillId": "cli-claude-code", "depth": 1 }
     ],
     "edges": [
-      { "source": "system-skill-advisor", "target": "system-code-graph", "type": "enhances" },
       { "source": "system-skill-advisor", "target": "cli-claude-code", "type": "enhances" }
     ]
   }

@@ -23,7 +23,6 @@
 #
 # DB isolation is hybrid: shared node_modules/dist are symlinked from the main checkout
 # (no per-worktree reinstall/rebuild), but each worktree gets its own MCP databases via
-# SPEC_KIT_DB_DIR + SPECKIT_CODE_GRAPH_DB_DIR.
 #
 # Socket-length workaround: the daemon's unix-domain IPC socket defaults to <db-dir>/
 # daemon-ipc.sock. A worktree DB dir nested deep inside the repo blows past the platform
@@ -85,8 +84,6 @@ default_shared_paths() {
 .opencode/skills/system-spec-kit/mcp-server/dist
 .opencode/skills/system-spec-kit/scripts/dist
 .opencode/skills/system-spec-kit/scripts/node_modules
-.opencode/skills/system-code-graph/mcp-server/node_modules
-.opencode/skills/system-code-graph/mcp-server/dist
 PATHS
 }
 
@@ -208,7 +205,6 @@ else
 fi
 
 WT_DB_DIR="$WT_ABS/.opencode/skills/system-spec-kit/mcp-server/database"
-WT_CG_DB_DIR="$WT_ABS/.opencode/skills/system-code-graph/mcp-server/database"
 # Short per-session socket dir under $HOME (NOT inside the deep worktree) to stay under the
 # platform sun_path limit. The reaper cleans these alongside merged worktrees.
 SOCK_DIR="$HOME/.spk-wt-sock/${RUNTIME_ID}-${SLUG}"
@@ -229,7 +225,6 @@ if [ "$DRY_RUN" = "1" ]; then
     echo "  SPECKIT_LIVE_BRANCH    = <none: main is detached; autosync disabled>"
   fi
   echo "  SPEC_KIT_DB_DIR        = $WT_DB_DIR"
-  echo "  SPECKIT_CODE_GRAPH_DB_DIR = $WT_CG_DB_DIR"
   echo "  SPECKIT_IPC_SOCKET_DIR = $SOCK_DIR  (socket path len $(( ${#SOCK_DIR} + 16 )), platform limit ~104)"
   echo "  session marker    = $(_abs_common "$MAIN_ROOT")/worktree-sessions/${RUNTIME_ID}-${SLUG}.pid"
   echo "  symlink shared paths (those present in main):"
@@ -310,9 +305,7 @@ done <<< "$SHARED_RAW"
 # ───────────────────────────────────────────────────────────────
 
 # Per-worktree isolated MCP databases, with a short socket dir to dodge the sun_path limit.
-mkdir -p "$WT_DB_DIR" "$WT_CG_DB_DIR" "$SOCK_DIR"
 export SPEC_KIT_DB_DIR="$WT_DB_DIR"
-export SPECKIT_CODE_GRAPH_DB_DIR="$WT_CG_DB_DIR"
 export SPECKIT_IPC_SOCKET_DIR="$SOCK_DIR"
 SOCK_PATH_LEN=$(( ${#SOCK_DIR} + 16 ))
 if [ "$SOCK_PATH_LEN" -ge 104 ]; then

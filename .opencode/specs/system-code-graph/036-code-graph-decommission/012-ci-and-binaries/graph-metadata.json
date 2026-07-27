@@ -46,8 +46,10 @@
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".opencode/bin/code-index.cjs",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".github/workflows/isolation-check.yml",
+      ".opencode/skills/system-spec-kit/scripts/deploy-mcp.sh",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -83,6 +85,12 @@
         "source": "derived"
       },
       {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
         "name": "mk-spec-memory-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -92,6 +100,12 @@
         "name": "isolation-check.yml",
         "kind": "config",
         "path": ".github/workflows/isolation-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "deploy-mcp.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/deploy-mcp.sh",
         "source": "derived"
       },
       {
@@ -183,23 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The launcher is the single largest artifact outside the skill itself, and it is the piece every runtime registration pointed at",
     "created_at": "2026-07-27T16:34:00Z",
-    "last_save_at": "2026-07-27T16:49:47.568Z",
+    "last_save_at": "2026-07-27T18:49:16.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +210,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a357c5ed37afc4de2611b26a70db1a37597562aff88046b2b22b0368cf019255",
+    "source_fingerprint": "sha256:041da15718fbe7e1d303c9262b72a3bb6fb7d7c1468067437ebc1b9eab01dffd",
     "source_doc_hashes": {
-      "spec.md": "5eba8829d5b805c8c01dffcb8b8993d6ea221a2fb4b87ca9f9d6513af3dec762",
+      "spec.md": "f903bfe3507b869d5b587c4c6a731d4b6f0c1e74ab2b9091dc92c7041a043ddc",
       "plan.md": "d48e2ef89417d3942d658056e4fa50b011db666b4ed020fc2dedfa551067eba8",
       "tasks.md": "116fa714a66edf0b845196f432ac268847acacb3e1c6d1b8ca7116f9d575f826",
       "implementation-summary.md": "7596fc4606eba105b7570873f621c1fd9fc6a755ffcd94590546f1a17d630564"

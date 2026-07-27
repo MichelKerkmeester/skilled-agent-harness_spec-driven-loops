@@ -446,7 +446,6 @@ The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/comm
 
 ### Code Graph and Search Routing
 
-Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. The `system-code-graph` skill owns the 8-tool `mcp__mk_code_index__*` surface: read tools (`code_graph_query`, `code_graph_context`, `detect_changes`) return blocked/degraded payloads under the readiness contract, `code_graph_status` is always answerable, `code_graph_classify_query_intent` is text-only, and maintenance tools (`code_graph_scan`, `code_graph_apply`, `code_graph_verify`) handle recovery and verification, with verify blocking when graph state is not fresh.
 
 ---
 

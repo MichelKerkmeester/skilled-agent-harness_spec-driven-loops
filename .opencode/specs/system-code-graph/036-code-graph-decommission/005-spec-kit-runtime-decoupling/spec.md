@@ -108,7 +108,7 @@ Make `system-spec-kit` self-contained: no spawn, no shared contract, no mirrored
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp-server/lib/code-graph-boundary.ts` | Delete | Launcher spawn boundary |
-| `.opencode/skills/system-spec-kit/shared/code-graph-contracts.ts` | Delete | Shared contract module |
+| `.opencode/skills/system-spec-kit/shared/code-graph-contracts.ts` | Delete **only if unimported** | Verify first: types such as `GraphFreshness` and `StructuralReadiness` may still be referenced by surviving spec-kit code independent of the boundary. If so, trim it to the surviving types and keep it as a spec-kit-local file |
 | `.opencode/skills/system-spec-kit/mcp-server/context-server.ts` | Modify | Remove the import and the enrichment call |
 | `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts` | Modify | Remove mirrored code-graph schema entries |
 | `.opencode/skills/system-spec-kit/mcp-server/handlers/session-*.ts` | Modify | Remove graph readiness reporting |

@@ -44,7 +44,6 @@ Fire the compound query 'Apple Silicon Metal GPU embedding default' and verify t
 ### Commands
 
 ```
-mcp__mk_code_index__code_graph_query({
   query: "Apple Silicon Metal GPU embedding default provider selection",
   num_results: 10,
 })

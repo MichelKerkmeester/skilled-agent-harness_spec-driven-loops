@@ -40,7 +40,6 @@ BEFORE=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
 for round in 1 2 3; do
   echo "=== round $round"
   (cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/spec-memory-cli-dual-client-hardening.vitest.ts) &
-  (cd .opencode/skills/system-code-graph/mcp-server && npx vitest run tests/code-index-cli-dual-client.vitest.ts) &
   (cd .opencode/skills/system-skill-advisor/mcp-server && npx vitest run tests/skill-advisor-cli-dual-client.vitest.ts) &
   wait
 done
@@ -86,26 +85,7 @@ echo "launchers before=$BEFORE after=$AFTER"
    Start at  22:43:56
    Duration  230ms (transform 100ms, setup 15ms, import 144ms, tests 8ms, environment 0ms)
 
-[mk-code-index-launcher] loaded 1 env(s) from .env.local
-[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
-[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
-[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
-[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
-[mk-code-index-launcher] liveOwnerDetected: ownerPid=68502 classification=live-owner
-[mk-code-index-launcher] bridging to lease holder pid=68502 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-QCdvG7/daemon-ipc.sock
-[mk-code-index-launcher] loaded 1 env(s) from .env.local
-[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
-[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
-[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
-[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
-[mk-code-index-launcher] ready: {"start":"2026-07-02T20:43:57.037Z","end":"2026-07-02T20:43:57.049Z","actions":[],"server":".opencode/skills/system-code-graph/mcp-server/dist/index.js"}
 [ipc-bridge] socket listening at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-9KwOYv/daemon-ipc.sock
-[mk-code-index] unknown tool dispatched: code_graph_not_registered
-[mk-code-index] SIGTERM
 
  Test Files  1 passed (1)
       Tests  2 passed (2)
@@ -128,32 +108,13 @@ echo "launchers before=$BEFORE after=$AFTER"
    Start at  22:44:02
    Duration  893ms (transform 388ms, setup 172ms, import 284ms, tests 129ms, environment 0ms)
 
-[mk-code-index-launcher] loaded 1 env(s) from .env.local
-[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
-[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
-[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
-[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
-[mk-code-index-launcher] liveOwnerDetected: ownerPid=68970 classification=live-owner
-[mk-code-index-launcher] bridging to lease holder pid=68970 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-e2Ocsm/daemon-ipc.sock
 
  Test Files  1 passed (1)
       Tests  1 passed (1)
    Start at  22:44:02
    Duration  1.34s (transform 740ms, setup 243ms, import 706ms, tests 20ms, environment 0ms)
 
-[mk-code-index-launcher] loaded 1 env(s) from .env.local
-[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
-[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
-[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
-[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
-[mk-code-index-launcher] ready: {"start":"2026-07-02T20:44:03.914Z","end":"2026-07-02T20:44:03.929Z","actions":[],"server":".opencode/skills/system-code-graph/mcp-server/dist/index.js"}
 [ipc-bridge] socket listening at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-nkwr7g/daemon-ipc.sock
-[mk-code-index] unknown tool dispatched: code_graph_not_registered
-[mk-code-index] SIGTERM
 
  Test Files  1 passed (1)
       Tests  2 passed (2)
@@ -182,26 +143,7 @@ echo "launchers before=$BEFORE after=$AFTER"
    Start at  22:44:08
    Duration  306ms (transform 51ms, setup 39ms, import 53ms, tests 82ms, environment 0ms)
 
-[mk-code-index-launcher] loaded 1 env(s) from .env.local
-[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
-[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
-[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
-[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
-[mk-code-index-launcher] liveOwnerDetected: ownerPid=69326 classification=live-owner
-[mk-code-index-launcher] bridging to lease holder pid=69326 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-up0ltm/daemon-ipc.sock
-[mk-code-index-launcher] loaded 1 env(s) from .env.local
-[mk-code-index-launcher] env clickup_CLICKUP_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env clickup_CLICKUP_TEAM_ID from .env is not allowlisted; skipping
-[mk-code-index-launcher] env figma_FIGMA_API_KEY from .env is not allowlisted; skipping
-[mk-code-index-launcher] env github_GITHUB_PERSONAL_ACCESS_TOKEN from .env is not allowlisted; skipping
-[mk-code-index-launcher] env SPECKIT_ABLATION from .env is not allowlisted; skipping
-[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for skills, plugins
-[mk-code-index-launcher] ready: {"start":"2026-07-02T20:44:09.874Z","end":"2026-07-02T20:44:09.890Z","actions":[],"server":".opencode/skills/system-code-graph/mcp-server/dist/index.js"}
 [ipc-bridge] socket listening at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/ci-eXStRz/daemon-ipc.sock
-[mk-code-index] unknown tool dispatched: code_graph_not_registered
-[mk-code-index] SIGTERM
 
  Test Files  1 passed (1)
       Tests  2 passed (2)
@@ -233,8 +175,6 @@ A failure that only appears under tri-system concurrency points at shared host r
 | File | Role |
 |---|---|
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Real MCP + CLI clients against one spec-memory daemon |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-dual-client.vitest.ts` | Real MCP + CLI dual-client coverage for code-index |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-teardown.vitest.ts` | Zero-orphan teardown assertion |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Dual-client MCP + CLI coverage for the advisor daemon |
 
 ## 5. SOURCE METADATA

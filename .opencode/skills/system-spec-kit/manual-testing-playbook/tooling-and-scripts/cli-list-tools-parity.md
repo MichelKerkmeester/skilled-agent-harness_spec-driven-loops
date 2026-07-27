@@ -51,7 +51,6 @@ for cli in spec-memory code-index skill-advisor; do
 done
 
 (cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/spec-memory-cli-parity-and-help.vitest.ts)
-(cd .opencode/skills/system-code-graph/mcp-server && npx vitest run tests/code-index-cli-parity.vitest.ts)
 (cd .opencode/skills/system-skill-advisor/mcp-server && npx vitest run tests/skill-advisor-cli-parity.vitest.ts)
 
 rm -rf "$SANDBOX"
@@ -166,10 +165,8 @@ A count drift means a tool was added or removed in the schema source without the
 |---|---|
 | `.opencode/bin/cli-offline-smoke.cjs` | Unified offline smoke check (primary daemon-free 39/8/9 + freshness gate) |
 | `.opencode/bin/spec-memory.cjs` | spec-memory shim |
-| `.opencode/bin/code-index.cjs` | code-index shim |
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
 | `mcp-server/tests/spec-memory-cli-parity-and-help.vitest.ts` | 41-tool parity lock |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-parity.vitest.ts` | 8-tool parity lock |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-parity.vitest.ts` | 9-tool parity lock |
 
 ## 5. SOURCE METADATA

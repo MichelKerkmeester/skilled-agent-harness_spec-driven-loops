@@ -43,7 +43,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/specs/system-code-graph/spec.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The overwhelming majority of references to the subsystem — several thousand files — live inside archived spec packets, changelogs, and benchmark reports",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-27T16:49:48.442Z",
+    "last_save_at": "2026-07-27T18:49:16.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

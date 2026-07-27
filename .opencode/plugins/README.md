@@ -125,7 +125,6 @@ plugins/
 |---|---|---|
 | `mk-cli-dispatch-audit.js` | Records redacted, rotated JSONL telemetry after completed `opencode run` and `claude -p` Bash dispatches. The adapter is observe-only and fail-open. | `tool.execute.after` |
 | `mk-code-graph-freshness.js` | Correlates source edits, debounces edit bursts and requests a warm-only incremental code graph scan when an established graph needs refresh. It also sweeps stale freshness state and clears timers during disposal events. | `tool.execute.before`, `tool.execute.after`, `event` for `session.created`, `server.instance.disposed` and `global.disposed` |
-| `mk-code-graph.js` | Loads transport-backed structural context through a Node bridge, injects system and message context, preserves compaction context and exposes plugin cache status. Session lifecycle events invalidate cached transport plans. | `tool` for `mk_code_graph_status`, `experimental.chat.system.transform`, `experimental.chat.messages.transform`, `experimental.session.compacting`, `event` for `session.created` and `session.deleted` |
 | `mk-completion-sentinel.js` | Detects completion claims at session idle and checks recorded spec evidence without running tests, builds or validation scripts. It logs advisory results and sweeps stale sentinel state. | `event` for `session.created` and `session.idle` |
 | `mk-deep-loop-guard.js` | Checks Task dispatches for deep-loop route mismatches and repeated non-command-driven loop handoffs. It warns by default and supports opt-in rejection. | `tool.execute.before`, `event` for `session.created` |
 | `mk-dist-freshness-guard.js` | Checks watched compiled outputs before risky Bash commands and at session creation. It invalidates cached diagnostics after relevant mutations and injects bounded stale-dist warnings. | `tool.execute.before`, `experimental.chat.system.transform`, `event` for `session.created`, `session.deleted`, `server.instance.disposed` and `global.disposed` |
@@ -256,7 +255,6 @@ See [`tests/README.md`](./tests/README.md) for the current suite inventory, help
 ## 9. RELATED
 
 - [`tests/README.md`](./tests/README.md): plugin regression suite documentation
-- [`../skills/system-code-graph/`](../skills/system-code-graph/): code graph bridges and freshness policy
 - [`../skills/system-deep-loop/`](../skills/system-deep-loop/): deep-loop dispatch policy
 - [`../skills/system-skill-advisor/`](../skills/system-skill-advisor/): skill advisor bridge and runtime
 - [`../skills/system-spec-kit/`](../skills/system-spec-kit/): continuity, spec gate, completion and dist freshness logic

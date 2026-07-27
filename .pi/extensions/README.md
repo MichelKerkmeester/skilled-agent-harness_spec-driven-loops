@@ -97,7 +97,6 @@ Pi lifecycle event -> pi.on(event, handler) -> lib/claude-hook-adapter.ts spawns
   plain CLI checks), or undefined on any error (fail open)
 ```
 
-`code-graph-freshness.ts` was removed when `system-code-graph` was decommissioned. The 12 files above (6 guard-core adapters + 5 session-lifecycle adapters + `lib/claude-hook-adapter.ts`) are the current, complete set.
 
 ---
 

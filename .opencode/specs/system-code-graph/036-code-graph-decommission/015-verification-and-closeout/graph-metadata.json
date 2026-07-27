@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A decommission of this breadth fails quietly rather than loudly",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-27T16:49:48.889Z",
+    "last_save_at": "2026-07-27T18:49:17.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c668ae4eb55b5398359c74ae91d79f676533a836c8a527806181146d3154f893",
+    "source_fingerprint": "sha256:a195c91ce2826f187023c56f04042aad88bc48c62ec75d9d26d1b2c365c9224e",
     "source_doc_hashes": {
-      "spec.md": "798d913703ed5b4b09f3238d4648c83889c9154e2a19a8387e47611dc95d6d4c",
+      "spec.md": "df6bd24e68a67e15b0621b3c2d7e2306e5b947c1fb3eb2c49e0ae27206fa26a1",
       "plan.md": "8ec5586de580341c46090d0d361c32d090c696ee5f1ffc65ae3964b80bceb40f",
       "tasks.md": "3d65814ff3c62db363cdfd2554f269006901b643eeb128c4ffc65b2e8e274ad3",
       "implementation-summary.md": "f0f50afb46d9682e10c272236494416812b9559bac198e8fe68b55eb4f3cf2d4"

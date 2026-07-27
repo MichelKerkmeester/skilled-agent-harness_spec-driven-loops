@@ -91,9 +91,13 @@ Bring all three runtime mirrors to the same post-decommission state: no grant fo
 ## 3. SCOPE
 
 ### In Scope
-- Tool-grant lists in all eight agent definitions across all three runtimes.
-- Search-routing and structural-discovery prose inside those definitions.
+- Tool-grant lists in all eight agent definitions across all **four** runtime mirrors: `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.pi/agents/`.
+- Search-routing, structural-discovery, and wedged-daemon-fallback prose inside those definitions.
 - Parity between the Markdown and TOML formats.
+
+> The Pi mirror arrived mid-packet with the `cli-pi` executor and is easy to miss: it is a fourth
+> regular-file projection, not a symlink alias, and eight of its agent files carry the tool grants
+> and the daemon-fallback paragraph. `.cursor/agents/` by contrast is symlinked and needs no edit.
 
 ### Out of Scope
 - Agent behaviour unrelated to code search.
@@ -106,6 +110,7 @@ Bring all three runtime mirrors to the same post-decommission state: no grant fo
 | `.opencode/agents/*.md` | Modify | Remove grants and graph-first prose |
 | `.claude/agents/*.md` | Modify | Mirror of the above |
 | `.codex/agents/*.toml` | Modify | Mirror in TOML form |
+| `.pi/agents/*.md` | Modify | Fourth mirror; 8 files carry grants and daemon-fallback prose |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,7 +123,7 @@ Bring all three runtime mirrors to the same post-decommission state: no grant fo
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | No agent grants a removed tool | No definition lists a graph tool id |
-| REQ-002 | All three mirrors are updated together | The same agent has equivalent tool grants in all three runtimes |
+| REQ-002 | All four mirrors are updated together | The same agent has equivalent tool grants in OpenCode, Claude, Codex, and Pi |
 | REQ-003 | Definitions remain parseable | Markdown frontmatter and TOML both parse cleanly |
 
 ### P1 - Required (complete OR user-approved deferral)

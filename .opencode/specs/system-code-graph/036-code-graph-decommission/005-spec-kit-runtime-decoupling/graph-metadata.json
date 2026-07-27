@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`system-spec-kit` is the deepest consumer",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T16:49:44.693Z",
+    "last_save_at": "2026-07-27T18:49:14.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:044898754024f021a7f8d8bcdf11db5db6c0ba081605a60b5894980b78ed8af2",
+    "source_fingerprint": "sha256:3d914e6d8ebb659913f43495fd31af0d253aa8e41f8ec8781938524258f60ef1",
     "source_doc_hashes": {
-      "spec.md": "857956d16823e25a838671756e28083a072b441c8d29dcc602015cd2ef3193ea",
+      "spec.md": "ac88d0f8109f024d2627c7ef8c6984357342ce65a83b022f8516c1b66db3aa3c",
       "plan.md": "6efa7c19345b62c1b0ea0704a42d5d7d82d241e34785dcc01fe6b7df6f80ffcf",
       "tasks.md": "df1eebd6ba336780ac778d9a0cff7e5d02435b47ac72a3e5f46cc606f68822ab",
       "implementation-summary.md": "8df87a90957492447f16d00685a8e2e678b3fd622f8e84043494fea8213fdcfb"

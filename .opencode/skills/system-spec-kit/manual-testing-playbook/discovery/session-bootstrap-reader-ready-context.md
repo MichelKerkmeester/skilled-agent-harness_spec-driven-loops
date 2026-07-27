@@ -22,7 +22,6 @@ This scenario covers the session_bootstrap orchestration surface added to make n
 - Real user request: `Validate session_bootstrap on the current workspace and tell me whether it returns reader-ready context plus graph readiness.`
 - RCAF Prompt: `Run session_bootstrap for the current workspace and verify it returns bounded context, graph readiness, and next-action guidance.`
 - Expected execution process: Run the documented commands, capture output, compare against the expected signals, and return a cited verdict.
-- Expected signals: - Response is non-empty and scoped to the current workspace. - Response includes graph readiness status or degraded-mode guidance. - Response names a next action such as `session_resume`, `code_graph_scan`, or direct spec-folder recovery.
 - Desired user-visible outcome: A concise PASS/PARTIAL/FAIL verdict with cited evidence.
 - Pass/fail: PASS if all expected signals are present; PARTIAL if the happy path works but an edge signal is missing; FAIL if the tool errors unexpectedly or omits required evidence.
 
@@ -46,7 +45,6 @@ Run session_bootstrap for the current workspace and verify it returns bounded co
 
 - Response is non-empty and scoped to the current workspace.
 - Response includes graph readiness status or degraded-mode guidance.
-- Response names a next action such as `session_resume`, `code_graph_scan`, or direct spec-folder recovery.
 
 ### Cleanup
 

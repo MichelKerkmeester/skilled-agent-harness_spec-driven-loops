@@ -35,8 +35,6 @@ mcp-server/handlers/memory-context.ts (integration point)
 | File | Layer | Role |
 |------|-------|------|
 | `mcp-server/handlers/memory-context.ts` | Handler | Integration: classifies intent and routes to backend |
-| `.opencode/skills/system-code-graph/mcp-server/lib/query-intent-classifier.ts` | Lib | Classification engine (structural/semantic/hybrid) |
-| `.opencode/skills/system-code-graph/mcp-server/handlers/` | Handler | Structural backend (code graph query) |
 
 ---
 

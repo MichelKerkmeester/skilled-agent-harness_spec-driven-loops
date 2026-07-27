@@ -26,7 +26,6 @@ This feature gives Code Graph consumers more audit detail for structural relatio
 
 The structural indexer writes `reason` and `step` into the existing `code_edges.metadata` JSON blob. The SQLite `code_edges` table is unchanged.
 
-Relationship queries now surface `reason` and `step` for each returned edge. `code_graph_context` also preserves those fields in structured context edges and includes them in compact relationship text when present.
 
 ### Blast Radius Enrichment
 
@@ -42,18 +41,11 @@ When a symbol subject resolves to multiple graph nodes, the response returns amb
 
 | File | Role |
 |------|------|
-| `.opencode/skills/system-code-graph/mcp-server/lib/structural-indexer.ts` | Writes `reason` and `step` into edge metadata JSON |
-| `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts` | Surfaces edge explanations and enriched blast-radius output |
-| `.opencode/skills/system-code-graph/mcp-server/lib/code-graph-context.ts` | Carries edge explanation fields into context payloads |
-| `.opencode/skills/system-code-graph/mcp-server/lib/code-graph-db.ts` | Schema reference showing unchanged `code_edges.metadata` JSON column |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-graph-indexer.vitest.ts` | Automated test | Edge metadata reason and step emission |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-graph-query-handler.vitest.ts` | Automated test | Blast-radius risk, filtering, ambiguity and fallback behavior |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-graph-context-handler.vitest.ts` | Automated test | Context payload propagation for edge explanations |
 
 ## 4. SOURCE METADATA
 - Group: Analysis

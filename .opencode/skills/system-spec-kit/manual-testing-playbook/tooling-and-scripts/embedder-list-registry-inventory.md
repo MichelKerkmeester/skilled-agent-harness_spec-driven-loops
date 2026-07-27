@@ -72,7 +72,6 @@ Actual output:
     "Session priming: loaded 10 constitutional memories and code graph status unavailable",
     "primePackage: available in meta.sessionPriming.primePackage",
     "Code graph: empty",
-    "Recommended next calls: code_graph_scan, memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })",
     "Session priming trimmed to fit the 1000 token budget; full constitutional content remains retrievable via memory_search"
   ],
   "meta": {
@@ -88,13 +87,11 @@ Actual output:
         "currentTask": null,
         "codeGraphStatus": "empty",
         "recommendedCalls": [
-          "code_graph_scan",
           "memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })"
         ],
         "structuralContext": {
           "status": "missing",
           "summary": "No structural context available — code graph is empty or unavailable",
-          "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
           "sourceSurface": "auto-prime",
           "provenance": {
             "producer": "session_snapshot",

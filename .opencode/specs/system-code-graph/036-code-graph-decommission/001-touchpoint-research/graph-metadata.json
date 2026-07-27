@@ -42,9 +42,15 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "research/research.md",
+      ".pi/mcp.json",
       ".cursor/mcp.json",
       ".claude/settings.local.json",
       "plan.md",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".claude/mcp.json",
+      ".claude/CLAUDE.md",
+      "shared/code-graph-contracts.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -56,9 +62,15 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "mcp.json",
         "kind": "config",
-        "path": ".cursor/mcp.json",
+        "path": ".pi/mcp.json",
         "source": "derived"
       },
       {
@@ -71,6 +83,24 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-contracts.ts",
+        "kind": "code",
+        "path": "shared/code-graph-contracts.ts",
         "source": "derived"
       },
       {
@@ -168,49 +198,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers, a process-level boundary in `system-spec-kit`, the skill-advisor graph, a CI job, and the `/doctor` surface",
     "created_at": "2026-07-27T16:33:53Z",
-    "last_save_at": "2026-07-27T16:40:01.544Z",
+    "last_save_at": "2026-07-27T18:49:13.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:485fdb240018f77c38d2e742d298fa7196dcfc83a107528ae6afcd258f10f23a",
+    "source_fingerprint": "sha256:1a2ddcea9bd2c808f3ec2c0e3171f42341953a4573e9d93ccb1e347f2d44097d",
     "source_doc_hashes": {
-      "spec.md": "4e0be4f573c51b4e3298b04c1e15e1e554255f7bed1b7f18f6ea82889c330247",
+      "spec.md": "31e0771baf3860870cff8b80a8283daaf03769e886db48494c6d839aaaeb3411",
       "plan.md": "36ee9c995629f36761428e5b1d57aaa47ae6732c6f9da845262b2445160bdef9",
       "tasks.md": "7658102131e18ebdca91a5b64f69f3293529a6d0446a072f88675fff61fef991",
-      "implementation-summary.md": "39bbe94412c95410d0cb68ea728bce37a340aa0a25198c1fd2b513d9fc913e49"
+      "implementation-summary.md": "39bbe94412c95410d0cb68ea728bce37a340aa0a25198c1fd2b513d9fc913e49",
+      "research/research.md": "43c7697cc6947444edd3117dce2c68c4a69b7d0bfdaf85026eaf5777cbc35ffd"
     },
     "last_active_child_id": null,
     "last_active_at": null

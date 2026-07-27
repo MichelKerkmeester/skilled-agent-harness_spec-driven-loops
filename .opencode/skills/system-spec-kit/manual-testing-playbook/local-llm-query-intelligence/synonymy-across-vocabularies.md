@@ -57,14 +57,10 @@ memory_search({ query: "ADR about merging spec-kit templates into the level and 
 
 **Pair C - Code Graph, code concept:**
 ```
-mcp__mk_code_index__code_graph_query({ query: "embedding provider auto-detection cascade" }) -> top 5
-mcp__mk_code_index__code_graph_query({ query: "pick which model to use based on API keys" }) -> top 5
 ```
 
 **Pair D - Code Graph, code concept:**
 ```
-mcp__mk_code_index__code_graph_query({ query: "SQLite virtual table for vector similarity" }) -> top 5
-mcp__mk_code_index__code_graph_query({ query: "fast cosine search backed by vec0 extension" }) -> top 5
 ```
 
 For each pair, compute the Jaccard overlap of the top-5 result IDs:

@@ -50,6 +50,7 @@
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       ".opencode/bin/worktree-session.sh",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -106,6 +107,12 @@
         "name": "worktree-session.sh",
         "kind": "script",
         "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "post-tool-use.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two OpenCode plugins reach into the skill folder at load time — one through a static ESM import of a transport bridge, one through a `require` of the shared freshness core",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T16:49:44.427Z",
+    "last_save_at": "2026-07-27T18:49:14.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +211,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d99a048a06ba443621d6236ec0287c3205a5ce90262472ccb0d2b634932638ce",
+    "source_fingerprint": "sha256:af5aa6d659ddda23fafe51d5e3e5bb0c757252f269dc792cdfe40fb37658b9eb",
     "source_doc_hashes": {
-      "spec.md": "0bf946055d83d5410588b68f2ccf31b033583612d7605df4d60fd553c5764700",
+      "spec.md": "7ead1e69c1d8a871b1f1860cccac26b7701fc9053e6c95d5c894eee618102c71",
       "plan.md": "f492932edfb030e9e3f5a166810413a8034668d333e57c9bfff992106785cc9e",
       "tasks.md": "5341a0cd7268513a599bc37281e80f5a6b872d24d79941abec545732cef9d2fa",
       "implementation-summary.md": "8af79e16c9fdba77b55cc2aec6aed5112a2cc4614d21270d7ccc21c0c06e3edd"

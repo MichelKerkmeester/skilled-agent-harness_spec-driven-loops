@@ -11,7 +11,6 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies blocked-read rendering in the code-index CLI. The code-graph read tools refuse stale, empty, or failed-verification graphs with `status:"blocked"` plus a `requiredAction` (typically `code_graph_scan`) instead of a false-safe empty answer. The CLI deliberately treats that refusal as an actionable answer, not a failure: blocked reads exit 0, JSON output carries `status`, `requiredAction`, and `data.requiredAction`, and text output renders the fixed two-line form `blocked: <reason>` / `requiredAction: <action>`.
 
 The check is suite-driven so it never touches host daemons: the blocked-read vitest builds nine stale-readiness cases inside a sandboxed harness with its own socket and DB directories.
 
@@ -36,8 +35,6 @@ Validate code-index CLI blocked-read rendering: exit 0, status blocked, required
 ### Commands
 
 ```bash
-(cd .opencode/skills/system-code-graph/mcp-server && npx vitest run tests/code-index-cli-blocked-read.vitest.ts)
-rg -n "blocked is an|requiredAction" .opencode/skills/system-code-graph/mcp-server/code-index-cli.ts | head -10
 ```
 
 ### Expected
@@ -47,7 +44,6 @@ rg -n "blocked is an|requiredAction" .opencode/skills/system-code-graph/mcp-serv
 
 ### Evidence
 
-Command: `(cd .opencode/skills/system-code-graph/mcp-server && npx vitest run tests/code-index-cli-blocked-read.vitest.ts)`
 
 ```text
  RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
@@ -59,7 +55,6 @@ Command: `(cd .opencode/skills/system-code-graph/mcp-server && npx vitest run te
    Duration  5.76s (transform 23ms, setup 0ms, import 31ms, tests 5.65s, environment 0ms)
 ```
 
-Command: `rg -n "blocked is an|requiredAction" .opencode/skills/system-code-graph/mcp-server/code-index-cli.ts | head -10`
 
 ```text
 260:  status:"blocked" readiness refusals exit 0 deliberately: blocked is an
@@ -92,15 +87,11 @@ A missing `requiredAction` in `data` points at the normalization step that mirro
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../system-code-graph/feature-catalog/mcp-tool-surface/code-index-cli.md` | Feature-catalog source for the code-index CLI |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | Blocked-envelope normalization, exit-0 policy, two-line text rendering |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-blocked-read.vitest.ts` | Nine stale-readiness blocked cases |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-harness.ts` | Sandboxed harness (fresh socket dir, temp DB dirs, re-election off) |
 
 ## 5. SOURCE METADATA
 

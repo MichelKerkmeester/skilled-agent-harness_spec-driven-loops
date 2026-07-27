@@ -1,6 +1,5 @@
 ---
 title: Daemon CLI Reference
-description: Canonical reference for the three daemon-backed CLI shims over mk-spec-memory, mk-code-index, and mk-skill-advisor.
 trigger_phrases:
   - "daemon cli reference"
   - "daemon-backed cli shims"
@@ -25,7 +24,6 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
 | `node .opencode/bin/spec-memory.cjs` | `mk-spec-memory` | 41 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
-| `node .opencode/bin/code-index.cjs` | `mk-code-index` | 8 | Code graph status, scan, verify, query, context, apply-mode recovery, and diff impact fallback. |
 | `node .opencode/bin/skill-advisor.cjs` | `mk_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
 Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
@@ -34,7 +32,6 @@ Launcher supervision is not uniform by design. The spec-memory launcher supervis
 
 ## CLI vs MCP — when to use which
 
-The CLI shims expose count-locked daemon surfaces: `spec-memory.cjs` exposes the same 41-tool surface as `mk-spec-memory`; `code-index.cjs` exposes the same 8 tools as `mk-code-index`; and `skill-advisor.cjs` exposes the same 9 tools as `mk_skill_advisor`. Use MCP as the primary in-session transport today. Use the CLIs when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability.
 
 Because the CLIs already use the same daemon IPC path and expose stable count-locked surfaces, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
 
@@ -62,7 +59,6 @@ Use `--json` for one complete JSON object argument when a tool has structured in
 
 ```bash
 node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000
-node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 3000 --warm-only
 node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement cli core"}' --format json --timeout-ms 3000 --warm-only
 ```
 
@@ -98,7 +94,6 @@ Use either the explicit flag or the prompt-time env flags:
 
 ```bash
 node .opencode/bin/spec-memory.cjs memory_stats --warm-only --format json --timeout-ms 3000
-node .opencode/bin/code-index.cjs code_graph_status --warm-only --format json --timeout-ms 3000
 node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json --timeout-ms 3000
 ```
 
@@ -113,7 +108,6 @@ The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild befor
 | CLI | Shim stale/missing message | Build recovery |
 | --- | --- | --- |
 | `spec-memory.cjs` | `Run npm run build --workspace=@spec-kit/mcp-server.` | `npm run build --workspace=@spec-kit/mcp-server` |
-| `code-index.cjs` | `Run tsc -p .opencode/skills/system-code-graph/tsconfig.json.` | `npm --prefix .opencode/skills/system-code-graph run build` or the exact `tsc -p ...` command from the shim. |
 | `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` |
 
 Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, and `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
@@ -124,10 +118,8 @@ Use `list-tools` for offline surface discovery:
 
 ```bash
 node .opencode/bin/spec-memory.cjs list-tools --format json
-node .opencode/bin/code-index.cjs list-tools --format json
 node .opencode/bin/skill-advisor.cjs list-tools --format json
 node .opencode/bin/spec-memory.cjs list-tools --compact
-node .opencode/bin/code-index.cjs list-tools --names-only
 node .opencode/bin/skill-advisor.cjs completion zsh
 ```
 
@@ -137,7 +129,6 @@ Per-command help is available and prints the command description, aliases, and i
 
 ```bash
 node .opencode/bin/spec-memory.cjs memory_stats --help
-node .opencode/bin/code-index.cjs code_graph_status --help
 node .opencode/bin/skill-advisor.cjs advisor_status --help
 ```
 
@@ -157,13 +148,10 @@ The smoke check expects `spec-memory=37`, `code-index=8`, `skill-advisor=9`, and
 - Prompt-time hooks must probe warm daemons only. They must not cold-spawn daemons from prompt-time paths.
 - Treat exit `75` as retryable daemon/IPC unavailability. Retry after MCP reconnect, daemon prewarm, or short backoff.
 - Treat exit `69` as a stale/missing dist or protocol mismatch. Rebuild the matching package before retrying.
-- Keep code-index maintenance commands such as `code_graph_scan`, `code_graph_apply`, and `code_graph_verify` out of prompt-time hooks.
 - Skill-advisor CLI calls are untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, and apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`.
 - Do not use `jsonl` as a streaming automation contract; it is one complete JSON payload on one line.
 
 ## 9. SOURCE ANCHORS
 
-- CLI sources: `system-spec-kit/mcp-server/spec-memory-cli.ts`, `system-code-graph/mcp-server/code-index-cli.ts`, `system-skill-advisor/mcp-server/skill-advisor-cli.ts`.
-- Shim sources: `.opencode/bin/spec-memory.cjs`, `.opencode/bin/code-index.cjs`, `.opencode/bin/skill-advisor.cjs`.
 - Env flags: `mcp-server/ENV-REFERENCE.md` section `CLI FRONT DOOR (DUAL-STACK)`.
 - Offline smoke: `.opencode/bin/cli-offline-smoke.cjs`.

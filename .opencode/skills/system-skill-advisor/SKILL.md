@@ -437,6 +437,5 @@ Related skills:
 - `sk-doc` owns skill documentation, feature catalogs, install guides and playbooks.
 - `sk-code` owns implementation once routing selects a code surface.
 - `mcp-code-mode` owns external MCP orchestration workflows.
-- `system-code-graph` owns structural code indexing, graph readiness and impact-analysis workflows.
 
 The advisor should recommend these skills. It should not absorb their implementation rules.

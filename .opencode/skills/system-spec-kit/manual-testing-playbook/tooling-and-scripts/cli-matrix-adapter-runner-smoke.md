@@ -134,8 +134,6 @@ true
 Exact JSONL scalar field evidence:
 
 ```json
-{"file":"/tmp/spec-kit-matrix-smoke-1783024999/F5-cli-claude-code.jsonl","cell_id":"F5-cli-claude-code","featureId":"F5","featureName":"code_graph_query","executor":"cli-claude-code","status":"PASS","durationMs":67645,"evidence_exitCode":0,"evidence_stdout_type":"string","evidence_stderr_type":"string"}
-{"file":"/tmp/spec-kit-matrix-smoke-1783024999/F5-cli-opencode.jsonl","cell_id":"F5-cli-opencode","featureId":"F5","featureName":"code_graph_query","executor":"cli-opencode","status":"PASS","durationMs":19346,"evidence_exitCode":0,"evidence_stdout_type":"string","evidence_stderr_type":"string"}
 ```
 
 Step 3 command output from `cat "$OUT/summary.tsv"`:

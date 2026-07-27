@@ -47,7 +47,6 @@ Fire 3 variants of 'save context' through Code Graph + Memory MCP and verify eac
 
 **Variant 1 — Memory MCP sense:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "save context to Memory MCP after a successful spec-folder workflow",
   queryMode: "neighborhood",
 })
@@ -56,7 +55,6 @@ Expected top-3: `memory:save` skill files, `generate-context.js`, `_memory.conti
 
 **Variant 2 — Git sense:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "save context to a git branch before switching",
   queryMode: "neighborhood",
 })
@@ -65,7 +63,6 @@ Expected top-3: `sk-git` skill files, git-worktree references, git-stash pattern
 
 **Variant 3 — File-system sense:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "save context to disk as a structured JSON snapshot file",
   queryMode: "neighborhood",
 })

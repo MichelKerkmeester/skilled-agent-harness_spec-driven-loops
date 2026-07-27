@@ -52,7 +52,6 @@ Claude adapters `session-prime.ts`, `compact-inject.ts`, and `session-stop.ts` p
 | `.opencode/plugins/mk-spec-memory.js` | OpenCode plugin | New spec-memory plugin surface |
 | `mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs` | Plugin bridge | CLI/IPC bridge, zero in-process DB imports |
 | `.opencode/plugins/mk-code-graph.js` | OpenCode plugin | Synthesizes its transport contract from the status payload |
-| `.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs` | Plugin bridge | Repaired to the CLI route; maintenance tools blocked at prompt time |
 | `.opencode/plugins/mk-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Plugin bridge | CLI fallback route with primary path untouched |
 | `.opencode/settings.json` | Runtime config | OpenCode allowlist for CLI use |
@@ -62,7 +61,6 @@ Claude adapters `session-prime.ts`, `compact-inject.ts`, and `session-stop.ts` p
 | File | Type | Role |
 |---|---|---|
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Automated test | MCP and CLI clients concurrently against one daemon |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-dual-client.vitest.ts` | Automated test | Real MCP+CLI dual-client coverage for code-index |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | Dual-client MCP + CLI coverage for the advisor daemon |
 
 ## 4. SOURCE METADATA

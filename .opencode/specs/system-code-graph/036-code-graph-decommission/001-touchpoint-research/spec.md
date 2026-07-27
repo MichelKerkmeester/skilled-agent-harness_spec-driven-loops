@@ -69,7 +69,13 @@ This is **Phase 1** of the code graph decommission specification.
 - A cited touchpoint inventory covering every live reference, bucketed by consumer and mutation class.
 - An ordering graph: which decouplings must precede which, and what breaks if the order is violated.
 - A per-consumer recommendation of *remove the feature* versus *keep the call site behind a fallback*.
-- A negative-knowledge list: places that look like touchpoints but are archival or generated.
+- A negative-knowledge list: places that look like touchpoints but are archival, generated, or simply not there.
+
+**Refuted during verification — do not reinstate without new evidence:**
+- *"`.pi/mcp.json` is a fourth MCP registration."* It is not. Its servers are `sequential_thinking`, `mk-spec-memory`, `mk_skill_advisor`, and `code_mode`; it contains zero references to the retiring server. Three physical registrations remain the complete set.
+- *"A Pi freshness hook exists at `.pi/extensions/`."* It does not. That directory holds six unrelated extensions; the reported hit resolved to a copy inside `.worktrees/`, not the working tree.
+
+Worktrees under `.worktrees/` carry full copies of the subsystem and will match any sweep. They are neither the working tree nor an edit target, and must be excluded from residual counts.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -81,7 +87,7 @@ This is **Phase 1** of the code graph decommission specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers, a process-level boundary in `system-spec-kit`, the skill-advisor graph, a CI job, and the `/doctor` surface. A first-pass sweep found 413 live files, but that sweep also proved fragile: a global gitignore silently hid the MCP registration files until `--no-ignore` was added. An inventory that misses one hard `require` leaves the repo broken at session start, and an inventory that over-reaches rewrites archived spec history.
+The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers, a process-level boundary in `system-spec-kit`, the skill-advisor graph, a CI job, and the `/doctor` surface. A first-pass sweep found 413 live files, but that sweep also proved fragile: a global gitignore silently hid the MCP registration files until `--no-ignore` was added, and `--no-ignore` alone still drops every dot-prefixed control file until `--hidden` joins it. An inventory that misses one hard `require` leaves the repo broken at session start, and an inventory that over-reaches rewrites archived spec history.
 
 ### Purpose
 Produce an inventory trustworthy enough to drive deletion — complete on the live surface, correctly bounded away from the archival surface, and ordered so that no phase deletes something another phase still imports.
@@ -121,7 +127,7 @@ Produce an inventory trustworthy enough to drive deletion — complete on the li
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Every sweep command in the findings uses `--no-ignore` | No finding cites a sweep that would skip `opencode.json`, `.mcp.json`, `.cursor/mcp.json`, or `.claude/settings.local.json` |
+| REQ-001 | Every sweep command in the findings uses `--hidden --no-ignore` | No finding cites a sweep that would skip `opencode.json`, `.mcp.json`, `.cursor/mcp.json`, `.claude/settings.local.json`, or any dot-prefixed control file. `--no-ignore` alone is insufficient: without `--hidden` it returns only the visible matches and drops the hidden runtime controls entirely |
 | REQ-002 | Symlinked paths are deduplicated before counting | `CLAUDE.md`/`AGENTS.md` and the `.mcp.json` chain each appear once, with the symlink relationship stated |
 | REQ-003 | Every blocking runtime break is enumerated with file:line | Each entry names the file, the line, and the failure mode if the target is absent |
 | REQ-004 | The archival boundary is explicit | Findings state which paths are historical record and must not be edited |
@@ -141,7 +147,7 @@ Produce an inventory trustworthy enough to drive deletion — complete on the li
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A post-research sweep with `--no-ignore` finds no live-surface reference absent from the inventory.
+- **SC-001**: A post-research sweep with `--hidden --no-ignore` finds no live-surface reference absent from the inventory.
 - **SC-002**: Every entry in the inventory is assigned to exactly one downstream phase (003–014).
 - **SC-003**: The inventory distinguishes confirmed touchpoints (with file:line) from inferred ones.
 <!-- /ANCHOR:success-criteria -->
@@ -154,7 +160,7 @@ Produce an inventory trustworthy enough to drive deletion — complete on the li
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `cli-devin` executor wiring | GLM lane cannot dispatch | Land `system-deep-loop/041` first; smoke-test one lineage |
-| Risk | Global gitignore hides config files | False all-clear on the MCP registrations | `--no-ignore` mandated in REQ-001 and in every downstream verification |
+| Risk | Global gitignore and dot-prefixed paths hide files | False all-clear on registrations and hidden runtime controls | Both `--hidden` and `--no-ignore` mandated in REQ-001 and every downstream verification |
 | Risk | Lanes converge early and under-explore | Shallow inventory | `--stop-policy=max-iterations` forces full depth |
 | Risk | Findings treat archived packets as live | Spec history rewritten | Archival boundary is a P0 requirement |
 <!-- /ANCHOR:risks -->

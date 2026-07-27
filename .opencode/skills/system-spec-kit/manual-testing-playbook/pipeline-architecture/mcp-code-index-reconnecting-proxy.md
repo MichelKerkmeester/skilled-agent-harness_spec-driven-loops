@@ -1,6 +1,5 @@
 ---
 title: "424 -- MCP Code Index Reconnecting Proxy"
-description: "Manual check for the automated-test-backed mk-code-index launcher proxy that bridges stdio through a shared session socket and classifies frames so the code-index client can survive daemon recycles."
 version: 3.6.0.2
 id: pipeline-architecture-mcp-code-index-reconnecting-proxy
 expected_workflow_mode: UNKNOWN
@@ -11,15 +10,11 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies that the mk-code-index launcher bridges its stdio through a shared session proxy and classifies protocol frames, giving the code-index client a reconnecting transport instead of a raw pass-through pipe. Before this, the mk-code-index launcher used a bare bridge with no reconnect, so a daemon recycle or owner disposal silently dropped the code-index transport with no recovery, unlike the mk-spec-memory front-proxy.
 
 The check is automated-test-backed. A human runs the launcher syntax check, the code-index proxy unit suite, and a grep that proves the session-proxy bridge and the frame classifier are defined and wired into the launcher transport. Together they confirm the launcher routes stdio through the reconnecting proxy and understands the frames it forwards.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm the mk-code-index launcher bridges stdio through a shared session proxy and classifies frames so the transport can reconnect across daemon recycles.
-- Real user request: `mk-code-index keeps dropping after a recycle while mk-spec-memory survives. Does the code-index launcher have the same reconnecting proxy now?`
-- Prompt: `Validate the mk-code-index reconnecting proxy and confirm stdio is bridged through the session proxy with frame classification.`
 - Expected execution process: Run the launcher syntax check, run the code-index proxy unit tests, and grep for the session-proxy bridge and the frame classifier to confirm they are defined and wired into the transport path.
 - Expected signals: `node --check` exits cleanly for the launcher. `launcher-code-index-proxy.vitest.ts` passes including the bridge and frame-classification cases. `bridgeStdioThroughSessionProxy` and `classifyCodeIndexFrame` appear at their definitions and at the transport call site.
 - Desired user-visible outcome: The code-index client keeps its transport across daemon recycles and owner-session churn instead of silently disconnecting.
@@ -30,14 +25,11 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 ### Prompt
 
 ```text
-Validate the mk-code-index reconnecting proxy and confirm stdio is bridged through the session proxy with frame classification.
 ```
 
 ### Commands
 
-1. `node --check .opencode/bin/mk-code-index-launcher.cjs`
 2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-code-index-proxy.vitest.ts`
-3. `rg -n "bridgeStdioThroughSessionProxy|classifyCodeIndexFrame" .opencode/bin/mk-code-index-launcher.cjs`
 
 ### Expected
 
@@ -50,7 +42,6 @@ Validate the mk-code-index reconnecting proxy and confirm stdio is bridged throu
 Shell transcript for all commands:
 
 ```text
-$ node --check .opencode/bin/mk-code-index-launcher.cjs
 (no output)
 Exit status: 0
 ```
@@ -70,7 +61,6 @@ Exit status: 0
 ```
 
 ```text
-$ rg -n "bridgeStdioThroughSessionProxy|classifyCodeIndexFrame" .opencode/bin/mk-code-index-launcher.cjs
 233:const classifyCodeIndexFrame = createClassifyFrame({
 241:function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
 248:    classify: classifyCodeIndexFrame,
@@ -102,7 +92,6 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 
 | File | Role |
 |---|---|
-| `.opencode/bin/mk-code-index-launcher.cjs` | Primary implementation anchor |
 | `.opencode/bin/lib/launcher-session-proxy.cjs` | Shared classify-frame factory anchor |
 | `mcp-server/tests/launcher-code-index-proxy.vitest.ts` | Regression or validation anchor |
 

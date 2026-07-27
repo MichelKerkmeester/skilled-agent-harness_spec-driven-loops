@@ -31,7 +31,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: decommission-decision-record
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P0 |
 | **Status** | Not Started |
 | **Created** | 2026-07-27 |

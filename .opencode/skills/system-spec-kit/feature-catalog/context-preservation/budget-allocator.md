@@ -24,7 +24,6 @@ Floors: constitutional 700, code graph 1200, Code Graph 900, triggered 400, over
 
 ## 2. HOW IT WORKS
 
-.opencode/skills/system-code-graph/mcp-server/lib/budget-allocator.ts
 
 ---
 

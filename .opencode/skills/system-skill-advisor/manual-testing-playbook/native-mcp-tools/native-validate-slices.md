@@ -203,7 +203,6 @@ Output:
         "total": 10
       },
       {
-        "skillId": "system-code-graph",
         "status": "pass",
         "matched": 4,
         "total": 5

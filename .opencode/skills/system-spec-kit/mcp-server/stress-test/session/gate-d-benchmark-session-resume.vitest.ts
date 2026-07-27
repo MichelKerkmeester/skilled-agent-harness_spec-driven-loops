@@ -14,26 +14,6 @@ const { loadMostRecentStateMock, loadMatchingStatesMock } = vi.hoisted(() => ({
   loadMatchingStatesMock: vi.fn(() => ({ states: [], errors: [] })),
 }));
 
-vi.mock('../../lib/code-graph-boundary.js', () => ({
-  getCodeGraphStatusViaRpc: vi.fn(async () => ({
-    status: 'ok',
-    data: {
-      totalFiles: 10,
-      totalNodes: 50,
-      totalEdges: 30,
-      staleFiles: 0,
-      lastScanAt: new Date().toISOString(),
-      dbFileSize: 2048,
-      schemaVersion: 1,
-      nodesByKind: {},
-      edgesByType: {},
-      parseHealth: {},
-      freshness: 'fresh',
-    },
-  })),
-  getGraphFreshnessFromMarker: vi.fn(() => 'fresh'),
-}));
-
 vi.mock('../../lib/session/context-metrics.js', () => ({
   computeQualityScore: vi.fn(() => ({
     level: 'ready',
