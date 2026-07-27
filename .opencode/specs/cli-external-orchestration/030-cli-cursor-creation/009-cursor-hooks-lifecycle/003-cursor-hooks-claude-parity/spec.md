@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity"
     last_updated_at: "2026-07-24T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Built, live-fire tested, and documentation cross-references updated"
@@ -31,10 +31,10 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
-| **Predecessor** | `../010-cursor-hooks-live-wiring/spec.md` |
-| **Successor** | `../012-hooks-manual-testing-results/spec.md` |
+| **Predecessor** | `../002-cursor-hooks-live-wiring/spec.md` |
+| **Successor** | `../004-hooks-manual-testing-results/spec.md` |
 | **Handoff Criteria** | Every newly wired adapter is live-fire confirmed or explicitly documented as registered-but-unconfirmed/dormant; `spec-gate-prebind.mjs`'s Tier-1c analog (`completion-evidence-stop.cjs`) and the unconfigured-MCP `mcp-route-guard.mjs` stay unwired with the reason stated; `.cursor/hooks.json` is restored byte-identical to its clean, intended content (no leftover diagnostic wrapper) before commit. |
 <!-- /ANCHOR:metadata -->
 
@@ -84,7 +84,7 @@ Close as much of the Claude-adapter parity gap as the confirmed Cursor hook voca
 | `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/*.js` | Rebuild | Compiled output for the new/changed `.ts` sources via `npm run build` (dist is gitignored; no tracked diff). |
 | `.opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md` + `feature-catalog.md` | Modify | Document the newly wired events/adapters actually built and confirmed. |
 | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md` (+ new `hooks/*.md` scenario) | Modify/Create | Add a `CU-021` scenario for the live-fire-confirmed `Task`-matcher dispatch guard; note the still-dormant/unwired adapters in prose only. |
-| `../010-cursor-hooks-live-wiring/spec.md` | Modify | Update `Successor` field to point at this phase. |
+| `../002-cursor-hooks-live-wiring/spec.md` | Modify | Update `Successor` field to point at this phase. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -161,7 +161,7 @@ All questions below are resolved.
 
 ## RELATED DOCUMENTS
 - `plan.md`, `tasks.md`, `checklist.md` (this phase)
-- `../010-cursor-hooks-live-wiring/spec.md` (predecessor)
-- `../spec.md` (phase-parent packet)
-- `../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001, the original committed-registration decision this phase further extends)
+- `../002-cursor-hooks-live-wiring/spec.md` (predecessor)
+- `../../spec.md` (phase-parent packet)
+- `../../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001, the original committed-registration decision this phase further extends)
 - `.cursor/hooks.json` (the artifact this phase extends)

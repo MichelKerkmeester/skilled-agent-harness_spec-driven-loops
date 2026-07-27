@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/010-cursor-hooks-live-wiring",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
   "description": "Phase 004's ADR-001 explicitly decided to register the guard adapters in a committed, project-level `.cursor/hooks.json`, but the operator deferred",
   "keywords": [
     "phase",
@@ -18,12 +18,13 @@
     "operator",
     "deferred"
   ],
-  "lastUpdated": "2026-07-24T14:07:03.017Z",
-  "specId": "010",
+  "lastUpdated": "2026-07-27T03:27:41.146Z",
+  "specId": "002",
   "folderSlug": "cursor-hooks-live-wiring",
   "parentChain": [
     "cli-external-orchestration",
-    "030-cli-cursor-creation"
+    "030-cli-cursor-creation",
+    "009-cursor-hooks-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

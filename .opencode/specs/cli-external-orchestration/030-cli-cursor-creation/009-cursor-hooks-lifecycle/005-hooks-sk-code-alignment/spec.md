@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/013-hooks-sk-code-alignment"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment"
     last_updated_at: "2026-07-24T17:34:00Z"
     last_updated_by: "claude-code"
     recent_action: "5 hook files aligned; hooks.md updated"
@@ -31,10 +31,10 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
-| **Predecessor** | `../012-hooks-manual-testing-results/spec.md` |
-| **Successor** | `../014-cursor-hooks-discovery-mirror/spec.md` |
+| **Predecessor** | `../004-hooks-manual-testing-results/spec.md` |
+| **Successor** | `../006-cursor-hooks-discovery-mirror/spec.md` |
 | **Handoff Criteria** | Every Cursor `.mjs` hook file this packet owns has the P0 box header and no `'use strict'` directive; `python3 verify_alignment_drift.py` reports 0 findings/errors/warnings against both hook directories; `sk-code/code-opencode`'s canonical `hooks.md` documents Cursor CLI wiring on par with its existing Claude/OpenCode/GitHub-Copilot sections. |
 <!-- /ANCHOR:metadata -->
 
@@ -141,7 +141,7 @@ None — this was a direct standards-alignment audit against an already-document
 
 ## RELATED DOCUMENTS
 - `plan.md`, `tasks.md`, `checklist.md` (this phase)
-- `../012-hooks-manual-testing-results/spec.md` (predecessor)
-- `../spec.md` (phase-parent packet)
+- `../004-hooks-manual-testing-results/spec.md` (predecessor)
+- `../../spec.md` (phase-parent packet)
 - `.opencode/skills/sk-code/code-opencode/SKILL.md` (the surface packet this phase aligns against)
 - `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md` (the canonical reference this phase extends)

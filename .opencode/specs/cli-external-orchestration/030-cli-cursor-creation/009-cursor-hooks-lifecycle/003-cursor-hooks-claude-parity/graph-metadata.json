@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,6 +42,7 @@
       ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts",
       ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
       ".opencode/logs/cli-dispatch-audit.log",
+      ".cursor/mcp.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -56,8 +57,7 @@
       "mcp-server/hooks/cursor/shared.ts",
       "mcp-server/hooks/cursor/user-prompt-submit.ts",
       "mcp-server/hooks/cursor/post-tool-use.mjs",
-      "mcp-server/hooks/cursor/task-dispatch-guard.mjs",
-      "mcp-server/hooks/cursor/precompact.ts"
+      "mcp-server/hooks/cursor/task-dispatch-guard.mjs"
     ],
     "entities": [
       {
@@ -82,6 +82,12 @@
         "name": "cli-dispatch-audit.log",
         "kind": "file",
         "path": ".opencode/logs/cli-dispatch-audit.log",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
         "source": "derived"
       },
       {
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 registered exactly the 4 adapters ADR-001 originally scoped (`sessionStart`/`sessionEnd`/`preToolUse`/`beforeSubmitPrompt`), deliberately excluding everything else pending further review",
     "created_at": "2026-07-24T14:11:06.037Z",
-    "last_save_at": "2026-07-24T17:05:16.008Z",
+    "last_save_at": "2026-07-27T03:27:50.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d61882fe4f5a4db29cc66bcc6dba5ecaa7d41f86338ccd402fe8b04a2cd9d0f6",
+    "source_fingerprint": "sha256:623e109fd0b1ad562e92e494da68dd7d3f6dbb085f52ce9890a0417c50acf0c2",
     "source_doc_hashes": {
-      "spec.md": "2f6c131f73250f3b7f1c7b8ce997ae379bc49ce03bee9964c4ee97356551416c",
-      "plan.md": "cf98550872cb701820d7e447feb4c702c8a44be03aa40c661b496cbe18502381",
-      "tasks.md": "4ef10e84bd3af59be029bc2256f19821d155bd38c63aea9c1f4a4abf351169b3",
-      "checklist.md": "3642559ad15eb39dd339eb7aff5538c113db7551edad338a27564c6f994a2d3c",
-      "implementation-summary.md": "ac8d45b69ba5f84323970a7cc0c51807137db029e349fdc66beeb7c4314986aa"
+      "spec.md": "e20896fecd00c4d96a836020b062a602fe37b1ebf354a2dea38bf0499690681d",
+      "plan.md": "e7ec1024c80d6a1798c8a01b9fec296032a8435b49b8c7735e08de4af26b2d3e",
+      "tasks.md": "ea4277353d861b3b8dbef8deb69ca4dab2a58e789bbf3eaa50a0423f0c7e00ad",
+      "checklist.md": "c00a88dafbaa7d84afec3bee6885c14e468a74fba8f3d1b4de45b8035d00b3aa",
+      "implementation-summary.md": "10215536aa2174bf20fdd2cd576820f22e7ae5bbdee25dd6a15de3e9467a09b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

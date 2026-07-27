@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/001-cursor-hooks-catalog-and-playbook-coverage",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/001-cursor-hooks-catalog-and-playbook-coverage",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -51,7 +51,6 @@
       "tasks.md",
       "checklist.md",
       ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
       ".cursor/hooks.json",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
       "implementation-summary.md"
@@ -136,12 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "spec-gate-prebind-unreviewed.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
-        "source": "derived"
-      },
-      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-external-orchestration/feature-catalog/feature-catalog.md` (the hub-level feature catalog) was never updated for `cli-cursor` at all — it still describes \"three packets\" (`cli-opencode`, `cli-claude-code`, `cli-codex`) and covers only routing concerns (two-axis dispatch, compiled routing)",
     "created_at": "2026-07-24T11:47:21.101Z",
-    "last_save_at": "2026-07-24T13:37:48.675Z",
+    "last_save_at": "2026-07-27T03:27:50.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9852a74e1a91828e288083278a0b15c18d9158070fcca8dfdaf9b9a859c54316",
+    "source_fingerprint": "sha256:4667ce09211ab0d0afc4e7f58cbadc6dfecdae9b1bd04b57514aceceb9dbba8b",
     "source_doc_hashes": {
-      "spec.md": "ea62098b02bd930ae425d1f36ed79c637a3d2ad73eecb8bab22e4051f4ca0145",
-      "plan.md": "76f43b5be8ddbbbfba620f763759a9729f00760c8f8b93707e9301ff6bc14496",
-      "tasks.md": "0ccc79096e83c21952dfdfdfe211ed3a397c178f1f56e105c1a76716b7cb5b09",
-      "checklist.md": "7947497c732fc7d734d48f04ba63ab62296dfa28cfa9c29f14b822a3ff318e63",
-      "implementation-summary.md": "5592e88b790c3b1f4358ca499b0c7dfe149f6723dbab1733d41ae80a249655ee"
+      "spec.md": "038b475b616fe55515073953e184838cae2ead3974270e681e762116b1a70af7",
+      "plan.md": "a6913fca5948319a55f270438db2ed205e67f7353d945611685ebda0ebf91fc4",
+      "tasks.md": "391738f92118c47d7b28a1835450537e95fd52b4868f5bd7178d11435468946c",
+      "checklist.md": "4c90ed1250172350cb5d8b2477b909c31c85abb324f5057d5853037314599315",
+      "implementation-summary.md": "38685bbb6464cd39beb2812df0bc6c5e68908ee7026a6aa48988543410993a10"
     },
     "last_active_child_id": null,
     "last_active_at": null

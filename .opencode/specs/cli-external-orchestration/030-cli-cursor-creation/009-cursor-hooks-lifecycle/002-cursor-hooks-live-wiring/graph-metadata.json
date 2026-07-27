@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/010-cursor-hooks-live-wiring",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/010-cursor-hooks-live-wiring",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 004's ADR-001 explicitly decided to register the guard adapters in a committed, project-level `.cursor/hooks.json`, but the operator deferred the actual file to \"a later, separately-approved step.\" That step never happened: no `.cursor/` directory existed anywhere in this repo",
     "created_at": "2026-07-24T13:32:31.907Z",
-    "last_save_at": "2026-07-24T14:10:06.094Z",
+    "last_save_at": "2026-07-27T03:27:50.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c95d365f88bb01429553a0977da2bc27b36c1fe2fd147daec78711315f3826a",
+    "source_fingerprint": "sha256:4d2ae0e5f260ffea5e9e2cce93152c9be0a9046a2f93de571e4c174b0714f451",
     "source_doc_hashes": {
-      "spec.md": "4aadcaa7597bf3a56a4ade2c095dceada31ac5326e5f167180b835a79cff5282",
-      "plan.md": "8142cedb3e73b7dd90e279eacb5ffe6396b90344de40dd296c81408117152bd8",
-      "tasks.md": "85acc4d692837b6b851b1f22eaf21d8d62feab607caf8defda798997b669a89b",
-      "checklist.md": "a6095839fe5c6e9b4b8b1bfe986a78e876bfbdc68e56b5232a18159e8c3ab0c5",
-      "implementation-summary.md": "925096aa17fc90a224146f14822db037ff8724f9036bc28ea764e9b6a73bdb19"
+      "spec.md": "10a5b5f4537bb15b3f7c179bfcc350b5bda7cc88e85e3c707da98bdd116d570c",
+      "plan.md": "a53a8acf8b6796e1f26abcd152743d1c6e542f8fba72f7277d99f2727d4f0df4",
+      "tasks.md": "32b8cd7f890b745f22b503964c1589176af3bab53a2751ce11b34e190ecccf73",
+      "checklist.md": "b2ad5a55a81929af44e4b113212ae9b7e8645acdd544b1a64bb797e1cb9b6503",
+      "implementation-summary.md": "090cc253e72a72e38380efcb1356bd6ba2e9a969eec496fb935f1221b65d033a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -6,8 +6,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror"
-    last_updated_at: "2026-07-24T18:05:09Z"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror"
+    last_updated_at: "2026-07-27T03:27:34Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented, verified, and validated"
     next_safe_action: "Commit"
@@ -26,7 +26,7 @@ _memory:
 ## METADATA
 | Field | Value |
 |---|---|
-| **Spec Folder** | 014-cursor-hooks-discovery-mirror |
+| **Spec Folder** | 006-cursor-hooks-discovery-mirror |
 | **Completed** | 2026-07-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

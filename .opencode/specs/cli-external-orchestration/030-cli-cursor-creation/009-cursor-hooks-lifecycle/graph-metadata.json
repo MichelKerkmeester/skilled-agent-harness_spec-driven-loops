@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [
+    "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/001-cursor-hooks-catalog-and-playbook-coverage",
+    "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring",
+    "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity",
+    "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results",
+    "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
+    "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-cursor hooks lifecycle",
+      "cursor hooks.json wiring",
+      "cursor hook adapter parity",
+      "cursor hooks manual testing"
+    ],
+    "key_topics": [
+      "cli-cursor",
+      "hooks",
+      "lifecycle",
+      "cursor",
+      "json",
+      "wiring",
+      "hook",
+      "adapter",
+      "parity",
+      "manual",
+      "testing",
+      "layer"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "001-cursor-hooks-catalog-and-playbook-coverage/spec.md",
+      "002-cursor-hooks-live-wiring/spec.md",
+      "003-cursor-hooks-claude-parity/spec.md",
+      "004-hooks-manual-testing-results/spec.md",
+      "005-hooks-sk-code-alignment/spec.md",
+      "006-cursor-hooks-discovery-mirror/spec.md",
+      ".cursor/hooks.json",
+      "spec.md",
+      ".cursor/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Govern",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `cli-cursor` hook adapter layer (built in `030-cli-cursor-creation`'s phase 004) spans a sequence of tightly related follow-on workstreams — cataloging the adapters, wiring them live against the real repo, extending them toward Claude-adapter parity, independently re-verifying that wiring, aligning the code to `sk-code`/`code-opencode` standards, and mirroring the hooks into Cursor's conventional discovery path",
+    "created_at": "2026-07-27T03:22:16.855Z",
+    "last_save_at": "2026-07-27T03:25:10.369Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:26cd805b8bd8db2a1456985931479b1abe1c99f4f234743c2103107cba0ecb19",
+    "source_doc_hashes": {
+      "spec.md": "1d080e3254e3be6439c2ea20860b155e41dde3425c4ba8834a9507f500938e62"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "description": "The `cli-cursor` hook adapter layer (built in `030-cli-cursor-creation`'s phase 004) spans a sequence of tightly related follow-on workstreams —",
+  "keywords": [
+    "cli-cursor",
+    "hook",
+    "adapter",
+    "layer",
+    "030-cli-cursor-creation",
+    "phase",
+    "spans",
+    "sequence",
+    "tightly",
+    "related",
+    "follow-on",
+    "workstreams"
+  ],
+  "lastUpdated": "2026-07-27T03:24:52.284Z",
+  "specId": "009",
+  "folderSlug": "cursor-hooks-lifecycle",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results",
   "description": "Phases 004, 006, 009, 010, and 011 each captured live-fire evidence for the hooks category's events as part of their own build/wiring work, but no",
   "keywords": [
     "phases",
@@ -15,12 +15,13 @@
     "wiring",
     "work"
   ],
-  "lastUpdated": "2026-07-24T17:22:28.076Z",
-  "specId": "012",
+  "lastUpdated": "2026-07-27T03:27:41.151Z",
+  "specId": "004",
   "folderSlug": "hooks-manual-testing-results",
   "parentChain": [
     "cli-external-orchestration",
-    "030-cli-cursor-creation"
+    "030-cli-cursor-creation",
+    "009-cursor-hooks-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

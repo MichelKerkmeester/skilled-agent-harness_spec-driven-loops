@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/001-cursor-hooks-catalog-and-playbook-coverage"
     last_updated_at: "2026-07-24T15:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 14 checklist items verified 7/7+6/6+1/1"

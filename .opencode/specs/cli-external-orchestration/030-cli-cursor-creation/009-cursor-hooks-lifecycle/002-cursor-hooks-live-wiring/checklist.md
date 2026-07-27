@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/010-cursor-hooks-live-wiring"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring"
     last_updated_at: "2026-07-24T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All checklist items verified"

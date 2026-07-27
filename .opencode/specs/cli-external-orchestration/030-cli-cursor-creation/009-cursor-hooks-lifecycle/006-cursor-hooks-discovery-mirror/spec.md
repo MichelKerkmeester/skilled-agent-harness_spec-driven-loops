@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror"
     last_updated_at: "2026-07-24T18:05:09Z"
     last_updated_by: "claude-code"
     recent_action: "13 symlinks created; entrypoint-guard gotcha found and documented"
@@ -31,10 +31,10 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
-| **Predecessor** | `../013-hooks-sk-code-alignment/spec.md` |
-| **Successor** | `../015-hook-code-style-cross-runtime/spec.md` |
+| **Predecessor** | `../005-hooks-sk-code-alignment/spec.md` |
+| **Successor** | `../../015-hook-code-style-cross-runtime/spec.md` |
 | **Handoff Criteria** | `.cursor/hooks/` exists with a symlink to every file `.cursor/hooks.json` currently invokes, none broken; `.cursor/hooks.json`'s own `command` paths are unchanged; the symlink-vs-real-path behavioral difference for the 4 `runCursorHook`-guarded files is documented in both `.cursor/hooks/README.md` and the canonical `hooks.md` reference. |
 <!-- /ANCHOR:metadata -->
 
@@ -133,7 +133,7 @@ None — a direct, fully-executed request with one real technical finding along 
 
 ## RELATED DOCUMENTS
 - `plan.md`, `tasks.md`, `checklist.md` (this phase)
-- `../013-hooks-sk-code-alignment/spec.md` (predecessor)
-- `../spec.md` (phase-parent packet)
+- `../005-hooks-sk-code-alignment/spec.md` (predecessor)
+- `../../spec.md` (phase-parent packet)
 - `.cursor/hooks/README.md`
 - `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md`

@@ -6,8 +6,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results"
-    last_updated_at: "2026-07-24T17:34:00Z"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results"
+    last_updated_at: "2026-07-27T03:27:34Z"
     last_updated_by: "claude-code"
     recent_action: "Executed and validated"
     next_safe_action: "Commit"
@@ -26,7 +26,7 @@ _memory:
 ## METADATA
 | Field | Value |
 |---|---|
-| **Spec Folder** | 012-hooks-manual-testing-results |
+| **Spec Folder** | 004-hooks-manual-testing-results |
 | **Completed** | 2026-07-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -90,4 +90,4 @@ All 4 hooks-category manual-testing-playbook scenarios were independently re-exe
 
 ## RELATED DOCUMENTS
 - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`
-- `../011-cursor-hooks-claude-parity/implementation-summary.md` (source of the original build-time evidence this phase independently reproduces)
+- `../003-cursor-hooks-claude-parity/implementation-summary.md` (source of the original build-time evidence this phase independently reproduces)

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/001-cursor-hooks-catalog-and-playbook-coverage"
     last_updated_at: "2026-07-24T15:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented via 2 dispatched LUNA agents; both independently verified"
@@ -31,10 +31,10 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
-| **Predecessor** | `../008-cursor-model-allowlist/spec.md` |
-| **Successor** | `../010-cursor-hooks-live-wiring/spec.md` |
+| **Predecessor** | `../../008-cursor-model-allowlist/spec.md` |
+| **Successor** | `../002-cursor-hooks-live-wiring/spec.md` |
 | **Handoff Criteria** | Every cli-cursor hook adapter file is named, source-anchored, and delivery-status-labeled in both the hub feature-catalog and the manual-testing-playbook's `hooks/` category; both docs pass their respective sk-doc validators; the whole `030-cli-cursor-creation` packet re-validates `--recursive --strict` 0/0. |
 <!-- /ANCHOR:metadata -->
 
@@ -145,9 +145,9 @@ Both questions below are now resolved.
 
 ## RELATED DOCUMENTS
 - `plan.md`, `tasks.md`, `checklist.md` (this phase)
-- `../008-cursor-model-allowlist/spec.md` (predecessor)
-- `../spec.md` (phase-parent packet)
-- `../004-cursor-hook-adapter-layer/decision-record.md` (source of the confirmed-fires/non-delivery/untested event table this phase cites)
-- `../006-cursor-manual-testing-playbook/implementation-summary.md` (the playbook this phase extends)
+- `../../008-cursor-model-allowlist/spec.md` (predecessor)
+- `../../spec.md` (phase-parent packet)
+- `../../004-cursor-hook-adapter-layer/decision-record.md` (source of the confirmed-fires/non-delivery/untested event table this phase cites)
+- `../../006-cursor-manual-testing-playbook/implementation-summary.md` (the playbook this phase extends)
 - `.opencode/skills/sk-doc/create-feature-catalog/SKILL.md` (authoring contract for the feature-catalog addition)
 - `.opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md` (authoring contract for the playbook extension)

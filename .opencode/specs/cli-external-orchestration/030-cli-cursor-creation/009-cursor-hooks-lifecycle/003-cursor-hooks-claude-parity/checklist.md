@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/011-cursor-hooks-claude-parity"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity"
     last_updated_at: "2026-07-24T18:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "All checklist items verified"
@@ -63,7 +63,7 @@ All items below are checked -- this phase is Complete.
 <!-- ANCHOR:fix-completeness -->
 ## FIX COMPLETENESS
 - [x] CHK-016 [P1] Feature-catalog `cursor-hooks-and-spec-gate.md` and `feature-catalog.md`'s hooks summary updated to describe only the adapters this phase actually wired and confirmed -- no claim beyond this phase's own evidence
-- [x] CHK-017 [P1] `../010-cursor-hooks-live-wiring/spec.md`'s `Successor` field updated from `None (packet extension)` to point at this phase's `spec.md`
+- [x] CHK-017 [P1] `../002-cursor-hooks-live-wiring/spec.md`'s `Successor` field updated from `None (packet extension)` to point at this phase's `spec.md`
 - [x] CHK-018 [P1] `git status --porcelain` re-run after all edits -- confirmed the only tracked-file diffs are this phase's intended files plus phase 010's Successor-field update; pre-existing concurrent-session activity (023/024/025 archive-move, mcp-tooling research, 036 metadata, sk-doc/019 research rounds) identified, left untouched, and is not part of this phase's diff
 <!-- /ANCHOR:fix-completeness -->
 
@@ -81,7 +81,7 @@ All items below are checked -- this phase is Complete.
 
 <!-- ANCHOR:file-org -->
 ## FILE ORGANIZATION
-- [x] CHK-023 [P1] Only in-scope files touched: `.cursor/hooks.json`, `shared.ts`, 5 new adapter files (1 unwired), compiled `dist/` (gitignored), feature-catalog + playbook doc updates, and `../010-cursor-hooks-live-wiring/spec.md`'s Successor-field pointer; no packet-local `graph-metadata.json`/`description.json` added outside the spec-folder convention
+- [x] CHK-023 [P1] Only in-scope files touched: `.cursor/hooks.json`, `shared.ts`, 5 new adapter files (1 unwired), compiled `dist/` (gitignored), feature-catalog + playbook doc updates, and `../002-cursor-hooks-live-wiring/spec.md`'s Successor-field pointer; no packet-local `graph-metadata.json`/`description.json` added outside the spec-folder convention
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

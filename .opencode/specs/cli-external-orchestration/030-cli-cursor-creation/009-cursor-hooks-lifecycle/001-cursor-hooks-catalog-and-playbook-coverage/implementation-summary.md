@@ -6,8 +6,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-catalog-and-playbook-coverage"
-    last_updated_at: "2026-07-24T15:45:00Z"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/001-cursor-hooks-catalog-and-playbook-coverage"
+    last_updated_at: "2026-07-27T03:27:34Z"
     last_updated_by: "claude-code"
     recent_action: "Implemented, independently verified, and validated"
     next_safe_action: "Commit and push"
@@ -26,7 +26,7 @@ _memory:
 ## METADATA
 | Field | Value |
 |---|---|
-| **Spec Folder** | 009-cursor-hooks-catalog-and-playbook-coverage |
+| **Spec Folder** | 001-cursor-hooks-catalog-and-playbook-coverage |
 | **Completed** | 2026-07-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -97,4 +97,4 @@ A new scenario, `CU-020` (`hooks/spec-gate-prebind-unreviewed.md`), documents th
 - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`
 - `.opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`
 - `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md`
-- `../004-cursor-hook-adapter-layer/decision-record.md` (source of the 4-adapter confirmed-fires/dormant status this phase cites)
+- `../../004-cursor-hook-adapter-layer/decision-record.md` (source of the 4-adapter confirmed-fires/dormant status this phase cites)

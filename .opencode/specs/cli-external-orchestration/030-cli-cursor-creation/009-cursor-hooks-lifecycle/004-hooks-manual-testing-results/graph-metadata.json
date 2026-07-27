@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,7 +44,6 @@
       "checklist.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md",
       "implementation-summary.md"
     ],
@@ -89,12 +88,6 @@
         "name": "confirmed-non-delivery-documentation.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-prebind-unreviewed.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 004, 006, 009, 010, and 011 each captured live-fire evidence for the hooks category's events as part of their own build/wiring work, but no single session had independently re-executed the hooks category's playbook scenarios end-to-end afterward, purely as a verification exercise separate from any build",
     "created_at": "2026-07-24T17:05:15.833Z",
-    "last_save_at": "2026-07-24T17:34:01.097Z",
+    "last_save_at": "2026-07-27T03:27:51.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b6477f0607cb755f7f427db34699de665c0fe4a1dacafd897efb6e7b34b9db7",
+    "source_fingerprint": "sha256:40793a1728f1eefcb6acec631a0979fcacbb1e85faaef8740952076fad32a3ca",
     "source_doc_hashes": {
-      "spec.md": "5899d6e825e49500d898de2654705ccea553c6d9f972685e6b806f49edc35e88",
-      "plan.md": "2de1b87b0f0445a1f90b392b9665ae811ecea49603f371f6834cdeb9331e3e0e",
-      "tasks.md": "7f91ee63d5c3bd72fc294884e44fc75b74f55d1aaabafd792bc784f1e7369f81",
-      "checklist.md": "0237a78a70eee0b4e26aa7ca663fc7001b401e9d683164f778e714e9a1c3a377",
-      "implementation-summary.md": "752916185353e6641b4ea224575ccaa65633812e2866e45049060741dfaaa988"
+      "spec.md": "a6b4a0cf2caa42f29b9f71f148aa4f941ea12c7957e87aac3714bdddc57cc3bb",
+      "plan.md": "46016fd8fcf704769a8a5c7a96245b63b414799518e41426c6caaea65702480b",
+      "tasks.md": "de58a763b526ff7dbaaf44382b2c363de7df1ca5b2a2b54c7ce45a0532a61d7a",
+      "checklist.md": "11a9fd1e0d39a028acb6232907d98ab11cd780e80177ef3197d94c0213cf8590",
+      "implementation-summary.md": "a867c754858bbeabefb7748bf8987f90686f69e4cf2fe95b811130812accf164"
     },
     "last_active_child_id": null,
     "last_active_at": null

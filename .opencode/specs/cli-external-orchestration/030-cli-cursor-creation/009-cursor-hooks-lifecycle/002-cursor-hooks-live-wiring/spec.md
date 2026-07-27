@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/010-cursor-hooks-live-wiring"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring"
     last_updated_at: "2026-07-24T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Built, live-fire tested, and documentation cross-references updated"
@@ -31,10 +31,10 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
-| **Predecessor** | `../009-cursor-hooks-catalog-and-playbook-coverage/spec.md` |
-| **Successor** | `../011-cursor-hooks-claude-parity/spec.md` |
+| **Predecessor** | `../001-cursor-hooks-catalog-and-playbook-coverage/spec.md` |
+| **Successor** | `../003-cursor-hooks-claude-parity/spec.md` |
 | **Handoff Criteria** | `.cursor/hooks.json` exists, is committed, wires the 4 confirmed adapters with correct event names and portable relative paths, is live-fire proven against the real repo (not just an isolated workspace), and every stale "not yet registered" / "deliberately uncommitted" claim across the skill's docs is corrected. |
 <!-- /ANCHOR:metadata -->
 
@@ -145,7 +145,7 @@ All questions below are resolved.
 
 ## RELATED DOCUMENTS
 - `plan.md`, `tasks.md`, `checklist.md` (this phase)
-- `../009-cursor-hooks-catalog-and-playbook-coverage/spec.md` (predecessor)
-- `../spec.md` (phase-parent packet)
-- `../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001, the original committed-registration decision this phase finally executes)
+- `../001-cursor-hooks-catalog-and-playbook-coverage/spec.md` (predecessor)
+- `../../spec.md` (phase-parent packet)
+- `../../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001, the original committed-registration decision this phase finally executes)
 - `.cursor/hooks.json` (the artifact this phase creates)

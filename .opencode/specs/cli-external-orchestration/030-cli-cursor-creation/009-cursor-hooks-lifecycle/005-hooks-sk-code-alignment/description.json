@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/013-hooks-sk-code-alignment",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
   "description": "The operator asked directly: \"make sure all hook code aligns with sk-code code-opencode standards.\" `sk-code`'s `code-opencode` surface packet is the",
   "keywords": [
     "operator",
@@ -16,12 +16,13 @@
     "surface",
     "packet"
   ],
-  "lastUpdated": "2026-07-24T17:37:55.789Z",
-  "specId": "013",
+  "lastUpdated": "2026-07-27T03:27:41.155Z",
+  "specId": "005",
   "folderSlug": "hooks-sk-code-alignment",
   "parentChain": [
     "cli-external-orchestration",
-    "030-cli-cursor-creation"
+    "030-cli-cursor-creation",
+    "009-cursor-hooks-lifecycle"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

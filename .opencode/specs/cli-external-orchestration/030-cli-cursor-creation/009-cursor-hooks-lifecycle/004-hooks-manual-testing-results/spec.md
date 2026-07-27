@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results"
     last_updated_at: "2026-07-24T17:34:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 4 hooks scenarios executed for real and results recorded"
@@ -31,10 +31,10 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | `../spec.md` |
+| **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
-| **Predecessor** | `../011-cursor-hooks-claude-parity/spec.md` |
-| **Successor** | `../013-hooks-sk-code-alignment/spec.md` |
+| **Predecessor** | `../003-cursor-hooks-claude-parity/spec.md` |
+| **Successor** | `../005-hooks-sk-code-alignment/spec.md` |
 | **Handoff Criteria** | All 4 hooks-category scenarios (`CU-013`, `CU-014`, `CU-020`, `CU-021`) executed for real against the live `cursor-agent` binary in this session (not cited from an earlier phase's build report), each with a PASS/FAIL/SKIP verdict and concrete evidence, and the repo's own committed `.cursor/hooks.json` confirmed untouched by every run. |
 <!-- /ANCHOR:metadata -->
 
@@ -69,7 +69,7 @@ Execute all 4 hooks-category manual-testing-playbook scenarios (`CU-013` confirm
 | File Path | Change Type | Description |
 |---|---|---|
 | `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/012-hooks-manual-testing-results/*` | Create | This phase's own docs recording the 4 scenario results. |
-| `../011-cursor-hooks-claude-parity/spec.md` | Modify | Update `Successor` field to point here. |
+| `../003-cursor-hooks-claude-parity/spec.md` | Modify | Update `Successor` field to point here. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -131,8 +131,8 @@ None -- straightforward execution of already-specified scenarios.
 
 ## RELATED DOCUMENTS
 - `plan.md`, `tasks.md`, `checklist.md` (this phase)
-- `../011-cursor-hooks-claude-parity/spec.md` (predecessor)
-- `../spec.md` (phase-parent packet)
+- `../003-cursor-hooks-claude-parity/spec.md` (predecessor)
+- `../../spec.md` (phase-parent packet)
 - `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md` (`CU-013`)
 - `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md` (`CU-014`)
 - `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/spec-gate-prebind-unreviewed.md` (`CU-020`)

@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/010-cursor-hooks-live-wiring"
+    packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring"
     last_updated_at: "2026-07-24T16:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "All 3 phases complete"
@@ -116,4 +116,4 @@ One new config file (fail-open by design) + 4 small doc corrections. Low blast r
 
 ## RELATED DOCUMENTS
 - `spec.md`, `tasks.md`, `checklist.md`
-- `../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001)
+- `../../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001)

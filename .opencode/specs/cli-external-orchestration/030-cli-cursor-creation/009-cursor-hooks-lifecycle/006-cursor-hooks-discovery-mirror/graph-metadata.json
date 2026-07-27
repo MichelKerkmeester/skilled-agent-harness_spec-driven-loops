@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/014-cursor-hooks-discovery-mirror",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked into it",
     "created_at": "2026-07-24T17:40:29.498Z",
-    "last_save_at": "2026-07-24T18:05:10.226Z",
+    "last_save_at": "2026-07-27T03:27:51.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6de067625bfb8758a0b87f7c371e20884b272c36bf0fa05b10671402288a11c",
+    "source_fingerprint": "sha256:cfac37f0e867f80bbb7d99563a0b10baa421441e751ad704b83fd2e4ff48b0e2",
     "source_doc_hashes": {
-      "spec.md": "bac9e581c94bcd5119c67ba97590af41744fc17726301e5450ea6e5c47d5a7e7",
-      "plan.md": "e79e47084679eae80613bc2f038c124b12b4e40448cb0ff062367c004da87fc6",
-      "tasks.md": "f881270526f2e408a2f31d7b213d021e74c2b3f81d293acdd15080518672d15c",
-      "checklist.md": "82cb37b73d670b4af9a2e48168d2ba542366632a0518c276777311498eea5261",
-      "implementation-summary.md": "58a1e381c1ee03796ea1416ca058a3f37181110f53474ae94e00f2308b15d07c"
+      "spec.md": "d50d613aad0e77c853db54a3f81daab2923ce4e8e9011d1f49550b0cf01604cc",
+      "plan.md": "9fc501a6d65364b754904c13ef763ef1cfcbec024ad72f642d69e5462db20197",
+      "tasks.md": "55c02de3f1272d01d6c4dbc7384ee4786ec5df95b0f4cca0af5f6bbdeabbff7b",
+      "checklist.md": "70a7af5a263588a731c1c2ae29ca64fe7ddd5e1d605f9d965ac08ec0609830d0",
+      "implementation-summary.md": "1e6f9e4d6f0aa472b46a4dbefec02c0038518132a8bbe8bab36781c0457b564d"
     },
     "last_active_child_id": null,
     "last_active_at": null
