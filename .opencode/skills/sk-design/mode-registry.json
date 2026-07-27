@@ -2,22 +2,28 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "resourceContractVersion": 1,
-  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for sk-design. The hub reads this file to resolve a mode; the advisor routes any design query to the single identity sk-design and the hub picks the mode. All six modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
+  "description": "Declarative registry for four top-level sk-design modes plus permanent interface-owned command subworkflows. The advisor routes one sk-design identity; the hub resolves a registered mode, while /interface:foundations and /interface:audit select typed subworkflows without creating additional mode or skill identities.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-    "packetKind": "The axis discriminator: 'workflow' for the five design-judgment modes (interface/foundations/motion/audit/md-generator) that act on a design axis; 'transport' for a packet that bridges to an external tool's CLI/MCP surface rather than performing design judgment itself.",
+    "packetKind": "The axis discriminator: 'workflow' for the three registered design-judgment modes (interface/motion/md-generator); 'transport' for the Open Design bridge.",
     "backendKind": "Which backend runs the mode: reference-base (cites the shared design reference base under references/), playwright-extract (runs the embedded Playwright CSS-extraction pipeline), or od-cli-transport (drives the external Open Design app's od CLI and stdio MCP server)."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
-    "packetSkillName": "The packet's SKILL.md name. For sk-design the packet folder IS its packetSkillName — the prefixed name (e.g. folder 'design-interface' == packetSkillName 'design-interface') — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
-    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All six sk-design modes use folder == packetSkillName (the prefixed name), so none has a mismatch — grandfatheredFolderMismatch is false for all six.",
-    "command": "The bound slash command for the mode, recorded even on metadata-routed modes (same field sk-doc's mode-registry.json carries); null when the mode has no dedicated command today. The five design-judgment modes each have a dedicated /interface:* command; the sixth mode, the design-mcp-open-design transport, carries command:null and is reached only by mandatory pairing with a design-judgment mode, never by its own command."
+    "packetSkillName": "The registered packet's SKILL.md name. Command subworkflows use contract.md and never declare packetSkillName.",
+    "grandfatheredFolderMismatch": "true only when a registered packet folder differs from packetSkillName. All four registered modes use matching names.",
+    "command": "The bound slash command for a registered mode, or null for a no-command transport. Commands owned by an internal interface subworkflow are declared only in commandSubworkflows."
   },
   "extensions": {
     "transform-verbs": {
       "description": "Declares the transform-verb routing extension: framing-split verb aliases (interface-frame 'make it' applies the move; audit-frame 'should it be' evaluates it), with excludedAliases and aliasOnly carve-outs. Activates the in-place top-level transformVerbRouting block without relocating it — the hub router vocabulary, command projection parity, and playbook scenarios all read it at that location.",
       "declaredField": "transformVerbRouting"
+    },
+    "command-subworkflows": {
+      "description": "Declares permanent public commands that execute complete workflows owned by one registered mode without adding peer mode or nested skill identities.",
+      "declaredField": "commandSubworkflows",
+      "ownerMode": "interface",
+      "commands": ["/interface:foundations", "/interface:audit"]
     },
     "transport-axis": {
       "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (backendKind:'od-cli-transport', routingClass:'metadata', mutatesWorkspace:false since writes land in the external tool, not this repo). They never perform design judgment themselves — every entry on this axis has its own mandatory-pairing contract requiring sk-design's own workflow modes before any design-affecting operation.",
@@ -36,6 +42,38 @@
       "audit": ["harden", "polish"]
     }
   },
+  "commandSubworkflows": [
+    {
+      "id": "foundations",
+      "ownerMode": "interface",
+      "command": "/interface:foundations",
+      "contract": "design-interface/foundations/contract.md",
+      "proceduresPath": "design-interface/foundations/procedures",
+      "referencesPath": "design-interface/references/foundations",
+      "assetsPath": "design-interface/assets/foundations",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep"],
+        "forbidden": ["Write", "Edit", "Bash"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      }
+    },
+    {
+      "id": "audit",
+      "ownerMode": "interface",
+      "command": "/interface:audit",
+      "contract": "design-interface/audit/contract.md",
+      "proceduresPath": "design-interface/audit/procedures",
+      "referencesPath": "design-interface/references/audit",
+      "assetsPath": "design-interface/assets/audit",
+      "toolSurface": {
+        "allowed": ["Read", "Glob", "Grep"],
+        "forbidden": ["Write", "Edit", "Bash"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      }
+    }
+  ],
   "modes": [
     {
       "workflowMode": "interface",
@@ -52,31 +90,10 @@
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
       "command": "/interface:design",
-      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight"],
+      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter", "design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "p0 p1 design findings"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-interface"
-      }
-    },
-    {
-      "workflowMode": "foundations",
-      "packetKind": "workflow",
-      "backendKind": "reference-base",
-      "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep"],
-        "forbidden": ["Write", "Edit", "Bash"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "design-foundations",
-      "proceduresPath": "design-foundations/procedures",
-      "packetSkillName": "design-foundations",
-      "grandfatheredFolderMismatch": false,
-      "command": "/interface:foundations",
-      "aliases": ["design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "design-foundations"
       }
     },
     {
@@ -98,27 +115,6 @@
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-motion"
-      }
-    },
-    {
-      "workflowMode": "audit",
-      "packetKind": "workflow",
-      "backendKind": "reference-base",
-      "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep"],
-        "forbidden": ["Write", "Edit", "Bash"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "design-audit",
-      "proceduresPath": "design-audit/procedures",
-      "packetSkillName": "design-audit",
-      "grandfatheredFolderMismatch": false,
-      "command": "/interface:audit",
-      "aliases": ["design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "p0 p1 design findings"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "design-audit"
       }
     },
     {

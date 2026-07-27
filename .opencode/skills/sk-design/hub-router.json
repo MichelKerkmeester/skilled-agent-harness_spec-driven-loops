@@ -2,9 +2,9 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "routerPolicy": {
-    "defaultMode": null,
+    "defaultMode": "interface",
     "ambiguityDelta": 1,
-    "tieBreak": ["interface", "foundations", "motion", "audit", "md-generator", "design-mcp-open-design"],
+    "tieBreak": ["interface", "motion", "md-generator", "design-mcp-open-design"],
     "outcomes": {
       "single": "one dominant design axis routes to one mode",
       "orderedBundle": "clearly separate design axes route to an ordered mode list",
@@ -14,11 +14,13 @@
       "shared/references/smart-routing.md",
       "mode-registry.json"
     ],
-    "bundleRules": [
+    "bundleRules": [],
+    "commandSubworkflowBundles": [
       {
         "name": "ui-build-bundle",
-        "whenAll": ["interface", "foundations"],
-        "outcome": "orderedBundle"
+        "ownerMode": "interface",
+        "includeSubworkflows": ["foundations"],
+        "outcome": "single"
       }
     ]
   },
@@ -26,10 +28,12 @@
     "canonicalNamespace": "interface",
     "canonicalByMode": {
       "interface": "/interface:design",
-      "foundations": "/interface:foundations",
       "motion": "/interface:motion",
-      "audit": "/interface:audit",
       "md-generator": "/interface:design-reference"
+    },
+    "canonicalBySubworkflow": {
+      "foundations": "/interface:foundations",
+      "audit": "/interface:audit"
     }
   },
   "routerSignals": {
@@ -38,20 +42,19 @@
       "classes": [
         "interface-aliases",
         "interface-taste",
-        "interface-build"
-      ],
-      "resources": ["design-interface/SKILL.md"]
-    },
-    "foundations": {
-      "weight": 4,
-      "classes": [
+        "interface-build",
         "foundations-aliases",
         "foundations-color",
         "foundations-type",
         "foundations-layout",
-        "foundations-tokens"
+        "foundations-tokens",
+        "audit-aliases",
+        "audit-quality",
+        "audit-transform-question",
+        "audit-accessibility",
+        "audit-hardening"
       ],
-      "resources": ["design-foundations/SKILL.md"]
+      "resources": ["design-interface/SKILL.md"]
     },
     "motion": {
       "weight": 4,
@@ -62,17 +65,6 @@
         "motion-feel"
       ],
       "resources": ["design-motion/SKILL.md"]
-    },
-    "audit": {
-      "weight": 4,
-      "classes": [
-        "audit-aliases",
-        "audit-quality",
-        "audit-transform-question",
-        "audit-accessibility",
-        "audit-hardening"
-      ],
-      "resources": ["design-audit/SKILL.md"]
     },
     "md-generator": {
       "weight": 4,
@@ -90,6 +82,40 @@
         "design-mcp-open-design-aliases"
       ],
       "resources": ["design-mcp-open-design/SKILL.md"]
+    }
+  },
+  "commandSubworkflowSignals": {
+    "foundations": {
+      "ownerMode": "interface",
+      "command": "/interface:foundations",
+      "classes": [
+        "foundations-aliases",
+        "foundations-color",
+        "foundations-type",
+        "foundations-layout",
+        "foundations-tokens"
+      ],
+      "resources": [
+        "design-interface/foundations/contract.md",
+        "design-interface/references/foundations",
+        "design-interface/assets/foundations"
+      ]
+    },
+    "audit": {
+      "ownerMode": "interface",
+      "command": "/interface:audit",
+      "classes": [
+        "audit-aliases",
+        "audit-quality",
+        "audit-transform-question",
+        "audit-accessibility",
+        "audit-hardening"
+      ],
+      "resources": [
+        "design-interface/audit/contract.md",
+        "design-interface/references/audit",
+        "design-interface/assets/audit"
+      ]
     }
   },
   "vocabularyClasses": {

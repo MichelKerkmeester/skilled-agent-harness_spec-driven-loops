@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "spec_folder": "sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "parent_id": "sk-design/012-sk-design-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design mode consolidation",
+      "four design modes",
+      "interface foundations audit subworkflows",
+      "sk-design consolidation plan",
+      "four design mode implementation",
+      "sk-design consolidation tasks",
+      "design subworkflow migration",
+      "sk-design consolidation verification",
+      "four mode checklist",
+      "sk-design consolidation decisions",
+      "design command subworkflow architecture",
+      "sk-design consolidation summary"
+    ],
+    "key_topics": [
+      "sk-design",
+      "mode",
+      "consolidation",
+      "four",
+      "design",
+      "modes",
+      "interface",
+      "foundations",
+      "audit",
+      "subworkflows",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "plan.md",
+      ".opencode/bin/compiled-route-sync.cjs",
+      "spec.md",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/leaf-manifest.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-design/SKILL.md",
+      "handover.md",
+      "implementation-summary.md",
+      "scratch/foundations-files.before.txt",
+      "scratch/audit-files.before.txt",
+      "scratch/styles.sha256.before"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "foundations-files.before.txt",
+        "kind": "file",
+        "path": "scratch/foundations-files.before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "audit-files.before.txt",
+        "kind": "file",
+        "path": "scratch/audit-files.before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "styles.sha256.before",
+        "kind": "file",
+        "path": "scratch/styles.sha256.before",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Foundations and audit are registered as peer hub modes despite being permanent interface-domain workflows",
+    "created_at": "2026-07-26T09:12:46.542Z",
+    "last_save_at": "2026-07-26T10:41:18.165Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:d29032ee9981b0e22a231d669e9b4ed10127a3f6f968ea6ff5e93c0624073cb4",
+    "source_doc_hashes": {
+      "spec.md": "2aaf29fa16b8bc969adad9a52dbb57ab8351ceb6e26d01dab70f39ed57546f1c",
+      "plan.md": "2d37b89ab86e59e3eaf791fff7b19071aae376c4e7a56f00d572c69d0c4d069f",
+      "tasks.md": "ca1064ea6cd59b6f730b19596a75123c822a9bc9b5422fcfe175cd1503c74aea",
+      "checklist.md": "21a1f76e9894213a8f2ea574adfab872db8741006ff5266b69ffb41a6a5aaf5d",
+      "decision-record.md": "2d451f6cc75c81d4c911f9b27e4854960dd01ff95b6f2fbcaa7fe1cbb4aec245",
+      "implementation-summary.md": "227d807bcce72984e7d6bd388ad0f8805e56cb11b9927eaac9e9d30f0266226c",
+      "handover.md": "4e72f8ba94838161a8154fd026ed1c11fd91176110c19762fb110a703a605e3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

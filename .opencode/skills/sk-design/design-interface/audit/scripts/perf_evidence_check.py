@@ -20,7 +20,7 @@ import re
 import sys
 from typing import Optional
 
-SHARED_SCRIPTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "shared", "scripts"))
+SHARED_SCRIPTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "shared", "scripts"))
 sys.path.insert(0, SHARED_SCRIPTS_DIR)
 from md_table import _is_separator_row, _split_table_row, _strip_markdown
 

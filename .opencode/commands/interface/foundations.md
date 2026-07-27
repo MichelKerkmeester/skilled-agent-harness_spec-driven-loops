@@ -1,12 +1,12 @@
 ---
-description: Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.
+description: Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design interface mode, foundations subworkflow.
 argument-hint: "<color|typography|layout|spacing|tokens|theming> <target> [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
 # /interface:foundations
 
-Creation-template router for stable `workflowMode=foundations`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the foundations mode to `$ARGUMENTS`.
+Creation-template router for stable `workflowMode=interface`, `commandSubworkflow=foundations`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the foundations subworkflow to `$ARGUMENTS`.
 
 <!-- Shared lifecycle contract, expanded once: -->
 @.opencode/skills/sk-design/shared/creation-contract.md
@@ -15,7 +15,7 @@ Creation-template router for stable `workflowMode=foundations`. Read `.opencode/
 
 This command serves the user job: "design visual system", "define design tokens", "plan static foundations".
 
-Use the shared nine-stage contract for public choreography. The `foundations` mode owns static-system judgment; transports only measure; application-code mutation requires an accepted `sk-code` handoff. Do not copy mode taste or reference tables into this command.
+Use the shared nine-stage contract for public choreography. The `interface` mode owns the permanent `foundations` subworkflow and its static-system judgment; transports only measure; application-code mutation requires an accepted `sk-code` handoff.
 
 <!-- ANCHOR:sibling-discriminator -->
 ### WHEN TO USE THIS, NOT A SIBLING
@@ -46,13 +46,13 @@ Use the shared nine-stage contract for public choreography. The `foundations` mo
 | Auto workflow | `.opencode/commands/interface/assets/interface-foundations-auto.yaml` |
 | Confirm workflow | `.opencode/commands/interface/assets/interface-foundations-confirm.yaml` |
 
-## 3. MODE ROUTING
+## 3. SUBWORKFLOW ROUTING
 
 1. Parse `$ARGUMENTS`; use confirm only for missing or confirmation-required inputs.
 2. Resolve the context envelope and route proof.
 3. Classify static axes and reject dynamic or measurement work owned elsewhere.
 4. Ground an owned precedent or one named static principle; `no-fit` is valid.
-5. Load `workflowMode=foundations` and only applicable references.
+5. Load `workflowMode=interface`, `commandSubworkflow=foundations`, and only applicable references.
 6. Build only applicable primitive, semantic, and component tokens plus type, spacing, grid, hierarchy, responsive, and theme deltas.
 
 <!-- ANCHOR:register -->

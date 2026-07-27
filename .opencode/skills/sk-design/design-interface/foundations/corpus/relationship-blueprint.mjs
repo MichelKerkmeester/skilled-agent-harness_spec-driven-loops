@@ -11,21 +11,21 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   AUTHORITY_ORDER,
   COMMON_PROOF_HANDOFF_FIELDS,
-} from '../../shared/corpus-context/corpus-context-plan.mjs';
+} from '../../../shared/corpus-context/corpus-context-plan.mjs';
 import {
   validateCorpusContextPlan,
   validateProofHandoffRecord,
-} from '../../shared/corpus-context/validate-context-plan.mjs';
+} from '../../../shared/corpus-context/validate-context-plan.mjs';
 import {
   blockingPlanOutcome,
   immutableSnapshot,
   isRetrievalUnavailableError,
-} from '../../shared/corpus-context/corpus-runtime.mjs';
+} from '../../../shared/corpus-context/corpus-runtime.mjs';
 import {
   validateHydratedSourceAttestation,
   validateSourceAttestation,
-} from '../../shared/corpus-context/source-attestation.mjs';
-import { runHydrate, runQuery } from '../../styles/lib/engine/style-library.mjs';
+} from '../../../shared/corpus-context/source-attestation.mjs';
+import { runHydrate, runQuery } from '../../../styles/lib/engine/style-library.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

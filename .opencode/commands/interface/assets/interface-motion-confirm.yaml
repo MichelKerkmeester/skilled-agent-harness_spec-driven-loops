@@ -246,9 +246,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Motion design workflow complete."
   next_steps:
-  - action: "Run /interface:design to frame or reframe direction"
-  - action: "Run /interface:foundations to revise the static system"
-  - action: "Run /interface:audit to QA the behavior"
+  - action: "Continue with /interface:design to frame or reframe direction"
+  - action: "Continue with /interface:foundations to revise the static system"
+  - action: "Continue with /interface:audit to QA the behavior"
   - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
 
 # ─────────────────────────────────────────────────────────────────

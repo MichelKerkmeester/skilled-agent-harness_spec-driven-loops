@@ -1,12 +1,12 @@
 ---
-description: Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.
+description: Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design interface mode, audit subworkflow.
 argument-hint: "<target> [--scope a11y|performance|responsive|anti-slop] [--score] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
 # /interface:audit
 
-Creation-template router for stable `workflowMode=audit`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the audit mode to `$ARGUMENTS`.
+Creation-template router for stable `workflowMode=interface`, `commandSubworkflow=audit`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the audit subworkflow to `$ARGUMENTS`.
 
 <!-- Shared lifecycle contract, expanded once: -->
 @.opencode/skills/sk-design/shared/creation-contract.md
@@ -15,7 +15,7 @@ Creation-template router for stable `workflowMode=audit`. Read `.opencode/skills
 
 This command serves the user job: "audit design quality", "critique ui surface", "score design readiness".
 
-Use the shared nine-stage contract for evidence-first audit and bounded remediation. The `audit` mode owns findings, severity, confidence, and proof; transports only observe or measure; accepted fixes mutate only through `sk-code`. Do not copy mode taste or reference tables into this command.
+Use the shared nine-stage contract for evidence-first audit and bounded remediation. The `interface` mode owns the permanent `audit` subworkflow and its findings, severity, confidence, and proof; transports only observe or measure; accepted fixes mutate only through `sk-code`.
 
 <!-- ANCHOR:sibling-discriminator -->
 ### WHEN TO USE THIS, NOT A SIBLING
@@ -46,10 +46,10 @@ Use the shared nine-stage contract for evidence-first audit and bounded remediat
 | Auto workflow | `.opencode/commands/interface/assets/interface-audit-auto.yaml` |
 | Confirm workflow | `.opencode/commands/interface/assets/interface-audit-confirm.yaml` |
 
-## 3. MODE ROUTING
+## 3. SUBWORKFLOW ROUTING
 
 1. Parse `$ARGUMENTS`; resolve route proof and the evidence ceiling.
-2. Load `workflowMode=audit` and only the measurement transport needed for the declared scenarios.
+2. Load `workflowMode=interface`, `commandSubworkflow=audit`, and only the measurement transport needed for the declared scenarios.
 3. Capture reproducible observations before findings.
 4. Label severity and confidence, cluster root causes, and create bounded remediation acceptance criteria.
 5. Hand accepted findings to `sk-code`; never apply fixes inside the audit command.

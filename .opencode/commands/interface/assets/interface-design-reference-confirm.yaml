@@ -251,9 +251,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Style reference extraction workflow complete."
   next_steps:
-  - action: "Run /interface:foundations to build a static system from the measured evidence"
-  - action: "Run /interface:design to frame direction from the measured evidence"
-  - action: "Run /interface:audit to QA against the extracted reference"
+  - action: "Continue with /interface:foundations to build a static system from the measured evidence"
+  - action: "Continue with /interface:design to frame direction from the measured evidence"
+  - action: "Continue with /interface:audit to QA against the extracted reference"
   - action: "Hand to sk-code via sk-code-handoff.md after artifact acceptance"
 
 # ─────────────────────────────────────────────────────────────────

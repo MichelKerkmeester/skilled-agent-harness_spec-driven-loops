@@ -8,8 +8,8 @@ import { pathToFileURL } from "node:url";
 
 const scriptUrl = new URL(import.meta.url);
 const skillRootUrl = new URL("../../", scriptUrl);
-const registryUrl = new URL("design-audit/assets/ai-fingerprint-registry.json", skillRootUrl);
-const fixtureRootUrl = new URL("design-audit/assets/ai-fingerprint-fixtures/", skillRootUrl);
+const registryUrl = new URL("design-interface/assets/audit/ai-fingerprint-registry.json", skillRootUrl);
+const fixtureRootUrl = new URL("design-interface/assets/audit/ai-fingerprint-fixtures/", skillRootUrl);
 
 const CHECK_MATCHERS = new Map([
   [

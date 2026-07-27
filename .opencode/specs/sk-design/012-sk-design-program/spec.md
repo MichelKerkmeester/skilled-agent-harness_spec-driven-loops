@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-design program (styles + interface commands + hallmark)"
-description: "Umbrella program packet for the whole sk-design body of work — the style database, the /interface:* creation commands, the hallmark design system, and the reviews/remediation that hardened them — organized into five themed phases with all research, build, and review history preserved."
+description: "Umbrella program packet for the whole sk-design body of work - the style database, the /interface:* creation commands, the hallmark design system, reviews/remediation, and mode consolidation - organized into six phases with all research, build, and review history preserved."
 trigger_phrases:
   - "sk-design program"
   - "style database and interface commands"
@@ -41,9 +41,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Structure** | Phase Parent lean trio (program umbrella over five themed phases) |
+| **Structure** | Phase Parent lean trio (program umbrella over six phases) |
 | **Priority** | P1 |
-| **Status** | Partially shipped: styles-DB core, the `/interface:*` commands, and the reviews delivered; hallmark adoption and several style-DB evolution packets remain **Planned**; persistent activation SLO-gated |
+| **Status** | Partially shipped: styles-DB core, the `/interface:*` commands, and the reviews delivered; mode consolidation is **In Progress**; hallmark adoption and several style-DB evolution packets remain **Planned**; persistent activation SLO-gated |
 | **Created** | 2026-07-22 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -64,7 +64,7 @@ The sk-design program grew across many packets — style-database research and b
 
 ### Purpose
 
-Present the whole sk-design program as one navigable record, organized into five themed phases — **research**, **style database**, **interface commands**, **hallmark design system**, and **reviews & remediation**. Every original packet keeps its content and git history; this parent adds only the program narrative, the phase map, and a program retrospective (`retrospective.md`). Each themed phase is itself a phase parent whose children are the original packets.
+Present the whole sk-design program as one navigable record, organized into six phases: **research**, **style database**, **interface commands**, **hallmark design system**, **reviews & remediation**, and **design mode consolidation**. Every original packet keeps its content and git history; this parent adds only the program narrative, the phase map, and a program retrospective (`retrospective.md`). The first five themed phases are phase parents over the original packets; the sixth is the current implementation packet.
 
 > **Phase-parent note:** This `spec.md` and `retrospective.md` are the only authored markdown at the parent level. The root stays lean: `spec.md`, `retrospective.md`, `description.json`, `graph-metadata.json`.
 <!-- /ANCHOR:problem -->
@@ -76,7 +76,7 @@ Present the whole sk-design program as one navigable record, organized into five
 
 ### In Scope
 
-- A five-phase thematic organization of all prior sk-design 012–018 work under one umbrella.
+- A six-phase organization of the historic and current sk-design program under one umbrella.
 - A program-level narrative (this doc) and retrospective (`retrospective.md`).
 - Preservation of every child packet's content, history, and per-packet documentation.
 
@@ -91,7 +91,7 @@ Present the whole sk-design program as one navigable record, organized into five
 |-----------|-------------|-------|-------------|
 | `.opencode/specs/sk-design/012-sk-design-program/spec.md` | Create | (parent) | Program narrative + phase map |
 | `.opencode/specs/sk-design/012-sk-design-program/retrospective.md` | Create | (parent) | Program retrospective (shipped / planned-but-missed / opportunities) |
-| `.opencode/specs/sk-design/012-sk-design-program/00[1-5]-*/` | Organize | (themes) | Five themed phase parents holding the original packets |
+| `.opencode/specs/sk-design/012-sk-design-program/00[1-6]-*/` | Organize | (phases) | Five themed phase parents plus the current mode-consolidation packet |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,12 +108,13 @@ Present the whole sk-design program as one navigable record, organized into five
 | 3 | `003-interface-commands/` | The `/interface:*` creation commands: build, alias-namespace retirement, rewrite, research refactor, and the command benchmark | **Complete** |
 | 4 | `004-hallmark-design-system/` | Hallmark design-system adoption: surgical fixes, evidence envelopes, authored cards, and the brand-first lane | **Planned — four lanes specced, not built** |
 | 5 | `005-reviews-and-remediation/` | Program reviews and remediation: review-remediation, session-shipped-work review, remediation-program review, post-review remediation, and program review artifacts | **Complete** |
+| 6 | `006-design-mode-consolidation/` | Reduce the hub to four modes while preserving foundations and audit as permanent interface subworkflows | **In Progress** |
 
 ### Phase Transition Rules
 
 - Each themed phase MUST pass `validate.sh` independently; the whole program validates under `validate.sh --recursive` on this parent.
 - Resume a specific packet with `/speckit:resume [parent]/[NNN-theme]/[NNN-packet]/`.
-- The research phase (001) produced the recommendations that drove the build phases (002–004); the reviews phase (005) hardened them.
+- The research phase (001) produced the recommendations that drove the build phases (002–004) and phase 006; the reviews phase (005) hardened the shipped program.
 
 ### Phase Handoff Criteria
 
@@ -139,5 +140,5 @@ Present the whole sk-design program as one navigable record, organized into five
 - **Program retrospective:** `retrospective.md` — shipped / planned-but-missed / opportunities across the whole program.
 - **Predecessor:** `.opencode/specs/sk-design/011-sk-design-styles-utilization/` — the file-based styles engine this program's database backs.
 - **Data source:** `.opencode/specs/sk-design/010-sk-design-styles-from-refero/` — the extraction that produced the 1,291-style library.
-- **Phase children:** the five themed sub-folders `00[1-5]-*/`, each a phase parent over its original packets.
+- **Phase children:** `00[1-6]-*/`; the first five are themed phase parents and phase 006 is the current consolidation packet.
 - **Graph Metadata:** `graph-metadata.json` (`derived.last_active_child_id` resume pointer).

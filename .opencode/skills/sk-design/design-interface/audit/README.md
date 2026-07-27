@@ -1,6 +1,6 @@
 ---
-title: design-audit
-description: "The sk-design QA and critique mode that reviews built or planned interfaces, files severity-ranked findings and scores five dimensions out of 20."
+title: audit command subworkflow
+description: "Permanent interface-owned QA and critique workflow that reviews built or planned interfaces, files severity-ranked findings and scores five dimensions out of 20."
 trigger_phrases:
   - "design audit"
   - "critique UI"
@@ -11,7 +11,7 @@ contextType: implementation
 version: 1.0.1.0
 ---
 
-# design-audit
+# Audit Command Subworkflow
 
 > Tells you exactly what is wrong with an interface, how bad each issue is and who owns the fix, without touching the code.
 
@@ -30,21 +30,21 @@ version: 1.0.1.0
 
 ## 2. OVERVIEW
 
-### Why This Mode Exists
+### Why This Subworkflow Exists
 
 An interface can pass every automated scan and still fail real users: a focus trap a mouse never hits, a cream body background that screams machine-generated, a form that loses work when the network drops. Those gaps hide in the space between a green check and what a person actually experiences. Without a structured review, they ship.
 
-`audit` closes that gap. It walks a surface against accessibility, performance, responsive, theming and anti-slop checks, names each defect with evidence and ranks it by user impact. It is the critic in the `sk-design` family, the sibling that judges rather than creates.
+`audit` closes that gap. It walks a surface against accessibility, performance, responsive, theming and anti-slop checks, names each defect with evidence and ranks it by user impact. It is a permanent workflow owned by the registered `interface` mode, not a nested skill identity.
 
 ### What It Does
 
-`audit` produces a findings-first report: concrete findings come first, then a five-dimension score that summarizes them. Each finding carries evidence, user impact, a recommended direction and an owner. When an intended or contextual corpus reference is useful, a separate comparison lane can add zero to two non-authoritative rows; those rows never assign severity, score or proof. The mode reviews and routes, it does not implement. Accepted fixes go to `sk-code`, while direction goes to `interface`, tokens go to `foundations` and choreography goes to `motion`. If you want a new visual direction instead of a critique, reach for `interface`.
+`audit` produces a findings-first report: concrete findings come first, then a five-dimension score that summarizes them. Each finding carries evidence, user impact, a recommended direction and an owner. When an intended or contextual corpus reference is useful, a separate comparison lane can add zero to two non-authoritative rows; those rows never assign severity, score or proof. The subworkflow reviews and routes; it does not implement. Accepted fixes go to `sk-code`, while direction, foundations, and motion remain distinct command or mode owners.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Routing keywords like `audit design` or `accessibility audit` reach this mode through `sk-design`. You can also point it at a target directly.
+**Step 1: Invoke it.** Use `/interface:audit` with a concrete target.
 
 **Step 2: Run the audit.**
 
@@ -57,7 +57,7 @@ A findings-first report ordered P0, P1, P2, P3, then a `/20` score with a rating
 **Step 3: Verify the docs.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-audit/README.md --type readme
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-interface/audit/README.md --type readme
 ```
 
 Reports zero issues.
@@ -78,7 +78,7 @@ The anti-patterns dimension leans on a model-specific tell catalog. A ghost-card
 
 ### Styles-Library Utilization
 
-Audit consumes the shared zero-hydration plan through the comparison adapter in [`corpus/`](./corpus/README.md). The mode may select zero to two source-attested references, but the adapter can emit only comparison context and limitations. It cannot represent a severity, score, accessibility or performance proof, copying decision, exact-reuse permission or fix owner.
+Audit consumes the shared zero-hydration plan through the comparison adapter in [`corpus/`](./corpus/README.md). The subworkflow may select zero to two source-attested references, but the adapter can emit only comparison context and limitations. It cannot represent a severity, score, accessibility or performance proof, copying decision, exact-reuse permission or fix owner.
 
 The authority order is user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. A corpus comparison can sharpen critique, but only target evidence supports an audit verdict.
 
@@ -88,13 +88,13 @@ The maintainer-only adapter in [`corpus/`](./corpus/README.md) consumes the shar
 
 ### Private Procedure Cards
 
-The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local audit focus after the public `audit` mode is chosen. The two cards are `accessibility-audit.md` and `ai-slop-check.md`. They are not user-selectable routes.
+The maintainer-facing cards in [`procedures/`](./procedures/) support audit focus after `/interface:audit` selects this subworkflow. The two cards are `accessibility-audit.md` and `ai-slop-check.md`. They are not user-selectable routes.
 
 ---
 
 ## 5. INTEGRATION & NAVIGATION
 
-### When To Use This Mode
+### When To Use This Subworkflow
 
 Reach for `audit` when you need a verdict on an existing or planned surface: a release-readiness check, an accessibility gate, a slop review or a production-hardening pass. Use it when someone says a design "looks AI-generated" and you need to prove it with named tells. Skip it when you want to invent a direction, build a token system or write motion, since those belong to the sibling modes.
 
@@ -113,12 +113,12 @@ The comparison lane and its intended-anchor-drift, comparison-unavailable and au
 
 ## 6. VERIFICATION
 
-The mode ships a manual testing playbook. Each scenario runs a prompt against the live mode and its on-disk references, then records PASS, PARTIAL, FAIL or SKIP.
+The subworkflow ships a manual testing playbook. Each scenario runs a prompt against the command contract and its on-disk references, then records PASS, PARTIAL, FAIL or SKIP.
 
 | Check | Result |
 |---|---|
 | Manual playbook | Run the scenarios in [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md). Release is ready when all PASS or SKIP only for a missing target |
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-audit/README.md --type readme` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design/design-interface/audit/README.md --type readme` reports zero issues |
 
 ---
 
@@ -126,17 +126,17 @@ The mode ships a manual testing playbook. Each scenario runs a prompt against th
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic |
-| [`references/audit-contract.md`](./references/audit-contract.md) | Severity model, `/20` scoring contract and findings schema |
-| [`references/accessibility-performance.md`](./references/accessibility-performance.md) | Accessibility and performance checks with pass and fail numbers |
-| [`references/critique-hardening.md`](./references/critique-hardening.md) | Holistic critique, cognitive load, personas and polish |
-| [`references/anti-patterns-production.md`](./references/anti-patterns-production.md) | Anti-slop signals, theming drift, copy clarity and production details |
-| [`references/ai-fingerprint-tells.md`](./references/ai-fingerprint-tells.md) | Model-specific AI tells turned into checkable P0-P3 findings |
-| [`references/transform-remediation.md`](./references/transform-remediation.md) | Register-gated bolder, quieter and distill verbs mapped to findings and owners |
-| [`references/evidence-capture.md`](./references/evidence-capture.md) | Target resolution, the three evidence types and confirmed-or-inferred labeling |
-| [`references/hardening-edge-cases.md`](./references/hardening-edge-cases.md) | Production-readiness matrix of extreme inputs, errors, concurrency and i18n |
-| [`assets/audit-report-template.md`](./assets/audit-report-template.md) | Fill-in findings-first report skeleton with the five-dimension score |
-| [`assets/a11y-quick-fixes.md`](./assets/a11y-quick-fixes.md) | Snippet-level accessibility fixes the report cites by reference |
+| [`contract.md`](./contract.md) | Permanent command workflow instructions without a nested skill identity |
+| [`audit-contract.md`](../references/audit/audit-contract.md) | Severity model, `/20` scoring contract and findings schema |
+| [`accessibility-performance.md`](../references/audit/accessibility-performance.md) | Accessibility and performance checks with pass and fail numbers |
+| [`critique-hardening.md`](../references/audit/critique-hardening.md) | Holistic critique, cognitive load, personas and polish |
+| [`anti-patterns-production.md`](../references/audit/anti-patterns-production.md) | Anti-slop signals, theming drift, copy clarity and production details |
+| [`ai-fingerprint-tells.md`](../references/audit/ai-fingerprint-tells.md) | Model-specific AI tells turned into checkable P0-P3 findings |
+| [`transform-remediation.md`](../references/audit/transform-remediation.md) | Register-gated bolder, quieter and distill verbs mapped to findings and owners |
+| [`evidence-capture.md`](../references/audit/evidence-capture.md) | Target resolution, the three evidence types and confirmed-or-inferred labeling |
+| [`hardening-edge-cases.md`](../references/audit/hardening-edge-cases.md) | Production-readiness matrix of extreme inputs, errors, concurrency and i18n |
+| [`audit-report-template.md`](../assets/audit/audit-report-template.md) | Fill-in findings-first report skeleton with the five-dimension score |
+| [`a11y-quick-fixes.md`](../assets/audit/a11y-quick-fixes.md) | Snippet-level accessibility fixes the report cites by reference |
 | [`corpus/`](./corpus/README.md) | Maintainer-only non-authoritative comparison adapter and falsification fixtures |
 | [`procedures/`](./procedures/) | Two maintainer-facing procedure cards for accessibility audit focus and AI-slop checks |
-| [`../shared/register.md`](../shared/register.md) | The Brand-vs-Product register that sets the audit-severity dial |
+| [`../../shared/register.md`](../../shared/register.md) | The Brand-vs-Product register that sets the audit-severity dial |

@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: sk-design foundations creation command, interactive execution
 purpose: Create static foundations for a target
-action: Resolve confirmation-required fields once, then apply workflowMode=foundations
+action: Resolve confirmation-required fields once, then apply workflowMode=interface and commandSubworkflow=foundations
 
 operating_mode:
   workflow: sequential_creation_contract
@@ -90,7 +90,7 @@ workflow_enforcement:
     purpose: "Verify the shared creation contract is loaded before route proof and foundations work"
     requirements:
     - "creation-contract.md read (lifecycle, envelope, authority, proof vocabulary)"
-    - "route proof recorded (command, workflowMode)"
+    - "route proof recorded (command, workflowMode, commandSubworkflow)"
     action_if_failed: "STOP and return to the contract-load step"
   critical_steps:
     step_5_progressive_brief:
@@ -109,7 +109,7 @@ gate_logic:
       description: "The consolidated confirmation reply must be received before foundations work"
       fail_action: "WAIT for the bundled reply"
     H1_route_proof:
-      description: "The canonical /interface:foundations route + workflowMode=foundations must be proven"
+      description: "The canonical /interface:foundations route + workflowMode=interface + commandSubworkflow=foundations must be proven"
       fail_action: "STOP and record the route proof"
     H2_creation_contract:
       description: "The shared creation contract must be loaded before foundations work"
@@ -162,8 +162,8 @@ quality_standards:
     handoff_contract: ".opencode/skills/sk-design/shared/sk-code-handoff.md"
 
 task_projections:
-  typeset: "Apply within workflowMode=foundations."
-  colorize: "Apply within workflowMode=foundations."
+  typeset: "Apply within workflowMode=interface, commandSubworkflow=foundations."
+  colorize: "Apply within workflowMode=interface, commandSubworkflow=foundations."
   negative_corpus: "These are advisory verbs, never standalone commands."
 
 workflow:
@@ -181,7 +181,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical static-system route
-    action: "Record command=/interface:foundations, workflowMode=foundations, and proof environment"
+    action: "Record command=/interface:foundations, workflowMode=interface, commandSubworkflow=foundations, and proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load target, real content, existing tokens, constraints, viewports, themes, and runtime context
@@ -196,8 +196,8 @@ workflow:
     action: "Record provenance, fit axes, decision changed, and limitations; no-fit is valid"
     output: grounding_record
   step_7_load_mode:
-    purpose: Load the stable foundations mode and applicable static references
-    action: "Read .opencode/skills/sk-design/design-foundations/SKILL.md, then references/ and assets as required"
+    purpose: Load the permanent interface-owned foundations subworkflow and applicable static references
+    action: "Read .opencode/skills/sk-design/design-interface/foundations/contract.md, then design-interface/references/foundations/ and design-interface/assets/foundations/ as required"
     output: mode_context
   step_8_select_procedure_card:
     purpose: Select at most one private card or the explicit fallback
@@ -251,9 +251,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Visual system foundations workflow complete."
   next_steps:
-  - action: "Run /interface:design to frame or reframe direction"
-  - action: "Run /interface:motion for behavior"
-  - action: "Run /interface:audit to QA the system"
+  - action: "Continue with /interface:design to frame or reframe direction"
+  - action: "Continue with /interface:motion for behavior"
+  - action: "Continue with /interface:audit to QA the system"
   - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
 
 # ─────────────────────────────────────────────────────────────────

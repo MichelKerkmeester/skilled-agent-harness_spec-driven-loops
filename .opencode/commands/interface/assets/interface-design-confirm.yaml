@@ -254,9 +254,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Interface direction workflow complete."
   next_steps:
-  - action: "Run /interface:foundations to build the static visual system"
-  - action: "Run /interface:motion for behavior"
-  - action: "Run /interface:audit to QA the direction"
+  - action: "Continue with /interface:foundations to build the static visual system"
+  - action: "Continue with /interface:motion for behavior"
+  - action: "Continue with /interface:audit to QA the direction"
   - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
 
 # ─────────────────────────────────────────────────────────────────

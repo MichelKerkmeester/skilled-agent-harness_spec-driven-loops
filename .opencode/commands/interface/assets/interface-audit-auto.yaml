@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: sk-design audit creation command, autonomous execution
 purpose: Diagnose a design surface, create bounded remediation, and re-verify
-action: Apply workflowMode=audit to $ARGUMENTS through the shared creation contract
+action: Apply workflowMode=interface and commandSubworkflow=audit to $ARGUMENTS through the shared creation contract
 
 operating_mode:
   workflow: sequential_creation_contract
@@ -79,7 +79,7 @@ workflow_enforcement:
     purpose: "Verify the shared creation contract is loaded before route proof and audit work"
     requirements:
     - "creation-contract.md read (lifecycle, mutation boundary, evidence vocabulary)"
-    - "route proof recorded (command, workflowMode, measurement transport when needed)"
+    - "route proof recorded (command, workflowMode, commandSubworkflow, measurement transport when needed)"
     action_if_failed: "STOP and return to the contract-load step"
   critical_steps:
     step_5_progressive_brief:
@@ -95,7 +95,7 @@ workflow_enforcement:
 gate_logic:
   hard:
     H0_route_proof:
-      description: "The canonical /interface:audit route + workflowMode=audit must be proven"
+      description: "The canonical /interface:audit route + workflowMode=interface + commandSubworkflow=audit must be proven"
       fail_action: "STOP and record the route proof"
     H1_creation_contract:
       description: "The shared creation contract must be loaded before audit work"
@@ -151,8 +151,8 @@ quality_standards:
     handoff_contract: ".opencode/skills/sk-design/shared/sk-code-handoff.md"
 
 task_projections:
-  harden: "Apply within workflowMode=audit."
-  polish: "Apply within workflowMode=audit."
+  harden: "Apply within workflowMode=interface, commandSubworkflow=audit."
+  polish: "Apply within workflowMode=interface, commandSubworkflow=audit."
   negative_corpus: "These are advisory verbs, never standalone commands."
 
 workflow:
@@ -166,7 +166,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical audit route and evidence ceiling
-    action: "Record command=/interface:audit, workflowMode=audit, measurement transport if needed, and proof environment"
+    action: "Record command=/interface:audit, workflowMode=interface, commandSubworkflow=audit, measurement transport if needed, and proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load target state, journeys, viewports, constraints, baseline, axes, severity policy, and runtime evidence
@@ -181,8 +181,8 @@ workflow:
     action: "Record baseline or control provenance, scenario, decision changed, and limitations; no-fit is valid but no baseline means no improvement claim"
     output: grounding_record
   step_7_load_mode:
-    purpose: Load the stable audit mode and required evidence references
-    action: "Read .opencode/skills/sk-design/design-audit/SKILL.md, then references/ and assets as required"
+    purpose: Load the permanent interface-owned audit subworkflow and required evidence references
+    action: "Read .opencode/skills/sk-design/design-interface/audit/contract.md, then design-interface/references/audit/ and design-interface/assets/audit/ as required"
     output: mode_context
   step_8_select_procedure_card:
     purpose: Select at most one private card or the explicit fallback
@@ -236,9 +236,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Design quality audit workflow complete."
   next_steps:
-  - action: "Run /interface:foundations to revise the static visual system"
-  - action: "Run /interface:design to reframe direction"
-  - action: "Run /interface:motion to revise behavior"
+  - action: "Continue with /interface:foundations to revise the static visual system"
+  - action: "Continue with /interface:design to reframe direction"
+  - action: "Continue with /interface:motion to revise behavior"
   - action: "Hand to sk-code via sk-code-handoff.md after finding acceptance"
 
 # ─────────────────────────────────────────────────────────────────

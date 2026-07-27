@@ -19,7 +19,8 @@
     "sk-design/012-sk-design-program/002-style-database",
     "sk-design/012-sk-design-program/003-interface-commands",
     "sk-design/012-sk-design-program/004-hallmark-design-system",
-    "sk-design/012-sk-design-program/005-reviews-and-remediation"
+    "sk-design/012-sk-design-program/005-reviews-and-remediation",
+    "sk-design/012-sk-design-program/006-design-mode-consolidation"
   ],
   "manual": {
     "depends_on": [],
@@ -80,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -96,27 +103,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design program grew across many packets — style-database research and build, the design-command redesign, hallmark design-system adoption, and several review and remediation passes",
     "created_at": "2026-07-19T06:10:01.540Z",
-    "last_save_at": "2026-07-23T07:04:12.350Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-26T09:15:26.818Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1636ecfee47db0c8eb8b9cda3d12818a5efa9cf0f8ef6899ccb42a6ef961e59d",
+    "source_fingerprint": "sha256:675a536afebe3a584ca473087c8d0c1602477853f938db5bc1688bdda038d1c3",
     "source_doc_hashes": {
-      "spec.md": "601658e4a6fd1613616f515be3644d4e9afaa7c5258d32f41626ed29844b5a42"
+      "spec.md": "0e424cf16830e933308e665138c73dbf117ea4a59184ddee09f6ce1eb2d62bb2"
     },
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": "2026-07-26T09:15:26.818Z"
   }
 }

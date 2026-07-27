@@ -1,8 +1,9 @@
 [
   {
     "command": "/interface:audit",
-    "ownerMode": "audit",
-    "description": "Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design audit mode.",
+    "ownerMode": "interface",
+    "commandSubworkflow": "audit",
+    "description": "Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design interface mode, audit subworkflow.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": ["accessibility", "performance", "responsive", "anti-slop", "scoring", "hardening"],
@@ -41,21 +42,21 @@
       },
       {
         "order": 2,
-        "skill": "design-audit",
-        "resource": ".opencode/skills/sk-design/design-audit/SKILL.md",
-        "action": "load the audit mode contract"
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/audit/contract.md",
+        "action": "load the audit subworkflow contract"
       },
       {
         "order": 3,
-        "skill": "design-audit",
-        "resource": ".opencode/skills/sk-design/design-audit/procedures/",
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/audit/procedures/",
         "action": "choose at most one private procedure card (accessibility-audit.md for WCAG/contrast/keyboard/forms review, ai-slop-check.md for AI-template/generic-visual-language detection) matching the request, or ../shared/procedures/polish-gate-orchestration.md for full pre-delivery polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline audit workflow' if no card matches"
       },
       {
         "order": 4,
-        "skill": "design-audit",
-        "resource": ".opencode/skills/sk-design/design-audit/references/",
-        "action": "load mode references and assets as the work requires, then apply the audit workflow to $ARGUMENTS"
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/references/audit/",
+        "action": "load subworkflow references and assets as the work requires, then apply the audit workflow to $ARGUMENTS"
       },
       {
         "order": 5,
@@ -87,22 +88,22 @@
     "taskProjections": [
       {
         "verb": "harden",
-        "ownerMode": "audit",
+        "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-audit/references/hardening-edge-cases.md",
-          "design-audit/references/transform-remediation.md"
+          "design-interface/references/audit/hardening-edge-cases.md",
+          "design-interface/references/audit/transform-remediation.md"
         ],
         "requires": "a built surface to harden for production",
         "fixtures": ["harden.positive", "harden.negative.mint-command"]
       },
       {
         "verb": "polish",
-        "ownerMode": "audit",
+        "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-audit/references/critique-hardening.md",
-          "design-audit/references/transform-remediation.md"
+          "design-interface/references/audit/critique-hardening.md",
+          "design-interface/references/audit/transform-remediation.md"
         ],
         "requires": "a near-final surface to assess for polish readiness",
         "fixtures": ["polish.positive", "polish.negative.mint-command"]
@@ -172,8 +173,9 @@
   },
   {
     "command": "/interface:foundations",
-    "ownerMode": "foundations",
-    "description": "Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design foundations mode.",
+    "ownerMode": "interface",
+    "commandSubworkflow": "foundations",
+    "description": "Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design interface mode, foundations subworkflow.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": ["color", "typography", "layout", "spacing", "tokens", "theming"],
@@ -211,21 +213,21 @@
       },
       {
         "order": 2,
-        "skill": "design-foundations",
-        "resource": ".opencode/skills/sk-design/design-foundations/SKILL.md",
-        "action": "load the foundations mode contract"
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/foundations/contract.md",
+        "action": "load the foundations subworkflow contract"
       },
       {
         "order": 3,
-        "skill": "design-foundations",
-        "resource": ".opencode/skills/sk-design/design-foundations/procedures/",
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/foundations/procedures/",
         "action": "choose at most one private procedure card (tweakable-design-controls.md for user-adjustable options/controls/tunable variants, component-system-inventory.md for component extraction/reusable parts/system inventory, hierarchy-rhythm-review.md for hierarchy/rhythm/spacing/density review) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline foundations workflow' if no card matches"
       },
       {
         "order": 4,
-        "skill": "design-foundations",
-        "resource": ".opencode/skills/sk-design/design-foundations/references/",
-        "action": "load mode references and assets as the work requires, then apply the foundations workflow to $ARGUMENTS"
+        "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/references/foundations/",
+        "action": "load subworkflow references and assets as the work requires, then apply the foundations workflow to $ARGUMENTS"
       },
       {
         "order": 5,
@@ -257,22 +259,22 @@
     "taskProjections": [
       {
         "verb": "typeset",
-        "ownerMode": "foundations",
+        "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-foundations/references/type/typography-system.md",
-          "design-foundations/assets/token-starter.md"
+          "design-interface/references/foundations/type/typography-system.md",
+          "design-interface/assets/foundations/token-starter.md"
         ],
         "requires": "a type system or target surface to set",
         "fixtures": ["typeset.positive", "typeset.negative.mint-command"]
       },
       {
         "verb": "colorize",
-        "ownerMode": "foundations",
+        "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-foundations/references/color/oklch-workflow.md",
-          "design-foundations/references/color/palette-theming.md"
+          "design-interface/references/foundations/color/oklch-workflow.md",
+          "design-interface/references/foundations/color/palette-theming.md"
         ],
         "requires": "a palette or surface to color",
         "fixtures": ["colorize.positive", "colorize.negative.mint-command"]
@@ -343,6 +345,7 @@
   {
     "command": "/interface:design",
     "ownerMode": "interface",
+    "commandSubworkflow": null,
     "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -613,6 +616,7 @@
   {
     "command": "/interface:design-reference",
     "ownerMode": "md-generator",
+    "commandSubworkflow": null,
     "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -760,6 +764,7 @@
   {
     "command": "/interface:motion",
     "ownerMode": "motion",
+    "commandSubworkflow": null,
     "description": "Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
