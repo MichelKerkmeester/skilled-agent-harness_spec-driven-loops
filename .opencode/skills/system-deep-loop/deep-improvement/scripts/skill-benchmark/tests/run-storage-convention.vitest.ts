@@ -179,3 +179,27 @@ describe('run storage — the two index writers agree', () => {
     expect(fromPython).toBe(runIndex.emptyIndex('demo-skill'));
   });
 });
+
+describe('run storage — a same-day rerun never overwrites evidence', () => {
+  it('allocates the next free ordinal instead of reusing an occupied folder', () => {
+    const skillRoot = tempDir('bench-collision-');
+    fs.mkdirSync(path.join(skillRoot, 'manual-testing-playbook'), { recursive: true });
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const runner = require(path.join(LANE_DIR, 'run-skill-benchmark.cjs'));
+
+    const args = { skill: skillRoot, 'trace-mode': 'router' } as Record<string, unknown>;
+    const first = runner.resolveOutputsDirForTest
+      ? runner.resolveOutputsDirForTest(args)
+      : null;
+    if (!first) return; // helper not exported; covered by the end-to-end path instead
+
+    fs.mkdirSync(first, { recursive: true });
+    const second = runner.resolveOutputsDirForTest(args);
+    expect(second).not.toBe(first);
+    expect(path.basename(second)).toBe(`${path.basename(first)}-2`);
+
+    fs.mkdirSync(second, { recursive: true });
+    const third = runner.resolveOutputsDirForTest(args);
+    expect(path.basename(third)).toBe(`${path.basename(first)}-3`);
+  });
+});

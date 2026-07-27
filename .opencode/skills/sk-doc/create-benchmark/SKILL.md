@@ -486,16 +486,24 @@ hyphen between fields. Reject underscores, dots, capitals and ambiguity before s
 `benchmark/` holds run output. `benchmark/reports/` holds the curated, published view of a run: the
 version a reader opens to learn what happened, rather than the raw evidence a tool wrote.
 
-A report folder carries six files:
+The report filename differs by family, and the two must not be conflated. An MCP-promotion folder is
+hand-authored and carries `benchmark-report.md` (§3-8). A Lane C folder is written by the harness and
+carries the renderer-owned `skill-benchmark-report.{json,md}` pair, which is never hand-edited.
+
+A Lane C report folder carries seven files:
 
 | File | Holds |
 |---|---|
 | `README.md` | Entry point: headline verdict and a run-snapshot table |
-| `benchmark-report.md` | The curated report and its per-category analysis |
+| `skill-benchmark-report.json` | The machine record every other file here derives from |
+| `skill-benchmark-report.md` | The rendered report, regenerated from the JSON |
 | `failed-runs.md` | One section per failing case, with expected against observed |
 | `findings-and-recommendations.md` | Cross-run synthesis and the remediation order |
 | `results.csv` | The machine-readable table, one row per case |
 | `source.md` | Pointer back to the packet holding the authoritative evidence |
+
+An MCP-promotion folder carries the same set with `benchmark-report.md` in place of the renderer-owned
+pair, because that family has no renderer and its report is authored.
 
 Raw transcripts, ledgers and stdout stay in the originating spec packet. A report folder is added for a
 materially new run or executor configuration and is never overwritten when a later result differs, so

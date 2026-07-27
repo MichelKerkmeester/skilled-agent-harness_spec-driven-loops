@@ -139,7 +139,20 @@ function defaultOutputsDir({ skillRoot, subject, traceMode, env = process.env, n
   const model = env.SKILL_BENCH_OPENCODE_MODEL || env.SKILL_BENCH_MODEL || '';
   const variantFlag = env.SKILL_BENCH_OPENCODE_VARIANT || env.SKILL_BENCH_VARIANT || '';
   const variant = [model, variantFlag].filter(Boolean).join('-') || traceMode;
-  return path.join(skillRoot, 'benchmark', 'reports', runFolderName({ now, subject, variant }));
+  const reportsDir = path.join(skillRoot, 'benchmark', 'reports');
+  const base = runFolderName({ now, subject, variant });
+
+  // Two runs of the same subject and variant on one day resolve to the same name,
+  // and the writes below are unconditional — so without a disambiguator the second
+  // run silently replaces the first run's evidence. A benchmark that overwrites its
+  // own history is worse than one that never ran, because the loss is invisible.
+  // The next free ordinal is taken rather than failing, since a derived default
+  // exists precisely so the operator does not have to invent a path.
+  let candidate = path.join(reportsDir, base);
+  for (let ordinal = 2; fs.existsSync(candidate) && ordinal <= 100; ordinal += 1) {
+    candidate = path.join(reportsDir, `${base}-${ordinal}`);
+  }
+  return candidate;
 }
 
 /**
@@ -673,7 +686,24 @@ async function augmentWithD4R(args) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTypeSkill, resolveRouteGold, resolveCompiledParity };
+/**
+ * Resolve where a run would land, without running it. Exposed so the collision
+ * behaviour is testable directly rather than only through a full benchmark.
+ *
+ * @param {Object} args - Parsed CLI args.
+ * @returns {string} Absolute outputs directory.
+ */
+function resolveOutputsDirForTest(args) {
+  const skillRoot = resolveSkillRoot(args.skill);
+  return args['outputs-dir']
+    ? path.resolve(args['outputs-dir'])
+    : defaultOutputsDir({ skillRoot, subject: benchmarkSubject(args), traceMode: args['trace-mode'] || 'router' });
+}
+
+module.exports = {
+  run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTypeSkill,
+  resolveRouteGold, resolveCompiledParity, resolveOutputsDirForTest,
+};
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
