@@ -14,9 +14,8 @@ _memory:
     last_updated_at: "2026-07-27T08:20:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Scaffolded nine remediation child phases from the audit findings"
-    next_safe_action: "Child 001 triage is running under a three-model verification split"
-    blockers:
-      - "Children 002 through 009 are gated on child 001 triage dispositions"
+    next_safe_action: "Operator approves per-phase finding sets; phase 002 is the lowest-risk start"
+    blockers: []
     key_files:
       - "spec.md"
       - "../016-dead-code-and-architecture-audit/findings-report.md"
@@ -108,15 +107,15 @@ Remediate the audit findings in a gated order that verifies before it deletes, g
 
 | Phase | Folder | Focus | Findings | Risk | Status |
 |-------|--------|-------|----------|------|--------|
-| 001 | `001-findings-triage-and-verification/` | Re-test every unverified finding; record CONFIRMED, REFUTED or DEFERRED per item | 80 | Gate | Planned |
-| 002 | `002-repo-hygiene-and-residue/` | Committed scratch residue, stale and duplicate ignore rules, rotated logs, dated benchmark output | 10 | Low | Planned |
-| 003 | `003-dead-code-removal/` | Dead npm script, unused deps, unreachable CLI subcommands, orphan smoke scripts, hidden test file, broken config references | 14 | Low-Med | Planned |
-| 004 | `004-legacy-and-superseded-removal/` | Superseded benchmark runs and fixtures, pre-v4 changelogs, removed-runtime leftovers | 10 | Low-Med | Planned |
-| 005 | `005-misplacement-and-layout/` | Layout contradictions, personal config in a public repo, absolute workstation paths, dual SQLite state paths | 11 | Medium | Planned |
-| 006 | `006-hub-doc-runtime-drift/` | Hub SKILL.md and README claims contradicting mode registries and on-disk reality | 15 | Medium | Planned |
+| 001 | `001-findings-triage-and-verification/` | Re-test every unverified finding; record CONFIRMED, REFUTED or DEFERRED per item | 83 | Gate | **COMPLETE** — 46 confirmed, 17 refuted, 20 deferred |
+| 002 | `002-repo-hygiene-and-residue/` | Committed scratch residue, stale and duplicate ignore rules, rotated logs, dated benchmark output | 6 | Low | Planned |
+| 003 | `003-dead-code-removal/` | Dead npm script, unused deps, unreachable CLI subcommands, orphan smoke scripts, hidden test file, broken config references | 5 | Low-Med | Planned |
+| 004 | `004-legacy-and-superseded-removal/` | Superseded benchmark runs and fixtures, pre-v4 changelogs, removed-runtime leftovers | 4 | Low-Med | Planned |
+| 005 | `005-misplacement-and-layout/` | Layout contradictions, personal config in a public repo, absolute workstation paths, dual SQLite state paths | 8 | Medium | Planned |
+| 006 | `006-hub-doc-runtime-drift/` | Hub SKILL.md and README claims contradicting mode registries and on-disk reality | 12 | Medium | Planned |
 | 007 | `007-deep-loop-and-cli-contract-drift/` | The `cli-devin` executor kind, dropped `--convergence-mode`, `--lineage-timeout-hours` ceiling, mirror-sync checker gap | 6 | Med-High | Planned |
-| 008 | `008-runtime-mirror-and-mcp-config/` | Runtime mirror divergence and duplicated MCP config sources of truth | 6 | High | Planned |
-| 009 | `009-overengineering-simplification/` | Outsized subsystems: resume and shadow-parity pair, launcher triplication, shared-payload triplication, always-off metrics, oversized pseudocode router | 8 | High | Planned |
+| 008 | `008-runtime-mirror-and-mcp-config/` | Runtime mirror divergence and duplicated MCP config sources of truth | 2 | High | Planned |
+| 009 | `009-overengineering-simplification/` | Outsized subsystems: resume and shadow-parity pair, launcher triplication, shared-payload triplication, always-off metrics, oversized pseudocode router | 3 | High | Planned |
 
 ### Phase Transition Rules
 

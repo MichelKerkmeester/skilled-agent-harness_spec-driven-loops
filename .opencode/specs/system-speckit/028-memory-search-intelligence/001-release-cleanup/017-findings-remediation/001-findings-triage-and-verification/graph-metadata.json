@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary",
-      "impl summary core"
+      "findings triage summary",
+      "017 phase 001 summary"
     ],
     "key_topics": [
       "findings",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Eighty of the audit's 88 findings were path-checked but never claim-tested",
     "created_at": "2026-07-27T08:41:07Z",
-    "last_save_at": "2026-07-27T10:45:59.432Z",
+    "last_save_at": "2026-07-27T11:46:55.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0804d8d364b17024be9f2f6ae78a9987e552d1fa6375153592aa6e9fd94aebc0",
+    "source_fingerprint": "sha256:f603e07e45103d6e9070bb03689fdc7a298662db212a6eed62cd9302348268c5",
     "source_doc_hashes": {
-      "spec.md": "a76a6981a076be18f5aea95474fb3f493af085369be4cc279ec59ee7348e70db",
-      "plan.md": "237860bc45476c920624eefb4a19e05f49cacce0d4c86b01863ddf7a3f9dc24f",
-      "tasks.md": "e60af8684075b75eaac6cc9f622571540b600b65a05fed3282c7f0b11d29f02d",
-      "implementation-summary.md": "271bf585b2aea57cbe24282380eb9c03d250a49ab5e101434d85dbd26fcffaa2"
+      "spec.md": "4092f6dea6b9fdfedce195594df06b42cb69564037063b07ec2eb1587dae2a4f",
+      "plan.md": "ae096ecf97d9b4d4b4f16aab1a57bd841017947b5de61b7cc7e246fa1d4b06bb",
+      "tasks.md": "81ef1d300b67e6ad39adc31c9cffb5ae584da24e4192723cb347049488400fe3",
+      "implementation-summary.md": "a83122072957b787e56f9b6d1cd18eed8845dd10a27de51aac7bcae6b1b9b568"
     },
     "last_active_child_id": null,
     "last_active_at": null

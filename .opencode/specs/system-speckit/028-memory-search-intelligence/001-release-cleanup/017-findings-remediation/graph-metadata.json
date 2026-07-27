@@ -91,15 +91,15 @@
     ],
     "causal_summary": "The audit in phase 016 produced 88 findings across six categories",
     "created_at": "2026-07-27T08:40:54Z",
-    "last_save_at": "2026-07-27T10:45:59.310Z",
+    "last_save_at": "2026-07-27T11:46:55.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0a46bdb9a93f60a867534a4dc3372089c820c88fc449d1959c4a6408681e372a",
+    "source_fingerprint": "sha256:45d7c5e4058092539b2144ff0b1c931aac3f16b30675c76ab2f74e6ac54364c4",
     "source_doc_hashes": {
-      "spec.md": "0d8ab4e87373a244a5dda60bea21f6377db275d2a5ec73097e164be77090fee8"
+      "spec.md": "3d1caa58333e215ee6ceb82bd3300954bf8e19ea2f5f1c6809a90304d20af5ad"
     },
     "last_active_child_id": null,
     "last_active_at": null

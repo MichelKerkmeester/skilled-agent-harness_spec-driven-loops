@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit"
-    last_updated_at: "2026-07-27T08:56:02Z"
+    last_updated_at: "2026-07-27T11:48:08Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Completed the twenty-pass research program and authored the findings report"
     next_safe_action: "Operator ranks findings, then a separate remediation phase verifies each candidate before touching it"
@@ -62,8 +62,8 @@ This report distinguishes three tiers. Treat the tiers as load-bearing.
 | Tier | Meaning | Count |
 |------|---------|-------|
 | **CONFIRMED** | Independently re-verified during this audit against the real tree | 6 |
-| **REFUTED** | Claimed by a research pass, disproved on verification | 2 |
-| **UNVERIFIED** | Path-checked only; the finding's own claim has NOT been independently re-tested | 80 |
+| **REFUTED** | Claimed by a research pass, disproved on verification | 17 (2 during the audit, 15 in triage) |
+| **UNVERIFIED** | Path-checked only; superseded by triage — see section 3b | 0 (all 80 dispositioned) |
 
 Path existence was checked for every finding and is clean: all Devin finding paths resolve once `:line` suffixes and brace expansions are parsed, and all composer paths resolve or are findings *about* an absent target.
 
@@ -106,6 +106,64 @@ ls -la .git/hooks/pre-commit
 rg -l -e "require\(.chokidar.\)" -e "from .chokidar." --glob '!node_modules' .   # 5 files
 rg -l -e "require\(.express.\)" -e "from .express."  --glob '!node_modules' .    # 0 files
 ```
+
+### R-003 — `check-mcp-mutation-class.sh` is NOT an uninvoked guard (refutes `devin-03 F12`, CAT-6)
+
+**Claim**: "a documented mutation-class guard that no route invokes."
+
+**Reality**: it is a *blocking* gate on every commit. `.opencode/scripts/git-hooks/pre-commit` lines 86-89 assign `MUTCLASS_GUARD="${REPO_ROOT}/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"` and fail the commit with `BLOCKED: MCP mutation-class contract failed` when it does not pass.
+
+This is the **third** dead-code claim in this program that turned out to be a live script invoked by path string from a hook. The pattern is now established, not incidental: reachability searches that stop at the owning subsystem miss every hook-invoked consumer.
+
+**Verify**: `sed -n '78,98p' .opencode/scripts/git-hooks/pre-commit`
+
+### R-004 — sk-code "superseded" benchmark runs are a documented retention state (refutes `devin-01 F1`, CAT-2)
+
+**Claim**: superseded benchmark runs kept alongside canonical current runs.
+
+**Reality**: `benchmark/README.md:93` defines an intentional status taxonomy — `current`, `superseded`, `frozen`, `sidecar`, `legacy` — in which "`superseded` is an earlier development run kept only as evidence". Retention is the documented design, not neglect.
+
+**Verify**: `sed -n '93p' .opencode/skills/sk-code/benchmark/README.md`
+
+### R-005 — `.claude/agents/` is not a stale mirror (refutes `devin-04 F1`, CAT-2)
+
+**Claim**: `.claude/agents/` is a stale physical mirror of canonical `.opencode/agents/`.
+
+**Reality**: they are runtime-specific siblings with different frontmatter schemas. `.claude/agents/code.md` declares `tools:`; `.opencode/agents/code.md` declares `mode:`, `temperature:` and `permission:`. Neither is a copy of the other.
+
+**Verify**: `diff <(head -8 .claude/agents/code.md) <(head -8 .opencode/agents/code.md)`
+
+### R-006 — `smoke-command-benchmark.cjs` is documented (refutes `devin-03 F11`, CAT-1)
+
+**Claim**: an undocumented smoke test with no reachable caller.
+
+**Reality**: no executable caller exists, but `035-command-surface-benchmark/000-command-benchmark-contract/handoff-gates.md` documents an exact direct invocation. The finding is false as worded; the file is a documented manual tool, not orphaned.
+
+**Verify**: `rg -n --fixed-strings 'smoke-command-benchmark.cjs' .opencode/specs --glob '*.md'`
+
+### R-007 — `sk-doc/scripts/README.md` entries all resolve (refutes `devin-01 F10`, CAT-1)
+
+**Claim**: `scripts/README.md` documents ten scripts that do not exist at that location.
+
+**Reality**: all ten resolve, mostly through intentional facade symlinks.
+
+**Verify**: `ls -l .opencode/skills/sk-doc/scripts`
+
+---
+
+## 3b. TRIAGE OUTCOME
+
+Phase 001 of the remediation program re-tested all 83 previously-unverified findings across three model families.
+
+| Disposition | Count |
+|-------------|-------|
+| CONFIRMED | 46 |
+| REFUTED | 17 |
+| DEFERRED | 20 |
+
+**One finding in five was wrong.** Refutation rate by category: CAT-1 31%, CAT-2 30%, CAT-6 25%, CAT-3 20%, CAT-5 16%, CAT-4 10%. Dead code — the category whose remediation is irreversible — is the least reliable.
+
+Full dispositions: `../017-findings-remediation/001-findings-triage-and-verification/disposition-table.md`.
 
 ---
 

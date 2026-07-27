@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The repository has grown across dozens of packets, several migrations (spec re-nesting, hyphen-case renaming, parent-hub merges), and multiple superseded experiments",
     "created_at": "2026-07-27T05:50:45.833Z",
-    "last_save_at": "2026-07-27T08:56:03.100Z",
+    "last_save_at": "2026-07-27T11:48:09.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +214,11 @@
     ],
     "source_fingerprint": "sha256:a835b8fd7f63d81cd0a9336984eb0ebc6b293da03a066f8f8efc4e81b72d2aa0",
     "source_doc_hashes": {
-      "spec.md": "2e39eab0cf772b4c16258330b99fbf0590e7bc00430ec94632adf163c54cca84",
-      "plan.md": "998d8f922f2b520f515164c972e74424fdace82acbddb2a68decca3464e9a4af",
-      "tasks.md": "a5275ed1a19dc70d2d8f2f8e2e22e050b3e0e1a9e80a01f97b8134fbab1f8241",
-      "checklist.md": "c59e977474ce569ef3943786f8ebb06da6039e2742c2c99252b70e27b68a6a26",
-      "implementation-summary.md": "bb79f24eff2799f882c1203e31e623c1097fc80202d05a454c5d484889cfc7be"
+      "spec.md": "20716b581d6e74d103669caba432369ed5ced423931f41d961608b5a9cc37057",
+      "plan.md": "997b33f36b5c4a6b8be650ee3773c44241ea9ba39dd943de883d70624e64c0d6",
+      "tasks.md": "63558bcd2d193db209330581abed8d91dffeeb9d29c52316630033c6dcabaa93",
+      "checklist.md": "a8e4f21891e274b78cf4e7beb65bc3305d4af036e09c4060ea7f68988b3c33b9",
+      "implementation-summary.md": "98e6a8c0f97c60827a4aa91825e63daa7705f7654d1de14dfa3f109a10e213dd"
     },
     "last_active_child_id": null,
     "last_active_at": null
