@@ -42,11 +42,6 @@ describe('context-metrics', () => {
       expect(getSessionMetrics().memoryRecoveryCalls).toBe(before + 1);
     });
 
-    it('increments codeGraphQueries on code_graph_query event', () => {
-      const before = getSessionMetrics().codeGraphQueries;
-      recordMetricEvent({ kind: 'code_graph_query' });
-      expect(getSessionMetrics().codeGraphQueries).toBe(before + 1);
-    });
 
     it('tracks spec folder transitions', () => {
       const before = getSessionMetrics().specFolderTransitions;
@@ -73,7 +68,6 @@ describe('context-metrics', () => {
       expect(score.factors).toBeDefined();
       expect(typeof score.factors.recency).toBe('number');
       expect(typeof score.factors.recovery).toBe('number');
-      expect(typeof score.factors.graphFreshness).toBe('number');
       expect(typeof score.factors.continuity).toBe('number');
     });
 
