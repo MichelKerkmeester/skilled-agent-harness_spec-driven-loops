@@ -26,7 +26,7 @@ Canonical for agents is `.opencode/agents/` (note: *not* `.claude/agents/`, whic
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/*.toml` (13) | **generated** | `.opencode/agents/*.md` | Yes — `sync-agents.cjs --check` |
-| `prompts/*.md` (36) | **generated** pointer stubs | `.opencode/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
+| `prompts/*.md` (35) | **generated** pointer stubs | `.opencode/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
 | `hooks/*` (16 symlinks) | per-file symlinks | scattered `.opencode/**` | Yes — mirror generator |
 | `hooks.json` | **hand-authored** | — | n/a locally; installed outbound to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
@@ -96,7 +96,7 @@ developer_instructions = '''
 
 ## 6. REQUIRED PARITY
 
-- 13 agents and 36 prompts, matching the canonical trees exactly.
+- 13 agents and 35 prompts, matching the canonical trees exactly. The command count moves as commands are added or retired; `sync-prompts.cjs --check` is authoritative, not this number.
 - Prompt names are the flattened command path: `create/agent.md` → `create-agent.md`.
 - Every prompt stub's cited canonical path must exist. A stub pointing at a deleted file is the drift mode that actually occurred here.
 

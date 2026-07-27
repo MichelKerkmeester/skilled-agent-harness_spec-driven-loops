@@ -29,7 +29,7 @@ Agents source from **`.claude/agents/`**, not `.opencode/agents/`, because Curso
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/*.md` (13) | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
-| `commands/*.md` (36) | symlink | `.opencode/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
+| `commands/*.md` (35) | symlink | `.opencode/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
 | `hooks/*` (15) | symlink | scattered `.opencode/**` | discovery mirror only |
 | `hooks.json` | **hand-authored** | — | — |
 | `rules/skill-routing.md` | **hand-authored** | — | also read by Devin |
@@ -83,7 +83,7 @@ Both refuse to accept a real file where a symlink belongs — that is a silent f
 
 ## 6. REQUIRED PARITY
 
-- 13 agents and 36 commands, names matching the canonical trees.
+- 13 agents and 35 commands, names matching the canonical trees. The command count moves as commands are added or retired; the drift checks below are authoritative, not this number.
 - Every entry under `agents/` and `commands/` is a symlink resolving into the canonical tree.
 - No duplicate agent names between `.cursor/agents/` and the `.claude/agents/` auto-import — verified live: the roster lists each name once.
 

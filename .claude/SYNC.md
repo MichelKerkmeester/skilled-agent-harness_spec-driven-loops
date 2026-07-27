@@ -88,7 +88,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 ## 6. REQUIRED PARITY
 
 - 13 agents, same names, in all five surfaces.
-- 36 commands reachable from every runtime that supports them.
+- 35 commands reachable from every runtime that supports them. The count moves as commands are added or retired; the drift checks below are authoritative, not this number.
 - An agent added here must reach `.opencode/agents`, `.codex/agents`, `.cursor/agents` and `.devin/agents`.
 - `agents/README.txt` lists every agent present in the directory.
 

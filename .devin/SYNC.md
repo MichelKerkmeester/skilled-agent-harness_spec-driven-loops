@@ -27,7 +27,7 @@ Two naming quirks to internalise:
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/<name>/AGENT.md` (13) | symlink | `.claude/agents/<name>.md` | `../../../.claude/agents/<name>.md` |
-| `skills/<flat>/SKILL.md` (36) | symlink | `.opencode/commands/<path>.md` | `../../../.opencode/commands/<path>.md` |
+| `skills/<flat>/SKILL.md` (35) | symlink | `.opencode/commands/<path>.md` | `../../../.opencode/commands/<path>.md` |
 | `hooks/*` (19) | symlink | scattered `.opencode/**` | discovery mirror only |
 | `hooks.v1.json` | **hand-authored** | — | — |
 | `config.local.json` | operator-local | — | gitignored, never synced |
@@ -95,7 +95,7 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 
 ## 6. REQUIRED PARITY
 
-- 13 agents and 36 commands, names matching the canonical trees.
+- 13 agents and 35 commands, names matching the canonical trees. The command count moves as commands are added or retired; the drift checks below are authoritative, not this number.
 - Every `AGENT.md` / `SKILL.md` is a symlink resolving into the canonical tree; a real file there is a silent fork.
 - Every `.opencode/**` script `hooks.v1.json` invokes has a matching symlink in `hooks/`.
 - Every mirrored file parses as strict YAML.
@@ -113,7 +113,7 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 Live confirmation, which file checks cannot give you:
 
 ```bash
-devin skills list                                                   # expect 36 commands + 12 skill packets
+devin skills list                                                   # expect 35 commands + 12 skill packets
 devin --permission-mode bypass -p "List ONLY subagent profile names, one per line."   # expect 13 + 2 built-ins
 ```
 
