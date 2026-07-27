@@ -51,6 +51,7 @@ Use this root `spec.md` as the current phase map. The research subject is **our 
 | **Created** | 2026-07-11 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-skill-advisor` |
+| **Successor** | `../018-advisor-audit-and-state-containment/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

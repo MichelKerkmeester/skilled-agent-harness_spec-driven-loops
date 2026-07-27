@@ -44,7 +44,7 @@ Commands are organized into six groups plus root-level utilities:
 | **create** | `commands/create/` | 11 | Scaffold OpenCode components, documentation packages, and changelogs |
 | **deep** | `commands/deep/` | 8 | Deep research, review, alignment, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
-| **interface** | `commands/interface/` | 3 | Interface direction, design-reference extraction, and motion design |
+| **interface** | `commands/interface/` | 2 | Interface direction (incl. motion) and design-reference extraction |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
@@ -106,9 +106,8 @@ command/
 │   ├── assets/               # YAML workflow definitions
 │   └── scripts/              # Diagnostic scripts
 ├── interface/                # Interface design commands
-│   ├── design.md             # Create an interface direction
-│   ├── design-reference.md   # Extract a measured style reference
-│   └── motion.md             # Create a motion design specification
+│   ├── design.md             # Create an interface direction (incl. motion)
+│   └── design-reference.md   # Extract a measured style reference
 ├── memory/                   # Memory system commands
 │   ├── search.md             # Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
 │   ├── learn.md              # Constitutional memory manager
@@ -180,9 +179,8 @@ Design and validate interface systems using the `sk-design` skill.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Design | `/interface:design <target> [:auto\|:confirm]` | Create or reshape a distinctive interface direction |
+| Design | `/interface:design <target> [:auto\|:confirm]` | Create or reshape a distinctive interface direction (incl. motion, transitions, reduced-motion) |
 | Design Reference | `/interface:design-reference <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
-| Motion | `/interface:motion <component-state> [:auto\|:confirm]` | Specify animation, transitions, and reduced-motion behavior |
 
 ### Root Commands
 

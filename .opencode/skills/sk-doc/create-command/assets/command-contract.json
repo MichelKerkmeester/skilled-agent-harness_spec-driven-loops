@@ -78,7 +78,7 @@
         "operations": ["md-generator writes and overwrites DESIGN.md", "other modes emit specs and handoff manifests (additive)"]
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/interface:design", "/interface:foundations", "/interface:motion", "/interface:audit", "/interface:design-reference", ":auto suffix", ":confirm suffix"],
+      "invocation_aliases": ["/interface:design", "/interface:design-reference", ":auto suffix", ":confirm suffix"],
       "workflow_schema_ref": null
     },
     "speckit": {

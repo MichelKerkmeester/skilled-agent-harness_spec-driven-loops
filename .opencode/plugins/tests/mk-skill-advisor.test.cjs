@@ -23,7 +23,7 @@ const BRIDGE_PATH = path.join(
   'skills',
   'system-skill-advisor',
   'mcp-server',
-  'plugin_bridges',
+  'plugin-bridges',
   'mk-skill-advisor-bridge.mjs',
 );
 const RENDERER_PATH = path.join(
@@ -181,6 +181,7 @@ test('malformed optional configuration is reported with a prompt-safe code', asy
     } else {
       process.env.HOME = originalHome;
     }
+    fs.rmSync(home, { recursive: true, force: true });
   }
 });
 
@@ -242,36 +243,40 @@ test('termination grace stays inside the configured timeout budget', async () =>
 
 test('multi-file freshness invalidates cache and ignores WAL-only mtime changes', async () => {
   const { root, advisorRoot } = makeAdvisorFixture();
-  const children = Array.from({ length: 8 }, () => fakeChild({ stdout: bridgeEnvelope() }));
-  const calls = [];
-  const pluginModule = await loadPlugin();
-  const hooks = await pluginModule.default({ directory: root }, {
-    cacheTTLMs: 60_000,
-    spawnOverride: spawnSequence(children, calls),
-  });
-  const prompt = { prompt: 'same prompt', sessionID: 'signature-session' };
+  try {
+    const children = Array.from({ length: 8 }, () => fakeChild({ stdout: bridgeEnvelope() }));
+    const calls = [];
+    const pluginModule = await loadPlugin();
+    const hooks = await pluginModule.default({ directory: root }, {
+      cacheTTLMs: 60_000,
+      spawnOverride: spawnSequence(children, calls),
+    });
+    const prompt = { prompt: 'same prompt', sessionID: 'signature-session' };
 
-  await runPrompt(hooks, prompt);
-  await runPrompt(hooks, prompt);
-  assert.equal(calls.length, 1, 'warm identical prompt should hit cache');
+    await runPrompt(hooks, prompt);
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 1, 'warm identical prompt should hit cache');
 
-  writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo changed\n');
-  await runPrompt(hooks, prompt);
-  writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"changed"}\n');
-  await runPrompt(hooks, prompt);
-  writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill-graph.json'), '{"skills":["demo"]}\n');
-  await runPrompt(hooks, prompt);
-  writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite'), 'sqlite-v2');
-  await runPrompt(hooks, prompt);
-  assert.equal(calls.length, 5, 'each canonical source change should invalidate cache');
+    writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo changed\n');
+    await runPrompt(hooks, prompt);
+    writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"changed"}\n');
+    await runPrompt(hooks, prompt);
+    writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill-graph.json'), '{"skills":["demo"]}\n');
+    await runPrompt(hooks, prompt);
+    writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite'), 'sqlite-v2');
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 5, 'each canonical source change should invalidate cache');
 
-  writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite-wal'), 'pending-wal-change');
-  await runPrompt(hooks, prompt);
-  assert.equal(calls.length, 5, 'WAL-only changes remain bounded by cache TTL until checkpoint');
+    writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite-wal'), 'pending-wal-change');
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 5, 'WAL-only changes remain bounded by cache TTL until checkpoint');
 
-  writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite'), 'sqlite-v3-checkpointed');
-  await runPrompt(hooks, prompt);
-  assert.equal(calls.length, 6, 'checkpointed main database changes invalidate cache');
+    writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite'), 'sqlite-v3-checkpointed');
+    await runPrompt(hooks, prompt);
+    assert.equal(calls.length, 6, 'checkpointed main database changes invalidate cache');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test('unavailable freshness bypasses completed cache entries', async () => {

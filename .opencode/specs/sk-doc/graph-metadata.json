@@ -24,7 +24,8 @@
     "sk-doc/019-skill-routing-refactor",
     "sk-doc/019-hyphen-naming-convention",
     "sk-doc/999-create-diff-mode",
-    "sk-doc/z_archive"
+    "sk-doc/z_archive",
+    "sk-doc/021-benchmark-naming-and-playbook-results"
   ],
   "manual": {
     "depends_on": [],
@@ -58,7 +59,7 @@
     "entities": [],
     "causal_summary": "Track folder consolidating every sk-doc documentation-authoring spec (create-* command/skill/readme/changelog/feature-catalog/manual-testing-playbook authoring, description trims, README/anchor standardization, benchmark-authoring centralization, router alignment, and the hyphen-naming convention) into one chronological category.",
     "created_at": "2026-02-17T00:00:00.000Z",
-    "last_save_at": "2026-07-15T00:00:00.000Z",
+    "last_save_at": "2026-07-27T17:15:16.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -68,7 +69,7 @@
     "source_doc_hashes": {
       "spec.md": "b9985bd3dad00992e93327d6ce711bdbb53ef0080114052cd3772a01ba5ee111"
     },
-    "last_active_child_id": "sk-doc/019-hyphen-naming-convention",
-    "last_active_at": "2026-07-15T00:00:00.000Z"
+    "last_active_child_id": "sk-doc/021-benchmark-naming-and-playbook-results",
+    "last_active_at": "2026-07-27T17:15:16.067Z"
   }
 }
