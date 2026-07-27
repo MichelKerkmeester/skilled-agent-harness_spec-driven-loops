@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
+  "description": "Two independent findings from the 5-iteration deep-research pass (GPT-5.6-SOL, high effort) on the cli-devin and cli-cursor hook adapter layers:",
+  "keywords": [
+    "two",
+    "independent",
+    "findings",
+    "5-iteration",
+    "deep-research",
+    "pass",
+    "gpt-5",
+    "6-sol",
+    "high",
+    "effort",
+    "cli-devin",
+    "cli-cursor",
+    "hook",
+    "adapter",
+    "layers"
+  ],
+  "lastUpdated": "2026-07-27T06:06:57.352Z",
+  "specId": "014",
+  "folderSlug": "hook-adapter-shared-boilerplate-and-claude-codex-fix",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
