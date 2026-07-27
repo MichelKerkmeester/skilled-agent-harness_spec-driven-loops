@@ -609,6 +609,22 @@ function releaseTerminalPublicationLock(binding) {
   return true;
 }
 
+// Clear only the record this cleanup owns. Leaving a terminal record behind points
+// every later finalize at a rollback directory that no longer exists — but a newer
+// publication can claim the same path while this one releases its lock, and that
+// newer record must survive.
+function clearOwnedPublicationState(binding) {
+  const statePath = publicationStatePath(binding.runtimeRoot);
+  let current;
+  try {
+    current = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+  } catch {
+    return;
+  }
+  if (!current || current.publicationId !== binding.publicationId) return;
+  fs.rmSync(statePath, { force: true });
+}
+
 function resumeFinalizeCleanup(rollbackRoot, runtimeRoot) {
   const binding = terminalPublicationBinding(rollbackRoot, runtimeRoot, 'finalize-cleanup');
   if (!binding) return null;
@@ -627,10 +643,7 @@ function resumeFinalizeCleanup(rollbackRoot, runtimeRoot) {
     fs.rmSync(binding.rollbackRoot, { recursive: true });
   }
   releaseTerminalPublicationLock(binding);
-  // Clear the state record last. Leaving it behind would keep a terminal receipt
-  // in the serving root naming a rollback directory that no longer exists, and
-  // every later finalize/revert reads that record first.
-  fs.rmSync(publicationStatePath(binding.runtimeRoot), { force: true });
+  clearOwnedPublicationState(binding);
   return { finalized: true, reconciled: [], resumedCleanup: true };
 }
 
@@ -656,7 +669,7 @@ function resumeRevertCleanup(rollbackRoot, runtimeRoot) {
     fs.rmSync(cleanupRoot, { recursive: true });
   }
   releaseTerminalPublicationLock(binding);
-  fs.rmSync(publicationStatePath(binding.runtimeRoot), { force: true });
+  clearOwnedPublicationState(binding);
   return { reverted: true, reconciled: [], resumedCleanup: true };
 }
 

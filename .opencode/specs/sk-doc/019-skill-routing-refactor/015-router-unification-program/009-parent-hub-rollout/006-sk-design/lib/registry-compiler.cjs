@@ -293,27 +293,46 @@ function assertRouterClosure(registry, hubRouter) {
   if (registry.skill !== 'sk-design' || hubRouter.skill !== registry.skill) {
     fail('HUB_IDENTITY_MISMATCH', 'the registry and router must identify sk-design');
   }
-  if (!Array.isArray(registry.modes) || registry.modes.length !== 6) {
-    fail('AUTHORED_INPUT_INVALID', 'sk-design must declare six modes');
+  // These assertions are deliberately structural rather than a frozen list of mode
+  // names. An earlier revision hardcoded the exact six-mode topology in four places,
+  // so retiring two modes invalidated the compiled contract even though the hub was
+  // internally consistent — the hub then failed to compile and silently served legacy
+  // until someone noticed. Checking relationships instead of literals keeps the same
+  // real guarantees (uniqueness, router/registry agreement, no dangling references)
+  // while surviving an intentional restructure.
+  if (!Array.isArray(registry.modes) || registry.modes.length === 0) {
+    fail('AUTHORED_INPUT_INVALID', 'sk-design must declare at least one mode');
   }
   const modes = registry.modes.map((mode) => mode.workflowMode);
   if (new Set(modes).size !== modes.length) fail('PUBLIC_MODE_DUPLICATE', 'workflow modes must be unique');
-  const expectedOrder = ['interface', 'foundations', 'motion', 'audit', 'md-generator', 'design-mcp-open-design'];
-  if (canonicalize(hubRouter.routerPolicy?.tieBreak) !== canonicalize(expectedOrder)) {
-    fail('TIE_BREAK_INVALID', 'tieBreak differs from the authored design-axis order');
+  // tieBreak resolves ambiguity across the declared axes, so it must list exactly the
+  // registry's modes in the registry's own order — that is the property worth holding.
+  if (canonicalize(hubRouter.routerPolicy?.tieBreak) !== canonicalize(modes)) {
+    fail('TIE_BREAK_INVALID', 'tieBreak must list every declared mode in registry order');
   }
-  if (hubRouter.routerPolicy.defaultMode !== null) {
-    fail('DEFAULT_MODE_INVALID', 'sk-design defaultMode must remain null');
+  // A null default defers to clarification; a named default must name a real mode.
+  const defaultMode = hubRouter.routerPolicy.defaultMode;
+  if (defaultMode !== null && !modes.includes(defaultMode)) {
+    fail('DEFAULT_MODE_INVALID', 'sk-design defaultMode must be null or a declared mode');
   }
   for (const outcome of ['single', 'orderedBundle', 'defer']) {
     assertString(hubRouter.routerPolicy?.outcomes?.[outcome], `outcomes.${outcome}`);
   }
+  // Bundle rules are optional: folding axes together can legitimately remove the need
+  // for one. Any rule that remains must be well-formed and reference only live modes.
   const rules = hubRouter.routerPolicy.bundleRules;
-  if (!Array.isArray(rules) || rules.length !== 1
-    || rules[0].name !== 'ui-build-bundle'
-    || canonicalize(rules[0].whenAll) !== canonicalize(['interface', 'foundations'])
-    || rules[0].outcome !== 'orderedBundle') {
-    fail('BUNDLE_RULE_INVALID', 'ui-build-bundle must remain the sole authored bundle rule');
+  if (!Array.isArray(rules)) {
+    fail('BUNDLE_RULE_INVALID', 'bundleRules must be an array');
+  }
+  for (const rule of rules) {
+    assertString(rule?.name, 'bundleRule.name');
+    if (!Array.isArray(rule.whenAll) || rule.whenAll.length === 0
+      || !rule.whenAll.every((entry) => modes.includes(entry))) {
+      fail('BUNDLE_RULE_INVALID', `${rule.name} must trigger on declared modes`);
+    }
+    if (rule.outcome !== 'orderedBundle') {
+      fail('BUNDLE_RULE_INVALID', `${rule.name} must resolve to an ordered bundle`);
+    }
   }
   const signalModes = Object.keys(hubRouter.routerSignals || {});
   if (canonicalize([...signalModes].sort(compareText)) !== canonicalize([...modes].sort(compareText))) {
@@ -365,11 +384,13 @@ function compiledPairRules(hubRouter) {
   return rules;
 }
 
-function fallbackChecklist() {
+// Derived from the live registry so the clarification never offers an axis that has
+// been retired. A hardcoded list here previously outlived the modes it named.
+function fallbackChecklist(modeNames) {
   return [
-    'Choose the dominant design axis or name the separate axes: interface, foundations, motion, audit, md-generator, or Open Design transport.',
+    `Choose the dominant design axis or name the separate axes: ${modeNames.join(', ')}.`,
     'Name the target surface, artifact, or transport operation.',
-    'Confirm whether the request asks for design judgment, extraction, audit, or transport.',
+    'Confirm whether the request asks for design judgment, extraction, or transport.',
   ];
 }
 
@@ -543,7 +564,7 @@ function compileRegistry(input) {
   return Object.freeze({
     advisorProjection: Object.freeze(advisorProjection),
     authoredSources: Object.freeze(authoredSources),
-    fallbackChecklist: Object.freeze(fallbackChecklist()),
+    fallbackChecklist: Object.freeze(fallbackChecklist(modes.map((mode) => mode.workflowMode))),
     manifestResources: Object.freeze(manifestResources),
     policy,
     projectionGraph: Object.freeze(projectionGraph),
