@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi api key"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Pi CLI - Complete Command Reference
@@ -180,7 +180,7 @@ The pin confirmed RPC mode as a persistent stdin/stdout JSONL protocol. It is ar
 pi --mode rpc --no-session
 ~~~
 
-The shared runtime must keep the process alive, write newline-delimited JSON requests, and read newline-delimited JSON responses. Do not route RPC through a print-mode adapter.
+The shared runtime must keep the process alive, write newline-delimited JSON requests, and read newline-delimited JSON responses. Do not route RPC through a print-mode adapter. See [pi-tools.md](./pi-tools.md) §2 for how RPC compares to every sibling CLI's own session-continuity model.
 
 ## 12. SAFE INVOCATION CHECKLIST
 

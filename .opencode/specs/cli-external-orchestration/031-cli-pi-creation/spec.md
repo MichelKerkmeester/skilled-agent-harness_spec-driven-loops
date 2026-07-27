@@ -7,12 +7,12 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation"
-    last_updated_at: "2026-07-27T18:32:00Z"
+    last_updated_at: "2026-07-27T21:50:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All 13 phases landed and merged to v4; 012 amended to drop code-graph support"
+    recent_action: "All 14 phases landed; 012 amended to drop code-graph support; 014 aligned cli-pi to siblings"
     next_safe_action: "None -- packet complete"
     blockers: []
-    key_files: ["001-pi-contract-pin/implementation-summary.md", "007-pi-mcp-host-integration/implementation-summary.md", "012-pi-runtime-compatibility/implementation-summary.md", "013-pi-manual-testing-playbook-authoring/implementation-summary.md"]
+    key_files: ["001-pi-contract-pin/implementation-summary.md", "007-pi-mcp-host-integration/implementation-summary.md", "012-pi-runtime-compatibility/implementation-summary.md", "013-pi-manual-testing-playbook-authoring/implementation-summary.md", "014-pi-devin-cursor-parity-alignment/implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-scaffold"
@@ -39,7 +39,7 @@ _memory:
 |---|---|
 | **Level** | 2 phased packet |
 | **Priority** | P1 |
-| **Status** | Complete — all 13 phases landed (11 Complete, `008` Blocked with real, documented findings, `007` reopened mid-packet and closed Complete with live evidence); 2 phases (`012`, `013`) added beyond the original 11 at operator request for real `.pi/` runtime compatibility + the manual-testing playbook |
+| **Status** | Complete — all 14 phases landed (12 Complete, `008` Blocked with real, documented findings, `007` reopened mid-packet and closed Complete with live evidence); 3 phases (`012`, `013`, `014`) added beyond the original 11 at operator request for real `.pi/` runtime compatibility, the manual-testing playbook, and devin/cursor structural alignment |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/031-cli-pi-creation` |
@@ -59,7 +59,7 @@ This repository already dispatches work to five external coding CLIs as `cli-ext
 Pi's architecture differs from the four precedents in a way that changes the shape of the work, not just its content: Pi natively speaks the same `SKILL.md` convention this repo already uses for skills (its own docs example even points at `~/.claude/skills`), and it has a first-party TypeScript extension system rather than an external hooks-registration file. Its custom-command layer ("prompt templates") is native but flat and non-recursive, unlike this repo's nested `create/`, `deep/`, `doctor/` command groups. Its sub-agent support (`pi-subagents`) and its MCP-server support (`pi-mcp-extension`) are both explicitly third-party community packages, not built into Pi core — meaning the two integration surfaces this repo depends on most heavily (the `mk-spec-memory` MCP daemon every file-modifying task routes through, and the 14 Task-tool sub-agents deep-loop dispatches) rest on the least-verified part of Pi's ecosystem.
 
 ### Purpose
-Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then deep-loop executor wiring, skill packet, discovery/command/agent/MCP/extension bridges, model registry, manual-testing playbook, and a docs/governance closeout — while adapting each phase's *shape* to what Pi's real architecture requires (a discovery-bridge instead of a hook-adapter-layer for skills; a flattening bridge for the non-recursive command layer; explicit third-party-package risk framing for agents and MCP). All 13 phases have now landed: this packet was originally scaffolded and content-authored before Pi was installed, per an explicit operator decision to sequence "scaffold the spec first, install later," and phase 001 then converted the pi.dev documentation findings cited throughout this packet from *documented* to *confirmed*. Two further phases (`012`, `013`) were added beyond the original 11-phase scope at operator request, once it became clear several of the original phases (`005`, `006`, `008`, `010`) had deliberately deferred *building* the real `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/`, and manual-testing-playbook artifacts to a later phase — `012` built the three real runtime-compatibility artifact classes, and `013` authored the real playbook against them.
+Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then deep-loop executor wiring, skill packet, discovery/command/agent/MCP/extension bridges, model registry, manual-testing playbook, and a docs/governance closeout — while adapting each phase's *shape* to what Pi's real architecture requires (a discovery-bridge instead of a hook-adapter-layer for skills; a flattening bridge for the non-recursive command layer; explicit third-party-package risk framing for agents and MCP). All 13 phases have now landed: this packet was originally scaffolded and content-authored before Pi was installed, per an explicit operator decision to sequence "scaffold the spec first, install later," and phase 001 then converted the pi.dev documentation findings cited throughout this packet from *documented* to *confirmed*. Three further phases (`012`, `013`, `014`) were added beyond the original 11-phase scope at operator request. `012` built the three real runtime-compatibility artifact classes (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/`) that phases `005`/`006`/`008` had deliberately deferred; `013` authored the real manual-testing playbook against them; `014` then aligned `cli-pi`'s references, assets, and general setup closer to the `cli-devin`/`cli-cursor` mode skills — a new unique-capabilities reference, confidence-level upgrades reflecting phases `007`/`012`/`013`'s real findings, and structural sections (cross-validation, anti-patterns, overview) both siblings already had.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -98,6 +98,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 | `.opencode/agents/context.md` (+ `.claude`/`.codex` mirrors), `deep-research.md`, `deep-review.md`, `deep-improvement.md`, `AGENTS.md`, `CLAUDE.md`, `README.md`, cross-skill sibling docs | Modify | 011 | Extend roster/governance/sibling mentions to include Pi; full recursive validation. |
 | `.opencode/skills/system-spec-kit/scripts/pi/{sync-prompts-pi.cjs,sync-agents-pi.cjs,README.md}`, `.pi/prompts/*.md` (36), `.pi/agents/*.md` (13), `.pi/extensions/*.ts` (7), `.pi/settings.json`, `cli-pi/references/agent-delegation.md` | Created/Modify | 012 | *(post-hoc, operator request)* Build the real prompt/agent/extension artifacts phases 005/006/008 designed but deferred. |
 | `cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md` + 19 `PI-NNN` scenario files across 8 category folders | Created | 013 | *(post-hoc, operator request)* Author the real playbook phase 010 planned but deferred, exercising phase 012's artifacts. |
+| `cli-pi/references/pi-tools.md` (created), `native-skills-and-extensions.md`, `mcp-and-third-party-packages.md`, `integration-patterns.md`, `agent-delegation.md`, `model-dispatch-gpt-5.6.md`, `cli-reference.md`, `assets/prompt-templates.md`, `SKILL.md`, `README.md`, `changelog/v1.1.0.0.md` (created), hub `leaf-manifest.json` | Created/Modify | 014 | *(post-hoc, operator request)* Align `cli-pi`'s references/assets/general setup closer to `cli-devin`/`cli-cursor`. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -119,6 +120,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 | 11 | `011-docs-agents-governance-and-closeout/` | Extend roster/governance/sibling mentions to include Pi wherever the other 5 CLIs already appear; full recursive `validate.sh --strict` closeout across the whole packet. | Complete — `cli-pi` (+ opportunistic `cli-devin` backfill) added across 5 doc/roster surfaces; GLM-5.2 APPROVE |
 | 12 | `012-pi-runtime-compatibility/` | *(added post-hoc, operator request)* Build the real `.pi/prompts/*.md`, `.pi/agents/*.md`, and `.pi/extensions/*.ts` artifacts phases 005/006/008 designed but deferred. | Complete — 36 prompts + 13 agents + 7 extensions built and live-verified; GLM-5.2 APPROVE WITH MINOR NOTES, all fixed |
 | 13 | `013-pi-manual-testing-playbook-authoring/` | *(added post-hoc, operator request)* Author the real playbook (root + 19 `PI-NNN` scenarios) phase 010 planned but deferred, exercising phase 012's artifacts. | Complete — root + 19 scenarios authored, 9 live-executed with real evidence; GLM-5.2 APPROVE WITH MINOR NOTES, all fixed |
+| 14 | `014-pi-devin-cursor-parity-alignment/` | *(added post-hoc, operator request)* Align `cli-pi`'s references, assets, and general setup closer to `cli-devin`/`cli-cursor`: new `pi-tools.md` reference, confidence upgrades citing phases 007/012/013, cross-validation/anti-patterns/overview sections. | Complete — built directly, GLM-5.2 found 1 blocking + 3 minor factual issues (all about sibling-CLI claims), all fixed |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -143,6 +145,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 | 010 | 011 | The playbook's scenario coverage is judged proportional to the sibling CLIs' playbooks (both in count and category breadth). | Met — 19-scenario/8-category coverage plan judged proportional to `cli-cursor`'s playbook; real files authored in phase 013. |
 | 011 | 012 | Governance/roster closeout lands clean (`validate.sh --strict` Errors:0) before any post-hoc extension phase begins. | Met — phase 011 closed Complete, GLM-5.2 APPROVE, before phases 012/013 were scoped. |
 | 012 | 013 | The real `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` artifacts phase 012 builds exist and are live-verified, so phase 013 can test them rather than describe them abstractly. | Met — all three artifact classes built and independently re-verified by Claude before phase 013's dispatch began. |
+| 013 | 014 | Phases 007/012/013 land real, live-confirmed findings for 014's content upgrades to cite, and the packet's own governance closeout (011) already landed clean. | Met — all three phases Complete with real evidence before 014 began. |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -160,7 +163,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 ---
 
 ## RELATED DOCUMENTS
-- `001-pi-contract-pin/spec.md` through `013-pi-manual-testing-playbook-authoring/spec.md` (full phase detail; `012`/`013` added post-hoc at operator request)
+- `001-pi-contract-pin/spec.md` through `014-pi-devin-cursor-parity-alignment/spec.md` (full phase detail; `012`/`013`/`014` added post-hoc at operator request)
 - `../029-cli-devin-revival/spec.md` (structural precedent — hook-adapter-layer/MCP-host-integration/model-registry phase shapes)
 - `../030-cli-cursor-creation/spec.md` (structural precedent — contract-pin/executor-support/skill-packet/model-allowlist-hardening phase shapes; closest analog for a CLI installed fresh during this packet's own lifetime)
 - `../026-cli-external-parent/spec.md` (origin of the `cli-external-orchestration` hub `cli-pi` is joining as a 6th mode)

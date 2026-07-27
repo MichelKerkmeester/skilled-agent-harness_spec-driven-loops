@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # cli-pi
@@ -98,6 +98,7 @@ Use cli-pi when the request names Pi, needs Pi's native model/provider surface, 
 ### Resource Map
 
 - CLI behavior: [references/cli-reference.md](./references/cli-reference.md)
+- Unique capabilities: [references/pi-tools.md](./references/pi-tools.md)
 - Conductor patterns: [references/integration-patterns.md](./references/integration-patterns.md)
 - Subagents: [references/agent-delegation.md](./references/agent-delegation.md)
 - Native resources: [references/native-skills-and-extensions.md](./references/native-skills-and-extensions.md)
@@ -159,7 +160,8 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 |---|---|
 | [SKILL.md](./SKILL.md) | Runtime instructions, smart routing, and hard rules |
 | [references/cli-reference.md](./references/cli-reference.md) | Pi flags, commands, modes, environment, and failure handling |
-| [references/integration-patterns.md](./references/integration-patterns.md) | Cross-AI dispatch lifecycle and handback patterns |
+| [references/pi-tools.md](./references/pi-tools.md) | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
+| [references/integration-patterns.md](./references/integration-patterns.md) | Cross-AI dispatch lifecycle, cross-validation, and anti-patterns |
 | [references/agent-delegation.md](./references/agent-delegation.md) | Built-in boundary and community subagent package guidance |
 | [references/native-skills-and-extensions.md](./references/native-skills-and-extensions.md) | Native resource discovery with confidence labels |
 | [references/mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) | MCP and community package boundaries |

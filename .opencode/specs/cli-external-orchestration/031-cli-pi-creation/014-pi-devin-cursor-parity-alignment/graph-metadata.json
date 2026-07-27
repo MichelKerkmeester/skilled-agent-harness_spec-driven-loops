@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
   "parent_id": "cli-external-orchestration/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
@@ -11,61 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "pi manual testing playbook authoring",
-      "cli-pi playbook build",
-      "pi manual testing playbook authoring plan",
-      "pi manual testing playbook authoring tasks",
-      "pi manual testing playbook authoring checklist",
-      "pi manual testing playbook authoring summary"
+      "pi devin cursor parity alignment",
+      "pi references alignment",
+      "pi skill packet alignment",
+      "pi devin cursor parity alignment plan",
+      "pi devin cursor parity alignment tasks",
+      "pi devin cursor parity alignment checklist",
+      "pi devin cursor parity alignment summary"
     ],
     "key_topics": [
-      "manual",
-      "testing",
-      "playbook",
-      "authoring",
-      "cli-pi",
+      "devin",
+      "cursor",
+      "parity",
+      "alignment",
+      "references",
+      "skill",
+      "packet",
       "plan",
       "tasks",
       "checklist",
       "summary",
-      "manual-testing-playbook",
-      "contains",
-      "only"
+      "cli-pi"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"
+      "checklist.md",
+      "tasks.md",
+      "plan.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+      "spec.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -75,15 +58,33 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -141,19 +142,19 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Mirror",
+        "name": "Per Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Match",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -183,15 +184,15 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`cli-pi/manual-testing-playbook/` contains only a `.gitkeep` today",
-    "created_at": "2026-07-27T16:34:14.380Z",
-    "last_save_at": "2026-07-27T19:22:54.400Z",
+    "causal_summary": "`cli-pi` was built to structurally mirror `cli-devin`/`cli-cursor` from the start (phase 003's skill packet, phases 005/006/008's designs), but a direct file-by-file comparison found three real gaps that had grown since: (1) `cli-pi` never gained a \"unique capabilities\" reference — both `cli-devin` (`devin-tools.md`) and `cli-cursor` (`cursor-tools.md`) have one, cataloging what makes that CLI distinctive versus its 5 siblings; (2) two of `cli-pi`'s own references (`native-skills-and-extensions.md`, `mcp-and-third-party-packages.md`) still framed several claims as \"Per Pi docs, unconfirmed\"",
+    "created_at": "2026-07-27T19:22:10.150Z",
+    "last_save_at": "2026-07-27T19:33:22.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0ada36596fbce25a607620b055665873111fab565272d0bfefa621d4038bf75",
+    "source_fingerprint": "sha256:c2239a84db89c2ddb6e4c8b87bdbdef3d0f17753c3c1c23fd0638cdbf6f3cb3a",
     "source_doc_hashes": {
-      "spec.md": "8783fead4b5eb6487fbd79ad299a21459d6737553b444fe45a6d740cb8a42888",
-      "plan.md": "ca736345b3ae315b23f2b51ea147699b6c7e143e97f85007cf45625265d2390d",
-      "tasks.md": "bb780ed6a7349656629f918c26f3b0f6fdd11dbf8554a99678e1bd8a18737b43",
-      "checklist.md": "db8d20e7c1259f823bf3feaebd6dd87d98987934c00be511fe0f38da4bd5579b",
-      "implementation-summary.md": "84e0195d61ad98781ca4c75b2c18241142ee3b3741d4b066984f6ece149c6bb2"
+      "spec.md": "cd00e4f3e20433e3c79cb35a67ac67931a0aab5e405a65bf6472545779f189f1",
+      "plan.md": "48e647b02d1cbad0e80dbc490e231bfddb9b2048a2ff2e30fa84f8a985829333",
+      "tasks.md": "c3270b9f1e9a08b4e0944f842dacd6517141602fcef26790544dd0a5c4f6308f",
+      "checklist.md": "ac82fe3ad492800aac29780e90ddb2c0b17ae8b78028112ec214cdca31b438d0",
+      "implementation-summary.md": "6dfe49e2c917122d1fb2f214e2c47e4a8522618169bd07bd0c2bef9e77298d5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

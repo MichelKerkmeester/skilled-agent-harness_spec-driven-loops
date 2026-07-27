@@ -9,7 +9,7 @@ trigger_phrases:
   - "delegate from pi"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Pi Agent Delegation Reference
@@ -18,7 +18,23 @@ This reference prevents a common category error: Pi's core CLI tools are not the
 
 The local contract pin confirmed the pi-subagents install verb and package contents. Pi's own documentation says the core stays small and does not include built-in sub-agents. Keep those sources separate: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md), [Using Pi](https://pi.dev/docs/latest/usage).
 
-## 1. CORE BOUNDARY
+## 1. OVERVIEW
+
+### Core Principle
+
+Pi's 7 built-in tools cover file/shell operations only; multi-agent delegation is a third-party package (`pi-subagents`), not a first-party Pi feature. Confirmed install path and agent-mirroring behavior are cited to the local contract pin and phase 012, everything else stays labeled per Pi docs, unconfirmed.
+
+### Purpose
+
+Distinguishes Pi's built-in tool surface from the community `pi-subagents` package, documents the confirmed `.pi/agents/**/*.md` project-agent-mirror convention, and gives the conductor model for delegating to child Pi sessions.
+
+### When to Use
+
+- Deciding whether a task needs a Pi built-in tool or a `pi-subagents` child dispatch
+- Understanding how `.opencode/agents/*.md` translates into pi-subagents' 17-field schema
+- Choosing an exploration, review, or implementation child pattern
+
+## 2. CORE BOUNDARY
 
 The installed Pi help exposes built-in tools:
 
@@ -36,7 +52,7 @@ These tools run in the main Pi session. They do not imply a separate agent proce
 
 Per Pi docs, unconfirmed: Pi's core intentionally does not include built-in sub-agents, plan mode, to-dos, permission popups, or background bash. Extensions and packages can add such workflows. Source: [Using Pi](https://pi.dev/docs/latest/usage).
 
-## 2. COMMUNITY BRIDGE
+## 3. COMMUNITY BRIDGE
 
 pi-subagents is a community package, not a first-party Pi CLI mode. The local pin installed it with:
 
@@ -54,13 +70,13 @@ The package's community status matters:
 - A package install mutates project-local settings.
 - The package must not become an invisible hub dependency.
 
-## 2A. PROJECT AGENT MIRRORS
+## 3A. PROJECT AGENT MIRRORS
 
 Project-local Pi agent profiles live at `.pi/agents/**/*.md` as flat files, one profile per `.opencode/agents/*.md` source. The supported frontmatter keeps the required `name`, carries `description`, and maps allowed OpenCode permissions to Pi tool names in the `tools` array (`read`, `write`, `edit`, `bash`, `grep`, `find`, and `ls` where the source permission has a literal Pi equivalent). Unmapped OpenCode-only permissions stay documented as YAML comments; unsupported optional schema fields remain omitted rather than guessed.
 
 pi-subagents resolves agents in this order: built-in, installed package, user `~/.pi/agent/agents/**/*.md`, then project `.pi/agents/**/*.md`. Project files win when names collide, so these flat project mirrors are the authoritative local override.
 
-## 3. CONDUCTOR MODEL
+## 4. CONDUCTOR MODEL
 
 When using a community subagent bridge, the calling AI remains the outer conductor:
 
@@ -79,7 +95,7 @@ Outer calling AI
 
 The outer conductor must not assume that a child package inherits the parent spec folder, worktree policy, or permission boundary. Put those requirements in the prompt and verify the result.
 
-## 4. REQUEST SHAPE
+## 5. REQUEST SHAPE
 
 Use a delegation request with these fields:
 
@@ -104,7 +120,7 @@ Run no network commands.
 Return a structured handback with verification suggestions.
 ~~~
 
-## 5. EXPLORATION CHILD
+## 6. EXPLORATION CHILD
 
 Use an exploration child for repository mapping, dependency tracing, or independent research. The child should return paths, symbols, data flow, and unknowns. It should not edit files unless the parent explicitly selects a write-capable path.
 
@@ -116,7 +132,7 @@ Exploration checklist:
 - Avoid broad destructive commands.
 - Return a small, searchable handback.
 
-## 6. REVIEW CHILD
+## 7. REVIEW CHILD
 
 Use a review child for adversarial checking of an implementation. Require findings-first output:
 
@@ -129,7 +145,7 @@ Use a review child for adversarial checking of an implementation. Require findin
 
 The calling AI confirms findings against the actual repository before editing. A child report is a hypothesis, not a completion claim.
 
-## 7. IMPLEMENTATION CHILD
+## 8. IMPLEMENTATION CHILD
 
 Use a write-capable child only when the parent has approved the scope and verification. The prompt must state:
 
@@ -141,7 +157,7 @@ Use a write-capable child only when the parent has approved the scope and verifi
 
 Do not let a package-created child decide the hub's documentation scope or invent an adapter.
 
-## 8. PARALLEL CHILDREN
+## 9. PARALLEL CHILDREN
 
 Parallel child work is safe only when file ownership is disjoint or every child is read-only. Shared writes create races even when the package reports separate logical tasks.
 
@@ -153,7 +169,7 @@ Prefer:
 
 Avoid parallel writes to settings, registries, or the same source file.
 
-## 9. TRUST AND ROLLBACK
+## 10. TRUST AND ROLLBACK
 
 The pin confirmed that pi install can reject an untrusted project and that --approve allows a project-local install. Before installing a community bridge:
 
@@ -166,7 +182,7 @@ The pin confirmed that pi install can reject an untrusted project and that --app
 
 Do not report a package as installed because a prompt claimed it was installed.
 
-## 10. HANDBACK
+## 11. HANDBACK
 
 Require this minimum:
 

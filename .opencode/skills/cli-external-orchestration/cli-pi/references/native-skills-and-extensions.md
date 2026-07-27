@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi resource loader"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Pi Native Skills and Extensions
@@ -18,7 +18,23 @@ This reference covers Pi's own resource model, which is distinct from this repos
 
 Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only for this packet. The local contract pin is the authority for live observations: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
-## 1. NATIVE SKILLS
+## 1. OVERVIEW
+
+### Core Principle
+
+Pi's own resource model (skills, prompt templates, extensions) is a separate consumer contract from this repository's own skill system. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only; the local contract pin and phases 012/013 are the authority for live observations.
+
+### Purpose
+
+Separates Pi-native skill/prompt-template/extension discovery from this repo's own OpenCode skill packet, and tracks which of those surfaces have moved from documented-only to live-confirmed.
+
+### When to Use
+
+- Deciding whether a claim about Pi's resource discovery is backed by a live test or only by Pi's own documentation
+- Checking whether prompt templates or extensions are safe to treat as confirmed before relying on them
+- Planning the remaining native-skill-discovery verification work
+
+## 2. NATIVE SKILLS
 
 Per Pi docs, unconfirmed: Pi implements the Agent Skills standard and loads skills from global, project, package, settings, and explicit CLI locations. See [Pi skills documentation](https://pi.dev/docs/latest/skills).
 
@@ -28,7 +44,7 @@ Per Pi docs, unconfirmed: Pi reads a skill's description at startup and loads th
 
 Per Pi docs, unconfirmed: explicit --skill paths are additive and can be used with discovery controls. Check the installed help before relying on a flag in a future version.
 
-## 2. REPOSITORY SKILL VERSUS PI SKILL
+## 3. REPOSITORY SKILL VERSUS PI SKILL
 
 The repository's cli-pi SKILL.md is an OpenCode skill packet. Pi's native SKILL.md surface is a separate consumer contract.
 
@@ -42,21 +58,23 @@ The repository's cli-pi SKILL.md is an OpenCode skill packet. Pi's native SKILL.
 
 Do not copy this packet into Pi and assume the hub's single advisor identity survives. That bridge belongs to a separate integration.
 
-## 3. PROMPT TEMPLATES
+## 4. PROMPT TEMPLATES
 
-Per Pi docs, unconfirmed: Pi loads markdown prompt templates and exposes them as slash commands. See [RPC documentation](https://pi.dev/docs/latest/rpc), which describes prompt-template commands in get_commands output.
+**Confirmed (phases 012/013):** Pi discovers flat, non-recursive markdown files under `.pi/prompts/` and exposes each as a slash command named after the file. This repo mirrors all 36 canonical `.opencode/commands/**/*.md` files this way; `sync-prompts-pi.cjs --check` reports `36 prompts are in sync`. Argument substitution — including `$ARGUMENTS` as a documented alias for `$@` — was live-confirmed in a real generated prompt file during a live session (phase 013, scenario PI-008). See [RPC documentation](https://pi.dev/docs/latest/rpc) for how prompt-template commands surface in `get_commands` output.
 
-Per Pi docs, unconfirmed: prompt-template expansion accepts arguments after a slash command. The argument substitution behavior and path precedence remain unverified for this packet.
+Per Pi docs, unconfirmed: full path-precedence rules across every documented discovery location (global, project, package, settings, explicit CLI path) beyond the project-local `.pi/prompts/` location this packet actually populates.
 
-Use [prompt-templates.md](../assets/prompt-templates.md) for caller-side dispatch templates. It is not a claim that Pi will auto-discover these files.
+Use [prompt-templates.md](../assets/prompt-templates.md) for caller-side dispatch templates, and see [pi-tools.md](./pi-tools.md) §4 for the sibling-comparison framing of this surface.
 
-## 4. EXTENSIONS
+## 5. EXTENSIONS
 
-The local pin confirmed that Pi discovered a project-local .pi/extensions/probe.ts and failed the session when it exported an invalid value. Replacing the stub with a callable default factory removed that specific validation error. This means an invalid extension can be fail-closed for a session.
+**Confirmed (phase 012):** Pi auto-discovers project-local `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 6 real extension files (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`), each a plain `ExtensionFactory` calling `pi.on(event, handler)` against this repo's own shared guard-core modules. A live `pi --offline --approve` session loaded all 6 without a startup error. Every guard wraps its call in try/catch and fails open — a guard-core exception must never block work it merely observes.
 
-Per Pi docs, unconfirmed: extensions are TypeScript or JavaScript modules that register commands, hooks, tools, providers, or prompt changes. See [Pi extensions documentation](https://pi.dev/docs/latest/extensions).
+The local pin also confirmed that Pi discovered a project-local `.pi/extensions/probe.ts` and failed the whole session when it exported an invalid value; replacing the stub with a callable default factory removed that specific validation error. This means an invalid extension is fail-closed at startup — distinct from, and orthogonal to, the fail-open discipline of the 6 real extensions' own internal guard logic above.
 
-Per Pi docs, unconfirmed: extensions can be loaded from project, user, CLI, or package locations and can inspect structured system-prompt data. Treat those details as source guidance until a successful-path test confirms them.
+**Type-confirmed, not live-firing-confirmed (phase 008):** the extension API exposes 32 named lifecycle events (including block-capable `tool_call`), confirmed via a direct read of the installed package's `types.d.ts`. No live session has yet captured a specific event actually firing mid-dispatch (as opposed to loading without error) — that gap needs a credentialed provider session, per §8 below.
+
+Per Pi docs, unconfirmed: loading from user, CLI-flag, or package locations (only the project-local `.pi/extensions/` location has been built and tested), and inspecting structured system-prompt data. See [Pi extensions documentation](https://pi.dev/docs/latest/extensions).
 
 Extension safety rules:
 
@@ -66,7 +84,7 @@ Extension safety rules:
 4. Capture startup errors.
 5. Do not rely on a warning if the session can fail closed.
 
-## 5. CLI RESOURCE FLAGS
+## 6. CLI RESOURCE FLAGS
 
 The installed help contains these resource controls:
 
@@ -83,7 +101,7 @@ The installed help contains these resource controls:
 
 The names are confirmed by the local help capture. Their full precedence rules are not all confirmed by the pin.
 
-## 6. SETTINGS AND PACKAGES
+## 7. SETTINGS AND PACKAGES
 
 Per Pi docs, unconfirmed: package manifests can declare extensions, skills, prompts, and themes, and conventional package directories can be auto-discovered. See [Pi packages](https://pi.dev/docs/latest/packages).
 
@@ -97,22 +115,26 @@ Treat package resource loading as a trust boundary:
 - A package can modify settings.
 - A package can change the effective tool surface.
 
-## 7. DISCOVERY VERIFICATION PLAN
+## 8. DISCOVERY VERIFICATION PLAN
 
-When a successful provider session is available:
+Done (phases 012/013):
 
-1. Create one uniquely named skill at each candidate location.
-2. Create one uniquely named prompt template.
-3. Add one valid extension and one invalid extension.
-4. Start Pi in print, JSON, and RPC modes.
-5. Record which commands appear.
-6. Record path and precedence.
-7. Compare project and global resources.
-8. Confirm whether nested hub packets flatten.
+- ~~Create one uniquely named prompt template.~~ 36 real prompt templates built and `--check`-verified in sync.
+- ~~Add one valid extension and one invalid extension.~~ 6 valid extensions built and live-loaded without a startup error; the prior phase's invalid-extension probe already confirmed the fail-closed startup path.
+- ~~Start Pi in print mode.~~ Live-executed for the prompt/agent/extension load checks above.
 
-Until then, preserve the phrase documented but unconfirmed in any derived packet guidance.
+Still open — needs a credentialed provider session:
 
-## 8. OPERATIONAL CHECKLIST
+1. Create one uniquely named skill at each candidate location (global, project, package, settings, explicit CLI path).
+2. Record which slash commands appear in a live session and confirm precedence when the same name exists at more than one location.
+3. Compare project and global resources.
+4. Confirm whether nested hub packets flatten when Pi's own skill discovery walks `.opencode/skills/`.
+5. Capture one real lifecycle-event firing trace from a live session (the 32-event surface is currently type-confirmed only, per §5).
+6. Start Pi in JSON and RPC modes against a real provider (both remain doc-grounded, not live-executed, for this specific verification plan).
+
+Until the remaining items are done, preserve the phrase documented but unconfirmed for native skill discovery specifically — prompt templates and extensions have moved from that status to confirmed, per §4/§5 above.
+
+## 9. OPERATIONAL CHECKLIST
 
 - [ ] Is this a Pi-native resource question or a repository-skill question?
 - [ ] Is the claim backed by the local pin or labeled unconfirmed?

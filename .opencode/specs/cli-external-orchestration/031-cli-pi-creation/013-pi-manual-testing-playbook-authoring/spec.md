@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring"
-    last_updated_at: "2026-07-27T17:10:00Z"
+    last_updated_at: "2026-07-27T19:25:00Z"
     last_updated_by: "claude-code"
     recent_action: "Playbook authored, live-verified, GLM reviewed, closed Complete"
     next_safe_action: "None -- this is the terminal phase of the packet"
@@ -49,10 +49,10 @@ FAILURE MODES:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/031-cli-pi-creation` |
-| **Phase** | 13 of 13 |
+| **Phase** | 13 of 14 (originally 13 of 13; the packet was extended post-hoc with `014` at operator request after this phase closed) |
 | **Predecessor** | `../012-pi-runtime-compatibility/spec.md` |
-| **Successor** | None (final phase) |
-| **Handoff Criteria** | **Entry**: phase 012's `.pi/prompts/*.md`, `.pi/agents/*.md`, `.pi/extensions/*.ts` exist and are live-verified to load -- MET. **Exit (terminal)**: MET -- the root `manual-testing-playbook.md` plus all 19 `PI-NNN` scenario files exist, all 20 pass `validate_document.py`/`extract_structure.py`, and the scenarios covering phase 012's new artifacts (PI-001, PI-007, PI-008, PI-009, PI-011, PI-012, PI-014, PI-015, PI-017) are live-executed with captured evidence, not left as docs-grounded placeholders. |
+| **Successor** | `../014-pi-devin-cursor-parity-alignment/spec.md` (added post-hoc; this phase's own scope stayed the original 13-phase playbook authoring) |
+| **Handoff Criteria** | **Entry**: phase 012's `.pi/prompts/*.md`, `.pi/agents/*.md`, `.pi/extensions/*.ts` exist and are live-verified to load -- MET. **Exit (at the time this phase closed)**: MET -- the root `manual-testing-playbook.md` plus all 19 `PI-NNN` scenario files exist, all 20 pass `validate_document.py`/`extract_structure.py`, and the scenarios covering phase 012's new artifacts (PI-001, PI-007, PI-008, PI-009, PI-011, PI-012, PI-014, PI-015, PI-017) are live-executed with captured evidence, not left as docs-grounded placeholders. This was the packet's terminal gate at that time; the parent packet's own final gate now covers all 14 phases after the post-hoc extension. |
 <!-- /ANCHOR:metadata -->
 
 ---
