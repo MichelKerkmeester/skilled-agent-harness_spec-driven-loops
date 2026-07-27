@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/003-design-motion/001-packet-root",
+  "description": "`design-motion`'s packet root carries exactly two markdown files, `SKILL.md` and `README.md`",
+  "keywords": [
+    "design-motion",
+    "packet",
+    "root",
+    "carries",
+    "exactly",
+    "two",
+    "markdown",
+    "files",
+    "skill",
+    "readme"
+  ],
+  "lastUpdated": "2026-07-27T14:57:46.754Z",
+  "specId": "001",
+  "folderSlug": "packet-root",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "003-design-motion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

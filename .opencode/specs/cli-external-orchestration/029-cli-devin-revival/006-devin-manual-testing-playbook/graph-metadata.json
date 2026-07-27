@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism - there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-23T19:51:59.132Z",
-    "last_save_at": "2026-07-27T14:44:27.451Z",
+    "last_save_at": "2026-07-27T15:38:09.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e34e8fc144b9fd4f435b652376f85c162cfb0b69acc3e3f722077952f458a4b3",
+    "source_fingerprint": "sha256:8d8aa4b21402efee4e75b817b99ea65b80a96dc75cbeb80f9f5d8f71caf12783",
     "source_doc_hashes": {
-      "spec.md": "24b54561b29efd797b10958476801f86a77c0668e6cb98c3a0fe98cd9b89d5bb",
-      "plan.md": "56c43637559df0cb1c898556b2873caf7c870eac32e436e63d8b780728645b48",
-      "tasks.md": "fe095c400ca58905c32d659aec6a94de6d7d571589d512006ac947e9509f21eb",
-      "checklist.md": "76209b98140d56b35576a85cc2af0fadd50357bb2e0c9fb7ec65c2b9659d7ebf",
-      "implementation-summary.md": "90a84e7a57637c2310747450de59c98d6f4e708a3be88524f5bc0aae1a9da693"
+      "spec.md": "e6589da1ec4a6f21b6601f0dd79f96a02f8324fa9011641ac13468c11ee83ba7",
+      "plan.md": "3de1a8ed8ce1e3179cc628ece5a8216b7ab30a0e0c0e0d92d96912dcf29e859b",
+      "tasks.md": "bd5de4c7c98a38f787aa679b0a2bf4757f183ffe0b7990fcc2719338a3ff7d5e",
+      "checklist.md": "aea4cbe5acf666830ff7c19c05b034e4bf16b5a9452159e725d617df5c1073a9",
+      "implementation-summary.md": "1efca3c75214a54f4f9ab1e06802745d38b455f586978eb9230ed83d3f8d725d"
     },
     "last_active_child_id": null,
     "last_active_at": null

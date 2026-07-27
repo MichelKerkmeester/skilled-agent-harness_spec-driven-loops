@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/002-references",
+  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/002-references",
+  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator references conformance",
+      "extraction-workflow importance_tier enum",
+      "vendor DESIGN.md exemplar placement decision",
+      "vendor exemplar placement decision",
+      "references examples relocate or exempt",
+      "DESIGN.md exemplar conformance ADR"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "references",
+      "conformance",
+      "extraction-workflow",
+      "enum",
+      "vendor",
+      "design",
+      "exemplar",
+      "placement",
+      "decision",
+      "examples",
+      "relocate"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "extraction-workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-reference-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`references/` holds 10 flat files plus an `examples/` tree with 4 vendor subdirectories (`linear/`, `stripe/`, `supabase/`, `vercel/`), each carrying `DESIGN.md`, `tokens.json`, and `writing-notes.md`",
+    "created_at": "2026-07-27T15:10:01.534Z",
+    "last_save_at": "2026-07-27T15:10:01.534Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fdf8cd73c3706c234a9e1bbc1effb239d3ab42ea6109d8b4059ae4a424a01ff9",
+    "source_doc_hashes": {
+      "spec.md": "c75be66ab1724bcf29747f30f450099b6dedfa76ed2c29d7007477f60451b79f",
+      "plan.md": "e50a752ead4e3f966eb0d5f1f3832d133bad03faf8a055b6d38e6fe3fd65611e",
+      "tasks.md": "2a975a93e80447d7905729d63a81012b485f199d07e8fd696378ea1c1a95e0a3",
+      "checklist.md": "4c3ba0cc4b3b631a3d2804a743540e4719f887b801d0d166ae271304743bfe0d",
+      "decision-record.md": "70349289d54f4e5d81ebbe0c169ce101ff0c148a526a16179e0f90fa966967a3",
+      "implementation-summary.md": "2815a356d9861b163524380688570b79d9e698da768587b891fb13793c74b4eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

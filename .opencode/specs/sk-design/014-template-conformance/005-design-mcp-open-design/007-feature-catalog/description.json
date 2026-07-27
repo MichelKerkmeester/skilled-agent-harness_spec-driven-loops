@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design/007-feature-catalog",
+  "description": "`.opencode/skills/sk-design/design-mcp-open-design/feature-catalog/` has not been audited against",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "design-mcp-open-design",
+    "feature-catalog",
+    "audited",
+    "against"
+  ],
+  "lastUpdated": "2026-07-27T15:02:49.664Z",
+  "specId": "007",
+  "folderSlug": "feature-catalog",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "005-design-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

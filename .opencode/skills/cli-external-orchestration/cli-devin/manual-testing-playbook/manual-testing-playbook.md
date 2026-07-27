@@ -24,6 +24,45 @@ Canonical package artifacts:
 - `session-continuity/`
 - `cloud-handoff/`
 
+
+---
+
+## EXECUTION RESULTS
+
+Executed live against `devin 3000.2.17` on 2026-07-27. Config-mutating scenarios ran in disposable temp workspaces; the repository's own `.devin/hooks.v1.json` was never modified.
+
+**19 PASS - 0 FAIL - 1 SKIP (by design)**
+
+| Scenario | Result | Evidence |
+|---|---|---|
+| `DV-001` | PASS | default devin -p dispatch returned the requested token |
+| `DV-002` | PASS | command -v devin resolves: /Users/michelkerkmeester/.local/bin/devin; version devin 3000.2.17 (2c489dfc) |
+| `DV-003` | PASS | fabricated --reasoning-effort rejected: error: unexpected argument '--reasoning-effort' found |
+| `DV-004` | PASS | help advertises smart=yes but runtime rejects it: error: invalid value 'smart' for '--permission-mode <PERMISSION_MODE>': Invalid permission mode: smart. Valid options: normal (auto), accept-edits, dangerous (yolo, bypass), autonomous (requires --sandbox) |
+| `DV-005` | PASS | write-attempt matrix: auto=BLOCKED accept-edits=WROTE bypass=WROTE (auto blocks non-interactively, bypass auto-approves) |
+| `DV-006` | PASS | autonomous+sandbox permitted the in-workspace write |
+| `DV-007` | PASS | 6 events observed live under bypass: SessionStart UserPromptSubmit PreToolUse PostToolUse Stop SessionEnd. PostCompaction not observed (needs a long session). |
+| `DV-008` | PASS | PermissionRequest present under auto [PermissionRequest PreToolUse SessionEnd SessionStart Stop UserPromptSubmit ], absent under bypass [PostToolUse PreToolUse SessionEnd SessionStart Stop UserPromptSubmit ] |
+| `DV-009` | PASS | PreToolUse FIRES under --permission-mode bypass (isolated workspace): [PostToolUse PreToolUse SessionEnd SessionStart Stop UserPromptSubmit ] |
+| `DV-010` | PASS | subagent_explore dispatched, returned a read-only self-description |
+| `DV-011` | PASS | mirrored roster agent dispatched; reply derived from the symlinked agent body (framework selection) |
+| `DV-012` | PASS | all 13 roster agents enumerated alongside subagent_explore/subagent_general |
+| `DV-013` | PASS | unknown profile did not silently resolve; Devin reported it as unavailable |
+| `DV-014` | PASS | 36/36 mirrored commands + 12/12 skills registered |
+| `DV-015` | PASS | mirrored command /memory-save resolved; reply derived from the symlinked command body |
+| `DV-016` | PASS | all 36 command frontmatters parse as valid YAML (0 invalid) |
+| `DV-017` | PASS | paths list .windsurf+.cursor; loaded: 5 rules incl skill-routing[Cursor], CLAUDE, AGENTS |
+| `DV-018` | PASS | devin mcp surface reachable: Connect and log in to Model Context Protocol servers |
+| `DV-019` | PASS | --continue carried session state; codeword recalled across dispatches |
+| `DV-020` | SKIP | cloud handoff surface exists (devin cloud); not executed by design - transfers the session to a cloud VM, not safely reversible in a test run |
+
+Two results corrected assumptions carried in the authored scenarios:
+
+- `accept-edits` also completes a write non-interactively, so the practical split is `auto` blocks while `accept-edits`/`bypass` proceed - not bypass alone.
+- `autonomous --sandbox` **permitted** an in-workspace write. An earlier probe in this packet saw it blocked, but that target was `/tmp`, outside the granted write scope; the sandbox was enforcing scope correctly rather than refusing all writes.
+
+`PostToolUse` is absent from the `auto` run because the write never completed there - the event matrix differs by outcome, not only by mode.
+
 ## 1. OVERVIEW
 
 This playbook contains 20 deterministic scenarios across 9 categories. The count is deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.

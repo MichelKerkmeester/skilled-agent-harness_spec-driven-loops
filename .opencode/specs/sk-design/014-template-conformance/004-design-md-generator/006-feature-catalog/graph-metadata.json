@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
+  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
+  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator feature-catalog conformance",
+      "md-generator feature catalog template audit",
+      "cluster-classify extract validate cards"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "feature-catalog",
+      "conformance",
+      "md-generator",
+      "feature",
+      "catalog",
+      "template",
+      "audit",
+      "cluster-classify",
+      "extract",
+      "validate",
+      "cards"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/extract/extract.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/feature-extractors/feature-extractors.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/interaction-capture/interaction-capture.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/report-preview/report-preview.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/validate/validate.md",
+      ".opencode/skills/sk-design/design-md-generator/feature-catalog/write-design-md/write-design-md.md",
+      ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "cluster-classify.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/cluster-classify/cluster-classify.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/extract/extract.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-extractors.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/feature-extractors/feature-extractors.md",
+        "source": "derived"
+      },
+      {
+        "name": "interaction-capture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/interaction-capture/interaction-capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "md-generator-procedure-card-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "report-preview.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/report-preview/report-preview.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/validate/validate.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-design-md.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/feature-catalog/write-design-md/write-design-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`, `interaction-capture/`, `procedure-cards/`, `report-preview/`, `validate/`, `write-design-md/` — each holding one file, 8 subdirectory files plus the root (9 total)",
+    "created_at": "2026-07-27T15:10:02.584Z",
+    "last_save_at": "2026-07-27T15:10:02.584Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66a3c7b4da97c1560c5ede569fd69ddae4dda0cc802f721bde076e7d83a0e157",
+    "source_doc_hashes": {
+      "spec.md": "d9a38d26135469bbc56b27bc8cbbaa3157b0203b0af40a1006288491f0b4e25b",
+      "plan.md": "202abdf8326cd7955de7841d312ec83e37a86333b6b4c2965f76b21d8dbaa11f",
+      "tasks.md": "90e53811c7392ed6ea97f4fe861a4fcd0d75cb69ed34306cc12811cd52773af7",
+      "checklist.md": "c4540265e29777eaa730a845306f83044741758fb6eb73b8fab4057a058b4809",
+      "implementation-summary.md": "2a20a07562a4fec415b5fd7d269cc6798f561658762e5afcdbccb0217037d016"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

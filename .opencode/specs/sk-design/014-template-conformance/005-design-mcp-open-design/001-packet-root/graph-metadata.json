@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design/001-packet-root",
+  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design/001-packet-root",
+  "parent_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-mcp-open-design packet-root doc conformance",
+      "template conformance audit",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "design-mcp-open-design",
+      "packet-root",
+      "doc",
+      "conformance",
+      "template",
+      "audit",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md",
+      ".opencode/skills/sk-doc/create-readme/assets/install-guide-template.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-guide-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-readme/assets/install-guide-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet root of `design-mcp-open-design/` holds seven files: `SKILL.md`, `README.md`, `INSTALL-GUIDE.md`, and four loose `.mjs` executables (`grounding-receipt.mjs`, `live-transport.mjs`, `offline-gate.mjs`, `return-reconciliation.mjs`)",
+    "created_at": "2026-07-27T15:02:56.539Z",
+    "last_save_at": "2026-07-27T15:02:56.539Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b0701b28c41cf4d805626aef6f15e4230b8834a267e34a7c316aba73499c0fdb",
+    "source_doc_hashes": {
+      "spec.md": "f62232ebc2ca756e30bbc51c29e4595bb764db51977136033bc93c11188e3cab",
+      "plan.md": "c2364198c8a351de93da7c0b327c9ba8cba0fade5bf4d56bbdeec8eb10e7651f",
+      "tasks.md": "a18358d300ffe23b564078df95e91ce7fdea9d15bdb1c0ed47a73cdf969d4222",
+      "checklist.md": "49486f55ed20c9bc19826bea8aaf03a62e6c27c53ec276dc47f82453f6cd033b",
+      "implementation-summary.md": "8df6e64b8bc30505cc67d98d7982516c917ca782cf44f3e29bcf90d1f97fc6f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

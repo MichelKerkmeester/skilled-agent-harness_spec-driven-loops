@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design/005-tests",
+  "description": "`.opencode/skills/sk-design/design-mcp-open-design/tests/` has not been audited against",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "design-mcp-open-design",
+    "tests",
+    "audited",
+    "against"
+  ],
+  "lastUpdated": "2026-07-27T15:02:49.663Z",
+  "specId": "005",
+  "folderSlug": "tests",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "005-design-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

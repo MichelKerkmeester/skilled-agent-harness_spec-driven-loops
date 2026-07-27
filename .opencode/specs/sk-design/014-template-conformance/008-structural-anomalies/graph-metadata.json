@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/008-structural-anomalies",
+  "spec_folder": "sk-design/014-template-conformance/008-structural-anomalies",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design structural anomalies",
+      "design-mcp-open-design loose executables",
+      "compiled-routing missing index",
+      "vestigial node_modules stub",
+      "sk-design structural anomalies plan",
+      "design-mcp-open-design loose executables plan",
+      "compiled-routing missing index plan",
+      "vestigial node_modules stub plan",
+      "sk-design structural anomalies tasks",
+      "design-mcp-open-design loose executables tasks",
+      "compiled-routing missing index tasks",
+      "vestigial node_modules stub tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "structural",
+      "anomalies",
+      "design-mcp-open-design",
+      "loose",
+      "executables",
+      "compiled-routing",
+      "missing",
+      "index",
+      "vestigial",
+      "stub",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md",
+      ".opencode/skills/sk-design/benchmark/reports/baseline/README.md",
+      ".opencode/specs/sk-design/014-template-conformance/008-structural-anomalies/spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/014-template-conformance/008-structural-anomalies/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/benchmark/reports/baseline/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Resolve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four small, unrelated structural irregularities surfaced during the hub-wide template audit that don't belong to any single mode's own conformance child: a vestigial empty test-result stub sitting where a real dependency install would go, four loose executable scripts at a packet root when every sibling mode keeps its executables under `scripts/` or `corpus/`, a benchmark run-category directory missing the index file its siblings all have, and two structural absences (`procedures/` in one mode, `scripts/` in another) that are legitimate rather than gaps",
+    "created_at": "2026-07-27T14:48:40.147Z",
+    "last_save_at": "2026-07-27T15:22:11.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe9d4e4cfe08f810523c5d13868fddf4721f6bdfb95b6b1a6f73d2c41a60eafe",
+    "source_doc_hashes": {
+      "spec.md": "ebec5886d1fd27a7b86a9a9a55c0c64f134c6092c8095526dbd8f8c3cee8f22d",
+      "plan.md": "58ac88b332844aecb7f0df01288fd480780ebed081e64ccd7cefcbc81cb01c3a",
+      "tasks.md": "68bd84873787bae779eec6ec645f33b558c71d40357e67b5f5248ce82f7e077d",
+      "checklist.md": "999c395fa619092d5ef8eca510c7d3abc0765c7ec52dcc9bc9ea35e0e787c0ff",
+      "implementation-summary.md": "f8b8864547265c4c2a71254795fbf862f336d21b76452834df972ee6f396133a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

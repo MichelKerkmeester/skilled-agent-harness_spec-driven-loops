@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/003-design-motion/003-assets",
+  "spec_folder": "sk-design/014-template-conformance/003-design-motion/003-assets",
+  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-motion assets conformance",
+      "motion assets template audit",
+      "motion fill-in cards conformance"
+    ],
+    "key_topics": [
+      "design-motion",
+      "assets",
+      "conformance",
+      "motion",
+      "template",
+      "audit",
+      "fill-in",
+      "cards",
+      "holds",
+      "files",
+      "animate-presence-checklist",
+      "motion-pattern-cards"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-motion/assets/animate-presence-checklist.md",
+      ".opencode/skills/sk-design/design-motion/assets/motion-pattern-cards.md",
+      ".opencode/skills/sk-design/design-motion/assets/motion-performance-failure-card.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "animate-presence-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/assets/animate-presence-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-pattern-cards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/assets/motion-pattern-cards.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-performance-failure-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/assets/motion-performance-failure-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-asset-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`assets/` holds 3 files — `animate-presence-checklist.md`, `motion-pattern-cards.md`, `motion-performance-failure-card.md` — none of which was part of the 014 program's seed sample",
+    "created_at": "2026-07-27T14:53:13.315Z",
+    "last_save_at": "2026-07-27T14:58:42.277Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1af04b7862251a201d11a19cb7abed63bd5de4655e6b99988e12d3d0b1faa6c1",
+    "source_doc_hashes": {
+      "spec.md": "dbffca594c6485fb2805495ac072ea0732af649509321bc6440c130926a3121e",
+      "plan.md": "3298a812f0db53f61953fd89cece116584d4b736c8aabd877821e3c95e8e3c46",
+      "tasks.md": "409c0c7f0d09e013be6cbe45bbbe21677e2f0f8e1da9e3c43b3dae6df02576f1",
+      "checklist.md": "9e86ae54de33457d6eb8cd525f534f616acb4ef486b2ff3d33a91d6cebd28251",
+      "implementation-summary.md": "95bcb7e6b02175e95cbe8e1a15f07d3480efe672945d5d44f5298de0783651c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

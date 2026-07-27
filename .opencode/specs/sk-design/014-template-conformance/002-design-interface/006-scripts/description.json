@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/006-scripts",
+  "description": "`scripts/` holds `README.md`, three deterministic Python checkers (`baselinerhythmcheck.py`, `contrastcheck.py`, `namingdoccheck.py`), and",
+  "keywords": [
+    "scripts",
+    "holds",
+    "readme",
+    "three",
+    "deterministic",
+    "python",
+    "checkers",
+    "baselinerhythmcheck",
+    "contrastcheck",
+    "namingdoccheck"
+  ],
+  "lastUpdated": "2026-07-27T15:04:57.634Z",
+  "specId": "006",
+  "folderSlug": "scripts",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/003-design-motion/006-feature-catalog",
+  "spec_folder": "sk-design/014-template-conformance/003-design-motion/006-feature-catalog",
+  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-motion feature-catalog conformance",
+      "motion feature catalog template audit",
+      "motion restraint gate card structure"
+    ],
+    "key_topics": [
+      "design-motion",
+      "feature-catalog",
+      "conformance",
+      "motion",
+      "feature",
+      "catalog",
+      "template",
+      "audit",
+      "restraint",
+      "gate",
+      "card",
+      "structure"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-motion/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-design/design-motion/feature-catalog/build-cards/motion-fill-in-cards.md",
+      ".opencode/skills/sk-design/design-motion/feature-catalog/procedure-cards/motion-procedure-card-inventory.md",
+      ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-fill-in-cards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/feature-catalog/build-cards/motion-fill-in-cards.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-procedure-card-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/feature-catalog/procedure-cards/motion-procedure-card-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus three subdirectories — `build-cards/` (`motion-fill-in-cards.md`), `procedure-cards/` (`motion-procedure-card-inventory.md`), and `restraint-gate-and-choreography/` (`choreography-and-reduced-motion.md`, `motion-restraint-gate.md`) — none of which was in the 014 program's seed sample",
+    "created_at": "2026-07-27T14:53:13.941Z",
+    "last_save_at": "2026-07-27T14:58:43.873Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6252d6b7dc131d144cabf162dfa21f54991293862cb6e25ddcd3873e3d21774",
+    "source_doc_hashes": {
+      "spec.md": "77ea5260ed8116b3ac75c2a5fa734ab9b5ba23a898687a96fce8d58bd8acb46b",
+      "plan.md": "14e517d95c0c7b67562941bd82fc045036f2e95a2fd58f7c774251c63fd15b08",
+      "tasks.md": "7120844942df326b6045b9aa354419c3536e009f17d36fe78c91cbe44980c7c9",
+      "checklist.md": "c2185546a0032b2c0a64a4b6689f4966763c0bc82f4213dcb4637a938d1b5510",
+      "implementation-summary.md": "b31d900a4b8eab7c6bd2bffa3a2b225a4badda5378bc257d6496c0667b3a148a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

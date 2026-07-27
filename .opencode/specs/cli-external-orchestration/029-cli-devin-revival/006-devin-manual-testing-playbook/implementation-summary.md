@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Devin manual-testing playbook"
-description: "Authored the cli-devin manual-testing playbook package: 20 DV-NNN scenarios across nine categories, grounded in this session's live-probed Devin facts rather than a blind port of a sibling CLI's categories."
+description: "Authored and executed the cli-devin manual-testing playbook package: 20 DV-NNN scenarios across nine categories, all run live against devin 3000.2.17 with 19 PASS and 1 by-design SKIP."
 trigger_phrases:
   - "devin manual testing playbook summary"
 importance_tier: "important"
@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
-    last_updated_at: "2026-07-27T14:44:27Z"
+    last_updated_at: "2026-07-27T15:34:33Z"
     last_updated_by: "claude"
-    recent_action: "Authored 20 DV-NNN scenarios across nine categories."
-    next_safe_action: "Execute the scenarios once devin auth is operator-completed."
+    recent_action: "Authored and executed 20 DV-NNN scenarios: 19 PASS, 1 SKIP."
+    next_safe_action: "None; scenarios authored and executed."
     blockers: []
     key_files: ["manual-testing-playbook.md", "hooks/", "subagents/", "commands-and-skills/"]
     session_dedup:
@@ -99,6 +99,7 @@ The dispatch was cut off by a 10-minute timeout partway through the spec-doc pas
 | Grounding | PASS: spot-checked scenarios cite the session's live-probed facts; none assert an unobserved live result |
 | Cursor additions | PASS: `CU-022`–`CU-025` continue the existing numbering without collision |
 | Phase validation | PASS: `validate.sh --strict` 0 errors, 0 warnings |
+| **Scenario execution** | **PASS: all 20 executed live against devin 3000.2.17 — 19 PASS, 0 FAIL, 1 SKIP (DV-020, by design)** |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,7 +107,7 @@ The dispatch was cut off by a 10-minute timeout partway through the spec-doc pas
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No scenario has been executed.** This phase authored the contract; it did not run it. Execution needs `devin auth login`, an operator-only interactive OAuth flow. Every scenario is therefore unexecuted-but-runnable, and the playbook's own PASS/FAIL/SKIP discipline applies once an operator runs them.
-2. `cloud-handoff/` is a single documentation-oriented scenario. `/handoff` transfers a session to a cloud VM, which is not safely reversible in a test run, so it is expected to be recorded SKIP with a named blocker rather than executed.
+1. `cloud-handoff/` (DV-020) is recorded SKIP by design, not by failure. `/handoff` transfers the session to a cloud VM, which is not safely reversible inside a test run. The surface was confirmed present (`devin cloud`) without being exercised.
+2. `PostCompaction` remains the one hook event never observed firing. It needs a session long enough to trigger real compaction, which a scenario-sized dispatch cannot force. DV-007 records this honestly rather than asserting eight-event coverage.
 3. Scenario counts are lighter than the largest siblings (cli-opencode carries far more scenario references). The nine categories cover Devin's actual documented surface; padding to match a sibling's raw count would have meant inventing coverage.
 <!-- /ANCHOR:limitations -->

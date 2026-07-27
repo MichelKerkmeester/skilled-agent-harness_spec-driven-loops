@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [
+    "sk-design/014-template-conformance/005-design-mcp-open-design/001-packet-root",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/002-references",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/003-fixtures",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/004-scripts",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/005-tests",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/006-mcp-servers",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/007-feature-catalog",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
+    "sk-design/014-template-conformance/005-design-mcp-open-design/009-changelog"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-mcp-open-design template conformance",
+      "template conformance",
+      "phase parent"
+    ],
+    "key_topics": [
+      "design-mcp-open-design",
+      "template",
+      "conformance",
+      "phase",
+      "parent",
+      "open",
+      "design",
+      "mcp",
+      "transport",
+      "packet",
+      "audited",
+      "against"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Open Design MCP transport packet (`design-mcp-open-design/`) has not been audited against the create-skill template family",
+    "created_at": "2026-07-27T15:03:00.371Z",
+    "last_save_at": "2026-07-27T15:03:00.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1385e215048ab062bdb72e805665473a1d4b3d55d3da5b773f5854d3eb2a3ded",
+    "source_doc_hashes": {
+      "spec.md": "3858d13719fd2a26391346df5843d916a10daf4974996232088f0c494f9139aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

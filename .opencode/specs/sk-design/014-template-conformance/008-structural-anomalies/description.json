@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/008-structural-anomalies",
+  "description": "Four small, unrelated structural irregularities surfaced during the hub-wide template audit that don't belong to any single mode's own conformance",
+  "keywords": [
+    "four",
+    "small",
+    "unrelated",
+    "structural",
+    "irregularities",
+    "surfaced",
+    "hub-wide",
+    "template",
+    "audit",
+    "don",
+    "belong",
+    "single",
+    "mode",
+    "own",
+    "conformance"
+  ],
+  "lastUpdated": "2026-07-27T15:02:32.224Z",
+  "specId": "008",
+  "folderSlug": "structural-anomalies",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

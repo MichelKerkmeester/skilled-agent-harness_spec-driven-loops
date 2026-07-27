@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/006-shared",
+  "spec_folder": "sk-design/014-template-conformance/006-shared",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [
+    "sk-design/014-template-conformance/006-shared/001-root-docs",
+    "sk-design/014-template-conformance/006-shared/002-references",
+    "sk-design/014-template-conformance/006-shared/003-assets",
+    "sk-design/014-template-conformance/006-shared/004-procedures",
+    "sk-design/014-template-conformance/006-shared/005-scripts",
+    "sk-design/014-template-conformance/006-shared/006-corpus-context",
+    "sk-design/014-template-conformance/006-shared/007-authored-brand",
+    "sk-design/014-template-conformance/006-shared/008-evidence-envelopes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design shared/ template conformance",
+      "template conformance",
+      "phase parent"
+    ],
+    "key_topics": [
+      "sk-design",
+      "shared",
+      "template",
+      "conformance",
+      "phase",
+      "parent",
+      "holds",
+      "cross-packet",
+      "vocabulary",
+      "consumed",
+      "every",
+      "mode"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`shared/` holds cross-packet vocabulary consumed by every sk-design mode (11 root markdown contracts, plus references/assets/procedures/scripts/corpus-context/authored-brand/evidence-envelopes subdirectories), and it has never been audited against the create-skill template family",
+    "created_at": "2026-07-27T14:59:55.744Z",
+    "last_save_at": "2026-07-27T14:59:55.744Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ce453a79de273c2422a38656755a77cd44c5d1b6a2cd31fd4e8a4fc976967d65",
+    "source_doc_hashes": {
+      "spec.md": "ad7b51bad939e80f40b95953fc2780a1e67531db93710859762c2dd2c3bd85ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

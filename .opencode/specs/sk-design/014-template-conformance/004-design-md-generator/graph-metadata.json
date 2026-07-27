@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [
+    "sk-design/014-template-conformance/004-design-md-generator/001-packet-root",
+    "sk-design/014-template-conformance/004-design-md-generator/002-references",
+    "sk-design/014-template-conformance/004-design-md-generator/003-assets",
+    "sk-design/014-template-conformance/004-design-md-generator/004-procedures",
+    "sk-design/014-template-conformance/004-design-md-generator/005-backend",
+    "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
+    "sk-design/014-template-conformance/004-design-md-generator/007-manual-testing-playbook",
+    "sk-design/014-template-conformance/004-design-md-generator/008-changelog"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator template conformance",
+      "design-md-generator doc audit",
+      "md-generator mode skill conformance"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "template",
+      "conformance",
+      "doc",
+      "audit",
+      "md-generator",
+      "mode",
+      "skill",
+      "largest",
+      "structurally",
+      "varied",
+      "sk-design"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "extraction-workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Exhaustively",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`design-md-generator` is the largest and most structurally varied sk-design mode: a 3-file packet root (`SKILL.md`, `README.md`, and an `INSTALL-GUIDE.md` governed by a different template family), a 10-file `references/` root plus an `examples/` tree of 4 vendor DESIGN.md exemplars, a real TypeScript `backend/` with its own test suite, plus `assets/`, `procedures/`, `feature-catalog/`, `manual-testing-playbook/`, and `changelog/`",
+    "created_at": "2026-07-27T15:10:00.914Z",
+    "last_save_at": "2026-07-27T15:10:00.914Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:98c35c122fc7632d142d6ea1d54c8550b090403e1bc550231ef43f4097b9f6f9",
+    "source_doc_hashes": {
+      "spec.md": "721fb0795f6fb6c2963b531b67b433455e836d8c922d0abe111d8725bd6ad0fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

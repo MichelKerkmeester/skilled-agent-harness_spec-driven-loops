@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design/001-packet-root",
+  "description": "The packet root of `design-mcp-open-design/` holds seven files: `SKILL.md`, `README.md`, `INSTALL-GUIDE.md`, and four loose `.mjs` executables",
+  "keywords": [
+    "packet",
+    "root",
+    "design-mcp-open-design",
+    "holds",
+    "seven",
+    "files",
+    "skill",
+    "readme",
+    "install-guide",
+    "four",
+    "loose",
+    "mjs",
+    "executables"
+  ],
+  "lastUpdated": "2026-07-27T15:02:49.628Z",
+  "specId": "001",
+  "folderSlug": "packet-root",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "005-design-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
