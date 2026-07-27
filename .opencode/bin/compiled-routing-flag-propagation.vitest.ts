@@ -13,8 +13,17 @@ import { dirname, join } from 'node:path';
 const requireCjs = createRequire(import.meta.url);
 const HERE = dirname(fileURLToPath(import.meta.url));
 
+// Load the engine the runtime actually serves (coherent layout), not a hardcoded
+// generation, so this cache/decision guard tracks either side of publication.
+const layout = requireCjs(join(HERE, 'lib', 'compiled-route-layout.cjs'));
+const RUNTIME = join(HERE, 'lib', 'compiled-routing');
+const RUNTIME_ENGINE = layout.enginePathFor(RUNTIME);
+if (!RUNTIME_ENGINE) {
+  throw new Error(`no coherent compiled-routing layout under ${RUNTIME}`);
+}
+
 const launcher = requireCjs(join(HERE, 'mk-skill-advisor-launcher.cjs'));
-const engine = requireCjs(join(HERE, 'lib', 'compiled-routing', '011-runtime-engine', 'lib', 'compiled-route.cjs'));
+const engine = requireCjs(RUNTIME_ENGINE);
 const status = requireCjs(join(HERE, 'compiled-route-status.cjs'));
 
 const FLAG = 'SPECKIT_COMPILED_ROUTING';

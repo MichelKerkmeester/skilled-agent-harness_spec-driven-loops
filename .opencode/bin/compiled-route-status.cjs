@@ -39,29 +39,60 @@ const {
   isCanonicalHubId,
   validateCanonicalManifestBytes,
 } = require('./lib/compiled-route-manifest.cjs');
+const {
+  resolveRuntimePaths,
+} = require('./lib/compiled-route-layout.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
-const ACTIVATION_ROOT = path.join(RUNTIME_ROOT, '010-live-activation', 'activation');
-const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
-const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'compiled-route.cjs');
+let cachedRuntimeModules = null;
+
+function clearRuntimeRequireCache(runtimeRoot) {
+  const root = path.resolve(runtimeRoot);
+  for (const cachePath of Object.keys(require.cache)) {
+    const relative = path.relative(root, cachePath);
+    if (relative === '' || (relative && !relative.startsWith('..') && !path.isAbsolute(relative))) {
+      delete require.cache[cachePath];
+    }
+  }
+}
+
+// Resolve one layout verdict per status operation. The runtime directory inode
+// changes on atomic publication, which invalidates long-lived module bindings
+// without reloading modules repeatedly while one generation remains active.
+function runtimeModules(runtimeRoot = RUNTIME_ROOT) {
+  const binding = resolveRuntimePaths(runtimeRoot);
+  if (!binding) return { binding: null, resolver: null, engine: null };
+  if (!cachedRuntimeModules
+    || cachedRuntimeModules.binding.runtimeRoot !== binding.runtimeRoot
+    || cachedRuntimeModules.binding.rootIdentity !== binding.rootIdentity) {
+    if (cachedRuntimeModules) clearRuntimeRequireCache(binding.runtimeRoot);
+    let resolver = null;
+    let engine = null;
+    try { resolver = require(binding.resolverPath); } catch { /* Fail closed below. */ }
+    try { engine = require(binding.enginePath); } catch { /* Fail closed below. */ }
+    cachedRuntimeModules = { binding, resolver, engine };
+  }
+  return cachedRuntimeModules;
+}
 
 // Single-source the tri-state flag semantics and the hub set from the promoted
 // runtime, so the probe's flag verdict can never diverge from what actually
 // serves. Both are loaded defensively: a probe should degrade, not throw.
-function loadResolver() {
-  try { return require(PROMOTED_RESOLVER); } catch { return null; }
+function loadResolver(runtimeRoot = RUNTIME_ROOT) {
+  return runtimeModules(runtimeRoot).resolver;
 }
-function loadEngine() {
-  try { return require(PROMOTED_ENGINE); } catch { return null; }
+function loadEngine(runtimeRoot = RUNTIME_ROOT) {
+  return runtimeModules(runtimeRoot).engine;
 }
 
-function knownHubs(activationRoot = ACTIVATION_ROOT) {
-  const engine = loadEngine();
+function knownHubs(activationRoot, runtimeRoot = RUNTIME_ROOT, runtime = runtimeModules(runtimeRoot)) {
+  const selectedActivationRoot = activationRoot || (runtime.binding && runtime.binding.activationRoot);
+  const engine = runtime.engine;
   const hubs = new Set(engine && engine.HUB_CHILD ? Object.keys(engine.HUB_CHILD) : []);
   // Activation discovery is observability-only and never expands serving eligibility.
   try {
-    for (const entry of fs.readdirSync(activationRoot, { withFileTypes: true })) {
+    for (const entry of fs.readdirSync(selectedActivationRoot, { withFileTypes: true })) {
       if (entry.isDirectory() && isCanonicalHubId(entry.name)) hubs.add(entry.name);
     }
   } catch { /* A missing activation root contributes no observable hubs. */ }
@@ -102,8 +133,7 @@ function readStatusManifest(hubId, activationRoot) {
   return fs.readFileSync(manifestPath);
 }
 
-function flagPermits(hubId) {
-  const resolver = loadResolver();
+function flagPermits(hubId, resolver = loadResolver()) {
   if (resolver && typeof resolver.flagPermitsCompiled === 'function') {
     try { return resolver.flagPermitsCompiled(hubId); } catch { return false; }
   }
@@ -139,8 +169,7 @@ function freshnessSummary(result) {
   };
 }
 
-function manifestFreshnessFor(hubId, manifestBytes, skillRoot) {
-  const engine = loadEngine();
+function manifestFreshnessFor(hubId, manifestBytes, skillRoot, engine = loadEngine()) {
   if (engine && engine.HUB_CHILD && engine.HUB_CHILD[hubId]
     && typeof engine.loadHubEngine === 'function') {
     try {
@@ -171,17 +200,22 @@ function manifestFreshnessFor(hubId, manifestBytes, skillRoot) {
 // engine load, no spawn); the CLI probes by default.
 function computeHubStatus(hubId, {
   probeEngine = true,
-  activationRoot = ACTIVATION_ROOT,
+  activationRoot,
   skillRoot,
+  runtimeRoot = RUNTIME_ROOT,
+  _runtime,
 } = {}) {
-  const record = baseRecord(hubId, activationRoot);
+  const runtime = _runtime || runtimeModules(runtimeRoot);
+  const selectedActivationRoot = activationRoot || (runtime.binding && runtime.binding.activationRoot)
+    || path.join(path.resolve(runtimeRoot), '010-live-activation', 'activation');
+  const record = baseRecord(hubId, selectedActivationRoot);
   let manifestBytes;
-  try { manifestBytes = readStatusManifest(hubId, activationRoot); } catch {
+  try { manifestBytes = readStatusManifest(hubId, selectedActivationRoot); } catch {
     return record; // missing-manifest
   }
   record.manifestFingerprint = crypto.createHash('sha256').update(manifestBytes).digest('hex');
   record.manifestFreshness = freshnessSummary(
-    manifestFreshnessFor(hubId, manifestBytes, skillRoot),
+    manifestFreshnessFor(hubId, manifestBytes, skillRoot, runtime.engine),
   );
   let manifest;
   try { manifest = JSON.parse(manifestBytes.toString('utf8')); } catch {
@@ -197,7 +231,7 @@ function computeHubStatus(hubId, {
     record.causeCode = 'legacy-authority';
     return record;
   }
-  if (!flagPermits(hubId)) {
+  if (!flagPermits(hubId, runtime.resolver)) {
     record.causeCode = 'flag-off';
     return record;
   }
@@ -209,7 +243,7 @@ function computeHubStatus(hubId, {
     return record;
   }
   if (probeEngine) {
-    const engine = loadEngine();
+    const engine = runtime.engine;
     let probed;
     try {
       if (!engine || typeof engine.compiledRoute !== 'function') throw new Error('engine unavailable');
@@ -235,8 +269,15 @@ function computeHubStatus(hubId, {
 }
 
 function computeAllStatus(opts = {}) {
-  return knownHubs(opts.activationRoot || ACTIVATION_ROOT)
-    .map((hubId) => computeHubStatus(hubId, opts));
+  const runtimeRoot = opts.runtimeRoot || RUNTIME_ROOT;
+  const runtime = runtimeModules(runtimeRoot);
+  const activationRoot = opts.activationRoot || (runtime.binding && runtime.binding.activationRoot);
+  return knownHubs(activationRoot, runtimeRoot, runtime)
+    .map((hubId) => computeHubStatus(hubId, { ...opts, runtimeRoot, activationRoot, _runtime: runtime }));
+}
+
+function runtimeBindingFor(runtimeRoot = RUNTIME_ROOT) {
+  return runtimeModules(runtimeRoot).binding;
 }
 
 function main() {
@@ -264,4 +305,10 @@ if (require.main === module) {
   try { main(); } catch (e) { process.stderr.write(`STATUS FAILED: ${e && e.message}\n`); process.exit(1); }
 }
 
-module.exports = { computeHubStatus, computeAllStatus, knownHubs, RUNTIME_ROOT };
+module.exports = {
+  computeHubStatus,
+  computeAllStatus,
+  knownHubs,
+  runtimeBindingFor,
+  RUNTIME_ROOT,
+};

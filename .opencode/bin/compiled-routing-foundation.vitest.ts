@@ -1,9 +1,9 @@
 // Foundation invariants for compiled skill-routing:
 //   - eligibility (advisor hub set) never diverges from the engine-dispatch map
 //   - the tri-state flag is parsed identically at both runtime read sites
-//   - the resolver's per-hub default-on cohort covers all 7 promoted hubs (unset
-//     => compiled for those); the advisor's own enrichment cohort mirrors it
-//     exactly (same 7 hubs, unset => compiledRoute attached for those)
+//   - the resolver's per-hub default-on cohort covers all 7 promoted hubs; a
+//     stale manifest fails closed while the advisor's enrichment cohort remains
+//     in membership lockstep
 //   - the status probe's causeCode separates drift from breakage
 //   - the promoted serving path reads nothing under .opencode/specs
 //   - a future spec-tree import is blocked by the durable guard
@@ -13,7 +13,6 @@ import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { execFileSync } from 'node:child_process';
 
 import {
   COMPILED_ROUTING_HUBS,
@@ -25,21 +24,27 @@ const requireCjs = createRequire(import.meta.url);
 const HERE = dirname(fileURLToPath(import.meta.url));
 const RUNTIME = join(HERE, 'lib', 'compiled-routing');
 
-const resolver = requireCjs(join(RUNTIME, '011-runtime-engine', 'lib', 'resolve.cjs'));
-const engine = requireCjs(join(RUNTIME, '011-runtime-engine', 'lib', 'compiled-route.cjs'));
+// Load the resolver/engine the runtime actually serves (coherent layout), not a
+// hardcoded generation. Before and after publication this binds the module the
+// serving path actually uses, so the parity guard tracks reality.
+const layout = requireCjs(join(HERE, 'lib', 'compiled-route-layout.cjs'));
+const RUNTIME_RESOLVER = layout.resolverPathFor(RUNTIME);
+const RUNTIME_ENGINE = layout.enginePathFor(RUNTIME);
+if (!RUNTIME_RESOLVER || !RUNTIME_ENGINE) {
+  throw new Error(`no coherent compiled-routing layout under ${RUNTIME}`);
+}
+const resolver = requireCjs(RUNTIME_RESOLVER);
+const engine = requireCjs(RUNTIME_ENGINE);
 const status = requireCjs(join(HERE, 'compiled-route-status.cjs'));
 const scanner = requireCjs(join(HERE, 'check-no-spec-imports.cjs'));
+const sync = requireCjs(join(HERE, 'compiled-route-sync.cjs'));
 
 // The default-on cohort is duplicated across four copies that must stay in lockstep:
-// the runtime resolver (bin) and its byte-identical spec-tree twin, plus the advisor
-// flag source and its compiled dist. The two are held here so the drift-guard can
+// the deployed runtime resolver and its current authored source, plus the advisor
+// flag source and its compiled dist. The paths are held here so the drift guard can
 // span all four rather than only the two live-imported ones.
 const REPO = join(HERE, '..', '..');
-const SPEC_TREE_RESOLVER = join(
-  REPO,
-  '.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program',
-  '007-unified-refactor-implementation/011-runtime-engine/lib/resolve.cjs',
-);
+const AUTHORED_RESOLVER = sync.AUTHORED_RESOLVER;
 const ADVISOR_DIST_FLAG = join(
   REPO,
   '.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/compiled-routing-flag.js',
@@ -70,6 +75,29 @@ describe('eligibility vs engine-dispatch split (cross-check)', () => {
     expect({ onlyInAdvisor, onlyInEngine }).toEqual({ onlyInAdvisor: [], onlyInEngine: [] });
     expect(advisorHubs).toEqual(engineHubs);
   });
+
+  it('selects one complete layout and fails closed on a partial layout', () => {
+    const root = mkdtempSync(join(tmpdir(), 'compiled-route-layout-'));
+    try {
+      for (const relative of [
+        layout.LEGACY_LAYOUT.resolver,
+        layout.LEGACY_LAYOUT.engine,
+        layout.LEGACY_LAYOUT.compiler,
+      ]) {
+        const filePath = join(root, relative);
+        mkdirSync(dirname(filePath), { recursive: true });
+        writeFileSync(filePath, 'module.exports = {};\n');
+      }
+      const partialCurrent = join(root, layout.CURRENT_LAYOUT.resolver);
+      mkdirSync(dirname(partialCurrent), { recursive: true });
+      writeFileSync(partialCurrent, 'module.exports = {};\n');
+      expect(layout.resolveLayout(root)?.id).toBe('legacy');
+      rmSync(join(root, layout.LEGACY_LAYOUT.compiler));
+      expect(layout.resolveLayout(root)).toBeNull();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
 
 describe('flag tri-state truth-table (both read sites agree)', () => {
@@ -93,20 +121,20 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
   }
 
   it('all four default-on cohort copies stay in lockstep (7 hubs; twins order-identical)', () => {
-    const specTreeResolver = requireCjs(SPEC_TREE_RESOLVER);
+    const authoredResolver = requireCjs(AUTHORED_RESOLVER);
     const binResolver = [...resolver.DEFAULT_ON_HUBS];
-    const twinResolver = [...specTreeResolver.DEFAULT_ON_HUBS];
+    const authoredResolverCohort = [...authoredResolver.DEFAULT_ON_HUBS];
     const advisorSrc = [...ADVISOR_DEFAULT_ON_HUBS];
     const advisorDist = cohortMembersFromSource(ADVISOR_DIST_FLAG);
 
     // Exactly 7 hubs in every one of the four copies.
-    for (const cohort of [binResolver, twinResolver, advisorSrc, advisorDist]) {
+    for (const cohort of [binResolver, authoredResolverCohort, advisorSrc, advisorDist]) {
       expect(cohort.length).toBe(7);
     }
-    // Order-identity WITHIN each family: the two resolver copies are byte-twins, and
+    // Order-identity WITHIN each family: the two resolver copies must agree, and
     // the advisor source and its compiled dist must list the cohort identically — an
     // order change in one but not the other is a real drift a sorted check would miss.
-    expect(binResolver).toEqual(twinResolver);
+    expect(binResolver).toEqual(authoredResolverCohort);
     expect(advisorSrc).toEqual(advisorDist);
     // Membership-identity ACROSS the two families. The resolver family and the advisor
     // family intentionally order the set differently, so this is set-equality; given
@@ -116,13 +144,22 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
     expect(sorted(binResolver)).toEqual(sorted(advisorSrc));
   });
 
-  it('unset resolves to a compiled decision for every default-on hub — promoted-cohort default', () => {
+  it('unset resolves every fresh default-on hub and fails closed on authorized drift', () => {
     clearFlag();
+    const staleHubs: string[] = [];
     for (const hub of Object.keys(engine.HUB_CHILD)) {
       const route = resolver.resolveRoute(hub, 'do the thing');
-      expect(route).not.toBeNull();
-      expect(route.hubId).toBe(hub);
+      const hubStatus = status.computeHubStatus(hub, { probeEngine: false });
+      if (hubStatus.causeCode === 'stale-manifest') {
+        staleHubs.push(hub);
+        expect(route).toBeNull();
+      } else {
+        expect(hubStatus.causeCode).toBe('compiled-serving');
+        expect(route).not.toBeNull();
+        expect(route.hubId).toBe(hub);
+      }
     }
+    expect(staleHubs).toEqual(staleHubs.length === 0 ? [] : ['cli-external-orchestration']);
   });
 
   it('kill-switch and invalid values also resolve legacy for every hub', () => {
@@ -182,9 +219,15 @@ describe('status causeCode matrix (drift vs breakage)', () => {
 
   it('engine-throw => legacy (BREAKAGE) when compiled+flag but the engine cannot route', () => {
     setFlag('1');
-    const r = status.computeHubStatus('broken-hub', { activationRoot: tmp, probeEngine: true });
-    expect(r.causeCode).toBe('engine-throw');
-    expect(r.servingAuthority).toBe('legacy');
+    const originalCompiledRoute = engine.compiledRoute;
+    engine.compiledRoute = () => { throw new Error('seeded engine failure'); };
+    try {
+      const r = status.computeHubStatus('sk-code', { probeEngine: true });
+      expect(r.causeCode).toBe('engine-throw');
+      expect(r.servingAuthority).toBe('legacy');
+    } finally {
+      engine.compiledRoute = originalCompiledRoute;
+    }
   });
 
   it('compiled-serving => compiled for a real promoted hub under force-on', () => {
@@ -196,19 +239,35 @@ describe('status causeCode matrix (drift vs breakage)', () => {
     expect(r.selectedPolicy).toHaveProperty('generation');
   });
 
-  it('--all default state reports every hub as compiled-serving, none broken', () => {
+  it('--all default state reports only authorized pre-publication drift, none broken', () => {
     clearFlag();
     const rows = status.computeAllStatus({ probeEngine: false });
-    expect(rows.length).toBe(Object.keys(engine.HUB_CHILD).length);
-    expect(rows.every((r: { causeCode: string }) => r.causeCode === 'compiled-serving')).toBe(true);
+    const promotedHubs = new Set(resolver.DEFAULT_ON_HUBS);
+    const promotedRows = rows.filter((r: { hubId: string }) => promotedHubs.has(r.hubId));
+    expect(promotedRows.length).toBe(promotedHubs.size);
+    const staleHubs = promotedRows
+      .filter((r: { causeCode: string }) => r.causeCode !== 'compiled-serving')
+      .map((r: { hubId: string }) => r.hubId);
+    expect(staleHubs).toEqual(staleHubs.length === 0 ? [] : ['cli-external-orchestration']);
+    expect(promotedRows.every((r: { causeCode: string }) => (
+      r.causeCode === 'compiled-serving' || r.causeCode === 'stale-manifest'
+    ))).toBe(true);
     expect(rows.some((r: { causeCode: string }) => r.causeCode === 'engine-throw')).toBe(false);
   });
 });
 
 describe('move-simulation: no runtime read under .opencode/specs', () => {
-  it('sync --verify reports all hubs resolve with 0 spec reads', () => {
-    const out = execFileSync(process.execPath, [join(HERE, 'compiled-route-sync.cjs'), '--verify'], { encoding: 'utf8' });
-    expect(out).toContain('0 reads under .opencode/specs');
+  it('an isolated authored closure resolves all hubs with 0 spec reads', () => {
+    const sandbox = mkdtempSync(join(dirname(sync.RUNTIME_ROOT), 'compiled-route-move-'));
+    const runtimeRoot = join(sandbox, 'compiled-routing');
+    try {
+      sync.build({ runtimeRoot });
+      const verification = sync.verifyRoot(runtimeRoot, { emit: false });
+      expect(verification.message).toContain('all 7 hubs resolve; 0 reads under .opencode/specs');
+      expect(Object.keys(verification.resolved)).toEqual([...resolver.DEFAULT_ON_HUBS]);
+    } finally {
+      rmSync(sandbox, { recursive: true, force: true });
+    }
   });
 });
 

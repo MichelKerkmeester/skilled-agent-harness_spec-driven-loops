@@ -18,8 +18,13 @@ const { after, before, describe, test } = require('node:test');
 const manifestContract = require('../lib/compiled-route-manifest.cjs');
 const status = require('../compiled-route-status.cjs');
 const sync = require('../compiled-route-sync.cjs');
-const resolver = require('../lib/compiled-routing/011-runtime-engine/lib/resolve.cjs');
-const engine = require('../lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs');
+const runtimeLayout = require('../lib/compiled-route-layout.cjs');
+const promotedRuntimeRoot = path.join(__dirname, '..', 'lib', 'compiled-routing');
+const runtimeEnginePath = runtimeLayout.enginePathFor(promotedRuntimeRoot);
+if (!runtimeEnginePath) throw new Error('no coherent compiled-routing layout');
+const runtimeEngineRoot = path.dirname(runtimeEnginePath);
+const resolver = require(path.join(runtimeEngineRoot, 'resolve.cjs'));
+const engine = require(path.join(runtimeEngineRoot, 'compiled-route.cjs'));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -115,6 +120,22 @@ function validManifestBytes(hash = 'a'.repeat(64)) {
     servingAuthority: 'legacy',
     shadowOnly: true,
   })}\n`);
+}
+
+function buildFreshRuntime(runtimeRoot) {
+  const first = sync.build({ runtimeRoot });
+  assert.equal(first.rollbackRoot, null, 'fresh build has no prior closure');
+  assert.match(
+    sync.verifyRoot(runtimeRoot, { emit: false }).message,
+    /all 7 hubs resolve; 0 reads under \.opencode\/specs/,
+  );
+}
+
+function buildRetainedPublication(runtimeRoot) {
+  buildFreshRuntime(runtimeRoot);
+  const publication = sync.build({ runtimeRoot });
+  assert.ok(publication.rollbackRoot, 'publication retained a rollback');
+  return publication;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -407,8 +428,659 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
       cwd: REPO_ROOT,
       encoding: 'utf8',
     });
-    assert.equal(verify.status, 0, verify.stderr);
-    assert.match(verify.stdout, /all 7 hubs resolve; 0 reads under \.opencode\/specs/);
+    const staleHubs = FIXED_HUBS.map((hubId) => status.computeHubStatus(hubId, { probeEngine: false }))
+      .filter((record) => record.causeCode !== 'compiled-serving')
+      .map((record) => record.hubId);
+    assert.deepEqual(staleHubs, staleHubs.length === 0 ? [] : ['cli-external-orchestration']);
+    assert.equal(verify.status, staleHubs.length === 0 ? 0 : 1, verify.stderr);
+    assert.match(
+      staleHubs.length === 0 ? verify.stdout : verify.stderr,
+      staleHubs.length === 0
+        ? /all 7 hubs resolve; 0 reads under \.opencode\/specs/
+        : /cli-external-orchestration/,
+    );
+  });
+
+  test('publishes the current authored topology atomically into an isolated runtime', () => {
+    const sandbox = fs.mkdtempSync(path.join(
+      path.dirname(sync.RUNTIME_ROOT),
+      'compiled-route-sync-test-',
+    ));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
+    buildFreshRuntime(runtimeRoot);
+    fs.writeFileSync(sentinelPath, 'prior-serving');
+    try {
+      assert.equal(fs.existsSync(sync.AUTHORED_RESOLVER), true);
+      assert.match(sync.AUTHORED_RESOLVER, /015-router-unification-program\/014-runtime-engine\/lib\/resolve\.cjs$/);
+
+      const { manifest, rollbackRoot } = sync.build({ runtimeRoot });
+      assert.equal(
+        manifest.generatedFrom,
+        path.relative(REPO_ROOT, sync.IMPL_ROOT),
+      );
+      assert.equal(fs.existsSync(path.join(runtimeRoot, sync.CURRENT_LAYOUT.resolver)), true);
+      assert.equal(fs.existsSync(path.join(runtimeRoot, '011-runtime-engine', 'lib', 'resolve.cjs')), false);
+      assert.equal(fs.existsSync(sentinelPath), false);
+      // The prior closure is retained as a rollback sibling until finalize.
+      assert.ok(rollbackRoot && rollbackRoot.startsWith(runtimeRoot), 'rollback sibling path returned');
+      assert.equal(fs.existsSync(rollbackRoot), true);
+      const sandboxEntries = fs.readdirSync(sandbox).sort();
+      assert.ok(sandboxEntries.includes('compiled-routing'), 'serving root present');
+      assert.ok(sandboxEntries.some((e) => e.startsWith('compiled-routing.rollback-')), 'rollback sibling retained');
+      assert.match(
+        sync.verifyRoot(runtimeRoot, { emit: false }).message,
+        /all 7 hubs resolve; 0 reads under \.opencode\/specs/,
+      );
+      // finalize removes the rollback sibling after reconciling external state.
+      const finalized = sync.finalize(rollbackRoot, runtimeRoot);
+      assert.equal(finalized.finalized, true);
+      assert.equal(fs.existsSync(rollbackRoot), false);
+      assert.deepEqual(fs.readdirSync(sandbox).sort(), ['compiled-routing']);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('leaves an existing runtime untouched when the authored source is unavailable', () => {
+    const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-sync-source-failure-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
+    fs.mkdirSync(runtimeRoot);
+    fs.writeFileSync(sentinelPath, 'prior-serving');
+    try {
+      assert.throws(
+        () => sync.build({ sourceRoot: path.join(sandbox, 'missing-source'), runtimeRoot }),
+        /authored resolver missing/,
+      );
+      assert.equal(fs.readFileSync(sentinelPath, 'utf8'), 'prior-serving');
+      assert.deepEqual(fs.readdirSync(sandbox), ['compiled-routing']);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('refuses to replace an existing root that is not a verified closure', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-invalid-prior-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
+    fs.mkdirSync(runtimeRoot);
+    fs.writeFileSync(sentinelPath, 'prior-serving');
+    try {
+      assert.throws(
+        () => sync.build({ runtimeRoot }),
+        /promoted resolver missing at no coherent layout/,
+      );
+      assert.equal(fs.readFileSync(sentinelPath, 'utf8'), 'prior-serving');
+      assert.deepEqual(fs.readdirSync(sandbox).sort(), ['compiled-routing']);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('aborts at staging-verify failure without touching the serving root', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-staging-fail-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
+    buildFreshRuntime(runtimeRoot);
+    fs.writeFileSync(sentinelPath, 'prior-serving');
+    try {
+      assert.throws(
+        () => sync.build({ runtimeRoot, _testFailVerify: 'staging' }),
+        /test-only staging verify failure/,
+      );
+      // The prior serving root is byte-identical: nothing was renamed or deleted.
+      assert.equal(fs.readFileSync(sentinelPath, 'utf8'), 'prior-serving');
+      // No rollback sibling was created (publication never started).
+      assert.deepEqual(fs.readdirSync(sandbox).sort(), ['compiled-routing']);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('restores the exact prior closure when post-publish verification fails', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-postpublish-fail-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
+    const markerDir = path.join(runtimeRoot, 'prior-only-marker');
+    buildFreshRuntime(runtimeRoot);
+    fs.mkdirSync(markerDir);
+    fs.writeFileSync(sentinelPath, 'prior-serving');
+    try {
+      assert.throws(
+        () => sync.build({ runtimeRoot, _testFailVerify: 'post-publish' }),
+        /test-only post-publish verify failure/,
+      );
+      // The prior closure is restored byte-identical: sentinel and marker survive.
+      assert.equal(fs.readFileSync(sentinelPath, 'utf8'), 'prior-serving');
+      assert.equal(fs.existsSync(markerDir), true);
+      // The failed new root and the rollback sibling are both gone.
+      assert.deepEqual(fs.readdirSync(sandbox).sort(), ['compiled-routing']);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('a concurrent external manifest created during publication survives finalize', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-concurrent-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    buildFreshRuntime(runtimeRoot);
+    fs.writeFileSync(path.join(runtimeRoot, 'prior-serving-sentinel.txt'), 'prior-serving');
+    const concurrentHub = `concurrent-external-${process.pid}`;
+    try {
+      const { rollbackRoot } = sync.build({ runtimeRoot });
+      assert.ok(rollbackRoot, 'rollback retained');
+      // Simulate a writer that created an inert external manifest in the OLD
+      // (rollback) root's activation store after capture but before finalize.
+      const rollbackActivation = runtimeLayout.activationRootFor(rollbackRoot);
+      fs.mkdirSync(path.join(rollbackActivation, concurrentHub), { recursive: true });
+      fs.writeFileSync(
+        path.join(rollbackActivation, concurrentHub, 'manifest.json'),
+        validManifestBytes('c'.repeat(64)),
+      );
+      const servingActivation = runtimeLayout.activationRootFor(runtimeRoot);
+      assert.equal(fs.existsSync(path.join(servingActivation, concurrentHub, 'manifest.json')), false);
+      const result = sync.finalize(rollbackRoot, runtimeRoot);
+      assert.deepEqual(result.reconciled, [concurrentHub]);
+      // The concurrent manifest was copied forward into the new serving root.
+      const forwarded = fs.readFileSync(path.join(servingActivation, concurrentHub, 'manifest.json'));
+      assert.equal(forwarded.toString(), validManifestBytes('c'.repeat(64)).toString());
+      // The rollback sibling is gone.
+      assert.equal(fs.existsSync(rollbackRoot), false);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('revert swaps the retained rollback back into the serving root', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-revert-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    try {
+      // Build #1 establishes a real coherent prior closure. runtimeRoot does not
+      // exist yet, so this build has no prior to roll back.
+      const first = sync.build({ runtimeRoot });
+      assert.equal(first.rollbackRoot, null, 'first build has no prior to roll back');
+      const priorResolver = path.join(runtimeRoot, sync.CURRENT_LAYOUT.resolver);
+      assert.equal(fs.existsSync(priorResolver), true);
+
+      // Build #2 treats #1 as the prior closure and retains it as rollback.
+      const { rollbackRoot } = sync.build({ runtimeRoot });
+      assert.ok(rollbackRoot, 'second build retained rollback');
+      // The rollback carries the #1 prior closure's resolver (a real closure).
+      assert.equal(fs.existsSync(path.join(rollbackRoot, sync.CURRENT_LAYOUT.resolver)), true);
+
+      // A failed post-publish gate triggers revert: rollback moves back into place.
+      sync.revert(rollbackRoot, runtimeRoot);
+      assert.equal(fs.existsSync(rollbackRoot), false);
+      assert.deepEqual(fs.readdirSync(sandbox).sort(), ['compiled-routing']);
+      // The restored prior closure is a real coherent closure and still verifies.
+      assert.match(
+        sync.verifyRoot(runtimeRoot, { emit: false }).message,
+        /all 7 hubs resolve; 0 reads under \.opencode\/specs/,
+      );
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('rejects arbitrary, symlinked, and stale rollback paths without mutation', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-path-safety-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    try {
+      const { rollbackRoot } = buildRetainedPublication(runtimeRoot);
+      const arbitraryRoot = path.join(sandbox, 'unrelated-directory');
+      fs.mkdirSync(arbitraryRoot);
+      assert.throws(
+        () => sync.finalize(arbitraryRoot, runtimeRoot),
+        /rollback root name does not match/,
+      );
+      const linkedRoot = `${runtimeRoot}.rollback-999-998`;
+      fs.symlinkSync(rollbackRoot, linkedRoot);
+      assert.throws(
+        () => sync.finalize(linkedRoot, runtimeRoot),
+        /rollback root must be a real directory/,
+      );
+      fs.rmSync(linkedRoot);
+      const staleRoot = `${runtimeRoot}.rollback-999-999`;
+      fs.renameSync(rollbackRoot, staleRoot);
+      assert.throws(
+        () => sync.finalize(staleRoot, runtimeRoot),
+        /not bound to the active publication/,
+      );
+      fs.renameSync(staleRoot, rollbackRoot);
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(rollbackRoot), true);
+      sync.finalize(rollbackRoot, runtimeRoot);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('three-way reconciliation preserves a serving-only external update', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-serving-update-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const externalHub = `serving-update-${process.pid}`;
+    try {
+      buildFreshRuntime(runtimeRoot);
+      const initialActivation = runtimeLayout.activationRootFor(runtimeRoot);
+      const initialPath = path.join(initialActivation, externalHub, 'manifest.json');
+      fs.mkdirSync(path.dirname(initialPath), { recursive: true });
+      fs.writeFileSync(initialPath, validManifestBytes('a'.repeat(64)));
+      const { rollbackRoot } = sync.build({ runtimeRoot });
+      const servingPath = path.join(runtimeLayout.activationRootFor(runtimeRoot), externalHub, 'manifest.json');
+      fs.writeFileSync(servingPath, validManifestBytes('b'.repeat(64)));
+      const result = sync.finalize(rollbackRoot, runtimeRoot);
+      assert.deepEqual(result.reconciled, []);
+      assert.equal(fs.readFileSync(servingPath).toString(), validManifestBytes('b'.repeat(64)).toString());
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('three-way reconciliation preserves both roots on divergent updates', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-divergence-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const externalHub = `divergent-update-${process.pid}`;
+    try {
+      buildFreshRuntime(runtimeRoot);
+      const baselinePath = path.join(runtimeLayout.activationRootFor(runtimeRoot), externalHub, 'manifest.json');
+      fs.mkdirSync(path.dirname(baselinePath), { recursive: true });
+      fs.writeFileSync(baselinePath, validManifestBytes('a'.repeat(64)));
+      const { rollbackRoot } = sync.build({ runtimeRoot });
+      const servingPath = path.join(runtimeLayout.activationRootFor(runtimeRoot), externalHub, 'manifest.json');
+      const rollbackPath = path.join(runtimeLayout.activationRootFor(rollbackRoot), externalHub, 'manifest.json');
+      fs.writeFileSync(servingPath, validManifestBytes('b'.repeat(64)));
+      fs.writeFileSync(rollbackPath, validManifestBytes('c'.repeat(64)));
+      assert.throws(
+        () => sync.finalize(rollbackRoot, runtimeRoot),
+        /divergent external activation manifests/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(rollbackRoot), true);
+      assert.equal(fs.readFileSync(servingPath).toString(), validManifestBytes('b'.repeat(64)).toString());
+      assert.equal(fs.readFileSync(rollbackPath).toString(), validManifestBytes('c'.repeat(64)).toString());
+      fs.writeFileSync(servingPath, validManifestBytes('a'.repeat(64)));
+      fs.writeFileSync(rollbackPath, validManifestBytes('a'.repeat(64)));
+      sync.finalize(rollbackRoot, runtimeRoot);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('failed finalize and revert verification retain both recoverable roots', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-verify-fail-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    try {
+      let publication = buildRetainedPublication(runtimeRoot);
+      assert.throws(
+        () => sync.finalize(publication.rollbackRoot, runtimeRoot, { _testFailVerify: 'finalize' }),
+        /test-only finalize verify failure/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(publication.rollbackRoot), true);
+      sync.finalize(publication.rollbackRoot, runtimeRoot);
+
+      publication = sync.build({ runtimeRoot });
+      assert.throws(
+        () => sync.revert(publication.rollbackRoot, runtimeRoot, { _testFailVerify: 'revert-post' }),
+        /test-only revert-post verify failure/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(publication.rollbackRoot), true);
+      sync.finalize(publication.rollbackRoot, runtimeRoot);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('closure fingerprints reject code-byte drift in the retained rollback', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-content-drift-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    try {
+      const publication = buildRetainedPublication(runtimeRoot);
+      const rollbackEngine = path.join(publication.rollbackRoot, runtimeLayout.CURRENT_LAYOUT.engine);
+      const originalBytes = fs.readFileSync(rollbackEngine);
+      fs.writeFileSync(rollbackEngine, Buffer.concat([originalBytes, Buffer.from('\n// modified bytes\n')]));
+      assert.throws(
+        () => sync.revert(publication.rollbackRoot, runtimeRoot),
+        /rollback closure does not match the retained prior closure/,
+      );
+      fs.writeFileSync(rollbackEngine, originalBytes);
+      sync.finalize(publication.rollbackRoot, runtimeRoot);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('finalize and revert cleanup resume after individual removal failures', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-cleanup-resume-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const realRmSync = fs.rmSync;
+    try {
+      let publication = buildRetainedPublication(runtimeRoot);
+      let failFinalizeRemoval = true;
+      fs.rmSync = function patchedFinalizeRemoval(target, ...rest) {
+        if (failFinalizeRemoval && path.resolve(String(target)) === path.resolve(publication.rollbackRoot)) {
+          failFinalizeRemoval = false;
+          const error = new Error('seeded finalize cleanup failure');
+          error.code = 'EACCES';
+          throw error;
+        }
+        return realRmSync.call(fs, target, ...rest);
+      };
+      assert.throws(
+        () => sync.finalize(publication.rollbackRoot, runtimeRoot),
+        /seeded finalize cleanup failure/,
+      );
+      fs.rmSync = realRmSync;
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(publication.rollbackRoot), true);
+      assert.equal(fs.existsSync(runtimeLayout.publicationLockPathFor(runtimeRoot)), true);
+      assert.equal(sync.finalize(publication.rollbackRoot, runtimeRoot).resumedCleanup, true);
+
+      publication = sync.build({ runtimeRoot });
+      const publicationId = path.basename(publication.rollbackRoot)
+        .slice(`${path.basename(runtimeRoot)}.rollback-`.length);
+      const failedRoot = `${runtimeRoot}.failed-${publicationId}`;
+      let failRevertRemoval = true;
+      fs.rmSync = function patchedRevertRemoval(target, ...rest) {
+        if (failRevertRemoval && path.resolve(String(target)) === path.resolve(failedRoot)) {
+          failRevertRemoval = false;
+          const error = new Error('seeded revert cleanup failure');
+          error.code = 'EACCES';
+          throw error;
+        }
+        return realRmSync.call(fs, target, ...rest);
+      };
+      assert.throws(
+        () => sync.revert(publication.rollbackRoot, runtimeRoot),
+        /seeded revert cleanup failure/,
+      );
+      fs.rmSync = realRmSync;
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(failedRoot), true);
+      assert.equal(fs.existsSync(runtimeLayout.publicationLockPathFor(runtimeRoot)), true);
+      assert.equal(sync.revert(publication.rollbackRoot, runtimeRoot).resumedCleanup, true);
+      assert.deepEqual(fs.readdirSync(sandbox).sort(), ['compiled-routing']);
+    } finally {
+      fs.rmSync = realRmSync;
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('terminal cleanup resumes lock failure without deleting newer publication state', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-terminal-resume-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    const lockPath = runtimeLayout.publicationLockPathFor(runtimeRoot);
+    const statePath = path.join(runtimeRoot, '.compiled-route-publication.json');
+    const realRmSync = fs.rmSync;
+    try {
+      let publication = buildRetainedPublication(runtimeRoot);
+      let failLockRemoval = true;
+      fs.rmSync = function patchedLockRemoval(target, ...rest) {
+        if (failLockRemoval && path.resolve(String(target)) === path.resolve(lockPath)) {
+          failLockRemoval = false;
+          throw new Error('seeded publication lock removal failure');
+        }
+        return realRmSync.call(fs, target, ...rest);
+      };
+      assert.throws(
+        () => sync.finalize(publication.rollbackRoot, runtimeRoot),
+        /seeded publication lock removal failure/,
+      );
+      fs.rmSync = realRmSync;
+      assert.equal(fs.existsSync(lockPath), true);
+      assert.equal(fs.existsSync(publication.rollbackRoot), false);
+      assert.equal(sync.finalize(publication.rollbackRoot, runtimeRoot).resumedCleanup, true);
+
+      publication = sync.build({ runtimeRoot });
+      let nestedPublication = null;
+      fs.rmSync = function patchedUnlock(target, ...rest) {
+        const result = realRmSync.call(fs, target, ...rest);
+        if (!nestedPublication && path.resolve(String(target)) === path.resolve(lockPath)) {
+          nestedPublication = sync.build({ runtimeRoot });
+        }
+        return result;
+      };
+      sync.finalize(publication.rollbackRoot, runtimeRoot);
+      fs.rmSync = realRmSync;
+      assert.ok(nestedPublication && nestedPublication.rollbackRoot, 'nested publication acquired the released lock');
+      assert.equal(fs.existsSync(lockPath), true);
+      assert.equal(fs.existsSync(nestedPublication.rollbackRoot), true);
+      assert.equal(fs.existsSync(statePath), true);
+      const nestedState = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+      assert.equal(
+        nestedState.rollbackBasename,
+        path.basename(nestedPublication.rollbackRoot),
+      );
+      sync.finalize(nestedPublication.rollbackRoot, runtimeRoot);
+    } finally {
+      fs.rmSync = realRmSync;
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('rename failures retain a serving root and recoverable publication state', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-rename-recovery-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    try {
+      buildFreshRuntime(runtimeRoot);
+      const installPublication = sync.build({
+        runtimeRoot,
+        _testFailRename: ['staging-install', 'staging-install-rollback-restore'],
+      });
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(installPublication.rollbackRoot), true);
+      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
+      sync.finalize(installPublication.rollbackRoot, runtimeRoot);
+
+      assert.throws(
+        () => sync.build({
+          runtimeRoot,
+          _testFailVerify: 'post-publish',
+          _testFailRename: 'post-publish-restore',
+        }),
+        /verified new root was restored and the rollback retained/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
+      let rollbackRoot = fs.readdirSync(sandbox)
+        .map((entry) => path.join(sandbox, entry))
+        .find((entry) => entry.startsWith(`${runtimeRoot}.rollback-`));
+      assert.ok(rollbackRoot, 'rollback retained after failed restoration');
+      sync.finalize(rollbackRoot, runtimeRoot);
+
+      buildFreshRuntime(path.join(sandbox, 'fallback-runtime'));
+      const fallbackRuntime = path.join(sandbox, 'fallback-runtime');
+      assert.throws(
+        () => sync.build({
+          runtimeRoot: fallbackRuntime,
+          _testFailVerify: 'post-publish',
+          _testFailRename: ['post-publish-restore', 'post-publish-new-restore'],
+        }),
+        /verified prior root was reinstalled/,
+      );
+      assert.equal(fs.existsSync(fallbackRuntime), true);
+      assert.match(sync.verifyRoot(fallbackRuntime, { emit: false }).message, /all 7 hubs resolve/);
+
+      const retainedRuntime = path.join(sandbox, 'retained-runtime');
+      buildFreshRuntime(retainedRuntime);
+      assert.throws(
+        () => sync.build({
+          runtimeRoot: retainedRuntime,
+          _testFailRename: [
+            'staging-install',
+            'staging-install-rollback-restore',
+            'staging-install-fallback',
+          ],
+        }),
+        /rollback and staging remain recoverable/,
+      );
+      const retainedEntries = fs.readdirSync(sandbox).map((entry) => path.join(sandbox, entry));
+      const retainedRollback = retainedEntries.find((entry) => entry.startsWith(`${retainedRuntime}.rollback-`));
+      const retainedStaging = retainedEntries.find((entry) => entry.startsWith(`${retainedRuntime}.staging-`));
+      assert.ok(retainedRollback, 'verified rollback retained');
+      assert.ok(retainedStaging, 'verified staging retained');
+      assert.equal(fs.existsSync(runtimeLayout.publicationLockPathFor(retainedRuntime)), true);
+      fs.renameSync(retainedStaging, retainedRuntime);
+      sync.finalize(retainedRollback, retainedRuntime);
+
+      const publication = sync.build({ runtimeRoot });
+      rollbackRoot = publication.rollbackRoot;
+      assert.throws(
+        () => sync.revert(rollbackRoot, runtimeRoot, { _testFailRename: 'revert-install' }),
+        /test-only revert-install rename failure/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.equal(fs.existsSync(rollbackRoot), true);
+      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
+      sync.finalize(rollbackRoot, runtimeRoot);
+
+      const recoveryPublication = sync.build({ runtimeRoot });
+      assert.throws(
+        () => sync.revert(recoveryPublication.rollbackRoot, runtimeRoot, {
+          _testFailVerify: 'revert-post',
+          _testFailRename: 'revert-current-restore',
+        }),
+        /verified prior root remains serving/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
+      assert.equal(sync.revert(recoveryPublication.rollbackRoot, runtimeRoot).resumedCleanup, true);
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('long-lived status rebinding follows an atomic generation replacement', () => {
+    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-status-rebind-'));
+    const runtimeRoot = path.join(sandbox, 'compiled-routing');
+    try {
+      fs.cpSync(sync.RUNTIME_ROOT, runtimeRoot, { recursive: true });
+      const beforeBinding = status.runtimeBindingFor(runtimeRoot);
+      const before = status.computeHubStatus('cli-external-orchestration', {
+        runtimeRoot,
+        probeEngine: false,
+      });
+      assert.equal(beforeBinding.id, 'legacy');
+      assert.equal(before.causeCode, 'stale-manifest');
+      const publication = sync.build({ runtimeRoot });
+      const afterBinding = status.runtimeBindingFor(runtimeRoot);
+      const after = status.computeHubStatus('cli-external-orchestration', {
+        runtimeRoot,
+        probeEngine: false,
+      });
+      assert.equal(afterBinding.id, 'current');
+      assert.notEqual(afterBinding.rootIdentity, beforeBinding.rootIdentity);
+      assert.equal(after.causeCode, 'compiled-serving');
+      sync.revert(publication.rollbackRoot, runtimeRoot);
+      const restoredBinding = status.runtimeBindingFor(runtimeRoot);
+      const restored = status.computeHubStatus('cli-external-orchestration', {
+        runtimeRoot,
+        probeEngine: false,
+      });
+      assert.equal(restoredBinding.id, 'legacy');
+      assert.equal(restored.causeCode, 'stale-manifest');
+
+      const missingRuntime = path.join(sandbox, 'missing-manifest-runtime');
+      fs.cpSync(sync.RUNTIME_ROOT, missingRuntime, { recursive: true });
+      fs.rmSync(path.join(
+        runtimeLayout.activationRootFor(missingRuntime),
+        'cli-external-orchestration',
+        'manifest.json',
+      ));
+      assert.throws(
+        () => sync.build({ runtimeRoot: missingRuntime }),
+        /promoted closure failed to resolve hubs: cli-external-orchestration/,
+      );
+
+      const malformedRuntime = path.join(sandbox, 'malformed-manifest-runtime');
+      fs.cpSync(sync.RUNTIME_ROOT, malformedRuntime, { recursive: true });
+      const malformedPath = path.join(
+        runtimeLayout.activationRootFor(malformedRuntime),
+        'cli-external-orchestration',
+        'manifest.json',
+      );
+      fs.writeFileSync(malformedPath, '{broken');
+      assert.throws(
+        () => sync.build({ runtimeRoot: malformedRuntime }),
+        /promoted closure failed to resolve hubs: cli-external-orchestration/,
+      );
+
+      const invalidRuntime = path.join(sandbox, 'invalid-manifest-runtime');
+      fs.cpSync(sync.RUNTIME_ROOT, invalidRuntime, { recursive: true });
+      const invalidPath = path.join(
+        runtimeLayout.activationRootFor(invalidRuntime),
+        'cli-external-orchestration',
+        'manifest.json',
+      );
+      fs.writeFileSync(invalidPath, `${JSON.stringify({
+        schemaVersion: 'V1',
+        selectedPolicy: { effectivePolicyHash: 'bad', generation: 5 },
+        servingAuthority: 'compiled',
+        shadowOnly: false,
+      })}\n`);
+      assert.throws(
+        () => sync.build({ runtimeRoot: invalidRuntime }),
+        /promoted closure failed to resolve hubs: cli-external-orchestration/,
+      );
+    } finally {
+      fs.rmSync(sandbox, { recursive: true, force: true });
+    }
+  });
+
+  test('canonical manifest writers refuse mutation while publication is locked', () => {
+    const lockPath = manifestContract.PUBLICATION_LOCK_PATH;
+    const hubId = `publication-lock-${process.pid}`;
+    const skillRoot = createParentFixture(hubId);
+    assert.equal(fs.existsSync(lockPath), false, 'no active live publication lock');
+    fs.writeFileSync(lockPath, '{"publicationId":"test"}\n', { flag: 'wx', mode: 0o600 });
+    try {
+      const minted = manifestContract.mintCanonicalManifest({ hubId, skillRoot });
+      assert.equal(minted.causeCode, 'publication-locked');
+      const refreshed = manifestContract.refreshCanonicalManifest({ hubId: PRIMARY_HUB, skillRoot: primaryRoot });
+      assert.equal(refreshed.causeCode, 'publication-locked');
+      assert.equal(fs.existsSync(manifestContract.canonicalManifestPath({ hubId }).absolutePath), false);
+    } finally {
+      fs.rmSync(lockPath, { force: true });
+    }
+  });
+
+  test('canonical manifest writers hold the shared lock through their atomic write', () => {
+    const lockPath = manifestContract.PUBLICATION_LOCK_PATH;
+    const hubId = `publication-writer-lease-${process.pid}`;
+    const skillRoot = createParentFixture(hubId);
+    removeManifestDirectory(hubId);
+    assert.equal(fs.existsSync(lockPath), false, 'no active live publication lock');
+    const manifestPath = manifestContract.canonicalManifestPath({ hubId }).absolutePath;
+    const realWriteFileSync = fs.writeFileSync;
+    let observed = false;
+    fs.writeFileSync = function patchedWriteFileSync(target, ...rest) {
+      if (path.resolve(String(target)) === path.resolve(manifestPath)) {
+        observed = true;
+        assert.equal(fs.existsSync(lockPath), true);
+        assert.throws(
+          () => realWriteFileSync.call(fs, lockPath, '{}\n', { flag: 'wx', mode: 0o600 }),
+          (error) => error && error.code === 'EEXIST',
+        );
+      }
+      return realWriteFileSync.call(fs, target, ...rest);
+    };
+    try {
+      const minted = manifestContract.mintCanonicalManifest({ hubId, skillRoot });
+      assert.equal(minted.created, true, minted.causeCode);
+      assert.equal(observed, true);
+      assert.equal(fs.existsSync(lockPath), false);
+    } finally {
+      fs.writeFileSync = realWriteFileSync;
+      if (fs.existsSync(lockPath)) {
+        const lock = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+        if (lock.kind === 'manifest-writer' && lock.pid === process.pid) {
+          fs.rmSync(lockPath);
+        }
+      }
+      removeManifestDirectory(hubId);
+    }
   });
 
   test('fails sync capture and restore closed on invalid or conflicting entries', () => {
@@ -465,10 +1137,13 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.deepEqual(results.map((result) => result.code).sort(), [0, 1]);
     assert.deepEqual(
       results.map((result) => result.json.causeCode).sort(),
-      ['already-exists', 'fresh'],
+      ['fresh', 'publication-locked'],
     );
     assert.equal(results.find((result) => result.code === 0).json.created, true);
     assert.equal(results.find((result) => result.code === 1).json.created, false);
+    const retry = runManifestCli(args);
+    assert.equal(retry.status, 1);
+    assert.equal(retry.json.causeCode, 'already-exists');
     removeManifestDirectory(RACE_HUB);
   });
 
@@ -484,18 +1159,25 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.deepEqual(fs.readFileSync(manifestPath), beforeBytes);
   });
 
-  test('keeps fixed routing maps unchanged; default cohort now serves the 7 promoted hubs compiled', () => {
+  test('keeps fixed routing maps unchanged and reports only authorized pre-publication drift', () => {
     delete process.env.SPECKIT_COMPILED_ROUTING;
     assert.equal(resolver.DEFAULT_ON_HUBS.size, 7);
     assert.equal(Object.prototype.hasOwnProperty.call(engine.HUB_CHILD, PRIMARY_HUB), false);
     assert.equal(resolver.resolveRoute(PRIMARY_HUB, 'quality review'), null);
     const records = status.computeAllStatus({ probeEngine: false });
+    const staleHubs = [];
     for (const hubId of FIXED_HUBS) {
       const record = records.find((candidate) => candidate.hubId === hubId);
       assert.ok(record, hubId);
-      assert.equal(record.causeCode, 'compiled-serving', hubId);
+      assert.equal(
+        ['compiled-serving', 'stale-manifest'].includes(record.causeCode),
+        true,
+        hubId,
+      );
+      if (record.causeCode !== 'compiled-serving') staleHubs.push(hubId);
       assert.equal(typeof record.manifestFreshness, 'object', hubId);
     }
+    assert.deepEqual(staleHubs, staleHubs.length === 0 ? [] : ['cli-external-orchestration']);
   });
 
   test('refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults', () => {
@@ -664,6 +1346,20 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     assert.equal(usage.status, 2);
     assert.equal(usage.stdout, '');
     assert.match(usage.stderr, /^usage:/);
+    const mixedSyncMode = spawnSync(process.execPath, [SYNC_PATH, '--check', '--verify'], {
+      cwd: REPO_ROOT,
+      encoding: 'utf8',
+    });
+    assert.equal(mixedSyncMode.status, 2);
+    assert.equal(mixedSyncMode.stdout, '');
+    assert.match(mixedSyncMode.stderr, /choose exactly one mode/);
+    const trailingSyncArgument = spawnSync(process.execPath, [SYNC_PATH, '--check', 'unexpected'], {
+      cwd: REPO_ROOT,
+      encoding: 'utf8',
+    });
+    assert.equal(trailingSyncArgument.status, 2);
+    assert.equal(trailingSyncArgument.stdout, '');
+    assert.match(trailingSyncArgument.stderr, /^usage:/);
     const source = fs.readFileSync(
       path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-route-manifest.cjs'),
       'utf8',

@@ -14,12 +14,13 @@
 
 const path = require('path');
 
-const RESOLVER = path.resolve(
-  __dirname,
-  'lib',
-  'compiled-routing',
-  '011-runtime-engine/lib/resolve.cjs',
-);
+const { resolverPathFor } = require('./lib/compiled-route-layout.cjs');
+
+const RUNTIME_ROOT = path.resolve(__dirname, 'lib', 'compiled-routing');
+// Coherent layout verdict: the resolver from whichever generation the runtime
+// actually serves, or null when no layout is fully present (fail to the legacy
+// sentinel below). Never mixes a current resolver with a legacy engine.
+const RESOLVER = resolverPathFor(RUNTIME_ROOT);
 
 function main() {
   const args = process.argv.slice(2);
@@ -32,6 +33,7 @@ function main() {
   }
   let route = null;
   try {
+    if (!RESOLVER) throw new Error('no coherent compiled-routing layout');
     const { resolveRoute } = require(RESOLVER);
     route = resolveRoute(hub, prompt);
   } catch (err) {

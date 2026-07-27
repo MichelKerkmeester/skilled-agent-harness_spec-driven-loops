@@ -9,28 +9,18 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
-const {
-  artifactBytes,
-  compileRegistry,
-  sha256,
-} = require('./compiled-routing/006-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs');
-const {
-  HUB_CHILD,
-  loadHubEngine,
-} = require('./compiled-routing/011-runtime-engine/lib/compiled-route.cjs');
+const layout = require('./compiled-route-layout.cjs');
+
+const RUNTIME_ROOT = path.join(__dirname, 'compiled-routing');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
-const ACTIVATION_ROOT = path.join(
-  __dirname,
-  'compiled-routing',
-  '010-live-activation',
-  'activation',
-);
+const PUBLICATION_LOCK_PATH = layout.publicationLockPathFor(RUNTIME_ROOT);
 const HUB_ID_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const MANIFEST_KEYS = ['schemaVersion', 'selectedPolicy', 'servingAuthority', 'shadowOnly'];
@@ -44,6 +34,117 @@ function contractError(causeCode) {
   const error = new Error(causeCode);
   error.causeCode = causeCode;
   return error;
+}
+
+let cachedRuntimeContext = null;
+
+function clearRuntimeRequireCache() {
+  const root = path.resolve(RUNTIME_ROOT);
+  for (const cachePath of Object.keys(require.cache)) {
+    const relative = path.relative(root, cachePath);
+    if (relative === '' || (relative && !relative.startsWith('..') && !path.isAbsolute(relative))) {
+      delete require.cache[cachePath];
+    }
+  }
+}
+
+function runtimePaths({ allowLegacyFallback = false } = {}) {
+  return layout.resolveRuntimePaths(RUNTIME_ROOT, { allowLegacyFallback });
+}
+
+function activationRoot() {
+  return runtimePaths({ allowLegacyFallback: true }).activationRoot;
+}
+
+function runtimeContext() {
+  const binding = runtimePaths();
+  if (!binding) throw contractError('compile-error');
+  if (!cachedRuntimeContext || cachedRuntimeContext.rootIdentity !== binding.rootIdentity) {
+    clearRuntimeRequireCache();
+    cachedRuntimeContext = {
+      ...binding,
+      compiler: require(binding.compilerPath),
+      engine: require(binding.enginePath),
+    };
+  }
+  return cachedRuntimeContext;
+}
+
+function sha256(bytes) {
+  return crypto.createHash('sha256').update(bytes).digest('hex');
+}
+
+function artifactBytes(value) {
+  return runtimeContext().compiler.artifactBytes(value);
+}
+
+// A writer lease whose holder died would otherwise block every future mint and
+// refresh forever, with no escape but deleting the file by hand. Reclaim only an
+// abandoned WRITER lease: an abandoned publication lease may sit over a runtime
+// that is still mid-swap, so that one stays for an operator to clear explicitly.
+function abandonedWriterLease() {
+  let lock;
+  try {
+    lock = JSON.parse(fs.readFileSync(PUBLICATION_LOCK_PATH, 'utf8'));
+  } catch {
+    return false;
+  }
+  if (!lock || lock.kind !== 'manifest-writer') return false;
+  if (!Number.isInteger(lock.pid) || lock.pid === process.pid) return false;
+  try {
+    process.kill(lock.pid, 0);
+    return false;
+  } catch (error) {
+    return Boolean(error) && error.code === 'ESRCH';
+  }
+}
+
+function acquireManifestWriterLease(operation) {
+  const token = `writer-${process.pid}-${Date.now()}-${crypto.randomBytes(8).toString('hex')}`;
+  const payload = {
+    schemaVersion: 'V1',
+    kind: 'manifest-writer',
+    token,
+    operation,
+    pid: process.pid,
+    createdAt: new Date().toISOString(),
+  };
+  const write = () => fs.writeFileSync(
+    PUBLICATION_LOCK_PATH,
+    `${JSON.stringify(payload, null, 2)}\n`,
+    { flag: 'wx', mode: 0o600 },
+  );
+  try {
+    write();
+  } catch (error) {
+    if (!error || error.code !== 'EEXIST') throw error;
+    if (!abandonedWriterLease()) return null;
+    try {
+      fs.rmSync(PUBLICATION_LOCK_PATH);
+      write();
+    } catch (retryError) {
+      if (retryError && retryError.code === 'EEXIST') return null;
+      throw retryError;
+    }
+  }
+  return token;
+}
+
+function releaseManifestWriterLease(token) {
+  const stats = fs.lstatSync(PUBLICATION_LOCK_PATH);
+  if (stats.isSymbolicLink() || !stats.isFile()) {
+    throw new Error('manifest writer lock is not a real file');
+  }
+  let lock;
+  try {
+    lock = JSON.parse(fs.readFileSync(PUBLICATION_LOCK_PATH, 'utf8'));
+  } catch {
+    throw new Error('manifest writer lock is invalid');
+  }
+  if (lock.kind !== 'manifest-writer' || lock.token !== token) {
+    throw new Error('manifest writer lock ownership changed');
+  }
+  fs.rmSync(PUBLICATION_LOCK_PATH);
 }
 
 function isPlainObject(value) {
@@ -132,9 +233,10 @@ function normalizeCurrentPolicy(currentPolicy) {
 }
 
 function safeManifestLocationExists(absolutePath) {
+  const currentActivationRoot = activationRoot();
   let activationStats;
   try {
-    activationStats = fs.lstatSync(ACTIVATION_ROOT);
+    activationStats = fs.lstatSync(currentActivationRoot);
   } catch (error) {
     if (error && error.code === 'ENOENT') return false;
     throw contractError('invalid-manifest');
@@ -142,7 +244,7 @@ function safeManifestLocationExists(absolutePath) {
   if (activationStats.isSymbolicLink() || !activationStats.isDirectory()) {
     throw contractError('unsafe-path');
   }
-  const realActivationRoot = fs.realpathSync(ACTIVATION_ROOT);
+  const realActivationRoot = fs.realpathSync(currentActivationRoot);
   const directoryPath = path.dirname(absolutePath);
   let directoryStats;
   try {
@@ -253,12 +355,13 @@ function readOwnedFile(realRoot, fileName) {
 }
 
 function ensureActivationDirectory(directoryPath) {
-  fs.mkdirSync(ACTIVATION_ROOT, { recursive: true, mode: 0o700 });
-  const activationStats = fs.lstatSync(ACTIVATION_ROOT);
+  const currentActivationRoot = activationRoot();
+  fs.mkdirSync(currentActivationRoot, { recursive: true, mode: 0o700 });
+  const activationStats = fs.lstatSync(currentActivationRoot);
   if (activationStats.isSymbolicLink() || !activationStats.isDirectory()) {
     throw contractError('unsafe-path');
   }
-  const realActivationRoot = fs.realpathSync(ACTIVATION_ROOT);
+  const realActivationRoot = fs.realpathSync(currentActivationRoot);
   if (fs.existsSync(directoryPath)) {
     const directoryStats = fs.lstatSync(directoryPath);
     if (directoryStats.isSymbolicLink() || !directoryStats.isDirectory()) {
@@ -287,9 +390,10 @@ function causeFrom(error, fallback = 'invalid-input') {
  */
 function canonicalManifestPath({ hubId }) {
   if (!isCanonicalHubId(hubId)) throw contractError('unsafe-path');
-  const directoryPath = path.resolve(ACTIVATION_ROOT, hubId);
+  const currentActivationRoot = activationRoot();
+  const directoryPath = path.resolve(currentActivationRoot, hubId);
   const absolutePath = path.join(directoryPath, 'manifest.json');
-  if (!isContained(ACTIVATION_ROOT, absolutePath)) throw contractError('unsafe-path');
+  if (!isContained(currentActivationRoot, absolutePath)) throw contractError('unsafe-path');
   return { absolutePath, manifestPath: relativeManifestPath(absolutePath) };
 }
 
@@ -323,14 +427,14 @@ function loadCanonicalRouterInputs({ hubId, skillRoot }) {
 function compileCanonicalParent({ hubId, skillRoot, generation }) {
   const inputs = loadCanonicalRouterInputs({ hubId, skillRoot });
   try {
-    return compileRegistry({ activationGeneration: generation, ...inputs }).policy;
+    return runtimeContext().compiler.compileRegistry({ activationGeneration: generation, ...inputs }).policy;
   } catch (error) {
     if (error && error.causeCode) throw error;
     throw contractError('compile-error');
   }
 }
 
-// Every graduated hub (006-parent-hub-rollout's HUB_CHILD) owns a bespoke
+// Every graduated hub in HUB_CHILD owns a bespoke
 // shadow-child registry-compiler.cjs with its own packetKind vocabulary,
 // vocabulary-ownership rules, and bundle-rule generation -- structurally
 // different from the generic 001-sk-code compiler compileCanonicalParent
@@ -358,7 +462,8 @@ function compileCanonicalParent({ hubId, skillRoot, generation }) {
  * @returns {Object|undefined} The shadow-child's compiled policy, or undefined.
  */
 function shadowChildPolicyFor({ hubId, skillRoot }) {
-  if (!Object.prototype.hasOwnProperty.call(HUB_CHILD, hubId)) return undefined;
+  const { engine } = runtimeContext();
+  if (!Object.prototype.hasOwnProperty.call(engine.HUB_CHILD, hubId)) return undefined;
   let realSkillRoot;
   let realCanonicalRoot;
   try {
@@ -369,7 +474,7 @@ function shadowChildPolicyFor({ hubId, skillRoot }) {
   }
   if (realSkillRoot !== realCanonicalRoot) return undefined;
   try {
-    return loadHubEngine(hubId).snapshot.policy;
+    return engine.loadHubEngine(hubId).snapshot.policy;
   } catch {
     throw contractError('compile-error');
   }
@@ -471,7 +576,7 @@ function checkCanonicalManifestFreshness({ hubId, skillRoot, manifestBytes: supp
  * @param {Object} input - Hub identity and final authored source root.
  * @returns {Object} Stable mint result with a created flag.
  */
-function mintCanonicalManifest({ hubId, skillRoot }) {
+function mintCanonicalManifestUnlocked({ hubId, skillRoot }) {
   let paths;
   try {
     paths = canonicalManifestPath({ hubId });
@@ -532,6 +637,16 @@ function mintCanonicalManifest({ hubId, skillRoot }) {
   };
 }
 
+function mintCanonicalManifest(input) {
+  const lease = acquireManifestWriterLease('mint');
+  if (!lease) return failureRecord(input && input.hubId, 'publication-locked', { created: false });
+  try {
+    return mintCanonicalManifestUnlocked(input);
+  } finally {
+    releaseManifestWriterLease(lease);
+  }
+}
+
 /**
  * Recompile current hub inputs one generation ahead and overwrite an existing
  * manifest in place, preserving servingAuthority and shadowOnly untouched.
@@ -540,7 +655,7 @@ function mintCanonicalManifest({ hubId, skillRoot }) {
  * @param {Object} input - Hub identity and current authored source root.
  * @returns {Object} Stable freshness record with a refreshed flag.
  */
-function refreshCanonicalManifest({ hubId, skillRoot }) {
+function refreshCanonicalManifestUnlocked({ hubId, skillRoot }) {
   let paths;
   try {
     paths = canonicalManifestPath({ hubId });
@@ -609,15 +724,17 @@ function refreshCanonicalManifest({ hubId, skillRoot }) {
     shadowOnly: latest.manifest.shadowOnly,
   };
   const manifestBytes = artifactBytes(manifest);
+  let tempPath = null;
   try {
     ensureActivationDirectory(path.dirname(paths.absolutePath));
     // Publish atomically: write a unique temp sibling then rename over the target so
     // a concurrent reader never observes a half-written manifest and two publishers
     // cannot interleave a partial file.
-    const tempPath = `${paths.absolutePath}.tmp-${process.pid}-${newGeneration}`;
-    fs.writeFileSync(tempPath, manifestBytes, { mode: 0o600 });
+    tempPath = `${paths.absolutePath}.tmp-${process.pid}-${newGeneration}`;
+    fs.writeFileSync(tempPath, manifestBytes, { flag: 'wx', mode: 0o600 });
     fs.renameSync(tempPath, paths.absolutePath);
   } catch (error) {
+    if (tempPath) fs.rmSync(tempPath, { force: true });
     return failureRecord(hubId, causeFrom(error), { refreshed: false });
   }
   return {
@@ -626,12 +743,23 @@ function refreshCanonicalManifest({ hubId, skillRoot }) {
   };
 }
 
+function refreshCanonicalManifest(input) {
+  const lease = acquireManifestWriterLease('refresh');
+  if (!lease) return failureRecord(input && input.hubId, 'publication-locked', { refreshed: false });
+  try {
+    return refreshCanonicalManifestUnlocked(input);
+  } finally {
+    releaseManifestWriterLease(lease);
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  ACTIVATION_ROOT,
+  get ACTIVATION_ROOT() { return activationRoot(); },
+  PUBLICATION_LOCK_PATH,
   canonicalManifestPath,
   checkCanonicalManifestFreshness,
   evaluateManifestFreshness,
