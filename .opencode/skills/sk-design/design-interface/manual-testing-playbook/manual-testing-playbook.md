@@ -21,7 +21,6 @@ Canonical package artifacts:
 - `quality-floor-gate/`
 - `system-as-critique-against/`
 - `abstention-and-routing/`
-- `licensing-and-provenance/`
 - `real-ui-loop/`
 - `design-references-routing/`
 - `mechanical-preflight-card/`
@@ -40,9 +39,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 31 deterministic scenarios across 20 categories validating the `interface` skill surface, including the 11 relocated `foundations` subworkflow scenarios in section 23. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 30 deterministic scenarios across 19 categories validating the `interface` skill surface, including the 11 relocated `foundations` subworkflow scenarios in section 23. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present, the render fidelity check gated on the quality floor and the anti-default critique, and the guarded native-image visual-direction branch for net-new, ambiguous, or image-led work with approval before code, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface-preflight-card.md`.
+Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, the real-UI loop covering reuse-before-generate when a design system is present, the render fidelity check gated on the quality floor and the anti-default critique, and the guarded native-image visual-direction branch for net-new, ambiguous, or image-led work with approval before code, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface-preflight-card.md`.
 
 ### Realistic Test Model
 
@@ -65,7 +64,6 @@ Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critiqu
 
 1. Working directory is the repository root.
 2. `.opencode/skills/sk-design/design-interface/SKILL.md` and all files under `.opencode/skills/sk-design/design-interface/references/` resolve on disk.
-3. `.opencode/skills/sk-design/design-interface/LICENSE.txt` resolves on disk and is the skill's single Apache-2.0 license.
 4. The operator can run `python3`, `rg`, and `git diff` from the repository root.
 5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; the design-system grounding scenario assumes a real design system you own is available to read live, the render fidelity scenario assumes `mcp-chrome-devtools`, and the design-references routing scenario assumes the Mobbin or Refero MCPs resolve through Code Mode with a connected subscription for its initiative path (its fall-back path stays exercisable without one), otherwise record SKIP with the missing dependency.
 6. The mechanical pre-flight card, the mechanical layout gate, and the content gate each assume the operator supplies a real built or planned UI as the fixture so the boxes, counts, and sweeps run against a concrete render. The brief-to-dials intake assumes a concrete brief is supplied so the dials read from real signals.
@@ -158,7 +156,6 @@ Before declaring this playbook release-ready, confirm:
 6. Every SCENARIO CONTRACT prompt equals its table prompt.
 7. Every pass/fail rule cites a real interface source file.
 8. The system-as-critique-against scenario records both the named default look and the no-chooser, no-cache negative control.
-9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
 10. The real-UI loop scenarios record their negative controls: no style-preset menu for reuse-before-generate, no finished-design claim from a build that never rendered or a file write with no visible UI for the fidelity check, and no native-image direction branch unless the work is net-new, ambiguous, or image-led with approval before code.
 11. The design-references routing scenario records its three branches (initiative, ask, fall-back), the Mobbin-vs-Refero source pick, and its negative control: no chooser or gallery, no copied or cached reference, read live, and grounding kept upstream.
 12. The mechanical pre-flight card scenario records the filled context table, a binary mark on every box, the failing box numbers, and a SHIP verdict reached only with zero failing boxes.
@@ -199,7 +196,6 @@ This section records wave planning and capacity guidance for executing the 20-sc
 | 7 | Brief-to-dials intake | ID-014 | The Design Read intake reads a brief into the dials after the register posture, so it runs with the other intake-shaped checks and isolates the dial calibration |
 | 8 | Redesign intake | ID-015 | Redesign classification protects existing URLs, nav labels, form fields, legal copy and locked tokens before the visual pass |
 | 9 | Procedure-card contract | ID-018, ID-019, ID-020 | Procedure selection, no-card fallback, and direct fallback are read-only and share the same source section |
-| 10 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
 
 ### What Belongs In Per-Feature Files
 
@@ -335,28 +331,6 @@ Desired user-visible outcome: A clear routing decision that this is documentatio
 #### Test Execution
 
 > **Feature File:** [ID-006](abstention-and-routing/docs-task-routes-to-sk-doc.md)
-
----
-
-## 12. LICENSING AND PROVENANCE (ID-007)
-
-This category covers 1 scenario while the linked feature file remains the canonical execution contract.
-
-### ID-007 | Licensing and provenance integrity
-
-#### Description
-
-Provenance is intact: the vendored Apache-2.0 principles are unchanged from upstream, `LICENSE.txt` resolves on disk, and a de-vendor grep confirms no vendored MIT data, search-script, vendored-license, or third party notice material remains, so the skill is Apache-2.0 only.
-
-#### Scenario Contract
-
-Prompt: `Confirm the design data and principles in this skill are properly licensed and attributed before we ship it.`
-
-Desired user-visible outcome: A provenance report confirming `design_principles.md` is unchanged Apache-2.0 content, `LICENSE.txt` is present, and the skill is Apache-2.0 only with no vendored MIT material or notices remaining.
-
-#### Test Execution
-
-> **Feature File:** [ID-007](licensing-and-provenance/licensing-and-provenance-integrity.md)
 
 ---
 
@@ -649,7 +623,6 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-004 | Read a design system as the default, then deviate | SYSTEM AS CRITIQUE-AGAINST | [ID-004](system-as-critique-against/query-default-then-deviate.md) |
 | ID-005 | Pure-logic task routes away to sk-code | ABSTENTION AND ROUTING | [ID-005](abstention-and-routing/pure-logic-routes-to-sk-code.md) |
 | ID-006 | Documentation task routes away to sk-doc | ABSTENTION AND ROUTING | [ID-006](abstention-and-routing/docs-task-routes-to-sk-doc.md) |
-| ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](licensing-and-provenance/licensing-and-provenance-integrity.md) |
 | ID-008 | Reuse before generate when a design system is present | REAL-UI LOOP | [ID-008](real-ui-loop/reuse-before-generate-with-design-system.md) |
 | ID-009 | Render fidelity check gated on the quality floor and anti-default critique | REAL-UI LOOP | [ID-009](real-ui-loop/render-fidelity-check.md) |
 | ID-017 | Guarded native-image visual-direction branch | REAL-UI LOOP | [ID-017](real-ui-loop/native-image-visual-direction-branch.md) |

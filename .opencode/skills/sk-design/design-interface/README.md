@@ -37,7 +37,7 @@ AI-generated UI clusters around a handful of default looks that appear regardles
 
 The skill owns aesthetic direction, not implementation. It routes a design task through a two-pass process: ground the subject, brainstorm a compact token system (4-6 named colors, a display and body face, a layout concept, one signature element), then critique that plan against the known AI-default looks and revise anything generic with a stated reason. When local corpus grounding fits, it can add one coherent mode-selected anchor and an optional bounded contrast or rejected default. Only target-owned decisions and source provenance cross that path's handoff. Only then does code get written, deriving every choice from the revised plan. It also carries interface-writing rules, because copy can make a design feel as templated as the visuals. Implementation is handed to `sk-code`, which builds and verifies against the detected web surface.
 
-This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full design guidance lives verbatim in `references/design-process/design-principles.md`, and the `SKILL.md` is a lean house-template router over it.
+The design guidance is original to this skill. It lives in `references/design-process/design-principles.md`, and `SKILL.md` is a lean router over it.
 
 ---
 
@@ -163,7 +163,7 @@ A: The brief wins, verbatim, even when it asks for one of the default looks. Def
 
 **Q: Where did this come from?**
 
-A: It is vendored from Anthropic's official `frontend-design` skill under Apache-2.0. `LICENSE.txt` carries the full terms and attribution, and the guidance is preserved verbatim in `references/design-process/design-principles.md`.
+A: The design guidance is original to this skill. It lives in `references/design-process/design-principles.md`.
 
 ---
 
@@ -196,7 +196,6 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`references/design-process/variation-diversity.md`](./references/design-process/variation-diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`references/design-grounding/design-inventory.md`](./references/design-grounding/design-inventory.md) | A real design system you own, read live, as either reuse-ground or the named default to critique against. One system, never a chooser |
 | [`references/design-grounding/design-references-mcp.md`](./references/design-grounding/design-references-mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`; Refero as the `mcp-refero` transport): name the category's real-world default, then deviate. One reference, read live, never copied. Mobbin catalog and the Refero canonical-home pointer in `references/mcp-tooling/` |
-| [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
 | [`mcp-figma`](../../mcp-tooling/mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

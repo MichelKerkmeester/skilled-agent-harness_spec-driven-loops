@@ -33,7 +33,7 @@ How to put a real, fully-realized design system to work without letting it turn 
 ### Source Of The Systems
 
 - A real design system you own or have access to: its direction document, its paste-ready `:root` tokens, and its reusable component markup. Read whatever the system exposes (a `DESIGN.md`-style brief, a `tokens.css`, a `components.html`, or the equivalent).
-- The read is live and never cached. A real system's content is never copied into this skill, which keeps the skill Apache-2.0 only and free of any new third party notice burden.
+- The read is live and never cached. A real system's content is never copied into this skill, which keeps the skill free of any new third party notice burden.
 - Grounding in a real system is optional and never required. When no real system fits, the free-axis anti-default process in `design_principles.md` governs exactly as before.
 
 ---

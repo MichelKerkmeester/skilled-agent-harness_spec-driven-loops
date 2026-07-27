@@ -3,17 +3,13 @@ name: design-interface
 description: Distinctive UI design: build/reshape interfaces with palette, typography, layout, motion, critique, and interface writing.
 allowed-tools: [Read, Grep, Glob]
 version: 1.0.1.0
-metadata:
-  author: Anthropic
-  source: https://github.com/anthropics/skills/tree/main/skills/frontend-design
-license: Apache-2.0; see LICENSE.txt
 ---
 
 <!-- keywords: interface-design frontend-design visual-design typography palette ui-aesthetics -->
 
 # Interface Design (interface)
 
-Approach UI work as the design lead at a studio known for visual identities that could not be mistaken for anyone else's. Make deliberate, opinionated choices specific to the brief, take one justified aesthetic risk, and reject anything that reads as a templated default. Full guidance lives in [`references/design-process/design-principles.md`](references/design-process/design-principles.md). Vendored from Anthropic's `frontend-design` skill (Apache-2.0).
+Approach UI work as the design lead at a studio known for visual identities that could not be mistaken for anyone else's. Make deliberate, opinionated choices specific to the brief, take one justified aesthetic risk, and reject anything that reads as a templated default. Full guidance lives in [`references/design-process/design-principles.md`](references/design-process/design-principles.md).
 
 ---
 
@@ -292,7 +288,6 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`procedures/deck-direction-spec.md`](procedures/deck-direction-spec.md) - Private deck/presentation planning support.
 - [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared private final-polish orchestration when interface owns visual-direction repair.
 - [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues, critique-against only, subordinate to grounding, never a chooser or preset.
-- [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Manual Testing Playbook
 
@@ -342,4 +337,4 @@ Full reference-loading discipline notes (design_principles.md authority, quality
 
 The router (Section 2) loads `references/design-process/design-principles.md` for every design task. Hand implementation to `sk-code`, use `mcp-chrome-devtools` for screenshot-based self-critique, and reach for `system-spec-kit` when the work needs packet documentation.
 
-Upstream: vendored from [anthropics/skills/skills/frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) under Apache-2.0. `LICENSE.txt` carries the full terms.
+Design guidance in this packet is original to sk-design.
