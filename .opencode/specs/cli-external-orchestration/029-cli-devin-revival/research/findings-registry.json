@@ -1,16 +1,16 @@
 {
-  "sessionId": "research-devin-mcp-host-2026-07-24",
-  "parentSessionId": null,
-  "lineageMode": "new",
-  "generation": 1,
+  "sessionId": "research-cli-hook-adapters-2026-07-27",
+  "parentSessionId": "research-devin-mcp-host-2026-07-24",
+  "lineageMode": "restart",
+  "generation": 2,
   "continuedFromRun": null,
   "terminalStop": null,
   "keyQuestions": [
     {
-      "id": "q-devin-mcp-surface",
+      "id": "question-1-q1-what-coverage-gaps-exist-for-cli-devin-and-cli-cursor-against-the-full-claude",
       "inboxId": null,
-      "text": "What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?",
-      "origin": "operator",
+      "text": "Q1: What coverage gaps exist for cli-devin and cli-cursor against the full Claude/Codex hook inventory (8 lifecycle events)?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -19,10 +19,10 @@
       "resolved": false
     },
     {
-      "id": "q-mcp-servers-needs",
+      "id": "question-2-q2-given-now-confirmed-live-devin-payload-shapes-can-the-tolerant-field-name-fal",
       "inboxId": null,
-      "text": "What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?",
-      "origin": "operator",
+      "text": "Q2: Given now-confirmed live Devin payload shapes, can the tolerant field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` be tightened to the confirmed real shapes without losing fail-open safety?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -31,10 +31,10 @@
       "resolved": false
     },
     {
-      "id": "q-fit-assessment",
+      "id": "question-3-q3-is-permissionrequest-postcompaction-non-firing-in-the-one-observed-devin-sess",
       "inboxId": null,
-      "text": "How well does Devin's MCP surface match what these three servers need? Concrete gap list.",
-      "origin": "operator",
+      "text": "Q3: Is PermissionRequest/PostCompaction non-firing in the one observed Devin session expected (event genuinely did not occur) or does it warrant a further live-verification pass -- and how should that follow-up test be designed?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -43,10 +43,34 @@
       "resolved": false
     },
     {
-      "id": "q-scope-decision",
+      "id": "question-4-q4-what-is-mcp-route-guard-cjs-s-dormancy-status-for-both-devin-and-cursor-now-t",
       "inboxId": null,
-      "text": "Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?",
-      "origin": "operator",
+      "text": "Q4: What is `mcp-route-guard.cjs`'s dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per runtime?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-what-devin-or-cursor-cli-features-have-shipped-since-the-original-research-do",
+      "inboxId": null,
+      "text": "Q5: What Devin or Cursor CLI features have shipped since the original research (docs.devin.ai / docs.cursor.com) that these two packets have not yet accounted for?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-q6-what-concrete-duplication-reduction-opportunities-exist-between-the-cli-devin",
+      "inboxId": null,
+      "text": "Q6: What concrete duplication-reduction opportunities exist between the cli-devin and cli-cursor hook adapters given their structurally similar 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -57,10 +81,10 @@
   ],
   "openQuestions": [
     {
-      "id": "q-devin-mcp-surface",
+      "id": "question-1-q1-what-coverage-gaps-exist-for-cli-devin-and-cli-cursor-against-the-full-claude",
       "inboxId": null,
-      "text": "What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?",
-      "origin": "operator",
+      "text": "Q1: What coverage gaps exist for cli-devin and cli-cursor against the full Claude/Codex hook inventory (8 lifecycle events)?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -68,10 +92,10 @@
       "resolvedAtIteration": null
     },
     {
-      "id": "q-mcp-servers-needs",
+      "id": "question-2-q2-given-now-confirmed-live-devin-payload-shapes-can-the-tolerant-field-name-fal",
       "inboxId": null,
-      "text": "What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?",
-      "origin": "operator",
+      "text": "Q2: Given now-confirmed live Devin payload shapes, can the tolerant field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` be tightened to the confirmed real shapes without losing fail-open safety?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -79,10 +103,10 @@
       "resolvedAtIteration": null
     },
     {
-      "id": "q-fit-assessment",
+      "id": "question-3-q3-is-permissionrequest-postcompaction-non-firing-in-the-one-observed-devin-sess",
       "inboxId": null,
-      "text": "How well does Devin's MCP surface match what these three servers need? Concrete gap list.",
-      "origin": "operator",
+      "text": "Q3: Is PermissionRequest/PostCompaction non-firing in the one observed Devin session expected (event genuinely did not occur) or does it warrant a further live-verification pass -- and how should that follow-up test be designed?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -90,10 +114,32 @@
       "resolvedAtIteration": null
     },
     {
-      "id": "q-scope-decision",
+      "id": "question-4-q4-what-is-mcp-route-guard-cjs-s-dormancy-status-for-both-devin-and-cursor-now-t",
       "inboxId": null,
-      "text": "Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?",
-      "origin": "operator",
+      "text": "Q4: What is `mcp-route-guard.cjs`'s dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per runtime?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-devin-or-cursor-cli-features-have-shipped-since-the-original-research-do",
+      "inboxId": null,
+      "text": "Q5: What Devin or Cursor CLI features have shipped since the original research (docs.devin.ai / docs.cursor.com) that these two packets have not yet accounted for?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-what-concrete-duplication-reduction-opportunities-exist-between-the-cli-devin",
+      "inboxId": null,
+      "text": "Q6: What concrete duplication-reduction opportunities exist between the cli-devin and cli-cursor hook adapters given their structurally similar 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping?",
+      "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
@@ -104,310 +150,235 @@
   "resolvedQuestions": [],
   "carriedForwardOpenQuestions": [
     {
-      "text": "Does Devin invoke project-scoped relative commands from the repository root in all supported session modes?",
+      "text": "Q3: How to force and distinguish real Devin `PermissionRequest` and `PostCompaction` events in a follow-up live test.",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
     {
-      "text": "Which embedding tier is reliable and acceptable in Devin's sandbox, especially on first start without Ollama?",
+      "text": "Q5: Devin/Cursor CLI features shipped since the original packet research.",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
     {
-      "text": "Can the live `devin mcp list/get/enable/disable` commands be exercised outside this shell's rolling-log permission failure?",
+      "text": "Q4: Current dormancy/applicability of both MCP route guards after per-runtime MCP registration changes.",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
     {
-      "text": "Has a clean Devin Linux session successfully bootstrapped all three launchers and completed MCP `tools/list` discovery?",
+      "text": "Q6: Safe deduplication boundaries across Cursor and Devin adapters.",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
     {
-      "text": "What is the least-privilege Devin permission/trust policy for advisor mutation tools and memory writes?",
+      "text": "Q2: Whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety.",
       "addedAtIteration": 1,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does Devin invoke all three relative launcher commands from the repository root in a clean Linux session?",
-      "addedAtIteration": 2,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Which embedding tier and network allowlist are reliable on Devin's first cold start?",
-      "addedAtIteration": 2,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does a project-level deny survive or get overridden by a session-level “allow all tools on this server” grant?",
-      "addedAtIteration": 2,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does Devin normalize the three hyphenated server names to underscores in actual MCP tool names, and do deny rules match that normalized form?",
-      "addedAtIteration": 2,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does Devin invoke all three relative launcher commands from the repository root?",
-      "addedAtIteration": 3,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does a clean Devin Linux session preserve hyphens, normalize them to underscores, or reject one of the candidate server IDs?",
-      "addedAtIteration": 3,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does a project-level deny remain effective when a session-level server-wide allow is granted?",
-      "addedAtIteration": 3,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does a clean Linux Devin session preserve hyphens, normalize them to underscores, or reject one of the candidate IDs?",
-      "addedAtIteration": 4,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does Devin invoke all three relative launcher commands from the repository root in a clean session?",
-      "addedAtIteration": 4,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Which exact namespace spelling does Devin emit for the mixed server IDs, and do permission denies match that spelling?",
-      "addedAtIteration": 5,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Which embedding tier and network/socket allowlist are reliable on a first cold start without Ollama?",
-      "addedAtIteration": 5,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Does Devin's stdio subprocess launcher always use the repository root for project-scoped servers across fresh, resumed, sandboxed, and handed-off sessions?",
-      "addedAtIteration": 5,
-      "source": "iteration-markdown"
-    },
-    {
-      "text": "Do the three commands complete a clean Linux `initialize` plus `tools/list` discovery with dependencies already present in the Devin snapshot?",
-      "addedAtIteration": 5,
       "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
-    "What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?",
-    "What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?",
-    "How well does Devin's MCP surface match what these three servers need? Concrete gap list.",
-    "Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?"
+    "Q1: What coverage gaps exist for cli-devin and cli-cursor against the full Claude/Codex hook inventory (8 lifecycle events)?",
+    "Q2: Given now-confirmed live Devin payload shapes, can the tolerant field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` be tightened to the confirmed real shapes without losing fail-open safety?",
+    "Q3: Is PermissionRequest/PostCompaction non-firing in the one observed Devin session expected (event genuinely did not occur) or does it warrant a further live-verification pass -- and how should that follow-up test be designed?",
+    "Q4: What is `mcp-route-guard.cjs`'s dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per runtime?",
+    "Q5: What Devin or Cursor CLI features have shipped since the original research (docs.devin.ai / docs.cursor.com) that these two packets have not yet accounted for?",
+    "Q6: What concrete duplication-reduction opportunities exist between the cli-devin and cli-cursor hook adapters given their structurally similar 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping?"
   ],
   "keyFindings": [
     {
-      "id": "finding-1-4-advisor-trust-boundary-p1-the-checked-in-registration-sets-mk-skill-advisor-trus",
-      "text": "**Advisor trust boundary (P1).** The checked-in registration sets `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` (`opencode.json:56-65`), which allows transport-absent callers to use advisor mutation tools. Devin's stdio client will fit that transport, but the phase must explicitly test whether Devin permissions and the server's trust default should remain shared with OpenCode or be tightened for Devin. MCP permission matchers can allow/deny/ask by tool namespace, but they do not replace the server-side trust decision.",
+      "id": "finding-1-1-treating-cursor-beforemcpexecution-as-a-permissionrequest-equivalent-is-ruled-ou",
+      "text": "Treating Cursor `beforeMCPExecution` as a `PermissionRequest` equivalent is ruled out: it is MCP-specific route advice, not a generic approval lifecycle surface.",
       "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-1-2-cold-bootstrap-and-native-modules-p1-the-launchers-may-run-npm-install-npm-ci-an",
-      "text": "**Cold bootstrap and native modules (P1).** The launchers may run `npm install`/`npm ci` and TypeScript builds on first start. `better-sqlite3`, `sqlite-vec`, and tree-sitter/WASM dependencies must build or resolve on Devin's Linux environment. This is feasible but unverified here; a prebuilt artifact assumption would be unsafe.",
+      "id": "finding-1-2-treating-phase-009-s-unwired-mcp-prebind-statements-as-current-truth-is-ruled-ou",
+      "text": "Treating phase-009's “unwired” MCP/prebind statements as current truth is ruled out: later phases 011 and 013 explicitly supersede those historical states.",
       "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-1-3-memory-embeddings-network-p1-mk-spec-memory-defaults-to-a-local-first-cascade-ol",
-      "text": "**Memory embeddings/network (P1).** `mk-spec-memory` defaults to a local-first cascade: Ollama, supervised hf-local, then OpenAI or Voyage (`mcp-server/README.md:41-52`; `INSTALL-GUIDE.md:103-114`). A Devin environment may not have Ollama. The hf-local fallback can download a roughly 250–600 MB model on first use (`INSTALL-GUIDE.md:105-112`), and cloud tiers require `OPENAI_API_KEY` or `VOYAGE_API_KEY`. The new phase must choose and verify a Devin-compatible embedding tier, including network allowlisting and cache behavior.",
+      "id": "finding-1-3-treating-the-eight-normalized-events-as-eight-currently-registered-claude-keys-i",
+      "text": "Treating the eight normalized events as eight currently registered Claude keys is ruled out: `.claude/settings.json` has seven and no `PermissionRequest`.",
       "addedAtIteration": 1,
       "sources": []
     },
     {
-      "id": "finding-1-1-working-directory-assumption-p1-devin-s-mcp-config-has-no-cwd-field-the-install-",
-      "text": "**Working-directory assumption (P1).** Devin's MCP config has no `cwd` field. The install guides list the repository root as a prerequisite (`system-code-graph/INSTALL-GUIDE.md:70-77`, `system-skill-advisor/INSTALL-GUIDE.md:48-55`), and the launcher commands are relative paths. The launchers themselves force their child server to the repository root, but Devin must still invoke `node .opencode/bin/...` from the checked-out repository root. A phase must smoke-test this in a real Devin project session and document the root requirement.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-1-5-devin-config-json-project-level-entries-for-all-three-launchers-with-devin-confi",
-      "text": "`.devin/config.json` project-level entries for all three launchers, with `.devin/config.local.json` guidance for secrets and optional provider overrides.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-1-6-a-clean-devin-session-smoke-test-for-devin-mcp-add-list-get-remove-enable-disabl",
-      "text": "A clean Devin-session smoke test for `devin mcp add/list/get/remove/enable/disable`, tool discovery, and at least one read-only call per server.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-1-8-a-deliberate-embedding-profile-local-ollama-hf-local-or-an-explicitly-configured",
-      "text": "A deliberate embedding profile: local Ollama, hf-local, or an explicitly configured cloud provider; no silent dependency on a developer laptop daemon.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-1-10-a-manual-rollback-path-disable-or-remove-the-three-project-entries-without-delet",
-      "text": "A manual rollback path: disable or remove the three project entries without deleting repository databases or source files.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-1-7-linux-node-20-11-0-dependency-bootstrap-native-module-loading-database-path-cont",
-      "text": "Linux/Node `>=20.11.0` dependency bootstrap, native module loading, database path containment, and cold-start timing/evidence.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-1-9-permission-tests-for-mcp-mk-spec-memory-mcp-mk-code-index-and-mcp-mk-skill-advis",
-      "text": "Permission tests for `mcp__mk_spec_memory__*`, `mcp__mk_code_index__*`, and `mcp__mk_skill_advisor__*`, including advisor mutation denial/approval behavior.",
-      "addedAtIteration": 1,
-      "sources": []
-    },
-    {
-      "id": "finding-2-3-allow-only-confirmed-read-only-tools-by-exact-server-tool-name-after-a-clean-too",
-      "text": "Allow only confirmed read-only tools by exact server/tool name after a clean tools/list discovery.",
+      "id": "finding-2-2-removing-the-cwd-environment-process-fallback-as-payload-cleanup-is-ruled-out-be",
+      "text": "Removing the `cwd`/environment/process fallback as payload cleanup is ruled out because it is a tested project-root resolution invariant, not a field-name alias.",
       "addedAtIteration": 2,
       "sources": []
     },
     {
-      "id": "finding-2-17-checkpoint-create-checkpoint-restore-and-checkpoint-delete",
-      "text": "checkpoint_create, checkpoint_restore, and checkpoint_delete",
+      "id": "finding-2-1-tightening-run-subagent-identity-fields-from-the-observed-exec-edit-samples-is-r",
+      "text": "Tightening `run_subagent` identity fields from the observed `exec`/`edit` samples is ruled out because those are different tools with different argument contracts.",
       "addedAtIteration": 2,
       "sources": []
     },
     {
-      "id": "finding-2-4-deny-high-impact-mutation-tools-explicitly-and-leave-unlisted-tools-at-the-defau",
-      "text": "Deny high-impact mutation tools explicitly and leave unlisted tools at the default prompt or an explicit ask rule.",
+      "id": "finding-2-3-treating-all-three-named-adapters-as-equally-fallback-heavy-is-ruled-out-the-mcp",
+      "text": "Treating all three named adapters as equally fallback-heavy is ruled out: the MCP adapter has no argument aliases, and all three already use canonical snake-case envelope fields.",
       "addedAtIteration": 2,
       "sources": []
     },
     {
-      "id": "finding-2-2-do-not-grant-mcp-or-mcp-server-those-convert-a-useful-read-only-integration-into",
-      "text": "Do not grant mcp__* or mcp__server__*; those convert a useful read-only integration into blanket access.",
-      "addedAtIteration": 2,
+      "id": "finding-3-1-add-exact-live-payload-process-fixtures-for-observed-edit-file-path-and-a-discri",
+      "text": "Add exact live-payload process fixtures for observed `edit.file_path` and a discriminating future `run_subagent` capture.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-1-keep-devin-in-normal-mode-do-not-use-bypass-for-this-integration",
-      "text": "Keep Devin in normal mode. Do not use Bypass for this integration.",
-      "addedAtIteration": 2,
+      "id": "finding-3-6-make-no-field-name-change-to-the-mcp-adapter-under-q2",
+      "text": "Make no field-name change to the MCP adapter under Q2.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-19-maintainer-local-override-optional-provider-secrets-in-devin-config-local-json-p",
-      "text": "Maintainer-local override: optional provider secrets in .devin/config.local.json plus an explicit advisor trust-default opt-in only for a maintainer who has accepted the mutation risk. This override must not be committed or silently inherited by other sessions.",
-      "addedAtIteration": 2,
+      "id": "finding-3-7-removing-every-non-snake-case-alias-now-is-ruled-out-because-devin-run-subagent-",
+      "text": "Removing every non-snake-case alias now is ruled out because Devin `run_subagent` remains unobserved and deletion does not address malformed-field precedence.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-16-mcp-mk-spec-memory-embedder-set",
-      "text": "mcp__mk-spec-memory__embedder_set",
-      "addedAtIteration": 2,
+      "id": "finding-3-2-replace-truthiness-chains-with-first-non-empty-string-canonical-first-resolution",
+      "text": "Replace truthiness chains with first-non-empty-string canonical-first resolution and conflicting-alias tests.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-9-mcp-mk-spec-memory-memory-bulk-delete",
-      "text": "mcp__mk-spec-memory__memory_bulk_delete",
-      "addedAtIteration": 2,
+      "id": "finding-3-4-retain-filepath-as-an-explicit-compatibility-spelling-until-usage-is-measured",
+      "text": "Retain `filePath` as an explicit compatibility spelling until usage is measured.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-8-mcp-mk-spec-memory-memory-delete",
-      "text": "mcp__mk-spec-memory__memory_delete",
-      "addedAtIteration": 2,
+      "id": "finding-3-5-retire-dispatch-aliases-only-after-a-real-devin-run-subagent-payload-establishes",
+      "text": "Retire dispatch aliases only after a real Devin `run_subagent` payload establishes the field contract.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-13-mcp-mk-spec-memory-memory-embedding-reconcile",
-      "text": "mcp__mk-spec-memory__memory_embedding_reconcile",
-      "addedAtIteration": 2,
+      "id": "finding-3-3-retire-generic-spec-gate-path-only-after-fixture-and-caller-audits-missing-path-",
+      "text": "Retire generic spec-gate `path` only after fixture and caller audits; missing path remains enforcement-conservative, but exemption compatibility can regress.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-14-mcp-mk-spec-memory-memory-index-scan",
-      "text": "mcp__mk-spec-memory__memory_index_scan",
-      "addedAtIteration": 2,
+      "id": "finding-3-9-tightening-the-mcp-adapter-s-project-directory-fallback-as-payload-schema-cleanu",
+      "text": "Tightening the MCP adapter's project-directory fallback as payload-schema cleanup is ruled out because it is unrelated to tool-input field spelling.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-15-mcp-mk-spec-memory-memory-ingest-start",
-      "text": "mcp__mk-spec-memory__memory_ingest_start",
-      "addedAtIteration": 2,
+      "id": "finding-3-8-treating-missing-spec-gate-path-data-as-a-silent-allow-bypass-is-ruled-out-by-ev",
+      "text": "Treating missing spec-gate path data as a silent allow bypass is ruled out by `evaluateMutation`: an open gate still denies or advises an edit unless the target is positively recognized as exempt.",
+      "addedAtIteration": 3,
       "sources": []
     },
     {
-      "id": "finding-2-12-mcp-mk-spec-memory-memory-learned-clear",
-      "text": "mcp__mk-spec-memory__memory_learned_clear",
-      "addedAtIteration": 2,
+      "id": "finding-4-1-add-a-shared-or-adapter-local-ordered-firstnonblankstring-resolver-with-canonica",
+      "text": "Add a shared or adapter-local ordered `firstNonblankString` resolver with canonical-first conflict tests.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-2-11-mcp-mk-spec-memory-memory-learned-expire",
-      "text": "mcp__mk-spec-memory__memory_learned_expire",
-      "addedAtIteration": 2,
+      "id": "finding-4-2-add-exact-process-fixtures-for-the-observed-devin-edit-file-path-payload-and-mal",
+      "text": "Add exact process fixtures for the observed Devin `edit.file_path` payload and malformed/whitespace canonical fields followed by valid aliases.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-2-10-mcp-mk-spec-memory-memory-retention-sweep",
-      "text": "mcp__mk-spec-memory__memory_retention_sweep",
-      "addedAtIteration": 2,
+      "id": "finding-4-3-add-task-dispatch-fixtures-for-all-four-current-spellings-prompt-marker-recovery",
+      "text": "Add task-dispatch fixtures for all four current spellings, prompt-marker recovery, and direct calls without markers.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-2-6-mcp-mk-spec-memory-memory-save",
-      "text": "mcp__mk-spec-memory__memory_save",
-      "addedAtIteration": 2,
+      "id": "finding-4-5-audit-synthetic-callers-before-retiring-generic-spec-gate-path-retain-filepath-u",
+      "text": "Audit synthetic callers before retiring generic spec-gate `path`; retain `filePath` until usage is measured.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-2-7-mcp-mk-spec-memory-memory-update",
-      "text": "mcp__mk-spec-memory__memory_update",
-      "addedAtIteration": 2,
+      "id": "finding-4-4-capture-a-real-devin-run-subagent-payload-before-deleting-any-task-identity-alia",
+      "text": "Capture a real Devin `run_subagent` payload before deleting any task identity alias.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-2-5-never-persist-a-broad-allow-all-tools-on-this-server-approval-during-initial-rol",
-      "text": "Never persist a broad “allow all tools on this server” approval during initial rollout.",
-      "addedAtIteration": 2,
+      "id": "finding-4-7-immediate-canonical-only-task-parsing-is-ruled-out-because-devin-run-subagent-re",
+      "text": "Immediate canonical-only task parsing is ruled out because Devin `run_subagent` remains unobserved and direct marker-free callers can depend on identity fields.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-2-18-shared-project-config-three-stdio-server-entries-no-advisor-trust-default-enviro",
-      "text": "Shared project config: three stdio server entries, no advisor trust-default environment variable, exact read-only MCP allows, explicit denies for memory and graph mutations, and default prompting for everything else.",
-      "addedAtIteration": 2,
+      "id": "finding-4-6-make-no-q2-field-name-change-to-mcp-route-guard-cjs",
+      "text": "Make no Q2 field-name change to `mcp-route-guard.cjs`.",
+      "addedAtIteration": 4,
       "sources": []
     },
     {
-      "id": "finding-5-3-node-opencode-bin-mk-code-index-launcher-cjs",
-      "text": "`node .opencode/bin/mk-code-index-launcher.cjs`",
+      "id": "finding-4-9-removing-project-directory-fallbacks-as-payload-cleanup-is-ruled-out-because-pha",
+      "text": "Removing project-directory fallbacks as payload cleanup is ruled out because phase 012 verifies them as a cross-adapter workspace-root invariant.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-treating-every-task-alias-as-equally-justified-is-ruled-out-the-current-evidence",
+      "text": "Treating every task alias as equally justified is ruled out: the current evidence distinguishes live canonical, inherited compatibility, and Devin-only hedge tiers.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-add-spec-gate-tests-for-all-three-path-spellings-missing-blank-paths-malformed-c",
+      "text": "Add spec-gate tests for all three path spellings, missing/blank paths, malformed canonical values followed by valid aliases, and conflicts.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
-      "id": "finding-5-2-node-opencode-bin-mk-skill-advisor-launcher-cjs",
-      "text": "`node .opencode/bin/mk-skill-advisor-launcher.cjs`",
+      "id": "finding-5-8-changing-unknown-paths-to-deny-merely-to-enable-alias-deletion-is-ruled-out-beca",
+      "text": "Changing unknown paths to deny merely to enable alias deletion is ruled out because it would be a separate fail-open contract change.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
-      "id": "finding-5-1-node-opencode-bin-mk-spec-memory-launcher-cjs",
-      "text": "`node .opencode/bin/mk-spec-memory-launcher.cjs`",
+      "id": "finding-5-6-immediate-canonical-only-parsing-is-ruled-out-for-both-alias-bearing-adapters",
+      "text": "Immediate canonical-only parsing is ruled out for both alias-bearing adapters.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
-      "id": "finding-5-5-code-graph-builds-from-the-skill-local-package-and-spawns-index-js-with-cwd-root",
-      "text": "Code Graph builds from the skill-local package and spawns `index.js` with `cwd: root` (`mk-code-index-launcher.cjs:24,1279-1284,1611-1615`).",
+      "id": "finding-5-5-make-no-q2-field-name-or-project-root-change-to-mcp-route-guard-cjs",
+      "text": "Make no Q2 field-name or project-root change to `mcp-route-guard.cjs`.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
-      "id": "finding-5-6-skill-advisor-builds-its-package-and-spawns-advisor-server-js-with-cwd-root-mk-s",
-      "text": "Skill Advisor builds its package and spawns `advisor-server.js` with `cwd: root` (`mk-skill-advisor-launcher.cjs:23,1090-1179,1275-1279`).",
+      "id": "finding-5-9-removing-the-mcp-project-directory-fallback-chain-as-payload-cleanup-is-ruled-ou",
+      "text": "Removing the MCP project-directory fallback chain as payload cleanup is ruled out because it is a verified workspace-root invariant, not a field alias.",
       "addedAtIteration": 5,
       "sources": []
     },
     {
-      "id": "finding-5-4-spec-kit-memory-builds-the-mcp-and-script-workspaces-with-cwd-root-as-the-defaul",
-      "text": "Spec Kit Memory builds the MCP and script workspaces with `cwd: root` as the default and spawns `context-server.js` with `cwd: root` (`mk-spec-memory-launcher.cjs:55,1189-1262,1522-1525`).",
+      "id": "finding-5-1-replace-truthiness-chains-with-a-tested-first-nonblank-string-resolver-preservin",
+      "text": "Replace truthiness chains with a tested first-nonblank-string resolver, preserving the current canonical-first ordering.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-retain-filepath-and-path-unless-caller-telemetry-evidence-proves-them-unused-mis",
+      "text": "Retain `filePath` and `path` unless caller/telemetry evidence proves them unused; missing-path behavior currently makes premature removal bypass-capable.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-retain-all-four-task-identity-spellings-until-a-live-devin-run-subagent-capture-",
+      "text": "Retain all four task identity spellings until a live Devin `run_subagent` capture and marker-free caller audit exist.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-treating-missing-spec-gate-path-context-as-enforcement-conservative-is-ruled-out",
+      "text": "Treating missing spec-gate path context as enforcement-conservative is ruled out by the current core.",
       "addedAtIteration": 5,
       "sources": []
     }
@@ -426,9 +397,28 @@
   "promotedIdeas": [],
   "suppressedIdeas": [],
   "blockedStopHistory": [],
-  "graphConvergenceScore": 0,
-  "graphDecision": null,
-  "graphBlockers": [],
+  "graphConvergenceScore": 0.48,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "source_diversity_guard",
+      "description": "Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
+      "count": 1,
+      "severity": "blocking"
+    },
+    {
+      "type": "evidence_depth_guard",
+      "description": "Evidence depth (1.00) is below the blocking threshold (1.5). STOP is blocked until question->finding->source chains are deeper.",
+      "count": 1,
+      "severity": "blocking"
+    },
+    {
+      "type": "unverified_claims",
+      "description": "1 claim(s) remain unverified",
+      "count": 1,
+      "severity": "blocking"
+    }
+  ],
   "divergence": {
     "started": [],
     "completed": [],
@@ -442,16 +432,16 @@
   },
   "metrics": {
     "iterationsCompleted": 5,
-    "openQuestions": 4,
+    "openQuestions": 6,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 18,
-    "keyFindings": 35,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 33,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.31,
+    "convergenceScore": 0.46,
     "coverageBySources": {},
     "completedPivots": 0,
     "failedPivots": 0,

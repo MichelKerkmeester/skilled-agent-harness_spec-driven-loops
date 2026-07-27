@@ -1,67 +1,64 @@
-# Iteration 005: Devin MCP launcher working-directory feasibility
+# Iteration 5: Fail-Open Boundary Correction
 
 ## Focus
 
-Determine whether Devin invokes all three repository MCP launcher commands from the repository root in a clean session.
+Q2: Determine whether confirmed Devin payloads justify tightening field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` without reducing fail-open safety.
 
 ## Actions Taken
 
-- Read the Phase 001 Devin contract evidence, the research strategy, the parent scope/open-question record, the current `opencode.json`, and all three launcher entrypoints.
-- Verified the installed Devin CLI (`3000.2.17 (2c489dfc)`) with `devin version`, `devin mcp --help`, and `devin mcp add --help`.
-- Re-fetched the current official Devin MCP overview and configuration references, including the stdio schema, project scope, lifecycle commands, and permission matcher syntax.
-- Traced root and child-process working-directory resolution in `mk-spec-memory-launcher.cjs`, `mk-code-index-launcher.cjs`, and `mk-skill-advisor-launcher.cjs` without executing a bootstrap that could mutate runtime databases or install dependencies.
-- No researched source files or implementation files were modified.
+1. Read the externalized strategy, state log, iteration 4, and the current live-hook evidence before reopening Q2.
+2. Read the required Devin phase 008, 011, and 012 summaries and the current Cursor phase-parent children plus phase 010 summary, using the reorganized `009-cursor-hooks-lifecycle/` structure.
+3. Inspected the current three Devin adapters and traced `spec-gate-enforce.mjs` path resolution through `isExemptTargetPath()` and `evaluateMutation()`.
+4. Checked the current Devin process tests and Cursor live Task payload evidence for coverage of accepted aliases.
 
 ## Findings
 
-### 1. Devin supports the required transport and lifecycle, but exposes no MCP working-directory field
+### F1. Type-aware canonical-first resolution is safe hardening, but vocabulary reduction is not yet justified
 
-Devin's current MCP configuration supports local stdio servers with `command`, `args`, `env`, and `disabled`; the CLI form is `devin mcp add <name> -- <command> [args...]`. The documented lifecycle is `add`, `list`, `get`, `remove`, `login`, `logout`, `enable`, and `disable`. The configuration reference does not define `cwd` or another per-server working-directory property. Evidence: [MCP Configuration](https://docs.devin.ai/cli/extensibility/mcp/configuration) and [Configuration File](https://docs.devin.ai/cli/reference/configuration/config-file).
+Both alias-bearing adapters use truthiness chains before validating type. In task dispatch, a truthy malformed `subagent_type` can shadow a later valid alias. In spec-gate enforcement, a truthy object or whitespace-only canonical path can shadow a later valid alias and resolve to null or blank. Selecting the first nonblank string in deterministic order would recover valid compatibility data while preserving malformed-JSON and internal-error fail-open behavior. Confirmed snake-case fields should remain first: Cursor captured `subagent_type` live, and Devin captured `file_path` live. [SOURCE: `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs:44-67`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs:49-53,59-87`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md:55-61`] [SOURCE: `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md:54-68`]
 
-### 2. The repository's three command strings are root-relative
+### F2. The prior claim that missing spec-gate paths remain deny-capable is false in the current core
 
-The committed OpenCode registration uses:
+Iteration 4 stated that losing a path alias would remain enforcement-conservative. The current core proves the opposite: `isExemptTargetPath()` returns `true` for a missing or blank path, and `evaluateMutation()` returns `allow` for an open-gate non-bash mutation whose path is exempt. Therefore, removing `path` or `filePath` can create an enforcement bypass for any alias-only caller: the adapter resolves no path, and the core allows the edit before reaching deny/advice logic. This does not justify making unknown paths deny by default, which would weaken the explicit fail-open contract; it just means aliases cannot be retired safely without first proving those caller shapes absent or changing the contract deliberately. This finding supersedes iteration 4 F4. [SOURCE: `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs:745-779`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs:906-970`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs:49-53,80-87`]
 
-- `node .opencode/bin/mk-spec-memory-launcher.cjs`
-- `node .opencode/bin/mk-skill-advisor-launcher.cjs`
-- `node .opencode/bin/mk-code-index-launcher.cjs`
+### F3. Current tests prove canonical `file_path`, not alias retirement safety
 
-Those paths are valid only when the host resolves the command from the repository root, or when a future Devin config replaces them with an absolute path. Devin's documented project-scoped config makes repository-root startup the intended operating assumption, but the MCP configuration contract does not explicitly promise the subprocess CWD. Evidence: `opencode.json:18-85`; [MCP Overview](https://docs.devin.ai/cli/extensibility/mcp/overview); [Configuration File](https://docs.devin.ai/cli/reference/configuration/config-file).
+The Devin process suite constructs every enforce payload with `tool_input.file_path`; it exercises deny, advise, satisfied-state, whitespace-cwd, and missing-cwd behavior, but has no `filePath`, generic `path`, conflicting-field, malformed-canonical, or missing-path row. Phase 012 accurately describes the suite as high-risk spec-gate coverage, but it does not provide evidence that the compatibility spellings are unused. Add table-driven rows for each accepted spelling and shadowing case before changing resolution, then audit direct/synthetic callers before deleting any spelling. [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs:53-63,175-205,253-286`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md:44-75,93-115`]
 
-### 3. Once the launcher is resolved, all three launchers normalize execution back to the repository root
+### F4. Retain all task identity aliases until Devin `run_subagent` is captured live
 
-Each launcher computes `root` from its own location with `path.resolve(__dirname, '..', '..')`. Each child daemon is then spawned with `cwd: root`. Cold bootstrap also uses that root for dependency installation and build commands:
+`run_subagent` remains explicitly unobserved in phases 008 and 011, and no adapter-level task-dispatch test was found. Cursor's live Task capture proves `subagent_type` for Cursor, not Devin. The shared dispatch core can recover identity from route markers in command-owned prompts, but marker-free direct callers still rely on the identity field. Therefore, implement first-nonblank-string resolution now, add fixtures for all four current spellings and marker-free prompts, and postpone alias deletion until a real Devin payload plus caller audit establishes the emitted field. [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md:96-103`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md:106-111`] [SOURCE: `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs:52-67`] [SOURCE: `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md:54-68`]
 
-- Spec Kit Memory builds the MCP and script workspaces with `cwd: root` as the default and spawns `context-server.js` with `cwd: root` (`mk-spec-memory-launcher.cjs:55,1189-1262,1522-1525`).
-- Code Graph builds from the skill-local package and spawns `index.js` with `cwd: root` (`mk-code-index-launcher.cjs:24,1279-1284,1611-1615`).
-- Skill Advisor builds its package and spawns `advisor-server.js` with `cwd: root` (`mk-skill-advisor-launcher.cjs:23,1090-1179,1275-1279`).
+### F5. `mcp-route-guard.cjs` still has no Q2 field fallback to tighten
 
-This removes CWD ambiguity inside the daemon, but not at the first step: Devin must still resolve `node .opencode/bin/...` from the repository root. The relative `MK_SKILL_ADVISOR_DB_DIR` and `SPECKIT_CODE_GRAPH_DB_DIR` values in the OpenCode config also assume root-relative evaluation; they should not be copied blindly into a host configuration until a clean Devin session confirms its CWD behavior.
+The MCP adapter reads canonical `tool_name` and applies the phase-012 workspace-root chain `cwd` -> `DEVIN_PROJECT_DIR` -> `process.cwd()`. That chain is not a tool-input alias and should remain unchanged. MCP traffic applicability is a separate Q4 question. [SOURCE: `.opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs:41-60`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md:44-67,80-106`]
 
-### 4. A clean Linux Devin invocation remains unverified
+### Recommended implementation gate
 
-The local shell cannot prove the host-side subprocess CWD, and the prior `devin mcp list` probe was blocked by Devin's rolling-log initialization before configuration discovery. The official docs say Devin launches configured servers when needed and recommend verifying the command outside Devin, but they do not state a per-MCP CWD guarantee. Therefore the answer is conditional: the three servers are structurally compatible with Devin stdio, and they should work when the project-scoped MCP process starts at the repository root; a clean Linux session is still required to prove all three commands resolve and complete `tools/list` discovery.
+1. Replace truthiness chains with a tested first-nonblank-string resolver, preserving the current canonical-first ordering.
+2. Retain all four task identity spellings until a live Devin `run_subagent` capture and marker-free caller audit exist.
+3. Retain `filePath` and `path` unless caller/telemetry evidence proves them unused; missing-path behavior currently makes premature removal bypass-capable.
+4. Add spec-gate tests for all three path spellings, missing/blank paths, malformed canonical values followed by valid aliases, and conflicts.
+5. Make no Q2 field-name or project-root change to `mcp-route-guard.cjs`.
 
-### 5. The MCP-host surface is worth a separate additive phase, not an implicit part of CLI revival
+### Ruled-Out Directions
 
-The integration is technically plausible, but its acceptance boundary is operational rather than a simple config translation. A dedicated phase should provide a minimal Devin-specific `.devin/config.json` with the three stdio entries, avoid copying OpenCode's broad trust/default environment, verify Node/dependency/dist readiness in the Devin snapshot, validate root-relative launch and `tools/list` for all servers, capture actual Devin tool namespaces before writing permission rules, and test cold-start embeddings/IPC behavior on Linux. Secrets and any maintainer-only trust opt-in belong in `.devin/config.local.json`.
+- Immediate canonical-only parsing is ruled out for both alias-bearing adapters.
+- Treating missing spec-gate path context as enforcement-conservative is ruled out by the current core.
+- Changing unknown paths to deny merely to enable alias deletion is ruled out because it would be a separate fail-open contract change.
+- Removing the MCP project-directory fallback chain as payload cleanup is ruled out because it is a verified workspace-root invariant, not a field alias.
 
 ## Questions Answered
 
-- **Can Devin host the three servers over MCP?** Yes in transport shape: Devin supports local stdio `command`/`args`/`env`, and all three repository entries are local Node launchers.
-- **Does Devin's documented MCP config set a working directory?** No. There is no documented `cwd` field, so the host's project-root startup behavior is a prerequisite for the current relative command strings.
-- **Do the launchers themselves depend on the caller's CWD after startup?** Mostly no. They derive the repository root from `__dirname`, build from root-derived paths, and spawn their daemon children with `cwd: root`.
-- **Has a clean Linux Devin session proven all three commands and `tools/list`?** No. This remains an explicit acceptance test, not a confirmed fact.
-- **Should Devin-as-MCP-host enter the revival?** Yes, but as a new additive phase with a clean Linux acceptance matrix; it should not silently expand the current CLI mode phases.
+- **Q2: Answered with a correction.** Confirmed payloads justify canonical-first first-nonblank-string resolution, but not accepted-vocabulary reduction. Contrary to iteration 4, loss of a spec-gate path alias can bypass enforcement because missing paths are exempt. Retain task and path aliases until runtime/caller evidence supports removal; make no Q2 change to the MCP adapter.
 
 ## Questions Remaining
 
-- Does Devin's stdio subprocess launcher always use the repository root for project-scoped servers across fresh, resumed, sandboxed, and handed-off sessions?
-- Do the three commands complete a clean Linux `initialize` plus `tools/list` discovery with dependencies already present in the Devin snapshot?
-- Which exact namespace spelling does Devin emit for the mixed server IDs, and do permission denies match that spelling?
-- Which embedding tier and network/socket allowlist are reliable on a first cold start without Ollama?
-- Does a project-level deny remain effective when a session-level server-wide allow is granted?
+- Q3: How to force and distinguish real Devin `PermissionRequest` and `PostCompaction` events in a follow-up live test.
+- Q4: Current dormancy/applicability of both MCP route guards after per-runtime MCP registration changes.
+- Q5: Devin/Cursor CLI features shipped since the original packet research.
+- Q6: Safe deduplication boundaries across Cursor and Devin adapters.
 
 ## Next Focus
 
-No further research iteration remains under the five-iteration cap. Follow-up work should run the clean Linux Devin acceptance matrix and, if it passes, open a separate MCP-host integration phase with explicit rollback and permission/trust criteria.
+If research is extended beyond the five-iteration cap, Q4 should classify the Devin and Cursor MCP route guards as active, conditionally dormant, or structurally obsolete using current registration and hook-wiring evidence.

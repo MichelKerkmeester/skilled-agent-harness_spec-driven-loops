@@ -1,11 +1,11 @@
 {
-  "owner_pid": 12918,
-  "started_at_iso": "2026-07-24T05:28:04.819Z",
+  "owner_pid": 17478,
+  "started_at_iso": "2026-07-27T04:08:21.091Z",
   "ttl_ms": 300000,
-  "last_heartbeat_iso": "2026-07-24T05:28:04.819Z",
+  "last_heartbeat_iso": "2026-07-27T04:08:21.091Z",
   "packet_id": ".opencode/specs/cli-external-orchestration/029-cli-devin-revival",
   "runtime_kind": "main",
   "phase": "running",
-  "last_activity_iso": "2026-07-24T05:28:04.819Z",
-  "acquire_nonce": "12918-1784870884819-153ac7db-c99b-4cc7-ac5c-355267ed6191"
+  "last_activity_iso": "2026-07-27T04:08:21.091Z",
+  "acquire_nonce": "17478-1785125301092-838e6ad3-03ab-4e6e-9175-c643409364fe"
 }

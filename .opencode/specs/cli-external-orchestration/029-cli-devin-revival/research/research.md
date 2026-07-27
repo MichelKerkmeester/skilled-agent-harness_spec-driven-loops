@@ -1,310 +1,280 @@
----
-title: "Deep Research: Devin CLI as MCP Host — Feasibility for Spec-Kit Memory, Code Graph, and Skill Advisor"
-description: "Resolved Open Question 3 of 029-cli-devin-revival: Can Devin CLI genuinely host this repo's three MCP servers? Iteration-by-iteration synthesis with concrete gaps, policy, and phase shape."
-trigger_phrases:
-  - "devin mcp host"
-  - "devin mcp integration"
-  - "008-devin-mcp-host-integration"
-  - "devin stdio mcp"
-  - "spec-kit-memory devin"
-  - "code-graph devin"
-  - "skill-advisor devin"
-importance_tier: important
-contextType: research
-version: 1.0
----
-
-# Deep Research: Devin CLI as MCP Host — Feasibility for the Three Repository MCP Servers
-
-> **Direct resolution of Open Question 3** in `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md`. The original `cli-devin` deprecation (`z_archive/022-cli-devin-deprecation/context/context-report.md`) explicitly left this surface untouched; this packet re-opens it for the current Devin CLI product (`v3000.2.17`).
+# Research: cli-devin and cli-cursor Hook Adapter Refinements, Hardening, and Dedup Opportunities
 
 ## Executive Summary
 
-**Verdict: Bringing Devin-as-MCP-host into the revival is worthwhile as a separate, additive integration phase (`008-devin-mcp-host-integration`) — but it should NOT be folded into the existing CLI-executor phases (`002`–`007`).** The protocol fit between Devin's current `devin mcp {add,list,get,remove,login,logout,enable,disable}` surface and the three repository servers (`mk-spec-memory`, `mk_code_index`, `mk_skill_advisor`) is direct; the remaining questions are operational (Linux cold start, root-directory assumption, embedding/network, advisor/memory-write trust boundary).
+This deep-research run (generation 2, session `research-cli-hook-adapters-2026-07-27`, executor `cli-opencode`/`openai/gpt-5.6-sol` reasoning-effort `high`, 5 forced iterations under `--stop-policy=max-iterations`) investigated six questions about the `cli-devin` and `cli-cursor` hook adapter layers now that Devin's hooks are confirmed to fire live and Cursor's independent hook layer is wired.
 
-All four key research questions are answered. The Devin CLI's MCP-host surface is real, current, and matches the stdio contract the three servers already implement. Three transport-level findings plus four operational gaps plus one recommended policy shape are recorded. The clean-session live verification matrix is the durable acceptance gate and must run inside a real Devin Linux session before the new phase is opened.
+**Only two of the six questions received substantive investigation.** Iteration 1 fully answered Q1 (coverage-gap inventory). Iterations 2 through 5 all converged back onto Q2 (Devin field-fallback hardening) instead of advancing to Q3-Q6 as the strategy's "Next Focus" instructed after iteration 1 — each pass deepened and, in one case (iteration 5), **corrected a materially wrong safety claim** made by the immediately preceding iteration. Q3 (PermissionRequest/PostCompaction live-verification), Q4 (`mcp-route-guard.cjs` dormancy), Q5 (upstream Devin/Cursor feature drift), and Q6 (cross-packet dedup opportunities) were **not investigated in this run** and remain fully open. This is reported honestly rather than papered over — see §6 and §10.
+
+The single highest-value finding is a **safety correction**, not a new capability: iteration 4 claimed that losing a `spec-gate-enforce.mjs` path alias (`filePath`/`path`) would stay "enforcement-conservative" (fail toward deny/advise). Iteration 5 re-read `spec-gate-core.mjs` and proved the opposite — `isExemptTargetPath()` treats a missing/blank path as **exempt** (`return true`), and `evaluateMutation()` treats an exempt non-bash target as **allow**. Removing a still-load-bearing path alias would therefore silently convert a would-be gated edit into an unconditional allow. This has been independently re-verified against `spec-gate-core.mjs:751,906-970` during synthesis of this report (see §5 F2, §7).
 
 ---
 
 ## 1. OVERVIEW & SCOPE
 
-### Research Topic
-`devin-as-mcp-host-feasibility` — confirm whether Devin CLI's current MCP-host surface (`devin mcp add/list/get/remove/login/logout/enable/disable`, project-scoped `.devin/config.json`, stdio `command`/`args`/`env` schema) can host the three local MCP servers shipped by this repository (`mk-spec-memory`, `mk_code_index`, `mk_skill_advisor`), and decide whether the surface belongs in the cli-devin revival.
+### Purpose
 
-### Spec Folder
-`.opencode/specs/cli-external-orchestration/029-cli-devin-revival` (Phase Parent; this packet is research-owned, lives at `research/` per the root-spec artifact-root resolution).
+Determine what further hook refinements, upgrades, or additions the `cli-devin` and `cli-cursor` hook adapter layers should get now that:
+- Devin's hooks are confirmed to fire live under the corrected `.devin/hooks.v1.json` nested schema (each event is an array of `{matcher, hooks:[{type,command,timeout}]}`, no top-level `version`/`hooks` wrapper), with 6 of 8 lifecycle events observed firing with real payloads (`SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop`, `SessionEnd`); `PermissionRequest` and `PostCompaction` did not fire in that session.
+- Cursor's hook layer is independently built and wired via `.cursor/hooks.json`, with its `009-cursor-hooks-lifecycle/` phase-parent recently reorganized into 6 phase children (superseding the flat 009-015 numbering) and 016-018 renumbered to 011-013.
 
-### Mode
-`:auto` — autonomous, all 5 iterations ran without approval gates (`--stop-policy=max-iterations`).
+### Scope
 
-### Executor
-`cli-codex` with `gpt-5.6-luna`, `reasoning_effort=xhigh`, `service_tier=fast`, `sandbox=workspace-write`, `timeoutSeconds=1500`.
+In scope: coverage-gap analysis against the full Claude/Codex hook inventory for both runtimes; hardening of the three named Devin guard adapters' field-name fallbacks; the PermissionRequest/PostCompaction non-firing question; `mcp-route-guard.cjs` dormancy; upstream Devin/Cursor feature drift since the original research; cross-packet dedup opportunities.
+
+Out of scope (per this session's strategy Non-Goals): implementing any code change (research-only); re-deriving facts already settled in `hook-testing-results.md` or the 008/011/012 (Devin) and 009/010 (Cursor) implementation summaries; investigating runtimes other than Devin and Cursor.
+
+### Ground Truth Sources Read
+
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/` (all 6 phase children, current reorganized structure)
+- `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime/`
+- Live registration files: `.claude/settings.json`, `.devin/hooks.v1.json`, `.cursor/hooks.json`
+- Adapter source: `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs`, `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs`, `.opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs`, and the shared `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` core.
 
 ---
 
-## 2. KEY QUESTIONS (from parent spec.md Open Question 3)
+## 2. KEY QUESTIONS
 
-| # | Question | Resolution |
-|---|---|---|
-| 1 | What is the real Devin CLI MCP surface (subcommands, config schema, transport options)? | **Answered.** Confirmed against current `docs.devin.ai/cli/extensibility/mcp/overview` + `configuration` and live `devin --version`/`devin mcp --help`/`devin mcp add --help`. |
-| 2 | What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)? | **Answered.** All three are stdio-only (`StdioServerTransport` in source); require Node ≥ 20.11.0, repo-root `cwd`, build/`npm install`/SQLite+native deps, optional embedding cascade. |
-| 3 | How well does Devin's MCP surface match what these three servers need? Concrete gap list. | **Answered.** Direct fit; four operational gaps: (P1) no `cwd` field, (P1) cold bootstrap / native modules, (P1) embeddings/network, (P1) advisor/memory-write trust boundary. |
-| 4 | Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover? | **Answered.** Yes — but as a separate additive phase `008-devin-mcp-host-integration`, not folded into phases 002–007. The acceptance boundary is a clean Linux Devin session with explicit rollback and permission/trust criteria. |
+| # | Question | Status this run |
+|---|----------|------------------|
+| Q1 | Coverage gaps for cli-devin/cli-cursor against the full Claude/Codex hook inventory | **Answered** (iteration 1) |
+| Q2 | Can Devin's tolerant field-name fallbacks be tightened without losing fail-open safety | **Answered, with a mid-run self-correction** (iterations 2-5) |
+| Q3 | Is PermissionRequest/PostCompaction non-firing expected, and how to design a live-verification follow-up | **Not investigated this run** |
+| Q4 | `mcp-route-guard.cjs` dormancy status for Devin and Cursor | **Not investigated this run** |
+| Q5 | Devin/Cursor CLI features shipped since original research that these packets haven't accounted for | **Not investigated this run** |
+| Q6 | Concrete dedup opportunities between the two packets' hook adapters | **Not investigated this run** (iteration 1 F5 provides a partial structural hint only) |
+
+Formal reducer bookkeeping note: `findings-registry.json` and `deep-research-strategy.md`'s Key Questions section still show all six as unchecked (`- [ ]`) and the "Next Focus" anchor never advanced past Q2 across all 5 iterations, even though iterations self-report "Questions Answered" in their own narratives. This is a loop-mechanism observation, not a finding about the research topic — see §6.
 
 ---
 
 ## 3. METHODOLOGY
 
-| Step | Tool | Outcome |
+Each of the 5 iterations was dispatched as an isolated `cli-opencode` process (`opencode run --model openai/gpt-5.6-sol --variant high --format json --dangerously-skip-permissions --pure --dir <repo-root>`), receiving only the externalized state (strategy, prior iteration summaries, state log tail) via a rendered prompt pack — no shared in-process context between iterations. Each iteration was required to write an iteration narrative (`iterations/iteration-NNN.md`), append a canonical JSONL record (`newInfoRatio`, `status`, `focus`, optional `graphEvents`), and a per-iteration delta file; all 5 passed the mechanical `verify-iteration.cjs` leaf-reliability gate (iteration file + state append + delta + route-proof present) on first dispatch. `--stop-policy=max-iterations` forced all 5 iterations regardless of the graph-convergence telemetry signal, which reported `STOP_BLOCKED` (source-diversity and evidence-depth guards) on every check from iteration 2 onward — i.e. the loop's own convergence gates never certified this topic as safely stoppable within 5 iterations, independent of the operator override.
+
+---
+
+## 4. FINDINGS — HOOK COVERAGE INVENTORY (Q1, iteration 1)
+
+### F1. The comparison baseline is 7 Claude event keys + Codex guard parity, not one shared 8-event inventory
+
+The 8-event set (`SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PermissionRequest`, `Stop`, `PostCompaction`, `SessionEnd`) is Devin's own native contract. Current Claude wiring (`.claude/settings.json`) has 7 keys and no `PermissionRequest`; its compaction hook is `PreCompact`. Codex contributes 8 tool-level guard-adapter rows over lifecycle-like events, not an independent 8-event lifecycle. Coverage must therefore be assessed on two separate axes — normalized lifecycle coverage and guard-capability coverage — or Devin's empty (by design) `PermissionRequest` array gets misclassified as a failed port. [SOURCE: `.claude/settings.json:14-180`] [SOURCE: `cli-codex/references/hook-contract.md:81-106`]
+
+### F2. Devin: complete registration, 6 observed categories, 1 intentional gap, 1 unobserved-but-implemented event
+
+| Normalized event | Devin state | Verdict |
 |---|---|---|
-| Init | `resolveArtifactRoot()`, lock acquisition, config/state/strategy/registry file creation | Packet established at `research/` under spec folder; `lineageMode=new`, `generation=1`, `sessionId=research-devin-mcp-host-2026-07-24` |
-| Loop | `codex exec` (cli-codex LEAF dispatch), `runAuditedExecutorCommand` + `enforceWriteContainment` per iteration, `verify-iteration.cjs` post-dispatch gate, `reduce-state.cjs` reducer sync | 5 iterations dispatched; each produced narrative + delta + state-log record; 2 auto-reverted containment events on out-of-scope writes by the LEAF (audit-only, no data loss) |
-| Resource map | Reducer with `--emit-resource-map` | `research/resource-map.md` emitted |
-| Convergence | `--stop-policy=max-iterations` (default `convergence` overrode); forced all 5 iterations | newInfoRatio trend: 0.84 → 0.78 → 0.62 → 0.44 → 0.31; converging toward 0.05 threshold |
-| Synthesis | Manual compile of `research.md` (this file) from 5 iteration narratives + reducer registry | This document |
+| SessionStart | 5 handlers registered; observed live | Covered |
+| UserPromptSubmit | Advisor + spec-gate classification registered; observed live | Covered |
+| PreToolUse | Exec/edit/subagent/MCP matchers registered; observed live | Covered at event level; `run_subagent` and some MCP branches unobserved |
+| PostToolUse | Edit quality/freshness + exec audit registered; observed live | Covered |
+| PermissionRequest | Explicit empty array; no Claude source handler | Intentional gap, not an adapter failure |
+| Stop | Session accounting + completion evidence registered; observed live | Covered |
+| Compaction | Native `PostCompaction` adapter registered | Structurally covered; live behavior unobserved |
+| SessionEnd | Cleanup registered; observed live | Covered |
 
----
+[SOURCE: `.devin/hooks.v1.json:1-166`] [SOURCE: `hook-testing-results.md:51-61`] [SOURCE: `008-devin-hook-parity/implementation-summary.md:48-54`]
 
-## 4. FINDINGS — DEVIN CLI MCP SURFACE (CURRENT)
+### F3. Cursor: covers active session/tool lifecycle, but with 2 material and 2 confidence gaps
 
-### 4.1 Real Devin MCP commands (verified)
-- `devin mcp add <name> -- <command> [args...]` — register stdio server
-- `devin mcp add <name> --url <url>` — register HTTP/SSE server
-- `devin mcp list` / `get` / `remove` / `enable` / `disable` — lifecycle management
-- `devin mcp login` / `logout` — OAuth for remote servers only (NOT used by the three local servers)
-
-### 4.2 Stdio schema (matches what the three servers need)
-```json
-{
-  "command": "node",
-  "args": [".opencode/bin/mk-spec-memory-launcher.cjs"],
-  "env": { "...": "..." },
-  "disabled": false
-}
-```
-This is a direct field-rename from OpenCode's `environment` to Devin's `env`. No HTTP wrapper or remote endpoint is required.
-
-### 4.3 Scopes and config locations
-- Local (default, gitignored): `.devin/config.local.json`
-- Project (committed): `.devin/config.json` — supports `permissions`, `mcpServers`, `read_config_from` only
-- User: `~/.config/devin/config.json`
-
-### 4.4 Permission matcher syntax (per `docs.devin.ai/cli/extensibility/mcp/overview#permission-control`)
-- `mcp__<server>__<tool>` — exact allow/deny by tool
-- `mcp__<server>__*` — per-server wildcard
-- `mcp__*` — all-MCP wildcard (NOT recommended)
-
-**Unknown:** whether the `<server>` component is normalized (hyphen → underscore) before emission. Devin documentation shows hyphenated server keys in config but never states a normalization rule. Iteration 003 marked this as a clean-session verification item, not confirmed Devin behavior.
-
-### 4.5 OAuth boundary
-The three servers do NOT require Devin OAuth or `devin mcp login`. Optional memory-provider credentials (`OPENAI_API_KEY`, `VOYAGE_API_KEY`) are server environment variables, not host authentication. Devin's HTTP/SSE OAuth machinery is irrelevant unless a future phase exposes these servers remotely.
-
----
-
-## 5. FINDINGS — REPOSITORY MCP SERVERS
-
-### 5.1 mk-spec-memory (`opencode.json:18-23`)
-- **Transport:** `StdioServerTransport` (`system-spec-kit/mcp-server/context-server.ts:16,2553-2554`)
-- **Runtime:** Node ≥ 20.11.0; SQLite/native deps; repo-local DB; optional embeddings cascade (Ollama → hf-local → OpenAI/Voyage)
-- **Working dir:** Repo root (`mk-spec-memory-launcher.cjs:1228-1230,1518-1528` forces child `cwd` to repo root)
-- **Trust boundary:** Caller marked trusted by default unless transport metadata opts out (`context-server.ts:807-825`); NO server-side gate for `memory_save`/`memory_update`/`memory_delete` etc.
-
-### 5.2 mk_code_index (`opencode.json:47-52`)
-- **Transport:** `StdioServerTransport` (`system-code-graph/mcp-server/index.ts:15,136-139`)
-- **Runtime:** Node/npm; TypeScript build; SQLite + tree-sitter/WASM; repo-local graph DB
-- **Working dir:** Repo root (`mk-code-index-launcher.cjs:1357-1361,1611-1615`)
-- **Trust boundary:** No server-side caller-trust gate; MCP permission matchers only.
-
-### 5.3 mk_skill_advisor (`opencode.json:69-74`)
-- **Transport:** `StdioServerTransport` (`system-skill-advisor/mcp-server/advisor-server.ts:10,311-312`); caller context tagged `transport: 'stdio'` at `:221-229`
-- **Runtime:** Node/npm; package-local SQLite; sibling `system-spec-kit/shared`; startup scan/watcher; optional shared embedder
-- **Working dir:** Repo root (`mk-skill-advisor-launcher.cjs:1173-1176,1275-1280`)
-- **Trust boundary:** `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` (set in `opencode.json:56-65`) allows transport-absent callers to use mutation tools. **DO NOT COPY THIS INTO DEVIN SHARED CONFIG.**
-
----
-
-## 6. OPERATIONAL GAPS (P1 EACH)
-
-| Gap | Status | Resolution |
+| Normalized event/capability | Cursor state | Verdict |
 |---|---|---|
-| **Working-directory assumption** | Devin MCP config has no `cwd` field. Install guides require repo root (`system-code-graph/INSTALL-GUIDE.md:70-77`, `system-skill-advisor/INSTALL-GUIDE.md:48-55`). Launchers normalize child CWD to root, but Devin must invoke `node .opencode/bin/...` from repo root first. | Smoke-test in real Devin project session; document root requirement. |
-| **Cold bootstrap and native modules** | Launchers may run `npm install`/`npm ci` and TypeScript builds on first start. `better-sqlite3`, `sqlite-vec`, tree-sitter/WASM must build or resolve on Devin's Linux. Feasible but unverified. | Verify in Devin snapshot; do not assume prebuilt artifacts. |
-| **Memory embeddings / network** | `mk-spec-memory` cascade: Ollama → hf-local (~250–600 MB download on first use) → OpenAI/Voyage. Devin may not have Ollama. | Choose and verify Devin-compatible embedding tier; network allowlist; cache behavior. |
-| **Advisor / memory-write trust** | Devin MCP matchers cannot replace server-side trust. Spec-kit memory lacks an independent caller-trust gate. | Devin policy must DENY `memory_save`/`memory_update`/`memory_delete`/lifecycle tools; advisor mutation requires explicit maintainer opt-in. |
+| SessionStart | 6 handlers wired; base event live; spec-gate prebind now committed + tested | Covered |
+| UserPromptSubmit | 2 `beforeSubmitPrompt` handlers wired, event confirmed dormant | **Material gap**: prompt-time advisor/classification unavailable |
+| PreToolUse | Spec-gate enforcement + task dispatch guard wired and live | Covered for those guards; no Cursor equivalent of Codex's dispatch-preflight lint |
+| PostToolUse | Write/Shell proxy wired and live | Covered, minor audit-provenance drift only |
+| PermissionRequest | No generic Cursor equivalent | Native-lifecycle gap (Claude has no source handler either); `beforeMCPExecution` is not a substitute |
+| Stop | Cursor CLI `stop` non-delivering; `sessionEnd` proxies accounting | Partial: completion-evidence sentinel deliberately absent (no `last_assistant_message`) |
+| Compaction | `preCompact` proxy wired, no CLI-reachable trigger observed | Structural coverage only |
+| SessionEnd | Accounting + cleanup wired; observed live | Covered |
+
+Cursor's later phases materially **supersede** the historical phase-009 snapshot: `beforeMCPExecution` is now wired and live-observed, and `spec-gate-prebind.mjs` is committed, registered, and covered by an 11-row process suite. Use the current `009-cursor-hooks-lifecycle/` reorganized-phase state, not older phase-009-only summaries. [SOURCE: `.cursor/hooks.json:4-93`] [SOURCE: `030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md:42-55`] [SOURCE: `030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix/implementation-summary.md:37-64`] [SOURCE: `030-cli-cursor-creation/013-cursor-spec-gate-prebind/implementation-summary.md:57-80`]
+
+### F4. Guard-capability parity narrows the actionable backlog to two items
+
+Devin has adapters for all 7 shared guard cores plus its native task-dispatch path; remaining issues are branch-level live evidence, not missing files. Cursor covers spec-gate enforce/classify, post-edit quality, code-graph freshness, dispatch audit, task dispatch, and MCP routing. The two substantive **missing capabilities** are: (1) dispatch-preflight lint before `Shell` execution, and (2) completion-evidence checking at turn/session completion — the latter is not a thin port because Cursor's `sessionEnd` payload supplies `transcript_path`, not `last_assistant_message`, requiring a transcript reader and new state contract. [SOURCE: `cli-codex/references/hook-contract.md:88-102`] [SOURCE: `008-devin-hook-parity/implementation-summary.md:39-54`]
+
+### F5. Registration must not be counted as behavioral coverage
+
+The recurring failure mode across both packets' documentation is flattening "wired," "event observed," and "branch behavior observed" into one status. Future coverage matrices should keep these three states distinct — Cursor's `beforeMCPExecution` and spec-gate prebind are now *stronger* than registration-only (real payload capture / discriminating test suite), while Devin's `run_subagent` PreToolUse branch is still registration-only. [SOURCE: `011-hook-truth-and-runtime-readmes/implementation-summary.md:106-111`] [SOURCE: `030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results/implementation-summary.md:39-48`]
+
+**Q1 answer:** Devin's only event-level functional hole is the intentionally empty `PermissionRequest`; `PostCompaction` is implemented but unobserved; several `PreToolUse` branches need live evidence. Cursor's material gaps are dormant prompt-time delivery, missing dispatch-preflight lint, and missing completion-evidence behavior; compaction is registration-only. Session lifecycle, tool enforcement, post-tool quality/freshness/audit, task dispatch, and MCP routing are otherwise covered in the current on-disk state for both runtimes.
 
 ---
 
-## 7. RECOMMENDED PHASE SHAPE — `008-devin-mcp-host-integration`
+## 5. FINDINGS — DEVIN FALLBACK HARDENING (Q2, iterations 2-5)
 
-### 7.1 Why additive (not folded into 002-007)
-- The MCP surface is a host-level integration, not a CLI-executor or hook-adapter concern.
-- Phase 002 restores `cli-devin` as an executor; phase 003 builds its skill packet; phase 004 adds hook adapters. None of these need the MCP-host surface.
-- Mixing concerns risks destabilizing the executor/hook roll-out (highest priority surfaces) with unverified Devin-only behavior.
+This question was investigated four times in a row (the loop never advanced past it — see §6). The findings below are presented as a single reconciled narrative, with the iteration-5 correction of iteration-4's error called out explicitly, since presenting them as four independent iterations would obscure the self-correction.
 
-### 7.2 Phase contents (proposed)
-1. `.devin/config.json` project-level entries for all three launchers, with `.devin/config.local.json` for secrets and optional provider overrides.
-2. Clean Devin-session smoke test: `devin mcp add/list/get/remove/enable/disable`, `tools/list` discovery, and at least one read-only call per server.
-3. Linux/Node ≥ 20.11.0 dependency bootstrap, native module loading, database path containment, cold-start timing/evidence.
-4. Deliberate embedding profile (local Ollama, hf-local, or cloud); no silent dependency on developer laptop daemons.
-5. Permission tests for `mcp__mk_spec_memory__*`, `mcp__mk_code_index__*`, `mcp__mk_skill_advisor__*`, including advisor mutation denial/approval behavior.
-6. Manual rollback path: disable/remove the three project entries without deleting repository databases or source files.
+### F1. The current adapters already use the confirmed canonical Devin envelope — the fallback concern is narrower than the research premise assumed
 
-### 7.3 Two-tier permission policy (recommended)
-**Tier 1 — shared project config:**
-- 3 stdio server entries
-- NO advisor trust-default env var
-- Exact read-only MCP allows (per-tool, not server-wide wildcard)
-- Explicit denies or asks for memory and graph mutations
-- Default prompting for everything else
+All three named adapters (`task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, `mcp-route-guard.cjs`) consume `payload.tool_name` and `payload.tool_input` directly. None accepts `toolName`, `toolInput`, `input`, `arguments`, or `args`. The live capture in `hook-testing-results.md` confirms this snake_case envelope and the observed `exec`/`edit` argument names. There is no envelope-level fallback to remove — tightening is not a three-adapter rewrite. [SOURCE: `hook-testing-results.md:55-61`] [SOURCE: `task-dispatch-guard.cjs:45-64`] [SOURCE: `spec-gate-enforce.mjs:59-80`] [SOURCE: `mcp-route-guard.cjs:41-57`]
 
-**Tier 2 — maintainer-local override (`.devin/config.local.json`):**
-- Optional provider secrets
-- Explicit advisor trust-default opt-in ONLY for a maintainer who accepts the mutation risk
-- NOT committed; NOT silently inherited by other sessions
+### F2. `task-dispatch-guard.cjs`'s subagent-type aliases must be retained until a real `run_subagent` payload is captured
 
-### 7.4 Acceptance gate (must pass before phase opens)
-A clean Devin Linux session must prove:
-- Actual namespaced tool names (resolved from real `tools/list`)
-- Read-only discovery and calls succeed
-- Denial or prompting for `memory_save`/`memory_update`/`memory_delete` etc.
-- Denial of advisor mutations when trust default is omitted
-- Explicit maintainer opt-in behavior
-- No effect from a broad server-level grant on the intended deny rules
-- Three relative launcher commands resolve from repo root in fresh, resumed, sandboxed, and handed-off sessions
+The adapter maps `subagent_type`, `subagentType`, `agent_type`, `agentType` into the shared core. None was validated live — no `run_subagent` event occurred in the one observed session. Cursor's independently-observed live `Task` payload confirms `subagent_type` **for Cursor**, which raises confidence that snake_case is the cross-runtime canonical spelling but is *not* evidence of Devin's exact `run_subagent` contract. Removing the untested aliases based on adjacent-tool (`exec`/`edit`) or cross-runtime (Cursor) evidence would be an invalid extrapolation — if Devin ever emits a removed spelling, the adapter still exits successfully but forwards no identity, a silent fail-open bypass. [SOURCE: `task-dispatch-guard.cjs:52-67`] [SOURCE: `008-devin-hook-parity/implementation-summary.md:96-103`] [SOURCE: `030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md:54-68`]
+
+### F3. `spec-gate-enforce.mjs` path aliases: one confirmed field (`file_path`), two unconfirmed compatibility aliases (`filePath`, generic `path`) — **and a corrected safety verdict**
+
+- **Iteration 4's original claim** (superseded): losing a path alias would remain "enforcement-conservative" — worst case a false-deny or a false-advise on an actually-exempt edit, never a silent allow bypass.
+- **Iteration 5's correction, independently re-verified during this synthesis** against the live `spec-gate-core.mjs` source: `isExemptTargetPath(filePath, projectDir)` returns `true` when `filePath` is not a string or is blank (`spec-gate-core.mjs:751-752`). `evaluateMutation()` then short-circuits to `{ decision: 'allow' }` for any non-`bash` tool whose target is exempt (`spec-gate-core.mjs:958-960`). **Therefore losing `filePath`/`path` resolution for an alias-only caller does not fail toward deny/advise — it fails toward silent allow**, because an unresolved path is treated as an exempt target. This is the single most safety-relevant finding in this research run and directly informs the answer to the research topic's item (2).
+- Practical consequence: generic `path` is still the strongest retirement candidate on ambiguity grounds (Cursor's independently-live-verified adapter carries the same three-name helper, and no actual conflicting Devin payload was observed), but it and `filePath` must not be removed until (a) real-payload fixtures exist for every accepted spelling, (b) a caller/telemetry audit proves zero live use, or (c) the fail-open contract is deliberately renegotiated. [SOURCE: `spec-gate-core.mjs:745-779` `isExemptTargetPath`] [SOURCE: `spec-gate-core.mjs:906-970` `evaluateMutation`] [SOURCE: `spec-gate-enforce.mjs:49-53,80-87`] [SOURCE: `cursor/spec-gate-enforce.mjs:50-53,68-88`]
+
+### F4. The `||` truthiness chains need type-aware, first-nonblank-string precedence before any alias retirement
+
+Both alias-bearing adapters select the first *truthy* property, not the first valid *string*. A truthy non-string `file_path` can suppress a later valid `filePath`/`path` and still resolve to `null`; a truthy malformed `subagent_type` can suppress later valid aliases and forward garbage to the core. This precedence defect exists independent of which aliases are eventually retired — fixing it (ordered, first-nonblank-string resolution, confirmed snake_case field first) is safe hardening on its own and should happen *before* any vocabulary reduction. [SOURCE: `spec-gate-enforce.mjs:49-53,80-87`] [SOURCE: `task-dispatch-guard.cjs:54-67`]
+
+### F5. `mcp-route-guard.cjs` has no tool-input field-name fallback to tighten
+
+The MCP adapter forwards only canonical `payload.tool_name`; it never reads `tool_input`. Its only fallback chain is workspace-root resolution (`payload.cwd` → `DEVIN_PROJECT_DIR` → `process.cwd()`), a tested project-root invariant from phase 012, not payload-schema uncertainty. There is no Q2-scoped change to make here; its dormancy/applicability is a separate, unanswered question (Q4). [SOURCE: `mcp-route-guard.cjs:41-60`] [SOURCE: `012-devin-hook-hardening/implementation-summary.md:47-55,75-85`]
+
+### F6. Current process tests prove canonical `file_path`, not alias-retirement safety
+
+The Devin process suite (`spec-gate-devin.test.mjs`) constructs every enforce payload with `tool_input.file_path`, exercising deny/advise/satisfied/whitespace-cwd/missing-cwd behavior — but has zero rows for `filePath`, generic `path`, conflicting-field, malformed-canonical-then-valid-alias, or missing-path scenarios. Phase 012 accurately describes this as high-risk spec-gate coverage, but it is not evidence the compatibility spellings are unused. [SOURCE: `spec-gate-devin.test.mjs:53-63,175-205,253-286`] [SOURCE: `012-devin-hook-hardening/implementation-summary.md:44-75,93-115`]
+
+### Recommended hardening order (Q2 answer, reconciled)
+
+1. Replace truthiness (`||`) chains in both alias-bearing adapters with a tested first-nonblank-string resolver, keeping the confirmed snake_case field first (canonical-first, not canonical-only).
+2. Add real-payload process fixtures for every currently-accepted spelling (`file_path`, `filePath`, `path`; `subagent_type`, `subagentType`, `agent_type`, `agentType`) plus conflicting-alias and missing-value rows.
+3. Do **not** retire `filePath`/`path` until fixture/caller audit proves zero use — the corrected finding above (F3) means premature removal is an enforcement-bypass risk, not merely a false-advise risk.
+4. Do **not** retire any task-identity alias until a real Devin `run_subagent` payload is captured live and a marker-free direct-caller audit exists.
+5. Make no field-name or project-root change to `mcp-route-guard.cjs` under this question.
+
+---
+
+## 6. UNINVESTIGATED QUESTIONS AND A LOOP-MECHANISM OBSERVATION
+
+Q3, Q4, Q5, and Q6 were never investigated in this 5-iteration run. Each iteration's own "Next Focus" narrative field correctly named the next question (Q4 after iteration 1, then repeatedly Q4 as the pending item after iterations 2, 3, and 4), but every dispatched iteration nonetheless reopened Q2. Two independent, verifiable observations from this run's own state files explain why, without needing to guess at model behavior:
+
+1. **The externalized `deep-research-strategy.md` "## 11. NEXT FOCUS" anchor never advanced past Q2** across all 5 iterations, even though 4 of 5 iteration narratives titled their own "Next Focus" field as Q4. Since each iteration's prompt pack is built from the *current* `strategy.md` file (fresh-context-per-iteration by design), and that file's machine-owned Next-Focus anchor stayed pinned to Q2, each fresh iteration was handed Q2 as its assigned focus regardless of what the previous iteration's own narrative had recommended.
+2. **None of the 6 Key Questions checkboxes were ever flipped to `[x]`, and `findings-registry.json.resolvedQuestions` stayed at 0/6** through all 5 reduce-state passes, despite every iteration narrative explicitly stating "Q_: Answered" in prose. The reducer's finding-registry population also captured "Ruled-Out Directions" bullets as `keyFindings` entries rather than the substantive `### F1.`-`### F5.` findings, suggesting the reducer's narrative-parsing heuristics did not recognize this run's iteration-file structure as fully as expected.
+
+Both observations point at the same root cause candidate: **the reducer did not advance the Next-Focus anchor or check off questions after iterations that self-reported "Answered"** for this particular topic/run. This is a deep-research runtime-mechanism finding, not a finding about the cli-devin/cli-cursor hook adapters, and is reported here for the operator's awareness rather than investigated further (out of scope for this research topic). It means **Q3, Q4, Q5, and Q6 require a dedicated follow-up research pass** (or a manually-seeded strategy.md with a locked focus per iteration) before they can be considered answered.
+
+Partial hint toward Q6 (not a full answer): iteration 1 F5 already established that Devin and Cursor now share three of the same guard cores (spec-gate, task-dispatch, and — per iteration 1 F4 — the same 7 shared guard-adapter shapes against Codex), which is suggestive of shared-core extraction potential, but this run did not investigate concrete dedup mechanics, boundaries, or risk.
+
+---
+
+## 7. RECOMMENDATIONS
+
+1. **Fix `||`-chain precedence before touching vocabulary** in `task-dispatch-guard.cjs` and `spec-gate-enforce.mjs` (F4, §5): first-nonblank-string resolution, confirmed field first. This is safe, low-risk hardening independent of any alias-retirement decision.
+2. **Do not retire any Devin adapter alias yet.** The corrected safety analysis (F3, §5) shows path-alias loss in `spec-gate-enforce.mjs` risks a silent enforcement bypass (exempt-path allow), not a conservative fail-toward-deny. Task-identity aliases in `task-dispatch-guard.cjs` remain unvalidated pending a live `run_subagent` capture.
+3. **Add missing test coverage** for every accepted alias spelling, conflicting-alias precedence, and missing/blank-path cases in the Devin process suite before any future retirement decision (F6, §5).
+4. **Leave `mcp-route-guard.cjs` untouched** for Q2 purposes; its actual dormancy/applicability (Q4) needs its own investigation.
+5. **Run a dedicated follow-up research pass for Q3, Q4, Q5, and Q6** — this run did not reach them. Recommend seeding a fresh `deep-research-strategy.md` with the focus locked per-iteration (or explicitly forcing focus rotation) so the loop-mechanism issue in §6 cannot repeat.
+6. **Design the Q3 live-verification follow-up** (not executed here, but scoped): force a real Devin `PermissionRequest`-shaped and `PostCompaction`-shaped event (e.g. an operation requiring interactive approval, and a context-window-filling session) in an isolated Devin session, capture the raw payload, and diff against the corrected `.devin/hooks.v1.json` schema to distinguish "genuinely didn't occur" from "handler exists but doesn't fire."
 
 ---
 
 ## 8. ELIMINATED ALTERNATIVES
 
-| Alternative | Why ruled out |
-|---|---|
-| Fold MCP host into phase 002 (executor support) | Different surface — host-level config, not dispatch executor. Risks destabilizing highest-priority phase. |
-| Fold MCP host into phase 003 (skill packet) | Skill packet is per-executor-mode; MCP host is a sibling capability. |
-| Fold MCP host into phase 004 (hook adapters) | Hook adapters cover PreToolUse/PostToolUse lifecycle, not MCP registration. |
-| Reject MCP-host scope entirely | Loses a real, protocol-aligned Devin capability. Three servers would be unreachable from Devin. |
-| Hand-roll HTTP/SSE wrappers for the three stdio servers | Pointless — Devin supports stdio natively. Adds operational surface for no protocol gain. |
-| `devin mcp login` for the three local servers | Local servers don't use OAuth; login is for remote MCP servers only. |
-| Server-wide `mcp__*` wildcard grant | Hidden mutation surface; violates least-privilege. |
-| Copy `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` into shared Devin config | Replicates a boundary designed for OpenCode's transport model onto Devin. Iteration 002 strongly advises against this. |
+| Approach | Reason Eliminated | Evidence | Iteration(s) |
+|---|---|---|---|
+| Treating Cursor `beforeMCPExecution` as a `PermissionRequest` equivalent | It is MCP-specific route advice, not a generic approval-lifecycle surface | `030-cli-cursor-creation/011-.../implementation-summary.md:86-105` | 1 |
+| Treating phase-009's "unwired" MCP/prebind statements as current truth | Later phases 011 and 013 explicitly supersede those historical states | `030-cli-cursor-creation/011-.../implementation-summary.md`, `013-.../implementation-summary.md` | 1 |
+| Treating the 8 normalized events as 8 currently-registered Claude keys | `.claude/settings.json` has 7 keys and no `PermissionRequest` | `.claude/settings.json:14-180` | 1 |
+| Tightening `run_subagent` identity fields from observed `exec`/`edit` samples | Different tools with different argument contracts; no `run_subagent` payload was ever observed | `task-dispatch-guard.cjs:52-67` | 2 |
+| Removing the `cwd`/env/`process.cwd()` fallback as "payload cleanup" | It is a tested project-root resolution invariant from phase 012, not a field-name alias | `012-devin-hook-hardening/implementation-summary.md:47-55` | 2 |
+| Treating all 3 named Devin adapters as equally fallback-heavy | The MCP adapter has zero argument aliases; all 3 already use the canonical snake_case envelope | iteration-002.md F1, F4 | 2 |
+| Removing every non-snake_case alias immediately | `run_subagent` remains unobserved; deletion does not fix the underlying precedence defect | iteration-003.md | 3 |
+| Treating missing spec-gate path data as a silent-allow bypass (iteration 3's own original framing) | **Superseded by iteration 5**: the shared core does treat a missing/blank path as an allow-capable exemption for non-bash tools | `spec-gate-core.mjs:751-752,958-960` | 3, corrected by 5 |
+| Tightening the MCP adapter's project-directory fallback as payload-schema cleanup | Unrelated to tool-input field spelling; it is a verified workspace-root invariant | `mcp-route-guard.cjs:41-60` | 3, 4, 5 |
+| Changing unknown/missing paths to `deny` by default merely to enable alias deletion | Would be a deliberate, separate fail-open-contract change, not a side effect of alias cleanup | iteration-005.md | 5 |
+| Immediate canonical-only parsing for either alias-bearing adapter | Removes untested compatibility spellings without proof of non-use; risks silent bypass | iteration-004.md, iteration-005.md | 4, 5 |
 
 ---
 
 ## 9. DIVERGENCE MAP
 
-- **Completed pivots:** 0
-- **Failed pivots:** 0
-- **Audited overrides:** 0
-- **Saturated:** none yet
-- **Pivot lineage:** none yet
-- **Remaining frontier:** Clean Linux Devin session (acceptance matrix above); namespace spelling verification; embedding tier selection; advisor/memory-write trust policy validation.
-
-The research converged along a single linear axis (Devin MCP surface → server requirements → fit → policy → phase shape) — no divergent pivots were required. This is appropriate given the bounded scope and the four-question research charter.
+Not applicable. This run used `convergence_mode: default` (not `divergent`); no pivot was triggered or eligible at any point. `deep-research-strategy.md` §10A shows 0 completed pivots, 0 failed pivots, 0 audited overrides, and no saturated directions recorded.
 
 ---
 
-## 10. OPEN QUESTIONS (FORWARDED TO PHASE 008 ACCEPTANCE)
+## 10. OPEN QUESTIONS
 
-The following carry forward as explicit acceptance gates for any future phase:
-
-1. Does a clean Devin Linux session successfully bootstrap all three launchers and complete MCP `tools/list` discovery?
-2. Which embedding tier is reliable and acceptable in Devin's sandbox, especially on first start without Ollama?
-3. Does Devin invoke project-scoped relative commands from the repository root in all supported session modes (fresh / resumed / sandboxed / handed-off)?
-4. Does Devin normalize hyphenated server names to underscores in emitted tool names, and do deny rules match that normalized form?
-5. Does a project-level deny survive a session-level "allow all tools on this server" grant?
-6. What is the least-privilege Devin permission/trust policy for advisor mutation tools and memory writes? *(answered as design intent in iteration 002; live validation still required)*
-7. Can the live `devin mcp list/get/enable/disable` commands be exercised outside this shell's rolling-log permission failure (a local environment-only limitation)?
+- **Q3** (unanswered): Is `PermissionRequest`/`PostCompaction` non-firing in the one observed Devin session expected, or does it warrant a live-verification pass? See §7 recommendation 6 for a scoped follow-up test design.
+- **Q4** (unanswered): What is `mcp-route-guard.cjs`'s dormancy status for Devin and Cursor now that MCP servers may be independently registrable per runtime?
+- **Q5** (unanswered): What Devin/Cursor CLI features have shipped since the original packet research (docs.devin.ai / docs.cursor.com) that these packets don't account for? (Not investigated — no live web research was performed on either question in this run.)
+- **Q6** (unanswered, partial hint only): Concrete, safe dedup boundaries between the cli-devin and cli-cursor hook adapters, given their shared 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping (iteration-1 F4/F5 establish that the shared-core wrapping already exists for spec-gate and task-dispatch, but did not analyze extraction boundaries or risk).
+- Whether the reducer/loop-mechanism issue described in §6 (Next-Focus anchor pinned to Q2, questions never checked off) is specific to this run's topic phrasing or a general deep-research reducer gap — flagged for the operator, out of scope for this research topic.
+- Whether generic `path` and `filePath` in `spec-gate-enforce.mjs` have any live caller today — no caller/telemetry audit was performed in this run; this is a prerequisite named in §5/§7 before any retirement.
 
 ---
 
 ## 11. WHAT WORKED
 
-- **Iteration 1 (broad Devin MCP + three-server boundary map, 0.84 ratio):** Highest-leverage single iteration. Set the protocol-fit verdict and named the four operational gaps in one pass.
-- **Iteration 2 (least-privilege policy, 0.78 ratio):** Pulled the explicit deny list out of `system-spec-kit/mcp-server/tool-schemas.ts` and the advisor trust boundary from `opencode.json`.
-- **Iteration 4 (pre-init namespace spelling clarification, 0.44 ratio):** Correctly bounded the unknown to a clean-session verification rather than guessing.
-- **Iteration 5 (working-directory feasibility, 0.31 ratio):** Traced all three launchers' CWD normalization back to repo root; closed out the loop with the phase-shape recommendation.
+- Reusing already-settled packet evidence (`hook-testing-results.md`, 008/011/012 for Devin; the reorganized `009-cursor-hooks-lifecycle/` children + 010 for Cursor) instead of re-deriving hook-firing facts from scratch, per the strategy Non-Goals.
+- Re-reading the actual shared core (`spec-gate-core.mjs`) at the exact line ranges cited by a prior iteration's claim, which caught and corrected a real safety-relevant error (iteration 5 vs. iteration 4).
+- Distinguishing "registered," "event observed," and "branch behavior observed" as three separate coverage states (iteration 1 F5) — this framing held up and was reused correctly through iteration 5.
 
 ## 12. WHAT FAILED
 
-- **Iteration 3 (namespace spelling, 0.62 ratio):** Half of the iteration's plan was a live `devin mcp list` probe that aborted on rolling-log init in the current shell. The hypothesis could not be confirmed in this environment — explicitly forwarded to clean-session acceptance rather than guessed.
-- **`devin mcp list` execution:** Local-shell rolling-log permission failure (not a Devin defect; not data-loss). Forwarded as a clean-session requirement.
+- The loop never advanced its own machine-owned "Next Focus" anchor past Q2, so 4 of 5 available iterations were spent re-answering the same question instead of covering Q3-Q6 (§6).
+- No live web research (`docs.devin.ai`, `docs.cursor.com`) was performed for Q5 in any iteration, despite Q5 explicitly requiring it.
+- No caller/telemetry audit of the `path`/`filePath`/subagent-alias fields was performed — every iteration recommended one as a prerequisite for retirement, but none executed it (this is legitimately future implementation work, not a research-loop failure, but is noted here for completeness).
 
 ## 13. RULED OUT DIRECTIONS
 
-- Direct `devin mcp login` for the three local servers (no OAuth needed).
-- Server-wide `mcp__*` wildcard grants (hidden mutation surface).
-- Folding MCP-host scope into phases 002–007 (wrong surface; risks destabilizing core revival).
-- Hand-rolled HTTP/SSE wrappers (unnecessary; stdio supported natively).
-- Copying OpenCode's `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` into shared Devin config (wrong trust model for Devin's permission surface).
-
-## 14. CONVERGENCE REPORT
-
-- **Stop reason:** `maxIterationsReached` (per `--stop-policy=max-iterations`)
-- **Total iterations:** 5
-- **Questions answered:** 4 / 4
-- **Open questions carried forward:** 7 (acceptance gate items)
-- **Convergence threshold:** 0.05 (not reached)
-- **Last 3 iteration ratios:** 0.62 → 0.44 → 0.31 (steady decline toward threshold; expected for this topic shape)
-- **Convergence score (latest):** 0.31
-- **Divergence summary:** No divergent pivots required; research converged linearly along the four-question charter.
-- **Containment events:** 2 auto-reverted out-of-scope writes by the codex LEAF (recorded in state log; no data loss; suggests tightening the LEAF prompt's allowed-write-paths reminder if rerun).
-- **Route proof:** every iteration record carries `target_agent=deep-research`, `agent_definition_loaded=true`, `resolved_route="Resolved route: mode=research target_agent=deep-research"`. ✓
+See §8 (Eliminated Alternatives) for the consolidated table with evidence and iteration references.
 
 ---
 
-## 15. SPEC.MD WRITE-BACK (Open Question 3)
+## 14. CONVERGENCE REPORT
 
-The bounded generated findings fence for this research is written into the parent `spec.md` under the **Open Questions** anchor. The fenced block (bounded, non-destructive) carries:
+- Stop reason: `maxIterationsReached` (operator `--stop-policy=max-iterations` override; convergence signals were telemetry-only for this run and never allowed a legal STOP — every graph-convergence check from iteration 2 onward returned `STOP_BLOCKED` on `source_diversity_guard` and `evidence_depth_guard`, scores 0.73 → 0.73 → 0.48 → 0.48).
+- Total iterations: 5 of 5 (max).
+- Questions answered (formal registry count): 0/6 (see §6 loop-mechanism observation — narratively, Q1 and Q2 were substantively answered; Q3-Q6 were not).
+- Remaining questions: 4 (Q3, Q4, Q5, Q6) fully open; Q2 is answered but flagged for implementation-time test coverage before any code change.
+- Last 3 iteration summaries: run 3: Q2 refinement (0.54, insight); run 4: Q2 verification (0.38, insight); run 5: Q2 correction of run 4 (0.46, insight).
+- Convergence threshold: 0.05 (newInfoRatio).
+- Divergence summary: not applicable (§9).
+- newInfoRatio trend: 0.88 → 0.76 → 0.54 → 0.38 → 0.46 (a genuine uptick on the final iteration, driven by the safety correction in F3/§5 — high-value findings did not monotonically decay even as the same question was re-investigated).
+- Key findings recorded by the reducer: 33 (findings-registry.json; see §6 caveat on what the reducer actually captured into this field for this run).
+- Executor actually invoked: `cli-opencode`, model `openai/gpt-5.6-sol`, reasoningEffort `high`, serviceTier default (not fast) — confirmed via `deep-research-state.jsonl` `iteration_start`/`iteration` executor blocks and `dispatch-receipts/dispatch-research-i{1..5}-g2.{intent,completion}.json` for all 5 iterations.
 
-- The verified Devin CLI MCP surface summary (section 4)
-- The four operational gaps (section 6)
-- The phase-shape recommendation `008-devin-mcp-host-integration` (section 7)
-- The two-tier permission policy (section 7.3)
+---
 
-The original Open Question 3 wording is preserved above the fence so the audit trail remains intact; the fence adds a "Resolution Status: RESOLVED PROVISIONALLY — needs live Devin Linux acceptance" marker.
+## 15. SPEC.MD WRITE-BACK
+
+A bounded generated findings block was written under the `## 4. OPEN QUESTIONS` host anchor in `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md`, replacing the prior generation-1 (`devin-as-mcp-host-feasibility`) generated fence with this run's findings, consistent with the spec-check protocol (one generated fence per host anchor, machine-owned, `research/research.md` remains canonical). See the fence content in `spec.md` for the abridged operator-facing summary.
 
 ---
 
 ## 16. REFERENCES
 
-- **Devin official documentation (live, 2026-07-23):**
-  - https://docs.devin.ai/cli/extensibility/mcp/overview
-  - https://docs.devin.ai/cli/extensibility/mcp/configuration
-  - https://docs.devin.ai/cli/extensibility/configuration
-  - https://docs.devin.ai/cli/reference/configuration/config-file
-  - https://docs.devin.ai/cli/reference/permissions.md
-- **Phase 001 contract pin:** `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md`
-- **Original deprecation context:** `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/z_archive/022-cli-devin-deprecation/context/context-report.md`
-- **Repository MCP sources:**
-  - `system-spec-kit/mcp-server/{context-server.ts, tool-schemas.ts, handlers/memory-save.ts, tools/memory-tools.ts, tools/lifecycle-tools.ts}`
-  - `system-code-graph/mcp-server/{index.ts, tool-schemas.ts}`
-  - `system-skill-advisor/mcp-server/{advisor-server.ts}`
-  - `opencode.json` (lines 18–85)
-- **Launcher entrypoints:**
-  - `.opencode/bin/mk-spec-memory-launcher.cjs` (lines 1228–1230, 1518–1528)
-  - `.opencode/bin/mk-code-index-launcher.cjs` (lines 1357–1361, 1611–1615)
-  - `.opencode/bin/mk-skill-advisor-launcher.cjs` (lines 1173–1176, 1275–1280)
-- **Install guides:**
-  - `system-code-graph/INSTALL-GUIDE.md:70-77, 103-114`
-  - `system-skill-advisor/INSTALL-GUIDE.md:48-55`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/003-cursor-hooks-claude-parity/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/004-hooks-manual-testing-results/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix/implementation-summary.md`
+- `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind/implementation-summary.md`
+- `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs`
+- `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs`
+- `.opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs`
+- `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs`
+- `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs`
+- `.opencode/skills/cli-external-orchestration/cli-codex/references/hook-contract.md`
+- `.claude/settings.json`, `.devin/hooks.v1.json`, `.cursor/hooks.json`
+
+Note: `resource-map.md` was not present at init for this packet, so it is not cited as a coverage-gate source; a fresh `resource-map.md` was emitted at synthesis time from converged research deltas.
 
 ---
 
 ## 17. ARTIFACT INDEX
 
-| Path | Description |
-|---|---|
-| `research/deep-research-config.json` | Run configuration |
-| `research/deep-research-state.jsonl` | Append-only state log (15 records: 5 iter + events) |
-| `research/deep-research-strategy.md` | Strategy / progress tracker |
-| `research/deep-research-dashboard.md` | Auto-generated dashboard |
-| `research/findings-registry.json` | Reducer-owned registry |
-| `research/resource-map.md` | Emitted at convergence |
-| `research/research.md` | This synthesis |
-| `research/iterations/iteration-{001..005}.md` | Per-iteration narratives |
-| `research/deltas/iter-{001..005}.jsonl` | Per-iteration delta streams |
-| `research/prompts/iteration-{1..5}.md` | Rendered dispatch prompt packs |
-| `research/dispatch-receipts/dispatch-research-i{1..5}-g1.{intent,completion}.json` | Audit receipts (HMAC-signed) |
-
----
-
-*Generated by deep-research loop `research-devin-mcp-host-2026-07-24`, generation 1, lineage mode `new`. Stopped by `--stop-policy=max-iterations` after 5 iterations. Converging trend: 0.84 → 0.78 → 0.62 → 0.44 → 0.31.*
+- `research/deep-research-config.json` — loop config, executor binding, lineage (generation 2, restart from prior `devin-as-mcp-host-feasibility` session)
+- `research/deep-research-state.jsonl` — full append-only event/iteration log (config, restart, spec_check, 5x iteration_start/iteration, 5x graph_convergence, telemetry heartbeats)
+- `research/deep-research-strategy.md` — final strategy state (Next Focus, Key Questions, Known Context)
+- `research/findings-registry.json` — reducer-owned registry (33 keyFindings, 0/6 formally resolved — see §6)
+- `research/deep-research-dashboard.md` — auto-generated operator dashboard
+- `research/resource-map.md` — emitted at synthesis from converged deltas
+- `research/iterations/iteration-001.md` through `iteration-005.md` — full iteration narratives
+- `research/deltas/iter-001.jsonl` through `iter-005.jsonl` — per-iteration structured deltas
+- `research/dispatch-receipts/dispatch-research-i{1..5}-g2.intent.json` and `.completion.json` — executor dispatch provenance (10 files)
+- `research_archive/20260727T040816Z/` — the prior generation-1 `devin-as-mcp-host-feasibility` research packet, archived intact before this run started

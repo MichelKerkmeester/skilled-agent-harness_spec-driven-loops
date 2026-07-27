@@ -15,14 +15,14 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: devin-as-mcp-host-feasibility: Investigate whether Devin CLI can genuinely host this repos MCP servers (spec-kit-memory, code-graph, skill-advisor) as referenced by Devin-as-MCP-host in project INSTALL_GUIDEs (a surface the original cli-devin deprecation explicitly left untouched, per z_archive/022-cli-devin-deprecation/context/context-report.md). Confirm Devin real devin mcp add/list/get/remove/login/logout/enable/disable surface (docs.devin.ai/cli/extensibility/mcp/overview.md and configuration.md) against what these 3 MCP servers actually require (stdio vs http transport, env vars, auth, working directory). Determine whether bringing this into scope for the cli-devin revival (029-cli-devin-revival) is worthwhile, and if so what a new phase would need to cover. This directly resolves Open Question 3 in the parent spec.md (currently scoped OUT by default).
-- Started: 2026-07-24T05:28:04.819Z
+- Topic: What further hook refinements, upgrades, or additions should the cli-devin and cli-cursor CLI hook adapter layers get, now that Devin's hooks are confirmed to fire live (corrected .devin/hooks.v1.json nested schema -- no top-level version/hooks wrapper, each event is an array of {matcher, hooks:[{type,command,timeout}]} -- 6 of 8 lifecycle events observed firing with real payloads: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SessionEnd; PermissionRequest and PostCompaction did not occur in that session) and Cursor's hook layer is independently built and wired via .cursor/hooks.json? Investigate: (1) coverage gaps against the full Claude/Codex hook inventory for both runtimes; (2) hardening opportunities now that live Devin payloads are observable -- e.g. whether the previously-tolerant field-name fallbacks in task-dispatch-guard.cjs/spec-gate-enforce.mjs/mcp-route-guard.cjs (written when tool_input shapes were unconfirmed) can now be tightened to the confirmed real shapes without losing safety; (3) whether PermissionRequest and PostCompaction not firing in the one observed session is expected (event genuinely didn't occur) or worth a further live-verification pass, and how to design that follow-up test; (4) mcp-route-guard.cjs's dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per-runtime; (5) any Devin or Cursor CLI feature shipped since the original research (docs.devin.ai, docs.cursor.com or equivalent) that these two packets haven't accounted for yet; (6) concrete opportunities to reduce duplication between the two packets' hook adapters now that both are structurally very similar (same 4-runtime hook-directory pattern, same fail-open contract, same guard-core wrapping). Ground every finding in the CURRENT on-disk state of both packets (read .opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md, .opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md, .opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md, .opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md, and the equivalent Cursor packet docs under .opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/ and 010-hook-code-style-cross-runtime/) rather than re-deriving already-settled facts from scratch. The Cursor packet was JUST reorganized (phases 009-015 consolidated into a 009-cursor-hooks-lifecycle/ phase-parent with 6 children, 016-018 renumbered to 011-013) -- use the current folder structure, not any older numbering.
+- Started: 2026-07-27T04:08:21.000Z
 - Status: INITIALIZED
 - Iteration: 5 of 5
-- Session ID: research-devin-mcp-host-2026-07-24
-- Parent Session: none
-- Lifecycle Mode: new
-- Generation: 1
+- Session ID: research-cli-hook-adapters-2026-07-27
+- Parent Session: research-devin-mcp-host-2026-07-24
+- Lifecycle Mode: restart
+- Generation: 2
 - continuedFromRun: none
 
 <!-- /ANCHOR:status -->
@@ -31,44 +31,48 @@ Reducer-generated observability surface for the active research packet.
 
 | # | Focus | Track | Ratio | Findings | Status |
 |---|-------|-------|-------|----------|--------|
-| undefined | Confirm Devin CLI MCP commands, schema, scopes, transports, and compare them with the three repository MCP servers. | - | 0.84 | 0 | insight |
-| undefined | Define the least-privilege Devin permission/trust policy for advisor mutation tools and memory writes. | - | 0.78 | 0 | insight |
-| undefined | Determine whether Devin normalizes hyphenated MCP server IDs to underscore-separated tool namespaces and whether deny rules must use that spelling. | - | 0.62 | 0 | insight |
-| undefined | Determine whether Devin normalizes hyphenated MCP server IDs to underscore-separated tool namespaces and whether deny rules must use that spelling. | - | 0.44 | 0 | insight |
-| undefined | Does Devin invoke all three relative launcher commands from the repository root in a clean session? | - | 0.31 | 0 | insight |
+| undefined | Q1 coverage gaps for cli-devin and cli-cursor against current Claude lifecycle wiring and Codex guard parity | - | 0.88 | 0 | complete |
+| undefined | Q2 whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety | - | 0.76 | 0 | complete |
+| undefined | Q2 alias precedence and fail-open safety after confirmed Devin payloads | - | 0.54 | 0 | insight |
+| undefined | Q2 verified alias-retirement boundaries and resolver hardening order | - | 0.38 | 0 | insight |
+| undefined | Q2 fail-open boundary correction for Devin field fallback tightening | - | 0.46 | 0 | insight |
 
 - iterationsCompleted: 5
-- keyFindings: 35
-- openQuestions: 4
+- keyFindings: 33
+- openQuestions: 6
 - resolvedQuestions: 0
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:questions -->
 ## 4. QUESTIONS
-- Answered: 0/4
-- [ ] What is the real Devin CLI MCP surface (subcommands, config schema, transport options)? [operator]
-- [ ] What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)? [operator]
-- [ ] How well does Devin's MCP surface match what these three servers need? Concrete gap list. [operator]
-- [ ] Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover? [operator]
+- Answered: 0/6
+- [ ] Q1: What coverage gaps exist for cli-devin and cli-cursor against the full Claude/Codex hook inventory (8 lifecycle events)? [legacy-import]
+- [ ] Q2: Given now-confirmed live Devin payload shapes, can the tolerant field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` be tightened to the confirmed real shapes without losing fail-open safety? [legacy-import]
+- [ ] Q3: Is PermissionRequest/PostCompaction non-firing in the one observed Devin session expected (event genuinely did not occur) or does it warrant a further live-verification pass -- and how should that follow-up test be designed? [legacy-import]
+- [ ] Q4: What is `mcp-route-guard.cjs`'s dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per runtime? [legacy-import]
+- [ ] Q5: What Devin or Cursor CLI features have shipped since the original research (docs.devin.ai / docs.cursor.com) that these two packets have not yet accounted for? [legacy-import]
+- [ ] Q6: What concrete duplication-reduction opportunities exist between the cli-devin and cli-cursor hook adapters given their structurally similar 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping? [legacy-import]
 
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:uncovered-questions -->
 ## Uncovered Questions
-- Count: 4
-- [ ] What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?
-- [ ] What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?
-- [ ] How well does Devin's MCP surface match what these three servers need? Concrete gap list.
-- [ ] Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?
+- Count: 6
+- [ ] Q1: What coverage gaps exist for cli-devin and cli-cursor against the full Claude/Codex hook inventory (8 lifecycle events)?
+- [ ] Q2: Given now-confirmed live Devin payload shapes, can the tolerant field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` be tightened to the confirmed real shapes without losing fail-open safety?
+- [ ] Q3: Is PermissionRequest/PostCompaction non-firing in the one observed Devin session expected (event genuinely did not occur) or does it warrant a further live-verification pass -- and how should that follow-up test be designed?
+- [ ] Q4: What is `mcp-route-guard.cjs`'s dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per runtime?
+- [ ] Q5: What Devin or Cursor CLI features have shipped since the original research (docs.devin.ai / docs.cursor.com) that these two packets have not yet accounted for?
+- [ ] Q6: What concrete duplication-reduction opportunities exist between the cli-devin and cli-cursor hook adapters given their structurally similar 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping?
 
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ███▇▇▇▇▆▆▅▅▄▄▃▃▂▂▂▁▁
-- score sparkline: ███▇▇▇▇▆▆▅▅▄▄▃▃▂▂▂▁▁
-- Last 3 ratios: 0.62 -> 0.44 -> 0.31
+- newInfoRatio sparkline: ██▇▇▇▆▆▅▄▄▃▃▂▂▁▁▁▂▂▂
+- score sparkline: ██▇▇▇▆▆▅▄▄▃▃▂▂▁▁▁▂▂▂
+- Last 3 ratios: 0.54 -> 0.38 -> 0.46
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.31
+- convergenceScore: 0.46
 - coverageBySources: {}
 - Advisory events: none
 
@@ -90,7 +94,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Do the three commands complete a clean Linux `initialize` plus `tools/list` discovery with dependencies already present in the Devin snapshot?
+Q2: Whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
@@ -105,8 +109,10 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 10. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.00
-- graphDecision: [Not recorded]
-- graphBlockers: none recorded
+- graphConvergenceScore: 0.48
+- graphDecision: STOP_BLOCKED
+- Blocker: unnamed-blocker (blocking): count=1, description=Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions., type=source_diversity_guard
+- Blocker: unnamed-blocker (blocking): count=1, description=Evidence depth (1.00) is below the blocking threshold (1.5). STOP is blocked until question->finding->source chains are deeper., type=evidence_depth_guard
+- Blocker: unnamed-blocker (blocking): count=1, description=1 claim(s) remain unverified, type=unverified_claims
 
 <!-- /ANCHOR:graph-convergence -->

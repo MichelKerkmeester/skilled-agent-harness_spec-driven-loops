@@ -7,20 +7,33 @@ This prompt pack renders the per-iteration context for the `@deep-research` LEAF
 
 ## STATE
 
+STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 4 of 5
-Questions: progress recorded answered | Last focus: Determine whether Devin normalizes hyphenated MCP server IDs to underscore-separated tool namespaces and whether deny rules must use that spelling.
-Last 2 ratios: see sparkline | Stuck count: 0
+Questions: 0/6 answered (initial reducer counts pending) | Last focus: Q2 alias precedence and fail-open safety after confirmed Devin payloads
+Last 2 ratios: N/A -> N/A | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Memory context refresh: none loaded yet.
-Next focus: Does Devin normalize the three hyphenated server names to underscores in actual MCP tool names, and do deny rules match that normalized form?
+Memory context refresh: none loaded yet (Spec Kit Memory MCP unreachable from this runtime).
+Next focus: ## 11. NEXT FOCUS
+Q2: Whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety.
 
-Research Topic: devin-as-mcp-host-feasibility: Investigate whether Devin CLI can genuinely host this repos MCP servers (spec-kit-memory, code-graph, skill-advisor) as referenced by Devin-as-MCP-host in project INSTALL_GUIDEs (a surface the original cli-devin deprecation explicitly left untouched, per z_archive/022-cli-devin-deprecation/context/context-report.md). Confirm Devin real devin mcp add/list/get/remove/login/logout/enable/disable surface (docs.devin.ai/cli/extensibility/mcp/overview.md and configuration.md) against what these 3 MCP servers actually require (stdio vs http transport, env vars, auth, working directory). Determine whether bringing this into scope for the cli-devin revival (029-cli-devin-revival) is worthwhile, and if so what a new phase would need to cover. This directly resolves Open Question 3 in the parent spec.md (currently scoped OUT by default).
+Research Topic: What further hook refinements, upgrades, or additions should the cli-devin and cli-cursor CLI hook adapter layers get, now that Devin's hooks are confirmed to fire live (corrected .devin/hooks.v1.json nested schema -- no top-level version/hooks wrapper, each event is an array of {matcher, hooks:[{type,command,timeout}]} -- 6 of 8 lifecycle events observed firing with real payloads: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SessionEnd; PermissionRequest and PostCompaction did not occur in that session) and Cursor's hook layer is independently built and wired via .cursor/hooks.json? Investigate: (1) coverage gaps against the full Claude/Codex hook inventory for both runtimes; (2) hardening opportunities now that live Devin payloads are observable -- e.g. whether the previously-tolerant field-name fallbacks in task-dispatch-guard.cjs/spec-gate-enforce.mjs/mcp-route-guard.cjs (written when tool_input shapes were unconfirmed) can now be tightened to the confirmed real shapes without losing safety; (3) whether PermissionRequest and PostCompaction not firing in the one observed session is expected (event genuinely didn't occur) or worth a further live-verification pass, and how to design that follow-up test; (4) mcp-route-guard.cjs's dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per-runtime; (5) any Devin or Cursor CLI feature shipped since the original research (docs.devin.ai, docs.cursor.com or equivalent) that these two packets haven't accounted for yet; (6) concrete opportunities to reduce duplication between the two packets' hook adapters now that both are structurally very similar (same 4-runtime hook-directory pattern, same fail-open contract, same guard-core wrapping). Ground every finding in the CURRENT on-disk state of both packets (read .opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md, .opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md, .opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md, .opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md, and the equivalent Cursor packet docs under .opencode/specs/cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/ and 010-hook-code-style-cross-runtime/) rather than re-deriving already-settled facts from scratch. The Cursor packet was JUST reorganized (phases 009-015 consolidated into a 009-cursor-hooks-lifecycle/ phase-parent with 6 children, 016-018 renumbered to 011-013) -- use the current folder structure, not any older numbering.
 Iteration: 4 of 5
-Focus Area: Does Devin normalize the three hyphenated server names to underscores in actual MCP tool names, and do deny rules match that normalized form?
-Remaining Key Questions: - [ ] (See strategy.md Section 3 KEY QUESTIONS)
+Focus Area: ## 11. NEXT FOCUS
+Q2: Whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety.
+Remaining Key Questions: - [ ] Q1: What coverage gaps exist for cli-devin and cli-cursor against the full Claude/Codex hook inventory (8 lifecycle events)?
+- [ ] Q2: Given now-confirmed live Devin payload shapes, can the tolerant field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` be tightened to the confirmed real shapes without losing fail-open safety?
+- [ ] Q3: Is PermissionRequest/PostCompaction non-firing in the one observed Devin session expected (event genuinely did not occur) or does it warrant a further live-verification pass -- and how should that follow-up test be designed?
+- [ ] Q4: What is `mcp-route-guard.cjs`'s dormancy status for both Devin and Cursor now that MCP servers may be independently registrable per runtime?
+- [ ] Q5: What Devin or Cursor CLI features have shipped since the original research (docs.devin.ai / docs.cursor.com) that these two packets have not yet accounted for?
+- [ ] Q6: What concrete duplication-reduction opportunities exist between the cli-devin and cli-cursor hook adapters given their structurally similar 4-runtime hook-directory pattern, fail-open contract, and guard-core wrapping?
 Carried-Forward Open Questions:
-[See strategy.md Section 11A]
-Last 3 Iterations Summary: run 1: Confirm Devin CLI MCP commands, schema, scopes, transports, and compare them with the three repository MCP servers. (0.84) | run 2: Define the least-privilege Devin permission/trust policy for advisor mutation tools and memory writes. (0.78) | run 3: Determine whether Devin normalizes hyphenated MCP server IDs to underscore-separated tool namespaces and whether deny rules must use that spelling. (0.62)
+## 11A. CARRIED-FORWARD OPEN QUESTIONS
+- Q3: How to force and distinguish real Devin `PermissionRequest` and `PostCompaction` events in a follow-up live test. (iteration 1)
+- Q5: Devin/Cursor CLI features shipped since the original packet research. (iteration 1)
+- Q4: Current dormancy/applicability of both MCP route guards after per-runtime MCP registration changes. (iteration 1)
+- Q6: Safe deduplication boundaries across Cursor and Devin adapters. (iteration 1)
+- Q2: Whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety. (iteration 1)
+Last 3 Iterations Summary: run 1: Q1 coverage gaps for cli-devin and cli-cursor against current Claude lifecycle wiring and Codex guard parity (0.88); run 2: Q2 whether confirmed Devin payloads justify tightening field fallbacks without reducing fail-open safety (0.76); run 3: Q2 alias precedence and fail-open safety after confirmed Devin payloads (0.54)
 Pivot Lineage: none yet
 Saturated Directions: none yet
 

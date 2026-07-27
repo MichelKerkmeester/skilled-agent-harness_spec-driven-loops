@@ -1,92 +1,55 @@
-# Iteration 002: Least-privilege Devin MCP policy
+# Iteration 2: Devin Payload Fallback Hardening
 
 ## Focus
 
-Define the least-privilege Devin policy for advisor mutation tools and spec-kit memory writes, including the server-side trust boundary that Devin's host permissions cannot replace.
+Q2: Determine whether the confirmed live Devin payloads justify tightening field-name fallbacks in `task-dispatch-guard.cjs`, `spec-gate-enforce.mjs`, and `mcp-route-guard.cjs` without weakening fail-open behavior or silently bypassing a guard.
 
 ## Actions Taken
 
-- Read the previous iteration, current research strategy, Phase 001 contract evidence, and the three MCP server dispatch surfaces.
-- Fetched the current official Devin permissions, configuration-file, and MCP-configuration references.
-- Audited Devin's allow/ask/deny matcher semantics against the current advisor trust gate, spec-kit memory save path, and code-graph maintenance tools.
-- Checked the committed MCP environment defaults for trust propagation. No researched source files or implementation files were modified.
+1. Read the current research state, strategy, and iteration-001 coverage baseline.
+2. Reused the packet's corrected-schema live evidence rather than re-deriving hook delivery: observed payloads use `tool_name`, `tool_input.command`, and `tool_input.file_path`; `run_subagent` remains unobserved.
+3. Inspected the three current Devin adapters and classified each apparent fallback as a confirmed field, an unconfirmed compatibility hedge, or an operational project-directory fallback.
+4. Compared Devin spec-gate path handling with the current Cursor sibling to test whether the aliases are Devin-specific residue or an intentional cross-runtime adapter convention.
 
 ## Findings
 
-### 1. Devin provides the host-side control needed for a narrow MCP allowlist
+### F1. The current adapters already use the confirmed canonical Devin envelope; the broad fallback concern is narrower than the research premise
 
-The current Devin contract supports exact MCP tool matchers, server wildcards, and a global MCP wildcard. MCP calls default to prompting; permission rules are evaluated deny, then ask, then allow, then default. Project permissions belong in .devin/config.json, while personal overrides and secrets belong in .devin/config.local.json. Evidence: [Devin permissions](https://docs.devin.ai/cli/reference/permissions) and [Devin MCP configuration](https://docs.devin.ai/cli/extensibility/mcp/configuration).
+All three adapters consume `payload.tool_name` directly, and the two adapters that inspect tool arguments consume `payload.tool_input` directly. None accepts `toolName`, `toolInput`, `input`, `arguments`, or `args`. The live capture confirms the existing snake-case envelope and the observed `exec`/`edit` argument names, so there is no envelope-level fallback to remove. Tightening should not be framed as a three-adapter rewrite. [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md:55-61`] [SOURCE: `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs:45-64`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs:59-80`] [SOURCE: `.opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs:41-57`]
 
-The least-privilege default is therefore:
+### F2. `task-dispatch-guard.cjs` must retain its subagent-type aliases until a real `run_subagent` payload is captured
 
-- Keep Devin in normal mode. Do not use Bypass for this integration.
-- Do not grant mcp__* or mcp__server__*; those convert a useful read-only integration into blanket access.
-- Allow only confirmed read-only tools by exact server/tool name after a clean tools/list discovery.
-- Deny high-impact mutation tools explicitly and leave unlisted tools at the default prompt or an explicit ask rule.
-- Never persist a broad “allow all tools on this server” approval during initial rollout.
+The adapter maps `subagent_type`, `subagentType`, `agent_type`, and `agentType` into the shared core. None of those alternatives was validated by the live session because no `run_subagent` event occurred. Removing aliases based on observed `exec`, `edit`, or `read` payloads would be an invalid extrapolation: if Devin emits any removed spelling, the adapter would still exit successfully but pass an absent identity to the core, creating a silent fail-open bypass. The correct tightening gate is a discriminating live `run_subagent` capture, followed by a process fixture using that exact payload. Until then, these aliases are compatibility hedges, not stale code. [SOURCE: `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs:52-67`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md:101`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md:96`]
 
-The server names shown to Devin must be confirmed because the repository registrations use hyphenated names while the previous phase recorded underscore-normalized matcher examples. The policy must be tested against Devin's actual tools/list names, not inferred from the config key.
+### F3. `spec-gate-enforce.mjs` has one confirmed path field and two unconfirmed aliases, but immediate removal has no demonstrated safety benefit
 
-### 2. Advisor mutations have a real second-line trust gate, but the committed default is too broad for Devin
+For live `edit`, `tool_input.file_path` is confirmed. `filePath` and generic `path` are unconfirmed compatibility aliases. The generic `path` alias has the greatest ambiguity risk, but the evidence does not show an actual conflicting Devin payload, and the same three-name helper exists in Cursor's independently live-verified adapter. Removing either alias can make an alternate-version or synthetic payload lose target-path context while still returning exit 0. A safe staged refinement is therefore: preserve all three today; add exact real-payload fixtures and alias-selection telemetry in a future implementation; remove generic `path` first only if fixture/caller audit shows zero use; consider `filePath` separately as an explicit compatibility spelling. [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md:58-61`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs:49-53,67-87`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs:50-53,68-88`]
 
-The advisor CLI requires trusted authority for advisor_rebuild, skill_graph_scan, and apply-mode skill_graph_propagate_enhances; without --trusted or the trusted environment flag it rejects the mutation with a usage error (system-skill-advisor/mcp-server/skill-advisor-cli.ts:691-701). The MCP handlers apply the same trusted-caller requirement to the mutating graph paths (system-skill-advisor/mcp-server/handlers/skill-graph/propagate-enhances.ts:40-46).
+### F4. `mcp-route-guard.cjs` has no tool-input field-name fallback to tighten
 
-The native MCP server's transport-absent trust is controlled by MK_SKILL_ADVISOR_TRUST_DEFAULT in the daemon environment. The checked-in OpenCode registrations set that value to trusted (opencode.json:47-66; .mcp.json:37-55), specifically so native clients that omit metadata continue to work. Devin's stdio calls are the same transport class, so copying that environment entry into a shared .devin/config.json would grant every project Devin session the server-side mutation trust that the host permission layer is supposed to mediate.
+The MCP adapter forwards only canonical `payload.tool_name`; it does not read `tool_input` at all. Its remaining fallback resolves project directory from a nonblank `payload.cwd`, then `DEVIN_PROJECT_DIR`, then `process.cwd()`. That is an execution-context fallback, not uncertainty about Devin's MCP payload schema. Phase 012 deliberately standardized this resolution across adapters and tests missing/whitespace cwd. Removing it would risk reading the Code Mode manifest from the wrong or absent root and would not improve payload strictness. MCP dormancy/applicability belongs to Q4, not Q2. [SOURCE: `.opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs:41-60`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md:47-55,75-85`]
 
-The least-privilege Devin configuration must omit MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted. That leaves read-only advisor calls usable while transport-absent mutation calls fail closed at the server. A maintainer who deliberately needs advisor maintenance can opt in through a gitignored local config, then still require an exact Devin MCP permission approval for the specific mutation tool.
+### F5. Fail-open parsing and field strictness are separate controls
 
-One caveat: the advisor performs a daemon-owned startup scan and starts a watcher (system-skill-advisor/mcp-server/advisor-server.ts:131-165). Omitting the trust default protects explicit caller-invoked mutation tools; it does not make the advisor's own package-local freshness/index maintenance read-only.
+Malformed JSON, missing identity, unmapped tools, and internal errors must continue to approve. Canonicalizing known payload names does not require making parsing fail closed. Conversely, deleting an unconfirmed alias can weaken effective enforcement while preserving nominal fail-open behavior, because the adapter exits cleanly with less information. Future hardening should measure which alias was selected and test guard outcomes, not equate fewer accepted spellings with greater safety. [SOURCE: `.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs:44-54,102`] [SOURCE: `.opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs:59-71,132`] [SOURCE: `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md:63-65,86-91`]
 
-### 3. Memory writes are more exposed than advisor mutations
+### Ruled-Out Directions
 
-memory_save is not a read-only index call. Its schema explicitly permits indexing and routed continuity saves into canonical spec documents (system-spec-kit/mcp-server/tool-schemas.ts:413-415), and the handler contains direct canonical file-write paths (system-spec-kit/mcp-server/handlers/memory-save.ts:606-662, 1713-1799).
-
-The spec-kit server currently treats a local stdio caller as trusted when the transport metadata does not explicitly opt out (system-spec-kit/mcp-server/context-server.ts:807-825). The memory-tools dispatcher routes memory_save and the other CRUD/lifecycle tools without an advisor-style caller trust gate (system-spec-kit/mcp-server/tools/memory-tools.ts:96-107; system-spec-kit/mcp-server/tools/lifecycle-tools.ts:44-80). I found no independent server-side permission boundary that would make Devin memory writes safe after a host-level allow.
-
-For the first Devin integration, deny or force-ask at minimum:
-
-- mcp__mk-spec-memory__memory_save
-- mcp__mk-spec-memory__memory_update
-- mcp__mk-spec-memory__memory_delete
-- mcp__mk-spec-memory__memory_bulk_delete
-- mcp__mk-spec-memory__memory_retention_sweep
-- mcp__mk-spec-memory__memory_learned_expire
-- mcp__mk-spec-memory__memory_learned_clear
-- mcp__mk-spec-memory__memory_embedding_reconcile
-- mcp__mk-spec-memory__memory_index_scan
-- mcp__mk-spec-memory__memory_ingest_start
-- mcp__mk-spec-memory__embedder_set
-- checkpoint_create, checkpoint_restore, and checkpoint_delete
-
-The exact namespace spelling remains a clean-session verification item. The safe read set can include memory_context, memory_search, memory_quick_search, memory_match_triggers, memory_list, memory_stats, memory_health, memory_validate, memory_index_scan_status, memory_ingest_status, embedder_list, and embedder_status once Devin reports their actual names. Do not allow a server-wide wildcard and assume that the list is harmless.
-
-The same host policy should deny code_graph_scan and code_graph_apply, and should not auto-allow code_graph_verify when persistBaseline is requested. Query, context, status, classify, detect_changes, and verification with persistence disabled are the safer read/diagnostic subset (system-code-graph/mcp-server/tool-schemas.ts:14-183).
-
-### 4. Recommended policy and phase acceptance criteria
-
-The additive MCP phase should ship two policy tiers:
-
-1. Shared project config: three stdio server entries, no advisor trust-default environment variable, exact read-only MCP allows, explicit denies for memory and graph mutations, and default prompting for everything else.
-2. Maintainer-local override: optional provider secrets in .devin/config.local.json plus an explicit advisor trust-default opt-in only for a maintainer who has accepted the mutation risk. This override must not be committed or silently inherited by other sessions.
-
-Memory writes should remain interactive even for maintainers until the server has a dedicated caller-trust gate or a read-only facade. Devin's MCP permission rules can reduce accidental calls; they do not repair the absence of a server-side memory-write authorization boundary.
-
-The phase's live acceptance test must prove all of the following in a clean Devin session: actual namespaced tool names, read-only discovery and calls, denial or prompting for memory_save, denial of advisor mutations when the trust default is omitted, explicit maintainer opt-in behavior, and no effect from a broad server-level grant on the intended deny rules.
+- Tightening `run_subagent` identity fields from the observed `exec`/`edit` samples is ruled out because those are different tools with different argument contracts.
+- Removing the `cwd`/environment/process fallback as payload cleanup is ruled out because it is a tested project-root resolution invariant, not a field-name alias.
+- Treating all three named adapters as equally fallback-heavy is ruled out: the MCP adapter has no argument aliases, and all three already use canonical snake-case envelope fields.
 
 ## Questions Answered
 
-- **Least-privilege Devin host policy:** answered. Use normal mode, exact read-only MCP allows, explicit mutation denies or asks, no server-wide wildcard grants, and no Bypass.
-- **Advisor mutation trust:** answered. Do not copy MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted into shared Devin config; keep it absent by default and make any maintainer opt-in local.
-- **Memory-write trust:** answered. memory_save and related lifecycle/CRUD tools have no equivalent independent caller-trust gate; Devin must keep them denied or interactive, and a future read-only facade/server gate is the durable fix.
-- **Code-graph implication:** answered enough for policy. Deny scan/apply and persistence-enabled verification while allowing structural reads.
+- **Q2: Answered.** The confirmed payloads validate the existing canonical envelope and `file_path`, but do not justify immediate fallback removal. Keep the unobserved `run_subagent` aliases; keep spec-gate path aliases pending fixture/caller audit, with generic `path` the first candidate for staged retirement; retain project-directory fallbacks; no field-name tightening exists for the MCP adapter.
 
 ## Questions Remaining
 
-- Does Devin normalize the three hyphenated server names to underscores in actual MCP tool names, and do deny rules match that normalized form?
-- Does a project-level deny survive or get overridden by a session-level “allow all tools on this server” grant?
-- Does Devin invoke all three relative launcher commands from the repository root in a clean Linux session?
-- Which embedding tier and network allowlist are reliable on Devin's first cold start?
+- Q3: How to force and distinguish real Devin `PermissionRequest` and `PostCompaction` events in a follow-up live test.
+- Q4: Current dormancy/applicability of both MCP route guards after per-runtime MCP registration changes.
+- Q5: Devin/Cursor CLI features shipped since the original packet research.
+- Q6: Safe deduplication boundaries across Cursor and Devin adapters.
 
 ## Next Focus
 
-Run the clean-session verification matrix: register the three project-scoped stdio servers, capture tools/list names, test read-only calls, and exercise advisor trust omission versus maintainer-local opt-in without changing repository implementation files.
+Q4: Establish whether each runtime can currently register external MCP servers, whether the corresponding hook event is registered and live-delivering, and whether Code Mode's manifest can overlap those native tools. Classify each MCP route guard as active, conditionally dormant, or structurally obsolete before considering adapter changes.
