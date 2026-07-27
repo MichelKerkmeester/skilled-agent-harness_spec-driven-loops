@@ -462,18 +462,25 @@ Each run writes its report pair to a sibling `<run-label>/`:
 
 ```text
 <skill-or-hub>/benchmark/
-├── README.md              # hub index — templated here, one row per run
-├── baseline/              # FROZEN comparison anchor — never regenerated
-│   ├── skill-benchmark-report.json
-│   └── skill-benchmark-report.md   # renderer-owned render
-├── <YYYY-MM-DD>--<subject>--<variant>/   # one run; sibling to every other run
-│   ├── skill-benchmark-report.json
-│   └── skill-benchmark-report.md
-├── reports/               # curated, published reports — see below
-│   ├── README.md          # the index a reader opens first
-│   └── <YYYY-MM-DD>--<subject>--<variant>/
+├── README.md              # layout, how to run, and a curated run table
+├── reports/               # every result lives here
+│   ├── README.md          # the run index, appended by the harness itself
+│   ├── <YYYY-MM-DD>--<subject>--<variant>/   # one run; see the file table below
+│   ├── baseline/          # FROZEN comparison anchor — never regenerated
+│   └── compiled-routing/  # archive lane, written by the compiled-routing archiver
 └── fixtures/              # optional INPUT corpus — not a run
 ```
+
+One location, not two. An earlier revision of this document described raw runs as
+siblings of `reports/`, carrying only the report pair, with curated copies inside it.
+No writer ever produced that raw form — the harness emits the full file set in a single
+pass — so the split described something that never existed and sent real output to the
+wrong place. A distinction nothing produces is not a distinction.
+
+`reports/README.md` is appended by the harness at the moment it writes a report, so it
+cannot fall behind the folders beside it. The table in `benchmark/README.md` is curated
+by hand and is the one that drifts; keep it short and treat the machine-written index as
+the authority when they disagree.
 
 Runs never overwrite siblings. `baseline/` is frozen; every re-run gets a new sibling.
 

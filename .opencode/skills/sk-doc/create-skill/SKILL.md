@@ -205,10 +205,27 @@ skill-name/
 ├── README.md
 ├── references/
 ├── assets/
-└── scripts/
+├── scripts/
+├── manual-testing-playbook/          # the scenario corpus — an input
+│   └── manual-testing-playbook.md    # the index; per-feature files in category folders
+└── benchmark/                        # what running that corpus produced — output
+    ├── README.md                     # layout and how to run
+    └── reports/
+        ├── README.md                 # run index, appended by the harness
+        └── <YYYY-MM-DD>--<subject>--<variant>/
 ```
 
 `SKILL.md` is required. `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
+
+The last two directories are a pair: `manual-testing-playbook/` holds the corpus a run reads, and
+`benchmark/` holds what the run wrote. Keeping them apart is what lets a run be re-executed against
+the same scenarios later and compared, so neither one is optional once a skill is benchmarked.
+
+The scaffolder creates both. Their interiors are owned elsewhere and are not restated here:
+[`create-benchmark`](../create-benchmark/SKILL.md) owns the run-folder grammar, the report file set
+and the index shape; [`create-manual-testing-playbook`](../create-manual-testing-playbook/SKILL.md)
+owns the corpus layout and the results-storage contract. Consult those rather than inferring the rules
+from an example.
 
 ### SKILL.md Frontmatter Contract
 
@@ -260,8 +277,13 @@ parent-hub/
 ├── description.json
 ├── graph-metadata.json
 ├── changelog/
-├── manual-testing-playbook/
-├── benchmark/
+├── manual-testing-playbook/          # the scenario corpus — an input
+│   └── manual-testing-playbook.md    # the index; per-feature files in category folders
+├── benchmark/                        # what running that corpus produced — output
+│   ├── README.md                     # layout and how to run
+│   └── reports/
+│       ├── README.md                 # run index, appended by the harness
+│       └── <YYYY-MM-DD>--<subject>--<variant>/
 ├── workflow-packet/
 │   ├── SKILL.md
 │   ├── README.md
@@ -274,6 +296,10 @@ parent-hub/
     ├── assets/
     └── changelog/
 ```
+
+A packet may carry its own `benchmark/` in the same shape when it is measured separately from its
+hub. The corpus/output pairing and the owning-skill references described under the standalone shape
+apply identically here.
 
 ### Validation And Packaging Gate
 

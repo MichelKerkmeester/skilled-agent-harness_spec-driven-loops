@@ -168,7 +168,58 @@ def empty_reports_index(skill_name: str) -> str:
         '',
         'Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. Keep curated summaries and machine-readable result tables here, and raw transcripts and copied artifacts in the source packet. A run whose result changes gets a new folder rather than overwriting a prior one.',
         '',
+        'The grammar and the report file set are owned by `create-benchmark`; this index states them only so the folder reads on its own. Where the two differ, that skill is correct.',
+        '',
     ])
+
+
+def scaffold_playbook_tree(skill_dir: Path, skill_name: str) -> None:
+    """Create the manual-testing-playbook corpus a benchmark run reads.
+
+    The benchmark tree is scaffolded richly while this one has been created bare
+    or not at all, which is the same gap that left benchmark output with nowhere
+    obvious to land: a run needs a corpus to read as much as a place to write.
+    The index is created empty rather than pre-populated, because inventing
+    scenarios would put untested claims in front of the first real one.
+    """
+    playbook_dir = skill_dir / 'manual-testing-playbook'
+    playbook_dir.mkdir(parents=True, exist_ok=True)
+
+    index = '\n'.join([
+        '---',
+        f'title: "{skill_name} Manual Testing Playbook"',
+        f'description: "Deterministic operator scenarios for {skill_name}, and the corpus its benchmark runs score against."',
+        'trigger_phrases:',
+        f'  - "{skill_name} manual testing"',
+        f'  - "{skill_name} playbook"',
+        'importance_tier: "important"',
+        'contextType: "general"',
+        '---',
+        '',
+        f'# {skill_name} Manual Testing Playbook',
+        '',
+        '> Operator scenarios for this skill. This corpus is an input: a benchmark run reads it and',
+        "> never rewrites it, so a later run can be compared against an earlier one.",
+        '',
+        '---',
+        '',
+        '## 1. OVERVIEW',
+        '',
+        'TODO state what this playbook covers and what it deliberately leaves to automated tests.',
+        '',
+        '## 2. SCENARIOS',
+        '',
+        'TODO add one category folder per area, and one file per feature inside it. Every scenario',
+        'needs a deterministic prompt, an expected signal, and a pass or fail criterion another',
+        'operator could apply without asking the author what was meant.',
+        '',
+        '## 3. RESULTS',
+        '',
+        'Runs land in [`../benchmark/reports/`](../benchmark/reports/), one dated folder each.',
+        '`create-manual-testing-playbook` owns the scenario contract and the results-storage rules.',
+        '',
+    ])
+    _write_if_absent(playbook_dir / 'manual-testing-playbook.md', index)
 
 
 def _write_if_absent(target: Path, content: str) -> None:
@@ -224,8 +275,9 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         print(f"❌ Error creating directory: {exc}")
         return None
 
+    scaffold_playbook_tree(skill_dir, skill_name)
     scaffold_benchmark_tree(skill_dir, skill_name)
-    print("✅ Created benchmark/reports/ with its run index")
+    print("✅ Created manual-testing-playbook/ and benchmark/reports/ with their indexes")
 
     skill_md_path = skill_dir / 'SKILL.md'
     try:
@@ -477,11 +529,8 @@ def init_parent_skill(
     changelog_dir = packet_dir / 'changelog'
     try:
         changelog_dir.mkdir(parents=True, exist_ok=False)
-        for directory_name in (
-            'changelog',
-            'manual-testing-playbook',
-        ):
-            (skill_dir / directory_name).mkdir()
+        (skill_dir / 'changelog').mkdir()
+        scaffold_playbook_tree(skill_dir, skill_name)
         scaffold_benchmark_tree(skill_dir, skill_name)
         print(f"✅ Created parent skill directory: {skill_dir}")
 
