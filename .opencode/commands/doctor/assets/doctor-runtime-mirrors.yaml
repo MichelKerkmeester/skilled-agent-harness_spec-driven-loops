@@ -1,0 +1,71 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: RUNTIME MIRROR PARITY (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
+purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .opencode
+action: Run the five mirror checkers -> aggregate their verdicts -> report per-surface drift
+skill_owner: ".opencode/skills/system-spec-kit/scripts/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "Every checker below is invoked in its check-only form. This route MUST NOT run any generator in write mode, create or delete a symlink, or install a hook config. Repair is an explicit operator action, never a side effect of a diagnostic."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  runtime_mirrors: ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs"
+  codex_agents: ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs"
+  codex_prompts: ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
+  agent_roster: ".opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs"
+  codex_hooks_installer: ".opencode/bin/install-codex-hooks.mjs"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  none: "This diagnostic takes no arguments. Every checker derives its expected state from the canonical trees and the runtimes' own config files."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run upstream_assets.runtime_mirrors with --check. Covers the cursor/devin agent, command and skill symlink trees plus all four hook discovery mirrors. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.codex_agents with --check. Covers the generated .codex/agents/*.toml. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = canonical dir missing."
+    - "Run upstream_assets.codex_hooks_installer with --check. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json. NOTE: this tool exits 2 on drift, not 1 — treat 2 as DRIFT, and only a non-zero value other than 1 or 2 as ERROR."
+    - "Aggregate: report each surface with its own verdict rather than a single pass/fail, so the operator learns which mirror moved."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when every checker reports in sync.
+  STATUS=DRIFT when any checker reports drift, listing each drifting surface and the repair command for it:
+    runtime mirrors  -> node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
+    codex agents     -> node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs
+    codex prompts    -> node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs
+    codex hooks      -> node .opencode/bin/install-codex-hooks.mjs
+  The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
+  for the authored surfaces (.opencode/agents, .codex/agents).
+  Hook CONFIG files are deliberately out of scope: the four runtimes use incompatible event vocabularies and
+  entry shapes, so those files are hand-authored per runtime and cannot be mirror-checked.

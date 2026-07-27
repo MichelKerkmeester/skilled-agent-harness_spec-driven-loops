@@ -49,6 +49,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 | `parent-skill` | `.opencode/commands/doctor/assets/doctor-parent-skill.yaml` |
 | `skill-graph-freshness` | `.opencode/commands/doctor/assets/doctor-skill-graph-freshness.yaml` |
 | `fable-mode` | `.opencode/commands/doctor/assets/doctor-fable-mode.yaml` |
+| `runtime-mirrors` | `.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` |
 
 1. Read `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`.
 2. Read `.opencode/commands/doctor/_routes.yaml`.
