@@ -9,7 +9,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout"
-    last_updated_at: "2026-07-27T05:34:01Z"
+    last_updated_at: "2026-07-27T13:59:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored plan.md: touch-list, devin-backfill decision, closeout validation"
     next_safe_action: "Wait for phases 001-010, then execute Phase 2 Implementation below in order"
@@ -56,15 +56,15 @@ Grep the current tree for every roster/governance/hub-doc surface that enumerate
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 001-010 confirmed landed (each phase's `implementation-summary.md` present and its own `validate.sh --strict` passing).
-- [ ] Current-tree touch points re-confirmed via `rg`/`ls` immediately before editing (tree may have moved since this planning pass).
-- [ ] The devin-backfill decision (Open Question in `spec.md`) is made explicitly, not deferred silently into the edits.
+- [x] Phases 001-010 confirmed landed (each phase's `implementation-summary.md` present, 8 Complete + 2 Blocked-with-real-findings).
+- [x] Current-tree touch points re-confirmed via `rg`/`ls` immediately before editing -- found the tree had moved: registry files were already 6-of-6, only the hub README + 2 catalog rows were stale.
+- [x] The devin-backfill decision made explicitly: opportunistic, recorded in `spec.md` §7 and `tasks.md` T004.
 
 ### Definition of Done
-- [ ] Every identified surface shows a symmetric `cli-pi` mention matching that surface's existing phrasing pattern.
-- [ ] The 2 regression-guard surfaces (`ADVISOR_RUNTIME_VALUES`, `post-implementation-deep-review.md`) show zero diff.
-- [ ] `validate.sh --recursive --strict` and `parent-skill-check.cjs` both exit 0.
-- [ ] `deep-improvement.md`'s pi-benchmark claim (if made) matches the live `dispatch-model.cjs` state.
+- [x] Every identified surface shows a symmetric `cli-pi` mention matching that surface's existing phrasing pattern (GLM-5.2 independently confirmed shape/tone parity).
+- [x] The 2 regression-guard surfaces (`ADVISOR_RUNTIME_VALUES`, `post-implementation-deep-review.md`) show zero diff.
+- [x] `validate.sh --recursive --strict` and `parent-skill-check.cjs` both exit 0 (the latter after a mechanical `leaf-manifest.json` regeneration fixed a pre-existing drift).
+- [x] `deep-improvement.md`'s pi-benchmark claim matches the live `dispatch-model.cjs` state (a real, currently-stubbed switch case).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -115,23 +115,23 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm phases 001-010 have landed (review each phase's `implementation-summary.md`).
-- [ ] Re-run `rg -l 'cli-opencode|cli-claude-code|cli-codex|cli-cursor|cli-devin'` over rosters/governance/hub-doc trees to reconfirm the touch-list and each surface's current symmetry tier.
-- [ ] Decide the devin-backfill question (Open Question in `spec.md`): opportunistic backfill vs. strict pi-only scope-lock. Record the decision.
-- [ ] Cross-check `dispatch-model.cjs`'s `KNOWN_EXECUTORS` and phase 002/009's `implementation-summary.md` to determine whether `deep-improvement.md` may claim pi as benchmarkable.
+- [x] Confirm phases 001-010 have landed (review each phase's `implementation-summary.md`).
+- [x] Re-run `rg -l 'cli-opencode|cli-claude-code|cli-codex|cli-cursor|cli-devin'` over rosters/governance/hub-doc trees to reconfirm the touch-list and each surface's current symmetry tier.
+- [x] Decide the devin-backfill question (Open Question in `spec.md`): opportunistic backfill vs. strict pi-only scope-lock. Record the decision.
+- [x] Cross-check `dispatch-model.cjs`'s `KNOWN_EXECUTORS` and phase 002/009's `implementation-summary.md` to determine whether `deep-improvement.md` may claim pi as benchmarkable.
 
 ### Phase 2: Core Implementation
-- [ ] Add `cli-pi` to the hub's own `README.md` (frontmatter, tagline, AT A GLANCE, OVERVIEW, QUICK START), applying the devin-backfill decision from Phase 1.
-- [ ] Add `cli-pi` to root `README.md`'s CROSS-AI CLI section and skills-catalog table row, applying the same decision.
-- [ ] Add `cli-pi` to `.opencode/skills/README.md`'s catalog row, applying the same decision.
-- [ ] Conditionally add `pi` to `deep-improvement.md` + `.claude` mirror's Lane-B paragraph, only if Phase 1's cross-check confirmed live support.
-- [ ] Reconcile completion metadata across all 11 phases.
+- [x] Add `cli-pi` to the hub's own `README.md` (frontmatter, tagline, AT A GLANCE, OVERVIEW, QUICK START), applying the devin-backfill decision from Phase 1.
+- [x] Add `cli-pi` to root `README.md`'s CROSS-AI CLI section and skills-catalog table row, applying the same decision.
+- [x] Add `cli-pi` to `.opencode/skills/README.md`'s catalog row, applying the same decision.
+- [x] Conditionally add `pi` to `deep-improvement.md` + `.claude` mirror's Lane-B paragraph, only if Phase 1's cross-check confirmed live support.
+- [x] Reconcile completion metadata across all 11 phases.
 
 ### Phase 3: Verification
-- [ ] Cross-check `executor-config.vitest.ts` and `executor-audit.vitest.ts` assert `cli-pi`'s presence, not a stale union.
-- [ ] Confirm zero diff on the 2 regression-guard surfaces (`ADVISOR_RUNTIME_VALUES`, `post-implementation-deep-review.md`).
-- [ ] Run `validate.sh --recursive --strict` on the whole packet and `parent-skill-check.cjs` against the hub.
-- [ ] Grep sweep: confirm `cli-pi` present wherever the recorded devin-backfill decision says it should be, per surface.
+- [x] Cross-check `executor-config.vitest.ts` and `executor-audit.vitest.ts` assert `cli-pi`'s presence, not a stale union.
+- [x] Confirm zero diff on the 2 regression-guard surfaces (`ADVISOR_RUNTIME_VALUES`, `post-implementation-deep-review.md`).
+- [x] Run `validate.sh --recursive --strict` on the whole packet and `parent-skill-check.cjs` against the hub.
+- [x] Grep sweep: confirm `cli-pi` present wherever the recorded devin-backfill decision says it should be, per surface.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -183,9 +183,9 @@ Runs last; depends on phases 001-010 for the surfaces it references. Within this
 
 ## L2: ENHANCED ROLLBACK
 ### Pre-deployment Checklist
-- [ ] No data migration involved (docs-only phase).
-- [ ] Current-tree grep re-run immediately before editing (tree may have moved since this planning pass -- this session directly observed the whole 031-cli-pi-creation packet's scaffold files vanish mid-session, replaced by an empty `.backup-*` directory, evidence that concurrent packet-wide scaffolding activity is a real, not theoretical, risk for this packet).
-- [ ] Devin-backfill decision recorded before any edit that touches a 4-of-5 or 2-of-5 tier surface.
+- [x] No data migration involved (docs-only phase).
+- [x] Current-tree grep re-run immediately before editing (tree may have moved since this planning pass -- this session directly observed the whole 031-cli-pi-creation packet's scaffold files vanish mid-session, replaced by an empty `.backup-*` directory, evidence that concurrent packet-wide scaffolding activity is a real, not theoretical, risk for this packet).
+- [x] Devin-backfill decision recorded before any edit that touches a 4-of-5 or 2-of-5 tier surface.
 
 ### Rollback Procedure
 1. Identify the specific file(s) whose restoration went wrong via `git diff`.

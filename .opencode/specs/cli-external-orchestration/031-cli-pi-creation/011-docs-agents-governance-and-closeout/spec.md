@@ -11,19 +11,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout"
-    last_updated_at: "2026-07-27T05:34:01Z"
+    last_updated_at: "2026-07-27T13:59:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 011 spec.md (Planned) grounded in a live grep sweep of the current tree"
-    next_safe_action: "Wait for phases 001-010 to land, then re-run the touch-list grep and execute per plan.md"
-    blockers: ["Phases 001-010 must land first.", "pi's headless dispatch syntax is UNCONFIRMED until phase 001/002 run live."]
-    key_files: [".opencode/skills/cli-external-orchestration/README.md", "README.md", ".opencode/skills/README.md", ".opencode/agents/deep-improvement.md"]
+    recent_action: "Closed packet: cli-pi+devin added to 5 doc surfaces, leaf-manifest fixed, validate clean"
+    next_safe_action: "None -- this is the terminal phase; packet 031-cli-pi-creation is closed"
+    blockers: []
+    key_files: [".opencode/skills/cli-external-orchestration/README.md", "README.md", ".opencode/skills/README.md", ".opencode/agents/deep-improvement.md", ".claude/agents/deep-improvement.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: ["Backfill the pre-existing cli-devin gap in hub/root/skills READMEs while editing for pi, or scope-lock to pi-only?", "Does phase 002/009 wire cli-pi into dispatch-model.cjs KNOWN_EXECUTORS (today only opencode/claude-code/cursor)?"]
-    answered_questions: ["CONFIRMED rg: agent rosters have zero cli-cursor/cli-devin mentions; deep-improvement.md Lane B says bare 'cursor', omits devin.", "CONFIRMED rg: hub SKILL.md lists all 5 modes (v1.2.0.0) but hub README.md says 'four modes' at v1.1.0.0, zero devin hits.", "CONFIRMED rg: root README.md CROSS-AI is 4-of-5 (no devin); its catalog row and skills/README.md's row are 2-of-5.", "CONFIRMED rg: dispatch-model.cjs KNOWN_EXECUTORS is only {opencode,claude-code,cursor} -- codex+devin absent too."]
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["CONFIRMED rg: hub SKILL.md/registries were already 6-of-6 at implementation time; only hub README.md + 2 catalog rows were stale.", "RESOLVED: dispatch-model.cjs already has a real (throwing-until-confirmed) cli-pi case -- Lane B now names pi with that caveat.", "RESOLVED: devin backfill opportunistic across all 4 stale surfaces; devin already fully wired elsewhere in the hub.", "RESOLVED: hub README.md version left unbumped, matching the no-bump precedent set by cursor/devin additions."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Pi docs, agents, governance, and closeout
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete - cli-pi (+ opportunistic cli-devin backfill) added to hub README.md, root README.md (x3 locations), and .opencode/skills/README.md; deep-improvement.md (both mirrors) gained an honestly-qualified pi Lane-B mention; leaf-manifest.json regenerated; whole-packet validate.sh --recursive --strict and parent-skill-check.cjs both clean; GLM-5.2 independently verified and APPROVEd |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -191,10 +191,12 @@ Add `cli-pi`/pi to every roster/governance/hub-doc surface where a majority of i
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Devin backfill scope**: Does this phase also backfill the pre-existing `cli-devin` gap in the hub's own `README.md`, the root `README.md` CROSS-AI section, and `.opencode/skills/README.md`'s catalog row while those files are already open for the pi edit -- or does it strictly scope-lock to pi-only additions and leave devin's gap exactly as found? Both are legitimate: opportunistic backfill matches "fix what you're already touching"; strict scope-lock avoids silently expanding this phase's blast radius beyond pi. Recommend deciding explicitly at implementation time and recording the choice in `tasks.md`, not defaulting either way.
-- **Model-benchmark dispatch coverage**: Does phase 002 or 009 actually add a `cli-pi` case to `dispatch-model.cjs`'s `KNOWN_EXECUTORS` set? The master 11-phase plan's phase 002 description says "add a 6th member cli-pi" to deep-loop's typed executor set, but the CURRENT `executor-config.ts` `EXECUTOR_KINDS` union is confirmed live to have only 4 members (`native`, `cli-codex`, `cli-claude-code`, `cli-opencode` -- no cursor, no devin), and `dispatch-model.cjs`'s separate `KNOWN_EXECUTORS` set has only 3 (`cli-opencode`, `cli-claude-code`, `cli-cursor` -- no codex, no devin). This phase's REQ-008 gates the `deep-improvement.md` Lane-B edit on a live cross-check against whatever phase 002/009 actually ships, not on the master plan's aspirational framing.
-- **Hub README.md version bump**: Should adding pi bump the hub's own `README.md` `version:` frontmatter field (currently 1.1.0.0, already drifted behind `SKILL.md`'s 1.2.0.0)? The hub's actual versioning convention (what triggers a bump, whether README.md and SKILL.md are meant to stay in lockstep) is phase 003's registration concern; this phase should cross-reference phase 003's decision rather than invent its own version-bump policy.
-- **Model-count wording**: Once the devin-backfill decision (above) is made, does each edited surface's "N workflow modes" / "N of 5" wording get updated to the CORRECT resulting count (5, 6, or something else depending on what else that specific surface already had), or does this phase risk copy-pasting a single assumed number across surfaces that started at different baselines? Recommend per-surface verification at implementation time, not a single repo-wide find-replace.
+All resolved at implementation time; kept here (not deleted) so the resolution reasoning stays attached to the original question.
+
+- **Devin backfill scope -- RESOLVED: opportunistic backfill.** At implementation time, the hub's own `SKILL.md`, `mode-registry.json`, and `hub-router.json` were confirmed live to be ALREADY fully 6-of-6 (cli-devin included, full field parity) -- only the hub's own `README.md` and the 2 catalog rows (root `README.md`, `.opencode/skills/README.md`) were stale. Since devin already exists and is fully wired elsewhere in the very same hub, adding it to these 3 already-open surfaces alongside pi is a pure documentation-accuracy fix, not a new capability claim or a blast-radius expansion. Applied consistently across all 4 identified stale surfaces (hub README.md, root README.md CROSS-AI + catalog row, skills README.md catalog row).
+- **Model-benchmark dispatch coverage -- RESOLVED: yes, pi is a real (if currently stubbed) `dispatch-model.cjs` case.** Live read of `dispatch-model.cjs` confirmed `KNOWN_EXECUTORS` already contains `cli-pi` and `buildSpawnSpec` has a real `case 'cli-pi':` (added by phase 009) that validates against the model allowlist then unconditionally throws until Pi's headless invocation contract is confirmed. `deep-improvement.md`'s Lane-B paragraph (both `.opencode/agents/` and `.claude/agents/` copies) now names `pi` in the benchmarkable-executor list with the honest parenthetical "(currently stubbed pending confirmation of Pi's headless invocation syntax)" -- GLM-5.2's independent review confirmed this phrasing is neither an overclaim nor a silent omission. The pre-existing, separately-tracked `codex`/`devin` gaps in that same `dispatch-model.cjs` (no real case for either) were left untouched, per this phase's own out-of-scope boundary.
+- **Hub README.md version bump -- RESOLVED: no bump.** Cross-referencing the hub's own changelog precedent: neither the `cli-cursor` nor `cli-devin` addition bumped this file's `version:` field when they were added to the hub's registry. This phase follows the same precedent -- the field stays at `1.1.0.0`.
+- **Model-count wording -- RESOLVED: verified per-surface, not a repo-wide find-replace.** Every "four"/"N workflow modes" occurrence was checked in place before editing. In the hub's own `README.md`, all 4 mode-count mentions moved from four to six. In the root `README.md`, only the one in-scope occurrence ("Uniquely among the four" -> "the six", describing `cli-cursor`'s shared editor config) was touched; GLM-5.2 independently confirmed the other 5 unrelated "four" mentions elsewhere in that file (four layers, four outcomes, four phases, four loop families, four advisor tools) were correctly left untouched.
 <!-- /ANCHOR:questions -->
 
 ---

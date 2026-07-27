@@ -20,7 +20,9 @@
       "cli-pi closeout tasks",
       "pi governance tasks",
       "cli-pi closeout checklist",
-      "pi governance checklist"
+      "pi governance checklist",
+      "cli-pi closeout summary",
+      "pi governance docs summary"
     ],
     "key_topics": [
       "cli-pi",
@@ -32,21 +34,23 @@
       "plan",
       "tasks",
       "checklist",
+      "summary",
       "6th",
-      "cli",
-      "mode"
+      "cli"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/cli-external-orchestration/README.md",
       ".opencode/skills/README.md",
       ".opencode/agents/deep-improvement.md",
       ".claude/agents/deep-improvement.md",
-      "plan.md",
+      "spec.md",
+      ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
       "tasks.md",
       "checklist.md",
-      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
@@ -64,9 +68,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -82,9 +92,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -154,12 +170,6 @@
         "source": "derived"
       },
       {
-        "name": "Open Question",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Pattern Docs",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -167,6 +177,12 @@
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -182,37 +198,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the T003",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`) already appear across agent rosters, governance docs, and hub-level catalogs",
     "created_at": "2026-07-27T06:48:18.460Z",
-    "last_save_at": "2026-07-27T06:48:18.460Z",
+    "last_save_at": "2026-07-27T12:10:04.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e23e2847ad229143606a6e80d77e5038ecb6ba24c575bb84db92294d255cce6",
+    "source_fingerprint": "sha256:cdad4ee0d56c171d8f7f9a9adeeebb2e10168fb66115c25f32cc846f123ca440",
     "source_doc_hashes": {
-      "spec.md": "2139f0b7ca78ad1d4cdecaf856f510fcb55116118659461939590eabce8d4a94",
-      "plan.md": "c781079ef499618f0bfdfa80e21c51a7221a9cabda980e7a33a4a1b5cccf99cf",
-      "tasks.md": "894a61f895627c7c8a7dc217ea32c0bd87e2e081c899c122c67c3536d56e3314",
-      "checklist.md": "7efa8509ea2141dae502755de61dd6b9f5f80e5232b9a8f907d865f290765d77"
+      "spec.md": "47a97deadb67e4bd44bf8cc35d37b8978da910294f0474c5c11f6c6afb8fff92",
+      "plan.md": "2835ffd9f54cf2afbcb8a43ce91803e9088877104f69cc73d6287c571c39876e",
+      "tasks.md": "31a2faefc54530a82a92887a0d51c33db64eafc9c3301d283885faa1618d34cb",
+      "checklist.md": "f6c86a10635bb03ca0a15d94c69e002bc4f1166b6631465d6cbf9d5d54a30e60",
+      "implementation-summary.md": "ed6d1abfec9443ba897c9c36afc0e638d1afa4bf105f2343209a647c610deca3"
     },
     "last_active_child_id": null,
     "last_active_at": null
