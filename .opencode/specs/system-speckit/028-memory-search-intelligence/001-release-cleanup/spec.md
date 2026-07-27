@@ -13,11 +13,11 @@ _memory:
     last_updated_at: "2026-07-12T12:17:12Z"
     last_updated_by: "markdown-agent"
     recent_action: "Added child 016 dead-code and architecture audit"
-    next_safe_action: "Dispatch the child 016 research program"
+    next_safe_action: "Triage the child 016 findings report"
     blockers:
       - "Child 014 remains In Progress with reindex recovery blocked"
       - "Child 015 remains In Progress with the execution sweep outstanding"
-      - "Child 016 is Planned; its research program has not been dispatched"
+      - "Child 016 research complete with 88 findings; remediation triage outstanding"
     key_files:
       - "spec.md"
       - "001-code-readmes/spec.md"
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress (13 of 16 direct children complete) |
+| **Status** | In Progress (13 of 17 direct children complete) |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
@@ -63,7 +63,7 @@ _memory:
 Packet 028's release-cleanup track has executed across most documentation surfaces and follow-on validation phases. Thirteen direct children are complete, canonical children 014 and 015 remain In Progress, and child 016 is Planned. Historical completed child and release evidence remains valid, but the aggregate parent is not complete.
 
 ### Purpose
-Define the release-cleanup root purpose and current child phase map. Each child phase owns one documentation or validation surface; aggregate status follows all 16 canonical direct children rather than only the first 13 completed children.
+Define the release-cleanup root purpose and current child phase map. Each child phase owns one documentation or validation surface; aggregate status follows all 17 canonical direct children rather than only the first 13 completed children.
 
 > **Phase-parent note:** This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -105,7 +105,8 @@ Define the release-cleanup root purpose and current child phase map. Each child 
 | `013-drift-remediation/spec.md` | Executed | 013 | Drift-remediation findings closure |
 | `014-spec-regrouping-renumber-reindex/spec.md` | In Progress | 014 | Spec regrouping, renumbering and reindex sweep |
 | `015-manual-playbook-execution-sweep/spec.md` | In Progress | 015 | Manual playbook execution sweep with its findings-remediation child, re-nested from former top-level 014 |
-| `016-dead-code-and-architecture-audit/spec.md` | Planned | 016 | Dead code, legacy and backup residue, misplaced files, structural drift and over-engineering audit |
+| `017-findings-remediation/spec.md` | Planned | 017 | Nine-phase remediation program for the audit findings |
+| `016-dead-code-and-architecture-audit/spec.md` | In Progress | 016 | Dead code, legacy and backup residue, misplaced files, structural drift and over-engineering audit |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,8 +131,9 @@ Define the release-cleanup root purpose and current child phase map. Each child 
 | 013 | `013-drift-remediation/` | Drift-audit findings remediation relocated from the former 028/008 track | COMPLETE |
 | 014 | `014-spec-regrouping-renumber-reindex/` | Spec regrouping, renumbering and reindex sweep | In Progress |
 | 015 | `015-manual-playbook-execution-sweep/` | Manual playbook execution sweep, re-nested from former top-level 014 on 2026-07-04 (keeps its findings-remediation child) | In Progress |
-| 016 | `016-dead-code-and-architecture-audit/` | Dead code, legacy and backup residue, misplaced files, structural drift and over-engineering audit across the code surface | Planned |
+| 016 | `016-dead-code-and-architecture-audit/` | Dead code, legacy and backup residue, misplaced files, structural drift and over-engineering audit across the code surface | In Progress (research complete, 88 findings; triage outstanding) |
 
+| 017 | `017-findings-remediation/` | Nine-phase remediation program for the 88 audit findings, gated behind a verification phase | Planned |
 ### Phase Transition Rules
 
 - Each child phase records the scope and evidence for its own cleanup or validation pass.
@@ -146,6 +148,7 @@ Define the release-cleanup root purpose and current child phase map. Each child 
 | parent | child | Inspect one executed documentation or validation surface | Child `spec.md` and changelog name scope, evidence and follow-ups |
 | child | parent | Child state changes | Update the child changelog and roll up through `changelog-000-root.md` |
 | 015-manual-playbook-execution-sweep | 016-dead-code-and-architecture-audit | Documentation surfaces are swept; the code and structure surface is still unaudited | Child 016 `spec.md` names the six audit categories and the research program that feeds them |
+| 016-dead-code-and-architecture-audit | 017-findings-remediation | Findings report exists with per-finding evidence and verification tiers | `016-.../findings-report.md`; remediation acts only on phase-001 CONFIRMED dispositions |
 <!-- /ANCHOR:phase-map -->
 
 ---

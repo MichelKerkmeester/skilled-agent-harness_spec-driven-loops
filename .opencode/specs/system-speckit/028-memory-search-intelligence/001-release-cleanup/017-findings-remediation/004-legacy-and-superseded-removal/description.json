@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/004-legacy-and-superseded-removal",
+  "description": "Benchmark runs, fixtures and changelog files remain on disk after their successors shipped",
+  "keywords": [
+    "benchmark",
+    "runs",
+    "fixtures",
+    "changelog",
+    "files",
+    "remain",
+    "disk",
+    "successors",
+    "shipped"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "004",
+  "folderSlug": "legacy-and-superseded-removal",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

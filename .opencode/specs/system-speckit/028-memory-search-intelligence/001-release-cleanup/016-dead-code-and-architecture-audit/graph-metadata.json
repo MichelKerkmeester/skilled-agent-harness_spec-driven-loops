@@ -45,7 +45,14 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "research/devin-findings.json",
+      "implementation-summary.md",
+      "research/manual-devin/FOCUS-PLAN.md",
+      "research/BASELINE_SHA.txt",
+      "research/lineages/sol/deep-research-state.jsonl",
+      "research/lineages/composer/findings-registry.json",
+      "research/manual-devin/pass-01.md",
+      "research/orchestration-status.log"
     ],
     "entities": [
       {
@@ -73,9 +80,51 @@
         "source": "derived"
       },
       {
+        "name": "devin-findings.json",
+        "kind": "config",
+        "path": "research/devin-findings.json",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "FOCUS-PLAN.md",
+        "kind": "doc",
+        "path": "research/manual-devin/FOCUS-PLAN.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASELINE_SHA.txt",
+        "kind": "file",
+        "path": "research/BASELINE_SHA.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/sol/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/lineages/composer/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "pass-01.md",
+        "kind": "doc",
+        "path": "research/manual-devin/pass-01.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
         "source": "derived"
       },
       {
@@ -149,47 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository has grown across dozens of packets, several migrations (spec re-nesting, hyphen-case renaming, parent-hub merges), and multiple superseded experiments",
     "created_at": "2026-07-27T05:50:45.833Z",
-    "last_save_at": "2026-07-27T05:50:45.833Z",
+    "last_save_at": "2026-07-27T08:56:03.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbb56134c0dd9b31c40a723bfc0b76494118e35c28cf7b8f744855fbb49c04c5",
+    "source_fingerprint": "sha256:a835b8fd7f63d81cd0a9336984eb0ebc6b293da03a066f8f8efc4e81b72d2aa0",
     "source_doc_hashes": {
-      "spec.md": "af345e8aa84c9817213622f04cc6deef82564848fe4c4f9474bdad73f89b43aa",
-      "plan.md": "ecf2a2ae20b8c722b471f19f601726ef76729b6725059e7da98af76bb0d9ff45",
-      "tasks.md": "f4fba7104bf2a797a44f56aa36dabafc63da066e9567c9d55480c204b0102a0c",
-      "checklist.md": "6700a9618fd039abf10cb906a171ac7c0170aa9b3cd97be7a8dd7c3474860516",
-      "implementation-summary.md": "f568432ef6c1195322772e2d21883a6d79f252f72521029871582c9c6902f883"
+      "spec.md": "2e39eab0cf772b4c16258330b99fbf0590e7bc00430ec94632adf163c54cca84",
+      "plan.md": "998d8f922f2b520f515164c972e74424fdace82acbddb2a68decca3464e9a4af",
+      "tasks.md": "a5275ed1a19dc70d2d8f2f8e2e22e050b3e0e1a9e80a01f97b8134fbab1f8241",
+      "checklist.md": "c59e977474ce569ef3943786f8ebb06da6039e2742c2c99252b70e27b68a6a26",
+      "implementation-summary.md": "bb79f24eff2799f882c1203e31e623c1097fc80202d05a454c5d484889cfc7be"
     },
     "last_active_child_id": null,
     "last_active_at": null

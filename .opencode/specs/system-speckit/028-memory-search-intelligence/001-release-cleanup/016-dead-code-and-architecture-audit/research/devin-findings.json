@@ -1,0 +1,562 @@
+[
+ {
+  "source": "devin-01",
+  "id": "F1",
+  "category": "CAT-2",
+  "claim": "Superseded benchmark runs kept alongside canonical current runs",
+  "path": ".opencode/skills/sk-code/benchmark/{after,baseline,full,live,live-remediated}/",
+  "evidence": "`benchmark/README.md:95-107` explicitly labels these as \"superseded\" development runs; canonical current runs are `router-final/` and `live-final/`.",
+  "verify": "`rg -nE \"(superseded|current|sidecar|frozen)\" .opencode/skills/sk-code/benchmark/README.md`",
+  "blast": "Low \u2014 historical reports. Archive to `benchmark-archive/` outside the active tree."
+ },
+ {
+  "source": "devin-01",
+  "id": "F2",
+  "category": "CAT-2",
+  "claim": "Legacy synthetic fixtures superseded by playbook corpus",
+  "path": ".opencode/skills/sk-code/benchmark/fixtures/sk-code/",
+  "evidence": "`benchmark/README.md:89-90,107` marks status \"legacy \u2014 superseded by the playbook corpus\".",
+  "verify": "`rg -nA2 \"fixtures/sk-code\" .opencode/skills/sk-code/benchmark/README.md`",
+  "blast": "Low \u2014 unused fixtures; remove or archive."
+ },
+ {
+  "source": "devin-01",
+  "id": "F3",
+  "category": "CAT-2",
+  "claim": "Pre-v4.0.0.0 changelog entries describe superseded flat architecture",
+  "path": ".opencode/skills/sk-code/changelog/v3.0.0.0.md \u2026 v3.5.0.0.md (8 files)",
+  "evidence": "`changelog/v4.0.0.0.md:6-8` states \"sk-code converted from a flat two-axis skill into a nested parent hub\"; `v4.1.0.0.md` further restructured to 2 workflow modes + 2 surface packets, making all v3.x entries describe a dead architecture.",
+  "verify": "`rg -nE \"(flat|nested parent hub|two-axis)\" .opencode/skills/sk-code/changelog/v4.0.0.0.md .opencode/skills/sk-code/changelog/v4.1.0.0.md`",
+  "blast": "Low \u2014 historical docs. Consolidate into a single `changelog-archive/v3.x.md` summary."
+ },
+ {
+  "source": "devin-01",
+  "id": "F4",
+  "category": "CAT-2",
+  "claim": "v4.0.0.0 scaffold-phase changelog superseded by v4.1.0.0",
+  "path": ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
+  "evidence": "`:8` states \"Scaffold phase - packets are skeletons; content relocation follows.\" \u2014 a transitional state completed by v4.1.0.0.",
+  "verify": "`rg -ni \"scaffold\" .opencode/skills/sk-code/changelog/v4.0.0.0.md`",
+  "blast": "Low \u2014 fold into v4.1.0.0 as a subsection or archive."
+ },
+ {
+  "source": "devin-01",
+  "id": "F5",
+  "category": "CAT-5",
+  "claim": "Changelog v4.1.0.0 contradicts mode-registry.json on surface count",
+  "path": ".opencode/skills/sk-code/changelog/v4.1.0.0.md:12-13 vs .opencode/skills/sk-code/mode-registry.json:19",
+  "evidence": "Changelog lists 3 surfaces (`webflow`, `opencode`, `animation`); registry and SKILL.md:34-35 list only 2 (`code-webflow`, `code-opencode`). The \"animation\" surface was either planned-but-unimplemented or folded into code-webflow.",
+  "verify": "`rg -nA2 \"Surface axis\" .opencode/skills/sk-code/changelog/v4.1.0.0.md && rg -nA2 \"surfaces\" .opencode/skills/sk-code/mode-registry.json`",
+  "blast": "Medium \u2014 documentation contradiction; correct the changelog to match the registry."
+ },
+ {
+  "source": "devin-01",
+  "id": "F6",
+  "category": "CAT-5",
+  "claim": "Duplicated benchmark responsibility between hub and code-opencode packet",
+  "path": ".opencode/skills/sk-code/benchmark/ and .opencode/skills/sk-code/code-opencode/benchmark/",
+  "evidence": "Both hold benchmark reports \u2014 hub has `router-final/`, `live-final/`, etc.; `code-opencode/benchmark/` has `live-mode-b/`, `router-mode-a/` (sidecar variants of the hub runs). No documented ownership split.",
+  "verify": "`ls .opencode/skills/sk-code/benchmark/ && ls .opencode/skills/sk-code/code-opencode/benchmark/`",
+  "blast": "Medium \u2014 unclear ownership. Consolidate under `sk-code/benchmark/` with surface-tagged subfolders."
+ },
+ {
+  "source": "devin-01",
+  "id": "F7",
+  "category": "CAT-6",
+  "claim": "Over-engineered benchmark folder structure with 12+ dated sidecar runs",
+  "path": ".opencode/skills/sk-code/benchmark/ (12 dated subfolders + nested compiled-routing/ with 3 more)",
+  "evidence": "`benchmark/README.md:95-107` maintains a run-label index with current/sidecar/superseded/frozen/legacy tiers. The `compiled-routing/` subfolder adds 3 more dated runs beneath it.",
+  "verify": "`find .opencode/skills/sk-code/benchmark -maxdepth 2 -type d | wc -l`",
+  "blast": "Medium \u2014 maintenance burden."
+ },
+ {
+  "source": "devin-01",
+  "id": "F8",
+  "category": "CAT-2",
+  "claim": "v4.0.1.0 changelog subsumed by v4.1.0.0 restructure",
+  "path": ".opencode/skills/sk-code/changelog/v4.0.1.0.md",
+  "evidence": "`:8` describes relocating spec-folder authoring docs to system-spec-kit; `v4.1.0.0.md:19` then consolidated surface evidence into surface packets, making v4.0.1.0 a transitional patch now subsumed.",
+  "verify": "`rg -nE \"(spec-folder|system-spec-kit)\" .opencode/skills/sk-code/changelog/v4.0.1.0.md .opencode/skills/sk-code/changelog/v4.1.0.0.md`",
+  "blast": "Low \u2014 merge into v4.1.0.0 or archive with v3.x. ## sk-doc hub"
+ },
+ {
+  "source": "devin-01",
+  "id": "F9",
+  "category": "CAT-3",
+  "claim": "Dated benchmark output folders committed to repository",
+  "path": ".opencode/skills/sk-doc/benchmark/compiled-routing/ (5 dated subfolders: luna-high-acceptance-1784596615522/, luna-high-real-20260721-073315/, luna-high-verify-20260721-120348/, playbook-verify-sonnet-20260721-132527/, r3-benchmark-sweep-20260721-131432/)",
+  "evidence": "`benchmark/README.md:31` states \"No Lane C skill-benchmark run has been archived for sk-doc yet\" \u2014 yet these dated output folders with Jul-2026 timestamps are present.",
+  "verify": "`ls -la .opencode/skills/sk-doc/benchmark/compiled-routing/`",
+  "blast": "Low \u2014 output artifacts; move out of version control or gitignore."
+ },
+ {
+  "source": "devin-01",
+  "id": "F10",
+  "category": "CAT-1",
+  "claim": "scripts/README.md documents 10 scripts that do not exist at that location",
+  "path": ".opencode/skills/sk-doc/scripts/README.md:69-78",
+  "evidence": "README lists 10 scripts for `scripts/`; the directory actually contains only `tests/` and `validate-doc-model-refs.js`. The listed scripts live elsewhere (`audit_readmes.py` \u2192 `create-readme/scripts/`, `init_skill.py` \u2192 `create-skill/scripts/`, `quick_validate.py` \u2192 `shared/scripts/`, etc.).",
+  "verify": "`ls .opencode/skills/sk-doc/scripts/ && rg --files .opencode/skills/sk-doc/scripts | grep -v tests`",
+  "blast": "Medium \u2014 documentation mismatch confuses operators. Remove or rewrite the README to reflect actual contents."
+ },
+ {
+  "source": "devin-01",
+  "id": "F11",
+  "category": "CAT-1",
+  "claim": "validate-doc-model-refs.js has no reachable callers",
+  "path": ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+  "evidence": "Only referenced in `scripts/README.md:76` (itself misleading, see F10). No references in any `.md`/`.json`/`.yaml`/`.py`/`.cjs`/`.js` across the hub; not in CI or package.json.",
+  "verify": "`rg \"validate-doc-model-refs\" .opencode/skills/sk-doc --type md --type json --type yaml --type py --type cjs --type js`",
+  "blast": "Low \u2014 single dead script; remove or document its intended manual use."
+ },
+ {
+  "source": "devin-01",
+  "id": "F12",
+  "category": "CAT-5",
+  "claim": "SKILL.md says \"eleven packets\" but mode-registry.json lists twelve modes",
+  "path": ".opencode/skills/sk-doc/SKILL.md:3 vs .opencode/skills/sk-doc/mode-registry.json:17-162",
+  "evidence": "SKILL.md describes 11 workflow packets; `mode-registry.json` lists 12 modes including `create-skill-parent` (a second mode over the `create-skill` packet, lines 30-41). SKILL.md never mentions `create-skill-parent`.",
+  "verify": "`jq '.modes | length' .opencode/skills/sk-doc/mode-registry.json && rg \"create-skill-parent\" .opencode/skills/sk-doc/SKILL.md`",
+  "blast": "Low \u2014 clarify \"11 packets, 12 modes (create-skill-parent is a second mode over create-skill)\"."
+ },
+ {
+  "source": "devin-01",
+  "id": "F13",
+  "category": "CAT-4",
+  "claim": "feature-catalog/ at hub root not documented in SKILL.md layout",
+  "path": ".opencode/skills/sk-doc/feature-catalog/",
+  "evidence": "`SKILL.md:128-131` layout section lists `changelog/ manual-testing-playbook/ benchmark/` as top-level dirs but omits `feature-catalog/`, which exists with `feature-catalog.md` and subdirectories.",
+  "verify": "`ls .opencode/skills/sk-doc/ | rg -E \"(changelog|manual-testing-playbook|benchmark|feature-catalog)\" && rg \"feature-catalog/\" .opencode/skills/sk-doc/SKILL.md`",
+  "blast": "Low \u2014 legitimate artifact; add it to the \u00a73 Layout section. ## sk-git hub"
+ },
+ {
+  "source": "devin-01",
+  "id": "F14",
+  "category": "CAT-5",
+  "claim": "SKILL.md claims to \"route\" to git-worktrees/git-commit/git-finish but no routing infrastructure or packet dirs exist",
+  "path": ".opencode/skills/sk-git/SKILL.md:3,252,258,264 and .opencode/skills/sk-git/references/quick-reference.md:3,17,41 *(merges sk-git subagent F1 + F2 + F8 \u2014 all three report the same underlying false-hub claim)*",
+  "evidence": "- SKILL.md:3 description: \"routes git-worktrees/git-commit/git-finish\" - SKILL.md:39-202 contains a 149-line Python \"Smart Router\" pseudocode routing to a RESOURCE_MAP - No `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`, `description.json` exist (all sibling hubs have them) - No `git-worktrees/`, `git-commit/`, `git-finish/` directories exist anywhere under `.opencode/skills/` - The",
+  "verify": "`ls .opencode/skills/sk-git/{mode-registry.json,hub-router.json,leaf-manifest.json,description.json,git-worktrees,git-commit,git-finish} 2>&1; find .opencode/skills -name \"git-worktrees\" -o -name \"git-commit\" -o -name \"git-finish\"`",
+  "blast": "Medium \u2014 description and architecture are misleading. Either (a) reframe SKILL.md as a single orchestrator with phase-based resource loading, or (b) actually split into a hub with three packet dirs."
+ },
+ {
+  "source": "devin-01",
+  "id": "F15",
+  "category": "CAT-3",
+  "claim": "Committed benchmark reports unreferenced by any docs",
+  "path": ".opencode/skills/sk-git/benchmark/{live-glm-5.2-high,live-kimi-2.7}/",
+  "evidence": "`benchmark/2026-07-10--live--glm-5-2-high/skill-benchmark-report.json` (2282 lines) + `.md`; same for `live-kimi-2.7/`. Not referenced in SKILL.md, README.md, or `references/*.md` (the only `benchmark` mention is `references/finish-workflows.md:691` in an unrelated example). No `.gitignore` excludes `benchmark/`.",
+  "verify": "`ls .opencode/skills/sk-git/benchmark/ && rg -l \"benchmark\" .opencode/skills/sk-git/{SKILL.md,README.md,references/*.md}`",
+  "blast": "Low \u2014 report artifacts; gitignore or relocate."
+ },
+ {
+  "source": "devin-01",
+  "id": "F16",
+  "category": "CAT-1",
+  "claim": "`validate-remote-allowlist` CLI subcommand has no external caller",
+  "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh:402,427",
+  "evidence": "`:402` documents the subcommand; `:427` implements CLI dispatch. Grep across `.opencode/` finds references only in `worktree-naming.sh` itself, `scripts/README.md:60`, and spec docs under `specs/sk-git/015-remote-branch-policy/`. The underlying function `is_remote_push_allowlisted` IS used by the pre-push hook (sourced directly, not via the CLI wrapper) \u2014 but the CLI wrapper itself is never invoke",
+  "verify": "`rg \"validate-remote-allowlist\" .opencode --type sh -g '!**/specs/**'` then `rg \"worktree-naming\\.sh.*validate-remote-allowlist\" .opencode`",
+  "blast": "Low \u2014 dead CLI wrapper; the function it wraps is alive. Remove the CLI dispatch arm."
+ },
+ {
+  "source": "devin-01",
+  "id": "F17",
+  "category": "CAT-1",
+  "claim": "`skill-ids` CLI subcommand has no external caller",
+  "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh:394,411",
+  "evidence": "`:394` documents `skill-ids`; `:411` dispatches to `load_skill_ids`. Referenced in `scripts/README.md:60` and `changelog/v1.2.0.0.md:16`. `load_skill_ids` is only used internally by `is_valid_owner`; no external caller of the CLI form.",
+  "verify": "`rg \"worktree-naming\\.sh skill-ids\" .opencode && rg \"bash.*worktree-naming.*skill-ids\" .opencode`",
+  "blast": "Low \u2014 diagnostic convenience command, unused. Remove."
+ },
+ {
+  "source": "devin-01",
+  "id": "F18",
+  "category": "CAT-4",
+  "claim": "Changelog documents `.github/workflows/` and `.github/hooks/scripts/` READMEs that do not exist",
+  "path": "UNKNOWN \u2014 .github/ does not exist under sk-git/",
+  "evidence": "`changelog/v1.3.2.0.md:16` states \"Four code READMEs added for `scripts/`, `scripts/tests/`, `.github/workflows/` and `.github/hooks/scripts/`\". `scripts/` and `scripts/tests/` READMEs exist; `.github/` does not.",
+  "verify": "`ls .opencode/skills/sk-git/.github 2>&1; find .opencode/skills/sk-git -name \".github\"`",
+  "blast": "Low \u2014 changelog accuracy error; correct the entry."
+ },
+ {
+  "source": "devin-01",
+  "id": "F19",
+  "category": "CAT-6",
+  "claim": "149-line Python pseudocode router for 5-intent conditional loading",
+  "path": ".opencode/skills/sk-git/SKILL.md:54-202",
+  "evidence": "\u00a72 contains 149 lines of Python pseudocode (keyword boundary matching, weighted scoring, adaptive intent selection, ambiguity handling) for 5 intents (WORKSPACE_SETUP, COMMIT, FINISH, GITKRAKEN_MCP, SHARED_PATTERNS). No actual Python exists \u2014 this is documentation-only. Sibling skills (sk-doc, sk-prompt) describe equivalent routing far more simply.",
+  "verify": "`wc -l .opencode/skills/sk-git/SKILL.md` (613 total; router is lines 54-202)",
+  "blast": "Low \u2014 documentation only."
+ },
+ {
+  "source": "devin-01",
+  "id": "F22",
+  "category": "CAT-5",
+  "claim": "Executable scripts in a packet whose contract forbids Bash",
+  "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/ (40+ .cjs/.js files)",
+  "evidence": "- `mode-registry.json:30-41` defines `prompt-models` with `toolSurface: { allowed: [\"Read\",\"Grep\",\"Glob\"], forbidden: [\"Write\",\"Edit\",\"Task\",\"Bash\"], mutatesWorkspace: false }` - `prompt-models/SKILL.md:4` confirms `allowed-tools: [Read, Grep, Glob]` - `prompt-models/SKILL.md:51-52` states: \"Adding new runtime logic \u2014 this skill carries prompt-craft prose + an index, never shell commands or script",
+  "verify": "`find .opencode/skills/sk-prompt/prompt-models/benchmarks -name \"*.cjs\" -o -name \"*.js\" | wc -l && rg \"allowed-tools\" .opencode/skills/sk-prompt/prompt-models/SKILL.md && rg \"forbidden.*Bash\" .opencode/skills/sk-prompt/mode-registry.json`",
+  "blast": "Medium \u2014 contract violation. Either (a) move the benchmarks out of `prompt-models/` to a sibling `prompt-models-benchmarks/` packet with Bash allowed, or (b) delete the broken ones (see F21) and relocate any working eval-rig to a hub-level `benchmark/` dir."
+ },
+ {
+  "source": "devin-01",
+  "id": "F23",
+  "category": "CAT-5",
+  "claim": "composer-2.5.md references non-existent `cli-cursor` executor",
+  "path": ".opencode/skills/sk-prompt/prompt-models/references/models/composer-2.5.md:17,45,141",
+  "evidence": "- `:17` \"Executor MECHANICS \u2026 live in [`cli-cursor`](../../../../cli-external-orchestration/cli-cursor/SKILL.md) \u2014 not here.\" - `:45` \"Primary executor: `cli-cursor` \u2192 `cursor-agent -p --model composer-2.5`\" - `:141` \"Full invocation wrappers stay in [`cli-cursor`](../../../../cli-external-orchestration/cli-cursor/SKILL.md)\" - `cli-external-orchestration/` contains `cli-opencode/`, `cli-claude-cod",
+  "verify": "`ls .opencode/skills/cli-external-orchestration/cli-cursor 2>&1; find .opencode/skills/cli-external-orchestration -name \"cli-cursor\" -o -name \"cursor\"; rg \"cli-cursor\" .opencode/skills/sk-prompt/prompt-models/references/models/composer-2.5.md`",
+  "blast": "Medium \u2014 broken external contract; dispatch instructions are non-functional. Either create the `cli-cursor` packet or rewrite composer-2.5.md to drop the references and inline the executor mechanics."
+ },
+ {
+  "source": "devin-02",
+  "id": "F1",
+  "category": "CAT-5",
+  "claim": "cli-external-orchestration prose says \"three\"/\"four\" modes while the authoritative registry ships five",
+  "path": ".opencode/skills/cli-external-orchestration/SKILL.md, .opencode/skills/cli-external-orchestration/mode-registry.json",
+  "evidence": "- `SKILL.md:41` \u2014 \"`mode-registry.json` lists all **three** modes in one `modes[]` array\" - `SKILL.md:161` \u2014 \"all **three** current modes are; a future mode may not be\" - `mode-registry.json:5` \u2014 \"All **four** modes route by hub membership\" - `mode-registry.json:14` \u2014 \"All **four** cli-external-orchestration modes use folder == packetSkillName\" - `mode-registry.json:15` \u2014 \"None of the **four** exe",
+  "verify": "```bash rg -n 'three modes|all three current' .opencode/skills/cli-external-orchestration/SKILL.md rg -n 'All four|None of the four' .opencode/skills/cli-external-orchestration/mode-registry.json rg -c '\"workflowMode\"' .opencode/skills/cli-external-orchestration/mode-registry.json # 5 ```",
+  "blast": "low \u2014 prose only; routing reads `modes[]`, not the description text. A human auditor reading \u00a72/\u00a74 or the registry description is misled about mode count. The two newest modes (`cli-cursor`, `cli-devin`) are the ones the stale prose silently drops."
+ },
+ {
+  "source": "devin-02",
+  "id": "F2",
+  "category": "CAT-5",
+  "claim": "mcp-tooling/mode-registry.json transport description omits mcp-refero and mcp-mobbin; version field lags SKILL.md/changelog",
+  "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+  "evidence": "- `mode-registry.json:8` \u2014 `packetKind` description: \"'transport' for **mcp-figma**, which bridges to Figma Desktop rather than performing design judgment or mutating this workspace.\" \u2014 names only one of three transports - Contradicted by the same file's `extensions.transport-axis.transports` (`mode-registry.json:20-24`) which correctly lists all three: `mcp-figma`, `mcp-refero`, `mcp-mobbin` - `m",
+  "verify": "```bash rg -n '\"version\"|transport.*for mcp-figma' .opencode/skills/mcp-tooling/mode-registry.json rg -n 'version:' .opencode/skills/mcp-tooling/SKILL.md ls .opencode/skills/mcp-tooling/changelog/ ```",
+  "blast": "low \u2014 the `extensions` block and `modes[]` are correct, so routing is unaffected. The discriminator description is the field a reader consults to understand the `packetKind` axis, so the omission is a documentation contract drift, not a runtime defect."
+ },
+ {
+  "source": "devin-02",
+  "id": "F3",
+  "category": "CAT-5",
+  "claim": "cli-opencode/scripts/hooks/README.md documents the codex/ sibling but omits the live devin/ hook subdir",
+  "path": ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/README.md (vs. scripts/hooks/devin/ on disk)",
+  "evidence": "- `hooks/README.md:53-60` \u00a73 DIRECTORY TREE lists only `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, and `codex/` \u2014 no `devin/` - `hooks/README.md:64-70` \u00a74 KEY FILES and `:117-122` \u00a76 ENTRYPOINTS likewise omit `devin/` - `rg -n 'devin/' hooks/README.md` \u2192 no matches - Yet `scripts/hooks/devin/` ships `README.md`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs` (",
+  "verify": "```bash ls .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/ rg -n 'devin/' .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/README.md # 0 matches rg -n 'codex/' .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/README.md # documented ```",
+  "blast": "low \u2014 `devin/` carries its own README, so the adapters are documented; the *parent* README's tree/entrypoints are simply incomplete. A reader relying on the parent README for the hook inventory misses the Devin runtime adapters."
+ },
+ {
+  "source": "devin-02",
+  "id": "F4",
+  "category": "CAT-5",
+  "claim": "cli-devin/manual-testing-playbook/ is advertised in the hub layout but ships only a .gitkeep and is unreferenced by cli-devin/SKILL.md",
+  "path": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/",
+  "evidence": "- Hub `SKILL.md:119-125` \u00a73 Layout lists `manual-testing-playbook/` under `cli-devin/` - The directory contains exactly one file: `manual-testing-playbook/.gitkeep` (no `.md` content) - `rg -n 'manual-testing-playbook' cli-devin/SKILL.md` \u2192 no matches (cli-devin's own SKILL.md never references it) - All four sibling packets ship full playbooks: `cli-claude-code/manual-testing-playbook/manual-testi",
+  "verify": "```bash ls -la .opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/ rg -n 'manual-testing-playbook' .opencode/skills/cli-external-orchestration/cli-devin/SKILL.md # 0 matches ls .opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/*.md # sibling has content ```",
+  "blast": "low \u2014 empty stub, no routing depends on it. The drift is between the hub layout (which implies a populated playbook) and the shipped state (an empty placeholder). The cli-devin playbook was scoped under spec `029-cli-devin-revival/006-devin-manual-testing-playbook` but no content shipped."
+ },
+ {
+  "source": "devin-02",
+  "id": "F5",
+  "category": "CAT-3",
+  "claim": "mcp-tooling/benchmark/.gitkeep is redundant \u2014 the directory has substantial content",
+  "path": ".opencode/skills/mcp-tooling/benchmark/.gitkeep",
+  "evidence": "- `benchmark/.gitkeep` exists on disk - `benchmark/` already contains `README.md`, `baseline/` (report pair), `after-routing-remediation/` (report pair), and `compiled-routing/` (3 dated run folders) \u2014 confirmed via tree listing - `.gitkeep` is only needed to keep an *empty* directory in git; with content present it is stray residue",
+  "verify": "```bash ls -la .opencode/skills/mcp-tooling/benchmark/ find .opencode/skills/mcp-tooling/benchmark -type f | head -20 ```",
+  "blast": "negligible \u2014 a stray keepfile. (Note: the cli-external-orchestration counterpart `.gitkeep` was already removed in the working tree \u2014 `D .../cli-external-orchestration/benchmark/.gitkeep` in git status \u2014 so this is the remaining instance.)"
+ },
+ {
+  "source": "devin-02",
+  "id": "F6",
+  "category": "CAT-5",
+  "claim": "both hub SKILL.md \u00a73 Layout diagrams omit live contract files that exist on disk and are referenced elsewhere",
+  "path": ".opencode/skills/cli-external-orchestration/SKILL.md, .opencode/skills/mcp-tooling/SKILL.md",
+  "evidence": "- cli `SKILL.md:80-126` layout tree omits `shared/`, `feature-catalog/`, `leaf-manifest.json` - mcp `SKILL.md:79-119` layout tree omits `shared/`, `feature-catalog/`, `leaf-manifest.json` - All three exist on disk at both hub roots (confirmed via `ls`) - `shared/references/smart-routing.md` is referenced by `hub-router.json:20` `defaultResource` in **both** hubs (`cli hub-router.json:19-22`, `mcp ",
+  "verify": "```bash ls -d .opencode/skills/cli-external-orchestration/{shared,feature-catalog,leaf-manifest.json} ls -d .opencode/skills/mcp-tooling/{shared,feature-catalog,leaf-manifest.json} rg -n 'shared/references/smart-routing.md' .opencode/skills/cli-external-orchestration/hub-router.json .opencode/skills/mcp-tooling/hub-router.json rg -n 'leaf-manifest' .opencode/commands/doctor/scripts/parent-skill-ch",
+  "blast": "low \u2014 the files are correctly placed and live; only the layout *diagram* is incomplete. A reader using \u00a73 as the authoritative inventory would not know `shared/`, `feature-catalog/`, or `leaf-manifest.json` belong to the hub."
+ },
+ {
+  "source": "devin-03",
+  "id": "F1",
+  "category": "CAT-3",
+  "claim": "Committed `.DS_Store` scratch residue in `commands/`",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F2",
+  "category": "CAT-5",
+  "claim": "Canonical `commands/README.txt` omits the entire live `interface/` command group",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F3",
+  "category": "CAT-5",
+  "claim": "`commands/README.txt` documents `agent_router` (underscore) but the file is `agent-router.md` (hyphen)",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F4",
+  "category": "CAT-5",
+  "claim": "`create/diff.md` is a live, working command omitted from both the canonical index and `create/README.txt`",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F5",
+  "category": "CAT-5",
+  "claim": "`deep/alignment.md` and `deep/command-benchmark.md` are live routers omitted from the canonical deep command index",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F6",
+  "category": "CAT-5",
+  "claim": "`agents/README.txt` inventory omits the live `deep-alignment.md` agent",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F7",
+  "category": "CAT-5",
+  "claim": "`compiled/README.md` describes `deep-alignment.contract.md` as a non-authority placeholder, but the file is a full generated execution contract recorded in the manifest",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F8",
+  "category": "CAT-5",
+  "claim": "`commands/scripts/README.md` documents a stale family list (`create, deep, design`) that no longer matches the live tree",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F9",
+  "category": "CAT-4",
+  "claim": "`create/assets/tests/` contradicts the documented `assets/` layout (YAML-only) and has no reachable runner",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F10",
+  "category": "CAT-4",
+  "claim": "`doctor/scripts/tests/` is omitted from `doctor/scripts/README.md` directory tree and has no reachable runner",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F11",
+  "category": "CAT-1",
+  "claim": "`commands/scripts/smoke-command-benchmark.cjs` is an undocumented smoke test with no reachable caller",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-03",
+  "id": "F12",
+  "category": "CAT-6",
+  "claim": "`doctor/scripts/check-mcp-mutation-class.sh` is a documented mutation-class guard that no route, workflow, or CI invokes",
+  "path": "",
+  "evidence": "",
+  "verify": "",
+  "blast": ""
+ },
+ {
+  "source": "devin-04",
+  "id": "F1",
+  "category": "CAT-2",
+  "claim": "`.claude/agents/` is a stale physical mirror of canonical `.opencode/agents/`",
+  "path": ".claude/agents/ (real directory, not a symlink)",
+  "evidence": "Every `.claude/agents/*.md` file has fewer lines than its `.opencode/agents/*.md` canonical counterpart \u2014 all 13 agents are behind: | Agent | `.claude/agents/` | `.opencode/agents/` | Delta | |---|---:|---:|---:| | ai-council | 782 | 800 | -18 | | code | 530 | 545 | -15 | | context | 448 | 469 | -21 | | debug | 637 | 652 | -15 | | deep-alignment | 542 | 559 | -17 | | deep-improvement | 238 | 253 |",
+  "verify": "```bash wc -l .claude/agents/*.md .opencode/agents/*.md ```",
+  "blast": "Low. Claude Code runtime loads stale agent definitions; other runtimes (OpenCode, Codex) load the canonical content. Behavioral divergence between Claude and other runtimes is silent."
+ },
+ {
+  "source": "devin-04",
+  "id": "F2",
+  "category": "CAT-5",
+  "claim": "CI mirror-sync checker misses 12 of 13 drifted agents due to token-set comparison",
+  "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
+  "evidence": "`mirror-sync-verify.cjs:71-74` tokenizes the agent body into a `Set` of lowercase 3+ char tokens, then `compareBodyTokens()` at `:83-96` compares sets for missing/unexpected tokens. Set-based comparison cannot detect content additions where all new tokens already appear elsewhere in the file. Running the checker with `--all` against the 13 drifted agents from F1 catches only 1: ``` $ node .opencod",
+  "verify": "```bash node .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all ```",
+  "blast": "Medium. The `agent-mirror-sync.yml` CI gate is the sole automated guard for agent mirror drift. 92% of drift escapes it. A simpler shape: compare normalized body text with exact string equality (after frontmatter strip + runtime-specific text normalization), not token-set equality."
+ },
+ {
+  "source": "devin-04",
+  "id": "F3",
+  "category": "CAT-5",
+  "claim": "`agent-mirror-sync.yml` detects `.codex/agents/` changes but checker never compares them",
+  "path": ".github/workflows/agent-mirror-sync.yml:29 + .opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:17-20",
+  "evidence": "The CI workflow's file-detection grep includes `.codex/agents/`: ``` git diff --name-only --diff-filter=ACMD \"$BASE\" \"$HEAD\" | grep -E '^\\.(opencode|claude|codex)/agents/' ``` But `mirror-sync-verify.cjs:17-20` `RUNTIME_MIRRORS` array only has `opencode` and `claude` entries \u2014 no `codex`. When a `.codex/agents/code.toml` path is passed to the checker, `agentNameFromPath()` extracts `code`, then `v",
+  "verify": "```bash grep -n 'RUNTIME_MIRRORS' .opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs grep -n 'codex.*agents' .github/workflows/agent-mirror-sync.yml ```",
+  "blast": "Medium. `.codex/agents/*.toml` drift is invisible to CI. The workflow claims to guard all three runtimes but only guards two."
+ },
+ {
+  "source": "devin-04",
+  "id": "F4",
+  "category": "CAT-1",
+  "claim": "Root `package.json` `\"dev\"` script references non-existent `src/3_staging/server.js`",
+  "path": "package.json:4",
+  "evidence": "`package.json` defines `\"dev\": \"node src/3_staging/server.js\"` but the `src/` directory does not exist at the repo root: ``` $ ls src/3_staging/server.js ls: src/3_staging/server.js: No such file or directory $ ls src/ ls: src/: No such file or directory ```",
+  "verify": "```bash cat package.json | grep -A1 '\"dev\"' ls src/3_staging/server.js ```",
+  "blast": "Low. `npm run dev` fails. The real package.json is `.opencode/package.json` (different deps: `@opencode-ai/plugin`, `vitest`, `vite`, `esbuild`)."
+ },
+ {
+  "source": "devin-04",
+  "id": "F5",
+  "category": "CAT-1",
+  "claim": "Root `package.json` dependencies (`chokidar`, `cors`, `express`) have zero imports in the codebase",
+  "path": "package.json:7-9",
+  "evidence": "`package.json` declares `chokidar`, `cors`, and `express` as dependencies. None are imported anywhere: ``` $ grep -r \"require.*chokidar\\|from ['\\\"]chokidar\" --include=\"*.js\" --include=\"*.cjs\" --include=\"*.mjs\" --include=\"*.ts\" . (no matches) $ grep -r \"require.*express\\|from ['\\\"]express['\\\"]\" --include=\"*.js\" --include=\"*.cjs\" --include=\"*.mjs\" --include=\"*.ts\" . (no matches) $ grep -r \"require.*",
+  "verify": "```bash grep -rn \"require.*chokidar\\|from ['\\\"]chokidar\" --include=\"*.{js,cjs,mjs,ts}\" . grep -rn \"require.*express\\|from ['\\\"]express['\\\"]\" --include=\"*.{js,cjs,mjs,ts}\" . ```",
+  "blast": "Low. Unused dependencies inflate install time and audit surface. The root `package.json` + `package-lock.json` (32 KB) appear vestigial from a prior project structure."
+ },
+ {
+  "source": "devin-04",
+  "id": "F6",
+  "category": "CAT-1",
+  "claim": "`karabiner.json` shortcut #5 references non-existent agent `write.md`",
+  "path": "karabiner.json (shortcut key Cmd+Ctrl+5)",
+  "evidence": "The Karabiner shortcut pastes `\"Create or update documentation with [runtime_agent_path]/write.md subagent(s)\"`. No `write.md` agent exists in `.opencode/agents/` or `.claude/agents/`. The 13 actual agents are: ai-council, code, context, debug, deep-alignment, deep-improvement, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, review. The documentation agent is `markdown.",
+  "verify": "```bash grep -o 'write\\.md' karabiner.json ls .opencode/agents/write.md .claude/agents/write.md 2>&1 ls .opencode/agents/markdown.md ```",
+  "blast": "Low. The shortcut pastes a dead reference into the clipboard; the AI runtime would fail to resolve `[runtime_agent_path]/write.md`."
+ },
+ {
+  "source": "devin-04",
+  "id": "F7",
+  "category": "CAT-4",
+  "claim": "`karabiner.json` is a personal macOS keyboard config misplaced in a public repo",
+  "path": "karabiner.json",
+  "evidence": "The file is a Karabiner-Elements complex-modifications profile with machine-specific keyboard shortcuts for AI workflows. It is not referenced by any framework config, CI workflow, or build process. It is not in `.gitignore`. It contains personal workflow shortcuts (clipboard pastes for sequential thinking, orchestrate dispatch, review dispatch).",
+  "verify": "```bash grep -rn 'karabiner' .github/ .opencode/ .claude/ .codex/ .cursor/ .devin/ opencode.json .gitignore 2>/dev/null | grep -v Binary ```",
+  "blast": "Low. No functional impact on the framework. Personal config in a public repo leaks workflow details and adds noise."
+ },
+ {
+  "source": "devin-04",
+  "id": "F8",
+  "category": "CAT-3",
+  "claim": "`.rename-engine-disposable` is scratch residue not in `.gitignore`",
+  "path": ".rename-engine-disposable",
+  "evidence": "42-byte file containing `\"semantic-rename-engine disposable fixture\"`. Not in `.gitignore`. Not referenced by any config, script, or workflow. Appears to be a disposable marker file from a rename-engine test or operation.",
+  "verify": "```bash cat .rename-engine-disposable grep -n 'rename-engine-disposable' .gitignore grep -rn 'rename-engine-disposable' .github/ .opencode/bin/ .opencode/scripts/ 2>/dev/null ```",
+  "blast": "Low. Stray file with no purpose."
+ },
+ {
+  "source": "devin-04",
+  "id": "F9",
+  "category": "CAT-5",
+  "claim": "`.codex/config.toml` MCP config drifted from `opencode.json`/`.claude/mcp.json` \u2014 missing 2 servers, different Node version",
+  "path": ".codex/config.toml",
+  "evidence": "`.codex/config.toml` defines 3 MCP servers (mk-spec-memory, mk_skill_advisor, mk_code_index). `opencode.json` and `.claude/mcp.json` define 5 (those 3 plus `sequential_thinking` and `code_mode`). The Codex config is missing `sequential_thinking` and `code_mode`. Additionally, `.codex/config.toml` hardcodes `/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node` for all servers, while `open",
+  "verify": "```bash grep -c 'mcp_servers' .codex/config.toml grep -c '\"mcpServers\"' opencode.json grep 'sequential_thinking\\|code_mode' .codex/config.toml grep 'node/v' .codex/config.toml opencode.json .claude/mcp.json node --version ```",
+  "blast": "Medium. Codex runtime lacks `sequential_thinking` and `code_mode` MCP servers. Machine-specific absolute Node paths break portability and diverge between runtimes."
+ },
+ {
+  "source": "devin-04",
+  "id": "F10",
+  "category": "CAT-5",
+  "claim": "`.claude/mcp.json` duplicates `opencode.json` MCP config \u2014 two sources of truth",
+  "path": ".claude/mcp.json + opencode.json",
+  "evidence": "Both files define the same 5 MCP servers (sequential_thinking, mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode) with identical env vars and args, but in different formats (Claude format vs OpenCode format). `.mcp.json` at repo root is a symlink to `.claude/mcp.json`, and `.cursor/mcp.json` is a symlink to `.mcp.json`. The env var blocks (including all `_NOTE_*` comments) are duplicated ",
+  "verify": "```bash grep -c 'mcpServers\\|\"mcp\"' .claude/mcp.json opencode.json grep '_NOTE_DB' .claude/mcp.json opencode.json ```",
+  "blast": "Medium. Config drift between the two copies is silent \u2014 no CI guard checks MCP config parity. A simpler shape: single source in `opencode.json`, with `.claude/mcp.json` generated from it by a format-converting sync script (analogous to `sync-agents.cjs` for `.codex/agents/*.toml`)."
+ },
+ {
+  "source": "devin-04",
+  "id": "F11",
+  "category": "CAT-1",
+  "claim": "`.github/hooks/scripts/` reference non-existent `dist/hooks/copilot/` directory",
+  "path": ".github/hooks/scripts/session-start.sh:11 + .github/hooks/scripts/user-prompt-submitted.sh:11",
+  "evidence": "Both scripts check for `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/session-prime.js` and `user-prompt-submit.js` respectively. The `copilot/` directory does not exist under `dist/hooks/`: ``` $ ls .opencode/skills/system-spec-kit/mcp-server/dist/hooks/ claude codex cursor devin (no copilot) ``` Both scripts have a fallback path (lines 12-17 in `session-start.sh`, lines 12-19 in",
+  "verify": "```bash ls .opencode/skills/system-spec-kit/mcp-server/dist/hooks/copilot/ 2>&1 grep -n 'copilot' .github/hooks/scripts/session-start.sh grep -n 'copilot' .github/hooks/scripts/user-prompt-submitted.sh ```",
+  "blast": "Low. GitHub Copilot integration falls back to a stub. The `copilot/` hooks were never built or were removed."
+ },
+ {
+  "source": "devin-04",
+  "id": "F12",
+  "category": "CAT-1",
+  "claim": "`routing-registry-drift.yml` trigger path references non-existent spec directory",
+  "path": ".github/workflows/routing-registry-drift.yml:18 and :33",
+  "evidence": "The workflow's `paths` trigger includes `.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**`. This directory does not exist. The `019-skill-routing-refactor/` spec tree has `015-cutover-hardening`, not `015-router-unification-program`: ``` $ ls .opencode/specs/sk-doc/019-skill-routing-refactor/ ... 015-cutover-hardening ... (no 015-router-unification-program) ```",
+  "verify": "```bash grep '015-router-unification-program' .github/workflows/routing-registry-drift.yml ls .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/ 2>&1 ls .opencode/specs/sk-doc/019-skill-routing-refactor/ | grep 015 ```",
+  "blast": "Low. The stale trigger path never fires; the workflow still runs on other valid triggers."
+ },
+ {
+  "source": "devin-04",
+  "id": "F13",
+  "category": "CAT-3",
+  "claim": "`.gitignore` has stale entries for paths that no longer exist + duplicate entries",
+  "path": ".gitignore",
+  "evidence": "Multiple stale entries reference paths that don't exist on disk: | Line(s) | Entry | Exists? | |---|---|---| | 25 | `.env.pre-pat-removal.bak` | No | | 255 | `/ai_systems` | No | | 256 | `/barter` | No | | 268 | `.opencode/barter` | No | | 271-272 | `.opencode/specs/barter` (duplicated) | Yes (but listed twice) | | 276-277 | `.claude/specs/barter` (duplicated) | Yes (but listed twice) | | 279-282 ",
+  "verify": "```bash ls /ai_systems /barter .opencode/barter .agents AGENTS_Barter.md .env.pre-pat-removal.bak 2>&1 grep -n 'barter' .gitignore grep -n '.agents/' .gitignore ```",
+  "blast": "Low. Dead `.gitignore` entries don't cause functional issues but add maintenance noise and obscure active entries."
+ },
+ {
+  "source": "devin-04",
+  "id": "F14",
+  "category": "CAT-1",
+  "claim": "`.env.example` is silently ignored by `.gitignore` `.env.*` pattern with no negation",
+  "path": ".gitignore:22 + .env.example",
+  "evidence": "`.gitignore:22` has pattern `.env.*` which matches `.env.example`. There is no `!.env.example` negation anywhere in the file. The file exists on disk but is silently ignored by git. `.env.example` is conventionally a tracked template file that documents required environment variables for new users.",
+  "verify": "```bash grep -n '\\.env\\.' .gitignore grep -n 'env\\.example' .gitignore ls .env.example ```",
+  "blast": "Low-Medium. New users cloning the repo won't receive `.env.example` through git. If it was force-added before the ignore rule, it may still be tracked \u2014 UNKNOWN (git commands blocked in this sandbox). A simpler shape: add `!.env.example` negation after line 22."
+ },
+ {
+  "source": "devin-05",
+  "id": "F1",
+  "category": "CAT-1",
+  "claim": "Test file `detector-regression-floor.vitest.ts.test.ts` is never collected by vitest (malformed extension) and has no importer",
+  "path": ".opencode/skills/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts",
+  "evidence": "The vitest config `include` glob is `scripts/tests/**/*.vitest.ts` (`.opencode/skills/system-spec-kit/vitest.config.ts:7-11`), which matches files whose name ends in `.vitest.ts`. This file's name ends in `.vitest.ts.test.ts`, so vitest never collects it. No `*.vitest.ts` file imports it (grep for `detector-regression-floor` across `**/*.vitest.ts` under `system-spec-kit` returns zero matches). Th",
+  "verify": "```bash ls .opencode/skills/system-spec-kit/scripts/tests/detector-regression-floor.vitest.ts.test.ts grep -A4 'include' .opencode/skills/system-spec-kit/vitest.config.ts ls .opencode/skills/system-spec-kit/scripts/tests/*.vitest.ts # does NOT list the .test.ts file grep -rl 'detector-regression-floor' .opencode/skills/system-spec-kit --include='*.vitest.ts' # empty ```",
+  "blast": "Renaming to `detector-regression-floor.vitest.ts` would add two new `it()` cases (\"keeps deterministic extractor provenance honest and output-stable\", \"keeps evidence-gap detector labelled as heuristic and preserves frozen outcomes\") to the suite \u2014 if either frozen outcome has drifted since the file was hidden, the rename will surface a real regression. Low risk otherwise; the file imports only ex"
+ },
+ {
+  "source": "devin-05",
+  "id": "F2",
+  "category": "CAT-2",
+  "claim": "`sk-code/benchmark/fixtures/sk-code/` legacy fixtures the owning README marks superseded, with no live caller",
+  "path": ".opencode/skills/sk-code/benchmark/fixtures/sk-code/ (4 files: sk-code-loadspeed-001.{private,public}.json, sk-code-motion-002.{private,public}.json)",
+  "evidence": "The owning README explicitly marks this folder legacy/superseded three times: `.opencode/skills/sk-code/benchmark/README.md:81` (`+-- fixtures/sk-code/ # Legacy synthetic fixtures, superseded by the playbook corpus`), `:89` (`| fixtures/sk-code/ | Two legacy fixtures, no longer the default corpus |`), and `:107` (run-label index row `Status = legacy`). The live successor is the `manual_testing_pla",
+  "verify": "```bash ls .opencode/skills/sk-code/benchmark/fixtures/sk-code/ grep -n 'fixtures/sk-code' .opencode/skills/sk-code/benchmark/README.md grep -rn 'benchmark/fixtures/sk-code' .opencode --include='*.ts' --include='*.cjs' --include='*.mjs' --include='*.js' --include='*.sh' # only README (specs excluded) ```",
+  "blast": "Removing the folder only affects reproducibility of the archived `009-sk-code-router-benchmarkability` spec runs, which already require a `--fixtures-dir` flag and target a superseded outputs dir. The current `router-final`/`live-final` runs use the playbook corpus and do not touch these fixtures. Safe to retire once the archived spec's reproducibility is no longer required."
+ },
+ {
+  "source": "devin-05",
+  "id": "F3",
+  "category": "CAT-4",
+  "claim": "`sk-design/benchmark/after-*` run-labels use `report.json`/`report.md` instead of the storage-standard `skill-benchmark-report.json`/`.md`, and three run-labels are unreferenced by the owning README",
+  "path": ".opencode/skills/sk-design/benchmark/{after-009,after-012-routing-rigor,after-016-hub-routing,after-018-transport-integration,after-022-coverage-fill}/",
+  "evidence": "The storage standard the owning README references (`sk-design/benchmark/README.md:63` cites `skill-benchmark-storage-guide.md`) mandates the canonical pair `skill-benchmark-report.json` + `skill-benchmark-report.md` per run-label (`.opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md:70-77` and `:147-148`). The five `after-*` folders instead hold `re",
+  "verify": "```bash ls .opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/ # report.json, report.md ls .opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/ # skill-benchmark-report.json, skill-benchmark-report.md ls .opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/ .opencode/skills/sk-design/benchmark/2026-07-07--after-016-hub-routing--live/ .opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/ .opencod",
+  "blast": "Renaming `report.json`/`report.md` \u2192 `skill-benchmark-report.json`/`.md` must be done as a pair (the `.md` header reads \"Rendered from report.json\", so the render source reference inside each `.md` also needs updating). Any consumer that scrapes `sk-design/benchmark/*/report.json` by name would break; a grep shows no such consumer outside the benchmark tree itself. Adding a run-label index is docu"
+ }
+]

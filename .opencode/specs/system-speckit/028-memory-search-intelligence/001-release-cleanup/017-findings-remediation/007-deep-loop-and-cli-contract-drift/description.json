@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/007-deep-loop-and-cli-contract-drift",
+  "description": "The orchestration tooling documents behavior its runtime does not implement",
+  "keywords": [
+    "orchestration",
+    "tooling",
+    "documents",
+    "behavior",
+    "runtime",
+    "implement"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "007",
+  "folderSlug": "deep-loop-and-cli-contract-drift",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

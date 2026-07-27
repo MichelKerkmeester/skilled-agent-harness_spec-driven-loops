@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/001-findings-triage-and-verification",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/002-repo-hygiene-and-residue",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/003-dead-code-removal",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/004-legacy-and-superseded-removal",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/005-misplacement-and-layout",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/006-hub-doc-runtime-drift",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/007-deep-loop-and-cli-contract-drift",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/008-runtime-mirror-and-mcp-config",
+    "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/009-overengineering-simplification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "findings remediation",
+      "017 remediation program",
+      "dead code remediation phases",
+      "audit findings fix program"
+    ],
+    "key_topics": [
+      "findings",
+      "remediation",
+      "program",
+      "dead",
+      "code",
+      "phases",
+      "audit",
+      "phase",
+      "produced",
+      "across",
+      "six",
+      "categories"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Remediation Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit in phase 016 produced 88 findings across six categories",
+    "created_at": "2026-07-27T08:40:54Z",
+    "last_save_at": "2026-07-27T10:45:59.310Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0a46bdb9a93f60a867534a4dc3372089c820c88fc449d1959c4a6408681e372a",
+    "source_doc_hashes": {
+      "spec.md": "0d8ab4e87373a244a5dda60bea21f6377db275d2a5ec73097e164be77090fee8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -13,7 +13,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit"
-    last_updated_at: "2026-07-27T05:50:00Z"
+    last_updated_at: "2026-07-27T08:56:02Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the phase spec, plan, tasks and checklist"
     next_safe_action: "Run the research program in section 4 before any findings work"
@@ -55,7 +55,7 @@ _memory:
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence/001-release-cleanup` |
 | **Phase** | 16 of 16 |
 | **Predecessor** | 015-manual-playbook-execution-sweep |
-| **Successor** | None (remediation is a separate follow-on phase) |
+| **Successor** | `../017-findings-remediation/spec.md` |
 | **Handoff Criteria** | A ranked, evidence-backed findings report exists and every finding carries a reproducible verification command |
 <!-- /ANCHOR:metadata -->
 
