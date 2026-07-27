@@ -110,10 +110,10 @@ developer_instructions = '''
 | Generated prompts | `node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs --check` | 0 ok / 1 drift |
 | Hooks discovery mirror | `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Prompt mirror identity | `node .opencode/commands/scripts/validate-command-references.cjs` | 0 ok / 1 violation |
-| Outbound hook install | `node .opencode/bin/install-codex-hooks.mjs --check` | 0 ok / **2 drift** / 1 error |
+| Outbound hook install | `node .opencode/bin/install-codex-hooks.mjs --check` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
-**Mind the exit code.** `install-codex-hooks.mjs` returns **2** for drift where every sibling returns 1. Any aggregator must treat 2 as drift, not as an error.
+**Orphaned entries.** Ownership is keyed on the adapter path, so renaming a hook script leaves the old entry unrecognised in `~/.codex/hooks.json` — where the preserve-third-party rule would keep it forever, invoking a file that no longer exists. The installer therefore treats **any `.opencode/` path missing on disk as its own orphan** and prunes it; paths outside `.opencode/` are never touched, whether or not they resolve. This is not hypothetical: the `mcp_server` → `mcp-server` rename left five dead entries across `SessionStart`, `UserPromptSubmit`, `Stop` and `PreCompact`, and `--check` reported OK the whole time because every *expected* entry was present.
 
 ---
 

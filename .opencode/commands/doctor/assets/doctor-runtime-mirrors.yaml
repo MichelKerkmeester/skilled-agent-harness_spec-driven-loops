@@ -52,7 +52,7 @@ execution:
     - "Run upstream_assets.codex_agents with --check. Covers the generated .codex/agents/*.toml. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = canonical dir missing."
-    - "Run upstream_assets.codex_hooks_installer with --check. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json. NOTE: this tool exits 2 on drift, not 1 — treat 2 as DRIFT, and only a non-zero value other than 1 or 2 as ERROR."
+    - "Run upstream_assets.codex_hooks_installer with --check. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .opencode adapter no longer exists on disk. Exit 0 = in sync, 1 = drift."
     - "Aggregate: report each surface with its own verdict rather than a single pass/fail, so the operator learns which mirror moved."
 
 # ─────────────────────────────────────────────────────────────────
