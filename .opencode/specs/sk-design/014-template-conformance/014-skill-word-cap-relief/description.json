@@ -1,0 +1,42 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/014-skill-word-cap-relief",
+  "description": "Prose-only reorganisation of design-interface/SKILL.md that reclaimed headroom against the 5,000-word hard cap, from 9 words to 240, by relocating the",
+  "keywords": [
+    "prose-only",
+    "reorganisation",
+    "design-interface",
+    "skill",
+    "reclaimed",
+    "headroom",
+    "against",
+    "000-word",
+    "hard",
+    "cap",
+    "words",
+    "relocating",
+    "motion",
+    "downstream",
+    "sequence",
+    "already-mapped",
+    "gate",
+    "reference",
+    "removing",
+    "third-copy",
+    "prose",
+    "leaving",
+    "parseable",
+    "router",
+    "block",
+    "byte-identical"
+  ],
+  "lastUpdated": "2026-07-27T18:46:06.967Z",
+  "specId": "014",
+  "folderSlug": "skill-word-cap-relief",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -107,3 +107,20 @@ A motion choice that survives all four steps is worth choreographing. Hand it to
 - **Settings drawer.** Occasional, orientation is the purpose, pointer-driven. Standard state transition.
 - **Onboarding success.** First-time, delight is allowed. Choreograph one moment.
 - **Row hover on a dense data table used all day.** Tens per day. Reduce to a near-instant color or background change, no movement, so it never slows a scanning power user.
+
+---
+
+## 7. THE FULL MOTION SEQUENCE
+
+The gate is step one of a fixed order. This section states the rest so the sequence lives with the gate that opens it, and it is the reason this reference loads first on every motion task.
+
+1. **Run the gate** (Section 6). Stop at the first no. A failed choice ships as an instant state change, not a downgrade.
+2. **Name the purpose and set the motion budget** for the surface, from the register motion dial (Section 5).
+3. **Choose timing, easing, staging and material** in `motion-strategy.md`: roughly `100-150ms` feedback, `200-300ms` state, `300-500ms` layout, and at most one earned `500-800ms` entrance.
+4. **Define the reduced-motion equivalent** before the animation is considered specified, using `performance-reduced-motion.md`.
+5. **Spec the pattern** on a card from `../../assets/motion/motion-pattern-cards.md`.
+6. **Clear the exit checklist** in `../../assets/motion/animate-presence-checklist.md` for any element that leaves the tree.
+7. **Clear the performance failure card** in `../../assets/motion/motion-performance-failure-card.md` before handoff.
+8. **Hand off to `sk-code`** through `../../../shared/sk-code-handoff.md`, carrying the motion budget as a locked value.
+
+Steps 5-7 are pass-or-fail artifacts, not notes: an unfilled card means the motion is not specified yet. The interface pre-flight card's motion section (`../../assets/interface-preflight-card.md` §10) is the checkable form of this whole ordering guarantee, and its binary boxes assume step 1 already ran.

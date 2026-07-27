@@ -45,7 +45,7 @@ Detect design intent and how much of the visual direction the brief fixes:
 
 Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. Once one of those transform verbs routes here, apply it through `references/design-process/transform-application.md` (the interface-side landing lane: shared application contract, per-verb ledgers, and fillable proof cards for bolder/quieter/distill/clarify/delight) rather than improvising the change. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, that is this mode's own pre-delivery gate (`assets/interface-preflight-card.md`), not a separate mode. `hierarchy`, `spacing`, `grid`, and token language are also this mode's own static-system work; only route out when `DESIGN.md` or `tokens.json` is a measured artifact, which goes to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence — the registry's alias list overrides this noun-based heuristic.
 
-This mode also owns the temporal layer (animation, transitions, micro-interactions, `AnimatePresence`, reduced motion), relocated in whole from the retired `motion` mode — see Section 3 "Motion Design Workflow" for the gate-first sequencing. If the static hierarchy is unclear before motion can help, resolve that first through this mode's static-system work rather than choreographing around an unclear layout.
+This mode also owns the temporal layer (animation, transitions, micro-interactions, `AnimatePresence`, reduced motion); Section 3 "Motion Design Workflow" carries the gate-first sequencing. If the static hierarchy is unclear before motion can help, resolve that first through this mode's static-system work rather than choreographing around an unclear layout.
 
 ```bash
 # Direction freedom (pseudo)
@@ -71,18 +71,18 @@ DESIGN TASK
 
 | Level | When to Load | Resource |
 | ----- | ------------ | -------- |
-| ALWAYS | Any design task | `references/design-process/design-principles.md` (palette, type, structure, motion, restraint) |
-| ALWAYS | The first step of any design task | `../shared/register.md` (Brand-vs-Product register) and `references/design-process/brief-to-dials.md` (Design Read intake to the dials). Load-and-prove loop is mandatory, not optional — full rationale: `references/design-process/resource-loading-notes.md` §1. |
+| ALWAYS | Any design task | `references/design-process/design-principles.md` |
+| ALWAYS | The first step of any design task | `../shared/register.md` and `references/design-process/brief-to-dials.md`. Load-and-prove loop is mandatory, not optional — full rationale: `references/design-process/resource-loading-notes.md` §1. |
 | ALWAYS | Any design or UI build task | `../shared/context-loading-contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates). Citation required, not just a background load — full rationale: `references/design-process/resource-loading-notes.md` §2. |
-| CONDITIONAL | A make-frame transform verb (bolder, quieter, distill, clarify, delight) already routed here | `references/design-process/transform-application.md` (shared application contract, per-verb ledgers, proof cards) |
+| CONDITIONAL | A make-frame transform verb (bolder, quieter, distill, clarify, delight) already routed here | `references/design-process/transform-application.md` |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
-| CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation-diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
-| CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux-quality-reference.md` (accessibility, motion, touch, responsive, forms, charts) |
-| CONDITIONAL | Producing or iterating on real UI (repo recreation, code-bound, a generation run) | `references/design-process/real-ui-loop.md` (ground in a system, reuse before generating, fidelity check, handoff) and `../shared/sk-code-handoff.md` (required build manifest for sk-code) |
-| CONDITIONAL | Final mechanical pass before shipping | `references/design-process/mechanical-defaults.md` (the layout gate) and `assets/interface-preflight-card.md` (the fill-in PASS or FAIL pre-flight card) |
-| CONDITIONAL | Writing placeholder content, names, or numbers | `references/design-process/copy-and-mock-data.md` (realistic mock content, no lorem, no AI-tell copy) |
-| CONDITIONAL | Redesigning an existing surface | `references/design-process/redesign-intake.md` (classify greenfield, preserve or overhaul, then protect URLs, nav labels, form fields, legal copy and locked tokens) |
-| CONDITIONAL | Grounding a direction in the local styles corpus | `corpus/README.md` and `corpus/relational-exemplar.mjs` (one mode-selected anchor plus an optional bounded contrast or rejected default, with a decision-only handoff) |
+| CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation-diversity.md` (seed-of-thought debias) |
+| CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux-quality-reference.md` |
+| CONDITIONAL | Producing or iterating on real UI (repo recreation, code-bound, a generation run) | `references/design-process/real-ui-loop.md` and `../shared/sk-code-handoff.md` |
+| CONDITIONAL | Final mechanical pass before shipping | `references/design-process/mechanical-defaults.md` (the layout gate) and `assets/interface-preflight-card.md` |
+| CONDITIONAL | Writing placeholder content, names, or numbers | `references/design-process/copy-and-mock-data.md` (the content gate) |
+| CONDITIONAL | Redesigning an existing surface | `references/design-process/redesign-intake.md` |
+| CONDITIONAL | Grounding a direction in the local styles corpus | `corpus/README.md` and `corpus/relational-exemplar.mjs` |
 | CONDITIONAL | Internal procedure support | `procedures/discovery-question-round.md`, `procedures/aesthetic-direction.md`, `procedures/wireframe-exploration.md`, `procedures/variation-set.md`, `procedures/prototype-flow-spec.md`, `procedures/deck-direction-spec.md`, `procedures/interaction-states-pass.md`, and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
 | ALWAYS | The first step of any motion/temporal task | `references/motion/animation-decision-framework.md` (the restraint gate — frequency, keyboard rule, purpose, register coupling — runs before any timing or easing choice) |
 | CONDITIONAL | Choreographing timing, easing, staging, or material for motion that survives the gate | `references/motion/motion-strategy.md` and `references/motion/corpus-map.md` |
@@ -91,11 +91,11 @@ DESIGN TASK
 | CONDITIONAL | Reduced motion, jank, scroll, blur/filter, performance constraints | `references/motion/performance-reduced-motion.md` and `assets/motion/motion-performance-failure-card.md` |
 | CONDITIONAL | Advanced popover, tooltip, CSS entry, debugging, or shorthand-under-load craft | `references/motion/advanced-craft.md` |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design-inventory.md` |
-| ON_DEMAND | Naming a realized look in one line as the default to critique against | The local styles corpus via `corpus/README.md` and `corpus/relational-exemplar.mjs`, which retrieves real shipped exemplars rather than hand-written descriptions |
-| INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS) or Refero (web). Routes through Code Mode, one reference, never copied — full initiative/ask/fallback rule in ALWAYS #8 and `references/design-grounding/design-references-mcp.md`. |
+| ON_DEMAND | Naming a realized look in one line as the default to critique against | The local styles corpus via `corpus/README.md` and `corpus/relational-exemplar.mjs` |
+| INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS) or Refero (web), through Code Mode — full initiative/ask/fallback rule in ALWAYS #8 and `references/design-grounding/design-references-mcp.md`. |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
-The private procedure-card selection table in Section 3 is part of this routing contract: after the public `interface` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
+The private procedure-card selection table in Section 3 is part of this routing contract.
 
 ### Smart Router (parseable intent model)
 
@@ -213,11 +213,11 @@ Run directly with Read, Glob, and Grep only. If subagents are unavailable or dis
 
 ### The Two-Pass Process
 
-The five-step flow (ground, brainstorm a token system, critique against the brief, build from the revised plan, self-critique) is diagrammed once already, in Phase Detection (Section 2) — not repeated here. Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full step detail, calibration, and writing rules are in [`references/design-process/design-principles.md`](references/design-process/design-principles.md).
+The five-step flow is diagrammed once in Phase Detection (Section 2) and not repeated here. Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full step detail, calibration, and writing rules are in [`references/design-process/design-principles.md`](references/design-process/design-principles.md).
 
 ### Motion Design Workflow
 
-Relocated in whole from the retired `motion` mode. Fixed order, gate first: **run the restraint gate** ([`references/motion/animation-decision-framework.md`](references/motion/animation-decision-framework.md) — frequency, keyboard rule, purpose, register dial, stop at the first no) before any timing or easing choice; a failed choice ships as an instant state change, not a downgrade. What survives gets a named purpose, a motion budget, timing/easing/material from [`references/motion/motion-strategy.md`](references/motion/motion-strategy.md) (`100-150ms` feedback, `200-300ms` state, `300-500ms` layout, `500-800ms` one earned entrance), and a reduced-motion equivalent. Spec it with [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md), clear [`assets/motion/animate-presence-checklist.md`](assets/motion/animate-presence-checklist.md) for any exit and [`assets/motion/motion-performance-failure-card.md`](assets/motion/motion-performance-failure-card.md) before handing off to `sk-code` via `../shared/sk-code-handoff.md`.
+Fixed order, gate first: **run the restraint gate** ([`references/motion/animation-decision-framework.md`](references/motion/animation-decision-framework.md) — frequency, keyboard rule, purpose, register dial, stop at the first no) before any timing or easing choice; a failed choice ships as an instant state change, not a downgrade. What survives follows the eight-step sequence in §7 of that same gate reference — purpose and budget, timing/easing/material, reduced-motion equivalent, then the three pass-or-fail cards and the `sk-code` handoff.
 
 The pre-flight card's motion section (§10 of `assets/interface-preflight-card.md`) is the checkable form of this ordering guarantee: its binary boxes assume the gate already ran.
 
@@ -292,7 +292,7 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`references/design-process/design-principles.md`](references/design-process/design-principles.md) - Grounding, principles, the two-pass process, AI-default calibration, restraint, self-critique, interface writing. The default-loaded authority.
 - [`references/design-process/ux-quality-reference.md`](references/design-process/ux-quality-reference.md) - The objective quality-floor pass/fail gate. Apply after the direction is set.
 - [`references/design-grounding/design-inventory.md`](references/design-grounding/design-inventory.md) - Using a real design system as reuse-ground or named default to critique against. Never a chooser.
-- [`references/design-grounding/design-references-mcp.md`](references/design-grounding/design-references-mcp.md) - Reading real-world shipped UI live via Mobbin/Refero to name and deviate from the category default. One reference, never copied, never a chooser.
+- [`references/design-grounding/design-references-mcp.md`](references/design-grounding/design-references-mcp.md) - Reading real-world shipped UI live via Mobbin/Refero to name and deviate from the category default.
 - [`references/mcp-tooling/mobbin-tools.md`](references/mcp-tooling/mobbin-tools.md) - Mobbin MCP tool catalog: arguments, Code Mode call convention, result shape, troubleshooting.
 - [`references/mcp-tooling/refero-tools.md`](references/mcp-tooling/refero-tools.md) - Pointer to the canonical `mcp-refero` transport packet (mcp-tooling hub) plus the judgment-side styles-first framing that stays here.
 - [`references/design-process/variation-diversity.md`](references/design-process/variation-diversity.md) - Seed-of-thought debias for two-or-more directions. Consult only when multiple directions are requested.
@@ -312,23 +312,25 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`references/motion/micro-interactions.md`](references/motion/micro-interactions.md) - Feedback, loading, gestures, delight, and morphing icons.
 - [`references/motion/animate-presence-patterns.md`](references/motion/animate-presence-patterns.md) - `motion/react` and `AnimatePresence` patterns.
 - [`references/motion/performance-reduced-motion.md`](references/motion/performance-reduced-motion.md) - Performance, FLIP, scroll, layers, blur/filter, and reduced-motion guidance.
-- [`references/motion/advanced-craft.md`](references/motion/advanced-craft.md) - Compact advanced craft for origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
+- [`references/motion/advanced-craft.md`](references/motion/advanced-craft.md) - Origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging, Framer Motion shorthand caveats under load.
 - [`references/motion/corpus-map.md`](references/motion/corpus-map.md) - Source traceability for the distilled motion corpus.
-- [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md) - Per-pattern motion spec cards (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop).
+- [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md) - Per-pattern motion spec cards, one per interaction type.
 - [`assets/motion/animate-presence-checklist.md`](assets/motion/animate-presence-checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
 - [`assets/motion/motion-performance-failure-card.md`](assets/motion/motion-performance-failure-card.md) - Build-side failure-mode card for motion that drops frames.
-- [`procedures/discovery-question-round.md`](procedures/discovery-question-round.md) - Private question-round support for under-specified briefs.
-- [`procedures/aesthetic-direction.md`](procedures/aesthetic-direction.md) - Private direction-setting support for greenfield or weakly grounded systems.
-- [`procedures/wireframe-exploration.md`](procedures/wireframe-exploration.md) - Private low-fidelity structure/storyboard exploration support.
-- [`procedures/variation-set.md`](procedures/variation-set.md) - Private support for materially distinct design options.
-- [`procedures/prototype-flow-spec.md`](procedures/prototype-flow-spec.md) - Private prototype-flow spec support before `sk-code` implementation.
-- [`procedures/deck-direction-spec.md`](procedures/deck-direction-spec.md) - Private deck/presentation planning support.
-- [`procedures/interaction-states-pass.md`](procedures/interaction-states-pass.md) - Private support for interaction-state matrices, feedback, transitions, and reduced-motion expectations.
-- [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared private final-polish orchestration when interface owns visual-direction repair.
+Private procedure cards — request shape, card, and required proof are tabulated in Section 3; at most one is selected per task.
+
+- [`procedures/discovery-question-round.md`](procedures/discovery-question-round.md) - Under-specified briefs.
+- [`procedures/aesthetic-direction.md`](procedures/aesthetic-direction.md) - Greenfield or weakly grounded systems.
+- [`procedures/wireframe-exploration.md`](procedures/wireframe-exploration.md) - Low-fidelity structure and storyboards.
+- [`procedures/variation-set.md`](procedures/variation-set.md) - Materially distinct design options.
+- [`procedures/prototype-flow-spec.md`](procedures/prototype-flow-spec.md) - Prototype flows before `sk-code`.
+- [`procedures/deck-direction-spec.md`](procedures/deck-direction-spec.md) - Decks and presentations.
+- [`procedures/interaction-states-pass.md`](procedures/interaction-states-pass.md) - Interaction-state matrices and feedback coverage.
+- [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared final-polish orchestration.
 
 ### Manual Testing Playbook
 
-Manual testing scenarios live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-scenario files under `manual_testing_playbook/<NN>--<topic>/`. Validate structure with `python3 .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md`; execute scenarios in a real session for behavioral verification.
+Manual testing scenarios live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-topic files under `manual-testing-playbook/<topic>/`. Validate structure with `python3 .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md`; execute scenarios in a real session for behavioral verification.
 
 ### Reference Loading Notes
 
@@ -363,7 +365,7 @@ Full reference-loading discipline notes (design_principles.md authority, quality
 - **`sk-code`'s code-review mode** can audit the built UI against the standards sk-code enforces.
 - **`mcp-chrome-devtools`** drives a real browser to screenshot the build for the self-critique step.
 - **`mcp-figma`** is the sibling transport to Figma Desktop. This skill's judgment applies whenever a Figma read or export feeds a design decision.
-- **Mobbin and Refero** (via Code Mode, `mobbin.*` / `refero.*`; Refero as the `mcp-refero` transport over `mcp-code-mode`) are optional real-world UI reference libraries for naming the category's real-world default so a design can deviate from it deliberately. Read live, one reference, never a chooser, never copied. `references/design-grounding/design-references-mcp.md` owns the discipline.
+- **Mobbin and Refero** (via Code Mode, `mobbin.*` / `refero.*`; Refero as the `mcp-refero` transport over `mcp-code-mode`) are optional real-world UI reference libraries. ALWAYS #8 owns the initiative rule; `references/design-grounding/design-references-mcp.md` owns the discipline.
 
 ### Knowledge Base Dependencies
 
@@ -373,6 +375,6 @@ Full reference-loading discipline notes (design_principles.md authority, quality
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) loads `references/design-process/design-principles.md` for every design task. Hand implementation to `sk-code`, use `mcp-chrome-devtools` for screenshot-based self-critique, and reach for `system-spec-kit` when the work needs packet documentation.
+The router (Section 2) loads `references/design-process/design-principles.md` on every design task; Section 7 names the related skills. Reach for `system-spec-kit` when the work needs packet documentation.
 
 Design guidance in this packet is original to sk-design.

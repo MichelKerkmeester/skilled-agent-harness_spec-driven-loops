@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/014-skill-word-cap-relief",
+  "spec_folder": "sk-design/014-template-conformance/014-skill-word-cap-relief",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill word cap relief",
+      "design-interface SKILL.md word count",
+      "sk-design 5000 word cap",
+      "motion prose relocation",
+      "skill word cap relief plan",
+      "design-interface SKILL.md trim plan",
+      "motion prose relocation plan",
+      "skill word cap relief tasks",
+      "design-interface SKILL.md trim tasks",
+      "skill word cap relief checklist",
+      "design-interface SKILL.md verification",
+      "skill word cap relief summary"
+    ],
+    "key_topics": [
+      "skill",
+      "word",
+      "cap",
+      "relief",
+      "design-interface",
+      "count",
+      "sk-design",
+      "motion",
+      "prose",
+      "relocation",
+      "plan",
+      "trim"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-interface/references/motion/animation-decision-framework.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "animation-decision-framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/references/motion/animation-decision-framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reclaim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Loading Levels",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core References",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Motion Design Workflow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`design-interface/SKILL.md` measured 4,991 words against the 5,000-word hard cap enforced by `packageskill.py` (`MAXSKILLMDWORDS`) — nine words of headroom",
+    "created_at": "2026-07-27T18:44:01.993Z",
+    "last_save_at": "2026-07-27T18:46:10.794Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a28861ef752b2b025f57799f2dcba0c80d75ec3769bee556d66c27d64b705bc9",
+    "source_doc_hashes": {
+      "spec.md": "37c0b275e701f697d917f2dd2026c93b4c56edc03e50d9ab1ed271d20b8bb225",
+      "plan.md": "75f25e716691929694ae775e030a019e44f6c7720049be84b9b4b92f3bc4dfd0",
+      "tasks.md": "840b622ccfa1a9a03e2c2c16dbaa0499e07c56ba01feadfddd9a2f9829307021",
+      "checklist.md": "39fecbe2cab2258da5cadf35604438c7b5d51e603d7518c3e300038e43aa7abf",
+      "implementation-summary.md": "a1e0e0f3873f78005dc4edd530448ec166179163fb6d80360b687ee85cd63136"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
