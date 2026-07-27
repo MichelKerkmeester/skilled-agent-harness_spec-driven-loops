@@ -14,6 +14,7 @@
 # OS-generated files
 # ═══════════════════════════════════════════════════════════════════════════════
 .DS_Store
+.rename-engine-disposable
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Environment & local configuration
@@ -211,6 +212,7 @@ code-graph.sqlite
 # Logs
 # ═══════════════════════════════════════════════════════════════════════════════
 *.log
+*.log.*
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Python
@@ -269,21 +271,17 @@ _sandbox
 .opencode/specs/ai-systems
 .opencode/specs/anobel.com
 .opencode/specs/barter
-.opencode/specs/barter
 
 .claude/specs/ai-systems
 .claude/specs/anobel.com
-.claude/specs/barter
 .claude/specs/barter
 
 .codex/specs/ai-systems
 .codex/specs/anobel.com
 .codex/specs/barter
-.codex/specs/barter
 
 .agents/specs/ai-systems
 .agents/specs/anobel.com
-.agents/specs/barter
 .agents/specs/barter
 
 # ───────────────────────────────────────────
