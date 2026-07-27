@@ -16,7 +16,8 @@
       "devin AGENT.md",
       "devin agents skills rules parity plan",
       "devin agents skills rules parity tasks",
-      "devin agents skills rules parity checklist"
+      "devin agents skills rules parity checklist",
+      "devin agents skills rules parity summary"
     ],
     "key_topics": [
       "devin",
@@ -29,16 +30,18 @@
       "plan",
       "tasks",
       "checklist",
-      "user",
-      "asked"
+      "summary",
+      "user"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      ".devin/agents/code-reviewer/AGENT.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,6 +66,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/code-reviewer/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -156,14 +171,14 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "native",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -172,37 +187,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have.\" Live investigation during the 5-iteration deep-research pass found a mixed picture for Devin specifically:",
     "created_at": "2026-07-27T06:09:14.024Z",
-    "last_save_at": "2026-07-27T06:18:49.784Z",
+    "last_save_at": "2026-07-27T09:01:50.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ceb508aaa9d5c0f1918f1fd2faa614c124082fb761ed43090ff127c4f6a615e9",
+    "source_fingerprint": "sha256:d65e9cfe93679acacf45c69b301d42663844b6a39f5891c4fd1ba05b6c0f7d52",
     "source_doc_hashes": {
-      "spec.md": "63fb4175b81e82ec670e586494d895f76768884f9bb9c1bea91eaf783743d25c",
-      "plan.md": "1fc428587d526c500f40e14ce8ba9c9c0ff187f49da29e7d97a97f9dc0fe7baf",
-      "tasks.md": "7225f6ca58757cb6605a9a0c5388d830e5e0749c4f8c08bd5e69b98f3b018cf8",
-      "checklist.md": "cfe8573b62640b75b222c8544a00eb2ae0781b362bd56c8256b059dbf49312ce"
+      "spec.md": "886e13b27120bfc792549a4d7b8a4c2b2bf91a07c98b813538f132fb4f86dee6",
+      "plan.md": "d38a785417703722b96a4fe81e747338f21e1ffd2cac8efdd73d10a887c1bb34",
+      "tasks.md": "c4f20c6e51ffc4c79a4c15ddd575f891328ef6182d41fb25de797505f2adda6a",
+      "checklist.md": "35bea174619e98d70aac56ffc6d3beb370c9b088409c2c79ec8a7fb231dc7c4c",
+      "implementation-summary.md": "cb839794c028c03b2f7e47f10e877146a68da41eaa60c52aa71c420ed83cf47c"
     },
     "last_active_child_id": null,
     "last_active_at": null

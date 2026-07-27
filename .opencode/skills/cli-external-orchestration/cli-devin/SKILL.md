@@ -254,6 +254,59 @@ The calling AI is the conductor; Devin's `run_subagent` tool spawns independent 
 
 Subagents run foreground (parent pauses) or background (parallel, auto-deny unapproved tools). The `run_subagent` tool takes a profile, not a model — to pin a model on a write-capable subagent, use a custom AGENT.md with a `model:` field.
 
+### Devin Skills, Rules, and Native Agent Profiles
+
+The installed Devin CLI discovers repository skills and rules that are already present; this phase does not add adapters for either mechanism. On Devin `3000.2.17`, the live `devin skills list` output included these repo-local packets:
+
+```text
+  /sk-doc [user,model] (./.opencode/skills/sk-doc)
+  /cli-external-orchestration [user,model] (./.opencode/skills/cli-external-orchestration)
+  /sk-git [user,model] (./.opencode/skills/sk-git)
+  /mcp-tooling [user,model] (./.opencode/skills/mcp-tooling)
+  /mcp-code-mode [user,model] (./.opencode/skills/mcp-code-mode)
+  /system-skill-advisor [user,model] (./.opencode/skills/system-skill-advisor)
+  /system-spec-kit [user,model] (./.opencode/skills/system-spec-kit)
+  /sk-code [user,model] (./.opencode/skills/sk-code)
+  /system-code-graph [user,model] (./.opencode/skills/system-code-graph)
+  /system-deep-loop [user,model] (./.opencode/skills/system-deep-loop)
+  /sk-prompt [user,model] (./.opencode/skills/sk-prompt)
+  /sk-design [user,model] (./.opencode/skills/sk-design)
+```
+
+The phase's live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.opencode/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.
+
+The live `devin rules list` output was:
+
+```text
+Available Rules
+
+  global_rules [Windsurf] always-on
+  CLAUDE [Claude] always-on
+  AGENTS [Standard] always-on
+  CLAUDE [Claude] always-on
+```
+
+This means root `CLAUDE.md`/`AGENTS.md` context is already surfaced by Devin. It is discovery behavior to document, not a build gap.
+
+The first native proof profile is `.devin/agents/code-reviewer/AGENT.md`. It uses Devin's documented `allowed-tools` field with `read`, `grep`, `glob`, and `exec`, and denies `write` and `edit`. Invoke it by asking Devin to target the profile explicitly:
+
+```bash
+command -v devin
+devin -p --model adaptive --permission-mode auto \
+  "Use the code-reviewer subagent to review the current diff for correctness, security, and repository-convention consistency. Cite file paths and line numbers." \
+  2>&1
+```
+
+The native profile format is documented by Devin at [docs.devin.ai/cli/subagents](https://docs.devin.ai/cli/subagents). It is experimental and uses `.devin/agents/[name]/AGENT.md` with YAML fields such as `name`, `description`, `model`, `allowed-tools`, `permissions`, and `max-nesting`.
+
+#### Installed-Version Import Correction
+
+Devin's docs claim that `.claude/agents/*.md` files are automatically imported. A live probe against the installed Devin `3000.2.17` found the repo's 13-file `.claude/agents/` directory but reported that none of those profiles were usable through `run_subagent`; only `subagent_explore` and `subagent_general` were dispatchable. This is a confirmed installed-version finding, not an assumption. A native `.devin/agents/[name]/AGENT.md` profile is required for a custom profile here. The older import note in the reference material must not be treated as working behavior for this version.
+
+#### Devin Has No Command-File System
+
+Commands are not a missing Devin parity feature. The installed `devin --help` lists `auth`, `mcp`, `models`, `rules`, `skills`, `plugins`, `cloud`, `list`, `update`, `version`, `migrate`, `sandbox`, `setup`, `uninstall`, `acp`, `shell`, and `help`; it has no `commands` subcommand. A direct `devin commands` probe returns `error: unexpected argument 'commands' found`, and the installed docs expose no command-file directory. This is an architectural non-concept for Devin, not a build gap.
+
 ### Cloud Handoff
 
 Devin's unique `/handoff` command transfers the current session to a cloud Devin session with its own VM, shell, browser, and full repo access. Use for long-running tasks, complex refactors, CI-like validation, browser-dependent workflows, and parallel execution. Full mechanics and state transfer: [cloud-handoff.md](./references/cloud-handoff.md).

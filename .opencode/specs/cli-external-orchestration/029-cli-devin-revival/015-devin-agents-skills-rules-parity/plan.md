@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity"
-    last_updated_at: "2026-07-27T07:00:00Z"
+    last_updated_at: "2026-07-27T11:15:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase re-scaffolded (Planned)."
-    next_safe_action: "Fetch live AGENT.md format before writing any file."
+    recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."
+    next_safe_action: "None; phase complete."
     blockers: []
     key_files: ["spec.md", "plan.md"]
     session_dedup:
@@ -55,9 +55,9 @@ Fetch the live-confirmed `.devin/agents/[name]/AGENT.md` format, build one real 
 - [x] Dependencies identified. [EVIDENCE: phase 008 established the live-probe-before-build discipline.]
 
 ### Definition of Done
-- [ ] All acceptance criteria met. [EVIDENCE: pending implementation.]
-- [ ] Live-docs format citation present before any file write. [EVIDENCE: pending implementation.]
-- [ ] Live probe confirms the new profile resolves. [EVIDENCE: pending implementation.]
+- [x] All acceptance criteria met. [EVIDENCE: see `implementation-summary.md` verification table.]
+- [x] Live-docs format citation present before any file write. [EVIDENCE: `docs.devin.ai/cli/subagents` cited before `.devin/agents/code-reviewer/AGENT.md` was created.]
+- [x] Live probe confirms the new profile resolves. [EVIDENCE: `devin -p "List every subagent profile..."` lists `code-reviewer`; a follow-up dispatch through it ran and returned a real review.]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -96,18 +96,18 @@ Matrix axes: mechanism (skills/rules/agents/commands), status (working/gap/non-c
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Live-docs verification
-- [ ] Fetch the current Devin CLI docs for `.devin/agents/[name]/AGENT.md` format.
-- [ ] Cite the confirmed format (URL or `--help` output) in `implementation-summary.md` before writing any file.
-- [ ] If the fetch contradicts the mechanism's existence, halt and escalate per the Logic-Sync Protocol instead of building.
+- [x] Fetch the current Devin CLI docs for `.devin/agents/[name]/AGENT.md` format. [EVIDENCE: `docs.devin.ai/cli/subagents`, located via `docs.devin.ai/llms.txt` after the guessed `.../extensibility/subagents` path 404'd.]
+- [x] Cite the confirmed format (URL or `--help` output) in `implementation-summary.md` before writing any file.
+- [x] If the fetch contradicts the mechanism's existence, halt and escalate per the Logic-Sync Protocol instead of building. [EVIDENCE: not triggered; the fetch confirmed the mechanism exists and matched the repo's existing documentation.]
 
 ### Phase 2: Build and document
-- [ ] Build one real `.devin/agents/<name>/AGENT.md` profile matching the confirmed format.
-- [ ] Document `devin skills list`/`devin rules list` working behavior in `cli-devin/SKILL.md`, citing live command output.
-- [ ] Record the commands non-applicability decision explicitly.
+- [x] Build one real `.devin/agents/<name>/AGENT.md` profile matching the confirmed format.
+- [x] Document `devin skills list`/`devin rules list` working behavior in `cli-devin/SKILL.md`, citing live command output.
+- [x] Record the commands non-applicability decision explicitly.
 
 ### Phase 3: Verification and closeout
-- [ ] Live-probe `devin -p` dispatching `run_subagent` targeting the new profile; confirm resolution.
-- [ ] Run phase 015 strict and recursive parent strict validation.
+- [x] Live-probe `devin -p` dispatching `run_subagent` targeting the new profile; confirm resolution. [EVIDENCE: profile lists as available; a real dispatch through it ran and returned a review.]
+- [x] Run phase 015 strict and recursive parent strict validation. [EVIDENCE: see checklist.md CHK-050.]
 <!-- /ANCHOR:phases -->
 
 ---
