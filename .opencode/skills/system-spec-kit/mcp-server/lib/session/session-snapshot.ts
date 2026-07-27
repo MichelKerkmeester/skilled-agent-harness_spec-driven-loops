@@ -2,22 +2,11 @@
 // MODULE: Session Snapshot
 // ───────────────────────────────────────────────────────────────
 // Lightweight read-only snapshot of session state.
-// Aggregates metrics, graph freshness, and priming status into a
-// single object for buildServerInstructions() and agent bootstrap.
+// Aggregates metrics and priming status into a single object for
+// buildServerInstructions() and agent bootstrap.
 
 import { getSessionMetrics, computeQualityScore, getLastToolCallAt } from './context-metrics.js';
 import { isSessionPrimed, getLastActiveSessionId } from '../../hooks/memory-surface.js';
-import {
-  getGraphFreshnessFromMarker,
-  getGraphStatsFromMarker,
-} from '../code-graph-boundary.js';
-import { trustStateFromStructuralStatus } from '../context/shared-payload.js';
-// StructuralBootstrapContract now lives in a neutral seam
-// module so memory-surface and session-snapshot can both depend on it
-// without creating a value-level dependency cycle. The re-export keeps every
-// existing consumer importing the type from this module path.
-import type { StructuralBootstrapContract } from './structural-bootstrap-contract.js';
-export type { StructuralBootstrapContract };
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -26,7 +15,6 @@ export type { StructuralBootstrapContract };
 export interface SessionSnapshot {
   specFolder: string | null;
   currentTask: string | null;
-  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
   sessionQuality: 'healthy' | 'degraded' | 'critical' | 'unknown';
   lastToolCallAgoMs: number | null;
   primed: boolean;
@@ -34,87 +22,7 @@ export interface SessionSnapshot {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2. CONSTANTS
-──────────────────────────────────────────────────────────────── */
-
-const STRUCTURAL_CONTRACT_MAX_TOKENS = 500;
-
-/* ───────────────────────────────────────────────────────────────
-   3. HELPERS
-──────────────────────────────────────────────────────────────── */
-
-function resolveGraphFreshness(): SessionSnapshot['graphFreshness'] {
-  return getGraphFreshnessFromMarker();
-}
-
-function estimateTextTokens(text: string): number {
-  return Math.ceil(text.length / 4);
-}
-
-function truncateTextToTokenBudget(text: string, maxTokens: number): string {
-  if (maxTokens <= 0) {
-    return '';
-  }
-
-  if (estimateTextTokens(text) <= maxTokens) {
-    return text;
-  }
-
-  const maxChars = Math.max(0, (maxTokens * 4) - 3);
-  return `${text.slice(0, maxChars).trimEnd()}...`;
-}
-
-function estimateStructuralContractTokens(
-  summary: string,
-  highlights: string[] | undefined,
-  recommendedAction: string,
-): number {
-  return estimateTextTokens([
-    summary,
-    ...(highlights ?? []),
-    recommendedAction,
-  ].join('\n'));
-}
-
-function fitStructuralContractBudget(
-  summary: string,
-  highlights: string[] | undefined,
-  recommendedAction: string,
-): {
-  summary: string;
-  highlights: string[] | undefined;
-  recommendedAction: string;
-} {
-  let fittedSummary = summary;
-  let fittedHighlights = highlights ? [...highlights] : undefined;
-  let fittedRecommendedAction = recommendedAction;
-
-  while (fittedHighlights && fittedHighlights.length > 0
-    && estimateStructuralContractTokens(fittedSummary, fittedHighlights, fittedRecommendedAction) > STRUCTURAL_CONTRACT_MAX_TOKENS) {
-    fittedHighlights = fittedHighlights.slice(0, -1);
-  }
-
-  if (estimateStructuralContractTokens(fittedSummary, fittedHighlights, fittedRecommendedAction) > STRUCTURAL_CONTRACT_MAX_TOKENS) {
-    const reservedTokens = estimateStructuralContractTokens('', fittedHighlights, fittedRecommendedAction);
-    const summaryBudget = Math.max(40, STRUCTURAL_CONTRACT_MAX_TOKENS - reservedTokens);
-    fittedSummary = truncateTextToTokenBudget(fittedSummary, summaryBudget);
-  }
-
-  if (estimateStructuralContractTokens(fittedSummary, fittedHighlights, fittedRecommendedAction) > STRUCTURAL_CONTRACT_MAX_TOKENS) {
-    const reservedTokens = estimateStructuralContractTokens(fittedSummary, fittedHighlights, '');
-    const actionBudget = Math.max(20, STRUCTURAL_CONTRACT_MAX_TOKENS - reservedTokens);
-    fittedRecommendedAction = truncateTextToTokenBudget(fittedRecommendedAction, actionBudget);
-  }
-
-  return {
-    summary: fittedSummary,
-    highlights: fittedHighlights,
-    recommendedAction: fittedRecommendedAction,
-  };
-}
-
-/* ───────────────────────────────────────────────────────────────
-   4. PUBLIC API
+   2. PUBLIC API
 ──────────────────────────────────────────────────────────────── */
 
 /** Build a read-only snapshot of the current session state. */
@@ -133,9 +41,6 @@ export function getSessionSnapshot(): SessionSnapshot {
       currentTask = metrics.currentTask;
     }
   } catch { /* metrics unavailable */ }
-
-  // Graph freshness
-  const graphFreshness = resolveGraphFreshness();
 
   // Quality score
   let sessionQuality: SessionSnapshot['sessionQuality'] = 'unknown';
@@ -158,108 +63,16 @@ export function getSessionSnapshot(): SessionSnapshot {
     primed = primingSessionId ? isSessionPrimed(primingSessionId) : false;
   } catch { /* not primed */ }
 
-  // Build routing recommendation
-  const routingParts: string[] = [];
-  if (graphFreshness === 'fresh') {
-    routingParts.push('structural queries (callers, deps) → code_graph_query');
-  }
-  routingParts.push('exact text/regex → Grep');
-  const routingRecommendation = routingParts.join(' | ');
+  // Structural lookups once routed to a graph index; text search is now the
+  // only retrieval surface, so the recommendation no longer branches.
+  const routingRecommendation = 'exact text/regex → Grep';
 
   return {
     specFolder,
     currentTask,
-    graphFreshness,
     sessionQuality,
     lastToolCallAgoMs,
     primed,
     routingRecommendation,
-  };
-}
-
-/**
- * Build a structural bootstrap contract for a given surface.
- * Reuses resolveGraphFreshness() and getGraphStats() from this module.
- * Keeps output compact (targets 250-400 tokens, ceiling 500).
- */
-export function buildStructuralBootstrapContract(
-  sourceSurface: StructuralBootstrapContract['sourceSurface']
-): StructuralBootstrapContract {
-  const graphFreshness = resolveGraphFreshness();
-
-  let status: StructuralBootstrapContract['status'];
-  if (graphFreshness === 'fresh') {
-    status = 'ready';
-  } else if (graphFreshness === 'stale') {
-    status = 'stale';
-  } else {
-    status = 'missing';
-  }
-
-  let summary: string;
-  let highlights: string[] | undefined;
-
-  if (status === 'ready' || status === 'stale') {
-    try {
-      const stats = getGraphStatsFromMarker();
-      if (!stats) {
-        throw new Error('code graph readiness marker has no stats');
-      }
-      const freshnessLabel = status === 'stale' ? 'stale' : 'fresh';
-      summary = `Code graph: ${stats.totalFiles} files, ${stats.totalNodes} nodes, ${stats.totalEdges} edges (${freshnessLabel})`;
-      const topKinds = Object.entries(stats.nodesByKind)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
-      if (topKinds.length > 0) {
-        highlights = topKinds.map(([kind, count]) => `${kind}: ${count}`);
-      }
-    } catch {
-      summary = status === 'stale'
-        ? 'Code graph data is stale — structural context may be outdated'
-        : 'Code graph available (structural context ready)';
-    }
-  } else {
-    summary = 'No structural context available — code graph is empty or unavailable';
-  }
-
-  let recommendedAction: string;
-  if (status === 'ready') {
-    recommendedAction = 'Structural context available. Use code_graph_query for structural lookups.';
-  } else if (status === 'stale') {
-    recommendedAction = 'Use a structural read to trigger bounded inline refresh when safe, or run code_graph_scan for broader stale states.';
-  } else {
-    recommendedAction = sourceSurface === 'session_bootstrap'
-      ? 'Run code_graph_scan to populate structural context, then re-run session_bootstrap.'
-      : 'Call session_bootstrap first. Then run code_graph_scan if structural context is needed.';
-  }
-
-  const fittedContract = fitStructuralContractBudget(summary, highlights, recommendedAction);
-
-  return {
-    status,
-    summary: fittedContract.summary,
-    highlights: fittedContract.highlights,
-    recommendedAction: fittedContract.recommendedAction,
-    sourceSurface,
-    provenance: {
-      producer: 'session_snapshot',
-      sourceSurface,
-      trustState: trustStateFromStructuralStatus(status),
-      generatedAt: new Date().toISOString(),
-      lastUpdated: status === 'ready' || status === 'stale'
-        ? (() => {
-          try {
-            const stats = getGraphStatsFromMarker();
-            if (!stats) {
-              return null;
-            }
-            return stats.lastScanTimestamp ?? null;
-          } catch {
-            return null;
-          }
-        })()
-        : null,
-      sourceRefs: ['code-graph-db', 'session-snapshot'],
-    },
   };
 }

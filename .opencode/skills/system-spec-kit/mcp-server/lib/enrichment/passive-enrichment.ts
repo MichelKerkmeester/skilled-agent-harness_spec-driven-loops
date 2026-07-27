@@ -13,7 +13,6 @@
 //   - Recursion guard (no enrichment of enrichment)
 
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
-import { callCodeGraphTool } from '../code-graph-boundary.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -70,69 +69,9 @@ function extractMentionedPaths(text: string): string[] {
   return [...matches];
 }
 
-function collectGraphSymbols(payload: Record<string, unknown>): string[] {
-  const data = typeof payload.data === 'object' && payload.data !== null && !Array.isArray(payload.data)
-    ? payload.data as Record<string, unknown>
-    : {};
-  const symbols: string[] = [];
-  const anchors = Array.isArray(data.anchors) ? data.anchors : [];
-  for (const anchor of anchors) {
-    if (typeof anchor !== 'object' || anchor === null) continue;
-    const record = anchor as Record<string, unknown>;
-    const symbol = typeof record.symbol === 'string' ? record.symbol : null;
-    if (symbol) symbols.push(symbol);
-    if (symbols.length >= 10) return symbols;
-  }
-  const graphContext = Array.isArray(data.graphContext) ? data.graphContext : [];
-  for (const entry of graphContext) {
-    if (typeof entry !== 'object' || entry === null) continue;
-    const nodes = Array.isArray((entry as Record<string, unknown>).nodes)
-      ? (entry as Record<string, unknown>).nodes as unknown[]
-      : [];
-    for (const node of nodes) {
-      if (typeof node !== 'object' || node === null) continue;
-      const record = node as Record<string, unknown>;
-      const name = typeof record.name === 'string' ? record.name : null;
-      const kind = typeof record.kind === 'string' ? record.kind : 'symbol';
-      if (name) symbols.push(`${kind}:${name}`);
-      if (symbols.length >= 10) return symbols;
-    }
-  }
-  return symbols;
-}
-
 /**
  * Enrich with code graph symbols near mentioned files through the MCP boundary.
  */
-async function enrichWithCodeGraphSymbols(
-  paths: string[],
-  tokenBudget: number,
-): Promise<string[]> {
-  if (paths.length === 0) return [];
-
-  try {
-    const payload = await callCodeGraphTool('code_graph_context', {
-      queryMode: 'neighborhood',
-      profile: 'quick',
-      budgetTokens: 400,
-      seeds: paths.slice(0, 3).map((filePath) => ({ filePath, source: 'passive-enrichment' })),
-    }, Math.min(DEFAULT_DEADLINE_MS, 250));
-    const symbols = collectGraphSymbols(payload);
-    if (symbols.length === 0) return [];
-
-    const hint = `[code-graph] Symbols near mentioned files: ${symbols.join(', ')}`;
-    if (estimateTokenCount(hint) > tokenBudget) {
-      // Trim to fit budget
-      const trimmed = `[code-graph] ${symbols.slice(0, 5).join(', ')}`;
-      return estimateTokenCount(trimmed) <= tokenBudget ? [trimmed] : [];
-    }
-    return [hint];
-  } catch {
-    // Code graph not available — non-fatal
-    return [];
-  }
-}
-
 /**
  * Enrich with session continuity warning if quality is degraded.
  * Dynamically imports context-metrics to avoid circular deps.
@@ -161,7 +100,12 @@ async function enrichWithSessionWarning(): Promise<string[]> {
 /**
  * Run the passive enrichment pipeline on a tool response.
  *
- * @param responseText - The stringified tool response to enrich
+ * The pipeline once had two steps: structural symbol hints derived from paths
+ * mentioned in the response, and a session continuity warning. Only the second
+ * survives, so `responseText` is no longer read — the parameter is kept because
+ * it is the caller's established contract.
+ *
+ * @param responseText - The stringified tool response (currently unused)
  * @param options      - Deadline and token budget overrides
  * @returns EnrichmentResult with hints and metadata
  */
@@ -183,19 +127,7 @@ export async function runPassiveEnrichment(
     const hints: string[] = [];
     let tokensUsed = 0;
 
-    // Step 1: Code graph symbol enrichment
-    if (Date.now() - startTime < deadlineMs) {
-      const paths = extractMentionedPaths(responseText);
-      const graphHints = await enrichWithCodeGraphSymbols(paths, tokenBudget - tokensUsed);
-      for (const hint of graphHints) {
-        const cost = estimateTokenCount(hint);
-        if (tokensUsed + cost > tokenBudget) break;
-        hints.push(hint);
-        tokensUsed += cost;
-      }
-    }
-
-    // Step 2: Session continuity warning
+    // Session continuity warning
     if (Date.now() - startTime < deadlineMs && tokensUsed < tokenBudget) {
       const sessionHints = await enrichWithSessionWarning();
       for (const hint of sessionHints) {

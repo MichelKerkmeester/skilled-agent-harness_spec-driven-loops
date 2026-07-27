@@ -8,15 +8,12 @@ import { enrichWithRetrievalDirectives } from '../lib/search/retrieval-directive
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate';
 import { recordBootstrapEvent } from '../lib/session/context-metrics.js';
 import * as workingMemory from '../lib/cognitive/working-memory.js';
-import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
-import { getCodeGraphStatusSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 
 import type { Database } from '@spec-kit/shared/types';
 // Import the type from the neutral seam module instead of from
 // session-snapshot (which itself transitively imports this file's value-level
 // helpers `isSessionPrimed` and `getLastActiveSessionId`). The type-only
 // import via the seam breaks the value-level cycle.
-import type { StructuralBootstrapContract } from '../lib/session/structural-bootstrap-contract.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -40,22 +37,6 @@ interface AutoSurfaceResult {
     title: string;
     matched_phrases: string[];
   }[];
-  codeGraphStatus?: {
-    status: 'ok' | 'error';
-    data?: {
-      totalFiles: number;
-      totalNodes: number;
-      totalEdges: number;
-      staleFiles: number;
-      lastScanAt: string | null;
-      dbFileSize: number | null;
-      schemaVersion: number;
-      nodesByKind: Record<string, number>;
-      edgesByType: Record<string, number>;
-      parseHealth: Record<string, number>;
-    };
-    error?: string;
-  };
   sessionPrimed?: boolean;
   primedTool?: string;
   /** Structured Prime Package returned on first tool call */
@@ -68,10 +49,7 @@ interface AutoSurfaceResult {
 interface PrimePackage {
   specFolder: string | null;
   currentTask: string | null;
-  codeGraphStatus: 'fresh' | 'stale' | 'empty';
   recommendedCalls: string[];
-  /** Structural bootstrap contract for non-hook runtimes */
-  structuralContext?: StructuralBootstrapContract;
   /** Graph retrieval routing rules for AI session priming */
   routingRules?: {
     graphRetrieval: string;
@@ -212,10 +190,6 @@ async function getConstitutionalMemories(): Promise<ConstitutionalMemory[]> {
 function clearConstitutionalCache(): void {
   constitutionalCache = null;
   constitutionalCacheTime = 0;
-}
-
-function getCodeGraphStatusSnapshot(): NonNullable<AutoSurfaceResult['codeGraphStatus']> {
-  return getCodeGraphStatusSnapshotFromMarker();
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -394,7 +368,6 @@ async function autoSurfaceMemories(
 /** Build structured Prime Package for non-hook CLI auto-priming */
 function buildPrimePackage(
   toolArgs: Record<string, unknown>,
-  graphSnapshot: NonNullable<AutoSurfaceResult['codeGraphStatus']>,
 ): PrimePackage {
   // Derive specFolder from tool args if provided
   const specFolder = typeof toolArgs.specFolder === 'string' ? toolArgs.specFolder : null;
@@ -409,25 +382,8 @@ function buildPrimePackage(
     }
   }
 
-  // Code graph freshness
-  let codeGraphStatus: PrimePackage['codeGraphStatus'] = 'empty';
-  if (graphSnapshot.status === 'ok' && graphSnapshot.data) {
-    const lastScan = graphSnapshot.data.lastScanAt;
-    const totalFiles = graphSnapshot.data.totalFiles ?? 0;
-    if (totalFiles === 0) {
-      codeGraphStatus = 'empty';
-    } else if (!lastScan || (Date.now() - new Date(lastScan).getTime() > 24 * 60 * 60 * 1000)) {
-      codeGraphStatus = 'stale';
-    } else {
-      codeGraphStatus = 'fresh';
-    }
-  }
-
   // Build recommended calls based on state
   const recommendedCalls: string[] = [];
-  if (codeGraphStatus === 'stale' || codeGraphStatus === 'empty') {
-    recommendedCalls.push('code_graph_scan');
-  }
   if (!specFolder) {
     recommendedCalls.push('memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })');
   }
@@ -436,17 +392,10 @@ function buildPrimePackage(
   }
 
   const toolRoutingRules: string[] = [];
-  if (codeGraphStatus !== 'empty') {
-    toolRoutingRules.push('structural queries (callers, deps) → code_graph_query');
-  }
   toolRoutingRules.push('exact text/regex → Grep');
 
-  // Structural bootstrap contract for auto-prime surface
-  const structuralContext = buildStructuralBootstrapContract('auto-prime');
-
   return {
-    specFolder, currentTask, codeGraphStatus, recommendedCalls,
-    structuralContext,
+    specFolder, currentTask, recommendedCalls,
     routingRules: {
       graphRetrieval: 'For broad topic questions, use memory_search with retrievalLevel: "global" for community-level results. For specific memories, use "local" (default). Use "auto" for automatic fallback.',
       communitySearch: 'When primary search returns weak results, community search fallback activates automatically (SPECKIT_COMMUNITY_SEARCH_FALLBACK). Graph provenance is visible in graphEvidence field.',
@@ -479,11 +428,10 @@ async function primeSessionIfNeeded(
   try {
     const constitutional = await getConstitutionalMemories();
     const enrichedConstitutional = enrichWithRetrievalDirectives(constitutional);
-    const codeGraphStatus = getCodeGraphStatusSnapshot();
     const latencyMs = Date.now() - startTime;
 
     // Build structured Prime Package
-    const primePackage = buildPrimePackage(toolArgs, codeGraphStatus);
+    const primePackage = buildPrimePackage(toolArgs);
 
     // Mark session as primed AFTER successful execution (not before try)
     markSessionPrimed(effectiveSessionId);
@@ -491,12 +439,11 @@ async function primeSessionIfNeeded(
     // Record bootstrap telemetry for MCP auto-priming
     recordBootstrapEvent('mcp_auto', Date.now() - startTime, 'full');
 
-    if (enrichedConstitutional.length === 0 && codeGraphStatus.status !== 'ok') {
+    if (enrichedConstitutional.length === 0) {
       // Still return the prime package even when no constitutional memories
       return enforceAutoSurfaceTokenBudget({
         constitutional: [],
         triggered: [],
-        codeGraphStatus,
         sessionPrimed: true,
         primedTool: toolName,
         primePackage,
@@ -508,7 +455,6 @@ async function primeSessionIfNeeded(
     return enforceAutoSurfaceTokenBudget({
       constitutional: enrichedConstitutional,
       triggered: [],
-      codeGraphStatus,
       sessionPrimed: true,
       primedTool: toolName,
       primePackage,
@@ -652,7 +598,6 @@ export {
   getLastActiveSessionId,
   isSessionPrimed,
   markSessionPrimed,
-  getCodeGraphStatusSnapshot,
 };
 
 // Export types for session-health handler

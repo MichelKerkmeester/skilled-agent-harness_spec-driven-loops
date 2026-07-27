@@ -16,7 +16,6 @@ import * as intentClassifier from '../lib/search/intent-classifier.js';
 import type { IntentTelemetry } from '../lib/search/intent-classifier.js';
 
 // Query-intent routing across the code-graph process boundary.
-import { callCodeGraphTool, classifyQueryIntent } from '../lib/code-graph-boundary.js';
 import { detectRuntime } from '../lib/runtime-detection.js';
 
 // Core handlers for routing
@@ -214,15 +213,7 @@ interface BuildResponseMetaParams {
   discoveredFolder?: string;
   includeTrace: boolean;
   sessionTransition: SessionTransitionTrace;
-  structuralRoutingNudge: StructuralRoutingNudgeMeta | null;
   intentTelemetry: IntentTelemetry | null;
-}
-
-interface QueryIntentMetadata {
-  queryIntent: string;
-  routedBackend: string;
-  confidence: number;
-  matchedKeywords?: string[];
 }
 
 const QUERY_INTENT_TELEMETRY_VERSION = 'query-intent-v1';
@@ -241,23 +232,6 @@ interface StructuralRoutingNudgeMeta {
   preferredTool: 'code_graph_query';
   message: string;
   preservesAuthority: 'session_bootstrap';
-}
-
-function extractGraphContextData(payload: Record<string, unknown>): Record<string, unknown> | null {
-  const data = payload.data;
-  if (!data || typeof data !== 'object' || Array.isArray(data)) {
-    return null;
-  }
-  const record = data as Record<string, unknown>;
-  const metadata = record.metadata;
-  if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
-    return null;
-  }
-  const totalNodes = (metadata as Record<string, unknown>).totalNodes;
-  if (typeof totalNodes !== 'number' || totalNodes <= 0) {
-    return null;
-  }
-  return record;
 }
 
 interface ResumeRow extends Record<string, unknown> {
@@ -577,37 +551,6 @@ function extractStrategyError(result: ContextResult): StrategyErrorPayload | nul
       severity: null,
     };
   }
-}
-
-function buildStructuralRoutingNudge(
-  input: string,
-  queryIntentMetadata: {
-    queryIntent: string;
-    confidence: number;
-  } | null,
-  graphContextResult: Record<string, unknown> | null,
-): StructuralRoutingNudgeMeta | null {
-  if (!queryIntentMetadata || queryIntentMetadata.queryIntent !== 'structural' || queryIntentMetadata.confidence <= 0.65) {
-    return null;
-  }
-
-  if (!STRUCTURAL_ROUTING_PATTERNS.some((pattern) => pattern.test(input))) {
-    return null;
-  }
-
-  const metadata = graphContextResult?.metadata as Record<string, unknown> | undefined;
-  const totalNodes = typeof metadata?.totalNodes === 'number' ? metadata.totalNodes : 0;
-  if (totalNodes <= 0) {
-    return null;
-  }
-
-  return {
-    advisory: true,
-    advisoryPreset: 'ready',
-    preferredTool: 'code_graph_query',
-    message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-    preservesAuthority: 'session_bootstrap',
-  };
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -1615,7 +1558,6 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
     discoveredFolder,
     includeTrace,
     sessionTransition,
-    structuralRoutingNudge,
     intentTelemetry,
   } = params;
   const { detectedIntent, intentConfidence, source } = intentClassification;
@@ -1689,7 +1631,6 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
       specFolder: discoveredFolder,
       source: 'folder-discovery',
     } : null,
-    structuralRoutingNudge,
     ...telemetryMeta,
   };
 }
@@ -1774,61 +1715,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
 
     const normalizedInput = input.trim();
 
-    // ── Query-Intent Routing ──────────────────────────
-    // Classify query intent and optionally augment response with code
-    // graph context for structural/hybrid queries. Entire block is
-    // wrapped in try/catch — any failure silently falls through to
-    // existing semantic logic.
-    let queryIntentMetadata: QueryIntentMetadata | null = null;
-    let graphContextResult: Record<string, unknown> | null = null;
-
-    if (requested_mode !== 'resume') {
-      try {
-        const classification = await classifyQueryIntent(normalizedInput);
-        queryIntentMetadata = {
-          queryIntent: classification.intent,
-          routedBackend: classification.intent === 'structural' && classification.confidence > 0.65
-            ? 'structural'
-            : classification.intent === 'hybrid'
-              ? 'hybrid'
-              : 'semantic',
-          confidence: classification.confidence,
-          matchedKeywords: classification.matchedKeywords,
-        };
-
-        // Extract a symbol-like token from the query instead of passing
-        // raw prose to buildContext({ subject }). resolveSubjectToRef() matches
-        // against code_nodes.name / fq_name, so prose never resolves.
-        // Heuristic: pick the first token that looks like a code identifier
-        // (contains uppercase, underscore, or dot — e.g. "buildContext", "fq_name",
-        // "code-graph-db.ts"). Falls back to first matched keyword, then normalizedInput.
-        const codeIdentifierPattern = /[A-Z_.]|^[a-z]+[A-Z]/;
-        const inputTokens = normalizedInput.split(/\s+/).filter(t => t.length >= 2);
-        const extractedSubject =
-          inputTokens.find(t => codeIdentifierPattern.test(t)) ??
-          (classification.matchedKeywords?.[0]) ??
-          normalizedInput;
-
-        if (classification.intent === 'structural' && classification.confidence > 0.65) {
-          try {
-            const payload = await callCodeGraphTool('code_graph_context', { input: normalizedInput, subject: extractedSubject });
-            graphContextResult = extractGraphContextData(payload);
-          } catch {
-            // Code graph unavailable — fall through to semantic
-          }
-        } else if (classification.intent === 'hybrid') {
-          try {
-            const payload = await callCodeGraphTool('code_graph_context', { input: normalizedInput, subject: extractedSubject });
-            graphContextResult = extractGraphContextData(payload);
-          } catch {
-            // Code graph unavailable — hybrid degrades to semantic-only
-          }
-        }
-        // 'semantic' or low-confidence: no graph context, fall through
-      } catch {
-        // Classification failed — fall through to existing logic entirely
-      }
-    }
 
     // Eval logger — capture context query at entry (fail-safe)
     let _evalQueryId = 0;
@@ -2106,53 +1992,21 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
         evidence: intentEvidence,
       },
       backendRouting: {
-        route: queryIntentMetadata?.routedBackend ?? 'semantic',
-        confidence: queryIntentMetadata?.confidence ?? 0,
+        route: 'semantic',
+        confidence: 0,
       },
     }) : null;
 
-    // Attach graph context and query-intent routing metadata before budget enforcement.
     const responseData: ContextResult & Record<string, unknown> = {
       ...denestDelegatedSearchEnvelope(tracedResult0),
     };
-    if (graphContextResult) {
-      responseData.graphContext = graphContextResult;
-    }
-    if (queryIntentMetadata) {
-      const runtimeId = detectRuntime().runtime;
-      // Annotate explicitly so callers do not confuse this
-      // backend-channel selector with the authoritative `meta.intent` task intent.
-      responseData.queryIntentRouting = {
-        ...queryIntentMetadata,
-        intent: queryIntentMetadata.queryIntent,
-        route: queryIntentMetadata.routedBackend,
-        classificationKind: 'backend-routing',
-        authoritativeFor: ['channel-selection'],
-        seeAlso: 'meta.intent',
-        intentTelemetry: {
-          intent: queryIntentMetadata.queryIntent,
-          confidence: queryIntentMetadata.confidence,
-          matchedKeywords: queryIntentMetadata.matchedKeywords ?? [],
-          classifierVersion: QUERY_INTENT_TELEMETRY_VERSION,
-          runtimeId,
-        },
-      };
-    }
-    const structuralRoutingNudge = buildStructuralRoutingNudge(
-      normalizedInput,
-      queryIntentMetadata,
-      graphContextResult,
-    );
-    if (structuralRoutingNudge) {
-      responseData.structuralRoutingNudge = structuralRoutingNudge;
-    }
     const contextQueryPlan = (() => {
       try {
         return routeQuery(normalizedInput).queryPlan;
       } catch {
         return createEmptyQueryPlan({
           complexity: 'unknown',
-          selectedChannels: [queryIntentMetadata?.routedBackend ?? 'semantic'],
+          selectedChannels: ['semantic'],
           fallbackPolicy: {
             mode: 'telemetry_only',
             reason: 'QueryPlan telemetry fallback after routeQuery failure',
@@ -2171,12 +2025,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
           state: 'live',
           decision: 'memory_context_response',
         },
-        codeGraph: queryIntentMetadata
-          ? {
-            trustState: graphContextResult ? 'live' : 'absent',
-            canonicalReadiness: graphContextResult ? 'ready' : 'missing',
-          }
-          : undefined,
       },
       timestamp: new Date(_contextStartTime).toISOString(),
       latencyMs: Date.now() - _contextStartTime,
@@ -2195,7 +2043,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
         `Mode: ${CONTEXT_MODES[effectiveMode].description}`,
         `For more granular control, use L2 tools: memory_search, memory_match_triggers`,
         `Token budget: ${effectiveBudget} (${effectiveMode} mode)`,
-        ...(structuralRoutingNudge ? [structuralRoutingNudge.message] : []),
         ...(pressureWarning ? [pressureWarning] : [])
       ],
       extraMeta: buildResponseMeta({
@@ -2219,7 +2066,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
         discoveredFolder,
         includeTrace: options.includeTrace === true,
         sessionTransition,
-        structuralRoutingNudge,
         intentTelemetry,
       })
     });

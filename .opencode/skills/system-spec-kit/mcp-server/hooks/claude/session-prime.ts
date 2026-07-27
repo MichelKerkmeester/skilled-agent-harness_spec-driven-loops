@@ -23,9 +23,7 @@ import {
   validatePendingCompactPrimeSemantics,
 } from './hook-state.js';
 import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
-import { buildWarmCodeGraphStatusSection } from '../code-index-cli-fallback.js';
 import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
-import { getStartupBriefFromMarker } from '../../lib/code-graph-boundary.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS & TYPES
@@ -35,19 +33,6 @@ const CACHE_TTL_MS = 30 * 60 * 1000;
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
   : false;
-type StartupBrief = {
-  graphOutline: string | null;
-  sessionContinuity: string | null;
-  graphSummary: { files: number; nodes: number; edges: number; lastScan: string | null } | null;
-  graphQualitySummary?: unknown;
-  graphState: 'ready' | 'stale' | 'empty' | 'missing';
-  startupSurface: string;
-  sharedPayloadTransport?: string | null;
-};
-
-const buildStartupBrief = (_highlightCount?: number, _stateScope?: { specFolder?: string; claudeSessionId?: string }): StartupBrief =>
-  getStartupBriefFromMarker();
-
 // ───────────────────────────────────────────────────────────────────
 // 2. SOURCE HANDLERS
 // ───────────────────────────────────────────────────────────────────
@@ -193,24 +178,6 @@ export function handleStartup(
 ): OutputSection[] {
   const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
   const requestedSpecFolder = typeof input.specFolder === 'string' ? input.specFolder : undefined;
-  let startupBrief: StartupBrief | null = null;
-  let startupBriefWarning: string | null = null;
-  try {
-    startupBrief = buildStartupBrief(undefined, {
-      claudeSessionId: sessionId,
-      specFolder: requestedSpecFolder,
-    });
-  } catch (err: unknown) {
-    startupBriefWarning = `buildStartupBrief threw: ${err instanceof Error ? err.message : String(err)}`;
-    hookLog('error', 'session-prime', startupBriefWarning);
-  }
-  if (!startupBrief) {
-    startupBriefWarning = 'buildStartupBrief returned null';
-    hookLog('warn', 'session-prime', `${startupBriefWarning} — possible startup-brief regression`);
-  } else if (!startupBrief.startupSurface) {
-    startupBriefWarning = 'startupBrief.startupSurface is empty';
-    hookLog('warn', 'session-prime', `${startupBriefWarning} — possible startup-brief regression`);
-  }
   const cachedSummaryDecision = getCachedSessionSummaryDecision({
     specFolder: requestedSpecFolder,
     claudeSessionId: sessionId,
@@ -228,9 +195,9 @@ export function handleStartup(
   const rejectionReason = cachedSummaryDecision.status === 'rejected'
     ? cachedSummaryDecision.reason
     : null;
-  const startupSurface = startupBrief?.startupSurface
-    ? rewriteStartupMemoryLine(startupBrief.startupSurface, Boolean(sessionContinuity), rejectionReason)
-    : buildFallbackStartupSurface(Boolean(sessionContinuity), rejectionReason);
+  // The startup brief was assembled from a structural index that no longer
+  // exists; the fallback surface is now the only surface.
+  const startupSurface = buildFallbackStartupSurface(Boolean(sessionContinuity), rejectionReason);
   const sections: OutputSection[] = [
     {
       title: 'Session Context',
@@ -246,42 +213,10 @@ export function handleStartup(
       ].join('\n'),
     },
   ];
-  if (startupBriefWarning) {
-    sections.push({
-      title: 'Startup Brief Warning',
-      content: `${startupBriefWarning}. Using fallback startup context; inspect the startup-brief module before trusting structural priming.`,
-    });
-  }
-  if (startupBrief?.graphOutline) {
-    sections.push({
-      title: 'Structural Context',
-      content: startupBrief.graphOutline,
-    });
-  } else if (startupBrief?.graphState === 'empty') {
-    sections.push({
-      title: 'Structural Context',
-      content: 'Code graph index is empty. Run `code_graph_scan` to build structural context.',
-    });
-  }
-
-  if (startupBrief?.sharedPayloadTransport) {
-    sections.push({
-      title: 'Startup Payload Contract',
-      content: startupBrief.sharedPayloadTransport,
-    });
-  }
-
   if (sessionContinuity) {
     sections.push({
       title: 'Session Continuity',
       content: sessionContinuity,
-    });
-  }
-
-  if (startupBrief?.graphState === 'stale') {
-    sections.push({
-      title: 'Stale Code Graph Warning',
-      content: 'Code graph freshness is stale. The first structural read may refresh inline when safe; run `code_graph_scan` for broader stale states.',
     });
   }
 
@@ -340,10 +275,6 @@ function hasRecoveredContinuitySection(sections: OutputSection[]): boolean {
   return sections.some((section) => section.title === 'Session Continuity');
 }
 
-function hasStructuralContextSection(sections: OutputSection[]): boolean {
-  return sections.some((section) => section.title === 'Structural Context');
-}
-
 async function maybeAppendCliWarmFallback(
   sections: OutputSection[],
   source: string,
@@ -361,26 +292,6 @@ async function maybeAppendCliWarmFallback(
     timeoutMs: Math.min(600, HOOK_TIMEOUT_MS),
     onResult: (result) => {
       hookLog('info', 'session-prime', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
-    },
-  });
-  return section ? [...sections, section] : sections;
-}
-
-async function maybeAppendCodeIndexCliWarmFallback(
-  sections: OutputSection[],
-  source: string,
-): Promise<OutputSection[]> {
-  // A compaction replaces the transcript, so refresh the structural-context section there too,
-  // not only at session start/resume — otherwise Claude carries stale code-graph status across a compact.
-  if ((source !== 'startup' && source !== 'resume' && source !== 'compact') || hasStructuralContextSection(sections)) {
-    return sections;
-  }
-  const section = await buildWarmCodeGraphStatusSection({
-    title: 'Code Index CLI Fallback',
-    timeoutMs: Math.min(600, HOOK_TIMEOUT_MS),
-    includeRetryableStatus: true,
-    onResult: (result) => {
-      hookLog('info', 'session-prime', `Code-index CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
     },
   });
   return section ? [...sections, section] : sections;
@@ -431,7 +342,6 @@ async function main(): Promise<void> {
   }
 
   sections = await maybeAppendCliWarmFallback(sections, source, input);
-  sections = await maybeAppendCodeIndexCliWarmFallback(sections, source);
 
   // Apply token pressure awareness — reduce budget when context window is filling up
   const adjustedBudget = calculatePressureAdjustedBudget(
