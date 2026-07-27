@@ -2,7 +2,6 @@
 // MODULE: Runtime Detection
 // ───────────────────────────────────────────────────────────────
 // Spec-kit local runtime detection. This used to be imported from
-// system-code-graph, but startup ownership belongs with spec-kit hooks.
 
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';

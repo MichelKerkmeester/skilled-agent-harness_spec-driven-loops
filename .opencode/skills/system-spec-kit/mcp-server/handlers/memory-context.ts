@@ -226,14 +226,6 @@ interface StrategyErrorPayload {
   severity: string | null;
 }
 
-interface StructuralRoutingNudgeMeta {
-  advisory: true;
-  advisoryPreset: 'ready';
-  preferredTool: 'code_graph_query';
-  message: string;
-  preservesAuthority: 'session_bootstrap';
-}
-
 interface ResumeRow extends Record<string, unknown> {
   id: string;
   title: string;
@@ -250,18 +242,6 @@ interface ResumeRow extends Record<string, unknown> {
 }
 
 const RESUME_LADDER_ORDER = ['handover', 'continuity', 'spec_docs'] as const;
-
-const STRUCTURAL_ROUTING_PATTERNS = [
-  /\b(?:who|what)\s+calls?\b/i,
-  /\bcallers?\s+of\b/i,
-  /\b(?:who|what)\s+imports?\b/i,
-  /\bimports?\s+of\b/i,
-  /\b(?:show|list)\s+(?:the\s+)?outline\b/i,
-  /\boutline\s+of\b/i,
-  /\bdependenc(?:y|ies)\b/i,
-  /\bdependents?\b/i,
-  /\bwhat\s+extends\b/i,
-];
 
 function extractResultRowsFromContextResponse(responseText: string): Array<Record<string, unknown>> {
   try {

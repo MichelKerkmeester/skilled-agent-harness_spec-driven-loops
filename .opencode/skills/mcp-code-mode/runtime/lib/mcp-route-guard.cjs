@@ -46,7 +46,6 @@ const INTERNAL_RAW_TOKENS = [
   'sequential_thinking',
   'mk_spec_memory',
   'mk_skill_advisor',
-  'mk_code_index',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -99,7 +98,6 @@ function parseClaudeShape(toolName) {
 // OpenCode's bare `<server>_<tool>` shape carries no reserved delimiter, so the
 // only reliable split point is a known server token -- the manifest-derived
 // family names plus the fixed internal set. Longest-token-first avoids a short
-// token (e.g. `mk_code_index`'s `mk_`) swallowing a longer, more specific match.
 function candidateServerTokens(families) {
   const tokens = new Set(INTERNAL_RAW_TOKENS);
   for (const rawName of families.values()) {
