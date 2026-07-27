@@ -12,14 +12,12 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet"
     last_updated_at: "2026-07-27T00:00:00Z"
     last_updated_by: "pi-cli-authoring"
-    recent_action: "Plan authored (Planned), mirroring the cli-devin and cli-cursor precedents"
-    next_safe_action: "Hold for phase 001 and phase 002 to land before implementation"
-    blockers:
-      - "phase 001 (pi-contract-pin) not yet executed"
-      - "phase 002 (deep-loop-executor-support) not yet landed"
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    recent_action: "Plan executed via LUNA, reviewed by GLM-5.2, findings fixed"
+    next_safe_action: "Commit; phase 004 builds on the registered mode"
+    blockers: ["Compiled-routing readiness stays a known, out-of-scope pre-existing gap"]
+    key_files: ["implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-packet-authoring", parent_session_id: null }
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---

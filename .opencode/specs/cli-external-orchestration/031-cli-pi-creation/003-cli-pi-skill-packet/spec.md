@@ -13,17 +13,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet"
     last_updated_at: "2026-07-27T00:00:00Z"
     last_updated_by: "pi-cli-authoring"
-    recent_action: "Phase authored (Planned) from the cli-devin and cli-cursor precedents"
-    next_safe_action: "Do not implement until phase 001 live-verifies the Pi CLI install"
-    blockers:
-      - "phase 001 (pi-contract-pin) not yet executed — every pi.dev-doc-sourced claim in this phase's authored content is UNCONFIRMED until phase 001 runs"
-      - "phase 002 (deep-loop-executor-support) not yet landed — no ExecutorKind exists for cli-pi yet"
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    recent_action: "cli-pi built as the hub's 6th mode via LUNA, reviewed by GLM-5.2, 4 findings fixed"
+    next_safe_action: "Phase 004 may build the skill-discovery bridge on this registered mode"
+    blockers: ["Known, out-of-scope gap: compiled-routing readiness check fails (pre-existing bug class, tracked in sk-doc/019-skill-routing-refactor)"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-packet-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions:
       - "Whether the bare single-token alias \"pi\" creates an elevated cross-hub/cross-skill collision risk given it is a common short word and math constant — this phase's plan excludes any bare \"pi\" alias, using multi-word phrases only"
       - "No first-party Pi env var analogous to DEVIN_PROJECT_DIR or CURSOR_AGENT is documented for an active-session signal — phase 001 must live-probe before the self-invocation guard can rely on more than process ancestry"
@@ -52,7 +50,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete - cli-pi registered as the hub's 6th mode; parent-skill-check.cjs 0 warnings; compiled-routing readiness stays a known, out-of-scope gap (pre-existing bug class) |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

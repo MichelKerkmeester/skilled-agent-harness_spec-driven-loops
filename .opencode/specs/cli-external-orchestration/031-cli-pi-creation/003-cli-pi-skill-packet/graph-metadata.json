@@ -21,7 +21,8 @@
       "cli-pi skill tasks",
       "cli-pi mode task breakdown",
       "cli-pi skill checklist",
-      "cli-pi mode verification"
+      "cli-pi mode verification",
+      "cli-pi skill packet results"
     ],
     "key_topics": [
       "cli-pi",
@@ -38,18 +39,19 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
+      "spec.md",
       "checklist.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -62,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -167,13 +175,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "LUNA",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -183,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi` does not exist anywhere in this repo yet",
     "created_at": "2026-07-27T06:48:17.507Z",
-    "last_save_at": "2026-07-27T06:57:37.414Z",
+    "last_save_at": "2026-07-27T09:41:26.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33b9de0c58cceeff04a9d75ceac83efaf91febb84945d922ed201368b50b6fd0",
+    "source_fingerprint": "sha256:ec151026780c6a05eff42dea0775bd2026a89658bba6713d9919cc34ee4885e4",
     "source_doc_hashes": {
-      "spec.md": "c2a3ad880c03a18f7fc9b8a635cf7d84bcc898afbbf000d1fee4e0c7f7ef97b2",
-      "plan.md": "5a58d7726bce0593b5c7ccbf05a6ecea4e178010ae10c40231d4599495abd6be",
-      "tasks.md": "863df122829a94ce3f8ddbde69263e2664fbcb8b2dd307762a4e16f488dc04ae",
-      "checklist.md": "f73e12777cf043d6e5e64793ab9f3ed4645d001692fec3a8316a3972b48b10e3"
+      "spec.md": "81f53fcd4ff6917c30767ef752f456d91815666f56bd0bac74ef95ada2881725",
+      "plan.md": "40546270476d081e811189e5d77a81e7a6a5e0cb3f6d68d6e9d0030d11ba3c9a",
+      "tasks.md": "7174e4a4514d33465d7171e9adf5c264fe38c5c8e38a6e94cccf02f1ca9d3fbb",
+      "checklist.md": "cffb6d640a2499622cc3662988a99c4126a142b52fef88b013988c1a251e6895",
+      "implementation-summary.md": "d430e23136c683c95f0b02a5a8a615d50fe83ce6c2355e9fa437cd7b39b7c0b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

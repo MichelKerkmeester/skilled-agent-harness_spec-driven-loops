@@ -61,7 +61,13 @@
     "delegate to devin",
     "cognition cli second opinion",
     "devin handoff",
-    "cli-devin"
+    "cli-devin",
+    "pi cli",
+    "pi agent",
+    "delegate to pi",
+    "pi.dev cli",
+    "pi coding agent",
+    "cli-pi"
   ],
   "derived": {
     "trigger_phrases": [
@@ -170,7 +176,15 @@
       "delegate-to-devin",
       "devin subagent",
       "devin cloud handoff",
-      "swe-1.6 dispatch"
+      "swe-1.6 dispatch",
+      "pi cli",
+      "pi agent",
+      "delegate to pi",
+      "pi.dev cli",
+      "pi coding agent",
+      "pi json event stream",
+      "pi rpc integration",
+      "pi community package"
     ],
     "key_topics": [
       "cli",
@@ -234,7 +248,15 @@
       "devin-cloud-handoff",
       "devin-subagent",
       "swe-1.6",
-      "devin-mcp-host"
+      "devin-mcp-host",
+      "cli-pi",
+      "pi cli",
+      "pi-agent",
+      "pi.dev",
+      "pi-json",
+      "pi-rpc",
+      "pi-subagents",
+      "pi-mcp-extension"
     ],
     "intent_signals": [
       "delegate to opencode",
@@ -262,7 +284,12 @@
       "devin handoff",
       "devin subagent",
       "cognition cli second opinion",
-      "devin cloud handoff"
+      "devin cloud handoff",
+      "delegate to pi",
+      "pi headless dispatch",
+      "pi json event stream",
+      "pi rpc integration",
+      "pi community package"
     ],
     "key_files": [
       ".opencode/skills/cli-external-orchestration/SKILL.md",
@@ -308,7 +335,17 @@
       ".opencode/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
       ".opencode/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md",
       ".opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md",
-      ".opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md"
+      ".opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.0.0.0.md"
     ],
     "entities": [
       {
@@ -346,9 +383,15 @@
         "kind": "skill",
         "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-pi",
+        "kind": "skill",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "cli-external-orchestration is the single public advisor identity for five CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. It matters because it gives all five dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and self-invocation guard; the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
+    "causal_summary": "cli-external-orchestration is the single public advisor identity for six CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. cli-pi enables Pi CLI (pi.dev, open-source multi-provider agent) dispatch for headless coding sessions; it fails closed when pi is absent, and several of its behaviors (skill-discovery flattening, prompt-template discovery, model roster) remain documented-but-unconfirmed pending live verification with a working provider. It matters because it gives all six dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and self-invocation guard; the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -363,9 +406,11 @@
       "cli-cursor/SKILL.md",
       "cli-cursor/README.md",
       "cli-devin/SKILL.md",
-      "cli-devin/README.md"
+      "cli-devin/README.md",
+      "cli-pi/SKILL.md",
+      "cli-pi/README.md"
     ],
     "created_at": "2026-07-10T12:00:00Z",
-    "last_updated_at": "2026-07-26T00:00:00Z"
+    "last_updated_at": "2026-07-27T00:00:00Z"
   }
 }
