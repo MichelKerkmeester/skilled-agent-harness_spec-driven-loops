@@ -1,0 +1,25 @@
+Contract-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the truth; documentation gets corrected. NEVER change runtime to make a
+document true. Escalate (BLOCKED) only if the doc describes something clearly intended but unbuilt.
+
+You own ONLY the files named below. A CONCURRENT SESSION is actively editing cli-devin right now —
+touch nothing outside your named files, and re-verify your target lines before editing.
+No git mutations. No commit. Do NOT call MCP tools or load skills (spec-memory daemon is down,
+each call costs ~30s). Use Read/Glob/Grep/Edit directly. Start immediately.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match runtime>
+RISK: <what this could break and how you checked>
+
+FINDING devinDocs
+FILES YOU OWN: .opencode/skills/cli-external-orchestration/cli-devin/SKILL.md and .opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md (ONLY)
+TASK: Two invocation defects proven by live dispatch failures during this program:
+(1) SKILL.md line ~189 shows `devin -p --model <model> --permission-mode <mode> "<prompt>"` with a BARE POSITIONAL prompt. The real CLI REJECTS that with `error: unexpected argument`. Its usage is `devin [OPTIONS] [-- <PROMPT>...]` — the prompt must follow `--`, or use `--prompt-file <FILE>`. Correct the invocation shown here and anywhere else in these two files that shows a bare positional prompt. Verify with `devin --help`.
+(2) cli-reference.md line ~199 lists the GLM model as short name `glm`. `devin models list` shows NO such alias; the live ids are `glm-5-2` (GLM-5.2 High, free tier), `glm-5-2-max`, `glm-5-2-1m`, `glm-5-2-max-1m`, `glm-5-2-none`, `glm-5-2-none-1m`. Correct the table row to the real ids. Verify with `devin models list`.
+A concurrent session is editing this skill — confirm the exact current line content before each edit.

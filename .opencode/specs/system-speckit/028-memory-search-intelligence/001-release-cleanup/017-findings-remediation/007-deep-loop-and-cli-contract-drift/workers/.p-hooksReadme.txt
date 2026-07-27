@@ -1,0 +1,22 @@
+Contract-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the truth; documentation gets corrected. NEVER change runtime to make a
+document true. Escalate (BLOCKED) only if the doc describes something clearly intended but unbuilt.
+
+You own ONLY the files named below. A CONCURRENT SESSION is actively editing cli-devin right now —
+touch nothing outside your named files, and re-verify your target lines before editing.
+No git mutations. No commit. Do NOT call MCP tools or load skills (spec-memory daemon is down,
+each call costs ~30s). Use Read/Glob/Grep/Edit directly. Start immediately.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match runtime>
+RISK: <what this could break and how you checked>
+
+FINDING hooksReadme
+FILES YOU OWN: .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/README.md (ONLY)
+TASK: devin-02:F3 — this README documents the `codex/` sibling hook directory but omits the live `devin/` hook directory, which exists on disk in the same folder. List the real subdirectories and files present, then add the missing `devin/` coverage so the README matches the directory.

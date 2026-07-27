@@ -1,0 +1,22 @@
+Contract-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the truth; documentation gets corrected. NEVER change runtime to make a
+document true. Escalate (BLOCKED) only if the doc describes something clearly intended but unbuilt.
+
+You own ONLY the files named below. A CONCURRENT SESSION is actively editing cli-devin right now —
+touch nothing outside your named files, and re-verify your target lines before editing.
+No git mutations. No commit. Do NOT call MCP tools or load skills (spec-memory daemon is down,
+each call costs ~30s). Use Read/Glob/Grep/Edit directly. Start immediately.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match runtime>
+RISK: <what this could break and how you checked>
+
+FINDING researchDoc
+FILES YOU OWN: .opencode/commands/deep/research.md (ONLY)
+TASK: X-3 — line ~142 documents `--lineage-timeout-hours <N>` as raising the per-lineage wall-clock ceiling ABOVE the default 4 hours. The runtime contradicts this: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1130` defines `LINEAGE_LIFETIME_HARD_MAX_HOURS = 4` and THROWS an INPUT_VALIDATION error for any override above 4. The flag can only NARROW the ceiling, never widen it. A real dispatch died on this during this program. Correct the flag documentation to describe the narrowing-only behaviour and the hard 4-hour maximum. Do NOT change the runtime.
