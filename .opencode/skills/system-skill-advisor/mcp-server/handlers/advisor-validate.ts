@@ -760,4 +760,3 @@ export async function handleAdvisorValidate(args: unknown): Promise<HandlerRespo
   };
 }
 
-export const handle_advisor_validate = handleAdvisorValidate;

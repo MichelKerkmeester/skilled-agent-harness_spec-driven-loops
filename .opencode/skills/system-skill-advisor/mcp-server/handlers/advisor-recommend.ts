@@ -593,4 +593,3 @@ export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResp
   };
 }
 
-export const handle_advisor_recommend = handleAdvisorRecommend;

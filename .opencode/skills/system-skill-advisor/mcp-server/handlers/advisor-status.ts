@@ -351,5 +351,3 @@ export async function handleAdvisorStatus(args: unknown): Promise<HandlerRespons
   };
 }
 
-/** Backward-compatible snake_case MCP handler alias. */
-export const handle_advisor_status = handleAdvisorStatus;

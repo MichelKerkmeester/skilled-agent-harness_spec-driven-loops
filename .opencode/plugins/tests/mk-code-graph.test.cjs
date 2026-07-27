@@ -22,7 +22,7 @@ const BRIDGE_PATH = path.join(
   'skills',
   'system-code-graph',
   'mcp-server',
-  'plugin_bridges',
+  'plugin-bridges',
   'mk-code-graph-bridge.mjs',
 );
 const TRANSPORT_PATH = path.join(
@@ -31,7 +31,7 @@ const TRANSPORT_PATH = path.join(
   'skills',
   'system-code-graph',
   'mcp-server',
-  'plugin_bridges',
+  'plugin-bridges',
   'mk-code-graph-transport.mjs',
 );
 
