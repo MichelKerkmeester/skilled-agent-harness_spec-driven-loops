@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill metadata json unification",
+      "leaf-manifest leaf-aliases description drift",
+      "skill root json contract",
+      "command-metadata coverage",
+      "automate skill json generation"
+    ],
+    "key_topics": [
+      "skill",
+      "metadata",
+      "json",
+      "unification",
+      "leaf-manifest",
+      "leaf-aliases",
+      "description",
+      "drift",
+      "root",
+      "contract",
+      "command-metadata",
+      "coverage"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Root Metadata",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A census of the 12 skill roots produces twelve distinct metadata shapes",
+    "created_at": "2026-07-27T17:47:35.453Z",
+    "last_save_at": "2026-07-27T17:47:35.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ec4b8c933ab63efe62e452c37aeba228ce45c40b87e3cf42d2e46ab1b473f186",
+    "source_doc_hashes": {
+      "spec.md": "03c7c19da0a97b67c0cee556925ec5bbb87ac20d380b52789b5b7ff350fd2b9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

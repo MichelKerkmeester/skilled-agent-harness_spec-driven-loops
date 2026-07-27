@@ -1,0 +1,48 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Live registration and configuration surfaces",
+    "Executable imports, shell-outs, and shared contracts",
+    "Hooks, plugins, CI, agents, commands, and generated mirrors",
+    "Current documentation versus immutable historical records",
+    "Removal order, compatibility, rollback, and verification"
+  ],
+  "keyFindings": [
+    {"id":"F-01","finding":"Three physical MCP registrations exist; two additional paths are symlink aliases.","iterations":[1,2,10]},
+    {"id":"F-02","finding":"The provider has standalone launcher and CLI front doors plus shared launcher/worktree integration.","iterations":[2,8,9]},
+    {"id":"F-03","finding":"Spec Kit is the primary executable consumer and must update source, exports, tests, and dist atomically.","iterations":[3,9]},
+    {"id":"F-04","finding":"Four runtime hook families, two OpenCode plugins, a mixed Git hook, and mixed CI depend on the provider.","iterations":[4]},
+    {"id":"F-05","finding":"Eight canonical agents, runtime projections, and at least thirteen command allowlists speak the old contract.","iterations":[5,10]},
+    {"id":"F-06","finding":"Current doctrine, README, install, doctor, worktree, Skill Advisor, and operator docs require reconciliation.","iterations":[6,10]},
+    {"id":"F-07","finding":"Historical specs, changelogs, and benchmark reports are immutable inventory, not edit targets.","iterations":[6,7]},
+    {"id":"F-08","finding":"Removal must be consumer-first, then registration/drain/provider, then shared cleanup/docs/verification.","iterations":[8]},
+    {"id":"F-09","finding":"Ignored DB/process/worktree/user-installed state creates rollback and resurrection risk outside Git.","iterations":[8,9,10]},
+    {"id":"F-10","finding":"Unrelated skill, memory, coverage, and council graph subsystems must survive.","iterations":[3,10]}
+  ],
+  "ruledOutDirections": [
+    "Visible-only rg --no-ignore sweeps",
+    "Directory-only provider deletion",
+    "Blanket graph removal",
+    "Source-only edits without generated outputs",
+    "Whole-file removal of mixed hooks or CI",
+    "Repository-only Codex hook cleanup",
+    "Historical record rewrites",
+    "Generic graph zero-hit acceptance",
+    "Counting symlink aliases as independent edits"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 10,
+    "convergenceScore": 0.64,
+    "coverageBySources": {
+      "configuration": 3,
+      "runtime_and_dependencies": 4,
+      "hooks_plugins_ci": 3,
+      "agents_commands": 2,
+      "documentation_archives": 2,
+      "ordering_rollback_verification": 3
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "topic": "Exhaustive touchpoint inventory for fully decommissioning the system-code-graph skill and the mk_code_index MCP server: every registration, import, shell-out, hook, plugin, CI job, doc reference, agent tool grant, and doctrine claim that must change, plus ordering constraints and rollback risk. Sweeps MUST use rg --no-ignore or they silently skip opencode.json, .mcp.json, .cursor/mcp.json and .claude/settings.local.json. Dedupe symlinks (CLAUDE.md=AGENTS.md; .mcp.json/.cursor/mcp.json both resolve to .claude/mcp.json). Treat .opencode/specs/**, changelogs and benchmark reports as ARCHIVAL historical record: inventory them but never propose editing them.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-code-graph/036-code-graph-decommission/001-touchpoint-research",
+  "artifactDir": ".opencode/specs/system-code-graph/036-code-graph-decommission/001-touchpoint-research/research/lineages/glm",
+  "createdAt": "2026-07-27T19:18:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "glm-5-2",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1785172732897-ikfm0m",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "label": "glm",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "loopType": "research",
+  "stopPolicy": "max-iterations",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

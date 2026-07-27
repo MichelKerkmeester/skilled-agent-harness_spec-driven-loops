@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/036-code-graph-decommission/004-plugin-and-hook-removal",
+  "spec_folder": "system-code-graph/036-code-graph-decommission/004-plugin-and-hook-removal",
+  "parent_id": "system-code-graph/036-code-graph-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-code-graph plugin removal",
+      "code graph freshness hook removal",
+      "post-commit code graph invalidation",
+      "session cleanup code graph daemon",
+      "036 plugin and hook removal",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "mk-code-graph",
+      "plugin",
+      "removal",
+      "code",
+      "graph",
+      "freshness",
+      "hook",
+      "post-commit",
+      "invalidation",
+      "session",
+      "cleanup",
+      "daemon"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".opencode/plugins/mk-code-graph.js",
+      ".opencode/plugins/mk-code-graph-freshness.js",
+      ".codex/hooks.json",
+      ".devin/hooks.v1.json",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/bin/worktree-session.sh",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph-freshness.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph-freshness.js",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two OpenCode plugins reach into the skill folder at load time — one through a static ESM import of a transport bridge, one through a `require` of the shared freshness core",
+    "created_at": "2026-07-27T16:33:55Z",
+    "last_save_at": "2026-07-27T16:49:44.427Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d99a048a06ba443621d6236ec0287c3205a5ce90262472ccb0d2b634932638ce",
+    "source_doc_hashes": {
+      "spec.md": "0bf946055d83d5410588b68f2ccf31b033583612d7605df4d60fd553c5764700",
+      "plan.md": "f492932edfb030e9e3f5a166810413a8034668d333e57c9bfff992106785cc9e",
+      "tasks.md": "5341a0cd7268513a599bc37281e80f5a6b872d24d79941abec545732cef9d2fa",
+      "implementation-summary.md": "8af79e16c9fdba77b55cc2aec6aed5112a2cc4614d21270d7ccc21c0c06e3edd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

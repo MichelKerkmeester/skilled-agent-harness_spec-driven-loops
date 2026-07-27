@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/014-historical-reference-policy",
+  "description": "The overwhelming majority of references to the subsystem — several thousand files — live inside archived spec packets, changelogs, and benchmark",
+  "keywords": [
+    "overwhelming",
+    "majority",
+    "references",
+    "subsystem",
+    "several",
+    "thousand",
+    "files",
+    "live",
+    "inside",
+    "archived",
+    "spec",
+    "packets",
+    "changelogs",
+    "benchmark"
+  ],
+  "lastUpdated": "2026-07-27T16:48:55.440Z",
+  "specId": "014",
+  "folderSlug": "historical-reference-policy",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/036-code-graph-decommission/006-spec-kit-test-and-harness-cleanup",
+  "spec_folder": "system-code-graph/036-code-graph-decommission/006-spec-kit-test-and-harness-cleanup",
+  "parent_id": "system-code-graph/036-code-graph-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec kit code graph test cleanup",
+      "search quality corpus rebaseline",
+      "launcher code index vitest removal",
+      "matrix runner code graph templates",
+      "036 spec kit test cleanup",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "spec",
+      "kit",
+      "code",
+      "graph",
+      "test",
+      "cleanup",
+      "search",
+      "quality",
+      "corpus",
+      "rebaseline",
+      "launcher",
+      "index"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Roughly fifty spec-kit test files reference the code graph, and they are not uniform: some exist solely to test the launcher lifecycle and boundary proxy and become meaningless, while others assert on session payloads that survive phase 005 in a changed shape",
+    "created_at": "2026-07-27T16:33:56Z",
+    "last_save_at": "2026-07-27T16:49:45.120Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:04cbd002095c5bd5be6dc5716cafa0e3cf1f976289f080c8cfb88f1ca95bfa13",
+    "source_doc_hashes": {
+      "spec.md": "90edb58a26a40aab7d86e6288a2203b01077d8c2f7b5295bcdc52c366754f4fb",
+      "plan.md": "74eed37b33291038ab43334891616fc836ab68093c6c2d89045a453fc897114b",
+      "tasks.md": "d4fc48afe7544c923be78798d8ff7e432766c4b71444864a63d8d44c2015f391",
+      "implementation-summary.md": "7b61ff101e5ed4909d2729af80c91eb71421641854903a21ffb663519f6da6ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

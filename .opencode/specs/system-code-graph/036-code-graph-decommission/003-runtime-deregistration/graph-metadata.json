@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/036-code-graph-decommission/003-runtime-deregistration",
+  "spec_folder": "system-code-graph/036-code-graph-decommission/003-runtime-deregistration",
+  "parent_id": "system-code-graph/036-code-graph-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk_code_index deregistration",
+      "remove code graph mcp registration",
+      "opencode.json code graph removal",
+      "codex config code graph",
+      "036 runtime deregistration",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "deregistration",
+      "remove",
+      "code",
+      "graph",
+      "mcp",
+      "registration",
+      "opencode",
+      "json",
+      "removal",
+      "codex",
+      "config",
+      "runtime"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".claude/settings.json",
+      ".claude/settings.local.json",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The server is registered in `opencode.json`, `.claude/mcp.json`, and `.codex/config.toml`, and reached again through two symlinks — `.mcp.json` and `.cursor/mcp.json` both resolve to `.claude/mcp.json`, which makes Cursor a fifth registered surface that a naive audit misses",
+    "created_at": "2026-07-27T16:33:54Z",
+    "last_save_at": "2026-07-27T16:49:44.182Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:95e4845d501b73221041929f0257722868bc36672e92897830403e67d36d850c",
+    "source_doc_hashes": {
+      "spec.md": "cfb502314e35364208aaebc244cdfcbbe64cdd6f0f83f7615735ba1da85aae1b",
+      "plan.md": "696dafaf2a9a5e9d12a0d1bbea95e417b9e2608be03bffdfa1ff66d909b1897b",
+      "tasks.md": "5e8362f9ae24758c5c76bb79fb21e199cdc6d27a902efb519b4ab50ba7abfa03",
+      "implementation-summary.md": "6d0625adb3eacfc8c158e9743e4addb08b70063673460c23c6ae0b918ffe34da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

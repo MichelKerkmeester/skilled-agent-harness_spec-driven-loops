@@ -1,0 +1,436 @@
+{
+  "sessionId": "fanout-sol-high-fast-1785174758167-rdrppf",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-12-skill-by-eight-file-root-level-census-and-who-produces-e",
+      "inboxId": null,
+      "text": "What is the complete 12-skill by eight-file root-level census, and who produces each file type?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-schema-and-complete-consumer-call-site-set-governs-each-file-type-including",
+      "inboxId": null,
+      "text": "What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-consumer-derived-skill-class-taxonomy-maps-all-12-skills-and-makes-each-pre",
+      "inboxId": null,
+      "text": "What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-how-should-the-five-graph-only-skills-leaf-aliases-json-command-metadata-json-an",
+      "inboxId": null,
+      "text": "How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-where-should-the-canonical-contract-live-in-sk-doc-create-skill-what-can-be-gene",
+      "inboxId": null,
+      "text": "Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-what-schema-and-complete-consumer-call-site-set-governs-each-file-type-including",
+      "inboxId": null,
+      "text": "What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-consumer-derived-skill-class-taxonomy-maps-all-12-skills-and-makes-each-pre",
+      "inboxId": null,
+      "text": "What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-how-should-the-five-graph-only-skills-leaf-aliases-json-command-metadata-json-an",
+      "inboxId": null,
+      "text": "How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-where-should-the-canonical-contract-live-in-sk-doc-create-skill-what-can-be-gene",
+      "inboxId": null,
+      "text": "Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-is-the-complete-12-skill-by-eight-file-root-level-census-and-who-produces-e",
+      "inboxId": null,
+      "text": "What is the complete 12-skill by eight-file root-level census, and who produces each file type?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What complete consumer and schema set governs each type?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What behavior impact determines whether graph-only, alias, command, and sparse cases are required, optional, or defective?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What class taxonomy explains every presence difference?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which consumer or history evidence conclusively owns `command-metadata.json`?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where should the canonical contract and fleet enforcement live?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What schemas and complete consumer sets govern `leaf-manifest.json`, `leaf-manifest.config.json`, `leaf-aliases.json`, and `command-metadata.json`?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where should the canonical contract and fleet-wide freshness gate live?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What consumer-derived class taxonomy explains all 12 roots?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exceptional presence cases are required, optional, or defective?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?",
+    "What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?",
+    "How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?",
+    "Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-command-metadata-json-is-a-singleton-confined-to-sk-design-its-two-entries-descr",
+      "text": "`command-metadata.json` is a singleton confined to `sk-design`; its two entries describe `/interface:design` and `/interface:design-reference`. No producer reference was found in `sk-doc/create-command` or `.opencode/commands`, so current evidence classifies it as hand-authored, not generated; this classification should remain provisional until consumer/schema research traces its ownership history. [SOURCE: .opencode/skills/sk-design/command-metadata.json:1-16] [SOURCE: .opencode/skills/sk-design/command-metadata.json:374-386] [INFERENCE: exact searches for `command-metadata` under `.opencode/skills/sk-doc/create-command` and `.opencode/commands` returned no matches]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/` direct directory inventory",
+        "`Glob .opencode/skills/*/*.json`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:490-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-218`",
+        "`.opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:1-180`",
+        "`.opencode/skills/sk-design/command-metadata.json:1-574`",
+        "Exact `command-metadata` searches under `.opencode/skills/sk-doc/create-command` and `.opencode/commands`"
+      ]
+    },
+    {
+      "id": "finding-1-4-leaf-manifest-json-is-the-one-clearly-derived-artifact-generate-leaf-manifest-cj",
+      "text": "`leaf-manifest.json` is the one clearly derived artifact: `generate-leaf-manifest.cjs --write` builds it from `mode-registry.json` for hubs or from `leaf-manifest.config.json` for registry-less standalone skills, optionally incorporating authored `leaf-aliases.json` for hubs, and writes canonical bytes. The script explicitly calls aliases “authored,” while standalone config is an input declaration rather than generated output. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-19] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:173-218]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/` direct directory inventory",
+        "`Glob .opencode/skills/*/*.json`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:490-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-218`",
+        "`.opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:1-180`",
+        "`.opencode/skills/sk-design/command-metadata.json:1-574`",
+        "Exact `command-metadata` searches under `.opencode/skills/sk-doc/create-command` and `.opencode/commands`"
+      ]
+    },
+    {
+      "id": "finding-1-2-fleet-totals-are-description-json-7-12-graph-metadata-json-12-12-leaf-manifest-j",
+      "text": "Fleet totals are: `description.json` 7/12, `graph-metadata.json` 12/12, `leaf-manifest.json` 11/12, `leaf-manifest.config.json` 4/12, `leaf-aliases.json` 5/12, `mode-registry.json` 7/12, `hub-router.json` 7/12, and `command-metadata.json` 1/12. Thus `graph-metadata.json` is the only universally present type; `sk-git` is the sole graph-only root. [INFERENCE: arithmetic over the exact matrix in Finding 1; the `sk-git` graph node is present at `.opencode/skills/sk-git/graph-metadata.json:1`]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/` direct directory inventory",
+        "`Glob .opencode/skills/*/*.json`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:490-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-218`",
+        "`.opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:1-180`",
+        "`.opencode/skills/sk-design/command-metadata.json:1-574`",
+        "Exact `command-metadata` searches under `.opencode/skills/sk-doc/create-command` and `.opencode/commands`"
+      ]
+    },
+    {
+      "id": "finding-1-3-four-file-types-have-explicit-parent-hub-scaffold-producer-evidence-init-skill-p",
+      "text": "Four file types have explicit parent-hub scaffold producer evidence: `init_skill.py --kind parent` writes `mode-registry.json`, `hub-router.json`, `graph-metadata.json`, and `description.json` at the new hub root. These are scaffold outputs, though their checked-in values remain author-maintained after creation. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/init_skill.py:528-553]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/` direct directory inventory",
+        "`Glob .opencode/skills/*/*.json`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:490-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-218`",
+        "`.opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:1-180`",
+        "`.opencode/skills/sk-design/command-metadata.json:1-574`",
+        "Exact `command-metadata` searches under `.opencode/skills/sk-doc/create-command` and `.opencode/commands`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-exact-root-level-census-is-below-y-means-the-direct-child-file-exists-means-",
+      "text": "The exact root-level census is below. `Y` means the direct-child file exists; `—` means the exact direct-child glob returned no such file. Nested packet/mode metadata was excluded. [INFERENCE: exact direct-child inventory from `Glob .opencode/skills/*/*.json`, cross-checked against the 12 entries returned by reading `.opencode/skills/`]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/` direct directory inventory",
+        "`Glob .opencode/skills/*/*.json`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:490-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:7-218`",
+        "`.opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:1-180`",
+        "`.opencode/skills/sk-design/command-metadata.json:1-574`",
+        "Exact `command-metadata` searches under `.opencode/skills/sk-doc/create-command` and `.opencode/commands`"
+      ]
+    },
+    {
+      "id": "finding-2-2-graph-metadata-json-is-the-advisor-s-only-direct-root-identity-scoring-source-am",
+      "text": "`graph-metadata.json` is the advisor's only direct root identity/scoring source among these four: the indexer parses every discovered skill-shaped file, enforces one non-nested identity, and stores node domains, intent signals, derived metadata, and graph edges in SQLite; scorer lanes consume that projection rather than `description.json`. Doctor independently enforces one root graph file, folder identity, family, and no nested graph/description identities; benchmark vocabulary sync also reads graph trigger phrases. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:946-1005] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:1037-1133] [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:252-313] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs:322-354]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-411,803-1045`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:740-828,946-1133`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:147-336`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-{description,graph-metadata,registry}-template.json`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:21-337`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/{router-replay,parent-hub-vocab-sync}.cjs`",
+        "`.opencode/bin/lib/compiled-route-manifest.cjs:400-434`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/parent-skill-check-fixtures.vitest.ts:53-105`",
+        "`.opencode/bin/tests/compiled-route-manifest.test.cjs:49-79,191-229`"
+      ]
+    },
+    {
+      "id": "finding-2-4-hub-router-json-is-the-declarative-routing-table-its-required-top-level-shape-is",
+      "text": "`hub-router.json` is the declarative routing table. Its required top-level shape is `skill`, `version`, `routerPolicy`, `routerSignals`, and `vocabularyClasses`; signal keys must equal registry modes, classes and resources must resolve, tie-break must be an exact mode permutation, and outcomes/default mode must conform. Production consumers are benchmark `projectHubRouter`, vocabulary sync, doctor check 5, the compiled-route manifest and per-hub compilers, plus the hub's own SKILL router. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:21-57] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:160-178] [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:803-934] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:127-163] [SOURCE: .opencode/bin/lib/compiled-route-manifest.cjs:400-434]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-411,803-1045`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:740-828,946-1133`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:147-336`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-{description,graph-metadata,registry}-template.json`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:21-337`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/{router-replay,parent-hub-vocab-sync}.cjs`",
+        "`.opencode/bin/lib/compiled-route-manifest.cjs:400-434`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/parent-skill-check-fixtures.vitest.ts:53-105`",
+        "`.opencode/bin/tests/compiled-route-manifest.test.cjs:49-79,191-229`"
+      ]
+    },
+    {
+      "id": "finding-2-3-mode-registry-json-is-the-packet-source-of-truth-not-advisor-identity-metadata-i",
+      "text": "`mode-registry.json` is the packet source of truth, not advisor identity metadata. Its canonical schema is one `modes[]` array whose entries carry `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet/name identity, aliases, and `advisorRouting`, with optional declared extensions. Production consumers are: create-skill's leaf-manifest generator; doctor packet/discriminator/alias/tool validation; advisor executor delegation for CLI mode aliases; generated deep-loop advisor projection; benchmark router replay and vocabulary sync; and compiled-routing manifest/compiler inputs. [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json:1-20] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json:21-164] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:174-193] [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:316-411] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:160-180] [SOURCE: .opencode/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md:24-30]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-411,803-1045`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:740-828,946-1133`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:147-336`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-{description,graph-metadata,registry}-template.json`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:21-337`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/{router-replay,parent-hub-vocab-sync}.cjs`",
+        "`.opencode/bin/lib/compiled-route-manifest.cjs:400-434`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/parent-skill-check-fixtures.vitest.ts:53-105`",
+        "`.opencode/bin/tests/compiled-route-manifest.test.cjs:49-79,191-229`"
+      ]
+    },
+    {
+      "id": "finding-2-5-tests-and-fixtures-verify-consumers-but-are-not-themselves-production-consumers-",
+      "text": "Tests and fixtures verify consumers but are not themselves production consumers: parent-check mutation tests red invalid graph family, duplicate registry aliases, router defaults, and description registry duplication; compiled-manifest tests require exactly `SKILL.md`, registry, and router inputs and fail closed on missing/malformed/mismatched files. No production advisor code in the targeted `mcp-server` search read skill `description.json`; current evidence therefore classifies it as scaffold/doctor/discovery prose rather than a scorer input. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/parent-skill-check-fixtures.vitest.ts:53-105] [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:49-79] [SOURCE: .opencode/bin/tests/compiled-route-manifest.test.cjs:191-229] [INFERENCE: the targeted production search under `.opencode/skills/system-skill-advisor/mcp-server` found graph and mode-registry consumers but no skill-root `description.json` consumer]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-411,803-1045`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:740-828,946-1133`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:147-336`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-{description,graph-metadata,registry}-template.json`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:21-337`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/{router-replay,parent-hub-vocab-sync}.cjs`",
+        "`.opencode/bin/lib/compiled-route-manifest.cjs:400-434`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/parent-skill-check-fixtures.vitest.ts:53-105`",
+        "`.opencode/bin/tests/compiled-route-manifest.test.cjs:49-79,191-229`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-two-identity-filenames-do-not-imply-one-shared-schema-skill-description-json",
+      "text": "The two identity filenames do not imply one shared schema. Skill `description.json` has a small hub-facing contract: `name`, `description`, `version`, and array-valued `keywords` are enforced; `modes` and `backend_kinds` are forbidden duplicate sources of registry truth. The scaffold additionally recommends `importance_tier`, `trigger_examples`, `lastUpdated`, and hub-specific arrays, but doctor does not require them. Skill `graph-metadata.json` is identified by `skill_id`, `family`, or `edges`, then strictly requires schema version 1 or 2, folder-matching `skill_id`, an allowed family, category, domains, intent signals, derived data, and typed edges. This content discriminator is what excludes same-named spec continuity metadata from advisor ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-description-template.json:1-32] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:960-979]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-411,803-1045`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:740-828,946-1133`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:147-336`",
+        "`.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-{description,graph-metadata,registry}-template.json`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-hub-router-schema.md:21-337`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/{router-replay,parent-hub-vocab-sync}.cjs`",
+        "`.opencode/bin/lib/compiled-route-manifest.cjs:400-434`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/parent-skill-check-fixtures.vitest.ts:53-105`",
+        "`.opencode/bin/tests/compiled-route-manifest.test.cjs:49-79,191-229`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-92c156ff35b9",
+      "text": "A broad `command-metadata.json` search produced oversized output; narrowing to the create-command and command trees found no producer. Future work should search its consumers and Git history rather than repeat the broad search.",
+      "contentHash": "92c156ff35b9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3764ce9385b2",
+      "text": "Counting `package.json`, `package-lock.json`, or `tsconfig.json`: they are root JSON files but not among the eight named metadata types.",
+      "contentHash": "3764ce9385b2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5e738fcda797",
+      "text": "Counting nested mode/packet JSON: excluded by the focus contract and direct-child glob.",
+      "contentHash": "5e738fcda797",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-633679429a9c",
+      "text": "The similarly named root-name consumer-matrix test concerns catalog/playbook directory names, not this eight-file metadata census. [SOURCE: .opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:80-138]",
+      "contentHash": "633679429a9c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9cde60146902",
+      "text": "Treating `leaf-manifest.config.json` or `leaf-aliases.json` as generated because the manifest generator reads them: the implementation identifies them as authored inputs and only writes `leaf-manifest.json`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:215-218]",
+      "contentHash": "9cde60146902",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9404029c7f88",
+      "text": "Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful.",
+      "contentHash": "9404029c7f88",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-617dc362d60d",
+      "text": "Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above]",
+      "contentHash": "617dc362d60d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8752b6d201d3",
+      "text": "Treating the advisor as a runtime consumer of every hub JSON file; it directly ingests graph metadata, reads selected mode registries for projection/delegation, and has no located runtime read of skill description or generic hub-router files. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:952-970] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:160-180]",
+      "contentHash": "8752b6d201d3",
+      "addedAtIteration": 2
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 4,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 9,
+    "keyFindings": 10,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 30,
+      "other": 6
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification/research/lineages/sol-high-fast/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

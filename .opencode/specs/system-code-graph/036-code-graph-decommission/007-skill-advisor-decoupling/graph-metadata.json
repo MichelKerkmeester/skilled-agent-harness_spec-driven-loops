@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/036-code-graph-decommission/007-skill-advisor-decoupling",
+  "spec_folder": "system-code-graph/036-code-graph-decommission/007-skill-advisor-decoupling",
+  "parent_id": "system-code-graph/036-code-graph-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor code graph node removal",
+      "skill-graph.json code graph edges",
+      "advisor scorer lane code graph",
+      "tri daemon drill code index",
+      "036 skill advisor decoupling",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "code",
+      "graph",
+      "node",
+      "removal",
+      "skill-graph",
+      "json",
+      "edges",
+      "scorer",
+      "lane",
+      "tri"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/tri-daemon-drill.vitest.ts",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "lexical.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tri-daemon-drill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/tri-daemon-drill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor treats the code graph as a first-class routable skill: it is a node in the skill graph with a declared dependency edge and inbound edges from two other skills, it carries a block of intent signals, and it is counted in the total skill population",
+    "created_at": "2026-07-27T16:33:56Z",
+    "last_save_at": "2026-07-27T16:49:45.454Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d11951a8d979bbdfa2b66214ea5e393feafe4e5e0868d6beebed9f2c77f3f27c",
+    "source_doc_hashes": {
+      "spec.md": "cdf5f8883acd1a137d02a5864a71284718d423dbd6c98f6a8b6f969f68d68292",
+      "plan.md": "359c0803b2f07f015076efad4abe80a34ecd3faa3f28807728e3ecd78d997614",
+      "tasks.md": "b08ead095daa5ad7e720d462c776c42e3c3cdea5d70417e6191c279fa2221a0b",
+      "implementation-summary.md": "9ae80ef1414b77c031ce01f1acf9ab11aeeca6f77c58fdd0356bc51611a19bc0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

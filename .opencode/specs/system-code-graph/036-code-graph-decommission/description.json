@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "system-code-graph/036-code-graph-decommission",
+  "description": "The `system-code-graph` skill is not documentation — it is the live implementation of the `mkcodeindex` MCP server, hosting all eight `codegraph`",
+  "keywords": [
+    "system-code-graph",
+    "skill",
+    "documentation",
+    "live",
+    "implementation",
+    "mkcodeindex",
+    "mcp",
+    "server",
+    "hosting",
+    "eight",
+    "codegraph"
+  ],
+  "lastUpdated": "2026-07-27T16:51:57.091Z",
+  "specId": "036",
+  "folderSlug": "code-graph-decommission",
+  "parentChain": [
+    "system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

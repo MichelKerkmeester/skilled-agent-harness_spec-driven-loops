@@ -1,0 +1,117 @@
+---
+title: Deep Research Dashboard
+description: Auto-generated reducer view over the research packet.
+---
+
+# Deep Research Dashboard - Session Overview
+
+Auto-generated from JSONL state log, iteration files, findings registry, and strategy state. Never manually edited.
+
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+Reducer-generated observability surface for the active research packet.
+
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:status -->
+## 2. STATUS
+- Topic: Root-level skill metadata JSON contract for .opencode/skills/ across all 12 skills
+- Started: 2026-07-27T17:56:03Z
+- Status: INITIALIZED
+- Iteration: 2 of 10
+- Session ID: fanout-sol-high-fast-1785174758167-rdrppf
+- Parent Session: none
+- Lifecycle Mode: new
+- Generation: 1
+- continuedFromRun: none
+
+<!-- /ANCHOR:status -->
+<!-- ANCHOR:progress -->
+## 3. PROGRESS
+
+| # | Focus | Track | Ratio | Findings | Status |
+|---|-------|-------|-------|----------|--------|
+| 1 | Build the exact 12-skill by eight-file root-level presence census and identify producer evidence for each file type. | metadata-census | 1.00 | 5 | complete |
+| 2 | Trace consumers and schemas for description.json, graph-metadata.json, mode-registry.json, and hub-router.json. | hub-metadata-consumers | 1.00 | 5 | complete |
+
+- iterationsCompleted: 2
+- keyFindings: 10
+- openQuestions: 4
+- resolvedQuestions: 1
+
+<!-- /ANCHOR:progress -->
+<!-- ANCHOR:questions -->
+## 4. QUESTIONS
+- Answered: 1/5
+- [x] What is the complete 12-skill by eight-file root-level census, and who produces each file type?
+- [ ] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests? [legacy-import]
+- [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective? [legacy-import]
+- [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks? [legacy-import]
+- [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it? [legacy-import]
+
+<!-- /ANCHOR:questions -->
+<!-- ANCHOR:uncovered-questions -->
+## Uncovered Questions
+- Count: 4
+- [ ] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
+- [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
+- [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
+- [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
+
+<!-- /ANCHOR:uncovered-questions -->
+<!-- ANCHOR:trend -->
+## 5. TREND
+- newInfoRatio sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+- score sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+- Last 3 ratios: 1.00 -> 1.00
+- Stuck count: 0
+- Guard violations: none recorded by the reducer pass
+- convergenceScore: 1.00
+- coverageBySources: {"code":30,"other":6}
+- Advisory events: none
+
+<!-- /ANCHOR:trend -->
+<!-- ANCHOR:dead-ends -->
+## 6. DEAD ENDS
+- A broad `command-metadata.json` search produced oversized output; narrowing to the create-command and command trees found no producer. Future work should search its consumers and Git history rather than repeat the broad search. (iteration 1)
+- Counting `package.json`, `package-lock.json`, or `tsconfig.json`: they are root JSON files but not among the eight named metadata types. (iteration 1)
+- Counting nested mode/packet JSON: excluded by the focus contract and direct-child glob. (iteration 1)
+- The similarly named root-name consumer-matrix test concerns catalog/playbook directory names, not this eight-file metadata census. [SOURCE: .opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:80-138] (iteration 1)
+- Treating `leaf-manifest.config.json` or `leaf-aliases.json` as generated because the manifest generator reads them: the implementation identifies them as authored inputs and only writes `leaf-manifest.json`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:215-218] (iteration 1)
+- Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful. (iteration 2)
+- Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above] (iteration 2)
+- Treating the advisor as a runtime consumer of every hub JSON file; it directly ingests graph metadata, reads selected mode registries for projection/delegation, and has no located runtime read of skill description or generic hub-router files. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:952-970] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:160-180] (iteration 2)
+
+<!-- /ANCHOR:dead-ends -->
+<!-- ANCHOR:divergent-pivots -->
+## 6A. DIVERGENT PIVOTS
+- Completed pivots: 0
+- Failed pivots: 0
+- Audited overrides: 0
+- Saturated: none yet
+- Pivot lineage: none yet
+- Remaining frontier: none recorded
+
+<!-- /ANCHOR:divergent-pivots -->
+<!-- ANCHOR:next-focus -->
+## 7. NEXT FOCUS
+Which exceptional presence cases are required, optional, or defective?
+
+<!-- /ANCHOR:next-focus -->
+<!-- ANCHOR:active-risks -->
+## 8. ACTIVE RISKS
+- None active beyond normal research uncertainty.
+
+<!-- /ANCHOR:active-risks -->
+<!-- ANCHOR:blocked-stops -->
+## 9. BLOCKED STOPS
+No blocked-stop events recorded.
+
+<!-- /ANCHOR:blocked-stops -->
+<!-- ANCHOR:graph-convergence -->
+## 10. GRAPH CONVERGENCE
+- graphConvergenceScore: 0.00
+- graphDecision: [Not recorded]
+- graphBlockers: none recorded
+
+<!-- /ANCHOR:graph-convergence -->

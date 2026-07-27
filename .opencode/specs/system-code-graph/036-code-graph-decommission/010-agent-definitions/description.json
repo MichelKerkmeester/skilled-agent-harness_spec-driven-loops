@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/010-agent-definitions",
+  "description": "Eight agents are defined three times over — once per runtime, in Markdown for OpenCode and Claude and in TOML for Codex — and each copy grants the",
+  "keywords": [
+    "eight",
+    "agents",
+    "defined",
+    "three",
+    "times",
+    "per",
+    "runtime",
+    "markdown",
+    "opencode",
+    "claude",
+    "toml",
+    "codex",
+    "copy",
+    "grants"
+  ],
+  "lastUpdated": "2026-07-27T16:46:29.649Z",
+  "specId": "010",
+  "folderSlug": "agent-definitions",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/011-doctrine-and-docs",
+  "description": "Project doctrine does not merely mention the code graph; it mandates it",
+  "keywords": [
+    "project",
+    "doctrine",
+    "merely",
+    "mention",
+    "code",
+    "graph",
+    "mandates"
+  ],
+  "lastUpdated": "2026-07-27T16:47:07.925Z",
+  "specId": "011",
+  "folderSlug": "doctrine-and-docs",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

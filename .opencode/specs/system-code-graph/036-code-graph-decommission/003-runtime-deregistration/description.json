@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/003-runtime-deregistration",
+  "description": "The server is registered in `opencode.json`, `.claude/mcp.json`, and `.codex/config.toml`, and reached again through two symlinks — `.mcp.json` and",
+  "keywords": [
+    "server",
+    "registered",
+    "opencode",
+    "json",
+    "claude",
+    "mcp",
+    "codex",
+    "config",
+    "toml",
+    "reached",
+    "two",
+    "symlinks"
+  ],
+  "lastUpdated": "2026-07-27T16:42:06.588Z",
+  "specId": "003",
+  "folderSlug": "runtime-deregistration",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

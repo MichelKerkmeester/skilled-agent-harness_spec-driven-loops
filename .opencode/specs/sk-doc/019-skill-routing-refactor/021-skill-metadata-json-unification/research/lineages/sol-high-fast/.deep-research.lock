@@ -1,0 +1,11 @@
+{
+  "owner_pid": 52278,
+  "started_at_iso": "2026-07-27T17:56:03.785Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-27T17:56:03.785Z",
+  "packet_id": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-27T17:56:03.785Z",
+  "acquire_nonce": "52278-1785174963786-e2ca5d17-259e-46a6-87de-965ec0b29b85"
+}

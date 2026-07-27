@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/002-decommission-decision-record",
+  "description": "Removing the subsystem permanently deletes a capability that project doctrine currently lists as mandatory: `codegraphquery` and its siblings are",
+  "keywords": [
+    "removing",
+    "subsystem",
+    "permanently",
+    "deletes",
+    "capability",
+    "project",
+    "doctrine",
+    "currently",
+    "lists",
+    "mandatory",
+    "codegraphquery",
+    "siblings"
+  ],
+  "lastUpdated": "2026-07-27T16:41:31.063Z",
+  "specId": "002",
+  "folderSlug": "decommission-decision-record",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

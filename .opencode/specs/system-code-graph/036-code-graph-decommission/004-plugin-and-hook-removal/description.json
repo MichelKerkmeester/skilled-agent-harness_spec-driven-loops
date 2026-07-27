@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/004-plugin-and-hook-removal",
+  "description": "Two OpenCode plugins reach into the skill folder at load time — one through a static ESM import of a transport bridge, one through a `require` of the",
+  "keywords": [
+    "two",
+    "opencode",
+    "plugins",
+    "reach",
+    "skill",
+    "folder",
+    "load",
+    "time",
+    "one",
+    "static",
+    "esm",
+    "import",
+    "transport",
+    "bridge",
+    "require"
+  ],
+  "lastUpdated": "2026-07-27T16:42:42.661Z",
+  "specId": "004",
+  "folderSlug": "plugin-and-hook-removal",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

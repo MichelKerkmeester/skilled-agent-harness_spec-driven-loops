@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/001-touchpoint-research",
+  "description": "The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers,",
+  "keywords": [
+    "subsystem",
+    "reached",
+    "five",
+    "runtime",
+    "registrations",
+    "two",
+    "plugins",
+    "three",
+    "per-runtime",
+    "freshness",
+    "hooks",
+    "git",
+    "post-commit",
+    "hook",
+    "session",
+    "reapers"
+  ],
+  "lastUpdated": "2026-07-27T16:39:55.428Z",
+  "specId": "001",
+  "folderSlug": "touchpoint-research",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

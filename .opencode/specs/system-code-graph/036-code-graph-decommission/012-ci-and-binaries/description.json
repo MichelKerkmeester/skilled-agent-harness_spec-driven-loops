@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/012-ci-and-binaries",
+  "description": "The launcher is the single largest artifact outside the skill itself, and it is the piece every runtime registration pointed at",
+  "keywords": [
+    "launcher",
+    "single",
+    "largest",
+    "artifact",
+    "outside",
+    "skill",
+    "itself",
+    "piece",
+    "every",
+    "runtime",
+    "registration",
+    "pointed"
+  ],
+  "lastUpdated": "2026-07-27T16:47:45.221Z",
+  "specId": "012",
+  "folderSlug": "ci-and-binaries",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

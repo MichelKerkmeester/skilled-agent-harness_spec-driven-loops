@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-code-graph/036-code-graph-decommission/011-doctrine-and-docs",
+  "spec_folder": "system-code-graph/036-code-graph-decommission/011-doctrine-and-docs",
+  "parent_id": "system-code-graph/036-code-graph-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "AGENTS.md code graph removal",
+      "mandatory tools code graph",
+      "code search decision tree rewrite",
+      "install guide code graph deletion",
+      "036 doctrine and docs",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "agents",
+      "code",
+      "graph",
+      "removal",
+      "mandatory",
+      "tools",
+      "search",
+      "decision",
+      "tree",
+      "rewrite",
+      "install",
+      "guide"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".claude/CLAUDE.md",
+      ".opencode/install-guides/SET-UP - Code Graph.md",
+      ".opencode/install-guides/README.md",
+      ".opencode/bin/README.md",
+      ".opencode/bin/lib/README.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": ".claude/CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - Code Graph.md",
+        "kind": "doc",
+        "path": ".opencode/install-guides/SET-UP - Code Graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install-guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mandatory Tools",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Search Decision Tree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Project doctrine does not merely mention the code graph; it mandates it",
+    "created_at": "2026-07-27T16:33:59Z",
+    "last_save_at": "2026-07-27T16:49:47.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea03dabc21df68c372dc7559f4d5764e2123ec189a5e82f26161ee5b3471116f",
+    "source_doc_hashes": {
+      "spec.md": "c5e1cbad0a61b95eabab0eddb554ec7bfce4e7cb9195e8d22ba7d7086cba380a",
+      "plan.md": "f3905b3f43edf44a5f38a97b94df5476718a4b3557e9b0974125e4cbbbe8b7fb",
+      "tasks.md": "d0aa61268f1a4e927d84f8c28ac2106ecc9d8782d95e5f151890be575cb13ddd",
+      "implementation-summary.md": "b667b67567e5e10e9b21e7579f9be0a964ef1581397d0d6a1bd55e681d5d5ace"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

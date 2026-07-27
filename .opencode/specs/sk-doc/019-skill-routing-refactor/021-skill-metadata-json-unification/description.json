@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
+  "description": "A census of the 12 skill roots produces twelve distinct metadata shapes",
+  "keywords": [
+    "census",
+    "skill",
+    "roots",
+    "produces",
+    "twelve",
+    "distinct",
+    "metadata",
+    "shapes"
+  ],
+  "lastUpdated": "2026-07-27T17:46:52.099Z",
+  "specId": "021",
+  "folderSlug": "skill-metadata-json-unification",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

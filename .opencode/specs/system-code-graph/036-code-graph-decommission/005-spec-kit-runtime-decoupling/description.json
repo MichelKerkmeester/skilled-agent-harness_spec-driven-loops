@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "system-code-graph/036-code-graph-decommission/005-spec-kit-runtime-decoupling",
+  "description": "`system-spec-kit` is the deepest consumer",
+  "keywords": [
+    "system-spec-kit",
+    "deepest",
+    "consumer"
+  ],
+  "lastUpdated": "2026-07-27T16:43:22.543Z",
+  "specId": "005",
+  "folderSlug": "spec-kit-runtime-decoupling",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
