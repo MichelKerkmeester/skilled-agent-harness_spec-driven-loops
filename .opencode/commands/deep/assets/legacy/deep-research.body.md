@@ -6,7 +6,6 @@ Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, 
 
 Load the presentation contract before showing startup questions, dashboards, checkpoint text, success output, failure output, examples, or next-step prompts.
 
-> **Code Graph ownership:** `code_graph_query` and `code_graph_context` stay stable MCP tool IDs; implementation and docs now live under `.opencode/skills/system-code-graph/`.
 
 > **EXECUTION PROTOCOL -- READ FIRST**
 >

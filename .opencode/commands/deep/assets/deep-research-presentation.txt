@@ -252,7 +252,6 @@ Run an iterative loop for deep research: Initialize state under `{artifact_dir}`
 
 ### Code Context Bootstrap
 
-- Use Code Graph (`code_graph_query`) to find relevant code examples before starting research
 - Query: 2-5 word concept descriptions related to the research topic
 - Inject discovered code patterns into strategy.md "Known Context" section alongside memory findings
 

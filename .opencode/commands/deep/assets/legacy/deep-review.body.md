@@ -121,7 +121,6 @@ The following content lives only in `.opencode/commands/deep/assets/deep-review-
 
 ## 6. WORKFLOW SUMMARY
 
-The YAML workflow runs iterative code review by initializing a review packet under `{artifact_dir}`, dispatching fresh deep-review LEAF agents, evaluating convergence across configured review dimensions, and synthesizing findings into `review-report.md` plus optional `resource-map.md`. Convergence uses the review-specific `convergenceThreshold` severity-weighted finding ratio; do not transfer sibling defaults from deep-research or deep-ai-council. Code graph tool IDs remain stable as `code_graph_query` and `code_graph_context`; implementation and docs live under `.opencode/skills/system-code-graph/`.
 
 **Review path (findings):** `/deep:review` -> (if FAIL/CONDITIONAL) `/speckit:plan` -> `/speckit:implement`
 **Review path (clean):** `/deep:review` -> (if PASS) `/create:changelog`

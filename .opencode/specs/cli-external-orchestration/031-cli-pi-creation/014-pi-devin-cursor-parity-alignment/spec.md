@@ -50,9 +50,9 @@ FAILURE MODES:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/031-cli-pi-creation` |
-| **Phase** | 14 of 14 |
+| **Phase** | 14 of 15 |
 | **Predecessor** | `../013-pi-manual-testing-playbook-authoring/spec.md` |
-| **Successor** | None (final phase) |
+| **Successor** | `../015-pi-hook-coverage-parity/spec.md` |
 | **Handoff Criteria** | **Entry**: phases 007/012/013 landed real, live-confirmed findings this phase's content updates cite. **Exit (terminal)**: all touched reference/asset files pass `validate_document.py`, `parent-skill-check.cjs` and the leaf-manifest byte-check both stay clean, and GLM-5.2's independent review returns no unresolved blocking finding. |
 <!-- /ANCHOR:metadata -->
 

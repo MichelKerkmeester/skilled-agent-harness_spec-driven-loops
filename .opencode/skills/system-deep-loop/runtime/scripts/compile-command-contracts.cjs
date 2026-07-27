@@ -146,9 +146,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
+      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search'],
       permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
+        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search'],
         'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
         'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
       },
@@ -244,9 +244,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Grep', 'Glob', 'Task', 'Bash', 'memory_context', 'memory_search', 'code_graph_query'],
+      allowed: ['Read', 'Grep', 'Glob', 'Task', 'Bash', 'memory_context', 'memory_search'],
       permittedByExecutor: {
-        native: ['Read', 'Grep', 'Glob', 'Task', 'Bash', 'memory_context', 'memory_search', 'code_graph_query'],
+        native: ['Read', 'Grep', 'Glob', 'Task', 'Bash', 'memory_context', 'memory_search'],
       },
     },
   },
@@ -344,9 +344,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
+      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'memory_context', 'memory_search'],
       permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
+        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'memory_context', 'memory_search'],
         'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
         'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
       },
@@ -445,9 +445,9 @@ const COMMANDS = {
       ],
     },
     tools: {
-      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'WebFetch', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
+      allowed: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'Task', 'WebFetch', 'memory_context', 'memory_search'],
       permittedByExecutor: {
-        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'WebFetch', 'memory_context', 'memory_search', 'code_graph_query', 'code_graph_context'],
+        native: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob', 'WebFetch', 'memory_context', 'memory_search'],
         'cli-opencode': ['headless command execution through YAML-owned audited dispatch only'],
         'cli-claude-code': ['headless command execution through YAML-owned audited dispatch only'],
       },

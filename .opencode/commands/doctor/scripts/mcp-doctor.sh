@@ -13,7 +13,6 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +46,6 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking
   --root <path>       Override project root
 
 Exit Codes:
@@ -58,7 +56,6 @@ Exit Codes:
 Servers Checked:
   mk-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   mk_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
-  mk_code_index         System Code Graph (Node.js MCP, structural AST + 8 tools)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
   sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
 
@@ -249,7 +246,6 @@ diagnose_mk_spec_memory() {
   for stale_dist_root in \
     "$skill_dir/mcp-server/dist/system-skill-advisor" \
     "$skill_dir/mcp-server/dist/system-spec-kit" \
-    "$skill_dir/mcp-server/dist/system-code-graph" \
     "$skill_dir/mcp-server/dist/tests" \
     "$skill_dir/mcp-server/dist/database"; do
     local drift_key
@@ -365,9 +361,6 @@ diagnose_code_mode() {
 }
 
 # ── mk-code-index (System Code Graph) ─────────────────────────
-diagnose_mk_code_index() {
-  local srv="mk_code_index"
-  local skill_dir="$PROJECT_ROOT/.opencode/skills/system-code-graph"
   local dist_entry="$skill_dir/mcp-server/dist/index.js"
   local stale_root_dist="$skill_dir/dist"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
@@ -379,7 +372,6 @@ diagnose_mk_code_index() {
   local needs_fix=false
   local needs_db_dir=false
 
-  _log log_header "System Code Graph (mk_code_index)"
 
   if [[ "$HAS_NODE" != true ]]; then
     record_skip "$srv" "all" "Node.js not available"
@@ -615,7 +607,6 @@ diagnose_mk_skill_advisor() {
   for stale_dist_root in \
     "$skill_dir/mcp-server/dist/system-skill-advisor" \
     "$skill_dir/mcp-server/dist/system-spec-kit" \
-    "$skill_dir/mcp-server/dist/system-code-graph"; do
     local drift_key
     drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
     if [[ -e "$stale_dist_root" ]]; then
@@ -701,7 +692,6 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("mk-spec-memory" "mk_skill_advisor" "mk_code_index" "code_mode" "sequential_thinking")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -735,7 +725,6 @@ detect_and_check_configs() {
 # ══════════════════════════════════════════════════════════════
 should_run "mk-spec-memory"      && diagnose_mk_spec_memory
 should_run "mk_skill_advisor"    && diagnose_mk_skill_advisor
-should_run "mk_code_index"       && diagnose_mk_code_index
 should_run "code_mode"            && diagnose_code_mode
 should_run "sequential_thinking"  && diagnose_sequential_thinking
 

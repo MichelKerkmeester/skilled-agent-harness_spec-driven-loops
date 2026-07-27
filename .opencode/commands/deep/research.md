@@ -1,7 +1,6 @@
 ---
 description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
 argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--no-resource-map] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] [--iters=N] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
 
 # Deep Start Research Loop
@@ -14,7 +13,6 @@ Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, 
 
 Load the presentation contract before showing startup questions, dashboards, checkpoint text, success output, failure output, examples, or next-step prompts.
 
-> **Code Graph ownership:** `code_graph_query` and `code_graph_context` stay stable MCP tool IDs; implementation and docs now live under `.opencode/skills/system-code-graph/`.
 
 > **EXECUTION PROTOCOL -- READ FIRST**
 >

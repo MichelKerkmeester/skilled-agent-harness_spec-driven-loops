@@ -58,7 +58,6 @@ Pick by symptom:
    memory_drift_why returns nothing                    -> 4  Causal-Graph
    "causal coverage <60%" warning                      -> 4  Causal-Graph
    "code-graph stale/missed/bloat" warning             -> 5  Code-Graph
-   "code_graph_status: unhealthy" or code-graph errors -> 5  Code-Graph
    deep-research/deep-review iteration graph empty     -> 6  Deep-Loop
    Convergence not detected between iterations         -> 6  Deep-Loop
    Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
@@ -101,7 +100,6 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `memory` | `doctor-memory.yaml` | add-only | Diagnose the memory continuity index; report drift and recommend action |
 | `embeddings` | `doctor-embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
 | `causal-graph` | `doctor-causal-graph.yaml` | add-only | Diagnose causal-edge integrity; sample drift and recommend candidates |
-| `code-graph` | `doctor-code-graph.yaml` | add-only | Diagnose code-graph index; report stale, missed, or bloat findings |
 | `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
 | `skill-budget` | `doctor-skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi hook coverage parity",
+      "pi extension coverage gap",
+      "pi session lifecycle hooks",
+      "pi hook coverage parity plan",
+      "pi hook coverage parity tasks",
+      "pi hook coverage parity checklist",
+      "pi hook coverage parity summary"
+    ],
+    "key_topics": [
+      "hook",
+      "coverage",
+      "parity",
+      "extension",
+      "gap",
+      "session",
+      "lifecycle",
+      "hooks",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".pi/extensions/lib/claude-hook-adapter.ts",
+      ".pi/extensions/session-start-context.ts",
+      ".pi/extensions/session-start-advisories.ts",
+      ".pi/extensions/session-stop-context.ts",
+      ".pi/extensions/prompt-advisor.ts",
+      ".pi/extensions/session-compact-context.ts",
+      ".devin/hooks.v1.json",
+      ".cursor/hooks.json",
+      "mcp-server/hooks/devin/shared.ts",
+      ".pi/extensions/README.md",
+      "hooks/devin/shared.ts",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".devin/hooks/README.md",
+      ".cursor/hooks/README.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "claude-hook-adapter.ts",
+        "kind": "code",
+        "path": ".pi/extensions/lib/claude-hook-adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-context.ts",
+        "kind": "code",
+        "path": ".pi/extensions/session-start-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start-advisories.ts",
+        "kind": "code",
+        "path": ".pi/extensions/session-start-advisories.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop-context.ts",
+        "kind": "code",
+        "path": ".pi/extensions/session-stop-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".pi/extensions/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-compact-context.ts",
+        "kind": "code",
+        "path": ".pi/extensions/session-compact-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/devin/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirmed Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 012 built 6 `.pi/extensions/.ts` files bridging the toolcall/toolresult/input-scoped guard cores (spec-gate, dispatch-preflight, dispatch-audit, post-edit-quality, mcp-route-guard)",
+    "created_at": "2026-07-27T20:39:41.538Z",
+    "last_save_at": "2026-07-27T20:39:41.538Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc459a818835cb029cae3c0691743a3ca669678096cd968bd9898e30de569754",
+    "source_doc_hashes": {
+      "spec.md": "f24613ffa309faf086c36f9e5e1db98124dcc9ebf9a15205d646ebd92db682a8",
+      "plan.md": "6a9f7bb17040e10e7e9b550956155d4041104f3453dc15f3576d2a642174f7c6",
+      "tasks.md": "f5e5ae4990e29443773cbd7b5ae96122fd99e98289113bdec91114280779f901",
+      "checklist.md": "882f4128c29d30a48346ea07c71b8b133e828fb6fffa49d50e14a5272a42707a",
+      "implementation-summary.md": "ede189c667815d88a73a778d8b32778973fb4840fa262b3caab30de426eee05c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

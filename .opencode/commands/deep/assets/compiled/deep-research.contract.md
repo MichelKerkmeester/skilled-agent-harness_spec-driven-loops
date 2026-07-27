@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "e27652c62b3815b3020464149aab0dab7e776b86ee54e7b54abf0bdf6d312072",
+      "sha256": "4fea93551eb398f87b3453cd7e8ac610b8df936bc2da4342152f23e9e0866334",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "a8c26be872c92336903fbef2729026a059ed41f047567cf6d2d47e4a2cd88c54",
+      "sha256": "8618406ecbcdd41aa266d2fe9ebd8d0ba40dab1b34dc915798a1643be7c5888c",
       "section": "full"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "d30a9cdf88a8fe9f251226b178467105b52bfe9af585997209342eb3247a89a0",
+      "sha256": "bafec1aa180dd4b6a729d4c048db2d4b8680d391229a03b20af63d5da7396eda",
       "section": "full"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "5d04b209806df7519759c587e6edb542965cd763a7e180a285b1115d658e20c7",
+      "sha256": "5e75e886e293f282ba84b3a8d9bcf837e24dce0aed2c657f6fff8deba9134fad",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "c7197c5d3f977d3f2963f21e64554007afae4a624d62b2f8bd643264722688c2"
+  "compiledBodyDigest": "1703201cb1169dc039e7852e3a8c42d411cf0e161636bc56f5a9d344ec9a8589"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -453,8 +453,6 @@ allowed:
   - "WebFetch"
   - "memory_context"
   - "memory_search"
-  - "code_graph_query"
-  - "code_graph_context"
 permittedByExecutor:
   native:
     - "Read"
@@ -466,8 +464,6 @@ permittedByExecutor:
     - "WebFetch"
     - "memory_context"
     - "memory_search"
-    - "code_graph_query"
-    - "code_graph_context"
   cli-opencode:
     - "headless command execution through YAML-owned audited dispatch only"
   cli-claude-code:

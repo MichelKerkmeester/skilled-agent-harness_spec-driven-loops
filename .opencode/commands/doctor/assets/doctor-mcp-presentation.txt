@@ -189,7 +189,6 @@ Examples:
   /doctor:mcp install --runtime claude
   /doctor:mcp debug
   /doctor:mcp debug --fix
-  /doctor:mcp debug --server mk_code_index --fix
 ```
 
 ## 7. Troubleshooting Display

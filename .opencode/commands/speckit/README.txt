@@ -44,7 +44,6 @@ The `speckit` command group manages the full development lifecycle around spec f
 
 Each command loads a YAML workflow from `assets/` and executes it step by step. Most commands support `:auto` and `:confirm` execution modes.
 
-SEARCH ROUTING: semantic or concept code discovery routes to `code_graph_query + Grep`; structural questions about callers, imports, dependencies, outlines, symbols, or impact route to `code_graph_query`; exact literal text or regex checks stay on grep-style search. `session_bootstrap`, `session_resume`, and `/speckit:resume` reuse this same contract.
 
 <!-- /ANCHOR:overview -->
 

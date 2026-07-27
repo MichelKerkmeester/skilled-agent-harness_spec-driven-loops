@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
   "description": "`cli-pi` was built to structurally mirror `cli-devin`/`cli-cursor` from the start (phase 003's skill packet, phases 005/006/008's designs), but a",
   "keywords": [
@@ -14,7 +15,7 @@
     "phases",
     "designs"
   ],
-  "lastUpdated": "2026-07-27T19:33:13.509Z",
+  "lastUpdated": "2026-07-27T20:36:46.698Z",
   "specId": "014",
   "folderSlug": "pi-devin-cursor-parity-alignment",
   "parentChain": [
@@ -22,6 +23,5 @@
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

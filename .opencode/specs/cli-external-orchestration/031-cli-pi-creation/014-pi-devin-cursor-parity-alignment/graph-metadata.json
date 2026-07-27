@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`cli-pi` was built to structurally mirror `cli-devin`/`cli-cursor` from the start (phase 003's skill packet, phases 005/006/008's designs), but a direct file-by-file comparison found three real gaps that had grown since: (1) `cli-pi` never gained a \"unique capabilities\" reference — both `cli-devin` (`devin-tools.md`) and `cli-cursor` (`cursor-tools.md`) have one, cataloging what makes that CLI distinctive versus its 5 siblings; (2) two of `cli-pi`'s own references (`native-skills-and-extensions.md`, `mcp-and-third-party-packages.md`) still framed several claims as \"Per Pi docs, unconfirmed\"",
     "created_at": "2026-07-27T19:22:10.150Z",
-    "last_save_at": "2026-07-27T19:33:22.460Z",
+    "last_save_at": "2026-07-27T20:44:03.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +202,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2239a84db89c2ddb6e4c8b87bdbdef3d0f17753c3c1c23fd0638cdbf6f3cb3a",
+    "source_fingerprint": "sha256:2b1e951c8db0bc7a0008feadf8f332924b78b8145878004daff0c0952ca9da45",
     "source_doc_hashes": {
-      "spec.md": "cd00e4f3e20433e3c79cb35a67ac67931a0aab5e405a65bf6472545779f189f1",
+      "spec.md": "6c396792b6cc355fe9a07915f52bd7e5d332516cf17b72f82dd828233b7e8ce7",
       "plan.md": "48e647b02d1cbad0e80dbc490e231bfddb9b2048a2ff2e30fa84f8a985829333",
       "tasks.md": "c3270b9f1e9a08b4e0944f842dacd6517141602fcef26790544dd0a5c4f6308f",
       "checklist.md": "ac82fe3ad492800aac29780e90ddb2c0b17ae8b78028112ec214cdca31b438d0",

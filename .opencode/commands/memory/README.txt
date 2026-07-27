@@ -228,7 +228,6 @@ The `/memory:manage` command accepts these subcommands:
 
 Primary MCP tools mapped to their command home:
 
-> **Note:** The matrix lists the current 41 public Spec Kit Memory tools plus the 4 code-graph tools used by memory/search workflows. Graph-first retrieval routing means `code_graph_query` is the preferred first channel for structural code search before vector or FTS5/BM25 fallback. Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/` while preserving tool IDs.
 
 | # | Tool | Layer | Primary Command |
 |---|------|-------|-----------------|
@@ -273,10 +272,6 @@ Primary MCP tools mapped to their command home:
 | 39 | `session_bootstrap` | L1 | `/speckit:resume` |
 | 40 | `session_health` | L3 | `/memory:manage` |
 | 41 | `session_resume` | L1 | MCP direct (session recovery) |
-| 42 | `code_graph_query` | L2 | `/memory:search` |
-| 43 | `code_graph_scan` | L7 | MCP direct (code graph maintenance) |
-| 44 | `code_graph_status` | L3 | MCP direct (code graph maintenance) |
-| 45 | `code_graph_context` | L2 | `/memory:search` |
 
 ### Coverage by Command
 

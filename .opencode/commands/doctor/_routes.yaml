@@ -24,7 +24,6 @@
 #   trigger_phrases:  list   — descriptive routing phrases for this target; not
 #                              currently harvested by advisor (see "Consumed by" above)
 #
-# Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
 # stable code_graph/detect-changes MCP tools are registered through mk-code-index.
 # Skill-advisor recommendation tools are registered through mk-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
@@ -80,29 +79,6 @@ routes:
       - "lineage coverage"
       - "memory_causal_stats"
 
-  - target: code-graph
-    yaml: doctor-code-graph.yaml
-    setup_vars: [execution_mode, scope]
-    allowed_flags:
-      # apply-mode flags (--operation, --confirm) return when the confirm workflow is promoted (phase_b)
-      - "--scope=stale|missed|bloat|all|excludes"
-      - "--dry-run"
-    mutating: add-only
-    gate3_location: "{packet_scratch}/code-graph-diagnostic-{timestamp}.md"
-    mcp_tools:
-      - mcp__mk_code_index__code_graph_status
-      - mcp__mk_code_index__code_graph_query
-      - mcp__mk_code_index__code_graph_context
-      - mcp__mk_code_index__detect_changes
-      - mcp__mk_spec_memory__memory_context
-      - mcp__mk_spec_memory__memory_search
-    script_invocations:
-      - 'Warm-only: probe the existing mk-code-index IPC socket first; only when it answers, run node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
-    trigger_phrases:
-      - "code-graph index drift"
-      - "code-graph rebuild"
-      - "code-graph stale excludes"
-      - "code-graph corruption recover"
 
   - target: deep-loop
     yaml: doctor-deep-loop.yaml
