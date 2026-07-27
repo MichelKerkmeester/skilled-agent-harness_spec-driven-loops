@@ -26,6 +26,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 
 ```text
 .opencode/commands/doctor/scripts/
++-- agent-roster-mirror-check.cjs
 +-- audit_descriptions.py
 +-- check-mcp-mutation-class.sh
 +-- doctor-runtime-bootstrap.sh
@@ -55,6 +56,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
 | `fable-mode-check.cjs` | Reports deep-loop behavioral metrics against an optional baseline. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
+| `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
 
 ---
 
@@ -99,6 +101,7 @@ bash .opencode/commands/doctor/scripts/route-validate.sh --self-test
 | `node .opencode/commands/doctor/scripts/skill-graph-freshness.cjs` | Report skill graph drift. |
 | `node .opencode/commands/doctor/scripts/fable-mode-check.cjs [artifact-dir]` | Report behavioral metrics. |
 | `python3 .opencode/commands/doctor/scripts/audit_descriptions.py --repo-root .` | Audit description budgets. |
+| `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` | Report agent-roster coverage drift across runtimes. |
 
 ---
 
