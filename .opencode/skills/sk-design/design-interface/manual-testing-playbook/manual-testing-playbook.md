@@ -1,7 +1,7 @@
 ---
 title: "interface: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the interface skill."
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # interface: Manual Testing Playbook
@@ -28,6 +28,7 @@ Canonical package artifacts:
 - `content-and-mock-data-gate/`
 - `brief-to-dials-intake/`
 - `procedure-card-contract/`
+- `redesign-intake/`
 - `color/`
 - `layout/`
 - `type/`
@@ -105,9 +106,9 @@ Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critiqu
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
+2. Referenced per-feature files under `manual-testing-playbook/{category-dir}/`, where each category directory is an unnumbered kebab-case slug
 3. Scenario execution evidence from section 3
-4. Feature-to-scenario coverage map from section 20
+4. Feature-to-scenario coverage map from section 22, plus the relocated indexes in sections 23 and 24
 5. Triage notes for every PARTIAL, FAIL, or SKIP verdict
 
 ### Scenario Acceptance Rules
@@ -142,7 +143,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 20`).
+3. Coverage is 100% of playbook scenarios defined by the root indexes and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 43`: 19 interface-owned in section 22, 11 relocated foundations in section 23, 13 relocated motion in section 24).
 4. No unresolved blocking triage item remains.
 5. No scenario exposed a generator or persistence surface and no scenario overrode a pinned brief.
 
@@ -155,7 +156,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific caveats, 
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 20 files.
+2. Per-feature structural sweep checks all 43 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
@@ -177,7 +178,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 20-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 43-scenario design battery. The wave table below plans the 19 interface-owned scenarios indexed in section 22; the 11 relocated foundations scenarios and the 13 relocated motion scenarios carry their own preconditions and release-readiness rules in sections 23 and 24. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 

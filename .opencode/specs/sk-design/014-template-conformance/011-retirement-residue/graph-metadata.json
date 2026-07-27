@@ -50,6 +50,7 @@
       "spec.md",
       "checklist.md",
       "implementation-summary.md",
+      "scripts/README.md",
       "plan.md",
       "tasks.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md"
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "Two unrelated kinds of residue survived this session's earlier retirements",
     "created_at": "2026-07-27T16:52:21.024Z",
-    "last_save_at": "2026-07-27T18:09:08.984Z",
+    "last_save_at": "2026-07-27T18:53:03.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d1cbb856163c4b1ed67f68d32e7842a93c352147d70ea122b2768913174c699",
+    "source_fingerprint": "sha256:603159713421c3adcb35402383c26f06fbc7dd3fad26352bc2c4a25ff350dd38",
     "source_doc_hashes": {
       "spec.md": "66ea6bc72d864a3d43edafbebc9ffb3c940ce354c75be2bb5a3795c49000749b",
       "plan.md": "c83e72f2a49b66280a5ece7d8752f2b24563914266513c558dd47643c6576f67",
       "tasks.md": "e0fd042cbd5d6ab37d36583052c9ff5e76bddb1011afc6911bc213a3ec2d79ea",
       "checklist.md": "f1b8eef34d7521717c90b718d6972de220f0f5581de70c992ba8dd0553db42df",
-      "implementation-summary.md": "e24fd1dd5965bdb9c6bc34d693184a7da3f4caa27be3fcc8201507b2f4dc9f97"
+      "implementation-summary.md": "8b62c613256ff55246a885609bd9b1c472fc4db7f2946118e4ce54a98e967c33"
     },
     "last_active_child_id": null,
     "last_active_at": null

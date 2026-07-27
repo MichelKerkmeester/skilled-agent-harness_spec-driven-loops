@@ -10,9 +10,9 @@ contextType: "continuity"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/011-retirement-residue"
-    last_updated_at: "2026-07-27T20:00:00Z"
+    last_updated_at: "2026-07-27T21:30:00Z"
     last_updated_by: "worker-session"
-    recent_action: "Completed Track A (5/6 sites) and Track B (4 leaves verified, reconciled)"
+    recent_action: "Closed both open follow-ups (18-file reformat; scripts test suite)"
     next_safe_action: "Hand T001 (design-md-generator/SKILL.md:246) to its owning session"
     blockers: []
     key_files:
@@ -29,11 +29,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worker-session"
       parent_session_id: null
-    completion_pct: 95
-    open_questions:
-      - "design-interface/scripts/tests/ — scaffold or formal exception? (006-scripts, unchanged from original spec)"
-      - "18 relocated foundations/motion scenario files lacking the 9-column table — reformat or accepted exception? (008-manual-testing-playbook, new finding)"
+    completion_pct: 98
+    open_questions: []
     answered_questions:
+      - "scripts/tests/: wrote a real 46-test suite + scoped coverage exception (see Follow-Up Closure)"
+      - "18 non-conformant scenario files: all 18 reformatted to the 9-column contract"
       - "foundations mode-consolidation root cause: confirmed via git show --stat b217d74b819"
       - "foundations-*/motion-* procedure-card-contract files: disproven as residue, kept as-is (008/009)"
       - "v1.0.0.0-foundations.md disposition: kept as historical record (009)"
@@ -131,6 +131,14 @@ Verified each Track A site with a fresh `rg`/`grep`/`Read` before editing rather
 | `python3 package_skill.py --check .opencode/skills/sk-design` | PASS | no scripts/tests-related finding | |
 | Whole-playbook-tree cross-reference resolution | PASS | 0 broken links after 1 fix | Inline Python check, both file-relative and packet-root-relative rules |
 | Checklist | Verified | 4/4 leaf checklists + this packet's own | See each `checklist.md` |
+| **Follow-up closure — baseline vs after** | | | |
+| `parent-skill-check.cjs .opencode/skills/sk-design` | PASS → PASS | 0 warnings → 0 warnings | No delta. 10b byte-drift clean, confirming no `leaf-manifest.json` regeneration was needed (no filenames changed) |
+| `package_skill.py design-interface --check` | PASS → PASS | 1 warning → 1 warning | Same single pre-existing warning (SKILL.md word count). Count moved 4991→4760 from a **concurrent session's** SKILL.md edit, not this work |
+| `load-playbook-scenarios.cjs --skill design-interface` | 43/0 → 43/0 | shape=sk-doc, 25 categories, 43 intent-gold, 43 resource-gold, 0 warnings | Byte-for-byte identical benchmark corpus before and after the reformat — Lane C is unaffected |
+| 9-column conformance sweep (escape-aware) | 25/43 → 43/43 | 43 scenario rows, 0 with != 9 columns | Includes the 2 unescaped-pipe fixes |
+| Prompt-equality sweep (contract prompt == table prompt) | 43/43 | all scenarios | Root checklist item 6 |
+| `check-markdown-links.cjs` (playbook tree) | PASS | 0 broken links | 2 pre-existing breaks elsewhere in `references/foundations/` left under scope lock |
+| `pytest scripts/tests/ -q` | **NEW** | 46 passed in 0.4s | Suite validated by reintroducing the historical `sys.path` bug and confirming it fails |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -139,9 +147,58 @@ Verified each Track A site with a fresh `rg`/`grep`/`Read` before editing rather
 ## Known Limitations
 
 1. **T001 (`design-md-generator/SKILL.md:246`) remains unfixed** — genuinely re-confirmed broken, but explicitly out of this session's scope (sibling territory). Needs a handoff.
-2. **006-scripts' `tests/` gap remains open** pending operator decision (scaffold vs. formal exception) — unchanged from the original spec's framing.
-3. **008-manual-testing-playbook's 18-file 9-column-format gap is a new finding**, confirmed real but not fixed — reformatting is substantial new-authoring work outside this residue-cleanup pass's blast radius; recorded for operator decision.
+2. ~~006-scripts' `tests/` gap~~ — **RESOLVED**, see "Follow-Up Closure" below.
+3. ~~008-manual-testing-playbook's 18-file 9-column-format gap~~ — **RESOLVED**, see "Follow-Up Closure" below.
+4. **Two pre-existing broken links remain in `design-interface/references/foundations/`** (`layout/layout-responsive.md` → `../../assets/token-starter.md#4-spacing-scale`; `smart-router-pseudocode.md` → `../../../sk-doc/create-skill/assets/skill/skill-smart-router.md`). Found while verifying the playbook tree; both sit outside `manual-testing-playbook/` and `scripts/`, so they were left alone under scope lock. The playbook tree itself is 0 broken links.
+5. **Root playbook section numbering has a gap at §12, and ID-007 does not exist.** Both look like residue from a removed scenario. Renumbering would churn every cross-reference in the tree for no functional gain, so it was left as-is and recorded here instead.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:followup-closure -->
+## Follow-Up Closure
+
+The two questions this packet deliberately left open were delegated back with decision authority and are now closed. Both were investigated against the evidence before executing.
+
+### Q1 — 18 scenario files not following the 9-column format
+
+**Decision: reformatted all 18. Zero excluded, zero deleted.**
+
+The premise was checked first, because two plausible readings would have made reformatting wrong:
+
+- *"The relocated scenarios have their own contract."* Partly true but not load-bearing. §23/§24 do give the relocated sets their own preconditions, evidence requirements, and release-readiness rules, and the root §5 checklist scopes its structural sweep to "all 20 files" (the interface-owned set). But none of that speaks to body format. The decisive counterexample is `color/contrast-pair-inventory-before-audit.md` (FOUND-COLOR-002): same category folder, same relocation, same `trigger_phrases`/`importance_tier` frontmatter lineage as the non-conformant FOUND-COLOR-001, added in the *same commit* (`4bf29688aa`) — and it carries a full 9-column table with a real command sequence. Same lineage, two formats, is drift, not a parallel contract.
+- *"The format is one style among several."* Disproven by the owning authority. sk-doc owns `create-manual-testing-playbook`, and its per-feature snippet template (`assets/manual-testing-playbook-snippet-template.md`, v1.8.0.11) lists under **Required uses**: "One file per feature ID / **One primary 9-column scenario row per file**". No exemption for relocated scenarios. Since this program is `014-template-conformance`, the template is the authority.
+
+The `foundations-*` / `motion-*` filename prefixes documented in §23/§24 are an intentional collision-avoidance convention, entirely orthogonal to body format — no file was renamed.
+
+Content was preserved rather than rewritten. Each file's frontmatter is byte-identical, each original `## Expected Process` list became the `### Recommended Orchestration Process` verbatim, and each original `## Pass Criteria` list was carried through verbatim into a `### Pass Criteria` subsection so no criterion was reworded or dropped. The table's `Exact Command Sequence` mechanizes the "Load X" steps the files already stated, into `rg` invocations against the anchors they already cite — every `rg` pattern was verified to match real content before use (one initial pick, `state machine`, did not match and was corrected to `ASYNC STATE-MACHINE`). No scenario ids were renumbered.
+
+**No deletions.** All 49 unique paths in `expected_resources` across the tree resolve on disk, so no scenario's premise was dead — the foundations and motion surfaces they test still exist under `design-interface`. This is the opposite of the 5 canary cases deleted earlier in this packet, whose whole premise *was* a retired mode.
+
+One of the 18 was not a relocated file at all: `redesign-intake/redesign-intake-classification.md` is interface-owned (ID-015, indexed in §22), so it sat squarely inside the root §5 checklist's own scope and was the least ambiguous case in the set.
+
+**Two additional real defects found and fixed while verifying.** `color/contrast-pair-inventory-before-audit.md` and `brief-to-dials-intake/register-first-context-gate.md` each carried unescaped `|` characters inside `rg` alternation patterns in their table cells. Markdown splits on those, so those rows rendered with 12 and 14 columns — a direct violation of the root checklist's own "every table row has exactly 9 columns" rule, in two files that otherwise looked conformant. Escaped to `\|`.
+
+**Counts recomputed from disk, not carried forward.** 43 scenarios across 25 category directories (19 interface-owned + 11 foundations + 13 motion). The headline `43`/`25` figures were already correct, but five downstream numbers were still stale at the pre-relocation `20`, and the canonical package artifacts list was missing `redesign-intake/` (24 listed vs 25 on disk). All corrected; root playbook version `1.6.0.0` → `1.6.1.0`.
+
+### Q2 — `design-interface/scripts/` has no `tests/`
+
+**Decision: neither an empty scaffold nor a pure exception. Wrote a real 46-test suite plus a scoped written exception.**
+
+The ruling was to file an exception and not scaffold, with an explicit flip condition: if the scripts are genuinely untested and testable, and a couple of real tests would have caught a bug that actually shipped, write the smallest real test instead. Every part of that condition is met:
+
+- **Zero coverage anywhere.** A repo-wide search for `naming_doc_check` / `baseline_rhythm_check` / `contrast_check` returns 10 non-worktree files, none of which is a test, CI config, or doctor check. The only recorded executions are manual one-offs.
+- **Highly testable.** All three expose pure functions over strings (`check(text) -> dict`, `evaluate(fg, bg) -> dict`) with filesystem IO confined to `main`. `contrast_check.py` is pure stdlib with zero IO.
+- **A real bug shipped.** `naming_doc_check.py` and `baseline_rhythm_check.py` both built their `sys.path` entry for the shared `md_table` import with three `..` instead of two. That is not a subtle failure — it raised `ModuleNotFoundError` on *every* invocation of both scripts, and it survived from `b217d74b81` until `140fdab23d9f` purely because nothing ever ran them.
+
+An empty `tests/` directory would have been ceremony, and a pure exception would have documented away a gap that had already cost a shipped defect. The middle path is the honest one: 46 tests across three files (`test_naming_doc_check.py`, `test_baseline_rhythm_check.py`, `test_contrast_check.py`, matching the template's `test_[script_name].py` convention), running in 0.4s with no network and no new fixtures.
+
+Each suite leads with a **subprocess smoke test executed from an unrelated working directory** — the only shape that exercises the real path math, since an in-process import would resolve through the test's own `sys.path` and pass regardless. The rest pin the WCAG arithmetic against definitional reference vectors (black-on-white is exactly 21:1), the baseline-resolution rules, and the `0`/`1`/`2` exit contract that callers gate on. The two `fixtures/naming-doc/` files, which the `scripts/README.md` already described as the checker's own positive and negative examples, are now actually executed.
+
+**The suite was validated against the real defect**, not just asserted to cover it: temporarily restoring the three-`..` path made collection fail with the exact historical `ModuleNotFoundError: No module named 'md_table'`. The script was then restored and verified byte-identical by SHA-256, and `git status` confirms the three checkers are unmodified — the only addition is the new `tests/` directory.
+
+The `>=80%` line-coverage half of the template rule (`create-skill/assets/skill/skill-reference-template.md` §8) is **deliberately not met**, and that exception is written into `scripts/README.md` §4 rather than left implicit. The suite targets the regression-prone surface instead of chasing a percentage through display-only helpers (`_print_text`, table-formatting branches) that would need brittle stdout assertions. Coverage is not measured or enforced anywhere in this repo — verified against `parent-skill-check.cjs` and `package_skill.py`, neither of which mentions it — and every other `sk-design` `scripts/` directory has no tests at all, so this leaf now has the most coverage in its hub, not the least.
+<!-- /ANCHOR:followup-closure -->
 
 ---
 
