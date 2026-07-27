@@ -297,28 +297,6 @@ interface GraphContextNeighborSummary {
   }>;
 }
 
-export interface StructuralRoutingNudge {
-  advisory: true;
-  readiness: 'ready';
-  preferredTool: 'mcp__mk_code_index__code_graph_query';
-  secondaryTool: 'mcp__mk_code_index__code_graph_context';
-  message: string;
-  preservesAuthority: 'session_bootstrap';
-  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
-}
-
-const STRUCTURAL_MISFIRE_PATTERNS = [
-  /\b(?:who|what)\s+calls?\b/i,
-  /\bcallers?\s+of\b/i,
-  /\b(?:who|what)\s+imports?\b/i,
-  /\bimports?\s+of\b/i,
-  /\b(?:show|list)\s+(?:the\s+)?outline\b/i,
-  /\boutline\s+of\b/i,
-  /\bdependenc(?:y|ies)\b/i,
-  /\bdependents?\b/i,
-  /\bwhat\s+extends\b/i,
-];
-
 const NON_STRUCTURAL_SUPPRESS_PATTERNS = [
   /\bfind code\b/i,
   /\bimplementation of\b/i,
@@ -656,61 +634,6 @@ export function resolveEnvelopeTokenBudget(
     return handlerBudget;
   }
   return getTokenBudget(name);
-}
-
-export function maybeStructuralNudge(
-  task: string,
-  options: {
-    graphReady: boolean;
-    activationScaffoldReady: boolean;
-    surface?: StructuralRoutingNudge['surface'];
-  },
-): StructuralRoutingNudge | null {
-  const normalizedTask = task.trim();
-  if (!normalizedTask) {
-    return null;
-  }
-
-  if (!options.graphReady || !options.activationScaffoldReady) {
-    return null;
-  }
-
-  if (NON_STRUCTURAL_SUPPRESS_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
-    return null;
-  }
-
-  if (!STRUCTURAL_MISFIRE_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
-    return null;
-  }
-
-  return {
-    advisory: true,
-    readiness: 'ready',
-    preferredTool: 'mcp__mk_code_index__code_graph_query',
-    secondaryTool: 'mcp__mk_code_index__code_graph_context',
-    message: 'Advisory only: this looks like a structural question. Prefer `mcp__mk_code_index__code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-    preservesAuthority: 'session_bootstrap',
-    surface: options.surface ?? 'response-hints',
-  };
-}
-
-function injectStructuralRoutingNudge(
-  envelope: Record<string, unknown>,
-  nudge: StructuralRoutingNudge,
-): void {
-  const hints = Array.isArray(envelope.hints)
-    ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
-    : [];
-  envelope.hints = hints;
-  if (!hints.includes(nudge.message)) {
-    hints.push(nudge.message);
-  }
-
-  const meta = typeof envelope.meta === 'object' && envelope.meta !== null && !Array.isArray(envelope.meta)
-    ? envelope.meta as Record<string, unknown>
-    : {};
-  meta.structuralRoutingNudge = nudge;
-  envelope.meta = meta;
 }
 
 function resolveToolCallId(request: { id?: unknown }): string {
