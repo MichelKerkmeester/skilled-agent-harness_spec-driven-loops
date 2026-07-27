@@ -11,32 +11,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer"
-    last_updated_at: "2026-07-27T08:00:00Z"
+    last_updated_at: "2026-07-27T10:34:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 008 spec.md as planning-only Pi extension hook-bridge design"
-    next_safe_action: "Await phase 001 Pi contract-pin probe and phase 003 hub registration first"
+    recent_action: "Docs re-fetched live: registration model + block-capable events now documented"
+    next_safe_action: "Commit as Blocked; a future execution phase runs the live probe"
     blockers:
-      - "phase 001 (pi-contract-pin) has not executed - no live-verified Pi extension API surface exists yet"
-      - "phase 003 (cli-pi-skill-packet) has not landed - no cli-pi hub mode for a future adapter phase to attach to"
-      - "pi binary and .pi/ directory both confirmed absent from this environment at authoring time"
+      - "Live-session probing (T004+) requires running an actual pi session, out of this planning phase's own Hard Constraint; deferred to a future execution phase"
     key_files:
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
-      - "../001-pi-contract-pin/spec.md"
-      - "../007-pi-mcp-host-integration/spec.md"
-      - ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md"
-      - ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/README.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 55
     open_questions:
-      - "What does a .pi/extensions/*.ts module actually export or register to subscribe to a lifecycle point?"
-      - "Can a Pi extension deny/block a tool call, or only observe it after the fact?"
+      - "Does the now-documented pi.on(event, handler) registration and tool_call block-capability behave as documented in a real live session? - requires a future execution phase"
       - "Single consolidated extension module vs one file per guard core - which fits Pi's discovery model?"
-    answered_questions: []
+    answered_questions:
+      - "Extensions export a default factory function using pi.on(event, handler) registration, confirmed via live docs re-fetch"
+      - "tool_call fires before execution and supports {block: true, reason} to deny - docs-confirmed deny-capability exists"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 8: pi-hook-extension-layer
@@ -59,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Blocked - planning re-verified live where possible (docs re-fetch found a major update: the extension registration model and block-capable `tool_call` event are now fully documented); a live-session probe (REQ-001's own acceptance bar) is out of this phase's own Hard Constraint (planning only) — deferred to a future execution phase, not silently skipped |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -99,7 +92,9 @@ This is **Phase 8** of the CLI Pi creation specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores (`spec-gate-core.mjs`, `dispatch-rule-checks.mjs`, `dispatch-audit.mjs`, `post-edit-router.cjs`, `freshness-core.cjs`, `mcp-route-guard.cjs`, `completion-evidence-sentinel.cjs`, `dispatch-guard.cjs`), each already bridged into Claude, Codex, Devin, and Cursor via thin per-CLI adapter directories (`mcp-server/hooks/<cli>/`, `runtime/hooks/<cli>/`, plus guard-owning-packet siblings) registered through each CLI's own external hook-config file (`.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`). `cli-pi` has none of this, so once phases 001-007 land, a dispatched Pi executor session in this repo will have zero guard coverage — the same enforcement blind spot the Codex, Devin, and Cursor adapters already closed for their CLIs. Pi makes this harder than any prior CLI in this packet: per pi.dev docs, its extension system is native TypeScript, auto-discovered from `.pi/extensions/*.ts` (project) or `~/.pi/agent/extensions/*.ts` (global) — there is no external JSON hooks-config file to register events against, and pi.dev has no dedicated "Hooks" page in its docs nav at all (only "Extensions" under Customization). The Claude/Codex/Devin/Cursor `SessionStart`/`PreToolUse`/`PostToolUse`/`Stop` event taxonomy this packet's other hook-adapter phases mirrored cannot be assumed to carry over to Pi's extension API without live verification.
+This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores (`spec-gate-core.mjs`, `dispatch-rule-checks.mjs`, `dispatch-audit.mjs`, `post-edit-router.cjs`, `freshness-core.cjs`, `mcp-route-guard.cjs`, `completion-evidence-sentinel.cjs`, `dispatch-guard.cjs`), each already bridged into Claude, Codex, Devin, and Cursor via thin per-CLI adapter directories (`mcp-server/hooks/<cli>/`, `runtime/hooks/<cli>/`, plus guard-owning-packet siblings) registered through each CLI's own external hook-config file (`.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`). `cli-pi` has none of this, so once phases 001-007 land, a dispatched Pi executor session in this repo will have zero guard coverage — the same enforcement blind spot the Codex, Devin, and Cursor adapters already closed for their CLIs. Pi makes this harder than any prior CLI in this packet: per pi.dev docs, its extension system is native TypeScript, auto-discovered from `.pi/extensions/*.ts` (project) or `~/.pi/agent/extensions/*.ts` (global) — there is no external JSON hooks-config file to register events against, and pi.dev has no dedicated "Hooks" page in its docs nav at all (only "Extensions" under Customization).
+
+**Major correction from this phase's 2026-07-27 closeout, in two stages** (superseding the original authoring-time premise): first, a live docs re-fetch found the docs page now fully documents the extension registration surface and event taxonomy this phase's Open Questions originally called UNKNOWN. Second — and stronger — a direct read of the actually-installed `@earendil-works/pi-coding-agent` package's own compiled type definitions (`~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/extensions/types.d.ts`, resolved from the `pi` binary phase 001 installed) confirms the real API contract with exact line citations, not a docs paraphrase. An extension exports a default factory function receiving an `ExtensionAPI` — `type ExtensionFactory = (pi: ExtensionAPI) => void | Promise<void>` (`types.d.ts:1078`) — using `pi.on(event, handler)` registration for 32 named event types (`types.d.ts:850-882`), resolving Open Question #1. Critically, `tool_call` fires "before a tool executes. Can block." (`types.d.ts:678-683`), and a handler returning `ToolCallEventResult { block?: boolean; reason?: string }` (`types.d.ts:772-776`) denies the call — `event.input` is also mutable in place to patch arguments (`types.d.ts:681-683`) — resolving Open Question #2 with type-level certainty, not just a docs quote. The real narrow tool names for `tool_call`/`tool_result` are `bash`/`read`/`edit`/`write`/`grep`/`find`/`ls` plus a `CustomToolCallEvent`/`CustomToolResultEvent` catch-all for everything else, including MCP tools (`types.d.ts:646-677`, `694-721`) — directly answering which guard maps to which narrowed event. This is TYPE-CONFIRMED, the strongest evidence class short of a captured live invocation (which REQ-001's own acceptance criterion names as an equally valid alternative citation) — but still not LIVE-SESSION-CONFIRMED: whether the runtime actually enforces `block: true` the way the type contract promises remains the residual gap for a future execution phase.
 
 ### Purpose
 Plan — without installing anything, writing extension code, or running a live Pi session — a guard-core bridge design for Pi that (a) enumerates every runtime-neutral guard core needing eventual coverage, (b) defines the concrete live-probe protocol a future implementation phase must run before writing any adapter code, since Pi's real extension lifecycle surface is undocumented at the field level, (c) documents two candidate adapter architectures (in-process direct-call vs. spawnSync delegate-to-compiled-Claude-adapter) pending that probe's findings, and (d) carries forward the fail-open discipline and honest-gap-documentation precedent the Codex/Devin/Cursor hook-adapter phases already established.
@@ -186,12 +181,12 @@ Plan — without installing anything, writing extension code, or running a live 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 (`pi-contract-pin`) has not executed; no live-verified extension API surface exists | This phase's entire mapping table stays hypothetical until 001 lands or this phase's own Setup step runs the probe independently | Every mapping-table row marked UNCONFIRMED; REQ-001 gates all adapter code on the live probe, never on this planning pass |
-| Dependency | Phase 003 (`cli-pi-skill-packet`) has not landed | No `cli-pi` hub-mode context exists for a future adapter phase to attach to | Sequenced explicitly as a precondition in `plan.md` §6 |
-| Risk | Pi's extension API may expose only post-hoc observation, not a pre-tool-call interception/deny point, unlike every prior CLI's hook model | `spec-gate-enforce`'s real Gate-3 BLOCK (not just the advisory classify step) could be structurally unbridgeable on Pi, not just unregistered | Document as an explicit, named gap per REQ-005 rather than forcing a no-op "bridge" that can't actually deny anything |
+| Dependency | Phase 001 (`pi-contract-pin`) — Complete, Pi CLI 0.82.1 installed | This phase's own live-probe step (T004+) can now run against a real installed `pi` binary; still deferred to a future execution phase per this phase's own Hard Constraint (no live session in this planning phase) | Every mapping-table row stays docs-confirmed-not-live-confirmed until a future phase runs the probe |
+| Dependency | Phase 003 (`cli-pi-skill-packet`) — Complete, `cli-pi` registered as the hub's 6th mode | A future adapter phase now has a hub-mode context to attach to | Resolved — no longer blocking |
+| Risk (downgraded 2026-07-27 closeout) | Originally: Pi's extension API might expose only post-hoc observation, not a pre-tool-call interception/deny point. A live docs re-fetch found the `tool_call` event IS documented as block-capable (`{ block: true, reason }`). | Downgraded from High to Medium — `spec-gate-enforce`'s Gate-3 BLOCK is very likely bridgeable per docs; whether it behaves as documented in a real session remains unconfirmed | REQ-001 still requires a live-session capture before this is treated as fully verified, not just cited from docs |
 | Risk | Pi is pre-1.0 and pi.dev's docs could already differ from the installed version's real behavior by execution time | A future implementer could code against a stale event name pulled from this phase's cached findings | REQ-001 mandates re-reading the live docs AND live-probing at execution time, not trusting this phase's citations |
 | Risk | Extensions run in-process inside Pi's own Node runtime (unlike every other CLI's external-subprocess hook model) | A crashing or hanging guard-core call inside an in-process extension could destabilize the whole Pi session, not just fail one hook invocation | Candidate Shape A (in-process direct-call) must be evaluated against this specific failure mode before being preferred over Shape B's isolated-subprocess delegate pattern |
-| Risk | `pi` binary and `.pi/` directory are both confirmed absent from this environment at authoring time | No local way to sanity-check any assumption in this phase, even informally | Confirmed via `command -v pi` (empty) and `ls .pi` (absent); not worked around — phase 001 owns installing Pi |
+| Risk (resolved 2026-07-27 closeout) | Originally: `pi` binary and `.pi/` directory both confirmed absent at authoring time. Now: `pi` 0.82.1 is installed (phase 001 landed); no `.pi/` directory exists yet in this repo | A future execution phase now has a real installed binary to probe against | Confirmed via `command -v pi` returning `/Users/michelkerkmeester/.local/bin/pi`, `pi --version` returning `0.82.1`; still no live session run by THIS planning phase, per its own Hard Constraint |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -199,8 +194,8 @@ Plan — without installing anything, writing extension code, or running a live 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What does a `.pi/extensions/*.ts` module actually export or register to subscribe to a lifecycle point — a named export function per event, a single default-exported object with event-keyed callbacks, an `on(event, handler)`-style registration call, or something else entirely? UNKNOWN, needs live verification (REQ-001).
-- Does Pi's extension API expose anything equivalent to Claude/Codex/Devin/Cursor's deny-capable `PreToolUse` interception, or can an extension only observe/log a tool call after the fact? UNKNOWN — this materially changes whether `spec-gate-enforce` (the actual Gate-3 BLOCK) can ever be bridged at all.
+- What does a `.pi/extensions/*.ts` module actually export or register to subscribe to a lifecycle point? **TYPE-CONFIRMED at this phase's 2026-07-27 closeout**: a default-exported factory function receiving an `ExtensionAPI` (`types.d.ts:1078`), using `pi.on(event, handler)` registration for 32 named events (`types.d.ts:850-882`). Still needs a live-session capture per REQ-001's own bar before being treated as fully verified — a type contract is not the same as observed runtime behavior.
+- Does Pi's extension API expose anything equivalent to Claude/Codex/Devin/Cursor's deny-capable `PreToolUse` interception, or can an extension only observe/log a tool call after the fact? **TYPE-CONFIRMED at this closeout**: `tool_call` fires before execution and its result type is `ToolCallEventResult { block?: boolean; reason?: string }` (`types.d.ts:772-776`) — `spec-gate-enforce`'s Gate-3 BLOCK is very likely bridgeable. Still needs live-session confirmation that `block: true` is actually enforced at runtime.
 - Does the pi.dev extensions doc's `CONFIG_DIR_NAME`-instead-of-hardcoding-`.pi` note imply extensions receive some resolved-path/config API surface at load time, and if so, does that surface also expose anything hook-relevant (session id, tool name, cwd) the way Claude's hook payload does? UNKNOWN.
 - Is a single consolidated extension module (Cursor's `post-tool-use.mjs` pattern) or one file per guard core (Codex/Devin's pattern) the better fit once Pi's actual multi-subscription mechanics are known? Open per REQ-008, routed to whichever future phase builds this.
 - Should the `task-dispatch-guard` Pi bridge fold into a generic pre-tool-use matcher (Codex's approach, since Codex has no native Task-equivalent tool) or get its own dedicated adapter (Devin's approach, justified by `run_subagent` being a first-class tool)? Depends on whether phase 006's `pi-subagents` package exposes a distinguishable tool name Pi's extension API can match on — open until 006 lands.

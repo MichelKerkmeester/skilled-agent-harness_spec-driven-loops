@@ -18,7 +18,9 @@
       "pi hook adapter plan",
       "pi extension bridge plan",
       "pi hook extension tasks",
-      "pi hook extension checklist"
+      "pi hook extension checklist",
+      "pi hook extension summary",
+      "pi extension layer implementation status"
     ],
     "key_topics": [
       "extension",
@@ -35,20 +37,19 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "plan.md",
+      "spec.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/README.md",
       ".codex/hooks.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       "hooks/codex/shared.ts",
       "hooks/devin/shared.ts",
       "hooks/cursor/shared.ts",
-      "spec.md",
       ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
       ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs",
       ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs",
@@ -60,9 +61,21 @@
     ],
     "entities": [
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -75,12 +88,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
         "source": "derived"
       },
       {
@@ -99,12 +106,6 @@
         "name": "shared.ts",
         "kind": "code",
         "path": "hooks/codex/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -162,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Hard Constraint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -186,12 +193,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -206,21 +207,23 @@
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores (`spec-gate-core.mjs`, `dispatch-rule-checks.mjs`, `dispatch-audit.mjs`, `post-edit-router.cjs`, `freshness-core.cjs`, `mcp-route-guard.cjs`, `completion-evidence-sentinel.cjs`, `dispatch-guard.cjs`), each already bridged into Claude, Codex, Devin, and Cursor via thin per-CLI adapter directories (`mcp-server/hooks/<cli>/`, `runtime/hooks/<cli>/`, plus guard-owning-packet siblings) registered through each CLI's own external hook-config file (`.codex/hooks.json`,",
     "created_at": "2026-07-27T06:48:18.102Z",
-    "last_save_at": "2026-07-27T06:48:18.102Z",
+    "last_save_at": "2026-07-27T10:33:06.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bd8f7ca7403c640b7160900ccc69aef01d4bed1d751e489b2dcbece67a09cf1",
+    "source_fingerprint": "sha256:15627248ac1521a1a3f83f5b91373b83290b604285f04cb9f0584b8766cf4f2d",
     "source_doc_hashes": {
-      "spec.md": "1e0d2dc86a82036468e9d1d52ea30da878be16172cd5551973ca8d9d99e48021",
-      "plan.md": "142b91c237999b414b9618bff45a88af8abcfb7381dd273ac178de0a4ae8eae7",
-      "tasks.md": "bb2c07b5ef1a587af1bc43937fafaf33d5e372c9044565c909b2011687383675",
-      "checklist.md": "87f3cbe3324ecfb055275732eefe43d5298c2adc734f9c99f18292dfbafbc0a4"
+      "spec.md": "4c249ae1f64136ddf731b4037f7648cb0d7bf70d6af212ede5347e194df404cd",
+      "plan.md": "d644c89cdd28c0333420a546a6d6cb4b66be68ccd47a95c0dec0a653dfeba108",
+      "tasks.md": "ca0d44be7f86963b907bd585cba2ec06b24f31bbc1107f60f61fdd3ddaf47076",
+      "checklist.md": "7c1bc6e36233c589330e9ab81c8352972a29075f35cf979ef7618cb1837f6633",
+      "implementation-summary.md": "4c6bf2387b774c3a7ba4a38df61e91c02acbf14a952964656fa21b48c4f5d2b5"
     },
     "last_active_child_id": null,
     "last_active_at": null
