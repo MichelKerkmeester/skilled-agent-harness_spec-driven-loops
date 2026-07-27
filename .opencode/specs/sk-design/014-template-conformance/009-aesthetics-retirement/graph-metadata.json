@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/009-aesthetics-retirement",
+  "spec_folder": "sk-design/014-template-conformance/009-aesthetics-retirement",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "aesthetics retirement",
+      "mode aesthetic lane removal",
+      "design-interface aesthetics folder",
+      "aesthetic argument lane",
+      "aesthetics retirement plan",
+      "mode aesthetic lane removal plan",
+      "design-interface aesthetics folder plan",
+      "aesthetics retirement tasks",
+      "mode aesthetic lane removal tasks",
+      "design-interface aesthetics folder tasks",
+      "aesthetics retirement checklist",
+      "mode aesthetic lane removal checklist"
+    ],
+    "key_topics": [
+      "aesthetics",
+      "retirement",
+      "mode",
+      "aesthetic",
+      "lane",
+      "removal",
+      "design-interface",
+      "folder",
+      "argument",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/commands/interface/design.md",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/leaf-manifest.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/interface/assets/interface-design-auto.yaml",
+      ".opencode/commands/interface/assets/interface-design-confirm.yaml",
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface-design-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/interface/assets/interface-design-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "interface-design-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/interface/assets/interface-design-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Retire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`design-interface/references/aesthetics/` holds 5 hand-written look descriptions (`minimalist.md`, `brutalist.md`, `soft.md`, `apple-bento.md`, `README.md`, ~290 lines total) and a paired `--mode aesthetic` argument lane wired through `SKILL.md`'s `AESTHETICS` intent, `command-metadata.json`'s task-lane table, `commands/interface/design.md`'s lane row and `argument-hint`, its 2 YAML assets, and `hub-router.json`'s vocabulary",
+    "created_at": "2026-07-27T16:52:20.774Z",
+    "last_save_at": "2026-07-27T16:52:20.774Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c39d50bcfbf125975bbbc2fed2eb97fba101f01e24679e54940f0faabf9a89b3",
+    "source_doc_hashes": {
+      "spec.md": "2de6bc32f88e7b4342e4b145197dcaef6140a61179ed60ba25e6080146ffc1c4",
+      "plan.md": "73d494b69eefe60d475dc4e7c766a9275dfe20c80012662489f7224a5e2e11da",
+      "tasks.md": "4c21c6f8a352358902a0ed3754a712bfb37fe4d8fcfc77deb4bafec9723711ea",
+      "checklist.md": "05a14a58d68cc031005653e43b649cda82060d5ede1b010ad6902afc3c8380ad",
+      "implementation-summary.md": "ab6ffe84dd1973a964260ca85b13e4dd6a0648b8e47f7578920cc714c9ed7b97"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

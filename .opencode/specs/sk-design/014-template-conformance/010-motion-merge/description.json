@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/010-motion-merge",
+  "description": "`design-motion` (39 files, 4,175 lines) is a standalone mode with its own `SKILL.md`, `README.md`, and `/interface:motion` command",
+  "keywords": [
+    "design-motion",
+    "files",
+    "lines",
+    "standalone",
+    "mode",
+    "own",
+    "skill",
+    "readme",
+    "interface",
+    "motion",
+    "command"
+  ],
+  "lastUpdated": "2026-07-27T16:54:51.516Z",
+  "specId": "010",
+  "folderSlug": "motion-merge",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

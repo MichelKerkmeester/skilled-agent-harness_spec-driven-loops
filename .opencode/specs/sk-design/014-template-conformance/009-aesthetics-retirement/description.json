@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-design/014-template-conformance/009-aesthetics-retirement",
+  "description": "`design-interface/references/aesthetics/` holds 5 hand-written look descriptions (`minimalist.md`, `brutalist.md`, `soft.md`, `apple-bento.md`,",
+  "keywords": [
+    "design-interface",
+    "references",
+    "aesthetics",
+    "holds",
+    "hand-written",
+    "look",
+    "descriptions",
+    "minimalist",
+    "brutalist",
+    "soft",
+    "apple-bento"
+  ],
+  "lastUpdated": "2026-07-27T16:43:08.136Z",
+  "specId": "009",
+  "folderSlug": "aesthetics-retirement",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

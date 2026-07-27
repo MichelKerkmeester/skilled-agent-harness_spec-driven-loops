@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/012-remaining-mode-conformance",
+  "spec_folder": "sk-design/014-template-conformance/012-remaining-mode-conformance",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remaining mode conformance",
+      "design-md-generator conformance",
+      "design-mcp-open-design conformance",
+      "unnumbered H2 headings",
+      "remaining mode conformance plan",
+      "design-md-generator conformance plan",
+      "design-mcp-open-design conformance plan",
+      "remaining mode conformance tasks",
+      "design-md-generator conformance tasks",
+      "design-mcp-open-design conformance tasks",
+      "remaining mode conformance checklist",
+      "design-md-generator conformance checklist"
+    ],
+    "key_topics": [
+      "remaining",
+      "mode",
+      "conformance",
+      "design-md-generator",
+      "design-mcp-open-design",
+      "unnumbered",
+      "headings",
+      "plan",
+      "tasks",
+      "checklist",
+      "program",
+      "parent"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/vercel/DESIGN.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/DESIGN.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/supabase/DESIGN.md",
+      ".opencode/skills/sk-design/design-md-generator/references/examples/stripe/DESIGN.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/references/guarded-proxy.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "extraction-workflow.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "DESIGN.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/vercel/DESIGN.md",
+        "source": "derived"
+      },
+      {
+        "name": "guarded-proxy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-mcp-open-design/references/guarded-proxy.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The program parent's hub-wide audit covered `design-interface`, `design-motion`, `shared`, and the hub root, but never reached `design-md-generator` or `design-mcp-open-design`",
+    "created_at": "2026-07-27T16:52:21.147Z",
+    "last_save_at": "2026-07-27T16:55:49.085Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e10bf11fdc6676147b97bb97196f9f902fc1c4f2003f1e1e3dd86fd21b746ba",
+    "source_doc_hashes": {
+      "spec.md": "b0aaa87c65f63c72561232fc4580fd6c372fdf8c0ff66d85f18c552d0e355fdf",
+      "plan.md": "104dc6c92faaa3c58b7c5acf87d329699113c812f1b49c88e4d1915e6800c8d9",
+      "tasks.md": "dfecd488fbf6a94688cc3ffd3ec279d8dd67665d5b1da0d021f2ca64fb5401d2",
+      "checklist.md": "9a55df35c3bdfb7c2bfa071811f8adb44a28a5d652919fd1e9105b1d8ae3a444",
+      "implementation-summary.md": "c8376040adc4d885279f9787af0e6e565525cb102e91bc19f1612b84b9db199b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
