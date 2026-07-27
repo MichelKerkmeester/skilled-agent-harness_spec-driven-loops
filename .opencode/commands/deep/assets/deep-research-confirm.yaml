@@ -902,7 +902,11 @@ workflow:
         wait_for: "User response"
         on_A: { proceed_to: step_dispatch_iteration }
         on_B: { action: "Update next_focus to user's choice", proceed_to: step_dispatch_iteration }
-        on_C: { proceed_to: gate_pre_synthesis }
+        on_C:
+          action: "Record the operator-requested manual stop before synthesis"
+          append_to_jsonl: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          set: { reason: "manualStop" }
+          proceed_to: gate_pre_synthesis
         on_D: { action: "Cancel workflow", status: "CANCELLED" }
 
       step_dispatch_iteration:
@@ -1124,7 +1128,11 @@ workflow:
         wait_for: "User response"
         on_A: { proceed_to: step_update_tracking }
         on_B: { action: "Set next_focus to user's choice in strategy.md", proceed_to: step_update_tracking }
-        on_C: { proceed_to: gate_pre_synthesis }
+        on_C:
+          action: "Record the operator-requested manual stop before synthesis"
+          append_to_jsonl: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          set: { reason: "manualStop" }
+          proceed_to: gate_pre_synthesis
         on_D: { action: "Cancel workflow", status: "CANCELLED" }
 
       step_generate_dashboard:

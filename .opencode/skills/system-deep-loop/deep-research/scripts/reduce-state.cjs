@@ -1899,6 +1899,12 @@ function isFiniteNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+function readIterationNumber(record) {
+  if (isFiniteNumber(record?.run)) return record.run;
+  if (isFiniteNumber(record?.iteration)) return record.iteration;
+  return null;
+}
+
 function computeGraphConvergenceScore(signals) {
   if (!signals || typeof signals !== 'object' || Array.isArray(signals)) {
     return 0;
@@ -2251,7 +2257,7 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
 
   if (registry.divergence?.currentFocus
     && isFiniteNumber(registry.divergence.activeSourceIteration)
-    && registry.divergence.activeSourceIteration > (latestIteration?.run ?? 0)) {
+    && registry.divergence.activeSourceIteration > (readIterationNumber(latestIteration) ?? 0)) {
     return registry.divergence.currentFocus;
   }
 
@@ -2307,13 +2313,21 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     const status = normalizeText(String(record.status || 'complete')).toLowerCase();
     return !['error', 'failed', 'failure', 'stuck', 'thought'].includes(status);
   });
-  const answeredSet = new Set(
-    questionCoverageRecords.flatMap((record) => (Array.isArray(record.answeredQuestions) ? record.answeredQuestions : [])).map(normalizeText),
-  );
 
   const keyedQuestions = strategyQuestions.map((question, index) => {
     const normalized = normalizeText(question.text);
-    const resolved = question.checked || answeredSet.has(normalized);
+    const resolutionRecord = questionCoverageRecords.find((record) => {
+      const answeredQuestions = Array.isArray(record.answeredQuestions)
+        ? record.answeredQuestions.map(normalizeText)
+        : [];
+      const keyQuestions = Array.isArray(record.keyQuestions)
+        ? record.keyQuestions.map(normalizeText)
+        : [];
+      return answeredQuestions.includes(normalized)
+        || (answeredQuestions.length > 0 && keyQuestions.length === 1 && keyQuestions[0] === normalized)
+        || normalizeOptionalText(record.focus) === normalized;
+    });
+    const resolved = question.checked || Boolean(resolutionRecord);
     const id = normalizeQuestionId(question.id);
     const promotedQuestionId = normalizeQuestionId(question.promotedQuestionId);
     const inboxId = normalizeQuestionId(question.inboxId);
@@ -2331,12 +2345,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       ...(operatorDecision ? { operatorDecision } : {}),
       ...(conflictId ? { conflictId } : {}),
       addedAtIteration: injectedAtIteration,
-      resolvedAtIteration: resolved
-        ? questionCoverageRecords.find((record) =>
-            Array.isArray(record.answeredQuestions)
-              && record.answeredQuestions.map(normalizeText).includes(normalized),
-          )?.run ?? 0
-        : null,
+      resolvedAtIteration: resolved ? readIterationNumber(resolutionRecord) ?? 0 : null,
       resolved,
     };
   });
@@ -2754,7 +2763,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     .map((record) => {
       const track = record.focusTrack || '-';
       const ratio = typeof record.newInfoRatio === 'number' ? record.newInfoRatio.toFixed(2) : '0.00';
-      const baseRow = `| ${record.run} | ${record.focus || 'unknown'} | ${track} | ${ratio} | ${record.findingsCount || 0} | ${record.status || 'complete'} |`;
+      const baseRow = `| ${readIterationNumber(record) ?? 0} | ${record.focus || 'unknown'} | ${track} | ${ratio} | ${record.findingsCount || 0} | ${record.status || 'complete'} |`;
       return showLogRegionColumns
         ? `${baseRow} ${formatLogRegionNumber(record.logOffset)} | ${formatLogRegionNumber(record.logSize)} | ${formatLogRegionPath(record.logPath)} |`
         : baseRow;

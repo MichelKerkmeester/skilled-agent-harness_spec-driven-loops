@@ -10,11 +10,19 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "research"
 parent: "sk-doc/019-skill-routing-refactor"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/018-post-019-research"
+    last_updated_at: "2026-07-25T07:47:34Z"
+    last_updated_by: "opencode"
+    recent_action: "Synthesized eight completed research iterations and recorded the manual stop"
+    next_safe_action: "Plan the measurement contract and privacy-approved operational study"
+    completion_pct: 100
 ---
 # Feature Specification: Post-019 Skill-Routing Research
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
 ---
 
@@ -23,9 +31,9 @@ parent: "sk-doc/019-skill-routing-refactor"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete (manual stop after 8 iterations) |
 | **Created** | 2026-07-24 |
 | **Branch** | Current workspace |
 | **Parent Spec** | `../spec.md` |
@@ -44,7 +52,7 @@ Packet 019 surfaced high-value questions about fleet-wide routing decomposition,
 
 ### Purpose
 
-Run a bounded 10-iteration evidence-gathering loop that tests those hypotheses against the live tree and packet 019 evidence without implementing routing changes.
+Run a bounded evidence-gathering loop that tests those hypotheses against the live tree and packet 019 evidence without implementing routing changes. The operator approved synthesis after eight completed iterations and prohibited iterations 9-10.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -87,7 +95,7 @@ Run a bounded 10-iteration evidence-gathering loop that tests those hypotheses a
 |----|-------------|---------------------|
 | REQ-001 | Test the five bound research questions against live evidence | Each question has cited findings, explicit uncertainty, or a documented evidence gap |
 | REQ-002 | Preserve workflow route proof for every iteration | Every canonical iteration record names the deep-research agent, research mode, and resolved route |
-| REQ-003 | Complete the forced-depth run | Exactly 10 valid iteration artifacts exist unless a safety or unrecoverable-state stop occurs |
+| REQ-003 | Complete the bounded run or record an approved stop | Eight valid iteration artifacts exist and the user-requested stop is recorded as `manualStop` before synthesis |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -102,7 +110,7 @@ Run a bounded 10-iteration evidence-gathering loop that tests those hypotheses a
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Ten mechanically validated iteration records and narratives are present.
+- **SC-001**: Eight mechanically valid iteration records and narratives are present; iterations 9-10 are not represented as completed.
 - **SC-002**: The synthesis distinguishes confirmed evidence, falsified hypotheses, unresolved questions, and recommended experiments.
 - **SC-003**: The route-proof, reducer, resource-map, bounded spec write-back, and continuity-save gates complete or report exact blockers.
 <!-- /ANCHOR:success-criteria -->
@@ -121,16 +129,50 @@ Run a bounded 10-iteration evidence-gathering loop that tests those hypotheses a
 
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-- Does Threshold-Recovery-Provenance hold across routing archetypes, and is authority a fourth coordinate?
-- How should advisor confidence be calibrated from operational evidence?
-- What telemetry minimally proves ordered, successful, causally attributable leaf use?
-- Does two-tier leaf selection outperform monolithic unioning within a preregistered route budget?
-- Do route-gold and typed fixtures generalize to unseen natural prompts?
+- **NFR-R01**: JSONL state remains append-only and reducer outputs remain deterministic.
+- **NFR-P01**: Raw prompts are not required for the proposed causal evaluation join.
+- **NFR-S01**: Natural-prompt gold remains inside a trusted research environment with split roles.
+
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- A dangling iteration start is not counted as a completed iteration.
+- Answer statements may differ from the corresponding strategy question text.
+- Singular hubs contribute execution/outcome evidence without a non-vacuous internal selection score.
+- Missing graph convergence is reported as a limitation rather than converted into fabricated evidence.
+
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+- Which approved operational prompt source and retention policy can support the sealed sampling frame?
+- What per-stratum sample sizes and error budgets are required?
+- Can every runtime emit the prompt-free decision/start/finish/outcome contract?
+- What equal pair-count and context-cost budgets should govern the paired selection ablation?
 
 ### Research Context
 
-Deep research is active for this topic. `research/research.md` remains the canonical findings source.
+Deep research reached terminal synthesis after eight iterations. `research/research.md` is the canonical findings source.
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:related-docs -->
+## RELATED DOCUMENTS
+
+- `plan.md`
+- `tasks.md`
+- `checklist.md`
+- `implementation-summary.md`
+- `research/research.md`
+<!-- /ANCHOR:related-docs -->

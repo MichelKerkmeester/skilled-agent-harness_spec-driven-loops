@@ -1,1 +1,641 @@
-{"openQuestions":[],"resolvedQuestions":[],"keyFindings":[],"ruledOutDirections":[],"metrics":{"iterationsCompleted":0,"openQuestions":0,"resolvedQuestions":0,"keyFindings":0,"convergenceScore":0,"coverageBySources":{}}}
+{
+  "sessionId": "rsr-2026-07-24T18-11-28Z",
+  "parentSessionId": "rsr-2026-07-24T18-11-28Z",
+  "lineageMode": "resume",
+  "generation": 1,
+  "continuedFromRun": 1,
+  "terminalStop": {
+    "stopReason": "manualStop",
+    "totalIterations": 8,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-25T07:32:20Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-does-the-threshold-recovery-provenance-decomposition-hold-across-the-fleet-s-rou",
+      "inboxId": null,
+      "text": "Does the Threshold-Recovery-Provenance decomposition hold across the fleet's routing archetypes, and is authority a required fourth coordinate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-should-advisor-confidence-and-selective-auto-routing-be-calibrated-from-oper",
+      "inboxId": null,
+      "text": "How should advisor confidence and selective auto-routing be calibrated from operational evidence when the 0.82 floor is a quantized policy value rather than a probability?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-minimum-cross-runtime-telemetry-proves-ordered-successful-causally-attribut",
+      "inboxId": null,
+      "text": "What minimum cross-runtime telemetry proves ordered, successful, causally attributable leaf use?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-two-tier-required-supplemental-leaf-selection-beat-monolithic-unioning-on-s",
+      "inboxId": null,
+      "text": "Does two-tier required/supplemental leaf selection beat monolithic unioning on sealed-holdout recall within a preregistered route budget?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-do-authored-route-gold-and-typed-fixtures-predict-behavior-on-unseen-natural-pro",
+      "inboxId": null,
+      "text": "Do authored route-gold and typed fixtures predict behavior on unseen natural prompts, or are they overfit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-does-the-threshold-recovery-provenance-decomposition-hold-across-the-fleet-s-rou",
+      "inboxId": null,
+      "text": "Does the Threshold-Recovery-Provenance decomposition hold across the fleet's routing archetypes, and is authority a required fourth coordinate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-how-should-advisor-confidence-and-selective-auto-routing-be-calibrated-from-oper",
+      "inboxId": null,
+      "text": "How should advisor confidence and selective auto-routing be calibrated from operational evidence when the 0.82 floor is a quantized policy value rather than a probability?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-minimum-cross-runtime-telemetry-proves-ordered-successful-causally-attribut",
+      "inboxId": null,
+      "text": "What minimum cross-runtime telemetry proves ordered, successful, causally attributable leaf use?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-does-two-tier-required-supplemental-leaf-selection-beat-monolithic-unioning-on-s",
+      "inboxId": null,
+      "text": "Does two-tier required/supplemental leaf selection beat monolithic unioning on sealed-holdout recall within a preregistered route budget?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-do-authored-route-gold-and-typed-fixtures-predict-behavior-on-unseen-natural-pro",
+      "inboxId": null,
+      "text": "Do authored route-gold and typed fixtures predict behavior on unseen natural prompts, or are they overfit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "The missing primary hypothesis file prevents direct comparison with the two claimed post-019 surveys; locate or reconstruct its provenance before final synthesis.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do authored route-gold and typed fixtures predict behavior on unseen natural prompts, or are they overfit?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does two-tier required/supplemental leaf selection beat monolithic unioning on sealed-holdout recall within a preregistered route budget?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should advisor confidence and selective auto-routing be calibrated from operational evidence when the `0.82` floor is a quantized policy value rather than a probability?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What minimum cross-runtime telemetry proves ordered, successful, causally attributable leaf use?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What per-stratum error budgets should govern low-risk versus mutating/external-effect auto-routing once joined operational outcomes exist?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The missing primary hypothesis file still prevents direct comparison with the two claimed post-019 surveys.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can all supported runtime adapters emit and verify the three-stage leaf-use envelope without storing raw prompts?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What numeric pair-count and normalized context-cost budgets are feasible per routing archetype on a fitted development corpus?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How large must each hub/archetype stratum be to bound false-route and false-defer rates at the risk levels identified in iteration 2?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the sk-doc `8/8` result reproduce across the other 11 hubs and across routing archetypes?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Why does the generalization note report eight evaluated held-out requests but describe a 13-scenario live instrument?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What privacy-preserving source can provide a temporally sealed sample of naturally occurring prompts without retaining raw user text?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can fixture-to-natural score gaps be joined to the causal leaf-use telemetry from iteration 3 rather than stopping at route selection?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can every supported runtime emit the evaluation unit plus the three-stage leaf envelope without raw prompts?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What per-hub, archetype, risk, and runtime sample sizes bound false-route, false-defer, causal-execution, and end-to-end task-failure rates?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can the dormant execution-outcome record be persisted and linked without weakening the existing prompt-safety invariant?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which privacy-preserving natural-prompt sampling frame can mint provenance strata and retain blinded gold labels?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the staged join reproduce the sk-doc blind result across the other 11 hubs, and does it resolve the reported eight-versus-thirteen corpus discrepancy?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where did the unsupported thirteen-scenario instrument count originate, and were five additional prompts ever authored outside the surviving packet?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can every supported runtime emit the evaluation-unit id plus route decision, leaf start, leaf finish, and task outcome without retaining raw prompts?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which privacy-preserving sampling frame can provide temporally sealed natural prompts and blinded gold labels?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which source of prompts has sufficient consent or organizational authority, and what retention window is legally and operationally acceptable?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What per-hub, archetype, risk, and runtime sample sizes are required for the false-route, false-defer, causal-execution, and task-failure error budgets?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can every supported runtime emit the evaluation-unit ID and four-stage telemetry without retaining prompt text?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the sealed frame reproduce the sk-doc blind result across the other 11 hubs?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How much selection bias is introduced by opt-in, safety exclusions, and redaction, measured against prompt-free frame metadata?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-authority-is-required-in-the-complete-routing-to-execution-model-but-the-evidenc",
+      "text": "**Authority is required in the complete routing-to-execution model, but the evidence falsifies “authority as a fourth scalar routing coordinate.”** The compiled policy stores an `authorityGraph` alongside the `(T,R,P)` posture; route decisions keep authority `WithheldUntilVerify`; negative decisions keep it `Withheld`; and route proof explicitly cannot grant commit capability. This is a relation over destinations and execution state, not another preference knob like threshold or recovery. The stronger model is therefore `(T,R,P)` for selection policy plus an independent authority invariant/graph for destination-local PREPARE→VERIFY→COMMIT. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md:105] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md:107] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md:110] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/harness/validate-contracts.cjs:384]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/harness/validate-contracts.cjs`",
+        "`.opencode/skills/*/graph-metadata.json`",
+        "`.opencode/skills/*/hub-router.json`",
+        "`.opencode/skills/*/mode-registry.json`",
+        "`.opencode/skills/*/leaf-manifest.json`",
+        "`.opencode/skills/mcp-tooling/SKILL.md`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md`"
+      ]
+    },
+    {
+      "id": "finding-1-4-provenance-needs-typed-sub-kinds-to-avoid-absorbing-authority-by-accident-route-",
+      "text": "**Provenance needs typed sub-kinds to avoid absorbing authority by accident.** Route-signal provenance answers “why was this destination selected?” Serving provenance answers “which compiled or legacy policy is active?” Neither answers “may this destination act?” The live front doors self-gate on serving authority, while `mcp-tooling` explicitly says its transports are not the design-taste authority. Treating all three as one `P` value would recreate the conflation the decomposition is meant to remove. [SOURCE: .opencode/skills/cli-external-orchestration/SKILL.md:46] [SOURCE: .opencode/skills/mcp-tooling/SKILL.md:35] [SOURCE: .opencode/skills/mcp-tooling/SKILL.md:48]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/harness/validate-contracts.cjs`",
+        "`.opencode/skills/*/graph-metadata.json`",
+        "`.opencode/skills/*/hub-router.json`",
+        "`.opencode/skills/*/mode-registry.json`",
+        "`.opencode/skills/*/leaf-manifest.json`",
+        "`.opencode/skills/mcp-tooling/SKILL.md`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-live-fleet-is-seven-multi-mode-routers-plus-five-singular-hubs-the-multi-mod",
+      "text": "**The live fleet is seven multi-mode routers plus five singular hubs.** The multi-mode set is `cli-external-orchestration`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, and `system-deep-loop`; the singular set is `mcp-code-mode`, `sk-git`, `system-code-graph`, `system-skill-advisor`, and `system-spec-kit`. This yields the twelve hubs named by the research charter. The singular shape is not an exception to the contract family: the compiled-contract packet requires the `N=1` shape to differ from multi-mode routing only by cardinality and empty collections. [INFERENCE: bounded inventory of `.opencode/skills/*/graph-metadata.json`, `hub-router.json`, `mode-registry.json`, and `leaf-manifest.json`] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md:55]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/harness/validate-contracts.cjs`",
+        "`.opencode/skills/*/graph-metadata.json`",
+        "`.opencode/skills/*/hub-router.json`",
+        "`.opencode/skills/*/mode-registry.json`",
+        "`.opencode/skills/*/leaf-manifest.json`",
+        "`.opencode/skills/mcp-tooling/SKILL.md`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md`"
+      ]
+    },
+    {
+      "id": "finding-1-2-threshold-recovery-provenance-holds-as-a-policy-posture-but-archetype-structure-",
+      "text": "**Threshold-Recovery-Provenance holds as a policy posture, but archetype structure remains necessary.** Threshold is represented by admission, score margin, ambiguity, or a bounded default; Recovery is represented by `defer`, clarification, fallback, ordered bundles, or handoff; Provenance is represented by vocabulary classes, metadata routing classes, command bridges, and serving-policy identity. The archetypes cannot be flattened into three scalar enums: `sk-prompt` has a named default, `sk-doc` has a create-then-quality ordered bundle, `sk-code` distinguishes ordered and surface bundles, and `mcp-tooling` carries transport-specific tool surfaces. [SOURCE: .opencode/skills/sk-prompt/hub-router.json:5] [SOURCE: .opencode/skills/sk-doc/hub-router.json:8] [SOURCE: .opencode/skills/sk-code/hub-router.json:8] [SOURCE: .opencode/skills/mcp-tooling/mode-registry.json:140]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/harness/validate-contracts.cjs`",
+        "`.opencode/skills/*/graph-metadata.json`",
+        "`.opencode/skills/*/hub-router.json`",
+        "`.opencode/skills/*/mode-registry.json`",
+        "`.opencode/skills/*/leaf-manifest.json`",
+        "`.opencode/skills/mcp-tooling/SKILL.md`",
+        "`.opencode/skills/cli-external-orchestration/SKILL.md`"
+      ]
+    },
+    {
+      "id": "finding-2-1-0-82-is-a-policy-strength-label-not-a-probability-estimate-the-scorer-first-buil",
+      "text": "**`0.82` is a policy-strength label, not a probability estimate.** The scorer first builds a continuous base from `liveNormalized`, then applies categorical floors for allowed read-only routes, task intent, and direct evidence; a separate branch pins derived-dominant results to `0.72`. Multiple causal paths therefore collapse onto the same public value. The field can remain compatibility-stable, but operators must interpret it as route strength unless a separately fitted correctness probability is emitted. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts:380] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/scoring-constants.ts:170]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-operational-calibration-requires-a-joined-decision-outcome-record-not-acceptance",
+      "text": "**Operational calibration requires a joined decision-outcome record, not acceptance counts alone.** The implementation correctly distinguishes recommendation outcomes (`accepted`, `corrected`, `ignored`) from task execution success; accepting a route does not prove the selected skill completed the task. However, aggregate emitted-confidence metrics and prompt-free outcome stores do not by themselves preserve the decision features needed for calibration: confidence branch, pre-floor base, direct score, ambiguity cluster, runtime, freshness, selected hub/leaf, policy fingerprint, and route risk. Those bounded fields must be joined by an idempotent decision/event identifier before reliability or selective-risk estimates are causally attributable. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts:98] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts:639]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-selective-auto-routing-should-be-risk-stratified-and-lower-bound-governed-keep-t",
+      "text": "**Selective auto-routing should be risk-stratified and lower-bound governed.** Keep the compatibility gates at confidence `0.80` and uncertainty `0.35`; they are admission policy, not calibrated probability. Fit a separate empirical correctness/reliability estimate over sealed outcomes, stratified at minimum by explicit-command versus inferred route, ambiguity state, runtime/freshness, hub/leaf or archetype, and read-only versus mutating/external-effect surface. Auto-route only when the stratum's preregistered lower confidence bound clears its allowed error budget; otherwise clarify or defer. Explicit user routes remain deterministic. Read-only, unambiguous routes may use a more permissive budget. Mutating or external-effect routes may be selected automatically, but authority remains withheld through VERIFY/COMMIT. The existing Beta-posterior primitive supplies conservative cold-start behavior, count floors, distinct-source voting, replay resistance, and no path to false certainty, but it is currently shadow policy rather than evidence that this calibration is live. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/beta-reliability.ts:1] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/beta-reliability.ts:278]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-best-current-source-evidence-rejects-global-threshold-tuning-on-the-78-row-h",
+      "text": "**The best current-source evidence rejects global threshold tuning.** On the 78-row holdout, the joined run produced `57/78` top-1 correctness, `61/78` coverage, and `85.25%` selective precision. Exact `0.82` covered `20/78` holdout rows but only `13/20` were correct; the ambiguity slice's exact-floor plateau was `7/12`. Every confidence threshold from `0.78` through `0.82`, crossed with uncertainty thresholds from `0.30` through `0.40`, produced identical outcomes. Raising confidence to `0.84` cut coverage from `61/78` to `42/78` for only a `2.85`-point selective-precision gain. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research/research/iterations/iteration-008.md:15]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-the-committed-probability-baseline-cannot-govern-current-routing-it-records-200-",
+      "text": "**The committed probability baseline cannot govern current routing.** It records 200 corpus rows from 2026-04-25, while the current joined study used a 193-row source-loaded corpus and the implementation packet still marks measurement repair and the shadow floor experiment incomplete. Its `0.8-0.9` reliability bin reports `70.59%` accuracy at `0.8457` average confidence, which independently shows over-confidence, but the corpus mismatch makes it historical evidence rather than a release gate. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/bench/scorer-calibration-baseline.json:1] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/012-skill-advisor-routing-fixes/tasks.md:70]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-cross-runtime-parity-should-standardize-semantics-not-transport-mechanics-native",
+      "text": "**Cross-runtime parity should standardize semantics, not transport mechanics.** Native, CLI, MCP, and remote adapters may obtain acknowledgements differently, but all must project into the same three event types and bounded identity fields. Raw prompts and raw outputs are unnecessary: content-addressed plan, definition, and receipt digests plus typed route identities preserve attribution while reducing privacy exposure. The leaf or its trusted runtime boundary must originate the start and finish evidence; an orchestrator cannot independently attest that its own dispatch was received.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-current-route-proof-proves-declared-routing-not-leaf-use-post-dispatch-validatio",
+      "text": "**Current route proof proves declared routing, not leaf use.** Post-dispatch validation rejects a wrong mode or target agent and requires executor provenance for non-native runs, but those checks do not establish that a selected leaf acknowledged the dispatch or completed it. The canonical state likewise records `iteration_start`, executor kind/model, and the final iteration route fields without an ordered leaf plan, a leaf-originated start event, or a terminal receipt. `agent_definition_loaded: true` is useful configuration evidence, but it is not execution evidence. [SOURCE: .opencode/skills/system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts:63] [SOURCE: .opencode/skills/system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts:102] [SOURCE: .opencode/skills/system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts:454] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/018-post-019-research/research/deep-research-state.jsonl:13]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-order-requires-logical-happens-before-evidence-timestamps-are-insufficient-acros",
+      "text": "**Order requires logical happens-before evidence; timestamps are insufficient across runtimes.** The verifier must require contiguous ordinals for the committed plan and bind each required leaf's start to the decision or preceding required finish through `causation_id`. Wall-clock timestamps remain diagnostic only because clocks can skew and parallel supplemental leaves may overlap. Retries retain the same decision, plan, leaf, and ordinal while incrementing `attempt` and using a stable idempotency family, preventing a retry from masquerading as a second planned leaf. The existing sequence and idempotency primitives support this rule. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/types.ts:50] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/types.ts:94] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/types.ts:248]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-successful-causally-attributable-leaf-use-is-a-verifier-predicate-not-an-emitted",
+      "text": "**Successful, causally attributable leaf use is a verifier predicate, not an emitted boolean.** A run passes only when the plan hash matches the decision, every required ordinal has exactly one accepted start and one successful terminal receipt, the actual leaf identity and definition digest match the plan, required ordering edges are intact, receipt hashes verify, and no unresolved retry or idempotency conflict remains. Supplemental failures may be reported without invalidating required-leaf success if the plan says so. An orchestrator-authored “success” event, output-file presence, process exit zero, or recommendation acceptance alone must not satisfy the predicate.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-the-fleet-already-has-most-low-level-proof-primitives-but-they-are-not-joined-in",
+      "text": "**The fleet already has most low-level proof primitives, but they are not joined into a leaf-use contract.** The runtime validates ledger identity with `ledger_id`, `sequence`, and `record_hash`; effect envelopes carry `correlation_id` and `idempotency_key`; reducer fixtures explicitly chain `causationId` to the preceding event; and boundary receipts bind stable facts across adjacent sequence numbers. These primitives can support a shared contract without inventing a second observability system. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/event-contracts.ts:256] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/event-contracts.ts:358] [SOURCE: .opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-reducers.vitest.ts:121] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/boundary-receipts.ts:189]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-the-minimum-proof-is-a-three-stage-causal-chain-not-a-larger-lifecycle-log-a-rou",
+      "text": "**The minimum proof is a three-stage causal chain, not a larger lifecycle log.** A route-decision event must commit an immutable plan hash and an ordered target list. Each target then needs a leaf-originated start acknowledgement and a terminal finish receipt. Every event needs `event_id`, `schema_version`, `runtime`, `correlation_id`, `causation_id`, `decision_id`, `plan_hash`, `leaf_identity`, `ordinal`, `role`, `attempt`, `idempotency_key`, and an event timestamp. The decision additionally records the ordered `(hub, workflowMode, leafResourceId)` targets plus required/supplemental role and authority state. Start additionally binds the actual executor and loaded definition digest. Finish additionally records terminal status, output or effect-receipt digest, and bounded error class. This is the minimum because removing any stage loses one claim: no decision loses intent and order, no leaf start loses proof of actual invocation, and no finish receipt loses success.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-a-valid-test-is-a-paired-budget-matched-ablation-before-unsealing-evaluation-pro",
+      "text": "**A valid test is a paired, budget-matched ablation.** Before unsealing evaluation prompts: independently label the minimum sufficient required set and the admissible supplemental set; freeze one scorer, tie-break order, abstention rule, pair-count budget, normalized context-cost budget, and failure accounting; then run both policies on every prompt. The two-tier arm admits required leaves first and supplemental leaves by preregistered marginal order. The monolithic arm preserves its current ordered union and applies the same budget without access to role labels. Report per-archetype and macro paired deltas with bootstrap intervals, including all 12 surfaces and explicit slices for single, ordered-bundle, surface-bundle, transport, same-packet-mode, and singular routes. Choose numeric budgets on a fitted development corpus, freeze them, and never tune them on the sealed holdout.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-no-current-result-establishes-that-two-tier-selection-beats-monolithic-unioning-",
+      "text": "**No current result establishes that two-tier selection beats monolithic unioning.** The live surface routers assemble a deduplicated union of selected intent maps; some cap that union, but none labels emitted leaf resources as required versus supplemental. The sealed calibration corpus and typed route-gold therefore expose only one policy's flat resource set. A single observed policy cannot identify the counterfactual recall of a second policy. This is an evidence gap, not a negative result for two-tier routing. [SOURCE: .opencode/skills/mcp-tooling/shared/references/smart-routing.md:117] [SOURCE: .opencode/skills/sk-design/shared/references/smart-routing.md:141] [SOURCE: .opencode/skills/sk-doc/shared/references/smart-routing.md:209]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-raw-all-leaf-recall-is-the-wrong-sole-primary-metric-under-a-budget-monolithic-u",
+      "text": "**Raw all-leaf recall is the wrong sole primary metric under a budget.** Monolithic unioning is weakly favored when every gold leaf counts equally and the budget never binds; it emits the complete selected union. Two-tier routing has a plausible advantage only when the budget binds and missing a required leaf costs more than omitting an optional enrichment leaf. The primary metric should therefore be macro required-set recall, paired with exact-required coverage. Supplemental recall, over-selection cost, defer rate, and total normalized route cost are secondary. A route-count cap alone is unfair because current leaf sets vary materially in size; preregistration should bind both canonical-pair count and a normalized token or context-cost budget. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/taxonomy-schema.md:58] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/plan.md:96]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-the-sealed-corpus-is-not-a-fleet-wide-leaf-selection-benchmark-it-contains-15-re",
+      "text": "**The sealed corpus is not a fleet-wide leaf-selection benchmark.** It contains 15 records across only mcp-tooling, sk-code, and system-deep-loop. It covers one ordered bundle and one surface bundle, but its expected leaf resources are flat lists. The route targets use actor, evidence, and transport roles; those are execution-destination roles, not required/supplemental leaf labels. The corpus seal protects calibration integrity, yet it does not make the missing treatment or labels observable. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus/fixtures/corpora/system-deep-loop.v1.json:224] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus/fixtures/corpora/system-deep-loop.v1.json:246]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-typed-route-gold-cannot-represent-the-proposed-comparison-the-shared-schema-requ",
+      "text": "**Typed route-gold cannot represent the proposed comparison.** The shared schema requires observed resources containing only intent and resource, while additional properties are forbidden; it has no leaf role, marginal utility, token cost, or route-budget field. The compiled gold covers deterministic single, bundle, clarify, defer, and reject outcomes, but it is authored conformance evidence rather than paired predictions from two frozen policies on unseen prompts. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/schemas/typed-route-gold.v1.schema.json:6] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/schemas/typed-route-gold.v1.schema.json:35]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-causal-execution-verified-required-leaf-success-conditional-on-a-correct-executa",
+      "text": "causal execution: verified required-leaf success conditional on a correct executable route;",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-end-to-end-task-success-task-success-over-every-sampled-evaluation-unit-not-only",
+      "text": "end-to-end task success: task success over every sampled evaluation unit, not only dispatched units.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-route-validity-expected-route-or-correct-defer-versus-observed-decision",
+      "text": "route validity: expected route or correct defer versus observed decision;",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-a-retroactive-staged-join-is-not-identifiable-without-a-common-evaluation-unit-k",
+      "text": "**A retroactive staged join is not identifiable.** Without a common evaluation-unit key and independent route-decision, leaf-start, leaf-finish, and task-outcome records, timestamps or hub labels cannot recover causal attribution. Reproduction requires a new preregistered run: preserve false-route and false-defer rows, stratify by hub/archetype/risk/runtime, and use the same prompt-free evaluation-unit id across all stages. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/018-post-019-research/research/iterations/iteration-006.md:20] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/018-post-019-research/research/iterations/iteration-006.md:30]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/spec.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/plan.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/tasks.md",
+        ".opencode/skills/*/hub-router.json",
+        ".opencode/skills/*/mode-registry.json",
+        ".opencode/skills/*/leaf-manifest.json",
+        ".opencode/skills/*/manual-testing-playbook/**",
+        ".opencode/skills/*/benchmark/**"
+      ]
+    },
+    {
+      "id": "finding-7-3-existing-blind-playbooks-are-useful-coverage-evidence-not-a-fleet-reproduction-m",
+      "text": "**Existing blind playbooks are useful coverage evidence, not a fleet reproduction.** Multi-mode hubs such as mcp-tooling now carry blind holdouts and report routing success, but the playbook also records remediation-era vocabulary bindings as blind exceptions. These cases are authored regression instruments, and their result surfaces stop at expected route/resource assembly rather than the three-stage causal leaf envelope plus task outcome. [SOURCE: .opencode/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:21] [SOURCE: .opencode/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:68] [SOURCE: .opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/intra-routing-recall/holdout-daily.md:18]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/spec.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/plan.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/tasks.md",
+        ".opencode/skills/*/hub-router.json",
+        ".opencode/skills/*/mode-registry.json",
+        ".opencode/skills/*/leaf-manifest.json",
+        ".opencode/skills/*/manual-testing-playbook/**",
+        ".opencode/skills/*/benchmark/**"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-eight-versus-thirteen-discrepancy-is-a-provenance-status-mismatch-not-two-co",
+      "text": "**The eight-versus-thirteen discrepancy is a provenance/status mismatch, not two competing measurements.** The table reports a completed eight-request comparison: deterministic replay 1/8 and live LLM interpretation 8/8. The later sentence calls thirteen scenarios an instrument to run in the future; the current packet contains no corresponding thirteen-scenario corpus or per-scenario results. Its authoritative plan instead leaves a 60–80-scenario sealed corpus unchecked. The only supported interpretation is “eight evaluated, thirteen proposed”; the membership and origin of the proposed thirteen remain untraceable. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md:11] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md:40] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/tasks.md:81] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/spec.md:160]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/spec.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/plan.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/tasks.md",
+        ".opencode/skills/*/hub-router.json",
+        ".opencode/skills/*/mode-registry.json",
+        ".opencode/skills/*/leaf-manifest.json",
+        ".opencode/skills/*/manual-testing-playbook/**",
+        ".opencode/skills/*/benchmark/**"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-fleet-denominator-must-separate-route-selection-and-execution-estimands-seve",
+      "text": "**The fleet denominator must separate route-selection and execution estimands.** Seven hubs have multi-mode selection, while five are singular. A singular hub cannot reproduce a top-intent routing score in the same sense because its internal selection cardinality is one; it can still be evaluated for causally attributable leaf completion and task outcome. Pooling all twelve into one route-accuracy denominator would make the singular strata vacuous and inflate apparent fleet performance. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/018-post-019-research/research/iterations/iteration-001.md:16] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/spec.md:55]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/spec.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/plan.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/tasks.md",
+        ".opencode/skills/*/hub-router.json",
+        ".opencode/skills/*/mode-registry.json",
+        ".opencode/skills/*/leaf-manifest.json",
+        ".opencode/skills/*/manual-testing-playbook/**",
+        ".opencode/skills/*/benchmark/**"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-staged-join-does-not-reproduce-the-sk-doc-result-across-the-fleet-because-no",
+      "text": "**The staged join does not reproduce the sk-doc result across the fleet because no comparable joined fleet run exists.** The sk-doc evidence scores three routers on the same requests and reports correct top-intent recall for eight blind natural phrasings; it does not record a shared evaluation-unit identity, a leaf-originated completion receipt, or a downstream task outcome. The other eleven hubs therefore cannot be compared on the iteration-6 end-to-end estimand from current artifacts. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md:8] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md:15] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/018-post-019-research/research/iterations/iteration-006.md:18]",
+      "addedAtIteration": 7,
+      "sources": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/design/generalization-findings.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/spec.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/plan.md",
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/tasks.md",
+        ".opencode/skills/*/hub-router.json",
+        ".opencode/skills/*/mode-registry.json",
+        ".opencode/skills/*/leaf-manifest.json",
+        ".opencode/skills/*/manual-testing-playbook/**",
+        ".opencode/skills/*/benchmark/**"
+      ]
+    },
+    {
+      "id": "finding-8-3-analysts-receive-the-locked-gold-labels-joined-to-prompt-free-telemetry-only-aft",
+      "text": "Analysts receive the locked gold labels joined to prompt-free telemetry only after adjudication; they never receive raw prompts or the reversible identity map.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-the-sampling-broker-holds-the-event-to-evaluation-unit-mapping-applies-eligibili",
+      "text": "The sampling broker holds the event-to-evaluation-unit mapping, applies eligibility rules, and releases selected prompts only inside the secure environment.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-two-independent-labelers-see-the-minimally-redacted-prompt-and-frozen-routing-au",
+      "text": "Two independent labelers see the minimally redacted prompt and frozen routing authority snapshot, but not the observed route, confidence, leaf receipts, task outcome, or each other's label. An adjudicator resolves disagreement before label lock.",
+      "addedAtIteration": 8,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-9f9d0cf380ba",
+      "text": "**Authority as a fourth scalar coordinate:** ruled out because authority is destination-relative, withheld until verification, and represented as a graph plus execution-state invariant.",
+      "contentHash": "9f9d0cf380ba",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0e14ee30f1f4",
+      "text": "**One non-degenerate `(T,R,P)` enum tuple for every hub:** ruled out because singular hubs have trivial internal selection while bundle and transport hubs require ordered targets, roles, and tool-surface constraints.",
+      "contentHash": "0e14ee30f1f4",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-98bff6067367",
+      "text": "The strategy's primary hypothesis path, `.opencode/specs/sk-doc/019-skill-routing-refactor/research/post-019-angles/research-angles.md`, does not exist in the live tree. Repository-wide discovery found only an unrelated `research-angles.md` under the system-speckit program. The fallback evidence was the TRP seed packet, live hub artifacts, and compiled contract schema.",
+      "contentHash": "98bff6067367",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6f222795f660",
+      "text": "Pooling singular and multi-mode hubs into one top-intent recall estimate. Singular hubs contribute execution/outcome evidence, not a non-vacuous internal route-selection test.",
+      "contentHash": "6f222795f660",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-f0080addfed1",
+      "text": "Retroactively joining existing artifacts by timestamp, hub, or skill label.",
+      "contentHash": "f0080addfed1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-07ab57c5a31a",
+      "text": "Treating the reported 13 as the denominator of the 8/8 result. The source grammar, absent corpus, and unchecked 60–80-scenario requirement show that 13 was prospective, not scored.",
+      "contentHash": "07ab57c5a31a",
+      "addedAtIteration": 7
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [
+    "runtime dependency missing: better-sqlite3"
+  ],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 27,
+    "keyFindings": 31,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.71,
+    "coverageBySources": {
+      "other": 21
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0106-sk-doc-post-019-research-resume/.opencode/specs/sk-doc/019-skill-routing-refactor/018-post-019-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}
