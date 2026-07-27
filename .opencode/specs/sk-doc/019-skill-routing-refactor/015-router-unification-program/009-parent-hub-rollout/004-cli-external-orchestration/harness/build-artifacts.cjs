@@ -74,6 +74,16 @@ function sourceInputs() {
       'cli-codex',
       'SKILL.md',
     ),
+    'cli-external-orchestration/cli-cursor/SKILL.md': path.join(
+      SKILL_ROOT,
+      'cli-cursor',
+      'SKILL.md',
+    ),
+    'cli-external-orchestration/cli-devin/SKILL.md': path.join(
+      SKILL_ROOT,
+      'cli-devin',
+      'SKILL.md',
+    ),
     'cli-external-orchestration/cli-opencode/SKILL.md': path.join(
       SKILL_ROOT,
       'cli-opencode',
