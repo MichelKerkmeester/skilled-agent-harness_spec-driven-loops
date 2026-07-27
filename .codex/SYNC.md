@@ -31,6 +31,7 @@ Canonical for agents is `.opencode/agents/` (note: *not* `.claude/agents/`, whic
 | `hooks.json` | **hand-authored** | — | n/a locally; installed outbound to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
 | `AGENTS.md` | **hand-authored** global voice/tone doc | — | `~/.codex/AGENTS.md` symlinks *to it* |
+| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook` | No |
 
 There is no `.codex/commands/` — prompts serve that role. There is no `.codex/skills/`.
 

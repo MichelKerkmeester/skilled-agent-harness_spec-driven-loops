@@ -27,6 +27,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 | `skills` | whole-dir symlink | `../.opencode/skills` | No |
 | `specs` | whole-dir symlink | `../.opencode/specs` | No |
 | `changelog` | whole-dir symlink | `../.opencode/changelog` | No |
+| `manual-testing-playbook` | whole-dir symlink | `../.opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook` | No |
 | `.utcp_config.json` | symlink | `../.utcp_config.json` | No |
 | `agents/*.md` (13) | **real forked copy** | `.opencode/agents/*.md` | **Yes** — guarded by pre-commit gate |
 | `agents/README.txt` | real file | hand-maintained | Yes — no gate |

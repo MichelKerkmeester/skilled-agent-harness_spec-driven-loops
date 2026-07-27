@@ -32,6 +32,7 @@ Two naming quirks to internalise:
 | `hooks.v1.json` | **hand-authored** | — | — |
 | `config.local.json` | operator-local | — | gitignored, never synced |
 | `rules/` | **absent by design** | — | see §5 |
+| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` |
 
 Both mirror trees are **nested one directory per item** — the directory name is the identifier, and the file inside carries the fixed name Devin looks for (`AGENT.md` / `SKILL.md`).
 

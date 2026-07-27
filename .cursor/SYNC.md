@@ -34,6 +34,7 @@ Agents source from **`.claude/agents/`**, not `.opencode/agents/`, because Curso
 | `hooks.json` | **hand-authored** | — | — |
 | `rules/skill-routing.md` | **hand-authored** | — | also read by Devin |
 | `mcp.json` | symlink | `../.mcp.json` → `.claude/mcp.json` | double hop |
+| `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` |
 
 No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` and are managed by Cursor itself.
 
