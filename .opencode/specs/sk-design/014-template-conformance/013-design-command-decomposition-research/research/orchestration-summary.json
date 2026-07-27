@@ -1,0 +1,118 @@
+{
+  "run_id": "1785175007816-pn5cco",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research",
+  "base_artifact_dir": ".opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm",
+      "state_log": ".opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research/research/lineages/glm/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-27T17:56:47.822Z",
+        "end_at_iso": "2026-07-27T18:11:51.920Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 13,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 13
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T19:56:00Z",
+          "deltaMs": 6128080
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:00:00Z",
+          "deltaMs": 6368080
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:02:00Z",
+          "deltaMs": 6488080
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:04:00Z",
+          "deltaMs": 6608080
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:06:00Z",
+          "deltaMs": 6728080
+        }
+      ]
+    },
+    {
+      "label": "composer",
+      "state_log": ".opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research/research/lineages/composer/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-27T17:56:47.886Z",
+        "end_at_iso": "2026-07-27T18:00:08.487Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 9,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T18:03:00Z",
+          "deltaMs": 51513
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T18:04:00Z",
+          "deltaMs": 111513
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T18:05:00Z",
+          "deltaMs": 171513
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T18:06:00Z",
+          "deltaMs": 231513
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T18:07:00Z",
+          "deltaMs": 291513
+        }
+      ]
+    }
+  ]
+}

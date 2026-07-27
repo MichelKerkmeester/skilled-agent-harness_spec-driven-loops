@@ -1,14 +1,34 @@
 {
-  "openQuestions": [
-    "Q1-SEAMS: Which INTENT_SIGNALS co-occur (share resources / always load together) and which never co-occur?",
-    "Q2-LANES: Which of the 5 argument lanes and 12 internal lanes are genuinely separable jobs versus sequential phases of one job?",
-    "Q3-COST: What does a split actually cost in docs, YAML assets, presentation assets, metadata, registry/router wiring, runtime mirrors, and test updates?",
-    "Q4-MIDDLE: Is there a middle path (richer argument lanes, subcommands, mode-internal routing) that separates concerns without multiplying the command surface?",
-    "Q5-HARM: What failure modes does the current single-command shape actually produce today?"
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1-SEAMS: 3 co-occurrence clusters (core design, motion family, grounding); motion/static is strongest non-co-occurring seam but conditionally dependent",
+    "Q2-LANES: All 17 lanes are sequential phases of one job; motion is the one conditional exception",
+    "Q3-COST: ~9 files, ~50 KB, ~440 metadata lines per command; 4 hard machine constraints create quadratic propagation",
+    "Q4-MIDDLE: Option D (mode-internal process branching) addresses motion gap at 1/9 file cost of a split",
+    "Q5-HARM: 3 confirmed harms (stale refs, naming drift, word cap), none caused by single-command shape"
   ],
-  "resolvedQuestions": [],
-  "keyFindings": [],
-  "ruledOutDirections": [],
-  "rejectedPatterns": [],
-  "promotedIdeas": []
+  "keyFindings": [
+    "All 17 lanes are phases not jobs — no lane is a genuinely separable job",
+    "2-command topology is at constraint complexity minimum — adding commands triggers quadratic constraint propagation",
+    "No demonstrated harm is caused by the single-command shape — all 3 confirmed harms are consolidation residue or metadata bugs",
+    "Motion is conditionally independent but addressable via process branching, not a command split",
+    "Reversing the incomplete 010-motion-merge consolidation costs strictly more than its sunk cost with no harm justifying it",
+    "Intent scoring underloads but does not misroute — 6 test cases confirm process flow compensates"
+  ],
+  "ruledOutDirections": [
+    "Split motion out as /interface:motion — reverses incomplete consolidation, no demonstrated harm, process branching is cheaper",
+    "Split preflight out — Phase 5 of one job, not independent, assumes prior direction",
+    "Split VISUAL_SYSTEM out — internal lane, phase not job, co-loading is correct",
+    "Split by argument lane (5 commands) — all phases, 80 constraint updates, no harm justifies"
+  ],
+  "rejectedPatterns": [
+    "Split it because it is big — rejected: no demonstrated harm from size",
+    "Symmetry-driven split (one command per lane) — rejected: lanes are phases not jobs"
+  ],
+  "promotedIdeas": [
+    "Fix stale /interface:motion references (2 files, ~15 min) — high value, trivial cost",
+    "Fix handoff vs build naming drift (1 line, ~5 min) — high value, trivial cost",
+    "SKILL.md content reorganization for word-cap relief (~2 hours, 2 files) — medium value, low cost",
+    "Mode-internal process branching for motion-only prompts (~1 hour, 1 edit) — medium value, low cost"
+  ]
 }

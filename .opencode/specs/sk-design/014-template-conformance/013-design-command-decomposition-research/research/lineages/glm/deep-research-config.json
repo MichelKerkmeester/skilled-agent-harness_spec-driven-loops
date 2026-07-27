@@ -18,7 +18,7 @@
   "generation": 1,
   "lineageMode": "new",
   "resourceMapPresent": false,
-  "status": "running",
+  "status": "complete",
   "createdAt": "2026-07-27T19:56:00Z",
   "protection": {
     "deep-research-config.json": "immutable",
