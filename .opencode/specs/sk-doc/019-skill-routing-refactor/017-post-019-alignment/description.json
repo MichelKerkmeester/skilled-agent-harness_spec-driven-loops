@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
+  "description": "Defines the bounded post-019 conformance audit and its fail-closed evidence contract.",
+  "keywords": [
+    "defines",
+    "bounded",
+    "post-019",
+    "conformance",
+    "audit",
+    "fail-closed",
+    "evidence",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-25T07:49:32.456Z",
+  "specId": "017",
+  "folderSlug": "post-019-alignment",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
