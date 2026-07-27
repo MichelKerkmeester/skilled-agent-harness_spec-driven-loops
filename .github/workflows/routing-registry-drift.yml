@@ -3,6 +3,10 @@ name: Routing Registry Drift Guard
 # Makes the C-plus guarantee real: a change to the advisor's hardcoded routing
 # maps without a matching mode-registry.json change (or vice-versa) fails CI here.
 # Pairs with the local drift-guard test; this is the authoritative gate.
+#
+# It also blocks compiled-routing freshness drift: editing a hub's routing inputs
+# without re-minting drops that hub to legacy routing silently, so the trigger paths
+# below cover every input that can invalidate a serving manifest.
 on:
   push:
     branches: [main]
@@ -14,6 +18,10 @@ on:
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
       - '.opencode/skills/sk-doc/create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/create-skill/references/parent-skill/**'
+      - '.opencode/skills/*/SKILL.md'
+      - '.opencode/bin/compiled-route*'
+      - '.opencode/bin/lib/compiled-route*'
+      - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
   pull_request:
     branches: [main]
     paths:
@@ -24,10 +32,14 @@ on:
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
       - '.opencode/skills/sk-doc/create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/create-skill/references/parent-skill/**'
+      - '.opencode/skills/*/SKILL.md'
+      - '.opencode/bin/compiled-route*'
+      - '.opencode/bin/lib/compiled-route*'
+      - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
 
 jobs:
   routing-drift:
-    name: Registry == advisor maps; parent-skill structure
+    name: Registry == advisor maps; compiled-routing freshness; parent-skill structure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,6 +65,15 @@ jobs:
             tests/routing-registry-drift-guard.vitest.ts \
             tests/routing-parity-deep-skills.vitest.ts \
             tests/routing-parity-deep-council.vitest.ts
+      - name: Compiled-routing freshness — serving matches inputs, runtime matches source
+        # Editing a hub's routing inputs without re-minting silently drops that hub to
+        # legacy routing: nothing errors and nothing logs, so it is only ever found by
+        # accident. This is the authoritative blocker for that drift. A hub that is
+        # mid-restructure can be excused through the checked-in exemptions file, which
+        # covers only an uncompilable hub and never a stale or drifted one.
+        run: |
+          set -euo pipefail
+          node .opencode/bin/compiled-route-guard.cjs
       - name: Parent-skill structural invariants (one identity, registry coverage) — every hub
         # Glob-enrolled: every skill carrying a mode-registry.json is a parent hub and is
         # checked, so a fifth hub joins the gate automatically with no hand-maintained list.

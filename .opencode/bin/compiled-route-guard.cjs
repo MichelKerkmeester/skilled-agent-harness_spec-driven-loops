@@ -22,6 +22,11 @@
 //   compiled-route-guard.cjs              report and exit non-zero on any staleness
 //   compiled-route-guard.cjs --warn-only  report but always exit 0
 //   compiled-route-guard.cjs --json       machine-readable report
+//
+// A hub that is mid-restructure can be excused through the sibling exemptions file
+// (see loadExemptions below). Every excused hub is printed with its expiry, because
+// an excused hub is still not serving compiled routing — the exemption records that
+// the team accepted that, not that the problem stopped existing.
 
 const fs = require('fs');
 const path = require('path');
@@ -68,6 +73,30 @@ function authoredDrift(hubId) {
     : 'authored-drift';
 }
 
+// A hub can be legitimately uncompilable for hours while someone restructures its
+// modes. Without a way to excuse that one hub, a blocking gate stops every unrelated
+// commit in the repository. Exemptions are deliberately narrow: they excuse ONLY an
+// uncompilable hub, never a stale manifest (which means that hub is serving legacy
+// right now) and never authored drift (which means the runtime cannot be rebuilt).
+const EXEMPTIONS_PATH = path.join(__dirname, 'compiled-route-guard-exemptions.json');
+const EXCUSABLE = 'inputs-do-not-compile';
+
+function loadExemptions() {
+  let raw;
+  try {
+    raw = JSON.parse(fs.readFileSync(EXEMPTIONS_PATH, 'utf8'));
+  } catch {
+    return [];
+  }
+  if (!Array.isArray(raw)) return [];
+  const now = Date.now();
+  return raw.filter((entry) => entry
+    && typeof entry.hubId === 'string'
+    && entry.reason === EXCUSABLE
+    && typeof entry.expires === 'string'
+    && Date.parse(entry.expires) > now);
+}
+
 function inspect(hubId) {
   const skillRoot = path.join(SKILLS_ROOT, hubId);
   let freshness;
@@ -95,17 +124,30 @@ function main() {
   const warnOnly = args.includes('--warn-only');
   const asJson = args.includes('--json');
 
-  const results = HUBS.map(inspect);
+  const exemptions = loadExemptions();
+  const results = HUBS.map((hubId) => {
+    const result = inspect(hubId);
+    if (result.ok || result.reason !== EXCUSABLE) return result;
+    const exemption = exemptions.find((entry) => entry.hubId === hubId);
+    if (!exemption) return result;
+    return { ...result, ok: true, excused: true, expires: exemption.expires, rationale: exemption.rationale };
+  });
   const failures = results.filter((r) => !r.ok);
 
   if (asJson) {
     process.stdout.write(`${JSON.stringify({ results, failures: failures.length }, null, 2)}\n`);
   } else {
     for (const r of results) {
-      process.stdout.write(`  ${r.hubId.padEnd(28)}${r.ok ? 'fresh' : r.reason}${r.detail ? ` (${r.detail})` : ''}\n`);
+      const state = r.excused ? `excused: ${r.reason} until ${r.expires}` : (r.ok ? 'fresh' : r.reason);
+      process.stdout.write(`  ${r.hubId.padEnd(28)}${state}${r.detail ? ` (${r.detail})` : ''}\n`);
+    }
+    const excused = results.filter((r) => r.excused);
+    if (excused.length > 0) {
+      process.stdout.write(`\n${excused.length} hub(s) excused by a recorded exemption; they are NOT serving compiled routing:\n`);
+      excused.forEach((r) => process.stdout.write(`  ${r.hubId} — expires ${r.expires}${r.rationale ? ` — ${r.rationale}` : ''}\n`));
     }
     if (failures.length === 0) {
-      process.stdout.write('\nAll hubs fresh: serving matches inputs, and the runtime matches its source.\n');
+      process.stdout.write('\nAll hubs fresh or excused: serving matches inputs, and the runtime matches its source.\n');
     } else {
       process.stdout.write(`\n${failures.length} hub(s) need attention.\n`);
       const stale = failures.filter((f) => f.reason === 'stale-manifest');
