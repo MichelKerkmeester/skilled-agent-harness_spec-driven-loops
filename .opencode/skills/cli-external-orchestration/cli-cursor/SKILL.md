@@ -252,6 +252,14 @@ Cursor's live roster spans 150+ hosted-frontier ids across GPT/Claude/Gemini/Gro
 
 The calling AI is the conductor; Cursor's own skill system at `~/.cursor/skills-cursor/` (observed live: `automate`, `babysit`, `canvas`, `create-hook`, `create-rule`, `create-skill`, `create-subagent`, `loop`, `migrate-to-skills`, `sdk`, `shell`, `split-to-prs`, `statusline`, `update-cli-config`, `update-cursor-settings`) confirms Cursor supports subagents natively, but these are Cursor-editor-side conventions, not a `-p <profile>` flag like Codex's. Full delegation contract and the `--mode plan`/`--mode ask`/default-agent execution-mode roster: [agent-delegation.md](./references/agent-delegation.md).
 
+### Repository Rules, Hook Delivery, and Parity Boundaries
+
+Cursor CLI reads project `.cursor/rules/*.md`, root `AGENTS.md`, root `CLAUDE.md`, and legacy `.cursorrules` automatically. This repo now uses `.cursor/rules/skill-routing.md` as a compact, always-on pointer to the relevant top-level `.opencode/skills/*/SKILL.md` packets. It is static session context, not a replacement for dynamic per-turn classification.
+
+The `beforeSubmitPrompt` adapter is designed to deliver a dynamic skill-advisor-equivalent brief, but delivery is confirmed dormant under the installed Cursor CLI build. Its source marks the status as registered but unconfirmed and records the shared-advisor delegation in [`user-prompt-submit.ts`](../../system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts#L5-L14) and [`user-prompt-submit.ts`](../../system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts#L45-L51). A live marker re-probe against `cursor-agent 2026.07.23-e383d2b` confirmed that `beforeSubmitPrompt` did not fire. The static rules file therefore complements a missing dynamic brief; it does not claim to provide per-turn advisor output. The hook registration and adapter remain unchanged.
+
+`cursor-agent --help` has no custom-agent-loading concept: there is no named profile flag or custom-agent command to build. Cursor's native editor-side subagent/skill system is a separate internal surface, not a profile-loading contract exposed by this CLI. The same help output has no dedicated command-file-system concept or `commands` command; commands are a non-applicable parity category for Cursor, mirroring the Devin-side decision.
+
 | Task Type | Execution mode |
 |-----------|-----------------|
 | Code review / bug detection | default agent, `--sandbox enabled` |

@@ -16,7 +16,9 @@
       "cursor UserPromptSubmit skill advisor",
       "cursor agents skills rules parity plan",
       "cursor agents skills rules parity tasks",
-      "cursor agents skills rules parity checklist"
+      "cursor agents skills rules parity checklist",
+      "cursor agents skills rules parity summary",
+      "cursor static skill routing"
     ],
     "key_topics": [
       "cursor",
@@ -33,13 +35,15 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".cursor/hooks.json"
+      ".cursor/rules/skill-routing.md",
+      ".cursor/hooks.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,9 +71,21 @@
         "source": "derived"
       },
       {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -157,53 +173,43 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Repository Rules",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
+        "name": "Hook Delivery",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Boundaries",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have.\" Live investigation during the 5-iteration deep-research pass found:",
     "created_at": "2026-07-27T06:11:40.840Z",
-    "last_save_at": "2026-07-27T06:27:32.077Z",
+    "last_save_at": "2026-07-27T09:17:47.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a061e768de5af56bed8a954f46a512e808fdf6bd935b76f1e00b78a7006d816",
+    "source_fingerprint": "sha256:118912aa32498eed7510d218f4c061d1268da01f2ed3e246385159de9b79deb6",
     "source_doc_hashes": {
-      "spec.md": "7dee15d69cdeea89fa6e787e5b8a5623f31b19114efc5ac4afb9897c42b68700",
-      "plan.md": "29896abd283e406a3023f585de92b10a43be07c71f19c6268a0c7f7d4c45d6b7",
-      "tasks.md": "90cbcb650020fbdbc10fd0c7053e5f420520674489d5c56d7a573020cd1ffc52",
-      "checklist.md": "c115bade1e0192e783af00c48dbfb6d94b90fb196268d2828f583c01e4099270"
+      "spec.md": "18d58b2e170b534b6d40db88a96f5824c8c3d1db3471536a07d7a3529217457c",
+      "plan.md": "a98395d98f9d3196e0769136d9c85a2ccef0ec87f679f6f24695b07b89c583ec",
+      "tasks.md": "58dace0720b2587090084303b18b65f6ed923efa90776fb3b80a29ba640eb363",
+      "checklist.md": "6d2bb2f594a7d2ab185ac5409706d913acdcb57c6b80359fcaf95de11e0adf60",
+      "implementation-summary.md": "e5180801bcac9b66cc4f56237ca000b95faca4c756b524a44bdbdb7967ad527a"
     },
     "last_active_child_id": null,
     "last_active_at": null

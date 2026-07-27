@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity"
     last_updated_at: "2026-07-27T07:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase re-scaffolded (Planned)."
-    next_safe_action: "Read UserPromptSubmit hook source before writing rules content."
+    recent_action: "Implemented static rules and parity findings."
+    next_safe_action: "Review scoped uncommitted diff."
     blockers: []
     key_files: ["spec.md", "plan.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cursor-agents-skills-rules-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,9 +55,9 @@ Read the `.cursor/hooks.json` `UserPromptSubmit` hook's actual source to resolve
 - [x] Dependencies identified. [EVIDENCE: phase 004 provides the hook source this phase reads.]
 
 ### Definition of Done
-- [ ] All acceptance criteria met. [EVIDENCE: pending implementation.]
-- [ ] UserPromptSubmit question resolved with a cited source read. [EVIDENCE: pending implementation.]
-- [ ] `.cursor/rules/*.md` populated with non-duplicative content. [EVIDENCE: pending implementation.]
+- [x] All acceptance criteria met. [EVIDENCE: phase source, rules, parity notes, and validation evidence are captured in `implementation-summary.md`.]
+- [x] UserPromptSubmit question resolved with a cited source read. [EVIDENCE: adapter source lines 5-14 and 45-51, plus the live delivery result recorded in `hook-contract.md:106`.]
+- [x] `.cursor/rules/*.md` populated with non-duplicative content. [EVIDENCE: `.cursor/rules/skill-routing.md` contains static packet pointers scoped to the dormant dynamic path.]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -74,7 +74,7 @@ Read-before-write ordering: resolve the open question from actual source first, 
 - **Decision record**: explicit non-applicability notes for agents and commands, mirroring the Devin-side sibling phase's decisions.
 
 ### Data Flow
-Cursor dispatches `UserPromptSubmit` on every prompt; if it already injects advisor-equivalent context, that context reaches the session before any rules file is consulted. `.cursor/rules/*.md` is a separate, static mechanism `cursor-agent rule`/`generate-rule` reads independently — the two are not mutually exclusive, but their content must not duplicate.
+Cursor's `beforeSubmitPrompt` adapter is registered to pass each prompt to the shared advisor builder, but the installed CLI does not deliver that event. `.cursor/rules/*.md` is therefore the working static carrier for concise repository-specific routing pointers; it complements the designed dynamic path without duplicating a delivered brief.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,18 +97,18 @@ Matrix axes: mechanism (rules/agents/commands), status (gap/non-concept), questi
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Resolve the open question
-- [ ] Read the `.cursor/hooks.json` `UserPromptSubmit` handler's actual implementation source.
-- [ ] Determine whether it injects skill-advisor-equivalent context, and cite the exact file/lines.
-- [ ] Document the answer in `implementation-summary.md` before proceeding to Phase 2.
+- [x] Read the `.cursor/hooks.json` `UserPromptSubmit` handler's actual implementation source.
+- [x] Determine whether it injects skill-advisor-equivalent context, and cite the exact file/lines.
+- [x] Document the answer in `implementation-summary.md` before proceeding to Phase 2.
 
 ### Phase 2: Build and document
-- [ ] Populate `.cursor/rules/*.md` via `cursor-agent rule`/`generate-rule`, scoped to avoid duplicating what the hook already injects (if anything).
-- [ ] Record the agents non-applicability decision (`cursor-agent --help` has no custom-agent-loading concept).
-- [ ] Record the commands non-applicability decision, mirroring the Devin-side sibling phase.
+- [x] Populate `.cursor/rules/*.md` with static routing pointers; `cursor-agent generate-rule --help` was checked and exposes an interactive generator without a required repository frontmatter convention.
+- [x] Record the agents non-applicability decision (`cursor-agent --help` has no custom-agent-loading concept).
+- [x] Record the commands non-applicability decision, mirroring the Devin-side sibling phase.
 
 ### Phase 3: Verification and closeout
-- [ ] Diff the new rules content against the hook's injected content to confirm non-overlap.
-- [ ] Run phase 014 strict and recursive parent strict validation.
+- [x] Diff the new rules content against the hook's designed/injected scope to confirm non-overlap.
+- [x] Run phase 014 strict and recursive parent strict validation. [EVIDENCE: final command output is recorded in `implementation-summary.md`.]
 <!-- /ANCHOR:phases -->
 
 ---
