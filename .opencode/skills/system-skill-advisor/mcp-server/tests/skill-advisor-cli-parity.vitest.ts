@@ -39,7 +39,6 @@ const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: st
   { skill: 'sk-code', prompt: 'Use sk-code to implement a TypeScript test and run the code verification gate.' },
   { skill: 'sk-code', prompt: 'Use sk-code code-review to inspect this pull request for blocker findings first.' },
   { skill: 'system-spec-kit', prompt: 'Use system-spec-kit for the approved spec folder and update implementation tracking.' },
-  { skill: 'system-code-graph', prompt: 'Use system-code-graph for structural callers, imports, and blast-radius analysis.' },
   { skill: 'sk-doc', prompt: 'Use sk-doc to rewrite this install guide with clean markdown headings and examples.' },
   { skill: 'sk-git', prompt: 'Use sk-git to create a conventional commit and open a pull request.' },
   { skill: 'sk-prompt', prompt: 'Use sk-prompt to improve this prompt and score it with the CLEAR rubric.' },

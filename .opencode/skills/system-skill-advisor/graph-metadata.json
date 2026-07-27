@@ -17,11 +17,6 @@
         "context": "routes browser-debugging and MCP tooling requests via the mcp-tooling hub"
       },
       {
-        "target": "system-code-graph",
-        "weight": 0.7,
-        "context": "routes structural code search and impact-analysis requests"
-      },
-      {
         "target": "mcp-code-mode",
         "weight": 0.7,
         "context": "routes MCP orchestration requests"

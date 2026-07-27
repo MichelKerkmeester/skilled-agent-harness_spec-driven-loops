@@ -527,7 +527,6 @@ function primaryIntentBonus(
 ): number {
   const R = SCORING_CALIBRATION.routing;
   if (/\bsemantic (code )?search\b/.test(promptLower)) {
-    if (recommendation.skill === 'system-code-graph') return R.semanticSearchCodeGraphBonus;
   }
   if (/\bdeep[- ]review\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') return R.deepReviewSkCodeReviewPenalty;
