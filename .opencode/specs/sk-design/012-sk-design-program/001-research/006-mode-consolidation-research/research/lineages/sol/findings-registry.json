@@ -1,0 +1,213 @@
+{
+  "sessionId": "dr-auto-20260724T172725Z-93694",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-design-foundations-capabilities-are-actually-invoked-and-should-they-fold-",
+      "inboxId": null,
+      "text": "Which `design-foundations` capabilities are actually invoked, and should they fold into interface or shared?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-design-audit-capabilities-are-actually-invoked-and-should-they-become-an-i",
+      "inboxId": null,
+      "text": "Which `design-audit` capabilities are actually invoked, and should they become an interface gate or shared procedure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-consumes-the-styles-database-and-adapter-and-where-should-those-assets-live",
+      "inboxId": null,
+      "text": "What consumes the styles database and adapter, and where should those assets live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-routing-and-reference-evidence-distinguishes-used-capability-from-dead-weig",
+      "inboxId": null,
+      "text": "What routing and reference evidence distinguishes used capability from dead weight in every current mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-should-the-four-survivors-remain-hub-modes-or-become-standalone-skills",
+      "inboxId": null,
+      "text": "Should the four survivors remain hub modes or become standalone skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-what-ordered-migration-compatibility-rollback-and-verification-plan-can-a-build-",
+      "inboxId": null,
+      "text": "What ordered migration, compatibility, rollback, and verification plan can a build packet execute?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-design-foundations-capabilities-are-actually-invoked-and-should-they-fold-",
+      "inboxId": null,
+      "text": "Which `design-foundations` capabilities are actually invoked, and should they fold into interface or shared?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-design-audit-capabilities-are-actually-invoked-and-should-they-become-an-i",
+      "inboxId": null,
+      "text": "Which `design-audit` capabilities are actually invoked, and should they become an interface gate or shared procedure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-consumes-the-styles-database-and-adapter-and-where-should-those-assets-live",
+      "inboxId": null,
+      "text": "What consumes the styles database and adapter, and where should those assets live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-routing-and-reference-evidence-distinguishes-used-capability-from-dead-weig",
+      "inboxId": null,
+      "text": "What routing and reference evidence distinguishes used capability from dead weight in every current mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-should-the-four-survivors-remain-hub-modes-or-become-standalone-skills",
+      "inboxId": null,
+      "text": "Should the four survivors remain hub modes or become standalone skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-what-ordered-migration-compatibility-rollback-and-verification-plan-can-a-build-",
+      "inboxId": null,
+      "text": "What ordered migration, compatibility, rollback, and verification plan can a build packet execute?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "Which `design-foundations` capabilities are actually invoked, and should they fold into interface or shared?",
+    "Which `design-audit` capabilities are actually invoked, and should they become an interface gate or shared procedure?",
+    "What consumes the styles database and adapter, and where should those assets live?",
+    "What routing and reference evidence distinguishes used capability from dead weight in every current mode?",
+    "Should the four survivors remain hub modes or become standalone skills?",
+    "What ordered migration, compatibility, rollback, and verification plan can a build packet execute?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 6,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {
+      "other": 23
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0103-sk-design-structure-naming-cleanup/.opencode/specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

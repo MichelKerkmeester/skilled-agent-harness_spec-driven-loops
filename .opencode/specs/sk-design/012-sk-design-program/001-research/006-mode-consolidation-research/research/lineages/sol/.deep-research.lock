@@ -1,0 +1,11 @@
+{
+  "owner_pid": 8909,
+  "started_at_iso": "2026-07-24T18:33:27.280Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-24T18:33:27.280Z",
+  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0103-sk-design-structure-naming-cleanup/.opencode/specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-24T18:33:27.280Z",
+  "acquire_nonce": "8909-1784918007280-d013ed71-9009-497f-a88d-32463810427d"
+}

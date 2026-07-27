@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research",
+  "spec_folder": "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research",
+  "parent_id": "sk-design/012-sk-design-program/001-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design mode consolidation",
+      "design mode bloat",
+      "reduce sk-design modes",
+      "styles database fate"
+    ],
+    "key_topics": [
+      "sk-design",
+      "mode",
+      "consolidation",
+      "design",
+      "bloat",
+      "reduce",
+      "modes",
+      "styles",
+      "database",
+      "fate",
+      "grown",
+      "seven"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-design/mode-registry.json",
+      "research/deep-research-state.jsonl",
+      "research/research.md",
+      ".opencode/package.json",
+      "research/lineages/sol/.deep-research.lock",
+      "spec.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": ".deep-research.lock",
+        "kind": "file",
+        "path": "research/lineages/sol/.deep-research.lock",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Consolidation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Question And Scope The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Diagnosis The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Processes All",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Issues",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "PID-scoped",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-parity",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design has grown to seven modes — interface, foundations, motion, audit, md-generator, the design-mcp-open-design transport, plus a large `styles` resource tree",
+    "created_at": "2026-07-25T13:39:24.267Z",
+    "last_save_at": "2026-07-25T13:39:24.267Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:7ea040b26d1f77427a3b6e2cb865dc290c57310cc7ae742240c15dc996d420be",
+    "source_doc_hashes": {
+      "spec.md": "2d8e32920cc7f8acf9f973749f021cea6ce2a1b56ec58d5d07737e987bb77b75",
+      "research/research.md": "8e656fc79f5fc2afe98977016ad146c37d4437f005edf427a560b931934f37a7",
+      "handover.md": "a7f2e0b5d245b13d33a9fffd68ca6fbde16d37a40d21c74adaa591f9d01a568b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "topic": "Consolidate the sk-design skill hub from its current seven modes down to a target four (design-interface, design-motion, design-md-generator, design-mcp-open-design). The full six-question charter is in this packet's spec.md. Determine with utilization evidence the fate of design-foundations, design-audit, and the 7,812-file styles database; whether the four survivors stay hub-modes or become standalone skills; and produce a concrete, risk-assessed migration plan a follow-up build packet can execute.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-07-24T17:27:25Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "standard",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "dr-auto-20260724T172725Z-93694",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}
