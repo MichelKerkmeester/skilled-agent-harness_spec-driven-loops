@@ -39,19 +39,32 @@
       "table"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "plan.md",
+      "spec.md",
       "tasks.md",
       "checklist.md",
-      "scripts/README.md",
-      "spec.md"
+      "scripts/README.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -70,12 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -181,35 +188,31 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "the Task-dependency",
+        "kind": "key_phrase",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This repository organizes 36 invokable operator commands (plus 13 non-command supporting files) as nested Markdown under `.opencode/commands/{create,deep,doctor,interface,memory,prompt,speckit}/.md` plus 2 top-level files, using Claude Code's colon-namespaced invocation (`/deep:research`, `/create:skill`) and a single opaque `$ARGUMENTS` string that each command's own router logic parses for flags and mode suffixes",
     "created_at": "2026-07-27T06:48:17.724Z",
-    "last_save_at": "2026-07-27T06:57:37.638Z",
+    "last_save_at": "2026-07-27T10:00:41.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1c59f854999c40cf97e4c758a8183c00ce7a11aa4aa44e8c2a0261154fcc6bd",
+    "source_fingerprint": "sha256:b3a08c1d574172181adca6a4548f33491214c645ef7c84d559306fd7b6af625c",
     "source_doc_hashes": {
-      "spec.md": "32857b4253e144247493b574fa5b1c2d026d925c18296adff85b04cb5386c904",
-      "plan.md": "99e4dd683022d6197b8b5eef0088caa80fb39b7f9c59ea262cb816ae95bbaf9c",
-      "tasks.md": "052b7abb5d0786653267222716927d1a61ee9588b476097e30767908ad0b38c0",
-      "checklist.md": "85a0983caf7861d99cd921695bfa8b7129d4515fab16b707753d29709bb59a12"
+      "spec.md": "babbc10803b0cdc7ae64a26a661f8382f14af84624c6fe035e8b89b8c0be953c",
+      "plan.md": "74a84c9b59cf56a56f960ab48f70fa16cbd3f37eb7ebbd67a9e824e00354dc12",
+      "tasks.md": "a1df1d5b1fbe04c5f915a95bc940e2eb98feda95ad08e00a5996490e4e8a48ad",
+      "checklist.md": "6c13db314ddae5795e1c1164d2ab0c0d0e38ac6e2cc5ff9af37ee3fd3eb51d81",
+      "implementation-summary.md": "044457b1872aba1af86c638cc13293bfa9e8356e7827c40de54d3dbd736f6417"
     },
     "last_active_child_id": null,
     "last_active_at": null

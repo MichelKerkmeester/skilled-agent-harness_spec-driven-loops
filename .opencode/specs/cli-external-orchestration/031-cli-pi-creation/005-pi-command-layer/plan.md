@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: pi-command-layer [template:level-1/plan.md]"
+title: "Implementation Plan: Phase 5: pi-command-layer"
 description: "Plan for flattening the 36 invokable .opencode/commands/*.md files into .pi/prompts/*.md and translating $ARGUMENTS/argument-hint/allowed-tools conventions to Pi's $1/$2/$@/${1:-default} syntax."
 trigger_phrases:
   - "pi command layer plan"
@@ -10,17 +10,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer"
-    last_updated_at: "2026-07-27T07:50:00Z"
+    last_updated_at: "2026-07-27T10:01:30Z"
     last_updated_by: "claude-code"
-    recent_action: "plan.md drafted: 36-row worklist, translation table, disposition table"
-    next_safe_action: "Author tasks.md and checklist.md"
+    recent_action: "Worklist re-derived live, zero drift; dependency table refreshed"
+    next_safe_action: "Commit; phase 006 proceeds with the Task-dependency list"
     blockers: []
-    key_files: ["spec.md", "../003-cli-pi-skill-packet/"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring-005"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -65,10 +65,10 @@ Classify all 49 `.opencode/commands/**/*.md` files into 36 invokable commands (u
 - [x] pi.dev docs findings for prompt-templates incorporated with explicit UNCONFIRMED flags where live behavior is not yet verified
 
 ### Definition of Done
-- [ ] Flattening convention covers all 36 commands with zero name collisions
-- [ ] Translation table covers every argument-hint pattern observed in the 36 commands
-- [ ] Frontmatter-key gap has a stated disposition per key
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 005-pi-command-layer --strict` passes `Errors: 0`
+- [x] Flattening convention covers all 36 commands with zero name collisions
+- [x] Translation table covers every argument-hint pattern observed in the 36 commands
+- [x] Frontmatter-key gap has a stated disposition per key
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 005-pi-command-layer --strict` passes `Errors: 0`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -149,10 +149,10 @@ Not a bug fix — included for completeness per the precedent phases' convention
 - [x] Enumerate the 14 Task-dependent commands and record the phase-006 sequencing gap (component E)
 - [x] Produce the full 36-row per-group worklist (below)
 
-### Phase 3: Verification (deferred to a future execution pass — not run by this planning phase)
-- [ ] Re-run `grep -rl "^argument-hint:" .opencode/commands --include="*.md" | wc -l` at execution time and confirm 36 still holds (the tree may have changed since authoring)
-- [ ] Manually re-derive all 36 flattened names from the stated convention and diff against the worklist below for drift
-- [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 005-pi-command-layer --strict`
+### Phase 3: Verification
+- [x] Re-run `grep -rl "^argument-hint:" .opencode/commands --include="*.md" | wc -l` at execution time and confirm 36 still holds (the tree may have changed since authoring) — re-ran during closeout, still 36
+- [x] Manually re-derive all 36 flattened names from the stated convention and diff against the worklist below for drift — re-derived, zero drift
+- [x] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh 005-pi-command-layer --strict` — see `implementation-summary.md`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -220,10 +220,10 @@ Collision check: 36 rows, 36 unique values in the "Flattened Filename" column �
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 `pi-contract-pin` (live Pi install + prompt-template live verification) | Internal | Planned / not started | Every substitution-syntax claim in this phase's docs stays UNCONFIRMED |
-| Phase 004 `pi-skill-discovery-bridge` | Internal | Planned / not started | Confirms whether `.pi/`-pointed discovery patterns behave as this phase assumes for `.pi/prompts/` |
-| Phase 006 `pi-agent-bridge` (`pi-subagents`) | Internal | Planned / not started | The 14 Task-dependent ported commands stay functionally inert for subagent dispatch until this lands |
-| Phase 003 `cli-pi-skill-packet` (`references/` dir) | Internal | Planned / not started | Determines where the persisted doctrine file eventually lives (open question, spec.md §7) |
+| Phase 001 `pi-contract-pin` (live Pi install + prompt-template live verification) | Internal | Complete — Pi CLI 0.82.1 installed; substitution-syntax live verification still blocked on provider credentials | Every substitution-syntax claim in this phase's docs stays UNCONFIRMED until credentials exist |
+| Phase 004 `pi-skill-discovery-bridge` | Internal | Complete — Candidate A accepted with a re-verification trigger; live discovery-shape confirmation also blocked on the same credential gap | Confirms whether `.pi/`-pointed discovery patterns behave as this phase assumes for `.pi/prompts/` |
+| Phase 006 `pi-agent-bridge` (`pi-subagents`) | Internal | Not started | The 14 Task-dependent ported commands stay functionally inert for subagent dispatch until this lands |
+| Phase 003 `cli-pi-skill-packet` (`references/` dir) | Internal | Complete — `cli-pi/references/` exists as the hub's 6th mode | Persisted doctrine file's target directory now exists; exact filename still an open question (spec.md §7) |
 | pi.dev docs (`prompt-templates` page) | External | Live-fetched, docs-only (not live-CLI-verified) | Naming/discovery assumptions rest on documented, not confirmed, behavior |
 <!-- /ANCHOR:dependencies -->
 

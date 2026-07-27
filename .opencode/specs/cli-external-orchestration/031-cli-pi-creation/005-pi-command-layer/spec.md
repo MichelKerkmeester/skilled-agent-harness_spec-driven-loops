@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: pi-command-layer [template:level-1/spec.md]"
+title: "Feature Specification: Phase 5: pi-command-layer"
 description: "Plan flattening the 36 invokable .opencode/commands/*.md slash commands (of 49 total .md files) into Pi's flat, non-recursive .pi/prompts/*.md prompt-template format, with a naming convention and an $ARGUMENTS-to-$1/$2/$@/${1:-default} translation table."
 trigger_phrases:
   - "pi command layer"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer"
-    last_updated_at: "2026-07-27T07:50:00Z"
+    last_updated_at: "2026-07-27T10:01:30Z"
     last_updated_by: "claude-code"
-    recent_action: "spec.md drafted: 49 commands classified, flattening + translation table designed"
-    next_safe_action: "Author plan.md with the full 36-row per-group worklist, then tasks.md and checklist.md"
+    recent_action: "Design re-verified live, zero drift; phase complete"
+    next_safe_action: "Commit; phase 006 proceeds with the Task-dependency list"
     blockers: []
-    key_files: [".opencode/commands/", "plan.md"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring-005"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 100
     open_questions:
       - "Does Pi's prompt-template loader gracefully ignore unrecognized frontmatter keys (allowed-tools, skill, title, version), or does an unknown key cause a load error?"
       - "Does ${1:-default} behave with exact bash semantics, and does Pi expose a $@-minus-$1 remainder primitive for sub-action-then-flags patterns?"
@@ -49,7 +49,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete - planning doctrine fully verified and re-derived live with zero drift; actual `.pi/prompts/*.md` creation and live Pi dispatch stay out of scope (deferred to a future execution pass) |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
