@@ -42,10 +42,13 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-design/design-interface/SKILL.md",
-      "spec.md",
-      "plan.md",
+      "research/lineages/glm/research.md",
+      "research/lineages/composer/research.md",
+      ".opencode/skills/sk-design/mode-registry.json",
       "tasks.md",
       "checklist.md",
+      "spec.md",
+      "plan.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md"
     ],
@@ -57,15 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -81,6 +78,18 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -88,12 +97,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Dispatch Lineage",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -118,6 +121,12 @@
       },
       {
         "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -153,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "Data Flow Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -160,6 +175,12 @@
       },
       {
         "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Lineage",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -175,29 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/interface:design` is now one of only two public sk-design commands (with `/interface:design-reference`), after a consolidation that took the hub from 6 modes / 5 commands to 2 workflow modes + 1 transport / 2 commands",
     "created_at": "2026-07-27T17:50:43.207Z",
-    "last_save_at": "2026-07-27T17:52:05.897Z",
+    "last_save_at": "2026-07-27T18:31:01.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7f19ccc21fd2233dd7744bd61f3b11dec3b73a1a6d35e940f246c1e4962d6aa",
+    "source_fingerprint": "sha256:2ec45cf5127a932d19322a5a9a5793a7763baaf8f98ec6cafd3f20daf2b75ade",
     "source_doc_hashes": {
-      "spec.md": "866ee56e6529bae80219f0c3246f15cd2c9be5f36eb73580b756d1668ced704b",
-      "plan.md": "9647c14dabf6cea067dceadaac8334df7f1537379ba8934f33bee428aa7fba8a",
-      "tasks.md": "a3a8f65b1e841ea0626d4c06365e01f36f4a69fef9e928d36f9c28005f6778dd",
-      "checklist.md": "00c87a0153b617013e45f5a4b60ec39502e23e4e8828f37101afbfba284eab4a",
-      "implementation-summary.md": "9a381ffc3f234e2c32569554985d502536d48d5adb5d246e7657ac2301e2760f"
+      "spec.md": "5780d9449bf4f7bf27739fc9009a61f83b6b122795765c99934d96fb8281fc91",
+      "plan.md": "6625bb129c5fc2943720f1691ffc201a580c00501e526a59dc927b4b74942847",
+      "tasks.md": "085bbfc5251561ec15bf167d1054f0fd67401fa7943f5e6358678d54363c3382",
+      "checklist.md": "25b982558d1ec27082de03784558928a965a545147bf5b1917f7b21e50a760f6",
+      "implementation-summary.md": "85bc3b48e9ed720bd828b12e0c370157c5e75da45c253aeb51c7f12040cadfd1"
     },
     "last_active_child_id": null,
     "last_active_at": null
