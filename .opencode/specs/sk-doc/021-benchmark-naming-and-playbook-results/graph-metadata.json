@@ -47,7 +47,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "assets/rename-map.json",
-      "spec.md"
+      "spec.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -90,6 +91,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "The Python",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two defects, one cause",
     "created_at": "2026-07-27T09:25:16.484Z",
-    "last_save_at": "2026-07-27T14:10:22.226Z",
+    "last_save_at": "2026-07-27T15:43:15.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcfc6892a0b5f93b8d041f6ffa25f2827e62e8c0dc7afef867eac69adc579b61",
+    "source_fingerprint": "sha256:1e38af65409c5c04160d67be10276d528c95005d06b480606c25ac34e5c78fa7",
     "source_doc_hashes": {
-      "spec.md": "c6599624f68206382226ceea2acee2cb4d68a3f63f62cded7a8fb9e2a62593d4",
-      "plan.md": "efcd3e94faf88a017bf87be505f868397a71db86d302f814f870a1882630bdf8",
-      "tasks.md": "1d2e8a7df86a4c08090bd6b6123b0585872dc422b31a14a4cff5e9ac778f2610",
-      "checklist.md": "0e821315d232433581347f69e52d07c0d4a4ecdd21574f50f91109e074a54876",
-      "decision-record.md": "415954cafa7001576a3ca3c14bbed0352759826faf415b1c1f69b90748cd106c",
-      "implementation-summary.md": "05b82e1ba8c271c4709cbf228ef6d807b4ced82b02463bca9c1d1f5c8ee11a28"
+      "spec.md": "89accefe8f16a7b0973680bb6a3907c2a178bcd6c14bddf8a49788b185230958",
+      "plan.md": "ed7814f8625178a4098747ec9f9ab7720c2bc771f868750bc3ccf5500cfd3cab",
+      "tasks.md": "4daf3370296562cb183167a3bc103fe5d07101ebbaf9707872376d4b6a7b7b93",
+      "checklist.md": "884feb14a45cad51b7cf3a6b3a37d944e0cc7e33914578138d863266066c5f22",
+      "decision-record.md": "0c887c2df2c5e3be95e662e27fda32937f6b19ee84f422974afcf3f2881a3716",
+      "implementation-summary.md": "5ea70692b49b85ff4c439ac62500df9edf1aa5cecbe34f6731b7fc36111c1bda"
     },
     "last_active_child_id": null,
     "last_active_at": null

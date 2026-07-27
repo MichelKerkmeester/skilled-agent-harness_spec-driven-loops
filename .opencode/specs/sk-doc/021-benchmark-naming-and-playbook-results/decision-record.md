@@ -10,7 +10,7 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T15:32:11Z"
+    last_updated_at: "2026-07-27T15:43:15Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Collapsed benchmark storage onto the reports layer"
     next_safe_action: "Open a deep-loop packet for brittle event-name validation and agent-written timestamps"
