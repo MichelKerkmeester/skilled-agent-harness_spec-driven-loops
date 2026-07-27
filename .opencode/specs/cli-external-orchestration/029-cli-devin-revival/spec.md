@@ -7,16 +7,16 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
-    last_updated_at: "2026-07-27T07:00:00Z"
+    last_updated_at: "2026-07-27T10:15:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded phases 013-015 (Planned); PermissionRequest live-fire confirmed via direct probe test"
-    next_safe_action: "Execute phase 013, then 014."
+    recent_action: "Phase 013 built; devin ignores PermissionRequest decisions."
+    next_safe_action: "Escalate devin finding; execute phase 014."
     blockers: []
     key_files: ["hook-testing-results.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "011-hook-truth-and-runtime-readmes/spec.md", "013-devin-permission-request-handler/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
-    completion_pct: 40
-    open_questions: ["Provider-side revocation and rotation of the credentials removed from Zed remains operator-only.", "PostCompaction still not live-verified (needs a genuinely long session, not forced in a quick test).", "Does run_subagent produce the registered tool name and expected payload shape?"]
-    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier packet-wide dormancy conclusion was caused by an unsupported hooks.v1.json wrapper shape.", "PermissionRequest DOES fire live (confirmed via a controlled probe 2026-07-27) for write-class tools under the default auto permission mode - the explicit-empty registration means every such request is currently silently rejected."]
+    completion_pct: 45
+    open_questions: ["Provider-side revocation and rotation of the credentials removed from Zed remains operator-only.", "PostCompaction still not live-verified (needs a genuinely long session, not forced in a quick test).", "Does run_subagent produce the registered tool name and expected payload shape?", "Is there any devin permission mode (undocumented or future) that actually honors the PermissionRequest hook's decision?"]
+    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier packet-wide dormancy conclusion was caused by an unsupported hooks.v1.json wrapper shape.", "PermissionRequest DOES fire live for write-class tools under auto mode; the explicit-empty registration silently rejected every such request.", "Phase 013's adapter logic is correct, but devin 3000.2.17 does not honor the hook's decision under any tested mode - upstream limitation."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -103,7 +103,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 10 | `010-devin-feature-catalog/` | Author a `create-feature-catalog` package for cli-devin; the `hooks` category must enumerate all 8 lifecycle events with accurate observed/unobserved status. | Planned |
 | 11 | `011-hook-truth-and-runtime-readmes/` | Reconcile hook truth, align runtime READMEs and mirrors, then remove obsolete secret-bearing Zed MCP registrations. | Complete |
 | 12 | `012-devin-hook-hardening/` | Harden the 10 Devin hook adapters: uniform workspace-root resolution, cwd-fallback for completion-evidence, discriminating spec-gate test suite, and comment hygiene. | Complete |
-| 13 | `013-devin-permission-request-handler/` | Build a real `PermissionRequest` adapter (conservative default-deny policy over the existing spec-gate/dispatch-rule-checks cores), replacing the explicit-empty registration now that live testing confirmed the event fires and silently rejects every approval-needing call. | Planned |
+| 13 | `013-devin-permission-request-handler/` | Build a real `PermissionRequest` adapter (conservative default-deny policy over the existing spec-gate/dispatch-rule-checks cores), replacing the explicit-empty registration now that live testing confirmed the event fires and silently rejects every approval-needing call. | Implemented — devin does not honor the hook's decision yet (upstream CLI limitation, escalated) |
 | 14 | `014-hook-adapter-shared-boilerplate-and-claude-codex-fix/` | Extract the byte-identical `readStdin()`/JSON-parse-fail-open boilerplate into shared helpers, and apply the already-shipped `firstNonBlankString()` alias-chain fix to Claude's and Codex's `spec-gate-enforce.mjs`, which carry the identical bug independently. | Planned |
 | 15 | `015-devin-agents-skills-rules-parity/` | Document Devin's already-working, undocumented `devin skills list`/`devin rules list` discovery, and build the first real `.devin/agents/*.AGENT.md` subagent profile (documented as supported in `cli-devin/SKILL.md`, never built). | Planned |
 ### Phase Transition Rules

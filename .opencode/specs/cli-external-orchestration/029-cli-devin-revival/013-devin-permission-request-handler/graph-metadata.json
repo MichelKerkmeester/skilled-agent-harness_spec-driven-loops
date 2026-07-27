@@ -16,7 +16,8 @@
       "devin approval gate",
       "devin permission request handler plan",
       "devin permission request handler tasks",
-      "devin permission request handler checklist"
+      "devin permission request handler checklist",
+      "devin permission request handler summary"
     ],
     "key_topics": [
       "devin",
@@ -29,17 +30,18 @@
       "plan",
       "tasks",
       "checklist",
-      "controlled",
-      "live"
+      "summary",
+      "controlled"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".devin/hooks.v1.json"
+      ".devin/hooks.v1.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,6 +72,12 @@
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -179,31 +187,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A controlled live probe (temporary unconditional-log hook wired into `.devin/hooks.v1.json`, backed up first and restored after) confirmed that `devin -p \"Create a new file at /tmp/...\"` under the CLI's default `--permission-mode auto` dispatches a real `PermissionRequest` event with payload `{hookeventname, toolname, toolinput, tooluseid, sessionid, promptid}`",
     "created_at": "2026-07-27T06:02:22.538Z",
-    "last_save_at": "2026-07-27T06:18:49.341Z",
+    "last_save_at": "2026-07-27T07:44:47.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:023bc8cff501b45366b9f727b6ae543304d9637548433954ba03353bd7e39f70",
+    "source_fingerprint": "sha256:832b903107afa511fd10b9b6b80342002baab7094cc97a3171090f534ba57481",
     "source_doc_hashes": {
-      "spec.md": "cf11aa0c0b6eb8f5a6f9d3587d49f92d03db89202be6f32733bef061be350bd4",
-      "plan.md": "ff0dbb4829743f062a8e16664da2bfaae31843daf1a0bbd4e98cff2ec8bfccdb",
-      "tasks.md": "9713a7beee295fe6184deb8ac31c8e4163788e29aa3d23cf89ec11eca7062f5e",
-      "checklist.md": "2a60aeba4c03ae1fe18b3105a8376d6f0ca64401e3ed454b47bcca8bcc9e80a9"
+      "spec.md": "4310f31853a12b1d2b5cea4677a72d3cf904a19be99c6f91c62a7c50bbf1f639",
+      "plan.md": "757bf07174422a13b157466e1e27b3e37d829852c3326ec84b746b9b92c9117f",
+      "tasks.md": "29ecb67feeffba63107a21b58836fb434e7e013515013c1ed18c56c3befad4bb",
+      "checklist.md": "4b04d1acd279d6cd8048b3783703884460a37aa2648da03ec6b2a9f934cecf55",
+      "implementation-summary.md": "040a33687c5e20d4243b4c468a2c1d8d9f7d8254ce5b7970d7931d1090bd90d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

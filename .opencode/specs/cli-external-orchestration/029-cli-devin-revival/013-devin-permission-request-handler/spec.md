@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler"
-    last_updated_at: "2026-07-27T07:00:00Z"
+    last_updated_at: "2026-07-27T10:15:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase re-scaffolded (Planned)."
-    next_safe_action: "Build permission-request-policy.mjs; register in .devin/hooks.v1.json."
-    blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    recent_action: "Adapter built and live-verified; devin CLI limitation found."
+    next_safe_action: "Escalate the devin CLI finding to operator."
+    blockers: ["devin does not honor the PermissionRequest hook's decision -- upstream limitation"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "permission-request-policy.mjs", "permission-request-policy.test.mjs", ".devin/hooks.v1.json"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-permission-request-handler"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented — devin CLI does not honor the hook's decision yet (upstream limitation, escalated); see implementation-summary.md |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

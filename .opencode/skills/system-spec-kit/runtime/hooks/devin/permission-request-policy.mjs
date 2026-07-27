@@ -1,9 +1,16 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Devin PermissionRequest Policy                                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Approve only tool calls accepted by the shared write/exec cores. ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PermissionRequest Policy
+// ───────────────────────────────────────────────────────────────────
+// STATUS: registered live in .devin/hooks.v1.json's PermissionRequest array,
+// replacing the prior empty-array registration that silently rejected every
+// approval-needing tool call under non-interactive `devin -p` sessions.
+//
+// Composes two existing shared cores rather than reimplementing policy: write-class
+// calls delegate to spec-gate-core's isExemptTargetPath, exec-class calls delegate
+// to dispatch-rule-checks' hard-rule evaluator. Any tool_name/shape matching neither
+// class denies -- the opposite fail-direction from the rest of the Devin adapter
+// suite, deliberate because a PermissionRequest denial is the safe default.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
