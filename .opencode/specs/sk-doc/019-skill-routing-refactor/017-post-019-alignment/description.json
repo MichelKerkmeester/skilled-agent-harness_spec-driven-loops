@@ -1,19 +1,18 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
-  "description": "Packet 019 established authorities across the skill fleet — a compiled serving contract, typed",
+  "description": "Defines the bounded post-019 conformance audit and its fail-closed evidence contract.",
   "keywords": [
-    "packet",
-    "established",
-    "authorities",
-    "across",
-    "skill",
-    "fleet",
-    "compiled",
-    "serving",
-    "contract",
-    "typed"
+    "defines",
+    "bounded",
+    "post-019",
+    "conformance",
+    "audit",
+    "fail-closed",
+    "evidence",
+    "contract"
   ],
-  "lastUpdated": "2026-07-24T19:26:14.468Z",
+  "lastUpdated": "2026-07-25T07:49:32.456Z",
   "specId": "017",
   "folderSlug": "post-019-alignment",
   "parentChain": [

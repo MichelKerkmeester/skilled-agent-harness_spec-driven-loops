@@ -1,19 +1,25 @@
 ---
-title: "Feature Specification: Post-019 Routing Conformance Alignment"
-description: "Bounded deep-alignment run auditing the fleet against the authorities packet 019 established: the compiled serving contract, typed leaf identity, create-* packet canon, and hub routing metadata. Sealed at ten iterations with a CONDITIONAL verdict."
+title: "Feature Specification: Post-019 Alignment Audit"
+description: "Defines the bounded post-019 conformance audit and its fail-closed evidence contract."
 trigger_phrases:
-  - "post-019 alignment run"
+  - "post-019 alignment"
   - "routing conformance audit"
-  - "compiled serving conformance"
+  - "alignment findings"
 importance_tier: "important"
-contextType: "research"
-parent: "sk-doc/019-skill-routing-refactor"
+contextType: "verification"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/017-post-019-alignment"
+    last_updated_at: "2026-07-25T07:47:34Z"
+    last_updated_by: "opencode"
+    recent_action: "Sealed the corrected alignment synthesis and reconciled phase documentation"
+    next_safe_action: "Triage the eleven P1 findings in a separately scoped remediation packet"
+    completion_pct: 100
 ---
+# Feature Specification: Post-019 Alignment Audit
 
-# Feature Specification: Post-019 Routing Conformance Alignment
-
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
 ---
 
@@ -22,14 +28,11 @@ parent: "sk-doc/019-skill-routing-refactor"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete (sealed) |
+| **Status** | Complete (audit result: FAIL) |
 | **Created** | 2026-07-24 |
-| **Parent Spec** | `../spec.md` |
-| **Predecessor** | `016-documentation-quality-program` |
-| **Successor** | `018-post-019-research` |
-| **Executor** | cli-codex, GPT-5.6-SOL high |
+| **Branch** | `sk-doc/0105-post-019-alignment-resume` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -37,15 +40,9 @@ parent: "sk-doc/019-skill-routing-refactor"
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-### Problem Statement
-Packet 019 established authorities across the skill fleet — a compiled serving contract, typed
-`(workflowMode, leafResourceId)` identity, `create-*` packet canon, and hub routing metadata — but nothing
-had since re-checked whether the fleet still conforms to them. A survey of all twelve hubs proposed eleven
-candidate conformance angles, each a hypothesis rather than a confirmed defect.
+Packet 019 changed routing contracts across the skill fleet. The follow-up needed a bounded, authority-specific audit that preserved partial coverage and open findings without treating unvisited lanes as conformant.
 
-### Purpose
-Run a bounded conformance audit over the highest-value lanes, so drift against those authorities is
-surfaced with evidence instead of assumed present or assumed absent.
+The purpose was to run ten deep-alignment iterations, reduce their evidence into one per-lane report, and leave remediation to separately scoped work.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -54,14 +51,25 @@ surfaced with evidence instead of assumed present or assumed absent.
 ## 3. SCOPE
 
 ### In Scope
-- Four lanes: the compiled-routing runtime (`sk-code`/code), hub feature catalogs plus `create-*` packets
-  (`sk-doc`/docs), hub routing metadata (`sk-doc`/docs), and the design/transport surface
-  (`sk-design`/designs).
-- Ten iterations, convergence disabled so the run explores rather than stopping early.
+
+- Compiled-routing runtime conformance under `sk-code` authority
+- Feature-catalog and create-packet conformance under `sk-doc` authority
+- Hub metadata and design lanes as explicit discovered coverage
+- Reducer integrity for embedded findings, partial coverage, and report rendering
 
 ### Out of Scope
-- Remediating anything the run finds; findings hand off for separate triage.
-- The research questions packet 019 left open, which belong to the sibling research phase.
+
+- Remediating the reported catalog or runtime findings
+- Claiming whole-corpus conformance from sampled evidence
+- Committing, merging, or pushing the worktree
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `alignment/**` | Create/Update | Workflow-owned state, iterations, findings registry, and report |
+| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs` | Update | Preserve embedded findings and fail closed on incomplete coverage |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/tests/reducer-fail-closed.test.cjs` | Update | Regression coverage for partial lanes and summary findings |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -69,12 +77,21 @@ surfaced with evidence instead of assumed present or assumed absent.
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
+### P0 - Blockers
+
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Lanes resolve from an explicit config, never guessed | Lane config validates through the scoping script |
-| REQ-002 | The run reaches synthesis and seals | Report states SEALED rather than PRELIMINARY |
-| REQ-003 | Findings carry file-level evidence | Each finding names the artifact it was found in |
-| REQ-004 | The run must not mutate anything outside its artifact directory | No containment violations against unrelated paths |
+| REQ-001 | Preserve all ten completed iterations | Ten narratives, deltas, and route receipts remain present |
+| REQ-002 | Preserve every canonical finding | Embedded `findingDetails` and delta findings deduplicate into the registry |
+| REQ-003 | Fail closed on incomplete coverage | Any non-empty partially or wholly unchecked lane blocks PASS |
+| REQ-004 | Emit an authoritative final report | Registry is sealed and report states coverage, findings, and per-lane verdicts |
+
+### P1 - Required
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Keep authorities separated | Report retains one section per lane |
+| REQ-006 | Preserve remediation boundaries | Findings are reported but researched source files are not edited |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -82,9 +99,10 @@ surfaced with evidence instead of assumed present or assumed absent.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- Ten iterations complete and the reducer seals an authoritative verdict.
-- Every lane reports a verdict and an artifact count, so silence is distinguishable from conformance.
-- Findings are actionable: each names an artifact and a drift class.
+- **SC-001**: The sealed report records 49 of 1,794 discovered artifacts checked.
+- **SC-002**: The registry and report agree on 11 P1 findings and zero P0/P2 findings.
+- **SC-003**: Untouched non-empty lanes report `FAIL`, not `NOT_APPLICABLE`.
+- **SC-004**: Reducer syntax and targeted regressions pass.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -92,22 +110,51 @@ surfaced with evidence instead of assumed present or assumed absent.
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-| Risk | Mitigation |
-|------|------------|
-| Low coverage makes a clean lane look conformant when it was barely sampled | Report artifact counts per lane; treat an unsampled lane as unknown, not passing |
-| The write-containment gate collides with concurrent work in a shared tree | Run in a dedicated worktree; this run was restarted in isolation after exactly that collision |
-| Reducer drops malformed finding records | Read the report rather than the findings registry when the two disagree |
-
-**Dependencies:** the deep-alignment runtime, the lane scoping script, and a cli-codex executor.
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Low sample coverage | Unchecked artifacts could contain additional defects | State exact coverage and avoid fleet conformance claims |
+| Risk | Duplicate finding surfaces | Delta and iteration records can double-count findings | Deduplicate by content or normalized common fields |
+| Dependency | Immutable loop evidence | Reducer output depends on state and delta integrity | Preserve JSONL and write-once iteration artifacts |
 <!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-1. Coverage reached forty-nine of 1,794 discovered artifacts before the iteration ceiling stopped the run.
-   Is the remaining corpus worth a longer run, or should lanes be narrowed to raise coverage per iteration?
-2. The findings registry serialized empty while the report recorded ten P1 findings. The reducer's
-   tolerance for malformed delta lines should be tightened so the two surfaces cannot disagree.
+- **NFR-R01**: Repeated reduction over unchanged inputs is deterministic.
+- **NFR-R02**: Corrupt state or unknown severity fails closed.
+- **NFR-A01**: Generated reports preserve authority boundaries.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- A genuinely empty discovered lane remains `NOT_APPLICABLE`.
+- A configured non-empty lane with zero iterations is incomplete and fails.
+- Summary-only findings remain visible even when a standalone delta row is absent.
+- Re-audited artifact paths count once toward coverage.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+- Which separately scoped packet will remediate the 11 P1 findings?
+- Should the promoted runtime mirror track authored renumbering or retain an independently pinned sync source?
 <!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:related-docs -->
+## RELATED DOCUMENTS
+
+- `plan.md`
+- `tasks.md`
+- `checklist.md`
+- `implementation-summary.md`
+- `alignment/alignment-report.md`
+<!-- /ANCHOR:related-docs -->

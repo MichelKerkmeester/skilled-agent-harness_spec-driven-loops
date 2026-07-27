@@ -5,7 +5,7 @@
   "lineageMode": "new",
   "generation": 1,
   "createdAt": "2026-07-24T18:08:39.726Z",
-  "status": "initialized",
+  "status": "complete",
   "maxIterations": 10,
   "convergence": {
     "coverageThreshold": 1,
