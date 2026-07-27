@@ -11,11 +11,11 @@ import { createHash } from 'node:crypto';
 import {
   CORPUS_CONTEXT_PLAN_VERSION,
   PROOF_OUTCOMES,
-} from '../shared/corpus-context/corpus-context-plan.mjs';
+} from '../../shared/corpus-context/corpus-context-plan.mjs';
 import {
   validateCorpusContextFixture,
   validateProofHandoffRecord,
-} from '../shared/corpus-context/validate-context-plan.mjs';
+} from '../../shared/corpus-context/validate-context-plan.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONTRACT CONSTANTS

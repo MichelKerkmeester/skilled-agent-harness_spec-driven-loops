@@ -9,7 +9,7 @@ description: "node:test suite for the Open Design transport's grounding receipt,
 
 ## 1. OVERVIEW
 
-`tests/` owns the `node:test` coverage for the design-mcp-open-design transport contracts: the grounding receipt shape, the daemon-free offline contract gate, the live-transport capability check, and return reconciliation. The single test file exercises `grounding-receipt.mjs`, `live-transport.mjs`, `offline-gate.mjs`, and `return-reconciliation.mjs` against the shared fixture atlas in `../fixtures/offline-fixtures.mjs` and the shared corpus-context positive fixture.
+`tests/` owns the `node:test` coverage for the design-mcp-open-design transport contracts: the grounding receipt shape, the daemon-free offline contract gate, the live-transport capability check, and return reconciliation. The single test file exercises the four `../transport/` modules - `grounding-receipt.mjs`, `live-transport.mjs`, `offline-gate.mjs`, and `return-reconciliation.mjs` - against the shared fixture atlas in `../fixtures/offline-fixtures.mjs` and the shared corpus-context positive fixture.
 
 ## 2. CONTENTS
 
@@ -28,4 +28,5 @@ node --test .opencode/skills/sk-design/design-mcp-open-design/tests/*.test.mjs
 ## 4. RELATED
 
 - [`../SKILL.md`](../SKILL.md) - design-mcp-open-design transport mode.
-- [`../fixtures/README.md`](../fixtures/README.md) - the fixture atlas this suite asserts against, also consumed at runtime by `offline-gate.mjs`.
+- [`../transport/README.md`](../transport/README.md) - the four runtime modules this suite asserts against.
+- [`../fixtures/README.md`](../fixtures/README.md) - the fixture atlas this suite asserts against, also consumed at runtime by `../transport/offline-gate.mjs`.

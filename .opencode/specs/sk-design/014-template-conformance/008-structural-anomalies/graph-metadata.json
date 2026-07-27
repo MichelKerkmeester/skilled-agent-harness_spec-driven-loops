@@ -42,19 +42,26 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "scripts/README.md",
+      "tests/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md",
       ".opencode/skills/sk-design/benchmark/reports/baseline/README.md",
-      ".opencode/specs/sk-design/014-template-conformance/008-structural-anomalies/spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/014-template-conformance/008-structural-anomalies/spec.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -76,12 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/benchmark/reports/baseline/README.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -89,6 +90,18 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -107,18 +120,6 @@
       },
       {
         "name": "Purpose Resolve",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Open Questions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Four small, unrelated structural irregularities surfaced during the hub-wide template audit that don't belong to any single mode's own conformance child: a vestigial empty test-result stub sitting where a real dependency install would go, four loose executable scripts at a packet root when every sibling mode keeps its executables under `scripts/` or `corpus/`, a benchmark run-category directory missing the index file its siblings all have, and two structural absences (`procedures/` in one mode, `scripts/` in another) that are legitimate rather than gaps",
+    "causal_summary": "Four small, unrelated structural irregularities surfaced during the hub-wide template audit that don't belong to any single mode's own conformance child: a vestigial empty test-result stub sitting where a real dependency install would go, four loose runtime `.mjs` modules at a packet root when every sibling mode keeps equivalent code in a domain-named subdirectory, a benchmark run-category directory missing the index file its siblings all have, and two structural absences (`procedures/` in one mode, `scripts/` in another) that are legitimate rather than gaps",
     "created_at": "2026-07-27T14:48:40.147Z",
-    "last_save_at": "2026-07-27T15:22:11.058Z",
+    "last_save_at": "2026-07-27T18:41:59.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe9d4e4cfe08f810523c5d13868fddf4721f6bdfb95b6b1a6f73d2c41a60eafe",
+    "source_fingerprint": "sha256:6797650c97b3a268106216f1ec50f56fd57e0e0dd6c036888d173922d4326539",
     "source_doc_hashes": {
-      "spec.md": "ebec5886d1fd27a7b86a9a9a55c0c64f134c6092c8095526dbd8f8c3cee8f22d",
-      "plan.md": "58ac88b332844aecb7f0df01288fd480780ebed081e64ccd7cefcbc81cb01c3a",
-      "tasks.md": "68bd84873787bae779eec6ec645f33b558c71d40357e67b5f5248ce82f7e077d",
-      "checklist.md": "999c395fa619092d5ef8eca510c7d3abc0765c7ec52dcc9bc9ea35e0e787c0ff",
-      "implementation-summary.md": "f8b8864547265c4c2a71254795fbf862f336d21b76452834df972ee6f396133a"
+      "spec.md": "2e55dd2abe1ed988bba9c12167eb7f7a579081d842ddb5553a0ddb768f6e38cb",
+      "plan.md": "234098817c98d52f106450b210ae7ff22cd59332153e308cc183352eadb5cd36",
+      "tasks.md": "be3aa589e6742d8c9d34b37983cd275c624d64e7a55e3573faf44f7638c23af7",
+      "checklist.md": "4dd11fa38e8d6eee65da25868f62e818a55693373d38bcab68433fa090b10500",
+      "implementation-summary.md": "f83790872f4487d08736bf3f66bc64bf66cad6630073afcfcd9c0b408276d616"
     },
     "last_active_child_id": null,
     "last_active_at": null

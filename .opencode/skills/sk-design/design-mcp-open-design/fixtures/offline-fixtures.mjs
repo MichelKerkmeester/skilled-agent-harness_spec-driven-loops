@@ -21,11 +21,11 @@ import {
   OPEN_DESIGN_GROUNDING_RECEIPT_VERSION,
   RECEIPT_AUTHORITY,
   REQUIRED_PROHIBITED_REUSE,
-} from '../grounding-receipt.mjs';
+} from '../transport/grounding-receipt.mjs';
 import {
   OPEN_DESIGN_RETURN_EVIDENCE_VERSION,
   PAIRED_MODE_PROPOSAL_VERSION,
-} from '../return-reconciliation.mjs';
+} from '../transport/return-reconciliation.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. BUILDERS

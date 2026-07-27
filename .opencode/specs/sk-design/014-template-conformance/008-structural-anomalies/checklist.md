@@ -11,19 +11,18 @@ contextType: "verification"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/008-structural-anomalies"
-    last_updated_at: "2026-07-27T14:53:08.592Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored verification checklist, no item checked yet"
-    next_safe_action: "Verify CHK-001 once the stub is confirmed empty"
-    blockers:
-      - "Loose .mjs executables decision requires operator input before any move"
+    last_updated_at: "2026-07-27T19:00:00Z"
+    last_updated_by: "structural-anomalies-executor"
+    recent_action: "Relocated four Open Design transport modules into transport/ and updated all references"
+    next_safe_action: "Remove the vestigial design-md-generator/node_modules stub (item 1, still Planned)"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-md-generator/node_modules/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "spec-author-session"
+      session_id: "structural-anomalies-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -82,10 +81,18 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness [record-only items]
 
-- [ ] CHK-030 [P1] The `.mjs` relocation tradeoff is recorded in `spec.md` Open Questions, naming `return-reconciliation.mjs:9`, the transport tests, and `design-command-surface-check.mjs`, with NO move executed
-  - **Evidence (planned):** `.opencode/specs/sk-design/014-template-conformance/008-structural-anomalies/spec.md` (Open Questions section) + `git status` shows no change under `design-mcp-open-design/*.mjs`
-- [ ] CHK-031 [P1] `design-mcp-open-design/procedures/` absence and `design-motion/scripts/` absence are both recorded as legitimate, with no corresponding "add the folder" task anywhere in this packet
-  - **Evidence (planned):** `spec.md` scope/problem sections + `tasks.md` (confirm no such task exists)
+- [x] CHK-030 [P1] The `.mjs` placement question is ruled on repository evidence, executed, and the reasoning recorded
+  - **Evidence:** `spec.md` §7 records the ruling (relocate to `transport/`, not `scripts/`), the governing standard, the sibling precedent, and the complete consumer map. The four modules now live at `design-mcp-open-design/transport/`.
+- [x] CHK-031 [P1] `design-mcp-open-design/procedures/` absence and `design-motion/scripts/` absence are both recorded as legitimate, with no corresponding "add the folder" task anywhere in this packet
+  - **Evidence:** `spec.md` §3 In/Out of Scope records both absences; `tasks.md` contains no task to add either folder.
+- [x] CHK-032 [P0] The relocation changed no module semantics
+  - **Evidence:** `diff` of each of the four files against `git show HEAD:<old-path>` shows only import-path lines — 2 lines in `grounding-receipt.mjs`, 1 in `offline-gate.mjs`, 0 in `live-transport.mjs`, 0 in `return-reconciliation.mjs`. `PAIRED_MODES` and `ALLOWED_INFLUENCE_AXES` (incl. the `'motion'` design axis) byte-identical.
+- [x] CHK-033 [P0] The transport regression suite is unchanged from baseline
+  - **Evidence:** `node --test .../tests/transport-grounding.test.mjs` → 37 pass / 0 fail, both before and after the move.
+- [x] CHK-034 [P1] No dangling reference to the old root paths survives on a live surface
+  - **Evidence:** repo-wide `rg` for the four old paths, excluding historical `.opencode/specs/`, returns zero hits.
+- [x] CHK-035 [P1] The prior spec's claimed consumer `shared/scripts/design-command-surface-check.mjs` was verified rather than trusted
+  - **Evidence:** `rg "open-design|mjs"` against that file returns nothing; it imports only `node:fs/promises` and `node:url`. The false claim is corrected in `spec.md` §7.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -93,8 +100,12 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security [blast-radius containment]
 
-- [ ] CHK-040 [P0] No file under `design-mcp-open-design/` was moved or edited by this packet
-  - **Evidence (planned):** `git status .opencode/skills/sk-design/design-mcp-open-design/` (expect clean)
+- [x] CHK-040 [P0] Every file changed under `design-mcp-open-design/` is one this packet owns, and no concurrent session's work was reverted
+  - **Evidence:** `git status .opencode/skills/sk-design/` was clean immediately before the move and, after it, lists exactly the intended set — 4 moved `.mjs`, `fixtures/{README.md,offline-fixtures.mjs}`, `tests/{README.md,transport-grounding.test.mjs}`, the new `transport/`, and the hub `per-mode-consumers.md`. Nothing else was touched.
+- [x] CHK-041 [P0] Hub-level structural gates are unchanged from baseline
+  - **Evidence:** `parent-skill-check.cjs .opencode/skills/sk-design` → OK, 0 warnings (before and after); check `10b-byte-drift` PASS confirms `leaf-manifest.json` needed no regeneration, since it tracks only markdown leaves. `package_skill.py --check` → PASS with the same 2 pre-existing kebab-case warnings (`INSTALL-GUIDE.md`, `scripts/_common.sh`), neither introduced here.
+- [x] CHK-042 [P1] The new `transport/README.md` passes structural validation
+  - **Evidence:** `validate_document.py .../transport/README.md --type readme` → 0 issues.
 <!-- /ANCHOR:security -->
 
 ---
@@ -102,8 +113,10 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-050 [P1] `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` describe the same four-item scope consistently
-  - **Evidence (planned):** cross-read of all five packet files
+- [x] CHK-050 [P1] `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` describe the same four-item scope consistently, with item 3 marked resolved and items 1-2 still Planned
+  - **Evidence:** cross-read of all five packet files; all carry `completion_pct: 50` and the same `recent_action`/`next_safe_action`.
+- [x] CHK-051 [P1] The relocated code directory carries an index README, as every other code directory in this hub does
+  - **Evidence:** `transport/README.md` created, matching the `fixtures/README.md` and `tests/README.md` shape (frontmatter + numbered ALL-CAPS H2s).
 <!-- /ANCHOR:docs -->
 
 ---

@@ -25,22 +25,22 @@ import {
   digestMetadata,
   validateGroundingReceipt,
   validateReceiptForLive,
-} from '../grounding-receipt.mjs';
+} from '../transport/grounding-receipt.mjs';
 import {
   checkLiveCapability,
   executeLiveRead,
   executeLiveRun,
-} from '../live-transport.mjs';
+} from '../transport/live-transport.mjs';
 import {
   assertOfflineContractGate,
   runOfflineContractGate,
-} from '../offline-gate.mjs';
+} from '../transport/offline-gate.mjs';
 import {
   MAX_RETURN_ARTIFACTS,
   reconcileTransportReturn,
   validateReconciliationRecord,
   validateReturnEvidence,
-} from '../return-reconciliation.mjs';
+} from '../transport/return-reconciliation.mjs';
 import {
   POSITIVE_FIXTURE as SHARED_POSITIVE_FIXTURE,
 } from '../../shared/corpus-context/tests/fixtures.mjs';

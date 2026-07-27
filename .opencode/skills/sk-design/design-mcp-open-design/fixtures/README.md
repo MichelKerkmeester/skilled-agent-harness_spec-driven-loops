@@ -9,7 +9,7 @@ description: "Canonical receipt and reconciliation fixtures the offline contract
 
 ## 1. OVERVIEW
 
-`fixtures/` owns `offline-fixtures.mjs`, the canonical fixture atlas for the design-mcp-open-design transport's grounding receipt and return-reconciliation contracts. This is not a test-only folder: `offline-gate.mjs` imports the same fixtures at runtime and replays them, plus eight hand-mutated falsifiers, before any live daemon call is authorized. `tests/transport-grounding.test.mjs` asserts the underlying validators against the same fixtures.
+`fixtures/` owns `offline-fixtures.mjs`, the canonical fixture atlas for the design-mcp-open-design transport's grounding receipt and return-reconciliation contracts. This is not a test-only folder: `../transport/offline-gate.mjs` imports the same fixtures at runtime and replays them, plus eight hand-mutated falsifiers, before any live daemon call is authorized. `tests/transport-grounding.test.mjs` asserts the underlying validators against the same fixtures.
 
 ## 2. CONTENTS
 
@@ -19,10 +19,10 @@ description: "Canonical receipt and reconciliation fixtures the offline contract
 
 ## 3. CONSUMERS
 
-- [`../offline-gate.mjs`](../offline-gate.mjs) - `runOfflineContractGate()` replays every fixture here plus eight inline falsifiers (cache violation, raw-payload allowed field, missing receipt authority, forged transport authority, forged semantic alignment, raw return payload, duplicate evidence, unbound artifact evidence) and fails closed if any falsifier is wrongly accepted.
+- [`../transport/offline-gate.mjs`](../transport/offline-gate.mjs) - `runOfflineContractGate()` replays every fixture here plus eight inline falsifiers (cache violation, raw-payload allowed field, missing receipt authority, forged transport authority, forged semantic alignment, raw return payload, duplicate evidence, unbound artifact evidence) and fails closed if any falsifier is wrongly accepted.
 - [`../tests/README.md`](../tests/README.md) - `transport-grounding.test.mjs` asserts `validateGroundingReceipt`, `reconcileTransportReturn`, and related validators against this same atlas.
 
 ## 4. RELATED
 
 - [`../SKILL.md`](../SKILL.md) - design-mcp-open-design transport mode.
-- [`../grounding-receipt.mjs`](../grounding-receipt.mjs) and [`../return-reconciliation.mjs`](../return-reconciliation.mjs) - the validators these fixtures exercise.
+- [`../transport/grounding-receipt.mjs`](../transport/grounding-receipt.mjs) and [`../transport/return-reconciliation.mjs`](../transport/return-reconciliation.mjs) - the validators these fixtures exercise.

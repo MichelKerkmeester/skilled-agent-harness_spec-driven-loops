@@ -13,7 +13,7 @@ import {
   RECEIPT_HYDRATED_PROOFS,
   RECEIPT_FIXTURES,
   RECONCILIATION_FIXTURES,
-} from './fixtures/offline-fixtures.mjs';
+} from '../fixtures/offline-fixtures.mjs';
 import { validateGroundingReceipt } from './grounding-receipt.mjs';
 import {
   reconcileTransportReturn,
