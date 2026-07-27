@@ -95,6 +95,15 @@ function collectSourceIdentities(source) {
   return identities;
 }
 
+// Ownership follows the .opencode namespace, not the exact path. Identity is the
+// adapter path, so renaming a script orphans its installed entry: it no longer
+// matches source, and the preserve-third-party rule would keep a command that can
+// never run. Anything under .opencode that is missing on disk is our own orphan.
+function isRepoOrphan(identity, repoAbs) {
+  if (typeof identity !== 'string' || !identity.startsWith('.opencode/')) return false;
+  return !fs.existsSync(path.join(repoAbs, identity));
+}
+
 // Rewrite only the portable anchor; the source remains authoritative for command shape.
 function substituteRepo(command, repoAbs) {
   return String(command).replaceAll('${CODEX_PROJECT_DIR:-$PWD}', repoAbs);
@@ -125,6 +134,7 @@ function reconcileHooks(target, source, repoAbs) {
   const canonicalGroups = canonicalSourceGroups(source, repoAbs);
   const reconciled = { ...target, hooks: { ...(target.hooks || {}) } };
   const removed = [];
+  const orphaned = [];
   const keptNonOwned = [];
 
   for (const [event, groups] of Object.entries(target.hooks || {})) {
@@ -140,6 +150,8 @@ function reconcileHooks(target, source, repoAbs) {
         const identity = typeof hook.command === 'string' ? hookIdentity(hook.command) : null;
         if (identity && ownedIdentities.has(identity)) {
           removed.push(hookLabel(event, hook));
+        } else if (identity && isRepoOrphan(identity, repoAbs)) {
+          orphaned.push(hookLabel(event, hook));
         } else {
           keptNonOwned.push(hookLabel(event, hook));
           filteredHooks.push(hook);
@@ -167,6 +179,7 @@ function reconcileHooks(target, source, repoAbs) {
     added: changed ? added : [],
     changed,
     kept: changed ? keptNonOwned : listHookLabels(target.hooks || {}),
+    orphaned: changed ? orphaned : [],
     ownedIdentities,
     reconciled,
     removed: changed ? removed : [],
@@ -209,7 +222,14 @@ function analyzeDrift(target, source, repoAbs, reconciliation) {
     canonicalGroups,
     reconciliation.ownedIdentities,
   );
-  const drift = { command: [], duplicate: [], missing: [], placement: [], structure: false };
+  const drift = {
+    command: [],
+    duplicate: [],
+    missing: [],
+    orphaned: [...reconciliation.orphaned],
+    placement: [],
+    structure: false,
+  };
 
   for (const identity of reconciliation.ownedIdentities) {
     const actual = targetOccurrences.get(identity) || [];
@@ -224,7 +244,7 @@ function analyzeDrift(target, source, repoAbs, reconciliation) {
     }
   }
 
-  const hasIdentityDrift = ['command', 'duplicate', 'missing', 'placement']
+  const hasIdentityDrift = ['command', 'duplicate', 'missing', 'orphaned', 'placement']
     .some((key) => drift[key].length > 0);
   drift.structure = reconciliation.changed && !hasIdentityDrift;
   return drift;
@@ -241,12 +261,12 @@ function buildPerEvent(labels) {
 
 function printCheckDrift(targetPath, drift) {
   const parts = [];
-  for (const key of ['missing', 'duplicate', 'command', 'placement']) {
+  for (const key of ['missing', 'duplicate', 'command', 'orphaned', 'placement']) {
     if (drift[key].length > 0) parts.push(`${key}=${drift[key].length}`);
   }
   if (drift.structure) parts.push('structure=1');
   console.error(`install-codex-hooks: DRIFT ${targetPath} (${parts.join(', ')})`);
-  for (const key of ['missing', 'duplicate', 'command', 'placement']) {
+  for (const key of ['missing', 'duplicate', 'command', 'orphaned', 'placement']) {
     if (drift[key].length > 0) console.error(`  ${key}: ${drift[key].join(', ')}`);
   }
 }
@@ -356,7 +376,7 @@ function main() {
   if (args.check) {
     if (reconciliation.changed) {
       printCheckDrift(targetPath, drift);
-      process.exitCode = 2;
+      process.exitCode = 1;
     } else {
       console.log(`install-codex-hooks: OK ${targetPath}`);
     }
@@ -371,10 +391,12 @@ function main() {
     changed: reconciliation.changed,
     added: reconciliation.added,
     removed: reconciliation.removed,
+    orphaned: reconciliation.orphaned,
     kept: reconciliation.kept,
     perEvent: {
       added: buildPerEvent(reconciliation.added),
       removed: buildPerEvent(reconciliation.removed),
+      orphaned: buildPerEvent(reconciliation.orphaned),
       kept: buildPerEvent(reconciliation.kept),
     },
   };
