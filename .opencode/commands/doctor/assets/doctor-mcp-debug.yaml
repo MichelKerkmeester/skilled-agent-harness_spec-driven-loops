@@ -143,10 +143,8 @@ repair_actions:
     node_modules_missing:
       description: "Install node_modules"
     launcher_missing:
-      command: "echo 'Launcher file .opencode/bin/mk-code-index-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-code-index-launcher.cjs'"
       description: "Restore launcher from git history"
     db_dir_missing:
-      description: "Create canonical code-graph database directory"
   code_mode:
     dist_missing:
       command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install && npm run build"

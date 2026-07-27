@@ -20,8 +20,6 @@ import {
   type SharedPayloadSection,
   type SharedPayloadTrustState,
 } from '../lib/context/shared-payload.js';
-import {
-} from '@spec-kit/shared/code-graph-contracts';
 import { getLastSpecMemoryCliFallbackStatus, type LastSpecMemoryCliFallbackStatus } from '../hooks/spec-memory-cli-fallback.js';
 import type { MCPResponse } from '@spec-kit/shared/types';
 

@@ -6,7 +6,6 @@
 # Why this exists: dist/ is gitignored (a build artifact), so pulling source
 # changes does NOT update the running servers — each server's dist must be
 # rebuilt locally. The three MCP servers also build from different roots
-# (code-graph builds from its SKILL root, not its mcp_server dir), which is
 # easy to miss and leaves one server running stale code. This script builds
 # all of them so none is forgotten.
 #
@@ -14,7 +13,6 @@
 #   - mk-spec-memory recycles transparently: SIGTERM its daemon CHILD and the
 #     owner launcher respawns it from the fresh dist while the front-proxy keeps
 #     MCP up. This script does that when --recycle is passed.
-#   - mk-code-index and mk-skill-advisor launchers EXIT on child SIGTERM instead
 #     of respawning, so this script never SIGTERMs them; their fresh dist loads
 #     when they next start.
 #   - A launcher *.cjs* change never reloads in place (SIGHUP is a shutdown
@@ -51,8 +49,6 @@ build_pkg() {
 echo "== Building MCP server dists =="
 # mk-spec-memory: builds @spec-kit/shared too via TS project references.
 build_pkg "mk-spec-memory" ".opencode/skills/system-spec-kit/mcp-server"
-# mk-code-index (code-graph): builds from the SKILL root (tsconfig lives there).
-build_pkg "code-graph" ".opencode/skills/system-code-graph"
 # mk-skill-advisor: build if it ships a build script.
 build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 
@@ -92,7 +88,6 @@ if [ "$RECYCLE" -eq 1 ]; then
     done
     [ -z "${NEW:-}" ] && { echo "  !! No respawn within ~30s — check MCP health." >&2; exit 1; }
   fi
-  echo "  Note: code-graph and advisor are not SIGTERM-recycled (their launchers exit, not respawn); fresh dist loads on next start."
 fi
 
 echo "== Done =="

@@ -98,7 +98,6 @@ node_modules/
 *.db-shm
 *.db-wal
 *.sqlite3
-code-graph.sqlite
 
 # ───────────────────────────────────────────
 # Runtime state folders (plugin / tooling state)
@@ -114,14 +113,12 @@ code-graph.sqlite
 **/.goal-state/**
 **/.loop-guard-state/**
 **/.spec-gate-state/**
-**/.code-graph-freshness-state/**
 !.opencode/skills/.advisor-state/README.md
 !.opencode/skills/.smart-router-telemetry/README.md
 !.opencode/skills/.completion-sentinel-state/README.md
 !.opencode/skills/.goal-state/README.md
 !.opencode/skills/.loop-guard-state/README.md
 !.opencode/skills/.spec-gate-state/README.md
-!.opencode/skills/.code-graph-freshness-state/README.md
 
 # ───────────────────────────────────────────
 # Database: system-spec-kit
@@ -162,12 +159,7 @@ code-graph.sqlite
 .opencode/skills/system-skill-advisor/mcp-server/database/.mk-skill-advisor-launcher.lockdir/
 
 # ───────────────────────────────────────────
-# Database: system-code-graph
 # ───────────────────────────────────────────
-# Skill-local code-graph DB runtime state (DB relocated 2026-05-29; tracked docs like vectors/README.md stay)
-.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite*
-.opencode/skills/system-code-graph/mcp-server/database/.code-graph-*
-.opencode/skills/system-code-graph/mcp-server/database/.mk-code-index-launcher.*
 # Local activation symlink for the Barter Copywriter skill. The real source lives in the
 # Barter repo at Copywriter/barter-copywriter/; this is a machine-local discovery pointer.
 .opencode/skills/barter-copywriter
@@ -179,11 +171,6 @@ code-graph.sqlite
 
 # Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
 # quarantine/recovery triplets) — generated per apply run, database-local only.
-.opencode/skills/system-code-graph/mcp-server/database/apply-audit/
-.opencode/skills/system-code-graph/mcp-server/database/quarantine-*/
-.opencode/skills/system-code-graph/mcp-server/database/recovery-*/
-.opencode/skills/system-code-graph/mcp-server/database/known-good-*/
-.opencode/skills/system-code-graph/mcp-server/database/bad-apply-*/
 
 # ───────────────────────────────────────────
 # Database: system-deep-loop/runtime

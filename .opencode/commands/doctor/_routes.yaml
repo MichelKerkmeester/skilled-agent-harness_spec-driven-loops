@@ -24,7 +24,6 @@
 #   trigger_phrases:  list   — descriptive routing phrases for this target; not
 #                              currently harvested by advisor (see "Consumed by" above)
 #
-# stable code_graph/detect-changes MCP tools are registered through mk-code-index.
 # Skill-advisor recommendation tools are registered through mk-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
