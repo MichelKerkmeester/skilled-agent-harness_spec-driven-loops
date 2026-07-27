@@ -11,7 +11,11 @@
     "sk-design/014-template-conformance/008-structural-anomalies",
     "sk-design/014-template-conformance/005-design-mcp-open-design",
     "sk-design/014-template-conformance/006-shared",
-    "sk-design/014-template-conformance/007-hub-root"
+    "sk-design/014-template-conformance/007-hub-root",
+    "sk-design/014-template-conformance/009-aesthetics-retirement",
+    "sk-design/014-template-conformance/010-motion-merge",
+    "sk-design/014-template-conformance/011-retirement-residue",
+    "sk-design/014-template-conformance/012-remaining-mode-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -43,7 +47,6 @@
     "status": "planned",
     "key_files": [
       ".opencode/specs/sk-design/014-template-conformance/spec.md",
-      ".opencode/skills/sk-design/design-interface/LICENSE.txt",
       "spec.md"
     ],
     "entities": [
@@ -51,12 +54,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/014-template-conformance/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "LICENSE.txt",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/design-interface/LICENSE.txt",
         "source": "derived"
       },
       {
@@ -98,15 +95,15 @@
     ],
     "causal_summary": "An audit of every folder across every `sk-design` mode (`design-interface`, `design-motion`, `design-md-generator`, `design-mcp-open-design`, `shared`, plus the hub root) against the `sk-doc` create-skill templates and standards found the hub's 75 reference files are frontmatter-conformant but structurally uneven: numbered-section discipline, separator hygiene, and a handful of frontmatter enum values drift per folder rather than uniformly, and one folder (`design-interface`) still carries a committed Apache-2.0 license artefact for content that was never de-vendored into original words",
     "created_at": "2026-07-27T14:48:40.384Z",
-    "last_save_at": "2026-07-27T15:17:29.274Z",
+    "last_save_at": "2026-07-27T17:15:44.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fd57e722bfbd292ba452155493d0fefc0245e1e994c9e8f44526443c38e510ff",
+    "source_fingerprint": "sha256:bb6a7f8e0f1bae50f0ec4ec0fa56b009143b52742f7375cf29547eabd80bf18e",
     "source_doc_hashes": {
-      "spec.md": "04cb5377ac649bbd4a85e2f1e64849940a72f56e27322db0bffcf0c2a19f9435"
+      "spec.md": "d32883f029a649c0facfb344184bebfd98d4654ab20bb45cd056ed0506a518a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

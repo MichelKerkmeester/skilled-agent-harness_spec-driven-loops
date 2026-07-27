@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": "interface",
     "ambiguityDelta": 1,
-    "tieBreak": ["interface", "motion", "md-generator", "design-mcp-open-design"],
+    "tieBreak": ["interface", "md-generator", "design-mcp-open-design"],
     "outcomes": {
       "single": "one dominant design axis routes to one mode",
       "orderedBundle": "clearly separate design axes route to an ordered mode list",
@@ -20,7 +20,6 @@
     "canonicalNamespace": "interface",
     "canonicalByMode": {
       "interface": "/interface:design",
-      "motion": "/interface:motion",
       "md-generator": "/interface:design-reference"
     }
   },
@@ -35,19 +34,13 @@
         "foundations-color",
         "foundations-type",
         "foundations-layout",
-        "foundations-tokens"
-      ],
-      "resources": ["design-interface/SKILL.md"]
-    },
-    "motion": {
-      "weight": 4,
-      "classes": [
+        "foundations-tokens",
         "motion-aliases",
         "motion-temporal",
         "motion-runtime",
         "motion-feel"
       ],
-      "resources": ["design-motion/SKILL.md"]
+      "resources": ["design-interface/SKILL.md"]
     },
     "md-generator": {
       "weight": 4,

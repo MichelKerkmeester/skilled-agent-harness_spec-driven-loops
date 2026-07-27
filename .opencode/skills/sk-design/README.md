@@ -1,11 +1,11 @@
 ---
 title: "sk-design"
-description: "The single advisor-routable design skill, with three canonical /interface:* creation commands, three stable design modes, style-library retrieval, and a nested Open Design transport packet."
+description: "The single advisor-routable design skill, with two canonical /interface:* creation commands, two stable design modes, style-library retrieval, and a nested Open Design transport packet."
 trigger_phrases:
   - "design skill"
   - "ui design interface motion md-generator"
   - "design system tokens accessibility"
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 # sk-design
@@ -33,7 +33,7 @@ Most generated UI looks templated: default palettes, default spacing, default co
 
 ### What It Does
 
-`Skill(sk-design)` loads the hub, and the hub routes the request to one of three design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. The three canonical `/interface:*` creation commands resolve to those unchanged mode IDs through one shared nine-stage creation contract. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same three public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
+`Skill(sk-design)` loads the hub, and the hub routes the request to one of two design modes or a nested transport packet through `mode-registry.json`. Each holds its own logic and the hub itself is routing-only. The two canonical `/interface:*` creation commands resolve to those unchanged mode IDs through one shared nine-stage creation contract. Inside a selected mode, private procedure cards can shape context loading, proof, and fallback behavior, but users still choose from the same two public design modes. sk-design owns the taste and the system. It hands the actual build to `sk-code` and uses `design-mcp-open-design` (nested) or `mcp-figma` (external sibling) only as transport.
 
 ---
 
@@ -41,13 +41,13 @@ Most generated UI looks templated: default palettes, default spacing, default co
 
 **Step 1: Invoke it.** Let the advisor route a design request, run a canonical `/interface:*` command, or read `SKILL.md`.
 
-**Step 2: Run a mode.** For example, a motion pass:
+**Step 2: Run a mode.** For example, an interface direction pass:
 
 ```bash
-/interface:motion
+/interface:design
 ```
 
-The hub resolves the request to the `design-motion` mode and applies it.
+The hub resolves the request to the `design-interface` mode and applies it. Motion choreography (animation, transitions, micro-interactions, reduced motion) is one of `design-interface`'s internal task lanes, not a separate command.
 
 **Step 3: Hand off the build.** Take the design decisions to `sk-code` for the implementation.
 
@@ -55,17 +55,16 @@ The hub resolves the request to the `design-motion` mode and applies it.
 
 ## 4. HOW IT WORKS
 
-A design request resolves through the hub to one mode when a single design axis dominates, to an ordered bundle of modes when the request clearly spans separate axes (for example, interface + motion), or stays at the hub for disambiguation when the intent is unclear or contradictory. The three design modes:
+A design request resolves through the hub to one mode when a single design axis dominates, to an ordered bundle of modes when the request clearly spans separate axes (for example, interface + md-generator), or stays at the hub for disambiguation when the intent is unclear or contradictory. The two design modes:
 
 | Mode | Owns |
 |---|---|
-| `design-interface` | Visual direction, taste and the brainstorm-to-build loop for a distinctive interface; the static visual system (color and OKLCH, typography, layout, spacing and design tokens); and the anti-slop / accessibility / production-hardening pre-delivery gate. |
-| `design-motion` | Animation, transitions, micro-interactions and reduced-motion behavior. |
+| `design-interface` | Visual direction, taste and the brainstorm-to-build loop for a distinctive interface; the static visual system (color and OKLCH, typography, layout, spacing and design tokens); the temporal/motion layer (animation, transitions, micro-interactions and reduced-motion behavior); and the anti-slop / accessibility / production-hardening pre-delivery gate. |
 | `design-md-generator` | Extraction of a live site's real CSS into a Style Reference DESIGN.md. |
 
 ### Creation commands
 
-The canonical creation surface maps `/interface:{design,motion,design-reference}` to the stable `interface`, `motion`, and `md-generator` modes. All three commands share [`shared/creation-contract.md`](./shared/creation-contract.md). `/interface:foundations` and `/interface:audit` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
+The canonical creation surface maps `/interface:{design,design-reference}` to the stable `interface` and `md-generator` modes. Both commands share [`shared/creation-contract.md`](./shared/creation-contract.md). `/interface:foundations`, `/interface:audit`, and `/interface:motion` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
 
 ### Style retrieval backend
 
@@ -77,7 +76,7 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 
 ### Private procedure support
 
-Mode packets may cite private procedure cards after the public mode is selected. These cards are maintainer-facing support for context capture, proof expectations and direct fallback execution. They are not a public taxonomy and should not be presented as user-selectable routes. The two advisory modes (`interface`, `motion`) remain Read/Glob/Grep-only. `design-md-generator` remains the only mutating mode and keeps its Playwright extraction backend boundary.
+Mode packets may cite private procedure cards after the public mode is selected. These cards are maintainer-facing support for context capture, proof expectations and direct fallback execution. They are not a public taxonomy and should not be presented as user-selectable routes. The advisory `interface` mode remains Read/Glob/Grep-only. `design-md-generator` remains the only mutating mode and keeps its Playwright extraction backend boundary.
 
 The hub manager shell is defined in `SKILL.md` Section 2. Read `Manager Intake Before Routing`, `Visible Plan Before Design or Build Work` and `Proof Gates and Verifier Cadence` there before changing routing behavior. Transport boundaries live in `SKILL.md` Section 7, where `mcp-figma` and `design-mcp-open-design` are named as transports while `sk-design` owns taste and acceptance.
 
@@ -105,7 +104,7 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
-| [`shared/creation-contract.md`](./shared/creation-contract.md) | Shared nine-stage lifecycle for the three canonical `/interface:*` creation commands. |
+| [`shared/creation-contract.md`](./shared/creation-contract.md) | Shared nine-stage lifecycle for the two canonical `/interface:*` creation commands. |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory, including the indexed style backend and creation-command surface. |
 | [`benchmark/`](./benchmark/) | Frozen baseline and after-009 skill-benchmark reports for router trace scoring. |
 | [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) | Eight-category, 37-scenario hub playbook covering mode routing (including the nested transport packet), advisor integration, transform verbs, md-generator, shared references, parity behavior, fallback/resilience, and hub manager intake. |

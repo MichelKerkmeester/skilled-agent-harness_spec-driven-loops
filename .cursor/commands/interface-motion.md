@@ -1,1 +1,0 @@
-../../.opencode/commands/interface/motion.md

@@ -34,12 +34,18 @@ Canonical package artifacts:
 - `data-viz/`
 - `tokens/`
 - `worked-examples/`
+- `decision/`
+- `strategy/`
+- `presence/`
+- `micro-interactions/`
+- `reduced-motion/`
+- `advanced-craft/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 30 deterministic scenarios across 19 categories validating the `interface` skill surface, including the 11 relocated `foundations` subworkflow scenarios in section 23. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 30 deterministic scenarios across 19 categories validating the `interface` skill surface, including the 11 relocated `foundations` subworkflow scenarios in section 23 and the 13 relocated `motion` subworkflow scenarios in section 24. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
 Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, the real-UI loop covering reuse-before-generate when a design system is present, the render fidelity check gated on the quality floor and the anti-default critique, and the guarded native-image visual-direction branch for net-new, ambiguous, or image-led work with approval before code, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface-preflight-card.md`.
 
@@ -675,3 +681,43 @@ The `foundations` subworkflow was consolidated beneath `design-interface` (see `
 ### Foundations Release Readiness
 
 Release is ready when all 11 foundations scenarios PASS or are SKIP only for environment reasons, and no scenario shows invented token roles, inaccessible color pairs, dishonest chart axes, generic responsive scaling, missing procedure-card proof, or a weakened direct-fallback proof bar.
+
+---
+
+## 24. MOTION SCENARIOS (RELOCATED)
+
+The `motion` mode was consolidated beneath `design-interface` (see `../README.md`, `../SKILL.md`, and `../references/motion/`). Its 13 manual-testing scenarios relocated intact into the category folders below rather than being renumbered into the ID-0xx sequence above, since they validate the temporal/motion surface (the restraint gate, choreography, presence, reduced motion, and advanced craft) rather than aesthetic-direction or delivery-gate behavior. The three procedure-card-contract scenarios were renamed with a `motion-` prefix to avoid colliding with ID-018/019/020 (the six interface-owned procedure cards) and `FOUND-PROCCARD-00x` (the three foundations-owned procedure cards); these three cover the one motion-owned procedure card instead.
+
+| ID | Scenario | File |
+| --- | --- | --- |
+| MOTION-STRATEGY-001 | Purposeful motion plan | [`strategy/purposeful-motion-plan.md`](strategy/purposeful-motion-plan.md) |
+| MOTION-STRATEGY-002 | Motion pattern card | [`strategy/motion-pattern-card.md`](strategy/motion-pattern-card.md) |
+| MOTION-STRATEGY-003 | Async state-machine card | [`strategy/async-state-machine-card.md`](strategy/async-state-machine-card.md) |
+| MOTION-PRESENCE-001 | AnimatePresence exit rules | [`presence/animate-presence-exit-rules.md`](presence/animate-presence-exit-rules.md) |
+| MOTION-PRESENCE-002 | AnimatePresence checklist | [`presence/animate-presence-checklist.md`](presence/animate-presence-checklist.md) |
+| MOTION-REDUCED-001 | Performance and reduced motion | [`reduced-motion/performance-and-reduced-motion.md`](reduced-motion/performance-and-reduced-motion.md) |
+| MOTION-REDUCED-002 | Motion performance failure card | [`reduced-motion/motion-performance-failure-card.md`](reduced-motion/motion-performance-failure-card.md) |
+| MOTION-MICRO-001 | Micro-interactions feedback | [`micro-interactions/micro-interactions-feedback.md`](micro-interactions/micro-interactions-feedback.md) |
+| MOTION-DECISION-001 | Restraint gate | [`decision/restraint-gate.md`](decision/restraint-gate.md) |
+| MOTION-ADVANCED-001 | Advanced craft popover and tooltip timing | [`advanced-craft/advanced-craft-popover-tooltip.md`](advanced-craft/advanced-craft-popover-tooltip.md) |
+| MOTION-PROCCARD-001 | Motion procedure-card selection proof | [`procedure-card-contract/motion-card-selection-proof.md`](procedure-card-contract/motion-card-selection-proof.md) |
+| MOTION-PROCCARD-002 | Motion no-card fallback | [`procedure-card-contract/motion-no-card-fallback.md`](procedure-card-contract/motion-no-card-fallback.md) |
+| MOTION-PROCCARD-003 | Motion direct fallback without subagents | [`procedure-card-contract/motion-direct-fallback-without-subagents.md`](procedure-card-contract/motion-direct-fallback-without-subagents.md) |
+
+### Motion Preconditions
+
+1. The repository root is the working directory.
+2. `../SKILL.md` and all `../references/motion/` files resolve.
+3. `sk-code` is available for implementation handoff when code is involved.
+
+### Motion Evidence Requirements
+
+- Exact prompt used.
+- Resources loaded.
+- Motion purpose, timing, easing, reduced-motion path, and implementation handoff.
+- Final verdict with rationale.
+- Procedure card or no-card fallback proof when procedure support is in scope.
+
+### Motion Release Readiness
+
+Release is ready when all 13 motion scenarios PASS or are SKIP only for environment reasons, and no scenario recommends decorative motion without purpose, omits reduced-motion behavior, skips procedure-card proof, or weakens the Read/Glob/Grep-only direct fallback.

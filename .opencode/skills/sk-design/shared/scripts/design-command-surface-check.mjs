@@ -36,8 +36,7 @@ const REQUIRED_FIELDS = [
 
 const COMMANDS = [
   "/interface:design",
-  "/interface:design-reference",
-  "/interface:motion"
+  "/interface:design-reference"
 ];
 const FRONTMATTER_DRIFT_FIELDS = ["description", "argument-hint", "allowed-tools"];
 const DRIFT_FIELDS = [

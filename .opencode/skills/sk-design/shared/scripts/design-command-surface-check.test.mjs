@@ -65,7 +65,6 @@ test("current live metadata and choreography assets pass", () => {
     [
       "/interface:design",
       "/interface:design-reference",
-      "/interface:motion",
       "design-mcp-open-design"
     ]
   );
@@ -91,7 +90,7 @@ test("mistyped real-command sibling fails exact-token validation", () => {
 });
 
 test("renamed transport token fails exact-token validation", () => {
-  const record = cloneRecord(findRecord("/interface:motion"));
+  const record = cloneRecord(findRecord("/interface:design-reference"));
   const transport = record.discriminator.preferSiblingWhen.find((entry) =>
     entry.sibling.startsWith("design-mcp-open-design")
   );
@@ -103,7 +102,7 @@ test("renamed transport token fails exact-token validation", () => {
 });
 
 test("renamed YAML step_N key fails structural validation", () => {
-  const record = findRecord("/interface:motion");
+  const record = findRecord("/interface:design-reference");
   const surface = cloneSurface(record.command);
   surface.auto = replaceRequired(surface.auto, "  step_7_load_mode:", "  stage_7_load_mode:");
 
@@ -154,7 +153,7 @@ test("choreography resource and action mutations fail exact structural validatio
 });
 
 test("confirm-only step_0_show_prompt is accepted", () => {
-  const record = findRecord("/interface:motion");
+  const record = findRecord("/interface:design-reference");
   const surface = cloneSurface(record.command);
 
   assert.match(surface.confirm, /^  step_0_show_prompt:$/m);

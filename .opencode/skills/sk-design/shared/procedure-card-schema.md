@@ -73,7 +73,7 @@ Every private card must use these fields in this order:
 | Field | Requirement |
 |---|---|
 | Purpose | One sentence describing the behavior the card adds to the owning mode. |
-| Owning mode | One of `design-interface`, `design-motion`, `design-md-generator`, or `shared` with an explicit owning reviewer. |
+| Owning mode | One of `design-interface`, `design-md-generator`, or `shared` with an explicit owning reviewer. |
 | Source reference | External source filename only, or `No external source` with rationale. Do not paste source prose. |
 | Trigger | Concrete request patterns or mode conditions that make the card applicable after the public hub has already selected a mode. |
 | Output contract | The exact advisory artifact, matrix, handoff, or extraction result the mode must produce. |
@@ -91,7 +91,7 @@ Use these only when they materially improve reviewability:
 | Placement rationale | Required for cards under `shared/procedures/`; optional for mode-local cards. |
 | Related cards | Names of cards that may be loaded before or after this one. |
 | Conflict rule | How to choose between overlapping cards inside the same mode. |
-| Read-only compatibility | Required for `design-interface` and `design-motion` cards. State that the mode may cite the card and return guidance or handoff content without writing files or running commands. |
+| Read-only compatibility | Required for `design-interface` cards. State that the mode may cite the card and return guidance or handoff content without writing files or running commands. |
 | Tool boundary | Required for `design-md-generator` cards. State the mutating permission boundary and that the card does not grant those permissions to read-only modes. |
 
 ---

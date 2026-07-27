@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/009-aesthetics-retirement"
-    last_updated_at: "2026-07-27T12:00:00Z"
+    last_updated_at: "2026-07-27T17:17:23.686Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored spec for aesthetics folder + mode lane retirement"
-    next_safe_action: "Confirm all six citing sites before deleting any file"
+    recent_action: "Committed c10ded2ab8; core retirement done, 2 residual gaps found on reverify"
+    next_safe_action: "Flag hub-router.json and real-ui-loop.md gaps to operator for follow-up fix"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-interface/references/aesthetics/"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned — no work started |
+| **Status** | Complete — executed and committed (`c10ded2ab8`, 10 files, +298/-365); 2 residual citing-site gaps found on re-verification (REQ-006, REQ-007), not covered by any planned sibling |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |
@@ -66,6 +66,8 @@ _memory:
 ### Purpose
 
 Retire the folder and the lane together, in the same commit, this is not a doc delete: `aesthetic` is a selectable mode argument with wiring across five separate files, and command task lanes must match the owning mode's `INTENT_SIGNALS` exactly (a checker enforces this, and it already broke once this session when an intent was added without its matching lane). This packet takes the hub from its post-008 state one step toward the session's fourth reduction: `/interface:design` and `/interface:design-reference` becoming the entire public design surface.
+
+**Executed.** Committed as `c10ded2ab8` (10 files, +298/-365). The folder, the `AESTHETICS` intent, the command task lane, and the argument-hint wiring were all removed together; an intent/lane parity check caught an earlier error in this consolidation (an intent added without its matching lane) before it landed, confirming the checker referenced above does fire. Re-verification on 2026-07-27 found the core retirement is real and clean, but surfaced two citing sites the commit did not reach: `hub-router.json`'s `"aesthetic"` vocabulary entry, and a dangling `../aesthetics/` reference in `real-ui-loop.md`. See REQ-006/REQ-007 in §4 for status.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -89,6 +91,7 @@ Retire the folder and the lane together, in the same commit, this is not a doc d
 - The `styles/` corpus itself (referenced only as the replacement evidence source, not modified).
 - `010-motion-merge`'s work (motion mode/command retirement) — a separate, independently-committed phase.
 - Any other sibling's template/structure conformance work.
+- `design-interface/procedures/aesthetic-direction.md` — a private procedure card for greenfield direction work. Despite the similar name it is unrelated to the retired reference folder, and was explicitly left untouched (confirmed not touched by the commit).
 
 ### Files to Change
 
@@ -117,20 +120,20 @@ Retire the folder and the lane together, in the same commit, this is not a doc d
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | All 5 `references/aesthetics/*` files are deleted | `find design-interface/references/aesthetics` returns "No such file or directory" |
-| REQ-002 | `AESTHETICS` intent and its `RESOURCE_MAP` entry are removed from `SKILL.md` | `rg -n "AESTHETICS\|aesthetic" design-interface/SKILL.md` returns nothing |
-| REQ-003 | The `aesthetic` task lane is removed from `command-metadata.json` AND the `aesthetic` lane row is removed from `commands/interface/design.md` in the same commit | `rg -n "aesthetic" .opencode/skills/sk-design/command-metadata.json .opencode/commands/interface/design.md` returns nothing; `command-metadata.json` lanes still match `SKILL.md`'s `INTENT_SIGNALS` 1:1 |
-| REQ-004 | `leaf-manifest.json` no longer lists the 5 deleted paths | `rg -n "aesthetics/" .opencode/skills/sk-design/leaf-manifest.json` returns nothing after regeneration |
+| ID | Requirement | Acceptance Criteria | Status |
+|----|-------------|---------------------|--------|
+| REQ-001 | All 5 `references/aesthetics/*` files are deleted | `find design-interface/references/aesthetics` returns "No such file or directory" | **Done** — verified 2026-07-27, path returns "No such file or directory" |
+| REQ-002 | `AESTHETICS` intent and its `RESOURCE_MAP` entry are removed from `SKILL.md` | `rg -n "AESTHETICS\|aesthetic" design-interface/SKILL.md` returns nothing | **Done in substance** — the `AESTHETICS` intent/resource-map entry is gone; the acceptance criterion as literally written also flags the legitimate, explicitly-preserved `procedures/aesthetic-direction.md` prose (out of scope by design), so the raw grep is non-empty but not a real gap |
+| REQ-003 | The `aesthetic` task lane is removed from `command-metadata.json` AND the `aesthetic` lane row is removed from `commands/interface/design.md` in the same commit | `rg -n "aesthetic" .opencode/skills/sk-design/command-metadata.json .opencode/commands/interface/design.md` returns nothing; `command-metadata.json` lanes still match `SKILL.md`'s `INTENT_SIGNALS` 1:1 | **Done** — verified 2026-07-27, both greps return nothing (excluding the one legitimate `aesthetic-direction.md` procedure-card reference in `command-metadata.json`); parity check confirms lanes match intents |
+| REQ-004 | `leaf-manifest.json` no longer lists the 5 deleted paths | `rg -n "aesthetics/" .opencode/skills/sk-design/leaf-manifest.json` returns nothing after regeneration | **Done** — verified 2026-07-27, returns nothing |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-005 | Both YAML assets' `argument-hint` mirrors drop `aesthetic` | `rg -n "aesthetic" .opencode/commands/interface/assets/interface-design-auto.yaml .opencode/commands/interface/assets/interface-design-confirm.yaml` returns nothing |
-| REQ-006 | `hub-router.json`'s vocabulary list drops `"aesthetic"` | `rg -n "aesthetic" .opencode/skills/sk-design/hub-router.json` returns nothing |
-| REQ-007 | Both citing reference docs (`resource-loading-notes.md`, `real-ui-loop.md`) no longer point at the retired folder | `rg -n "aesthetics/" design-interface/references/design-process/resource-loading-notes.md design-interface/references/design-process/real-ui-loop.md` returns nothing |
+| ID | Requirement | Acceptance Criteria | Status |
+|----|-------------|---------------------|--------|
+| REQ-005 | Both YAML assets' `argument-hint` mirrors drop `aesthetic` | `rg -n "aesthetic" .opencode/commands/interface/assets/interface-design-auto.yaml .opencode/commands/interface/assets/interface-design-confirm.yaml` returns nothing | **N/A, verified 2026-07-27** — neither YAML asset has an `argument-hint`/`argumentHint` field at all; the only `aesthetic` hits in both are the legitimate `procedures/aesthetic-direction.md` reference. Nothing needed removal here; the commit correctly left these files untouched |
+| REQ-006 | `hub-router.json`'s vocabulary list drops `"aesthetic"` | `rg -n "aesthetic" .opencode/skills/sk-design/hub-router.json` returns nothing | **OPEN — not done.** Re-verified 2026-07-27: `hub-router.json:121` still lists `"aesthetic"`. Not touched by commit `c10ded2ab8` (file not in its diff). Genuine residual gap, not covered by any planned sibling child; needs a follow-up fix or an amendment to `011-retirement-residue`'s scope |
+| REQ-007 | Both citing reference docs (`resource-loading-notes.md`, `real-ui-loop.md`) no longer point at the retired folder | `rg -n "aesthetics/" design-interface/references/design-process/resource-loading-notes.md design-interface/references/design-process/real-ui-loop.md` returns nothing | **Partially done.** `resource-loading-notes.md` was repointed at the `styles/` corpus (confirmed in commit diff). `real-ui-loop.md:119` was NOT updated — re-verified 2026-07-27 it still reads "The illustrative cues in `../aesthetics/` are reference material..." pointing at the now-deleted folder. Genuine residual gap |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -138,9 +141,9 @@ Retire the folder and the lane together, in the same commit, this is not a doc d
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `rg -n "aesthetic" .opencode/skills/sk-design/design-interface/ .opencode/skills/sk-design/command-metadata.json .opencode/skills/sk-design/hub-router.json .opencode/commands/interface/` (excluding `changelog/`) returns nothing.
-- **SC-002**: `command-metadata.json`'s task lanes match `design-interface/SKILL.md`'s `INTENT_SIGNALS` exactly — no orphaned lane, no orphaned intent.
-- **SC-003**: `leaf-manifest.json` regenerates clean with no dangling paths into the deleted folder.
+- **SC-001**: `rg -n "aesthetic" .opencode/skills/sk-design/design-interface/ .opencode/skills/sk-design/command-metadata.json .opencode/skills/sk-design/hub-router.json .opencode/commands/interface/` (excluding `changelog/`) returns nothing. — **Partially met**, re-verified 2026-07-27: `command-metadata.json`, `commands/interface/design.md`, and the `AESTHETICS` intent in `SKILL.md` are clean; the only remaining `design-interface/` hits are the legitimate, explicitly-preserved `procedures/aesthetic-direction.md` references. Two genuine gaps remain outside that carve-out: `hub-router.json:121` still lists `"aesthetic"` in its vocabulary (never touched by the commit), and `references/design-process/real-ui-loop.md:119` still has a dangling `../aesthetics/` reference (only `resource-loading-notes.md` was actually repointed, not this file). Contract test 8/8 and surface test 7/7 pass because they check lane/intent parity, not a hub-wide text sweep — they do not cover these two sites.
+- **SC-002**: `command-metadata.json`'s task lanes match `design-interface/SKILL.md`'s `INTENT_SIGNALS` exactly — no orphaned lane, no orphaned intent. — **Met**: intent/lane parity check confirms the two sets are exactly equal.
+- **SC-003**: `leaf-manifest.json` regenerates clean with no dangling paths into the deleted folder. — **Met**, re-verified 2026-07-27: `rg -n "aesthetics" leaf-manifest.json` returns nothing; regenerated via the canonical generator, aesthetics leaves 5 → 0.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -150,8 +153,8 @@ Retire the folder and the lane together, in the same commit, this is not a doc d
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Task lane removed from `command-metadata.json` but not `design.md` (or vice versa) | Checker fails — this exact class of break already happened once this session when an intent was added without its lane | Remove both in the same commit; run the surface checker before claiming done |
-| Risk | A citing site outside the 6 named files is missed | Skill still references a deleted folder | `rg -n "aesthetic"` sweep across the full `sk-design` hub as the closing gate, not just the named files |
+| Risk | Task lane removed from `command-metadata.json` but not `design.md` (or vice versa) | Checker fails — this exact class of break already happened once this session when an intent was added without its lane | Remove both in the same commit; run the surface checker before claiming done — **materialized once mid-session and was caught by the parity check before commit** |
+| Risk | A citing site outside the 6 named files is missed | Skill still references a deleted folder | `rg -n "aesthetic"` sweep across the full `sk-design` hub as the closing gate, not just the named files — **materialized differently than anticipated: no seventh site surfaced, but 2 of the 6 originally-named sites (`hub-router.json`, `real-ui-loop.md`) were never actually touched by the commit; the closing hub-wide sweep was not run before claiming done. See REQ-006/REQ-007** |
 | Dependency | `leaf-manifest.json` regeneration tooling | New manifest must reflect the deletion, not just be hand-edited | Regenerate via the hub's existing manifest script rather than manual edit |
 <!-- /ANCHOR:risks -->
 
@@ -170,8 +173,8 @@ Retire the folder and the lane together, in the same commit, this is not a doc d
 ## L2: EDGE CASES
 
 ### Error Scenarios
-- **Partial removal lands** (e.g. files deleted but `command-metadata.json` lane still present): halt before committing — this packet lands as its own single commit per the program's revertability rule, so a half-done state must never be the commit boundary.
-- **A seventh citing site surfaces during execution** that this spec didn't name: treat it as in-scope (the requirement is "no citation to the retired folder remains," not "only these six files"), fix it, and note the addition in `implementation-summary.md`.
+- **Partial removal lands** (e.g. files deleted but `command-metadata.json` lane still present): halt before committing — this packet lands as its own single commit per the program's revertability rule, so a half-done state must never be the commit boundary. **Partially occurred**: the core wiring (folder, `SKILL.md` intent, command task lane, argument-hint, `leaf-manifest.json`) landed together and the intent/lane parity check caught an earlier error mid-consolidation before commit — but the commit itself did not include 2 of the originally-planned citing-site fixes (`hub-router.json`, `real-ui-loop.md`), so the commit boundary was, in that narrow sense, not the fully-closed state the spec called for. See REQ-006/REQ-007.
+- **A seventh citing site surfaces during execution** that this spec didn't name: treat it as in-scope (the requirement is "no citation to the retired folder remains," not "only these six files"), fix it, and note the addition in `implementation-summary.md`. **Did not occur**: no seventh, previously-unnamed site surfaced. (Separately, 2 of the six originally-named sites were not actually fixed by the commit — see REQ-006/REQ-007, a different failure mode than this edge case anticipated.)
 <!-- /ANCHOR:edge-cases -->
 
 ---

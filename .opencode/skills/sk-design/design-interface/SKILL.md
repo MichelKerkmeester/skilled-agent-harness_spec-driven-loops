@@ -2,10 +2,10 @@
 name: design-interface
 description: Distinctive UI design: build/reshape interfaces with palette, typography, layout, motion, critique, and interface writing.
 allowed-tools: [Read, Grep, Glob]
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
-<!-- keywords: interface-design frontend-design visual-design typography palette ui-aesthetics -->
+<!-- keywords: interface-design frontend-design visual-design typography palette ui-aesthetics motion-design animation reduced-motion AnimatePresence restraint-gate -->
 
 # Interface Design (interface)
 
@@ -24,8 +24,9 @@ Approach UI work as the design lead at a studio known for visual identities that
 - Reviewing a design direction before code is written.
 - Reading a brief into the register and the variance, motion, and density dials before any visual choice.
 - Running the mechanical pre-flight gate over a built or planned surface before delivery, including the layout and content gates.
+- Deciding whether an interaction should animate at all, choreographing timing/easing/material for a transition that survives that restraint gate, specifying `AnimatePresence` exits, or defining a reduced-motion equivalent.
 
-**Keyword Triggers**: "design", "make it look good", "redesign", "variation", "give me N variations", "show me options", "multiple directions", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity", "less generic", "custom not templated", "visual direction".
+**Keyword Triggers**: "design", "make it look good", "redesign", "variation", "give me N variations", "show me options", "multiple directions", "hero section", "landing page", "looks templated", "looks AI-generated", "visual identity", "less generic", "custom not templated", "visual direction", "animation", "motion", "micro-interaction", "transition", "hover state", "focus state", "AnimatePresence", "reduced motion", "motion budget".
 
 ### When NOT to Use
 
@@ -43,6 +44,8 @@ Approach UI work as the design lead at a studio known for visual identities that
 Detect design intent and how much of the visual direction the brief fixes:
 
 Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. Once one of those transform verbs routes here, apply it through `references/design-process/transform-application.md` (the interface-side landing lane: shared application contract, per-verb ledgers, and fillable proof cards for bolder/quieter/distill/clarify/delight) rather than improvising the change. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, that is this mode's own pre-delivery gate (`assets/interface-preflight-card.md`), not a separate mode. `hierarchy`, `spacing`, `grid`, and token language are also this mode's own static-system work; only route out when `DESIGN.md` or `tokens.json` is a measured artifact, which goes to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence — the registry's alias list overrides this noun-based heuristic.
+
+This mode also owns the temporal layer: animation, transitions, micro-interactions, `AnimatePresence`, and reduced motion, relocated in whole from the retired `motion` mode. Whether an interaction should animate at all is decided by the restraint gate in `references/motion/animation-decision-framework.md` — frequency, the keyboard rule, a named purpose, and the register motion-budget dial — and that gate runs before any timing, easing, or material choice from `references/motion/motion-strategy.md`. A choice that survives the gate is choreographed and specced with `assets/motion/motion-pattern-cards.md`, checked against `assets/motion/animate-presence-checklist.md` for any exit, and cleared against `assets/motion/motion-performance-failure-card.md` before handoff. If the static hierarchy is unclear before motion can help, resolve that first through this same mode's static-system work rather than choreographing around an unclear layout.
 
 ```bash
 # Direction freedom (pseudo)
@@ -80,7 +83,13 @@ DESIGN TASK
 | CONDITIONAL | Writing placeholder content, names, or numbers | `references/design-process/copy-and-mock-data.md` (realistic mock content, no lorem, no AI-tell copy) |
 | CONDITIONAL | Redesigning an existing surface | `references/design-process/redesign-intake.md` (classify greenfield, preserve or overhaul, then protect URLs, nav labels, form fields, legal copy and locked tokens) |
 | CONDITIONAL | Grounding a direction in the local styles corpus | `corpus/README.md` and `corpus/relational-exemplar.mjs` (one mode-selected anchor plus an optional bounded contrast or rejected default, with a decision-only handoff) |
-| CONDITIONAL | Internal procedure support | `procedures/discovery-question-round.md`, `procedures/aesthetic-direction.md`, `procedures/wireframe-exploration.md`, `procedures/variation-set.md`, `procedures/prototype-flow-spec.md`, `procedures/deck-direction-spec.md`, and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
+| CONDITIONAL | Internal procedure support | `procedures/discovery-question-round.md`, `procedures/aesthetic-direction.md`, `procedures/wireframe-exploration.md`, `procedures/variation-set.md`, `procedures/prototype-flow-spec.md`, `procedures/deck-direction-spec.md`, `procedures/interaction-states-pass.md`, and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
+| ALWAYS | The first step of any motion/temporal task | `references/motion/animation-decision-framework.md` (the restraint gate — frequency, keyboard rule, purpose, register coupling — runs before any timing or easing choice) |
+| CONDITIONAL | Choreographing timing, easing, staging, or material for motion that survives the gate | `references/motion/motion-strategy.md` and `references/motion/corpus-map.md` |
+| CONDITIONAL | Micro-interactions, loading, gestures, delight, or morphing icons | `references/motion/micro-interactions.md` and `assets/motion/motion-pattern-cards.md` |
+| CONDITIONAL | `motion/react`, `AnimatePresence`, exits, lists, modal transitions | `references/motion/animate-presence-patterns.md` and `assets/motion/animate-presence-checklist.md` |
+| CONDITIONAL | Reduced motion, jank, scroll, blur/filter, performance constraints | `references/motion/performance-reduced-motion.md` and `assets/motion/motion-performance-failure-card.md` |
+| CONDITIONAL | Advanced popover, tooltip, CSS entry, debugging, or shorthand-under-load craft | `references/motion/advanced-craft.md` |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design-inventory.md` |
 | ON_DEMAND | Naming a realized look in one line as the default to critique against | The local styles corpus via `corpus/README.md` and `corpus/relational-exemplar.mjs`, which retrieves real shipped exemplars rather than hand-written descriptions |
 | INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS) or Refero (web). Routes through Code Mode, one reference, never copied — full initiative/ask/fallback rule in ALWAYS #8 and `references/design-grounding/design-references-mcp.md`. |
@@ -115,6 +124,12 @@ INTENT_SIGNALS = {
     "REAL_WORLD_REFERENCE": {"weight": 4, "keywords": ["mobbin", "refero", "real-world reference", "shipped ui", "critique against", "default to deviate from", "the cliche", "the usual look", "typical look"]},
     "TRANSFORM_APPLICATION": {"weight": 4, "keywords": ["make it bolder", "make it quieter", "make it distill", "make it clarify", "make it delight", "bolder", "quieter", "distill", "clarify", "delight the interaction", "earned moment", "keep ledger", "remove ledger"]},
     "VISUAL_SYSTEM": {"weight": 4, "keywords": ["design foundations", "visual system", "static system", "color system", "oklch", "color ramp", "palette theming", "type scale", "typographic scale", "spacing scale", "design tokens", "token system", "token starter", "theming", "dark mode", "light mode", "grid system", "breakpoints", "adaptation matrix", "contrast pairs"]},
+    "MOTION_DECISION": {"weight": 4, "keywords": ["should this animate", "restraint", "restraint gate", "animate at all", "motion budget", "frequency", "keyboard rule", "trim", "over-animated", "decision framework", "animate everywhere", "animation everywhere", "command palette"]},
+    "MOTION_STRATEGY": {"weight": 4, "keywords": ["motion strategy", "timing", "easing", "choreography", "stagger", "material", "duration", "spring", "design the motion", "motion for", "feel premium", "animation library"]},
+    "MOTION_MICRO_INTERACTIONS": {"weight": 4, "keywords": ["micro-interaction", "micro interaction", "hover", "active state", "loading state", "gesture", "delight", "morph", "feedback", "press", "pattern card", "spec card", "toast", "drawer", "notification"]},
+    "MOTION_PRESENCE": {"weight": 4, "keywords": ["animatepresence", "framer", "motion/react", "exit animation", "presence", "modal transition", "presence checklist"]},
+    "MOTION_PERFORMANCE": {"weight": 4, "keywords": ["reduced motion", "motion performance", "jank", "scroll animation", "blur", "will-change", "flip", "dropped frames", "failure card", "compositor"]},
+    "MOTION_ADVANCED_CRAFT": {"weight": 4, "keywords": ["origin-aware", "origin aware", "popover", "tooltip", "instant follow-up", "follow-up tooltip", "starting-style", "slow-motion debugging", "shorthand under load", "dense toolbar"]},
 }
 
 RESOURCE_MAP = {
@@ -130,6 +145,12 @@ RESOURCE_MAP = {
     "REAL_SYSTEM_GROUNDING": ["references/design-grounding/design-inventory.md"],
     "REAL_WORLD_REFERENCE": ["references/design-grounding/design-references-mcp.md", "references/mcp-tooling/mobbin-tools.md", "references/mcp-tooling/refero-tools.md"],
     "VISUAL_SYSTEM": ["references/foundations/color/oklch-workflow.md", "references/foundations/color/palette-theming.md", "references/foundations/type/typography-system.md", "references/foundations/layout/layout-responsive.md", "references/foundations/layout/adaptation-matrix.md", "references/foundations/design-system-artifact-contract.md", "references/foundations/worked-examples.md", "references/foundations/corpus-map.md", "references/foundations/smart-router-pseudocode.md", "assets/foundations/token-starter.md", "assets/foundations/contrast-pair-inventory.md"],
+    "MOTION_DECISION": ["references/motion/animation-decision-framework.md"],
+    "MOTION_STRATEGY": ["references/motion/animation-decision-framework.md", "references/motion/motion-strategy.md", "references/motion/corpus-map.md", "../shared/sk-code-handoff.md"],
+    "MOTION_MICRO_INTERACTIONS": ["references/motion/animation-decision-framework.md", "references/motion/micro-interactions.md", "assets/motion/motion-pattern-cards.md"],
+    "MOTION_PRESENCE": ["references/motion/animation-decision-framework.md", "references/motion/animate-presence-patterns.md", "assets/motion/animate-presence-checklist.md"],
+    "MOTION_PERFORMANCE": ["references/motion/animation-decision-framework.md", "references/motion/performance-reduced-motion.md", "assets/motion/motion-performance-failure-card.md"],
+    "MOTION_ADVANCED_CRAFT": ["references/motion/animation-decision-framework.md", "references/motion/advanced-craft.md", "references/motion/performance-reduced-motion.md"],
 }
 
 # Resilience guards (see ../../sk-doc/create-skill/assets/skill/skill_smart_router.md):
@@ -179,6 +200,7 @@ After the hub selects the public `interface` mode, choose at most one primary pr
 | Multiple high-fidelity directions or alternatives | `procedures/variation-set.md` | Meaningful variation axes and the recommended option. |
 | Prototype, demo, or stateful interaction brief | `procedures/prototype-flow-spec.md` | Screens, state model, interaction matrix, feedback states, and handoff constraints. |
 | Slide deck or presentation design | `procedures/deck-direction-spec.md` | Slide system, layout types, contrast/body-size expectations, and implementation handoff. |
+| Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback | `procedures/interaction-states-pass.md` | Interaction-state matrix, visible focus, feedback coverage, transition timing, and reduced-motion behavior. |
 | Final polish across dimensions | `../shared/procedures/polish-gate-orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
 
 If no procedure card matches, state `Procedure applied: none - baseline interface workflow` and continue with the core register, dials, two-pass process, and pre-flight card. Do not load all cards by default; select from request triggers and available context.
@@ -192,6 +214,21 @@ Run directly with Read, Glob, and Grep only. If subagents are unavailable or dis
 ### The Two-Pass Process
 
 The five-step flow (ground, brainstorm a token system, critique against the brief, build from the revised plan, self-critique) is diagrammed once already, in Phase Detection (Section 2) — not repeated here. Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full step detail, calibration, and writing rules are in [`references/design-process/design-principles.md`](references/design-process/design-principles.md).
+
+### Motion Design Workflow
+
+Relocated in whole from the retired `motion` mode: the gate runs first, choreography second, verification last, in this fixed order.
+
+1. **Run the restraint gate first** ([`references/motion/animation-decision-framework.md`](references/motion/animation-decision-framework.md)): check frequency, the keyboard rule, a named purpose, and the register motion-budget dial, stopping at the first no. This gate runs before any timing or easing choice — never choreograph first and justify the gate afterward. A choice that fails ships as an instant state change, not a downgrade.
+2. Name the purpose: feedback, orientation, focus, continuity, perceived performance, or earned delight.
+3. Decide the motion budget: one hero moment, local feedback layer, state transitions, or no motion.
+4. Choose timing and easing from [`references/motion/motion-strategy.md`](references/motion/motion-strategy.md): `100-150ms` instant feedback, `200-300ms` small state transitions, `300-500ms` modal/drawer/layout transitions, `500-800ms` only for one earned entrance or brand choreography.
+5. Choose the material: transform/opacity first; bounded blur, filter, mask, clip-path, shadow, or color only when it creates a real effect and can be verified smooth.
+6. Define reduced-motion behavior that preserves state information without non-essential movement.
+7. Spec the pattern with [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md), run [`assets/motion/animate-presence-checklist.md`](assets/motion/animate-presence-checklist.md) for any exit, and clear [`assets/motion/motion-performance-failure-card.md`](assets/motion/motion-performance-failure-card.md) before handoff.
+8. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks via `../shared/sk-code-handoff.md` (motion-owned field: `IMPLEMENTATION MECHANISM / STACK BOUNDARY`).
+
+The mechanical pre-flight card's motion section (§10 of `assets/interface-preflight-card.md`) is the checkable form of this ordering guarantee: its binary boxes assume the restraint gate already ran, so a passing card is evidence the gate-before-choreography order was followed, not just that motion exists and has a reduced-motion path.
 
 ### Corpus Relational Exemplar Pilot
 
@@ -216,7 +253,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 
 ### Mechanical Delivery Gates
 
-A taste read misses structural and content tells, so two binary gates run before delivery: the layout gate (`references/design-process/mechanical-defaults.md` — hero lines, bento cells, eyebrow ceiling, button contrast) and the content gate (`references/design-process/copy-and-mock-data.md` — lorem, AI-tell phrasing, fake-precise numbers, mixed copy register, lazy image seeds). The fill-in `assets/interface-preflight-card.md` is the checkable form of both plus the dials: every box is binary, and a single fail means the surface is not done.
+A taste read misses structural and content tells, so binary gates run before delivery: the layout gate (`references/design-process/mechanical-defaults.md` — hero lines, bento cells, eyebrow ceiling, button contrast), the content gate (`references/design-process/copy-and-mock-data.md` — lorem, AI-tell phrasing, fake-precise numbers, mixed copy register, lazy image seeds), and the motion restraint gate (`references/motion/animation-decision-framework.md` — frequency, keyboard rule, purpose, register coupling, run before any timing/easing choice). The fill-in `assets/interface-preflight-card.md` is the checkable form of all three plus the dials: every box is binary, and a single fail means the surface is not done.
 
 ### Required sk-code Build Manifest
 
@@ -238,12 +275,13 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 8. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it — Refero specifically runs as the `mcp-refero` transport over `mcp-code-mode` (the transport never decides taste); if Code Mode is unavailable, fall back to the generic process. See `references/design-grounding/design-references-mcp.md`.
 9. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
 10. **ALWAYS keep corpus grounding subordinate to the brief, owned system, target render and preflight**, and preserve provenance and rights state for every selected reference.
+11. **ALWAYS run the motion restraint gate before any timing or easing choice**: frequency, the keyboard rule, a named purpose, and the register motion-budget dial, in that order, stopping at the first no.
 
 ### ⛔ NEVER
 
 1. **NEVER ship a templated default** (cream + serif + terracotta, near-black + one acid accent, or broadsheet hairlines) on a free axis just because it is safe.
 2. **NEVER add decoration that does not serve the brief**, including numbered markers (01 / 02 / 03) when the content is not actually a sequence.
-3. **NEVER let motion pile up**. Scattered animation reads as AI-generated, so prefer one orchestrated moment.
+3. **NEVER let motion pile up, and never choreograph before the restraint gate has run**. Scattered animation reads as AI-generated, so prefer one orchestrated moment; a high-frequency or keyboard-driven action stays instant regardless of how good the timing would look.
 4. **NEVER override a brief that pins the direction**. The brief's own words always win, even when they ask for a default look.
 5. **NEVER average source token values, copy source-specific literals or assets, expose hydrated corpus bodies, or treat corpus rank as mode judgment.**
 
@@ -277,13 +315,24 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`references/design-process/transform-application.md`](references/design-process/transform-application.md) - Interface-side landing lane for a make-frame transform verb already routed here: application contract, per-verb ledgers, proof cards.
 - [`references/design-process/resource-loading-notes.md`](references/design-process/resource-loading-notes.md) - Extended rationale for the load-and-prove and citation-required table rows, plus reference-loading discipline notes.
 - [`assets/interface-preflight-card.md`](assets/interface-preflight-card.md) - The fill-in PASS/FAIL mechanical pre-flight card. Run before shipping.
-- [`corpus/README.md`](corpus/README.md) - Maintainer-only relational-exemplar contract, positive/no-fit/rejected-default fixture atlas, and verification command.
+- [`corpus/README.md`](corpus/README.md) - Maintainer-only relational-exemplar, relationship-blueprint, and motion-evidence contracts, fixture atlases, and verification command.
+- [`references/motion/animation-decision-framework.md`](references/motion/animation-decision-framework.md) - The restraint gate: frequency tiers, the keyboard rule, the purpose test, and register coupling. Run it before any timing or easing choice.
+- [`references/motion/motion-strategy.md`](references/motion/motion-strategy.md) - Purpose, timing, easing, staging, and motion materials for choices that survive the gate.
+- [`references/motion/micro-interactions.md`](references/motion/micro-interactions.md) - Feedback, loading, gestures, delight, and morphing icons.
+- [`references/motion/animate-presence-patterns.md`](references/motion/animate-presence-patterns.md) - `motion/react` and `AnimatePresence` patterns.
+- [`references/motion/performance-reduced-motion.md`](references/motion/performance-reduced-motion.md) - Performance, FLIP, scroll, layers, blur/filter, and reduced-motion guidance.
+- [`references/motion/advanced-craft.md`](references/motion/advanced-craft.md) - Compact advanced craft for origin-aware popovers, instant follow-up tooltips, `@starting-style`, slow-motion debugging and Framer Motion shorthand caveats under load.
+- [`references/motion/corpus-map.md`](references/motion/corpus-map.md) - Source traceability for the distilled motion corpus.
+- [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md) - Per-pattern motion spec cards (feedback, hover, focus, loading, state transition, toast, page transition, gesture, drag-and-drop).
+- [`assets/motion/animate-presence-checklist.md`](assets/motion/animate-presence-checklist.md) - Pass-or-fail checklist for `AnimatePresence` exits.
+- [`assets/motion/motion-performance-failure-card.md`](assets/motion/motion-performance-failure-card.md) - Build-side failure-mode card for motion that drops frames.
 - [`procedures/discovery-question-round.md`](procedures/discovery-question-round.md) - Private question-round support for under-specified briefs.
 - [`procedures/aesthetic-direction.md`](procedures/aesthetic-direction.md) - Private direction-setting support for greenfield or weakly grounded systems.
 - [`procedures/wireframe-exploration.md`](procedures/wireframe-exploration.md) - Private low-fidelity structure/storyboard exploration support.
 - [`procedures/variation-set.md`](procedures/variation-set.md) - Private support for materially distinct design options.
 - [`procedures/prototype-flow-spec.md`](procedures/prototype-flow-spec.md) - Private prototype-flow spec support before `sk-code` implementation.
 - [`procedures/deck-direction-spec.md`](procedures/deck-direction-spec.md) - Private deck/presentation planning support.
+- [`procedures/interaction-states-pass.md`](procedures/interaction-states-pass.md) - Private support for interaction-state matrices, feedback, transitions, and reduced-motion expectations.
 - [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared private final-polish orchestration when interface owns visual-direction repair.
 
 ### Manual Testing Playbook
@@ -305,7 +354,8 @@ Full reference-loading discipline notes (design_principles.md authority, quality
 - ✅ Every color and type decision derives from the revised plan.
 - ✅ The signature element is the one bold move, and everything else is quiet.
 - ✅ The quality floor holds: responsive, visible focus, reduced motion respected.
-- ✅ The mechanical pre-flight card passes: the layout gate and the content gate clear every binary box before delivery.
+- ✅ The mechanical pre-flight card passes: the layout gate, the content gate, and the motion section clear every binary box before delivery.
+- ✅ Any motion decision ran the restraint gate first (frequency, keyboard rule, purpose, register) before timing, easing, or material was chosen; a pattern card is filled, the `AnimatePresence` checklist passes for any exit, and the performance failure card clears before handoff.
 - ✅ The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
 - ✅ Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
 - ✅ Any child-agent or small-model dispatch carries the context manifest from `../shared/context-loading-contract.md`, requires `../shared/assets/context-loaded-card.md` before recommendations, requires `../shared/assets/proof-of-application-card.md` before any ready claim, and presents a valid `DESIGN_BOUNDARY_PROOF v1` envelope at the dispatch boundary per `../shared/design-dispatch-boundary.md`.

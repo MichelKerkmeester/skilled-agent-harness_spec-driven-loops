@@ -20,6 +20,9 @@
         "assets/foundations/contrast-pair-inventory.md",
         "assets/foundations/token-starter.md",
         "assets/interface-preflight-card.md",
+        "assets/motion/animate-presence-checklist.md",
+        "assets/motion/motion-pattern-cards.md",
+        "assets/motion/motion-performance-failure-card.md",
         "references/design-grounding/design-inventory.md",
         "references/design-grounding/design-references-mcp.md",
         "references/design-process/brief-to-dials.md",
@@ -43,7 +46,14 @@
         "references/foundations/type/typography-system.md",
         "references/foundations/worked-examples.md",
         "references/mcp-tooling/mobbin-tools.md",
-        "references/mcp-tooling/refero-tools.md"
+        "references/mcp-tooling/refero-tools.md",
+        "references/motion/advanced-craft.md",
+        "references/motion/animate-presence-patterns.md",
+        "references/motion/animation-decision-framework.md",
+        "references/motion/corpus-map.md",
+        "references/motion/micro-interactions.md",
+        "references/motion/motion-strategy.md",
+        "references/motion/performance-reduced-motion.md"
       ],
       "packet": "design-interface",
       "workflowMode": "interface"
@@ -79,22 +89,6 @@
       ],
       "packet": "design-md-generator",
       "workflowMode": "md-generator"
-    },
-    {
-      "leaves": [
-        "assets/animate-presence-checklist.md",
-        "assets/motion-pattern-cards.md",
-        "assets/motion-performance-failure-card.md",
-        "references/advanced-craft.md",
-        "references/animate-presence-patterns.md",
-        "references/animation-decision-framework.md",
-        "references/corpus-map.md",
-        "references/micro-interactions.md",
-        "references/motion-strategy.md",
-        "references/performance-reduced-motion.md"
-      ],
-      "packet": "design-motion",
-      "workflowMode": "motion"
     }
   ],
   "resourceContractVersion": 1
