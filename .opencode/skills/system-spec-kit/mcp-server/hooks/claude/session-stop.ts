@@ -22,6 +22,10 @@ import {
 import { estimateCost, type TranscriptUsage } from './claude-transcript.js';
 import { runTrueCitationEmit } from './true-citation-mining.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 /** Default max age (ms) for stale state cleanup in --finalize mode */
 const FINALIZE_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
 
@@ -36,6 +40,10 @@ const SPEC_FOLDER_NAMESPACE_SEGMENT_RE = /^[a-z][\w-]+$/i;
 const HOOK_DIR = dirname(fileURLToPath(import.meta.url));
 const AUTOSAVE_TIMEOUT_MS = 4000;
 const IS_CLI_ENTRY = process.argv[1] ? resolve(process.argv[1]) === fileURLToPath(import.meta.url) : false;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function resolveGenerateContextScriptPath(): string | null {
   // Test-only env override: SPECKIT_GENERATE_CONTEXT_SCRIPT is honored only when
@@ -349,6 +357,10 @@ async function parseTranscriptSnapshot(
   return { usage, newOffset: endOffset };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. MAIN PROCESSING
+// ───────────────────────────────────────────────────────────────────
+
 export async function processStopHook(
   input: HookInput,
   options: SessionStopProcessOptions = {},
@@ -615,6 +627,10 @@ export async function processStopHook(
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ───────────────────────────────────────────────────────────────────
+
 async function main(): Promise<void> {
   ensureStateDir();
 
@@ -636,6 +652,10 @@ async function main(): Promise<void> {
   }
   await processStopHook(input);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. SPEC FOLDER DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 /** Detect active spec folder from transcript content */
 function detectSpecFolderResult(
@@ -739,6 +759,10 @@ function normalizeSpecFolderPath(rawPath: string): string | null {
 
   return `${SPEC_FOLDER_CANONICAL_PREFIX}${specSegments.join('/')}`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. ENTRYPOINT
+// ───────────────────────────────────────────────────────────────────
 
 // Run — exit cleanly even on error (async hook, but still must not crash)
 if (IS_CLI_ENTRY) {

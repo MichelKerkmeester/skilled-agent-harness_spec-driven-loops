@@ -8,6 +8,10 @@ import { closeSync, createReadStream, openSync, readSync, statSync } from 'node:
 import { createInterface } from 'node:readline';
 import { hookLog } from './shared.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPES
+// ───────────────────────────────────────────────────────────────────
+
 /** Token usage from a single assistant message */
 export interface MessageUsage {
   promptTokens: number;
@@ -68,6 +72,10 @@ interface TranscriptLine {
   message?: TranscriptMessage;
   [key: string]: unknown;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function countLinesBeforeOffset(filePath: string, startOffset: number): number {
   if (startOffset <= 0) {
@@ -139,6 +147,10 @@ function toTranscriptTurn(
     totalTokens: promptTokens + completionTokens,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TRANSCRIPT PARSING
+// ───────────────────────────────────────────────────────────────────
 
 /** Parse a transcript JSONL file and extract token usage.
  *  Supports incremental parsing via startOffset (byte offset). */
@@ -368,6 +380,10 @@ export async function parseAssistantTextTurns(
     return turns;
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. COST ESTIMATION
+// ───────────────────────────────────────────────────────────────────
 
 /** Estimate cost in USD based on model and token counts */
 export function estimateCost(usage: TranscriptUsage): number {

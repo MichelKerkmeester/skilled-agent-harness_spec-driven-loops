@@ -32,6 +32,10 @@ import {
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 import { buildWarmCodeGraphStatusSection } from '../code-index-cli-fallback.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const COMPACT_FEEDBACK_GUARDS = [
   /^\s*\[SOURCE:\s*hook-cache/i,
   /^\s*\[PROVENANCE:/i,
@@ -45,6 +49,10 @@ const MAX_TAIL_READ_BYTES = 1024 * 1024;
 const PERSISTENCE_MARGIN_MS = 150;
 const MIN_OPTIONAL_BUDGET_MS = 50;
 const SNAPSHOT_STDIO_BYTES = 64 * 1024;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TRANSCRIPT EXTRACTION HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract the last N lines from a file */
 export function tailFile(filePath: string, lines: number): string[] {
@@ -202,6 +210,10 @@ export function buildCompactContext(transcriptLines: string[]): string {
   return sections.join('\n\n');
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. MEMORY RENDERING
+// ───────────────────────────────────────────────────────────────────
+
 type AutoSurfaceAtCompactionResult = Awaited<ReturnType<typeof autoSurfaceAtCompaction>>;
 
 function renderConstitutionalMemories(
@@ -265,6 +277,10 @@ async function renderCliCompactionFallback(sessionState: string): Promise<string
   return section?.content ?? '';
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. BUDGET RENDERING
+// ───────────────────────────────────────────────────────────────────
+
 interface CompactResult {
   text: string;
   payloadContract: SharedPayloadEnvelope;
@@ -308,6 +324,10 @@ function renderBudgetedSections(
 
   return { text: rendered.join('\n\n'), sections: retained };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. MERGE PIPELINE
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Build merged context using the 3-source merge pipeline.
@@ -501,6 +521,10 @@ function persistCompactResult(
   }).persisted;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. AUTHORED SNAPSHOT
+// ───────────────────────────────────────────────────────────────────
+
 function runAuthoredSnapshotWorker(): void {
   const input = JSON.parse(readFileSync(0, 'utf-8')) as {
     specFolder: string | null;
@@ -558,6 +582,10 @@ function runAuthoredSnapshot(
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. MAIN
+// ───────────────────────────────────────────────────────────────────
+
 async function main(): Promise<void> {
   const deadline = performance.now() + HOOK_TIMEOUT_MS;
   ensureStateDir();
@@ -610,6 +638,10 @@ async function main(): Promise<void> {
     runAuthoredSnapshot(transcriptLines, sessionId, deadline);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 8. ENTRYPOINT
+// ───────────────────────────────────────────────────────────────────
 
 function isCliEntrypoint(): boolean {
   const entrypoint = process.argv[1];

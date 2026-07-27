@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude UserPromptSubmit Spec Gate Classify                    ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Surface the spec-folder question on a mutating turn.            ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude UserPromptSubmit Spec Gate Classify
+// ───────────────────────────────────────────────────────────────────
+// STATUS: wired live via .claude/settings.json UserPromptSubmit matcher;
+// surfaces the spec-folder question on a mutating turn.
+//
 // UserPromptSubmit classify hook for Claude Code.
 //
 // Runs the shared spec-gate core against each user turn: opens the session

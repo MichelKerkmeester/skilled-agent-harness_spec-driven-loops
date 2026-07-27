@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude PreToolUse Spec Gate Enforce                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Deny an unscoped mutation while the spec gate is open.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude PreToolUse Spec Gate Enforce
+// ───────────────────────────────────────────────────────────────────
+// STATUS: wired live to two .claude/settings.json PreToolUse matchers;
+// denies an unscoped mutation while the spec gate is open.
+//
 // PreToolUse enforce hook for Claude Code -- wired to TWO matchers in
 // .claude/settings.json: "Write|Edit" (deny-capable) and "Bash" (advise-only,
 // same file). It intercepts the tool call BEFORE it runs and evaluates the

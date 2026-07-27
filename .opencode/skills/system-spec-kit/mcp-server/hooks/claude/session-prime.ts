@@ -27,6 +27,10 @@ import { buildWarmCodeGraphStatusSection } from '../code-index-cli-fallback.js';
 import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
 import { getStartupBriefFromMarker } from '../../lib/code-graph-boundary.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS & TYPES
+// ───────────────────────────────────────────────────────────────────
+
 const CACHE_TTL_MS = 30 * 60 * 1000;
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -43,6 +47,10 @@ type StartupBrief = {
 
 const buildStartupBrief = (_highlightCount?: number, _stateScope?: { specFolder?: string; claudeSessionId?: string }): StartupBrief =>
   getStartupBriefFromMarker();
+
+// ───────────────────────────────────────────────────────────────────
+// 2. SOURCE HANDLERS
+// ───────────────────────────────────────────────────────────────────
 
 /** Handle source=compact: inject cached PreCompact payload (from 3-source merger) */
 function handleCompact(sessionId: string): OutputSection[] {
@@ -311,6 +319,10 @@ function handleClear(): OutputSection[] {
   ];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. OUTPUT HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function writeHookOutput(output: string): Promise<void> {
   return new Promise<void>((resolvePromise, rejectPromise) => {
     process.stdout.write(output, (error) => {
@@ -373,6 +385,10 @@ async function maybeAppendCodeIndexCliWarmFallback(
   });
   return section ? [...sections, section] : sections;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. MAIN
+// ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
   ensureStateDir();
@@ -438,6 +454,10 @@ async function main(): Promise<void> {
   }
   hookLog('info', 'session-prime', `Output ${output.length} chars for source=${source}`);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ───────────────────────────────────────────────────────────────────
 
 // Run — exit cleanly even on error
 if (IS_CLI_ENTRY) {

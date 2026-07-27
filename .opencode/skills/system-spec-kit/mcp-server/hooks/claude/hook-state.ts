@@ -25,12 +25,20 @@ import {
 } from '@spec-kit/shared/unicode-normalization';
 import { RECOVERED_TRANSCRIPT_STRIP_PATTERNS } from '../shared-provenance.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const CURRENT_HOOK_STATE_SCHEMA_VERSION = 1 as const;
 
 const MAX_RECENT_STATE_AGE_MS = 24 * 60 * 60 * 1000;
 const QUARANTINE_SUFFIX = '.bad';
 
 let tempCounter = 0;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. VALIDATION SCHEMAS & PAYLOAD SAFETY
+// ───────────────────────────────────────────────────────────────────
 
 const SharedPayloadEnvelopeSchema = z.custom<SharedPayloadEnvelope>(
   (value) => value !== null && typeof value === 'object',
@@ -232,6 +240,10 @@ export const HookStateSchema = z.object({
   updatedAt: z.string().min(1),
 });
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPES
+// ───────────────────────────────────────────────────────────────────
+
 export type HookProducerMetadata = z.output<typeof HookProducerMetadataSchema>;
 export type HookState = z.input<typeof HookStateSchema>;
 export type PersistedHookState = z.output<typeof HookStateSchema>;
@@ -318,6 +330,10 @@ export interface HookStateCompactPrimeIdentity {
   opaqueId?: string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. PATH HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 /** SHA-256 hash of cwd, first 12 chars */
 export function getProjectHash(): string {
   return crypto.createHash('sha256').update(process.cwd()).digest('hex').slice(0, 12);
@@ -342,6 +358,10 @@ export function ensureStateDir(): void {
     hookLog('error', 'state', `Failed to create state dir: ${err instanceof Error ? err.message : String(err)}`);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. STATE PERSISTENCE
+// ───────────────────────────────────────────────────────────────────
 
 function normalizePendingCompactPrime(
   pendingCompactPrime: PersistedHookState['pendingCompactPrime'],
@@ -476,6 +496,10 @@ function quarantineStateFile(filePath: string): string | undefined {
     return undefined;
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. STATE LOADING
+// ───────────────────────────────────────────────────────────────────
 
 function describeSchemaFailure(error: z.ZodError): string {
   return error.issues
@@ -766,6 +790,10 @@ export function loadMatchingStates(
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. MOST-RECENT STATE LOOKUP
+// ───────────────────────────────────────────────────────────────────
+
 /**
  * Load the most recently updated hook state file for this project.
  * Returns the newest matching state and isolates per-file errors so
@@ -889,6 +917,10 @@ export function loadMostRecentState(
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 8. COMPACT PRIME MANAGEMENT
+// ───────────────────────────────────────────────────────────────────
+
 /** Read pending compact prime without clearing it from state */
 export function readCompactPrime(sessionId: string): PersistedHookState['pendingCompactPrime'] {
   const stateResult = loadState(sessionId);
@@ -964,6 +996,10 @@ export function updateState(
     path: writeResult.path,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 9. CLEANUP
+// ───────────────────────────────────────────────────────────────────
 
 function appendCleanupSkip(
   result: CleanStaleStatesResult,

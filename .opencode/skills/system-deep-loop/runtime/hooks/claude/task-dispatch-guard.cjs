@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude PreToolUse Task Dispatch Guard                         ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Reject a deep-loop mode mismatch before the dispatch runs.      ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude PreToolUse Task Dispatch Guard
+// ───────────────────────────────────────────────────────────────────
+// STATUS: wired live via .claude/settings.json PreToolUse Task matcher;
+// rejects a deep-loop mode mismatch before the dispatch runs.
+//
 // PreToolUse(Task) deep-loop dispatch guard for Claude Code.
 //
 // Claude's counterpart to the mk-deep-loop-guard OpenCode plugin: it intercepts a

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude Stop Completion Evidence Sentinel                      ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Advise when a completion claim lacks packet evidence.           ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude Stop Completion Evidence Sentinel
+// ───────────────────────────────────────────────────────────────────
+// STATUS: wired live via .claude/settings.json Stop matcher (async,
+// co-resident with session-stop.js); advises when a completion claim lacks
+// packet evidence.
+//
 // Stop hook (Claude Code) for the completion-evidence sentinel.
 //
 // Standalone by design: the existing Stop owner (session-stop.ts, compiled to

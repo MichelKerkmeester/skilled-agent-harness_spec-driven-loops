@@ -4,6 +4,10 @@
 // Copilot imports these helpers straight from ../shared-provenance.js, so
 // drift in any one runtime silently forks the recovered-payload contract.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS & TYPES
+// ───────────────────────────────────────────────────────────────────
+
 /** Timeout for hook scripts — must stay under 2s hard cap */
 export const HOOK_TIMEOUT_MS = 1800;
 /** Token budget for compaction context injection */
@@ -29,6 +33,10 @@ export interface OutputSection {
   readonly title: string;
   readonly content: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HOOK I/O HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /** Require a non-empty session_id for any hook that touches shared temp-state. */
 export function getRequiredSessionId(sessionId: unknown, surface: string): string {
@@ -110,10 +118,14 @@ export function truncateToTokenBudget(text: string, maxTokens: number): string {
   return text.slice(0, cutAt).trimEnd() + '\n[...truncated to fit token budget]';
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. PROVENANCE RE-EXPORTS & BUDGET
+// ───────────────────────────────────────────────────────────────────
+
 // Provenance helpers (escapeProvenanceField, sanitizeRecoveredPayload,
 // wrapRecoveredCompactPayload) live in ../shared-provenance.ts so they
 // can be consumed by Claude and Copilot runtimes without
-// transitive coupling to this Claude-specific module (T-W1-HOK-02).
+// transitive coupling to this Claude-specific module.
 export {
   escapeProvenanceField,
   sanitizeRecoveredPayload,

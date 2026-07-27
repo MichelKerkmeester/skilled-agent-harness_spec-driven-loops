@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude PreToolUse MCP Route Guard                             ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Advise routing an MCP call through Code Mode on a match.        ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude PreToolUse MCP Route Guard
+// ───────────────────────────────────────────────────────────────────
+// STATUS: wired live via .claude/settings.json PreToolUse matcher
+// `mcp__claude_ai_.*`; advises routing an MCP call through Code Mode on a
+// match.
+//
 // PreToolUse advisory hook for native external MCP calls (Claude Code).
 //
 // Claude's counterpart to the mk-mcp-route-guard OpenCode plugin: it reads the

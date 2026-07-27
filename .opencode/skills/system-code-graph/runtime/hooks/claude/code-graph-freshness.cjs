@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude PostToolUse Code Graph Freshness                       ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Queue an incremental rescan after an edit lands.                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude PostToolUse Code Graph Freshness
+// ───────────────────────────────────────────────────────────────────
+// STATUS: wired live via .claude/settings.json PostToolUse Write|Edit
+// matcher; queues an incremental rescan after an edit lands.
+//
 // PostToolUse(Write|Edit) code-graph freshness guard for Claude Code.
 //
 // Claude's counterpart to the mk-code-graph-freshness OpenCode plugin: after a

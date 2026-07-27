@@ -12,6 +12,10 @@ import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const TARGET_REL = 'skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js';
 const MAX_STDIN_BYTES = 1024 * 1024;
 const MAX_STDIO_BYTES = 1024 * 1024;
@@ -28,6 +32,10 @@ const CODEGRAPH_PROBE_TIMEOUT_MS = 250;
 // the ancestor that owns `.opencode`. Claude may invoke the hook from any
 // working directory, so a CWD-relative path would silently miss the target and
 // fail open to `{}`; an install-anchored absolute path stays correct off-root.
+// ───────────────────────────────────────────────────────────────────
+// 2. TARGET RESOLUTION & SHIM DISPATCH
+// ───────────────────────────────────────────────────────────────────
+
 function resolveTarget(): string | null {
   // Test/install override: an explicit absolute target wins over the walk.
   const override = process.env.SPECKIT_USER_PROMPT_TARGET;
@@ -115,6 +123,10 @@ function runShim(): string {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CODE GRAPH WARM CACHE
+// ───────────────────────────────────────────────────────────────────
+
 // Scope the debounce cache by workspace so distinct repos never read each
 // other's code-graph status.
 function codeGraphCachePath(): string {
@@ -164,6 +176,10 @@ function warmCodeGraphSectionBounded(): Promise<string | null> {
   ]);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. OUTPUT MERGING
+// ───────────────────────────────────────────────────────────────────
+
 function mergeAdditionalContext(advisorJson: string, section: string): string {
   try {
     const parsed = JSON.parse(advisorJson) as Record<string, unknown>;
@@ -181,6 +197,10 @@ function mergeAdditionalContext(advisorJson: string, section: string): string {
     return advisorJson;
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
   const advisorJson = runShim();
