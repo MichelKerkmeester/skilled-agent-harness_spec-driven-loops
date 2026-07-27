@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/008-remediation-closeout",
+  "spec_folder": "sk-design/012-sk-design-program/008-remediation-closeout",
+  "parent_id": "sk-design/012-sk-design-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design remediation closeout",
+      "styles sha256 verification",
+      "design benchmark regeneration",
+      "generate-description level bug",
+      "sk-design remediation closeout plan",
+      "styles sha256 verification plan",
+      "sk-design remediation closeout tasks",
+      "styles sha256 verification tasks",
+      "sk-design remediation closeout checklist",
+      "styles sha256 verification checklist",
+      "sk-design remediation closeout summary",
+      "styles sha256 verification summary"
+    ],
+    "key_topics": [
+      "sk-design",
+      "remediation",
+      "closeout",
+      "styles",
+      "sha256",
+      "verification",
+      "design",
+      "benchmark",
+      "regeneration",
+      "generate-description",
+      "level",
+      "bug"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/scratch/styles.sha256.before",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/sk-design/manual-testing-playbook/hub-manager-intake/design-mode-pairing-before-run.md",
+      "plan.md",
+      "mcp-server/lib/search/folder-discovery.ts",
+      "mcp-server/tests/handler-memory-save.vitest.ts",
+      "mcp-server/lib/validation/spec-doc-structure.ts",
+      "spec.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "styles.sha256.before",
+        "kind": "file",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/scratch/styles.sha256.before",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "design-mode-pairing-before-run.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/manual-testing-playbook/hub-manager-intake/design-mode-pairing-before-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-save.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/handler-memory-save.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executed Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Base",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Styles Integrity Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regenerate The Design Benchmark Route Gold",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`007-consolidation-remediation` shipped nine fixes and reached a full green gate set, but it explicitly recorded five items as deferred rather than dropped: two verification gates were never run (styles SHA-256 equality, the design benchmark), one validator warning on the sibling `006` packet was never diagnosed, and one capability decision (AI-tell fixture restoration) was left for the operator",
+    "created_at": "2026-07-27T08:54:36.515Z",
+    "last_save_at": "2026-07-27T11:00:08.487Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a4f1940bfa10da4335818788d5be0cb7b0831e4a8f61b8738c99a23dfd90e44a",
+    "source_doc_hashes": {
+      "spec.md": "5259cb7cfcd7aef24256cf7e640e4bf5d93cac947f131a20b6ba38f92c05e323",
+      "plan.md": "62777473c6436cfb1088d057c42d31390d029ecbcfeb400f9a680be8f722e2e7",
+      "tasks.md": "d189ab5b3da86cdfd206b7a47d74a82122e44e8e904936480d3d5d07d7aecb7f",
+      "checklist.md": "499b8007831abdde41975740f6abd93b91bae1267761d5bbb9ef79cd92b7388d",
+      "implementation-summary.md": "f902cf4f63f00e91f700e5280592431e8f5fc1866db9d6b90a72996033bac7c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

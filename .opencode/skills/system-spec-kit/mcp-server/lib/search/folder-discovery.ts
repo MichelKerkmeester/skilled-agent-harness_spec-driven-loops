@@ -244,6 +244,7 @@ function pickIncomingAuthoredOptionalFields(
   if (desc.type !== undefined) authored.type = desc.type;
   if (desc.trigger_phrases !== undefined) authored.trigger_phrases = desc.trigger_phrases;
   if (desc.path !== undefined) authored.path = desc.path;
+  if (desc.level !== undefined) authored.level = desc.level;
 
   return authored;
 }

@@ -32,7 +32,7 @@ Commission an Open Design generation run for a new settings page, grounding it i
 
 **Why this scenario differs from existing coverage**:
 - `MDR-007` and `AI-001` P6 both use the WIRE-direction prompt ("Wire Open Design's MCP server into opencode..."), the one case `openDesignExemption` explicitly exempts from pairing.
-- `hub-router.json`'s only declared `bundleRules` entry (`ui-build-bundle`) pairs `interface` + `foundations` and does not reference `design-mcp-open-design` at all — there is no machine-readable pairing rule for the transport today.
+- `hub-router.json` declares no `bundleRules` at all, so nothing references `design-mcp-open-design` — there is no machine-readable pairing rule for the transport today.
 - The packet-internal mandatory-pairing mechanism (negative/positive/exemption controls for RUN and READ) is already exhaustively proven by `GATE-001` in `design-mcp-open-design`'s own nested manual_testing_playbook (`design-gate/mandatory-design-gate.md`). This scenario tests whether the hub's own dispatch visibly surfaces the pairing plan at intake, before any transport call fires.
 
 ## 3. TEST EXECUTION
