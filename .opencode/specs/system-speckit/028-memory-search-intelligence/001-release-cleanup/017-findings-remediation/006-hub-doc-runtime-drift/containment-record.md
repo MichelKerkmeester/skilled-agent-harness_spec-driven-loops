@@ -35,7 +35,18 @@ No content was lost, altered, or made unreachable. The only damage is attributio
 476 renames are recorded under a phase-006 commit message instead of the benchmark refactor that owns
 them.
 
-## Why it was not repaired
+## Operator ruling: accepted as-is (2026-07-27)
+
+The operator reviewed the evidence and ruled that the commit stands. This is a closed decision, not
+an outstanding defect. The reasoning below is retained because it is the basis of that ruling.
+
+One fact strengthened the case after the ruling was framed: the 155 renames captured here and the 321
+in the concurrent session's own commit share **zero directories**. They are disjoint halves of one
+migration touching different subtrees, not an entangled set. A repair would therefore have been
+structurally clean — the reason to decline was never conflict risk, only the cost of rewriting six
+commits on a branch with a live writer to correct an attribution that costs nothing.
+
+## Why repair was declined
 
 Repair means rewriting `2140e8740d`. By the time the breach was diagnosed, history had become
 interleaved:
@@ -54,8 +65,9 @@ Rewriting the breached commit requires rebasing six commits, three of which belo
 committed within the last thirty minutes and is still active. The repair risks destroying live work
 to fix an attribution error that costs nothing.
 
-Nothing has been pushed, so the history is still local and a rewrite remains possible later. The
-right moment is when the concurrent session is quiet, and the decision is the operator's.
+Nothing has been pushed, so the history is still local and a rewrite remains technically possible.
+The operator has ruled against it: the attribution error costs nothing, and the rewrite would risk a
+live session's work to fix bookkeeping.
 
 ## The forward fix, already applied
 
