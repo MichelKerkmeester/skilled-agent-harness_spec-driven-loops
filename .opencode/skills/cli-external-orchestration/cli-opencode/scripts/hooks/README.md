@@ -20,6 +20,7 @@ Current state:
 
 - The base `.mjs` files (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`) target the Claude Code hook runtime, tool name `Bash`, on the `PreToolUse` and `PostToolUse` events.
 - The `codex/` subdir holds the Codex CLI sibling adapters, which read the Codex payload shape (`tool_input.command`, snake_case fields) over the same cores.
+- The `devin/` subdir holds the Devin CLI sibling adapters, which read Devin's `exec` payload shape (`tool_input.command`) over the same cores and tag audit records with `runtime: "devin"`.
 - Every adapter fails open. Empty or malformed stdin, or any internal fault, exits 0 with no output, so a bug in a hook cannot break a real dispatch.
 
 ---
@@ -52,11 +53,17 @@ Dependency direction: hooks/ ───▶ ../lib/ (never the reverse)
 
 ```text
 hooks/
+├── README.md                          # Parent hook adapter overview
 ├── dispatch-preflight-lint.mjs        # PreToolUse(Bash) hard-rule lint (Claude runtime)
 ├── dispatch-audit-posttooluse.mjs     # PostToolUse(Bash) audit trail (Claude runtime)
-└── codex/                             # Codex CLI sibling adapters over the same cores
-    ├── dispatch-preflight-lint.mjs    # PreToolUse(exec) hard-rule lint (Codex runtime)
-    └── dispatch-audit-posttooluse.mjs # PostToolUse(exec) audit trail (Codex runtime)
+├── codex/                             # Codex CLI sibling adapters over the same cores
+│   ├── README.md                      # Codex adapter documentation
+│   ├── dispatch-preflight-lint.mjs    # PreToolUse(exec) hard-rule lint (Codex runtime)
+│   └── dispatch-audit-posttooluse.mjs # PostToolUse(exec) audit trail (Codex runtime)
+└── devin/                             # Devin CLI sibling adapters over the same cores
+    ├── README.md                      # Devin adapter documentation
+    ├── dispatch-preflight-lint.mjs    # PreToolUse(exec) hard-rule lint (Devin runtime)
+    └── dispatch-audit-posttooluse.mjs # PostToolUse(exec) audit trail (Devin runtime)
 ```
 
 ---
@@ -68,6 +75,7 @@ hooks/
 | `dispatch-preflight-lint.mjs` | Reads the target skill's hard rules through `../lib/dispatch-rule-checks.mjs` and evaluates the composed command. A `block` violation returns `hookSpecificOutput.permissionDecision: "deny"` with the reason. A `warn` violation attaches an advisory and lets the permission flow proceed. Fast-exits on any command that is not a known dispatch shape. |
 | `dispatch-audit-posttooluse.mjs` | Recognizes a completed dispatch, then appends one redacted, size-rotated JSONL line through `../lib/dispatch-audit.mjs` (`recordDispatch`). Observation only. It never emits a permission decision. This is the Claude counterpart to the OpenCode dispatch-audit plugin. |
 | `codex/` | The Codex CLI adapters for the same two guards, tagged `runtime: "codex"`, reading the Codex hook payload. They call the identical cores in `../lib/`, so the guard behavior matches across runtimes. |
+| `devin/` | The Devin CLI adapters for the same two guards, tagged `runtime: "devin"`, reading the Devin `exec` hook payload. They call the identical cores in `../lib/`, so the guard behavior matches across runtimes. |
 
 ---
 
@@ -120,6 +128,8 @@ Main flow:
 | `dispatch-audit-posttooluse.mjs` | Hook (PostToolUse) | Wired into the runtime hook config. Reads the payload on stdin, writes one audit line. |
 | `codex/dispatch-preflight-lint.mjs` | Hook (Codex PreToolUse) | Same lint for the Codex runtime. |
 | `codex/dispatch-audit-posttooluse.mjs` | Hook (Codex PostToolUse) | Same audit for the Codex runtime. |
+| `devin/dispatch-preflight-lint.mjs` | Hook (Devin PreToolUse) | Same lint for the Devin runtime's `exec` tool. |
+| `devin/dispatch-audit-posttooluse.mjs` | Hook (Devin PostToolUse) | Same audit for the Devin runtime's `exec` tool. |
 
 ---
 

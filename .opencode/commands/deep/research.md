@@ -139,7 +139,7 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 
 ### Lineage Timeout Flag
 
-`--lineage-timeout-hours <N>` raises the per-lineage wall-clock timeout ceiling above the default 4 hours for long, high-effort, forced-depth fan-out runs; omit it to keep the 4h default.
+`--lineage-timeout-hours <N>` optionally narrows the per-lineage wall-clock timeout ceiling below the default 4 hours; values above the hard 4-hour maximum are rejected, and omitting the flag keeps the 4h default.
 
 ### Stop Policy Flag
 

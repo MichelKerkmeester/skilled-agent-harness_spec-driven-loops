@@ -1,6 +1,6 @@
 ---
 title: "Compiled Deep Command Contracts"
-description: "Developer reference for generated deep-command contracts, rollout metadata and the live alignment contract."
+description: "Developer reference for generated deep-command contracts, rollout metadata and injection relationships."
 trigger_phrases:
   - "compiled deep contracts"
   - "deep command contract manifest"
@@ -16,9 +16,11 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/deep/assets/compiled/` stores flattened command contracts used by deep-command injection tooling.
+`.opencode/commands/deep/assets/compiled/` stores the four flattened command contracts used by deep-command injection tooling.
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
+
+The compiled inventory is intentionally limited to the four commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/alignment`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`; no legacy body in that directory lacks a compiled counterpart. The rollout entries for `deep/agent-improvement`, `deep/model-benchmark` and `deep/skill-benchmark` are fallback-only and are not compiler-managed asset pairs.
 
 ---
 
@@ -43,7 +45,7 @@ compiled/
 | `deep-research.contract.md` | Generated executor contract for `/deep:research`. |
 | `deep-review.contract.md` | Generated executor contract for `/deep:review`. |
 | `deep-ai-council.contract.md` | Generated executor contract for `/deep:ai-council`. |
-| `deep-alignment.contract.md` | Live authoritative executor contract for `/deep:alignment`; loaded by the renderer in `fix` mode ahead of the legacy body and freshness-checked against maintained sources. |
+| `deep-alignment.contract.md` | Generated executor contract for `/deep:alignment`; loaded by the renderer in `fix` mode ahead of the matching legacy body and freshness-checked against maintained sources. |
 | `manifest.jsonl` | Append-only render records with command, mode and content digests. |
 
 ---
@@ -75,7 +77,7 @@ Regenerate a contract when any maintained source digest changes.
 
 The generated contracts are derived artifacts. Do not edit their generated sections by hand.
 
-`deep-alignment.contract.md` is the live authoritative executor contract for `/deep:alignment` at injection time. The renderer loads it in `fix` mode ahead of the legacy body and rejects stale content; maintained command, workflow, skill and referenced runtime files remain the regeneration authority.
+The renderer loads the matching compiled contract in `fix` mode ahead of each legacy body and rejects stale content. In `fallback` mode it returns the legacy body without a compiled prefix. Maintained command, workflow, skill and referenced runtime files remain the regeneration authority.
 
 The maintained command files, workflow YAML assets, skill instructions and referenced runtime files remain the source of truth.
 
