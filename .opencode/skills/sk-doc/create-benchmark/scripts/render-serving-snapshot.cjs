@@ -107,6 +107,23 @@ function activeManifestPath(hubId, activationRoot = ACTIVE_ACTIVATION_ROOT) {
 }
 
 /**
+ * The directory a hub's compiled-routing archives live in.
+ *
+ * Published run output lives under `benchmark/reports/`; the archive lane is a
+ * family inside it rather than a sibling of it, so a reader finds every result
+ * in one place. Three call sites derive from here rather than repeating the
+ * segments, because a layout spelled out in several files drifts one file at a
+ * time.
+ *
+ * @param {string} hubId - Hub whose archive root is wanted.
+ * @param {string} skillsRoot - Skills tree the hub lives under.
+ * @returns {string} Absolute archive root.
+ */
+function compiledRoutingArchiveRoot(hubId, skillsRoot) {
+  return path.join(skillsRoot, hubId, 'benchmark', 'reports', 'compiled-routing');
+}
+
+/**
  * SHA-256 of the raw manifest bytes, or null when the manifest is absent. The
  * digest reads bytes rather than a re-serialized object so it is a stable
  * identity of the file exactly as it serves.
@@ -134,7 +151,7 @@ const LEGACY_PARITY_BASELINE_LABEL = 'router-compiled-parity-baseline';
  * @returns {Object} Baseline summary; `present: false` when genuinely none exists.
  */
 function scanParityBaseline(hubId, skillsRoot) {
-  const archiveRoot = path.join(skillsRoot, hubId, 'benchmark', 'compiled-routing');
+  const archiveRoot = compiledRoutingArchiveRoot(hubId, skillsRoot);
 
   const summarize = (label) => {
     const jsonPath = path.join(archiveRoot, label, 'skill-benchmark-report.json');
@@ -187,7 +204,7 @@ function scanParityBaseline(hubId, skillsRoot) {
  * @returns {Object|null} Summary of the most recent live archive, or null.
  */
 function scanRealModelLast(hubId, skillsRoot) {
-  const archiveRoot = path.join(skillsRoot, hubId, 'benchmark', 'compiled-routing');
+  const archiveRoot = compiledRoutingArchiveRoot(hubId, skillsRoot);
   let labels;
   try {
     labels = fs.readdirSync(archiveRoot, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
@@ -399,6 +416,7 @@ if (require.main === module) {
 
 module.exports = {
   REPO_ROOT,
+  compiledRoutingArchiveRoot,
   RUNTIME_ROOT,
   ACTIVE_ACTIVATION_ROOT,
   ENGINE_RESOLVER_PATH,
