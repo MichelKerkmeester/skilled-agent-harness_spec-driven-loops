@@ -7,10 +7,10 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation"
-    last_updated_at: "2026-07-27T18:20:00Z"
+    last_updated_at: "2026-07-27T18:32:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All 13 phases landed (11 Complete, 1 Blocked, 1 reopened+Complete); packet closed"
-    next_safe_action: "None -- packet complete; merge to skilled/v4.0.0.0 is operator-gated"
+    recent_action: "All 13 phases landed and merged to v4; 012 amended to drop code-graph support"
+    next_safe_action: "None -- packet complete"
     blockers: []
     key_files: ["001-pi-contract-pin/implementation-summary.md", "007-pi-mcp-host-integration/implementation-summary.md", "012-pi-runtime-compatibility/implementation-summary.md", "013-pi-manual-testing-playbook-authoring/implementation-summary.md"]
     session_dedup:

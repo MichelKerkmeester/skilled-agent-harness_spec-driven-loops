@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility"
-    last_updated_at: "2026-07-27T16:10:00Z"
+    last_updated_at: "2026-07-27T18:32:00Z"
     last_updated_by: "claude-code"
     recent_action: "Built via LUNA, hardened per GLM review, live-verified, closed Complete"
     next_safe_action: "Commit; author phase 013's manual-testing-playbook next"
@@ -39,6 +39,14 @@ _memory:
 | **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:amendment-2026-07-27 -->
+## Post-Completion Amendment (2026-07-27)
+
+`system-code-graph` is being decommissioned repo-wide (`system-code-graph/036-code-graph-decommission`). As a downstream consumer, `.pi/` no longer wires code-graph support: the `mk_code_index` server entry was removed from `.pi/mcp.json`, and `.pi/extensions/code-graph-freshness.ts` was deleted. `.pi/extensions/*.ts` now bridges **6** guard cores, not 7 (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`); `.pi/mcp.json` now wires **4** native MCP servers, not 5. The narrative and evidence below describe what was built and verified at original completion time (2026-07-27, before this amendment) and are left as an accurate historical record rather than rewritten.
+<!-- /ANCHOR:amendment-2026-07-27 -->
 
 ---
 

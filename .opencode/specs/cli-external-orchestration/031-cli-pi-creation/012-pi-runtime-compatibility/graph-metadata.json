@@ -36,10 +36,16 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      ".pi/mcp.json",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".codex/hooks.json",
+      ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs",
+      ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs",
+      ".opencode/skills/system-spec-kit/scripts/pi/README.md",
+      ".pi/settings.json",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md",
       ".opencode/skills/system-spec-kit/scripts/codex/README.md",
       "codex/README.md",
       "plan.md",
@@ -47,9 +53,17 @@
       "checklist.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
       "spec.md",
-      "implementation-summary.md"
+      "scripts/pi/sync-prompts-pi.cjs",
+      "scripts/pi/sync-agents-pi.cjs",
+      "scripts/pi/README.md"
     ],
     "entities": [
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".pi/mcp.json",
+        "source": "derived"
+      },
       {
         "name": "sync-prompts.cjs",
         "kind": "file",
@@ -69,9 +83,33 @@
         "source": "derived"
       },
       {
+        "name": "sync-prompts-pi.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/README.md",
+        "path": ".opencode/skills/system-spec-kit/scripts/pi/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "agent-delegation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md",
         "source": "derived"
       },
       {
@@ -102,12 +140,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -169,35 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot actually run this repo's 36 commands, 13 agents, or governance hooks the way Claude Code/OpenCode/Codex/Cursor/Devin already can — phases 005/006/008 designed HOW each would translate but explicitly stopped short of writing the files (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` all do not exist in this worktree today; only `.pi/mcp.json`/`.pi/settings.json`/`.pi/npm/` exist, from phase 007)",
     "created_at": "2026-07-27T15:52:18.832Z",
-    "last_save_at": "2026-07-27T15:52:18.832Z",
+    "last_save_at": "2026-07-27T18:31:00.280Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:368c0ec024080656748198a7bc465e19646ba19598c81346e831dc9c06f33d70",
+    "source_fingerprint": "sha256:805fde3d13219f2dbf0fb2ad847a427da39019f95427c5c361e7958396394248",
     "source_doc_hashes": {
-      "spec.md": "e1484cdc0ab5b098e2e91167a47676dda7943187f39ee8548203e4336abfe6ea",
-      "plan.md": "e075e856cb43857480a232839fc6009c777f16b8d9808c6aed734d208b8e0039",
-      "tasks.md": "dfdd584df828b61fee81dd7bd39f60a0e7d7430467ed6c6109ba374939897149",
-      "checklist.md": "7cfa9e506655dc287d8b57ec6b8067a0642a216f3e62703104a7eca5f7061921",
-      "implementation-summary.md": "c1c8214a56d03560afbdc1f31a923958735041fbbdb7591d32825ddf163ec691"
+      "spec.md": "37e5d3e7d4e4dbf779a76f8feeecd114f2a0fc8457cbd68a889dce754dad2334",
+      "plan.md": "a12e499cd650019c7d47f9af02eb07ba283fb562b3cd60859669a8710846f42d",
+      "tasks.md": "1649db7ba327a4b1b5852909795dc50a0512ea975fe93c071d0d0c3bcad5d4d9",
+      "checklist.md": "fe86afc25aca808e75dcfe9213bd951b387112b43e80292f7c27da59971fa9a7",
+      "implementation-summary.md": "38eab37345f153d945060ab3e4abb0561bb2ac1b42ea1ec9e50a7fff92f6493e"
     },
     "last_active_child_id": null,
     "last_active_at": null
