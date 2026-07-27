@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "spec_folder": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/018-advisor-audit-and-state-containment/001-state-directory-containment",
+    "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences",
+      "describing",
+      "specific"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Containment Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-07-27T15:47:28Z",
+    "last_save_at": "2026-07-27T17:05:48.430Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8c2d186f4c92647baee18fe58dd9f52e558119e0cced8d63a6187fd5fb5c26ef",
+    "source_doc_hashes": {
+      "spec.md": "6bf9aa6e6d2ff6ed365a24fc9400b2fed751d0ca44d922e125647f3ecbc504fc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-07-27T16:58:42.361Z",
+  "specId": "018",
+  "folderSlug": "advisor-audit-and-state-containment",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

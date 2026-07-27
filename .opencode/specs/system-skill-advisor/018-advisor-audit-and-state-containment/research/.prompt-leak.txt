@@ -1,0 +1,39 @@
+Deep research task. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+READ-ONLY. Do not modify, create or delete any repository file. Do not run git commands that mutate.
+Do NOT call MCP tools or load skills — the spec-memory daemon is unreliable and each call costs ~30s.
+Use Read/Glob/Grep/Bash(read-only) directly. Start immediately.
+
+TOPIC: automated systems are creating stray nested `.opencode/` directories inside skill and spec
+folders. Find every cause and design a durable prevention.
+
+CONFIRMED EVIDENCE (verify, then go beyond it):
+- 40 nested `.opencode/` dirs exist below the repo root, e.g.
+  `.opencode/skills/system-spec-kit/.opencode/`, `.opencode/skills/sk-doc/create-diff/.opencode/`,
+  `.opencode/skills/cli-external-orchestration/cli-opencode/.opencode/`,
+  `.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode/`
+- 160 files inside them are TRACKED by git — they are committed, not just local litter
+- Their contents are runtime state: `skills/.advisor-state/skill-graph-generation.json`,
+  `skills/.spec-gate-state/*.json` and `spec-gate-warnings.log`, `logs/cli-dispatch-audit.log`
+- A fix already shipped for part of this. `system-spec-kit/changelog/v3.6.0.0.md:153` says the
+  advisor resolver "refuses to land inside a `specs/` subtree". Strays still appear under `skills/`.
+- `system-skill-advisor/mcp-server/lib/utils/workspace-root.ts` lines ~44 and ~49 test only for
+  `specs` path segments, so a CWD under `skills/` escapes the guard entirely.
+
+INVESTIGATE AND REPORT:
+1. Every writer that can create a nested `.opencode/` tree. Name file:line for each. Include the
+   advisor daemon/lease/watcher/generation paths, the spec-gate plugin, the CLI dispatch audit log,
+   and anything else you find. Do not assume the list above is complete.
+2. For each writer, exactly how it resolves its base directory, and under what CWD it goes wrong.
+3. Why the existing `specs/`-only guard is the wrong shape, and what the correct anchor is
+   (repo-root marker discovery, git toplevel, an env var, or something better). Compare options.
+4. A prevention design that cannot regress the same way: it must be impossible to leak into ANY
+   subtree, not just an enumerated deny-list. State the failure mode each option still permits.
+5. Whether a guard belongs in one shared helper or per-writer, and what a regression test that
+   actually pins the behaviour looks like (the existing test evidently did not).
+6. Cleanup: which of the 40 dirs are safe to delete, which are tracked, and what order to do it in.
+7. Whether `.gitignore` should carry a nested-`.opencode` rule as a backstop, and the exact pattern
+   that would not also ignore the legitimate repo-root `.opencode/`.
+
+OUTPUT: markdown. Findings first with file:line evidence and a re-runnable command per claim, then
+the prevention design with explicit trade-offs, then a ranked remediation order. State the search
+root for every reachability claim. Say UNKNOWN rather than guessing.

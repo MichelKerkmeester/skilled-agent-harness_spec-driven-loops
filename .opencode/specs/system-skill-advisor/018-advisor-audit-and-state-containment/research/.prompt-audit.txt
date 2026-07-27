@@ -1,0 +1,47 @@
+Deep research task. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+READ-ONLY. Do not modify, create or delete any repository file. No git mutations.
+Do NOT call MCP tools or load skills — each call costs ~30s and the daemon is unreliable.
+Use Read/Glob/Grep/Bash(read-only) directly. Start immediately.
+
+SCOPE: `.opencode/skills/system-skill-advisor/` ONLY, plus its launcher
+`.opencode/bin/mk-skill-advisor-launcher.cjs` and its plugin bridges. Nothing else.
+
+Audit this subsystem across six categories:
+CAT-1 dead code — exported symbols, modules, scripts, CLI flags, env flags or branches with no
+  reachable caller and no documented external contract
+CAT-2 legacy or superseded files whose live successor already exists
+CAT-3 backup and scratch residue committed to the tree
+CAT-4 misplaced files contradicting the subsystem's documented layout
+CAT-5 architecture problems — layering violations, duplicated responsibility, contracts documented
+  in one place but enforced in another
+CAT-6 over-engineering whose current usage does not justify its cost, each with a simpler shape
+
+RULES LEARNED FROM A PRIOR AUDIT OF THIS REPOSITORY — follow them or your findings will be wrong:
+1. Reachability searches MUST cover the WHOLE repo, not just the owning subsystem. Three dead-code
+   claims in the last audit were live scripts invoked by path string from the installed pre-commit
+   hook. Search string literals across .ts/.js/.cjs/.mjs/.md/.yaml/.json/.sh.
+2. Dependency and import searches MUST include .ts. One claim wrongly called a package unused
+   because it searched only .js/.cjs/.mjs.
+3. Before calling anything under benchmark/, changelog/ or archive/ deletable, READ that directory's
+   own README. Retention there is usually a documented contract; four such claims were refuted.
+4. An operator-facing CLI subcommand with no programmatic caller is NOT dead. Check whether it is
+   documented as a manual interface.
+5. Do not aggregate line counts across directories and call the total a subsystem. One prior finding
+   claimed 4,667 lines for a "pair" that measured 1,520.
+6. State the search root for every reachability claim.
+
+OUTPUT: markdown, one section per finding:
+### F<n> — CAT-<n>: <one-line claim>
+**Path:** <real path verified to exist>
+**Evidence:** <file:line and what it says>
+**Verify:** <exact re-runnable command>
+**Blast radius:** <what breaks if remediated wrongly>
+
+Report only findings whose path exists on disk. Write UNKNOWN rather than guessing. If you find
+nothing in a category, say so explicitly rather than inventing a finding to fill it.
+
+OUTPUT CAPTURE (read this, it resolves an apparent contradiction):
+Your stdout is being redirected by the orchestrator to a file OUTSIDE this repository. You are not
+writing it and you must not try to. If you observe a repository file appearing that matches your
+output, that is the orchestrator capturing you, not you violating read-only. Do not stop to ask
+about it. Keep working and emit the full report to stdout.
