@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`bin/lib/` holds the shared CommonJS helpers that the MCP launchers in `bin/` require. It supervises the lifetime of the hf-model-server, bridges launcher stdio to a running daemon socket, reconnects that bridge transparently across daemon recycles, and constrains the environment passed to the embedding sidecar.
+`bin/lib/` holds two unrelated groups. The first is the shared CommonJS helpers that the MCP launchers in `bin/` require: it supervises the lifetime of the hf-model-server, bridges launcher stdio to a running daemon socket, reconnects that bridge transparently across daemon recycles, and constrains the environment passed to the embedding sidecar. The second is the compiled-routing serving surface: the activation-manifest library, the runtime-generation selector, and the generated closure the routing hot path loads.
 
 Current state:
 
@@ -52,6 +52,14 @@ Current state:
 
 ---
 
+### Compiled routing
+
+- `compiled-route-manifest.cjs` is the activation-manifest library. It mints and refreshes a hub's manifest, answers whether that manifest still matches what the hub's routing inputs compile to, and holds a writer lease so a manifest write cannot race a runtime publication. The 89-line `bin/compiled-route-manifest.cjs` is a CLI over this module, not a second copy of it.
+- `compiled-route-layout.cjs` resolves which internal generation a runtime root serves. It accepts one complete generation and refuses a root that mixes two, so a probe never reads one generation's activation state through another generation's resolver.
+- `compiled-routing/` is **generated output**, not source. `compiled-route-sync.cjs` traces the runtime closure from an authored resolver, stages a candidate, verifies every hub against it, and renames it over this directory. Anything written here by hand is erased by the next publication and cannot be promoted back, because only files the trace touches are copied. Change the authored program directory under `.opencode/specs/` instead, then republish. The directory carries no README for the same reason.
+
+---
+
 ## 3. DIRECTORY TREE
 
 ```text
@@ -60,6 +68,9 @@ lib/
 +-- launcher-ipc-bridge.cjs        # Socket path resolution, health probes, lease-probe retry, stdio bridging
 +-- launcher-session-proxy.cjs     # Reconnecting stdio-to-daemon proxy: replay + createClassifyFrame factory
 +-- sidecar-env-allowlist.cjs      # Frozen env-key allowlist for the embedding sidecar
++-- compiled-route-manifest.cjs    # Activation-manifest library: mint, refresh, freshness, writer lease
++-- compiled-route-layout.cjs      # Selects one coherent runtime generation, refuses a mixed root
++-- compiled-routing/              # GENERATED serving closure, promoted by compiled-route-sync.cjs
 `-- README.md
 ```
 
@@ -72,7 +83,7 @@ lib/
 | `model-server-supervision.cjs` | Builds the model-server supervisor: process-tree RSS sampling, crash-loop backoff, RSS watchdog, respawn-lock liveness, descendant snapshotting, give-up cooldown, socket-dir ownership and SUN_PATH limit assertions, and reaping the process tree root on idle eviction. |
 | `launcher-ipc-bridge.cjs` | Resolves the per-service IPC socket path, probes daemon and model-server health over JSON-RPC and HTTP, retries the lease-holder probe (`probeLeaseHolderWithRetries` / `resolveLeaseProbeAttempts`) so a slow-but-alive owner is not false-reaped, and bridges launcher stdio to the socket so a non-owning launcher defers to the lease holder. |
 | `launcher-session-proxy.cjs` | Fronts the daemon with a reconnecting stdin/stdout bridge that reattaches across a daemon recycle and replays in-flight read frames, and exports the `createClassifyFrame({ replayableToolNames, unsafeToolNames })` factory each launcher passes its own replay set to. |
-| `sidecar-env-allowlist.cjs` | Exports `SIDECAR_ENV_ALLOWLIST` and `isAllowedSidecarEnvKey`; only exact keys (`HOME`, `LANG`, `PATH`, `PYTORCH_ENABLE_MPS_FALLBACK`, `TEMP`, `TMP`, `TMPDIR`, `TRANSFORMERS_OFFLINE`) and prefixes (`HF_`, `LC_`, `SPECKIT_`) cross into the sidecar. |
+| `sidecar-env-allowlist.cjs` | Exports `SIDECAR_ENV_ALLOWLIST` and `isAllowedSidecarEnvKey`. only exact keys (`HOME`, `LANG`, `PATH`, `PYTORCH_ENABLE_MPS_FALLBACK`, `TEMP`, `TMP`, `TMPDIR`, `TRANSFORMERS_OFFLINE`) and prefixes (`HF_`, `LC_`, `SPECKIT_`) cross into the sidecar. |
 
 ---
 
@@ -81,7 +92,7 @@ lib/
 | Boundary | Rule |
 |---|---|
 | Imports | All three modules depend only on Node core (`fs`, `net`, `http`, `path`, `child_process`). No third-party packages. |
-| Exports | Each file uses `module.exports`. Launchers in `bin/` import these, and the daemon-backed CLI dist entrypoints require `launcher-ipc-bridge.cjs`; nothing here imports a launcher or a CLI. |
+| Exports | Each file uses `module.exports`. Launchers in `bin/` import these, and the daemon-backed CLI dist entrypoints require `launcher-ipc-bridge.cjs`. nothing here imports a launcher or a CLI. |
 | Ownership | This folder owns model-server lifecycle, IPC bridging and the sidecar env allowlist. It does not own MCP request handling or per-server build logic, which live in each launcher and skill. |
 
 Main flow (supervision):
