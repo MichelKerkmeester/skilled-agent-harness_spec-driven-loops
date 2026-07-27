@@ -1,0 +1,13 @@
+Lineage `glm-5-2-high` complete. All artifacts written to `.opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/review/lineages/glm-5-2-high/`:
+
+- `deep-review-config.json` (status: complete)
+- `deep-review-state.jsonl` (12 lines: config + 5 iterations + 3 claim_adjudication + graph_convergence + maxIterationsReached + synthesis_complete)
+- `deep-review-findings-registry.json` (3 active P1 findings, all 4 dimensions covered)
+- `deep-review-strategy.md`, `deep-review-dashboard.md`, `resource-map.md`
+- `iterations/iteration-001.md` … `iteration-005.md`
+- `deltas/iter-001.jsonl` … `iter-005.jsonl`
+- `review-report.md` (verdict: **CONDITIONAL**, stopReason: `maxIterationsReached`)
+
+Independent review verdict: **CONDITIONAL** — three active P1 findings (`P1-001` default-path same-day overwrite, `P1-002` six-vs-seven-file contract drift, `P1-003` hardcoded retired parity label), all survived adversarial replay; no P0 found. All JSON and JSONL artifacts parse cleanly.
+
+FANOUT_LINEAGE_COMPLETE:glm-5-2-high

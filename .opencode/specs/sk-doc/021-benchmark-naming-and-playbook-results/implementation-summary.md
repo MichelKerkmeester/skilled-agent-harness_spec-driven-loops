@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T12:18:18Z"
+    last_updated_at: "2026-07-27T14:10:21Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Fixed the two findings from the isolated re-run"
-    next_safe_action: "Decide whether the deep-review leaf timestamp fabrication warrants its own packet"
+    recent_action: "Round 3 returned PASS over the fixed state"
+    next_safe_action: "Open a deep-loop packet for brittle event-name validation and agent-written timestamps"
     blockers: []
     completion_pct: 100
 ---
@@ -136,6 +136,19 @@ its own evidence, because the spec named that edge case and the writer never imp
 owning skill declared a six-file report folder naming a report the writer never emits. A third,
 pre-existing, had the serving snapshot looking for parity evidence under a fixed label no writer
 produces. All three are fixed and covered.
+
+**Three review rounds, converging 3 findings, then 2, then 0.** Round 3 ran five iterations over the
+fixed state and returned PASS with no findings at any severity, citing the reservation code directly.
+That is supportive evidence the fixes hold, not proof the work is clean: each iteration is short, and
+the executor that produced it mangled its own bookkeeping in the same run.
+
+**Three of five lineage attempts died on bookkeeping, not on analysis.** The stop-policy validator
+matches one exact event name, while the emitter is a language model writing that name by hand. Across
+runs it wrote `synthesis_complete`, then `phase_synthesis_complete`, then `synthesis` — the same model
+differing between runs on the same prompt. Round 3 completed all five iterations and produced a full
+report, and was still failed terminally for the word it used in a status record. Compliance here is
+non-deterministic, so an early read that one executor was reliable and another was not did not survive
+more evidence.
 
 **The review that found them was not itself trustworthy.** One lineage failed terminally on a write-
 containment violation; the other wrote nine of twelve state records with timestamps in the future.

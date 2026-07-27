@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T12:18:18Z"
+    last_updated_at: "2026-07-27T14:10:21Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Fixed the two findings from the isolated re-run"
-    next_safe_action: "Decide whether the deep-review leaf timestamp fabrication warrants its own packet"
+    recent_action: "Round 3 returned PASS over the fixed state"
+    next_safe_action: "Open a deep-loop packet for brittle event-name validation and agent-written timestamps"
     blockers: []
     completion_pct: 100
 ---
@@ -185,4 +185,5 @@ references to a sibling hub.
 - [x] CHK-038 [P0] No regression from the remediation. Evidence: storage suite `11 passed`, lane suite `260 passed` against the same `11` pre-existing failures, link checker `85 broken`.
 - [x] CHK-039 [P1] Output allocation is concurrency-safe, not check-then-create. Evidence: three consecutive runs reserve `…-high`, `…-high-2`, `…-high-3` by non-recursive `mkdirSync`, which fails `EEXIST` atomically.
 - [x] CHK-040 [P1] The packet's own normative layout matches the writer. Evidence: `grep -rn "six files|six-file"` over the packet returns `1` hit, and that hit is the historical record of the defect rather than a current claim.
+- [x] CHK-041 [P1] The remediations converged. Evidence: round 3 over the fixed state returns `Verdict: PASS` with `P0 0, P1 0, P2 0` across five iterations, four of which cite the atomic-reservation code by name.
 <!-- /ANCHOR:review-remediation -->

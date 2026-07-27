@@ -1,0 +1,11 @@
+All artifacts present and accounted for. The deep-review loop is complete:
+
+- **phase_init** ✓ — config, strategy, state.jsonl, findings-registry written
+- **phase_main_loop** ✓ — 5 iterations across all 4 dimensions (correctness ×2, traceability, maintainability, security)
+- **phase_synthesis** ✓ — review-report.md, dashboard, updated findings-registry written
+- **Verdict:** CONDITIONAL (0 P0, 3 P1, 12 P2)
+- **Containment:** all writes confined to `review/lineages/glm-5-2-high/`
+
+The three remediations (CHK-035, CHK-036, CHK-037) hold under adversarial replay. The three P1 findings (F-004, F-007, F-009) are spec-alignment / test-coverage gaps where the CHK-036 remediation did not propagate to `spec.md` §3/§4, `implementation-summary.md`, or the storage guide §4, and CHK-037 has no regression test. The sibling `terra-high-fast` lineage hit `dispatch_blocked` and produced no report; this lineage's verdict is the only completed signal for the glm-5-2-high lane.
+
+FANOUT_LINEAGE_COMPLETE:glm-5-2-high

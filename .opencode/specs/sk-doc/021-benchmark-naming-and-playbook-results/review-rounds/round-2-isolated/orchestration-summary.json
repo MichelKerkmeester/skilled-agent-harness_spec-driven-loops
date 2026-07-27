@@ -1,0 +1,71 @@
+{
+  "run_id": "1785153423148-1aktp5",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results",
+  "base_artifact_dir": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "terra-high-fast",
+      "state_log": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/review/lineages/terra-high-fast/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-27T12:06:12.625Z",
+        "end_at_iso": "2026-07-27T12:15:28.491Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 10,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 14
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-27T00:00:00.000Z",
+          "deltaMs": 43452625
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T12:18:00.000Z",
+          "deltaMs": 31509
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T12:23:00.000Z",
+          "deltaMs": 331509
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T12:23:01.000Z",
+          "deltaMs": 332509
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T12:27:00.000Z",
+          "deltaMs": 571509
+        }
+      ]
+    }
+  ]
+}

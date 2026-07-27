@@ -1,0 +1,36 @@
+{
+  "reviewTarget": "sk-doc/021-benchmark-naming-and-playbook-results — convergence pass over the fixed state: dated grammar, writer and index with atomic output reservation, 78-folder rename, rendered backfill, and the packet layout claims now aligned to the seven-file writer output",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": "all",
+  "specFolder": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "label": "terra-high-fast",
+          "kind": "cli-codex",
+          "model": "gpt-5.6-terra",
+          "reasoningEffort": "high",
+          "serviceTier": "fast",
+          "sandboxMode": "workspace-write",
+          "timeoutSeconds": 3600,
+          "iterations": 5
+        }
+      ],
+      "concurrency": 1,
+      "maxRetries": 3
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "sessionId": "fanout-terra-high-fast-1785153423148-1aktp5",
+  "parentSessionId": "fanout-terra-high-fast-1785153423148-1aktp5",
+  "generation": 1,
+  "lineageMode": "resume",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-07-27T12:35:00.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Default output allocation is not concurrency-safe",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      "line": 151,
+      "description": "The candidate is selected with existsSync before the later recursive mkdirSync and report writes, so concurrent callers can select the same path.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The default path is the only no-outputs-dir route and all emitted files share it.",
+      "affectedSurfaceHints": [
+        "Lane C default path",
+        "report writer",
+        "reports index"
+      ],
+      "contentHash": "2e24b325a1bccbdfe59da12d99b32f18770e0a3d65b0c3f33f1bb8db4c7dab13",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Packet acceptance evidence still describes the obsolete six-file layout",
+      "file": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/spec.md",
+      "line": 128,
+      "description": "The governing packet artifacts say six files, while the writer writes the JSON/Markdown pair and five companions; the target storage guide still says only a pair plus optional README.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The stale assertion is present in spec, plan, tasks, and checklist, while the writer has one shared emission list.",
+      "affectedSurfaceHints": [
+        "target specification",
+        "plan and checklist",
+        "storage guide",
+        "Lane C writer"
+      ],
+      "contentHash": "0549cfd0c1c6b670fb6c898b145da877826bff3484b92a3e965e1fc467b50813",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1.2,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [
+    "stopPolicy=max-iterations; convergence retained as telemetry until the hard ceiling"
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "findingStability": 1,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 2,
+    "hotspotSaturation": 1
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 0,
+      "partial": 1,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:151-155",
+          ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/spec.md:128"
+        ],
+        "findingRefs": [
+          "P1-001",
+          "P1-002"
+        ]
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "evidence": [
+          ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/checklist.md:161",
+          ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/checklist.md:182"
+        ],
+        "findingRefs": [
+          "P1-001",
+          "P1-002"
+        ]
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "evidence": [
+          ".opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md:135-153"
+        ],
+        "findingRefs": [
+          "P1-002"
+        ]
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
