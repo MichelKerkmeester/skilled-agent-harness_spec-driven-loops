@@ -1,5 +1,5 @@
 ---
-description: Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.
+description: "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode."
 argument-hint: "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---

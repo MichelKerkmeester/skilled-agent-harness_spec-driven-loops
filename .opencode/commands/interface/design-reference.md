@@ -1,5 +1,5 @@
 ---
-description: Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.
+description: "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode."
 argument-hint: "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---

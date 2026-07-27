@@ -1,0 +1,1 @@
+../../.opencode/commands/create/manual-testing-playbook.md

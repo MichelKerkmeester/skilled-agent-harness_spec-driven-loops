@@ -1,0 +1,1 @@
+../../../.opencode/commands/doctor/mcp.md

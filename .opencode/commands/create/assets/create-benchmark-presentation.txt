@@ -48,7 +48,7 @@ PRE-BOUND SETUP ANSWERS:
   benchmark_date: 2026-05-17
   skill_path: .opencode/skills/
   benchmarks_root: .opencode/skills/system-spec-kit/mcp-server/benchmarks
-  benchmark_folder: .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-17
+  benchmark_folder: .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-17--run--unspecified
   execution_mode: AUTONOMOUS
   memory_choice: skip
 ```
