@@ -16,7 +16,9 @@
       "cli-pi playbook categories",
       "pi manual testing playbook plan",
       "pi manual testing playbook tasks",
-      "pi manual testing playbook checklist"
+      "pi manual testing playbook checklist",
+      "pi manual testing playbook summary",
+      "cli-pi playbook planning status"
     ],
     "key_topics": [
       "manual",
@@ -29,32 +31,33 @@
       "plan",
       "tasks",
       "checklist",
-      "cli-codex",
-      "cli-devin"
+      "summary",
+      "planning"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "spec.md",
       ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -76,13 +79,25 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Constraint",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -107,12 +122,6 @@
       },
       {
         "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Plan",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -166,20 +175,8 @@
         "source": "derived"
       },
       {
-        "name": "Global Preconditions",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -188,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex`, `cli-devin`, and `cli-cursor` each ship a split-document manual-testing playbook (root file + category folders, `{PREFIX}-NNN` scenario IDs, strict PASS/FAIL/SKIP discipline) as their no-mocking validation gate -- there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-27T06:48:18.351Z",
-    "last_save_at": "2026-07-27T06:48:18.351Z",
+    "last_save_at": "2026-07-27T11:34:57.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ac2a9a4a9fac7863460d4b0d502e7f3e782ccc8ba40e7d8414147acf0139492",
+    "source_fingerprint": "sha256:ce6f3b1d4fff718385f29f52d23394536ceca48dff7cf4ced6f3dfd4a4bdca40",
     "source_doc_hashes": {
-      "spec.md": "d6915ce43264243166e9d0065029692cebb50a7a5dbcbc0215fe4a61415864c6",
-      "plan.md": "d50a91a6acd93e69179ec9b4e766c7fe402cc85704f8dcba07911cdd44eb7ed0",
-      "tasks.md": "4c616c7284f435d4dee33eb7cc1d35a956146e6d723a1537930ede8c649e51db",
-      "checklist.md": "97ea1c0f94447fc0fac0acc21609488a4f1afaaa4808c14546a451228ada5992"
+      "spec.md": "5a294b64034280f6c933b8f6caec61ef5ad375f6594700121b5d9afc05fb24dc",
+      "plan.md": "f9456f0dc54359816d7e23385843db5f703100e0d7a75b8ecf9bd9fe630843cb",
+      "tasks.md": "1a4bd59f1c2915e9ef546847f6f27a34d944095557f95e75ad2a227e893495f2",
+      "checklist.md": "743e511e90805d5d2329e6b9139f3b71a24d6328dc74a7b06142d9a564d909a4",
+      "implementation-summary.md": "b784125bb22d5921e6c155e7fa78656e24c53f44ff5fa43bce09bc07e31024e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

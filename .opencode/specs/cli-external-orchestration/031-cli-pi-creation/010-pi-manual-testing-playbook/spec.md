@@ -10,17 +10,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T11:36:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec/plan/tasks/checklist for Pi playbook planning"
-    next_safe_action: "Await phases 001-009, then author playbook per spec.md section 9"
-    blockers: ["Phase 001 has not yet live-verified headless dispatch exit-code semantics or the self-invocation env var", "Phase 007 has not yet confirmed whether pi-mcp-extension supports stdio transport", "Phase 008 has not yet enumerated the extension API's actual lifecycle events"]
-    key_files: ["../030-cli-cursor-creation/006-cursor-manual-testing-playbook/spec.md", ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md", ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md"]
+    recent_action: "Coverage plan re-verified against phases 001-009's real landed facts"
+    next_safe_action: "Commit; phase 011 re-judges playbook proportionality at closeout"
+    blockers: ["The actual playbook files remain unauthored - out of this planning phase's own scope, deferred to a future execution phase"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: ["Which lifecycle events does Pi's extension API actually expose (routed to phase 008)?", "Does pi-mcp-extension support stdio transport at all (routed to phase 007)?", "What is Pi's self-invocation-guard signal (routed to phase 001/003)?", "What is the exact `pi install npm:X` syntax and its failure output (routed to phase 001)?", "Should a Pi-unique category (no sibling analog) be added once phases 001-009 reveal one, e.g. from Containerization or Sessions/Compaction?"]
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete - planning re-verified against phases 001-009's real landed facts (exit-code semantics, stdio-transport docs update, 32-event type-confirmed lifecycle set, 7-model roster); the actual playbook files stay unauthored, deferred to a future execution phase per this phase's own Hard Constraint |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -144,11 +144,11 @@ Plan (this phase authors ONLY spec.md/plan.md/tasks.md/checklist.md -- no playbo
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 (`pi-contract-pin`) live-verified facts: headless dispatch exit-code semantics, self-invocation env var, `.pi/` settings.json merge behavior | Blocks the FUTURE authoring pass for this phase (not this planning pass) | This planning pass explicitly marks the dependent claims UNKNOWN (§9, RISKS) rather than guessing them |
-| Dependency | Phase 003 (`cli-pi-skill-packet`) `SKILL.md` existing | Needed as the cross-reference target once this phase later authors the real playbook | Noted as a future action in SCOPE/REQ-011, not performed now |
-| Dependency | Phase 007 (`pi-mcp-host-integration`) live confirmation of stdio-transport support | `mcp-host-integration` category's stdio probe (`PI-011`) depends on this | Planned scenario pairs it with a streamable-http positive control (`PI-012`) so the category plan isn't blocked on one unresolved fact |
-| Dependency | Phase 008 (`pi-hook-extension-layer`) live enumeration of extension lifecycle events | `hook-extension-layer` scenario plans (`PI-014`..`PI-016`) depend on the actual event set, not an assumed one | `PI-015` is planned specifically as the live-enumeration scenario, per REQ-009 |
-| Dependency | Phase 009 (`pi-model-registry-and-routing`) fail-closed allowlist + `check-prompt-quality-card-sync.sh` passing (this phase's Predecessor handoff criterion) | `model-dispatch` scenario plans (`PI-017`/`PI-018`) assume this landed | This phase's METADATA Predecessor row cites the handoff; `PI-017` restates the no-`auto`-default requirement independently (REQ-010) |
+| Dependency | Phase 001 (`pi-contract-pin`) | Complete - exit code on failure confirmed unreliable, `pi install npm:<pkg> -l --approve` confirmed as the real verb; self-invocation signal NOT surfaced | `PI-002`'s scenario plan now cites real evidence instead of an assumption; self-invocation guard remains routed to a future phase |
+| Dependency | Phase 003 (`cli-pi-skill-packet`) | Complete - `cli-pi/SKILL.md` exists, 6th hub mode registered | Cross-reference target now exists; still not edited by this planning phase per REQ-011 |
+| Dependency | Phase 007 (`pi-mcp-host-integration`) | Blocked - docs now document stdio transport (narrowing REQ-002's premise), but live-session confirmation was out of that phase's own scope | `PI-011`'s scenario is still the one that must confirm a live connection; `PI-012`'s streamable-http control still stands as the fallback baseline |
+| Dependency | Phase 008 (`pi-hook-extension-layer`) | Blocked - the real 32-event set was TYPE-CONFIRMED via the installed package's `types.d.ts`, a materially stronger evidence class than this phase's authoring-time UNKNOWN | `PI-015`'s scenario plan can now cite real candidate event names instead of an assumed list, still pending live-session capture |
+| Dependency | Phase 009 (`pi-model-registry-and-routing`) | Complete - fail-closed 7-model allowlist landed, `check-prompt-quality-card-sync.sh` passing | `PI-017`/`PI-018` now cite the real, operator-confirmed model roster instead of a generic catalog reference |
 | Risk | Blind port of sibling categories (Cursor's worktree-isolation/cloud-worker, Codex's 3-tier sandbox, Devin's 4-mode permission enum) fabricates coverage Pi doesn't have in that shape | High if unmitigated | Category set (REQ-007) is derived from Pi's actual documented native surfaces (skills/prompt-templates/extensions) plus its two third-party packages, not ported verbatim |
 | Risk | Third-party package install syntax (`pi install npm:X`) assumed from a packages-catalog-page convention, not confirmed by docs | Medium | `agent-bridge` (`PI-009`) and `mcp-host-integration` (`PI-011`) scenario plans both note the install-syntax UNKNOWN, routed to phase 001's first live install and re-confirmed by phases 006/007 |
 | Risk | MCP support may be genuinely peripheral to core Pi - both `https://pi.dev/docs/latest/install` and `.../mcp` core-docs pages 404; MCP is documented only at the package-catalog page | Medium | `mcp-host-integration` scenario plan (`PI-011`/`PI-012`) pairs a stdio probe with a streamable-http control instead of assuming either direction works |
@@ -217,7 +217,7 @@ This table is the planning-stage sketch that the FUTURE authoring pass (after ph
 | PI-ID | Category | Planned Title | Depends On | Fixture-Status |
 |-------|----------|----------------|------------|-----------------|
 | PI-001 | `cli-invocation` | Version/help + `.pi/` directory creation + `settings.json` merge (project overrides global, nested-object merge per the docs quote) | Phase 001 | Docs-grounded; merge behavior UNCONFIRMED until live |
-| PI-002 | `cli-invocation` | Headless/non-interactive dispatch exit-code semantics (Programmatic Usage: SDK/RPC/JSON event stream) on both success and auth/dispatch failure | Phase 001, Phase 002 | UNKNOWN - the `cursor-agent -p` exit-0-on-failure gotcha class; must not be assumed either way |
+| PI-002 | `cli-invocation` | Headless/non-interactive dispatch exit-code semantics (Programmatic Usage: SDK/RPC/JSON event stream) on both success and auth/dispatch failure | Phase 001, Phase 002 | Phase 001 live-confirmed exit code is UNRELIABLE on failure (0 then 1 across identical runs, worse than `cursor-agent`'s own gotcha) - the future scenario must assert on stdout/JSON-event content, never exit code alone |
 | PI-003 | `cli-invocation` | Hallucination-fixture: constructed Pi dispatch never fabricates an undocumented flag/model-id syntax; Fail condition explicitly names the fabricated pattern | None (self-contained negative control) | Grounded in the general cli-family hallucination-caveat pattern; Pi has no archived failure data of its own |
 | PI-004 | `skill-discovery` | `.pi/settings.json` `"skills"` array pointed at `.opencode/skills/`; verify recursive `SKILL.md` discovery surfaces the 12 hubs | Phase 003, Phase 004 | Docs-grounded (recursive discovery documented); hub-count behavior UNCONFIRMED |
 | PI-005 | `skill-discovery` | Flattening-risk check: does every nested mode `SKILL.md` surface as an independent skill, diverging from the single-advisor-identity parent-hub design? | Phase 004 | UNKNOWN - phase 004's own open question; this scenario is the live check |
@@ -226,13 +226,13 @@ This table is the planning-stage sketch that the FUTURE authoring pass (after ph
 | PI-008 | `command-dispatch` | `$1`/`$2`/`$@`/`${1:-default}` argument substitution translated from Claude's `$ARGUMENTS` placeholder convention; verify multi-arg substitution on a flattened command | Phase 005 | Docs-grounded (syntax documented); translation correctness UNCONFIRMED |
 | PI-009 | `agent-bridge` | Install `pi-subagents` (confirm exact `pi install npm:pi-subagents` syntax live); verify one translated `.claude/agents/*.md` file parses without schema errors under `.pi/agents/**/*.md` | Phase 006 | Install syntax UNKNOWN (inferred from catalog convention, not documented); routed to phase 001/006 |
 | PI-010 | `agent-bridge` | Project-vs-global override: a project `.pi/agents/name.md` wins over a global `~/.pi/agent/agents/name.md` on name collision | Phase 006 | Docs-grounded ("project definitions win on name collision") |
-| PI-011 | `mcp-host-integration` | Install `pi-mcp-extension`; attempt to wire one native stdio-transport MCP server (e.g. `mk_code_index`) from `.mcp.json`'s `{command,args,env}` shape into `.pi/mcp.json`; live-verify via `/mcp` whether stdio transport is supported at all | Phase 007 | UNKNOWN - the only documented example is `streamable-http`; MUST NOT be assumed to work |
+| PI-011 | `mcp-host-integration` | Install `pi-mcp-extension`; attempt to wire one native stdio-transport MCP server (e.g. `mk_code_index`) from `.mcp.json`'s `{command,args,env}` shape into `.pi/mcp.json`; live-verify via `/mcp` whether stdio transport is supported at all | Phase 007 | Phase 007 found a live docs re-fetch now documents a stdio config shape (`"transport": "stdio"` + `command`/`args`/`env`), narrowing but not resolving this - phase 007 stayed Blocked pending an actual install; this scenario is still the one that must confirm it connects live |
 | PI-012 | `mcp-host-integration` | Positive control: wire the one documented remote `streamable-http` MCP server shape and verify `/mcp` shows it connected, establishing a deny-by-default / connected-only baseline | Phase 007 | Docs-grounded (the one quoted example shape) |
 | PI-013 | `mcp-host-integration` | `~/.pi/agent/mcp.json` (global) vs `.pi/mcp.json` (project) precedence - verify project config overrides global on a colliding server name | Phase 007 | Docs-grounded ("project ... overrides global") |
 | PI-014 | `hook-extension-layer` | Native `.pi/extensions/*.ts` auto-discovery (project-local); load a minimal extension and confirm it is picked up without a `settings.json` entry | Phase 008 | Docs-grounded (auto-discovery explicitly documented) |
-| PI-015 | `hook-extension-layer` | Lifecycle-event enumeration probe: live-list which lifecycle events/hooks the extension API actually exposes, checked against the events our guard cores need (spec-gate, skill-advisor routing, code-graph freshness, mcp-route-guard) | Phase 008 | UNKNOWN - event set not documented in the supplied research; must be live-probed, not assumed |
+| PI-015 | `hook-extension-layer` | Lifecycle-event enumeration probe: live-list which lifecycle events/hooks the extension API actually exposes, checked against the events our guard cores need (spec-gate, skill-advisor routing, code-graph freshness, mcp-route-guard) | Phase 008 | Phase 008 found the real event set via a direct read of the installed package's `types.d.ts` (32 named events incl. `tool_call`, block-capable via `{block: true, reason}`) - TYPE-CONFIRMED, not yet LIVE-SESSION-CONFIRMED; this scenario is the one that must capture a real invocation |
 | PI-016 | `hook-extension-layer` | Fail-closed verification: a bridged guard core whose extension throws/errors during a guarded lifecycle event must not silently allow the guarded action through | Phase 008 | Depends on PI-015's confirmed event set |
-| PI-017 | `model-dispatch` | Live smoke dispatch against a Pi-supported model sourced from `https://pi.dev/models`; confirm the dispatch allowlist has no `"auto"` default (fail-closed from the start, learning from `cli-cursor`'s later hardening rather than repeating the two-step path) | Phase 009 | Docs-grounded (model list URL real); allowlist design is this phase's own requirement, not a Pi fact |
+| PI-017 | `model-dispatch` | Live smoke dispatch against a Pi-supported model; confirm the dispatch allowlist has no `"auto"` default (fail-closed from the start, learning from `cli-cursor`'s later hardening rather than repeating the two-step path) | Phase 009 | Phase 009 landed the real, operator-confirmed 7-model roster (`deepseek-v4-pro`, `minimax-m3`, `gpt-5.6-luna`/`sol`/`terra`, `mimo-v2.5-pro`/`-ultraspeed`) in `PI_SUPPORTED_MODELS`, fail-closed with no `"auto"` default, confirmed by unit test - this scenario is the live-dispatch confirmation still pending a real `pi` session |
 | PI-018 | `model-dispatch` | Provider/auth config surface: confirm provider config (`pi.dev/docs/latest/providers`) interacts correctly with the `.pi/settings.json` merge semantics from `PI-001` | Phase 001, Phase 009 | Docs-grounded (Providers doc page named in the nav); merge interaction UNCONFIRMED |
 | PI-019 | `prompt-quality` | CLEAR scoring via the canonical quality card applied before a non-trivial Pi dispatch, ported near-verbatim from `cli-codex`/`cli-cursor`'s cli-family-generic pattern | None (cli-family-generic, not Pi-specific) | Grounded in the existing, already-proven sibling pattern |
 
@@ -242,11 +242,11 @@ Category rollup: `cli-invocation` (3), `skill-discovery` (3), `command-dispatch`
 
 ## 10. OPEN QUESTIONS
 
-- Which lifecycle events does Pi's extension API actually expose, and do they cover the events our runtime-neutral guard cores need (spec-gate, skill-advisor routing, code-graph freshness, mcp-route-guard)? Routed to phase 008; `PI-015` plans to enumerate live rather than assume parity.
-- Does `pi-mcp-extension` support a local stdio-transport MCP server at all, given the only documented example is `streamable-http`? Routed to phase 007; `PI-011`/`PI-012` plan to test both directions.
-- What is Pi's actual self-invocation-guard signal (env var, process ancestry, or something else) for the future `cli-pi` skill's hard_rules guard? Routed to phase 001/003; not guessed here.
-- What is the exact `pi install npm:X` syntax and its failure-mode output? Routed to phase 001 (first live install) and re-confirmed by phases 006/007 (their own package installs).
-- Should the eventual playbook add a Pi-unique category with no sibling analog (mirroring Cursor's worktree-isolation/cloud-worker), once phases 001-009 reveal whether Pi has such a surface (e.g. Containerization, Sessions/Compaction from the docs nav)? Left open for the future authoring pass to decide once those docs sections are live-probed.
+- Which lifecycle events does Pi's extension API actually expose? **Substantially answered** by phase 008's direct read of the installed package's `types.d.ts`: 32 named events including block-capable `tool_call`. TYPE-CONFIRMED, not yet LIVE-SESSION-CONFIRMED - `PI-015` still needs to capture a real invocation.
+- Does `pi-mcp-extension` support a local stdio-transport MCP server at all? **Narrowed** by phase 007's live docs re-fetch: stdio IS now documented (unlike at this phase's authoring time), but phase 007 could not install the package to confirm it connects live - `PI-011`/`PI-012` still test both directions.
+- What is Pi's actual self-invocation-guard signal? **Still unresolved** - phase 001 did not surface this; remains routed to a future execution phase, not guessed here.
+- What is the exact `pi install npm:X` syntax and its failure-mode output? **Confirmed** by phase 001: `pi install npm:<pkg> -l --approve`; exit code on failure is unreliable (0 then 1 across identical runs) - phase 001's own key finding, now the ground truth `PI-002`'s scenario plan is built against.
+- Should the eventual playbook add a Pi-unique category with no sibling analog? **Still open** - phases 001-009 (planning-scope, all no live session) did not surface a clear Pi-unique surface; left for the future authoring pass once a live session is possible.
 <!-- /ANCHOR:questions -->
 
 ---

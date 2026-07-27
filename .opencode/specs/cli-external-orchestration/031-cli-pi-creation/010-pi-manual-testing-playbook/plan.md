@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T11:36:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md Scenario Coverage Plan cross-reference"
-    next_safe_action: "Wait for phases 001-009, then run Phase 2 below"
-    blockers: ["Phases 001, 007, 008 have not yet live-verified the facts this plan's future authoring pass depends on"]
-    key_files: ["spec.md", "checklist.md"]
+    recent_action: "Dependency table + Scenario Coverage Plan re-verified against phases 001-009's real facts"
+    next_safe_action: "Commit; phase 011 re-judges playbook proportionality at closeout"
+    blockers: ["The actual playbook files remain unauthored - out of this planning phase's own scope"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -65,7 +65,7 @@ This phase plans (does not yet author) a Pi-native manual-testing playbook: a ro
 ### Definition of Done (for THIS planning phase)
 - [x] spec.md/plan.md/tasks.md/checklist.md authored with concrete, falsifiable acceptance criteria
 - [x] Scenario Coverage Plan (spec.md §9) sketches 8 categories / 19 `PI-NNN` scenarios, IDs gap-free
-- [ ] `validate.sh 010-pi-manual-testing-playbook --strict` returns `Errors: 0` (to be run at the end of this authoring pass)
+- [x] `validate.sh 010-pi-manual-testing-playbook --strict` returns `Errors: 0` [EVIDENCE: via the main-tree metadata round-trip pattern, recorded in the commit]
 
 ### Definition of Done (for the FUTURE authoring pass - NOT this phase)
 - [ ] Root playbook + 8 category folders + 19 scenario files actually exist under `cli-pi/manual-testing-playbook/`
@@ -113,7 +113,7 @@ Not a bug fix; included for surface-tracking clarity per plan-core convention. A
 - [x] Read `cli-cursor/manual-testing-playbook/manual-testing-playbook.md` (root) + one scenario file, and `cli-cursor-creation/006-cursor-manual-testing-playbook/spec.md` as the structural and tone precedent
 - [x] Read `.opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md` for the canonical package contract (banners, section order, per-feature template, validation gates)
 - [x] Sketched the 8-category / 19-`PI-NNN` Scenario Coverage Plan (spec.md §9) against the 7 required capability areas plus one cli-family-generic addition
-- [ ] (Future) Confirm phases 001-009 have landed; re-read their `implementation-summary.md` files for live facts before authoring
+- [x] Confirm phases 001-009 have landed; re-read their `implementation-summary.md` files for live facts [EVIDENCE: all 9 predecessor phases Complete or Blocked-with-real-evidence; spec.md §9 rows for PI-002/PI-011/PI-015/PI-017 updated with the real findings from phases 001/007/008/009]
 
 ### Phase 2: Core Implementation (FUTURE - not this phase)
 - [ ] Author the root `manual-testing-playbook.md` (EXECUTION POLICY + SELF-INVOCATION GUARD banners; Global Preconditions gating on Pi CLI install + provider auth, citing phase 001's confirmed self-invocation signal and exit-code semantics)
@@ -149,11 +149,11 @@ Not a bug fix; included for surface-tracking clarity per plan-core convention. A
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 (`pi-contract-pin`) | Internal | Planned, not yet executed | Future authoring pass cannot confirm self-invocation signal, exit-code semantics, or `.pi/` merge behavior |
-| Phase 003 (`cli-pi-skill-packet`) | Internal | Planned, not yet executed | No `SKILL.md` cross-reference target exists yet |
-| Phase 007 (`pi-mcp-host-integration`) | Internal | Planned, not yet executed | `mcp-host-integration` category cannot confirm stdio-transport support |
-| Phase 008 (`pi-hook-extension-layer`) | Internal | Planned, not yet executed | `hook-extension-layer` category cannot confirm the real lifecycle-event set |
-| Phase 009 (`pi-model-registry-and-routing`) | Internal | Planned, not yet executed | `model-dispatch` category cannot confirm the fail-closed allowlist landed |
+| Phase 001 (`pi-contract-pin`) | Internal | Complete | Exit-code-unreliability and install-verb facts now ground `PI-002`; self-invocation signal still unconfirmed |
+| Phase 003 (`cli-pi-skill-packet`) | Internal | Complete | `SKILL.md` cross-reference target now exists (still not edited by this planning phase) |
+| Phase 007 (`pi-mcp-host-integration`) | Internal | Blocked | Docs now document stdio transport (narrower gap for `PI-011`), but live-session confirmation stays open |
+| Phase 008 (`pi-hook-extension-layer`) | Internal | Blocked | Real 32-event set TYPE-CONFIRMED via the installed package's `types.d.ts`, grounding `PI-015` far better than an assumed list; live-session confirmation stays open |
+| Phase 009 (`pi-model-registry-and-routing`) | Internal | Complete | Fail-closed 7-model allowlist landed, grounding `PI-017`/`PI-018` with the real roster |
 | `cli-codex`/`cli-cursor` playbooks | Internal | Live (shipped) | Structural + tone precedent for this plan |
 <!-- /ANCHOR:dependencies -->
 

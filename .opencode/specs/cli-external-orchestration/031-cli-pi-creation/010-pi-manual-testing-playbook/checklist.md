@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Pi manual-testing playbook (planning)"
-description: "Verification checklist for the Pi manual-testing playbook planning phase. Status: Planned - all items unchecked; the playbook they verify does not exist yet."
+description: "Verification checklist for the Pi manual-testing playbook planning phase. This-phase items closed out live; future-authoring items accepted-deferred."
 trigger_phrases:
   - "pi manual testing playbook checklist"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T11:36:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored checklist.md; planning-doc items reviewed"
-    next_safe_action: "Run validate.sh --strict and report status"
+    recent_action: "This-phase items closed out live; future items deferred, phase Complete for its own scope"
+    next_safe_action: "Commit; phase 011 re-judges playbook proportionality at closeout"
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ FAILURE MODES:
 
 ---
 
-**Status note**: This phase is **Planned**, not built. Every item below is left unchecked `[ ]` by design - this checklist verifies the FUTURE authored Pi manual-testing playbook, which does not exist yet; its authoring is gated on phases 001, 003, 007, 008, and 009 landing live-verified facts. Items marked (this-phase) describe evidence a reviewer can confirm right now about the 4 planning docs themselves; items marked (future) can only be confirmed once the real playbook exists.
+**Status note**: This phase is **Complete for its own planning-only scope**. Items marked (this-phase) are closed out with real evidence below - all 9 predecessor phases have now landed (Complete or Blocked-with-real-findings), and this phase's own Scenario Coverage Plan was re-verified against their real facts. Items marked (future) stay `[B]` blocked and explicitly deferred: they verify the actual authored Pi manual-testing playbook, which does not exist yet - creating it is out of this planning phase's own Hard Constraint.
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
@@ -53,9 +53,9 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] (this-phase) Requirements documented in `spec.md` (§4 REQUIREMENTS, REQ-001..REQ-012)
-- [ ] CHK-002 [P0] (this-phase) Technical approach defined in `plan.md` (§1-4)
-- [ ] CHK-003 [P1] (this-phase) `cli-cursor/manual-testing-playbook/manual-testing-playbook.md` (root) + `../030-cli-cursor-creation/006-cursor-manual-testing-playbook/` (spec-kit precedent) + `.opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md` all read as the structural template before authoring
+- [x] CHK-001 [P0] (this-phase) Requirements documented in `spec.md` (§4 REQUIREMENTS, REQ-001..REQ-012) [EVIDENCE: `spec.md:105` §4, 12/12 REQs present]
+- [x] CHK-002 [P0] (this-phase) Technical approach defined in `plan.md` (§1-4) [EVIDENCE: `plan.md` §3 Architecture]
+- [x] CHK-003 [P1] (this-phase) Precedents read before authoring [EVIDENCE: `spec.md`/`plan.md` cite `cli-cursor`'s playbook, `006-cursor-manual-testing-playbook`, and `sk-doc/create-manual-testing-playbook/SKILL.md` throughout]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -63,9 +63,9 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] (future) 8 category subdirectories confirmed via `find cli-pi/manual-testing-playbook -type f`: `cli-invocation`, `skill-discovery`, `command-dispatch`, `agent-bridge`, `mcp-host-integration`, `hook-extension-layer`, `model-dispatch`, `prompt-quality` - each with `>=1` file
-- [ ] CHK-011 [P0] (future) `grep -rhoE "PI-[0-9]{3}" cli-pi/manual-testing-playbook | sort -u` yields a sequential, gap-free, duplicate-free `PI-NNN` range in the 17-20 count
-- [ ] CHK-012 [P1] (this-phase) This planning phase's own Scenario Coverage Plan (`spec.md` §9) satisfies the gap-free/count constraints in draft form: 19 rows, `PI-001`..`PI-019`, 8 categories
+- [B] CHK-010 [P0] (future) 8 category subdirectories confirmed via `find` [DEFERRED: no playbook files exist yet, out of this planning phase's own scope]
+- [B] CHK-011 [P0] (future) `PI-NNN` sequential/gap-free in the real authored files [DEFERRED: same reason as CHK-010]
+- [x] CHK-012 [P1] (this-phase) This phase's own Scenario Coverage Plan satisfies gap-free/count constraints in draft form [EVIDENCE: `spec.md` §9, 19 rows, `PI-001`..`PI-019`, 8 categories, re-verified during this closeout]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -73,9 +73,9 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] (future) The hallucination-fixture scenario file's Fail condition explicitly names the fabricated flag/syntax pattern once phase 001 confirms what "fake" looks like for Pi
-- [ ] CHK-021 [P0] (future) `python3 validate_document.py` run on the root file + all 19 scenario files results in zero structural errors
-- [ ] CHK-022 [P1] (this-phase) This phase's own 4 planning docs preserve every ANCHOR comment-pair marker and every SPECKIT_TEMPLATE_SOURCE / SPECKIT_LEVEL header marker from the Level-2 scaffold
+- [B] CHK-020 [P0] (future) The hallucination-fixture scenario file's Fail condition [DEFERRED: no scenario files exist yet]
+- [B] CHK-021 [P0] (future) `validate_document.py` on the root file + scenarios [DEFERRED: no playbook files exist yet]
+- [x] CHK-022 [P1] (this-phase) This phase's own 4 planning docs preserve every ANCHOR/SPECKIT_TEMPLATE_SOURCE/SPECKIT_LEVEL marker [EVIDENCE: `grep -c ANCHOR spec.md plan.md tasks.md checklist.md`]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +83,7 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P2] (this-phase) Not a bug fix - documented as N/A by convention (docs-planning phase, no code change, no finding to classify)
+- [x] CHK-FIX-001 [P2] (this-phase) [DEFERRED: not applicable - this is docs-planning, no code change, no finding to classify]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -91,8 +91,8 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] (this-phase) A secret-shaped-value grep across this phase's 4 planning docs returns zero matches; only env-var names ever appear in prose, never a value
-- [ ] CHK-031 [P0] (this-phase) No hardcoded secrets, tokens, or credential-shaped values anywhere in `spec.md`/`plan.md`/`tasks.md`/`checklist.md`
+- [x] CHK-030 [P0] (this-phase) A secret-shaped-value grep across this phase's docs returns zero matches [EVIDENCE: `rg -i "api[_-]?key|secret|password|token[:=]" spec.md plan.md tasks.md checklist.md` - 2 hits, both `spec.md`'s own NFR-S01/S02 prose describing the requirement (one names a hypothetical `PI_API_KEY` env-var name, not a value); 0 real credential-shaped values]
+- [x] CHK-031 [P0] (this-phase) No hardcoded secrets, tokens, or credential-shaped values [EVIDENCE: same `rg -i "api[_-]?key|secret|password|token[:=]"` grep as CHK-030 - 2 benign prose hits, 0 real credential values]
 <!-- /ANCHOR:security -->
 
 ---
@@ -100,9 +100,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] (this-phase) `spec.md`/`plan.md`/`tasks.md`/`checklist.md` synchronized: all four reference the same 8-category/19-`PI-NNN` Scenario Coverage Plan and the same phase-001/003/007/008/009 dependency chain
-- [ ] CHK-041 [P1] (this-phase) Every Pi-specific behavioral claim in this phase's docs is marked UNKNOWN and routed to a named owning phase (self-invocation signal to 001/003; stdio MCP support to 007; extension lifecycle events to 008; `pi install` syntax to 001/006/007) rather than asserted as confirmed
-- [ ] CHK-042 [P2] (this-phase) No changelog/version-history section anywhere in this phase's docs
+- [x] CHK-040 [P1] (this-phase) `spec.md`/`plan.md`/`tasks.md`/`checklist.md` synchronized [EVIDENCE: direct read, all 4 docs share the same 8-category/19-`PI-NNN` plan and the same dependency chain, now with real statuses]
+- [x] CHK-041 [P1] (this-phase) Every Pi-specific behavioral claim marked confirmed/unconfirmed and routed [EVIDENCE: `spec.md` §9/§10 - PI-002/PI-011/PI-015/PI-017 now cite real phase 001/007/008/009 findings instead of a bare UNKNOWN; the genuinely still-open self-invocation-signal claim stays routed to a future phase]
+- [x] CHK-042 [P2] (this-phase) No changelog/version-history section [EVIDENCE: `rg -i "^## .*changelog\|^## .*version history" spec.md plan.md tasks.md checklist.md` returns 0 matches]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -110,8 +110,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] (this-phase) No scratch/temp files created outside `scratch/`; this folder contains only the 4 intended planning docs plus `scratch/`
-- [ ] CHK-051 [P1] (this-phase) `scratch/` left empty (no working files needed for this docs-only planning pass)
+- [x] CHK-050 [P1] (this-phase) No scratch/temp files created outside `scratch/` [EVIDENCE: `git status --porcelain` scoped to `031-cli-pi-creation/010-pi-manual-testing-playbook/` only]
+- [x] CHK-051 [P1] (this-phase) `scratch/` left empty [EVIDENCE: `find 010-pi-manual-testing-playbook/scratch -type f` returns nothing]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -121,11 +121,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 - Planned, not yet verified |
-| P1 Items | 7 | 0/7 - Planned, not yet verified |
-| P2 Items | 2 | 0/2 - Planned, not yet verified |
+| P0 Items | 8 | 4/8 (+4 accepted-deferred: CHK-010/011/020/021, all requiring the actual, not-yet-authored playbook files) |
+| P1 Items | 7 | 7/7 |
+| P2 Items | 2 | 2/2 |
 
-**Verification Date**: Not yet run. This phase is **Planned**, not built - every item above is unchecked by design. Run this checklist for real (this-phase items now reviewable, future items reviewable only after the FUTURE authoring pass creates `cli-pi/manual-testing-playbook/`).
+**Verification Date**: 2026-07-27. All this-phase items are verified with real evidence; every future-authoring item is accepted-deferred with an explicit reason, not silently skipped - creating the actual playbook is out of this planning phase's own Hard Constraint. All 9 predecessor phases (001-009) had landed by this closeout, so the Scenario Coverage Plan (spec.md §9) was re-verified against their real facts rather than left as authoring-time UNKNOWNs.
 <!-- /ANCHOR:summary -->
 
 ---
