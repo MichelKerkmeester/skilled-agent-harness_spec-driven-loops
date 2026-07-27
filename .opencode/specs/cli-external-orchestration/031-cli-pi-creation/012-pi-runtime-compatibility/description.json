@@ -1,0 +1,29 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
+  "description": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot",
+  "keywords": [
+    "cli-pi",
+    "registered",
+    "hub",
+    "6th",
+    "executor",
+    "model",
+    "mcp-host",
+    "integration",
+    "real",
+    "live-verified",
+    "phases",
+    "still",
+    "cannot"
+  ],
+  "lastUpdated": "2026-07-27T15:52:18.316Z",
+  "specId": "012",
+  "folderSlug": "pi-runtime-compatibility",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

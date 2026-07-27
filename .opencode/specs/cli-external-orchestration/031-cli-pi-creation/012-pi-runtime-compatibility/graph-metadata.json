@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi runtime compatibility",
+      "pi prompts agents extensions",
+      "pi command agent hook parity",
+      "pi runtime compatibility plan",
+      "pi runtime compatibility tasks",
+      "pi runtime compatibility checklist",
+      "pi runtime compatibility summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "compatibility",
+      "prompts",
+      "agents",
+      "extensions",
+      "command",
+      "agent",
+      "hook",
+      "parity",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".codex/hooks.json",
+      ".opencode/skills/system-spec-kit/scripts/codex/README.md",
+      "codex/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot actually run this repo's 36 commands, 13 agents, or governance hooks the way Claude Code/OpenCode/Codex/Cursor/Devin already can — phases 005/006/008 designed HOW each would translate but explicitly stopped short of writing the files (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` all do not exist in this worktree today; only `.pi/mcp.json`/`.pi/settings.json`/`.pi/npm/` exist, from phase 007)",
+    "created_at": "2026-07-27T15:52:18.832Z",
+    "last_save_at": "2026-07-27T15:52:18.832Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:368c0ec024080656748198a7bc465e19646ba19598c81346e831dc9c06f33d70",
+    "source_doc_hashes": {
+      "spec.md": "e1484cdc0ab5b098e2e91167a47676dda7943187f39ee8548203e4336abfe6ea",
+      "plan.md": "e075e856cb43857480a232839fc6009c777f16b8d9808c6aed734d208b8e0039",
+      "tasks.md": "dfdd584df828b61fee81dd7bd39f60a0e7d7430467ed6c6109ba374939897149",
+      "checklist.md": "7cfa9e506655dc287d8b57ec6b8067a0642a216f3e62703104a7eca5f7061921",
+      "implementation-summary.md": "c1c8214a56d03560afbdc1f31a923958735041fbbdb7591d32825ddf163ec691"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

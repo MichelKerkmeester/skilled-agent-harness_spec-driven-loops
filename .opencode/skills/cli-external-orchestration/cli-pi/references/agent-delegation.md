@@ -54,6 +54,12 @@ The package's community status matters:
 - A package install mutates project-local settings.
 - The package must not become an invisible hub dependency.
 
+## 2A. PROJECT AGENT MIRRORS
+
+Project-local Pi agent profiles live at `.pi/agents/**/*.md` as flat files, one profile per `.opencode/agents/*.md` source. The supported frontmatter keeps the required `name`, carries `description`, and maps allowed OpenCode permissions to Pi tool names in the `tools` array (`read`, `write`, `edit`, `bash`, `grep`, `find`, and `ls` where the source permission has a literal Pi equivalent). Unmapped OpenCode-only permissions stay documented as YAML comments; unsupported optional schema fields remain omitted rather than guessed.
+
+pi-subagents resolves agents in this order: built-in, installed package, user `~/.pi/agent/agents/**/*.md`, then project `.pi/agents/**/*.md`. Project files win when names collide, so these flat project mirrors are the authoritative local override.
+
 ## 3. CONDUCTOR MODEL
 
 When using a community subagent bridge, the calling AI remains the outer conductor:
@@ -181,4 +187,3 @@ unknowns:
 ~~~
 
 The parent validates the handback, inspects the diff, and owns the final result.
-
