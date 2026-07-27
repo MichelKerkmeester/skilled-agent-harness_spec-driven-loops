@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi mcp host integration",
+      "pi-mcp-extension",
+      "pi mcp.json stdio transport",
+      "pi mcp host integration plan",
+      "pi-mcp-extension config",
+      "pi mcp host integration tasks",
+      "pi mcp host integration checklist",
+      "pi-mcp-extension checklist",
+      "pi mcp.json verification",
+      "pi mcp host integration summary",
+      "pi-mcp-extension implementation status"
+    ],
+    "key_topics": [
+      "mcp",
+      "host",
+      "integration",
+      "pi-mcp-extension",
+      "json",
+      "stdio",
+      "transport",
+      "plan",
+      "config",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".cursor/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Constraint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "live",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repo runs 5 native MCP servers (`sequentialthinking`, `mk-spec-memory`, `mkskilladvisor`, `mkcodeindex`, `codemode`) that Claude Code and OpenCode already reach via `.mcp.json`'s stdio `{command, args, env}` shape, plus 10 external UTCP manuals (`chromedevtools1/2`, `aside`, `clickupofficial`, `figma`, `github`, `gitkraken`, `opendesign`, `refero`, `mobbin`) reached transitively through `codemode`'s own tool surface",
+    "created_at": "2026-07-27T06:48:17.981Z",
+    "last_save_at": "2026-07-27T14:16:40.669Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:509207b86fd02ea4e8ad6d5108cd4208bfe4760c64c3825a9c8f0c8b929c2547",
+    "source_doc_hashes": {
+      "spec.md": "aa4fe042eccff20940f5190d47ccec03463b6fcd02b2c276a5ddf6ef36b2fb0d",
+      "plan.md": "d8b50bf6d0783563f727f1676a684009ae53c63cf33e580920f3be1f1cd70ed8",
+      "tasks.md": "5fe24cbae7162d02e155b3bf3be416d3e480b448cdc617430fb25f47bdd3841f",
+      "checklist.md": "627515d02cc9de771b9dea7c6b3e28ba688963b205bd618d9c3569135390b129",
+      "implementation-summary.md": "95fa8768c39c1c08c48582abb30f3e61975e1b905eda4056c89e8e9f1abc23a9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

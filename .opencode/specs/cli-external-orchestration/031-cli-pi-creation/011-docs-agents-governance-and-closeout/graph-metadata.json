@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-pi closeout",
+      "cli-pi governance docs",
+      "cli-pi agent roster",
+      "pi docs and closeout",
+      "cli-pi closeout plan",
+      "pi governance plan",
+      "cli-pi closeout tasks",
+      "pi governance tasks",
+      "cli-pi closeout checklist",
+      "pi governance checklist",
+      "cli-pi closeout summary",
+      "pi governance docs summary"
+    ],
+    "key_topics": [
+      "cli-pi",
+      "closeout",
+      "governance",
+      "docs",
+      "agent",
+      "roster",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "6th",
+      "cli"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/agents/deep-improvement.md",
+      ".claude/agents/deep-improvement.md",
+      "spec.md",
+      ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Grep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`) already appear across agent rosters, governance docs, and hub-level catalogs",
+    "created_at": "2026-07-27T06:48:18.460Z",
+    "last_save_at": "2026-07-27T16:48:39.622Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9a08fa9bd3c94f116758f3f3360563b22238dc002b31f452f62b71db3c659747",
+    "source_doc_hashes": {
+      "spec.md": "52360b4141d9453b3a52b1b5bbc10ec74a69afe854697eaf1b6fc1f38130faf8",
+      "plan.md": "4f283dbe95f1977b715f99a1c12f4b26259678feb4e8525a40c2dfbc0987654f",
+      "tasks.md": "31308eb2092f217ffd0eca9c788d296f341d7e1e75ef33bf805e174d0802247f",
+      "checklist.md": "9295ac3383e58817abe3d754d432b2a230b1170c520c463b6c5e02ab7235784c",
+      "implementation-summary.md": "c2662df69232535857ef0ed86f3dce207fe94d4bfc882e90caf16ab4d54d0b88"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi skill discovery",
+      "pi settings.json skills array",
+      "pi skill flattening",
+      "pi hub mode discovery",
+      "pi skill discovery plan",
+      "pi settings.json skills design",
+      "pi skill discovery tasks",
+      "pi skill discovery checklist",
+      "pi skills array verification",
+      "pi skill discovery summary",
+      "pi settings.json skills implementation"
+    ],
+    "key_topics": [
+      "skill",
+      "discovery",
+      "settings",
+      "json",
+      "skills",
+      "array",
+      "flattening",
+      "hub",
+      "mode",
+      "plan",
+      "design",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tree Pointer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Draft Candidate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Unlike Devin and Cursor (`029-cli-devin-revival`, `030-cli-cursor-creation`), which have no shared skill format at all and needed bespoke, repo-authored hook adapters to bridge this repo's guard/skill content into their native surfaces, Pi natively speaks `SKILL.md` and documents ingesting external `SKILL.md` trees directly — its own docs' only cross-harness example shows `{\"skills\": [\"~/.claude/skills\", \"~/.codex/skills\"]}`",
+    "created_at": "2026-07-27T06:48:17.614Z",
+    "last_save_at": "2026-07-27T09:52:57.816Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f90b175f519a6ad32cdf299579cb9b1d918576a2fb76992581a7340dc6aeaa8d",
+    "source_doc_hashes": {
+      "spec.md": "79a1e7524ccbc6e3d5aec37b8550293eb9d8941707c003891cf30d27fa1bec6e",
+      "plan.md": "4db74ca464edbca409576d0301b176e75782177e01a56adea46b4f3abdd019ac",
+      "tasks.md": "4e82807eede06da305b8934d80a146f34707010ce2eead6c85136b3ecf0f50fd",
+      "checklist.md": "db0460bd31472ba12ce78e093b52d0d4afd334983ca467c53a9579fe817b1e1c",
+      "implementation-summary.md": "00347682806bc481fbc176617059e6e6eeec09c77bd4012a23672815469807e4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

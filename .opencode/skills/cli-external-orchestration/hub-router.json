@@ -9,7 +9,8 @@
       "cli-claude-code",
       "cli-codex",
       "cli-cursor",
-      "cli-devin"
+      "cli-devin",
+      "cli-pi"
     ],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
@@ -70,6 +71,16 @@
       ],
       "resources": [
         "cli-devin/SKILL.md"
+      ]
+    },
+    "cli-pi": {
+      "weight": 4,
+      "classes": [
+        "cli-pi-aliases",
+        "pi-dispatch"
+      ],
+      "resources": [
+        "cli-pi/SKILL.md"
       ]
     }
   },
@@ -168,6 +179,24 @@
         "devin subagent",
         "devin cloud handoff",
         "swe-1.6 dispatch"
+      ]
+    },
+    "cli-pi-aliases": {
+      "keywords": [
+        "pi cli",
+        "pi agent",
+        "delegate to pi",
+        "pi.dev cli",
+        "pi coding agent"
+      ]
+    },
+    "pi-dispatch": {
+      "keywords": [
+        "pi headless dispatch",
+        "pi print mode",
+        "pi json event stream",
+        "pi rpc integration",
+        "pi community package"
       ]
     }
   }

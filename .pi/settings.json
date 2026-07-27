@@ -1,0 +1,6 @@
+{
+  "packages": [
+    "npm:pi-mcp-extension",
+    "npm:pi-subagents"
+  ]
+}

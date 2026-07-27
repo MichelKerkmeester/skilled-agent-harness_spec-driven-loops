@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
+  "description": "`cli-pi/manual-testing-playbook/` contains only a `.gitkeep` today",
+  "keywords": [
+    "cli-pi",
+    "manual-testing-playbook",
+    "contains",
+    "only",
+    "gitkeep",
+    "today"
+  ],
+  "lastUpdated": "2026-07-27T16:34:14.129Z",
+  "specId": "013",
+  "folderSlug": "pi-manual-testing-playbook-authoring",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "description": "Unlike Devin and Cursor (`029-cli-devin-revival`, `030-cli-cursor-creation`), which have no shared skill format at all and needed bespoke,",
+  "keywords": [
+    "unlike",
+    "devin",
+    "cursor",
+    "029-cli-devin-revival",
+    "030-cli-cursor-creation",
+    "shared",
+    "skill",
+    "format",
+    "needed",
+    "bespoke"
+  ],
+  "lastUpdated": "2026-07-27T09:52:42.698Z",
+  "specId": "004",
+  "folderSlug": "pi-skill-discovery-bridge",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

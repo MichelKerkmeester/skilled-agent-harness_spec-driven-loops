@@ -441,6 +441,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
   'cli-cursor': 'SPECKIT_CURSOR_STATE_DIR',
   'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
+  'cli-pi': 'SPECKIT_PI_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -1684,6 +1685,20 @@ const CURSOR_ALLOWED_MODELS = new Set([
 ]);
 const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 
+// Mirrors PI_SUPPORTED_MODELS in executor-config.ts. Pi is a provider
+// pass-through with no house model, so this synchronous duplicate keeps
+// command construction fail-closed without importing the TypeScript module.
+const PI_ALLOWED_MODELS = new Set([
+  'deepseek-v4-pro',
+  'minimax-m3',
+  'gpt-5.6-luna',
+  'gpt-5.6-sol',
+  'gpt-5.6-terra',
+  'mimo-v2.5-pro',
+  'mimo-v2.5-pro-ultraspeed',
+]);
+const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
+
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-cursor executor unavailable: command -v cursor-agent failed');
@@ -1802,6 +1817,21 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   });
 }
 
+function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isPiBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-pi executor unavailable: command -v pi failed');
+  }
+  const model = lineage.model || PI_DEFAULT_MODEL;
+  if (!PI_ALLOWED_MODELS.has(model)) {
+    throw inputError(
+      `cli-pi model '${model}' is not in the enforced allowlist: ${[...PI_ALLOWED_MODELS].join(', ')}`,
+    );
+  }
+  // TODO: Build args only after Pi's headless command contract is confirmed.
+  // Do not treat a subprocess exit code alone as proof of a successful dispatch.
+  throw inputError('cli-pi command construction is unavailable until its headless invocation contract is confirmed');
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
@@ -1809,6 +1839,7 @@ const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   'cli-opencode': buildOpencodeLineageCommand,
   'cli-cursor': buildCursorLineageCommand,
   'cli-devin': buildDevinLineageCommand,
+  'cli-pi': buildPiLineageCommand,
 });
 
 /**
@@ -1849,6 +1880,14 @@ function isCursorBinaryAvailable(env = process.env) {
 // something this builder can meaningfully gate on.
 function isDevinBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v devin >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+function isPiBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v pi >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -2452,6 +2491,7 @@ module.exports = {
   isCodexBinaryAvailable,
   isCursorBinaryAvailable,
   isDevinBinaryAvailable,
+  isPiBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,

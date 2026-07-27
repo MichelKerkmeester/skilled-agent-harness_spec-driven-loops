@@ -1212,6 +1212,85 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
   });
 });
 
+describe('fanout-run.cjs — cli-pi adapter', () => {
+  const { buildLineageCommand, isPiBinaryAvailable } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv },
+    ) => unknown;
+    isPiBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+  };
+
+  it('fails closed before command construction when pi is absent', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-pi-') };
+    expect(isPiBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi', model: 'candidate-model' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env },
+    )).toThrow(/command -v pi failed/);
+  });
+
+  it('passes the allowlist gate for every operator-confirmed picker id before the headless contract guard', () => {
+    const binDir = makeTempDir('fanout-run-pi-allowlist-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    for (const model of ['deepseek-v4-pro', 'minimax-m3', 'gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.6-terra', 'mimo-v2.5-pro', 'mimo-v2.5-pro-ultraspeed']) {
+      expect(() => buildLineageCommand(
+        { kind: 'cli-pi', model },
+        'bounded prompt',
+        'workspace-write',
+        'default',
+        opts,
+      )).toThrow(/headless invocation contract is confirmed/);
+    }
+  });
+
+  it('defaults an omitted model to deepseek-v4-pro before the headless contract guard', () => {
+    const binDir = makeTempDir('fanout-run-pi-default-model-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      opts,
+    )).toThrow(/headless invocation contract is confirmed/);
+  });
+
+  it('rejects an out-of-roster model before command construction', () => {
+    const binDir = makeTempDir('fanout-run-pi-rejected-model-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-3.5-turbo' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      opts,
+    )).toThrow(/not in the enforced allowlist/);
+  });
+
+  it('rejects auto before command construction', () => {
+    const binDir = makeTempDir('fanout-run-pi-rejected-auto-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi', model: 'auto' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      opts,
+    )).toThrow(/not in the enforced allowlist/);
+  });
+});
+
 describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatch', () => {
   it('completes a hermetic live cli-codex leaf with top-level search argv', async () => {
     const binDir = makeTempDir('fanout-run-live-codex-leaf-bin-');

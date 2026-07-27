@@ -55,8 +55,11 @@ const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   // dispatch target — always resolve the canonical name.
   'cli-cursor': 'cursor-agent',
   'cli-devin': 'devin',
+  'cli-pi': 'pi',
 };
 
+// Pi's session environment variable is unconfirmed; leave this kind absent
+// until the live contract identifies a real session identifier.
 const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-codex': 'CODEX_SESSION_ID',
   'cli-claude-code': 'CLAUDE_CODE_SESSION_ID',
@@ -78,6 +81,7 @@ const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // only (checked live) — no DEVIN_HOME-style state-dir override exists, so the
   // repo-owned detection var is the sole entry rather than a fabricated one.
   'cli-devin': ['SPECKIT_DEVIN_STATE_DIR'],
+  'cli-pi': ['SPECKIT_PI_STATE_DIR'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
@@ -86,6 +90,7 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-opencode': '.opencode',
   'cli-cursor': '.cursor',
   'cli-devin': '.devin',
+  'cli-pi': '.pi',
 };
 
 const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
@@ -123,6 +128,7 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // cli-devin is deliberately absent from EXECUTOR_SESSION_ENV_BY_KIND rather
   // than carrying a guessed name.
   'cli-devin': ['DEVIN_'],
+  // Pi's provider environment prefixes are unconfirmed; do not pass them through by analogy.
 };
 
 type RunAuditedExecutorCommandInput = {

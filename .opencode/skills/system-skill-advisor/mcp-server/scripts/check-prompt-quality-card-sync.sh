@@ -62,6 +62,7 @@ cli_cards=(
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md"
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md"
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md"
+  "$ROOT/.opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -89,7 +90,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor)
+cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor cli-external-orchestration/cli-pi)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
@@ -97,8 +98,13 @@ for skill in "${cli_skills[@]}"; do
     printf '  FAIL  %s/SKILL.md  [re-enumerates Tier-3 triggers — point to the canonical card instead]\n' "$skill"
     overall_exit=1
   elif ! grep -q 'cli-prompt-quality-card.md' "$f"; then
-    printf '  FAIL  %s/SKILL.md  [no pointer to the canonical card]\n' "$skill"
-    overall_exit=1
+    local_card="$ROOT/.opencode/skills/$skill/assets/prompt-quality-card.md"
+    if [[ -f "$local_card" ]] && grep -q 'cli-prompt-quality-card.md' "$local_card"; then
+      printf '  PASS  %s/SKILL.md  [canonical card delegated through local prompt-quality card]\n' "$skill"
+    else
+      printf '  FAIL  %s/SKILL.md  [no pointer to the canonical card]\n' "$skill"
+      overall_exit=1
+    fi
   else
     printf '  PASS  %s/SKILL.md\n' "$skill"
   fi
@@ -116,7 +122,9 @@ H = f"{ROOT}/.opencode/skills/sk-prompt/prompt-models"
 reg = json.load(open(f"{H}/assets/model-profiles.json"))
 idx = open(f"{H}/references/models/_index.md").read()
 all_ids = {m["id"] for m in reg["models"]}
-adopted = [m for m in reg["models"] if m.get("recommended_frameworks")]
+# Unconfirmed optional stubs carry schema-shaped recommendation metadata but are
+# not adopted prompt-craft profiles until their framework is verified.
+adopted = [m for m in reg["models"] if m.get("recommended_frameworks") and m["recommended_frameworks"].get("status") != "unconfirmed"]
 
 # Family token used for reachability (first id segment by default).
 FAMILY = {"deepseek-v4-pro": "deepseek", "kimi-k2.6": "kimi",
@@ -154,6 +162,7 @@ CLI_EXECUTOR_HUB_METADATA = {
     "cli-opencode": "cli-external-orchestration/graph-metadata.json",
     "cli-claude-code": "cli-external-orchestration/graph-metadata.json",
     "cli-cursor": "cli-external-orchestration/graph-metadata.json",
+    "cli-pi": "cli-external-orchestration/graph-metadata.json",
 }
 gm_cache = {}
 def gm(executor):

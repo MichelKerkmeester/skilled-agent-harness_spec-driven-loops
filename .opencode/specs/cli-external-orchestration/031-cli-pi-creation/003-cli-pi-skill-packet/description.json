@@ -1,0 +1,20 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet",
+  "description": "`cli-pi` does not exist anywhere in this repo yet",
+  "keywords": [
+    "cli-pi",
+    "exist",
+    "anywhere",
+    "repo"
+  ],
+  "lastUpdated": "2026-07-27T09:41:15.542Z",
+  "specId": "003",
+  "folderSlug": "cli-pi-skill-packet",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

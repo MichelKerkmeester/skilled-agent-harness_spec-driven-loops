@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation",
+  "description": "This repository already dispatches work to five external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`,",
+  "keywords": [
+    "repository",
+    "already",
+    "dispatches",
+    "work",
+    "five",
+    "external",
+    "coding",
+    "clis",
+    "cli-external-orchestration",
+    "modes",
+    "cli-opencode",
+    "cli-claude-code"
+  ],
+  "lastUpdated": "2026-07-27T16:41:26.482Z",
+  "specId": "031",
+  "folderSlug": "cli-pi-creation",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

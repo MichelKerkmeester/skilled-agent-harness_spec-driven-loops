@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
+    "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
+    "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet",
+    "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+    "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
+    "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
+    "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration",
+    "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
+    "cli-external-orchestration/031-cli-pi-creation/009-pi-model-registry-and-routing",
+    "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook",
+    "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+    "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
+    "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-pi creation",
+      "Pi CLI integration",
+      "Pi CLI executor",
+      "pi.dev",
+      "earendil-works pi-coding-agent"
+    ],
+    "key_topics": [
+      "cli-pi",
+      "creation",
+      "cli",
+      "integration",
+      "executor",
+      "dev",
+      "earendil-works",
+      "pi-coding-agent",
+      "repository",
+      "already",
+      "dispatches",
+      "work"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "001-pi-contract-pin/implementation-summary.md",
+      "007-pi-mcp-host-integration/implementation-summary.md",
+      "012-pi-runtime-compatibility/implementation-summary.md",
+      "013-pi-manual-testing-playbook-authoring/implementation-summary.md",
+      ".opencode/agents/context.md",
+      "001-pi-contract-pin/spec.md",
+      "013-pi-manual-testing-playbook-authoring/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Mirror",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repository already dispatches work to five external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`), each requiring its own contract-pin, deep-loop executor wiring, skill packet, hook/extension bridge, model registry entry, and manual-testing playbook — a pattern proven twice in `029-cli-devin-revival` and `030-cli-cursor-creation`",
+    "created_at": "2026-07-27T06:48:17.181Z",
+    "last_save_at": "2026-07-27T16:41:35.853Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8714a23318e76cd35a54b5e044dab919fa7552fc7a409fbccf223d98f8d9cbfc",
+    "source_doc_hashes": {
+      "spec.md": "71fd0b2838e2273839a6f99bb341507add140050401f7def56cc54c57f49bbc1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

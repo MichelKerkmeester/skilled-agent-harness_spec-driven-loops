@@ -1,0 +1,65 @@
+{
+  "mcpServers": {
+    "sequential_thinking": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-sequential-thinking@2025.12.18"],
+      "transport": "stdio",
+      "lifecycle": "eager"
+    },
+    "mk-spec-memory": {
+      "command": "node",
+      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"],
+      "transport": "stdio",
+      "lifecycle": "eager",
+      "env": {
+        "EMBEDDINGS_PROVIDER": "auto",
+        "HF_EMBED_SERVER_URL": "unix:///tmp/mk-hf-embed/hf-embed.sock",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
+        "SPECKIT_MAX_SECONDARY_CLIENTS": "64",
+        "SPECKIT_RETRY_BATCH_SIZE": "100",
+        "SPECKIT_RETRY_INTERVAL_MS": "5000",
+        "SPECKIT_RETRY_QUEUE_MAX_AGE_MS": "3153600000000",
+        "SPECKIT_RETRY_QUEUE_MAX_PENDING": "300000"
+      }
+    },
+    "mk_code_index": {
+      "command": "node",
+      "args": [".opencode/bin/mk-code-index-launcher.cjs"],
+      "transport": "stdio",
+      "lifecycle": "eager",
+      "env": {
+        "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "true",
+        "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "true",
+        "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "true",
+        "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "true",
+        "SPECKIT_CODE_GRAPH_INDEX_SPECS": "true",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-code-index",
+        "SPECKIT_MAX_SECONDARY_CLIENTS": "64"
+      }
+    },
+    "mk_skill_advisor": {
+      "command": "node",
+      "args": [".opencode/bin/mk-skill-advisor-launcher.cjs"],
+      "transport": "stdio",
+      "lifecycle": "lazy",
+      "env": {
+        "HF_EMBED_SERVER_URL": "unix:///tmp/mk-hf-embed/hf-embed.sock",
+        "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
+        "MK_SKILL_ADVISOR_HOOK_DISABLED": "0",
+        "MK_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
+        "SPECKIT_ADVISOR_DOC_TRIGGERS": "true",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-skill-advisor",
+        "SPECKIT_MAX_SECONDARY_CLIENTS": "64"
+      }
+    },
+    "code_mode": {
+      "command": "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node",
+      "args": [".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"],
+      "transport": "stdio",
+      "lifecycle": "lazy",
+      "env": {
+        "UTCP_CONFIG_FILE": ".utcp_config.json"
+      }
+    }
+  }
+}

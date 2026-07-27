@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
+  "description": "This repository organizes 36 invokable operator commands (plus 13 non-command supporting files) as nested Markdown under",
+  "keywords": [
+    "repository",
+    "organizes",
+    "invokable",
+    "operator",
+    "commands",
+    "plus",
+    "non-command",
+    "supporting",
+    "files",
+    "nested",
+    "markdown"
+  ],
+  "lastUpdated": "2026-07-27T10:00:31.494Z",
+  "specId": "005",
+  "folderSlug": "pi-command-layer",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

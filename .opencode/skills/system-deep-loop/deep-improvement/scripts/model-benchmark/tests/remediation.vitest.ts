@@ -12,6 +12,7 @@ const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/dee
 const require = createRequire(import.meta.url);
 
 const DISPATCH_MODEL_PATH = path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs');
+const PROFILE_VALIDATOR_PATH = path.join(SCRIPTS, 'model-benchmark/lib/profile-validator.cjs');
 const dispatchModel = require(DISPATCH_MODEL_PATH) as {
   dispatchReal: (opts: Record<string, unknown>) => {
     ok: boolean;
@@ -30,6 +31,7 @@ const dispatchModel = require(DISPATCH_MODEL_PATH) as {
   buildResumeHint: (sentinelPath: string) => string;
   KNOWN_EXECUTORS: Set<string>;
 };
+const profileValidator = require(PROFILE_VALIDATOR_PATH) as { KNOWN_EXECUTORS: Set<string> };
 const scorer = require(path.join(SCRIPTS, 'model-benchmark/scorer/score-model-variant.cjs')) as {
   score: (opts: Record<string, unknown>) => Promise<{ dimensions: Record<string, number>; weightedScore: number }>;
 };
@@ -236,6 +238,28 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       .toThrow(/not in the enforced allowlist/);
   });
 
+  it('cli-pi passes the allowlist gate for every operator-confirmed picker id before the headless contract guard', () => {
+    for (const model of ['deepseek-v4-pro', 'minimax-m3', 'gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.6-terra', 'mimo-v2.5-pro', 'mimo-v2.5-pro-ultraspeed']) {
+      expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model }))
+        .toThrow(/headless invocation contract is confirmed/);
+    }
+  });
+
+  it('cli-pi defaults an omitted model to deepseek-v4-pro before the headless contract guard', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: undefined }))
+      .toThrow(/headless invocation contract is confirmed/);
+  });
+
+  it('cli-pi rejects an out-of-roster model', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'gpt-3.5-turbo' }))
+      .toThrow(/not in the enforced allowlist/);
+  });
+
+  it('cli-pi rejects auto', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'auto' }))
+      .toThrow(/not in the enforced allowlist/);
+  });
+
   it('routing is preserved for all active executors (bin resolves)', () => {
     for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-cursor']) {
       const execResolved = ex === 'cli-cursor' ? { ...resolved, model: 'composer-2.5' } : resolved;
@@ -243,6 +267,13 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);
     }
+  });
+
+  it('registers cli-pi in both hand-synced executor registries without live dispatch', () => {
+    expect(dispatchModel.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
+    expect(profileValidator.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'deepseek-v4-pro' }))
+      .toThrow(/headless invocation contract is confirmed/);
   });
 });
 

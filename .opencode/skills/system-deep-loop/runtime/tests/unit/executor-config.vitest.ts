@@ -2,6 +2,7 @@ import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
   EXECUTOR_KINDS,
+  EXECUTOR_KIND_FLAG_SUPPORT,
   EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX,
   ExecutorConfigError,
   WEB_SEARCH_POLICIES,
@@ -15,9 +16,36 @@ import {
   CURSOR_SUPPORTED_MODELS,
   CURSOR_DEFAULT_MODEL,
   isCursorModelAllowed,
+  PI_SUPPORTED_MODELS,
+  PI_DEFAULT_MODEL,
+  isPiModelAllowed,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
+  it('defines seven executor kinds including cli-devin and cli-pi', () => {
+    expect(EXECUTOR_KINDS).toHaveLength(7);
+    expect([...EXECUTOR_KINDS]).toEqual([
+      'native',
+      'cli-codex',
+      'cli-claude-code',
+      'cli-opencode',
+      'cli-cursor',
+      'cli-devin',
+      'cli-pi',
+    ]);
+  });
+
+  it('allows only confirmed-safe cli-pi fields', () => {
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'timeoutSeconds', 'liveTools']);
+    expect(parseExecutorConfig({
+      kind: 'cli-pi',
+      model: 'candidate-model',
+      timeoutSeconds: 120,
+      liveTools: { webSearch: 'inherit' },
+    })).toMatchObject({ kind: 'cli-pi', model: 'candidate-model', timeoutSeconds: 120 });
+    expect(() => parseExecutorConfig({ kind: 'cli-pi', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-pi'/);
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
   });
@@ -316,6 +344,7 @@ describe('executor web-search policy', () => {
       'cli-opencode': { inherit: true, disabled: false, cached: false, live: true },
       'cli-cursor': { inherit: true, disabled: false, cached: false, live: false },
       'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
+      'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
 
@@ -725,5 +754,38 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
     expect(isCursorModelAllowed('auto')).toBe(false);
     expect(isCursorModelAllowed('gpt-5.6-sol-high-fast')).toBe(false);
     expect(isCursorModelAllowed('claude-opus-4-8-xhigh')).toBe(false);
+  });
+});
+
+describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
+  it('contains exactly the seven operator-confirmed picker ids', () => {
+    expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
+      'deepseek-v4-pro',
+      'gpt-5.6-luna',
+      'gpt-5.6-sol',
+      'gpt-5.6-terra',
+      'mimo-v2.5-pro',
+      'mimo-v2.5-pro-ultraspeed',
+      'minimax-m3',
+    ]);
+  });
+
+  it('defaults to deepseek-v4-pro, which is itself an allowed model', () => {
+    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4-pro');
+    expect(isPiModelAllowed(PI_DEFAULT_MODEL)).toBe(true);
+  });
+
+  it('accepts every allowlisted id', () => {
+    for (const model of PI_SUPPORTED_MODELS) {
+      expect(isPiModelAllowed(model)).toBe(true);
+    }
+  });
+
+  it('rejects an out-of-roster id', () => {
+    expect(isPiModelAllowed('gpt-3.5-turbo')).toBe(false);
+  });
+
+  it('rejects the router alias auto', () => {
+    expect(isPiModelAllowed('auto')).toBe(false);
   });
 });
