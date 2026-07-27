@@ -66,25 +66,6 @@
         "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)"
       }
     },
-    "mk_code_index": {
-      "type": "local",
-      "command": [
-        "node",
-        ".opencode/bin/mk-code-index-launcher.cjs"
-      ],
-      "environment": {
-        "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_SPECS": "false",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-code-index",
-        "SPECKIT_MAX_SECONDARY_CLIENTS": "64",
-        "_NOTE_DB": "Database lives SKILL-LOCAL at .opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite by default (shared across runtimes via the .opencode/skills symlink); SPECKIT_CODE_GRAPH_DB_DIR overrides. Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first launcher startup.",
-        "_NOTE_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE in .env.local (gitignored) to true (forces all 5 INDEX_* to true) or to a comma-separated subset such as skills,plugins (forces only those categories); the launcher applies the selection at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
-        "_NOTE_RESCAN_THRESHOLD": "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100)."
-      }
-    },
     "code_mode": {
       "type": "local",
       "command": [
