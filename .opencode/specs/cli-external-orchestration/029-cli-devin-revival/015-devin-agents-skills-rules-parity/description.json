@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity",
+  "description": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported,",
+  "keywords": [
+    "user",
+    "asked",
+    "scaffold",
+    "phase",
+    "sure",
+    "cli-cursor",
+    "cli-devin",
+    "agents",
+    "commands",
+    "skills",
+    "properly",
+    "working",
+    "supported"
+  ],
+  "lastUpdated": "2026-07-27T06:09:27.745Z",
+  "specId": "015",
+  "folderSlug": "devin-agents-skills-rules-parity",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
