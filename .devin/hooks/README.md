@@ -18,7 +18,7 @@ The current registration is live under `devin -p` when events are top-level arra
 |-------|-------|
 | Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs` |
 | Spec and dispatch gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `task-dispatch-guard.cjs` |
-| Tool, quality and graph adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `code-graph-freshness.cjs`, `mcp-route-guard.cjs` |
+| Tool and quality adapters | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, `mcp-route-guard.cjs` |
 
 The three `.js` links target compiled `mcp-server/dist/` output. A fresh checkout must build that package before those links resolve.
 

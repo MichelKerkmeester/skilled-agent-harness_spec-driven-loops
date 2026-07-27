@@ -1,1 +1,0 @@
-../../.opencode/skills/system-code-graph/runtime/hooks/devin/code-graph-freshness.cjs
