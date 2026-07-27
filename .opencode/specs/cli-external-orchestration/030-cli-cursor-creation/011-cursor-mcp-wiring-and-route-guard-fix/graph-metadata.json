@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,24 +11,24 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cursor hooks discovery mirror",
-      ".cursor/hooks folder",
-      "cursor hook symlink gotcha",
-      "cursor hooks discovery mirror plan",
-      "cursor hooks discovery mirror tasks",
-      "cursor hooks discovery mirror checklist",
-      "cursor hooks discovery mirror implementation",
-      "cursor hook symlink gotcha finding"
+      "cursor mcp.json symlink",
+      "beforeMCPExecution payload",
+      "mcp-route-guard cursor fix",
+      "cursor mcp wiring plan",
+      "cursor mcp wiring tasks",
+      "cursor mcp wiring checklist",
+      "cursor mcp wiring implementation",
+      "mcp-route-guard dead wire fix"
     ],
     "key_topics": [
       "cursor",
-      "hooks",
-      "discovery",
-      "mirror",
-      "folder",
-      "hook",
+      "mcp",
+      "json",
       "symlink",
-      "gotcha",
+      "beforemcpexecution",
+      "payload",
+      "mcp-route-guard",
+      "wiring",
       "plan",
       "tasks",
       "checklist",
@@ -37,20 +37,23 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      ".cursor/mcp.json",
       ".cursor/hooks.json",
-      ".cursor/hooks/README.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
         "source": "derived"
       },
       {
@@ -60,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".cursor/hooks/README.md",
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
         "source": "derived"
       },
       {
@@ -87,6 +90,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
         "source": "derived"
       },
       {
@@ -120,13 +141,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Create",
+        "name": "Purpose Populate",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -138,7 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Discovery Mirror",
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Wired",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -150,19 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "no",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "direct",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
+        "name": "its",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -172,29 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked into it",
-    "created_at": "2026-07-24T17:40:29.498Z",
-    "last_save_at": "2026-07-27T03:52:16.349Z",
+    "causal_summary": "Phase 011 recorded a blocker: \"no MCP server is configured for Cursor CLI on this machine… fabricating one was out of scope (would need credentials not present here),\" and on that basis deliberately left `mcp-route-guard.mjs` built-but-unwired",
+    "created_at": "2026-07-24T18:01:53.772Z",
+    "last_save_at": "2026-07-27T03:48:31.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97ed706eafe0cd89dac4042d53f6d59b6c25b0b328b662cfc9fbef93451a660d",
+    "source_fingerprint": "sha256:16b6413a87ed0c4906b09ebcf807de418b035afbde2b4b27d9e035798ecfb15d",
     "source_doc_hashes": {
-      "spec.md": "a1dc0f7b8e9922d8db98132fd3edcc30bb392dc0d9893f1f464c3ec3f08b456e",
-      "plan.md": "9fc501a6d65364b754904c13ef763ef1cfcbec024ad72f642d69e5462db20197",
-      "tasks.md": "55c02de3f1272d01d6c4dbc7384ee4786ec5df95b0f4cca0af5f6bbdeabbff7b",
-      "checklist.md": "70a7af5a263588a731c1c2ae29ca64fe7ddd5e1d605f9d965ac08ec0609830d0",
-      "implementation-summary.md": "0232dd84611590d8f98ed7bba4d28ea7d7e36d1e0312c6f85405f48c6a8471d7"
+      "spec.md": "899edee7bd30da725da019e7b3078f77b63e0fe2c9e503eccbaa778901afcc3e",
+      "plan.md": "58e86d64229add89475d37b92b4a0a75ee825aa98aa6d1ee8c5c94b2345e2232",
+      "tasks.md": "95ed187bdd375b4e77bdce57a09b6b30e506ab7dd4055e292e6f0a679383ccc5",
+      "checklist.md": "9739918ab568b70e329a4067b720f23de96f1b301adb0d267a106320a8825c63",
+      "implementation-summary.md": "fd4c44b4b46daeef7fb2999060128b1686cca691420276cb7b415c71b588cc74"
     },
     "last_active_child_id": null,
     "last_active_at": null

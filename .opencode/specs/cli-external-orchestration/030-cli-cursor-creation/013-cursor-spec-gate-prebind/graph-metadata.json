@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Cursor spec gate prebind",
+      "Cursor Gate-3 enforcement",
+      "sessionStart gate state",
+      "Cursor prebind implementation plan",
+      "sessionStart Gate-3 plan",
+      "Cursor prebind tasks",
+      "Cursor Gate-3 wiring tasks",
+      "Cursor prebind verification",
+      "Cursor Gate-3 checklist",
+      "Cursor prebind implementation",
+      "Cursor Gate-3 delivery",
+      "Cursor Gate-3 handover"
+    ],
+    "key_topics": [
+      "cursor",
+      "spec",
+      "gate",
+      "prebind",
+      "gate-3",
+      "enforcement",
+      "sessionstart",
+      "state",
+      "implementation",
+      "plan",
+      "tasks",
+      "wiring"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+      ".cursor/hooks.json",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs",
+      ".opencode/plugins/tests/mk-spec-gate.test.cjs",
+      ".cursor/hooks/spec-gate-prebind.mjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      "spec.md",
+      "shared/dist/gate-3-classifier.js",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-gate-prebind.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-prebind.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-gate.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-spec-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.js",
+        "kind": "code",
+        "path": "shared/dist/gate-3-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activate Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cursor Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
+    "created_at": "2026-07-25T13:39:58Z",
+    "last_save_at": "2026-07-27T03:48:32.075Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:1c2318a1f34cdfd60d40e4f6270bbf001de8260cb4451fe22fb47a9df1fbe840",
+    "source_doc_hashes": {
+      "spec.md": "a88984e189132964fef63d4150ec423f697c029eb816936b0905842f01583876",
+      "plan.md": "3f2066b062fc36ac2eb17f96fffb6b095b1e99b2f213446e482b075758caefed",
+      "tasks.md": "61374f91c66b0de12e7760c75c61793d699d43fa82c27c6ea0cdfb5852638b40",
+      "checklist.md": "ec798ce5a8e0b9344d0e94282a13fb2445c12028eb788f5eb5f8d54fa26af270",
+      "implementation-summary.md": "bafe801501c623e31e31aa30785d38f0667c082f71d54052f2a0c30e028ecbd5",
+      "handover.md": "7c04273538f7ce5052659523daabfd7d95926385caa4b4639c301663b0cdadd8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

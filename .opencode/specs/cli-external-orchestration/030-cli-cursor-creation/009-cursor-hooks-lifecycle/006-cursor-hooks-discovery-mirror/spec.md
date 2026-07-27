@@ -34,7 +34,7 @@ _memory:
 | **Parent Spec** | `../../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../005-hooks-sk-code-alignment/spec.md` |
-| **Successor** | `../../015-hook-code-style-cross-runtime/spec.md` |
+| **Successor** | `../../010-hook-code-style-cross-runtime/spec.md` |
 | **Handoff Criteria** | `.cursor/hooks/` exists with a symlink to every file `.cursor/hooks.json` currently invokes, none broken; `.cursor/hooks.json`'s own `command` paths are unchanged; the symlink-vs-real-path behavioral difference for the 4 `runCursorHook`-guarded files is documented in both `.cursor/hooks/README.md` and the canonical `hooks.md` reference. |
 <!-- /ANCHOR:metadata -->
 

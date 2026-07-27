@@ -34,7 +34,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
 | **Predecessor** | `../008-cursor-model-allowlist/spec.md` |
-| **Successor** | `../015-hook-code-style-cross-runtime/spec.md` |
+| **Successor** | `../010-hook-code-style-cross-runtime/spec.md` |
 | **Handoff Criteria** | Every child phase validates independently; the cli-cursor hook adapter surface (feature catalog, live `.cursor/hooks.json` wiring, Claude-adapter parity, independent manual-test verification, sk-code style alignment, and the `.cursor/hooks/` discovery mirror) is documented and evidenced end to end. |
 <!-- /ANCHOR:metadata -->
 
@@ -61,8 +61,8 @@ Govern the cli-cursor hooks lifecycle as one phase-parent packet with six ordere
 
 ### Out of Scope
 - The Cursor CLI contract, executor support, skill packet, model registry, manual-testing playbook, and closeout phases (`001`-`008` of the `030-cli-cursor-creation` parent) — those are siblings, not children, of this packet.
-- Cross-runtime hook code-style alignment (`../015-hook-code-style-cross-runtime/`) — that phase generalizes this packet's phase 005 (Cursor-only) to all four runtimes (Claude, Codex, Cursor, Devin) and remains a top-level sibling under `030-cli-cursor-creation`, not a child here.
-- `.cursor/mcp.json` wiring and the MCP route-guard fix, and the `.codex/hooks/`/`.claude/hooks/` discovery mirrors — those are separate top-level phases (`016`/`017`) under `030-cli-cursor-creation`.
+- Cross-runtime hook code-style alignment (`../010-hook-code-style-cross-runtime/`) — that phase generalizes this packet's phase 005 (Cursor-only) to all four runtimes (Claude, Codex, Cursor, Devin) and remains a top-level sibling under `030-cli-cursor-creation`, not a child here.
+- `.cursor/mcp.json` wiring and the MCP route-guard fix, and the `.codex/hooks/`/`.claude/hooks/` discovery mirrors — those are separate top-level phases (`011`/`012`) under `030-cli-cursor-creation`.
 
 ### Files to Change
 | File Path | Change Type | Phase | Description |
@@ -116,4 +116,4 @@ None — all 6 child phases resolved their own open questions before completion 
 - `001-cursor-hooks-catalog-and-playbook-coverage/spec.md` through `006-cursor-hooks-discovery-mirror/spec.md`
 - `../spec.md` (the `030-cli-cursor-creation` grandparent packet)
 - `../004-cursor-hook-adapter-layer/decision-record.md` (ADR-001, the original hook-registration decision this packet's children execute and extend)
-- `../015-hook-code-style-cross-runtime/spec.md` (top-level sibling that generalizes this packet's phase 005 to all four runtimes)
+- `../010-hook-code-style-cross-runtime/spec.md` (top-level sibling that generalizes this packet's phase 005 to all four runtimes)

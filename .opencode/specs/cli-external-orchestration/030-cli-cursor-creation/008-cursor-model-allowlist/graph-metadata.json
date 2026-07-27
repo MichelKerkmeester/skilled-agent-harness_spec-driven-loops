@@ -46,7 +46,6 @@
       "checklist.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
-      ".opencode/bin/lib/compiled-routing/010-live-activation/activation/cli-external-orchestration/manifest.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -102,12 +101,6 @@
         "name": "remediation.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": ".opencode/bin/lib/compiled-routing/010-live-activation/activation/cli-external-orchestration/manifest.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 gave `cli-cursor` a permissive model reference (`CURSORSUPPORTEDMODELS = ['auto', 'composer-2.5', 'composer-2.5-fast']`) explicitly documented as \"not exhaustive by design.",
     "created_at": "2026-07-24T11:23:29.374Z",
-    "last_save_at": "2026-07-24T11:50:31.622Z",
+    "last_save_at": "2026-07-27T03:50:26.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4eadf068797ab3ce5318687169c6d0745ddd908a4a98f58867b9e92f6140d0e6",
+    "source_fingerprint": "sha256:2ad146e44d4d0f697faa66dd35258c04363ee41c67c681e14273f45b19575b15",
     "source_doc_hashes": {
-      "spec.md": "d49ce847d48b4e8bf16a15fe8886e91d6b72b1a1a0c93e8061e0754c4dd14599",
+      "spec.md": "c2f964a2bd8385c2acbc8b43793217fc71c006d7cbda000839659d791a0d9b7b",
       "plan.md": "36c48d5d607e24a805d4f2d63910f1afe900b9082122130bed19188ac3d52aac",
       "tasks.md": "cb7d345d6effda1f5390d5bf4e90fcb355dd5351e12e6a326480903687262d02",
       "checklist.md": "7b6e5d80b4dd2b074bef4600c475c77916ce9f6c1b14d0463c4335e08f8c7c23",
-      "implementation-summary.md": "2edce429bbbf82437bb32ac8d6ca06ea67b702f1aaf970d53f7b0b7aa0cee7cc"
+      "implementation-summary.md": "74954856a762343ffa8327ed02c053325178d21cdb9cf1e081f66efbddab13c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

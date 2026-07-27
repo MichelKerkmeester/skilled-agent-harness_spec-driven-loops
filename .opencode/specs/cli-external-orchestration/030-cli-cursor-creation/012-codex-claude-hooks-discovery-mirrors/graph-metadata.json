@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,24 +11,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cursor hooks discovery mirror",
-      ".cursor/hooks folder",
-      "cursor hook symlink gotcha",
-      "cursor hooks discovery mirror plan",
-      "cursor hooks discovery mirror tasks",
-      "cursor hooks discovery mirror checklist",
-      "cursor hooks discovery mirror implementation",
-      "cursor hook symlink gotcha finding"
+      "codex hooks mirror",
+      "claude hooks mirror",
+      "hook discovery symlink folders",
+      "codex claude hooks mirror plan",
+      "codex claude hooks mirror tasks",
+      "codex claude hooks mirror checklist",
+      "codex claude hooks mirror implementation"
     ],
     "key_topics": [
-      "cursor",
+      "codex",
       "hooks",
-      "discovery",
       "mirror",
-      "folder",
+      "claude",
       "hook",
+      "discovery",
       "symlink",
-      "gotcha",
+      "folders",
       "plan",
       "tasks",
       "checklist",
@@ -37,32 +36,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-      ".cursor/hooks.json",
-      ".cursor/hooks/README.md",
+      ".codex/hooks/README.md",
+      ".claude/hooks/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".codex/hooks.json",
+      ".claude/settings.json",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".cursor/hooks/README.md",
+        "path": ".codex/hooks/README.md",
         "source": "derived"
       },
       {
@@ -87,6 +75,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -126,19 +126,13 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Create",
+        "name": "The Cursor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Discovery Mirror",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -156,7 +150,7 @@
         "source": "derived"
       },
       {
-        "name": "direct",
+        "name": "relative",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -164,6 +158,12 @@
       {
         "name": "the",
         "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
@@ -180,21 +180,21 @@
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked into it",
-    "created_at": "2026-07-24T17:40:29.498Z",
-    "last_save_at": "2026-07-27T03:52:16.349Z",
+    "causal_summary": "The `.cursor/hooks/` discovery mirror gave the Cursor runtime a single place to see its full hook inventory",
+    "created_at": "2026-07-24T18:29:18.029Z",
+    "last_save_at": "2026-07-27T03:48:31.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97ed706eafe0cd89dac4042d53f6d59b6c25b0b328b662cfc9fbef93451a660d",
+    "source_fingerprint": "sha256:bcc6beee100586d52596cb565255cb9ec41b3d71553bf0f9cd2a6a4ffc4330bc",
     "source_doc_hashes": {
-      "spec.md": "a1dc0f7b8e9922d8db98132fd3edcc30bb392dc0d9893f1f464c3ec3f08b456e",
-      "plan.md": "9fc501a6d65364b754904c13ef763ef1cfcbec024ad72f642d69e5462db20197",
-      "tasks.md": "55c02de3f1272d01d6c4dbc7384ee4786ec5df95b0f4cca0af5f6bbdeabbff7b",
-      "checklist.md": "70a7af5a263588a731c1c2ae29ca64fe7ddd5e1d605f9d965ac08ec0609830d0",
-      "implementation-summary.md": "0232dd84611590d8f98ed7bba4d28ea7d7e36d1e0312c6f85405f48c6a8471d7"
+      "spec.md": "12dcea733e0df8b98a2e0d4d5f0d1103b91322618fecac26f08e1b37aff74618",
+      "plan.md": "ef2ad202f3acbc9efbeacd4530d7a9b9198f49a5a2eb42098f84a89405fe9242",
+      "tasks.md": "589d9e4bca29049f165ebdafd2df940f4749719cbf1ba004222f077b869d854b",
+      "checklist.md": "21377752c1a85cc13348d37c536bdd641d8cac101ec02cbc5d32f0c31b278bfc",
+      "implementation-summary.md": "674835aeb174ebaf793fe874e0b99571e81126278ba7913586ab7cbdee487aad"
     },
     "last_active_child_id": null,
     "last_active_at": null

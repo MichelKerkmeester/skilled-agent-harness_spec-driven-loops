@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
+  "description": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
+  "keywords": [
+    "cursor",
+    "deny-capable",
+    "pretooluse",
+    "adapter",
+    "wired",
+    "only",
+    "enforces",
+    "session",
+    "gate",
+    "state",
+    "already",
+    "open"
+  ],
+  "lastUpdated": "2026-07-27T03:48:13.577Z",
+  "specId": "013",
+  "folderSlug": "cursor-spec-gate-prebind",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 7,
+  "memoryNameHistory": [
+    "25-07-26_18-15__cursor-session-start-gate-3-prebinding-and-the.md",
+    "26-07-26_07-01__cursor-session-start-gate-3-prebinding-and-the.md",
+    "26-07-26_07-03__cursor-session-start-gate-3-prebinding-and-the.md",
+    "26-07-26_07-56__cursor-session-start-gate-3-prebinding-and-the.md",
+    "26-07-26_08-00__cursor-session-start-gate-3-prebinding-and-the.md",
+    "26-07-26_09-14__cursor-gate-3-prebind-handover.md",
+    "26-07-26_09-17__canonical-handover-continuity-finalized.md"
+  ]
+}

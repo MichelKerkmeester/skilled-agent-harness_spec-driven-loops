@@ -108,15 +108,15 @@
     ],
     "causal_summary": "The `cli-cursor` hook adapter layer (built in `030-cli-cursor-creation`'s phase 004) spans a sequence of tightly related follow-on workstreams — cataloging the adapters, wiring them live against the real repo, extending them toward Claude-adapter parity, independently re-verifying that wiring, aligning the code to `sk-code`/`code-opencode` standards, and mirroring the hooks into Cursor's conventional discovery path",
     "created_at": "2026-07-27T03:22:16.855Z",
-    "last_save_at": "2026-07-27T03:25:10.369Z",
+    "last_save_at": "2026-07-27T03:47:06.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:26cd805b8bd8db2a1456985931479b1abe1c99f4f234743c2103107cba0ecb19",
+    "source_fingerprint": "sha256:775cd75cf71d59031b3d891e948ce33d5c565540a8050344f13cabc7585e478e",
     "source_doc_hashes": {
-      "spec.md": "1d080e3254e3be6439c2ea20860b155e41dde3425c4ba8834a9507f500938e62"
+      "spec.md": "1fa19333316c64c7398ab0174c63eb40adc7c3f71aec98f022650539680b79bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

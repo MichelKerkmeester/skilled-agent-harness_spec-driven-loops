@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
+  "description": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use",
+  "keywords": [
+    "phase",
+    "aligned",
+    "five",
+    "cursor",
+    "mjs",
+    "hook",
+    "files",
+    "sk-code",
+    "code-opencode",
+    "javascript",
+    "standards",
+    "component",
+    "purpose",
+    "box",
+    "header"
+  ],
+  "lastUpdated": "2026-07-27T03:48:06.391Z",
+  "specId": "010",
+  "folderSlug": "hook-code-style-cross-runtime",
+  "parentChain": [
+    "cli-external-orchestration",
+    "030-cli-cursor-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

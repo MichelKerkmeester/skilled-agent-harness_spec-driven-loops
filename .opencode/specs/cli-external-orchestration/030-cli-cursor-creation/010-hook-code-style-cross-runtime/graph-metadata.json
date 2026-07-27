@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
-  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror",
-  "parent_id": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle",
+  "packet_id": "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
+  "spec_folder": "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
+  "parent_id": "cli-external-orchestration/030-cli-cursor-creation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,35 +11,34 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cursor hooks discovery mirror",
-      ".cursor/hooks folder",
-      "cursor hook symlink gotcha",
-      "cursor hooks discovery mirror plan",
-      "cursor hooks discovery mirror tasks",
-      "cursor hooks discovery mirror checklist",
-      "cursor hooks discovery mirror implementation",
-      "cursor hook symlink gotcha finding"
+      "cross-runtime hook style alignment",
+      "hook box header all runtimes",
+      "hook numbered sections",
+      "cross-runtime hook style plan",
+      "cross-runtime hook style tasks",
+      "cross-runtime hook style checklist",
+      "cross-runtime hook style summary",
+      "hook style alignment results"
     ],
     "key_topics": [
-      "cursor",
-      "hooks",
-      "discovery",
-      "mirror",
-      "folder",
+      "cross-runtime",
       "hook",
-      "symlink",
-      "gotcha",
+      "style",
+      "alignment",
+      "box",
+      "header",
+      "runtimes",
+      "numbered",
+      "sections",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-      ".cursor/hooks.json",
-      ".cursor/hooks/README.md",
+      ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md",
+      ".opencode/bin/compiled-route-status.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,21 +47,15 @@
     ],
     "entities": [
       {
-        "name": "hooks.md",
+        "name": "javascript-checklist.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md",
         "source": "derived"
       },
       {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".cursor/hooks/README.md",
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-status.cjs",
         "source": "derived"
       },
       {
@@ -120,13 +113,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Create",
+        "name": "Purpose Bring",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -138,25 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Discovery Mirror",
+        "name": "Verification Run",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Estimated Effort",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "direct",
+        "name": "an",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -168,7 +149,25 @@
         "source": "derived"
       },
       {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Observed Claude",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -180,21 +179,21 @@
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "dynamic",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked into it",
-    "created_at": "2026-07-24T17:40:29.498Z",
-    "last_save_at": "2026-07-27T03:52:16.349Z",
+    "causal_summary": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`)",
+    "created_at": "2026-07-24T18:00:37.292Z",
+    "last_save_at": "2026-07-27T03:48:31.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97ed706eafe0cd89dac4042d53f6d59b6c25b0b328b662cfc9fbef93451a660d",
+    "source_fingerprint": "sha256:6c569f8ee41b157d9a4b21640091480fba8a2845464ff9bc895799e8ef8f52a5",
     "source_doc_hashes": {
-      "spec.md": "a1dc0f7b8e9922d8db98132fd3edcc30bb392dc0d9893f1f464c3ec3f08b456e",
-      "plan.md": "9fc501a6d65364b754904c13ef763ef1cfcbec024ad72f642d69e5462db20197",
-      "tasks.md": "55c02de3f1272d01d6c4dbc7384ee4786ec5df95b0f4cca0af5f6bbdeabbff7b",
-      "checklist.md": "70a7af5a263588a731c1c2ae29ca64fe7ddd5e1d605f9d965ac08ec0609830d0",
-      "implementation-summary.md": "0232dd84611590d8f98ed7bba4d28ea7d7e36d1e0312c6f85405f48c6a8471d7"
+      "spec.md": "3f2df3ad55a7e793e5409f9005a8dfe5d010005ca8ee72673dd77e964c35b0aa",
+      "plan.md": "eb74d3a6a07c9e900344beec3e088fc779f05775594ec2893f5d6313be73fadc",
+      "tasks.md": "871932889bf5ede2af2c7b5bc209b81e27ff0e36a200790be3919cac6236a77f",
+      "checklist.md": "84567e6c6b090f443d9a0b910ea94441315fd71e90c57876e29e59bfd188f0f3",
+      "implementation-summary.md": "58e0b3410e18c6e49ee5fcb72d5bd2caafe8f18a8e51a9b85cfee9ca04f5132f"
     },
     "last_active_child_id": null,
     "last_active_at": null

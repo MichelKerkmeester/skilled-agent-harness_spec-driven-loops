@@ -12,7 +12,7 @@ _memory:
     recent_action: "Completed phase 018 in implementation commit 348b644283."
     next_safe_action: "No further packet work; push only on explicit approval."
     blockers: []
-    key_files: ["018-cursor-spec-gate-prebind/spec.md", ".cursor/hooks.json", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
+    key_files: ["013-cursor-spec-gate-prebind/spec.md", ".cursor/hooks.json", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
     completion_pct: 100
     open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?"]
@@ -101,16 +101,21 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 | 6 | `006-cursor-manual-testing-playbook/` | Author a Cursor-native manual-testing playbook. | Complete |
 | 7 | `007-docs-agents-governance-and-closeout/` | Add roster/governance/sibling doc mentions; full recursive validation and closeout. | Complete |
 | 8 | `008-cursor-model-allowlist/` | Restrict cli-cursor dispatch to an enforced 10-id allowlist (Composer 2.5, Grok 4.5, GLM 5.2); remove `auto` as the default. | Complete |
-| 9 | `009-cursor-hooks-catalog-and-playbook-coverage/` | Add a feature-catalog entry and playbook coverage for every cli-cursor hook adapter. | Complete |
-| 10 | `010-cursor-hooks-live-wiring/` | Create and commit the project `.cursor/hooks.json` registration (ADR-001). | Complete |
-| 11 | `011-cursor-hooks-claude-parity/` | Expand toward Claude parity: `postToolUse` chain, `Task`-matcher guard, repo-guard scripts. | Complete |
-| 12 | `012-hooks-manual-testing-results/` | Re-execute the hooks-category playbook independently. | Complete |
-| 13 | `013-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-opencode` P0 standards. | Complete |
-| 14 | `014-cursor-hooks-discovery-mirror/` | `.cursor/hooks/` discovery mirror. | Complete |
-| 15 | `015-hook-code-style-cross-runtime/` | Cross-runtime hook code-style alignment. | Complete |
-| 16 | `016-cursor-mcp-wiring-and-route-guard-fix/` | Wire `.cursor/mcp.json`; find and fix the `mcp-route-guard.mjs` dead wire. | Complete |
-| 17 | `017-codex-claude-hooks-discovery-mirrors/` | `.codex/hooks/` and `.claude/hooks/` discovery mirrors. | Complete |
-| 18 | `018-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | Complete |
+| 9 | `009-cursor-hooks-lifecycle/` (Phase Parent) | Cursor hook adapter lifecycle, governed as one phase-parent packet with 6 children (see below). | Complete |
+| 10 | `010-hook-code-style-cross-runtime/` | Cross-runtime hook code-style alignment (generalizes phase-9 child 005 to all four runtimes). | Complete |
+| 11 | `011-cursor-mcp-wiring-and-route-guard-fix/` | Wire `.cursor/mcp.json`; find and fix the `mcp-route-guard.mjs` dead wire. | Complete |
+| 12 | `012-codex-claude-hooks-discovery-mirrors/` | `.codex/hooks/` and `.claude/hooks/` discovery mirrors. | Complete |
+| 13 | `013-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | Complete |
+
+**Children of `009-cursor-hooks-lifecycle/`** (lean-trio phase parent; full docs live on each child — see `009-cursor-hooks-lifecycle/spec.md` for its own Phase Documentation Map):
+| Child | Folder | Focus | Status |
+|---|---|---|---|
+| 9.1 | `001-cursor-hooks-catalog-and-playbook-coverage/` | Feature-catalog entry + manual-testing-playbook coverage for every cli-cursor hook adapter. | Complete |
+| 9.2 | `002-cursor-hooks-live-wiring/` | Create and commit the project `.cursor/hooks.json` registration (ADR-001). | Complete |
+| 9.3 | `003-cursor-hooks-claude-parity/` | Expand toward Claude parity: `postToolUse` chain, `Task`-matcher guard, repo-guard scripts. | Complete |
+| 9.4 | `004-hooks-manual-testing-results/` | Re-execute the hooks-category playbook scenarios independently. | Complete |
+| 9.5 | `005-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-opencode` P0 standards. | Complete |
+| 9.6 | `006-cursor-hooks-discovery-mirror/` | `.cursor/hooks/` discovery mirror. | Complete |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -120,6 +125,9 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 - Phase 004 must live-verify per-event CLI hook delivery (documented partial-delivery caveat) before claiming any guard is active, and must account for the editor-shared `.cursor/hooks.json` blast radius.
 - Phase 005 must mark Composer's auth-gated specs (context window/pricing/version slug) as TBD, never fabricated.
 - Phase 007 must build its touch-list by grepping the current tree, not by replaying a sibling's historical list.
+- Phase 9 (`009-cursor-hooks-lifecycle/`) is a Phase Parent: its own `spec.md`/`description.json`/`graph-metadata.json` are the lean trio only — no `plan.md`/`tasks.md`/`checklist.md`/`implementation-summary.md` at that level; those live on each of its 6 children.
+- Phase 10 (`010-hook-code-style-cross-runtime/`) stays a top-level sibling of `009-cursor-hooks-lifecycle/`, not its 7th child — it generalizes child 005's Cursor-only alignment to all four runtimes and is out of that packet's Cursor-hooks-adapter scope by its own admission.
+- Phase numbering 9-13 is contiguous by design; folder-history detail lives in the packet's own `scratch/` working notes, not in this spec.md, per Phase Parent content discipline.
 
 ### Phase Handoff Criteria
 | From | To | Criteria | Verification |
@@ -148,7 +156,8 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 
 ## RELATED DOCUMENTS
 - `001-cursor-contract-pin/spec.md`, `.../implementation-summary.md`
-- `002-deep-loop-executor-support/spec.md` through `018-cursor-spec-gate-prebind/spec.md`
+- `002-deep-loop-executor-support/spec.md` through `013-cursor-spec-gate-prebind/spec.md`
+- `009-cursor-hooks-lifecycle/spec.md` (Phase Parent governing 6 nested children — the former phases 9-14)
 - `../027-cli-codex-revival/spec.md`, `../029-cli-devin-revival/spec.md` (structural precedents for a hub-mode CLI packet)
 - `../z_archive/002-cli-codex-creation/`, `../z_archive/003-cli-claude-code-creation/` (naming precedent for a first-time "-creation" CLI packet)
 - `.opencode/skills/sk-doc/create-skill/SKILL.md`, `.../references/parent-skill/parent-skills-nested-packets.md` (hub doctrine)
