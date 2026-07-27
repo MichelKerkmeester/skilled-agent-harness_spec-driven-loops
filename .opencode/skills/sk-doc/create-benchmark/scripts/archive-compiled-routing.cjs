@@ -40,10 +40,13 @@ const { classifyFlagState } = require(path.join(
   '.opencode', 'skills', 'system-deep-loop', 'deep-improvement', 'scripts', 'skill-benchmark', 'compiled-routing-parity.cjs',
 ));
 
-const ENGINE_RESOLVER_PATH = path.join(snap.RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
+const ENGINE_RESOLVER_PATH = snap.ENGINE_RESOLVER_PATH;
 const SERVING_CLOSURE_PATH = path.join(snap.RUNTIME_ROOT, 'serving-closure.manifest.json');
 
-const RUN_LABEL_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+// A run folder is <YYYY-MM-DD>--<subject>--<variant>: single hyphens inside a
+// field, a double hyphen between fields. Dots, underscores and capitals stay
+// rejected, and a leading, trailing or tripled separator is still malformed.
+const RUN_LABEL_RE = /^[a-z0-9]+(?:-{1,2}[a-z0-9]+)*$/;
 
 function fail(code, message) {
   const err = new Error(message);

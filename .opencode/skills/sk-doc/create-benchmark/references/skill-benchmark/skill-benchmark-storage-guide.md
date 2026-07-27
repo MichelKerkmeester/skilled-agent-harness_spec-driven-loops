@@ -95,21 +95,36 @@ a model-stamped `live-*/`, and so on).
 
 ## 3. RUN-LABEL NAMING
 
-New run-label folders are named by **trace mode plus purpose** and match
-`^[a-z0-9]+(?:-[a-z0-9]+)*$`. Existing underscore folders in shipped hub trees
-remain historical references until their owning rename phase. The label is a
-human convenience; the run's authoritative parameters live inside its
-`skill-benchmark-report.json`.
+Run folders are named by the fleet-wide grammar, `<YYYY-MM-DD>--<subject>--<variant>/`,
+and match `^[a-z0-9]+(?:-{1,2}[a-z0-9]+)*$`: lowercase alphanumerics, single
+hyphens inside a field, a double hyphen between fields. Dots, underscores and
+capitals are rejected. The full rule, including subject and variant vocabulary,
+lives in the owning skill's naming section.
 
-| Run-label pattern | Meaning |
+The date is the run's **execution** date. The label is a human convenience; the
+run's authoritative parameters live inside its `skill-benchmark-report.json`.
+
+| Field | Value |
 | --- | --- |
-| `baseline/` | The frozen pre-optimization snapshot and comparison anchor (see section 2). |
-| `router-mode-a/`, `router-final/`, `router-baseline/` | Router-mode (Mode A) runs — deterministic, offline router-replay; the CI gate. |
-| `live-mode-b/`, `live-final/`, `live/`, `live-remediated/` | Live-mode (Mode B) runs — real dispatch through `cli-opencode` to a model. |
-| `after/`, `after-d3-proxy/`, `after-<change-tag>/` | Post-change runs compared against `baseline/`; the tag names the change or milestone the run measures. |
-| `d4r-live/` | An opt-in D4-R task-outcome (usefulness) ablation run. |
-| `full/` | A full-coverage run over the whole scenario corpus. |
-| `live-<model>-<variant>/` | A live run stamped with the executor model and reasoning variant it dispatched through (for example a GLM or Kimi leg). |
+| `<YYYY-MM-DD>` | Execution date, so a directory listing sorts chronologically. |
+| `<subject>` | The corpus measured: `skill-benchmark`, `manual-testing-playbook`, `mcp-retrieval`, `model-eval`, `command-surface`. |
+| `<variant>` | The executor identity as `<runtime>-<model>-<effort>`, or `model-comparison`, or a topic slug naming the change the run measures. |
+
+Examples, with the older label each replaces:
+
+| Run folder | Replaces |
+| --- | --- |
+| `2026-07-21--skill-benchmark--router-final/` | `router-final/` |
+| `2026-07-21--skill-benchmark--live-mode-b/` | `live-mode-b/` |
+| `2026-07-21--skill-benchmark--luna-high/` | `luna-high-verify-20260721-120348/` |
+| `2026-07-26--manual-testing-playbook--devin-glm-5-2/` | had no home before |
+
+`baseline/` is the single exception and keeps its name. It is the frozen
+comparison anchor rather than a run, and the archiver refuses it as a run label
+for that reason.
+
+Model versions flatten their dots, so `live-glm-5.2-high/` becomes
+`<date>--skill-benchmark--glm-5-2-high/`. A dot fails the validator.
 
 Trace-mode semantics (router vs live) and the flags that produce each run are
 owned by [`operator-guide.md`](../../../../system-deep-loop/deep-improvement/references/skill-benchmark/operator-guide.md);

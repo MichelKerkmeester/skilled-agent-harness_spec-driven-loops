@@ -293,17 +293,40 @@ If the load-bearing insight differs from the winner, state it in Sections 1 and 
 
 ### Folder Names
 
-- Use `benchmark-YYYY-MM-DD/` with the execution date, not authoring date.
-- Use lowercase, hyphen-separated folder names with no underscores.
-- If two benchmarks ran on the same date and need disambiguation, suffix with a short topic slug: `benchmark-2026-05-18-bge-confirmation/`.
+One grammar governs every benchmark family. A run folder is named:
+
+```text
+<YYYY-MM-DD>--<subject>--<variant>/
+```
+
+- Fields are separated by a double hyphen. Words inside a field use a single hyphen.
+- Lowercase ASCII only. No underscores, no dots, no capitals.
+- The date is the **execution** date, not the authoring or publication date. Publication date belongs in
+  the report body, where a reader can see both.
+- `<subject>` names the corpus the run measured: `manual-testing-playbook`, `skill-benchmark`,
+  `mcp-retrieval`, `model-eval`, `command-surface`, `behavior`, `conformance`.
+- `<variant>` names the executor identity that produced the run, as `<runtime>-<model>-<effort>`. Use
+  `model-comparison` for a run that compares several, or a short topic slug when no model applies.
+- Model versions flatten their dots: `glm-5.2` becomes `glm-5-2`, `kimi-2.7` becomes `kimi-2-7`. A dot
+  is rejected by the run-label validator, so this is a hard requirement rather than a style preference.
+- Two runs of the same subject and variant on one day disambiguate with a trailing topic field.
 
 Examples:
 
 ```text
-benchmark-2026-05-17/
-benchmark-2026-05-18-bge-confirmation/
-benchmark-2026-06-01-reranker-sweep/
+2026-07-26--manual-testing-playbook--cursor-grok-4-5-high-fast/
+2026-07-26--manual-testing-playbook--model-comparison/
+2026-05-18--mcp-retrieval--bge-confirmation/
+2026-07-21--skill-benchmark--luna-high/
 ```
+
+**One exception: `baseline/`.** The frozen comparison anchor keeps its name. It is not a run, it is the
+before-snapshot every run is measured against, and the archiver refuses it as a run label for exactly
+that reason. Dating it would make it look like one run among many.
+
+Authored scenario contracts are not run folders. Behavior and conformance families keep their
+`<PREFIX>-NNN-<slug>.md` scenario identifiers, which name a scenario rather than a directory. Any run
+those families produce follows the grammar above.
 
 ### In-Document Dates
 
@@ -439,19 +462,47 @@ Each run writes its report pair to a sibling `<run-label>/`:
 
 ```text
 <skill-or-hub>/benchmark/
-├── README.md              # optional hub index — templated here
+├── README.md              # hub index — templated here, one row per run
 ├── baseline/              # FROZEN comparison anchor — never regenerated
 │   ├── skill-benchmark-report.json
 │   └── skill-benchmark-report.md   # renderer-owned render
-├── <run-label>/           # one Lane C run; sibling to every other run
+├── <YYYY-MM-DD>--<subject>--<variant>/   # one run; sibling to every other run
 │   ├── skill-benchmark-report.json
 │   └── skill-benchmark-report.md
+├── reports/               # curated, published reports — see below
+│   ├── README.md          # the index a reader opens first
+│   └── <YYYY-MM-DD>--<subject>--<variant>/
 └── fixtures/              # optional INPUT corpus — not a run
 ```
 
 Runs never overwrite siblings. `baseline/` is frozen; every re-run gets a new sibling.
 
-New `<run-label>` values must match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscores or ambiguity before selecting a path. Keep legacy folders until their owning migration renames them.
+Run-label values follow the grammar in §6. They must match
+`^[a-z0-9]+(?:-{1,2}[a-z0-9]+)*$`: lowercase alphanumerics, single hyphens inside a field and a double
+hyphen between fields. Reject underscores, dots, capitals and ambiguity before selecting a path.
+
+### The reports layer
+
+`benchmark/` holds run output. `benchmark/reports/` holds the curated, published view of a run: the
+version a reader opens to learn what happened, rather than the raw evidence a tool wrote.
+
+A report folder carries six files:
+
+| File | Holds |
+|---|---|
+| `README.md` | Entry point: headline verdict and a run-snapshot table |
+| `benchmark-report.md` | The curated report and its per-category analysis |
+| `failed-runs.md` | One section per failing case, with expected against observed |
+| `findings-and-recommendations.md` | Cross-run synthesis and the remediation order |
+| `results.csv` | The machine-readable table, one row per case |
+| `source.md` | Pointer back to the packet holding the authoritative evidence |
+
+Raw transcripts, ledgers and stdout stay in the originating spec packet. A report folder is added for a
+materially new run or executor configuration and is never overwritten when a later result differs, so
+the history of what was measured stays legible.
+
+A run whose record captured no per-case failure detail still gets `failed-runs.md`, stating that the run
+captured none. Never infer a failure the record does not contain.
 
 ### Templates
 

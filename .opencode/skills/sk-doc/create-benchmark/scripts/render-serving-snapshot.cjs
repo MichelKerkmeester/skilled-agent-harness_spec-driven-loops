@@ -30,8 +30,12 @@ const crypto = require('crypto');
 // paths correct in a worktree or a relocated checkout without an absolute pin.
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
-const ACTIVE_ACTIVATION_ROOT = path.join(RUNTIME_ROOT, '010-live-activation', 'activation');
-const ENGINE_RESOLVER_PATH = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
+// Derived rather than hardcoded: the promoted closure renumbers its internal
+// directories when a new generation is published, and a pinned number silently
+// stops matching. The layout module resolves whichever generation is serving.
+const layout = require(path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-route-layout.cjs'));
+const ACTIVE_ACTIVATION_ROOT = layout.activationRootFor(RUNTIME_ROOT);
+const ENGINE_RESOLVER_PATH = layout.resolverPathFor(RUNTIME_ROOT);
 const SERVING_CLOSURE_PATH = path.join(RUNTIME_ROOT, 'serving-closure.manifest.json');
 const DEFAULT_SKILLS_ROOT = path.join(REPO_ROOT, '.opencode', 'skills');
 
@@ -81,13 +85,17 @@ function toRepoRel(absPath) {
  */
 function assertActiveManifestSource(activationRoot) {
   const normalized = path.resolve(activationRoot).split(path.sep).join('/');
-  if (normalized.includes('006-parent-hub-rollout')) {
+  // Both markers come from the resolved layout so a renumbered generation cannot
+  // silently disable this guard or reject the tree that is actually serving.
+  const active = layout.resolveLayoutOrLegacy(RUNTIME_ROOT);
+  const rolloutMarker = active.compiler.split('/')[0];
+  if (normalized.includes(rolloutMarker)) {
     const err = new Error(`refused shadow-candidate manifest source: ${activationRoot}`);
     err.code = 'MANIFEST_SOURCE';
     throw err;
   }
-  if (!normalized.includes('010-live-activation/activation')) {
-    const err = new Error(`activation root is not the live 010 activation tree: ${activationRoot}`);
+  if (!normalized.includes(active.activation)) {
+    const err = new Error(`activation root is not the live activation tree: ${activationRoot}`);
     err.code = 'MANIFEST_SOURCE';
     throw err;
   }
@@ -349,6 +357,7 @@ module.exports = {
   REPO_ROOT,
   RUNTIME_ROOT,
   ACTIVE_ACTIVATION_ROOT,
+  ENGINE_RESOLVER_PATH,
   DEFAULT_SKILLS_ROOT,
   SCHEMA_VERSION,
   sha256,
