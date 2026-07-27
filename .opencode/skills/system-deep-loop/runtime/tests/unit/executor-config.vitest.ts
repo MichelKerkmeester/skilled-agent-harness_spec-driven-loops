@@ -17,6 +17,7 @@ import {
   CURSOR_DEFAULT_MODEL,
   isCursorModelAllowed,
   PI_SUPPORTED_MODELS,
+  PI_DEFAULT_MODEL,
   isPiModelAllowed,
 } from '../../lib/deep-loop/executor-config';
 
@@ -755,10 +756,34 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('rejects every candidate while the allowlist is empty', () => {
-    expect(PI_SUPPORTED_MODELS).toEqual([]);
-    for (const model of ['candidate-a', 'candidate-b', '']) {
-      expect(isPiModelAllowed(model)).toBe(false);
+  it('contains exactly the seven operator-confirmed picker ids', () => {
+    expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
+      'deepseek-v4-pro',
+      'gpt-5.6-luna',
+      'gpt-5.6-sol',
+      'gpt-5.6-terra',
+      'mimo-v2.5-pro',
+      'mimo-v2.5-pro-ultraspeed',
+      'minimax-m3',
+    ]);
+  });
+
+  it('defaults to deepseek-v4-pro, which is itself an allowed model', () => {
+    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4-pro');
+    expect(isPiModelAllowed(PI_DEFAULT_MODEL)).toBe(true);
+  });
+
+  it('accepts every allowlisted id', () => {
+    for (const model of PI_SUPPORTED_MODELS) {
+      expect(isPiModelAllowed(model)).toBe(true);
     }
+  });
+
+  it('rejects an out-of-roster id', () => {
+    expect(isPiModelAllowed('gpt-3.5-turbo')).toBe(false);
+  });
+
+  it('rejects the router alias auto', () => {
+    expect(isPiModelAllowed('auto')).toBe(false);
   });
 });

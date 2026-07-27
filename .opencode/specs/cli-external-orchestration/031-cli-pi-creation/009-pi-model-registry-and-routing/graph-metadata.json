@@ -17,7 +17,9 @@
       "pi fail-closed model gate",
       "cli-pi model registry plan",
       "cli-pi model registry tasks",
-      "cli-pi model registry checklist"
+      "cli-pi model registry checklist",
+      "pi model registry summary",
+      "cli-pi allowlist implementation"
     ],
     "key_topics": [
       "cli-pi",
@@ -31,17 +33,18 @@
       "plan",
       "tasks",
       "checklist",
-      "sk-prompt"
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
+      ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
       ".opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
-      ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
       "plan.md",
       "tasks.md",
@@ -51,6 +54,18 @@
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
+        "source": "derived"
+      },
       {
         "name": "model-profiles.json",
         "kind": "config",
@@ -79,12 +94,6 @@
         "name": "dispatch-model.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "_index.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/references/models/_index.md",
         "source": "derived"
       },
       {
@@ -188,31 +197,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-prompt/prompt-models` is this repo's canonical per-model prompt-craft registry (`assets/model-profiles.json` + `references/models/.md`), consulted whenever any executor dispatches a named model",
     "created_at": "2026-07-27T06:48:18.219Z",
-    "last_save_at": "2026-07-27T06:48:18.219Z",
+    "last_save_at": "2026-07-27T11:25:43.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acf959ce83374005ad5cb371c7f218e43b58c4e6a80018fdf34222e4107cadbc",
+    "source_fingerprint": "sha256:99e38aefd22c59b7dfbe40969d50b4d26403d814f0f62b85e611fe0d22c217df",
     "source_doc_hashes": {
-      "spec.md": "562f15c4ad5f8b0ba95356178ab883d61b7a63a5ac09b1ebe4608c28105a1ac6",
-      "plan.md": "e23b7b744dbb714e858bf7a37740d322ffcb95c4120b8ff746b3c61ffc8e2507",
-      "tasks.md": "d20af8e986ab77dee2ab1c7808011af29fdc083e8e3f74eef3da9e575e7342c1",
-      "checklist.md": "e9701e4f5d4591186858241f04d9725416cff0bda0f99fcd25c12701bfcea8be"
+      "spec.md": "ce74747584e6581a207e7059a440f2a0a111363d8448ba4395a28ac8009e45b1",
+      "plan.md": "a820b00d6e6b77817191311cd437d2c85b26de7875f31219e4a0fd8b58d18d35",
+      "tasks.md": "c4678c01b48752df5c20dd6c12ee2dddd374fad059418caa2ba98d023a6fd419",
+      "checklist.md": "37dc0c743e4607eb32e3fea770ad04d2a50918057dc106d0ef2fa0a44d97f212",
+      "implementation-summary.md": "6c3adca02317ebf1c730480276fe9808f33dce605f18fbd9df3668674ee3837e"
     },
     "last_active_child_id": null,
     "last_active_at": null

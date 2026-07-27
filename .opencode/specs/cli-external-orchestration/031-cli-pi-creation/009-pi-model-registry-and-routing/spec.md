@@ -11,16 +11,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/009-pi-model-registry-and-routing"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T11:26:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planning-only spec grounded in pi.dev docs + 029/030 precedents"
-    next_safe_action: "Await phase 001 pi CLI verification and a live pi.dev/models fetch"
-    blockers: ["Depends on phase 001 (pi-contract-pin) live-confirming the pi CLI and its headless dispatch syntax", "Depends on phase 002 (deep-loop-executor-support) having created a buildPiLineageCommand scaffold to harden", "Depends on phase 003 (cli-pi-skill-packet) having created cli-pi/assets/prompt-quality-card.md for the CI gate to check"]
-    key_files: [".opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json", ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts", ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs", ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"]
+    recent_action: "Implemented via LUNA (2 passes, operator-corrected roster), reviewed by GLM-5.2"
+    next_safe_action: "Commit; phase 010 proceeds"
+    blockers: []
+    key_files: ["implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-creation-authoring", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Does pi.dev/models document a Pi-native/house model with no existing sk-prompt/prompt-models profile, or is Pi purely a provider-passthrough surface over already-profiled (plus net-new externally-hosted) models?", "What is the exact live-confirmed PI_SUPPORTED_MODELS roster, and which single id becomes PI_DEFAULT_MODEL?", "Does any newly-added model id need a FAMILY dict entry in check-prompt-quality-card-sync.sh for CHECK 4 reachability?"]
-    answered_questions: []
+    completion_pct: 100
+    open_questions: ["Pi's own dispatch-time CLI flag/parameter names for reasoning effort and service tier remain unconfirmed - no live pi session was run this phase"]
+    answered_questions: ["Branch B resolved: Pi has no native/house model, confirmed both via a generic pi.dev/models fetch (1,106+ models, 40+ providers) and stronger operator-supplied evidence (a live configured Pi model picker)", "PI_SUPPORTED_MODELS roster is exactly 7 ids: deepseek-v4-pro, minimax-m3, gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra, mimo-v2.5-pro, mimo-v2.5-pro-ultraspeed; PI_DEFAULT_MODEL is deepseek-v4-pro (a judgment call)", "No FAMILY dict entry was needed - deepseek/minimax/mimo family tokens were already reachable in the hub's graph-metadata.json"]
 ---
 # Feature Specification: Pi model registry and routing
 
@@ -43,7 +43,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete - Branch B resolved (Pi is pure provider-passthrough, no house model); PI_SUPPORTED_MODELS populated with the operator-confirmed 7-model roster; fail-closed allowlist enforced at both dispatch entry points; implemented via LUNA (2 passes), reviewed by GLM-5.2 (APPROVE WITH MINOR NOTES) |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

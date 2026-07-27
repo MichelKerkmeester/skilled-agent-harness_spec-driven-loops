@@ -238,6 +238,28 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       .toThrow(/not in the enforced allowlist/);
   });
 
+  it('cli-pi passes the allowlist gate for every operator-confirmed picker id before the headless contract guard', () => {
+    for (const model of ['deepseek-v4-pro', 'minimax-m3', 'gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.6-terra', 'mimo-v2.5-pro', 'mimo-v2.5-pro-ultraspeed']) {
+      expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model }))
+        .toThrow(/headless invocation contract is confirmed/);
+    }
+  });
+
+  it('cli-pi defaults an omitted model to deepseek-v4-pro before the headless contract guard', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: undefined }))
+      .toThrow(/headless invocation contract is confirmed/);
+  });
+
+  it('cli-pi rejects an out-of-roster model', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'gpt-3.5-turbo' }))
+      .toThrow(/not in the enforced allowlist/);
+  });
+
+  it('cli-pi rejects auto', () => {
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'auto' }))
+      .toThrow(/not in the enforced allowlist/);
+  });
+
   it('routing is preserved for all active executors (bin resolves)', () => {
     for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-cursor']) {
       const execResolved = ex === 'cli-cursor' ? { ...resolved, model: 'composer-2.5' } : resolved;
@@ -250,7 +272,8 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
   it('registers cli-pi in both hand-synced executor registries without live dispatch', () => {
     expect(dispatchModel.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
     expect(profileValidator.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
-    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', resolved)).toThrow(/headless invocation contract is confirmed/);
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'deepseek-v4-pro' }))
+      .toThrow(/headless invocation contract is confirmed/);
   });
 });
 

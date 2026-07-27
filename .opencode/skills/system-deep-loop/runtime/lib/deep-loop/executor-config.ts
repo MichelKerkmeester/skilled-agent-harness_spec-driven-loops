@@ -127,11 +127,25 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
   },
 } as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
 
-/** Pi's model roster remains empty until a live-supported model set is confirmed. */
-export const PI_SUPPORTED_MODELS = [] as const;
+/**
+ * Pi is a provider pass-through with no house model. Keep dispatch scoped to
+ * the operator-confirmed picker roster so generic provider routing cannot broaden it.
+ */
+export const PI_SUPPORTED_MODELS = [
+  'deepseek-v4-pro',
+  'minimax-m3',
+  'gpt-5.6-luna',
+  'gpt-5.6-sol',
+  'gpt-5.6-terra',
+  'mimo-v2.5-pro',
+  'mimo-v2.5-pro-ultraspeed',
+] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
-/** Fail closed while Pi's supported model roster is unconfirmed. */
+/** Use the registry's first-listed, broadly adopted rotation model as the stable default; this is not Pi-specific usage history. */
+export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-pro';
+
+/** True when `model` is in the enforced cli-pi allowlist. */
 export function isPiModelAllowed(model: string): model is PiSupportedModel {
   return (PI_SUPPORTED_MODELS as readonly string[]).includes(model);
 }

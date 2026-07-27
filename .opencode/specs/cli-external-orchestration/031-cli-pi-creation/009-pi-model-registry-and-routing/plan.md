@@ -8,14 +8,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/009-pi-model-registry-and-routing"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T11:26:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planning-only plan grounded in pi.dev docs + 029/030 precedents"
-    next_safe_action: "Confirm phase 001-003 preconditions, then start tasks.md Phase 1"
-    blockers: ["Depends on phase 001 live-confirming the pi CLI", "Depends on phase 002 having created buildPiLineageCommand", "Depends on phase 003 having registered cli-pi in the hub and shipped its prompt-quality-card.md"]
-    key_files: ["spec.md", "checklist.md"]
+    recent_action: "Implemented via LUNA (2 passes, operator-corrected roster), reviewed by GLM-5.2"
+    next_safe_action: "Commit; phase 010 proceeds"
+    blockers: []
+    key_files: ["implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-creation-authoring", parent_session_id: null }
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,18 +55,18 @@ Resolve whether Pi has a native/default model or is purely provider-passthrough 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001's live pi CLI contract facts (headless dispatch syntax, any model-roster hints) are available as citable evidence.
-- [ ] Phase 002's `buildPiLineageCommand` scaffold exists in `fanout-run.cjs` (EXECUTOR_KINDS widened to include `cli-pi`).
-- [ ] Phase 003 has registered `cli-pi` in the hub's shared `graph-metadata.json` and shipped `cli-pi/assets/prompt-quality-card.md`.
-- [x] Current `check-prompt-quality-card-sync.sh` state confirmed (3-entry `cli_cards`/`cli_skills` arrays + `CLI_EXECUTOR_HUB_METADATA` dict; no `cli-pi`, `cli-devin`, or `cli-codex` entries) - confirmed this authoring session, 2026-07-27.
+- [x] Phase 001's live pi CLI contract facts available. [EVIDENCE: `001-pi-contract-pin/implementation-summary.md`, Complete]
+- [x] Phase 002's `buildPiLineageCommand` scaffold exists. [EVIDENCE: `fanout-run.cjs`, confirmed pre-edit]
+- [x] Phase 003 has registered `cli-pi` in the hub and shipped `cli-pi/assets/prompt-quality-card.md`. [EVIDENCE: `cli-external-orchestration/graph-metadata.json`, confirmed pre-edit]
+- [x] Current `check-prompt-quality-card-sync.sh` state confirmed - confirmed this authoring session, 2026-07-27.
 - [x] Current `executor-config.ts` / `fanout-run.cjs` / `dispatch-model.cjs` cli-cursor allowlist pattern confirmed as the structural template to mirror - confirmed this authoring session.
 
 ### Definition of Done
-- [ ] All 4 P0 requirements (REQ-001 through REQ-004) met with evidence.
-- [ ] `check-prompt-quality-card-sync.sh` exits 0.
-- [ ] `npm run typecheck` and `npx vitest run` on the 3 affected test files show 0 new regressions.
-- [ ] `validate.sh --strict` Errors: 0 for this phase folder.
-- [ ] `implementation-summary.md` written with evidence for every REQ in `spec.md`.
+- [x] All 4 P0 requirements (REQ-001 through REQ-004) met with evidence. [EVIDENCE: `implementation-summary.md`]
+- [x] `check-prompt-quality-card-sync.sh` exits 0. [EVIDENCE: independently re-run, GUARD PASS]
+- [x] `tsc --noEmit` (no `typecheck` npm script exists) and `npx vitest run` on the 3 affected test files show 0 new regressions. [EVIDENCE: 169/169 + 30/31 (1 pre-existing unrelated failure), independently re-run]
+- [x] `validate.sh --strict` Errors: 0 for this phase folder. [EVIDENCE: main-tree metadata round-trip, recorded in the commit]
+- [x] `implementation-summary.md` written with evidence for every REQ in `spec.md`. [EVIDENCE: this phase's implementation-summary.md]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -160,10 +160,10 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 (pi-contract-pin) | Internal | Planned, not yet built | No live pi CLI facts or headless-dispatch syntax to ground the allowlist or a live smoke-dispatch test against. |
-| Phase 002 (deep-loop-executor-support) | Internal | Planned, not yet built | `EXECUTOR_KINDS`/`buildPiLineageCommand` must exist before this phase can harden them. |
-| Phase 003 (cli-pi-skill-packet) | Internal | Planned, not yet built | `cli-pi/assets/prompt-quality-card.md` and the hub's `cli-pi` trigger-phrase registration must exist for CHECK 1/2/4 to have something to check. |
-| `https://pi.dev/models` (live fetch) | External | Not yet fetched in this authoring session | Open Question 1 (Branch A vs B) cannot be resolved without it or an equivalent live `pi` CLI probe. |
+| Phase 001 (pi-contract-pin) | Internal | Complete - Pi CLI 0.82.1 installed | Ground truth for the allowlist's dependency on a working `pi` binary being present. |
+| Phase 002 (deep-loop-executor-support) | Internal | Complete | `EXECUTOR_KINDS`/`buildPiLineageCommand` scaffold existed and was hardened by this phase. |
+| Phase 003 (cli-pi-skill-packet) | Internal | Complete | `cli-pi/assets/prompt-quality-card.md` and the hub's `cli-pi` trigger-phrase registration existed for CHECK 1/2/4 to check. |
+| `https://pi.dev/models` (live fetch) | External | Fetched this session; superseded by stronger operator-supplied evidence | Resolved Branch B via a generic public fetch first, then confirmed the exact 7-model roster via the operator's own live-configured Pi model picker screenshot. |
 | `check-prompt-quality-card-sync.sh`'s existing 4-check design | Internal | Green (confirmed live this session) | N/A - script is live and correct today for its current 3-executor scope. |
 <!-- /ANCHOR:dependencies -->
 

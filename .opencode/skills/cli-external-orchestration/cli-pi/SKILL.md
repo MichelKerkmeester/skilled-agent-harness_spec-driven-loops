@@ -265,6 +265,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, and command examples
+- [model-dispatch-gpt-5.6.md](./references/model-dispatch-gpt-5.6.md) - Operator-confirmed GPT-5.6 ids and unconfirmed Pi effort/tier syntax
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor/executor patterns and validation handback
 - [agent-delegation.md](./references/agent-delegation.md) - Built-in boundary and community subagent package guidance
 - [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) - Pi-native discovery surfaces with confidence labels

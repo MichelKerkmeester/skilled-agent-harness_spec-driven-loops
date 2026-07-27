@@ -1,6 +1,6 @@
 {
-  "version": "1.6",
-  "description": "Shared small-model profile registry for cli-opencode dispatch, plus Cursor-native Composer via cli-cursor. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`), GLM-5.2 (Z.AI GLM Coding Plan via provider `zai-coding-plan`). Composer-2.5 (Cursor's own native model, dedicated `cursor-subscription` quota pool via provider `cursor`, executor `cli-cursor`). Optional unverified separate-pool stub: Claude Haiku.",
+  "version": "1.7",
+  "description": "Shared small-model profile registry for cli-opencode dispatch, plus Cursor-native Composer via cli-cursor. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: DeepSeek-v4-pro, Kimi-k2.7-code (Kimi For Coding plan via provider `kimi-for-coding`), MiniMax-M3 (default via the MiniMax Token Plan provider `minimax-coding-plan`; pay-per-token Direct API via provider `minimax`), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider `xiaomi-token-plan-ams` or Xiaomi Direct API provider `xiaomi`), GLM-5.2 (Z.AI GLM Coding Plan via provider `zai-coding-plan`). Composer-2.5 (Cursor's own native model, dedicated `cursor-subscription` quota pool via provider `cursor`, executor `cli-cursor`). Optional unverified separate-pool stub: Claude Haiku. Pi (`cli-pi`) pass-through rows are present for deepseek-v4-pro, minimax-m3, and mimo-v2.5-pro; `mimo-v2.5-pro-ultraspeed` is an optional unverified Pi-only variant observed in a live operator-configured picker.",
   "models": [
     {
       "id": "deepseek-v4-pro",
@@ -14,6 +14,13 @@
           "quota_pool": "deepseek-api",
           "status": "active",
           "notes": "Direct DeepSeek API key (`DEEPSEEK_API_KEY`). Requires `--pure` flag; rejects tool names with `:`."
+        },
+        {
+          "executor": "cli-pi",
+          "provider": "deepseek-api",
+          "quota_pool": "deepseek-api",
+          "status": "active",
+          "notes": "Dispatched through Pi's own deepseek-api custom-provider configuration, confirmed via a live operator-configured Pi model picker 2026-07-27; no live pi command has been run from this packet to independently verify quota/rate-limit semantics match the opencode path exactly - treat as UNCONFIRMED for that specific detail"
         }
       ],
       "primary_quota_pool": "deepseek-api",
@@ -137,6 +144,13 @@
           "quota_pool": "minimax-api",
           "status": "active",
           "notes": "Pay-per-token Direct API. Confirm the live id with `opencode models minimax` before dispatch. Omit `--agent`."
+        },
+        {
+          "executor": "cli-pi",
+          "provider": "minimax",
+          "quota_pool": "minimax-api",
+          "status": "active",
+          "notes": "Dispatched through Pi's own minimax custom-provider configuration, confirmed via a live operator-configured Pi model picker 2026-07-27; no live pi command has been run from this packet to independently verify quota/rate-limit semantics match the opencode path exactly - treat as UNCONFIRMED for that specific detail"
         }
       ],
       "primary_quota_pool": "minimax-token-plan",
@@ -198,6 +212,13 @@
           "quota_pool": "xiaomi-token-plan",
           "status": "active",
           "notes": "Xiaomi Token Plan (Europe) via opencode provider xiaomi-token-plan-ams (credential 'Xiaomi Token Plan (Europe)'). Live slug xiaomi-token-plan-ams/mimo-v2.5-pro (confirmed responsive on opencode 1.15.13, 2026-06-01); verify the full live list with 'opencode models xiaomi-token-plan-ams'. Omit --agent (warns + falls back on 1.15.13). Manual direct-provider reroute uses xiaomi/mimo-v2.5-pro when configured; no automatic gateway fallback is defined. Context window 1,000,000 tokens (released 2026-04-22). OpenAI-compatible endpoint https://token-plan-ams.xiaomimimo.com/v1; opencode cost shows 0/0 (Token-Plan subscription). --variant maps to MiMo reasoning effort (low/medium/high) in opencode settings — always dispatch with --variant high (confirmed accepted on opencode 1.15.13). Best prompt framework (benchmark 004, 10/10 real runs): COSTAR or RACE + lean pre-planning — frame for format/brevity, not guardrails; TIDD-EC/dense ranked last; avoid CIDI (intermittent tool-only file-writes)."
+        },
+        {
+          "executor": "cli-pi",
+          "provider": "xiaomi",
+          "quota_pool": "xiaomi-token-plan",
+          "status": "active",
+          "notes": "Dispatched through Pi's own xiaomi custom-provider configuration, confirmed via a live operator-configured Pi model picker 2026-07-27; no live pi command has been run from this packet to independently verify quota/rate-limit semantics match the opencode path exactly - treat as UNCONFIRMED for that specific detail"
         }
       ],
       "primary_quota_pool": "xiaomi-token-plan",
@@ -249,6 +270,62 @@
         },
         "profile_ref": "prompt-models/references/models/mimo-v2.5-pro.md",
         "status": "empirical"
+      }
+    },
+    {
+      "id": "mimo-v2.5-pro-ultraspeed",
+      "context_length": null,
+      "tool_calling": "unconfirmed",
+      "chat_template": "unconfirmed",
+      "executors": [
+        {
+          "executor": "cli-pi",
+          "provider": "xiaomi",
+          "quota_pool": "xiaomi-token-plan",
+          "status": "active",
+          "notes": "Variant id observed in a live operator-configured Pi model picker 2026-07-27, grouped under the same xiaomi provider as mimo-v2.5-pro. No independent confirmation exists in this repo of its context window, pricing, or behavioral differences from the base mimo-v2.5-pro id - every such field is TBD pending live verification."
+        }
+      ],
+      "primary_quota_pool": "xiaomi-token-plan",
+      "fallback_target": null,
+      "free_tier": null,
+      "capability": {
+        "model_slug": "TBD",
+        "default_variant": "TBD",
+        "variant_flag": "unconfirmed",
+        "agent_policy": "unconfirmed",
+        "format_mode": "unconfirmed",
+        "quota_pool": "xiaomi-token-plan",
+        "variant_status": "unconfirmed",
+        "notes": "TBD: no independent confirmation exists in this repo of the variant's dispatch capability fields.",
+        "modalities": [
+          "unconfirmed"
+        ]
+      },
+      "strengths": [
+        "TBD: no independent verification of strengths exists for this variant; do not infer them from mimo-v2.5-pro."
+      ],
+      "weaknesses": [
+        "TBD: no independent verification of weaknesses or behavioral differences exists for this variant; do not infer them from mimo-v2.5-pro."
+      ],
+      "avg_iter_wall_clock_min": null,
+      "status": "optional-unverified",
+      "recommended_frameworks": {
+        "primary": "unconfirmed",
+        "fallback": "unconfirmed",
+        "avoid": [
+          "unconfirmed"
+        ],
+        "preplanning_density": "unconfirmed",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "TBD",
+          "confidence": "unconfirmed"
+        },
+        "profile_ref": null,
+        "status": "unconfirmed"
       }
     },
     {

@@ -76,6 +76,20 @@ const CURSOR_ALLOWED_MODELS = new Set([
 ]);
 const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 
+// Mirrors PI_SUPPORTED_MODELS in runtime/lib/deep-loop/executor-config.ts.
+// Pi is a provider pass-through with no house model, so keep this sync gate
+// local and fail closed before any command construction.
+const PI_ALLOWED_MODELS = new Set([
+  'deepseek-v4-pro',
+  'minimax-m3',
+  'gpt-5.6-luna',
+  'gpt-5.6-sol',
+  'gpt-5.6-terra',
+  'mimo-v2.5-pro',
+  'mimo-v2.5-pro-ultraspeed',
+]);
+const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -464,6 +478,12 @@ function buildSpawnSpec(executor, promptText, resolved) {
       return { bin: process.env.CURSOR_AGENT_BIN || 'cursor-agent', args, input: null };
     }
     case 'cli-pi': {
+      const resolvedModel = model || PI_DEFAULT_MODEL;
+      if (!PI_ALLOWED_MODELS.has(resolvedModel)) {
+        throw new Error(
+          `cli-pi model '${resolvedModel}' is not in the enforced allowlist: ${[...PI_ALLOWED_MODELS].join(', ')}`,
+        );
+      }
       const piBin = process.env.PI_BIN || 'pi';
       // TODO: Build args only after Pi's headless command contract is confirmed.
       // Do not treat a subprocess exit code alone as proof of a successful dispatch.
