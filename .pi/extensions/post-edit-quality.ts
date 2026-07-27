@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Extension - Post-Edit Quality
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
@@ -10,6 +14,7 @@ function resultText(findings: unknown[]): string {
   }).join("\n\n");
 }
 
+/** Appends post-edit quality findings and staleness banners to an edit/write result. */
 export default function postEditQuality(pi: ExtensionAPI): void {
   pi.on("tool_result", async (event, ctx) => {
     try {

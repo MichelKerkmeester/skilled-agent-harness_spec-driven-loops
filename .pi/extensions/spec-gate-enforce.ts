@@ -1,13 +1,17 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Extension - Spec Gate Enforce
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 function projectFilePath(input: Record<string, unknown>): string | undefined {
-
   for (const key of ["path", "file_path", "filePath"]) {
     if (typeof input[key] === "string" && input[key]) return input[key] as string;
   }
   return undefined;
 }
 
+/** Blocks a bash/write/edit tool call the shared spec-gate core denies. */
 export default function specGateEnforce(pi: ExtensionAPI): void {
   pi.on("tool_call", async (event, ctx) => {
     try {

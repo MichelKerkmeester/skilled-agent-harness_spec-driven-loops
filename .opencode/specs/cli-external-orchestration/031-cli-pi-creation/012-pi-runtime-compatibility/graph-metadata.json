@@ -37,6 +37,8 @@
     "status": "planned",
     "key_files": [
       ".pi/mcp.json",
+      ".opencode/skills/sk-code/code-opencode/assets/checklists/typescript-checklist.md",
+      ".pi/extensions/README.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
@@ -53,15 +55,25 @@
       "checklist.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
       "spec.md",
-      "scripts/pi/sync-prompts-pi.cjs",
-      "scripts/pi/sync-agents-pi.cjs",
-      "scripts/pi/README.md"
+      "scripts/pi/sync-prompts-pi.cjs"
     ],
     "entities": [
       {
         "name": "mcp.json",
         "kind": "config",
         "path": ".pi/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "typescript-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/typescript-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
         "source": "derived"
       },
       {
@@ -92,12 +104,6 @@
         "name": "sync-agents-pi.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/pi/README.md",
         "source": "derived"
       },
       {
@@ -195,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Extend",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot actually run this repo's 36 commands, 13 agents, or governance hooks the way Claude Code/OpenCode/Codex/Cursor/Devin already can — phases 005/006/008 designed HOW each would translate but explicitly stopped short of writing the files (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` all do not exist in this worktree today; only `.pi/mcp.json`/`.pi/settings.json`/`.pi/npm/` exist, from phase 007)",
     "created_at": "2026-07-27T15:52:18.832Z",
-    "last_save_at": "2026-07-27T18:31:00.280Z",
+    "last_save_at": "2026-07-27T20:03:31.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:805fde3d13219f2dbf0fb2ad847a427da39019f95427c5c361e7958396394248",
+    "source_fingerprint": "sha256:020e62a7c26700e4240150825a00cfceb151dd6d2a4fdf326c6fcbe7bb50a5d9",
     "source_doc_hashes": {
-      "spec.md": "37e5d3e7d4e4dbf779a76f8feeecd114f2a0fc8457cbd68a889dce754dad2334",
-      "plan.md": "a12e499cd650019c7d47f9af02eb07ba283fb562b3cd60859669a8710846f42d",
-      "tasks.md": "1649db7ba327a4b1b5852909795dc50a0512ea975fe93c071d0d0c3bcad5d4d9",
-      "checklist.md": "fe86afc25aca808e75dcfe9213bd951b387112b43e80292f7c27da59971fa9a7",
-      "implementation-summary.md": "38eab37345f153d945060ab3e4abb0561bb2ac1b42ea1ec9e50a7fff92f6493e"
+      "spec.md": "ddd7abfb35e2c816a641e2fe3de9f8e510f06674d746277e12a100b42039a15c",
+      "plan.md": "6d9fc8bd8b418f1465f8518bfe318d6442841016e1d914351dfff30522adc418",
+      "tasks.md": "09aca979fd41f733681e5665a080d03f2915daa7359d7b14f8ecb922e33ac192",
+      "checklist.md": "1c4fc5d2af23b025b49f95ab12ed70483c43f0f90e555f9aab949a05c0eb559e",
+      "implementation-summary.md": "f10b451b411b7c746a3869e69b15f5697945245dae7caa7f57a4debc917e8c2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

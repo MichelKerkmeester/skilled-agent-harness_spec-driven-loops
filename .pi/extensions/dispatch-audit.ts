@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Extension - Dispatch Audit
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
 
@@ -12,6 +16,7 @@ function textFromContent(content: unknown): string | undefined {
   return text || undefined;
 }
 
+/** Records a completed bash dispatch to the shared JSONL audit log. */
 export default function dispatchAudit(pi: ExtensionAPI): void {
   pi.on("tool_result", async (event, ctx) => {
     try {

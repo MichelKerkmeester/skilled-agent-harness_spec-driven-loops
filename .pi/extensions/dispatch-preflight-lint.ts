@@ -1,6 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Extension - Dispatch Preflight Lint
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
 
+/** Blocks or warns on a bash dispatch command that violates a target skill's hard rules. */
 export default function dispatchPreflightLint(pi: ExtensionAPI): void {
   pi.on("tool_call", async (event, ctx) => {
     try {

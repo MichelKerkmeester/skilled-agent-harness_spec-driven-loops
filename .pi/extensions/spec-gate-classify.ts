@@ -1,5 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Extension - Spec Gate Classify
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
+/** Appends the spec-folder gate question to a user turn the shared classifier flags. */
 export default function specGateClassify(pi: ExtensionAPI): void {
   pi.on("input", async (event, ctx) => {
     try {
