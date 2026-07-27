@@ -32,6 +32,20 @@ function approve() {
   process.exit(0);
 }
 
+// A `||` chain picks the first truthy VALUE, not the first valid string -- a
+// truthy non-string in an earlier field would suppress a valid string in a
+// later one and still resolve to undefined. This picks the first field that
+// is actually a non-blank string, confirmed-canonical field first, so a
+// partial/malformed payload never silently masks a real alias. Cursor's own
+// task-dispatch-guard.mjs forwards its payload into this file unchanged, so
+// this fix covers both runtimes.
+function firstNonBlankString(...candidates) {
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim().length > 0) return candidate;
+  }
+  return undefined;
+}
+
 async function readStdin() {
   const chunks = [];
   for await (const chunk of process.stdin) chunks.push(chunk);
@@ -57,7 +71,7 @@ async function main() {
   const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.cwd();
 
   const result = guardCore.evaluateDispatch({
-    subagentType: toolInput.subagent_type || toolInput.subagentType,
+    subagentType: firstNonBlankString(toolInput.subagent_type, toolInput.subagentType),
     prompt: toolInput.prompt,
     sessionID: payload?.session_id,
     projectDir,
