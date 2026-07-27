@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Root-level skill metadata JSON contract for .opencode/skills/ across all 12 skills
 - Started: 2026-07-27T17:56:03Z
 - Status: INITIALIZED
-- Iteration: 2 of 10
+- Iteration: 3 of 10
 - Session ID: fanout-sol-high-fast-1785174758167-rdrppf
 - Parent Session: none
 - Lifecycle Mode: new
@@ -33,18 +33,19 @@ Reducer-generated observability surface for the active research packet.
 |---|-------|-------|-------|----------|--------|
 | 1 | Build the exact 12-skill by eight-file root-level presence census and identify producer evidence for each file type. | metadata-census | 1.00 | 5 | complete |
 | 2 | Trace consumers and schemas for description.json, graph-metadata.json, mode-registry.json, and hub-router.json. | hub-metadata-consumers | 1.00 | 5 | complete |
+| 3 | Complete schemas and consumer call sites for leaf-manifest.json, leaf-manifest.config.json, leaf-aliases.json, and command-metadata.json. | leaf-command-contracts | 1.00 | 5 | complete |
 
-- iterationsCompleted: 2
-- keyFindings: 10
-- openQuestions: 4
-- resolvedQuestions: 1
+- iterationsCompleted: 3
+- keyFindings: 15
+- openQuestions: 3
+- resolvedQuestions: 2
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:questions -->
 ## 4. QUESTIONS
-- Answered: 1/5
+- Answered: 2/5
 - [x] What is the complete 12-skill by eight-file root-level census, and who produces each file type?
-- [ ] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests? [legacy-import]
+- [x] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
 - [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective? [legacy-import]
 - [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks? [legacy-import]
 - [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it? [legacy-import]
@@ -52,8 +53,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:uncovered-questions -->
 ## Uncovered Questions
-- Count: 4
-- [ ] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
+- Count: 3
 - [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
 - [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
 - [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
@@ -63,12 +63,13 @@ Reducer-generated observability surface for the active research packet.
 ## 5. TREND
 - newInfoRatio sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 - score sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-- Last 3 ratios: 1.00 -> 1.00
+- Last 3 ratios: 1.00 -> 1.00 -> 1.00
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
 - convergenceScore: 1.00
-- coverageBySources: {"code":30,"other":6}
-- Advisory events: none
+- coverageBySources: {"code":55,"other":7}
+- WARNING event: novelty_signal_inert metric=newInfoRatio run=3 window=3 sparkline=▄▄▄ — newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and "not exhausted" claims derived from it are untrustworthy.
+- Advisory event: trend_flatline metric=score run=3 window=3 sparkline=▄▄▄
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
@@ -81,6 +82,11 @@ Reducer-generated observability surface for the active research packet.
 - Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful. (iteration 2)
 - Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above] (iteration 2)
 - Treating the advisor as a runtime consumer of every hub JSON file; it directly ingests graph metadata, reads selected mode registries for projection/delegation, and has no located runtime read of skill description or generic hub-router files. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:952-970] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:160-180] (iteration 2)
+- Counting only four direct reader files is stale: there are five; four is defensible only as the number of consumer surfaces after grouping a validator with its unit test. [INFERENCE: exact executable search results reconciled with the five reader files cited in Finding 5] (iteration 3)
+- No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`] (iteration 3)
+- Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] (iteration 3)
+- Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] (iteration 3)
+- Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91] (iteration 3)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -95,7 +101,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Which exceptional presence cases are required, optional, or defective?
+Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective?
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

@@ -6,7 +6,7 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
 - [x] What is the complete 12-skill by eight-file root-level census, and who produces each file type?
-- [ ] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
+- [x] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
 - [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
 - [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
 - [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
@@ -26,6 +26,7 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 <!-- ANCHOR:answered-questions -->
 ## 6. ANSWERED QUESTIONS
 - What is the complete 12-skill by eight-file root-level census, and who produces each file type?
+- What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
 
 <!-- /ANCHOR:answered-questions -->
 
@@ -34,6 +35,7 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 ## 7. WHAT WORKED
 - exact direct-child globbing produced a scope-safe census without admitting nested packet metadata; focused source reads then separated scaffold outputs, generated artifacts, and authored inputs. (iteration 1)
 - owner-scoped searches followed by implementation reads separated real file reads from thousands of continuity/docs mentions and exposed the direct-versus-indirect advisor boundary. (iteration 2)
+- executable-extension searches avoided the blocked prose/spec noise, while owner-focused reads exposed direct versus indirect consumers and the file-versus-surface cardinality distinction. (iteration 3)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -41,6 +43,7 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 ## 8. WHAT FAILED
 - broad `command-metadata.json` search output was too large because repository-wide references include large records; narrowed producer searches were clean but yielded only negative evidence. (iteration 1)
 - broad exact-filename searches overflowed because identical names occur throughout spec packets and archived evidence. (iteration 2)
+- the prompt's expected four-consumer count did not match direct reader files because it implicitly grouped the validator and its test; treating the number literally would omit evidence. (iteration 3)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -61,6 +64,16 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Counting nested mode/packet JSON: excluded by the focus contract and direct-child glob.
 
+### Counting only four direct reader files is stale: there are five; four is defensible only as the number of consumer surfaces after grouping a validator with its unit test. [INFERENCE: exact executable search results reconciled with the five reader files cited in Finding 5] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Counting only four direct reader files is stale: there are five; four is defensible only as the number of consumer surfaces after grouping a validator with its unit test. [INFERENCE: exact executable search results reconciled with the five reader files cited in Finding 5]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Counting only four direct reader files is stale: there are five; four is defensible only as the number of consumer surfaces after grouping a validator with its unit test. [INFERENCE: exact executable search results reconciled with the five reader files cited in Finding 5]
+
+### No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`]
+
 ### Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -71,10 +84,25 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: The similarly named root-name consumer-matrix test concerns catalog/playbook directory names, not this eight-file metadata census. [SOURCE: .opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:80-138]
 
+### Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179]
+
+### Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299]
+
 ### Treating `leaf-manifest.config.json` or `leaf-aliases.json` as generated because the manifest generator reads them: the implementation identifies them as authored inputs and only writes `leaf-manifest.json`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:215-218] -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Treating `leaf-manifest.config.json` or `leaf-aliases.json` as generated because the manifest generator reads them: the implementation identifies them as authored inputs and only writes `leaf-manifest.json`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:215-218]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating `leaf-manifest.config.json` or `leaf-aliases.json` as generated because the manifest generator reads them: the implementation identifies them as authored inputs and only writes `leaf-manifest.json`. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:215-218]
+
+### Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91]
 
 ### Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above] -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above]
@@ -98,6 +126,11 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful. (iteration 2)
 - Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above] (iteration 2)
 - Treating the advisor as a runtime consumer of every hub JSON file; it directly ingests graph metadata, reads selected mode registries for projection/delegation, and has no located runtime read of skill description or generic hub-router files. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:952-970] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts:160-180] (iteration 2)
+- Counting only four direct reader files is stale: there are five; four is defensible only as the number of consumer surfaces after grouping a validator with its unit test. [INFERENCE: exact executable search results reconciled with the five reader files cited in Finding 5] (iteration 3)
+- No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`] (iteration 3)
+- Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] (iteration 3)
+- Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] (iteration 3)
+- Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91] (iteration 3)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -123,12 +156,15 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - Where should the canonical contract and fleet-wide freshness gate live? (iteration 2)
 - What consumer-derived class taxonomy explains all 12 roots? (iteration 2)
 - Which exceptional presence cases are required, optional, or defective? (iteration 2)
+- What consumer-derived skill class taxonomy maps all 12 roots and classifies every presence difference? (iteration 3)
+- Where should the canonical contract and fleet-wide presence-plus-freshness gate live? (iteration 3)
+- Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective? (iteration 3)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Which exceptional presence cases are required, optional, or defective?
+Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective?
 
 <!-- /ANCHOR:next-focus -->
 <!-- MACHINE-OWNED: END -->
