@@ -7,14 +7,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge"
-    last_updated_at: "2026-07-27T08:00:00Z"
+    last_updated_at: "2026-07-27T09:53:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 004 spec (planning only); status Planned"
-    next_safe_action: "Wait for phase 003 and phase 001, then execute the live discovery probe"
-    blockers: ["depends on 003 landing (cli-pi as hub's 6th mode)", "depends on 001's live install/settings.json findings", "discovery-shape question unresolved until a live pi session is probed"]
-    key_files: ["plan.md", "../003-cli-pi-skill-packet/spec.md", "../001-pi-contract-pin/spec.md"]
+    recent_action: "Design complete; live probe blocked on credentials, decision accepted"
+    next_safe_action: "Commit phase 004; phase 005 proceeds with accepted decision"
+    blockers: ["Discovery-shape confirmation needs provider credentials this machine lacks"]
+    key_files: ["implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-creation-authoring", parent_session_id: null }
-    completion_pct: 0
+    completion_pct: 90
     open_questions: ["Does discovery surface only the pointed-at dir's SKILL.md or every nested one?", "Does the skills array accept a file path or only directory paths?", "If flattened, does Pi's selection heuristic bypass the hub directly?", "Does a curated-mirror approach break relative paths inside SKILL.md?", "Should sk-design's 2 vendor SKILL.md files need a different approach?"]
     answered_questions: ["Inventory confirmed live: 51 SKILL.md files, 12 at hub-root depth", "2 of 51 are vendor files inside sk-design's playwright-core, not repo content", "parent-skill-check.cjs rules 2a/2b confirmed: one advisor identity per hub", "Nested mode SKILL.md files omit hub-level disambiguation prose (9.5KB hub vs 31-33KB modes)"]
 ---
@@ -39,7 +39,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete - design fully verified; live discovery-shape confirmation accepted-deferred (blocked on provider credentials, re-verification trigger documented in `implementation-summary.md`) |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

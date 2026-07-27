@@ -19,7 +19,9 @@
       "pi settings.json skills design",
       "pi skill discovery tasks",
       "pi skill discovery checklist",
-      "pi skills array verification"
+      "pi skills array verification",
+      "pi skill discovery summary",
+      "pi settings.json skills implementation"
     ],
     "key_topics": [
       "skill",
@@ -36,31 +38,20 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "plan.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      "tasks.md",
+      "implementation-summary.md",
       "spec.md",
-      "checklist.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -70,9 +61,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -182,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Unlike Devin and Cursor (`029-cli-devin-revival`, `030-cli-cursor-creation`), which have no shared skill format at all and needed bespoke, repo-authored hook adapters to bridge this repo's guard/skill content into their native surfaces, Pi natively speaks `SKILL.md` and documents ingesting external `SKILL.md` trees directly — its own docs' only cross-harness example shows `{\"skills\": [\"~/.claude/skills\", \"~/.codex/skills\"]}`",
     "created_at": "2026-07-27T06:48:17.614Z",
-    "last_save_at": "2026-07-27T07:00:35.889Z",
+    "last_save_at": "2026-07-27T09:52:57.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09133d4deba6897a6c0e0428462e5665c160a42166cb23cb42f2c31b19bd184a",
+    "source_fingerprint": "sha256:f90b175f519a6ad32cdf299579cb9b1d918576a2fb76992581a7340dc6aeaa8d",
     "source_doc_hashes": {
-      "spec.md": "0df5b9fcb91fcff4681f13a933d53db19aa1d8de93ca00c7f6f88219b96e86b1",
-      "plan.md": "10b959898999606e88abef30f4324d982a7d59c31f1a37e438c41c2e7dd6ac2c",
-      "tasks.md": "6e12831fff4883ce623287828b0b76163e6381613ced01a593563b6c20fb3088",
-      "checklist.md": "b1e929f499fbe2f35d9c97e47fb331729f6c06458c23d4e8adf12ea6b3079312"
+      "spec.md": "79a1e7524ccbc6e3d5aec37b8550293eb9d8941707c003891cf30d27fa1bec6e",
+      "plan.md": "4db74ca464edbca409576d0301b176e75782177e01a56adea46b4f3abdd019ac",
+      "tasks.md": "4e82807eede06da305b8934d80a146f34707010ce2eead6c85136b3ecf0f50fd",
+      "checklist.md": "db0460bd31472ba12ce78e093b52d0d4afd334983ca467c53a9579fe817b1e1c",
+      "implementation-summary.md": "00347682806bc481fbc176617059e6e6eeec09c77bd4012a23672815469807e4"
     },
     "last_active_child_id": null,
     "last_active_at": null
