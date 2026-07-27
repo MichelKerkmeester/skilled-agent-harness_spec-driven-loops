@@ -1,0 +1,629 @@
+{
+ "rows": [
+  {
+   "root": ".opencode/skills/cli-external-orchestration/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/cli-external-orchestration/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/cli-external-orchestration/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-sonnet-20260721-152551",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--sonnet",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "oldRel": "after-routing-remediation",
+   "newRel": "2026-07-16--after-routing-remediation--router",
+   "carveOut": null,
+   "date": "2026-07-16",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "oldRel": "baseline",
+   "newRel": "baseline",
+   "carveOut": "frozen-anchor",
+   "date": null,
+   "dateSource": null
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-20260721-152001",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--unspecified",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "after",
+   "newRel": "2026-06-01--after--router",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "baseline",
+   "newRel": "baseline",
+   "carveOut": "frozen-anchor",
+   "date": null,
+   "dateSource": null
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "compiled-routing/luna-high-acceptance-1784596615522",
+   "newRel": "compiled-routing/2026-07-21--acceptance--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-sonnet-20260721-131257",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--sonnet",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "d4r-live",
+   "newRel": "2026-06-02--d4r-live--live",
+   "carveOut": null,
+   "date": "2026-06-02",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "full",
+   "newRel": "2026-06-01--full--router",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "live",
+   "newRel": "2026-06-01--live--live",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "live-final",
+   "newRel": "2026-06-01--live-final--live",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "live-remediated",
+   "newRel": "2026-06-01--live-remediated--live",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "router-baseline",
+   "newRel": "2026-07-10--router-baseline--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "oldRel": "router-final",
+   "newRel": "2026-06-01--router-final--router",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-quality/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-quality/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-review/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-review/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-webflow/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-webflow/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "after-009",
+   "newRel": "2026-07-06--after-009--router",
+   "carveOut": null,
+   "date": "2026-07-06",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "after-012-routing-rigor",
+   "newRel": "2026-07-06--after-012-routing-rigor--router",
+   "carveOut": null,
+   "date": "2026-07-06",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "after-016-hub-routing",
+   "newRel": "2026-07-07--after-016-hub-routing--live",
+   "carveOut": null,
+   "date": "2026-07-07",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "after-018-transport-integration",
+   "newRel": "2026-07-07--after-018-transport-integration--live",
+   "carveOut": null,
+   "date": "2026-07-07",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "after-022-coverage-fill",
+   "newRel": "2026-07-07--after-022-coverage-fill--live",
+   "carveOut": null,
+   "date": "2026-07-07",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "after-d3-proxy",
+   "newRel": "2026-07-06--after-d3-proxy--router",
+   "carveOut": null,
+   "date": "2026-07-06",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "baseline",
+   "newRel": "baseline",
+   "carveOut": "frozen-anchor",
+   "date": null,
+   "dateSource": null
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-sonnet-20260721-133447",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--sonnet",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-doc/benchmark",
+   "oldRel": "compiled-routing/luna-high-acceptance-1784596615522",
+   "newRel": "compiled-routing/2026-07-21--acceptance--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/sk-doc/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-doc/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-doc/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-sonnet-20260721-132527",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--sonnet",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-doc/benchmark",
+   "oldRel": "compiled-routing/r3-benchmark-sweep-20260721-131432",
+   "newRel": "compiled-routing/2026-07-21--benchmark-sweep--r3",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-git/benchmark",
+   "oldRel": "live-glm-5.2-high",
+   "newRel": "2026-07-10--live--glm-5-2-high",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-git/benchmark",
+   "oldRel": "live-kimi-2.7",
+   "newRel": "2026-07-10--live--kimi-2-7",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-sonnet-20260721-132133",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--sonnet",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "oldRel": "live-final",
+   "newRel": "2026-07-10--live-final--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "oldRel": "router-final",
+   "newRel": "2026-07-10--router-final--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-improve/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "001-swe-1.6-eval-loop",
+   "newRel": "2026-07-10--eval-loop--swe-1-6",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "002-swe-1.6-extraction-rerun",
+   "newRel": "2026-07-10--extraction-rerun--swe-1-6",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "003-minimax-prompt-framework",
+   "newRel": "2026-07-10--prompt-framework--minimax",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "004-mimo-prompt-framework",
+   "newRel": "2026-06-01--prompt-framework--mimo",
+   "carveOut": null,
+   "date": "2026-06-01",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "005-mimo-minimax-capability-discrimination",
+   "newRel": "2026-06-02--minimax-capability-discrimination--mimo",
+   "carveOut": null,
+   "date": "2026-06-02",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "006-kimi-k2.7-prompt-framework",
+   "newRel": "2026-06-15--prompt-framework--kimi-k2-7",
+   "carveOut": null,
+   "date": "2026-06-15",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "007-kimi-k2.7-discriminating",
+   "newRel": "2026-06-15--discriminating--kimi-k2-7",
+   "carveOut": null,
+   "date": "2026-06-15",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-models/benchmarks",
+   "oldRel": "008-glm-5.2-prompt-framework",
+   "newRel": "2026-06-28--prompt-framework--glm-5-2",
+   "carveOut": null,
+   "date": "2026-06-28",
+   "dateSource": "json"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "after-d3-proxy",
+   "newRel": "2026-07-08--after-d3-proxy--router",
+   "carveOut": null,
+   "date": "2026-07-08",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "baseline",
+   "newRel": "baseline",
+   "carveOut": "frozen-anchor",
+   "date": null,
+   "dateSource": null
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "compiled-routing/luna-high-real-20260721-073315",
+   "newRel": "compiled-routing/2026-07-21--real--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "compiled-routing/luna-high-verify-20260721-120348",
+   "newRel": "compiled-routing/2026-07-21--verify--luna-high",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "compiled-routing/playbook-verify-sonnet-20260721-132746",
+   "newRel": "compiled-routing/2026-07-21--playbook-verify--sonnet",
+   "carveOut": null,
+   "date": "2026-07-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/deep-improvement/benchmark",
+   "oldRel": "live-mode-b",
+   "newRel": "2026-07-10--live-mode-b--live",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/deep-improvement/benchmark",
+   "oldRel": "router-mode-a",
+   "newRel": "2026-07-10--router-mode-a--router",
+   "carveOut": null,
+   "date": "2026-07-10",
+   "dateSource": "git"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-17",
+   "newRel": "2026-05-17--run--unspecified",
+   "carveOut": null,
+   "date": "2026-05-17",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-20",
+   "newRel": "2026-05-20--run--unspecified",
+   "carveOut": null,
+   "date": "2026-05-20",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-20-rerank-ab",
+   "newRel": "2026-05-20--rerank-ab--unspecified",
+   "carveOut": null,
+   "date": "2026-05-20",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-20-rerank-ab-rerun",
+   "newRel": "2026-05-20--rerank-ab-rerun--unspecified",
+   "carveOut": null,
+   "date": "2026-05-20",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-21-cap-top-k",
+   "newRel": "2026-05-21--cap-top-k--unspecified",
+   "carveOut": null,
+   "date": "2026-05-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-21-fp16-rerank",
+   "newRel": "2026-05-21--fp16-rerank--unspecified",
+   "carveOut": null,
+   "date": "2026-05-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-21-rerank-ab-msmarco",
+   "newRel": "2026-05-21--rerank-ab-msmarco--unspecified",
+   "carveOut": null,
+   "date": "2026-05-21",
+   "dateSource": "name"
+  },
+  {
+   "root": ".opencode/skills/system-spec-kit/mcp-server/benchmarks",
+   "oldRel": "benchmark-2026-05-21-spec-memory-mps",
+   "newRel": "2026-05-21--spec-memory-mps--unspecified",
+   "carveOut": null,
+   "date": "2026-05-21",
+   "dateSource": "name"
+  }
+ ],
+ "collisions": []
+}
