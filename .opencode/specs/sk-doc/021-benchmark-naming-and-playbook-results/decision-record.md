@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T11:30:00Z"
+    last_updated_at: "2026-07-27T11:48:33Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Renamed 78 run folders, backfilled their reports, wrote the packet docs"
-    next_safe_action: "Decide the two deferred questions: plural roots and the uppercase source map"
+    recent_action: "Remediated the three verified deep-review findings"
+    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
     blockers: []
     completion_pct: 100
 ---
@@ -160,3 +160,75 @@ sibling hub's folder, producing links that resolved to the wrong evidence. 366 w
 
 The map must be read per root, never per base name. This is recorded here because the same mistake is
 available to anyone who reads the map as a flat dictionary.
+
+---
+
+## ADR-005: Treat A Reviewer Finding As A Hypothesis
+
+**Status:** Accepted
+
+### Context
+
+A two-lineage deep review returned three P1 findings. The run that produced them
+was not trustworthy: one lineage failed terminally on a write-containment
+violation, and the other wrote nine of twelve state records with timestamps in
+the future, up to twenty-six minutes past the moment the run ended. The lineages
+also ran sequentially into a shared packet, so the second could have read the
+first's report rather than reaching its conclusions independently.
+
+### Decision
+
+Verify each finding against the code before acting on it, and record what
+verification showed rather than what the reviewer claimed.
+
+### Alternatives Considered
+
+Accepting the findings on the reviewers' authority, which their agreement
+superficially supports. Rejected: agreement between two lineages that shared a
+packet is not independent corroboration, and a fabricated timestamp is direct
+evidence that at least one lineage wrote things it did not measure.
+
+### Consequences
+
+All three findings survived verification, two of them defects introduced by this
+packet and one pre-existing. Verification also corrected the framing of the
+second: the two report filenames belong to two different benchmark families, so
+the defect was a doc written from a reference layout and never reconciled against
+the writer, not a contradiction inside one family.
+
+---
+
+## ADR-006: Run Dispatched Executors In An Isolated Worktree
+
+**Status:** Accepted, after a destructive incident
+
+### Context
+
+The codex lineage of the review ran in the shared working tree. Its write-
+containment guard snapshots dirty out-of-scope paths before dispatch and reverts
+anything new outside its own lineage directory afterwards. A concurrent session
+was actively writing to the same tree during the run, so its files were created
+after the snapshot and outside that directory. The guard attributed them to the
+leaf and reverted thirty-two paths: twenty-six untracked files deleted, four
+tracked files restored to their committed state.
+
+The work survived only because that session had committed seconds earlier and
+regenerated the rest within minutes.
+
+### Decision
+
+Every dispatched executor runs in its own git worktree.
+
+### Alternatives Considered
+
+Coordinating timing so no other session writes during a run. Rejected: the
+containment behaviour had already been read and understood before this run, and
+concurrency was lowered specifically to protect the sibling lineage from it. The
+guard was applied to the wrong risk while the more likely writer went
+unconsidered, so a control that depends on remembering to think of it is not a
+control.
+
+### Consequences
+
+Worktree setup costs time per run. The containment guard keeps its value as a
+scope check while its blast radius is confined to a tree nobody else edits.

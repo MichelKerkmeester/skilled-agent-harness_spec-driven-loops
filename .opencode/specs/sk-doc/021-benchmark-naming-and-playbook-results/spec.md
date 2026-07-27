@@ -12,10 +12,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T09:00:00Z"
+    last_updated_at: "2026-07-27T11:48:33Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Opened the packet and bound the convention grammar"
-    next_safe_action: "Write the convention into create-benchmark"
+    recent_action: "Remediated the three verified deep-review findings"
+    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
     blockers: []
     completion_pct: 0
 ---

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Two defects, one cause",
     "created_at": "2026-07-27T09:25:16.484Z",
-    "last_save_at": "2026-07-27T09:28:36.942Z",
+    "last_save_at": "2026-07-27T11:48:54.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfe27a712a6cabeabb73209004b4951216e5b68202ff9703847c4cbe1a839694",
+    "source_fingerprint": "sha256:5cae5181405176bb37ad479e2d1387bef1f2ec61b2e9caf45c1e83f9fe2391ad",
     "source_doc_hashes": {
-      "spec.md": "f0478fc34990d4cd9314f3a75d38f0d187d5814f839cff54e62df0e57161b3f0",
-      "plan.md": "944056a95685430ba8b426424f204d3160e1315001c9f710be4198fedb3d27db",
-      "tasks.md": "24c47d87ce139b8dd98a7ea6b3e39c9e62586c25b8c07934e4dd1806e98a8bd1",
-      "checklist.md": "3ed20e5df7ef03037451db0b85176e41931a4d2b911cbac528087aece5566334",
-      "decision-record.md": "cb80f76c9013ad7c654707aeaa4291db9e912bd098dea011788ceb354fe232b6",
-      "implementation-summary.md": "cf1cae780e9dd7b41990785320a86bbaa70bce44b964e1f8a45e019581c3ede2"
+      "spec.md": "f787539bc00c090d3696226a24b72eaaec3b0033b6ea4290c05796e359fde56f",
+      "plan.md": "e2215cdd5d7adf1a8e3716e92418fb41c1b86cdc3c779056759d7a43d41d71e0",
+      "tasks.md": "b0ffe20f6033bd825a8eb6b558031cf14bd0df4d459419dd9d56d927320e3049",
+      "checklist.md": "5b4d5fcad005b167f653bd3811f781502b891b71f9df16070a04fddd30235d77",
+      "decision-record.md": "df9feefa85994579ccf5e1e13d3646a4d779fd9feaa46325eb7527ed82d083d2",
+      "implementation-summary.md": "c5f6e9b70aaeb9c1579a5bc5fb03bbeed992383c1406fa6802e3086a620f2b57"
     },
     "last_active_child_id": null,
     "last_active_at": null

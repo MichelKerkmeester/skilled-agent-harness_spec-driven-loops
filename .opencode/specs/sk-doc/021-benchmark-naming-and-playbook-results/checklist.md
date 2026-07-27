@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T11:30:00Z"
+    last_updated_at: "2026-07-27T11:48:33Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Renamed 78 run folders, backfilled their reports, wrote the packet docs"
-    next_safe_action: "Decide the two deferred questions: plural roots and the uppercase source map"
+    recent_action: "Remediated the three verified deep-review findings"
+    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
     blockers: []
     completion_pct: 100
 ---
@@ -173,3 +173,14 @@ references to a sibling hub.
 | Migration | Yes | 78 of 78 folders at mapped names; 0 live stale references |
 | Honesty | Yes | Every backfilled file marked derived; absence stated, never filled in |
 <!-- /ANCHOR:sign-off -->
+
+---
+
+<!-- ANCHOR:review-remediation -->
+## REVIEW REMEDIATION
+
+- [x] CHK-035 [P1] Same-day reruns no longer overwrite evidence. Evidence: two consecutive runs produce `2026-07-27--manual-testing-playbook--zai-glm-5-2-high` and `...-2`, and the index gains `2` rows.
+- [x] CHK-036 [P1] The report-folder contract matches the writer. Evidence: the owning skill now states seven Lane C files with `skill-benchmark-report.{json,md}`, and names the promotion family's `benchmark-report.md` separately.
+- [x] CHK-037 [P1] Parity-baseline discovery survives the dated grammar. Evidence: `scanParityBaseline` falls back to newest-captured dated discovery instead of a single fixed label no writer produces.
+- [x] CHK-038 [P0] No regression from the remediation. Evidence: storage suite `11 passed`, lane suite `260 passed` against the same `11` pre-existing failures, link checker `85 broken`.
+<!-- /ANCHOR:review-remediation -->
