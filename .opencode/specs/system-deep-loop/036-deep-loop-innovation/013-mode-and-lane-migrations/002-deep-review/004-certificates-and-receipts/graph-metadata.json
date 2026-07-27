@@ -39,14 +39,21 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines attestation boundaries, replay-fingerprint inputs, receipt coverage, and independent offline verification for scope, per-dimension review passes, P0/P1/P2 finding adjudication, convergence, synthesis, and review-report publication.",
     "created_at": "2026-07-16T03:43:32.955Z",
-    "last_save_at": "2026-07-24T07:18:38.516Z",
+    "last_save_at": "2026-07-27T19:35:05.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ba0cdc83bf638d80942cacb8e2b099bf360e50aa1f93802c0a7378b151b0e6e",
+    "source_fingerprint": "sha256:f19972ba4d2608fd68632415fb38b51dabbe47ad2d2c88f771b3e8510d9b7bfc",
     "source_doc_hashes": {
-      "spec.md": "ed1a400325d3803afdb0cd7fa2d426a83b9d8e8f0166a8fab64f8662421105a3",
-      "plan.md": "171f0a8b4071994105b41c4afbf438b92e777576804abc998b3805fa23b88991",
-      "tasks.md": "2ab04c575cd18e1093eb7e511c87194d36e4bd447be37f7cc4b737e74ea29eab",
-      "checklist.md": "9cb241ab87889906a20812645e740a5ca4a485cef55a5d856830bb9a3122f7b3"
+      "spec.md": "b19cfb0c30368ab6cc353410a505fa5f6c315f8e2b3cc4c8759a639dde27c594",
+      "plan.md": "6b84f59c3a6eb02fc40db87721e5c76b36b205b8549185bb64231f4d1ae7dc7b",
+      "tasks.md": "e3fc2e8a5bbf4e920537dcee307df48548e7fdc628b6c263f5eec7806556b8b4",
+      "checklist.md": "f7eafc0913500a772284a2969b21507468d8af373f1766a3295773c694d9cabb",
+      "implementation-summary.md": "c8f5684990eb61646be6bf4ce7074213c40aa2d8e3c283b2f4bc6212cbecabc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

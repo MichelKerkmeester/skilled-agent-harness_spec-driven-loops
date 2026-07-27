@@ -14,15 +14,12 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the Deep Review attestation boundary and verifier inputs"
-    next_safe_action: "Finalize receipt and certificate fields against phases 003 and 009"
+    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
     key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact phase-007 certificate primitive signs or seals the run certificate?"
-      - "Which phase-012 transition result fields are inherited by each receipt?"
-      - "Does the offline verifier consume a finalized frontier or a certificate-pinned event range?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "This phase plans attestations and verification, not authority cutover"
       - "Deep Review consumes the shared review-loop contract used by deep-alignment"
@@ -43,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the shared ledger, sealed-artifact, and review-loop contracts are frozen |
@@ -58,7 +55,7 @@ _memory:
 
 The Deep Review loop currently records scope, per-dimension passes, candidate findings, evidence, adjudication, convergence, blocked stops, synthesis, and `review-report.md` through a mixture of JSONL state, iteration artifacts, reducer-owned views, and handoff files. Those records preserve useful history, but the loop has no single per-run attestation proving which immutable inputs, transitions, evidence references, and policy versions produced a report. It also lacks a uniform receipt for each state-changing transition, leaving retries, late evidence, blocked stops, and effect ambiguity difficult to verify without rerunning the live mode.
 
-The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts, versioned replay fingerprints, and receipts/certificates before authority moves. The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but their outputs remain additive-dark and non-authoritative; this Planned leaf consumes those frozen contracts without changing legacy behavior. Phase 012 freezes the shared review-loop backbone used by Deep Review and deep-alignment; this phase must specialize that contract rather than fork it. The mode findings research reinforces the boundary: review passes emit candidates before independent validation activates P0/P1/P2 findings; impact and evidential confidence remain orthogonal; cross-pass identity uses versioned semantic anchors; and deterministic failures remain first-class receipts (`findings-registry-modes.json:2619-2876`).
+The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts, versioned replay fingerprints, and receipts/certificates before authority moves. The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, and this implemented leaf consumes those frozen contracts while remaining additive-dark and non-authoritative. Phase 012 freezes the shared review-loop backbone used by Deep Review and deep-alignment; this phase specializes that contract rather than forking it. The mode findings research reinforces the boundary: review passes emit candidates before independent validation activates P0/P1/P2 findings; impact and evidential confidence remain orthogonal; cross-pass identity uses versioned semantic anchors; and deterministic failures remain first-class receipts (`findings-registry-modes.json:2619-2876`).
 
 This phase plans two related attestations. A **CERTIFICATE** is one per completed or explicitly incomplete Deep Review run and attests the declared run outcome, immutable scope, finalized event range, receipt set, replay fingerprint, and report handoff. A **RECEIPT** is one per authorized transition and attests the transition decision, input and output references, authorization result, effect status, and append-chain position. Neither attestation claims that a semantic finding is true merely because a model or aggregate accepted it; each preserves the evidence and adjudication boundary needed for an independent verifier.
 <!-- /ANCHOR:problem -->
@@ -98,7 +95,7 @@ This phase plans two related attestations. A **CERTIFICATE** is one per complete
 | REQ-008 | Late evidence, retries, supersession, and unresolved states remain auditable | A later receipt references the prior receipt and records the new observation or disposition; no certificate or receipt rewrites raw evidence, erases a failed transition, or turns unknown external effects into success |
 | REQ-009 | An independent verifier can validate the complete cross-artifact closure without live model, tool, network, or mutable workspace access | The verifier accepts a certificate, ledger range, receipt bundle, sealed-artifact bundle, trusted registries, and the declared per-plain-digest-field expected-kind map; resolves every deferred digest to actually sealed bytes of its declared kind; checks epoch, lifecycle, freshness, real state, visibility, and authority liveness where borne; recomputes rather than trusts the replay fingerprint over the ordered dependency closure; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and returns typed fail-closed outcomes for missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence |
 | REQ-010 | Deep Review and deep-alignment continue to share one review-loop backbone | The contract comparison identifies inherited shared fields and mode-specific extensions; no Deep Review-only copy of shared scope, dimension, convergence, lineage, or report transitions is introduced |
-| REQ-011 | The phase remains planning-only and ownership-complete | The packet defines schemas, input matrices, verifier behavior, and fixtures only; no reducer, report generator, resume adapter, cutover, rollback switch, or mode gate is implemented here |
+| REQ-011 | The phase remains additive-dark and ownership-complete | The implementation adds certificate, receipt, verifier, and fixture surfaces only; no reducer, report generator, resume adapter, cutover, rollback switch, or mode gate is implemented here |
 <!-- /ANCHOR:requirements -->
 
 The attestation boundary is deliberately narrow. A certificate attests **recorded process integrity and declared result completeness** under named contracts. It does not certify that every finding is correct, that a P0/P1/P2 decision is justified without its adjudication evidence, or that an external side effect happened exactly once. The receipt chain must retain those distinctions for later policy and mode-gate consumers.

@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T21:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Skill Benchmark attestations to scenario and scoring evidence"
-    next_safe_action: "Freeze mode fields against shared certificate, receipt, and verifier contracts"
+    last_updated_at: "2026-07-27T20:59:15Z"
+    last_updated_by: "codex"
+    recent_action: "Verified 19 certificate tests"
+    next_safe_action: "Consume the verified bundle in 005-resume-adapter"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,19 +49,19 @@ the dependency/write-set conflict graph.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The `003-sealed-artifacts` primitives and shared mode-004 certificate/receipt contract are pinned by version and digest
-- [ ] Sibling typed-ledger and reducer/projection contracts name the Skill Benchmark event, projection, and raw-evidence boundaries
-- [ ] The deep-improvement-common ownership matrix identifies every reused service and rejects local replacements
-- [ ] The paired treatment lattice, scenario lifecycle, exposure stages, gold policy, scoring axes, and validity slices are explicit
-- [ ] The shared fingerprint serializer and offline-verifier sequence are available for mode-specific inputs
-- [ ] The phase-012 freeze and write-set conflict graph handoff is recorded before 010 migration integration
+- [x] The `003-sealed-artifacts` primitives and shared mode-004 certificate/receipt contract are pinned by version and digest
+- [x] Sibling typed-ledger and reducer/projection contracts name the Skill Benchmark event, projection, and raw-evidence boundaries
+- [x] The deep-improvement-common ownership matrix identifies every reused service and rejects local replacements
+- [x] The paired treatment lattice, scenario lifecycle, exposure stages, gold policy, scoring axes, and validity slices are explicit
+- [x] The shared fingerprint serializer and offline-verifier sequence are available for mode-specific inputs
+- [x] The phase-012 freeze and write-set conflict graph handoff is recorded before 010 migration integration
 
 ### Definition of Done
-- [ ] The Skill Benchmark certificate and receipt adapter attests paired scenario and scoring evidence without semantic forks
-- [ ] Replay fingerprints change for every declared mode-semantic mutation and remain stable for excluded storage values
-- [ ] The offline verifier recomputes mode evidence without live executor or network access and preserves incomplete/unknown states
-- [ ] Gold, compatibility, security, cost, negative-transfer, and expiry gates cannot be rescued by an aggregate score
-- [ ] The successor resume adapter and independent mode gate have explicit receipt, certificate, validity, and recovery inputs
+- [x] The Skill Benchmark certificate and receipt adapter attests paired scenario and scoring evidence without semantic forks
+- [x] Replay fingerprints change for every declared mode-semantic mutation and remain stable for excluded storage values
+- [x] The offline verifier recomputes mode evidence without live executor or network access and preserves incomplete/unknown states
+- [x] Gold, compatibility, security, cost, negative-transfer, and expiry gates cannot be rescued by an aggregate score
+- [x] The successor resume adapter and independent mode gate have explicit receipt, certificate, validity, and recovery inputs
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

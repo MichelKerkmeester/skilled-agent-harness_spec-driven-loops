@@ -47,19 +47,19 @@ reuse them after 009 freezes shared contracts and emits the write-set conflict g
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The `003-sealed-artifacts` certificate and receipt primitives are available with stable digest and reference semantics
-- [ ] Sibling typed ledger and reducer contracts are frozen enough to name event, projection, and receipt boundaries
-- [ ] The shared evaluator, canary, and promotion ownership boundary is agreed before variant adapters are designed
-- [ ] The canonical fingerprint input set, serialization rules, and excluded environmental values are enumerated
-- [ ] Hard veto, `INSUFFICIENT_EVIDENCE`, uncertainty, abort, restore, and unsupported-version outcomes are explicit
-- [ ] The later 009 contract-freeze and write-set conflict-graph handoff is recorded for the 010 migration fan-out
+- [x] The `003-sealed-artifacts` certificate and receipt primitives are available with stable digest and reference semantics [EVIDENCE: real sealed-artifact imports]
+- [x] Sibling typed ledger and reducer contracts are frozen enough to name event, projection, and receipt boundaries [EVIDENCE: real ledger-schema and reducer imports]
+- [x] The shared evaluator, canary, and promotion ownership boundary is agreed before variant adapters are designed [EVIDENCE: exported shared contract]
+- [x] The canonical fingerprint input set, serialization rules, and excluded environmental values are enumerated [EVIDENCE: composite fingerprint implementation]
+- [x] Hard veto, `INSUFFICIENT_EVIDENCE`, uncertainty, abort, restore, and unsupported-version outcomes are explicit [EVIDENCE: exported failure, verdict, outcome, and transition unions]
+- [x] The later 009 contract-freeze and write-set conflict-graph handoff is recorded for the 010 migration fan-out [EVIDENCE: `spec.md` reuse boundary]
 
 ### Definition of Done
-- [ ] `CERTIFICATE` and `RECEIPT` schemas attest the required run and transition evidence
-- [ ] The offline verifier can recompute fingerprints, receipt chains, raw-to-derived reductions, canaries, and hard gates
-- [ ] Evaluator, canary, and promotion services have one shared source and a variant adapter contract
-- [ ] Dark-path parity, tamper, missing-input, unknown-version, crash-window, and rollback evidence are specified
-- [ ] The successor resume adapter has an explicit receipt replay, salvage, and block contract
+- [x] `CERTIFICATE` and `RECEIPT` schemas attest the required run and transition evidence [EVIDENCE: exported types and issuers]
+- [x] The offline verifier can recompute fingerprints, receipt chains, raw-to-derived reductions, canaries, and hard gates [EVIDENCE: targeted offline-verifier Vitest suite]
+- [x] Evaluator, canary, and promotion services have one shared source and a variant adapter contract [EVIDENCE: `DEEP_IMPROVEMENT_COMMON_SHARED_CERTIFICATE_CONTRACT`]
+- [x] Dark-path parity, tamper, missing-input, unknown-version, crash-window, and rollback evidence are specified [EVIDENCE: fail-closed fixtures and typed receipt recovery fields]
+- [x] The successor resume adapter has an explicit receipt replay, salvage, and block contract [EVIDENCE: `implementation-summary.md` successor contract]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T21:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Skill Benchmark attestations to scenario and scoring evidence"
-    next_safe_action: "Freeze mode fields against shared certificate, receipt, and verifier contracts"
+    last_updated_at: "2026-07-27T20:59:15Z"
+    last_updated_by: "codex"
+    recent_action: "Verified 19 certificate tests"
+    next_safe_action: "Consume the verified bundle in 005-resume-adapter"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-improvement-common / skill-benchmark |
 | **Origin** | Phase 013 Skill Benchmark migration: certificates and receipts after typed ledger, reducers, and sealed artifacts |
@@ -57,8 +57,8 @@ show whether its gold was valid and whether the observed lift survived the decla
 dependency, and environment slice. The intended product is a versioned effect certificate with a validity domain, not a
 global score.
 
-The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and
-non-authoritative while this leaf stays Planned. This phase plans the Skill Benchmark specialization of the shared certificate and receipt contract. A per-run `CERTIFICATE`
+The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, and this leaf adds an
+additive-dark, non-authoritative Skill Benchmark specialization of the shared certificate and receipt contract. A per-run `CERTIFICATE`
 attests what skill scenarios and scoring policy were evaluated, which sealed artifacts and raw observations support the
 result, which paired treatment cells and component ablations were covered, what hard vetoes or insufficiencies were found,
 and which bounded verdict is valid for the declared slice. A per-transition `RECEIPT` attests each authorized operation from
@@ -67,8 +67,8 @@ predecessor evidence, effect identity, replay fingerprint, and outcome.
 
 The implementation builds on deep-improvement-common services from mode 004 for run identity, executor descriptors, sealed
 references, evaluator/canary/promotion behavior, budgets, effect recovery, receipt persistence, and offline verification.
-Only Skill Benchmark scenario and scoring logic is added here. This is planning only: the 013 migrations are the per-mode
-fan-out after phase 012 freezes shared contracts and emits the executable dependency and write-set conflict graph.
+Only Skill Benchmark scenario and scoring evidence is added here. The implementation remains dark while the 013 migrations
+complete their per-mode fan-out over the frozen phase-012 dependency and write-set contracts.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -180,7 +180,7 @@ visibility-denied, and authority-dead references.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Deferred to execution against the frozen shared contracts:
+Non-blocking successor policy questions:
 - Which shared certificate and receipt fields are mandatory for every mode, and which Skill Benchmark fields are registered extensions rather than new semantics?
 - Which exact certificate verdict labels and practical-effect margins are canonical for portable skill, executor-confounded, beneficial, neutral, harmful, inconclusive, withheld, and expired outcomes?
 - Which trajectory and resource-canary observations are diagnostic-only versus required process constraints for a given task slice?
