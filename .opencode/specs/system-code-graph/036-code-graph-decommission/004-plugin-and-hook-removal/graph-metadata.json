@@ -43,8 +43,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/plugins/mk-code-graph.js",
-      ".opencode/plugins/mk-code-graph-freshness.js",
       ".codex/hooks.json",
       ".devin/hooks.v1.json",
       ".opencode/scripts/session-cleanup.sh",
@@ -65,18 +63,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-graph.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-code-graph.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-graph-freshness.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-code-graph-freshness.js",
         "source": "derived"
       },
       {
@@ -134,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -159,6 +139,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two OpenCode plugins reach into the skill folder at load time — one through a static ESM import of a transport bridge, one through a `require` of the shared freshness core",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T18:49:14.460Z",
+    "last_save_at": "2026-07-27T20:56:20.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +209,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af5aa6d659ddda23fafe51d5e3e5bb0c757252f269dc792cdfe40fb37658b9eb",
+    "source_fingerprint": "sha256:aac48dfdd6c310c7e35c1ec08218e4fb495f992e5aaf05ea158eaff98dc699ed",
     "source_doc_hashes": {
-      "spec.md": "7ead1e69c1d8a871b1f1860cccac26b7701fc9053e6c95d5c894eee618102c71",
+      "spec.md": "c3fbce7d298c02661ab47d3147546b71c5edb1f9bedafb606dca4829c212df63",
       "plan.md": "f492932edfb030e9e3f5a166810413a8034668d333e57c9bfff992106785cc9e",
       "tasks.md": "5341a0cd7268513a599bc37281e80f5a6b872d24d79941abec545732cef9d2fa",
       "implementation-summary.md": "8af79e16c9fdba77b55cc2aec6aed5112a2cc4614d21270d7ccc21c0c06e3edd"

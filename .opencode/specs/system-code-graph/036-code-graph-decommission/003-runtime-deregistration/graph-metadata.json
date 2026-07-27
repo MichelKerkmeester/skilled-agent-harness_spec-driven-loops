@@ -113,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -132,6 +126,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The server is registered in `opencode.json`, `.claude/mcp.json`, and `.codex/config.toml`, and reached again through two symlinks — `.mcp.json` and `.cursor/mcp.json` both resolve to `.claude/mcp.json`, which makes Cursor a fifth registered surface that a naive audit misses",
     "created_at": "2026-07-27T16:33:54Z",
-    "last_save_at": "2026-07-27T16:49:44.182Z",
+    "last_save_at": "2026-07-27T20:56:20.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95e4845d501b73221041929f0257722868bc36672e92897830403e67d36d850c",
+    "source_fingerprint": "sha256:4f5913948c849600a6419bb724cab3e97bfbb3db7a331e3bbea9723cd2498758",
     "source_doc_hashes": {
-      "spec.md": "cfb502314e35364208aaebc244cdfcbbe64cdd6f0f83f7615735ba1da85aae1b",
+      "spec.md": "44d5319853b405c6bc4e09092e0c54a02fd2aa0de57a9c3cc48906335261cbfc",
       "plan.md": "696dafaf2a9a5e9d12a0d1bbea95e417b9e2608be03bffdfa1ff66d909b1897b",
       "tasks.md": "5e8362f9ae24758c5c76bb79fb21e199cdc6d27a902efb519b4ab50ba7abfa03",
       "implementation-summary.md": "6d0625adb3eacfc8c158e9743e4addb08b70063673460c23c6ae0b918ffe34da"

@@ -47,10 +47,8 @@
       ".cursor/mcp.json",
       ".claude/settings.local.json",
       "plan.md",
-      ".opencode/bin/mk-code-index-launcher.cjs",
       ".claude/mcp.json",
       ".claude/CLAUDE.md",
-      "shared/code-graph-contracts.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -86,21 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "CLAUDE.md",
         "kind": "doc",
         "path": ".claude/CLAUDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-contracts.ts",
-        "kind": "code",
-        "path": "shared/code-graph-contracts.ts",
         "source": "derived"
       },
       {
@@ -117,12 +103,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -147,6 +127,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers, a process-level boundary in `system-spec-kit`, the skill-advisor graph, a CI job, and the `/doctor` surface",
     "created_at": "2026-07-27T16:33:53Z",
-    "last_save_at": "2026-07-27T18:49:13.695Z",
+    "last_save_at": "2026-07-27T20:56:19.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +210,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1a2ddcea9bd2c808f3ec2c0e3171f42341953a4573e9d93ccb1e347f2d44097d",
+    "source_fingerprint": "sha256:e4a5050ef35daf0bea61e4625bd989b0b7474016298941a0b683af5832464400",
     "source_doc_hashes": {
-      "spec.md": "31e0771baf3860870cff8b80a8283daaf03769e886db48494c6d839aaaeb3411",
+      "spec.md": "c345bc8e325a9948a30a39f83305eda30874d1ca9e19c084c9b0bc5e9fdeb709",
       "plan.md": "36ee9c995629f36761428e5b1d57aaa47ae6732c6f9da845262b2445160bdef9",
       "tasks.md": "7658102131e18ebdca91a5b64f69f3293529a6d0446a072f88675fff61fef991",
       "implementation-summary.md": "39bbe94412c95410d0cb68ea728bce37a340aa0a25198c1fd2b513d9fc913e49",

@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The subsystem appears across the rest of the skill tree in three different ways, and they need different handling",
     "created_at": "2026-07-27T16:33:57Z",
-    "last_save_at": "2026-07-27T16:49:45.858Z",
+    "last_save_at": "2026-07-27T20:56:21.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +204,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:053838de01254b56523dfcd50bf70addf45944425913bd6f2bb3a009bbcfbe4f",
+    "source_fingerprint": "sha256:1a11203d1be0e0da639c261ec36558456ff2a98b35e2ee6e4af67bc29048f3a9",
     "source_doc_hashes": {
-      "spec.md": "46574951c12b217b69fdbaded39552ab06e3b89b4bff3dd149978db4b1252948",
+      "spec.md": "761ebce2480ecc510adc4cf3128a034d92603efd847dee2bf419b8b986c71b1e",
       "plan.md": "65597c053b5ec25ba5863d482f06514fd579ebe13d4bc46b51be7a1af9da6af3",
       "tasks.md": "622d7fe4ae45833daae4477c66f614f71f6bc92fab16f113c4fa47ba51902a96",
       "implementation-summary.md": "f39e1782e2a5043fe28805deb5a42c884665eac4f1e709180f1868314631c4ec"
