@@ -13,7 +13,7 @@ _memory:
     recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."
     next_safe_action: "Run strict validation."
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", ".devin/agents/code-reviewer/AGENT.md"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", ".devin/agents/<name>/AGENT.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-agents-skills-rules-parity"
@@ -99,7 +99,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-060 [P1] The new profile lives under `.devin/agents/<name>/AGENT.md`, matching the documented directory convention. [EVIDENCE: `.devin/agents/code-reviewer/AGENT.md` exists on disk.]
+- [x] CHK-060 [P1] The new profile lives under `.devin/agents/<name>/AGENT.md`, matching the documented directory convention. [EVIDENCE: verified on disk at the time. SUPERSEDED -- `code-reviewer` was later deleted as a non-native bespoke profile; the directory now holds symlink mirrors of all 13 roster agents.]
 <!-- /ANCHOR:file-org -->
 
 ---

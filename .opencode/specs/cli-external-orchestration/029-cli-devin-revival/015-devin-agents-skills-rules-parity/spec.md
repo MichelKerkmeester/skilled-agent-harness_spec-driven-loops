@@ -15,7 +15,7 @@ _memory:
     recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."
     next_safe_action: "None; phase complete."
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", ".devin/agents/code-reviewer/AGENT.md"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", ".devin/agents/<name>/AGENT.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-agents-skills-rules-parity"

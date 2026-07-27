@@ -40,7 +40,6 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".devin/agents/code-reviewer/AGENT.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENT.md",
-        "kind": "doc",
-        "path": ".devin/agents/code-reviewer/AGENT.md",
         "source": "derived"
       },
       {
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have.\" Live investigation during the 5-iteration deep-research pass found a mixed picture for Devin specifically:",
     "created_at": "2026-07-27T06:09:14.024Z",
-    "last_save_at": "2026-07-27T09:01:50.621Z",
+    "last_save_at": "2026-07-27T11:05:01.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d65e9cfe93679acacf45c69b301d42663844b6a39f5891c4fd1ba05b6c0f7d52",
+    "source_fingerprint": "sha256:39142a7c2d338e37ecf832e73aa29a167f889262a4f7702e7b18f045a73547a7",
     "source_doc_hashes": {
-      "spec.md": "886e13b27120bfc792549a4d7b8a4c2b2bf91a07c98b813538f132fb4f86dee6",
+      "spec.md": "8e47163daaea8d4b489e8755c3a966fee44842c5d7a70cabb5fe49fb0a017feb",
       "plan.md": "d38a785417703722b96a4fe81e747338f21e1ffd2cac8efdd73d10a887c1bb34",
       "tasks.md": "c4f20c6e51ffc4c79a4c15ddd575f891328ef6182d41fb25de797505f2adda6a",
-      "checklist.md": "35bea174619e98d70aac56ffc6d3beb370c9b088409c2c79ec8a7fb231dc7c4c",
-      "implementation-summary.md": "cb839794c028c03b2f7e47f10e877146a68da41eaa60c52aa71c420ed83cf47c"
+      "checklist.md": "3647fe8e9782aea882dd74a12b1285adaf91feda753d3be792814ee8ace435a0",
+      "implementation-summary.md": "64fd471cafc765128dc1ebb7725501a6a3b9998a4eba710b5ac200427402c836"
     },
     "last_active_child_id": null,
     "last_active_at": null

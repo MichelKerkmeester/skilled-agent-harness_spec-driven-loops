@@ -13,7 +13,7 @@ _memory:
     recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."
     next_safe_action: "None; phase complete."
     blockers: []
-    key_files: [".devin/agents/code-reviewer/AGENT.md", "cli-devin/SKILL.md", "tasks.md", "checklist.md"]
+    key_files: [".devin/agents/<name>/AGENT.md", "cli-devin/SKILL.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-agents-skills-rules-parity"
@@ -43,6 +43,8 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
+
+> **SUPERSEDED (same session).** This phase's one-profile proof-of-build has been extended: all 13 repo agents are now mirrored into `.devin/agents/` as symlinks to the canonical `.claude/agents/*.md`, and the bespoke `code-reviewer` profile described below was deleted (it was never a Devin built-in). The findings recorded here about the AGENT.md format and the failed Claude-format auto-import remain accurate and are what made the mirror approach possible.
 
 `.devin/agents/code-reviewer/AGENT.md`: a real, native Devin subagent profile using the live-confirmed frontmatter schema (`name`, `description`, `allowed-tools: [read, grep, glob, exec]`, `permissions.deny: [write, edit]`) plus a system-prompt body instructing it to review code for correctness, security, and repo-convention consistency, citing file/line and rating severity P0/P1/P2.
 
@@ -101,6 +103,6 @@ The profile was then dispatched to build via GPT-5.6-LUNA (xhigh, cli-codex). Th
 ## Known Limitations
 
 1. The dispatched build agent's own sandbox could not reach Devin's model service over the network, so its live-dispatch probe attempt failed for an environment reason unrelated to the profile itself; this was independently re-verified outside that sandbox.
-2. Only one profile (`code-reviewer`) was built, per the phase's explicit "one real profile is the proof-of-build" scope -- broader profile coverage is a follow-up if wanted.
+2. SUPERSEDED. This phase built one proof-of-build profile (`code-reviewer`) per its own scope. That follow-up has since been taken: all 13 roster agents are now mirrored into `.devin/agents/<name>/AGENT.md` as symlinks to the canonical `.claude/agents/*.md`, and the bespoke `code-reviewer` was deleted as it was never a Devin built-in and is superseded by the real `review` agent.
 3. `devin skills list`'s live output in this checkout showed 12 concrete `./.opencode/skills/*` paths plus an external `devin-cli` packet and an empty-path `declarative-repo-setup` entry, rather than a clean 13th local path; the actual output is preserved in `SKILL.md` rather than inventing a filesystem path for a notional 13th packet.
 <!-- /ANCHOR:limitations -->
