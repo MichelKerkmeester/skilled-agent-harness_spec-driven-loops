@@ -185,7 +185,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Encoded rules do nothing until something evaluates them against a real command and real repository state",
+    "causal_summary": "Encoded rules do nothing until something evaluates them against a real command",
     "created_at": "2026-07-27T18:47:26Z",
     "last_save_at": "2026-07-27T19:50:10.970Z",
     "save_lineage": "graph_only",
@@ -196,7 +196,7 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80bee4cfac3146869be90bb13295e6c0cd3afc7ba4f2c2bb170af7bce04c4aba",
+    "source_fingerprint": "sha256:42df24c0d47936146505dff5b38b808f5bae341316fdfc96093dd3e7323f2095",
     "source_doc_hashes": {
       "spec.md": "b93a610b8f0df4af94e64f042d5de57b82b0362775afc462a302171dd7268fee",
       "plan.md": "faaacb7c72fd69575b2d26bd25eb6178fbdd6cc4fc72a5ca462c65ffaff79243",

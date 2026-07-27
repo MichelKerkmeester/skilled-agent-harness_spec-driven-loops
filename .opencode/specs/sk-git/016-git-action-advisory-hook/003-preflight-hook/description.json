@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-git/016-git-action-advisory-hook/003-preflight-hook",
-  "description": "Encoded rules do nothing until something evaluates them against a real command and real repository state",
+  "description": "Encoded rules do nothing until something evaluates them against a real command",
   "keywords": [
     "encoded",
     "rules",
@@ -12,22 +12,17 @@
     "them",
     "against",
     "real",
-    "command",
-    "repository",
-    "state"
+    "command"
   ],
-  "lastUpdated": "2026-07-27T20:33:25.944Z",
+  "lastUpdated": "2026-07-27T20:19:56.250Z",
   "specId": "003",
   "folderSlug": "preflight-hook",
   "parentChain": [
     "sk-git",
     "016-git-action-advisory-hook"
   ],
-  "memorySequence": 4,
+  "memorySequence": 1,
   "memoryNameHistory": [
-    "27-07-26_20-51__scaffolded-the-sk-git-git-action-advisory-hook.md",
-    "27-07-26_21-25__built-the-sk-git-git-action-advisory-hook-across.md",
-    "27-07-26_21-27__built-the-sk-git-git-action-advisory-hook-across.md",
-    "27-07-26_21-33__built-the-sk-git-git-action-advisory-hook-across.md"
+    "27-07-26_20-51__scaffolded-the-sk-git-git-action-advisory-hook.md"
   ]
 }
