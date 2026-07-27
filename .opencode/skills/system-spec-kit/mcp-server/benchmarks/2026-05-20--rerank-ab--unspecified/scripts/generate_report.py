@@ -350,7 +350,7 @@ Recommendation for phase 005: `{verdict['verdict']}`. If `PROMOTE`, phase 005 ma
 Replay from repo root:
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab
+cd .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab--unspecified
 bash scripts/run-ab.sh
 ```
 

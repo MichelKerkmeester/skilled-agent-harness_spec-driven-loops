@@ -505,7 +505,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:1-164`"
       ]
     },
     {
@@ -518,7 +518,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:1-164`"
       ]
     },
     {
@@ -531,7 +531,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:1-164`"
       ]
     },
     {
@@ -544,12 +544,12 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:1-164`"
       ]
     },
     {
       "id": "finding-3-5-typed-pairs-correct-the-existing-d1-d2-d3-resource-math-rather-than-adding-a-sep",
-      "text": "**Typed pairs correct the existing D1/D2/D3 resource math rather than adding a separately weighted dimension.** On valid typed rows, pair recall supersedes flat-string resource recall for D1-intra and D2, while pair precision replaces flat over-routing for D3; the diagnostic is also exposed as `typedPairRecall`. A scenario's Mode A score normalizes the measured D1-intra (13), D2 (20), D3 (15), and optional D1-inter (12) weights, and the headline aggregate averages fitted scenario scores while excluding holdouts and oracle-fault rows. The committed system-deep-loop baseline is `71`, with D1-intra `100`, D2 `100`, D3 `6`, and zero route-gold rows, so it is evidence of the old flat scoring state rather than evidence that typed scoring ran. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1357,1414-1438] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1499-1524,1569-1575] [SOURCE: .opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:11-56,83-117]",
+      "text": "**Typed pairs correct the existing D1/D2/D3 resource math rather than adding a separately weighted dimension.** On valid typed rows, pair recall supersedes flat-string resource recall for D1-intra and D2, while pair precision replaces flat over-routing for D3; the diagnostic is also exposed as `typedPairRecall`. A scenario's Mode A score normalizes the measured D1-intra (13), D2 (20), D3 (15), and optional D1-inter (12) weights, and the headline aggregate averages fitted scenario scores while excluding holdouts and oracle-fault rows. The committed system-deep-loop baseline is `71`, with D1-intra `100`, D2 `100`, D3 `6`, and zero route-gold rows, so it is evidence of the old flat scoring state rather than evidence that typed scoring ran. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1357,1414-1438] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1499-1524,1569-1575] [SOURCE: .opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:11-56,83-117]",
       "addedAtIteration": 3,
       "sources": [
         "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:88-161`",
@@ -557,7 +557,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:65-77,148-178,193-250`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:186-294`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1079,1093-1438,1499-1745`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-164`"
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:1-164`"
       ]
     },
     {
@@ -567,7 +567,7 @@
       "sources": [
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
         "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:153-164`",
         "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
         "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
       ]
@@ -579,19 +579,19 @@
       "sources": [
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
         "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:153-164`",
         "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
         "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
       ]
     },
     {
       "id": "finding-4-4-the-committed-evidence-is-contradictory-about-hub-corpus-size-the-playbook-and-b",
-      "text": "The committed evidence is contradictory about hub corpus size: the playbook and baseline report describe 18 rows (14 routing plus 4 browser), while the benchmark README says 20 and 16 routing plus 4 browser. The playbook index and machine-readable baseline agree, so **18 (14+4)** is the better-supported current count; the README's 20 is stale or refers to an uncommitted/later corpus state. [SOURCE: `.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:201-225`] [SOURCE: `.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`] [SOURCE: `.opencode/skills/system-deep-loop/benchmark/README.md:27-42`]",
+      "text": "The committed evidence is contradictory about hub corpus size: the playbook and baseline report describe 18 rows (14 routing plus 4 browser), while the benchmark README says 20 and 16 routing plus 4 browser. The playbook index and machine-readable baseline agree, so **18 (14+4)** is the better-supported current count; the README's 20 is stale or refers to an uncommitted/later corpus state. [SOURCE: `.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:201-225`] [SOURCE: `.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:153-164`] [SOURCE: `.opencode/skills/system-deep-loop/benchmark/README.md:27-42`]",
       "addedAtIteration": 4,
       "sources": [
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
         "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:153-164`",
         "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
         "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
       ]
@@ -603,7 +603,7 @@
       "sources": [
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
         "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:153-164`",
         "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
         "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
       ]
@@ -615,7 +615,7 @@
       "sources": [
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:39-73,120-165,343-417,427-524`",
         "`.opencode/skills/system-deep-loop/manual_testing_playbook/manual_testing_playbook.md:140-225`",
-        "`.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:153-164`",
+        "`.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:153-164`",
         "`.opencode/skills/system-deep-loop/benchmark/README.md:20-42`",
         "`.opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md` (deterministic inventory and loader census)"
       ]

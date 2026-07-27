@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # FR-001: No-Card-Matches Fallback
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the negative-control path where a design-family prompt is valid for a public mode but does not match any private procedure-card trigger.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -27,14 +31,17 @@ interface: explain whether this existing neutral token name should be semantic o
 **Expected procedure result**: `Procedure applied: none - baseline interface workflow`.
 
 **Expected variant checks**:
-- `motion`: `Procedure applied: none - baseline motion workflow`.
 - `md-generator`: `Procedure applied: none - baseline md-generator pipeline`.
+
+Note: the retired `motion` mode's own `Procedure applied: none - baseline motion workflow` line merged into `interface`'s single baseline fallback (`Procedure applied: none - baseline interface workflow`) once `motion` folded into `interface`; there is no separate motion variant to check any more.
+
+---
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
-1. All three mode `SKILL.md` files contain a `Procedure applied: none - baseline ...` line.
+1. Both mode `SKILL.md` files contain a `Procedure applied: none - baseline ...` line.
 2. The prompt does not include a procedure-card trigger such as extraction, final polish, interaction-state matrix, or component inventory.
 
 ### Exact Command Sequence
@@ -46,7 +53,7 @@ interface: explain whether this existing neutral token name should be semantic o
 ### Pass/Fail Criteria
 
 - **PASS** iff each mode states the exact no-card fallback line, loads no unrelated procedure card, does not load every card in the folder, and continues with that mode's baseline workflow.
-- **FAIL** iff a card is invented, all procedure cards are loaded by default, a fallback line is missing, or md-generator is flattened to the read-only fallback text used by the two advisory modes.
+- **FAIL** iff a card is invented, all procedure cards are loaded by default, a fallback line is missing, or md-generator is flattened to the read-only fallback text used by the advisory `interface` mode.
 
 ### Failure Triage
 
@@ -54,11 +61,14 @@ interface: explain whether this existing neutral token name should be semantic o
 2. Check whether the prompt accidentally included a card trigger.
 3. If md-generator says read-only, re-read its `Backend Boundary Preservation` section.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
-- `.opencode/skills/sk-design/design-motion/SKILL.md`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -14,10 +14,24 @@ version: 1.0.0.0
 
 # Transform Application
 
+Interface-owned lane for applying bolder, quieter, distill, clarify and delight requests after the hub routes a make-it transform prompt to interface.
+
+---
+
 ## 1. OVERVIEW
 
-This is the interface-side landing lane for transform verbs. It applies a requested change to an interface surface after the hub has already selected `interface`. It does not decide whether the change is warranted; that is an audit question.
+### Purpose
+
+This is the interface-side landing lane for transform verbs. It applies a requested change to an interface surface after the hub has already selected `interface`.
+
+### When to Use
+
+Whenever a `make it ...` transform prompt has already routed to interface (Section 2 breaks the audit/interface tie). It does not decide whether the change is warranted; that is an audit question.
+
+### Core Principle
+
 Read this with `design-principles.md` and `brief-to-dials.md`. The transform still has to be grounded in the subject, register, density, motion budget and the surface's single job.
+
 ---
 
 ## 2. ROUTING RULE

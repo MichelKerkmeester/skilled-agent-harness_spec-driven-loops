@@ -1,0 +1,1 @@
+../../.opencode/bin/check-git-hooks.sh

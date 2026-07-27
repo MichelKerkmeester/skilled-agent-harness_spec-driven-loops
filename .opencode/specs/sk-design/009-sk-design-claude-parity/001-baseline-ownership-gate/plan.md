@@ -137,7 +137,7 @@ Evidence-first governance gate: collect read-only facts, classify ownership, rec
 | Hub routing | `hubRoute.failed=false`, `regressions=0`, `knownGaps=0` | Any hub-route regression or new known gap |
 | Tool surface | `toolSurface.failed=false` and `violations=[]` | Any write/bash/edit requirement appears in read-only modes |
 | Corpus coverage | 21 scenarios remain accounted for, with 15 scored and 6 browser routed out in router mode | Scenario count or classification changes without explicit decision record |
-| Baseline artifact policy | New comparisons are written outside `.opencode/skills/sk-design/benchmark/baseline/` | Any attempt to overwrite the committed `benchmark/baseline/` files |
+| Baseline artifact policy | New comparisons are written outside `.opencode/skills/sk-design/benchmark/reports/baseline/` | Any attempt to overwrite the committed `benchmark/baseline/` files |
 
 <!-- /ANCHOR:phases -->
 ---

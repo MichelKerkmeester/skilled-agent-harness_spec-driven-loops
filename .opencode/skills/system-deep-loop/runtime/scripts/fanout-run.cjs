@@ -611,7 +611,53 @@ function isMaxIterationsStopReason(stopReason) {
   return stopReason.toLowerCase().replace(/[^a-z]/g, '').startsWith('maxiteration');
 }
 
-function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy }) {
+// A synthesis record under any of the names producers have actually written. The
+// contract asks for `synthesis_complete`; the variants below were all observed in
+// real runs, so matching only the contract name fails lineages that complied in
+// substance. An explicit `synthesis_incomplete` is excluded — that one is a
+// producer correctly reporting it did not finish.
+const SYNTHESIS_EVENT_NAMES = new Set(['synthesis_complete', 'phase_synthesis_complete', 'synthesis']);
+
+function findSynthesisRecord(records) {
+  return [...records].reverse().find((record) => record
+    && record.type === 'event'
+    && typeof record.event === 'string'
+    && SYNTHESIS_EVENT_NAMES.has(record.event));
+}
+
+/**
+ * Decide completion from the artifacts a lineage left behind, for the case where
+ * no synthesis event can be recognised.
+ *
+ * The report and the per-iteration files are produced by the work itself rather
+ * than asserted about it, so they are the stronger evidence of the two. The
+ * iteration count must still meet the cap: a lineage that stopped early is
+ * genuinely a policy violation, not a naming mishap.
+ *
+ * @param {Object} params - Validation inputs.
+ * @returns {{complete: boolean, reason: string}} Verdict and, when incomplete, why.
+ */
+function completionFromArtifacts({ lineageDir, lineage, records }) {
+  if (!lineageDir) return { complete: false, reason: 'no lineage artifact directory to check' };
+  const dir = lineageDir;
+
+  const reportPath = path.join(dir, 'review-report.md');
+  if (!fs.existsSync(reportPath)) return { complete: false, reason: 'no review-report.md on disk' };
+
+  let iterationFiles = 0;
+  try {
+    iterationFiles = fs.readdirSync(path.join(dir, 'iterations'))
+      .filter((name) => /^iteration-\d+\.md$/.test(name)).length;
+  } catch { /* absent iterations dir leaves the count at zero */ }
+
+  const observed = Math.max(iterationFiles, records.filter((r) => r && r.type === 'iteration').length);
+  if (observed < lineage.iterations) {
+    return { complete: false, reason: `only ${observed} of ${lineage.iterations} iterations on disk` };
+  }
+  return { complete: true, reason: '' };
+}
+
+function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPolicy, lineageDir }) {
   if (loopType !== 'review' || stopPolicy !== 'max-iterations') return null;
   if (typeof lineage.iterations !== 'number' || lineage.iterations <= 0) {
     return 'stopPolicy=max-iterations requires a positive lineage iteration cap';
@@ -626,11 +672,17 @@ function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPo
 
   const records = stateRead.records;
   const iterationCount = records.filter((record) => record && record.type === 'iteration').length;
-  const synthesis = [...records]
-    .reverse()
-    .find((record) => record && record.type === 'event' && record.event === 'synthesis_complete');
+  const synthesis = findSynthesisRecord(records);
   if (!synthesis) {
-    return 'missing synthesis_complete event for max-iterations stop-policy validation';
+    // The event is a self-report, and a producer that did the work can still name
+    // it something the contract never listed — observed across runs of one model
+    // on one prompt: `synthesis_complete`, then `phase_synthesis_complete`, then
+    // `synthesis`. Discarding a finished review over the word it chose destroys
+    // hours of real analysis to enforce a spelling. Fall back to what the lineage
+    // actually left on disk, which is the evidence the event was only claiming.
+    const evidence = completionFromArtifacts({ lineageDir, lineage, records });
+    if (evidence.complete) return null;
+    return `missing synthesis event and ${evidence.reason} for max-iterations stop-policy validation`;
   }
 
   const totalIterations = Number.isFinite(Number(synthesis.totalIterations))
@@ -2201,6 +2253,7 @@ async function main() {
         stateRead,
         lineage,
         stopPolicy,
+        lineageDir,
       });
 
       // A lineage whose CLI exits non-zero or is killed by the timeout is a FAILURE,

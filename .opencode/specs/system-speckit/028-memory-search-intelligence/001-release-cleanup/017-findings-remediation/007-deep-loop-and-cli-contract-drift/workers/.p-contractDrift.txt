@@ -1,0 +1,22 @@
+Contract-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the truth; documentation gets corrected. NEVER change runtime to make a
+document true. Escalate (BLOCKED) only if the doc describes something clearly intended but unbuilt.
+
+You own ONLY the files named below. A CONCURRENT SESSION is actively editing cli-devin right now —
+touch nothing outside your named files, and re-verify your target lines before editing.
+No git mutations. No commit. Do NOT call MCP tools or load skills (spec-memory daemon is down,
+each call costs ~30s). Use Read/Glob/Grep/Edit directly. Start immediately.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match runtime>
+RISK: <what this could break and how you checked>
+
+FINDING contractDrift
+FILES YOU OWN: .opencode/commands/deep/assets/compiled/README.md and .opencode/commands/deep/assets/legacy/README.md (ONLY)
+TASK: fanout:SOL-07 — there are 5 legacy command bodies under assets/legacy/ but only 4 compiled contracts under assets/compiled/. Identify which command has a legacy body with no compiled counterpart, and confirm whether that is intentional (a command not yet compiled) or drift. Then make BOTH READMEs state the real inventory and the real relationship accurately, including the asymmetry and why it exists. Do not create or delete any contract or body file — document what is there.

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
+  "spec_folder": "sk-design/014-template-conformance/005-design-mcp-open-design/008-manual-testing-playbook",
+  "parent_id": "sk-design/014-template-conformance/005-design-mcp-open-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-mcp-open-design manual-testing-playbook conformance",
+      "template conformance audit",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "design-mcp-open-design",
+      "manual-testing-playbook",
+      "conformance",
+      "template",
+      "audit",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "opencode",
+      "skills"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/sk-design/design-mcp-open-design/manual-testing-playbook/` has not been audited against `.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md`",
+    "created_at": "2026-07-27T15:02:59.572Z",
+    "last_save_at": "2026-07-27T15:02:59.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aaf38748387acf1e1fb1a4a42d4d07a0362b4923465ab4ae50a81a45add12a6c",
+    "source_doc_hashes": {
+      "spec.md": "cafa4505fbd0e843cb3e4bcb2000a3b4058a3d676be5816d6404693950da2cae",
+      "plan.md": "2e6eaee809549629ecadd1a197f23623da7f38cc2af29146eefb7bab6aed9e92",
+      "tasks.md": "d51944e84ba8bf6af82682a642f5dcd4eeec789f943d433a1f801ba555c12165",
+      "checklist.md": "a899479558318866b0d6fc51cb3f5c7a2d6ddce20d5d202c18c73e47a089e85c",
+      "implementation-summary.md": "341a637339afed6083f4aec586840fbec1760ed7917e1a8b5b87d6e9e2e2d76c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

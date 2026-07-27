@@ -1,0 +1,32 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+SD-001,sk-code,live,,routing,,,,45,FAIL,first failing stage: routed-intra
+SD-002,sk-code,live,,routing,,,,63,PASS,
+SD-003,sk-code,live,,routing,,,,0,FAIL,first failing stage: routed-intra
+LS-001,sk-code,live,,routing,,,,95,PASS,
+LS-002,sk-code,live,,routing,,,,88,PASS,
+LS-003,sk-code,live,,routing,,,,100,PASS,
+LS-004,sk-code,live,,routing,,,,73,PASS,
+RD-001,sk-code,live,,routing,,,,100,PASS,
+RD-002,sk-code,live,,advisor,,,,100,PASS,
+SA-001,sk-code,live,,advisor,,,,100,PASS,
+MR-001,sk-code,browser-gated,,browser,,,,100,PASS,
+MR-002,sk-code,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+MR-003,sk-code,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+MR-004,sk-code,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+CB-001,sk-code,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+CB-002,sk-code,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+CB-003,sk-code,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+CS-001,sk-code,live,,routing,,,,45,FAIL,first failing stage: routed-intra
+CS-002,sk-code,live,,routing,,,,50,PASS,
+CS-003,sk-code,live,,routing,,,,0,FAIL,first failing stage: routed-intra
+CS-004,sk-code,live,,routing,,,,20,FAIL,first failing stage: surface-mismatch
+CS-005,sk-code,live,,routing,,,,67,PASS,
+CS-006,sk-code,live,,routing,,,,60,PASS,
+CS-007,sk-code,live,,routing,,,,57,PASS,
+DR-001,sk-code,live,,routing,,,,20,FAIL,first failing stage: routed-intra
+DR-002,sk-code,live,,routing,,,,100,PASS,
+DR-003,sk-code,live,,routing,,,,100,PASS,
+DR-004,sk-code,live,,routing,,,,100,PASS,
+TH-001,sk-code,live,,routing,,,,100,PASS,
+TH-002,sk-code,live,,routing,,,,100,PASS,

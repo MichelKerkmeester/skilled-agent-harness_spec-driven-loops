@@ -65,7 +65,7 @@ Skipping these non-fixes was a scope-lock hold: editing a correct map to chase a
 
 ### What Was Built
 
-1. **Baseline refresh (REQ-001).** Re-ran the router-mode benchmark into `sk-code/benchmark/baseline/`, replacing the stale BLOCKED-BY-STRUCTURE report. The committed baseline is now accurate.
+1. **Baseline refresh (REQ-001).** Re-ran the router-mode benchmark into `sk-code/benchmark/reports/baseline/`, replacing the stale BLOCKED-BY-STRUCTURE report. The committed baseline is now accurate.
 2. **Leaf-manifest (typed-pair prerequisite).** Generated `sk-code/leaf-manifest.json` via the existing `generate-leaf-manifest.cjs --write` (4 modes: code-webflow 116 leaves, code-opencode 65, code-review 10, quality 3). `--check` is byte-stable.
 3. **Manifest-gated typed-gold derivation (the mechanism).** The shared loader `load-playbook-scenarios.cjs` gained `loadManifestModeLeaves` + `deriveTypedGoldFromBodyGold`. For an index-table skill whose hub has a leaf-manifest, it types the existing packet-qualified `**Expected references loaded**` body gold into `(workflowMode, leafResourceId)` pairs, narrowed to the dominant surface mode. It is **dormant** for any skill without a manifest (returns null → byte-identical to before), so it activates only for sk-code today.
 4. **Guard test.** `tests/load-playbook-typed-derivation.vitest.ts` (5/5) pins the derivation: typing packet-qualified gold, dropping preamble/shared paths, dominant-mode narrowing, null on no-resolvable, and manifest-absent → null.

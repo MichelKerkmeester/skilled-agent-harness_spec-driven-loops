@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T-01 Capture baseline benchmark on sk-code as-is — `sk-code/benchmark/baseline/` → BLOCKED-BY-STRUCTURE, D5=0, 95 findings (1 P0 + 94 P2).
+- [x] T-01 Capture baseline benchmark on sk-code as-is — `sk-code/benchmark/reports/baseline/` → BLOCKED-BY-STRUCTURE, D5=0, 95 findings (1 P0 + 94 P2).
 - [x] T-02 Add machine-readable router block to `smart_routing.md` §11 — all 94 content files mapped; direct D5=91, 0 dead paths, 3 orphans.
 <!-- /ANCHOR:phase-1 -->
 
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T-06 Re-benchmark + record before/after — `sk-code/benchmark/2026-06-01--after--router/` (4-dim) → CONDITIONAL 69; `sk-code/benchmark/2026-06-01--full--router/` (5-dim, advisor on) → CONDITIONAL 55, D5 91, 2 scenarios.
+- [x] T-06 Re-benchmark + record before/after — `sk-code/benchmark/reports/2026-06-01--after--router/` (4-dim) → CONDITIONAL 69; `sk-code/benchmark/reports/2026-06-01--full--router/` (5-dim, advisor on) → CONDITIONAL 55, D5 91, 2 scenarios.
 - [x] T-07 Spec docs + metadata + validate + reconcile — this packet.
 - [x] T-08 Drift guard for the §11 machine block — `sk-code-router-sync.vitest.ts` (no dead paths, full coverage, prose explicit paths present); suite 218 passing.
 <!-- /ANCHOR:phase-3 -->

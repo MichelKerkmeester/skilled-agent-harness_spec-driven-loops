@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/003-design-motion/002-references",
+  "spec_folder": "sk-design/014-template-conformance/003-design-motion/002-references",
+  "parent_id": "sk-design/014-template-conformance/003-design-motion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-motion references conformance",
+      "motion-strategy separator discipline",
+      "advanced-craft H2 casing"
+    ],
+    "key_topics": [
+      "design-motion",
+      "references",
+      "conformance",
+      "motion-strategy",
+      "separator",
+      "discipline",
+      "advanced-craft",
+      "casing",
+      "holds",
+      "flat",
+      "files",
+      "governed"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-motion/references/motion-strategy.md",
+      ".opencode/skills/sk-design/design-motion/references/micro-interactions.md",
+      ".opencode/skills/sk-design/design-motion/references/advanced-craft.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "motion-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/references/motion-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "micro-interactions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/references/micro-interactions.md",
+        "source": "derived"
+      },
+      {
+        "name": "advanced-craft.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-motion/references/advanced-craft.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-reference-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`references/` holds 7 flat files, all governed by `skill-reference-template.md`",
+    "created_at": "2026-07-27T14:53:13.117Z",
+    "last_save_at": "2026-07-27T14:58:41.697Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:81446ec8148ac53e4bd44f925643877b7b5e9c8c53fefde39eb6b4af430ab314",
+    "source_doc_hashes": {
+      "spec.md": "ba4af6360235e931624aa639130ecc6065a414fda19692485af0fcdaa83b7aa1",
+      "plan.md": "e00a927eb61e7eef85de266a4483a310baccdebe47cef10acc060d1bac392139",
+      "tasks.md": "c9730c7c9c43c912c4ed99a4ed49679677e1e1159ba196eabb62c34c63526188",
+      "checklist.md": "99f5be72102d603236350f94bb7a2c50c312a9f7e2f89108a28424220486cf28",
+      "implementation-summary.md": "557e2ff70c7c44608ad7fc9499a3e5b621815bf9952153a7361cec56da573f98"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

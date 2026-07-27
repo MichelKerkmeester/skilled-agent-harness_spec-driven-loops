@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/008-changelog",
+  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/008-changelog",
+  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator changelog conformance",
+      "md-generator changelog template audit",
+      "v1.0.0.0 changelog structure check"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "changelog",
+      "conformance",
+      "md-generator",
+      "template",
+      "audit",
+      "structure",
+      "check",
+      "holds",
+      "exactly",
+      "one",
+      "file"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md",
+      ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
+    "created_at": "2026-07-27T15:10:03.095Z",
+    "last_save_at": "2026-07-27T15:10:03.095Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e84d1b7e4ee92117a941c299af0fe96541af23633cc24670a189cd9043430352",
+    "source_doc_hashes": {
+      "spec.md": "1a8c5600478f0b7653a42afda51ba0a40a81c2e1bc51687363f6020cdd8454af",
+      "plan.md": "1ee9dd5124d489e453155c088f06939f325c6ab6ea85abc69d4079939185be63",
+      "tasks.md": "d2fe6eeebf7fa66dae0000793137182d6f6f042b78d599cc4c2f26a204ae45d2",
+      "checklist.md": "dff043028eab971406f0508bad21cc747f181a1adac4fa8d45de4e7ae9879deb",
+      "implementation-summary.md": "7379c96cc0ec26cf2fe51c4b7d0d1283d4fd2fb34d843e929f992822039a7f18"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

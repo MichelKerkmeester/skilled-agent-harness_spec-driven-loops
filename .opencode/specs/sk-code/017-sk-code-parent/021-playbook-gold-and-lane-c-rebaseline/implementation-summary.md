@@ -24,8 +24,8 @@ _memory:
       - "description.json"
       - "graph-metadata.json"
       - "sk-code/manual_testing_playbook/"
-      - "sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json"
-      - "sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md"
+      - "sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json"
+      - "sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md"
       - "sk-code/benchmark/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -70,8 +70,8 @@ Phase 021 completed the sk-code playbook gold refresh and Lane-C router-final re
 |------|--------|---------|--------|
 | `.opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md` | Updated before close-out | Define scope, requirements, success criteria, risks, and out-of-scope boundaries for the gold refresh and re-baseline | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Updated | Translate stale gold paths from `references/{motion_dev,webflow,opencode}/` and `assets/{...}/` to `code-animation/`, `code-webflow/`, and `code-opencode/` packet paths | no commit SHA at authoring time |
-| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json` | Regenerated | Record deterministic router-mode baseline data after the refreshed gold | no commit SHA at authoring time |
-| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md` | Regenerated | Record human-readable router-final verdict and dimension evidence | no commit SHA at authoring time |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json` | Regenerated | Record deterministic router-mode baseline data after the refreshed gold | no commit SHA at authoring time |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md` | Regenerated | Record human-readable router-final verdict and dimension evidence | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/benchmark/README.md` | Updated | Refresh stale latest-router-verdict statistic to match router-final | no commit SHA at authoring time |
 | `plan.md` | Added | Record implementation plan, gates, dependencies, rollback, and effort for packet 021 | no commit SHA at authoring time |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | no commit SHA at authoring time |

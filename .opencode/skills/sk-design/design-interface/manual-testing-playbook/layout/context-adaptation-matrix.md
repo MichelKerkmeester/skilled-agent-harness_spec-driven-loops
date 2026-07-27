@@ -10,9 +10,9 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: ADAPTATION
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/layout/adaptation-matrix.md
+  - references/foundations/layout/adaptation-matrix.md
 ---
 
 **Exact prompt**
@@ -29,8 +29,8 @@ Adapt a desktop admin tool for phone, tablet and a print export without dropping
 
 ## Expected Process
 
-1. Route to `foundations` first. Context adaptation resolves here before any `sk-code` implementation handoff.
-2. Load `references/layout/adaptation-matrix.md`.
+1. Recognize this as `interface`'s `foundations` static-system subworkflow. Context adaptation resolves here before any `sk-code` implementation handoff.
+2. Load `references/foundations/layout/adaptation-matrix.md`.
 3. Read the four adaptation dimensions before deciding what changes, device and viewport, input method, connection and capability, usage posture.
 4. Rethink layout, interaction, content and navigation per target context instead of scaling the desktop design down.
 5. Branch on input capability with feature queries, not on width alone.

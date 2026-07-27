@@ -33,7 +33,7 @@ Boundary evidence proves the required context and proof demands survived delegat
 
 ---
 
-## 2. Copy-Set Decision
+## 2. COPY-SET DECISION
 
 Current copy set: canonical-only.
 
@@ -41,7 +41,7 @@ No real duplicate consumer currently carries this asset. Until one exists, the c
 
 ---
 
-## 3. Envelope Schema
+## 3. ENVELOPE SCHEMA
 
 `DESIGN_BOUNDARY_PROOF v1` is a structured object in the dispatch payload.
 
@@ -66,7 +66,7 @@ All digest fields use `sha256:<64 lowercase hex>`.
 
 ---
 
-## 4. JSON Shape
+## 4. JSON SHAPE
 
 ```json
 {
@@ -92,7 +92,7 @@ All digest fields use `sha256:<64 lowercase hex>`.
 
 ---
 
-## 5. Boundary Rules
+## 5. BOUNDARY RULES
 
 A dispatch boundary MUST reject when any of these are true:
 
@@ -110,7 +110,7 @@ Unknown additive fields may be ignored only after every required v1 field passes
 
 ---
 
-## 6. Residual
+## 6. RESIDUAL
 
 The enforceable floor is mechanical: the dispatch carried the context manifest, design dispatch manifest, proof-card demand, authorizing token reference, loaded/payload digests, asset digest, and routed-mode binding. The remaining design-quality claim is still advisory and must be judged by the active design mode and any downstream audit evidence.
 

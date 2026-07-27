@@ -2,16 +2,16 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "resourceContractVersion": 1,
-  "description": "Declarative registry for the four top-level sk-design modes. The advisor routes one sk-design identity and the hub resolves one registered mode from this four-mode registry.",
+  "description": "Declarative registry for the three top-level sk-design modes. The advisor routes one sk-design identity and the hub resolves one registered mode from this three-mode registry.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-    "packetKind": "The axis discriminator: 'workflow' for the three registered design-judgment modes (interface/motion/md-generator); 'transport' for the Open Design bridge.",
+    "packetKind": "The axis discriminator: 'workflow' for the two registered design-judgment modes (interface/md-generator); 'transport' for the Open Design bridge.",
     "backendKind": "Which backend runs the mode: reference-base (cites the shared design reference base under references/), playwright-extract (runs the embedded Playwright CSS-extraction pipeline), or od-cli-transport (drives the external Open Design app's od CLI and stdio MCP server)."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The registered packet's SKILL.md name.",
-    "grandfatheredFolderMismatch": "true only when a registered packet folder differs from packetSkillName. All four registered modes use matching names.",
+    "grandfatheredFolderMismatch": "true only when a registered packet folder differs from packetSkillName. All three registered modes use matching names.",
     "command": "The bound slash command for a registered mode, or null for a no-command transport."
   },
   "extensions": {
@@ -48,31 +48,10 @@
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
       "command": "/interface:design",
-      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
+      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter", "motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "animatepresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-interface"
-      }
-    },
-    {
-      "workflowMode": "motion",
-      "packetKind": "workflow",
-      "backendKind": "reference-base",
-      "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep"],
-        "forbidden": ["Write", "Edit", "Bash"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "design-motion",
-      "proceduresPath": "design-motion/procedures",
-      "packetSkillName": "design-motion",
-      "grandfatheredFolderMismatch": false,
-      "command": "/interface:motion",
-      "aliases": ["motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "animatepresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
-      "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "design-motion"
       }
     },
     {

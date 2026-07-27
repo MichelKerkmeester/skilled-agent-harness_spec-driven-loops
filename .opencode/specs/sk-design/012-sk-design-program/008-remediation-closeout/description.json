@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/008-remediation-closeout",
+  "description": "`007-consolidation-remediation` shipped nine fixes and reached a full green gate set, but it explicitly recorded five items as deferred rather than",
+  "keywords": [
+    "007-consolidation-remediation",
+    "shipped",
+    "nine",
+    "reached",
+    "full",
+    "green",
+    "gate",
+    "set",
+    "explicitly",
+    "recorded",
+    "five",
+    "items",
+    "deferred",
+    "rather"
+  ],
+  "lastUpdated": "2026-07-27T11:00:01.048Z",
+  "specId": "008",
+  "folderSlug": "remediation-closeout",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

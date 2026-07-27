@@ -81,7 +81,7 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-MTX-001 [P0] Stale baseline refreshed: committed report now PASS-lineage (verdict non-null, D5=100, 0 pre-reorg loci) — evidence: `sk-code/benchmark/baseline/skill-benchmark-report.json`
+- [x] CHK-MTX-001 [P0] Stale baseline refreshed: committed report now PASS-lineage (verdict non-null, D5=100, 0 pre-reorg loci) — evidence: `sk-code/benchmark/reports/baseline/skill-benchmark-report.json`
 - [x] CHK-MTX-002 [P0] Leaf-manifest generated + byte-stable — evidence: `generate-leaf-manifest.cjs --check` OK
 - [x] CHK-MTX-003 [P0] Typed gold valid (oracle passed) for the scored scenarios — evidence: `typedPairRecall` only computes on `status:valid`; 14 scenarios scored
 - [x] CHK-MTX-004 [P1] Routing-vs-command partition holds: command/negative scenarios self-exclude (no packet-qualified body gold) — evidence: 14/30 scenarios typed, rest excluded

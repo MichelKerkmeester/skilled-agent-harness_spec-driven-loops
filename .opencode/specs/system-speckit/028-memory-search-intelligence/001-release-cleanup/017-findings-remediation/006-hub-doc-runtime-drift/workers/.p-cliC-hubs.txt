@@ -1,0 +1,28 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: where documentation and runtime disagree, the RUNTIME is the intended truth and the
+DOCUMENTATION is what gets corrected. Only escalate (STATUS: BLOCKED) if the doc describes something
+clearly INTENDED but never built — in that case change nothing and explain.
+
+You own the files named in your task and NO others. Another worker is editing other files right now.
+Never touch a file outside your task. Do not run git commands that mutate state. Do not commit.
+Verify every claim against the real tree before editing; state the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING cliC-hubs
+FILES YOU OWN: .opencode/skills/cli-external-orchestration/SKILL.md and .opencode/skills/mcp-tooling/SKILL.md (ONLY)
+TASK: Two drift defects across the two hub SKILL.md files:
+(1) devin-02:F1 — cli-external-orchestration/SKILL.md contains BOTH the phrases "five workflow modes" and "four workflow modes". The authoritative mode-registry.json has 5 modes. Make every prose count say five and remove the contradiction.
+(2) devin-02:F6 — both hub SKILL.md Layout sections omit live contract files that exist on disk and are referenced elsewhere. Compare each Layout block against the real directory listing and add the missing entries.
+Verify by re-reading each registry mode count and diffing each Layout block against `ls` of that hub root.
+
+EFFICIENCY: Do NOT call MCP tools or load skills. The spec-memory daemon is down and every
+call costs ~30s to time out. Work directly with Read, Glob, Grep and Edit. Start immediately.

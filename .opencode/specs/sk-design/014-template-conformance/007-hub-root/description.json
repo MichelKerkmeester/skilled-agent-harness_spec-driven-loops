@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-design/014-template-conformance/007-hub-root",
+  "description": "The sk-design hub root itself (8 identity/registry files, plus benchmark/, changelog/, feature-catalog/, manual-testing-playbook/, and styles/) has",
+  "keywords": [
+    "sk-design",
+    "hub",
+    "root",
+    "itself",
+    "identity",
+    "registry",
+    "files",
+    "plus",
+    "benchmark",
+    "changelog",
+    "feature-catalog",
+    "manual-testing-playbook",
+    "styles"
+  ],
+  "lastUpdated": "2026-07-27T14:59:40.091Z",
+  "specId": "007",
+  "folderSlug": "hub-root",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

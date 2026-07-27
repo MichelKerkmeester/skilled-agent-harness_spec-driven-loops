@@ -1,0 +1,22 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/021-benchmark-naming-and-playbook-results",
+  "description": "Two defects, one cause",
+  "keywords": [
+    "two",
+    "defects",
+    "one",
+    "cause"
+  ],
+  "lastUpdated": "2026-07-27T17:14:34.068Z",
+  "specId": "021",
+  "folderSlug": "benchmark-naming-and-playbook-results",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "27-07-26_10-29__all-seven-tasks-are-complete-and-committed-final.md",
+    "27-07-26_18-14__render-the-backfill-rather-than-author-it-the.md"
+  ]
+}

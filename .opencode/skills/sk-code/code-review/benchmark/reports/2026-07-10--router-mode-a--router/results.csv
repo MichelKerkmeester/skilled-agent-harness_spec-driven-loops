@@ -1,0 +1,9 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CR-R01,code-review,playbook,,routing,,,,100,PASS,
+CR-R02,code-review,playbook,,routing,,,,100,PASS,
+CR-R03,code-review,playbook,,routing,,,,100,PASS,
+CR-R04,code-review,playbook,,routing,,,,100,PASS,
+CR-R05,code-review,playbook,,routing,,,,100,PASS,
+CR-R06,code-review,playbook,,routing,,,,100,PASS,
+CR-R07,code-review,playbook,,routing,,,,100,PASS,

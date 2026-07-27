@@ -1135,7 +1135,7 @@
           "skipped": 0
         },
         "evidence": [
-          ".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:3-50",
+          ".opencode/skills/system-deep-loop/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:3-50",
           ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1347-1399"
         ],
         "findingRefs": [

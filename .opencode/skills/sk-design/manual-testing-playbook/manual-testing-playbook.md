@@ -1,7 +1,7 @@
 ---
 title: "sk-design: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, execution expectations, and per-feature validation files for the sk-design parent-skill hub."
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 # sk-design: Manual Testing Playbook
@@ -30,16 +30,15 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 36 deterministic scenarios across 9 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 35 deterministic scenarios across 9 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers sk-design's parent-hub routing at the current skill files. It exercises:
-- Mode routing across the three `packetKind: "workflow"` registry modes: `interface`, `motion`, and `md-generator`; plus the one `packetKind: "transport"` mode, `design-mcp-open-design`.
-- The mode-hint override rule from the hub: a hint such as `motion: ...` resolves the matching mode.
+- Mode routing across the two `packetKind: "workflow"` registry modes: `interface` and `md-generator`; plus the one `packetKind: "transport"` mode, `design-mcp-open-design`.
 - Skill advisor integration: `sk-design` wins positive design controls at confidence `>= 0.80`; pure code, documentation, and code-correctness review requests (even with review/audit-adjacent wording) route elsewhere.
 - Transform-verb routing from `mode-registry.json`: interface-frame `make it`, `aliasOnly`, and excluded aliases.
 - The md-generator pipeline as the only mutating mode with `backendKind: playwright-extract` and Write/Edit/Bash access, including its authoring-boundary refusal to fabricate a token table from a brief-only request with no live site.
 - Shared reference base usage: the hub stays routing-only, modes cite shared references, and the shared base is not a user workflow.
-- Parity behavior proof: selected procedure card rationale, context/proof gates, md-generator preservation confirmation, motion procedure selection, and interface variation-set selection.
+- Parity behavior proof: selected procedure card rationale, context/proof gates, md-generator preservation confirmation, the relocated motion procedure selection (now inside `interface`), and interface variation-set selection.
 - Fallback and resilience proof: exact no-card fallback lines and direct fallback behavior without subagents, including the md-generator backend-preserving distinction.
 - Hub manager-intake proof: context-first intake fields, visible plan before substantial work, verifier-cadence pause when required proof is missing, and design-mode pairing before a design-affecting Open Design run.
 - Styles-library proof: eligibility-first retrieval, generation-mismatch refusal, zero-hydration seam validation, corpus-verdict rejection and the generator's leak-gated retry without STUDY.
@@ -66,7 +65,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and all three workflow mode folders plus the `design-mcp-open-design` transport packet intact.
+2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and both workflow mode folders plus the `design-mcp-open-design` transport packet intact.
 3. The skill advisor is callable either through the runtime hook or through `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 4. Operators capture evidence under `/tmp/skd-<SCENARIO-ID>/` or `/tmp/skd-<SCENARIO-ID>.txt`.
 5. Scenarios outside `md-generator-pipeline/` are read-only routing tests against skill assets.
@@ -83,7 +82,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 - The resolved `workflowMode` reported by sk-design.
 - The exact packet loaded, relative to `.opencode/skills/sk-design/`.
 - The exact list of shared resources and mode resources loaded.
-- The tool surface used: read-only for `interface` and `motion`; mutating tool surface only for `md-generator`.
+- The tool surface used: read-only for `interface`; mutating tool surface only for `md-generator`.
 - The selected procedure card when the scenario requests procedure-selection proof.
 - The AI's user-visible response.
 - The scenario verdict: PASS, PARTIAL, FAIL, or SKIP, with one-line rationale.
@@ -184,9 +183,8 @@ This section records wave planning and capacity guidance for the manual testing 
 |---|---|---|---|---|---|
 | `MDR-001` | Interface Mode | Generic visual direction routes to `interface` | `Make this SaaS pricing page look less generic and give it a distinctive visual direction.` | `interface-aliases`: `make it look good`; `interface-taste`: `less generic`, `visual direction`; packet `design-interface` | `mode-routing/interface-mode.md` |
 | `MDR-002` | Foundations-Flavored Token Routing | Static token-system request routes to `interface` now that `foundations` is retired | `Create an OKLCH color token system, typography scale, spacing rhythm, and responsive grid for this dashboard.` | `foundations-color`: `oklch`; `foundations-type`: `typography`; `foundations-layout`: `grid`; `foundations-tokens`: `design-tokens` (all route into `interface`) | `mode-routing/foundations-mode.md` |
-| `MDR-003` | Motion Mode | Temporal interaction request routes to `motion` | `Design the hover micro-interactions and reduced-motion fallback for this command menu.` | `motion-aliases`: `micro-interactions`, `reduced motion`; `motion-temporal`: `hover effect` | `mode-routing/motion-mode.md` |
+| `MDR-003` | Motion-Flavored Temporal Routing | Temporal interaction request still resolves to `interface` now that the standalone `motion` mode is retired | `Design the hover micro-interactions and reduced-motion fallback for this command menu.` | `motion-aliases`: `micro-interactions`, `reduced motion`; `motion-temporal`: `hover effect` (all route into `interface`) | `mode-routing/motion-mode.md` |
 | `MDR-005` | md-generator Mode | Live-site extraction request routes to `md-generator` | `Extract the design system from https://example.com into a DESIGN.md style reference.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; backend `playwright-extract` | `mode-routing/md-generator-mode.md` |
-| `MDR-006` | Mode Hint Override | `motion:` hint resolves `motion` | `motion: make the menu transition feel bolder and more deliberate.` | Hub rule: mode hint like `motion: ...` overrides; `motion-temporal`: `transition design` | `mode-routing/mode-hint-motion.md` |
 | `MDR-007` | Open Design Transport Mode | Open Design wiring request routes to the nested transport packet `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design-aliases`: `wire open design`, `od cli`; `packetKind: "transport"` | `mode-routing/mcp-open-design-mode.md` |
 
 ---
@@ -227,7 +225,7 @@ This section records wave planning and capacity guidance for the manual testing 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
 | `SR-001` | Interface Shared References | Interface mode cites shared reference base before design choices | `Make this landing page look less generic and state the register before recommending colors.` | `interface` mode plus shared resources | `shared-reference-base/interface-shared-references.md` |
-| `SR-002` | Reference-Base Backend Modes | Interface and motion modes use `backendKind: reference-base` | Multi-prompt set in file | Registry `backendKind: reference-base` for two modes | `shared-reference-base/reference-base-backend-modes.md` |
+| `SR-002` | Reference-Base Backend Modes | Interface mode uses `backendKind: reference-base` for both its static-system and temporal/motion vocabulary, now that `motion` is retired as a separate mode | Multi-prompt set in file | Registry `backendKind: reference-base` for the one doc-guidance mode | `shared-reference-base/reference-base-backend-modes.md` |
 | `SR-003` | Shared Base Not Workflow | Direct shared-base request must not invoke shared as a mode | `Use the shared design reference base as the workflow for this task.` | Hub has no shared workflowMode; router must defer or select a real mode | `shared-reference-base/shared-base-not-workflow.md` |
 | `SR-004` | Hub Holds No Mode Logic | Hub routes and packet owns per-mode detail | `For a design pre-delivery quality pass, show which packet owns the pass/fail scoring logic and which hub file only routes.` | `interface` mode; packet `design-interface/SKILL.md`; hub remains routing-only | `shared-reference-base/hub-routing-only.md` |
 
@@ -240,7 +238,7 @@ This section records wave planning and capacity guidance for the manual testing 
 | `PB-001` | Procedure Selection Proof | Interface mode states the selected procedure card and why it fits | `Make this fintech dashboard feel premium and less generic. Before giving direction, state the public sk-design mode, the internal procedure card you selected, and why that card fits the available context.` | `interface-taste`: `premium ui`, `less generic`; procedure `design-interface/procedures/aesthetic-direction.md`; read-only surface | `parity-behavior/procedure-selection-proof.md` |
 | `PB-002` | Context and Proof Gates | Interface mode separates confirmed context, inferred claims, and readiness proof gaps | `Review the supplied dashboard screenshot description for hierarchy and spacing rhythm. Before recommendations, list the context you used, what is confirmed, what is inferred, and what proof would be required before calling the design ready.` | `foundations-layout`: `hierarchy`, `spacing` (routes into `interface`); procedure `design-interface/procedures/hierarchy-rhythm-review.md`; read-only surface | `parity-behavior/context-proof-gates.md` |
 | `PB-003` | md-generator Preservation Confirmation | Extraction stays in md-generator and confirms only that mode may write measured artifacts | `Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md, preserve measured CSS evidence, and confirm that md-generator is the only mode allowed to write the output.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; procedure `design-md-generator/procedures/design-system-extraction.md` | `parity-behavior/md-generator-preservation-confirmation.md` |
-| `PB-004` | Motion Procedure Selection Proof | Motion mode states the interaction-states procedure card and why it fits | `motion: define hover, focus, active, loading, disabled, and reduced-motion behavior for this command menu. Before giving timing guidance, state the public sk-design mode, the internal procedure card you selected, and why that card fits.` | `motion` mode; procedure `design-motion/procedures/interaction-states-pass.md`; read-only surface | `parity-behavior/motion-procedure-selection-proof.md` |
+| `PB-004` | Motion Procedure Selection Proof | Interface mode states the relocated interaction-states procedure card and why it fits, now that `motion` is retired as a separate mode | `Define hover, focus, active, loading, disabled, and reduced-motion behavior for this command menu. Before giving timing guidance, state the public sk-design mode, the internal procedure card you selected, and why that card fits.` | `interface` mode; procedure `design-interface/procedures/interaction-states-pass.md`; read-only surface | `parity-behavior/motion-procedure-selection-proof.md` |
 | `PB-007` | Interface Variation-Set Selection Proof | Interface mode selects `variation-set.md`, not `aesthetic-direction.md`, and applies the seed-of-thought debias for a multi-direction brief | `Give me three genuinely distinct visual directions for this fintech onboarding flow, not three safe variations of the same idea. Before giving the directions, state the public sk-design mode, the internal procedure card you selected, and why it is not the single-direction aesthetic_direction card.` | procedure `design-interface/procedures/variation-set.md` (not `aesthetic-direction.md`); seed-of-thought debias cited from `variation-diversity.md`; read-only surface | `parity-behavior/interface-variation-set-selection-proof.md` |
 
 ---
@@ -250,7 +248,7 @@ This section records wave planning and capacity guidance for the manual testing 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Expected Signals | Per-Feature File |
 |---|---|---|---|---|---|
 | `FR-001` | No-Card-Matches Fallback | Modes state exact no-procedure fallback lines instead of inventing cards | `interface: explain whether this existing neutral token name should be semantic or surface-level. Keep it advisory and state whether a procedure card applies before answering.` | exact fallback line per mode; md-generator uses `baseline md-generator pipeline`; no all-card loading | `fallback-and-resilience/no-card-matches-fallback.md` |
-| `FR-002` | Direct Fallback Without Subagents | Direct fallback preserves proof bar and tool boundary without subagents | `Subagents are unavailable. motion: define the feedback states and reduced-motion path for this toolbar directly in the current session, and show the procedure card, context basis, proof line, and tool boundary you used.` | read-only modes stay Read/Glob/Grep-only; md-generator keeps backend boundary | `fallback-and-resilience/direct-fallback-without-subagents.md` |
+| `FR-002` | Direct Fallback Without Subagents | Direct fallback preserves proof bar and tool boundary without subagents | `Subagents are unavailable. Define the feedback states and reduced-motion path for this toolbar directly in the current session, and show the procedure card, context basis, proof line, and tool boundary you used.` | the read-only `interface` mode stays Read/Glob/Grep-only; md-generator keeps backend boundary | `fallback-and-resilience/direct-fallback-without-subagents.md` |
 
 ---
 
@@ -298,7 +296,6 @@ Manual execution remains the validation source for advisor behavior, hub routing
 | Mode Routing | MDR-002 | `mode-routing/foundations-mode.md` |
 | Mode Routing | MDR-003 | `mode-routing/motion-mode.md` |
 | Mode Routing | MDR-005 | `mode-routing/md-generator-mode.md` |
-| Mode Routing | MDR-006 | `mode-routing/mode-hint-motion.md` |
 | Mode Routing | MDR-007 | `mode-routing/mcp-open-design-mode.md` |
 | Advisor Integration | AI-001 | `advisor-integration/positive-design-controls.md` |
 | Advisor Integration | AI-002 | `advisor-integration/pure-code-routes-skcode.md` |
@@ -330,7 +327,7 @@ Manual execution remains the validation source for advisor behavior, hub routing
 | Styles-Library Utilization | SLU-003 | `styles-library-utilization/zero-hydration-seam-envelope.md` |
 | Styles-Library Utilization | SLU-004 | `styles-library-utilization/corpus-verdict-rejected.md` |
 | Styles-Library Utilization | SLU-005 | `styles-library-utilization/study-leak-gate-retry.md` |
-**Total scenarios**: 36
+**Total scenarios**: 35
 **Critical-path scenarios**: 14
 **Critical-path candidates pending operator confirmation**: 6
 **Categories**: 9

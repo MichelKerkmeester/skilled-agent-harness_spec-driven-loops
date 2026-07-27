@@ -8,12 +8,14 @@ trigger_phrases:
   - "ai tell sweep card"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Interface Pre-Flight Card
 
 A binary pre-flight card for checking a planned or built interface before delivery.
+
+---
 
 ## 1. OVERVIEW
 
@@ -139,10 +141,13 @@ Count `__` eyebrows against a ceiling of `__`.
 
 ---
 
-## 10. MOTION MOTIVATION AND REDUCED MOTION (brief_to_dials Section 5)
+## 10. MOTION MOTIVATION AND REDUCED MOTION (brief_to_dials Section 5; restraint gate: `references/motion/animation-decision-framework.md`)
+
+The boxes below assume the restraint gate already ran for every animated element on the surface: this section does not re-decide whether motion belongs, it checks that the gate's verdict actually shipped.
 
 | Check | Pass |
 |---|---|
+| The restraint gate ran before any timing/easing choice: every 100-plus-times-a-day or keyboard-driven action on the surface is instant, with no animation | [ ] |
 | Every animation is justified in one sentence (hierarchy, storytelling, feedback, state transition), no motion-for-show | [ ] |
 | Motion claimed is motion shown: if MOTION is above 4 the page actually moves, if it cannot ship clean the dial dropped to a low value instead | [ ] |
 | At most one horizontal marquee on the page | [ ] |

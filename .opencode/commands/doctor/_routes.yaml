@@ -205,6 +205,25 @@ routes:
       - "tool text ratio diagnostic"
       - "result-first opener metric"
 
+  - target: runtime-mirrors
+    yaml: doctor-runtime-mirrors.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (read-only mirror-parity diagnostic; every checker runs in its check-only form and writes nothing)"
+    mcp_tools: []   # script-only mirror parity read; no MCP calls
+    script_invocations:
+      - 'node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check'
+      - 'node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs --check'
+      - 'node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs --check'
+      - 'node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs'
+      - 'node .opencode/bin/install-codex-hooks.mjs --check  # exits 2 on drift, not 1'
+    trigger_phrases:
+      - "runtime mirror drift"
+      - "agent command mirror parity"
+      - "cursor devin codex sync check"
+      - "discovery mirror out of sync"
+
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
 # ─────────────────────────────────────────────────────────────────

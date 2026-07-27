@@ -1,0 +1,29 @@
+{
+  "sessionId": "fanout-glm-5-2-high-1785153423148-1aktp5",
+  "lineage": "glm-5-2-high",
+  "mode": "review",
+  "generatedAt": "2026-07-27T12:55:00.000Z",
+  "verdict": "CONDITIONAL",
+  "summary": {"P0": 0, "P1": 3, "P2": 12, "total": 15},
+  "dimensionsCovered": ["correctness", "security", "traceability", "maintainability"],
+  "iterations": 5,
+  "findings": [
+    {"id": "F-001", "severity": "P2", "category": "documentation", "dimension": "correctness", "iteration": 1, "file": ".opencode/skills/sk-doc/create-benchmark/SKILL.md", "line": "312", "summary": "Disambiguator suffix shape is undocumented in the grammar (writer uses -N ordinal; grammar says 'trailing topic field')"},
+    {"id": "F-002", "severity": "P2", "category": "correctness", "dimension": "correctness", "iteration": 1, "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs", "line": "152,415", "summary": "TOCTOU window between collision check and mkdir; sequential dispatch makes it theoretical"},
+    {"id": "F-003", "severity": "P2", "category": "correctness", "dimension": "correctness", "iteration": 1, "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs", "line": "152-154", "summary": "Collision guard cap at ordinal 100 silently overwrites the 100th run; implausible trigger"},
+    {"id": "F-004", "severity": "P1", "category": "traceability", "dimension": "correctness", "iteration": 2, "file": ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs", "line": "136-178", "summary": "CHK-037 remediation has no automated regression test (CHK-035 is covered, CHK-037 is not)"},
+    {"id": "F-005", "severity": "P2", "category": "correctness", "dimension": "correctness", "iteration": 2, "file": ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs", "line": "161,173", "summary": "capturedAt tie-break is non-deterministic on identical timestamps (readdirSync order)"},
+    {"id": "F-006", "severity": "P2", "category": "documentation", "dimension": "correctness", "iteration": 2, "file": ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs", "line": "121,153-154", "summary": "Legacy-first preference can surface a stale baseline over a newer dated one; intentional but undocumented in the script"},
+    {"id": "F-007", "severity": "P1", "category": "traceability", "dimension": "traceability", "iteration": 3, "file": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/spec.md", "line": "89,128", "summary": "spec.md §3 and §4 REQ-004 (P0) say 'six files'; writer emits seven; remediation did not propagate to the spec packet"},
+    {"id": "F-008", "severity": "P2", "category": "documentation", "dimension": "traceability", "iteration": 3, "file": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/implementation-summary.md", "line": "48-51", "summary": "implementation-summary.md says 'seven' but enumerates six items (README.md omitted from the list)"},
+    {"id": "F-009", "severity": "P1", "category": "traceability", "dimension": "traceability", "iteration": 3, "file": ".opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md", "line": "135-149", "summary": "storage guide §4 says 'matched pair and nothing else'; contradicts writer (7) and owning SKILL.md §10 (7)"},
+    {"id": "F-010", "severity": "P2", "category": "maintainability", "dimension": "maintainability", "iteration": 4, "file": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/checklist.md", "line": "60", "summary": "CHK-009 storage suite evidence is stale (10 vs 11); 11th test added by CHK-035 remediation"},
+    {"id": "F-011", "severity": "P2", "category": "maintainability", "dimension": "maintainability", "iteration": 4, "file": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/checklist.md", "line": "60,185", "summary": "CHK-008 vs CHK-038 lane suite count disagree by one (259 vs 260)"},
+    {"id": "F-012", "severity": "P2", "category": "maintainability", "dimension": "maintainability", "iteration": 4, "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/run-storage-convention.vitest.ts", "line": "199,203", "summary": "Collision guard test pins undocumented -N suffix shape; documented 'trailing topic field' is untested"},
+    {"id": "F-013", "severity": "P2", "category": "security", "dimension": "security", "iteration": 5, "file": ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs", "line": "159-174", "summary": "Parity-baseline scan widens read surface but does not expose credentials"},
+    {"id": "F-014", "severity": "P2", "category": "security", "dimension": "security", "iteration": 5, "file": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/checklist.md", "line": "84", "summary": "CHK-018 evidence row does not cover the remediation's read-surface widening"},
+    {"id": "F-015", "severity": "P2", "category": "security", "dimension": "security", "iteration": 5, "file": ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs", "line": "136-178", "summary": "No regression test pins the read-surface boundary for scanParityBaseline"}
+  ],
+  "openFindings": ["F-004", "F-007", "F-009", "F-001", "F-002", "F-003", "F-005", "F-006", "F-008", "F-010", "F-011", "F-012", "F-013", "F-014", "F-015"],
+  "resolvedFindings": []
+}

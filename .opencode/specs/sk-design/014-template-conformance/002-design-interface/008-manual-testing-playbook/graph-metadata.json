@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+  "spec_folder": "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-interface manual-testing-playbook conformance",
+      "playbook template audit",
+      "foundations scenario residue",
+      "manual-testing-playbook plan",
+      "manual-testing-playbook tasks",
+      "manual-testing-playbook checklist",
+      "manual-testing-playbook implementation summary"
+    ],
+    "key_topics": [
+      "design-interface",
+      "manual-testing-playbook",
+      "conformance",
+      "playbook",
+      "template",
+      "audit",
+      "foundations",
+      "scenario",
+      "residue",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Foundations Procedure Card Selection Proof Scenario",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Confirm",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Planned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`manual-testing-playbook/` has 20 category subdirectories (a `find -maxdepth 1 -type d` count; the dispatching brief cited 21 — corrected here to the measured count)",
+    "created_at": "2026-07-27T14:56:08.891Z",
+    "last_save_at": "2026-07-27T15:05:17.041Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f952816efc8438c07b31c62f1c5cc8824ebbb8e7e53377b4ea0b7e183662d19",
+    "source_doc_hashes": {
+      "spec.md": "5f6e3bf700270e351149b10d4fbcef3cc225c1924a8953015dee7d11e982d301",
+      "plan.md": "2638f3a98dec7a1701020db2c12c2a13299d388ae002e9acd7e01d505e29f679",
+      "tasks.md": "bc82aa48fcde399c8d216fa48ccf6b993aed6cd26ce7e94192a3a5e711d372f8",
+      "checklist.md": "f05ce2d0ff47d71c6e13f5b54b12dd7b50098b28217e75fae94feaa5abf8f84d",
+      "implementation-summary.md": "b4e42bca6b5062ec9751722e2df800ada203957e37e6d46d5254ef5f39c9f6bb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

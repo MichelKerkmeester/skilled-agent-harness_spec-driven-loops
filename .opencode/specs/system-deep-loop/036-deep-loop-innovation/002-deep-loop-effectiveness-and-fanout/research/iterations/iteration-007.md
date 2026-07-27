@@ -1062,8 +1062,8 @@ exec
 .opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-007-read-only-default.md
 .opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-009-boundary-vs-deep-review.md
 .opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/behavior_benchmark.md
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 .opencode/skills/system-deep-loop/runtime/manual_testing_playbook/scoring/convergence_score_delta.md
 .opencode/skills/system-deep-loop/runtime/manual_testing_playbook/scoring/bayesian_scorer.md
 .opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-config.json

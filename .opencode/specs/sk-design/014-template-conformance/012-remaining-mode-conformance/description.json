@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/012-remaining-mode-conformance",
+  "description": "The program parent's hub-wide audit covered `design-interface`, `design-motion`, `shared`, and the hub root, but never reached `design-md-generator`",
+  "keywords": [
+    "program",
+    "parent",
+    "hub-wide",
+    "audit",
+    "covered",
+    "design-interface",
+    "design-motion",
+    "shared",
+    "hub",
+    "root",
+    "never",
+    "reached",
+    "design-md-generator"
+  ],
+  "lastUpdated": "2026-07-27T16:55:36.492Z",
+  "specId": "012",
+  "folderSlug": "remaining-mode-conformance",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

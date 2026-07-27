@@ -1,0 +1,22 @@
+{
+  "run_id": "1785160964169-jrkake",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results",
+  "base_artifact_dir": ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

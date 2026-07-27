@@ -68,7 +68,7 @@ Translate the stale gold paths in the playbook scenarios to the current `code-<s
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Modify | Translate stale gold/forbidden/source paths to the code-<surface>/ layout |
-| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.{json,md}` | Modify | Regenerated deterministic baseline |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.{json,md}` | Modify | Regenerated deterministic baseline |
 | `.opencode/skills/sk-code/benchmark/README.md` | Modify | Refresh the stale latest-router-verdict statistic |
 
 <!-- /ANCHOR:scope -->
@@ -177,6 +177,6 @@ Translate the stale gold paths in the playbook scenarios to the current `code-<s
 
 - **Harness dependencies**: `system-deep-loop/036-router-replay-surface-slice-sync`, `system-deep-loop/037-scenario-loader-code-surface-sync`
 - **Corpus refreshed**: `.opencode/skills/sk-code/manual_testing_playbook/`
-- **Baseline regenerated**: `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/`
+- **Baseline regenerated**: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/`
 
 <!-- /ANCHOR:related-docs -->

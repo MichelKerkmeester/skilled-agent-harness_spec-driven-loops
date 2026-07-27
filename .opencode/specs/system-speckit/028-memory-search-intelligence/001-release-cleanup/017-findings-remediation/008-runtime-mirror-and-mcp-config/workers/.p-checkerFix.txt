@@ -1,0 +1,36 @@
+CI-checker remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3). No git mutations. No commit.
+Do NOT call MCP tools or load skills (spec-memory daemon is down; each call costs ~30s).
+Use Read/Grep/Edit directly. Start immediately.
+
+FILE YOU OWN: .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs (ONLY)
+
+FINDING devin-04:F3 — this checker FAILS OPEN. At lines ~67-68 it prints
+"agent-mirror-sync: no agent files to check — OK" and calls process.exit(0) when it finds zero agent
+files. A CI gate that reports success having verified nothing will pass a completely broken mirror
+whenever it is invoked without the inputs it expects. Confirm this by running the script with no
+arguments and observing it exit 0 having checked nothing.
+
+TASK: make the zero-input case honest WITHOUT breaking the pre-commit hook that invokes this script.
+The hook legitimately passes only STAGED agent files, and a commit touching no agent files must still
+succeed. So:
+  - When zero agent files are supplied because none were staged (the normal hook case), keep exit 0
+    but make the message clearly say nothing was verified rather than implying a passing check.
+  - When the script is invoked standalone with no arguments and CAN discover the agent trees itself,
+    it must actually check them rather than exiting 0 immediately.
+Read the script fully first and choose the minimal change that achieves both. Preserve the existing
+output format conventions.
+
+CRITICAL: this script runs in the pre-commit hook. If your change could block commits that touch no
+agent files, you have gone too far — return BLOCKED and explain instead.
+
+Verify: run the script with no args (must now check the real trees, or clearly state it verified
+nothing), and run it with a single staged-style path argument (must behave as before).
+
+Return EXACTLY:
+FINDING: devin-04:F3
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <what changed>
+EVIDENCE: <both invocation results>
+RISK: <could this block commits, and how you verified it cannot>

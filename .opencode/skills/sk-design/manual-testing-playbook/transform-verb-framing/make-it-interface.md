@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # TV-001: make it Transform Frame Routes Interface
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the interface side of `transformVerbRouting`: commands framed as `make it` plus the supported transform aliases resolve to `interface`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -48,6 +52,8 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -72,11 +78,15 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 2. If a variant fails, compare the alias spelling to `interfaceAliases` and `commandProjectionParity`.
 3. If resources are missing, inspect `design-interface/SKILL.md` resource-loading defaults.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

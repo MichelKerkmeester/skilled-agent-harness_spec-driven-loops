@@ -9870,7 +9870,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/d4r_live",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live",
+      "target": ".opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live",
       "target_exists": false
     },
     {
@@ -9896,7 +9896,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/live_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/2026-06-01--live-final--live",
+      "target": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live",
       "target_exists": false
     },
     {
@@ -9909,7 +9909,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/sk-code/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -9922,7 +9922,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/live_remediated",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/2026-06-01--live-remediated--live",
+      "target": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live",
       "target_exists": false
     },
     {
@@ -9935,7 +9935,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/router_baseline",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/2026-07-10--router-baseline--router",
+      "target": ".opencode/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router",
       "target_exists": false
     },
     {
@@ -9948,7 +9948,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/router_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/2026-06-01--router-final--router",
+      "target": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router",
       "target_exists": false
     },
     {
@@ -10220,7 +10220,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-opencode/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/sk-code/code-opencode/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -10233,7 +10233,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-opencode/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/sk-code/code-opencode/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -11369,7 +11369,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-quality/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-quality/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/sk-code/code-quality/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -11382,7 +11382,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-quality/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-quality/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/sk-code/code-quality/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -11555,7 +11555,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-review/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-review/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/sk-code/code-review/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -11568,7 +11568,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-review/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-review/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/sk-code/code-review/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -12461,7 +12461,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-webflow/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-webflow/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/sk-code/code-webflow/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -12474,7 +12474,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-webflow/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-webflow/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/sk-code/code-webflow/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -15083,7 +15083,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_009",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/2026-07-06--after-009--router",
+      "target": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router",
       "target_exists": false
     },
     {
@@ -15096,7 +15096,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_012_routing_rigor",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router",
+      "target": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-012-routing-rigor--router",
       "target_exists": false
     },
     {
@@ -15109,7 +15109,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_016_hub_routing",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/2026-07-07--after-016-hub-routing--live",
+      "target": ".opencode/skills/sk-design/benchmark/reports/2026-07-07--after-016-hub-routing--live",
       "target_exists": false
     },
     {
@@ -15122,7 +15122,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_018_transport_integration",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live",
+      "target": ".opencode/skills/sk-design/benchmark/reports/2026-07-07--after-018-transport-integration--live",
       "target_exists": false
     },
     {
@@ -15135,7 +15135,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_022_coverage_fill",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live",
+      "target": ".opencode/skills/sk-design/benchmark/reports/2026-07-07--after-022-coverage-fill--live",
       "target_exists": false
     },
     {
@@ -15148,7 +15148,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_d3_proxy",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router",
+      "target": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router",
       "target_exists": false
     },
     {
@@ -23141,7 +23141,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-git/benchmark/live_glm_5.2_high",
       "source_exists": true,
-      "target": ".opencode/skills/sk-git/benchmark/2026-07-10--live--glm-5-2-high",
+      "target": ".opencode/skills/sk-git/benchmark/reports/2026-07-10--live--glm-5-2-high",
       "target_exists": false
     },
     {
@@ -23154,7 +23154,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-git/benchmark/live_kimi_2.7",
       "source_exists": true,
-      "target": ".opencode/skills/sk-git/benchmark/2026-07-10--live--kimi-2-7",
+      "target": ".opencode/skills/sk-git/benchmark/reports/2026-07-10--live--kimi-2-7",
       "target_exists": false
     },
     {
@@ -24049,7 +24049,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-prompt/benchmark/live_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live",
+      "target": ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live",
       "target_exists": false
     },
     {
@@ -24062,7 +24062,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-prompt/benchmark/router_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router",
+      "target": ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router",
       "target_exists": false
     },
     {
@@ -24205,7 +24205,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-improve/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/sk-prompt/prompt-improve/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -27049,7 +27049,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/benchmark/after_d3_proxy",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/benchmark/2026-07-08--after-d3-proxy--router",
+      "target": ".opencode/skills/system-deep-loop/benchmark/reports/2026-07-08--after-d3-proxy--router",
       "target_exists": false
     },
     {
@@ -27062,7 +27062,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/system-deep-loop/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -27075,7 +27075,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/system-deep-loop/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -31915,7 +31915,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -31928,7 +31928,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {

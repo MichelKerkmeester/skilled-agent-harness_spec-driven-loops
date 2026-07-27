@@ -14,7 +14,25 @@ version: 1.0.0.0
 
 An authored value is a proposal created from a brief. It is not an observation, measurement, or validation result. The schema keeps that status legible on every value rather than relying on a file-level disclaimer.
 
-## 1. Artifact contract
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Keep an authored value's proposal status legible at the value level, so an invented palette, type, or voice choice is never mistaken for measured evidence.
+
+### When To Use
+
+Use when validating an `AUTHORED-DESIGN.md` or `authored-tokens.json` export, or when reviewing whether a value record carries complete provenance.
+
+### Core Principle
+
+`origin: authored` is immutable inside an authored export; only a signed, human-reviewed conversion record can promote a value toward measured status.
+
+---
+
+## 2. ARTIFACT CONTRACT
 
 | Field | Required | Contract |
 |---|---:|---|
@@ -26,7 +44,9 @@ An authored value is a proposal created from a brief. It is not an observation, 
 
 The only authorized filenames are `AUTHORED-DESIGN.md` and `authored-tokens.json`. A file named `DESIGN.md`, `tokens.json`, or anything under `styles/` is measured territory and must be rejected before writing.
 
-## 2. Value record
+---
+
+## 3. VALUE RECORD
 
 ```json
 {
@@ -52,7 +72,9 @@ The only authorized filenames are `AUTHORED-DESIGN.md` and `authored-tokens.json
 
 If one record contains several independently usable values, split it so each value carries its own provenance. Metadata inherited only from the document root is insufficient.
 
-## 3. Validation
+---
+
+## 4. VALIDATION
 
 `validateAuthoredBrand` in `authored-brand-boundary.mjs` rejects:
 
@@ -65,7 +87,9 @@ If one record contains several independently usable values, split it so each val
 
 Validation makes authored status explicit; it does not certify design quality or convert a value into measured evidence.
 
-## 4. Authority boundary
+---
+
+## 5. AUTHORITY BOUNDARY
 
 Authored provenance is immutable in authored exports. A later human-reviewed conversion creates a separate record linking the authored id to new measurement evidence. It does not rewrite the authored source or make the original invention retroactively measured.
 

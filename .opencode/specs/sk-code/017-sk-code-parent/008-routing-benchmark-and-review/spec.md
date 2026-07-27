@@ -135,7 +135,7 @@ Produce an honest routing verdict: run the deterministic benchmark, review the f
 | `.opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md` | Update | Fix a broken CR-018 link |
 | `.opencode/skills/sk-code/benchmark/README.md` | Update | Repoint two stale `smart_routing.md` paths to `shared/references/` |
 | `.opencode/skills/sk-code/code-review/SKILL.md` | Update | Fix a stale sub-file count |
-| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.{md,json}` | Update | Regenerated official router-mode record (aggregate 71) |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.{md,json}` | Update | Regenerated official router-mode record (aggregate 71) |
 | `.opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/` | Create | Phase 008 documentation and metadata |
 <!-- /ANCHOR:scope -->
 

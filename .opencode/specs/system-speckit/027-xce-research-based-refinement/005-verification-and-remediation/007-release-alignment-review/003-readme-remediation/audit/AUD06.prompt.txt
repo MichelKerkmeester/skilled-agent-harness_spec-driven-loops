@@ -5,7 +5,7 @@ A prior automated fix pass edited the README files below (in git commit 83f36b80
 FILES TO AUDIT:
 - .opencode/skills/sk-code/assets/webflow/templates/README.md
 - .opencode/skills/sk-code/benchmark/README.md
-- .opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live/README.md
+- .opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md
 - .opencode/skills/sk-doc/README.md
 - .opencode/skills/sk-doc/references/readme_creation.md
 - .opencode/skills/sk-doc/scripts/README.md

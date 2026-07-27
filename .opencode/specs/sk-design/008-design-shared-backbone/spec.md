@@ -241,8 +241,8 @@ The following intact paths were read as reconstruction evidence. They are source
 ### Benchmark evidence
 
 - .opencode/skills/sk-design/benchmark/README.md
-- .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json
-- .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.md
+- .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json
+- .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.md
 - .opencode/skills/sk-design/benchmark/after_009/report.json
 - .opencode/skills/sk-design/benchmark/after_009/report.md
 - .opencode/skills/sk-design/benchmark/after_012_routing_rigor/report.json

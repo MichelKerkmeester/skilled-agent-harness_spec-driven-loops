@@ -25,7 +25,6 @@ export const OPEN_DESIGN_GROUNDING_RECEIPT_VERSION = 'OPEN_DESIGN_GROUNDING_RECE
 
 export const PAIRED_MODES = Object.freeze([
   'design-interface',
-  'design-motion',
   'design-md-generator',
 ]);
 

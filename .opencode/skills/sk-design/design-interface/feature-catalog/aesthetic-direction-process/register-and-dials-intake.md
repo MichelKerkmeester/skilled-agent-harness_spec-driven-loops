@@ -50,7 +50,7 @@ The shared register decides whether design is the product or serves the product.
 ## 4. SOURCE METADATA
 
 - Group: Aesthetic Direction Process
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `aesthetic-direction-process/register-and-dials-intake.md`
 
 Related references:

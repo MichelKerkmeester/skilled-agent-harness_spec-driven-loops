@@ -81,13 +81,17 @@ A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to openc
 ```text
 cli-external-orchestration/
   SKILL.md
+  README.md
   mode-registry.json
   hub-router.json
   description.json
   graph-metadata.json
   changelog/
+  feature-catalog/
   manual-testing-playbook/
   benchmark/
+  leaf-manifest.json
+  shared/
   cli-opencode/
     SKILL.md
     README.md

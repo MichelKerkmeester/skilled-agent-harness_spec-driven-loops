@@ -231,6 +231,6 @@ Implement a content-quality optimization pass over the SMART ROUTING sections in
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/2026-07-06--after-009--router/report.md`
+- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md`
 
 <!-- /ANCHOR:related-docs -->

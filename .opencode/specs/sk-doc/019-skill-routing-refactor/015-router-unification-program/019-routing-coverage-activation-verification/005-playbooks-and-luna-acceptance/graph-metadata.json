@@ -42,13 +42,13 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-code/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
-      ".opencode/skills/sk-design/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
-      ".opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
-      ".opencode/skills/sk-prompt/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
-      ".opencode/skills/mcp-tooling/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
-      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
-      ".opencode/skills/cli-external-orchestration/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/sk-design/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+      ".opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
       ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
       ".opencode/skills/sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
@@ -76,7 +76,7 @@
       {
         "name": "skill-benchmark-report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-code/benchmark/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
+        "path": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json",
         "source": "derived"
       },
       {

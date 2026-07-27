@@ -56,7 +56,7 @@ High-chroma OKLCH values that leave sRGB are clamped to the maximum chroma for t
 ## 4. SOURCE METADATA
 
 - Group: Token System
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `token-system/oklch-color-and-token-system.md`
 
 Related references:

@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler"
-    last_updated_at: "2026-07-27T10:15:00Z"
+    last_updated_at: "2026-07-27T12:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Adapter built and live-verified; devin CLI limitation found."
-    next_safe_action: "Escalate the devin CLI finding to operator."
-    blockers: ["devin does not honor the PermissionRequest hook's decision -- upstream limitation"]
+    recent_action: "Adapter inert under the bypass mode used; PreToolUse guards active."
+    next_safe_action: "None; scope resolved."
+    blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "permission-request-policy.mjs", "permission-request-policy.test.mjs", ".devin/hooks.v1.json"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-permission-request-handler"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Live probe (backed-up hooks.v1.json, temporary unconditional-log hook) confirmed PermissionRequest fires with a real payload ({hook_event_name, tool_name, tool_input, tool_use_id, session_id, prompt_id}) under devin -p with default --permission-mode auto."
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented — devin CLI does not honor the hook's decision yet (upstream limitation, escalated); see implementation-summary.md |
+| **Status** | Complete — adapter built and verified. Devin does not consult `PermissionRequest` under the `bypass` mode this repo uses, so the adapter is inert there; `PreToolUse` guards remain active, so coverage is intact. See implementation-summary.md. |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

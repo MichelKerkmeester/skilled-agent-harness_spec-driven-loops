@@ -27,8 +27,8 @@ description: "Auto-generated research resource map from convergence evidence."
 |------|--------|--------|------|
 | .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-deep-loop/**/manual_testing_playbook/**/*.md | Cited | MISSING | Citations=1; Iterations=1 |
-| .opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:11-56,83-117 | Cited | MISSING | Citations=1; Iterations=1 |
+| .opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json:11-56,83-117 | Cited | MISSING | Citations=1; Iterations=1 |
 | .opencode/skills/system-deep-loop/benchmark/README.md | Cited | OK | Citations=2; Iterations=2 |
 | .opencode/skills/system-deep-loop/deep-ai-council/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-deep-loop/deep-alignment/SKILL.md | Cited | OK | Citations=1; Iterations=1 |

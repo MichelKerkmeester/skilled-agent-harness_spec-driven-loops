@@ -1,0 +1,11 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+OC-002,code-opencode,live,routing,routing,,,,80,PASS,
+OC-009,code-opencode,live,routing,routing,,,,87,PASS,
+OC-003,code-opencode,live,routing,routing,,,,86,PASS,
+OC-001,code-opencode,live,routing,routing,,,,87,PASS,
+OC-004,code-opencode,live,routing,routing,,,,80,PASS,
+OC-005,code-opencode,live,routing,routing,,,,74,PASS,
+OC-007,code-opencode,live,routing,routing,,,,80,PASS,
+OC-006,code-opencode,live,routing,routing,,,,82,PASS,
+OC-008,code-opencode,live,routing,routing,,,,74,PASS,

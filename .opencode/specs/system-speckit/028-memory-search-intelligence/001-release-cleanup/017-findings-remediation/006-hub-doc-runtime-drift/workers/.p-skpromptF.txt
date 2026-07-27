@@ -1,0 +1,23 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the intended truth; documentation is what gets corrected. Escalate
+(STATUS: BLOCKED) ONLY if the doc describes something clearly intended but never built — then change nothing.
+Never make a doc true by building the thing it imagined. Correct the words, not the runtime.
+
+You own ONLY the files named below. Another worker is editing other files right now.
+Do not run git commands that mutate state. Do not commit.
+Do NOT call MCP tools or load skills — the spec-memory daemon is down and each call costs ~30s.
+Work directly with Read, Glob, Grep, Edit. Start immediately. State the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING skpromptF
+FILES YOU OWN: .opencode/skills/sk-prompt/prompt-models/SKILL.md (ONLY)
+TASK: devin-01:F22 — the prompt-models packet contract declares a read-only tool surface that forbids Bash, yet the packet ships 40+ executable .cjs/.js files under prompt-models/benchmarks/. Verify both facts first (read the contract text; list the executable files). The runtime reality is that those files exist. Correct the contract wording so it accurately describes the packet, without deleting any file and without loosening the contract further than the evidence supports. If you judge that the files are the defect rather than the wording, return BLOCKED and explain — do not delete them.

@@ -29,9 +29,13 @@ expected_leaf_resources:
 
 # MDR-005: md-generator Mode Routing
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that live-site extraction requests route through the `sk-design` hub to `workflowMode: md-generator`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -71,6 +75,8 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 
 **Expected tool surface**: mutating allowed. This is the only mode whose registry allows `Write`, `Edit`, and `Bash` and sets `mutatesWorkspace: true`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -95,11 +101,15 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 2. If the pipeline is missing, inspect `design-md-generator/SKILL.md` sections `SMART ROUTING` and `The Three-Phase Pipeline`.
 3. If shared resources are claimed as required, verify that claim against the md-generator router guard.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/006-shared/008-evidence-envelopes",
+  "description": "`.opencode/skills/sk-design/shared/evidence-envelopes/` has not been audited against",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "shared",
+    "evidence-envelopes",
+    "audited",
+    "against"
+  ],
+  "lastUpdated": "2026-07-27T16:19:58.506Z",
+  "specId": "008",
+  "folderSlug": "evidence-envelopes",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "006-shared"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

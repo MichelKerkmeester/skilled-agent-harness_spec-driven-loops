@@ -13,9 +13,7 @@ version: 1.5.0.8
 
 # Real-UI Loop
 
-The loop this skill follows so a design plan becomes a verified, handed-off render without drifting into AI defaults. `design-principles.md` owns the look and the anti-default mandate; `ux-quality-reference.md` owns the objective floor; this reference owns the path from an approved plan to a checked, handed-off result. Read it when producing or iterating on real UI.
-
-This loop is transport-agnostic: it applies whether the render comes from code you control, a repo recreation, or a terminal-driven generation tool. A generation transport documents its own render and revision mechanics in its own reference; this loop owns the judgment those mechanics serve.
+The loop this skill follows so a design plan becomes a verified, handed-off render without drifting into AI defaults: ground, reuse, render, check, revise, hand off.
 
 ---
 
@@ -29,6 +27,10 @@ Strong UI work treats context, iteration, and handoff as explicit objects, and g
 
 - Whenever UI is being produced or reshaped past a plan into a real render (a generation run, repo recreation, post-build adaptation, or a design direction headed for code).
 - After `design-principles.md` has set the direction and you need a repeatable path from intent to a verified, handed-off result.
+
+### Prerequisites
+
+`design-principles.md` owns the look and the anti-default mandate; `ux-quality-reference.md` owns the objective floor; this reference owns the path from an approved plan to a checked, handed-off result. This loop is transport-agnostic: it applies whether the render comes from code you control, a repo recreation, or a terminal-driven generation tool. A generation transport documents its own render and revision mechanics in its own reference; this loop owns the judgment those mechanics serve.
 
 ### The loop
 
@@ -114,7 +116,7 @@ Use this branch only under the guarded conditions above. For lower-fidelity, non
 
 ## 8. WHAT THIS LOOP DOES NOT ADD (GUARDRAILS)
 
-- No style presets, no pick-a-vibe or theme-swap menu, no named aesthetic dials (boldness/density/motion). A choosable style axis is the templated default the skill exists to resist. The illustrative cues in `../aesthetics/` are reference material for naming a realized default to critique against, subordinate to grounding, and are never surfaced as a chooser or a pick-a-vibe axis.
+- No style presets, no pick-a-vibe or theme-swap menu, no named aesthetic dials (boldness/density/motion). A choosable style axis is the templated default the skill exists to resist. A realized default is named by retrieving one real exemplar from the styles corpus to critique against, subordinate to grounding, and never surfaced as a chooser or a pick-a-vibe axis.
 - No converting a matched design system into a generator. It stays reuse-ground or critique-against, never a preset.
 - No multi-format export (PDF, PPTX, Canva), no live comment threads.
 - No unsanctioned write-back to a source system. Reuse stays read-only, and any mutating transport verb is a STOP-and-confirm point.

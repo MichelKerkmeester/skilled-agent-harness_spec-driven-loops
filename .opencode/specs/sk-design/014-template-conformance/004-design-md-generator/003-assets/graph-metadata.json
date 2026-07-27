@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/003-assets",
+  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/003-assets",
+  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator assets conformance",
+      "md-generator assets template audit",
+      "cardinal rules card conformance"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "assets",
+      "conformance",
+      "md-generator",
+      "template",
+      "audit",
+      "cardinal",
+      "rules",
+      "card",
+      "holds",
+      "files",
+      "cardinal-rules-card"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/assets/cardinal-rules-card.md",
+      ".opencode/skills/sk-design/design-md-generator/assets/design-md-prompt-template.md",
+      ".opencode/skills/sk-design/design-md-generator/assets/source-of-truth-router-card.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "cardinal-rules-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/assets/cardinal-rules-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-md-prompt-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/assets/design-md-prompt-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-of-truth-router-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/assets/source-of-truth-router-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-asset-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`assets/` holds 3 files — `cardinal-rules-card.md`, `design-md-prompt-template.md`, `source-of-truth-router-card.md` — none of which was part of the 014 program's seed sample",
+    "created_at": "2026-07-27T15:10:01.812Z",
+    "last_save_at": "2026-07-27T15:10:01.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98f9a3824c690ac88480d3a9bcc06e15977d9f0a2d2a1d1f753923478e8c1302",
+    "source_doc_hashes": {
+      "spec.md": "46806a449628cb5971fc676a34877efdd434c6e82e9171c944d390c45a43afc0",
+      "plan.md": "eeafa13e9b3b2f634667f9f54f99f2ecd6a54b2e8109d632c3f93da4809953c8",
+      "tasks.md": "212df33fedb2669337f67fd6ea7e431944399c8d903741e91839b689d5668259",
+      "checklist.md": "75947d28d1b8152b36919bfbdaec7caa395a784f8aca6963be53415a33d398f8",
+      "implementation-summary.md": "196dc015937a77d11149cd044387e65932c988a919bfa0102ae548baa98eb3c7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

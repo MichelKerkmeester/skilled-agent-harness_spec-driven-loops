@@ -6,6 +6,8 @@ version: 1.0.0.0
 
 # SLU-003: Seam Envelope Carries Zero Hydrated Styles
 
+---
+
 ## 1. OVERVIEW
 
 This scenario validates the shared positive fixture and proves the neutral seam carries planning and proof fields while its hydration count remains exactly zero.

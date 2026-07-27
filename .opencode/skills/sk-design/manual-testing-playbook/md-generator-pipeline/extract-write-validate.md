@@ -31,9 +31,13 @@ expected_leaf_resources:
 
 # MG-001: Extract Write Validate Pipeline
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the full md-generator pipeline: a live URL request resolves `md-generator`, loads the extraction packet, and runs or describes the sequential EXTRACT, WRITE, and VALIDATE stages.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -77,6 +81,8 @@ Extract the design system from https://example.com into /tmp/skd-MG001/DESIGN.md
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -104,11 +110,15 @@ Extract the design system from https://example.com into /tmp/skd-MG001/DESIGN.md
 3. If validation is skipped, inspect the `VALIDATE` phase and `validate.ts` invocation guidance.
 4. If output escapes `/tmp/skd-MG001/`, stop the run and inspect path handling before rerunning.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

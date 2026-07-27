@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/003-design-motion/008-changelog",
+  "description": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
+  "keywords": [
+    "changelog",
+    "holds",
+    "exactly",
+    "one",
+    "file",
+    "part",
+    "program",
+    "seed",
+    "sample"
+  ],
+  "lastUpdated": "2026-07-27T14:58:31.952Z",
+  "specId": "008",
+  "folderSlug": "changelog",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "003-design-motion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

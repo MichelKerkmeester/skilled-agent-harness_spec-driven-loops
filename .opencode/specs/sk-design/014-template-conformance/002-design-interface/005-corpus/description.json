@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/005-corpus",
+  "description": "`corpus/` is not one of the three canonical bundled-resource categories (`scripts/`, `references/`, `assets/`) documented in",
+  "keywords": [
+    "corpus",
+    "one",
+    "three",
+    "canonical",
+    "bundled-resource",
+    "categories",
+    "scripts",
+    "references",
+    "assets",
+    "documented"
+  ],
+  "lastUpdated": "2026-07-27T15:04:54.295Z",
+  "specId": "005",
+  "folderSlug": "corpus",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

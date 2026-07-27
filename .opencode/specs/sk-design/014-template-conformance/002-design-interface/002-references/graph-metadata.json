@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/002-design-interface/002-references",
+  "spec_folder": "sk-design/014-template-conformance/002-design-interface/002-references",
+  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-interface references conformance",
+      "reference template audit",
+      "aesthetics foundations mcp-tooling references",
+      "references plan",
+      "references tasks",
+      "references checklist",
+      "references implementation summary"
+    ],
+    "key_topics": [
+      "design-interface",
+      "references",
+      "conformance",
+      "reference",
+      "template",
+      "audit",
+      "aesthetics",
+      "foundations",
+      "mcp-tooling",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill-reference-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Principle",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`references/` holds 29 files (5 in `aesthetics/`, 2 in `design-grounding/`, 10 in `design-process/`, 10 in `foundations/` including `color/`, `layout/`, `type/` subfolders, 2 in `mcp-tooling/`), all governed by `skill-reference-template.md`",
+    "created_at": "2026-07-27T14:56:07.863Z",
+    "last_save_at": "2026-07-27T16:16:23.276Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:790565ce3a0e7d96932d42ac039eb637b3e7b98b8986e37b555141798a46d327",
+    "source_doc_hashes": {
+      "spec.md": "0444b27df230608c4bdf13fb6b0bd0652c075105c6b01d633e140c0a3f5fed80",
+      "plan.md": "e1d20c888ff3cf4c78b5b64b0be2bbabe0638a4dff9a3bff03f84669fe762adf",
+      "tasks.md": "938b617b327984114aeaff373e5adb7573d3c6e4a7e76241d0aa870cbaf0d84e",
+      "checklist.md": "707d309db04ab3b71c9479730c70f069742bd6854353ef2436bb6edc442bc3f8",
+      "implementation-summary.md": "b28e134941de4546bb694be28568f6d12cdbea6c15e567596ca1d0a4b4765aab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

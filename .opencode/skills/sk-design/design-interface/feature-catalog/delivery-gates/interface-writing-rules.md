@@ -51,7 +51,7 @@ The content gate reinforces the rule by checking for placeholder text, AI-tell p
 ## 4. SOURCE METADATA
 
 - Group: Delivery Gates
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `delivery-gates/interface-writing-rules.md`
 
 Related references:

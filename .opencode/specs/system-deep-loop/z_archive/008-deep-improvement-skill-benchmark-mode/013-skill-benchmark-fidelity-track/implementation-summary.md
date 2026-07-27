@@ -16,7 +16,7 @@ _memory:
     key_files:
       - ".opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs"
       - ".opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs"
-      - ".opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live/README.md"
+      - ".opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "skill-benchmark-fidelity-track"
@@ -56,7 +56,7 @@ Fidelity-first build, three phases, all shipped.
 **Phase 3 — D4-R measured (paid live, n=5):** ran the task-outcome ablation on LS-001/002/003/004 + SD-002 with gpt-5.5-fast (skill on/off) graded by claude-sonnet. Result: **D4_task_outcome aggregate 54/100**, replacing the meaningless hallucination-proxy 49. Per scenario: LS-001 0.685 (on .72/off .35), LS-004 0.61 (.44/.22), LS-003 0.55 (.80/.70), LS-002 0.435 (.72/.85), SD-002 0.41 (.27/.45). The finding: **the skill helps most where the base model is weak and can hurt where it is already strong** (over-routing noise) — the n=2 round-1 hypothesis confirmed at n=5 with a real instrument. Base-live on the 5 was strong (agg 88, D2 100, D3 60); `assetRecall` 90.
 
 ### Files Changed (this build)
-`sk-code/references/smart_routing.md` (§11 INTENT_SIGNALS + §2 table — synonyms; `router-replay.cjs` parses §11 directly). `scripts/skill-benchmark/live-executor.cjs` (separate `observedAssets` channel), `score-skill-benchmark.cjs` (`assetRecall` lane + advisory aggregates), `d4-ablation.cjs` (`buildTaskOutcomePrompt`/`gradeTaskOutcome`/`runD4RAblation`), `run-skill-benchmark.cjs` (opt-in `--d4` → `augmentWithD4R`), `build-report.cjs` (advisory-signals section), `scripts/skill-benchmark/tests/playbook-mode.vitest.ts` (+5 tests, 1 updated), new `scripts/model-benchmark/scorer/grader/prompts/system-grader-task-outcome.md`. Live result artifact: `sk-code/benchmark/2026-06-02--d4r-live--live/`.
+`sk-code/references/smart_routing.md` (§11 INTENT_SIGNALS + §2 table — synonyms; `router-replay.cjs` parses §11 directly). `scripts/skill-benchmark/live-executor.cjs` (separate `observedAssets` channel), `score-skill-benchmark.cjs` (`assetRecall` lane + advisory aggregates), `d4-ablation.cjs` (`buildTaskOutcomePrompt`/`gradeTaskOutcome`/`runD4RAblation`), `run-skill-benchmark.cjs` (opt-in `--d4` → `augmentWithD4R`), `build-report.cjs` (advisory-signals section), `scripts/skill-benchmark/tests/playbook-mode.vitest.ts` (+5 tests, 1 updated), new `scripts/model-benchmark/scorer/grader/prompts/system-grader-task-outcome.md`. Live result artifact: `sk-code/benchmark/reports/2026-06-02--d4r-live--live/`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -88,7 +88,7 @@ Spec + plan + tasks + checklist authored from the converged-enough 011 round-2 r
 | Deterministic suite | `cd .opencode/skills/deep-improvement/scripts && npx vitest run` | PASS — 295/295 green (24 files; +5 new). Prior "251" was a stale pre-compaction baseline; true baseline 290. |
 | Drift guard | `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` | PASS — 4/4 green |
 | Synonym D2 floors | `node scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode router` | PASS — SD-001 D2 0.455→0.636, CS-001 0.200→0.500; 0 regressions/24; agg D2 44→47, D3 33→32 |
-| D4-R live ablation | `… --trace-mode live --d4 --scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --grader-mode real` | PASS — D4_task_outcome **54/100** (n=5); base-live agg 88, D2 100, D3 60; assetRecall 90. Artifact: `sk-code/benchmark/2026-06-02--d4r-live--live/` |
+| D4-R live ablation | `… --trace-mode live --d4 --scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --grader-mode real` | PASS — D4_task_outcome **54/100** (n=5); base-live agg 88, D2 100, D3 60; assetRecall 90. Artifact: `sk-code/benchmark/reports/2026-06-02--d4r-live--live/` |
 <!-- /ANCHOR:verification -->
 
 ---

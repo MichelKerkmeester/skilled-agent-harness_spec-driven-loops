@@ -37,19 +37,20 @@ trigger_phrases:
 
 Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
-Commands are organized into five groups plus root-level utilities:
+Commands are organized into six groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `commands/create/` | 10 | Scaffold OpenCode components, documentation packages, and changelogs |
-| **deep** | `commands/deep/` | 6 | Deep research, review, AI council, improvement and benchmark loops |
+| **create** | `commands/create/` | 11 | Scaffold OpenCode components, documentation packages, and changelogs |
+| **deep** | `commands/deep/` | 8 | Deep research, review, alignment, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
+| **interface** | `commands/interface/` | 3 | Interface direction, design-reference extraction, and motion design |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
-| **root** | `commands/` | 2 | Standalone `/agent_router` and `/goal-opencode` utilities |
+| **root** | `commands/` | 2 | Standalone `/agent-router` and `/goal-opencode` utilities |
 
-Standalone commands live at the root level: `agent_router.md` routes requests to AI systems, and `goal-opencode.md` manages the passive session goal via the `mk-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
+Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, and `goal-opencode.md` manages the passive session goal via the `mk-goal` plugin. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
 
 <!-- /ANCHOR:overview -->
 
@@ -71,7 +72,7 @@ This file is descriptive only. The executable contract for any workflow lives in
 
 ```
 command/
-├── agent_router.md           # Route requests to AI systems
+├── agent-router.md           # Route requests to AI systems
 ├── goal-opencode.md          # Session-goal router for the mk-goal plugin (OpenCode only)
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
@@ -86,10 +87,13 @@ command/
 │   ├── command.md            # Create or update OpenCode slash command set
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder
 │   ├── flowchart.md          # Create a validated ASCII flowchart
+│   ├── diff.md               # Create a before/after document diff report
 │   └── assets/               # YAML workflow definitions (20 files)
 ├── deep/                     # Deep-loop commands
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
+│   ├── alignment.md          # Conformance audit against named authorities
+│   ├── command-benchmark.md  # Benchmark the command surface
 │   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
@@ -101,6 +105,10 @@ command/
 │   ├── update.md             # Dependency-ordered subsystem alignment
 │   ├── assets/               # YAML workflow definitions
 │   └── scripts/              # Diagnostic scripts
+├── interface/                # Interface design commands
+│   ├── design.md             # Create an interface direction
+│   ├── design-reference.md   # Extract a measured style reference
+│   └── motion.md             # Create a motion design specification
 ├── memory/                   # Memory system commands
 │   ├── search.md             # Unified retrieval + analysis (intent-aware search, epistemic, causal, eval)
 │   ├── learn.md              # Constitutional memory manager
@@ -130,6 +138,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 |---------|------------|---------|
 | Agent | `/create:agent <name>` | Create agent with frontmatter, tool permissions, behavioral rules |
 | Changelog | `/create:changelog <spec-folder-or-component>` | Create a changelog entry from recent work |
+| Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme [readme\|install] <target>` | Unified README and install guide workflow |
 | Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
@@ -158,10 +167,22 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 |---------|------------|---------|
 | AI Council | `/deep:ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
 | Agent Improvement | `/deep:agent-improvement <agent_path> [:auto\|:confirm]` | Evaluate and improve agents across 5 integration-aware dimensions |
+| Alignment | `/deep:alignment <target> [authority] [:auto\|:confirm]` | Audit conformance against named standard authorities |
+| Command Benchmark | `/deep:command-benchmark <spec-folder> [:auto\|:confirm]` | Benchmark command-surface conformance and behavior |
 | Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 | Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
+
+### Interface Commands
+
+Design and validate interface systems using the `sk-design` skill.
+
+| Command | Invocation | Purpose |
+|---------|------------|---------|
+| Design | `/interface:design <target> [:auto\|:confirm]` | Create or reshape a distinctive interface direction |
+| Design Reference | `/interface:design-reference <live-url> --output <dir> [:auto\|:confirm]` | Extract a measured Style Reference DESIGN.md |
+| Motion | `/interface:motion <component-state> [:auto\|:confirm]` | Specify animation, transitions, and reduced-motion behavior |
 
 ### Root Commands
 
@@ -169,7 +190,7 @@ Root commands have no group prefix.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Agent Router | `/agent_router <request>` | Route a request through intelligent AI system selection |
+| Agent Router | `/agent-router <request>` | Route a request through intelligent AI system selection |
 | Prompt | `/prompt:improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
 | Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `mk-goal` plugin |
 
@@ -202,8 +223,8 @@ Structured workflows for the spec folder development lifecycle.
 <!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `deep`, `doctor`, `memory`, or `speckit`.
-2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent_router` or `/goal-opencode`.
+1. Choose the command group that matches your intent: `create`, `deep`, `doctor`, `interface`, `memory`, or `speckit`.
+2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent-router` or `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
 5. Follow the family-specific index under `commands/<group>/README.txt` when one exists and you need detailed routing help.
@@ -246,8 +267,8 @@ Structured workflows for the spec folder development lifecycle.
 
 ```
 # Route a request through intelligent agent selection
-# Use the exact command name (not /agents or /agents_router)
-/agent_router "Build a new authentication system"
+# Use the exact command name (not /agents or /agents-router)
+/agent-router "Build a new authentication system"
 ```
 
 <!-- /ANCHOR:usage -->
@@ -304,7 +325,7 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | Problem | Cause | Fix |
 |---------|-------|-----|
 | Command not recognized | Wrong invocation format | Use `/<group>:<command>` format (e.g., `/memory:save`) |
-| Agent router command not found | Used `/agents` or `/agents_router` alias | Use `/agent_router "<request>"` |
+| Agent router command not found | Used `/agents` or `/agents-router` alias | Use `/agent-router "<request>"` |
 | Missing arguments error | Required argument not provided | Check the `argument-hint` in the command's frontmatter |
 | YAML workflow not found | Missing asset file | Verify `assets/` folder contains the corresponding YAML |
 | `create` vs `update` mismatch | Target package exists/does not exist as expected | Re-run the command with the matching operation |

@@ -1,0 +1,19 @@
+{
+  "executors": [
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "standard",
+      "sandboxMode": "workspace-write",
+      "timeoutSeconds": 3600,
+      "label": "sol",
+      "iterations": 5
+    }
+  ],
+  "assignment_model": "flat_pool",
+  "concurrency": 1,
+  "maxRetries": 2,
+  "lagCeilingMs": 300000,
+  "progressHeartbeatSeconds": 60
+}

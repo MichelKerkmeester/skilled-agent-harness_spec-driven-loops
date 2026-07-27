@@ -1,0 +1,23 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the intended truth; documentation is what gets corrected. Escalate
+(STATUS: BLOCKED) ONLY if the doc describes something clearly intended but never built — then change nothing.
+Never make a doc true by building the thing it imagined. Correct the words, not the runtime.
+
+You own ONLY the files named below. Another worker is editing other files right now.
+Do not run git commands that mutate state. Do not commit.
+Do NOT call MCP tools or load skills — the spec-memory daemon is down and each call costs ~30s.
+Work directly with Read, Glob, Grep, Edit. Start immediately. State the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING compiledG
+FILES YOU OWN: .opencode/commands/deep/assets/compiled/README.md (ONLY)
+TASK: devin-03:F7 — this README describes deep-alignment.contract.md as a non-authoritative placeholder, but that contract file is live and authoritative (verify: read the contract header and check whether the alignment command loads it). Correct the README so it describes the contract as it actually is.

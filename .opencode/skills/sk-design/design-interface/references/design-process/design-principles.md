@@ -14,7 +14,7 @@ version: 1.5.0.4
 
 # Interface Design Principles
 
-Guidance for distinctive, intentional visual design when building or reshaping UI. Adapted verbatim from Anthropic's `frontend-design` skill (Apache-2.0, see `../../LICENSE.txt`).
+Guidance for distinctive, intentional visual design when building or reshaping UI.
 
 ---
 
@@ -29,19 +29,21 @@ Make deliberate, opinionated choices specific to the brief, and take one real ae
 - Critiquing a design plan before writing code.
 
 ### The Studio Framing
-Approach this as the design lead at a small studio known for giving every client a visual identity that could not be mistaken for anyone else's. This client has already rejected proposals that felt templated, and is paying for a distinctive point of view: make deliberate, opinionated choices about palette, typography, and layout that are specific to this brief, and take one real aesthetic risk you can justify.
+Work as the lead on a small team whose reputation rests on never shipping two clients the same face. Assume the brief arrived here because safer proposals were already turned down. That framing sets the bar: palette, type, and layout decisions must trace to something specific about this subject, and at least one choice should be defensible rather than comfortable.
 
 ---
 
 ## 2. GROUND IT IN THE SUBJECT
 
-If the brief does not pin down what the product or subject is, pin it yourself before designing: name one concrete subject, its audience, and the page's single job, and state your choice. If there's any information in your memory about the human's preferences, context about what they're building, or designs you've made before – use that as a hint. The subject's own world, its materials, instruments, artifacts, and vernacular, is where distinctive choices come from. Build with the brief's real content and subject matter throughout.
+A brief that leaves the subject vague produces vague design. Before any visual decision, commit to three things in writing: what this specific thing is, who it is for, and the one job the page has to do. State the commitment even when you inferred it, so a later reader can challenge the inference rather than the design.
+
+Distinctiveness is found, not invented. It comes from the subject's own world — the materials it is made of, the tools its people use, the objects and language that surround it. A page about archival typesetting and a page about freight logistics should not be able to trade stylesheets. Carry the brief's actual content and vocabulary through the work rather than designing against placeholder text and retrofitting the words later.
 
 ---
 
 ## 3. DESIGN PRINCIPLES
 
-For web designs, the hero is a thesis. Open with the most characteristic thing in the subject's world, in whatever form makes sense for it: a headline, an image, an animation, a live demo, an interactive moment. Be deliberate with your choice: a big number with a small label, supporting stats, and a gradient accent is the template answer, only use if that's truly the best option.
+The hero states a thesis. Lead with whatever is most characteristic of the subject, in whatever form actually carries it — a sentence, an image, a moving thing, a working demo. What matters is that the form was chosen rather than defaulted to. The metric-plus-label-plus-gradient opening is the answer that arrives when no choice was made; reach for it only when the subject genuinely argues for it.
 
 ### Hero Signature-Role Contract
 
@@ -57,48 +59,54 @@ Run a deletion test before keeping either addition: temporarily remove the enric
 
 When visual assets are part of the signature direction, specify them as build-facing style axes and usage rules: subject, crop, aspect ratio, lighting, treatment, placement, density, and when not to use them. Do not turn this into an illustration-library program. The point is to make the intended asset language implementable and consistent, not to invent an asset system the brief did not ask for.
 
-Typography carries the personality of the page. Pair the display and body faces deliberately, not the same families you would reach for on any other project, and set a clear type scale with intentional weights, widths, and spacing. Make the type treatment itself a memorable part of the design, not a neutral delivery vehicle for the content.
+Type is where personality lives. Choose display and body faces for this brief rather than reaching for the pairing that worked last time, and set a scale whose weights, widths, and spacing were decided rather than accepted. Treat the typography as something the reader will remember, not as neutral packaging around the words.
 
-Structure is information. Structural devices, numbering, eyebrows, dividers, labels, should encode something true about the content, not decorate it. Many generic designs use numbered markers (01 / 02 / 03), but that's only appropriate if the content actually is a sequence - like a real process or a typed timeline where order carries information the reader needs. Question if choices like numbered markers actually make sense before incorporating them.
+Structure should carry meaning. Eyebrows, dividers, numbers, and labels earn their place by encoding something true about the content. Numbered markers are the clearest example of the failure: `01 / 02 / 03` belongs on material that genuinely is a sequence, where order tells the reader something. Applied to three unordered features it is decoration wearing the costume of information.
 
-Deviation must be earned, not inflated. Do not isolate every panel, over-accent every CTA, or give every section its own special treatment because distinction is the goal. One meaningful deviation with evidence from the brief beats a surface where every element asks to be the signature.
+Deviation has to be earned one at a time. Isolating every panel, accenting every call to action, giving every section its own treatment — that is not distinction, it is noise with ambition. One departure that the brief can justify outperforms a surface where everything competes to be the signature.
 
-Use motion deliberately. Think about where and if animation can serve the subject: a page-load sequence, a scroll-triggered reveal, hover micro-interactions, ambient atmosphere. An orchestrated moment usually lands harder than scattered effects, so choose what the direction calls for. However, sometimes less is more, and extra animation contributes to the feeling that the design is AI-generated.
+Motion is a decision, not a finish. Ask what the subject gains from it: an entrance that establishes hierarchy, a reveal that rewards scrolling, a hover that confirms a control is live. A single orchestrated moment usually reads as intent; scattered effects read as habit, and excess animation is one of the strongest signals that nobody was steering.
 
-Match complexity to the vision. Maximalist directions need elaborate execution. Minimal directions need precision in spacing, type, and detail. Elegance is executing the chosen vision well.
+Complexity should match the direction. Maximalism demands follow-through; minimalism demands precision, because with less on the surface every spacing and weight decision is exposed. Elegance is the chosen direction executed properly, not a particular density.
 
-Consider written content carefully. Often a design brief may not contain real content, and it's up to you to come up with copy. Copy can make a design feel as templated as the design itself. See Section 6 for more guidance.
+Copy is part of the design surface. Briefs often arrive without real words, which means the words become yours to choose — and generic copy will make a considered layout feel templated regardless of how the pixels were decided. Section 6 covers this.
 
 ---
 
 ## 4. PROCESS: BRAINSTORM, EXPLORE, PLAN, CRITIQUE, BUILD, CRITIQUE AGAIN
 
-For calibration: AI-generated design right now clusters around three looks. (1) A warm cream background (near #F4F1EA) with a high-contrast serif display and a terracotta accent. (2) A near-black background with a single bright acid-green or vermilion accent. (3) A broadsheet-style layout with hairline rules, zero border-radius, and dense newspaper-like columns. All three are legitimate for some briefs, but they are defaults rather than choices, and they appear regardless of subject. Where the brief pins down a visual direction, follow it exactly: the brief's own words always win, including when it asks for one of these looks. Where it leaves an axis free, don't spend that freedom on one of these defaults. Just like a human designer who's hired, there's often a careful balance between doing what you're good at and taking each project as a chance to experiment and learn.
+Machine-generated interfaces converge on a small set of looks, and the mechanical checks for them live in `../../assets/interface-preflight-card.md` Section 11. The point here is why they recur: each is a competent answer to no brief in particular, so it surfaces whenever an axis was left free and nothing filled the vacuum. Any of them can be correct — when the brief asks for it, the brief wins outright. What fails is arriving at one by default and calling it a direction.
 
-Work in two passes. First, brainstorm a short design plan based on the human's design brief: create a compact token system with color, type, layout, and signature. Color: describe the palette as 4–6 named hex values. Type: the typefaces for 2+ roles (a characterful display face that's used with restraint, a complementary body face, and a utility face for captions or data if needed). Layout: a layout concept, using one-sentence prose descriptions and ASCII wireframes to ideate and compare. Signature: the single unique element this page will be remembered by that embodies the brief in an appropriate way.
+Design in two passes, and keep them separate.
 
-Then review that plan against the brief before building: if any part of it reads like the generic default you would produce for any similar page (work through a similar prompt to see if you arrive somewhere similar) rather than a choice made for this specific brief, revise that part, say what you changed and why. Only after you've confirmed the relative uniqueness of your design plan should you start to write the code, following the revised plan exactly and deriving every color and type decision from it.
+**Pass one, the plan.** Produce a compact token system before any markup exists. Colour as four to six named values. Type as at least two roles: a display face used sparingly, a body face that carries reading weight, and a utility face where captions or figures need one. Layout as prose plus rough wireframes, cheap enough to throw away and compare. Signature as the single element this page will be remembered by, tied to something the brief actually says.
 
-When writing the code, be careful of structuring your CSS selector specificities. It's easy to generate CSS classes that cancel each other out (especially with a type-based selector like .section and a element-based selector like .cta). This can happen often with paddings/margins between sections.
+**Pass two, the challenge.** Read the plan back and ask which parts would have come out the same for any neighbouring brief. Test it: imagine an adjacent subject and see whether the plan survives unchanged. Anything that survives untouched was never specific — revise it, and record what changed and why. Only once the plan holds up should code begin, deriving every colour and type decision from the plan rather than improvising alongside it.
 
-Try to do a lot of this planning and iteration in your thinking, and only show ideas to the user when you have higher confidence it'll delight them.
+Two implementation notes worth carrying into the build. Watch selector specificity: class-based and element-based rules that both claim spacing will quietly cancel each other, and section padding is where it usually shows. And keep the exploratory passes internal — surface directions once they are worth someone's attention, not while they are still churning.
 
 ---
 
 ## 5. RESTRAINT AND SELF-CRITIQUE
 
-Spend your boldness in one place. Let the signature element be the one memorable thing, keep everything around it quiet and disciplined, and cut any decoration that does not serve the brief. Not taking a risk can be a risk itself! Build to a quality floor without announcing it: responsive down to mobile, visible keyboard focus, reduced motion respected. Critique your own work as you build, taking screenshots if your environment supports it – a picture is worth 1000 tokens. Consider Chanel's advice: before leaving the house, take a look in the mirror and remove one accessory. Human creators have memory and always try to do something new, so if you have a space to quickly jot down notes about what you've tried, it can help you in future passes.
+Boldness is a budget, and it is small. Spend it on the signature and keep everything adjacent quiet enough that the signature reads. Cut decoration that cannot name the part of the brief it serves. Note that restraint is not the safe option either — a page that risks nothing has made a choice, and usually a forgettable one.
+
+Meet the quality floor without narrating it: responsive to small screens, keyboard focus visible, reduced-motion honoured. These are entry conditions, not achievements to announce.
+
+Critique while building rather than after. Where the environment can render, look at the result instead of reasoning about it — inspecting the actual output catches what reading the code does not. The subtraction pass is the reliable one: near the end, remove the least necessary element and check whether anything was lost. Often nothing is.
+
+Keep notes across attempts if there is anywhere to put them. Knowing which directions were already tried and rejected is what stops the next pass from rediscovering them.
 
 ---
 
 ## 6. WRITING IN DESIGN
 
-Words appear in a design for one reason: to make it easier to understand, and therefore easier to use. They are design material, not decoration. Bring the same intentionality to copy that you would bring to spacing and color. Before writing anything, ask what the design needs to say, and how it can best be said to help the person navigate the experience.
+Words exist in an interface to make it comprehensible, which is what makes it usable. They are material, not trim, and they deserve the same deliberation as spacing and colour. Decide what the screen has to communicate before deciding how to phrase it.
 
-Write from the end user's side of the screen. Name things by what people control and recognize, never by how the system is built. A person manages notifications, not webhook config. Describe what something does in plain terms rather than selling it. Being specific is always better than being clever.
+Write from the reader's side of the glass. Name things after what a person recognises and controls, never after the implementation underneath — someone manages notifications; nobody manages a webhook configuration. Say what a thing does rather than selling what it is. Specific beats clever every time, and clever ages badly.
 
-Use active voice as default. A control should say exactly what happens when it's used: "Save changes," not "Submit." An action keeps the same name through the whole flow, so the button that says "Publish" produces a toast that says "Published." The vocabulary of an interface is the signposting for someone navigating the product. Cohesion and consistency are how people learn their way around.
+Default to active voice, and make controls state their consequence. "Save changes" tells the reader what happens; "Submit" tells them the form has a handler. Carry one name for one action through the whole flow, so the control labelled Publish produces confirmation that says Published. That consistency is the signposting people use to learn a product.
 
-Treat failure and emptiness as moments for direction, not mood. Explain what went wrong and how to fix it, in the interface's voice rather than a person's. Errors don't apologize, and they are never vague about what happened. An empty screen is an invitation to act.
+Treat errors and empty states as direction rather than atmosphere. An error names what happened and what to do next, in the product's voice — it does not apologise and it is never vague about the cause. An empty screen is an invitation, so give it something to act on.
 
-Keep the register conversational and tuned: plain verbs, sentence case, no filler, with tone matched to the brand and the audience. Let each element do exactly one job. A label labels, an example demonstrates, and nothing quietly does double duty.
+Keep the register plain and tuned to the audience: ordinary verbs, sentence case, no filler. Give each element exactly one job. A label labels, an example demonstrates, helper text helps; nothing should quietly do two of those at once.

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/003-design-motion/002-references",
+  "description": "`references/` holds 7 flat files, all governed by `skill-reference-template.md`",
+  "keywords": [
+    "references",
+    "holds",
+    "flat",
+    "files",
+    "governed",
+    "skill-reference-template"
+  ],
+  "lastUpdated": "2026-07-27T14:57:51.943Z",
+  "specId": "002",
+  "folderSlug": "references",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "003-design-motion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

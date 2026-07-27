@@ -11,8 +11,8 @@ Bidirectional inventory alignment, benchmark-gate fidelity, graph metadata proje
 - `.opencode/skills/mcp-tooling/description.json`
 - `.opencode/skills/mcp-tooling/graph-metadata.json`
 - `.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json`
-- `.opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.md`
+- `.opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json`
+- `.opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.md`
 - phase `spec.md`, `plan.md`, and `tasks.md`
 
 ## Scorecard
@@ -26,7 +26,7 @@ Bidirectional inventory alignment, benchmark-gate fidelity, graph metadata proje
 
 ### P0
 
-- **F008**: The committed baseline benchmark declares `PASS`, all 13 scenarios passed, and zero hub-route regressions while recording `routeGoldRows:0`; its own route telemetry shows MT-004 selecting all six modes, MT-003 selecting no Figma mode, and MT-H02 through MT-H06 selecting no intended mode. Seven route-contract violations therefore pass the designated deterministic CI gate. [SOURCE: .opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:11] [SOURCE: .opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:126] [SOURCE: .opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:657]
+- **F008**: The committed baseline benchmark declares `PASS`, all 13 scenarios passed, and zero hub-route regressions while recording `routeGoldRows:0`; its own route telemetry shows MT-004 selecting all six modes, MT-003 selecting no Figma mode, and MT-H02 through MT-H06 selecting no intended mode. Seven route-contract violations therefore pass the designated deterministic CI gate. [SOURCE: .opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:11] [SOURCE: .opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:126] [SOURCE: .opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:657]
 
 ### P1
 
@@ -40,7 +40,7 @@ Bidirectional inventory alignment, benchmark-gate fidelity, graph metadata proje
 ## Claim Adjudication
 
 ```json
-{"findingId":"F008","claim":"The committed routing benchmark can issue a PASS while seven scenario route expectations are violated because no route-gold rows are scored.","evidenceRefs":[".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:11-31",".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:89-126",".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:180-228",".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:657-1329",".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.md:1-60"],"counterevidenceSought":"Compared all 13 telemetry rows to the scenario frontmatter expectations and checked the benchmark's hard-gate, known-gap, and route-gold counters.","alternativeExplanation":"The score threshold may intentionally reward discovery/connectivity, but the report calls Mode A the deterministic CI gate and explicitly reports all routing scenarios passed.","finalSeverity":"P0","confidence":0.99,"downgradeTrigger":"Downgrade only if this report is proven non-gating and another committed gate fails the seven route mismatches.","transitions":[{"iteration":3,"from":null,"to":"P0","reason":"Acceptance report-to-telemetry adjudication"}]}
+{"findingId":"F008","claim":"The committed routing benchmark can issue a PASS while seven scenario route expectations are violated because no route-gold rows are scored.","evidenceRefs":[".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:11-31",".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:89-126",".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:180-228",".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:657-1329",".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.md:1-60"],"counterevidenceSought":"Compared all 13 telemetry rows to the scenario frontmatter expectations and checked the benchmark's hard-gate, known-gap, and route-gold counters.","alternativeExplanation":"The score threshold may intentionally reward discovery/connectivity, but the report calls Mode A the deterministic CI gate and explicitly reports all routing scenarios passed.","finalSeverity":"P0","confidence":0.99,"downgradeTrigger":"Downgrade only if this report is proven non-gating and another committed gate fails the seven route mismatches.","transitions":[{"iteration":3,"from":null,"to":"P0","reason":"Acceptance report-to-telemetry adjudication"}]}
 ```
 
 ```json
@@ -48,7 +48,7 @@ Bidirectional inventory alignment, benchmark-gate fidelity, graph metadata proje
 ```
 
 ```json
-{"findingId":"F010","claim":"The phase acceptance package does not specify or track the current six-mode routing surface.","evidenceRefs":[".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md:61-148",".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/plan.md:85-142",".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md:53-88",".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.md:1-60"],"counterevidenceSought":"Searched all phase requirements, success criteria, plan axes, and tasks for Aside, Refero, Mobbin, six-mode, and the committed baseline path.","alternativeExplanation":"The phase predates expansion, but it remains the active target for benchmark-and-review acceptance and has not been superseded in the provided scope.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Downgrade if a newer authoritative phase acceptance packet covering all six modes is linked as its superseding source.","transitions":[{"iteration":3,"from":null,"to":"P1","reason":"Spec-plan-task-to-code trace"}]}
+{"findingId":"F010","claim":"The phase acceptance package does not specify or track the current six-mode routing surface.","evidenceRefs":[".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md:61-148",".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/plan.md:85-142",".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md:53-88",".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.md:1-60"],"counterevidenceSought":"Searched all phase requirements, success criteria, plan axes, and tasks for Aside, Refero, Mobbin, six-mode, and the committed baseline path.","alternativeExplanation":"The phase predates expansion, but it remains the active target for benchmark-and-review acceptance and has not been superseded in the provided scope.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Downgrade if a newer authoritative phase acceptance packet covering all six modes is linked as its superseding source.","transitions":[{"iteration":3,"from":null,"to":"P1","reason":"Spec-plan-task-to-code trace"}]}
 ```
 
 ## Traceability Checks

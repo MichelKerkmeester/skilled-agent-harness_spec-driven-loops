@@ -6,6 +6,8 @@ version: 1.0.0.0
 
 # SLU-005: STUDY Leak Gate And No-STUDY Retry
 
+---
+
 ## 1. OVERVIEW
 
 This scenario runs the focused generator regressions for the two-signal leak gate and the real production retry that removes STUDY from the author command.

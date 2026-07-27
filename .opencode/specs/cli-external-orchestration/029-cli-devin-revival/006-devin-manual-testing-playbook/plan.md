@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
-    last_updated_at: "2026-07-23T00:00:00Z"
+    last_updated_at: "2026-07-27T15:34:33Z"
     last_updated_by: "claude-code"
     recent_action: "Authored plan.md for phase 006 (Planned)"
     next_safe_action: "Author tasks.md and checklist.md; wait for phases 003-005 before implementation"
@@ -47,11 +47,11 @@ Author a Devin-native manual-testing playbook by mirroring cli-codex's confirmed
 ### Definition of Ready
 - [ ] Phase 001's live Devin CLI contract facts are available and unchanged (hooks, permission modes, subagents, cloud handoff, model roster, mcp subcommands).
 - [ ] Phases 003 (skill packet), 004 (hook adapter layer), and 005 (model registry) have landed, so the SKILL.md cross-reference target, hook-adapter paths, and current model slugs exist.
-- [ ] The 15-20 scenario-count target and 8-category reframing are confirmed against `spec.md`.
+- [x] The 20-scenario count and 9-category reframing are confirmed against `spec.md` and the authored playbook.
 
 ### Definition of Done
 - [ ] Root file authored with all 17 confirmed sections plus both banners.
-- [ ] All 8 categories authored, each with `>=1` `DV-NNN` scenario file, total count in the 15-20 range.
+- [x] All 9 categories authored, each with `>=1` `DV-NNN` scenario file, total count 20.
 - [ ] Hallucination-fixture scenario present with explicit FAIL criteria.
 - [ ] Playbook cross-referenced from `cli-devin/SKILL.md`.
 - [ ] sk-doc's `validate_document.py` and this phase's `validate.sh --strict` both report 0 errors.
@@ -66,8 +66,8 @@ Author a Devin-native manual-testing playbook by mirroring cli-codex's confirmed
 Split-document Feature Catalog: a root directory/orchestration file plus category subfolders, each holding one or more `DV-NNN` scenario files that carry the full execution contract.
 
 ### Key Components
-- **Root file** (`manual-testing-playbook.md`): EXECUTION POLICY banner, SELF-INVOCATION GUARD banner, then 17 numbered sections - Overview, Global Preconditions, Global Evidence Requirements, Deterministic Command Notation, Review Protocol and Release Readiness, Sub-Agent Orchestration and Wave Planning, one section per category (8), Automated Test Cross-Reference, Feature Catalog Cross-Reference Index.
-- **8 category folders**: `cli-invocation`, `permission-modes`, `subagents`, `hooks`, `session-continuity`, `cloud-handoff`, `prompt-templates`, `mcp-integration`. Each holds `>=1` scenario file using the universal per-feature template (frontmatter with title/description/version, then §1 Overview + Why This Matters, §2 Scenario Contract, §3 Test Execution with Recommended Orchestration Process + 9-column table + Optional Supplemental Checks, §4 Source Files, §5 Source Metadata).
+- **Root file** (`manual-testing-playbook.md`): EXECUTION POLICY banner, SELF-INVOCATION GUARD banner, then 17 numbered sections - Overview, Global Preconditions, Global Evidence Requirements, Deterministic Command Notation, Review Protocol and Release Readiness, Sub-Agent Orchestration and Wave Planning, one section per category (9), Automated Test Cross-Reference, Feature Catalog Cross-Reference Index.
+- **9 category folders**: `cli-invocation`, `permission-modes`, `hooks`, `subagents`, `commands-and-skills`, `rules`, `mcp-integration`, `session-continuity`, and `cloud-handoff`. Each holds `>=1` scenario file using the universal per-feature template (frontmatter with title/description/version, then §1 Overview + Why This Matters, §2 Scenario Contract, §3 Test Execution, §4 Source Files, §5 Source Metadata).
 
 ### Data Flow
 An operator or AI reads the root file's Feature Catalog Cross-Reference Index, picks a `DV-NNN` scenario, follows the link to its category file, dispatches the real `devin` invocation per the Exact Command Sequence column, captures evidence, and records a PASS/FAIL/SKIP verdict. The root file's Review Protocol and Release Readiness section rolls per-scenario verdicts up into a feature verdict and an overall release-readiness rule, mirroring cli-codex's rules exactly.
@@ -97,7 +97,7 @@ This is a new-authoring phase, not a bug fix - the affected-surfaces addendum ap
 
 ### Phase 2: Core Implementation
 - [ ] Author the root file's 17-section structure.
-- [ ] Author all 8 category folders with their scenario files (target 15-20 total).
+- [x] Author all 9 category folders with their scenario files (20 total).
 - [ ] Add the cross-reference from `cli-devin/SKILL.md` to the playbook.
 
 ### Phase 3: Verification

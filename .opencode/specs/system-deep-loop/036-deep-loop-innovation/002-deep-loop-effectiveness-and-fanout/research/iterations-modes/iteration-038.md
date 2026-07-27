@@ -1061,8 +1061,8 @@ exec
 .opencode/skills/system-deep-loop/deep-review/behavior_benchmark/baselines/claude-baseline.md
 .opencode/specs/system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target/toy-agent.md
 .opencode/specs/system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-004-improvement-target/FIXTURE.md
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 .opencode/specs/system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout/spec.md
 .opencode/specs/system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout/plan.md
 .opencode/specs/system-deep-loop/066-command-surface-benchmark/010-scorecard-and-closeout/tasks.md

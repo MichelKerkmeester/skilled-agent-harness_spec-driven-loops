@@ -14,11 +14,7 @@ version: 1.0.0.0
 
 # Mechanical Anti-Default Checklist
 
-The aesthetic direction in `design-principles.md` decides whether a surface is distinctive. This reference decides whether it is mechanically broken. The two are different jobs. A page can pass the taste read, a memorable signature, a grounded palette, a justified risk, and still ship a four-line hero, a bento grid with a dead cell, and an eyebrow above every section. Those are structural defaults the model reaches for by reflex, and they read as AI no matter how good the direction is.
-
-Each check below is binary. It passes or it fails. Run them on any built or planned interface before calling the work done. This is the layout gate that pre-delivery review also references, so author the rules here once and let that review point at them rather than restate them.
-
-The Brand-vs-Product posture is set first in `../../../shared/register.md`. These mechanical checks hold for both postures, the register only changes how loud the surface is allowed to be, never whether a hero may overflow or a button may hide its own label.
+The aesthetic direction in `design-principles.md` decides whether a surface is distinctive; this reference decides whether it is mechanically broken. A page can pass the taste read and still ship a four-line hero, a bento grid with a dead cell, and an eyebrow above every section.
 
 ---
 
@@ -26,7 +22,9 @@ The Brand-vs-Product posture is set first in `../../../shared/register.md`. Thes
 
 ### What this gate is for
 
-The model has a stable set of layout reflexes. It wraps headlines into tall walls because it reaches for a narrow container. It leaves blank cells in a grid because it sized the grid before it counted the content. It stamps a small uppercase label above every section because landing pages "do that". It ships button text the same color as the button. None of these are taste failures. They are mechanical failures, and a mechanical pass or fail catches them where a subjective read does not.
+The model has a stable set of layout reflexes. It wraps headlines into tall walls because it reaches for a narrow container. It leaves blank cells in a grid because it sized the grid before it counted the content. It stamps a small uppercase label above every section because landing pages "do that". It ships button text the same color as the button. None of these are taste failures. They are mechanical failures, and a mechanical pass or fail catches them where a subjective read does not. Those are structural defaults the model reaches for by reflex, and they read as AI no matter how good the direction is.
+
+Each check below is binary. It passes or it fails. Run them on any built or planned interface before calling the work done. This is the layout gate that pre-delivery review also references, so author the rules here once and let that review point at them rather than restate them.
 
 ### How to run it
 
@@ -35,6 +33,10 @@ Walk every section of the surface against Sections 2 through 6. A single fail me
 ### What it does not cover
 
 This gate does not judge palette, type pairing, signature, or whether the direction is distinctive, that is `design-principles.md`. It does not cover copy quality or mock data plausibility, that is `copy-and-mock-data.md`. It does not cover the objective accessibility and performance floor beyond the few a11y checks that are also layout defaults, that is `ux-quality-reference.md`. Keep the boundaries clean so each reference owns one job.
+
+### Prerequisites
+
+The Brand-vs-Product posture is set first in `../../../shared/register.md`. These mechanical checks hold for both postures, the register only changes how loud the surface is allowed to be, never whether a hero may overflow or a button may hide its own label.
 
 ---
 

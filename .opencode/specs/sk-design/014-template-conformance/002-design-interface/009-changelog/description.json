@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/009-changelog",
+  "description": "`changelog/` holds exactly 2 files: `v1.0.0.0.md` (65 lines, titled \"interface v1.0.0.0 - Data-backed and Claude Design parity\", genuinely about",
+  "keywords": [
+    "changelog",
+    "holds",
+    "exactly",
+    "files",
+    "lines",
+    "titled",
+    "interface",
+    "data-backed",
+    "claude",
+    "design",
+    "parity",
+    "genuinely",
+    "about"
+  ],
+  "lastUpdated": "2026-07-27T15:06:19.957Z",
+  "specId": "009",
+  "folderSlug": "changelog",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

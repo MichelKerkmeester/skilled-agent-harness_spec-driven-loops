@@ -65,7 +65,7 @@ Executed a Level 3 phase packet covering the automated portion of the parity rel
 | `graph-metadata.json` | Regenerated | Graph traversal metadata refreshed after content reconciliation |
 | `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/*.md` | Added (approved path) | PB-001, PB-002, PB-003 parity-behavior scenarios |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Updated (approved path) | Root index now includes category 06 and PB-001..PB-003 |
-| `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json` + `report.md` | Added (approved path) | Fresh router-mode benchmark run compared against the frozen baseline |
+| `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json` + `report.md` | Added (approved path) | Fresh router-mode benchmark run compared against the frozen baseline |
 <!-- /ANCHOR:what-built -->
 
 ---

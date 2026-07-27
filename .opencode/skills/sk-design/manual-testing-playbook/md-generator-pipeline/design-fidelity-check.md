@@ -17,9 +17,13 @@ expected_leaf_resources:
 
 # MG-003: Design Fidelity Check
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a design-fidelity check against `DESIGN.md` and `tokens.json` routes to md-generator rather than design-audit.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -55,6 +59,8 @@ Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, th
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -79,11 +85,15 @@ Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, th
 2. If REPORT is missing, inspect `design-md-generator/SKILL.md` Phase 4 guidance.
 3. If visual artifacts are written outside the sandbox, stop and rerun with explicit output paths.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

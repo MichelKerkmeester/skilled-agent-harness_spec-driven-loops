@@ -446,8 +446,8 @@ exec
 .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts
 .opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs
 .opencode/skills/system-deep-loop/runtime/lib/README.md
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 .opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-008-per-lane-report.md
 .opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-002-bare-command-halt.md
 .opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-003-vague-natural-ask.md
@@ -2316,8 +2316,8 @@ exec
 .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/fanout/fanout_native_sequential_research.md
 .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/fanout/fanout_single_executor_parity_research.md
 .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/fanout/fanout_cli_lineages_research.md
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 .opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-config.json
 .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/convergence_and_recovery/divergent_convergence_mode.md
 .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/convergence_and_recovery/blocked_stop_reducer_surfacing.md

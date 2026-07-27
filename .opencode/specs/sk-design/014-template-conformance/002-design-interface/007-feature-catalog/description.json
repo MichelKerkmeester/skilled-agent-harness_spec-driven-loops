@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/007-feature-catalog",
+  "description": "`feature-catalog/` has 5 kebab-case category directories with no numeric prefix (`adaptation-and-data/`, `aesthetic-direction-process/`,",
+  "keywords": [
+    "feature-catalog",
+    "kebab-case",
+    "category",
+    "directories",
+    "numeric",
+    "prefix",
+    "adaptation-and-data",
+    "aesthetic-direction-process"
+  ],
+  "lastUpdated": "2026-07-27T15:05:01.618Z",
+  "specId": "007",
+  "folderSlug": "feature-catalog",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

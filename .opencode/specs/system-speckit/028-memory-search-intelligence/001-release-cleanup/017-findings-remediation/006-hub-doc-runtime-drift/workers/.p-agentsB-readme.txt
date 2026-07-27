@@ -1,0 +1,25 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: where documentation and runtime disagree, the RUNTIME is the intended truth and the
+DOCUMENTATION is what gets corrected. Only escalate (STATUS: BLOCKED) if the doc describes something
+clearly INTENDED but never built — in that case change nothing and explain.
+
+You own the files named in your task and NO others. Another worker is editing other files right now.
+Never touch a file outside your task. Do not run git commands that mutate state. Do not commit.
+Verify every claim against the real tree before editing; state the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING agentsB-readme
+FILES YOU OWN: .opencode/agents/README.txt (ONLY)
+TASK: devin-03:F6 — the agent inventory omits the live agent .opencode/agents/deep-alignment.md, which exists on disk. Add it, matching the surrounding row/entry format exactly. Verify by comparing `ls .opencode/agents/*.md` against the inventory entries.
+
+EFFICIENCY: Do NOT call MCP tools or load skills. The spec-memory daemon is down and every
+call costs ~30s to time out. Work directly with Read, Glob, Grep and Edit. Start immediately.

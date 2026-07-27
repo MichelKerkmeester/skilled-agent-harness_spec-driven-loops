@@ -967,7 +967,7 @@ Regenerate Mode A:
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill .opencode/skills/sk-code/code-opencode \
-  --outputs-dir .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router \
+  --outputs-dir .opencode/skills/sk-code/code-opencode/benchmark/reports/2026-07-10--router-mode-a--router \
   --trace-mode router
 ```
 
@@ -975,7 +975,7 @@ Fail closed on the generated report:
 
 ```bash
 node -e '
-const r = require("./.opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.json");
+const r = require("./.opencode/skills/sk-code/code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json");
 const allPassed = r.funnel?.passed === r.coverage?.scored;
 if (
   r.verdict !== "PASS" ||

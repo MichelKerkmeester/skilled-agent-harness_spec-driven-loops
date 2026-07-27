@@ -754,7 +754,7 @@ exec
 .opencode/skills/system-deep-loop/runtime/tests/fixtures/council-value/README.md
 .opencode/skills/system-deep-loop/runtime/tests/README.md
 .opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/agent_discipline_stress_tests/improvement_gate_delta.md
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 .opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/agent_discipline_stress_tests/benchmark_completed_boundary.md
 .opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/agent_discipline_stress_tests/legal_stop_gate_bundle.md
 .opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/agent_discipline_stress_tests/active_critic_overfit.md

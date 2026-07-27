@@ -1,0 +1,1 @@
+Audit complete. Three findings (F1–F3), all low blast radius. No file was modified, moved, renamed, or deleted — read-only as required.

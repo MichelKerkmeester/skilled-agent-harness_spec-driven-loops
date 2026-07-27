@@ -10,9 +10,9 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: TYPE
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/type/typography-system.md
+  - references/foundations/type/typography-system.md
 ---
 
 **Exact prompt**
@@ -29,7 +29,7 @@ Define typography for a dense analytics app with long labels, metrics, and a sma
 
 ## Expected Process
 
-1. Load `references/type/typography-system.md`.
+1. Load `references/foundations/type/typography-system.md`.
 2. Define display, heading, body, caption, utility, and data roles.
 3. Name measure and line-height constraints.
 4. Include tabular numerals for metrics.

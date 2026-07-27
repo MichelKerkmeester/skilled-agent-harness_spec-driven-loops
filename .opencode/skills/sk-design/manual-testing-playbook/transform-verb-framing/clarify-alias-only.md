@@ -15,9 +15,13 @@ expected_leaf_resources:
 
 # TV-003: clarify Alias-Only Routing
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the `aliasOnly` entry in `transformVerbRouting`: `clarify` is an interface alias, but not part of command projection parity.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -50,6 +54,8 @@ Clarify this hero section's visual hierarchy without changing its content.
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -74,11 +80,15 @@ Clarify this hero section's visual hierarchy without changing its content.
 2. If the response says `clarify` is a parity alias, inspect `mode-registry.json` `commandProjectionParity`.
 3. If no mode resolves, inspect `hub-router.json` `interface-aliases`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -979,7 +979,12 @@ function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
     }
 
     if (/research(?:\/research)?\.md$/.test(document.basename)) {
-      const citedResearch = parsed.anchors.some((anchor) => looksLikeCitation(anchor.body));
+      // Generated research artifacts carry citations in plain prose rather than
+      // anchor blocks, so an anchor-only scan reports every one of them as
+      // uncited. Fall back to the document body when no anchors are present.
+      const citedResearch = parsed.anchors.length > 0
+        ? parsed.anchors.some((anchor) => looksLikeCitation(anchor.body))
+        : looksLikeCitation(document.content);
       if (!citedResearch) {
         diagnostics.push({
           code: 'SPECDOC_SUFFICIENCY_004',

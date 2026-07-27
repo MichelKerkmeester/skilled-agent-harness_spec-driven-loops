@@ -179,3 +179,25 @@ describe('run storage — the two index writers agree', () => {
     expect(fromPython).toBe(runIndex.emptyIndex('demo-skill'));
   });
 });
+
+describe('run storage — a same-day rerun never overwrites evidence', () => {
+  it('reserves each folder atomically so repeat runs cannot collide', () => {
+    const skillRoot = tempDir('bench-collision-');
+    fs.mkdirSync(path.join(skillRoot, 'manual-testing-playbook'), { recursive: true });
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const runner = require(path.join(LANE_DIR, 'run-skill-benchmark.cjs'));
+    const args = { skill: skillRoot, 'trace-mode': 'router' } as Record<string, unknown>;
+
+    // Each call reserves by creating, so three calls yield three distinct folders
+    // with no pre-creation by the test — which is the property that makes two
+    // concurrent runs safe rather than merely two sequential ones.
+    const first = runner.resolveOutputsDirForTest(args);
+    const second = runner.resolveOutputsDirForTest(args);
+    const third = runner.resolveOutputsDirForTest(args);
+
+    expect(new Set([first, second, third]).size).toBe(3);
+    expect(path.basename(second)).toBe(`${path.basename(first)}-2`);
+    expect(path.basename(third)).toBe(`${path.basename(first)}-3`);
+    for (const dir of [first, second, third]) expect(fs.existsSync(dir)).toBe(true);
+  });
+});

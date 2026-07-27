@@ -15,9 +15,13 @@ expected_leaf_resources:
 
 # PB-003: md-generator Preservation Confirmation
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that parity behavior does not turn live CSS extraction into advisory design prose or grant mutation rights to the read-only modes.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -53,6 +57,8 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 
 **Expected tool surface**: mutating allowed only for `md-generator`. The response must not imply `interface`, `foundations`, `motion`, or `audit` can write extraction artifacts.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -78,6 +84,8 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 2. If measured values are fabricated, inspect `design-system-extraction.md` and `source-of-truth-router-card.md`.
 3. If tool permissions drift, compare actual tool calls against `mode-registry.json` for all five modes.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
@@ -85,10 +93,12 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
 - `.opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md`
 
+---
+
 ## 5. SOURCE METADATA
 
 - **Critical path**: Yes
 - **Destructive**: Potentially writes sandbox artifacts only when executed
 - **Sandbox**: `/tmp/skd-PB003/`
 - **Concurrent-safe**: No
-- **Last validated**: Router replay passed in `benchmark/2026-07-06--after-009--router/report.json`; live extraction under `/tmp/skd-PB003/` is required before READY unless the repository owner records an accepted-risk decision.
+- **Last validated**: Router replay passed in `benchmark/reports/2026-07-06--after-009--router/report.json`; live extraction under `/tmp/skd-PB003/` is required before READY unless the repository owner records an accepted-risk decision.

@@ -1,6 +1,6 @@
 ---
 title: Skill-Benchmark Storage Guide
-description: Storage-convention standard for a hub's benchmark/ tree - the sibling run-label folders a Lane C skill-benchmark run writes, the run-label naming seen in the wild, what lands in each run-label dir, and the hard boundary that the rendered report .md is renderer-owned and must never be hand-authored. The normative D1-D5 scoring contract stays owned by deep-improvement and is linked, not restated.
+description: Storage-convention standard for a hub's benchmark/ tree - the dated run folders a Lane C skill-benchmark run writes under reports/, the run-label naming seen in the wild, what lands in each run-label dir, and the hard boundary that the rendered report .md is renderer-owned and must never be hand-authored. The normative D1-D5 scoring contract stays owned by deep-improvement and is linked, not restated.
 trigger_phrases:
   - "skill benchmark storage guide"
   - "hub benchmark folder convention"
@@ -34,10 +34,15 @@ are named**, so a future engineer can find every run for a skill beside the skil
 it measures.
 
 The convention is: each benchmarked skill or hub carries a `benchmark/` directory,
-and every run of the Lane C harness writes its report pair into its own
-**`<run-label>/`** subfolder inside that `benchmark/` tree. Runs are siblings; one
-run never overwrites another. One run-label — conventionally `baseline/` — is the
-**frozen** comparison anchor and is never regenerated.
+and every run of the Lane C harness writes its output into its own
+**`<run-label>/`** folder under **`benchmark/reports/`**. Runs are siblings of each
+other inside that tree; one run never overwrites another. One label — `baseline/` —
+is the **frozen** comparison anchor and is never regenerated.
+
+Everything a run produces lives under `reports/`, including the frozen anchor and the
+compiled-routing archive lane. `benchmark/` itself holds only the layout README and
+the optional input corpus, so the split is between what a run wrote and what a run
+read.
 
 This guide is normative for storage and naming only. Two deep-improvement-owned
 documents remain the authority for everything the reports contain:
@@ -82,14 +87,16 @@ A hub `benchmark/` tree holds an optional index plus one folder per run:
 | --- | --- |
 | `benchmark/` | The per-skill benchmark root, kept beside the skill it measures |
 | `benchmark/README.md` | Optional hub index — the look-here-first surface: current verdict, folder map, and re-run command. A `benchmark/` root README is a `readme`-type doc and may be templated |
-| `benchmark/<run-label>/` | One Lane C run. Sibling to every other run; never overwrites another |
-| `benchmark/baseline/` | The frozen comparison anchor. Do not regenerate or overwrite it — a new run is always a new sibling folder |
+| `benchmark/reports/` | Every result the skill has produced, indexed by its own README |
+| `benchmark/reports/<run-label>/` | One Lane C run. Sibling to every other run; never overwrites another |
+| `benchmark/reports/baseline/` | The frozen comparison anchor. Do not regenerate or overwrite it — a new run is always a new sibling folder |
+| `benchmark/reports/compiled-routing/` | The compiled-routing archive lane, written by its own archiver rather than the Lane C harness |
 | `benchmark/fixtures/` | Optional input corpus (public/private fixture pairs). An input, not a run — it holds no `skill-benchmark-report.*` pair |
 
 **The frozen-baseline rule.** `baseline/` is the pre-optimization snapshot every
 later run is compared against. Regenerating it destroys the anchor, so it is
-never re-run in place. Add each new run as a sibling (`router-final/`, `after-*/`,
-a model-stamped `live-*/`, and so on).
+never re-run in place. Add each new run as a sibling under `reports/`, named by the
+dated grammar in the owning skill.
 
 ---
 

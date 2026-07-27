@@ -40,7 +40,7 @@ This scenario validates `design-interface/SKILL.md` section `Procedure Card Sele
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FOUND-PROCCARD-001 | Foundations card selection | Cover all foundations-owned card rows | `foundations: for controls, component inventory, and hierarchy/rhythm variants, state the public mode, selected private procedure card, and proof line before system decisions.` | grep `Procedure Card Selection` in `SKILL.md` -> agent: run controls, inventory, and hierarchy/rhythm variants -> inspect selected card lines | All three owned cards named exactly; no all-card loading; public mode remains `foundations` | Transcript, variant prompts, selected-card matrix, proof lines | PASS if all owned rows are covered with correct proof; FAIL on omitted/wrong/private-public route | 1. Re-read `SKILL.md` table; 2. Check variant terms; 3. Confirm selected card count is one primary card per variant |
+| FOUND-PROCCARD-001 | Foundations card selection | Cover all foundations-owned card rows | `foundations: for controls, component inventory, and hierarchy/rhythm variants, state the public mode, selected private procedure card, and proof line before system decisions.` | grep `Procedure Card Selection` in `SKILL.md` -> agent: run controls, inventory, and hierarchy/rhythm variants -> inspect selected card lines | All three owned cards named exactly; no all-card loading; public mode remains `interface` | Transcript, variant prompts, selected-card matrix, proof lines | PASS if all owned rows are covered with correct proof; FAIL on omitted/wrong/private-public route | 1. Re-read `SKILL.md` table; 2. Check variant terms; 3. Confirm selected card count is one primary card per variant |
 
 ## 4. SOURCE FILES
 
@@ -57,4 +57,4 @@ This scenario validates `design-interface/SKILL.md` section `Procedure Card Sele
 - Group: Procedure Card Contract
 - Playbook ID: FOUND-PROCCARD-001
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `procedure-card-contract/card-selection-proof.md`
+- Feature file path: `procedure-card-contract/foundations-card-selection-proof.md`

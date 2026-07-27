@@ -13,9 +13,13 @@ version: 1.0.0.0
 
 The page advances by changing the depth and job of its bodies while preserving one argument.
 
+---
+
 ## 1. Regions and composition
 
 Begin with a concise premise, move through an explanatory region, a concrete evidence region, and an evaluation or comparison region, then end with a resolution. Section headings name the changing job of each body; body composition becomes progressively more specific rather than repeating an interchangeable list shape.
+
+---
 
 ## 2. Remaining rhythm axes
 
@@ -24,9 +28,13 @@ Begin with a concise premise, move through an explanatory region, a concrete evi
 - **Image treatment:** use images as evidence in the region that can interpret them, not as a recurring decorative slot.
 - **Reveal pattern:** reveal from premise to detail to consequence, preserving access to earlier context.
 
+---
+
 ## 3. Navigation and footer pairing
 
 Navigation should privilege the reader's main task and the few major evidence territories. The footer closes the argument with destination choices appropriate after evaluation, rather than mirroring the opening navigation mechanically.
+
+---
 
 ## 4. Applicability guard
 
@@ -34,9 +42,13 @@ Navigation should privilege the reader's main task and the few major evidence te
 
 **Avoid when:** users need rapid random access, the content has only one depth level, or the proposed layers exist only to make a short page appear substantial.
 
+---
+
 ## 5. Responsive-collapse note
 
 The shared responsive gate must preserve premise-to-evidence-to-resolution order, keep comparison meaning intact, and prevent supportive media from separating from its interpretation. It owns the transformation; the card defines no per-card collapse behavior.
+
+---
 
 ## 6. Failure modes
 
@@ -44,6 +56,8 @@ The shared responsive gate must preserve premise-to-evidence-to-resolution order
 - Evidence appears before the premise needed to interpret it.
 - The page withholds a primary task behind unnecessary narrative stages.
 - Decorative media repeats across layers without increasing understanding.
+
+---
 
 ## 7. Evidence and diversification stamp
 

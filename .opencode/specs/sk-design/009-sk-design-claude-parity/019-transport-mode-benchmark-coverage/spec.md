@@ -89,7 +89,7 @@ Bring the playbook, skill-level advisor descriptor, and graph metadata into sync
 | `.opencode/skills/sk-design/README.md` | Edit | Playbook description line (also fixes a pre-existing separate staleness: "24-scenario" when the playbook already declared 32) |
 | `.opencode/skills/sk-design/description.json` | Edit | description, keywords, trigger_examples, modes[], backend_kinds[]; version bump |
 | `.opencode/skills/sk-design/graph-metadata.json` | Edit | causal_summary, intent_signals |
-| `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/{report.json,report.md}` | Create | Fresh live-mode benchmark baseline |
+| `.opencode/skills/sk-design/benchmark/reports/2026-07-07--after-018-transport-integration--live/{report.json,report.md}` | Create | Fresh live-mode benchmark baseline |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -1,0 +1,274 @@
+{
+ "rows": [
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "from": "2026-07-10--live-final--live",
+   "to": "reports/2026-07-10--live-final--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "from": "2026-07-10--router-final--router",
+   "to": "reports/2026-07-10--router-final--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/sk-prompt/prompt-improve/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "from": "2026-07-16--after-routing-remediation--router",
+   "to": "reports/2026-07-16--after-routing-remediation--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "from": "baseline",
+   "to": "reports/baseline",
+   "cls": "baseline"
+  },
+  {
+   "root": ".opencode/skills/mcp-tooling/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "from": "2026-07-08--after-d3-proxy--router",
+   "to": "reports/2026-07-08--after-d3-proxy--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "from": "baseline",
+   "to": "reports/baseline",
+   "cls": "baseline"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/deep-improvement/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/system-deep-loop/deep-improvement/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-01--after--router",
+   "to": "reports/2026-06-01--after--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-01--full--router",
+   "to": "reports/2026-06-01--full--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-01--live--live",
+   "to": "reports/2026-06-01--live--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-01--live-final--live",
+   "to": "reports/2026-06-01--live-final--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-01--live-remediated--live",
+   "to": "reports/2026-06-01--live-remediated--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-01--router-final--router",
+   "to": "reports/2026-06-01--router-final--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-06-02--d4r-live--live",
+   "to": "reports/2026-06-02--d4r-live--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "2026-07-10--router-baseline--router",
+   "to": "reports/2026-07-10--router-baseline--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "baseline",
+   "to": "reports/baseline",
+   "cls": "baseline"
+  },
+  {
+   "root": ".opencode/skills/sk-code/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-review/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-review/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-quality/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-quality/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-webflow/benchmark",
+   "from": "2026-07-10--live-mode-b--live",
+   "to": "reports/2026-07-10--live-mode-b--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-code/code-webflow/benchmark",
+   "from": "2026-07-10--router-mode-a--router",
+   "to": "reports/2026-07-10--router-mode-a--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "2026-07-06--after-009--router",
+   "to": "reports/2026-07-06--after-009--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "2026-07-06--after-012-routing-rigor--router",
+   "to": "reports/2026-07-06--after-012-routing-rigor--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "2026-07-06--after-d3-proxy--router",
+   "to": "reports/2026-07-06--after-d3-proxy--router",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "2026-07-07--after-016-hub-routing--live",
+   "to": "reports/2026-07-07--after-016-hub-routing--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "2026-07-07--after-018-transport-integration--live",
+   "to": "reports/2026-07-07--after-018-transport-integration--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "2026-07-07--after-022-coverage-fill--live",
+   "to": "reports/2026-07-07--after-022-coverage-fill--live",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "baseline",
+   "to": "reports/baseline",
+   "cls": "baseline"
+  },
+  {
+   "root": ".opencode/skills/sk-design/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/sk-doc/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/cli-external-orchestration/benchmark",
+   "from": "compiled-routing",
+   "to": "reports/compiled-routing",
+   "cls": "compiled-routing"
+  },
+  {
+   "root": ".opencode/skills/sk-git/benchmark",
+   "from": "2026-07-10--live--glm-5-2-high",
+   "to": "reports/2026-07-10--live--glm-5-2-high",
+   "cls": "run"
+  },
+  {
+   "root": ".opencode/skills/sk-git/benchmark",
+   "from": "2026-07-10--live--kimi-2-7",
+   "to": "reports/2026-07-10--live--kimi-2-7",
+   "cls": "run"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design/002-references",
+  "description": "`.opencode/skills/sk-design/design-mcp-open-design/references/` has not been fully audited against",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "design-mcp-open-design",
+    "references",
+    "fully",
+    "audited",
+    "against"
+  ],
+  "lastUpdated": "2026-07-27T15:02:49.660Z",
+  "specId": "002",
+  "folderSlug": "references",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "005-design-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

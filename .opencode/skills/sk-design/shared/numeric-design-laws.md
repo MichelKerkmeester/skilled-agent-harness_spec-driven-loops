@@ -16,18 +16,30 @@ Shared index of numeric design laws that design modes cite for contrast, motion,
 
 ---
 
-## 1. Law Index
+## 1. OVERVIEW
+
+### Purpose
+
+Give every design mode one stable, citable row per numeric design law instead of re-deriving contrast, motion, spacing, type, and neutral-color thresholds independently.
+
+### Usage
+
+Cite a row by `law_id` when a finding or decision depends on a numeric threshold. The owner source in the `source` column still holds the authoritative law; this file only gives it a stable row and an honest enforcement status.
+
+---
+
+## 2. LAW INDEX
 
 | law_id | value/range | owner mode | enforcement target | source | caveat |
 |---|---|---|---|---|---|
 | contrast-body-aa | 4.5:1 WCAG AA body text | foundations | design-interface/scripts/contrast_check.py | design-interface/assets/foundations/contrast-pair-inventory.md Section 4 - Use Rules | Product or regulatory contexts may set a stricter bar; failed required pairs block ready claims until repaired or scoped out. |
 | contrast-large-ui-aa | 3:1 for large text, icons, visible focus, and UI controls | foundations | design-interface/scripts/contrast_check.py | design-interface/assets/foundations/contrast-pair-inventory.md Section 4 - Use Rules | Applies only to large text and non-text UI cases; body text still uses the 4.5:1 target. |
 | contrast-apca-lc | absolute APCA Lc >= 60 where APCA is available | foundations | design-interface/scripts/contrast_check.py | design-interface/references/foundations/color/oklch-workflow.md Section 4 - Contrast Repair | Record APCA alongside WCAG evidence; it does not replace WCAG targets in this craft. |
-| motion-feedback | 100-150ms for press, hover, tap, and tiny feedback | motion | advisory (no script) | design-motion/references/motion-strategy.md Section 3 - Timing | Values under about 80ms read as effectively instant; keep the tier near its floor without disappearing. |
-| motion-state-change | 200-300ms for toggle, dropdown, tooltip, and tab change | motion | advisory (no script) | design-motion/references/motion-strategy.md Section 3 - Timing | User-initiated feedback over 300ms feels laggy; use this for state changes, not tiny feedback. |
-| motion-layout-transition | 300-500ms for modal, drawer, accordion, and layout transition | motion | advisory (no script) | design-motion/references/motion-strategy.md Section 3 - Timing | Similar layout transitions should share timing so motion explains continuity rather than calling attention to itself. |
-| motion-earned-entrance | 500-800ms for one earned entrance or brand choreography | motion | advisory (no script) | design-motion/references/motion-strategy.md Section 3 - Timing | One memorable entrance can be earned; repeated page-load choreography is not implied by this band. |
-| register-product-motion-budget | 150-250ms state transitions for Product surfaces | interface | advisory (no script) | shared/register.md Section 3 - The Six Dials | Drift caveat: the register compresses Product posture, while detailed timing bands remain owned by design-motion/references/motion-strategy.md. |
+| motion-feedback | 100-150ms for press, hover, tap, and tiny feedback | motion | advisory (no script) | design-interface/references/motion/motion-strategy.md Section 3 - Timing | Values under about 80ms read as effectively instant; keep the tier near its floor without disappearing. |
+| motion-state-change | 200-300ms for toggle, dropdown, tooltip, and tab change | motion | advisory (no script) | design-interface/references/motion/motion-strategy.md Section 3 - Timing | User-initiated feedback over 300ms feels laggy; use this for state changes, not tiny feedback. |
+| motion-layout-transition | 300-500ms for modal, drawer, accordion, and layout transition | motion | advisory (no script) | design-interface/references/motion/motion-strategy.md Section 3 - Timing | Similar layout transitions should share timing so motion explains continuity rather than calling attention to itself. |
+| motion-earned-entrance | 500-800ms for one earned entrance or brand choreography | motion | advisory (no script) | design-interface/references/motion/motion-strategy.md Section 3 - Timing | One memorable entrance can be earned; repeated page-load choreography is not implied by this band. |
+| register-product-motion-budget | 150-250ms state transitions for Product surfaces | interface | advisory (no script) | shared/register.md Section 3 - The Six Dials | Drift caveat: the register compresses Product posture, while detailed timing bands remain owned by design-interface/references/motion/motion-strategy.md. |
 | spacing-scale | 4px, 8px, 12px, 16px, 24px, 32px, 48px; section spacing clamp(48px, 8vw, 96px) | foundations | design-interface/scripts/baseline_rhythm_check.py | design-interface/assets/foundations/token-starter.md Section 4 - Spacing Scale | Pull filled spacing tokens from the scale; baseline_rhythm_check.py rejects unmarked one-off spacing values that do not resolve to the baseline. |
 | type-modular-ratio | 1.2 for dense Product; 1.25-1.333 for expressive Brand | foundations | advisory (no script) | design-interface/assets/foundations/token-starter.md Section 3 - Type Scale | The ratio sets role rhythm after roles are named; it is not a license for viewport-scaled type. |
 | type-body-size | body text at least 16px, sitting near 16px | foundations | advisory (no script) | design-interface/assets/foundations/token-starter.md Section 3 - Type Scale | Body size must still work with measure and line height; size alone does not prove readability. |
@@ -35,7 +47,7 @@ Shared index of numeric design laws that design modes cite for contrast, motion,
 
 ---
 
-## 2. Application Notes
+## 3. APPLICATION NOTES
 
 - `foundations` cites contrast, spacing, type, and neutral rows when shaping static systems and proof artifacts.
 - `motion` owns timing-band rows and applies them with purpose, easing, staging, and reduced-motion checks.

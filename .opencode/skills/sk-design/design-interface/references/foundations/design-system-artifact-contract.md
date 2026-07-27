@@ -12,13 +12,27 @@ version: 1.0.0.0
 
 # Design-System Artifact Contract
 
-Design-system artifacts are reusable system outputs: token sheets, component contracts, and library handoff docs. They need stricter names and headings than ordinary guidance pages because implementation code, Figma libraries, and later reviews may depend on the structure.
-
-This contract is conditional. A document is lintable only when it declares itself with `artifactKind: token`, `artifactKind: component`, or `artifactKind: library`. Existing token scaffolds may also be linted when they contain both a markdown token table and the full token-artifact heading set. Skill docs, reference theory, screen notes, examples, and vocabulary pages are not design-system artifacts unless they use an artifact marker.
+Naming and documentation-completeness contract for reusable design-system outputs: token sheets, component contracts, and library handoff docs.
 
 ---
 
-## 1. TOKEN TIERS
+## 1. OVERVIEW
+
+### Purpose
+
+Design-system artifacts need stricter names and headings than ordinary guidance pages because implementation code, Figma libraries, and later reviews may depend on the structure.
+
+### When to Use
+
+This contract is conditional. A document is lintable only when it declares itself with `artifactKind: token`, `artifactKind: component`, or `artifactKind: library`. Existing token scaffolds may also be linted when they contain both a markdown token table and the full token-artifact heading set.
+
+### Core Principle
+
+Skill docs, reference theory, screen notes, examples, and vocabulary pages are not design-system artifacts unless they use an artifact marker; the contract lints structure, not every markdown file.
+
+---
+
+## 2. TOKEN TIERS
 
 All implementation tokens are lowercase CSS custom properties. Names are category-led, kebab-case, and role-based. Use hyphens, not underscores. Do not use camelCase, free-form abbreviations, or categories outside the tier allowlist.
 
@@ -37,7 +51,7 @@ Numerals are allowed when they are part of a scale step, such as neutral ramp va
 
 ---
 
-## 2. REQUIRED HEADINGS
+## 3. REQUIRED HEADINGS
 
 Heading checks are presence checks. They verify that the artifact exposes the sections downstream implementers expect; they do not certify that the content inside each section is complete or tasteful. Numeric prefixes are allowed, so `## 2. COLOR RAMP` satisfies `COLOR RAMP`.
 
@@ -51,7 +65,7 @@ Allowed aliases are intentionally narrow. `COLOR TOKENS` or `COLOR SYSTEM` may s
 
 ---
 
-## 3. COMPLIANT SHAPE
+## 4. COMPLIANT SHAPE
 
 ```text
 artifactKind: token
@@ -77,7 +91,7 @@ This shape is valid because the artifact is explicitly marked as a token artifac
 
 ---
 
-## 4. ANTI-EXAMPLES
+## 5. ANTI-EXAMPLES
 
 ```text
 --PrimaryColor

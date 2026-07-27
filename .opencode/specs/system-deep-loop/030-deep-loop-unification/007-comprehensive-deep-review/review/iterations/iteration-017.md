@@ -26,8 +26,8 @@ Maintainability - deep-improvement packet.
 - `.opencode/skills/system-deep-loop/deep-improvement/references/model_benchmark/lane_b_mechanics.md:17`
 - `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/feature_catalog.md:17`
 - `.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/manual_testing_playbook.md:15`
-- `.opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md:40`
-- `.opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:44`
+- `.opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md:40`
+- `.opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:44`
 
 ## Findings By Severity
 
@@ -47,7 +47,7 @@ None new. Existing DR-014-P1-001 and DR-015-P1-001 were carried forward as conte
 - Category: maintainability-documentation
 - File: `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:122`
 - Claim: The three new post-trim reference files are discoverable by reading SKILL.md prose, but they are not present in the router `RESOURCE_MAP` or on-demand load set, so the packet's stated recursive/intent-based resource loading will not surface them for matching Lane A, Lane B, or runtime-truth tasks.
-- EvidenceRefs: `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:122`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:232`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:245`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:281`, `.opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md:40`, `.opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:44`
+- EvidenceRefs: `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:122`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:232`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:245`, `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md:281`, `.opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md:40`, `.opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md:44`
 - Scope proof: Reviewed the router table around `RESOURCE_MAP`, the direct prose links to all three new references, the always-loaded quick reference, README related-document map, feature-catalog lane legend, manual-testing root index, and the packet's existing skill-benchmark reports that already classify these three files as orphan references.
 - CounterevidenceSought: Checked whether README, quick reference, feature catalog, or manual playbook provide an equivalent routable index. README and SKILL.md do provide human navigation, and the feature catalog/playbook give strong lane maps, but the router's own `RESOURCE_MAP` still omits the new references.
 - AlternativeExplanation: The split files may have been intended as prose-only deep links rather than router-loaded resources. That would be acceptable if the router docs said so, but the packet currently describes recursive discovery plus intent-selected resources, and the benchmark report treats these paths as orphaned.

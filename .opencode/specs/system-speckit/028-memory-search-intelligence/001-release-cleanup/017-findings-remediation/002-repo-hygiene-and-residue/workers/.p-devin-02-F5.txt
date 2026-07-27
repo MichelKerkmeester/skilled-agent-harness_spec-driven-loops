@@ -1,0 +1,22 @@
+Read-only-by-default repository remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3). Make ONLY the change described. Touch NOTHING else.
+
+MANDATORY before any deletion: search string literals across .ts/.js/.cjs/.mjs/.md/.yaml/.json/.sh
+for the target name across the WHOLE repo (not just its owning directory). Hooks, registries and
+YAML-named scripts invoke by name and never appear in an import graph. State the search root you used.
+If the target sits under a benchmark/, changelog/ or archive/ directory, read that directory README
+first: retention there is often an intentional documented contract.
+
+A concurrent session is editing this repo. Do not stage, revert or touch any file outside your task.
+Do not run git commands that mutate state. Do not commit.
+
+Return EXACTLY:
+FINDING: <id>
+REVERIFIED: <command + its real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the change is correct>
+RISK: <what this could break and how you checked>
+
+FINDING devin-02-F5
+TASK: Remove the redundant .gitkeep at .opencode/skills/mcp-tooling/benchmark/.gitkeep. The directory holds substantial tracked content (README.md, baseline/, compiled-routing/, run-label folders), so git tracks it without the placeholder. First confirm other content in that directory is tracked by git; if it is not, return BLOCKED.

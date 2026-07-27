@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/006-hub-doc-runtime-drift",
+  "description": "Skill hub documentation contradicts the registries and files it describes: mode counts that disagree with the registry, routing claimed where no",
+  "keywords": [
+    "skill",
+    "hub",
+    "documentation",
+    "contradicts",
+    "registries",
+    "files",
+    "describes",
+    "mode",
+    "counts",
+    "disagree",
+    "registry",
+    "routing",
+    "claimed"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "006",
+  "folderSlug": "hub-doc-runtime-drift",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

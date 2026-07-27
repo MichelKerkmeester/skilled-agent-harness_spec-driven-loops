@@ -8237,7 +8237,7 @@
       }
     },
     {
-      "path": ".opencode/skills/mcp-tooling/benchmark/2026-07-16--after-routing-remediation--router/skill-benchmark-report.json",
+      "path": ".opencode/skills/mcp-tooling/benchmark/reports/2026-07-16--after-routing-remediation--router/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -8247,7 +8247,7 @@
       }
     },
     {
-      "path": ".opencode/skills/mcp-tooling/benchmark/2026-07-16--after-routing-remediation--router/skill-benchmark-report.md",
+      "path": ".opencode/skills/mcp-tooling/benchmark/reports/2026-07-16--after-routing-remediation--router/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -8257,7 +8257,7 @@
       }
     },
     {
-      "path": ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json",
+      "path": ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -8267,7 +8267,7 @@
       }
     },
     {
-      "path": ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.md",
+      "path": ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13017,7 +13017,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/2026-06-01--after--router/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--after--router/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13027,7 +13027,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/2026-06-01--after--router/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--after--router/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13037,7 +13037,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13047,7 +13047,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13127,7 +13127,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/2026-06-01--full--router/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--full--router/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13137,7 +13137,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/2026-06-01--full--router/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--full--router/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13147,7 +13147,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/2026-06-01--live--live/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live--live/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13157,7 +13157,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/benchmark/2026-06-01--live--live/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live--live/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -17143,7 +17143,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -17153,7 +17153,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -32094,7 +32094,7 @@
       }
     },
     {
-      "path": ".opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json",
+      "path": ".opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -32104,7 +32104,7 @@
       }
     },
     {
-      "path": ".opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md",
+      "path": ".opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {

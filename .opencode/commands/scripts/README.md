@@ -49,7 +49,12 @@ The checker scans YAML assets under these command families by default:
 
 - `create`
 - `deep`
-- `design`
+- `doctor`
+- `interface`
+- `memory`
+- `prompt`
+- `scripts`
+- `speckit`
 
 It validates three reference classes:
 

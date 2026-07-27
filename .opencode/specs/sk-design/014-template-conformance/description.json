@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance",
+  "description": "An audit of every folder across every `sk-design` mode (`design-interface`, `design-motion`, `design-md-generator`, `design-mcp-open-design`,",
+  "keywords": [
+    "audit",
+    "every",
+    "folder",
+    "across",
+    "sk-design",
+    "mode",
+    "design-interface",
+    "design-motion",
+    "design-md-generator",
+    "design-mcp-open-design"
+  ],
+  "lastUpdated": "2026-07-27T17:15:30.074Z",
+  "specId": "014",
+  "folderSlug": "template-conformance",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

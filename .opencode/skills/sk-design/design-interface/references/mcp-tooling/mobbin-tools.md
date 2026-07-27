@@ -13,16 +13,20 @@ version: 1.5.0.4
 
 # Mobbin MCP Tools Reference
 
-**MCP server:** `https://api.mobbin.com/mcp` (remote HTTP, OAuth, paid subscription)
-**Bridge:** `npx -y mcp-remote https://api.mobbin.com/mcp` (stdio), the `mobbin` manual in `.utcp_config.json`
-**Invocation:** Code Mode `call_tool_chain` (`mcp__code_mode__call_tool_chain`), accessed as `mobbin.mobbin_<tool>(args)`
-**Runtime:** Code Mode must run on Node 24. isolated-vm has no Node 25 build, so `call_tool_chain` SIGSEGVs and drops the connection under Node 25.
+Tool catalog for the Mobbin MCP (search_screens, search_flows): the verified Code Mode call convention, arguments, result shape, and troubleshooting.
 
 ---
 
 ## 1. OVERVIEW
 
 Mobbin indexes real, shipped iOS and web app screens and flows. It exposes two natural-language search tools. Inside interface these are a CRITIQUE-AGAINST reference: name the real-world default for a pattern, then deviate from it deliberately. The discipline (one reference, read live, never copy) lives in `design_references_mcp.md`; this file is the tool catalog.
+
+### Prerequisites
+
+- **MCP server:** `https://api.mobbin.com/mcp` (remote HTTP, OAuth, paid subscription)
+- **Bridge:** `npx -y mcp-remote https://api.mobbin.com/mcp` (stdio), the `mobbin` manual in `.utcp_config.json`
+- **Invocation:** Code Mode `call_tool_chain` (`mcp__code_mode__call_tool_chain`), accessed as `mobbin.mobbin_<tool>(args)`
+- **Runtime:** Code Mode must run on Node 24. isolated-vm has no Node 25 build, so `call_tool_chain` SIGSEGVs and drops the connection under Node 25.
 
 ---
 

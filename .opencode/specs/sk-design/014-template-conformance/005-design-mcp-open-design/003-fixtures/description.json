@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design/003-fixtures",
+  "description": "`.opencode/skills/sk-design/design-mcp-open-design/fixtures/` has not been audited against",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "design-mcp-open-design",
+    "fixtures",
+    "audited",
+    "against"
+  ],
+  "lastUpdated": "2026-07-27T15:02:49.661Z",
+  "specId": "003",
+  "folderSlug": "fixtures",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "005-design-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

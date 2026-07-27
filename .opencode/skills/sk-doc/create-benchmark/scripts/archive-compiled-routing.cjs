@@ -158,7 +158,7 @@ function archiveCompiledRouting(params) {
   const digestBefore = snap.readManifestDigest(manifestPath);
   if (digestBefore === null) throw fail('MANIFEST_MISSING', `no active serving manifest for ${hubId} at ${manifestPath}`);
 
-  const targetDir = path.join(skillsRoot, hubId, 'benchmark', 'compiled-routing', runLabel);
+  const targetDir = path.join(snap.compiledRoutingArchiveRoot(hubId, skillsRoot), runLabel);
   const jsonPath = path.join(targetDir, 'skill-benchmark-report.json');
   const mdPath = path.join(targetDir, 'skill-benchmark-report.md');
   // Fail closed: an existing run-label directory OR either half of a prior

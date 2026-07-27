@@ -1208,8 +1208,8 @@ exec
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/benchmark/live_mode_b/skill-benchmark-report.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_command_adapter.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_design_live_render_adapter.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_known_deviations.md

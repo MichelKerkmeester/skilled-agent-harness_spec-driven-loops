@@ -10,9 +10,9 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: LAYOUT
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/layout/layout-responsive.md
+  - references/foundations/layout/layout-responsive.md
 ---
 
 **Exact prompt**
@@ -29,8 +29,8 @@ Fix the layout system for a desktop dashboard that becomes a mobile task flow wi
 
 ## Expected Process
 
-1. Route to `foundations` first; layout, spacing, and grid system decisions resolve here before any `sk-code` implementation handoff.
-2. Load `references/layout/layout-responsive.md`.
+1. Recognize this as `interface`'s `foundations` static-system subworkflow; layout, spacing, and grid system decisions resolve here before any `sk-code` implementation handoff.
+2. Load `references/foundations/layout/layout-responsive.md`.
 3. Define spacing scale, grouping, hierarchy, and grid behavior.
 4. Adapt the experience for touch and mobile context instead of only scaling widths.
 5. Use an intrinsic grid recipe before media queries for simple card, gallery, tile, or metric grids.

@@ -1,6 +1,6 @@
 ---
-description: Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.
-argument-hint: "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]"
+description: "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode."
+argument-hint: "<target> [--mode direction|directions|redesign|preflight|handoff] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
@@ -57,9 +57,15 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 
 ### INTERFACE TASK LANES
 
-- **direction** (default), **directions**, **redesign**, **preflight**, **handoff**, and **aesthetic** are selectable argument lanes.
+- **direction** (default), **directions**, **redesign**, **preflight** and **handoff** are selectable argument lanes.
 - **quality** uses the interface mode's mechanical preflight card at `design-interface/assets/interface-preflight-card.md`.
 - **visual-system** covers static color, type, spacing, token, and theming decisions inside the workflow.
+- **motion-decision** runs the restraint gate first: whether a surface should animate at all, before any timing or easing is chosen.
+- **motion-strategy** covers timing bands, easing, staging, and choreography once the restraint gate has passed.
+- **motion-micro-interactions** covers feedback, loading, gesture, and earned-delight patterns.
+- **motion-presence** covers enter and exit choreography and its runtime patterns.
+- **motion-performance** covers compositor safety, scroll motion, and reduced-motion alternatives.
+- **motion-advanced-craft** covers origin-aware surfaces and late-stage motion polish.
 - **register**, **copy-gate**, **grounding**, **transform**, and **reference** are internal or hidden: they are not surfaced and not selectable.
 
 <!-- ANCHOR:register -->

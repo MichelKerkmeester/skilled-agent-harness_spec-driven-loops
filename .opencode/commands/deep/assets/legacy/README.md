@@ -10,15 +10,17 @@ importance_tier: "important"
 
 # Legacy Deep Command Bodies
 
-> Fallback router bodies retained for deep-command injection modes that do not use a compiled contract.
+> Router bodies retained as the base payload for the four compiler-managed deep commands.
 
 ---
 
 ## 1. OVERVIEW
 
-`.opencode/commands/deep/assets/legacy/` stores fallback command bodies for four deep-loop commands.
+`.opencode/commands/deep/assets/legacy/` stores four fallback command bodies: `deep/ai-council`, `deep/alignment`, `deep/research` and `deep/review`.
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
+
+Each body has a matching compiled contract in `../compiled/`. There is no fifth body and no unmatched body-to-contract relationship in this directory. The remaining rollout entries, `deep/agent-improvement`, `deep/model-benchmark` and `deep/skill-benchmark`, are intentionally fallback-only command files outside this asset inventory and have not been compiled.
 
 ---
 
@@ -85,11 +87,9 @@ Inputs such as target paths, iteration limits, convergence settings and executor
 
 ## 6. INJECTION BOUNDARY
 
-Render tooling can return a legacy body directly when a command uses fallback injection.
+Render tooling's compiler registry contains exactly these four body-to-contract pairings. In `fallback` mode it returns the legacy body directly; in `fix` mode it prepends the matching fresh compiled contract to that body.
 
-Compiled contracts live in the sibling `compiled/` folder. Their maintained sources remain authoritative, and generated contract files must not replace the workflow YAML as the owner of runtime execution.
-
-`deep-alignment.body.md` remains especially important because alignment has no generated compiler contract.
+Compiled contracts live in the sibling `compiled/` folder. Their maintained sources remain authoritative, and generated contract files must not replace the workflow YAML as the owner of runtime execution. The fallback-only commands remain outside these asset directories because they are not registered with the contract compiler.
 
 ---
 

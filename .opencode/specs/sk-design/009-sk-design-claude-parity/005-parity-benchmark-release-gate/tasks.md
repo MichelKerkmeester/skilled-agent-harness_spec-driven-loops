@@ -42,8 +42,8 @@ _memory:
 
 - [x] T001 Confirm Phase 004 implementation evidence exists before benchmark execution (`../004-mode-packet-refactor/`). Evidence: user provided verified fact that Phase 004 is closed before this run.
 - [x] T002 Name the release owner for failure, conditional release, and baseline overwrite decisions (`decision-record.md`). Evidence: repository owner, delegated to this session for automated gate record.
-- [x] T003 Locate existing baseline or record missing-baseline status (benchmark baseline ledger). Evidence: `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json` exists and was read.
-- [x] T004 Approve append-only artifact location for benchmark runs (future benchmark output root). Evidence: current run wrote only `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/`.
+- [x] T003 Locate existing baseline or record missing-baseline status (benchmark baseline ledger). Evidence: `.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json` exists and was read.
+- [x] T004 Approve append-only artifact location for benchmark runs (future benchmark output root). Evidence: current run wrote only `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/`.
 - [x] T005 Freeze the release report schema with lane verdict, baseline, current result, delta, evidence, and authority fields (`release-report.md`). Evidence: `release-report.md` sections 1-7.
 <!-- /ANCHOR:phase-1 -->
 

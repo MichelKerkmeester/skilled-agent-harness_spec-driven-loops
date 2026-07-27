@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: One dated benchmark convention and a home for playbook results"
-description: "Converge 78 benchmark run folders across four incompatible naming styles onto a single dated grammar, and give manual-testing-playbook runs a curated report folder beside other benchmarks, with the six-file report shape and an auto-appended index."
+description: "Converge 78 benchmark run folders across four incompatible naming styles onto a single dated grammar, and give manual-testing-playbook runs a curated report folder beside other benchmarks, with the seven-file report shape and an auto-appended index."
 trigger_phrases:
   - "benchmark naming convention"
   - "playbook results storage"
@@ -12,10 +12,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T09:00:00Z"
+    last_updated_at: "2026-07-27T15:43:15Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Opened the packet and bound the convention grammar"
-    next_safe_action: "Write the convention into create-benchmark"
+    recent_action: "Collapsed benchmark storage onto the reports layer"
+    next_safe_action: "Open a deep-loop packet for brittle event-name validation and agent-written timestamps"
     blockers: []
     completion_pct: 0
 ---
@@ -25,6 +25,16 @@ _memory:
 
 # Feature Specification: One Dated Benchmark Convention And A Home For Playbook Results
 
+## EXECUTIVE SUMMARY
+
+Seventy-eight benchmark run folders followed four incompatible naming styles, and a
+manual-testing-playbook run saved no artifact at all. This packet declares one dated
+grammar in the skill that owns benchmark storage, unblocks the validators that rejected
+it, gives playbook runs a writer and an index, and converges the existing tree onto it
+without inventing a single finding.
+
+---
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
@@ -33,7 +43,7 @@ _memory:
 | **Packet** | sk-doc/021-benchmark-naming-and-playbook-results |
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Owner skill** | sk-doc, which owns benchmark storage shape and date naming |
 | **Consumers** | system-deep-loop, which runs the benchmarks and writes the artifacts |
@@ -76,7 +86,7 @@ curated report folder with a real writer, and converge the existing tree onto it
 
 - The grammar `<YYYY-MM-DD>--<subject>--<variant>/`, declared in `create-benchmark`.
 - Relaxing the run-label validators that currently reject the field separator.
-- A results-storage contract for manual-testing-playbook runs, plus the writer that emits the six files.
+- A results-storage contract for manual-testing-playbook runs, plus the writer that emits the seven files.
 - Scaffolding `benchmark/` and `benchmark/reports/` for newly created skills.
 - Auto-appending an index row after each run.
 - Renaming all 78 run folders and repairing every inbound path reference repo-wide.
@@ -115,7 +125,7 @@ curated report folder with a real writer, and converge the existing tree onto it
 | REQ-001 | One grammar declared in the owning skill | Both naming sections state the same rule with no per-family exception beyond the frozen anchor |
 | REQ-002 | Validators accept the grammar | A field-separated label passes, dots and underscores and uppercase still fail |
 | REQ-003 | The frozen anchor keeps its name | The refusal that protects it stays in force |
-| REQ-004 | Playbook runs produce a durable artifact | A run with no explicit output path lands in the dated reports folder with all six files |
+| REQ-004 | Playbook runs produce a durable artifact | A run with no explicit output path lands in the dated reports folder with all seven files |
 | REQ-005 | No fabricated evidence | Backfilled files derive only from data present in the run record, and say so when a run captured none |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -158,17 +168,14 @@ markdown link checker.
 
 ---
 
-<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 - **Reversibility:** every rename lands as its own reviewable commit.
 - **Honesty:** a derived artifact is distinguishable from run-time output by inspection.
 - **No behaviour change:** what a benchmark measures is untouched.
-<!-- /ANCHOR:nfr -->
 
 ---
 
-<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 - Two runs of the same subject and variant on one day need a disambiguating suffix.
@@ -176,26 +183,61 @@ markdown link checker.
 - Experiment workspaces carry a shape that predates the grammar, so renaming them does not make their
   contents comparable, and their index says so.
 - A run record with no per-scenario failure detail yields a file that states the absence.
-<!-- /ANCHOR:edge-cases -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 9. OPEN QUESTIONS
-
-1. Whether the two plural benchmark roots should be singularized in this packet or deferred, given they
-   carry the largest share of inbound references.
-<!-- /ANCHOR:questions -->
-
----
-
-<!-- ANCHOR:complexity -->
-## COMPLEXITY ASSESSMENT
+## 9. COMPLEXITY ASSESSMENT
 
 High. The change is conceptually small but touches three sk-doc packets, two validators, two runtime
 scripts, one workflow contract, 78 folders, and several hundred inbound references across skills and
 spec packets, behind a link-integrity gate that fails on any miss.
-<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. RISK MATRIX
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| A rename breaks a link a continuous-integration job checks | High | High | Repair path-shaped references repo-wide, then gate on the link checker against a captured baseline |
+| Backfilling invites invented findings | Medium | Severe | Render every companion from the stored record; state absence plainly; mark files as derived |
+| A relaxed validator admits a malformed label | Low | Medium | Keep rejecting dots, underscores and uppercase, and keep the frozen-anchor refusal |
+| A bad name mapping is hard to unwind | Medium | High | Freeze the map, generate it rather than hand-write it, land one naming style per commit |
+| A bare label is rewritten where it is not a folder | Medium | High | Match only path-shaped and index-table forms; never a backticked label in arbitrary prose |
+
+---
+
+## 11. USER STORIES
+
+- As an operator running a manual-testing playbook, I want the result saved beside the skill's other
+  benchmarks without choosing a path, so the run leaves evidence behind.
+- As a reader opening a run folder, I want to see the outcome and what failed without parsing JSON.
+- As a reviewer, I want to distinguish a file the harness wrote from one derived afterwards.
+- As a maintainer, I want the run index to be impossible to forget, because it has drifted before.
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+1. Whether the two plural benchmark roots, `sk-prompt/prompt-models/benchmarks` and
+   `system-spec-kit/mcp-server/benchmarks`, should be singularized. Deferred: they are outside the
+   frozen map and carry their own large inbound reference load.
+2. Whether the MCP-promotion family's `SOURCE.md` should be lowercased to match the convention. It has
+   its own template, command wiring and spec references, so renaming it is its own change.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+| Document | Relationship |
+|---|---|
+| [`plan.md`](./plan.md) | How the convention was landed |
+| [`tasks.md`](./tasks.md) | Task breakdown and status |
+| [`checklist.md`](./checklist.md) | Verification evidence |
+| [`decision-record.md`](./decision-record.md) | The four decisions that shaped the grammar |
+| [`implementation-summary.md`](./implementation-summary.md) | What shipped and what was left out |
+| [`assets/rename-map.json`](./assets/rename-map.json) | The frozen old-to-new mapping |
 
 ---
 

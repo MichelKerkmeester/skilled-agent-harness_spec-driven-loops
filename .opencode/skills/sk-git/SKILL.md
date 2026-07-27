@@ -1,6 +1,6 @@
 ---
 name: sk-git
-description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, finish; routes git-worktrees/git-commit/git-finish; no spec."
+description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
 version: 1.3.2.0
@@ -9,15 +9,15 @@ version: 1.3.2.0
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, owner-first-branch, skill-scoped-worktree, worktree-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
 <!-- Owns: git worktree / create worktree / numbered worktree / restructure worktrees / worktree prefix / wt/ branch / owner-first branch / skill-scoped worktree / worktree naming allocator / skilled branch / branch / commit / conventional commits / pull request / PR / merge / rebase / finish work / integrate changes / git workflow / gitkraken / gitlens / gitlens launchpad / gitlens commit composer / cross-platform pr / multi-provider issue. Does NOT own: spec folders, memory, continuity, save context (system-spec-kit); code implementation, tests (sk-code). -->
 
-# Git Workflows - Git Development Orchestrator
+# Git Workflows - Git Development Guide
 
 Unified workflow guidance across workspace isolation, commit hygiene, and work completion.
 
 ## 1. WHEN TO USE
 
-### When to Use This Orchestrator
+### When to Use This Guide
 
-Use this orchestrator when:
+Use this guide when:
 - Starting new git-based work
 - Unsure which git skill to use
 - Following complete git workflow (setup → work → complete)
@@ -249,19 +249,19 @@ Once permission is granted, set `SPECKIT_ALLOW_REMOTE_PUSH=1` for that one `git 
 Git development flows through 3 phases:
 
 **Phase 1: Workspace Setup** (Isolate your work)
-- **git-worktrees** - Create isolated workspace with short-lived temp branches
+- Create an isolated workspace with short-lived temp branches
 - Prevents: Branch juggling, stash chaos, context switching
 - Output: Clean workspace ready for focused development
 - **See**: [worktree-workflows.md](./references/worktree-workflows.md)
 
 **Phase 2: Work & Commit** (Make clean commits)
-- **git-commit** - Analyze changes, filter artifacts, write Conventional Commits
+- Analyze changes, filter artifacts, and write Conventional Commits
 - Prevents: Accidental artifact commits, unclear commit history
 - Output: Professional commit history following conventions
 - **See**: [commit-workflows.md](./references/commit-workflows.md)
 
 **Phase 3: Complete & Integrate** (Finish the work)
-- **git-finish** - Merge, create PR, or discard work (with tests gate)
+- Merge, create a PR, or discard work with the tests gate
 - Prevents: Incomplete work merged, untested code integrated
 - Output: Work successfully integrated or cleanly discarded
 - **See**: [finish-workflows.md](./references/finish-workflows.md)
@@ -271,37 +271,37 @@ Git development flows through 3 phases:
 - Work → Complete: Changes committed, tests passing
 - Complete → Setup: Work integrated, start next task
 
-### Skill Selection Decision Tree
+### Workflow Selection Guide
 
 **Workspace Setup (Phase 1)**:
-- Starting new feature/fix? → **git-worktrees** (isolated workspace)
+- Starting new feature/fix? → Use the workspace setup phase (isolated workspace)
 - Quick fix on current branch? → Skip to Phase 2
 
 **Work & Commit (Phase 2)**:
-- Ready to commit? → **git-commit** (analyze, filter, write Conventional Commits)
+- Ready to commit? → Use the work and commit phase (analyze, filter, write Conventional Commits)
 - No changes yet? → Continue coding
 
 **Complete & Integrate (Phase 3)**:
-- Tests pass? → **git-finish** (merge, PR, keep, or discard)
+- Tests pass? → Use the complete and integrate phase (merge, PR, keep, or discard)
 - Tests failing? → Return to Phase 2
 
 ### Common Workflow Patterns
 
 **Full Workflow** (new feature):
 ```
-git-worktrees (create workspace) → Code → git-commit (commit changes) → git-finish (integrate)
+Workspace Setup → Code → Work & Commit → Complete & Integrate
 ```
 
 **Quick Fix** (current branch):
 ```
-Code → git-commit (commit fix) → git-finish (integrate)
+Code → Work & Commit → Complete & Integrate
 ```
 
 **Parallel Work** (multiple features):
 ```
-git-worktrees (feature A) → Code → git-commit
-git-worktrees (feature B) → Code → git-commit
-git-finish (feature A) → git-finish (feature B)
+Workspace Setup (feature A) → Code → Work & Commit
+Workspace Setup (feature B) → Code → Work & Commit
+Complete & Integrate (feature A) → Complete & Integrate (feature B)
 ```
 
 ---

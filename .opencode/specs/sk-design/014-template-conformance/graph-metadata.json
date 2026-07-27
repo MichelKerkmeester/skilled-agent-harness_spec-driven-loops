@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance",
+  "spec_folder": "sk-design/014-template-conformance",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/014-template-conformance/001-apache-devendoring",
+    "sk-design/014-template-conformance/002-design-interface",
+    "sk-design/014-template-conformance/003-design-motion",
+    "sk-design/014-template-conformance/004-design-md-generator",
+    "sk-design/014-template-conformance/008-structural-anomalies",
+    "sk-design/014-template-conformance/005-design-mcp-open-design",
+    "sk-design/014-template-conformance/006-shared",
+    "sk-design/014-template-conformance/007-hub-root",
+    "sk-design/014-template-conformance/009-aesthetics-retirement",
+    "sk-design/014-template-conformance/010-motion-merge",
+    "sk-design/014-template-conformance/011-retirement-residue",
+    "sk-design/014-template-conformance/012-remaining-mode-conformance"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design template conformance",
+      "create-skill template audit",
+      "apache devendoring",
+      "sk-design structural anomalies"
+    ],
+    "key_topics": [
+      "sk-design",
+      "template",
+      "conformance",
+      "create-skill",
+      "audit",
+      "apache",
+      "devendoring",
+      "structural",
+      "anomalies",
+      "every",
+      "folder",
+      "across"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/sk-design/014-template-conformance/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/014-template-conformance/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An audit of every folder across every `sk-design` mode (`design-interface`, `design-motion`, `design-md-generator`, `design-mcp-open-design`, `shared`, plus the hub root) against the `sk-doc` create-skill templates and standards found the hub's 75 reference files are frontmatter-conformant but structurally uneven: numbered-section discipline, separator hygiene, and a handful of frontmatter enum values drift per folder rather than uniformly, and one folder (`design-interface`) still carries a committed Apache-2.0 license artefact for content that was never de-vendored into original words",
+    "created_at": "2026-07-27T14:48:40.384Z",
+    "last_save_at": "2026-07-27T17:15:44.456Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bb6a7f8e0f1bae50f0ec4ec0fa56b009143b52742f7375cf29547eabd80bf18e",
+    "source_doc_hashes": {
+      "spec.md": "d32883f029a649c0facfb344184bebfd98d4654ab20bb45cd056ed0506a518a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

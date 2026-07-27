@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/003-design-motion/005-corpus",
+  "description": "`corpus/` has no authored sk-doc template — it holds `README.md`, `motion-evidence.mjs`, and `tests/` (`README.md`, `fixtures.mjs`,",
+  "keywords": [
+    "corpus",
+    "authored",
+    "sk-doc",
+    "template",
+    "holds",
+    "readme",
+    "motion-evidence",
+    "mjs",
+    "tests",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-07-27T14:58:14.120Z",
+  "specId": "005",
+  "folderSlug": "corpus",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "003-design-motion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

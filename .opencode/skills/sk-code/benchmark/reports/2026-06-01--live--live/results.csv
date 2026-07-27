@@ -1,0 +1,5 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+SD-001,sk-code,live,,routing,,,,68,PASS,
+RD-002,sk-code,live,,advisor,,,,69,PASS,
+CS-001,sk-code,live,,routing,,,,90,PASS,

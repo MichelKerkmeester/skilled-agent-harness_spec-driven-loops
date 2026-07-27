@@ -125,7 +125,7 @@ sk-doc/
   hub-router.json        # router signals + vocabulary classes
   description.json       # hub advisor descriptor
   graph-metadata.json    # the ONE advisor identity for the whole skill
-  changelog/  manual-testing-playbook/  benchmark/
+  changelog/  manual-testing-playbook/  benchmark/  feature-catalog/
   create-skill/  create-readme/  create-agent/  create-command/
   create-feature-catalog/  create-manual-testing-playbook/
   create-benchmark/  create-flowchart/  create-changelog/  create-diff/  create-quality-control/    # nested workflow packets

@@ -155,7 +155,7 @@ sed -i.bak "s|cross-encoder/ms-marco-MiniLM-L-6-v2|Qwen/Qwen3-Reranker-0.6B|" \
 
 # 6) Full bench
 RERANK_DEVICE=mps RERANK_TORCH_DTYPE=float16 \
-  bash benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh ... --arm B --runs 3 \
+  bash benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh ... --arm B --runs 3 \
   --cross-encoder true --reranker-local true
 
 # 7) Inspect OOM

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/003-design-motion",
+  "spec_folder": "sk-design/014-template-conformance/003-design-motion",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [
+    "sk-design/014-template-conformance/003-design-motion/001-packet-root",
+    "sk-design/014-template-conformance/003-design-motion/002-references",
+    "sk-design/014-template-conformance/003-design-motion/003-assets",
+    "sk-design/014-template-conformance/003-design-motion/004-procedures",
+    "sk-design/014-template-conformance/003-design-motion/005-corpus",
+    "sk-design/014-template-conformance/003-design-motion/006-feature-catalog",
+    "sk-design/014-template-conformance/003-design-motion/007-manual-testing-playbook",
+    "sk-design/014-template-conformance/003-design-motion/008-changelog"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-motion template conformance",
+      "design-motion doc audit",
+      "motion mode skill conformance"
+    ],
+    "key_topics": [
+      "design-motion",
+      "template",
+      "conformance",
+      "doc",
+      "audit",
+      "motion",
+      "mode",
+      "skill",
+      "smallest",
+      "cleanest",
+      "sk-design",
+      "dirs"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Exhaustively",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`design-motion` is the smallest and cleanest sk-design mode (19 dirs, 39 files), but a sample pass already found real conformance gaps in `references/`: separator discipline abandoned mid-document in two files, and sentence-case H2s where ALL-CAPS is required",
+    "created_at": "2026-07-27T14:53:12.627Z",
+    "last_save_at": "2026-07-27T14:53:12.627Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:266c044f70bf3230bca2514d79a15a9d36d1062be662193e2bfab2fd9bc5fd2e",
+    "source_doc_hashes": {
+      "spec.md": "b24303ec11db3b61c9965e41382ec69a991b0eec3e47f1003da61d88e77eb3cc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

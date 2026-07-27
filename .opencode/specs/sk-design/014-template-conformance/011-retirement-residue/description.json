@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/011-retirement-residue",
+  "description": "Two unrelated kinds of residue survived this session's earlier retirements",
+  "keywords": [
+    "two",
+    "unrelated",
+    "kinds",
+    "residue",
+    "survived",
+    "session",
+    "earlier",
+    "retirements"
+  ],
+  "lastUpdated": "2026-07-27T16:55:14.563Z",
+  "specId": "011",
+  "folderSlug": "retirement-residue",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

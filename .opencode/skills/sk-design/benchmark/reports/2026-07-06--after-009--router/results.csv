@@ -1,0 +1,26 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+MR-001,sk-design,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-002,sk-design,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-003,sk-design,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-004,sk-design,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-005,sk-design,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-006,sk-design,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+AI-001,sk-design,playbook,,routing,,,,69,PASS,
+AI-002,sk-design,playbook,,routing,,,,69,PASS,
+AI-003,sk-design,playbook,,routing,,,,69,PASS,
+TV-001,sk-design,playbook,,routing,,,,69,PASS,
+TV-002,sk-design,playbook,,routing,,,,69,PASS,
+TV-003,sk-design,playbook,,routing,,,,69,PASS,
+TV-004,sk-design,playbook,,routing,,,,69,PASS,
+TV-005,sk-design,playbook,,routing,,,,69,PASS,
+MG-001,sk-design,playbook,,advisor,,,,69,PASS,
+MG-002,sk-design,playbook,,advisor,,,,69,PASS,
+MG-003,sk-design,playbook,,advisor,,,,69,PASS,
+SR-001,sk-design,playbook,,routing,,,,69,PASS,
+SR-002,sk-design,playbook,,routing,,,,69,PASS,
+SR-003,sk-design,playbook,,routing,,,,69,PASS,
+SR-004,sk-design,playbook,,routing,,,,69,PASS,
+PB-001,sk-design,playbook,,advisor,,,,69,PASS,
+PB-002,sk-design,playbook,,advisor,,,,69,PASS,
+PB-003,sk-design,playbook,,advisor,,,,69,PASS,

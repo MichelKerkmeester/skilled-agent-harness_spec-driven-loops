@@ -55,7 +55,7 @@ Content drives breakpoints rather than fixed device sizes, and hierarchy is buil
 ## 4. SOURCE METADATA
 
 - Group: Token System
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `token-system/typography-and-spacing-scale.md`
 
 Related references:

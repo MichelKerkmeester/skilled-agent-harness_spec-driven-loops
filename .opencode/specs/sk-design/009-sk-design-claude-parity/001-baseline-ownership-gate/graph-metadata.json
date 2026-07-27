@@ -52,7 +52,7 @@
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-design/benchmark/README.md",
       ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json"
+      ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json"
     ],
     "entities": [
       {
@@ -124,7 +124,7 @@
       {
         "name": "skill-benchmark-report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json",
+        "path": ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json",
         "source": "derived"
       },
       {

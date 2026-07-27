@@ -29,7 +29,7 @@ Cite these principles during direction critique, token review, motion planning, 
 
 ---
 
-## 2. Principle Set
+## 2. PRINCIPLE SET
 
 1. **Ground before styling.** Name the subject, audience, and one job before choosing color, type, layout, or motion.
 2. **Spend the free axis deliberately.** If the brief does not constrain an axis, use it to make a specific choice instead of selecting the median web default.
@@ -42,7 +42,7 @@ Cite these principles during direction critique, token review, motion planning, 
 
 ---
 
-## 3. Common AI-Default Smells
+## 3. COMMON AI-DEFAULT SMELLS
 
 - Generic cream background, editorial serif headline, terracotta accent, and soft card shadows without a brief-specific reason.
 - Near-black page with one acid accent and oversized geometric gradients as the only identity.
@@ -52,7 +52,7 @@ Cite these principles during direction critique, token review, motion planning, 
 
 ---
 
-## 4. Child Usage
+## 4. CHILD USAGE
 
 - `interface` uses this reference during direction critique and to test whether tokens are purposeful.
 - `motion` uses it to avoid scattered animation.

@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/smart_routing.md"
-      - ".opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.md"
+      - ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md"
       - "research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -43,7 +43,7 @@ The live sk-code benchmark (phase 010) showed strong routing (D1-intra 92, D2 87
 
 This phase researched the remediation: make sk-code load a tighter, task-appropriate slice without regressing D1 routing or D2 discovery. A 3-iteration native-Opus deep-research pass converged on a recommendation, captured in `research/research.md`. The implementation is a follow-on BUILD phase (012).
 
-**Critical Dependencies**: the live benchmark evidence (`sk-code/benchmark/2026-06-01--live-final--live/`), the machine-readable router (`smart_routing.md` §11), and the documented surface-flattening tradeoff in that block.
+**Critical Dependencies**: the live benchmark evidence (`sk-code/benchmark/reports/2026-06-01--live-final--live/`), the machine-readable router (`smart_routing.md` §11), and the documented surface-flattening tradeoff in that block.
 
 ---
 
@@ -129,7 +129,7 @@ Reduce over-routing and lift routine-task usefulness while holding routing recal
 |------|------|--------|------------|
 | Risk | Tighter slicing regresses D1/D2 recall | High | research defines the frontier + a regression guard before any code change |
 | Risk | D4 signal is thin (n=2, single grader) | Med | treat D4 as directional; corroborate with D3 over-routing evidence |
-| Dependency | The live benchmark baseline | — | the research consumes `sk-code/benchmark/2026-06-01--live-final--live/` |
+| Dependency | The live benchmark baseline | — | the research consumes `sk-code/benchmark/reports/2026-06-01--live-final--live/` |
 <!-- /ANCHOR:risks -->
 
 ---

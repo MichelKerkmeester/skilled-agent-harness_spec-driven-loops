@@ -14,7 +14,7 @@ version: 1.5.0.7
 
 # Design References (real-world critique-against via Mobbin and Refero)
 
-How to put real-world shipped UI to work as judgment input without letting it turn the skill into a trend-copier or a chooser. Mobbin and Refero index hundreds of thousands of real app screens and flows. Read one matching reference live through Code Mode to see what the real-world default for a pattern actually is, so a deliberate move off it reads as a choice. It is never a gallery to copy from and never a menu of vibes to pick.
+How to read real-world shipped UI live via Mobbin and Refero (Code Mode) to name the real-world default for a pattern and then deviate from it deliberately.
 
 ---
 
@@ -36,7 +36,7 @@ The skill decides whether to reach for a reference on its own initiative or by a
 
 - **Mobbin** (`mobbin.*` via Code Mode): real iOS and web app screens and flows. Two tools, `mobbin_search_screens` and `mobbin_search_flows`, take a natural-language `query` and a required `platform` of `ios` or `web`. Each result carries a `mobbin_url` worth citing back to the user.
 - **Refero** (`refero.*` via Code Mode): shipped UI screens, flows, and styles. Tools include `refero_search_screens`, `refero_get_similar_screens`, `refero_get_screen`, `refero_get_screen_image`, `refero_search_flows`, `refero_get_flow`, `refero_search_styles`, and `refero_get_style`. Search styles for visual direction, screens for concrete UI, each with a `platform` of `ios` or `web`.
-- Both are read live through Code Mode and need the user's own paid subscription and OAuth. Nothing is cached or copied into the skill, which keeps it Apache-2.0 only with no new third-party notice burden.
+- Both are read live through Code Mode and need the user's own paid subscription and OAuth. Nothing is cached or copied into the skill, which keeps it free of any third-party notice burden.
 - Both are OPTIONAL and never required. When no real-world reference fits, or the subscription is not connected, the free-axis anti-default process in `design_principles.md` governs exactly as before.
 
 ### Code Mode Access Pattern

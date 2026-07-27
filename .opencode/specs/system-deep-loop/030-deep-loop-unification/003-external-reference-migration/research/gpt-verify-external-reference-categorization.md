@@ -200,7 +200,7 @@ Exact command returned `137` files. I inspected all returned files read-only. No
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/lifecycle-routing/supersession.md` | Stage F | Manual testing evidence lists old graph-metadata self ids. |
 | `.opencode/skills/sk-code/shared/references/smart_routing.md` | Stage F | Sk-code reference prose cites old skill-benchmark drift guard path. |
 | `.opencode/skills/sk-code/benchmark/README.md` | Stage F | README benchmark commands and related links use old workflow path. |
-| `.opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live/README.md` | Stage F | README reproduce command uses old skill-benchmark path. |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md` | Stage F | README reproduce command uses old skill-benchmark path. |
 | `.opencode/skills/system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-convergence.md` | Stage F | Feature catalog prose cites old runtime convergence script. |
 | `.opencode/skills/system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-upsert.md` | Stage F | Feature catalog prose cites old runtime upsert script. |
 | `.opencode/skills/system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-query.md` | Stage F | Feature catalog prose cites old runtime query/integration paths. |

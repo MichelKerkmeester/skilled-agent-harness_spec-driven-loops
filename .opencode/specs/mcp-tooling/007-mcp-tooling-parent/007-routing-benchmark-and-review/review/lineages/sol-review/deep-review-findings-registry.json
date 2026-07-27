@@ -73,7 +73,7 @@
       "findingId": "F008",
       "severity": "P0",
       "title": "Baseline benchmark passes seven route-contract violations",
-      "file": ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json",
+      "file": ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json",
       "line": 1,
       "description": "",
       "findingClass": null,
@@ -693,7 +693,7 @@
         },
         "evidence": [
           ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/tasks.md:53-88",
-          ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:11-126"
+          ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:11-126"
         ],
         "findingRefs": [
           "F008",
@@ -760,7 +760,7 @@
         },
         "evidence": [
           ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md:3-49",
-          ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:89-126"
+          ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:89-126"
         ],
         "findingRefs": [
           "F008",

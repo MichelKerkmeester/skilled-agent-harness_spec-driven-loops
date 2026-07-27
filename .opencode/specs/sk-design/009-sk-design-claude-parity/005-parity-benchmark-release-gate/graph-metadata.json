@@ -79,7 +79,7 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json",
+      ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
@@ -89,8 +89,8 @@
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
-      ".opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.md",
-      ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json"
+      ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md",
+      ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json"
     ],
     "entities": [
       {
@@ -138,7 +138,7 @@
       {
         "name": "report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json",
+        "path": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json",
         "source": "derived"
       },
       {
@@ -162,13 +162,13 @@
       {
         "name": "report.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.md",
+        "path": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md",
         "source": "derived"
       },
       {
         "name": "skill-benchmark-report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json",
+        "path": ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json",
         "source": "derived"
       },
       {

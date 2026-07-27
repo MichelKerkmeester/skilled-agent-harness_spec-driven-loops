@@ -10,23 +10,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity"
-    last_updated_at: "2026-07-27T07:00:00Z"
+    last_updated_at: "2026-07-27T11:15:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase re-scaffolded (Planned)."
-    next_safe_action: "Fetch live AGENT.md format; build one profile."
+    recent_action: "Implemented (GPT-5.6-LUNA); live probes completed by Claude."
+    next_safe_action: "None; phase complete."
     blockers: []
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", ".devin/agents/<name>/AGENT.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-agents-skills-rules-parity"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "What is the live-confirmed AGENT.md front-matter/body format Devin's run_subagent actually expects? Must be fetched from live docs at build time, not assumed from the Claude/Codex agent-profile shape."
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "devin skills list already discovers all 13 top-level .opencode/skills/ packets despite devin skills paths only documenting .devin/skills//.agents/skills/ (neither of which exists) -- Devin scans more broadly than its own help text states."
       - "devin rules list already surfaces CLAUDE.md/AGENTS.md from repo root -- no build work needed for rules discovery, only documentation of the existing behavior."
       - "A dedicated command-file system is not a concept Devin CLI supports -- confirmed via live --help; this is an architectural non-concept for Devin, not a gap to fill."
+      - "The AGENT.md format is confirmed live at docs.devin.ai/cli/subagents; a real code-reviewer profile was built, resolves, and dispatches successfully."
+      - "Devin's docs claim .claude/agents/*.md is auto-imported, but a live probe on the installed 3000.2.17 build proves this false -- a native AGENT.md is required."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Devin agents/skills/rules parity
@@ -42,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

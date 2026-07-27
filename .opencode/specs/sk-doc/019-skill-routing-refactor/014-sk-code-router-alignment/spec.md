@@ -109,8 +109,8 @@ Make sk-code's routing measurable on the typed-pair surface and via live-mode, r
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-code/manual_testing_playbook/**` (routing scenarios) | Modify | Add `expected_workflow_mode` + `expected_leaf_resources` typed-gold frontmatter |
 | `.opencode/skills/sk-code/shared/references/smart_routing.md` | Modify | Path-form canonicalization of shared-tier entries for typed-pair attribution (only if required) |
-| `.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json` | Modify | Replace stale report with the accurate fresh run |
-| `.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md` | Modify | Replace stale report with the accurate fresh run |
+| `.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json` | Modify | Replace stale report with the accurate fresh run |
+| `.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md` | Modify | Replace stale report with the accurate fresh run |
 <!-- /ANCHOR:scope -->
 
 ---

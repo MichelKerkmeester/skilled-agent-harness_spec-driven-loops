@@ -918,14 +918,14 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/skills/sk-prompt/hub-router.json",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json"
       ],
       "bugClass": "bundle_route_gap",
       "disposition": "deferred",
       "rationale": "this is a coverage gap, not a confirmed behavior failure, because no scoped spec or gold scenario requires an ordered bundle route",
       "evidenceRefs": [
         ".opencode/skills/sk-prompt/hub-router.json:8-14",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:108-117"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108-117"
       ],
       "reason": "author a bundle gold scenario before severity escalation"
     },
@@ -1146,16 +1146,16 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/skills/sk-prompt/hub-router.json",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md",
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md"
       ],
       "bugClass": "router_contract_drift",
       "disposition": "ruled_out",
       "rationale": "current router config and both benchmark reports confirm named-model routing works",
       "evidenceRefs": [
         ".opencode/skills/sk-prompt/hub-router.json:16-25",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:40-45",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md:40-45"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:40-45",
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md:40-45"
       ],
       "reason": "direct file and benchmark evidence showed the guard remains in place"
     },
@@ -1165,7 +1165,7 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.json",
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.json",
         ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md"
       ],
       "bugClass": "benchmark_claim_mismatch",
@@ -1174,7 +1174,7 @@
       "evidenceRefs": [
         ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:12-16",
         ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:41-47",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.json:29-60"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.json:29-60"
       ],
       "reason": "no new contradiction beyond already-registered advisory"
     },
@@ -1579,16 +1579,16 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/skills/sk-prompt/hub-router.json",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md",
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md"
       ],
       "bugClass": "router_contract_drift",
       "disposition": "ruled_out",
       "rationale": "current router config and both benchmark reports confirm named-model routing works",
       "evidenceRefs": [
         ".opencode/skills/sk-prompt/hub-router.json:16-25",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:40-45",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md:40-45"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:40-45",
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md:40-45"
       ],
       "proof": "direct file and benchmark evidence showed the guard remains in place"
     },
@@ -1598,7 +1598,7 @@
       "dimension": "correctness",
       "targetRefs": [
         ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.json",
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.json",
         ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md"
       ],
       "bugClass": "benchmark_claim_mismatch",
@@ -1607,7 +1607,7 @@
       "evidenceRefs": [
         ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:12-16",
         ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:41-47",
-        ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.json:29-60"
+        ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.json:29-60"
       ],
       "proof": "no new contradiction beyond already-registered advisory"
     },

@@ -14,18 +14,21 @@
 # OS-generated files
 # ═══════════════════════════════════════════════════════════════════════════════
 .DS_Store
+.rename-engine-disposable
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Environment & local configuration
 # ═══════════════════════════════════════════════════════════════════════════════
 .env
 .env.*
+!.env.example
 .env.*.local
 .env.local
 .env.pre-pat-removal.bak
 .local/
 .spec-kit
 *.local
+/karabiner.json
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Secrets & certificates
@@ -147,6 +150,9 @@ code-graph.sqlite
 # Database: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
+# The pre-kebab spelling is retired. It survived only as two committed sqlite
+# files, so every checkout recreated the directory long after the rename.
+.opencode/skills/system-skill-advisor/mcp_server/
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
 .opencode/skills/system-skill-advisor/mcp-server/database/*.db
@@ -211,6 +217,7 @@ code-graph.sqlite
 # Logs
 # ═══════════════════════════════════════════════════════════════════════════════
 *.log
+*.log.*
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Python
@@ -269,21 +276,17 @@ _sandbox
 .opencode/specs/ai-systems
 .opencode/specs/anobel.com
 .opencode/specs/barter
-.opencode/specs/barter
 
 .claude/specs/ai-systems
 .claude/specs/anobel.com
-.claude/specs/barter
 .claude/specs/barter
 
 .codex/specs/ai-systems
 .codex/specs/anobel.com
 .codex/specs/barter
-.codex/specs/barter
 
 .agents/specs/ai-systems
 .agents/specs/anobel.com
-.agents/specs/barter
 .agents/specs/barter
 
 # ───────────────────────────────────────────

@@ -218,7 +218,7 @@ deliverable:
   required_fields: [target, register, designDials, preflightResult]
 
 status_contract:
-  success: 'STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:motion PROOF=target,register,designDials,preflightResult'
+  success: 'STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:design-reference PROOF=target,register,designDials,preflightResult'
   missing_input: "STATUS=ASK MISSING=<input>"
   cannot_run: "STATUS=FAIL ERROR=<named-cause>"
   route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
@@ -244,7 +244,6 @@ termination:
   message: "Interface direction workflow complete."
   next_steps:
   - action: "Keep static-system decisions within the interface mode"
-  - action: "Continue with /interface:motion for behavior"
   - action: "Run the interface mode's mechanical preflight card at design-interface/assets/interface-preflight-card.md to QA the direction"
   - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
 
@@ -266,7 +265,7 @@ rules:
 
 pipeline:
   stage: "direction - frames the interface decision before behavior or build"
-  accepts_from: ["/interface:design-reference", "/interface:motion"]
-  hands_to_next: ["/interface:motion"]
+  accepts_from: ["/interface:design-reference"]
+  hands_to_next: ["/interface:design-reference"]
   recommend_only: true
   hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after acceptance"

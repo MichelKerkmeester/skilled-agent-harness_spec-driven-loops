@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-design/014-template-conformance/004-design-md-generator/006-feature-catalog",
+  "description": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`,",
+  "keywords": [
+    "feature-catalog",
+    "carries",
+    "root",
+    "plus",
+    "subdirectories",
+    "cluster-classify",
+    "extract",
+    "feature-extractors"
+  ],
+  "lastUpdated": "2026-07-27T15:07:57.042Z",
+  "specId": "006",
+  "folderSlug": "feature-catalog",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "004-design-md-generator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

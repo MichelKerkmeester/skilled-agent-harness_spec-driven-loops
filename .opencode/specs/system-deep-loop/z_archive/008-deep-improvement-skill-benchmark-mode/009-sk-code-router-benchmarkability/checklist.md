@@ -33,7 +33,7 @@ _memory:
 ## Verification Protocol
 
 - Run from `.opencode/skills/deep-improvement/scripts`: `npx vitest run`.
-- Benchmark (fixtures are skill-local, so `--fixtures-dir` is required): `node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=skill-benchmark --skill=sk-code --fixtures-dir=.opencode/skills/sk-code/benchmark/fixtures/sk-code --outputs-dir=.opencode/skills/sk-code/benchmark/2026-06-01--full--router --trace-mode=router --advisor-mode=python`. See `sk-code/benchmark/README.md`.
+- Benchmark (fixtures are skill-local, so `--fixtures-dir` is required): `node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=skill-benchmark --skill=sk-code --fixtures-dir=.opencode/skills/sk-code/benchmark/fixtures/sk-code --outputs-dir=.opencode/skills/sk-code/benchmark/reports/2026-06-01--full--router --trace-mode=router --advisor-mode=python`. See `sk-code/benchmark/README.md`.
 - Every item below is marked `[x]` only with cited evidence.
 <!-- /ANCHOR:protocol -->
 
@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-01 [P1] Baseline captured before any change — `sk-code/benchmark/baseline/` (BLOCKED-BY-STRUCTURE, D5=0).
+- [x] CHK-01 [P1] Baseline captured before any change — `sk-code/benchmark/reports/baseline/` (BLOCKED-BY-STRUCTURE, D5=0).
 - [x] CHK-02 [P1] Backward-compat contract read from existing `skill-benchmark.vitest.ts`.
 - [x] CHK-03 [P1] Full sk-code reference inventory enumerated (94 md files).
 <!-- /ANCHOR:pre-impl -->

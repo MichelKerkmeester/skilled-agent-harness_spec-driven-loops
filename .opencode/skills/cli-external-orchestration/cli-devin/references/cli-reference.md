@@ -65,7 +65,7 @@ Provide a comprehensive, single-source reference for all Devin CLI commands, fla
 | Linux | Full support (sandbox requires `bwrap` + `socat`) |
 | Windows (WSL) | Use WSL 2; native Windows cannot run the sandbox |
 
-After installation, run `devin` for the interactive REPL or `devin -p "prompt"` for non-interactive use.
+After installation, run `devin` for the interactive REPL or `devin -p -- "prompt"` for non-interactive use.
 
 ---
 
@@ -131,8 +131,8 @@ devin
 devin -- your prompt here
 
 # Non-interactive: print mode
-devin -p "prompt"
-devin -p -- prompt words here    # Same, using -- separator
+devin -p -- "prompt"
+devin -p -- "prompt words here"    # Same, using -- separator
 ```
 
 ### Permission Mode Values
@@ -152,10 +152,10 @@ devin -p -- prompt words here    # Same, using -- separator
 devin
 
 # Non-interactive with model selection
-devin -p "Refactor utils.ts to use async/await" --model opus
+devin -p --model opus -- "Refactor utils.ts to use async/await"
 
 # With permission mode for file edits
-devin -p "Add error handling to auth.ts" --permission-mode accept-edits
+devin -p --permission-mode accept-edits -- "Add error handling to auth.ts"
 
 # Continue the most recent session
 devin -c
@@ -164,7 +164,7 @@ devin -c
 devin -r brisk-otter
 
 # With OS-level sandbox
-devin --sandbox -p "Run the test suite and fix failures"
+devin --sandbox -p -- "Run the test suite and fix failures"
 
 # Load prompt from file
 devin -p --prompt-file ./prompt.txt
@@ -196,7 +196,7 @@ Devin CLI supports multiple AI models. Short names always resolve to the latest 
 | **Gemini** | `gemini` | Google-model tasks |
 | **DeepSeek** | `deepseek` | Open-source model tasks |
 | **Kimi** | `kimi` | Open-source model tasks |
-| **GLM** | `glm` | Open-source model tasks |
+| **GLM** | `glm-5-2`, `glm-5-2-max`, `glm-5-2-1m`, `glm-5-2-max-1m`, `glm-5-2-none`, `glm-5-2-none-1m` | Open-source model tasks |
 
 ### Setting the Model
 
@@ -204,7 +204,7 @@ Devin CLI supports multiple AI models. Short names always resolve to the latest 
 # Command flag
 devin --model opus -- refactor this module
 devin --model sonnet -- explain this code
-devin -p --model swe "list all TODO comments"
+devin -p --model swe -- "list all TODO comments"
 
 # Slash command (inside REPL)
 /model opus
@@ -250,18 +250,20 @@ Always specify `--model` explicitly in scripts for predictability; omitting it r
 
 ```bash
 # Capture to file
-devin -p "Generate a TypeScript interface for the User model" \
-  --model adaptive > /tmp/user-interface.ts
+devin -p \
+  --model adaptive \
+  -- \
+  "Generate a TypeScript interface for the User model" > /tmp/user-interface.ts
 
 # Capture to variable
-RESULT=$(devin -p "List all exported functions in src/" --model adaptive)
+RESULT=$(devin -p --model adaptive -- "List all exported functions in src/")
 echo "$RESULT"
 
 # Pipe to another command
-devin -p "Generate SQL schema for users table" --model adaptive | psql -d mydb -f -
+devin -p --model adaptive -- "Generate SQL schema for users table" | psql -d mydb -f -
 
 # Redirect stderr separately
-devin -p "Analyze auth flow" --model adaptive > /tmp/analysis.txt 2>/tmp/errors.txt
+devin -p --model adaptive -- "Analyze auth flow" > /tmp/analysis.txt 2>/tmp/errors.txt
 ```
 
 ### Export Format
@@ -386,10 +388,10 @@ Paste images from your clipboard with `Ctrl+V`. Attached images appear in the in
 
 ```bash
 # Pass git diff as context
-git diff HEAD~1 | devin -p "Summarize these changes" --model adaptive
+git diff HEAD~1 | devin -p --model adaptive -- "Summarize these changes"
 
 # Combine file content with prompt
-cat src/auth.ts | devin -p "Add input validation to all functions" --model adaptive
+cat src/auth.ts | devin -p --model adaptive -- "Add input validation to all functions"
 ```
 
 ---
@@ -483,16 +485,16 @@ Permission modes control what the agent can do without asking for approval. Alwa
 
 ```bash
 # SAFE: Auto mode for analysis
-devin -p "Map the authentication flow" --permission-mode auto --model adaptive
+devin -p --permission-mode auto --model adaptive -- "Map the authentication flow"
 
 # STANDARD: Accept Edits for code changes
-devin -p "Add error handling to all API routes" --permission-mode accept-edits --model adaptive
+devin -p --permission-mode accept-edits --model adaptive -- "Add error handling to all API routes"
 
 # ELEVATED RISK: Dangerous mode — use only with explicit approval
-devin -p "Migrate database schema" --permission-mode dangerous --model opus
+devin -p --permission-mode dangerous --model opus -- "Migrate database schema"
 
 # AUTONOMOUS: OS-enforced sandbox
-devin --sandbox -p "Run the test suite and fix failures" --model adaptive
+devin --sandbox -p --model adaptive -- "Run the test suite and fix failures"
 ```
 
 ### Bypass vs Autonomous

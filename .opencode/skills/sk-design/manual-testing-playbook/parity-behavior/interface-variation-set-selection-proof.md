@@ -13,9 +13,13 @@ expected_leaf_resources:
 
 # PB-007: Interface Variation-Set Selection Proof
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a public `interface` request for multiple genuinely distinct visual directions selects the private `variation-set.md` card instead of the single-direction `aesthetic-direction.md` card, and that the ALWAYS-rule seed-of-thought debias is invoked rather than the mode producing N safe variations of the median.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -52,6 +56,8 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 
 **Expected tool surface**: read-only. The `interface` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -79,6 +85,8 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 3. If the three directions read as near-identical, inspect whether `variation-diversity.md`'s non-median seed and spread mechanism were actually applied or only cited.
 4. If a mutating tool is used, compare the tool calls against the `interface` `toolSurface` in `mode-registry.json`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
@@ -86,6 +94,8 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 - `.opencode/skills/sk-design/design-interface/procedures/variation-set.md`
 - `.opencode/skills/sk-design/design-interface/procedures/aesthetic-direction.md`
 - `.opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md`
+
+---
 
 ## 5. SOURCE METADATA
 

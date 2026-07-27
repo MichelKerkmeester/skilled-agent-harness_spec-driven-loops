@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/003-design-motion/004-procedures",
+  "description": "`procedures/` holds exactly one file, `interaction-states-pass.md`, which was not part of the 014 program's seed sample",
+  "keywords": [
+    "procedures",
+    "holds",
+    "exactly",
+    "one",
+    "file",
+    "interaction-states-pass",
+    "part",
+    "program",
+    "seed",
+    "sample"
+  ],
+  "lastUpdated": "2026-07-27T14:58:09.449Z",
+  "specId": "004",
+  "folderSlug": "procedures",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "003-design-motion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

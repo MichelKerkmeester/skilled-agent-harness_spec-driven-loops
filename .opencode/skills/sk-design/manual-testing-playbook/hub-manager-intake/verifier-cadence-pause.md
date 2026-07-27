@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # HM-003: Verifier-Cadence Pause
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the hub's proof-gate behavior: missing taste, accessibility, responsive, or transport proof must pause a ready claim.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -25,6 +29,8 @@ I only have a Figma export and no rendered responsive checks. Tell me whether th
 **Expected hub behavior**: Name the missing proof field and pause readiness instead of inventing evidence.
 
 **Expected proof fields**: taste, accessibility, responsive, and transport proof, with transport output treated as evidence to inspect rather than design acceptance.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -50,11 +56,15 @@ I only have a Figma export and no rendered responsive checks. Tell me whether th
 2. Confirm the response distinguishes confirmed transport evidence from inferred design acceptance.
 3. Re-run with a screenshot-only variant and inspect readiness language.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
+
+---
 
 ## 5. SOURCE METADATA
 

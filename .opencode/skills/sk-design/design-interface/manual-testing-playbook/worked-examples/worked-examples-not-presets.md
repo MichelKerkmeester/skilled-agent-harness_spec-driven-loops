@@ -9,9 +9,9 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: WORKED_EXAMPLES
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/worked-examples.md
+  - references/foundations/worked-examples.md
 ---
 
 **Exact prompt**
@@ -24,8 +24,8 @@ Show me what a complete foundations answer looks like, but do not reuse it as a 
 
 ## Expected Process
 
-1. Route to `foundations`.
-2. Load `references/worked-examples.md` as calibration.
+1. Recognize this as `interface`'s `foundations` static-system subworkflow.
+2. Load `references/foundations/worked-examples.md` as calibration.
 3. State that the examples are illustrative and not reusable presets.
 4. Extract the answer shape, not the specific palette, type or spacing values.
 

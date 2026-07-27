@@ -57,14 +57,14 @@ function collectAllAgentNames() {
 function main() {
   const args = process.argv.slice(2);
 
-  const names = args.includes('--all')
+  const names = args.length === 0 || args.includes('--all')
     ? collectAllAgentNames()
     : args.map(agentNameFromPath).filter(Boolean);
 
   const uniqueNames = [...new Set(names)].sort();
 
   if (uniqueNames.length === 0) {
-    console.log('agent-mirror-sync: no agent files to check — OK');
+    console.log('agent-mirror-sync: no agent files to check — nothing verified');
     process.exit(0);
   }
 

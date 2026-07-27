@@ -48,7 +48,7 @@ The advisor reaches this skill through `enhances` edges from both CLI skills, pr
 **Do not use for**:
 - Frontier-model dispatch (Opus, Sonnet, gpt-5.5) — those are out of scope for the 114 arc
 - Looking up binary flags or invocation wrappers — those MECHANICS live in `cli-opencode`, not here
-- Adding new runtime logic — this skill carries prompt-craft prose + an index, never shell commands or scripts
+- Adding new runtime logic — this skill's dispatch surface carries prompt-craft prose + an index and remains read-only; the `.cjs`/`.js` files under `benchmarks/` are shipped evaluation assets, not runtime dispatch logic
 
 ---
 
@@ -236,7 +236,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 1. **Never duplicate EXECUTOR MECHANICS here** — binary flags, invocation wrappers, budgets, and permissions stay in `cli-opencode`. A profile points at them via `pattern-index.md`; it does not restate them.
 2. **Never copy generic framework definitions here** — the closed 7-framework set (RCAF / COSTAR / RACE / CIDI / TIDD-EC / CRISPE / CRAFT) is defined once in `sk-prompt`. Profiles link to those definitions and only record the per-model choice + rationale.
 3. **Never present carried-forward evidence as fresh.** When a profile's frameworks are inherited (e.g. MiniMax-M3's TIDD-EC contract from benchmark 003, originally run on M2.7), label it carried and name the source benchmark — do not imply a fresh M3 run.
-4. **Never add runtime logic here** — no shell commands, no scripts, no agent-config recipes.
+4. **Never add runtime logic here** — no shell commands or agent-config recipes in the dispatch surface. The `.cjs`/`.js` files under `benchmarks/` are evaluation harnesses and fixtures, not part of the read-only dispatch tool surface.
 
 ### ⚠️ ESCALATE IF
 

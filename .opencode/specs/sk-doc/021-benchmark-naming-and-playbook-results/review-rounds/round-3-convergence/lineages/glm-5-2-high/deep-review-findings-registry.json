@@ -1,0 +1,150 @@
+{
+  "sessionId": "fanout-glm-5-2-high-1785149403377-degd9r",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-07-27T11:33:00.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Default dated folders can overwrite same-day evidence",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      "line": 398,
+      "description": "The default path can overwrite an earlier same-day run with the same subject and variant.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Three-field default naming plus no occupancy guard conflicts with same-day disambiguation requirement.",
+      "affectedSurfaceHints": ["Lane C default path", "report companion writer", "reports index"],
+      "contentHash": "8e2c1f4a7b90d3e5c12a4f6b8d0e2c4a6b8d0e2c4a6b8d0e2c4a6b8d0e2c4a",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery (delta)" }],
+      "dimensions": ["correctness"],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Published report contract does not describe the emitted folder",
+      "file": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+      "line": 489,
+      "description": "The owning report-storage contract and writer disagree on report filename, file count, and folder location.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Owner, playbook, and writer disagree on one folder contract.",
+      "affectedSurfaceHints": ["create-benchmark authority", "manual testing playbook", "Lane C writer", "reports index"],
+      "contentHash": "c1b2a3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [{ "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery (delta)" }],
+      "dimensions": ["traceability"],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Serving snapshots still look for a retired non-dated parity label",
+      "file": ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs",
+      "line": 122,
+      "description": "Serving snapshots cannot discover a dated replacement for the hardcoded retired parity-baseline label.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Static lookup conflicts with the mandatory dated convention; only baseline/ is exempted.",
+      "affectedSurfaceHints": ["compiled-routing archiver", "serving snapshot renderer", "snapshot schema", "hub benchmark README"],
+      "contentHash": "d2c1b2a3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [{ "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery (delta)" }],
+      "dimensions": ["traceability"],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    { "findingId": "P1-001", "severity": "P1", "firstSeen": 1, "lastSeen": 5 },
+    { "findingId": "P1-002", "severity": "P1", "firstSeen": 3, "lastSeen": 5 },
+    { "findingId": "P1-003", "severity": "P1", "firstSeen": 3, "lastSeen": 5 }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    { "findingId": "P1-001", "severity": "P1", "firstSeen": 1, "lastSeen": 5 },
+    { "findingId": "P1-002", "severity": "P1", "firstSeen": 3, "lastSeen": 5 },
+    { "findingId": "P1-003", "severity": "P1", "firstSeen": 3, "lastSeen": 5 }
+  ],
+  "dimensionCoverage": { "correctness": true, "security": true, "traceability": true, "maintainability": true },
+  "findingsBySeverity": { "P0": 0, "P1": 3, "P2": 0 },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1.4,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": ["stopPolicy=max-iterations; convergence retained as telemetry until the hard ceiling"],
+  "graphSignals": { "dimensionCoverage": 1, "findingStability": 1, "p0ResolutionRate": 1, "evidenceDensity": 3, "hotspotSaturation": 1 },
+  "candidateCoverage": { "covered": [], "ruledOut": [], "deferred": [], "blocked": [], "byBugClass": {} },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": { "requiredBugClasses": [], "covered": [], "ruledOut": [], "deferred": [], "blocked": [], "graphCoverageMode": null },
+  "traceability": {
+    "summary": { "required": 3, "executed": 3, "pass": 0, "partial": 0, "fail": 3, "blocked": 0, "notApplicable": 0, "gatingFailures": 2 },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": { "pass": 0, "partial": 0, "fail": 1 },
+        "evidence": [
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:398-402,539-563",
+          ".opencode/skills/sk-doc/create-benchmark/SKILL.md:459-498",
+          ".opencode/skills/sk-doc/create-benchmark/scripts/render-serving-snapshot.cjs:121-134"
+        ],
+        "findingRefs": ["P1-001", "P1-002", "P1-003"],
+        "summary": "All active implementation-to-contract contradictions survived replay."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": { "pass": 0, "partial": 0, "fail": 1 },
+        "evidence": [
+          ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/tasks.md:51",
+          ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/checklist.md:109-118,167-175"
+        ],
+        "findingRefs": ["P1-002", "P1-003"],
+        "summary": "Completion evidence asserts a six-file default-path contract the writer does not produce."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": { "pass": 0, "partial": 0, "fail": 1 },
+        "evidence": [
+          ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md:243-256",
+          ".opencode/skills/sk-doc/create-benchmark/SKILL.md:489-498"
+        ],
+        "findingRefs": ["P1-002"],
+        "summary": "Playbook and owner publish incompatible report layouts."
+      }
+    ]
+  },
+  "divergence": { "started": [], "completed": [], "failed": [], "overrides": [], "saturatedDirections": [], "remainingFrontier": [], "currentFocus": "" },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

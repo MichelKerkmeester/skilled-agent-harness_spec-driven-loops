@@ -1,0 +1,17 @@
+Repository remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3). Make ONLY the change described. Touch NOTHING else.
+Do not run git commands that mutate state except where explicitly permitted. Do not commit.
+A concurrent session is editing this repo; never stage, revert or touch files outside your task.
+If your target sits under benchmark/, changelog/ or archive/, read that directory README first —
+retention there is usually a documented contract and renaming or deleting violates it.
+
+Return EXACTLY:
+FINDING: <id>
+REVERIFIED: <command + its real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the change is correct>
+RISK: <what this could break and how you checked>
+
+FINDING devin-04-F7
+TASK: karabiner.json at the repository ROOT is personal Karabiner-Elements keyboard configuration (macOS shortcut definitions running osascript clipboard commands). It is tracked by git, 5737 bytes, and NOTHING in the repository references it. It does not belong in a shared repository. Do NOT hard-delete it: the operator may still use it locally. Instead: (1) untrack it with `git rm --cached karabiner.json` — this is the ONE permitted git mutation, do not commit; (2) add `karabiner.json` to .gitignore so it cannot return. Leave the file on disk untouched. Verify with `git check-ignore -q karabiner.json` (exit 0 = ignored) and confirm the file still exists on disk.

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/005-misplacement-and-layout",
+  "description": "Files sit where their owning subsystem's documented layout says they should not: test directories contradicting an assets-only contract, a personal",
+  "keywords": [
+    "files",
+    "sit",
+    "owning",
+    "subsystem",
+    "documented",
+    "layout",
+    "says",
+    "test",
+    "directories",
+    "contradicting",
+    "assets-only",
+    "contract",
+    "personal"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "005",
+  "folderSlug": "misplacement-and-layout",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

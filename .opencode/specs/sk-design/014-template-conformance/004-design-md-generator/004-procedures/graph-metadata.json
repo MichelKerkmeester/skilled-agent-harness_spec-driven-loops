@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/004-design-md-generator/004-procedures",
+  "spec_folder": "sk-design/014-template-conformance/004-design-md-generator/004-procedures",
+  "parent_id": "sk-design/014-template-conformance/004-design-md-generator",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-md-generator procedures conformance",
+      "design-system-extraction template audit",
+      "md-generator procedure template check"
+    ],
+    "key_topics": [
+      "design-md-generator",
+      "procedures",
+      "conformance",
+      "design-system-extraction",
+      "template",
+      "audit",
+      "md-generator",
+      "procedure",
+      "check",
+      "holds",
+      "exactly",
+      "one"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "design-system-extraction.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-procedure-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Read",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`procedures/` holds exactly one file, `design-system-extraction.md`, which was not part of the 014 program's seed sample",
+    "created_at": "2026-07-27T15:10:02.062Z",
+    "last_save_at": "2026-07-27T15:10:02.062Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da1cdfeca3a6b0b34eaf8909b6cfbe83b341c0f0a720a41a50cc788f4098cd46",
+    "source_doc_hashes": {
+      "spec.md": "bbe0584e35ba945333ad2fdbf81571ed8b271c5076149059a49c4e1b3a6ee64a",
+      "plan.md": "4963ed4afc989c2e826dbc993ba8bb49a0f25e3c70c3681db6a8d47307de0573",
+      "tasks.md": "f49fc8dd538017b64ce5a6e6b0e27fa9ed2bf57f3eef7eb0faed8df39c049681",
+      "checklist.md": "884e671b5f41a46f9c87ba1bc9d6b48b93ddfc087b5a0f9d229d011bd9c65376",
+      "implementation-summary.md": "c21d1cb4e32d171fea133a5692d07d8d4dd8d450be1cf5a3dac34bc96e15d2c6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

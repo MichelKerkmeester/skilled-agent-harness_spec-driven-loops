@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/003-dead-code-removal",
+  "description": "Scripts, npm entries, dependencies, CLI subcommands and config references exist with no reachable caller or with targets that no longer exist",
+  "keywords": [
+    "scripts",
+    "npm",
+    "entries",
+    "dependencies",
+    "cli",
+    "subcommands",
+    "config",
+    "references",
+    "exist",
+    "reachable",
+    "caller",
+    "targets",
+    "longer"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "003",
+  "folderSlug": "dead-code-removal",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

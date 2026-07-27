@@ -105,7 +105,7 @@ _memory:
 Dated amendment — task text and evidence above are preserved as authored:
 
 - Task wording that says "the three modes" (T002, T004 heading lineage, T007) executed against the SIX-mode hub (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`) — 13 hub scenarios, one blind holdout per mode, as T002/T007 evidence already records.
-- The T004 target path `benchmark/2026-06-01--router-final--router/` was superseded by frozen-baseline naming: real evidence lives at `.opencode/skills/mcp-tooling/benchmark/baseline/` (PASS 95) and, post-remediation, `.opencode/skills/mcp-tooling/benchmark/2026-07-16--after-routing-remediation--router/` (PASS 98, route-gold enforced 13/13).
+- The T004 target path `benchmark/2026-06-01--router-final--router/` was superseded by frozen-baseline naming: real evidence lives at `.opencode/skills/mcp-tooling/benchmark/reports/baseline/` (PASS 95) and, post-remediation, `.opencode/skills/mcp-tooling/benchmark/reports/2026-07-16--after-routing-remediation--router/` (PASS 98, route-gold enforced 13/13).
 - The 15 deferred review findings (T008) were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/`.
 <!-- /ANCHOR:amendment-2026-07-16 -->
 

@@ -152,13 +152,13 @@ sed -i.bak "s|cross-encoder/ms-marco-MiniLM-L-6-v2|Qwen/Qwen3-Reranker-0.6B|" \
 (cd .opencode/skills/system-spec-kit/mcp-server && npm run build)
 
 # Arm A
-bash benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh \
+bash benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh \
   --fixture .../rerank-ab-fixture.json \
   --out .../arm-a-off.jsonl \
   --arm A --runs 3 --cross-encoder false --reranker-local false
 
 # Arm B (export RERANK_DEVICE=mps so it propagates to the MCP child)
-RERANK_DEVICE=mps bash benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh \
+RERANK_DEVICE=mps bash benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh \
   --fixture .../rerank-ab-fixture.json \
   --out .../arm-b-mps.jsonl \
   --arm B --runs 3 --cross-encoder true --reranker-local true

@@ -25,7 +25,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-design/benchmark/README.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-design/design-audit/references/smart_router_pseudocode.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md | Cited | OK | Citations=1; Iterations=1 |

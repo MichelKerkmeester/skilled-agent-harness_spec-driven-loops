@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Cursor agents/skills/rules parity"
-description: "Resolve whether Cursor's UserPromptSubmit hook already injects skill-advisor-equivalent context, populate the currently-empty .cursor/rules/*.md, and record that custom agent-profile loading and a dedicated command-file system are not concepts cursor-agent supports."
+description: "Resolve whether Cursor's UserPromptSubmit hook already injects skill-advisor-equivalent context, populate the currently-empty .cursor/rules/*.md, mirror the 13-agent roster into .cursor/agents/, and record that a dedicated command-file system is not a concept cursor-agent supports."
 trigger_phrases:
   - "cursor agents skills rules parity"
   - "cursor rules populate"
@@ -12,21 +12,22 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity"
     last_updated_at: "2026-07-27T07:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase re-scaffolded (Planned)."
-    next_safe_action: "Read UserPromptSubmit hook source; then populate .cursor/rules/*.md."
+    recent_action: "Implemented static rules and parity findings."
+    next_safe_action: "Review scoped uncommitted diff."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cursor-agents-skills-rules-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does .cursor/hooks.json's UserPromptSubmit entry already inject skill-advisor-equivalent context? Must be resolved by reading the actual hook source before deciding whether new rules content should also carry advisor-routing information."
     answered_questions:
-      - "cursor-agent --help has no custom-agent-loading concept -- confirmed live; this is an architectural non-concept for Cursor, not a gap to fill."
+      - "CORRECTED: Cursor DOES support custom subagents via .cursor/agents/*.md plus Claude-format auto-import from .claude/agents/*.md -- both confirmed live. An earlier pass wrongly inferred 'no such concept' from the absence of a --help flag; profiles are discovered by file convention, so a flag's absence proves nothing."
       - ".cursor/rules/ does not exist (0 files) -- a real gap, unlike Devin's free CLAUDE.md/AGENTS.md auto-discovery."
       - "A dedicated command-file system is not a concept Cursor CLI supports, mirroring the Devin finding -- confirmed live via --help."
+      - "beforeSubmitPrompt is designed to call the shared skill-advisor brief builder, but the installed Cursor CLI does not deliver the event; .cursor/rules/ is the static complement."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Cursor agents/skills/rules parity
@@ -42,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -57,9 +58,9 @@ _memory:
 ### Problem Statement
 The user asked to "scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have." Live investigation during the 5-iteration deep-research pass found:
 
-- `cursor-agent --help` has no custom-agent-loading concept at all — confirmed live. This is an architectural non-concept for Cursor (unlike Devin, which has a real, documented-but-unbuilt `.devin/agents/` mechanism), not a gap to fill.
+- **CORRECTED (superseded finding).** An earlier pass in this phase recorded that "`cursor-agent --help` has no custom-agent-loading concept at all — confirmed live," and treated custom agents as an architectural non-concept for Cursor. **That was wrong.** Cursor loads custom subagents from `.cursor/agents/*.md` (its own documented convention, per its bundled `create-subagent` skill) and additionally auto-imports Claude-format `.claude/agents/*.md`. Both are confirmed live: a roster probe listed all 13 repo agents, and a real dispatch through one returned content derived from the agent body. The original error came from grepping `--help` for an agent flag; agent profiles are discovered by *file convention*, never by a flag, so the flag's absence proved nothing about the concept's existence.
 - `.cursor/rules/` does not exist (0 files) — a genuine gap, unlike Devin's free `CLAUDE.md`/`AGENTS.md` auto-discovery which required no build work at all.
-- An open question was raised but not resolved during the research pass: does `.cursor/hooks.json`'s `UserPromptSubmit` entry already inject skill-advisor-equivalent context into every Cursor session? If it already does, populating `.cursor/rules/*.md` with overlapping routing content would be redundant; if it does not, the rules content should carry that routing information itself.
+- The registered `beforeSubmitPrompt` adapter is designed to inject a skill-advisor-equivalent brief, but a live marker re-probe under the installed Cursor CLI confirmed that the event is dormant. The static rules file therefore carries compact routing pointers as a complement, not as a duplicate of delivered dynamic output.
 - A dedicated command-file system is not a concept Cursor CLI supports either, mirroring the Devin finding.
 
 ### Purpose
@@ -74,11 +75,11 @@ Resolve the `UserPromptSubmit` open question first by reading the actual hook so
 ### In Scope
 - Read the `.cursor/hooks.json` `UserPromptSubmit` hook's actual source code to determine whether it already injects skill-advisor-equivalent context.
 - Populate `.cursor/rules/*.md` via `cursor-agent rule`/`generate-rule`, informed by the answer to the question above (either as a complement to existing hook-injected context, or as the primary carrier of routing information if the hook does not already do this).
-- Record the "custom agent-profile loading is not a concept `cursor-agent` supports" decision explicitly.
+- Mirror all 13 repo agents into `.cursor/agents/<name>.md` as symlinks to the canonical `.claude/agents/<name>.md`, and correct the superseded "custom agents are a non-concept" claim wherever it was recorded.
 - Record the "commands doesn't apply as a distinct category for Cursor" decision explicitly, mirroring the Devin-side decision in the sibling phase.
 
 ### Out of Scope
-- Building a custom-agent-loading mechanism for Cursor — confirmed live as architecturally absent, not a gap.
+- Authoring Cursor-specific agent *content*. The mirrors are symlinks to the canonical `.claude/agents/*.md`; no per-runtime rewrite of the 6,378 lines of agent bodies is in scope, because duplication would guarantee drift.
 - Any Devin-side work — tracked separately in `029-cli-devin-revival/015-devin-agents-skills-rules-parity/`.
 - Modifying `.cursor/hooks.json`'s `UserPromptSubmit` hook itself — this phase reads it to answer the open question, it does not change its behavior.
 
@@ -106,7 +107,7 @@ Resolve the `UserPromptSubmit` open question first by reading the actual hook so
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The agents non-applicability decision is recorded explicitly. | `cli-cursor/SKILL.md` states `cursor-agent --help` has no custom-agent-loading concept, confirmed live. |
+| REQ-003 | All 13 repo agents are dispatchable in Cursor, and the superseded "non-concept" claim is corrected wherever recorded. | A live `cursor-agent` roster probe lists all 13 with no duplicates; a real dispatch through one succeeds; `cli-cursor/SKILL.md` documents `.cursor/agents/` + Claude-format auto-import and flags the earlier claim as wrong. |
 | REQ-004 | The commands non-applicability decision is recorded explicitly, mirroring the Devin-side decision. | `cli-cursor/SKILL.md` states Cursor CLI has no dedicated command-file-system concept, confirmed live. |
 <!-- /ANCHOR:requirements -->
 
@@ -170,7 +171,7 @@ Resolve the `UserPromptSubmit` open question first by reading the actual hook so
 |-----------|-------|-------|
 | Scope | 8/25 | 1 new rules-content file set + 1 doc update. |
 | Risk | 6/25 | Read-before-write ordering avoids the main risk (redundant/conflicting content). |
-| Research | 6/20 | Requires reading the actual `UserPromptSubmit` hook source, not yet done in this session. |
+| Research | 6/20 | The adapter source and installed-CLI delivery result are recorded in the phase evidence. |
 | **Total** | **20/70** | **Level 2 — small build gated on a source-read verification step.** |
 <!-- /ANCHOR:complexity -->
 
@@ -178,7 +179,7 @@ Resolve the `UserPromptSubmit` open question first by reading the actual hook so
 
 ## 7. OPEN QUESTIONS
 
-- Does `.cursor/hooks.json`'s `UserPromptSubmit` entry already inject skill-advisor-equivalent context? Must be resolved via a source read as this phase's first task, per the task-ordering requirement noted in the parent `spec.md`'s Phase Transition Rules.
+The `beforeSubmitPrompt` entry is designed to inject a shared skill-advisor-equivalent brief, but live delivery is dormant under the tested Cursor CLI build. The static `.cursor/rules/skill-routing.md` file carries concise repository-specific routing pointers until that dynamic path delivers.
 <!-- /ANCHOR:questions -->
 
 ---

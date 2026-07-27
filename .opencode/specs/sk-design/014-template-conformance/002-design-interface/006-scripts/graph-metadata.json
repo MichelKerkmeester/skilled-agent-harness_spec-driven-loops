@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/002-design-interface/006-scripts",
+  "spec_folder": "sk-design/014-template-conformance/002-design-interface/006-scripts",
+  "parent_id": "sk-design/014-template-conformance/002-design-interface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design-interface scripts conformance",
+      "scripts tests requirement",
+      "missing tests directory",
+      "scripts plan",
+      "scripts tasks",
+      "scripts checklist",
+      "scripts implementation summary"
+    ],
+    "key_topics": [
+      "design-interface",
+      "scripts",
+      "conformance",
+      "tests",
+      "requirement",
+      "missing",
+      "directory",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "scripts/README.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+      ".opencode/skills/sk-doc/create-skill/references/shared/overview.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-reference-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "overview.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Confirm",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Planned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Document",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Directory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "template",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`scripts/` holds `README.md`, three deterministic Python checkers (`baselinerhythmcheck.py`, `contrastcheck.py`, `namingdoccheck.py`), and `fixtures/naming-doc/{compliant.md,violating.md}` used as positive/negative examples for `namingdoccheck.py` itself",
+    "created_at": "2026-07-27T14:56:08.594Z",
+    "last_save_at": "2026-07-27T15:05:16.432Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e96942b55aacf851eeaf3642c88ebc8d0d87a56d60938ab15a20cb42793160f4",
+    "source_doc_hashes": {
+      "spec.md": "23cf5e6676efcaa6136abf3769d05130b725abeee850bb75c46ede626aa5458a",
+      "plan.md": "07e4c7acaa992298e6ff047ba06ba7f4c5e6102f39c8de852ec2a6ace7716d09",
+      "tasks.md": "77b04bec9b101b42ede22f2b504a69e25db4f1590d35e8f8dde3d0c4bbecdcc7",
+      "checklist.md": "bb365971c84865e3eb351d4c54fa3bce4d9cc5591c2bf580a605c5bfb2b1f760",
+      "implementation-summary.md": "905947f0cf72e8b9b541542a19aa9dfefea77301f36482b71d05a35815e03793"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

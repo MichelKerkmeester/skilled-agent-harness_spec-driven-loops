@@ -13,18 +13,27 @@ version: 1.0.0.0
 
 # Resource Loading Notes
 
+Extended rationale for two ALWAYS rows in `SKILL.md`'s Resource Loading Levels table, plus the reference-loading discipline notes for the mode's core references.
+
+---
+
 ## 1. OVERVIEW
 
 Loading triggers themselves stay in `SKILL.md` Section 2 (the Resource Loading Levels table drives routing). This file carries the extended rationale for two of that table's ALWAYS rows, plus the reference-loading discipline notes summarized in Section 5, so SKILL.md stays lean without dropping the requirement text.
+
 ---
 
 ## 2. LOAD-AND-PROVE LOOP (Register + Brief-To-Dials + Preflight Card)
 
 **Required load-and-prove loop:** `../shared/register.md`, `references/design-process/brief-to-dials.md`, and `assets/interface-preflight-card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery.
 
+---
+
 ## 3. CITATION REQUIRED FOR CONTEXT-LOADING-CONTRACT.MD
 
 **Citation required, not just a background load**: name `../shared/context-loading-contract.md` by its relative path in the context-basis line alongside `register.md` — the same explicit by-path citation this mode already requires for procedure cards (`SKILL.md` Section 3) — a recommendation with no visible citation of this path is the same as not loading it.
+
+---
 
 ## 4. REFERENCE LOADING DISCIPLINE
 
@@ -32,5 +41,5 @@ Loading triggers themselves stay in `SKILL.md` Section 2 (the Resource Loading L
 - Keep Section 2 (SMART ROUTING) of `SKILL.md` as the single routing authority.
 - `references/design-process/ux-quality-reference.md` is the objective quality-floor gate; apply it after the direction is set.
 - A real design system you own is an OPTIONAL source to ground in or to name the default to deviate from, never a required step and never a style chooser. `design-principles.md` stays the authority.
-- The `references/aesthetics/` cues are illustrative critique-against reference only: cite at most one to name a realized default at the critique step, subordinate to grounding, never surfaced as a chooser, preset, or pick-a-vibe axis. `real-ui-loop.md` Section 8 owns this guardrail.
+- Name a realized default look from the styles corpus rather than a fixed vocabulary: retrieve one real exemplar to critique against, and never surface it as a chooser or preset.
 - When the Mobbin or Refero subscriptions are connected, they are an OPTIONAL real-world critique-against reference (via Code Mode) for naming the category default to deviate from, never a chooser and never copied. `references/design-grounding/design-references-mcp.md` owns the rules and `design-principles.md` stays the authority.

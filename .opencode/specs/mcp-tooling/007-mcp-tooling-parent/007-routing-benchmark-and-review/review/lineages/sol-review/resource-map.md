@@ -25,7 +25,7 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:1-228,657-1329 | Analyzed | MISSING | Findings P0=1 P1=0 P2=0; Iterations=1 |
+| .opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:1-228,657-1329 | Analyzed | MISSING | Findings P0=1 P1=0 P2=0; Iterations=1 |
 | .opencode/skills/mcp-tooling/graph-metadata.json | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 | .opencode/skills/mcp-tooling/hub-router.json | Analyzed | OK | Findings P0=1 P1=3 P2=0; Iterations=2 |
 | .opencode/skills/mcp-tooling/hub-router.json:5,20-22 | Analyzed | MISSING | Findings P0=1 P1=0 P2=0; Iterations=1 |

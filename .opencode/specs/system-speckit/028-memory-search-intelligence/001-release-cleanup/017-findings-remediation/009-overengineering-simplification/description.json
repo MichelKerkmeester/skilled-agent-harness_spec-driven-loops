@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/009-overengineering-simplification",
+  "description": "Several subsystems carry complexity their current usage does not justify: a multi-thousand-line resume and shadow-parity pair implementing a parallel",
+  "keywords": [
+    "several",
+    "subsystems",
+    "carry",
+    "complexity",
+    "current",
+    "usage",
+    "justify",
+    "multi-thousand-line",
+    "resume",
+    "shadow-parity",
+    "pair",
+    "implementing",
+    "parallel"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "009",
+  "folderSlug": "overengineering-simplification",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

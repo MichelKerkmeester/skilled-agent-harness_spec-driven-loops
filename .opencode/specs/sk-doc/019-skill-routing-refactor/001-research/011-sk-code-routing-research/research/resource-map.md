@@ -38,7 +38,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json | Cited | OK | Citations=2; Iterations=2 |
+| .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json | Cited | OK | Citations=2; Iterations=2 |
 | .opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-code/benchmark/live_final/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/sk-code/code-opencode/SKILL.md | Cited | OK | Citations=1; Iterations=1 |

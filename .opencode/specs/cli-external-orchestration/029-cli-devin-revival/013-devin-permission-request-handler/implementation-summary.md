@@ -8,18 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler"
-    last_updated_at: "2026-07-27T10:15:00Z"
+    last_updated_at: "2026-07-27T12:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Adapter built (GPT-5.6-LUNA); live probe found a devin CLI limitation."
-    next_safe_action: "Escalate the devin CLI finding to operator."
-    blockers: ["devin 3000.2.17 does not honor the PermissionRequest hook's decision in any tested non-interactive permission mode -- upstream CLI limitation, not fixable from this adapter"]
+    recent_action: "Adapter inert under the bypass mode actually used; PreToolUse guards verified active."
+    next_safe_action: "None; scope resolved."
+    blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "permission-request-policy.mjs", "permission-request-policy.test.mjs", ".devin/hooks.v1.json"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "devin-permission-request-handler"
       parent_session_id: null
     completion_pct: 95
-    open_questions: ["Is there any devin permission mode (undocumented or in a future release) that actually honors the PermissionRequest hook's decision?"]
+    open_questions: []
     answered_questions: ["The local policy matrix distinguishes five deny rows from a naive always-allow classifier.", "A live probe confirms the adapter itself computes the correct decision for real payloads.", "auto mode fires the hook but ignores its answer; dangerous mode never fires it; no tested mode honors the hook's decision."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -109,6 +109,11 @@ The adapter is stateless and does not write files or log raw payload contents. P
 | `autonomous --sandbox` | No | n/a | Rejected at the OS sandbox layer (`/tmp` not in a granted `Write(...)` scope) before the hook's answer could matter. |
 | `dangerous` | **No** | n/a | **Approved unconditionally** — the file was created without the hook ever being invoked. |
 | `smart` | n/a | n/a | Not a valid runtime value despite appearing in `--help`; the binary's actual error lists only `normal (auto)`, `accept-edits`, `dangerous (yolo, bypass)`, `autonomous (requires --sandbox)`. |
+| `bypass` **(the mode this repo actually uses)** | **No** | n/a | Approved unconditionally, same as `dangerous` — `bypass` is an alias for it. The hook is never consulted, so this phase's adapter is inert in real use. `PreToolUse` guards still fire under this mode; see the addendum below. |
+
+**Operator-mode addendum (added after the operator confirmed real usage).** This repo dispatches Devin as `devin --permission-mode bypass`, which was not among the modes probed above. `bypass` behaves like `dangerous`: the `PermissionRequest` hook is never consulted at all, so the adapter this phase built is **inert in actual use** — a no-op, not a bypassed safeguard.
+
+That is not a security hole, and the distinction matters: a follow-up probe confirmed **`PreToolUse` still fires under `bypass`**, so the spec-gate and dispatch guards registered on that event remain fully active. Devin's guard coverage under the mode actually used is therefore intact; only the approval-prompt event — which `bypass` exists precisely to skip — is absent. The same check on Cursor found `--force` also still fires `preToolUse`. Read the conclusion below as scoped to `PermissionRequest` alone, never as a statement about overall guard coverage.
 
 **Conclusion**: in devin 3000.2.17, no tested non-interactive permission mode lets the `PermissionRequest` hook's decision control the final tool-approval outcome. `auto` consults the hook (proving it is wired correctly) but ignores the answer; `dangerous` never consults it at all. The adapter built in this phase is provably correct -- it computes the right decision for a real payload -- but Devin's current CLI does not act on that decision for `-p` sessions under any permission mode this probe could reach. This is a devin CLI-runtime limitation discovered by this phase's own live verification, not a defect in `permission-request-policy.mjs`.
 

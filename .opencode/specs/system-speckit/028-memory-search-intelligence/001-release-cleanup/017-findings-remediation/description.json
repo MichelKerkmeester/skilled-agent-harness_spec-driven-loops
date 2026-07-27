@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation",
+  "description": "Phase 1: findings-remediation",
+  "keywords": [
+    "phase",
+    "findings-remediation"
+  ],
+  "lastUpdated": "2026-07-27T15:05:06.713Z",
+  "specId": "017",
+  "folderSlug": "findings-remediation",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-07-26_16-05__phase-007-dispatched-4-workers-serial-on-the.md"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/004-procedures",
+  "description": "`procedures/` holds 9 cards (39-44 lines each: `aesthetic-direction.md`, `component-system-inventory.md`, `deck-direction-spec.md`,",
+  "keywords": [
+    "procedures",
+    "holds",
+    "cards",
+    "lines",
+    "aesthetic-direction",
+    "component-system-inventory",
+    "deck-direction-spec"
+  ],
+  "lastUpdated": "2026-07-27T16:20:08.586Z",
+  "specId": "004",
+  "folderSlug": "procedures",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

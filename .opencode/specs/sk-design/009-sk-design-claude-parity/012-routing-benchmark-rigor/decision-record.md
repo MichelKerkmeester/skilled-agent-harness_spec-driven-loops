@@ -316,7 +316,7 @@ Separately, `009-sk-design-claude-parity/010-feature-catalog-completeness/` has 
 
 ### Context
 
-The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`, finding P2-002) flagged that `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/{report.json,report.md}` and `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/{skill-benchmark-report.json,skill-benchmark-report.md}` are byte-identical (confirmed again via `diff`, no output either time) and use two incompatible naming conventions for the exact same benchmark run. ADR-003 above already named `after-d3-proxy/` "an orphaned duplicate-named artifact from earlier proxy work" and explicitly left it untouched, out of scope for that reconciliation pass.
+The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`, finding P2-002) flagged that `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-012-routing-rigor--router/{report.json,report.md}` and `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router/{skill-benchmark-report.json,skill-benchmark-report.md}` are byte-identical (confirmed again via `diff`, no output either time) and use two incompatible naming conventions for the exact same benchmark run. ADR-003 above already named `after-d3-proxy/` "an orphaned duplicate-named artifact from earlier proxy work" and explicitly left it untouched, out of scope for that reconciliation pass.
 
 ### Decision
 
@@ -341,5 +341,5 @@ The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-s
 
 **Risks**: None beyond that already-accepted duplication risk carried since ADR-003.
 
-**How to roll back**: A future cleanup phase may `git rm -r .opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/` directly, citing this ADR, once it owns that blast radius explicitly.
+**How to roll back**: A future cleanup phase may `git rm -r .opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router/` directly, citing this ADR, once it owns that blast radius explicitly.
 <!-- /ANCHOR:adr-004 -->

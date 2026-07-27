@@ -1,0 +1,4 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+LUNA-CB-R,sk-code,,routing,,code-webflow,openai/gpt-5.6-luna,high,,PASS,routed-to-gold (code-webflow)
+LUNA-CB-H,sk-code,,holdout,,code-webflow,openai/gpt-5.6-luna,high,,PASS,routed-to-gold (code-webflow)

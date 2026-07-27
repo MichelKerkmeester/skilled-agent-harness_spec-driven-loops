@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/006-shared/006-corpus-context",
+  "description": "`.opencode/skills/sk-design/shared/corpus-context/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "shared",
+    "corpus-context",
+    "audited",
+    "against",
+    "sk-doc",
+    "create-skill",
+    "references",
+    "overview"
+  ],
+  "lastUpdated": "2026-07-27T16:17:17.054Z",
+  "specId": "006",
+  "folderSlug": "corpus-context",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "006-shared"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

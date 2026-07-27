@@ -6,6 +6,8 @@ version: 1.0.0.0
 
 # SLU-001: Retrieval Query Returns Eligible Cards
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the real retrieval CLI returns compact cards only from the eligible set. The operator checks the result shape without treating any returned source as a design verdict.

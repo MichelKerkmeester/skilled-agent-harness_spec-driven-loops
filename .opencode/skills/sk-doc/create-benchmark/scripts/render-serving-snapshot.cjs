@@ -107,6 +107,23 @@ function activeManifestPath(hubId, activationRoot = ACTIVE_ACTIVATION_ROOT) {
 }
 
 /**
+ * The directory a hub's compiled-routing archives live in.
+ *
+ * Published run output lives under `benchmark/reports/`; the archive lane is a
+ * family inside it rather than a sibling of it, so a reader finds every result
+ * in one place. Three call sites derive from here rather than repeating the
+ * segments, because a layout spelled out in several files drifts one file at a
+ * time.
+ *
+ * @param {string} hubId - Hub whose archive root is wanted.
+ * @param {string} skillsRoot - Skills tree the hub lives under.
+ * @returns {string} Absolute archive root.
+ */
+function compiledRoutingArchiveRoot(hubId, skillsRoot) {
+  return path.join(skillsRoot, hubId, 'benchmark', 'reports', 'compiled-routing');
+}
+
+/**
  * SHA-256 of the raw manifest bytes, or null when the manifest is absent. The
  * digest reads bytes rather than a re-serialized object so it is a stable
  * identity of the file exactly as it serves.
@@ -118,19 +135,63 @@ function readManifestDigest(manifestPath) {
   try { return sha256(fs.readFileSync(manifestPath)); } catch { return null; }
 }
 
+const LEGACY_PARITY_BASELINE_LABEL = 'router-compiled-parity-baseline';
+
+/**
+ * The parity baseline for a hub: the legacy fixed-label archive when one exists,
+ * otherwise the newest dated parity archive.
+ *
+ * A fixed label alone cannot find anything under the dated run-folder grammar, so
+ * a hub whose parity evidence was archived with a date would be reported as having
+ * none. Reporting absent evidence that exists is worse than reporting nothing,
+ * because it reads as a measured negative rather than a lookup miss.
+ *
+ * @param {string} hubId - Hub whose compiled-routing archive is scanned.
+ * @param {string} skillsRoot - Skills tree the hub lives under.
+ * @returns {Object} Baseline summary; `present: false` when genuinely none exists.
+ */
 function scanParityBaseline(hubId, skillsRoot) {
-  const label = 'router-compiled-parity-baseline';
-  const jsonPath = path.join(skillsRoot, hubId, 'benchmark', 'compiled-routing', label, 'skill-benchmark-report.json');
-  let bytes;
-  try { bytes = fs.readFileSync(jsonPath); } catch { return { label, present: false, reportDigest: null, capturedAt: null, verdict: null }; }
-  const parsed = readJsonSafe(jsonPath) || {};
-  return {
-    label,
-    present: true,
-    reportDigest: sha256(bytes),
-    capturedAt: (parsed.provenance && parsed.provenance.capturedAt) || null,
-    verdict: parsed.verdict || null,
+  const archiveRoot = compiledRoutingArchiveRoot(hubId, skillsRoot);
+
+  const summarize = (label) => {
+    const jsonPath = path.join(archiveRoot, label, 'skill-benchmark-report.json');
+    let bytes;
+    try { bytes = fs.readFileSync(jsonPath); } catch { return null; }
+    const parsed = readJsonSafe(jsonPath) || {};
+    return {
+      label,
+      present: true,
+      reportDigest: sha256(bytes),
+      capturedAt: (parsed.provenance && parsed.provenance.capturedAt) || null,
+      verdict: parsed.verdict || null,
+    };
   };
+
+  const legacy = summarize(LEGACY_PARITY_BASELINE_LABEL);
+  if (legacy) return legacy;
+
+  // Dated archives: prefer the most recently captured parity run. Sorting by label
+  // would work for the dated grammar alone, but capture time stays correct even
+  // when a label carries no date.
+  let labels;
+  try {
+    labels = fs.readdirSync(archiveRoot, { withFileTypes: true })
+      .filter((d) => d.isDirectory()).map((d) => d.name);
+  } catch {
+    return { label: LEGACY_PARITY_BASELINE_LABEL, present: false, reportDigest: null, capturedAt: null, verdict: null };
+  }
+
+  let latest = null;
+  for (const label of labels) {
+    const parsed = readJsonSafe(path.join(archiveRoot, label, 'skill-benchmark-report.json'));
+    if (!parsed || !parsed.compiledRoutingParity) continue;
+    const summary = summarize(label);
+    if (!summary) continue;
+    if (!latest || String(summary.capturedAt) > String(latest.capturedAt)) latest = summary;
+  }
+
+  return latest
+    || { label: LEGACY_PARITY_BASELINE_LABEL, present: false, reportDigest: null, capturedAt: null, verdict: null };
 }
 
 /**
@@ -143,7 +204,7 @@ function scanParityBaseline(hubId, skillsRoot) {
  * @returns {Object|null} Summary of the most recent live archive, or null.
  */
 function scanRealModelLast(hubId, skillsRoot) {
-  const archiveRoot = path.join(skillsRoot, hubId, 'benchmark', 'compiled-routing');
+  const archiveRoot = compiledRoutingArchiveRoot(hubId, skillsRoot);
   let labels;
   try {
     labels = fs.readdirSync(archiveRoot, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
@@ -355,6 +416,7 @@ if (require.main === module) {
 
 module.exports = {
   REPO_ROOT,
+  compiledRoutingArchiveRoot,
   RUNTIME_ROOT,
   ACTIVE_ACTIVATION_ROOT,
   ENGINE_RESOLVER_PATH,

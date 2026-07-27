@@ -69,9 +69,9 @@ Read-only audit. No files were modified, moved, renamed, or deleted. Findings me
 
 ### F9 — CAT-3: Dated benchmark output folders committed to repository
 
-**Path:** `.opencode/skills/sk-doc/benchmark/compiled-routing/` (5 dated subfolders: `luna-high-acceptance-1784596615522/`, `luna-high-real-20260721-073315/`, `luna-high-verify-20260721-120348/`, `playbook-verify-sonnet-20260721-132527/`, `r3-benchmark-sweep-20260721-131432/`)
+**Path:** `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/` (5 dated subfolders: `luna-high-acceptance-1784596615522/`, `luna-high-real-20260721-073315/`, `luna-high-verify-20260721-120348/`, `playbook-verify-sonnet-20260721-132527/`, `r3-benchmark-sweep-20260721-131432/`)
 **Evidence:** `benchmark/README.md:31` states "No Lane C skill-benchmark run has been archived for sk-doc yet" — yet these dated output folders with Jul-2026 timestamps are present.
-**Verify:** `ls -la .opencode/skills/sk-doc/benchmark/compiled-routing/`
+**Verify:** `ls -la .opencode/skills/sk-doc/benchmark/reports/compiled-routing/`
 **Blast radius:** Low — output artifacts; move out of version control or gitignore.
 
 ### F10 — CAT-1: scripts/README.md documents 10 scripts that do not exist at that location

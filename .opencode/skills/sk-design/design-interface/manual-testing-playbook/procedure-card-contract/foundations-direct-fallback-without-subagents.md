@@ -53,4 +53,4 @@ This scenario validates the `Context, Proof, And Direct Fallback` section for fo
 - Group: Procedure Card Contract
 - Playbook ID: FOUND-PROCCARD-003
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `procedure-card-contract/direct-fallback-without-subagents.md`
+- Feature file path: `procedure-card-contract/foundations-direct-fallback-without-subagents.md`

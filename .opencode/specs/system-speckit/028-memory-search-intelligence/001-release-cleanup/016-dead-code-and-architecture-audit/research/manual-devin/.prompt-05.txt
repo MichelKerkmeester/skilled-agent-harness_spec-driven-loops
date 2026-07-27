@@ -1,18 +1,28 @@
 Read-only repository audit. Spec folder: .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit (pre-approved, skip Gate 3).
 
-FOCUS FOR THIS PASS ONLY: Test, fixture, and benchmark trees across all skills: **/tests/, **/test-fixtures/, **/benchmark/, **/vitest-tmp/, **/manual-testing-playbook/ and any committed test output. Look for stale fixtures, orphaned benchmark runs, committed temp output, and tests referencing removed modules.
-Do not audit anything outside that focus. Other passes cover the rest.
+FOCUS FOR THIS PASS ONLY: Test, fixture, and benchmark trees across all skills under .opencode/ — every **/tests/, **/test-fixtures/, **/benchmark/, **/vitest-tmp/, **/manual-testing-playbook/ directory, and any committed test output. Look for stale fixtures, orphaned benchmark runs, committed temp output, tests referencing removed modules, and benchmark trees the owning README already marks superseded.
+Do not audit anything outside that focus.
 
 Find and report, by category:
-CAT-1 dead code (symbols, scripts, flags with no reachable caller and no external contract)
+CAT-1 dead code (test helpers, fixtures, or scripts with no reachable caller)
 CAT-2 legacy or superseded files whose live successor already exists
 CAT-3 backup and scratch residue (.bak/.old/.orig/-copy, dated snapshots, stray node_modules, committed temp output)
 CAT-4 misplaced files contradicting the owning subsystem's documented layout
-CAT-5 architecture problems (layering violations, duplicated responsibility, contracts documented in one place but enforced in another)
-CAT-6 over-engineering whose current usage does not justify its cost, each with a concrete simpler shape proposed
+CAT-5 architecture problems (duplicated responsibility, contracts documented in one place but enforced in another)
+CAT-6 over-engineering whose current usage does not justify its cost, with a concrete simpler shape proposed
 
-EVIDENCE RULES: report only findings whose path exists on disk. Every finding needs path, category, file:line evidence, and the exact reproducible shell command that proves the claim. For dead-code candidates you MUST search string literals across .ts, .js, .cjs, .md, .yaml, .json, because dynamic dispatch, hook registries and YAML-named scripts never appear in an import graph. Write UNKNOWN rather than producing a plausible path you did not check. Exclude .opencode/specs/ content.
+EVIDENCE RULES: report only findings whose path exists on disk. Every finding needs path, category, file:line evidence, and the exact reproducible shell command that proves the claim. Write UNKNOWN rather than producing a plausible path you did not check. Exclude .opencode/specs/ content.
 
-BANNED OPERATIONS: do not delete, move, rename, or modify any file. Do not run any git command that mutates state. This is read-only; remediation is a separate approved phase.
+BANNED OPERATIONS: do not delete, move, rename, or modify any file. Do not run any git command that mutates state.
 
-OUTPUT: markdown. One section per finding: ### F<n> — CAT-<n>: <one-line claim>, then Path, Evidence (file:line), Verify (exact command), Blast radius.
+OUTPUT CONTRACT — THIS IS THE MOST IMPORTANT INSTRUCTION:
+Your ENTIRE response must BE the markdown report itself. Do NOT summarize. Do NOT write a closing sentence such as "Audit complete, three findings" instead of the findings. Do NOT describe what you found; WRITE IT OUT IN FULL.
+Emit every finding in full, one section each, in exactly this shape:
+
+### F<n> — CAT-<n>: <one-line claim>
+**Path:** <path>
+**Evidence:** <file:line and what it says>
+**Verify:** <exact shell command>
+**Blast radius:** <what breaks if remediated wrongly>
+
+If you find zero findings, write "## No findings" and the evidence commands you ran that returned empty. A response that names a finding count without printing the findings is an invalid response.

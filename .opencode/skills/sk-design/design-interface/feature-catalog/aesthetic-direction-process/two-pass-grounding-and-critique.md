@@ -50,7 +50,7 @@ The critique pass checks each free axis against the common default clusters. Any
 ## 4. SOURCE METADATA
 
 - Group: Aesthetic Direction Process
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `aesthetic-direction-process/two-pass-grounding-and-critique.md`
 
 Related references:

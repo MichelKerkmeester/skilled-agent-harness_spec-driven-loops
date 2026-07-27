@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md"
-      - ".opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json"
+      - ".opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json"
       - ".opencode/skills/mcp-tooling/hub-router.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -109,5 +109,5 @@ Benchmark via the sanctioned harness (`run-skill-benchmark.cjs --trace-mode rout
 ## CROSS-REFERENCES
 
 - **Specification**: `spec.md` · **Plan**: `plan.md` · **Tasks**: `tasks.md`
-- **Review report + planning packet**: `review-report.md` · **Benchmark**: `../../../../skills/mcp-tooling/benchmark/baseline/`
+- **Review report + planning packet**: `review-report.md` · **Benchmark**: `../../../../skills/mcp-tooling/benchmark/reports/baseline/`
 <!-- /ANCHOR:cross-refs -->

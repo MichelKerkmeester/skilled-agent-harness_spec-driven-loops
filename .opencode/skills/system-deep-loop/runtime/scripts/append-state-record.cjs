@@ -17,6 +17,38 @@
 
 const fs = require('fs');
 
+/**
+ * Replace the record's timestamp with the moment it was actually appended,
+ * keeping whatever the producer claimed as `reportedTimestamp`.
+ *
+ * The command templates that build these records carry a literal
+ * `{ISO_8601_NOW}` placeholder for a model to substitute, and a model has no
+ * clock — so it writes a plausible-looking time instead of a real one. Observed
+ * logs have carried iteration times minutes into the future, and neat ten-minute
+ * cadences for runs that finished in six. Every consumer downstream then reasons
+ * about a schedule that never happened.
+ *
+ * Stamping here fixes it for every producer at once, because this is the single
+ * path all state records travel. The claimed value is preserved rather than
+ * dropped: it is the only evidence that a producer invents times, and that is
+ * worth keeping visible.
+ *
+ * @param {Object} record - Parsed state record.
+ * @returns {Object} The record with an authoritative timestamp.
+ */
+function stampObservedTime(record) {
+  if (record === null || typeof record !== 'object' || Array.isArray(record)) return record;
+  const observed = new Date().toISOString();
+  const claimed = record.timestamp;
+  const stamped = { ...record, timestamp: observed };
+  // Only record a claim that differs; an absent or already-correct value would
+  // just add noise to every line.
+  if (typeof claimed === 'string' && claimed && claimed !== observed) {
+    stamped.reportedTimestamp = claimed;
+  }
+  return stamped;
+}
+
 function main() {
   const target = process.argv[2];
   if (!target) {
@@ -42,7 +74,7 @@ function main() {
     }
     // Re-serialise to a guaranteed single line (collapses any incidental newlines
     // from a heredoc without touching string contents).
-    const line = JSON.stringify(parsed);
+    const line = JSON.stringify(stampObservedTime(parsed));
     fs.appendFileSync(target, `${line}\n`);
     process.stdout.write(`appended ${line.length} bytes to ${target}\n`);
   });

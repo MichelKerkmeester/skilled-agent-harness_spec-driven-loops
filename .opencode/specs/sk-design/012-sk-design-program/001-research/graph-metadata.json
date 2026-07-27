@@ -8,7 +8,8 @@
     "sk-design/012-sk-design-program/001-research/002-research-design-commands",
     "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
     "sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research",
-    "sk-design/012-sk-design-program/001-research/005-gap-remediation-research"
+    "sk-design/012-sk-design-program/001-research/005-gap-remediation-research",
+    "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research"
   ],
   "manual": {
     "depends_on": [],
@@ -87,7 +88,7 @@
     ],
     "causal_summary": "The sk-design program needed evidence before building: which database technology fits the style library, why the design commands did not help create, whether Rust was warranted, how a hallmark design skill should work, and what gaps remained after the first build passes",
     "created_at": "2026-07-22T16:38:24.421Z",
-    "last_save_at": "2026-07-22T16:57:34.253Z",
+    "last_save_at": "2026-07-25T13:39:25.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -97,7 +98,7 @@
     "source_doc_hashes": {
       "spec.md": "2dccb298961d0d9b24109bff54db7bbf21ad15cc63b34685ec95e1b494f3ed37"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research",
+    "last_active_at": "2026-07-25T13:39:25.826Z"
   }
 }

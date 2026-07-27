@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # HM-001: Context-First Intake
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the hub manager behavior in `Manager Intake Before Routing` independently from any mode's private procedure-card selection.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -25,6 +29,8 @@ Make this product experience feel more premium and production-ready. I have some
 **Expected hub behavior**: Gather goal, surface, inputs, constraints, and proof expectations before choosing a mode when the missing facts affect route or acceptance bar.
 
 **Expected mode resolution**: Either ask one focused intake question or state assumptions and choose the smallest useful mode only if enough context exists.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -50,11 +56,15 @@ Make this product experience feel more premium and production-ready. I have some
 2. Check whether supplied facts were enough to route narrowly; if not, missing route-changing facts should trigger an intake question.
 3. Confirm procedure-card selection is not being used as a substitute for hub intake.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
+
+---
 
 ## 5. SOURCE METADATA
 

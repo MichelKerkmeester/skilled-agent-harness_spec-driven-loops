@@ -31,7 +31,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown playbook scenarios, JSON/Markdown benchmark reports, deterministic router trace mode |
 | **Framework** | sk-code two-axis parent hub, manual testing playbook, Lane-C router benchmark |
-| **Storage** | Repository filesystem: `.opencode/skills/sk-code/manual_testing_playbook/`, `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/`, benchmark README, and phase docs |
+| **Storage** | Repository filesystem: `.opencode/skills/sk-code/manual_testing_playbook/`, `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/`, benchmark README, and phase docs |
 | **Testing** | Stale-path grep, translated-path existence checks, offline router-final regeneration, leak check, recall comparison, strict spec validation at close-out |
 
 ### Overview
@@ -68,7 +68,7 @@ Deterministic path translation with evidence-preserving re-baseline: map only st
 ### Key Components
 - **Playbook scenario gold**: Curated expected resource paths in `.opencode/skills/sk-code/manual_testing_playbook/**/*.md`.
 - **Path translation map**: Pre-013 `references/{motion_dev,webflow,opencode}/` and `assets/{motion_dev,webflow,opencode}/` prefixes translated to `code-animation/`, `code-webflow/`, and `code-opencode/` packet locations.
-- **Router-final baseline**: Deterministic offline router trace report under `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/`.
+- **Router-final baseline**: Deterministic offline router trace report under `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/`.
 - **Benchmark README statistic**: Human-facing latest-router-verdict line aligned to the regenerated report.
 
 ### Data Flow

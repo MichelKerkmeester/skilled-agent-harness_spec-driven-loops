@@ -47,10 +47,7 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 
 | Run label | What it is | Verdict/Status | Evidence |
 |---|---|---|---|
-| [`baseline/`](./baseline/) | Frozen pre-optimization snapshot, router mode — the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./baseline/skill-benchmark-report.md) |
-| [`router-mode-a/`](./2026-07-10--router-mode-a--router/) | Router-mode (Mode A) deterministic replay run | PASS · 100 (router) | [report](./2026-07-10--router-mode-a--router/skill-benchmark-report.md) |
-| [`live-mode-b/`](./2026-07-10--live-mode-b--live/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 93 (live) | [report](./2026-07-10--live-mode-b--live/skill-benchmark-report.md) |
-| [`after-d3-proxy/`](./2026-07-08--after-d3-proxy--router/) | Router-mode run after the D3-efficiency proxy adjustment | PASS · 100 (router) | [report](./2026-07-08--after-d3-proxy--router/skill-benchmark-report.md) |
+| [`baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot, router mode — the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./reports/baseline/skill-benchmark-report.md) |
 
 ## 3. RE-RUNNING
 

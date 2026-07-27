@@ -105,15 +105,15 @@ curl -sf -X POST http://127.0.0.1:8765/warmup
 cd .opencode/skills/system-spec-kit/mcp-server && npm run build && cd -
 
 # 3) Arm A (sidecar OFF)
-bash .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh \
-  --fixture .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/rerank-ab-fixture.json \
-  --out .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/runs/arm-a-off.jsonl \
+bash .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh \
+  --fixture .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/rerank-ab-fixture.json \
+  --out .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/runs/arm-a-off.jsonl \
   --arm A --runs 3 --cross-encoder false --reranker-local false
 
 # 4) Arm B (sidecar ON)
-bash .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh \
-  --fixture .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/rerank-ab-fixture.json \
-  --out .opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/runs/arm-b-sidecar.jsonl \
+bash .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh \
+  --fixture .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/rerank-ab-fixture.json \
+  --out .opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/runs/arm-b-sidecar.jsonl \
   --arm B --runs 3 --cross-encoder true --reranker-local true
 
 # 5) Aggregate (one-shot Python — see commit message for inline script)

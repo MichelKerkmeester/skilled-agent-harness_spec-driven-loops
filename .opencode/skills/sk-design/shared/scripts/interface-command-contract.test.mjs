@@ -9,7 +9,6 @@ const commandsRootUrl = new URL("commands/", opencodeRootUrl);
 
 const EXPECTED = [
   { mode: "interface", subworkflow: null, canonical: "/interface:design", action: "design" },
-  { mode: "motion", subworkflow: null, canonical: "/interface:motion", action: "motion" },
   { mode: "md-generator", subworkflow: null, canonical: "/interface:design-reference", action: "design-reference" }
 ];
 const VISIBLE_BLOCKS = [
@@ -33,7 +32,7 @@ const [metadata, hubRouter, registry, creationContract, surfaces] = await Promis
 
 test("canonical commands resolve to stable internal modes", () => {
   const registryModes = registry.modes.map((entry) => entry.workflowMode).sort();
-  assert.deepEqual(registryModes, ["design-mcp-open-design", "interface", "md-generator", "motion"]);
+  assert.deepEqual(registryModes, ["design-mcp-open-design", "interface", "md-generator"]);
 
   for (const expected of EXPECTED) {
     const record = metadata.find((entry) => (
@@ -88,7 +87,7 @@ test("adversarial copied taste table is rejected", () => {
 });
 
 test("adversarial nested command dispatch is rejected", () => {
-  assert.ok(boundaryErrors("Invoke /interface:motion next.").includes("nested-command-dispatch"));
+  assert.ok(boundaryErrors("Invoke /interface:design-reference next.").includes("nested-command-dispatch"));
 });
 
 test("adversarial evidence-free verified flag is rejected", () => {

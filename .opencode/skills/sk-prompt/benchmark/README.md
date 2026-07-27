@@ -24,16 +24,14 @@ Two trace modes score the same corpus:
 - **router** is deterministic and offline — it replays `hub-router.json` + `mode-registry.json`. This is the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation.
 
-The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's — see section 5. Where a number here and the scoring contract disagree, the scoring contract prevails. A deeper post-merge narrative lives in [`BENCHMARK-SUMMARY.md`](./BENCHMARK-SUMMARY.md).
+The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's — see section 5. Where a number here and the scoring contract disagree, the scoring contract prevails.
 
 ## 2. RUN-LABEL INDEX
 
-Verdicts are read from each folder's rendered report; see [`BENCHMARK-SUMMARY.md`](./BENCHMARK-SUMMARY.md) for the full per-dimension breakdown.
+Verdicts are read from each folder's rendered report.
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
-| [`router-final/`](./2026-07-10--router-final--router/) | router (Mode A, CI gate) | PASS · 100 | current | Canonical deterministic run |
-| [`live-final/`](./2026-07-10--live-final--live/) | live (Mode B, `cli-opencode` dispatch) | PASS · 100 | current | Real dispatch confirmed via captured model responses |
 
 ## 3. STRUCTURE
 
@@ -41,7 +39,6 @@ Verdicts are read from each folder's rendered report; see [`BENCHMARK-SUMMARY.md
 benchmark/
 +-- router-final/          # Current deterministic run (router mode, the CI gate)
 +-- live-final/            # Current live run (cli-opencode dispatch)
-+-- BENCHMARK-SUMMARY.md   # Post-merge narrative summary across both runs
 `-- compiled-routing/      # Compiled-routing parity archive (see section 6)
 ```
 

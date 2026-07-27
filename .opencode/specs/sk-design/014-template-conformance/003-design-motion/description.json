@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-design/014-template-conformance/003-design-motion",
+  "description": "`design-motion` is the smallest and cleanest sk-design mode (19 dirs, 39 files), but a sample pass already found real conformance gaps in",
+  "keywords": [
+    "design-motion",
+    "smallest",
+    "cleanest",
+    "sk-design",
+    "mode",
+    "dirs",
+    "files",
+    "sample",
+    "pass",
+    "already",
+    "found",
+    "real",
+    "conformance",
+    "gaps"
+  ],
+  "lastUpdated": "2026-07-27T14:45:10.633Z",
+  "specId": "003",
+  "folderSlug": "design-motion",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

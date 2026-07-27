@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # HM-002: Visible Plan Before Build
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the hub's `Visible Plan Before Design or Build Work` contract as its own pass/fail behavior.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -25,6 +29,8 @@ Design the visual direction for a dense operations dashboard and prepare the imp
 **Expected hub behavior**: Show a concise plan before design recommendations.
 
 **Expected bundle**: interface plus foundations for a UI build request, with handoff target `sk-code` if implementation follows.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -50,11 +56,15 @@ Design the visual direction for a dense operations dashboard and prepare the imp
 2. Confirm the prompt is substantial design/build work rather than quick advice.
 3. Inspect whether the first non-intake paragraph is a plan or a recommendation.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/mode-registry.json`
+
+---
 
 ## 5. SOURCE METADATA
 

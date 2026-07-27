@@ -13,9 +13,13 @@ expected_leaf_resources:
 
 # PB-001: Procedure Selection Proof
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a public `sk-design` mode can prove its internal procedure choice while preserving the public five-mode taxonomy.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -51,6 +55,8 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 
 **Expected tool surface**: read-only. The `interface` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -75,6 +81,8 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 2. If `foundations` wins, check whether the prompt was rewritten around tokens, typography, grid, or spacing rather than direction.
 3. If a mutating tool is used, compare the tool calls against the `interface` `toolSurface` in `mode-registry.json`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
@@ -82,9 +90,11 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/design-interface/procedures/aesthetic-direction.md`
 
+---
+
 ## 5. SOURCE METADATA
 
 - **Critical path**: Yes
 - **Destructive**: No
 - **Concurrent-safe**: Yes
-- **Last validated**: Router replay passed in `benchmark/2026-07-06--after-009--router/report.json`; live/manual operator execution is required before READY.
+- **Last validated**: Router replay passed in `benchmark/reports/2026-07-06--after-009--router/report.json`; live/manual operator execution is required before READY.

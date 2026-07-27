@@ -1,5 +1,5 @@
 ---
-description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
+description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
 argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--no-resource-map] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] [--iters=N] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context
 ---
@@ -139,7 +139,7 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 
 ### Lineage Timeout Flag
 
-`--lineage-timeout-hours <N>` raises the per-lineage wall-clock timeout ceiling above the default 4 hours for long, high-effort, forced-depth fan-out runs; omit it to keep the 4h default.
+`--lineage-timeout-hours <N>` optionally narrows the per-lineage wall-clock timeout ceiling below the default 4 hours; values above the hard 4-hour maximum are rejected, and omitting the flag keeps the 4h default.
 
 ### Stop Policy Flag
 

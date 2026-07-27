@@ -11,9 +11,13 @@ expected_leaf_resources:
 
 # SR-004: Hub Is Routing Only
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that the parent hub does not flatten per-mode logic. It should route through `mode-registry.json`; the selected packet owns the detailed workflow.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -43,6 +47,8 @@ For a design pre-delivery quality pass, show which packet owns the pass/fail sco
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` because this is a design-family routing/ownership prompt.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -68,12 +74,16 @@ For a design pre-delivery quality pass, show which packet owns the pass/fail sco
 2. If the registry is bypassed, inspect `mode-registry.json` and the hub routing rule.
 3. If shared resources are mistaken for mode logic, inspect `SKILL.md` backend description for shared reference-base boundaries.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

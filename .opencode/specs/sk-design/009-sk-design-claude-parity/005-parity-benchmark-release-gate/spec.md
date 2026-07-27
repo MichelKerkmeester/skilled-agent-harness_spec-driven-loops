@@ -117,8 +117,8 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json` | Regenerate | Graph traversal metadata |
 | `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/*.md` | Existing Phase 005 artifact | Parity behavior scenarios PB-001 through PB-003 |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Existing Phase 005 artifact | Root playbook index includes category 06 and PB-001 through PB-003 |
-| `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json` | Update | Fresh router-mode benchmark report |
-| `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.md` | Update | Fresh rendered router-mode benchmark report |
+| `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json` | Update | Fresh router-mode benchmark report |
+| `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md` | Update | Fresh rendered router-mode benchmark report |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -293,8 +293,8 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 ## 12. OPEN QUESTIONS
 
 - Resolved: release and threshold authority for this automated gate record is the repository owner, delegated to this session.
-- Resolved: current run artifacts live in `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/`.
-- Resolved: `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json` is the immutable comparison baseline for this run.
+- Resolved: current run artifacts live in `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/`.
+- Resolved: `.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json` is the immutable comparison baseline for this run.
 - Still pending before READY: operator execution of live/browser/manual scenarios and design-quality reviewer lanes.
 <!-- /ANCHOR:questions -->
 

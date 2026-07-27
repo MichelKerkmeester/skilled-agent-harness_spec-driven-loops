@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # HM-004: Design-Mode Pairing Before Run
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the hub's `Visible Plan Before Design or Build Work` and `Transports and Consumers` contracts for a RUN-direction (generation) Open Design request specifically — the case the existing WIRE-only scenarios (`MDR-007`, `AI-001` P6) do not cover, and a different layer from the packet-internal mandatory-pairing mechanism already proven by `GATE-001` in `design-mcp-open-design`'s own nested manual_testing_playbook.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -32,8 +36,10 @@ Commission an Open Design generation run for a new settings page, grounding it i
 
 **Why this scenario differs from existing coverage**:
 - `MDR-007` and `AI-001` P6 both use the WIRE-direction prompt ("Wire Open Design's MCP server into opencode..."), the one case `openDesignExemption` explicitly exempts from pairing.
-- `hub-router.json`'s only declared `bundleRules` entry (`ui-build-bundle`) pairs `interface` + `foundations` and does not reference `design-mcp-open-design` at all — there is no machine-readable pairing rule for the transport today.
+- `hub-router.json` declares no `bundleRules` at all, so nothing references `design-mcp-open-design` — there is no machine-readable pairing rule for the transport today.
 - The packet-internal mandatory-pairing mechanism (negative/positive/exemption controls for RUN and READ) is already exhaustively proven by `GATE-001` in `design-mcp-open-design`'s own nested manual_testing_playbook (`design-gate/mandatory-design-gate.md`). This scenario tests whether the hub's own dispatch visibly surfaces the pairing plan at intake, before any transport call fires.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -60,12 +66,16 @@ Commission an Open Design generation run for a new settings page, grounding it i
 2. Check `hub-router.json` `routerPolicy.bundleRules` for a missing or malformed pairing rule tying `design-mcp-open-design` to a design-judgment mode.
 3. Confirm the response is not conflating this hub-level dispatch check with the packet-internal `GATE-001` mechanism (guarded-proxy token gating) — this scenario is about visible plan ordering, not the proxy's runtime enforcement.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

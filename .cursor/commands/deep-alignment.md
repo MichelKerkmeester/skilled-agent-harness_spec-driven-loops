@@ -1,0 +1,1 @@
+../../.opencode/commands/deep/alignment.md

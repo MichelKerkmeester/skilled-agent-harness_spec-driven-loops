@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # MDR-007: Open Design Transport Mode Routing
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that requests to wire, connect, or drive the Open Design app's `od` CLI route through the `sk-design` hub to `workflowMode: design-mcp-open-design` — the hub's `packetKind: "transport"` entry — rather than being absorbed into a design-judgment mode or lost to the external sibling `mcp-figma`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -39,6 +43,8 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 **Expected tool surface**: `Read` and `Bash` only. The `design-mcp-open-design` registry entry forbids `Write` and `Edit`, and `mutatesWorkspace` is `false` — its `Bash` calls drive the external Open Design daemon, never this repo's own workspace.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -64,11 +70,15 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 2. If `mcp-figma` wins instead, verify the prompt names Open Design specifically and check for accidental keyword overlap between `design-mcp-open-design-aliases` and `mcp-figma`'s own vocabulary.
 3. If a mutating tool call beyond `Bash` occurs, verify the registry's `toolSurface.forbidden` still lists `Write` and `Edit` for this mode.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -1,0 +1,1 @@
+../../../.opencode/commands/interface/design.md

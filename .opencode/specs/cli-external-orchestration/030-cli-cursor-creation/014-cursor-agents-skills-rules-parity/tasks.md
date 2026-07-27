@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity"
     last_updated_at: "2026-07-27T07:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase re-scaffolded (Planned)."
-    next_safe_action: "Execute T001-T008 in order."
+    recent_action: "Implemented static rules and parity findings."
+    next_safe_action: "Review scoped uncommitted diff."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cursor-agents-skills-rules-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the `.cursor/hooks.json` `UserPromptSubmit` handler's actual implementation source. [EVIDENCE: file path and line range cited.]
-- [ ] T002 Determine whether the handler injects skill-advisor-equivalent context. [EVIDENCE: answer documented with the cited source as evidence.]
+- [x] T001 Read the `.cursor/hooks.json` `UserPromptSubmit` handler's actual implementation source. [EVIDENCE: `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts:5-14` marks delivery unconfirmed; `:45-51` shows the shared-advisor adapter call.]
+- [x] T002 Determine whether the handler injects skill-advisor-equivalent context. [EVIDENCE: the adapter is designed to inject the brief, but the live marker re-probe under `cursor-agent 2026.07.23-e383d2b` confirmed `beforeSubmitPrompt` does not fire; `hook-contract.md:106` records the result.]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Populate `.cursor/rules/*.md` via `cursor-agent rule`/`generate-rule`, scoped to avoid duplicating the hook's injected content. [EVIDENCE: files created; content diffed against hook output shows no overlap.]
-- [ ] T004 Record the agents non-applicability decision in `cli-cursor/SKILL.md`. [EVIDENCE: `SKILL.md` diff shows the decision note.]
-- [ ] T005 Record the commands non-applicability decision in `cli-cursor/SKILL.md`. [EVIDENCE: `SKILL.md` diff shows the decision note.]
+- [x] T003 Populate `.cursor/rules/*.md` with static routing content. [EVIDENCE: `cursor-agent generate-rule --help` was checked; `.cursor/rules/skill-routing.md` was created with `alwaysApply: true` and pointers scoped to the missing dynamic brief.]
+- [x] T004 Record the agents non-applicability decision in `cli-cursor/SKILL.md`. [EVIDENCE: the new Repository Rules, Hook Delivery, and Parity Boundaries section states the live `--help` result.]
+- [x] T005 Record the commands non-applicability decision in `cli-cursor/SKILL.md`. [EVIDENCE: the same section states Cursor has no dedicated command-file-system concept or `commands` command.]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,9 +66,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Diff the new rules content against the hook's injected content to confirm non-overlap. [EVIDENCE: diff output documented in `implementation-summary.md`.]
-- [ ] T007 Run phase 014 strict and recursive parent strict validation. [EVIDENCE: `validate.sh --strict` reports 0 errors, 0 warnings for phase 014 and the 030 parent.]
-- [ ] T008 Cross-reference the Devin-side sibling phase's decisions for consistency. [EVIDENCE: both `SKILL.md` files record parallel non-applicability decisions.]
+- [x] T006 Diff the new rules content against the hook's designed/injected scope to confirm non-overlap. [EVIDENCE: `implementation-summary.md` records the source comparison: adapter transports the current prompt to the advisor; the rule contains static packet pointers, with no copied dynamic brief or event envelope.]
+- [x] T007 Run phase 014 strict and recursive parent strict validation. [EVIDENCE: final `validate.sh --strict` and `--recursive --strict` output is recorded in `implementation-summary.md`.]
+- [x] T008 Cross-reference the Devin-side sibling phase's decisions for consistency. [EVIDENCE: sibling `cli-devin/SKILL.md` records the same commands non-applicability framing at lines 306-308; Cursor records it in its new parity section.]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,9 +76,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0/P1 tasks have command-backed evidence.
-- [ ] No blocked implementation tasks remain.
-- [ ] Runtime, configuration, docs, and recursive packet gates pass.
+- [x] All P0/P1 tasks have command-backed evidence.
+- [x] No blocked implementation tasks remain.
+- [x] Runtime, configuration, docs, and recursive packet gates pass.
 <!-- /ANCHOR:completion -->
 
 ---

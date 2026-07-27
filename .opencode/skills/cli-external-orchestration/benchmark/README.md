@@ -41,7 +41,7 @@ Run from the repository root. The runner and its scoring live in the deep-improv
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=cli-external-orchestration \
-  --outputs-dir=.opencode/skills/cli-external-orchestration/benchmark/2026-06-01--router-final--router \
+  --outputs-dir=.opencode/skills/cli-external-orchestration/benchmark/reports/<run-label> \
   --trace-mode=router
 ```
 

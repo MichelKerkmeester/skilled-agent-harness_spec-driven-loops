@@ -1,0 +1,22 @@
+Read-only-by-default repository remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3). Make ONLY the change described. Touch NOTHING else.
+
+MANDATORY before any deletion: search string literals across .ts/.js/.cjs/.mjs/.md/.yaml/.json/.sh
+for the target name across the WHOLE repo (not just its owning directory). Hooks, registries and
+YAML-named scripts invoke by name and never appear in an import graph. State the search root you used.
+If the target sits under a benchmark/, changelog/ or archive/ directory, read that directory README
+first: retention there is often an intentional documented contract.
+
+A concurrent session is editing this repo. Do not stage, revert or touch any file outside your task.
+Do not run git commands that mutate state. Do not commit.
+
+Return EXACTLY:
+FINDING: <id>
+REVERIFIED: <command + its real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the change is correct>
+RISK: <what this could break and how you checked>
+
+FINDING devin-04-F13
+TASK: Remove exactly the 4 duplicate lines in .gitignore. Each of these paths appears twice: .opencode/specs/barter, .claude/specs/barter, .codex/specs/barter, .agents/specs/barter. Keep the FIRST occurrence of each, delete the SECOND. Change nothing else in .gitignore. Verify with: for p in .opencode/specs/barter .claude/specs/barter .codex/specs/barter .agents/specs/barter; do grep -c "^${p}$" .gitignore; done  -> each must print 1.

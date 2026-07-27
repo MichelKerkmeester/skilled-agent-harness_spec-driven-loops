@@ -223,7 +223,7 @@
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-27T07:52:13.794Z",
+    "last_save_at": "2026-07-27T14:44:46.858Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,9 +231,9 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1eca708a27e41c5db911c36efefab80f46e44d0df229b72ffd0d9896cdda273e",
+    "source_fingerprint": "sha256:085ae074c13f513d532fa501bc127d4a11c40bb5da9fe8f1de0f724f267263df",
     "source_doc_hashes": {
-      "spec.md": "beaa7abf0e7a0e1fc9510602f0c9d3f727dd583fb0993c55d491ef038799130e",
+      "spec.md": "b56327b63ac640b4942c23cef901e9921bae0816a09e51b2a0a69046c7cd9c15",
       "research/research.md": "cc7a5420d7fe9d95849f9d80d5190814225f22588ce0471280c4e7ef2a366c7a",
       "handover.md": "87b21823d332f79741fc9affbcbd1d496e460797de89034a37a048e9e6446050"
     },

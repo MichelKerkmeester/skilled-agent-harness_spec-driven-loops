@@ -1,8 +1,8 @@
 ---
 name: sk-design
-description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to three design modes (interface, motion, md-generator) plus a nested Open Design transport packet via mode-registry.json, and each holds its own logic."
+description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to two design modes (interface, md-generator) plus a nested Open Design transport packet via mode-registry.json, and each holds its own logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.6.0.0
+version: 1.7.0.0
 metadata:
   author: OpenCode
   family: sk-hub
@@ -12,18 +12,17 @@ metadata:
 
 # Design Family Hub (sk-design)
 
-One skill, three design modes plus a nested transport packet, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Its canonical creation commands use the `/interface:*` namespace and share one nine-stage creation contract. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic - each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
+One skill, two design modes plus a nested transport packet, one shared reference base. `sk-design` is the public, advisor-routable home for every design persona; the shared design reference base (anti-slop principles, cognitive laws, design-token vocabulary) is the common vocabulary the modes cite. Its canonical creation commands use the `/interface:*` namespace and share one nine-stage creation contract. Before routing, the hub acts as a design manager: it gathers context, makes the plan visible, names proof expectations, then delegates through `mode-registry.json`. This hub holds NO per-mode design logic - each mode keeps its own contract in its packet, and the hub only routes by `workflowMode` through `mode-registry.json`.
 
 ---
 
 ## 1. WHEN TO USE
 
-Use this skill (through the hub) for any design-family workflow. Invoke it as `sk-design` (optionally with a mode hint such as `motion: <request>`); the hub classifies the request, resolves a mode key, and loads the matching nested packet.
+Use this skill (through the hub) for any design-family workflow. Invoke it as `sk-design`; the hub classifies the request, resolves a mode key, and loads the matching nested packet.
 
 | Mode | Use it for | Packet |
 |------|-----------|--------|
-| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/design-interface/` |
-| **motion** | Temporal interaction design: animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion | `sk-design/design-motion/` |
+| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), the temporal/motion layer (animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/design-interface/` |
 | **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/design-md-generator/` |
 | **design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/design-mcp-open-design/` |
 
@@ -32,7 +31,6 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 | Command | Stable `workflowMode` |
 |---|---|
 | `/interface:design` | `interface` |
-| `/interface:motion` | `motion` |
 | `/interface:design-reference` | `md-generator` |
 
 These commands share `shared/creation-contract.md` and are the sole public design command surface. Internal mode IDs are unchanged.
@@ -68,16 +66,16 @@ If a required fact is unknown and changes the route or acceptance bar, ask a foc
 
 **Ordering is a hard constraint, not just a preference**: do not state a "Route selected"/"Route:" line, a mode/bundle name, or any design recommendation until AFTER the intake fields above (or the one focused clarifying question) have been shown to the user. Requesting missing inputs (screenshots, brand deck, URL) in the same message as, or after, an already-declared route does not satisfy this — the intake must visibly precede the route, not just accompany or follow it. A label like "Intake:" ahead of the route text does not itself satisfy this rule if its content is generic hedging rather than substantive answers to the five fields above.
 
-**No hedge-everything bundling**: when the user names several candidate modes as uncertain (e.g. "not sure whether this needs interface direction, motion, or a DESIGN.md extract") with no other disambiguating signal, that is not evidence for bundling all of them — it is exactly the missing-fact case that requires the ONE focused question first ("which of these is the primary concern: direction and system, motion, or extraction?"), or an explicitly stated assumption narrowing to the smallest useful mode. Do not resolve an uncertain multi-mode prompt into a full bundle as a way to avoid asking; that produces the generic, unfocused output this section exists to prevent.
+**No hedge-everything bundling**: when the user names several candidate modes as uncertain (e.g. "not sure whether this needs interface direction/motion or a DESIGN.md extract") with no other disambiguating signal, that is not evidence for bundling all of them — it is exactly the missing-fact case that requires the ONE focused question first ("which of these is the primary concern: direction and system, or extraction?"), or an explicitly stated assumption narrowing to the smallest useful mode. Do not resolve an uncertain multi-mode prompt into a full bundle as a way to avoid asking; that produces the generic, unfocused output this section exists to prevent.
 
 ### The discriminator
-- **`workflowMode`** — the public mode key (every mode): `interface`, `motion`, `md-generator`, and the `design-mcp-open-design` transport.
-- **`packetKind`** — `workflow` for the three design-judgment modes; `transport` for `design-mcp-open-design`, which bridges to an external tool's CLI/MCP surface and never performs design judgment itself.
-- **`backendKind`** — which backend runs the mode: `reference-base` (the two doc-guidance modes, `interface` and `motion`, cite the shared design reference base), `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
+- **`workflowMode`** — the public mode key (every mode): `interface`, `md-generator`, and the `design-mcp-open-design` transport.
+- **`packetKind`** — `workflow` for the two design-judgment modes; `transport` for `design-mcp-open-design`, which bridges to an external tool's CLI/MCP surface and never performs design judgment itself.
+- **`backendKind`** — which backend runs the mode: `reference-base` (`interface` cites the shared design reference base), `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
 
 ### Routing rule
 ```
-classify the request to a workflowMode (dominant design intent; mode hint like "motion: ..." overrides)
+classify the request to a workflowMode (dominant design intent; mode hint like "md-generator: ..." overrides)
 read mode-registry.json
   → resolve workflowMode from the hint / classified intent
   → load the mode packet at registry[mode].packet (e.g. sk-design/design-interface/SKILL.md)
@@ -153,13 +151,12 @@ def resolve_mode_packet(mode: str, intent_confidence: float):
 
 Do not hardcode a file inventory of mode references/assets in the hub. If a future design workflow needs runtime-keyed resource folders, add them to the relevant mode packet and adapt that packet's router to the canonical discovery/guard/fallback pattern rather than loading raw paths here.
 
-Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **interface** — it owns visual direction, the static visual system, and quality review together — unless the prompt is explicitly motion (animation/transition) or md-generator (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. interface + motion for a landing page with substantial choreography).
+Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **interface** — it owns visual direction, the static visual system, the temporal/motion layer, and quality review together — unless the prompt is explicitly md-generator (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. interface + md-generator for a redesign grounded in measured CSS).
 
 ### Mode Vocabulary Guardrails
 
 Treat hub identity terms such as `sk-design`, `design-family`, and `mode-registry` as family context, not as evidence for a child mode by themselves. Use these disambiguators when routing vocabulary overlaps:
-- **interface** owns end-to-end visual direction and application verbs (make it look better, less generic, custom not templated, hero or landing-page direction, visual identity, transform commands framed as "make it bolder/quieter/clearer"), the static visual system (color, type, spacing, grid, layout rhythm, visual hierarchy, information hierarchy, responsive adaptation, and design-token system design), and quality review (critique, WCAG, anti-slop, production hardening) through the interface pre-delivery gate. `tokens.json` and `DESIGN.md` as measured artifacts still route to `md-generator`, not interface, unless the prompt asks to design or adapt a token system.
-- **motion** owns temporal behavior: animation, interaction states, hover/focus/active feedback, transitions, choreography, motion budget, reduced motion, and motion performance.
+- **interface** owns end-to-end visual direction and application verbs (make it look better, less generic, custom not templated, hero or landing-page direction, visual identity, transform commands framed as "make it bolder/quieter/clearer"), the static visual system (color, type, spacing, grid, layout rhythm, visual hierarchy, information hierarchy, responsive adaptation, and design-token system design), the temporal/motion layer (animation, interaction states, hover/focus/active feedback, transitions, choreography, motion budget, reduced motion, and motion performance), and quality review (critique, WCAG, anti-slop, production hardening) through the interface pre-delivery gate. `tokens.json` and `DESIGN.md` as measured artifacts still route to `md-generator`, not interface, unless the prompt asks to design or adapt a token system.
 - **md-generator** owns measured extraction and fidelity artifacts: live-URL CSS capture, `tokens.json`, `DESIGN.md`, style reference, validation, reports, and source-of-truth provenance.
 
 Keep these guardrails synchronized with `hub-router.json` `vocabularyClasses`/`routerSignals` and with the `aliases` / `transformVerbRouting` vocabulary in `mode-registry.json`; do not change registry structure or tool surfaces to resolve vocabulary ambiguity.
@@ -179,7 +176,7 @@ For quick, narrow advice, the plan can be one sentence. For UI build or redesign
 
 For UI build work, page or component generation, and redesign implementation, auto-load `interface` (which now owns both visual direction and the static visual system) plus `design-interface/assets/interface-preflight-card.md`, `shared/register.md`, `design-interface/references/design-process/brief-to-dials.md`, and the matching visual-system references for the axis in scope, before design or implementation decisions. Require a context manifest per `shared/context-loading-contract.md`, with `shared/assets/context-loaded-card.md` before recommendations and `shared/assets/proof-of-application-card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
 
-Per-mode behavior is **not flattened**: each packet keeps its own design judgment, examples, standards, verification, and tool-permission needs. The two doc-guidance modes (`interface`, `motion`) are read-and-guide; `md-generator` is the only mode that runs an extraction pipeline (Write/Edit/Bash over Playwright).
+Per-mode behavior is **not flattened**: each packet keeps its own design judgment, examples, standards, verification, and tool-permission needs. The one doc-guidance mode (`interface`) is read-and-guide; `md-generator` is the only mode that runs an extraction pipeline (Write/Edit/Bash over Playwright).
 
 ### Proof Gates and Verifier Cadence
 
@@ -191,7 +188,7 @@ The hub names proof requirements; the selected mode supplies the detailed eviden
 
 If a required proof field is missing, contradictory, or only supplied by transport mechanics, pause the ready claim and route the gap back to the selected mode or to the interface pre-delivery gate. The hub names the missing proof; it does not invent a new verifier or bypass the mode packet's evidence contract.
 
-Verifier cadence is: intake before routing, visible plan before substantial design/build output, proof review before ready claims, and `sk-code` review/verification after implementation handoff. The two read-only modes (`interface`, `motion`) must meet their proof obligations with Read/Glob/Grep evidence, loaded references, and user-provided artifacts only; they must not require Write, Edit, or Bash. `md-generator` may use its extraction pipeline because the registry marks it as the only mutating mode.
+Verifier cadence is: intake before routing, visible plan before substantial design/build output, proof review before ready claims, and `sk-code` review/verification after implementation handoff. The read-only `interface` mode must meet its proof obligations with Read/Glob/Grep evidence, loaded references, and user-provided artifacts only; it must not require Write, Edit, or Bash. `md-generator` may use its extraction pipeline because the registry marks it as the only mutating mode.
 
 ---
 
@@ -206,14 +203,14 @@ sk-design/
   shared/                # shared design reference base the hub + modes cite
   styles/lib/engine/     # legacy|shadow|persistent retrieval adapter (default: legacy)
   styles/lib/database/   # SQLite + FTS5 persistent index and rebuildable vectors
-  design-interface/  design-motion/  design-md-generator/   # three design mode packets
+  design-interface/  design-md-generator/   # two design mode packets
   design-mcp-open-design/  # nested transport packet (packetKind: "transport")
 ```
 
 Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The hub references those packet paths directly.
 
 ### Backend
-The two doc-guidance modes (interface, motion) consume the shared **design reference base** under `shared/` — `anti-slop-principles.md`, `cognitive-laws.md`, `design-token-vocabulary.md` — so anti-slop critique, design-token vocabulary, and cognitive-law rationale stay consistent across modes without duplication. The `md-generator` mode consumes its own embedded Playwright extraction backend instead. The reference base provides shared vocabulary; it must never gain per-mode workflow logic.
+The one doc-guidance mode (interface) consumes the shared **design reference base** under `shared/` — `anti-slop-principles.md`, `cognitive-laws.md`, `design-token-vocabulary.md` — so anti-slop critique, design-token vocabulary, and cognitive-law rationale stay consistent across its visual, motion, and quality-review vocabulary without duplication. The `md-generator` mode consumes its own embedded Playwright extraction backend instead. The reference base provides shared vocabulary; it must never gain per-mode workflow logic.
 
 Style-library retrieval passes through the `legacy|shadow|persistent` adapter under `styles/lib/engine/`. The adapter defaults to `legacy`, and the flat style files remain authoritative. When explicitly enabled, the persistent backend under `styles/lib/database/` provides SQLite and FTS5 storage, a rebuildable vector projection, an incremental `DISCOVER` to `PUBLISH` indexer, and eligibility-first weighted-RRF retrieval across structured, FTS5, and vector lanes.
 
@@ -235,7 +232,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or the shared reference base.
 - **NEVER** embed per-mode design instructions in this hub — that content lives in the packets.
 - **NEVER** add public micro-skill identities or a public mirror of another design skill family; preserve the single `sk-design` advisor identity.
-- **NEVER** require Write, Edit, or Bash for the two read-only advisory modes (`interface`, `motion`); their tool surface is Read/Glob/Grep only.
+- **NEVER** require Write, Edit, or Bash for the read-only advisory `interface` mode; its tool surface is Read/Glob/Grep only.
 - **NEVER** treat `mcp-figma` or `design-mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
 - **NEVER** route pure code, backend, or data work through the design family.
 
@@ -253,7 +250,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - Authored brand systems: use `shared/references/brand-first-lane.md` with the templates and boundary guard under `shared/authored-brand/`; authored exports never write measured `DESIGN.md`, `tokens.json`, or `styles/` paths, and only a signed `reviewed-conversion` checklist can authorize the existing measured owner to recreate an approved value from independent evidence.
 - Creation commands: `shared/creation-contract.md` (nine-stage contract shared by the canonical `/interface:*` commands).
 - Style retrieval: `styles/lib/engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/lib/database/README.md` (persistent index lifecycle).
-- Mode packets: `design-interface/SKILL.md`, `design-motion/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
+- Mode packets: `design-interface/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
 
@@ -272,12 +269,11 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 ## 7. INTEGRATION POINTS
 
 ### Modes
-- `interface` — direction, distinctive UI build judgment, interface writing, the static visual system (color, typography, layout, responsive systems, tokens), and the anti-slop / accessibility / production-hardening pre-delivery gate.
-- `motion` — animation, transitions, micro-interactions, temporal feel.
+- `interface` — direction, distinctive UI build judgment, interface writing, the static visual system (color, typography, layout, responsive systems, tokens), the temporal/motion layer (animation, transitions, micro-interactions, temporal feel), and the anti-slop / accessibility / production-hardening pre-delivery gate.
 - `md-generator` — `DESIGN.md` / style-reference extraction other skills consume.
 
 ### Creation Command Surface
-- Canonical commands: `/interface:design`, `/interface:motion`, and `/interface:design-reference`. These are the sole public design command surface; `/interface:foundations` and `/interface:audit` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired.
+- Canonical commands: `/interface:design` and `/interface:design-reference`. These are the sole public design command surface; `/interface:foundations`, `/interface:audit`, and `/interface:motion` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired.
 - Commands resolve to unchanged `workflowMode` values; the command surface does not create or rename modes.
 
 ### Transports and Consumers

@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design/006-mcp-servers",
+  "description": "`.opencode/skills/sk-design/design-mcp-open-design/mcp-servers/` has not been audited against",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "design-mcp-open-design",
+    "mcp-servers",
+    "audited",
+    "against"
+  ],
+  "lastUpdated": "2026-07-27T15:02:49.663Z",
+  "specId": "006",
+  "folderSlug": "mcp-servers",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "005-design-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

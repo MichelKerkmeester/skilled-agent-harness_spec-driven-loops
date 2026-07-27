@@ -1,0 +1,32 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+SD-001,sk-code,playbook,routing,routing,code-webflow,,,39,FAIL,first failing stage: discovered
+SD-002,sk-code,playbook,routing,routing,code-opencode,,,59,PASS,
+SD-003,sk-code,playbook,negative,routing,,,,100,PASS,
+LS-001,sk-code,playbook,routing,routing,code-opencode,,,59,PASS,
+LS-002,sk-code,playbook,routing,routing,code-opencode,,,77,PASS,
+LS-003,sk-code,playbook,routing,routing,code-opencode,,,61,PASS,
+LS-004,sk-code,playbook,routing,routing,code-opencode,,,77,PASS,
+RD-001,sk-code,playbook,negative,routing,,,,100,PASS,
+RD-002,sk-code,playbook,routing,advisor,,,,100,PASS,
+SA-001,sk-code,playbook,routing,advisor,,,,100,PASS,
+MR-001,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-002,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-003,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+MR-004,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+CB-001,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+CB-002,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+CB-003,sk-code,,,browser,,,,,PASS,browser scenario — run in live mode (needs bdg)
+CS-001,sk-code,playbook,routing,routing,code-webflow,,,55,PASS,
+CS-002,sk-code,playbook,negative,routing,code-webflow,,,100,PASS,
+CS-003,sk-code,playbook,routing,routing,code-opencode,,,59,PASS,
+CS-004,sk-code,playbook,negative,routing,code-webflow,,,100,PASS,
+CS-005,sk-code,playbook,negative,routing,code-webflow,,,75,PASS,
+CS-006,sk-code,playbook,routing,routing,code-webflow,,,81,PASS,
+CS-007,sk-code,playbook,routing,routing,code-webflow,,,67,PASS,
+DR-001,sk-code,playbook,negative,routing,code-opencode,,,100,PASS,
+DR-002,sk-code,playbook,routing,routing,,,,100,PASS,
+DR-003,sk-code,playbook,routing,routing,,,,100,PASS,
+DR-004,sk-code,playbook,routing,routing,,,,100,PASS,
+TH-001,sk-code,playbook,routing,routing,,,,100,PASS,
+TH-002,sk-code,playbook,routing,routing,,,,100,PASS,

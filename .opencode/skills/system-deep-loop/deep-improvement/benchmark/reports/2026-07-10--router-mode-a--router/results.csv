@@ -1,0 +1,11 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DI-R01,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R02,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R03,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R04,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R05,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R06,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R07,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R08,deep-improvement,playbook,,routing,,,,100,PASS,
+DI-R10,deep-improvement,playbook,,routing,,,,100,PASS,

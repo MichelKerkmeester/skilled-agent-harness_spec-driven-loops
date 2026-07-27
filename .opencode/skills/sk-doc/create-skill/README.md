@@ -47,7 +47,9 @@ create-skill runs one of two workflow modes from a single packet. `create-skill`
 python3 .opencode/skills/sk-doc/create-skill/scripts/init_skill.py my-skill --path .opencode/skills
 ```
 
-Creates `my-skill/` with `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/`.
+Creates `my-skill/` with `SKILL.md`, a `manual-testing-playbook/` corpus index, and a
+`benchmark/reports/` tree carrying its own run index. `README.md`, `references/`, `assets/` and
+`scripts/` are added by hand as the skill earns them.
 
 **Step 2: Fill in the real content, then validate.**
 

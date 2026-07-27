@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/008-runtime-mirror-and-mcp-config",
+  "description": "Runtime mirror directories have diverged from their canonical sources, one mirror is a stale physical copy rather than a link, and MCP server",
+  "keywords": [
+    "runtime",
+    "mirror",
+    "directories",
+    "diverged",
+    "canonical",
+    "sources",
+    "one",
+    "stale",
+    "physical",
+    "copy",
+    "rather",
+    "link",
+    "mcp",
+    "server"
+  ],
+  "lastUpdated": "2026-07-27T08:45:03.210Z",
+  "specId": "008",
+  "folderSlug": "runtime-mirror-and-mcp-config",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "001-release-cleanup",
+    "017-findings-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
