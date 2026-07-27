@@ -1,28 +1,27 @@
 {
   "level": "1",
   "specFolder": "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
-  "description": "`git commit --only <paths>` silently skips paths that are untracked",
+  "description": "The pathspec failure that motivated the packet is covered by a rule built in phase 002, and its reproduction is asserted there",
   "keywords": [
-    "git",
-    "commit",
-    "only",
-    "paths",
-    "silently",
-    "skips",
-    "untracked"
+    "pathspec",
+    "failure",
+    "motivated",
+    "packet",
+    "covered",
+    "rule",
+    "phase",
+    "reproduction",
+    "asserted"
   ],
-  "lastUpdated": "2026-07-27T20:33:28.774Z",
+  "lastUpdated": "2026-07-27T20:21:35.753Z",
   "specId": "004",
   "folderSlug": "pathspec-integrity",
   "parentChain": [
     "sk-git",
     "016-git-action-advisory-hook"
   ],
-  "memorySequence": 4,
+  "memorySequence": 1,
   "memoryNameHistory": [
-    "27-07-26_20-51__scaffolded-the-sk-git-git-action-advisory-hook.md",
-    "27-07-26_21-25__built-the-sk-git-git-action-advisory-hook-across.md",
-    "27-07-26_21-27__built-the-sk-git-git-action-advisory-hook-across.md",
-    "27-07-26_21-33__built-the-sk-git-git-action-advisory-hook-across.md"
+    "27-07-26_20-51__scaffolded-the-sk-git-git-action-advisory-hook.md"
   ]
 }

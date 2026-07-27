@@ -185,7 +185,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-git declares no `hardrules:` frontmatter, so the existing evaluator has nothing to read for git commands",
+    "causal_summary": "sk-git declared no `hardrules:`, so the evaluator that already runs on every Bash command had nothing to read for git",
     "created_at": "2026-07-27T18:47:25Z",
     "last_save_at": "2026-07-27T19:50:10.855Z",
     "save_lineage": "graph_only",
@@ -196,7 +196,7 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba56a6574c3585e66587241375f1e3d6aae467e1efa7511b5722726ea88071d7",
+    "source_fingerprint": "sha256:42922bc43f187407eb167f120f67cb50c57520fc562b75e8bb8ce741f96eb5a3",
     "source_doc_hashes": {
       "spec.md": "84496ef58a663bf2d820bd1de0ee1250f89c15a993fd77d69423ece6d77da6ca",
       "plan.md": "ba139fe7a1da87323ac01e489dd3ac77105c5d2b5291d8459c43bce0df298874",

@@ -3,7 +3,48 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.3.2.0
+version: 1.4.0.0
+hard_rules:
+  - id: commit-scope-drops-untracked
+    check: commit-scope-drops-untracked
+    message: "Untracked files sit inside the scope of this commit and will be silently excluded — exit 0, no warning. Naming an untracked file directly would error; naming its directory does not. Run `git status` first, or check `git show --name-only HEAD` against what you expected."
+    severity: warn
+  - id: commit-pathspec-empty-change
+    check: commit-pathspec-empty-change
+    message: "A named path has nothing staged or modified under it, so it contributes nothing to this commit. Confirm the path is the one you meant."
+    severity: warn
+  - id: add-pathspec-matches-nothing
+    check: add-pathspec-matches-nothing
+    message: "This pathspec matches no files, so nothing will be staged and git will not say so. Check the path and the working directory."
+    severity: warn
+  - id: add-pathspec-only-ignored
+    check: add-pathspec-only-ignored
+    message: "Every file this pathspec matches is ignored, so nothing will be staged. Use `git add -f` if that is genuinely intended."
+    severity: warn
+  - id: add-update-skips-untracked
+    check: add-update-skips-untracked
+    message: "`add -u` stages tracked modifications only, and untracked files are present. If a new file is part of this change, it will be left behind."
+    severity: warn
+  - id: restore-discards-over-staged
+    check: restore-discards-over-staged
+    message: "This path has staged content. Restoring the working tree leaves the index copy in place, so the change appears reverted while a stale version stays staged. Add `--staged` to clear the index too."
+    severity: warn
+  - id: checkout-from-ref-stages-silently
+    check: checkout-from-ref-stages-silently
+    message: "Restoring from a ref writes the index as well as the working tree, so this content is staged without an add. Check `git diff --cached` before committing."
+    severity: warn
+  - id: merge-strategy-resolves-one-sided
+    check: merge-strategy-resolves-one-sided
+    message: "A one-sided strategy option resolves every conflict automatically and reports a clean result, so the discarded side is never shown. Nothing in the output will distinguish this from a merge that had no conflicts."
+    severity: warn
+  - id: case-only-pathspec-folds
+    check: case-only-pathspec-folds
+    message: "This path differs from a tracked file only by case, and the filesystem folds case. Git will resolve it to the existing path, so a case rename will silently not happen."
+    severity: warn
+  - id: staged-path-rewritten-by-filter
+    check: staged-path-rewritten-by-filter
+    message: "A path here passes through a clean filter, so the committed content differs from the file on disk. Reading the working copy will not tell you what you are committing; use `git show HEAD:<path>` to see the committed form."
+    severity: warn
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, owner-first-branch, skill-scoped-worktree, worktree-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->

@@ -25,6 +25,11 @@
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs'",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs'",
+            "timeout": 5
           }
         ]
       },

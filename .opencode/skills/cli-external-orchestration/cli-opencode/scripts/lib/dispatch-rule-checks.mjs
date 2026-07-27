@@ -100,16 +100,28 @@ export const KNOWN_CHECKS = Object.keys(CHECKS);
 
 /**
  * Evaluate a skill's hard_rules against a command string.
+ *
+ * The optional third argument lets a caller supply its own check registry and a context object
+ * describing state the command has not yet touched. Dispatch rules are answerable from the
+ * command text alone, but rules about a *repository* are not: whether `git reset` is worth a
+ * word depends entirely on whether the commit actually moves. Checks receive the context as a
+ * second parameter, which the command-only checks above simply ignore.
+ *
+ * @param {string} command
+ * @param {Array<object>} rules
+ * @param {{checks?:object, context?:object}} [options]
  * @returns {Array<{id,severity,message,check,passed:boolean}>} only the VIOLATED rules.
  */
-export function evaluate(command, rules) {
+export function evaluate(command, rules, options = {}) {
+  const registry = options.checks || CHECKS;
+  const context = options.context;
   const violations = [];
   for (const rule of rules) {
-    const fn = CHECKS[rule.check];
+    const fn = registry[rule.check];
     if (!fn) continue; // unknown check → skip (the CI validator catches typos, not this hot path)
     let passed = true;
     try {
-      passed = fn(String(command || ''));
+      passed = fn(String(command || ''), context);
     } catch {
       passed = true; // a check that throws must never block a dispatch (fail-open)
     }

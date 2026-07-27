@@ -14,19 +14,16 @@
     "session",
     "survey"
   ],
-  "lastUpdated": "2026-07-27T20:33:16.589Z",
+  "lastUpdated": "2026-07-27T20:01:34.759Z",
   "specId": "001",
   "folderSlug": "advisory-research",
   "parentChain": [
     "sk-git",
     "016-git-action-advisory-hook"
   ],
-  "memorySequence": 5,
+  "memorySequence": 2,
   "memoryNameHistory": [
     "27-07-26_20-50__scaffolded-the-sk-git-git-action-advisory-hook.md",
-    "27-07-26_20-53__scaffolded-the-sk-git-git-action-advisory-hook.md",
-    "27-07-26_21-24__built-the-sk-git-git-action-advisory-hook-across.md",
-    "27-07-26_21-27__built-the-sk-git-git-action-advisory-hook-across.md",
-    "27-07-26_21-33__built-the-sk-git-git-action-advisory-hook-across.md"
+    "27-07-26_20-53__scaffolded-the-sk-git-git-action-advisory-hook.md"
   ]
 }

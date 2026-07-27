@@ -185,7 +185,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`git commit --only <paths>` silently skips paths that are untracked",
+    "causal_summary": "The pathspec failure that motivated the packet is covered by a rule built in phase 002, and its reproduction is asserted there",
     "created_at": "2026-07-27T18:47:26Z",
     "last_save_at": "2026-07-27T19:50:11.084Z",
     "save_lineage": "graph_only",
@@ -196,7 +196,7 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e67fc51a23d7c9f7cb3d7fcbd12eaf456df08d4e36613c2e6475734b2fcc619e",
+    "source_fingerprint": "sha256:daf7300967d70d18809e69443f489f1cf69a8e98460108692ae5170e319bb22a",
     "source_doc_hashes": {
       "spec.md": "095524e557460dbe6b13d569f44eba9590eed73829226c3d876f8e81a338caae",
       "plan.md": "1fe8ab33b000ca02aaf68b56be295304295f4f0e0c7683c1ffd58499da4b7dc8",
