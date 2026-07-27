@@ -1,0 +1,23 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the intended truth; documentation is what gets corrected. Escalate
+(STATUS: BLOCKED) ONLY if the doc describes something clearly intended but never built — then change nothing.
+Never make a doc true by building the thing it imagined. Correct the words, not the runtime.
+
+You own ONLY the files named below. Another worker is editing other files right now.
+Do not run git commands that mutate state. Do not commit.
+Do NOT call MCP tools or load skills — the spec-memory daemon is down and each call costs ~30s.
+Work directly with Read, Glob, Grep, Edit. Start immediately. State the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING skcodeE
+FILES YOU OWN: .opencode/skills/sk-code/changelog/v4.1.0.0.md (ONLY)
+TASK: devin-01:F5 — the v4.1.0.0 changelog states a surface/mode count for sk-code that contradicts the authoritative .opencode/skills/sk-code/mode-registry.json. Read the registry, count its real modes and surfaces, and correct the changelog prose to match. The registry is the truth. Do NOT edit mode-registry.json.

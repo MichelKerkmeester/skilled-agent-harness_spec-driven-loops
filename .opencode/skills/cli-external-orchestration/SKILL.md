@@ -12,7 +12,7 @@ metadata:
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, four workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, self-invocation guard, and hard rules in its packet, and the hub only routes by `workflowMode`.
+One skill, five workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, self-invocation guard, and hard rules in its packet, and the hub only routes by `workflowMode`.
 
 ---
 
@@ -38,7 +38,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven. `mode-registry.json` lists all three modes in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
+Routing is registry-driven. `mode-registry.json` lists all five modes in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -80,13 +80,17 @@ A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to openc
 ```text
 cli-external-orchestration/
   SKILL.md
+  README.md
   mode-registry.json
   hub-router.json
   description.json
   graph-metadata.json
   changelog/
+  feature-catalog/
   manual-testing-playbook/
   benchmark/
+  leaf-manifest.json
+  shared/
   cli-opencode/
     SKILL.md
     README.md
@@ -158,7 +162,7 @@ Each mode's self-invocation guard is runtime-signal-based (env var / process anc
 
 ### ⚠️ ESCALATE IF
 
-- A packet cannot be classified as `workflow` (all three current modes are; a future mode may not be).
+- A packet cannot be classified as `workflow` (all five current modes are; a future mode may not be).
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
 - The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor — that is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent; report it rather than working around it.
 

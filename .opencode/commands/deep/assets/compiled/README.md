@@ -1,6 +1,6 @@
 ---
 title: "Compiled Deep Command Contracts"
-description: "Developer reference for generated deep-command contracts, rollout metadata and the alignment placeholder contract."
+description: "Developer reference for generated deep-command contracts, rollout metadata and the live alignment contract."
 trigger_phrases:
   - "compiled deep contracts"
   - "deep command contract manifest"
@@ -43,7 +43,7 @@ compiled/
 | `deep-research.contract.md` | Generated executor contract for `/deep:research`. |
 | `deep-review.contract.md` | Generated executor contract for `/deep:review`. |
 | `deep-ai-council.contract.md` | Generated executor contract for `/deep:ai-council`. |
-| `deep-alignment.contract.md` | Placeholder required by manifest hashing while alignment remains outside the compiler command map. |
+| `deep-alignment.contract.md` | Live authoritative executor contract for `/deep:alignment`; loaded by the renderer in `fix` mode ahead of the legacy body and freshness-checked against maintained sources. |
 | `manifest.jsonl` | Append-only render records with command, mode and content digests. |
 
 ---
@@ -75,7 +75,7 @@ Regenerate a contract when any maintained source digest changes.
 
 The generated contracts are derived artifacts. Do not edit their generated sections by hand.
 
-`deep-alignment.contract.md` is different. It documents that `/deep:alignment` is not registered in the compiler and that fallback injection uses the matching legacy body. It must not act as an execution authority.
+`deep-alignment.contract.md` is the live authoritative executor contract for `/deep:alignment` at injection time. The renderer loads it in `fix` mode ahead of the legacy body and rejects stale content; maintained command, workflow, skill and referenced runtime files remain the regeneration authority.
 
 The maintained command files, workflow YAML assets, skill instructions and referenced runtime files remain the source of truth.
 

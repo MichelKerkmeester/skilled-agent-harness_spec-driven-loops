@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary",
-      "impl summary core"
+      "hub doc runtime drift summary",
+      "017 phase 006 summary"
     ],
     "key_topics": [
       "hub",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Skill hub documentation contradicts the registries and files it describes: mode counts that disagree with the registry, routing claimed where no routing infrastructure exists, layout diagrams omitting live contract files, and canonical command and agent indexes missing live entries",
     "created_at": "2026-07-27T08:41:11Z",
-    "last_save_at": "2026-07-27T08:47:44.561Z",
+    "last_save_at": "2026-07-27T15:01:17.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:beacb33c2e4c8d768eadf8bc8e48927d4532001de8a2c31d966e387a84f0aafa",
+    "source_fingerprint": "sha256:6924e22d7bdbd8f173f5e7438b37ca46d6b57fbcdfd6ab75d84ec526d2bb4833",
     "source_doc_hashes": {
       "spec.md": "117c034f93240f0ab455db1ddfd8f5ef4a68b1ad15a5fcd959625fc1ae59a086",
       "plan.md": "4d2ef0c706226ed8cea465de828991c9025a1df55f12ec80e355c4d8c9f0d51a",
       "tasks.md": "92d7b36dc245dbf65f57c23bb073c773215ecc97d5217c495509856b921dffea",
-      "implementation-summary.md": "e9f2314cf1f860f6bb88f511a78121bd067191f70002b7aab43c3ba0c80c8074"
+      "implementation-summary.md": "68ec4ab38ada8c1b755f231c6281c74a7ec18a42842c65c590c31321c629925c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,27 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: where documentation and runtime disagree, the RUNTIME is the intended truth and the
+DOCUMENTATION is what gets corrected. Only escalate (STATUS: BLOCKED) if the doc describes something
+clearly INTENDED but never built — in that case change nothing and explain.
+
+You own the files named in your task and NO others. Another worker is editing other files right now.
+Never touch a file outside your task. Do not run git commands that mutate state. Do not commit.
+Verify every claim against the real tree before editing; state the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING gitD-skill
+FILES YOU OWN: .opencode/skills/sk-git/SKILL.md and .opencode/skills/sk-git/benchmark/README.md (ONLY)
+TASK: Two items:
+(1) devin-01:F14 — sk-git/SKILL.md uses routing language claiming it routes to git-worktrees / git-commit / git-finish, but sk-git has NO mode-registry.json and NO hub-router.json (verify both are absent). sk-git is a single flat skill, not a routing parent hub. Correct the prose so it describes what the skill actually is, without inventing a mechanism. Do NOT create registry files.
+(2) devin-01:F15 (routed in from an earlier phase) — .opencode/skills/sk-git/benchmark/ holds two run-label folders (2026-07-10--live--glm-5-2-high, 2026-07-10--live--kimi-2-7) with NO README documenting them. Other hubs document their benchmark archives as additive and never-overwritten. Create benchmark/README.md cataloguing these two runs and stating the additive never-repurposed convention. Model it on .opencode/skills/sk-doc/benchmark/README.md but do not copy content that is untrue for sk-git.
+
+EFFICIENCY: Do NOT call MCP tools or load skills. The spec-memory daemon is down and every
+call costs ~30s to time out. Work directly with Read, Glob, Grep and Edit. Start immediately.

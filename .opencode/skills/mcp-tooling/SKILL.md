@@ -79,13 +79,17 @@ A scored route loads exactly the selected mode's declared resources. `routerPoli
 ```text
 mcp-tooling/
   SKILL.md
+  README.md
   mode-registry.json
   hub-router.json
   description.json
   graph-metadata.json
   changelog/
+  feature-catalog/
   manual-testing-playbook/
   benchmark/
+  leaf-manifest.json
+  shared/
   mcp-chrome-devtools/
     SKILL.md
     README.md

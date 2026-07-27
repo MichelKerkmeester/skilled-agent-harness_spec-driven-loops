@@ -1,0 +1,30 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: where documentation and runtime disagree, the RUNTIME is the intended truth and the
+DOCUMENTATION is what gets corrected. Only escalate (STATUS: BLOCKED) if the doc describes something
+clearly INTENDED but never built — in that case change nothing and explain.
+
+You own the files named in your task and NO others. Another worker is editing other files right now.
+Never touch a file outside your task. Do not run git commands that mutate state. Do not commit.
+Verify every claim against the real tree before editing; state the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING cmdA-readme
+FILES YOU OWN: .opencode/commands/README.txt (ONLY)
+TASK: Four drift defects in this one canonical index, fix all four in a single coherent edit:
+(1) devin-03:F2 — the entire live `interface/` command group is missing from the index. It exists at .opencode/commands/interface/ with real commands (design.md, design-reference.md, motion.md). Add it.
+(2) devin-03:F3 — the index writes `agent_router` (underscore) but the real file is `agent-router.md` (hyphen). Correct the name.
+(3) devin-03:F4 — `create/diff.md` is a live working command missing from the index. Add it.
+(4) devin-03:F5 — `deep/alignment.md` and `deep/command-benchmark.md` are live routers missing from the index. Add them.
+Match the existing formatting and ordering conventions of the file exactly. Verify at the end by listing every .md under .opencode/commands/ and confirming each appears in the index.
+
+EFFICIENCY: Do NOT call MCP tools or load skills. The spec-memory daemon is down and every
+call costs ~30s to time out. Work directly with Read, Glob, Grep and Edit. Start immediately.

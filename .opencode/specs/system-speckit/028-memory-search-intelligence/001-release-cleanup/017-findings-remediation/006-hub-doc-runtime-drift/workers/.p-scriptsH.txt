@@ -1,0 +1,25 @@
+Documentation-drift remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3).
+
+OPERATOR RULING: runtime is the intended truth; documentation is what gets corrected. Escalate
+(STATUS: BLOCKED) ONLY if the doc describes something clearly intended but never built — then change nothing.
+Never make a doc true by building the thing it imagined. Correct the words, not the runtime.
+
+You own ONLY the files named below. Another worker is editing other files right now.
+Do not run git commands that mutate state. Do not commit.
+Do NOT call MCP tools or load skills — the spec-memory daemon is down and each call costs ~30s.
+Work directly with Read, Glob, Grep, Edit. Start immediately. State the search root you used.
+
+Return EXACTLY:
+FINDING: <ids>
+REVERIFIED: <commands + real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving docs now match the tree>
+RISK: <what this could break and how you checked>
+
+FINDING scriptsH
+FILES YOU OWN: .opencode/commands/scripts/README.md and .opencode/skills/sk-git/changelog/v1.3.2.0.md (ONLY)
+TASK: Two items:
+(1) devin-03:F8 — commands/scripts/README.md documents a stale command-family list (create, deep, design) that no longer matches the real families under .opencode/commands/. List the real directories and correct the family list.
+(2) devin-01:F18 (routed in) — sk-git changelog v1.3.2.0 line ~16 says four code READMEs were added for scripts/, scripts/tests/, .github/workflows/ and .github/hooks/scripts/. The last two live at the REPOSITORY ROOT .github/, not under sk-git/.github (which does not exist). The claim is imprecise about location, not false. Reword that line to name the correct locations. Do not delete the entry — it records real work.
