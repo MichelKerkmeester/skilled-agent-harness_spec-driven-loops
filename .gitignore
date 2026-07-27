@@ -28,6 +28,7 @@
 .local/
 .spec-kit
 *.local
+/karabiner.json
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Secrets & certificates

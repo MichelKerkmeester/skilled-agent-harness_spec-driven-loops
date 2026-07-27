@@ -2,8 +2,10 @@
 # Validate ONE spec folder with a short timeout, print a single summary line.
 set -euo pipefail
 folder="${1:?folder required}"
-VALIDATE="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh"
-ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
+VALIDATE="$REPO_ROOT/.opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+ROOT="$REPO_ROOT/.opencode/specs"
 # 30s hard cap
 out=$(bash "$VALIDATE" "$folder" --strict 2>&1 & pid=$!
       ( sleep 30 && kill -9 "$pid" 2>/dev/null || true ) & killer=$!

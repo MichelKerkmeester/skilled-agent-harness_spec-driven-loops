@@ -1,0 +1,17 @@
+Repository remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3). Make ONLY the change described. Touch NOTHING else.
+Do not run git commands that mutate state except where explicitly permitted. Do not commit.
+A concurrent session is editing this repo; never stage, revert or touch files outside your task.
+If your target sits under benchmark/, changelog/ or archive/, read that directory README first —
+retention there is usually a documented contract and renaming or deleting violates it.
+
+Return EXACTLY:
+FINDING: <id>
+REVERIFIED: <command + its real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <command proving the change is correct>
+RISK: <what this could break and how you checked>
+
+FINDING fanout-SOL-09
+TASK: The committed script .opencode/skills/system-spec-kit/scripts/.scan-one.sh hardcodes one developer workstation absolute path on lines 5 and 6 (VALIDATE= and ROOT=), so it only runs on that machine. Replace both with repo-relative resolution derived from the script own location, e.g. resolve REPO_ROOT via: SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" then walk up to the repo root, or use git rev-parse --show-toplevel. Keep behaviour identical. Verify by running the script help/no-arg path or bash -n syntax check, and confirm no /Users/ string remains in the file.

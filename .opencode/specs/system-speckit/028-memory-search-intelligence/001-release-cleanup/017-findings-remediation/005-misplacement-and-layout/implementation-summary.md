@@ -1,35 +1,36 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: File Placement and Layout Correction"
+description: "Three placement fixes applied, two refuted against the benchmark archive contract, three routed to the phases that own their decisions."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "misplacement layout summary"
+  - "017 phase 005 summary"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/005-misplacement-and-layout"
-    last_updated_at: "2026-07-27T08:41:11Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-07-27T14:35:33Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Applied three placement fixes via a three-worker LUNA swarm"
+    next_safe_action: "Begin phase 006 hub documentation and runtime drift"
     blockers: []
-    key_files: []
+    key_files:
+      - "approved-findings.md"
+      - "refutations.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-27-028-017-005"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "319 committed files embed an absolute workstation path; worth a scoped audit."
+    answered_questions:
+      - "Archived run-labels are never renamed; the naming standard applies to new runs only."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -48,28 +49,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+A script that only ran on one machine now runs anywhere, personal keyboard configuration left the shared repository without leaving the operator's disk, and a hub layout diagram matches what is actually on disk.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+| Finding | Result |
+|---------|--------|
+| `fanout:SOL-09` | APPLIED — `.scan-one.sh` derives `REPO_ROOT` from its own location instead of hardcoding a homedir |
+| `devin-04:F7` | APPLIED — `karabiner.json` untracked and ignored, file preserved on disk |
+| `devin-01:F13` | APPLIED — sk-doc layout block now lists `feature-catalog/` |
+| `devin-01:F18` | REFUTED — the changelog is imprecise about location, not false; routed to 006 |
+| `devin-05:F3` | REFUTED — renaming archived run-labels violates the never-repurpose contract |
+| `devin-03:F9`, `devin-03:F10` | ROUTED to 006 — real runner gaps, but wiring versus removing is a decision |
+| `fanout:SOL-06` | ROUTED to 007 — generated routing topology belongs with contract drift |
 
-### [Feature Name]
+### The karabiner decision
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The finding said personal configuration does not belong in a shared repository, which is right. Hard-deleting it would also have taken the operator's working shortcuts with it, since the file lives at the repository root. Untracking plus ignoring achieves the stated goal and costs the operator nothing. This also resolves the shortcut finding phase 003 deferred: once the file is untracked, a broken reference inside it stops being a repository concern.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +71,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+Three GPT-5.6-LUNA workers at xhigh effort in one wave. Each change was verified independently afterwards: the rewritten path resolution was walked by hand to confirm `REPO_ROOT` lands on the repository root and that both derived paths exist, the karabiner change was checked on all three axes at once (ignored, untracked, still on disk), and the SKILL.md diff was inspected to confirm it touched exactly one line.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +79,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Untrack karabiner.json rather than delete it | Achieves the finding's goal without destroying the operator's local configuration |
+| Refuse the run-label rename | Third phase in which the additive, never-repurposed archive contract stopped a proposed change |
+| Route the two runner gaps rather than resolve them | Both tests exist and neither runs; wiring or removing is a decision beyond a placement pass |
+| Fix one absolute-path script, flag the other 319 | Widening the phase silently would have been scope creep; the number deserves its own audit |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +92,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `.scan-one.sh` free of absolute paths | PASS, zero `/Users/` matches, `bash -n` clean |
+| Resolved `REPO_ROOT` targets exist | PASS, `validate.sh` and `.opencode/specs` both resolve |
+| karabiner untracked, ignored, on disk | PASS on all three |
+| sk-doc layout diff scope | PASS, one line changed |
+| Containment | PASS, concurrent-session paths untouched |
+| `validate.sh --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +107,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **319 committed files still embed an absolute workstation path.** Many are benchmark reports where recording the run-time path is legitimate, so the real defect count is lower — but it needs a scoped audit to separate the two.
+2. **Two test directories still have no runner.** Routed, not fixed.
+3. **The karabiner file remains on disk untracked.** If the operator wants it gone entirely, that is a local deletion, not a repository change.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-
