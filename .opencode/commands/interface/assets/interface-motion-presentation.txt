@@ -37,7 +37,7 @@ STATUS=DEFER ROUTE=<hub|sibling>
 |---|---|
 | motion choices change or depend on the overall interface direction | `/interface:design` |
 | motion constraints affect static layout, token, or responsive decisions | interface mode |
-| the motion spec is ready for performance, accessibility, or quality review | `design-interface/assets/interface-preflight-card.md` |
+| the motion spec is ready for accessibility or quality review | `design-interface/assets/interface-preflight-card.md` |
 | accepted motion moves to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
 
 `HANDOFF_REQUIRED=false`. Recommendations never silently chain.

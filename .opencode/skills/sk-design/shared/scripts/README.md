@@ -1,6 +1,6 @@
 ---
 title: "Scripts: Shared Deterministic Gates for sk-design"
-description: "Cross-mode Python and Node checkers plus their node:test coverage, reused by the design-interface foundations subworkflow and the hub-level command surface."
+description: "Cross-mode Python and Node checkers plus their node:test coverage, reused by design-interface and the hub-level command surface."
 ---
 
 # Scripts: Shared Deterministic Gates for sk-design

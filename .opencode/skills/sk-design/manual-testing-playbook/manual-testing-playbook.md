@@ -281,8 +281,8 @@ This section records wave planning and capacity guidance for the manual testing 
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `styles/_engine/tests/eligibility-first.test.mjs` | Eligibility-before-ranking and bounded cards | `SLU-001` |
-| `styles/_engine/tests/hydrate-guard.test.mjs` | Generation mismatch, stale records and path containment | `SLU-002` |
+| `styles/tests/engine/eligibility-first.test.mjs` | Eligibility-before-ranking and bounded cards | `SLU-001` |
+| `styles/tests/engine/hydrate-guard.test.mjs` | Generation mismatch, stale records and path containment | `SLU-002` |
 | `shared/corpus-context/tests/validate-context-plan.test.mjs` | Zero hydration and authority prohibitions | `SLU-003`, `SLU-004` |
 | `design-md-generator/backend/tests/study-exemplars.test.ts` | Leak signals and real no-STUDY retry | `SLU-005` |
 

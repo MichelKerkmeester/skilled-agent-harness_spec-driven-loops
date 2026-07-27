@@ -9,7 +9,7 @@ description: "Python checkers that give filled foundations token artifacts struc
 
 ## 1. OVERVIEW
 
-`design-interface/scripts/` owns three deterministic gates for the `foundations` subworkflow that validate filled token artifacts, plus a positive/negative fixture pair for the naming and doc gate. Each gate closes a spot where a token table or artifact could otherwise look compliant on inspection while failing its own contract.
+`design-interface/scripts/` owns three deterministic gates that validate filled token artifacts, plus a positive/negative fixture pair for the naming and doc gate. Each gate closes a spot where a token table or artifact could otherwise look compliant on inspection while failing its own contract.
 
 ## 2. CONTENTS
 
@@ -35,5 +35,5 @@ Exit 0 means satisfied, exit 1 means a violation, exit 2 means a usage, read, or
 
 ## 4. RELATED
 
-- [`../SKILL.md`](../SKILL.md) - design-interface mode, foundations subworkflow doctrine.
+- [`../SKILL.md`](../SKILL.md) - design-interface mode doctrine.
 - [`../../shared/scripts/README.md`](../../shared/scripts/README.md) - shared checkers reused across sk-design modes, including the `md_table` row parser these scripts import.

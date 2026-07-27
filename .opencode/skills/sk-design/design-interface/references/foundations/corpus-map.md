@@ -24,7 +24,7 @@ This skill distills the static visual-system corpus into actionable guidance rat
 
 ### Distillation Boundary
 
-This child owns static systems. It does not own broad interface direction (`interface`), motion build (`motion`), or review/scoring (`audit`).
+This child owns static systems. It does not own motion build (`motion`).
 
 ---
 

@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 The aesthetic direction in `design-principles.md` decides whether a surface is distinctive. This reference decides whether it is mechanically broken. The two are different jobs. A page can pass the taste read, a memorable signature, a grounded palette, a justified risk, and still ship a four-line hero, a bento grid with a dead cell, and an eyebrow above every section. Those are structural defaults the model reaches for by reflex, and they read as AI no matter how good the direction is.
 
-Each check below is binary. It passes or it fails. Run them on any built or planned interface before calling the work done. This is the layout gate that the audit mode also references, so author the rules here once and let audit point at them rather than restate them.
+Each check below is binary. It passes or it fails. Run them on any built or planned interface before calling the work done. This is the layout gate that pre-delivery review also references, so author the rules here once and let that review point at them rather than restate them.
 
 The Brand-vs-Product posture is set first in `../../../shared/register.md`. These mechanical checks hold for both postures, the register only changes how loud the surface is allowed to be, never whether a hero may overflow or a button may hide its own label.
 
@@ -144,4 +144,4 @@ If a single box cannot be honestly checked, fix it before delivering.
 - [`brief-to-dials.md`](./brief-to-dials.md) owns the Design Read intake that sets variance, motion, and density before these mechanical checks apply.
 - [`ux-quality-reference.md`](./ux-quality-reference.md) owns the full objective accessibility and performance floor beyond the layout defaults checked here.
 - [`../../../shared/register.md`](../../../shared/register.md) sets the Brand-vs-Product posture first, these mechanical checks hold for both postures.
-- The audit mode references this gate rather than restating it. Author the mechanical rules here once.
+- Pre-delivery review references this gate rather than restating it. Author the mechanical rules here once.

@@ -56,9 +56,11 @@
       "implementation-summary.md",
       "scratch/benchmark-before/report.json",
       "scratch/routing.sha256.before",
+      ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/command-metadata.json",
-      ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md"
+      ".opencode/skills/sk-design/shared/creation-contract.md",
+      ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
+      ".opencode/skills/sk-design/styles/README.md"
     ],
     "entities": [
       {
@@ -158,15 +160,21 @@
         "source": "derived"
       },
       {
-        "name": "command-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "name": "creation-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/shared/creation-contract.md",
         "source": "derived"
       },
       {
         "name": "interface-preflight-card.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/README.md",
         "source": "derived"
       },
       {
@@ -198,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Packet",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-07-27T04:33:25.494Z",
+    "last_save_at": "2026-07-27T07:52:53.212Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,17 +220,19 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8e53e1aab1294372b2338c24302008b139534c95fb206ede842fbd98e0618c8f",
+    "source_fingerprint": "sha256:96a59168e903d81b25ee9d84800166d7f0a04457617babec7203a781aacb5154",
     "source_doc_hashes": {
-      "spec.md": "9209d5fe64c3e78c89bb50badf0b8112e37fbf241c2f681fb3b73943080b134d",
-      "plan.md": "3bf4620f7cc99ff64dc263b1184309b55a72752f80a802859316a862bd733ec2",
-      "tasks.md": "e0ebc1a50f68154e9b759461d88b5be76d050ae0cfa1bc25b76a356d0820362e",
-      "checklist.md": "a21a5ef6caefeb4a709b971295d0d85124635098856163ff0a1e5a661f2063e5",
-      "decision-record.md": "06fadb0f63a128d1ea0a90c8ba26f10ffa1e0e183cabd27d340ed477e63c8720",
-      "implementation-summary.md": "3c6fc92fd4e4adcf87e836d7c17fb024d3346ae3c5d62bf1ae6fe51fd7250b5f",
-      "handover.md": "7dbef0c54a26e394067b1c69c47b1b3582ab566affae13dab054d11f4009bb4d"
+      "spec.md": "7f09a984bfb3dfa9a0480d4150482c20cfab33d355bb539a1f0d669daeeea33a",
+      "plan.md": "ca97b19f6628f2b9c21871a055f8be7a47ee0ec26cc79b59572402ccd9a5feec",
+      "tasks.md": "42b0e33a76af8003dbe50fb34f31f70cd3ecc3082b31ecd035b262a995125aae",
+      "checklist.md": "a002046d2bafefc3740109df8e28cc4a75a5a3ebde35c3d820caa13eb26c7d03",
+      "decision-record.md": "856e63422b21c36e780cd931e821915626ca9a2d339bf34fb3c54c706de68946",
+      "implementation-summary.md": "175e697f1f00dcb3854ad6c4a407e9625fdee842c280c7f1cbf3ebb4763de11f",
+      "research/research.md": "b8439b2a153b8377161b1776675b52a327e6544bd3b33955479ac07ffd74e127",
+      "handover.md": "f81742d8e105e02774adc8e5fb88e0543729ad2a4fc8bd368e813eae09dbd942"
     },
     "last_active_child_id": null,
     "last_active_at": null

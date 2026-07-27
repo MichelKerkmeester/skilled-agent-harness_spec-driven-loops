@@ -54,7 +54,5 @@ Cite these principles during direction critique, token review, motion planning, 
 
 ## 4. Child Usage
 
-- `interface` uses this reference during direction critique.
-- `foundations` uses it to test whether tokens are purposeful.
+- `interface` uses this reference during direction critique and to test whether tokens are purposeful.
 - `motion` uses it to avoid scattered animation.
-- `audit` uses it as slop-detection vocabulary.

@@ -69,7 +69,7 @@ The canonical creation surface maps `/interface:{design,motion,design-reference}
 
 ### Style retrieval backend
 
-Style-library retrieval can run through the `legacy`, `shadow`, or `persistent` adapter in `styles/_engine/`. It defaults to `legacy`, so the flat files remain authoritative. The opt-in persistent backend under `styles/_db/` uses SQLite and FTS5 with a rebuildable vector projection, an incremental `DISCOVER` through `PUBLISH` indexer, and eligibility-first weighted-RRF retrieval.
+Style-library retrieval can run through the `legacy`, `shadow`, or `persistent` adapter in `styles/lib/engine/`. It defaults to `legacy`, so the flat files remain authoritative. The opt-in persistent backend under `styles/lib/database/` uses SQLite and FTS5 with a rebuildable vector projection, an incremental `DISCOVER` through `PUBLISH` indexer, and eligibility-first weighted-RRF retrieval.
 
 ### One advisor identity
 

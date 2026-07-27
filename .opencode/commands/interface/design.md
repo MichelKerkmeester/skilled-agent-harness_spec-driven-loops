@@ -21,7 +21,7 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 ### WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to invent or reshape a distinctive interface direction.
-- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is findings-first review, accessibility, performance, scoring, or production hardening.
+- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is findings-first review, accessibility, or production hardening.
 - **The interface mode owns static-system work directly:** color, typography, layout, spacing, responsive adaptation, and theming.
 - **Prefer `/interface:design-reference` when** the request is extracting a live site's measured CSS into DESIGN.md.
 - **Prefer `/interface:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.

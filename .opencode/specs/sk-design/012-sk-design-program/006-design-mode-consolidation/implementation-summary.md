@@ -9,9 +9,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/006-design-mode-consolidation"
-    last_updated_at: "2026-07-27T04:33:25.494Z"
+    last_updated_at: "2026-07-27T07:52:44.000Z"
     last_updated_by: "claude"
-    recent_action: "Rewrote verification to the exact gate table; removed unbacked claims"
+    recent_action: "Superseded NFR-S01 by ADR-002; corrected checklist.md frontmatter description"
     next_safe_action: "Orchestrator runs validate.sh --strict, styles SHA-256 equality, and the design benchmark suite"
     blockers: []
     key_files:

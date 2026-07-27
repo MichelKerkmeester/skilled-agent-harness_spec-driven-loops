@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: sk-design mode consolidation"
-description: "Evidence checklist for four-mode routing, permanent interface-owned foundations and audit workflows, exact relocations, frozen styles, and downstream verifier preservation."
+description: "Evidence checklist for four-mode routing, the ADR-002 retirement of foundations and audit (not preserved as permanent interface-owned subworkflows), exact relocations, frozen styles, and downstream verifier preservation."
 trigger_phrases:
   - "sk-design consolidation verification"
   - "four mode checklist"

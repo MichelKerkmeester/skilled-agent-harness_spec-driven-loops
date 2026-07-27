@@ -43,7 +43,7 @@ Run a local styles-library query for a restrained product interface with motion 
 ### Exact Command Sequence
 
 ```bash
-node .opencode/skills/sk-design/styles/_engine/style-library.mjs query --request '{"text":"product interface restrained motion compact controls","useFts":false,"limit":2}'
+node .opencode/skills/sk-design/styles/lib/engine/style-library.mjs query --request '{"text":"product interface restrained motion compact controls","useFts":false,"limit":2}'
 ```
 
 ### Evidence
@@ -76,8 +76,8 @@ Capture the complete JSON result and record `eligibility.eligibleCount`, `eligib
 
 | File | Role |
 |---|---|
-| `.opencode/skills/sk-design/styles/_engine/style-library.mjs` | Query command and bounded card result. |
-| `.opencode/skills/sk-design/styles/_engine/tests/eligibility-first.test.mjs` | Regression proof for eligibility-before-ranking. |
+| `.opencode/skills/sk-design/styles/lib/engine/style-library.mjs` | Query command and bounded card result. |
+| `.opencode/skills/sk-design/styles/tests/engine/eligibility-first.test.mjs` | Regression proof for eligibility-before-ranking. |
 
 ---
 

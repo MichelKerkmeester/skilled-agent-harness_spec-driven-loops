@@ -19,7 +19,7 @@ Private procedure card for applying the existing foundations-subworkflow compone
 | Field | Value |
 |---|---|
 | Purpose | Help the `foundations` subworkflow identify reusable components and system gaps in a finished or near-finished design. |
-| Owning subworkflow | `foundations` (under `design-interface`) |
+| Owning mode | `design-interface` |
 | Source reference | `component-extract.md` |
 | Trigger | Use when a user wants to turn a design into a component library, extract reusable parts, or make an interface maintainable as a system. |
 | Output contract | A component inventory grouped into foundations, atoms, molecules, organisms, and templates, with variants, states, tokens, composition, accessibility notes, and gaps. |

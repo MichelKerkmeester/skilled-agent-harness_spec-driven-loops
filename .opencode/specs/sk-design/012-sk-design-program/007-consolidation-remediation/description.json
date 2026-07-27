@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-design/012-sk-design-program/007-consolidation-remediation",
+  "description": "After `/interface:audit` and `/interface:foundations` were retired, a five-iteration deep-review returned CONDITIONAL (P0=0, P1=4, P2=3) and a",
+  "keywords": [
+    "interface",
+    "audit",
+    "foundations",
+    "retired",
+    "five-iteration",
+    "deep-review",
+    "returned",
+    "conditional"
+  ],
+  "lastUpdated": "2026-07-27T08:07:07.356Z",
+  "specId": "007",
+  "folderSlug": "consolidation-remediation",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}

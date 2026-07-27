@@ -154,7 +154,7 @@ Remove the two unnecessary hub-mode identities by retiring both commands (ADR-00
 
 ### Security
 
-- **NFR-S01**: Existing audit shell invocation and path-validation gates remain intact.
+- **NFR-S01** *(superseded by ADR-002)*: ~~Existing audit shell invocation and path-validation gates remain intact.~~ Audit was retired, not relocated; the surviving write-boundary guarantee is the md-generator's shared `output-policy.ts` allowlist gating every generated write, plus interface and motion staying read-only tool surfaces.
 - **NFR-S02**: No external dependency, credential, network call, or executable permission change is introduced.
 
 ### Reliability

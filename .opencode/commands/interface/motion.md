@@ -21,7 +21,7 @@ Use the shared nine-stage contract for public choreography. The `motion` mode ow
 ### WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is purposeful animation, transitions, or reduced-motion behavior.
-- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is motion-performance or quality assessment.
+- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is quality assessment.
 - **The interface mode owns static-system work directly.**
 - **Prefer `/interface:design` when** direction is undecided.
 - **Prefer `/interface:design-reference` when** the request is measured source extraction.

@@ -19,7 +19,7 @@ Private procedure card for applying the existing foundations-subworkflow hierarc
 | Field | Value |
 |---|---|
 | Purpose | Let the `foundations` subworkflow review whether a design's hierarchy and rhythm make scanning, grouping, and emphasis intentional. |
-| Owning subworkflow | `foundations` (under `design-interface`) |
+| Owning mode | `design-interface` |
 | Source reference | `hierarchy-rhythm-review.md` |
 | Trigger | Use when the request mentions hierarchy, rhythm, spacing, type scale, density, visual order, or a design that feels flat or chaotic. |
 | Output contract | A foundations review naming primary/secondary/tertiary elements, spacing scale, type scale, repetition patterns, strategic variation, alignment, and color-discipline findings. |

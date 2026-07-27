@@ -163,6 +163,11 @@ export function runPreflight(options: GuidedRunOptions): PreflightCheck[] {
   // Shared with extract.ts/report-gen.ts/preview-gen.ts/proof.ts so the
   // spec-folder/sandbox boundary can't drift between callers.
   const outputPolicy = resolveOutputPath(options.output);
+  // --design-md is resolved independently from --output further down (STUDY
+  // leak-retry branch rmSync's + rewrites it), so it must pass the same
+  // allowlist here or an operator-named file outside the boundary could be
+  // deleted and overwritten.
+  const designMdPolicy = options.designMd ? resolveOutputPath(options.designMd) : undefined;
   const requiresStudyAuthor = Boolean(options.study && options.designMd);
 
   return [
@@ -171,6 +176,15 @@ export function runPreflight(options: GuidedRunOptions): PreflightCheck[] {
     { name: 'dependencies', ok: fs.existsSync(nodeModules), detail: nodeModules },
     { name: 'chromium', ok: chromium.ok, detail: chromium.detail },
     { name: 'output-path', ok: outputPolicy.ok, detail: outputPolicy.ok ? outputPolicy.resolvedPath : `${outputPolicy.resolvedPath} is unsafe: ${outputPolicy.reason}` },
+    {
+      name: 'design-md-path',
+      ok: !designMdPolicy || designMdPolicy.ok,
+      detail: !options.designMd
+        ? 'not provided for this run'
+        : designMdPolicy!.ok
+          ? designMdPolicy!.resolvedPath
+          : `${designMdPolicy!.resolvedPath} is unsafe: ${designMdPolicy!.reason}`,
+    },
     {
       name: 'study-author',
       ok: !requiresStudyAuthor || Boolean(options.authorCommand),

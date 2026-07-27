@@ -154,7 +154,6 @@ quality_standards:
 user_inputs:
   target: "Interface target. REQUIRED."
   register: "brand|product; default auto"
-  mode: "direction|directions|redesign|preflight|build|aesthetic; default direction"
 
 task_projections:
   bolder: "Apply within workflowMode=interface."

@@ -1,6 +1,6 @@
 ---
 title: "OKLCH Color And Token System"
-description: "Current-state reference for the foundations subworkflow's register-gated OKLCH color, semantic token naming, contrast repair, and gamut fallback."
+description: "Current-state reference for design-interface's register-gated OKLCH color, semantic token naming, contrast repair, and gamut fallback."
 trigger_phrases:
   - "oklch color and token system"
   - "foundations color tokens"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The `foundations` subworkflow builds every color system in OKLCH so lightness steps read as brightness steps, hue stays stable across a scale, and chroma can be managed explicitly instead of guessed from hex.
+`design-interface` builds every color system in OKLCH so lightness steps read as brightness steps, hue stays stable across a scale, and chroma can be managed explicitly instead of guessed from hex.
 
 The mode reads the shared Brand-vs-Product register before any color value, because that call sets the color strategy and density everything else inherits.
 

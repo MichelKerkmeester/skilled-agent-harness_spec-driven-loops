@@ -19,7 +19,7 @@ Private procedure card for applying the existing foundations-subworkflow tweak-c
 | Field | Value |
 |---|---|
 | Purpose | Let the `foundations` subworkflow define a small, meaningful set of live-adjustable design controls for a surface or system. |
-| Owning subworkflow | `foundations` (under `design-interface`) |
+| Owning mode | `design-interface` |
 | Source reference | `make-tweakable.md` |
 | Trigger | Use when the user wants to play with options, compare visual choices, expose adjustable tokens, or make variants controllable. |
 | Output contract | A tweak-control spec naming 3 to 8 controls, control types, token or state targets, defaults, persistence expectations, and hidden-when-off behavior. |

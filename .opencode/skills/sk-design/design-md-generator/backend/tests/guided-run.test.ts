@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
-import { buildPlan, parseGuidedRunArgs, runPreflight } from '../scripts/guided-run';
+import { buildPlan, parseGuidedRunArgs, runGuided, runPreflight } from '../scripts/guided-run';
 import { outputPolicyRoots } from '../scripts/output-policy';
 
 describe('guided-run wrapper', () => {
@@ -53,5 +55,50 @@ describe('guided-run wrapper', () => {
     const reportStep = plan.find((s) => s.label === 'report');
     expect(reportStep?.args).toContain(absoluteOutput);
     expect(reportStep?.args).toContain(absoluteDesignMd);
+  });
+
+  it('reports an unsafe --design-md path outside the output-policy allowlist as unsafe', () => {
+    const checks = runPreflight({
+      url: 'https://example.com',
+      output: path.join(outputPolicyRoots.SPECS_ROOT, 'demo-packet', 'output'),
+      designMd: '/etc/design-md-generator-target.md',
+      fast: false,
+      report: false,
+      dryRun: true,
+    });
+    const designMdCheck = checks.find((check) => check.name === 'design-md-path');
+    expect(designMdCheck?.ok).toBe(false);
+  });
+
+  it('fails closed for an unsafe --design-md path before the STUDY leak-retry branch can delete/rewrite it', () => {
+    const unsafeDir = fs.mkdtempSync(path.join(os.tmpdir(), 'guided-run-unsafe-'));
+    const unsafeDesignMd = path.join(unsafeDir, 'DESIGN.md');
+    fs.writeFileSync(unsafeDesignMd, '# operator-authored content\n');
+    const output = path.join(outputPolicyRoots.SPECS_ROOT, 'demo-packet', 'output');
+
+    try {
+      let executeCommandCalls = 0;
+      expect(() => runGuided(
+        {
+          url: 'https://example.com',
+          output,
+          designMd: unsafeDesignMd,
+          fast: false,
+          report: false,
+          dryRun: false,
+          study: true,
+        },
+        { executeCommand: () => { executeCommandCalls += 1; return ''; } },
+      )).toThrow(/Preflight failed/);
+
+      // The STUDY leak-retry branch (rmSync + rewrite) never runs: preflight
+      // rejects the unsafe path before any command executes and before the
+      // operator-named file is touched.
+      expect(executeCommandCalls).toBe(0);
+      expect(fs.existsSync(unsafeDesignMd)).toBe(true);
+      expect(fs.readFileSync(unsafeDesignMd, 'utf-8')).toBe('# operator-authored content\n');
+    } finally {
+      fs.rmSync(unsafeDir, { recursive: true, force: true });
+    }
   });
 });

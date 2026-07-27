@@ -1,6 +1,6 @@
 ---
 title: "Typography And Spacing Scale"
-description: "Current-state reference for the foundations subworkflow's type roles, pairing, measure, and spacing-scale rhythm."
+description: "Current-state reference for design-interface's type roles, pairing, measure, and spacing-scale rhythm."
 trigger_phrases:
   - "typography and spacing scale"
   - "foundations type scale"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The `foundations` subworkflow sets type roles and a spacing scale before any decorative type or layout move, so hierarchy and rhythm read as deliberate rather than accidental.
+`design-interface` sets type roles and a spacing scale before any decorative type or layout move, so hierarchy and rhythm read as deliberate rather than accidental.
 
 Six roles are named before values: display, heading, body, caption, utility, and data, each with a defined job and guidance.
 

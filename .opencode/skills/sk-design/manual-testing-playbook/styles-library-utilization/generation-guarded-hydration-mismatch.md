@@ -39,7 +39,7 @@ Select one current styles-library card, retry hydration with a mismatched genera
 ### Exact Command Sequence
 
 ```bash
-node --input-type=module -e "import { runQuery, runHydrate } from './.opencode/skills/sk-design/styles/_engine/style-library.mjs'; const query = await runQuery({ text: 'product interface restrained motion', useFts: false, limit: 1 }); const result = await runHydrate({ id: query.cards[0].id, generationHash: 'sha256:' + '0'.repeat(64), mode: 'interface', includes: ['DESIGN.md'] }); console.log(JSON.stringify(result)); if (result.error !== 'generation-mismatch') process.exit(1);"
+node --input-type=module -e "import { runQuery, runHydrate } from './.opencode/skills/sk-design/styles/lib/engine/style-library.mjs'; const query = await runQuery({ text: 'product interface restrained motion', useFts: false, limit: 1 }); const result = await runHydrate({ id: query.cards[0].id, generationHash: 'sha256:' + '0'.repeat(64), mode: 'interface', includes: ['DESIGN.md'] }); console.log(JSON.stringify(result)); if (result.error !== 'generation-mismatch') process.exit(1);"
 ```
 
 ### Evidence
@@ -72,8 +72,8 @@ Capture the one-line JSON refusal and command exit status. Do not capture the pr
 
 | File | Role |
 |---|---|
-| `.opencode/skills/sk-design/styles/_engine/hydrate.mjs` | Live generation and record binding. |
-| `.opencode/skills/sk-design/styles/_engine/tests/hydrate-guard.test.mjs` | Mismatch and stale-record regressions. |
+| `.opencode/skills/sk-design/styles/lib/engine/hydrate.mjs` | Live generation and record binding. |
+| `.opencode/skills/sk-design/styles/tests/engine/hydrate-guard.test.mjs` | Mismatch and stale-record regressions. |
 
 ---
 

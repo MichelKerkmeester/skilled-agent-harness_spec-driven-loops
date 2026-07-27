@@ -58,26 +58,6 @@ Required when `interface` hands a built or specified UI to `sk-code`.
 - **OPEN RISKS / VERIFICATION**: pre-flight status, responsive checks, accessibility checks, screenshot or render fidelity needs.
 - **NEVER-CHANGE**: URLs, nav labels, form field names, legal copy and any brief-pinned values.
 
-### Foundations Handoff Card
-
-Required when `foundations` hands a static visual system or token set to `sk-code`.
-
-- **WHAT**: token system role, surface role and target platform context.
-- **LOCKED VALUES**: CSS variables or theme-token names, OKLCH or fallback values, type scale, spacing scale, breakpoint intent and data-viz scales when present.
-- **IMPLEMENTATION MECHANISM / STACK BOUNDARY**: target token format, CSS-variable strategy, breakpoint approach and what `sk-code` must implement without inventing new roles.
-- **OPEN RISKS / VERIFICATION**: contrast, gamut, measure, responsive behavior, touch targets and unresolved source-evidence gaps.
-- **NEVER-CHANGE**: semantic token roles, breakpoint intent and source system names.
-
-### Audit Backlog Handoff Card
-
-Required when accepted audit findings move to implementation.
-
-- **WHAT**: accepted findings backlog. An audit with zero accepted findings still emits an empty valid backlog.
-- **LOCKED VALUES**: finding id, severity, owner, target, evidence label, one-line fix shape and verification for each accepted finding.
-- **IMPLEMENTATION MECHANISM / STACK BOUNDARY**: audit routes accepted findings only. It does not apply fixes or grant write authority.
-- **OPEN RISKS / VERIFICATION**: per-finding check, residual uncertainty and owner for follow-up evidence.
-- **NEVER-CHANGE**: finding severity, evidence caveat, legal copy, locked tokens and review boundary.
-
 ### Motion Handoff Field
 
 Required on motion cards before implementation.
@@ -103,6 +83,4 @@ Required on motion cards before implementation.
 ## 5. CHILD USAGE
 
 - `interface` uses this schema as the required build manifest for real UI handoff.
-- `foundations` uses this schema as the final token-system handoff card.
-- `audit` uses this schema as the accepted-finding backlog card, with zero-finding output allowed.
 - `motion` uses this schema to record the implementation mechanism and animation stack boundary.
