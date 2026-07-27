@@ -137,6 +137,10 @@ Stop when enough evidence exists
 ## 10. RULED OUT DIRECTIONS
 [None yet]
 <!-- /ANCHOR:ruled-out-directions -->
+<!-- ANCHOR:carried-forward-open-questions -->
+## 11A. CARRIED-FORWARD OPEN QUESTIONS
+[None yet]
+<!-- /ANCHOR:carried-forward-open-questions -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 [None yet]
@@ -323,6 +327,26 @@ describe('deep-research reducer', () => {
     expect(dashboard).toContain('- Count: 0');
     expect(dashboard).toContain('- None');
     expect(dashboard).toContain('## 7. NEXT FOCUS\n[All tracked questions are resolved]');
+  });
+
+  it('resolves questions from iteration context and renders the canonical iteration number', () => {
+    const specFolder = makeFixtureSpecFolder();
+    writeFile(
+      path.join(specFolder, 'research', 'deep-research-state.jsonl'),
+      [
+        '{"type":"config","topic":"Reducer fixture topic","maxIterations":5,"convergenceThreshold":0.05,"createdAt":"2026-04-03T00:00:00Z","specFolder":"fixture"}',
+        '{"type":"iteration","iteration":1,"status":"complete","focus":"Question A","findingsCount":1,"newInfoRatio":0.6,"answeredQuestions":["The evidence supports a qualified answer."],"keyQuestions":["Question A"],"sourcesQueried":["src/a.ts"],"toolsUsed":["Read"],"timestamp":"2026-04-03T00:05:00Z","durationMs":1000}',
+        '',
+      ].join('\n'),
+    );
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+    const dashboard = fs.readFileSync(result.dashboardPath, 'utf8');
+    const question = result.registry.keyQuestions.find((entry: { text: string }) => entry.text === 'Question A');
+
+    expect(question).toMatchObject({ resolved: true, resolvedAtIteration: 1 });
+    expect(dashboard).toContain('| 1 | Question A |');
+    expect(dashboard).not.toContain('| undefined | Question A |');
   });
 
   it('derives next focus from the latest answer when no carried-forward question is present', () => {

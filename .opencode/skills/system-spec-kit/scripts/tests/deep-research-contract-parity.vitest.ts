@@ -33,11 +33,9 @@ function readWorkspaceFile(relativePath: string): string {
     '.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json',
   ];
 
-  const runtimeMirrors = [
-    '.opencode/agents/deep-research.md',
-    '.claude/agents/deep-research.md',
-    '.opencode/agents/deep-research.toml',
-  ];
+  const runtimeMirrors = capabilityModule
+    ? capabilityModule.loadRuntimeCapabilities().matrix.runtimes.map((runtime) => runtime.mirrorPath)
+    : [];
 
   const commandAssets = [
     '.opencode/commands/deep/assets/deep-research-auto.yaml',
@@ -79,6 +77,19 @@ function readWorkspaceFile(relativePath: string): string {
       expect(content, `${docPath} should invoke the reducer script`).toContain(
         'node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}',
       );
+    }
+  });
+
+  it('records manual stop before confirm-mode synthesis', () => {
+    const content = readWorkspaceFile('.opencode/commands/deep/assets/deep-research-confirm.yaml');
+    const preIterationGate = content.match(/gate_pre_iteration:[\s\S]*?step_dispatch_iteration:/)?.[0] || '';
+    const postIterationGate = content.match(/gate_post_iteration:[\s\S]*?step_generate_dashboard:/)?.[0] || '';
+
+    for (const gate of [preIterationGate, postIterationGate]) {
+      expect(gate).toContain('"event":"manualStop"');
+      expect(gate).toContain('"stopReason":"manualStop"');
+      expect(gate).toContain('set: { reason: "manualStop" }');
+      expect(gate).toContain('proceed_to: gate_pre_synthesis');
     }
   });
 
@@ -125,7 +136,7 @@ function readWorkspaceFile(relativePath: string): string {
 
   it('exposes a machine-readable capability matrix for every supported runtime surface', () => {
     const runtimeIds = capabilityModule!.listRuntimeCapabilityIds();
-    expect(runtimeIds).toEqual(['opencode', 'claude', 'opencode']);
+    expect(runtimeIds).toEqual(['opencode', 'claude']);
 
     const matrix = capabilityModule!.loadRuntimeCapabilities().matrix;
     for (const runtime of matrix.runtimes) {
