@@ -26,8 +26,6 @@ import {
   coerceSharedPayloadEnvelope,
   type OpenCodeTransportPlan,
 } from '../lib/context/opencode-transport.js';
-import {
-} from '@spec-kit/shared/code-graph-contracts';
 import type { MCPResponse } from '@spec-kit/shared/types';
 import { createRequire } from 'node:module';
 import { existsSync } from 'node:fs';

@@ -8,7 +8,6 @@
     ".": "./dist/index.js",
     "./compact-merger": "./dist/compact-merger.js",
     "./budget-allocator": "./dist/budget-allocator.js",
-    "./code-graph-contracts": "./dist/code-graph-contracts.js",
     "./embeddings": "./dist/embeddings.js",
     "./*.js": "./dist/*.js",
     "./*": "./dist/*.js"

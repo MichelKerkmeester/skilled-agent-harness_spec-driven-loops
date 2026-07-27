@@ -144,7 +144,6 @@ servers:
     install_script_mutation_class: none  # no install script; inline install_steps used
     health_checks:
       - { path: "mcp-server/dist/index.js", type: "file_exists" }
-      - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
       - { path: "node_modules", type: "dir_exists" }
     install_steps:
       - "cd {skill_dir} && npm install"

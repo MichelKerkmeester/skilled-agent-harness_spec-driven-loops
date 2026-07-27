@@ -26,8 +26,6 @@ import {
   buildOpenCodeTransportPlan,
   type OpenCodeTransportPlan,
 } from '../lib/context/opencode-transport.js';
-import {
-} from '@spec-kit/shared/code-graph-contracts';
 import { getCallerContext } from '../lib/context/caller-context.js';
 import { loadMatchingStates, type HookProducerMetadata, type HookState } from '../hooks/claude/hook-state.js';
 import { buildResumeLadder } from '../lib/resume/resume-ladder.js';

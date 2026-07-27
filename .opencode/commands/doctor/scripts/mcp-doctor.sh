@@ -13,6 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
+#                       Names: mk-spec-memory, mk_skill_advisor, code_mode, sequential_thinking
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -46,6 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
+                      Names: mk-spec-memory, mk_skill_advisor, code_mode, sequential_thinking
   --root <path>       Override project root
 
 Exit Codes:
@@ -360,127 +362,6 @@ diagnose_code_mode() {
   fi
 }
 
-# ── mk-code-index (System Code Graph) ─────────────────────────
-  local dist_entry="$skill_dir/mcp-server/dist/index.js"
-  local stale_root_dist="$skill_dir/dist"
-  local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
-  # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → the skill-local canonical
-  # location → the former shared location as fallback. The launcher auto-migrates a
-  # former-shared DB back to the skill-local location on first run.
-  local db_dir="${SPECKIT_CODE_GRAPH_DB_DIR:-$skill_dir/mcp-server/database}"
-  local legacy_db_dir="$PROJECT_ROOT/.opencode/.spec-kit/code-graph/database"
-  local needs_fix=false
-  local needs_db_dir=false
-
-
-  if [[ "$HAS_NODE" != true ]]; then
-    record_skip "$srv" "all" "Node.js not available"
-    _log log_skip "Node.js not available — skipping all checks"
-    return
-  fi
-
-  # Check 1: dist/index.js exists
-  if [[ -f "$dist_entry" ]]; then
-    record_pass "$srv" "dist_exists" "$dist_entry"
-    _log log_pass "mcp-server/dist/index.js exists"
-  else
-    record_fail "$srv" "dist_exists" "File missing: $dist_entry"
-    _log log_fail "mcp-server/dist/index.js missing — needs build"
-    needs_fix=true
-  fi
-
-  # Check 2: launcher exists
-  if [[ -f "$launcher" ]]; then
-    record_pass "$srv" "launcher_exists" "$launcher"
-    _log log_pass ".opencode/bin/mk-code-index-launcher.cjs exists"
-  else
-    record_fail "$srv" "launcher_exists" "File missing: $launcher"
-    _log log_fail "launcher missing — repo state inconsistent"
-    needs_fix=true
-  fi
-
-  # Check 3: node_modules installed
-  if [[ -d "$skill_dir/node_modules" ]]; then
-    record_pass "$srv" "node_modules" "Installed"
-    _log log_pass "node_modules installed"
-  else
-    record_fail "$srv" "node_modules" "Missing"
-    _log log_fail "node_modules missing — needs npm install"
-    needs_fix=true
-  fi
-
-  # Check 4: root-level dist is absent. Code Graph now emits directly to mcp-server/dist.
-  if [[ -e "$stale_root_dist" ]]; then
-    record_fail "$srv" "root_dist_absent" "Stale root dist present: $stale_root_dist"
-    _log log_fail "stale root dist present — run npm run clean && npm run build"
-    needs_fix=true
-  else
-    record_pass "$srv" "root_dist_absent" "No root-level dist directory"
-    _log log_pass "root-level dist absent"
-  fi
-
-  # Check 5: database directory (skill-local canonical path; former-shared .spec-kit DB checked as fallback)
-  if [[ -d "$db_dir" ]]; then
-    local db_file="$db_dir/code-graph.sqlite"
-    if [[ -f "$db_file" ]]; then
-      local db_size
-      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
-      record_pass "$srv" "database" "code-graph.sqlite exists at $db_dir ($db_size)"
-      _log log_pass "Database exists: code-graph.sqlite at $db_dir ($db_size)"
-    else
-      record_warn "$srv" "database" "Database directory exists but code-graph.sqlite not yet built"
-      _log log_warn "Database directory exists but code-graph.sqlite not yet built (created on first scan)"
-    fi
-  elif [[ -d "$legacy_db_dir" ]] && [[ -f "$legacy_db_dir/code-graph.sqlite" ]]; then
-    record_warn "$srv" "database" "Legacy DB at $legacy_db_dir — launcher will auto-migrate on next startup"
-    _log log_warn "Legacy DB at $legacy_db_dir; will auto-migrate to $db_dir on next launcher startup"
-    needs_db_dir=true
-  else
-    record_warn "$srv" "database" "Database directory not found at $db_dir"
-    _log log_warn "Database directory not found at $db_dir (created on first scan; fix mode creates it)"
-    needs_db_dir=true
-    needs_fix=true
-  fi
-
-  # Check 6: Server entry point loads without native errors
-  if [[ -f "$dist_entry" ]]; then
-    if timeout 5 node -e "
-      try { require('$dist_entry'); } catch(e) {
-        if (e.code === 'ERR_DLOPEN_FAILED') process.exit(2);
-        process.exit(0); // MCP server expects stdio — exiting is normal
-      }
-    " 2>/dev/null; then
-      record_pass "$srv" "server_starts" "No ERR_DLOPEN_FAILED"
-      _log log_pass "Server entry point loads without native errors"
-    else
-      local ec=$?
-      if [[ "$ec" -eq 2 ]]; then
-        record_fail "$srv" "server_starts" "ERR_DLOPEN_FAILED — native module mismatch"
-        _log log_fail "ERR_DLOPEN_FAILED — native module rebuild required"
-        needs_fix=true
-      else
-        record_pass "$srv" "server_starts" "Entry point accessible"
-        _log log_pass "Server entry point accessible"
-      fi
-    fi
-  fi
-
-  # Fix mode
-  if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
-    _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
-    if [[ "$needs_db_dir" == true ]]; then
-      mkdir -p "$db_dir" 2>/dev/null || true
-      record_pass "$srv" "fix_db_dir" "Created database directory: $db_dir"
-      _log log_info "Created database directory: $db_dir"
-    fi
-    rm -rf "$stale_root_dist" 2>/dev/null || true
-    (cd "$skill_dir" && npm install 2>&1 | tail -3 && \
-      npm run clean 2>&1 | tail -3 && \
-      ./node_modules/.bin/tsc --build ./tsconfig.json 2>&1 | tail -3) || true
-    record_pass "$srv" "fix_npm" "npm install + clean + tsc --build attempted"
-    _log log_info "Ran npm install + clean + tsc --build"
-  fi
-}
 
 # ── mk_skill_advisor (Skill Advisor) ──────────────────────────
 diagnose_mk_skill_advisor() {
@@ -606,7 +487,7 @@ diagnose_mk_skill_advisor() {
   local stale_dist_root
   for stale_dist_root in \
     "$skill_dir/mcp-server/dist/system-skill-advisor" \
-    "$skill_dir/mcp-server/dist/system-spec-kit" \
+    "$skill_dir/mcp-server/dist/system-spec-kit"; do
     local drift_key
     drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
     if [[ -e "$stale_dist_root" ]]; then
@@ -692,6 +573,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
+  local -a servers=("mk-spec-memory" "mk_skill_advisor" "code_mode" "sequential_thinking")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
