@@ -164,7 +164,7 @@
         "lane": "REAL_UI_LOOP",
         "label": "handoff",
         "class": "argument",
-        "surface": "--mode build: real UI loop and sk-code handoff manifest"
+        "surface": "--mode handoff: real UI loop and sk-code handoff manifest"
       },
       {
         "lane": "REGISTER_DIALS",

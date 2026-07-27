@@ -11,22 +11,25 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/013-design-command-decomposition-research"
-    last_updated_at: "2026-07-27T14:00:00Z"
+    last_updated_at: "2026-07-27T18:30:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored packet framing both lineages and the five research questions"
-    next_safe_action: "Dispatch Lineage A and Lineage B, 10 forced iterations each"
+    recent_action: "Both lineages converged 10/10; verdict recorded, 3 defects fixed."
+    next_safe_action: "Leave packet closed; SKILL.md word-cap relief remains an open follow-up."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-interface/SKILL.md"
-      - "research/lineages/glm/"
-      - "research/lineages/composer/"
+      - "research/lineages/glm/research.md"
+      - "research/lineages/composer/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "SKILL.md word-cap relief (GLM rec #3, confidence 0.7) — not executed"
+      - "Motion-only process branching (GLM rec #4, confidence 0.65) — not executed"
+    answered_questions:
+      - "Should /interface:design be decomposed? No — both lineages independently converged on not-worth-doing."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -42,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned — no iterations started |
+| **Status** | Complete — both lineages converged 10/10 iterations; verdict: do not decompose |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |
@@ -163,7 +166,8 @@ Run two independent 10-iteration deep-research lineages — `cli-devin` (`glm-5-
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Whether a third comparison artifact (`research.md`) is needed as a standalone file, or whether the cross-lineage comparison can live entirely inside `implementation-summary.md`**: left to whichever is cleaner once both lineages' actual synthesis content exists; either satisfies REQ-004.
+- **Resolved**: each lineage produced its own `research.md` synthesis (`research/lineages/glm/research.md`, `research/lineages/composer/research.md`); the cross-lineage comparison lives in `implementation-summary.md` rather than a third standalone file — satisfies REQ-004 without duplicating content.
+- **Unresolved (not this packet's scope to execute)**: whether GLM's rec #3 (SKILL.md word-cap relief via a motion-prose sub-document, confidence 0.7) and rec #4 (mode-internal process branching for motion-only prompts, confidence 0.65) are worth doing — both are inferred-benefit proposals the research surfaced but did not verify against real usage; see `implementation-summary.md` Known Limitations.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -25,9 +25,8 @@
     }
   },
   "transformVerbRouting": {
-    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move. command-metadata.json's taskProjections is a separate layer governing which mode owns the same verb under an explicit slash command. The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
+    "note": "Transform verbs are applied by the interface mode under the 'make it' framing. command-metadata.json's taskProjections is a separate layer governing which mode owns the same verb under an explicit slash command. The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
     "interfaceFrame": "make it",
-    "auditFrame": "should it be",
     "interfaceAliases": ["bolder", "quieter", "distill", "clarify", "delight"],
     "aliasOnly": ["clarify"],
     "commandProjectionParity": ["bolder", "quieter", "distill", "delight"]

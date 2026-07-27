@@ -10,20 +10,25 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/013-design-command-decomposition-research"
-    last_updated_at: "2026-07-27T14:00:00Z"
+    last_updated_at: "2026-07-27T18:30:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored task breakdown across three phases"
-    next_safe_action: "Start T001"
+    recent_action: "Both lineages converged 10/10; verdict recorded, 3 defects fixed."
+    next_safe_action: "Leave packet closed; SKILL.md word-cap relief remains an open follow-up."
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-interface/SKILL.md"
+      - "research/lineages/glm/research.md"
+      - "research/lineages/composer/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "SKILL.md word-cap relief (GLM rec #3, confidence 0.7) — not executed"
+      - "Motion-only process branching (GLM rec #4, confidence 0.65) — not executed"
+    answered_questions:
+      - "Should /interface:design be decomposed? No — both lineages independently converged on not-worth-doing."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
@@ -50,9 +55,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the five research questions and hard constraint text match `spec.md` verbatim in both lineages' iteration framing (no path) [15m]
-- [ ] T002 Snapshot `design-interface/SKILL.md`'s current 5 argument lanes, 12 internal lanes, `INTENT_SIGNALS`, and `RESOURCE_MAP` as the shared evidence base (`.opencode/skills/sk-design/design-interface/SKILL.md`) [15m]
-- [ ] T003 Create `research/lineages/glm/` and `research/lineages/composer/` directories (`research/lineages/`) [5m]
+- [x] T001 Confirm the five research questions and hard constraint text match `spec.md` verbatim in both lineages' iteration framing (no path) [15m]
+- [x] T002 Snapshot `design-interface/SKILL.md`'s current 5 argument lanes, 12 internal lanes, `INTENT_SIGNALS`, and `RESOURCE_MAP` as the shared evidence base (`.opencode/skills/sk-design/design-interface/SKILL.md`) [15m]
+- [x] T003 Create `research/lineages/glm/` and `research/lineages/composer/` directories (`research/lineages/`) [5m]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,15 +67,15 @@ _memory:
 
 ### Lineage A — cli-devin / glm-5-2
 
-- [ ] T004 [P] Dispatch Lineage A, iterations 1-10, forced (no early convergence stop) (`research/lineages/glm/`) [varies]
-- [ ] T005 Lineage A produces converged synthesis: ranked value-to-cost recommendations, explicit confidence per item, "not worth doing" section (`research/lineages/glm/`) [included in T004]
-- [ ] T006 Lineage A's synthesis explicitly addresses all five research questions (`research/lineages/glm/`) [included in T004]
+- [x] T004 [P] Dispatch Lineage A, iterations 1-10, forced (no early convergence stop) (`research/lineages/glm/`) [varies]
+- [x] T005 Lineage A produces converged synthesis: ranked value-to-cost recommendations, explicit confidence per item, "not worth doing" section (`research/lineages/glm/`) [included in T004]
+- [x] T006 Lineage A's synthesis explicitly addresses all five research questions (`research/lineages/glm/`) [included in T004]
 
 ### Lineage B — cli-cursor / composer-2.5
 
-- [ ] T007 [P] Dispatch Lineage B, iterations 1-10, forced (no early convergence stop) (`research/lineages/composer/`) [varies]
-- [ ] T008 Lineage B produces converged synthesis: ranked value-to-cost recommendations, explicit confidence per item, "not worth doing" section (`research/lineages/composer/`) [included in T007]
-- [ ] T009 Lineage B's synthesis explicitly addresses all five research questions (`research/lineages/composer/`) [included in T007]
+- [x] T007 [P] Dispatch Lineage B, iterations 1-10, forced (no early convergence stop) (`research/lineages/composer/`) [varies]
+- [x] T008 Lineage B produces converged synthesis: ranked value-to-cost recommendations, explicit confidence per item, "not worth doing" section (`research/lineages/composer/`) [included in T007]
+- [x] T009 Lineage B's synthesis explicitly addresses all five research questions (`research/lineages/composer/`) [included in T007]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -78,11 +83,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Confirm both `research/lineages/glm/` and `research/lineages/composer/` show 10 completed iteration records (no path) [10m]
-- [ ] T011 Spot-check every ranked-above-"not worth doing" recommendation in both syntheses against the hard constraint (no path) [20m]
-- [ ] T012 Produce the cross-lineage comparison: named agreements, named disagreements, most load-bearing disagreement identified (`research.md` or `implementation-summary.md`) [30m]
-- [ ] T013 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research --strict` exits 0 (no path) [5m]
-- [ ] T014 Mark checklist.md items with evidence (`checklist.md`) [10m]
+- [x] T010 Confirm both `research/lineages/glm/` and `research/lineages/composer/` show 10 completed iteration records (no path) [10m]
+- [x] T011 Spot-check every ranked-above-"not worth doing" recommendation in both syntheses against the hard constraint (no path) [20m]
+- [x] T012 Produce the cross-lineage comparison: named agreements, named disagreements, most load-bearing disagreement identified (`research.md` or `implementation-summary.md`) [30m]
+- [x] T013 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research --strict` exits 0 (no path) [5m]
+- [x] T014 Mark checklist.md items with evidence (`checklist.md`) [10m]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,12 +95,12 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Both lineages show exactly 10 completed iterations
-- [ ] Both syntheses ranked, confidence-scored, with a "not worth doing" section
-- [ ] Cross-lineage comparison names concrete agreements and disagreements
-- [ ] Checklist.md fully verified
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Both lineages show exactly 10 completed iterations
+- [x] Both syntheses ranked, confidence-scored, with a "not worth doing" section
+- [x] Cross-lineage comparison names concrete agreements and disagreements
+- [x] Checklist.md verified (14/15 P0-P2 items; CHK-060 left unticked as a documented deviation — see `checklist.md`)
 <!-- /ANCHOR:completion -->
 
 ---
