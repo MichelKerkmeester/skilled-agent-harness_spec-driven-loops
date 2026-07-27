@@ -52,6 +52,20 @@ export interface ContainmentRevertResult {
 export interface ContainmentOptions {
   repoRoot: string;
   artifactDir: string;
+  /**
+   * Directories that are neither this leaf's artifact dir nor its business.
+   *
+   * Under a concurrent fan-out, sibling lineages write their own artifacts while
+   * this leaf runs. Those writes appear in `git status` after the pre-dispatch
+   * baseline was taken and are indistinguishable from writes this leaf made, so
+   * attributing them to this leaf is unsound — and reverting them destroys a
+   * sibling's legitimate in-flight work. Paths under these directories are
+   * therefore excluded from detection entirely rather than reported and reverted.
+   *
+   * Passing sibling artifact dirs here narrows only attribution; every path
+   * outside both this leaf's dir and these exclusions stays fully guarded.
+   */
+  unattributableDirs?: string[];
   env?: NodeJS.ProcessEnv;
 }
 
@@ -213,7 +227,9 @@ function realpathSafe(p: string): string {
  * macOS `/var` -> `/private/var`) does not make the worktree toplevel disagree
  * with the caller-supplied paths and silently disable containment.
  */
-function resolveArtifactScope(opts: ContainmentOptions): { artifactRelPosix: string } | null {
+function resolveArtifactScope(
+  opts: ContainmentOptions,
+): { artifactRelPosix: string; unattributableRelPosix: string[] } | null {
   const toplevel = resolveGitToplevel(opts.repoRoot, opts.env);
   if (!toplevel) return null;
   const repoReal = realpathSafe(opts.repoRoot);
@@ -223,7 +239,23 @@ function resolveArtifactScope(opts: ContainmentOptions): { artifactRelPosix: str
   const artifactRelPosix = toPosix(relative(repoReal, artifactReal));
   // An artifact dir resolved outside repoRoot (e.g. '../other') cannot be scoped.
   if (artifactRelPosix.startsWith('..') || isAbsolute(artifactRelPosix)) return null;
-  return { artifactRelPosix };
+
+  // Same resolution rules as the artifact dir: anything that cannot be expressed
+  // as a repo-relative subpath is dropped rather than silently widening scope.
+  const unattributableRelPosix: string[] = [];
+  for (const dir of opts.unattributableDirs ?? []) {
+    const rel = toPosix(relative(repoReal, realpathSafe(dir)));
+    if (!rel || rel.startsWith('..') || isAbsolute(rel)) continue;
+    if (rel === artifactRelPosix) continue;
+    unattributableRelPosix.push(rel);
+  }
+  return { artifactRelPosix, unattributableRelPosix };
+}
+
+/** True when the path belongs to a directory whose writes cannot be attributed to this leaf. */
+function isUnattributable(repoRelativePath: string, unattributableRelPosix: string[]): boolean {
+  const p = toPosix(repoRelativePath);
+  return unattributableRelPosix.some((dir) => p === dir || p.startsWith(`${dir}/`));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -244,6 +276,7 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): string[]
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
   const out: string[] = [];
   for (const entry of entries) {
+    if (isUnattributable(entry.path, scope.unattributableRelPosix)) continue;
     if (!isInsideArtifact(entry.path, scope.artifactRelPosix)) {
       out.push(toPosix(entry.path));
     }
@@ -264,6 +297,7 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
   for (const entry of entries) {
     const p = toPosix(entry.path);
     if (isInsideArtifact(p, scope.artifactRelPosix)) continue;
+    if (isUnattributable(p, scope.unattributableRelPosix)) continue;
     if (preSet.has(p)) continue;
     violations.push({
       path: p,

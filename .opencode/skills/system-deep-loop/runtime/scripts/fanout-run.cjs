@@ -2206,8 +2206,21 @@ async function main() {
       // claude-code lineages are intentionally excluded: their dispatch models may
       // legitimately write outside lineageDir, and codex is the unguarded path.
       const containmentEnabled = lineage.kind === 'cli-codex';
+      // Sibling lineages run concurrently and write their own artifacts after this
+      // leaf's baseline is captured. Those writes are indistinguishable from this
+      // leaf's, so treating them as its violations reverts a sibling's legitimate
+      // in-flight work — a completed lineage can be erased by an unrelated leaf
+      // tripping containment. Exclude them from attribution; everything outside
+      // both this leaf's dir and its siblings' stays guarded.
+      const siblingLineageDirs = allLineages
+        .filter((other) => other.label !== lineage.label)
+        .map((other) => path.join(lineagesDir, other.label));
       const preDispatchDirtyPaths = containmentEnabled
-        ? snapshotOutOfScopeDirtyPaths({ repoRoot: process.cwd(), artifactDir: lineageDir })
+        ? snapshotOutOfScopeDirtyPaths({
+          repoRoot: process.cwd(),
+          artifactDir: lineageDir,
+          unattributableDirs: siblingLineageDirs,
+        })
         : [];
 
       let result;
@@ -2254,6 +2267,7 @@ async function main() {
         const containment = enforceWriteContainment({
           repoRoot: process.cwd(),
           artifactDir: lineageDir,
+          unattributableDirs: siblingLineageDirs,
           preDispatchDirtyPaths,
           iteration: attempt,
           label: lineage.label,
