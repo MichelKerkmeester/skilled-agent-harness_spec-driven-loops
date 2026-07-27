@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Design Context Loading Contract
 
-This file is shared vocabulary, not a workflow and not a sixth mode. The mode packets still own craft: `../design-interface/SKILL.md` owns interface direction and pre-flight, `../design-foundations/SKILL.md` owns static systems and contrast, and `../design-audit/SKILL.md` plus `../design-audit/references/audit-contract.md` own evidence-backed audit claims.
+This file is shared vocabulary, not a workflow and not a fourth mode. The mode packets still own craft: `../design-interface/SKILL.md` owns interface direction, the static visual system, contrast, and evidence-backed pre-delivery claims through `../design-interface/assets/interface-preflight-card.md`.
 
 ---
 
@@ -32,12 +32,10 @@ Required first files:
 
 For narrow advice, the parent hub's smallest-useful-mode rule still applies. For work that builds, redesigns, generates, or evaluates a UI surface, the smallest useful bundle is larger than one mode:
 
-- `interface` for direction, surface read, and pre-flight.
-- `foundations` for palette, type, layout, responsive, token, and contrast decisions.
+- `interface` for direction, the static visual system (palette, type, layout, responsive, token, and contrast decisions), surface read, and pre-flight.
 - `register.md` plus `../design-interface/references/design-process/brief-to-dials.md` for register and dials.
-- `../design-interface/assets/interface-preflight-card.md` before delivery.
-- Matching `foundations` axis references when color, type, layout, data, responsive, or token work is in scope.
-- `../design-audit/references/audit-contract.md`, `../design-audit/references/accessibility-performance.md`, `../design-audit/references/evidence-capture.md`, and `../design-audit/assets/audit-evidence-worksheet.md` before audit, score, accessibility, release-ready, or production-ready claims.
+- `../design-interface/assets/interface-preflight-card.md` before delivery, score, accessibility, release-ready, or production-ready claims.
+- Matching visual-system references under `../design-interface/references/` when color, type, layout, data, or responsive work is in scope.
 
 ---
 
@@ -49,17 +47,15 @@ Minimum manifest fields:
 
 ```text
 SURFACE:
-TASK TYPE: advice | build | redesign | generation | audit | dispatch
+TASK TYPE: advice | build | redesign | generation | dispatch
 REGISTER SOURCE: register.md loaded | not loaded
 DIAL SOURCE: brief-to-dials.md loaded | not loaded
 MODE BUNDLE LOADED:
 - interface:
-- foundations:
-- audit:
+- motion:
 CONDITIONAL FILES LOADED:
-- foundations contrast/color refs:
+- interface contrast/color refs:
 - interface pre-flight card:
-- audit evidence refs:
 ```
 
 No palette, layout, motion, copy, accessibility, score, release, or readiness claim passes until the files behind the claim are named as loaded.
@@ -91,7 +87,7 @@ CONTRAST PAIRS:
   fix if fail:
 ```
 
-`foundations` owns the contrast repair logic; use actual foreground/background pairs and adjust OKLCH lightness first when repairing. Compute each ratio with `../design-foundations/scripts/contrast_check.py` (a calculator, not an estimate); `result` is `fail` for any pair below 4.5:1 body unless the 3:1 large/UI target applies.
+`interface` owns the contrast repair logic; use actual foreground/background pairs and adjust OKLCH lightness first when repairing. Compute each ratio with `../design-interface/scripts/contrast_check.py` (a calculator, not an estimate); `result` is `fail` for any pair below 4.5:1 body unless the 3:1 large/UI target applies.
 
 ### Interface Preflight
 
@@ -191,7 +187,7 @@ dimensions:
   anti-patterns:
 ```
 
-`audit` owns severity, scoring, labels, and finding order. Use `../design-audit/assets/audit-evidence-worksheet.md` to carry confirmed, inferred, blocked, and not-assessed labels into findings and scores. Accessibility coverage is resolved only when every layer is `confirmed`, `inferred`, or `blocked` with a reason. `blocked` is not a pass; it is an honest resolved-with-reason state. Any `not-assessed` layer blocks WCAG, accessible, release-ready, and production-ready claims. The checkable floor is layer presence plus one valid state per layer; truthfulness of a `confirmed` state and sufficiency of the covered behavior remain audit judgment.
+`interface` owns severity, scoring, labels, and finding order through `../design-interface/assets/interface-preflight-card.md`. Carry confirmed, inferred, blocked, and not-assessed labels into findings and scores. Accessibility coverage is resolved only when every layer is `confirmed`, `inferred`, or `blocked` with a reason. `blocked` is not a pass; it is an honest resolved-with-reason state. Any `not-assessed` layer blocks WCAG, accessible, release-ready, and production-ready claims. The checkable floor is layer presence plus one valid state per layer; truthfulness of a `confirmed` state and sufficiency of the covered behavior remain review judgment.
 
 ### Decision Rationale
 
@@ -278,7 +274,7 @@ Use logical properties for RTL-sensitive layout (`margin-inline-start`, `padding
 | Decision Rationale | Any direction, pattern-break, or handoff claim before the decision, considered options, evidence sources, trade-offs, validation plan, and source proofs are recorded |
 | Locale Stress / RTL | Any global or localized UI ready claim before locale-stress proof is filled and the documented RTL physical-direction lint has been run or explicitly marked N/A |
 
-**Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../design-foundations/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
+**Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../design-interface/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
 
 Documented RTL physical-direction lint, deterministic when run and not an always-on wired gate:
 
@@ -304,9 +300,9 @@ Fan-out or delegated recommendations are candidates until merged, attributed, an
 |---|---:|---:|---|
 | `version` | integer | yes | Contract version; `1` for v1. |
 | `surface` | string | yes | The surface the design work targets: route, page, frame, file, or artifact. |
-| `taskType` | string | yes | One of `advice`, `build`, `redesign`, `generation`, `audit`, or `dispatch`, matching the CONTEXT MANIFEST task-type set. |
+| `taskType` | string | yes | One of `advice`, `build`, `redesign`, `generation`, or `dispatch`, matching the CONTEXT MANIFEST task-type set. |
 | `skDesignLoaded` | boolean | yes | Whether the hub was loaded before the manifest was resolved. Must be `true` to dispatch design work. |
-| `workflowModes` | string array | yes | Non-empty list of registry-valid modes: `interface`, `foundations`, `motion`, `audit`, or `md-generator`, validated against `mode-registry.json`. |
+| `workflowModes` | string array | yes | Non-empty list of registry-valid modes: `interface`, `motion`, or `md-generator`, validated against `mode-registry.json`. |
 | `register` | string | yes | `Brand` or `Product`. Must be resolved before dispatch; `unknown` is rejected. |
 | `dials` | object | yes | `VARIANCE`, `MOTION`, and `DENSITY`, matching the Register And Dials shape. |
 | `loadedFiles` | array | yes | Non-empty `{path, sha256}` entries for the design-context files the child must carry, using the proof-token loadedFiles convention by reference. |

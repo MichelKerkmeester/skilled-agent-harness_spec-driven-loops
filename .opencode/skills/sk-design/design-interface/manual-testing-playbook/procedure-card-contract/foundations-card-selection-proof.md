@@ -24,7 +24,7 @@ foundations: for controls, component inventory, and hierarchy/rhythm variants, s
 
 ## 1. OVERVIEW
 
-This scenario validates `design-foundations/SKILL.md` section `Procedure Card Selection` across all three foundations-owned cards: `tweakable-design-controls.md`, `component-system-inventory.md`, and `hierarchy-rhythm-review.md`.
+This scenario validates `design-interface/SKILL.md` section `Procedure Card Selection` across all three foundations-owned cards: `tweakable-design-controls.md`, `component-system-inventory.md`, and `hierarchy-rhythm-review.md`.
 
 ## 2. SCENARIO CONTRACT
 

@@ -10,7 +10,7 @@
       {
         "target": "sk-code",
         "weight": 0.6,
-        "context": "Design output (direction, foundations, motion, audit findings, DESIGN.md) feeds sk-code implementation in the detected code surface"
+        "context": "Design output (direction, visual system, motion, quality findings, DESIGN.md) feeds sk-code implementation in the detected code surface"
       }
     ],
     "siblings": [
@@ -150,9 +150,7 @@
       "backendKind",
       "reference-base",
       "interface-mode",
-      "foundations-mode",
       "motion-mode",
-      "audit-mode",
       "md-generator-mode",
       "design-mcp-open-design-mode",
       "shared-design-reference-base",
@@ -178,7 +176,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-design is the single public design skill that routes a request to one of five design modes (interface, foundations, motion, audit, md-generator) or one nested transport packet (design-mcp-open-design) by workflowMode through mode-registry.json. The five design modes share packetKind:\"workflow\"; design-mcp-open-design is the sole packetKind:\"transport\" entry, driving the external Open Design app's od CLI and stdio MCP server without performing design judgment itself. The four doc-guidance modes cite the shared reference base (anti-slop principles, cognitive laws, design-token vocabulary) for consistent vocabulary, md-generator runs its own Playwright CSS-extraction backend, and design-mcp-open-design runs an od-cli-transport backend (backendKind discriminates all three). The hub holds no per-mode design logic; every mode keeps its own judgment, examples, and verification in its packet, and all six route by hub membership so the advisor sees exactly one design identity.",
+    "causal_summary": "sk-design is the single public design skill that routes a request to one of three design modes (interface, motion, md-generator) or one nested transport packet (design-mcp-open-design) by workflowMode through mode-registry.json. The three design modes share packetKind:\"workflow\"; design-mcp-open-design is the sole packetKind:\"transport\" entry, driving the external Open Design app's od CLI and stdio MCP server without performing design judgment itself. The two doc-guidance modes (interface, motion) cite the shared reference base (anti-slop principles, cognitive laws, design-token vocabulary) for consistent vocabulary, md-generator runs its own Playwright CSS-extraction backend, and design-mcp-open-design runs an od-cli-transport backend (backendKind discriminates all three). Interface owns both visual direction and the static visual system (color, typography, layout, spacing, tokens), plus the anti-slop and accessibility pre-delivery gate; the retired audit and foundations modes no longer exist as separate registry entries. The hub holds no per-mode design logic; every mode keeps its own judgment, examples, and verification in its packet, and all four route by hub membership so the advisor sees exactly one design identity.",
     "source_docs": [
       "SKILL.md",
       "mode-registry.json"

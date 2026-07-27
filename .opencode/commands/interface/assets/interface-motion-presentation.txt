@@ -25,7 +25,7 @@ Next Action/Handoff
 ## 3. Results Display
 
 ```text
-STATUS=OK PRODUCES="Motion Design Spec" NEXT=/interface:design,/interface:foundations,/interface:audit PROOF=componentState,motionPurpose,timingModel,reducedMotionPath
+STATUS=OK PRODUCES="Motion Design Spec" NEXT=/interface:design PROOF=componentState,motionPurpose,timingModel,reducedMotionPath
 STATUS=ASK MISSING=<input>
 STATUS=FAIL ERROR=<named-cause>
 STATUS=DEFER ROUTE=<hub|sibling>
@@ -36,8 +36,8 @@ STATUS=DEFER ROUTE=<hub|sibling>
 | Condition | Suggested target |
 |---|---|
 | motion choices change or depend on the overall interface direction | `/interface:design` |
-| motion constraints affect static layout, token, or responsive decisions | `/interface:foundations` |
-| the motion spec is ready for performance, accessibility, or quality review | `/interface:audit` |
+| motion constraints affect static layout, token, or responsive decisions | interface mode |
+| the motion spec is ready for performance, accessibility, or quality review | `design-interface/assets/interface-preflight-card.md` |
 | accepted motion moves to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
 
 `HANDOFF_REQUIRED=false`. Recommendations never silently chain.

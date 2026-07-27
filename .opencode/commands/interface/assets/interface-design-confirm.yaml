@@ -91,7 +91,7 @@ workflow_enforcement:
     purpose: "Verify the shared creation contract is loaded before route proof and design work"
     requirements:
     - "creation-contract.md read (lifecycle, envelope, authority, proof vocabulary)"
-    - "route proof recorded (command, workflowMode, foundations bundle when building UI)"
+    - "route proof recorded (command, workflowMode, interface-owned static-system decisions when building UI)"
     action_if_failed: "STOP and return to the contract-load step"
   critical_steps:
     step_5_progressive_brief:
@@ -184,7 +184,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical route before design work
-    action: "Record command=/interface:design, workflowMode=interface, supporting foundations bundle when building UI, and the proof environment"
+    action: "Record command=/interface:design, workflowMode=interface, interface-owned static-system decisions when building UI, and the proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load the target, owned system, content, data, constraints, artifacts, and runtime context
@@ -208,7 +208,7 @@ workflow:
     output: mode_plan
   step_9_run_creative_work:
     purpose: Produce the brief-specific interface artifact before implementation
-    action: "Create and apply the token/layout/signature plan through the interface mode; use the ordered foundations bundle for UI production"
+    action: "Create and apply the token/layout/signature plan through the interface mode; keep static-system decisions within the mode for UI production"
     output: interface_direction_spec
   step_10_critique_revision:
     purpose: Test the direction against the brief and defaults
@@ -229,7 +229,7 @@ deliverable:
   required_fields: [target, register, designDials, preflightResult]
 
 status_contract:
-  success: 'STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult'
+  success: 'STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:motion PROOF=target,register,designDials,preflightResult'
   missing_input: "STATUS=ASK MISSING=<input>"
   cannot_run: "STATUS=FAIL ERROR=<named-cause>"
   route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
@@ -254,9 +254,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Interface direction workflow complete."
   next_steps:
-  - action: "Continue with /interface:foundations to build the static visual system"
+  - action: "Keep static-system decisions within the interface mode"
   - action: "Continue with /interface:motion for behavior"
-  - action: "Continue with /interface:audit to QA the direction"
+  - action: "Run the interface mode's mechanical preflight card at design-interface/assets/interface-preflight-card.md to QA the direction"
   - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
 
 # ─────────────────────────────────────────────────────────────────
@@ -277,8 +277,8 @@ rules:
   - "Proceed past step_0 before the consolidated reply is received"
 
 pipeline:
-  stage: "direction - frames the interface decision before static systems, behavior, audit, or build"
-  accepts_from: ["/interface:audit", "/interface:foundations", "/interface:design-reference", "/interface:motion"]
-  hands_to_next: ["/interface:foundations", "/interface:motion", "/interface:audit"]
+  stage: "direction - frames the interface decision before behavior or build"
+  accepts_from: ["/interface:design-reference", "/interface:motion"]
+  hands_to_next: ["/interface:motion"]
   recommend_only: true
   hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after acceptance"

@@ -25,7 +25,7 @@ Next Action/Handoff
 ## 3. Results Display
 
 ```text
-STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/interface:foundations,/interface:design,/interface:audit PROOF=sourceUrl,extractedTokensDigest,fidelityScore
+STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/interface:design PROOF=sourceUrl,extractedTokensDigest,fidelityScore
 STATUS=ASK MISSING=<input>
 STATUS=FAIL ERROR=<named-cause>
 STATUS=DEFER ROUTE=<hub|sibling>
@@ -35,9 +35,9 @@ STATUS=DEFER ROUTE=<hub|sibling>
 
 | Condition | Suggested target |
 |---|---|
-| measured CSS should be distilled into a static visual-system plan | `/interface:foundations` |
+| measured CSS should be distilled into a static visual-system plan | interface mode |
 | measured evidence should inform a new or reshaped interface direction | `/interface:design` |
-| the captured surface needs quality review or hardening based on measured evidence | `/interface:audit` |
+| the captured surface needs quality review or hardening based on measured evidence | `design-interface/assets/interface-preflight-card.md` |
 | accepted evidence informs implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` |
 
 `HANDOFF_REQUIRED=false`. Recommendations never silently chain.

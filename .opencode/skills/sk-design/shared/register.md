@@ -25,7 +25,7 @@ Give every design mode one shared, up-front decision that calibrates the rest of
 
 ### Usage
 
-Set the register at the start of any design task, before the mode-specific workflow runs. Each mode (interface, foundations, motion, audit, md-generator) reads the register and applies the dial settings for the chosen posture. The register is shared vocabulary, not a sixth mode and not a replacement for mode workflows.
+Set the register at the start of any design task, before the mode-specific workflow runs. Each mode (interface, motion, md-generator) reads the register and applies the dial settings for the chosen posture. The register is shared vocabulary, not a fourth mode and not a replacement for mode workflows.
 
 ---
 
@@ -72,8 +72,6 @@ Color dosage resolves to one of four strategies, ordered by how much color carri
 
 ## 4. MODE USAGE
 
-- **interface** reads the register first, then sets density, the motion budget and the color strategy for direction and build.
-- **foundations** reads the register to choose the color strategy and the density of the token system (spacing rhythm, type scale).
+- **interface** reads the register first, then sets density, the motion budget, the color strategy for direction and build, the density of the token system (spacing rhythm, type scale), and the audit-severity dial so a pre-delivery-gate finding is weighted by posture: distinctiveness for Brand, affordance and consistency for Product.
 - **motion** reads the motion-budget dial to decide whether a surface gets choreography or only state transitions.
-- **audit** reads the audit-severity dial so a finding is weighted by posture: distinctiveness for Brand, affordance and consistency for Product.
 - **md-generator** records the register of the site it extracts, so a captured Style Reference carries the posture forward.

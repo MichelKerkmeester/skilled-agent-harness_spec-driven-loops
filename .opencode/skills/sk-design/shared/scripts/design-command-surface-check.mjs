@@ -8,7 +8,6 @@ import { pathToFileURL } from "node:url";
 const REQUIRED_FIELDS = [
   "command",
   "ownerMode",
-  "commandSubworkflow",
   "description",
   "descriptionRole",
   "autoTriggerEligible",
@@ -36,10 +35,8 @@ const REQUIRED_FIELDS = [
 ];
 
 const COMMANDS = [
-  "/interface:audit",
   "/interface:design",
   "/interface:design-reference",
-  "/interface:foundations",
   "/interface:motion"
 ];
 const FRONTMATTER_DRIFT_FIELDS = ["description", "argument-hint", "allowed-tools"];
@@ -90,7 +87,6 @@ const REQUIRED_RETURN_STATUS_TOKENS = [
 const STATUS_ONLY_FAILURE_PATTERN = /STATUS=FAIL\s+ERROR="<message>"/;
 const ARTIFACT_KINDS = new Set(["report", "plan", "spec", "reference-doc"]);
 const INTERFACE_COMMAND = "/interface:design";
-const INTERFACE_AUDIT_ROUTE = "/interface:audit";
 const INTERFACE_TASK_CLASSES = new Set(["sibling-command", "argument", "internal", "hidden"]);
 const TASK_PROJECTION_STRICTNESS = new Set(["advisory"]);
 const TASK_PROJECTION_FIELDS = ["verb", "ownerMode", "strictness", "referenceSources", "requires", "fixtures"];
@@ -108,9 +104,6 @@ const HANDOFF_RESOURCE = ".opencode/skills/sk-design/shared/sk-code-handoff.md";
 const MODE_SKILL_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/SKILL\.md$/;
 const MODE_PROCEDURES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/procedures\/$/;
 const MODE_REFERENCES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-([a-z-]+)\/references\/$/;
-const SUBWORKFLOW_CONTRACT_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-interface\/([a-z-]+)\/contract\.md$/;
-const SUBWORKFLOW_PROCEDURES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-interface\/([a-z-]+)\/procedures\/$/;
-const SUBWORKFLOW_REFERENCES_RESOURCE_PATTERN = /^\.opencode\/skills\/sk-design\/design-interface\/references\/([a-z-]+)\/$/;
 const DESIGN_COMMAND_PATTERN = /\/(?:design|interface):[a-z-]+/;
 const DESCRIPTION_ROLES = new Set(["hub-keyword-projection"]);
 const GENERIC_ARTIFACT_NAMES = new Set([
@@ -328,12 +321,6 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
       ? registry.modes.map((mode) => [mode.workflowMode, mode])
       : []
   );
-  const commandSubworkflows = new Map(
-    Array.isArray(registry?.commandSubworkflows)
-      ? registry.commandSubworkflows.map((subworkflow) => [subworkflow.id, subworkflow])
-      : []
-  );
-
   for (const record of metadata) {
     const command = typeof record?.command === "string" ? record.command : "<missing command>";
 
@@ -357,25 +344,9 @@ function validateMetadata(metadata, workflowModes, interfaceIntentLanes, registr
       errors.push(`${command}: ownerMode must match a workflowMode`);
     }
 
-    if (record?.commandSubworkflow === null) {
-      const expectedCommand = registryModes.get(record?.ownerMode)?.command;
-      if (typeof expectedCommand === "string" && command !== expectedCommand) {
-        errors.push(`${command}: command must be ${expectedCommand} for ownerMode ${record?.ownerMode}`);
-      }
-    } else if (typeof record?.commandSubworkflow === "string") {
-      const subworkflow = commandSubworkflows.get(record.commandSubworkflow);
-      if (!subworkflow) {
-        errors.push(`${command}: commandSubworkflow must match a declared commandSubworkflows id`);
-      } else {
-        if (subworkflow.ownerMode !== record.ownerMode) {
-          errors.push(`${command}: commandSubworkflow ownerMode must match record ownerMode ${record.ownerMode}`);
-        }
-        if (subworkflow.command !== command) {
-          errors.push(`${command}: command must match commandSubworkflow ${record.commandSubworkflow}`);
-        }
-      }
-    } else {
-      errors.push(`${command}: commandSubworkflow must be a string or null`);
+    const expectedCommand = registryModes.get(record?.ownerMode)?.command;
+    if (typeof expectedCommand === "string" && command !== expectedCommand) {
+      errors.push(`${command}: command must be ${expectedCommand} for ownerMode ${record?.ownerMode}`);
     }
 
     for (const field of ["description", "argumentHint", "accepts", "returns", "deferToHubWhen"]) {
@@ -471,9 +442,7 @@ function validateDescriptionRoleProjection(record, command) {
   }
 
   const ownerMode = typeof record?.ownerMode === "string" ? record.ownerMode : "<missing>";
-  const expectedSuffix = typeof record?.commandSubworkflow === "string"
-    ? `sk-design ${ownerMode} mode, ${record.commandSubworkflow} subworkflow.`
-    : `sk-design ${ownerMode} mode.`;
+  const expectedSuffix = `sk-design ${ownerMode} mode.`;
 
   if (typeof record?.description !== "string" || !record.description.endsWith(expectedSuffix)) {
     errors.push(`${command}: description must end with ${expectedSuffix}`);
@@ -1460,7 +1429,6 @@ function collectRosterReconciliationDrift(records, hubRouter, wrappers) {
   const canonicalCommands = new Set(records.map((record) => record.command));
   const wrapperCommands = new Set(wrappers.map((wrapper) => wrapper.command));
   const canonicalByMode = hubRouter?.commandSurface?.canonicalByMode ?? {};
-  const canonicalBySubworkflow = hubRouter?.commandSurface?.canonicalBySubworkflow ?? {};
   const reconciledCommands = intersectSets(canonicalCommands, wrapperCommands);
 
   for (const wrapper of wrappers) {
@@ -1485,12 +1453,8 @@ function collectRosterReconciliationDrift(records, hubRouter, wrappers) {
   }
 
   for (const record of records) {
-    const isSubworkflow = typeof record.commandSubworkflow === "string";
-    const routeMap = isSubworkflow ? canonicalBySubworkflow : canonicalByMode;
-    const routeKey = isSubworkflow ? record.commandSubworkflow : record.ownerMode;
-    const routeField = isSubworkflow ? "canonicalBySubworkflow" : "canonicalByMode";
-    if (routeMap[routeKey] !== record.command) {
-      drift.push(rosterDrift("route-fixture-drift", record.command, `hub-router commandSurface.${routeField}.${routeKey}`, routeMap[routeKey] ?? "<missing>"));
+    if (canonicalByMode[record.ownerMode] !== record.command) {
+      drift.push(rosterDrift("route-fixture-drift", record.command, `hub-router commandSurface.canonicalByMode.${record.ownerMode}`, canonicalByMode[record.ownerMode] ?? "<missing>"));
     }
   }
 
@@ -1709,16 +1673,6 @@ function expectedInterfaceTaskLanesDrift(record, surface) {
         actual: "<missing lane label>"
       });
     }
-  }
-
-  if (tasks.some((task) => task?.class === "sibling-command") && !section.includes(INTERFACE_AUDIT_ROUTE)) {
-    drift.push({
-      kind: "task-lanes",
-      command: record.command,
-      field: "task-lanes",
-      expected: INTERFACE_AUDIT_ROUTE,
-      actual: "<missing sibling route>"
-    });
   }
 
   if (tasks.some((task) => ["internal", "hidden"].includes(task?.class))) {
@@ -2022,10 +1976,10 @@ function workflowWitnessDrift(command, workflow) {
 }
 
 function canonicalChoreographyResourceToken(resource) {
-  if (MODE_PROCEDURES_RESOURCE_PATTERN.test(resource) || SUBWORKFLOW_PROCEDURES_RESOURCE_PATTERN.test(resource)) {
+  if (MODE_PROCEDURES_RESOURCE_PATTERN.test(resource)) {
     return "procedures/";
   }
-  if (MODE_REFERENCES_RESOURCE_PATTERN.test(resource) || SUBWORKFLOW_REFERENCES_RESOURCE_PATTERN.test(resource)) {
+  if (MODE_REFERENCES_RESOURCE_PATTERN.test(resource)) {
     return "references/";
   }
   return resource;
@@ -2049,9 +2003,6 @@ function choreographyActionContractErrors(step, workflowSteps, workflowText) {
   const modeSkill = step.resource.match(MODE_SKILL_RESOURCE_PATTERN);
   const modeProcedures = step.resource.match(MODE_PROCEDURES_RESOURCE_PATTERN);
   const modeReferences = step.resource.match(MODE_REFERENCES_RESOURCE_PATTERN);
-  const subworkflowContract = step.resource.match(SUBWORKFLOW_CONTRACT_RESOURCE_PATTERN);
-  const subworkflowProcedures = step.resource.match(SUBWORKFLOW_PROCEDURES_RESOURCE_PATTERN);
-  const subworkflowReferences = step.resource.match(SUBWORKFLOW_REFERENCES_RESOURCE_PATTERN);
 
   if (step.resource === HUB_SKILL_RESOURCE) {
     requireExactAction(
@@ -2075,18 +2026,7 @@ function choreographyActionContractErrors(step, workflowSteps, workflowText) {
     return errors;
   }
 
-  if (subworkflowContract) {
-    requireExactAction(
-      errors,
-      normalizedAction,
-      `load the ${subworkflowContract[1]} subworkflow contract`,
-      stepNames.has("load_mode"),
-      "load_mode"
-    );
-    return errors;
-  }
-
-  if (modeProcedures || subworkflowProcedures) {
+  if (modeProcedures) {
     if (!/^(?:choose|select)\b.*\bprivate\b.*\bcard\b/.test(normalizedAction)) {
       errors.push("procedure action must explicitly choose or select a private card");
     }
@@ -2112,13 +2052,11 @@ function choreographyActionContractErrors(step, workflowSteps, workflowText) {
     return errors;
   }
 
-  if (modeReferences || subworkflowReferences) {
-    const workflowName = modeReferences?.[1] ?? subworkflowReferences[1];
-    const resourceKind = modeReferences ? "mode" : "subworkflow";
+  if (modeReferences) {
     requireExactAction(
       errors,
       normalizedAction,
-      `load ${resourceKind} references and assets as the work requires, then apply the ${workflowName} workflow to $arguments`,
+      `load mode references and assets as the work requires, then apply the ${modeReferences[1]} workflow to $arguments`,
       stepNames.has("load_mode") && hasCoreWorkflow,
       "load_mode plus run_<name>"
     );
@@ -2846,11 +2784,6 @@ function commandSetForModes(workflowModes, registry) {
       return registryToken ?? `/interface:${workflowMode}`;
     })
   );
-  for (const subworkflow of Array.isArray(registry?.commandSubworkflows) ? registry.commandSubworkflows : []) {
-    if (typeof subworkflow?.command === "string" && subworkflow.command.length > 0) {
-      commands.add(subworkflow.command);
-    }
-  }
   return commands;
 }
 

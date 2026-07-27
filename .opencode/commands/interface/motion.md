@@ -21,8 +21,8 @@ Use the shared nine-stage contract for public choreography. The `motion` mode ow
 ### WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is purposeful animation, transitions, or reduced-motion behavior.
-- **Prefer `/interface:audit` when** the request is motion-performance or quality assessment.
-- **Prefer `/interface:foundations` when** the request is static system work.
+- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is motion-performance or quality assessment.
+- **The interface mode owns static-system work directly.**
 - **Prefer `/interface:design` when** direction is undecided.
 - **Prefer `/interface:design-reference` when** the request is measured source extraction.
 - **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is transport operation rather than temporal design.
@@ -35,7 +35,7 @@ Use the shared nine-stage contract for public choreography. The `motion` mode ow
 - **Ask-first:** bundle only route-, identity-, access-, or acceptance-changing decisions.
 - **Cannot-run:** when no state transition or attention purpose exists, return `STATUS=FAIL ERROR=<named-cause>`.
 - **Escalate:** when motion depends on an unaccepted interface direction, request the missing decision.
-- **Route instead:** when static systems, direction, audit, or extraction dominate, return `STATUS=DEFER ROUTE=<hub|sibling>`.
+- **Route instead:** when static systems, direction, or extraction dominate, return `STATUS=DEFER ROUTE=<hub|sibling>`.
 
 ## 2. OWNED ASSETS
 

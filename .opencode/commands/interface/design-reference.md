@@ -21,8 +21,8 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 ### WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to extract a live source into a provenance-rich Style Reference DESIGN.md.
-- **Prefer `/interface:audit` when** the request is quality review rather than extraction.
-- **Prefer `/interface:foundations` when** the request is authored static-system direction.
+- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is quality review rather than extraction.
+- **The interface mode owns authored static-system direction directly.**
 - **Prefer `/interface:design` when** the request is a new direction.
 - **Prefer `/interface:motion` when** the request is temporal design.
 - **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is Open Design transport operation rather than website extraction.

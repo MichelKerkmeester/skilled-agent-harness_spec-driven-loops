@@ -1,7 +1,7 @@
 ---
 title: "SR-002: Reference-Base Backend Modes"
-description: "Verify foundations, motion, and audit modes use backendKind reference-base and cite shared resources."
-version: 1.0.0.0
+description: "Verify interface and motion modes use backendKind reference-base and cite shared resources."
+version: 1.1.0.0
 id: SR-002
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -19,29 +19,29 @@ This scenario verifies that non-md-generator design modes use `backendKind: refe
 
 | Probe | Exact Prompt | Expected Mode | Expected Shared Resource |
 |---|---|---|---|
-| P1 | `Create a responsive spacing system and token starter for this product dashboard.` | `foundations` | `shared/register.md` |
+| P1 | `Create a responsive spacing system and token starter for this product dashboard.` | `interface` | `shared/register.md` |
 | P2 | `Design the motion budget and reduced-motion alternative for this onboarding flow.` | `motion` | `shared/register.md` |
-| P3 | `Audit this page for design slop and give severity-ranked findings.` | `audit` | `shared/register.md` |
+| P3 | `Audit this page for design slop and give severity-ranked findings.` | `interface` | `shared/register.md` |
 
 **Expected mode resolution**:
-- P1: `foundations`
+- P1: `interface`
 - P2: `motion`
-- P3: `audit`
+- P3: `interface`
 
 **Why**:
-- `mode-registry.json` sets `backendKind: reference-base` for `interface`, `foundations`, `motion`, and `audit`.
+- `mode-registry.json` sets `backendKind: reference-base` for `interface` and `motion`.
 - `mode-registry.json` sets `backendKind: playwright-extract` only for `md-generator`.
+- `hub-router.json` routes the `foundations-*` vocabulary classes (token/spacing/color/type/layout signals) into `interface`'s `routerSignals`, and the retired `audit` capability's anti-slop/severity-ranked findings now run through `interface`'s own pre-delivery gate (`design-interface/assets/interface-preflight-card.md`).
 - The mode packets each cite `../shared/register.md` for family-level posture or severity calibration.
 
 **Expected packets loaded**:
-- P1: `design-foundations/SKILL.md`
+- P1: `design-interface/SKILL.md`
 - P2: `design-motion/SKILL.md`
-- P3: `design-audit/SKILL.md`
+- P3: `design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md` for all probes
-- `shared/context-loading-contract.md` for P1 when build or UI handoff is discussed
-- `shared/context-loading-contract.md` for P3 when audit/readiness claims are made
+- `shared/context-loading-contract.md` for P1 and P3 when build or readiness claims are discussed
 - `shared/sk-code-handoff.md` only when handoff to implementation is discussed
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for all probes.
@@ -50,8 +50,8 @@ This scenario verifies that non-md-generator design modes use `backendKind: refe
 
 ### Preconditions
 
-1. `mode-registry.json` lists `backendKind: reference-base` for the three tested modes.
-2. The three mode packets still cite `../shared/register.md`.
+1. `mode-registry.json` lists `backendKind: reference-base` for the two tested modes.
+2. The two mode packets still cite `../shared/register.md`.
 
 ### Exact Command Sequence
 
@@ -73,9 +73,9 @@ This scenario verifies that non-md-generator design modes use `backendKind: refe
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
-- `.opencode/skills/sk-design/design-foundations/SKILL.md`
+- `.opencode/skills/sk-design/hub-router.json`
+- `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
-- `.opencode/skills/sk-design/design-audit/SKILL.md`
 - `.opencode/skills/sk-design/shared/register.md`
 
 ## 5. SOURCE METADATA

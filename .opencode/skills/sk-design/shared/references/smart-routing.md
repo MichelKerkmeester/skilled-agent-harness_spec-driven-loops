@@ -16,8 +16,8 @@ version: 1.0.0.0
 ## 1. OVERVIEW
 
 This is sk-design's second-layer (surface) router. The hub selects a workflow
-mode in [`hub-router.json`](../../hub-router.json) (`interface` / `foundations` /
-`motion` / `audit` / `md-generator` / `design-mcp-open-design`); this doc maps a
+mode in [`hub-router.json`](../../hub-router.json) (`interface` /
+`motion` / `md-generator` / `design-mcp-open-design`); this doc maps a
 request's design intent to the exact packet-local leaf resources that mode should
 load. Every path is packet-qualified (`design-<mode>/references|assets/…`) and
 converts to the canonical `(workflowMode, leafResourceId)` pair at the one
@@ -33,20 +33,18 @@ re-decides the mode.
 
 ## 2. INTENT MODEL
 
-- **interface leaves** — distinctive-UI direction: the design-process spine
-  (`design_principles`, `brief_to_dials`) plus the interface preflight card. Broad
-  "make it less generic / distinctive visual direction / hero redesign" requests,
-  plus the interface-frame transform verbs (`bolder`, `quieter`, `distill`,
-  `delight`, `clarify`).
-- **foundations leaves** — the static visual system: OKLCH color workflow, palette
-  theming, typography system, responsive layout, and the token starter. Fired by
-  color/type/spacing/grid/token-system requests.
+- **interface leaves** — distinctive-UI direction and the static visual system:
+  the design-process spine (`design_principles`, `brief_to_dials`), the OKLCH
+  color workflow, palette theming, typography system, responsive layout, the
+  token starter, and the interface preflight card (the anti-slop, accessibility,
+  and production-hardening pre-delivery gate). Fired by "make it less generic /
+  distinctive visual direction / hero redesign" requests, color/type/spacing/
+  grid/token-system requests, the interface-frame transform verbs (`bolder`,
+  `quieter`, `distill`, `delight`, `clarify`), and critique/WCAG/slop-detection
+  requests.
 - **motion leaves** — animation and interaction feel: the decision framework,
   micro-interactions, and reduced-motion/performance guidance. Fired by
   micro-interaction, transition, hover-state, and reduced-motion requests.
-- **audit leaves** — design QA: the audit contract, accessibility/performance,
-  production anti-patterns, and the report template. Fired by audit / critique /
-  WCAG / slop-detection requests and the audit-frame `should it be` transform verb.
 - **md-generator leaves** — Style Reference DESIGN.md extraction and validation:
   the format spec, extraction workflow, taxonomies, quality checklist, and the
   authoring cards. Fired by "extract the design system / DESIGN.md / validate
@@ -56,7 +54,7 @@ re-decides the mode.
   taste, so a design-bearing Open Design request pairs a judgment mode first.
 
 A single dominant design axis routes to one mode's leaf set; two clearly separate
-axes (e.g. an explicit interface + foundations UI build) route to both.
+axes (e.g. an explicit interface + motion UI build) route to both.
 
 ---
 
@@ -75,10 +73,8 @@ is registered in `leaf-manifest.json`, so each dual-reads to a canonical typed p
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "INTERFACE":     {"weight": 4, "keywords": ["less generic", "distinctive visual", "visual direction", "make it look good", "looks templated", "redesign the ui", "redesign the hero", "hero section", "landing page direction", "interface design", "visual identity", "premium ui", "make it beautiful", "design variations", "distinct visual directions", "variation set", "make it", "bolder", "quieter", "distill", "delight", "clarify", "polished", "feel premium"]},
-    "FOUNDATIONS":   {"weight": 4, "keywords": ["oklch", "color token", "color system", "color palette", "typography scale", "typography system", "font pairing", "spacing rhythm", "spacing system", "responsive grid", "layout rhythm", "design tokens", "token system", "theme tokens", "hierarchy and spacing", "spacing rhythm review"]},
+    "INTERFACE":     {"weight": 4, "keywords": ["less generic", "distinctive visual", "visual direction", "make it look good", "looks templated", "redesign the ui", "redesign the hero", "hero section", "landing page direction", "interface design", "visual identity", "premium ui", "make it beautiful", "design variations", "distinct visual directions", "variation set", "make it", "bolder", "quieter", "distill", "delight", "clarify", "polished", "feel premium", "oklch", "color token", "color system", "color palette", "typography scale", "typography system", "font pairing", "spacing rhythm", "spacing system", "responsive grid", "layout rhythm", "design tokens", "token system", "theme tokens", "hierarchy and spacing", "spacing rhythm review", "design audit", "audit this", "wcag contrast", "wcag", "accessibility audit", "keyboard focus", "design slop", "anti-slop", "ui critique", "design review", "production hardening", "design quality score", "critique this", "polish gate"]},
     "MOTION":        {"weight": 4, "keywords": ["micro-interactions", "micro interactions", "reduced-motion", "reduced motion", "hover micro", "hover state", "menu transition", "transition design", "interaction states", "loading state", "exit animation", "morphing", "motion budget", "choreography", "animate the", "feedback states"]},
-    "AUDIT":         {"weight": 4, "keywords": ["design audit", "audit this", "wcag contrast", "wcag", "accessibility audit", "keyboard focus", "design slop", "anti-slop", "ui critique", "design review", "production hardening", "design quality score", "should it be", "should it be bolder", "should it be quieter", "should it be distill", "should it be clarify", "should it be delight", "critique this", "polish gate"]},
     "MD_GENERATOR":  {"weight": 4, "keywords": ["extract the design system", "extract design system", "design.md", "design system from", "style reference", "capture website css", "tokens.json", "design tokens from url", "validate design.md", "design fidelity", "fidelity check", "extraction", "generate a design.md", "measured css"]},
     "OPEN_DESIGN":   {"weight": 4, "keywords": ["wire open design", "open design", "open-design", "od cli", "od mcp", "connect open design", "drive od", "start_run", "open design generation", "open design run"]},
 }
@@ -88,14 +84,12 @@ RESOURCE_MAP = {
         "design-interface/references/design-process/design-principles.md",
         "design-interface/references/design-process/brief-to-dials.md",
         "design-interface/assets/interface-preflight-card.md",
-    ],
-    "FOUNDATIONS": [
-        "design-foundations/references/corpus-map.md",
-        "design-foundations/references/color/oklch-workflow.md",
-        "design-foundations/references/color/palette-theming.md",
-        "design-foundations/references/type/typography-system.md",
-        "design-foundations/references/layout/layout-responsive.md",
-        "design-foundations/assets/token-starter.md",
+        "design-interface/references/foundations/corpus-map.md",
+        "design-interface/references/foundations/color/oklch-workflow.md",
+        "design-interface/references/foundations/color/palette-theming.md",
+        "design-interface/references/foundations/type/typography-system.md",
+        "design-interface/references/foundations/layout/layout-responsive.md",
+        "design-interface/assets/foundations/token-starter.md",
     ],
     "MOTION": [
         "design-motion/references/corpus-map.md",
@@ -104,15 +98,6 @@ RESOURCE_MAP = {
         "design-motion/references/motion-strategy.md",
         "design-motion/references/performance-reduced-motion.md",
         "design-motion/assets/motion-pattern-cards.md",
-    ],
-    "AUDIT": [
-        "design-audit/references/corpus-map.md",
-        "design-audit/references/audit-contract.md",
-        "design-audit/references/accessibility-performance.md",
-        "design-audit/references/anti-patterns-production.md",
-        "design-audit/references/critique-hardening.md",
-        "design-audit/references/transform-remediation.md",
-        "design-audit/assets/audit-report-template.md",
     ],
     "MD_GENERATOR": [
         "design-md-generator/references/design-md-format.md",
@@ -141,7 +126,7 @@ RESOURCE_MAP = {
 - One dominant design axis routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the
   union is deduped by canonical pair.
-- A transform verb splits by framing: interface-frame `make it <alias>` applies the
-  move (interface); audit-frame `should it be <alias>` evaluates it (audit).
+- The interface-frame `make it <alias>` transform verb applies the move; `interface`
+  owns the alias regardless of the axis it names (direction, tokens, or quality).
 - No keyword match is the hub's default (`interface`) or a disambiguation request:
   confirm the dominant design axis before loading anything.

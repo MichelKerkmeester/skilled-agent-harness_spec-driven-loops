@@ -19,7 +19,7 @@ This scenario verifies the hub manager behavior in `Manager Intake Before Routin
 
 **Exact prompt**:
 ```text
-Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, foundations, motion, or audit.
+Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, a static token system, or motion work.
 ```
 
 **Expected hub behavior**: Gather goal, surface, inputs, constraints, and proof expectations before choosing a mode when the missing facts affect route or acceptance bar.

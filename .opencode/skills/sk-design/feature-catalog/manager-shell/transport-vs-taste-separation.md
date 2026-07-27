@@ -23,7 +23,7 @@ Transport output can fetch, inspect, generate, extract, or apply artifacts. It d
 
 ## 2. HOW IT WORKS
 
-The selected design mode owns acceptance. If transport evidence is needed, the hub names what the transport will do, then brings the result back into the selected mode or `audit` for proof review.
+The selected design mode owns acceptance. If transport evidence is needed, the hub names what the transport will do, then brings the result back into the selected mode for proof review.
 
 When transport output conflicts with the proof plan, the mode contract decides the acceptance gap before implementation or ready claims continue. This preserves the boundary between artifact movement and design judgment.
 

@@ -1,9 +1,9 @@
 ---
 title: "Context Adaptation Matrix"
-description: "Current-state reference for design-foundations device, input, and context adaptation across phone, tablet, desktop, print, and constrained surfaces."
+description: "Current-state reference for the foundations subworkflow's device, input, and context adaptation across phone, tablet, desktop, print, and constrained surfaces."
 trigger_phrases:
   - "context adaptation matrix"
-  - "design-foundations responsive adaptation"
+  - "foundations responsive adaptation"
   - "device input context adaptation"
   - "phone tablet desktop print adaptation"
 version: 1.0.0.0
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`design-foundations` adapts a design across device, input method, connection, and posture by rethinking the experience per context rather than scaling pixels.
+The `foundations` subworkflow adapts a design across device, input method, connection, and posture by rethinking the experience per context rather than scaling pixels.
 
 Adaptation reads four dimensions before deciding what changes: device and viewport, input method, connection and capability, and usage posture. Screen width alone is treated as a weak proxy for input method.
 
@@ -41,14 +41,14 @@ Core functionality stays available in every context, one information architectur
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/references/layout/adaptation-matrix.md` | Shared | Defines the four adaptation dimensions, the context matrix, and input-detection rules. |
-| `.opencode/skills/sk-design/design-foundations/references/layout/layout-responsive.md` | Shared | Defines the underlying spacing, rhythm, and responsive base the matrix extends. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/layout/adaptation-matrix.md` | Shared | Defines the four adaptation dimensions, the context matrix, and input-detection rules. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/layout/layout-responsive.md` | Shared | Defines the underlying spacing, rhythm, and responsive base the matrix extends. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises context-adaptation scenarios against the live mode. |
+| `.opencode/skills/sk-design/design-interface/manual-testing-playbook/manual-testing-playbook.md (section 23)` | Manual playbook | Exercises context-adaptation scenarios against the live mode. |
 
 ---
 

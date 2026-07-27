@@ -1,6 +1,6 @@
 ---
 title: "Foundations Procedure Card Inventory"
-description: "Current-state inventory of three private design-foundations procedure cards and their read-only boundaries."
+description: "Current-state inventory of three private foundations-subworkflow procedure cards and their read-only boundaries."
 trigger_phrases:
   - "foundations procedure card inventory"
   - "component system inventory card"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`design-foundations` has three private procedure cards selected after the public foundations mode is chosen.
+The `foundations` subworkflow has three private procedure cards selected after the public interface mode is chosen.
 
 The cards cover component/system inventory extraction, hierarchy and rhythm review, and tweakable design-control specification.
 
@@ -25,7 +25,7 @@ The cards cover component/system inventory extraction, hierarchy and rhythm revi
 
 The mode chooses at most one primary card when a trigger matches, cites it in the plan or proof line, and preserves read-only operation with Read, Glob, and Grep only. `component-system-inventory.md` groups a finished or near-finished design into foundations/atoms/molecules/organisms/templates with variants, states, and gaps. `hierarchy-rhythm-review.md` reviews scan path, spacing, type scale, repetition, variation, and alignment for a design that feels flat or chaotic. `tweakable-design-controls.md` specifies 3 to 8 live-adjustable controls mapped to tokens or state, each with a default and hidden-when-off behavior.
 
-Each card names a conflict rule that routes elsewhere when the request does not match: measured extraction from a live site routes to `design-md-generator/procedures/design-system-extraction.md`, and generic-template smells route to `design-audit/procedures/ai-slop-check.md`.
+Each card names a conflict rule that routes elsewhere when the request does not match: measured extraction from a live site routes to `design-md-generator/procedures/design-system-extraction.md`, and generic-template smells route to the anti-slop check in `../../assets/interface-preflight-card.md` (Section 11).
 
 ---
 
@@ -35,9 +35,9 @@ Each card names a conflict rule that routes elsewhere when the request does not 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/procedures/component-system-inventory.md` | Shared | Component/system inventory card: purpose, procedure, and conflict rule. |
-| `.opencode/skills/sk-design/design-foundations/procedures/hierarchy-rhythm-review.md` | Shared | Hierarchy and rhythm review card: procedure and related cards. |
-| `.opencode/skills/sk-design/design-foundations/procedures/tweakable-design-controls.md` | Shared | Tweakable design-control card: procedure and related cards. |
+| `.opencode/skills/sk-design/design-interface/procedures/component-system-inventory.md` | Shared | Component/system inventory card: purpose, procedure, and conflict rule. |
+| `.opencode/skills/sk-design/design-interface/procedures/hierarchy-rhythm-review.md` | Shared | Hierarchy and rhythm review card: procedure and related cards. |
+| `.opencode/skills/sk-design/design-interface/procedures/tweakable-design-controls.md` | Shared | Tweakable design-control card: procedure and related cards. |
 | `.opencode/skills/sk-design/shared/procedure-card-schema.md` | Shared | Defines the required-field schema every card in this inventory follows. |
 
 ### Validation And Tests

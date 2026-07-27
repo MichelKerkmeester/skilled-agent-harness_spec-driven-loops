@@ -1,6 +1,6 @@
 ---
 title: "Procedure Card Inventory"
-description: "Current-state inventory of the 14 private procedure cards owned by the sk-design hub and mode packets."
+description: "Current-state inventory of the 12 private procedure cards owned by the sk-design hub and mode packets."
 trigger_phrases:
   - "procedure card inventory"
   - "sk-design private cards"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The `sk-design` family currently ships 14 private procedure cards across the shared base and five mode packets.
+The `sk-design` family currently ships 12 private procedure cards across the shared base and three mode packets.
 
 The cards are not public routes. They support narrower evidence, plan, handoff, or proof shapes after the hub has already selected the public mode.
 
@@ -23,9 +23,9 @@ The cards are not public routes. They support narrower evidence, plan, handoff, 
 
 ## 2. HOW IT WORKS
 
-The inventory is grouped by owner. Shared owns `polish-gate-orchestration.md`. Interface owns `aesthetic-direction.md`, `deck-direction-spec.md`, `discovery-question-round.md`, `prototype-flow-spec.md`, `variation-set.md`, and `wireframe-exploration.md`. Foundations owns `component-system-inventory.md`, `hierarchy-rhythm-review.md`, and `tweakable-design-controls.md`.
+The inventory is grouped by owner. Shared owns `polish-gate-orchestration.md`. Interface owns `aesthetic-direction.md`, `deck-direction-spec.md`, `discovery-question-round.md`, `prototype-flow-spec.md`, `variation-set.md`, `wireframe-exploration.md`, `component-system-inventory.md`, `hierarchy-rhythm-review.md`, and `tweakable-design-controls.md` (the last three folded in from the retired foundations mode).
 
-Motion owns `interaction-states-pass.md`. Audit owns `accessibility-audit.md` and `ai-slop-check.md`. Md-generator owns `design-system-extraction.md`, the only card attached to the mutating design mode.
+Motion owns `interaction-states-pass.md`. Md-generator owns `design-system-extraction.md`, the only card attached to the mutating design mode.
 
 ---
 
@@ -36,10 +36,8 @@ Motion owns `interaction-states-pass.md`. Audit owns `accessibility-audit.md` an
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md` | Shared | Cross-mode final polish orchestration. |
-| `.opencode/skills/sk-design/design-interface/procedures/*.md` | Shared | Six interface procedure cards. |
-| `.opencode/skills/sk-design/design-foundations/procedures/*.md` | Shared | Three foundations procedure cards. |
+| `.opencode/skills/sk-design/design-interface/procedures/*.md` | Shared | Nine interface procedure cards (six original plus three folded in from the retired foundations mode). |
 | `.opencode/skills/sk-design/design-motion/procedures/interaction-states-pass.md` | Shared | One motion procedure card. |
-| `.opencode/skills/sk-design/design-audit/procedures/*.md` | Shared | Two audit procedure cards. |
 | `.opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md` | Shared | One md-generator procedure card. |
 
 ### Validation And Tests

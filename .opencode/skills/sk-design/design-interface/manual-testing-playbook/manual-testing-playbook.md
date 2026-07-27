@@ -29,12 +29,18 @@ Canonical package artifacts:
 - `content-and-mock-data-gate/`
 - `brief-to-dials-intake/`
 - `procedure-card-contract/`
+- `color/`
+- `layout/`
+- `type/`
+- `data-viz/`
+- `tokens/`
+- `worked-examples/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 14 categories validating the `interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 31 deterministic scenarios across 20 categories validating the `interface` skill surface, including the 11 relocated `foundations` subworkflow scenarios in section 23. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
 Coverage note (2026-06-26): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present, the render fidelity check gated on the quality floor and the anti-default critique, and the guarded native-image visual-direction branch for net-new, ambiguous, or image-led work with approval before code, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. It also covers the mechanical pre-flight card walked box by box as the binary last filter before delivery, the mechanical layout gate where the hero lines, bento cells, and eyebrows are counted and button contrast is computed against the real background, the copy and mock-data content gate swept over the real strings for lorem, AI-tell phrasing, fake precision, one copy register, and image-seed discipline, and the brief-to-dials Design Read intake that reads a brief into the variance, motion, and density dials after the register posture is set with a negative control that the dials are never surfaced as a chooser. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and `assets/interface-preflight-card.md`.
 
@@ -657,3 +663,42 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-018 | Interface procedure-card selection proof | PROCEDURE CARD CONTRACT | [ID-018](procedure-card-contract/card-selection-proof.md) |
 | ID-019 | Interface no-card fallback | PROCEDURE CARD CONTRACT | [ID-019](procedure-card-contract/no-card-fallback.md) |
 | ID-020 | Interface direct fallback without subagents | PROCEDURE CARD CONTRACT | [ID-020](procedure-card-contract/direct-fallback-without-subagents.md) |
+
+---
+
+## 23. FOUNDATIONS SCENARIOS (RELOCATED)
+
+The `foundations` subworkflow was consolidated beneath `design-interface` (see `../README.md` and `../references/`). Its 11 manual-testing scenarios relocated intact into the category folders below rather than being renumbered into the ID-0xx sequence above, since they validate the static visual-system surface (color, typography, layout, data visualization, and token handoff) rather than aesthetic-direction or delivery-gate behavior. The three procedure-card-contract scenarios were renamed with a `foundations-` prefix to avoid colliding with ID-018/019/020, which cover the six interface-owned procedure cards; these three cover the three foundations-owned procedure cards instead.
+
+| ID | Scenario | File |
+| --- | --- | --- |
+| FOUND-COLOR-001 | OKLCH palette and dark-mode token plan | [`color/oklch-palette-and-dark-mode.md`](color/oklch-palette-and-dark-mode.md) |
+| FOUND-COLOR-002 | Contrast-pair inventory before audit | [`color/contrast-pair-inventory-before-audit.md`](color/contrast-pair-inventory-before-audit.md) |
+| FOUND-TYPE-001 | Typography role system and measure | [`type/type-roles-and-measure.md`](type/type-roles-and-measure.md) |
+| FOUND-LAYOUT-001 | Layout rhythm and responsive adaptation | [`layout/layout-rhythm-responsive.md`](layout/layout-rhythm-responsive.md) |
+| FOUND-LAYOUT-002 | Context adaptation matrix across device, input and posture | [`layout/context-adaptation-matrix.md`](layout/context-adaptation-matrix.md) |
+| FOUND-DATAVIZ-001 | Data visualization encoding and color-for-data scales | [`data-viz/chart-encoding-and-color.md`](data-viz/chart-encoding-and-color.md) |
+| FOUND-TOKEN-001 | Token starter scaffold handoff | [`tokens/token-starter-handoff.md`](tokens/token-starter-handoff.md) |
+| FOUND-EXAMPLE-001 | Worked examples used as calibration, not presets | [`worked-examples/worked-examples-not-presets.md`](worked-examples/worked-examples-not-presets.md) |
+| FOUND-PROCCARD-001 | Foundations procedure-card selection proof | [`procedure-card-contract/foundations-card-selection-proof.md`](procedure-card-contract/foundations-card-selection-proof.md) |
+| FOUND-PROCCARD-002 | Foundations no-card fallback | [`procedure-card-contract/foundations-no-card-fallback.md`](procedure-card-contract/foundations-no-card-fallback.md) |
+| FOUND-PROCCARD-003 | Foundations direct fallback without subagents | [`procedure-card-contract/foundations-direct-fallback-without-subagents.md`](procedure-card-contract/foundations-direct-fallback-without-subagents.md) |
+
+### Foundations Preconditions
+
+1. The repository root is the working directory.
+2. `../SKILL.md` and all `../references/foundations/` files resolve.
+3. Parent shared references under `../../shared/` resolve for vocabulary checks.
+
+### Foundations Evidence Requirements
+
+- Exact prompt used.
+- Resources loaded.
+- Produced token/system plan.
+- Evidence that sibling boundaries were respected.
+- Final verdict with rationale.
+- Procedure card or no-card fallback proof when procedure support is in scope.
+
+### Foundations Release Readiness
+
+Release is ready when all 11 foundations scenarios PASS or are SKIP only for environment reasons, and no scenario shows invented token roles, inaccessible color pairs, dishonest chart axes, generic responsive scaling, missing procedure-card proof, or a weakened direct-fallback proof bar.

@@ -22,17 +22,17 @@ This scenario verifies end-to-end advisor integration for the single public advi
 | Probe | Prompt | Expected Mode | Why |
 |---|---|---|---|
 | P1 | `Make this onboarding page look less generic and give it a distinctive interface direction.` | `interface` | `interface-taste` includes `less generic` and `visual direction`. |
-| P2 | `Create an OKLCH palette, typography scale, and spacing system for this analytics dashboard.` | `foundations` | `foundations-color`, `foundations-type`, and `foundations-layout` all match. |
+| P2 | `Create an OKLCH palette, typography scale, and spacing system for this analytics dashboard.` | `interface` | `foundations-color`, `foundations-type`, and `foundations-layout` vocabulary classes all route into `interface`'s `routerSignals` now that the standalone `foundations` mode is retired. |
 | P3 | `Design the transition choreography and reduced-motion fallback for this modal.` | `motion` | `motion-aliases` includes `transitions` and `reduced motion`. |
-| P4 | `Audit this settings screen for WCAG contrast, keyboard focus, and design slop.` | `audit` | `audit-accessibility` includes `wcag contrast`; `audit-quality` includes design QA terms. |
+| P4 | `Audit this settings screen for WCAG contrast, keyboard focus, and design slop.` | `interface` | The retired `audit` mode's accessibility/quality-review scope folded into `interface`'s `UX_QUALITY` intent signals (`accessibility`, `contrast`, `focus`, `keyboard`) and its pre-delivery gate (`assets/interface-preflight-card.md`). |
 | P5 | `Extract design tokens from https://example.com and generate DESIGN.md.` | `md-generator` | `md-generator-aliases` includes `extract design tokens` and `generate design.md`. |
 | P6 | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design` | `design-mcp-open-design-aliases` includes `wire open design` and `od cli`; distinguishes from the external sibling `mcp-figma`. |
 
 **Expected packet loaded**:
 - P1: `design-interface/SKILL.md`
-- P2: `design-foundations/SKILL.md`
+- P2: `design-interface/SKILL.md`
 - P3: `design-motion/SKILL.md`
-- P4: `design-audit/SKILL.md`
+- P4: `design-interface/SKILL.md`
 - P5: `design-md-generator/SKILL.md`
 - P6: `design-mcp-open-design/SKILL.md`
 
@@ -51,7 +51,7 @@ This scenario verifies end-to-end advisor integration for the single public advi
 ### Preconditions
 
 1. The advisor sees a single public `sk-design` identity.
-2. `mode-registry.json` contains all six modes (five `packetKind: workflow` plus one `packetKind: transport`) with `advisorRouting.routingClass: metadata`.
+2. `mode-registry.json` contains all four modes (three `packetKind: workflow` plus one `packetKind: transport`) with `advisorRouting.routingClass: metadata`.
 
 ### Exact Command Sequence
 

@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "sk-design/012-sk-design-program/006-design-mode-consolidation",
-  "description": "Foundations and audit are registered as peer hub modes despite being permanent interface-domain workflows",
+  "description": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
   "keywords": [
     "foundations",
     "audit",
@@ -10,11 +10,10 @@
     "hub",
     "modes",
     "despite",
-    "permanent",
     "interface-domain",
     "workflows"
   ],
-  "lastUpdated": "2026-07-26T09:12:26.675Z",
+  "lastUpdated": "2026-07-27T04:32:17.259Z",
   "specId": "006",
   "folderSlug": "design-mode-consolidation",
   "parentChain": [

@@ -35,7 +35,7 @@ Next Action/Handoff
 ## 3. Results Display
 
 ```text
-STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:foundations,/interface:motion,/interface:audit PROOF=target,register,designDials,preflightResult
+STATUS=OK PRODUCES="Interface Direction Spec" NEXT=/interface:motion PROOF=target,register,designDials,preflightResult
 STATUS=ASK MISSING=<input>
 STATUS=FAIL ERROR=<named-cause>
 STATUS=DEFER ROUTE=<hub|sibling>
@@ -45,9 +45,9 @@ STATUS=DEFER ROUTE=<hub|sibling>
 
 | Condition | Suggested target | Reason |
 |---|---|---|
-| the direction needs a static token, type, spacing, or theming system | `/interface:foundations` | Turn direction into a static visual system |
+| the direction needs a static token, type, spacing, or theming system | interface mode | The interface mode owns static-system decisions directly |
 | the direction needs purposeful animation, transitions, or micro-interactions | `/interface:motion` | Specify temporal behavior |
-| the interface direction is ready for findings-first review and scoring | `/interface:audit` | Validate quality before build |
+| the interface direction is ready for findings-first review and scoring | `design-interface/assets/interface-preflight-card.md` | Run the pre-delivery SHIP/FIX sweep |
 | accepted direction moves to implementation | `sk-code` via `.opencode/skills/sk-design/shared/sk-code-handoff.md` | Preserve accepted decisions during build |
 
 `HANDOFF_REQUIRED=false`. Recommendations never silently chain.

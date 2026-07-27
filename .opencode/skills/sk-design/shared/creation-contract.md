@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Interface Creation Contract
 
-This contract supplies the public choreography shared by the five `/interface:*` commands. It is not a design mode and contains no palette, typography, layout, motion, or audit taste doctrine. Commands own intake and lifecycle; the selected `sk-design` mode owns judgment and proof definition; transports own retrieval, rendering, or extraction; `sk-code` owns application-code mutation and stack verification.
+This contract supplies the public choreography shared by the three `/interface:*` commands. It is not a design mode and contains no palette, typography, layout, motion, or audit taste doctrine. Commands own intake and lifecycle; the selected `sk-design` mode owns judgment and proof definition; transports own retrieval, rendering, or extraction; `sk-code` owns application-code mutation and stack verification.
 
 ## 1. AUTHORITY AND ROUTE
 
@@ -22,9 +22,7 @@ Resolve exactly one canonical command and stable `workflowMode` before creative 
 | Canonical command | Stable `workflowMode` |
 |---|---|
 | `/interface:design` | `interface` |
-| `/interface:foundations` | `foundations` |
 | `/interface:motion` | `motion` |
-| `/interface:audit` | `audit` |
 | `/interface:design-reference` | `md-generator` |
 
 Public commands never invoke public commands. A command may order a supporting mode through the `sk-design` hub or pass an accepted-decision envelope to a downstream mode without restarting intake. Authority precedence is:

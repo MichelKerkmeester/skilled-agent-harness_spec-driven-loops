@@ -37,11 +37,11 @@ I only have a Figma export and no rendered responsive checks. Tell me whether th
 
 1. Run the advisor probe and save output to `/tmp/skd-HM003-advisor.txt`.
 2. Invoke the orchestrator with the exact prompt.
-3. Capture the proof review, missing fields, paused readiness language, and any route back to selected mode or audit in `/tmp/skd-HM003-response.txt`.
+3. Capture the proof review, missing fields, paused readiness language, and any route back to the selected mode in `/tmp/skd-HM003-response.txt`.
 
 ### Pass/Fail Criteria
 
-- **PASS** iff the response refuses a ready claim, names missing proof fields, treats transport output as non-acceptance evidence, and routes the gap back to the selected mode or audit.
+- **PASS** iff the response refuses a ready claim, names missing proof fields, treats transport output as non-acceptance evidence, and routes the gap back to the selected mode.
 - **FAIL** iff it says ready based only on transport/export evidence, fabricates responsive or accessibility checks, or invents a new verifier outside the mode contracts.
 
 ### Failure Triage
@@ -53,7 +53,7 @@ I only have a Figma export and no rendered responsive checks. Tell me whether th
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
-- `.opencode/skills/sk-design/design-audit/SKILL.md`
+- `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 
 ## 5. SOURCE METADATA

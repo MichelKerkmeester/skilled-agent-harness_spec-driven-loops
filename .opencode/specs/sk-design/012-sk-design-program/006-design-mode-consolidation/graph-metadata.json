@@ -43,22 +43,22 @@
     "key_files": [
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/design-interface/SKILL.md",
+      "scratch/styles.sha256.before",
       "decision-record.md",
+      "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "plan.md",
-      ".opencode/bin/compiled-route-sync.cjs",
-      "spec.md",
-      ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/command-metadata.json",
-      ".opencode/skills/sk-design/leaf-manifest.json",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-design/SKILL.md",
       "handover.md",
-      "implementation-summary.md",
+      ".opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md",
       "scratch/foundations-files.before.txt",
       "scratch/audit-files.before.txt",
-      "scratch/styles.sha256.before"
+      "implementation-summary.md",
+      "scratch/benchmark-before/report.json",
+      "scratch/routing.sha256.before",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md"
     ],
     "entities": [
       {
@@ -74,9 +74,27 @@
         "source": "derived"
       },
       {
+        "name": "styles.sha256.before",
+        "kind": "file",
+        "path": "scratch/styles.sha256.before",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -92,57 +110,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-sync.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/compiled-route-sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "command-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/command-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "polish-gate-orchestration.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md",
         "source": "derived"
       },
       {
@@ -158,9 +134,39 @@
         "source": "derived"
       },
       {
-        "name": "styles.sha256.before",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "report.json",
+        "kind": "config",
+        "path": "scratch/benchmark-before/report.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing.sha256.before",
         "kind": "file",
-        "path": "scratch/styles.sha256.before",
+        "path": "scratch/routing.sha256.before",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "interface-preflight-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
         "source": "derived"
       },
       {
@@ -198,17 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Foundations and audit are registered as peer hub modes despite being permanent interface-domain workflows",
+    "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-07-26T10:41:18.165Z",
+    "last_save_at": "2026-07-27T04:33:25.494Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,15 +220,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d29032ee9981b0e22a231d669e9b4ed10127a3f6f968ea6ff5e93c0624073cb4",
+    "source_fingerprint": "sha256:8e53e1aab1294372b2338c24302008b139534c95fb206ede842fbd98e0618c8f",
     "source_doc_hashes": {
-      "spec.md": "2aaf29fa16b8bc969adad9a52dbb57ab8351ceb6e26d01dab70f39ed57546f1c",
-      "plan.md": "2d37b89ab86e59e3eaf791fff7b19071aae376c4e7a56f00d572c69d0c4d069f",
-      "tasks.md": "ca1064ea6cd59b6f730b19596a75123c822a9bc9b5422fcfe175cd1503c74aea",
-      "checklist.md": "21a1f76e9894213a8f2ea574adfab872db8741006ff5266b69ffb41a6a5aaf5d",
-      "decision-record.md": "2d451f6cc75c81d4c911f9b27e4854960dd01ff95b6f2fbcaa7fe1cbb4aec245",
-      "implementation-summary.md": "227d807bcce72984e7d6bd388ad0f8805e56cb11b9927eaac9e9d30f0266226c",
-      "handover.md": "4e72f8ba94838161a8154fd026ed1c11fd91176110c19762fb110a703a605e3e"
+      "spec.md": "9209d5fe64c3e78c89bb50badf0b8112e37fbf241c2f681fb3b73943080b134d",
+      "plan.md": "3bf4620f7cc99ff64dc263b1184309b55a72752f80a802859316a862bd733ec2",
+      "tasks.md": "e0ebc1a50f68154e9b759461d88b5be76d050ae0cfa1bc25b76a356d0820362e",
+      "checklist.md": "a21a5ef6caefeb4a709b971295d0d85124635098856163ff0a1e5a661f2063e5",
+      "decision-record.md": "06fadb0f63a128d1ea0a90c8ba26f10ffa1e0e183cabd27d340ed477e63c8720",
+      "implementation-summary.md": "3c6fc92fd4e4adcf87e836d7c17fb024d3346ae3c5d62bf1ae6fe51fd7250b5f",
+      "handover.md": "7dbef0c54a26e394067b1c69c47b1b3582ab566affae13dab054d11f4009bb4d"
     },
     "last_active_child_id": null,
     "last_active_at": null

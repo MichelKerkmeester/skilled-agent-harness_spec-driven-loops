@@ -1,9 +1,9 @@
 ---
 title: "OKLCH Color And Token System"
-description: "Current-state reference for design-foundations register-gated OKLCH color, semantic token naming, contrast repair, and gamut fallback."
+description: "Current-state reference for the foundations subworkflow's register-gated OKLCH color, semantic token naming, contrast repair, and gamut fallback."
 trigger_phrases:
   - "oklch color and token system"
-  - "design-foundations color tokens"
+  - "foundations color tokens"
   - "contrast repair oklch"
   - "gamut fallback color"
 version: 1.0.0.0
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`design-foundations` builds every color system in OKLCH so lightness steps read as brightness steps, hue stays stable across a scale, and chroma can be managed explicitly instead of guessed from hex.
+The `foundations` subworkflow builds every color system in OKLCH so lightness steps read as brightness steps, hue stays stable across a scale, and chroma can be managed explicitly instead of guessed from hex.
 
 The mode reads the shared Brand-vs-Product register before any color value, because that call sets the color strategy and density everything else inherits.
 
@@ -41,15 +41,15 @@ High-chroma OKLCH values that leave sRGB are clamped to the maximum chroma for t
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/references/color/oklch-workflow.md` | Shared | Defines OKLCH channels, palette generation, contrast repair, and gamut/fallback rules. |
-| `.opencode/skills/sk-design/design-foundations/references/color/palette-theming.md` | Shared | Defines color dosage, semantic roles, tinted neutrals, surface scales, and dark-mode mapping. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/color/oklch-workflow.md` | Shared | Defines OKLCH channels, palette generation, contrast repair, and gamut/fallback rules. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/color/palette-theming.md` | Shared | Defines color dosage, semantic roles, tinted neutrals, surface scales, and dark-mode mapping. |
 | `.opencode/skills/sk-design/shared/register.md` | Shared | Supplies the Brand-vs-Product register read before color strategy is set. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises OKLCH color and token-system scenarios against the live mode. |
+| `.opencode/skills/sk-design/design-interface/manual-testing-playbook/manual-testing-playbook.md (section 23)` | Manual playbook | Exercises OKLCH color and token-system scenarios against the live mode. |
 
 ---
 

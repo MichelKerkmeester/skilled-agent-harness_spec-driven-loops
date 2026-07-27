@@ -160,6 +160,13 @@ Count `__` eyebrows against a ceiling of `__`.
 | Not a templated default look spent on a free axis (cream + serif + terracotta, near-black + one acid accent, broadsheet hairlines) | [ ] |
 | No AI-purple or neon-glow accent by default, one accent color used identically across all sections | [ ] |
 | One corner-radius system applied consistently, one page theme (no section flips to inverted mode mid-page) | [ ] |
+| No card, panel, or button pairs a 1px solid border with a box-shadow blur of 16px or more (ghost-card tell) | [ ] |
+| No card, section, panel, or text input sits at border-radius 24px or more | [ ] |
+| Display and hero headings are no tighter than -0.04em letter-spacing | [ ] |
+| No repeating-linear-gradient diagonal-stripe body or section background | [ ] |
+| No hand-drawn or doodle SVG standing in for a real subject (sketch class names, turbulence or displacement grain filters) | [ ] |
+| No hover transform on an image, and no parent-hover pattern that animates a child image | [ ] |
+| Copy names a concrete user harm rather than performing theater or meta-criticism | [ ] |
 | No three-equal-card feature row, no hero-metric template (big number, small label, supporting stats, gradient accent) | [ ] |
 | No side-stripe borders, no gradient text, no decorative glassmorphism by default | [ ] |
 | Icons from one allowed library, no hand-rolled SVG icon paths | [ ] |

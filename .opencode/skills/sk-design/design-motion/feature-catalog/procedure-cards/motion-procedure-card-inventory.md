@@ -25,7 +25,7 @@ The card specifies complete interaction states, feedback, transitions, and reduc
 
 The mode cites the card in the plan or proof line when the request involves hover, active, focus, disabled, loading, selected, navigation, forms, or custom widgets, and preserves read-only operation: it can return a state matrix or handoff but must not require CSS edits, browser automation, or Bash to apply the card. The procedure inventories interactive elements, specifies default/hover/active/disabled/focus/loading behavior per element, ties transitions to the register motion budget, and includes reduced-motion alternatives for nonessential movement.
 
-When the request is primarily an accessibility release claim, `design-audit/procedures/accessibility-audit.md` owns the verdict while this card supplies the interaction-state standard it cites.
+When the request is primarily an accessibility release claim, `interface`'s pre-delivery gate (`design-interface/assets/interface-preflight-card.md`) owns the verdict while this card supplies the interaction-state standard it cites.
 
 ---
 

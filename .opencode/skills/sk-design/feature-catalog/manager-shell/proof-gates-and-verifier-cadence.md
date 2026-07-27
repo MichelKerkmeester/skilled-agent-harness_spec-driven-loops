@@ -36,13 +36,13 @@ Taste proof cites the mode's rationale and concrete decisions. Accessibility pro
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/sk-design/SKILL.md` | Shared | Defines proof gates, verifier cadence, and blocking behavior when evidence is missing. |
-| `.opencode/skills/sk-design/design-audit/SKILL.md` | Shared | Supplies findings-first audit proof for release, accessibility, and quality claims. |
+| `.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md` | Shared | Supplies the mechanical pass/fail pre-delivery proof for release, accessibility, and quality claims. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-audit/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises audit-mode proof behavior where available. |
+| `.opencode/skills/sk-design/design-interface/manual-testing-playbook/mechanical-preflight-card/preflight-card-on-built-ui.md` | Manual playbook | Exercises the interface pre-delivery proof behavior where available. |
 
 ---
 

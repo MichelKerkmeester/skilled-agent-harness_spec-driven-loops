@@ -19,7 +19,7 @@ Shared private procedure card for coordinating the existing final polish review 
 | Field | Value |
 |---|---|
 | Purpose | Coordinate final pre-delivery design review across accessibility, anti-slop, hierarchy/rhythm, and interaction states. |
-| Owning mode | `shared`; owning reviewer: `design-audit` |
+| Owning mode | `shared`; owning gate: `design-interface`'s `assets/interface-preflight-card.md` |
 | Source reference | `polish-pass.md` |
 | Trigger | Use when a built or planned design needs a final polish, release-readiness review, or stakeholder-facing quality gate that spans multiple review dimensions. |
 | Output contract | A consolidated review plan or findings report grouped into blockers, quality issues, polish recommendations, open decisions, and out-of-scope observations. |
@@ -28,7 +28,7 @@ Shared private procedure card for coordinating the existing final polish review 
 
 ## 2. PLACEMENT RATIONALE
 
-This card spans four existing modes: `design-audit` owns findings and severity, `design-foundations` owns hierarchy and rhythm fixes, `design-motion` owns interaction-state and transition standards, and `design-interface` owns visual-direction repair. Keeping the orchestration shared avoids duplicating the same final-gate workflow in multiple mode folders while preserving `design-audit` as the reviewer.
+`design-interface`'s `assets/interface-preflight-card.md` is the binary, mechanical last filter before delivery: it walks hero, bento/grid, eyebrow/meta-label, button/form contrast, breakpoint overflow, real imagery, copy, motion motivation and reduced motion, the AI-tell sweep (Section 11), and the interaction-state matrix (Section 12) box by box, and reaches SHIP only when every box passes. This card coordinates the findings that flow out of that gate to their owning capability: `design-interface`'s `foundations` subworkflow owns hierarchy and rhythm fixes, `design-motion` owns interaction-state and transition standards, and `design-interface` itself owns visual-direction repair. Keeping the orchestration shared avoids duplicating the same final-gate routing logic in multiple mode folders while preserving the interface pre-flight card as the single mechanical reviewer.
 
 ## 3. READ-ONLY COMPATIBILITY
 
@@ -40,12 +40,11 @@ Read-only modes may cite the shared card to produce a review plan, findings repo
 2. Cover accessibility, AI-template risk, hierarchy/rhythm, and interaction states.
 3. Collect all findings before filtering so minor but real issues are not lost.
 4. Deduplicate overlapping findings and order them by release impact.
-5. Route fixes to the owning mode or `sk-code`; do not silently apply them from audit-only contexts.
+5. Route fixes to the owning subworkflow, mode, or `sk-code`; do not silently apply them from a read-only review context.
 6. End with a concise verdict and any decisions the user must review.
 
 ## 5. RELATED CARDS
 
-- `../design-audit/procedures/accessibility-audit.md`
-- `../design-audit/procedures/ai-slop-check.md`
-- `../design-foundations/procedures/hierarchy-rhythm-review.md`
-- `../design-motion/procedures/interaction-states-pass.md`
+- `../../design-interface/assets/interface-preflight-card.md` - the mechanical pre-delivery gate this card orchestrates findings around, including its AI-tell sweep (Section 11) and interaction-state matrix (Section 12).
+- `../../design-interface/procedures/hierarchy-rhythm-review.md` - the `foundations` subworkflow's hierarchy and rhythm fix card.
+- `../../design-motion/procedures/interaction-states-pass.md`

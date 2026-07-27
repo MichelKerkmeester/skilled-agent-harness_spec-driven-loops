@@ -206,7 +206,7 @@ deliverable:
   required_fields: [componentState, motionPurpose, timingModel, reducedMotionPath]
 
 status_contract:
-  success: 'STATUS=OK PRODUCES="Motion Design Spec" NEXT=/interface:design,/interface:foundations,/interface:audit PROOF=componentState,motionPurpose,timingModel,reducedMotionPath'
+  success: 'STATUS=OK PRODUCES="Motion Design Spec" NEXT=/interface:design PROOF=componentState,motionPurpose,timingModel,reducedMotionPath'
   missing_input: "STATUS=ASK MISSING=<input>"
   cannot_run: "STATUS=FAIL ERROR=<named-cause>"
   route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
@@ -232,8 +232,8 @@ termination:
   message: "Motion design workflow complete."
   next_steps:
   - action: "Continue with /interface:design to frame or reframe direction"
-  - action: "Continue with /interface:foundations to revise the static system"
-  - action: "Continue with /interface:audit to QA the behavior"
+  - action: "Keep static-system decisions within the interface mode"
+  - action: "Run the interface mode's mechanical preflight card at design-interface/assets/interface-preflight-card.md to QA the behavior"
   - action: "Hand to sk-code via sk-code-handoff.md after acceptance"
 
 # ─────────────────────────────────────────────────────────────────
@@ -253,8 +253,8 @@ rules:
   - "Leave a confirmation-required field unresolved in autonomous mode"
 
 pipeline:
-  stage: "behavior - specifies temporal behavior after direction or foundations and before audit or build"
-  accepts_from: ["/interface:audit", "/interface:foundations", "/interface:design"]
-  hands_to_next: ["/interface:design", "/interface:foundations", "/interface:audit"]
+  stage: "behavior - specifies temporal behavior after direction and before build"
+  accepts_from: ["/interface:design"]
+  hands_to_next: ["/interface:design"]
   recommend_only: true
   hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after acceptance"

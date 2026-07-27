@@ -226,7 +226,7 @@ deliverable:
   file_outputs: ["<output>/DESIGN.md"]
 
 status_contract:
-  success: 'STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/interface:foundations,/interface:design,/interface:audit PROOF=sourceUrl,extractedTokensDigest,fidelityScore'
+  success: 'STATUS=OK PRODUCES="Style Reference DESIGN.md" NEXT=/interface:design PROOF=sourceUrl,extractedTokensDigest,fidelityScore'
   missing_input: "STATUS=ASK MISSING=<input>"
   cannot_run: "STATUS=FAIL ERROR=<named-cause>"
   route_instead: "STATUS=DEFER ROUTE=<hub|sibling>"
@@ -251,9 +251,9 @@ termination:
   after_step: step_12_prepare_handoff
   message: "Style reference extraction workflow complete."
   next_steps:
-  - action: "Continue with /interface:foundations to build a static system from the measured evidence"
+  - action: "Keep static-system decisions within the interface mode"
   - action: "Continue with /interface:design to frame direction from the measured evidence"
-  - action: "Continue with /interface:audit to QA against the extracted reference"
+  - action: "Run the interface mode's mechanical preflight card at design-interface/assets/interface-preflight-card.md to QA against the extracted reference"
   - action: "Hand to sk-code via sk-code-handoff.md after artifact acceptance"
 
 # ─────────────────────────────────────────────────────────────────
@@ -274,8 +274,8 @@ rules:
   - "Proceed past step_0 before the consolidated reply is received"
 
 pipeline:
-  stage: "extract - the pipeline origin for measured source evidence before design judgment or audit"
+  stage: "extract - the pipeline origin for measured source evidence before design judgment"
   accepts_from: []
-  hands_to_next: ["/interface:foundations", "/interface:design", "/interface:audit"]
+  hands_to_next: ["/interface:design"]
   recommend_only: true
   hands_to_build: "sk-code, via .opencode/skills/sk-design/shared/sk-code-handoff.md, only after artifact acceptance"

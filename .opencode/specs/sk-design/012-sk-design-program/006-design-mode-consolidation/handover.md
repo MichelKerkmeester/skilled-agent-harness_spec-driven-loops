@@ -1,6 +1,6 @@
 ---
 title: "Session Handover: sk-design mode consolidation"
-description: "Continuation state for the in-progress four-mode sk-design migration, permanent interface-owned foundations and audit subworkflows, and remaining verification work."
+description: "Continuation state after ADR-002 retired /interface:audit and /interface:foundations entirely: four-mode/three-command sk-design topology shipped and verified for command/corpus/checker gates, with styles equality, the design benchmark, and validate.sh --strict remaining."
 trigger_phrases:
   - "sk-design consolidation handover"
   - "resume design mode consolidation"
@@ -10,23 +10,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/006-design-mode-consolidation"
-    last_updated_at: "2026-07-26T10:32:50Z"
-    last_updated_by: "opencode"
-    recent_action: "Recorded the current four-mode migration boundary"
-    next_safe_action: "Patch live consumers, then regenerate routing artifacts"
+    last_updated_at: "2026-07-27T04:33:25.494Z"
+    last_updated_by: "claude"
+    recent_action: "Rewrote handover for the ADR-002 retirement outcome; three gates remain unrun"
+    next_safe_action: "Orchestrator runs validate.sh --strict, styles SHA-256 equality, and the design benchmark suite"
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/mode-registry.json"
       - ".opencode/skills/sk-design/hub-router.json"
-      - ".opencode/skills/sk-design/design-interface/SKILL.md"
-    completion_pct: 65
+      - ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md"
+    completion_pct: 80
     open_questions: []
     answered_questions:
-      - "Foundations and audit remain permanent interface subworkflows."
+      - "Foundations and audit are retired entirely, not preserved as permanent interface subworkflows (ADR-002 supersedes ADR-001)."
 ---
 # Session Handover: sk-design Mode Consolidation
 
-Resume from the four-mode authored topology and complete live-consumer migration, generated routing, final verification, and packet reconciliation without reverting unrelated dirty-worktree changes.
+Resume from the ADR-002 retirement outcome (four modes, three commands, `commandSubworkflows` deleted) and run the three remaining gates: styles SHA-256 equality, the design benchmark suite, and `validate.sh --strict`.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -37,7 +37,11 @@ Resume from the four-mode authored topology and complete live-consumer migration
 
 **Status:** `in_progress`
 
-The structural migration is materially underway. The two former peer-mode trees have moved beneath `design-interface`, the authored registry now contains exactly four modes, command-subworkflow metadata exists, the leaf manifest is regenerated to the required 69 interface leaves, and focused command, corpus, fingerprint, and parent-hub gates are green. Canonical hub doctrine, live old-path consumers, advisor metadata, compiled-routing artifacts, benchmark route gold, final styles equality, and strict packet reconciliation remain open.
+**Scope changed mid-packet.** The original plan (ADR-001) embedded foundations and audit as permanent `interface` command subworkflows via a new `commandSubworkflows` array. That violated the create-skill parent-hub doctrine's one-entry-per-packet rule and was not implementable as designed. **ADR-002 supersedes ADR-001**: the operator retired `/interface:audit` and `/interface:foundations` entirely.
+
+Shipped and verified: `mode-registry.json` has exactly 4 modes; 3 commands remain; the audit surface (70 files/6,202 lines) and two dead AI-fingerprint parity scripts (915 lines) are deleted; foundations is flattened into `design-interface/` with its `contract.md`/`README.md`/`changelog/` deleted; 7 anti-slop checks are folded into `interface-preflight-card.md` section 11; `polish-gate-orchestration.md` is rewritten for its five live consumers; 6 unfixable playbook scenarios are deleted; a pre-existing dangling `command-metadata.json` reference is fixed; live old-path references are confirmed at 0 (down from 152). Command-contract, command-surface, corpus, and parent-hub gates all pass (see gate table below).
+
+**Not run**, and must not be claimed as passing: the design benchmark suite, the final styles SHA-256 equality check, and `validate.sh --strict`.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -45,11 +49,11 @@ The structural migration is materially underway. The two former peer-mode trees 
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
-- **From Session:** OpenCode execution session, 2026-07-26
-- **To Session:** Next OpenCode session continuing the same active goal and Packet 2
-- **Phase Completed:** Baseline capture, foundations relocation, audit relocation, four-mode authored registry, typed command-subworkflow routing, focused verification
-- **Handover Time:** 2026-07-26
-- **Recent action**: Rendered this canonical handover after the first large hub-doctrine patch failed atomically; no source files changed from that failed patch
+- **From Session:** Claude documentation-reconciliation pass, 2026-07-27
+- **To Session:** Whoever runs the three remaining gates and closes the packet
+- **Phase Completed:** Baseline capture; scope reversal to retirement (ADR-002); audit deletion; foundations flattening; anti-slop-check folding; registry/command cleanup to 4 modes/3 commands; command-contract, command-surface, corpus, and parent-hub gates all green
+- **Handover Time:** 2026-07-27
+- **Recent action**: Rewrote `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` (added ADR-002), `implementation-summary.md`, and this handover to match the verified retirement outcome instead of the superseded ADR-001 relocation plan
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -60,56 +64,53 @@ The structural migration is materially underway. The two former peer-mode trees 
 ### 2.1 Key Decisions Made
 | Decision     | Rationale | Impact                 |
 | ------------ | --------- | ---------------------- |
-| Keep exactly four registered modes: `interface`, `motion`, `md-generator`, `design-mcp-open-design` | The approved topology separates top-level identity from durable command capability | `mode-registry.json`, `hub-router.json`, leaf and compiled-routing projections |
-| Preserve foundations and audit as permanent `interface` command subworkflows | Public command behavior, procedures, corpora, reports, scoring, and verifiers must survive removal of peer mode identities | `design-interface/foundations/`, `design-interface/audit/`, command wrappers and assets |
-| Transform both former nested `SKILL.md` files into non-identity `contract.md` files | The advisor must discover one `sk-design` identity with no nested foundations or audit skill | Relocated contracts and parent-hub identity checks |
-| Keep `styles/` byte-identical | The topology change does not justify data, retrieval, or visual-style migration | Frozen 7,812-file SHA-256 manifest under `scratch/` |
-| Extend downstream schemas instead of adding compatibility aliases | Permanent commands need typed ownership, not temporary hidden modes | `commandSubworkflows`, command metadata, command checker, parent-hub checker |
-| Leave historical benchmark reports and archived evidence unchanged | Historical paths remain evidence, not live consumers | Final grep must classify rather than rewrite historical records |
+| Keep exactly four registered modes: `interface`, `motion`, `md-generator`, `design-mcp-open-design` | Separates top-level identity from command capability | `mode-registry.json`, `hub-router.json` |
+| **Retire `/interface:audit` and `/interface:foundations` entirely (ADR-002, supersedes ADR-001)** | `commandSubworkflows` violated the create-skill one-entry-per-packet doctrine rule; embedding was not implementable | `mode-registry.json`, `command-metadata.json`, three commands remain |
+| Do not extract audit as a standalone skill (research rec 3, reconsidered and rejected again) | Avoids reopening a second advisor identity ADR-001 had already closed | `decision-record.md` ADR-002 |
+| Delete the audit surface and two dead AI-fingerprint parity scripts | No replacement gate needed; scripts had no other consumer once audit was retired | `design-interface/audit/`, `assets/audit/`, `references/audit/` (70 files/6,202 lines); 2 scripts (915 lines) |
+| Flatten foundations into `design-interface/`; delete its `contract.md`/`README.md`/`changelog/` | Judged packet-mimicking ceremony once foundations was no longer a subworkflow identity | `design-interface/foundations/` no longer exists as a subtree |
+| Fold 7 anti-slop checks into `interface-preflight-card.md`, drop the scoring apparatus | Keeps checks with real evidence value without maintaining unused severity/reporting ceremony | `design-interface/assets/interface-preflight-card.md` section 11 (204 -> 211 lines) |
+| Keep `styles/` byte-identical | The topology change does not justify data/retrieval/visual-style migration | Frozen 7,812-row SHA-256 manifest under `scratch/`; final equality still pending |
+| Leave historical benchmark reports and archived evidence unchanged | Historical paths remain evidence, not live consumers | Live grep classified rather than rewrote historical records (152 -> 0 live) |
 
 ### 2.2 Blockers Encountered
-**Blockers**: No product or architecture decision is blocked. Spec Memory retrieval remains unavailable, the code graph is empty, and final completion gates are not yet run.
+**Blockers**: No product or architecture decision is blocked. Three gates remain unrun.
 
 | Blocker     | Status          | Resolution/Workaround |
 | ----------- | --------------- | --------------------- |
-| `memory_match_triggers` and both final `memory_save` calls return `MCP error -32001: Request timed out` | Open, non-blocking for repository work | Use packet docs and direct filesystem evidence; retry indexing after daemon recovery |
-| Code graph reports zero files/nodes/edges | Open, non-blocking for this document and path migration | Use Grep, Glob, direct reads, and deterministic package checkers |
-| Large doctrine patch failed with `apply_patch verification failed: Failed to find expected lines in .opencode/skills/sk-design/SKILL.md: Canonical /interface:* commands resolve to the same stable mode IDs.` | Resolved as a safe halt; patch was atomic and changed no files | Re-read exact source sections and apply small, file-scoped patches rather than retrying the broad patch |
-| Pre-change benchmark scored 95/100 with route-gold failures | Open and expected after topology contraction | Update final route gold for `TV-001.V2`, `TV-001.V3`, and `SR-002.P3`, then run a new benchmark without weakening other assertions |
-| Local md-generator compiled dist was reported stale | Open | Run `npm run build` in `design-md-generator/backend` before final package verification |
+| `commandSubworkflows` violates the create-skill one-entry-per-packet doctrine rule | Resolved | ADR-002 retires both commands instead of embedding them |
+| Styles SHA-256 final equality not yet run | Open | Compare a fresh manifest against `scratch/styles.sha256.before` (7,812 rows) |
+| Design benchmark suite not yet run | Open | Pre-change route gold encoded the retired topology; needs a fresh baseline, not a rerun against stale gold |
+| `validate.sh --strict` not yet run against this packet | Open | Orchestrator-owned next step, immediately after this documentation reconciliation |
 
 ### 2.3 Files Modified
-**Key files**: `.opencode/skills/sk-design/mode-registry.json`, `.opencode/skills/sk-design/hub-router.json`, `.opencode/skills/sk-design/command-metadata.json`, `.opencode/skills/sk-design/leaf-manifest.json`, `.opencode/skills/sk-design/design-interface/{foundations,audit}/`, `.opencode/commands/interface/`, `.opencode/commands/doctor/scripts/parent-skill-check.cjs`
+**Key files**: `.opencode/skills/sk-design/mode-registry.json`, `.opencode/skills/sk-design/hub-router.json`, `.opencode/skills/sk-design/command-metadata.json`, `.opencode/skills/sk-design/design-interface/` (audit/references/audit/assets/audit deleted; foundations flattened), `.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md`, `.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md`, `.opencode/commands/interface/`
 
-| File        | Change Summary | Status                 |
+| File / Path        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
-| `mode-registry.json` | Reduced to four mode rows and added typed `commandSubworkflows` for foundations and audit | Complete, focused checker green |
-| `hub-router.json` | Set actual default to `interface`, reduced mode signals to four, added command-subworkflow signals and canonical ownership | Complete, parent checker green |
-| `command-metadata.json` | Repointed foundations/audit commands to owner mode `interface` plus `commandSubworkflow` | In progress; four stale transform-remediation paths remain |
-| `leaf-manifest.json` | Regenerated from source to four modes and exactly 69 interface leaves | Complete, byte-drift checker green |
-| `design-interface/foundations/` | Relocated the complete foundations workflow, README, changelog, corpus, procedures, feature catalog, playbook, scripts, and non-identity contract | Complete relocation; live prose consumers still need path migration |
-| `design-interface/audit/` | Relocated the complete audit workflow, README, changelog, corpus, procedures, feature catalog, playbook, scripts, reports, and non-identity contract | Complete relocation; live prose consumers still need path migration |
-| `design-interface/references/{foundations,audit}/` | Relocated all routable reference leaves | Complete |
-| `design-interface/assets/{foundations,audit}/` | Relocated all routable assets and fingerprint fixtures | Complete |
-| `.opencode/commands/interface/{foundations,audit}.md` and assets | Preserved public commands while dispatching `workflowMode=interface` plus the named subworkflow | Complete, focused command gates green |
-| `shared/scripts/design-command-surface-check.mjs` | Added command-subworkflow ownership, resource, choreography, and roster validation | Complete, 7/7 tests green |
-| `shared/scripts/interface-command-contract.test.mjs` | Made canonical-command lookup robust after multiple commands share owner mode `interface` | Complete, 8/8 tests green |
-| `parent-skill-check.cjs` | Added command-subworkflow extension and router-signal validation; retained downstream package invariants | Complete, package checker green with zero warnings |
-| Root `SKILL.md`, `README.md`, `design-interface/SKILL.md`, shared docs, playbooks, feature catalogs | Still describe foundations/audit as peer modes or old paths in several live locations | In progress; broad attempted patch did not apply |
-| Advisor metadata and compiled sk-design routing artifacts | Still need canonical regeneration from final authored topology | Pending |
+| `mode-registry.json` | Reduced to four mode rows; `commandSubworkflows` and related fields deleted (not added) | Complete, `design-command-surface-check.mjs` final `commands=3 aliases=9 invalid=0 drift=0` |
+| `hub-router.json` | Reduced mode signals to four; no subworkflow signals | Complete, parent checker green |
+| `command-metadata.json` | Reduced to 3 commands; fixed a pre-existing dangling reference to a nonexistent `design-audit/references/transform-remediation.md` | Complete |
+| `design-interface/audit/`, `assets/audit/`, `references/audit/` | Deleted entirely (70 files / 6,202 lines) | Complete |
+| `shared/scripts/ai-fingerprint-{registry,fixture}-check.mjs` | Deleted as dead code (915 lines) | Complete |
+| `design-interface/foundations/` | Flattened: `contract.md`/`README.md`/`changelog/` deleted; `procedures/`, `corpus/`, `scripts/` moved flat into `design-interface/` | Complete |
+| `design-interface/assets/interface-preflight-card.md` | 7 anti-slop checks folded into section 11 (204 -> 211 lines) | Complete |
+| `shared/procedures/polish-gate-orchestration.md` | Rewritten around the interface preflight card for its five live consumers | Complete |
+| 6 playbook scenarios (`mode-routing/audit-mode.md` and 5 others) | Deleted as unfixable | Complete |
+| `.opencode/commands/interface/` | 3 commands remain: `/interface:design`, `/interface:motion`, `/interface:design-reference` | Complete, `interface-command-contract.test.mjs` 8/8 green |
+| `shared/scripts/design-command-surface-check.mjs` | Verified at final state | Complete, 7/7 tests green |
+| `parent-skill-check.cjs` | Verified at final state | Complete, OK, 0 warnings |
 
 ### 2.4 Traps & Scar Tissue
 Carry only what the next reader cannot re-derive: where a trap bit, what triggers it, and whether the guard is load-bearing or defensive. A green tree does not erase a trap.
 
 | Trap / blast site | Activation condition | Load-bearing or defensive? | How to avoid re-paying it |
 | ----------------- | -------------------- | -------------------------- | ------------------------- |
-| Dirty branch contains Packet 1 and unrelated concurrent changes | Broad Git restore, checkout, reset, or repository-wide generated cleanup | Load-bearing | Never revert or normalize paths outside Packet 2 scope; inspect scoped diffs before every final claim |
-| Empty retired peer directories survived file moves | Parent checker scans physical directories, not only tracked files | Defensive but required | Confirm directories are empty, then remove with `rmdir`; never use recursive deletion |
-| Manifest generation initially leaves stale topology until canonical generator runs | Hand editing `leaf-manifest.json` or skipping byte-drift verification | Load-bearing | Always run `generate-leaf-manifest.cjs --write` and then parent-hub checker |
-| Two commands now share `workflowMode=interface` | Tests look up command surfaces by mode alone | Load-bearing | Select command surfaces by canonical command id; keep subworkflow as a separate discriminator |
+| `commandSubworkflows` looks like the obvious embed-and-preserve design | Adding a second per-packet ownership array (`commandSubworkflows`, `extensions["command-subworkflows"]`, signals, bundles, excludedAliases) | Load-bearing | The create-skill doctrine is one entry per packet in `modes[]` — full stop. Any subworkflow-style ownership layer needs a different pattern or a genuine standalone skill, not a second array |
+| Assuming ADR-001's "audit stays embedded" framing is still current | Reading only `decision-record.md` ADR-001 without checking its Status line | Load-bearing | ADR-001 is Superseded by ADR-002 — always read ADR-002 for the actual final decision |
+| Pre-change benchmark route gold encodes the retired six-mode/subworkflow topology | Rerunning the benchmark without first updating route gold | Load-bearing | Treat the old route gold as stale; establish a fresh baseline against the four-mode/three-command topology before comparing |
 | Grep across all benchmark reports overflows output | Searching all historical JSON reports for old paths | Defensive | Search live authored trees separately and exclude benchmark reports, changelogs, archived specs, and frozen before-snapshots |
-| Broad multi-file patch used prose that did not exactly match source | One stale expected line invalidates the whole atomic patch | Defensive | Read exact target sections, patch one file or one section at a time, and rerun focused checks after each group |
-| Generated compiled-routing tree is concurrently dirty from Packet 1 | Treating all compiled-routing changes as Packet 2 output | Load-bearing | Regenerate only through the canonical sync path after authored sk-design consumers are final; review sk-design-scoped outputs only |
+| Marking a checklist/task item `[x]` because the *original* (superseded) requirement text sounds satisfied | Skimming `checklist.md`/`tasks.md` without checking whether the item was struck N/A under ADR-002 | Defensive | Read the bracketed evidence/N-A note on each item before trusting its checkbox |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -118,22 +119,22 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-- **File:** `.opencode/skills/sk-design/SKILL.md`, starting at `## 1. WHEN TO USE` and `## 2. SMART ROUTING`
-- **Next safe action**: Re-read exact stale sections in the root hub, root README, `design-interface/SKILL.md`, and shared context-loading docs; apply small patches that describe four registered modes plus two permanent interface subworkflows
-- **Cold-read order**: 1. `handover.md` -> 2. `implementation-summary.md` -> 3. `spec.md` requirements -> 4. `mode-registry.json` and `hub-router.json` -> 5. root and interface `SKILL.md`
-- **Context:** Preserve the already-green topology and tests. The next work is consumer migration, not another relocation or registry redesign.
+- **File:** `implementation-summary.md`, Verification section — the exact gate table this handover is derived from
+- **Next safe action**: Run the three remaining gates: (1) fresh styles SHA-256 manifest compared byte-for-byte against `scratch/styles.sha256.before` (7,812 rows), (2) design benchmark suite against the four-mode/three-command topology (do not reuse the pre-change route gold as-is), (3) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation --strict`
+- **Cold-read order**: 1. this `handover.md` -> 2. `implementation-summary.md` -> 3. `decision-record.md` ADR-002 -> 4. `spec.md` Requirements -> 5. `checklist.md` P0 items
+- **Context:** Command/corpus/checker gates are already green (see gate table). The remaining work is exactly the three gates above, not another topology change.
 
 ### 3.2 Priority Tasks Remaining
-1. Migrate live hub/interface doctrine and resource paths in small batches; remove the four stale `command-metadata.json` audit paths and update smart-routing resource maps to interface-owned leaves.
-2. Regenerate advisor metadata, leaf/routing projections, compiled sk-design fixtures, and activation metadata through canonical generators; classify final grep hits as live, generated, or historical.
-3. Update final benchmark route gold, rebuild stale md-generator dist, run the full package/command/corpus/fingerprint/checker/benchmark/styles/strict-SpecKit matrix, then reconcile tasks and checklist evidence.
+1. Run styles SHA-256 equality comparison; halt and scoped-rollback per `plan.md` Rollback Plan if any tracked file differs.
+2. Run the design benchmark suite fresh; do not compare against the pre-change route gold, which encoded the retired six-mode/subworkflow topology.
+3. Run `validate.sh --strict` on this packet and resolve any findings.
 
 ### 3.3 Critical Context to Load
-- [x] Continuity target: this `handover.md` and the updated `_memory.continuity` block in `implementation-summary.md`
-- [x] Spec file: `spec.md` Sections 3-5 and Requirements `REQ-001` through `REQ-012`
-- [x] Plan file: `plan.md` Phases 4-5, Testing Strategy, and Rollback Plan
-- [x] Architecture source: `decision-record.md`, especially the accepted four-mode command-subworkflow decision
-- [x] Baseline evidence: `scratch/foundations-files.before.txt`, `scratch/audit-files.before.txt`, `scratch/styles.sha256.before`, and `scratch/benchmark-before/`
+- [x] Continuity target: this `handover.md` and the `_memory.continuity` block in `implementation-summary.md`
+- [x] Spec file: `spec.md` Requirements (REQ-002/003/006/008/010 are marked superseded by ADR-002)
+- [x] Plan file: `plan.md` Overview (states the ADR-001 -> ADR-002 supersession up front) and Rollback Plan
+- [x] Architecture source: `decision-record.md` — read ADR-002, not just ADR-001
+- [x] Baseline evidence: `scratch/foundations-files.before.txt`, `scratch/audit-files.before.txt`, `scratch/styles.sha256.before`, `scratch/benchmark-before/`
 <!-- /ANCHOR:next-session -->
 
 ---
@@ -142,11 +143,11 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 ## 4. Validation Checklist
 
 Before handover, verify:
-- [ ] All in-progress work committed or stashed. Intentionally false: the user authorized work on dirty branch `skilled/v4.0.0.0`; no commit or push was requested.
+- [ ] All in-progress work committed or stashed. Intentionally false: no commit or push was requested for this documentation-reconciliation pass.
 - [x] Current context saved in this handover and `_memory.continuity` in `implementation-summary.md`.
-- [ ] No breaking changes left mid-implementation. Intentionally false: authored docs and generated consumers still contain old paths, so the branch is not ready to consume or ship.
-- [ ] Tests passing. Focused gates pass, but final benchmark, compiled-routing, styles equality, metadata, and strict packet gates remain pending.
-- [x] This handover document is complete for the current in-progress boundary.
+- [x] No breaking changes left mid-implementation from this pass — only spec-folder docs were touched, not skill/command source.
+- [ ] Tests passing. Command-contract/command-surface/corpus/parent-hub gates pass; design benchmark, styles equality, and `validate.sh --strict` remain pending.
+- [x] This handover document is complete for the current boundary.
 <!-- /ANCHOR:validation-checklist -->
 
 ---
@@ -156,29 +157,24 @@ Before handover, verify:
 
 ### Confirmed Evidence
 
-- Baseline inventory contains 48 foundations files, 70 audit files, and 7,812 tracked styles hash rows. The accounting target is 112 subordinate relocations plus two READMEs, two `SKILL.md` to `contract.md` transformations, and two changelogs.
-- `generate-leaf-manifest.cjs --write` produced digest `764a4733339f086ac97b83b2347089479317dff54eff0a5df78b4dc0460ef3b0`.
-- Final parent-hub check at this boundary: `OK: parent-skill-check - all hard invariants passed, 0 warnings`.
-- Manifest projection: registered modes `design-mcp-open-design`, `interface`, `md-generator`, `motion`; interface leaves 69, foundations leaves 12, audit leaves 37.
-- Direct command checker: `STATUS=VALID STAGE=complete`, `commands=5`, `aliases=15`, four workflow modes, `invalid=0`, `drift=0`.
-- `interface-command-contract.test.mjs`: 8/8 pass.
-- `design-command-surface-check.test.mjs`: 7/7 pass.
-- Parent-checker leaf-manifest guard-chain test: 1/1 pass.
-- Relocated foundations corpus and validators passed at 25/25; relocated audit corpus passed at 21/21; fingerprint registry passed at 10/10 and fixtures at 20/20.
-- Focused md-generator Vitest baseline passed 2/2; styles build check reported 1,290 records with zero added, changed, or removed.
+- Baseline: `scratch/foundations-files.before.txt` (48 files), `scratch/audit-files.before.txt` (70 files), `scratch/styles.sha256.before` (7,812 rows), `scratch/routing.sha256.before`, `scratch/benchmark-before/`.
+- Final state (per orchestrator verification): 4 registered modes (`interface`, `motion`, `md-generator`, `design-mcp-open-design`), 3 commands (`/interface:design`, `/interface:motion`, `/interface:design-reference`).
+- `interface-command-contract.test.mjs`: 8/8 pass (baseline and final).
+- `design-command-surface-check.test.mjs`: 7/7 pass (baseline and final).
+- `design-command-surface-check.mjs`: baseline `commands=5 aliases=15 invalid=0 drift=0`; final `commands=3 aliases=9 invalid=0 drift=0`.
+- `parent-skill-check.cjs`: `OK — 0 warnings` (baseline and final).
+- Corpus tests (interface + motion): 70 passing, 0 failing.
+- Live `design-audit/`/`design-foundations/` reference grep: 152 (baseline) -> 0 (final).
 
 ### Unfinished Evidence
 
-- Final pre/post styles hash comparison has not run after all source migration work.
-- Advisor metadata, compiled routing, route gold, benchmark, and activation metadata have not been regenerated from the final authored topology.
-- Both direct indexing attempts timed out; the canonical files remained intact and strict validation passed afterward.
-- The final no-live-old-path grep has not passed.
-- `tasks.md`, `checklist.md`, and `implementation-summary.md` still need final evidence reconciliation after implementation finishes.
-- Strict SpecKit validation for this new handover and summary must run now; completion validation must run again after all implementation work.
+- Final styles SHA-256 equality comparison against the 7,812-row baseline has not run.
+- The design benchmark suite has not been rerun; pre-change route gold encoded the retired topology and cannot be reused as-is.
+- `validate.sh --strict` has not run against this packet — the orchestrator runs this immediately after this reconciliation pass.
 
 ### Session Boundary
 
-Packet 1 of the active goal, `.opencode/specs/system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation/`, was completed earlier in the same dirty branch. Its deep-research, compiled-contract, database, and runtime changes are outside Packet 2 cleanup scope. Do not revert or recategorize them while finishing sk-design.
+This pass (2026-07-27) touched only this packet's spec-folder documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, this `handover.md`), to correct overclaiming against the verified gate evidence and the ADR-002 scope reversal. It did not touch `.opencode/skills/` or `.opencode/commands/` — that implementation work is finished and verified separately.
 <!-- /ANCHOR:session-notes -->
 
 ---

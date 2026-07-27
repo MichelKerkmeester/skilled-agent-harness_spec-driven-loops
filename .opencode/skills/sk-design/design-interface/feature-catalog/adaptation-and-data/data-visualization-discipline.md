@@ -1,9 +1,9 @@
 ---
 title: "Data Visualization Discipline"
-description: "Current-state reference for design-foundations chart-type selection, encoding discipline, color-for-data scales, and table alignment."
+description: "Current-state reference for the foundations subworkflow's chart-type selection, encoding discipline, color-for-data scales, and table alignment."
 trigger_phrases:
   - "data visualization discipline"
-  - "design-foundations chart selection"
+  - "foundations chart selection"
   - "color for data scales"
   - "data table alignment"
 version: 1.0.0.0
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`design-foundations` treats chart and table encoding as design: a chart type is chosen by the question rather than the dataset shape, every visual channel carries one variable, and numeric tables align for magnitude rather than decoration.
+The `foundations` subworkflow treats chart and table encoding as design: a chart type is chosen by the question rather than the dataset shape, every visual channel carries one variable, and numeric tables align for magnitude rather than decoration.
 
 Color for data is kept as a separate discipline from brand color, since a categorical hue set and a sequential ramp answer different questions and follow different construction rules.
 
@@ -41,14 +41,14 @@ Numeric table columns right-align with tabular numerals and consistent decimal p
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/references/data-viz.md` | Shared | Defines chart-type selection, axis/encoding rules, color-for-data scales, sparklines, and table alignment. |
-| `.opencode/skills/sk-design/design-foundations/references/color/oklch-workflow.md` | Shared | Supplies the OKLCH channel mechanics used to build even lightness-ramped data scales. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/data-viz.md` | Shared | Defines chart-type selection, axis/encoding rules, color-for-data scales, sparklines, and table alignment. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/color/oklch-workflow.md` | Shared | Supplies the OKLCH channel mechanics used to build even lightness-ramped data scales. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises data-visualization scenarios against the live mode. |
+| `.opencode/skills/sk-design/design-interface/manual-testing-playbook/manual-testing-playbook.md (section 23)` | Manual playbook | Exercises data-visualization scenarios against the live mode. |
 
 ---
 

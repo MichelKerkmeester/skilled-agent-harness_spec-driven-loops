@@ -1,7 +1,9 @@
 # Interface corpus pilot
 
-This directory contains the maintainer-facing relational-exemplar adapter and
-its contract fixtures. It is not a user-facing style gallery or preset chooser.
+This directory contains two maintainer-facing corpus adapters and their
+contract fixtures: `relational-exemplar.mjs` (the interface direction pilot)
+and `relationship-blueprint.mjs` (the relocated foundations token-system
+adapter). Neither is a user-facing style gallery or preset chooser.
 
 `relational-exemplar.mjs` consumes the neutral corpus context plan, retrieves
 compact candidates through the styles engine, and accepts one mode-selected
@@ -22,6 +24,19 @@ The fixtures form a falsification atlas:
 - `no-fit` proves an unsafe forced anchor fails closed to `anchor:null`.
 - `rejected-default` proves the secondary reference stays bounded and records
   the no-corpus default changed by grounding.
+
+## Foundations Relationship Blueprint
+
+`relationship-blueprint.mjs` turns mode-owned, typed relationship decisions
+into a bounded compatibility graph. It consumes the same neutral corpus-context
+seam, hydrates one coherent anchor and at most three explicit axis owners, and
+emits no source token values.
+
+The contract is closed: relationship edges are `works-with`, `conflicts-with`,
+or `not-assessed`; every edge has one ledger record from source through typed
+transformation to lock. Accessibility, contrast, gamut, rhythm, responsive, and
+extraction checks remain `not-assessed` until downstream target checks run.
+Unknown fields and untyped values are rejected structurally.
 
 Run from the repository root:
 

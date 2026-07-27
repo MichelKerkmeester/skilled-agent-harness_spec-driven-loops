@@ -12,7 +12,7 @@ version: 1.3.0.0
 
 # sk-design: Feature Catalog
 
-This catalog inventories the live `sk-design` hub surface. The hub routes one public design-family identity to five stable mode packets, exposes canonical `/interface:*` creation commands, keeps mode logic in those packets, names proof expectations before ready claims, and separates design judgment from transport mechanics. Style retrieval retains authoritative flat files by default while offering an opt-in indexed backend.
+This catalog inventories the live `sk-design` hub surface. The hub routes one public design-family identity to three stable mode packets, exposes canonical `/interface:*` creation commands, keeps mode logic in those packets, names proof expectations before ready claims, and separates design judgment from transport mechanics. Style retrieval retains authoritative flat files by default while offering an opt-in indexed backend.
 
 ---
 
@@ -32,7 +32,7 @@ The hub gathers goal, surface, inputs, constraints, and proof expectations befor
 
 #### Current Reality
 
-The routing shell reads `mode-registry.json`, chooses the smallest useful design mode, and shows a concise plan before substantial design, build, or transport work. The plan names the selected mode, loaded or missing context, intended design/audit dimensions, proof requirements, and handoff target.
+The routing shell reads `mode-registry.json`, chooses the smallest useful design mode, and shows a concise plan before substantial design, build, or transport work. The plan names the selected mode, loaded or missing context, intended design/preflight dimensions, proof requirements, and handoff target.
 
 #### Source Files
 
@@ -64,7 +64,7 @@ The hub treats Figma, Open Design, browser, and extraction transports as evidenc
 
 #### Current Reality
 
-`mcp-figma` and `design-mcp-open-design` (nested inside `sk-design`) are loaded after design mode selection when needed. Their output must return to the selected mode or audit mode for acceptance, and the hub keeps design proof in `sk-design`.
+`mcp-figma` and `design-mcp-open-design` (nested inside `sk-design`) are loaded after design mode selection when needed. Their output must return to the selected mode for acceptance, and the hub keeps design proof in `sk-design`.
 
 #### Source Files
 
@@ -110,11 +110,11 @@ See [`procedure-card-system/procedure-card-schema-and-selection.md`](procedure-c
 
 #### Description
 
-The hub has a current inventory of 14 private procedure cards across the design family: one shared card, six interface cards, three foundations cards, one motion card, two audit cards, and one md-generator card.
+The hub has a current inventory of 12 private procedure cards across the design family: one shared card, nine interface cards (including three folded in from the retired foundations mode), one motion card, and one md-generator card.
 
 #### Current Reality
 
-The cards support narrower workflows after public mode routing: discovery, aesthetic direction, wireframes, variations, prototypes, decks, component/system review, hierarchy/rhythm, tweak controls, interaction states, accessibility audit, AI slop checks, measured extraction, and shared polish orchestration.
+The cards support narrower workflows after public mode routing: discovery, aesthetic direction, wireframes, variations, prototypes, decks, component/system review, hierarchy/rhythm, tweak controls, interaction states, measured extraction, and shared polish orchestration.
 
 #### Source Files
 
@@ -176,11 +176,11 @@ See [`styles-library-utilization/shared-corpus-context-seam.md`](styles-library-
 
 #### Description
 
-Interface, audit, foundations, motion and Open Design transport each consume styles-library evidence through a mode-specific closed contract.
+Interface, motion and Open Design transport consume styles-library evidence through four mode-specific closed contracts (interface has two handlers).
 
 #### Current Reality
 
-Interface emits a decision-only relational handoff, audit emits non-authoritative comparison rows, foundations emits typed relationships, motion runs restraint before retrieval and transport carries metadata-only grounding receipts. Each consumer fails closed and leaves acceptance with the selected mode.
+Interface emits a decision-only relational handoff, interface's static-system consumer (formerly `foundations`) emits typed relationships, motion runs restraint before retrieval and transport carries metadata-only grounding receipts. Each consumer fails closed and leaves acceptance with the selected mode.
 
 #### Source Files
 
@@ -210,11 +210,11 @@ See [`styles-library-utilization/md-generator-schema-and-study.md`](styles-libra
 
 #### Description
 
-Five canonical `/interface:*` commands provide one creation surface for design, foundations, motion, audit and design-reference workflows.
+Three canonical `/interface:*` commands provide one creation surface for design, motion and design-reference workflows.
 
 #### Current Reality
 
-`/interface:{design,foundations,motion,audit,design-reference}` maps to the unchanged `interface`, `foundations`, `motion`, `audit` and `md-generator` mode IDs. All five commands reference one shared nine-stage creation contract. The former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
+`/interface:{design,motion,design-reference}` maps to the unchanged `interface`, `motion` and `md-generator` mode IDs. All three commands reference one shared nine-stage creation contract. `/interface:foundations` and `/interface:audit` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
 
 #### Source Files
 

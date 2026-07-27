@@ -1,9 +1,9 @@
 ---
 title: "Typography And Spacing Scale"
-description: "Current-state reference for design-foundations type roles, pairing, measure, and spacing-scale rhythm."
+description: "Current-state reference for the foundations subworkflow's type roles, pairing, measure, and spacing-scale rhythm."
 trigger_phrases:
   - "typography and spacing scale"
-  - "design-foundations type scale"
+  - "foundations type scale"
   - "spacing rhythm scale"
   - "font pairing measure"
 version: 1.0.0.0
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`design-foundations` sets type roles and a spacing scale before any decorative type or layout move, so hierarchy and rhythm read as deliberate rather than accidental.
+The `foundations` subworkflow sets type roles and a spacing scale before any decorative type or layout move, so hierarchy and rhythm read as deliberate rather than accidental.
 
 Six roles are named before values: display, heading, body, caption, utility, and data, each with a defined job and guidance.
 
@@ -41,14 +41,14 @@ Content drives breakpoints rather than fixed device sizes, and hierarchy is buil
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/references/type/typography-system.md` | Shared | Defines type roles, scale, pairing, font loading, measure, and the hierarchy stack. |
-| `.opencode/skills/sk-design/design-foundations/references/layout/layout-responsive.md` | Shared | Defines the spacing scale, rhythm, and responsive base that pairs with type roles. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/type/typography-system.md` | Shared | Defines type roles, scale, pairing, font loading, measure, and the hierarchy stack. |
+| `.opencode/skills/sk-design/design-interface/references/foundations/layout/layout-responsive.md` | Shared | Defines the spacing scale, rhythm, and responsive base that pairs with type roles. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-foundations/manual-testing-playbook/manual-testing-playbook.md` | Manual playbook | Exercises typography and spacing-scale scenarios against the live mode. |
+| `.opencode/skills/sk-design/design-interface/manual-testing-playbook/manual-testing-playbook.md (section 23)` | Manual playbook | Exercises typography and spacing-scale scenarios against the live mode. |
 
 ---
 

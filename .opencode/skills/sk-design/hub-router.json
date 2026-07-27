@@ -14,15 +14,7 @@
       "shared/references/smart-routing.md",
       "mode-registry.json"
     ],
-    "bundleRules": [],
-    "commandSubworkflowBundles": [
-      {
-        "name": "ui-build-bundle",
-        "ownerMode": "interface",
-        "includeSubworkflows": ["foundations"],
-        "outcome": "single"
-      }
-    ]
+    "bundleRules": []
   },
   "commandSurface": {
     "canonicalNamespace": "interface",
@@ -30,10 +22,6 @@
       "interface": "/interface:design",
       "motion": "/interface:motion",
       "md-generator": "/interface:design-reference"
-    },
-    "canonicalBySubworkflow": {
-      "foundations": "/interface:foundations",
-      "audit": "/interface:audit"
     }
   },
   "routerSignals": {
@@ -47,12 +35,7 @@
         "foundations-color",
         "foundations-type",
         "foundations-layout",
-        "foundations-tokens",
-        "audit-aliases",
-        "audit-quality",
-        "audit-transform-question",
-        "audit-accessibility",
-        "audit-hardening"
+        "foundations-tokens"
       ],
       "resources": ["design-interface/SKILL.md"]
     },
@@ -82,40 +65,6 @@
         "design-mcp-open-design-aliases"
       ],
       "resources": ["design-mcp-open-design/SKILL.md"]
-    }
-  },
-  "commandSubworkflowSignals": {
-    "foundations": {
-      "ownerMode": "interface",
-      "command": "/interface:foundations",
-      "classes": [
-        "foundations-aliases",
-        "foundations-color",
-        "foundations-type",
-        "foundations-layout",
-        "foundations-tokens"
-      ],
-      "resources": [
-        "design-interface/foundations/contract.md",
-        "design-interface/references/foundations",
-        "design-interface/assets/foundations"
-      ]
-    },
-    "audit": {
-      "ownerMode": "interface",
-      "command": "/interface:audit",
-      "classes": [
-        "audit-aliases",
-        "audit-quality",
-        "audit-transform-question",
-        "audit-accessibility",
-        "audit-hardening"
-      ],
-      "resources": [
-        "design-interface/audit/contract.md",
-        "design-interface/references/audit",
-        "design-interface/assets/audit"
-      ]
     }
   },
   "vocabularyClasses": {
@@ -308,67 +257,6 @@
       "keywords": [
         "interaction-feel",
         "interaction feel"
-      ]
-    },
-    "audit-aliases": {
-      "keywords": [
-        "design audit",
-        "ui critique",
-        "design review",
-        "review the ui",
-        "audit the design",
-        "accessibility audit",
-        "wcag contrast",
-        "performance audit",
-        "anti-slop detection",
-        "ai tell",
-        "production hardening",
-        "design quality score",
-        "ui quality review",
-        "p0 p1 design findings"
-      ]
-    },
-    "audit-quality": {
-      "keywords": [
-        "design-audit",
-        "ui-critique",
-        "anti-slop-detection",
-        "design-quality-score",
-        "p0-p1-design-findings",
-        "anti-hallucination",
-        "design-fidelity",
-        "design-quality-audit",
-        "design-review",
-        "design-qa",
-        "audit-the-design",
-        "review-the-ui",
-        "ui-quality-review",
-        "audit the design",
-        "review the ui",
-        "ui quality review"
-      ]
-    },
-    "audit-transform-question": {
-      "keywords": [
-        "should it be",
-        "should it be bolder",
-        "should it be quieter",
-        "should it be distill",
-        "should it be clarify",
-        "should it be delight"
-      ]
-    },
-    "audit-accessibility": {
-      "keywords": [
-        "accessibility-audit",
-        "wcag-contrast",
-        "wcag contrast"
-      ]
-    },
-    "audit-hardening": {
-      "keywords": [
-        "performance-audit",
-        "production-hardening"
       ]
     },
     "md-generator-aliases": {

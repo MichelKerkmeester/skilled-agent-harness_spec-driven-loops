@@ -15,14 +15,14 @@ Creation-template router for stable `workflowMode=interface`. Read `.opencode/sk
 
 This command serves the user job: "shape interface direction", "redesign ui surface", "make ui distinctive".
 
-Use the shared nine-stage contract for public choreography. The `interface` mode owns design judgment; the ordered `foundations` build bundle supports UI production; transports only retrieve or render; application-code mutation requires an accepted `sk-code` handoff. Do not copy mode taste or reference tables into this command.
+Use the shared nine-stage contract for public choreography. The `interface` mode owns design judgment, static-system decisions, and UI production; transports only retrieve or render; application-code mutation requires an accepted `sk-code` handoff. Do not copy mode taste or reference tables into this command.
 
 <!-- ANCHOR:sibling-discriminator -->
 ### WHEN TO USE THIS, NOT A SIBLING
 
 - **Use this command when** the request is to invent or reshape a distinctive interface direction.
-- **Prefer `/interface:audit` when** the request is findings-first review, accessibility, performance, scoring, or production hardening.
-- **Prefer `/interface:foundations` when** the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming.
+- **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is findings-first review, accessibility, performance, scoring, or production hardening.
+- **The interface mode owns static-system work directly:** color, typography, layout, spacing, responsive adaptation, and theming.
 - **Prefer `/interface:design-reference` when** the request is extracting a live site's measured CSS into DESIGN.md.
 - **Prefer `/interface:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.
 - **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is to drive Open Design rather than decide direction.
@@ -35,7 +35,7 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 - **Ask-first:** bundle only confirmation-required fields; always confirm preserved-identity changes or materially different direction families.
 - **Cannot-run:** when no interface target is named, return `STATUS=FAIL ERROR=<named-cause>`.
 - **Escalate:** when accepted constraints conflict, request an explicit amendment.
-- **Route instead:** when static systems, motion, audit, or extraction dominate, return `STATUS=DEFER ROUTE=<hub|sibling>`.
+- **Route instead:** when motion or extraction dominates, return `STATUS=DEFER ROUTE=<hub|sibling>`.
 
 ## 2. OWNED ASSETS
 
@@ -52,13 +52,14 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 2. Without a suffix, use auto when the target is present; otherwise use the confirm presentation once.
 3. Resolve the context envelope and `Route Proof` before loading mode-specific references.
 4. Ground the owned system first, then at most one brief-fit exemplar and one contrast; `no-fit` is valid.
-5. Load `workflowMode=interface`; when producing UI, order the supporting foundations build bundle without invoking another command.
+5. Load `workflowMode=interface`; keep static-system decisions and production checks within the mode without invoking another command.
 6. Execute the selected owned workflow and return every visible block.
 
 ### INTERFACE TASK LANES
 
 - **direction** (default), **directions**, **redesign**, **preflight**, **handoff**, and **aesthetic** are selectable argument lanes.
-- **quality** routes to `/interface:audit`.
+- **quality** uses the interface mode's mechanical preflight card at `design-interface/assets/interface-preflight-card.md`.
+- **visual-system** covers static color, type, spacing, token, and theming decisions inside the workflow.
 - **register**, **copy-gate**, **grounding**, **transform**, and **reference** are internal or hidden: they are not surfaced and not selectable.
 
 <!-- ANCHOR:register -->

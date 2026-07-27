@@ -63,10 +63,8 @@ test("current live metadata and choreography assets pass", () => {
   assert.deepEqual(
     [...allowedSiblingTokens].sort(),
     [
-      "/interface:audit",
       "/interface:design",
       "/interface:design-reference",
-      "/interface:foundations",
       "/interface:motion",
       "design-mcp-open-design"
     ]
@@ -77,14 +75,14 @@ test("current live metadata and choreography assets pass", () => {
 });
 
 test("mistyped real-command sibling fails exact-token validation", () => {
-  const record = cloneRecord(findRecord("/interface:foundations"));
+  const record = cloneRecord(findRecord("/interface:design"));
   record.discriminator.preferSiblingWhen[0].sibling = "/interface:auditt";
 
   const errors = validateDiscriminator(record, record.command, workflowModes, registry);
 
   assert.ok(errors.some((error) => error.includes("sibling token must be one of")), errors.join("\n"));
 
-  record.discriminator.preferSiblingWhen[0].sibling = "/interface:audit (not allowed)";
+  record.discriminator.preferSiblingWhen[0].sibling = "/interface:design-reference (not allowed)";
   const trailingNoteErrors = validateDiscriminator(record, record.command, workflowModes, registry);
   assert.ok(
     trailingNoteErrors.some((error) => error.includes("only a no-command token may add one parenthetical note")),
@@ -93,7 +91,7 @@ test("mistyped real-command sibling fails exact-token validation", () => {
 });
 
 test("renamed transport token fails exact-token validation", () => {
-  const record = cloneRecord(findRecord("/interface:audit"));
+  const record = cloneRecord(findRecord("/interface:motion"));
   const transport = record.discriminator.preferSiblingWhen.find((entry) =>
     entry.sibling.startsWith("design-mcp-open-design")
   );
@@ -105,7 +103,7 @@ test("renamed transport token fails exact-token validation", () => {
 });
 
 test("renamed YAML step_N key fails structural validation", () => {
-  const record = findRecord("/interface:audit");
+  const record = findRecord("/interface:motion");
   const surface = cloneSurface(record.command);
   surface.auto = replaceRequired(surface.auto, "  step_7_load_mode:", "  stage_7_load_mode:");
 
@@ -118,7 +116,7 @@ test("renamed YAML step_N key fails structural validation", () => {
 });
 
 test("auto and confirm business-step drift fails parity validation", () => {
-  const record = findRecord("/interface:foundations");
+  const record = findRecord("/interface:design");
   const surface = cloneSurface(record.command);
   surface.confirm = replaceRequired(
     surface.confirm,
@@ -135,7 +133,7 @@ test("auto and confirm business-step drift fails parity validation", () => {
 });
 
 test("choreography resource and action mutations fail exact structural validation", () => {
-  const liveRecord = findRecord("/interface:audit");
+  const liveRecord = findRecord("/interface:design");
   const resourceRecord = cloneRecord(liveRecord);
   resourceRecord.choreography[0].resource = ".opencode/skills/sk-design/missing-hub/SKILL.md";
   const resourceDrift = expectedChoreographyDrift(resourceRecord, cloneSurface(liveRecord.command));

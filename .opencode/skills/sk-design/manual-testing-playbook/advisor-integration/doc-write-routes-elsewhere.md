@@ -20,7 +20,7 @@ This scenario verifies that `sk-design` does not capture documentation authoring
 
 **Exact prompt**:
 ```text
-Write a README section explaining how the sk-design hub routes its six modes.
+Write a README section explaining how the sk-design hub routes its four modes.
 ```
 
 **Expected mode resolution**: none for `sk-design`; route elsewhere.
@@ -28,7 +28,7 @@ Write a README section explaining how the sk-design hub routes its six modes.
 **Why**:
 - `design-interface/SKILL.md` says skip interface when the work is documentation or prose, not interface.
 - `sk-doc` is the markdown and playbook specialist; this prompt asks to write a README section.
-- The prompt mentions `sk-design`, but the requested deliverable is documentation, not interface, foundations, motion, audit, or extraction work.
+- The prompt mentions `sk-design`, but the requested deliverable is documentation, not interface, motion, extraction, or transport-wiring work.
 
 **Expected packet loaded**:
 - None under `sk-design/`.

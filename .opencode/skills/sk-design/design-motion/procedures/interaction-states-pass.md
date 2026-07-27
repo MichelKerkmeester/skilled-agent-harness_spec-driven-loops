@@ -40,4 +40,4 @@ Private procedure card for applying the existing design-motion interaction-state
 
 ## 4. CONFLICT RULE
 
-If the request is primarily an accessibility release claim, `design-audit/procedures/accessibility-audit.md` owns the verdict while this card supplies the interaction-state standard.
+If the request is primarily an accessibility release claim, `interface`'s pre-delivery gate (`design-interface/assets/interface-preflight-card.md`) owns the verdict while this card supplies the interaction-state standard.

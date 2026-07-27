@@ -32,19 +32,19 @@ Keyword triggers: `animation`, `motion`, `micro-interaction`, `transition`, `hov
 ### When NOT to Use
 
 Skip this skill when:
-- The task is static color, type, layout, responsive, or theme-token work. Use `foundations`.
+- The task is static color, type, layout, responsive, or theme-token work. Use `interface`.
 - The task is to invent the full visual direction or interface concept. Use `interface` first.
-- The task is a findings-first quality audit or motion performance review. Use `audit`, which may cite this skill.
+- The task is a findings-first quality audit or motion performance review. Use `interface`'s pre-delivery gate, which may cite this skill.
 - The task is pure code implementation after choreography is specified. Hand off to `sk-code`.
 
 ### Family Boundary
 
-This is an independently invokable member of the `sk-design` family. It owns motion build guidance. `audit` owns motion-performance findings and release scoring; this child supplies the standards audit can cite.
+This is an independently invokable member of the `sk-design` family. It owns motion build guidance. `interface` owns motion-performance findings and release scoring through its pre-delivery gate; this child supplies the standards it cites.
 
 Pairs well with:
 - `interface` for one memorable motion moment tied to the design direction.
-- `foundations` for motion tokens that match static visual-system tokens.
-- `audit` for post-build motion-performance and accessibility checks.
+- `interface` for motion tokens that match static visual-system tokens.
+- `interface` for post-build motion-performance and accessibility checks via its pre-delivery gate.
 
 ---
 
@@ -54,7 +54,7 @@ Pairs well with:
 
 Route by temporal concern:
 
-Route here when the user asks for temporal behavior: whether something should animate, interaction-state feedback, hover/focus/active/loading states, choreography, timing, easing, gestures, reduced motion, or motion performance. If the prompt uses polish language only to evaluate whether animation is appropriate or performant, route to `audit`; if the static hierarchy is unclear before motion can help, route back to `foundations` or `interface` first.
+Route here when the user asks for temporal behavior: whether something should animate, interaction-state feedback, hover/focus/active/loading states, choreography, timing, easing, gestures, reduced motion, or motion performance. If the prompt uses polish language only to evaluate whether animation is appropriate or performant, route to `interface`'s pre-delivery gate; if the static hierarchy is unclear before motion can help, route back to `interface` first.
 
 ```text
 MOTION TASK
@@ -108,7 +108,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 | CONDITIONAL | Building or reviewing an `AnimatePresence` exit | `assets/animate-presence-checklist.md` |
 | CONDITIONAL | A pre-handoff motion performance pass | `assets/motion-performance-failure-card.md` |
 | CONDITIONAL | Internal procedure support | `procedures/interaction-states-pass.md` and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
-| ON_DEMAND | Static token coordination | Parent `sk-design/shared/design-token-vocabulary.md` and `foundations` |
+| ON_DEMAND | Static token coordination | Parent `sk-design/shared/design-token-vocabulary.md` and `interface` |
 
 The private procedure-card selection table in Section 3 is part of this routing contract: after the public `motion` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
 
@@ -331,7 +331,7 @@ Good motion clarifies. Bad motion decorates, delays, or competes. One well-rehea
 1. Performance constraints, target devices, or motion sensitivity requirements are unknown and affect the motion budget.
 2. The requested effect requires large continuous blur/filter/layout animation.
 3. The stack has an existing animation system and the request implies replacing it.
-4. The motion is compensating for unclear static hierarchy; route back to foundations or interface first.
+4. The motion is compensating for unclear static hierarchy; route back to `interface` first.
 
 ---
 
@@ -386,8 +386,8 @@ Use, do not duplicate, the parent references for shared vocabulary:
 
 - `sk-design` routes motion-family prompts here.
 - `interface` defines the visual story this child choreographs.
-- `foundations` supplies static tokens and layout constraints.
-- `audit` uses this skill's rules when scoring motion performance and accessibility.
+- `interface` supplies static tokens and layout constraints.
+- `interface` uses this skill's rules when scoring motion performance and accessibility through its pre-delivery gate.
 - `sk-code` implements motion in the target stack.
 
 ---

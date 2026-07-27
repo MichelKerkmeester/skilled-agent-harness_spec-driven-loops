@@ -9,9 +9,7 @@ const commandsRootUrl = new URL("commands/", opencodeRootUrl);
 
 const EXPECTED = [
   { mode: "interface", subworkflow: null, canonical: "/interface:design", action: "design" },
-  { mode: "interface", subworkflow: "foundations", canonical: "/interface:foundations", action: "foundations" },
   { mode: "motion", subworkflow: null, canonical: "/interface:motion", action: "motion" },
-  { mode: "interface", subworkflow: "audit", canonical: "/interface:audit", action: "audit" },
   { mode: "md-generator", subworkflow: null, canonical: "/interface:design-reference", action: "design-reference" }
 ];
 const VISIBLE_BLOCKS = [
@@ -39,25 +37,16 @@ test("canonical commands resolve to stable internal modes", () => {
 
   for (const expected of EXPECTED) {
     const record = metadata.find((entry) => (
-      entry.ownerMode === expected.mode && entry.commandSubworkflow === expected.subworkflow
+      entry.ownerMode === expected.mode
     ));
     assert.ok(record, `missing metadata for ${expected.subworkflow ?? expected.mode}`);
     assert.equal(record.command, expected.canonical);
-    const routeMap = expected.subworkflow
-      ? hubRouter.commandSurface.canonicalBySubworkflow
-      : hubRouter.commandSurface.canonicalByMode;
-    assert.equal(routeMap[expected.subworkflow ?? expected.mode], expected.canonical);
+    assert.equal(hubRouter.commandSurface.canonicalByMode[expected.mode], expected.canonical);
 
     const surface = surfaces.find((entry) => entry.expected.canonical === expected.canonical);
     assert.match(surface.wrapper, new RegExp(`workflowMode=${escapeRegExp(expected.mode)}`));
     assert.match(surface.auto, new RegExp(`workflowMode=${escapeRegExp(expected.mode)}`));
     assert.match(surface.confirm, new RegExp(`workflowMode=${escapeRegExp(expected.mode)}`));
-    if (expected.subworkflow) {
-      const subworkflowPattern = new RegExp(`commandSubworkflow=${escapeRegExp(expected.subworkflow)}`);
-      assert.match(surface.wrapper, subworkflowPattern);
-      assert.match(surface.auto, subworkflowPattern);
-      assert.match(surface.confirm, subworkflowPattern);
-    }
   }
 });
 

@@ -46,7 +46,7 @@ Approach UI work as the design lead at a studio known for visual identities that
 
 Detect design intent and how much of the visual direction the brief fixes:
 
-Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. Once one of those transform verbs routes here, apply it through `references/design-process/transform-application.md` (the interface-side landing lane: shared application contract, per-verb ledgers, and fillable proof cards for bolder/quieter/distill/clarify/delight) rather than improvising the change. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, route to `audit`. If `hierarchy`, `spacing`, `grid`, or token language is the main ask, route to `foundations`; if `DESIGN.md` or `tokens.json` is a measured artifact, route to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence; `typeset`/`colorize` (`transformVerbRouting.excludedAliases.foundations`) never independently justify pulling `foundations` in as a bundled or supporting mode, even when the request's own wording ("typography and color application") echoes foundations' static-system vocabulary — the registry's alias/exclusion list overrides this noun-based heuristic.
+Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. Once one of those transform verbs routes here, apply it through `references/design-process/transform-application.md` (the interface-side landing lane: shared application contract, per-verb ledgers, and fillable proof cards for bolder/quieter/distill/clarify/delight) rather than improvising the change. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, that is this mode's own pre-delivery gate (`assets/interface-preflight-card.md`), not a separate mode. `hierarchy`, `spacing`, `grid`, and token language are also this mode's own static-system work; only route out when `DESIGN.md` or `tokens.json` is a measured artifact, which goes to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence — the registry's alias list overrides this noun-based heuristic.
 
 ```bash
 # Direction freedom (pseudo)
@@ -119,6 +119,7 @@ INTENT_SIGNALS = {
     "REAL_WORLD_REFERENCE": {"weight": 4, "keywords": ["mobbin", "refero", "real-world reference", "shipped ui", "critique against", "default to deviate from", "the cliche", "the usual look", "typical look"]},
     "AESTHETICS": {"weight": 3, "keywords": ["aesthetic", "brutalist", "minimalist", "soft ui", "apple bento", "name the look", "name a realized look", "realized default", "named default look", "vibe"]},
     "TRANSFORM_APPLICATION": {"weight": 4, "keywords": ["make it bolder", "make it quieter", "make it distill", "make it clarify", "make it delight", "bolder", "quieter", "distill", "clarify", "delight the interaction", "earned moment", "keep ledger", "remove ledger"]},
+    "VISUAL_SYSTEM": {"weight": 4, "keywords": ["design foundations", "visual system", "static system", "color system", "oklch", "color ramp", "palette theming", "type scale", "typographic scale", "spacing scale", "design tokens", "token system", "token starter", "theming", "dark mode", "light mode", "grid system", "breakpoints", "adaptation matrix", "contrast pairs"]},
 }
 
 RESOURCE_MAP = {
@@ -126,7 +127,7 @@ RESOURCE_MAP = {
     "TRANSFORM_APPLICATION": ["references/design-process/transform-application.md"],
     "REGISTER_DIALS": ["references/design-process/brief-to-dials.md"],
     "VARIATION_DIVERSITY": ["references/design-process/variation-diversity.md"],
-    "UX_QUALITY": ["references/design-process/ux-quality-reference.md"],
+    "UX_QUALITY": ["references/design-process/ux-quality-reference.md", "references/foundations/data-viz.md"],
     "REAL_UI_LOOP": ["references/design-process/real-ui-loop.md", "../shared/sk-code-handoff.md"],
     "MECHANICAL_PREFLIGHT": ["references/design-process/mechanical-defaults.md", "references/design-process/copy-and-mock-data.md", "references/design-process/brief-to-dials.md", "assets/interface-preflight-card.md"],
     "COPY_MOCK_DATA": ["references/design-process/copy-and-mock-data.md"],
@@ -134,6 +135,7 @@ RESOURCE_MAP = {
     "REAL_SYSTEM_GROUNDING": ["references/design-grounding/design-inventory.md"],
     "REAL_WORLD_REFERENCE": ["references/design-grounding/design-references-mcp.md", "references/mcp-tooling/mobbin-tools.md", "references/mcp-tooling/refero-tools.md"],
     "AESTHETICS": ["references/aesthetics/README.md", "references/aesthetics/brutalist.md", "references/aesthetics/minimalist.md", "references/aesthetics/soft.md", "references/aesthetics/apple-bento.md"],
+    "VISUAL_SYSTEM": ["references/foundations/color/oklch-workflow.md", "references/foundations/color/palette-theming.md", "references/foundations/type/typography-system.md", "references/foundations/layout/layout-responsive.md", "references/foundations/layout/adaptation-matrix.md", "references/foundations/design-system-artifact-contract.md", "references/foundations/worked-examples.md", "references/foundations/corpus-map.md", "references/foundations/smart-router-pseudocode.md", "assets/foundations/token-starter.md", "assets/foundations/contrast-pair-inventory.md"],
 }
 
 # Resilience guards (see ../../sk-doc/create-skill/assets/skill/skill_smart_router.md):
@@ -275,8 +277,8 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`../shared/sk-code-handoff.md`](../shared/sk-code-handoff.md) - Shared sk-code handoff envelope; the required build manifest for real UI handoff.
 - [`../shared/register.md`](../shared/register.md) - The Brand-vs-Product operating register. Set it first; it gates density, motion, color dosage, copy, anti-slop strictness.
 - [`references/design-process/brief-to-dials.md`](references/design-process/brief-to-dials.md) - Design Read intake mapping the variance/motion/density dials to choices. Consult at task start.
-- [`references/design-process/mechanical-defaults.md`](references/design-process/mechanical-defaults.md) - The mechanical anti-default layout gate. Authored once here, referenced by the audit mode.
-- [`references/design-process/copy-and-mock-data.md`](references/design-process/copy-and-mock-data.md) - The content gate for realistic mock data and copy. Authored once here, referenced by the audit mode.
+- [`references/design-process/mechanical-defaults.md`](references/design-process/mechanical-defaults.md) - The mechanical anti-default layout gate. Authored once here, used by this mode's own pre-delivery gate.
+- [`references/design-process/copy-and-mock-data.md`](references/design-process/copy-and-mock-data.md) - The content gate for realistic mock data and copy. Authored once here, used by this mode's own pre-delivery gate.
 - [`references/design-process/redesign-intake.md`](references/design-process/redesign-intake.md) - Redesign intake: greenfield/preserve/overhaul classification plus approval-gated never-silently-change items.
 - [`references/design-process/transform-application.md`](references/design-process/transform-application.md) - Interface-side landing lane for a make-frame transform verb already routed here: application contract, per-verb ledgers, proof cards.
 - [`references/design-process/resource-loading-notes.md`](references/design-process/resource-loading-notes.md) - Extended rationale for the load-and-prove and citation-required table rows, plus reference-loading discipline notes.

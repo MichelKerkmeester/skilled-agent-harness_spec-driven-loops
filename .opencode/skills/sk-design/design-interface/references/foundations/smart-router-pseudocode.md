@@ -1,6 +1,6 @@
 ---
 title: Foundations Smart Router Pseudocode
-description: The mode-specific runtime routing implementation for design-foundations - intent scoring, resource map, and guarded discovery/load/fallback mechanics.
+description: The foundations-subworkflow runtime routing implementation - intent scoring, resource map, and guarded discovery/load/fallback mechanics.
 trigger_phrases:
   - "foundations smart router"
   - "foundations routing pseudocode"

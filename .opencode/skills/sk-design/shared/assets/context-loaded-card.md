@@ -27,8 +27,8 @@ This card blocks pre-work drift. Fill the surface, register, dials, loaded-file 
 | Field | Value |
 |---|---|
 | Surface (page / route / file / frame) | `__________` |
-| Task type | [ ] advice [ ] build [ ] redesign [ ] generation [ ] audit [ ] dispatch |
-| Scope owner | [ ] interface [ ] foundations [ ] audit [ ] mixed bundle |
+| Task type | [ ] advice [ ] build [ ] redesign [ ] generation [ ] dispatch |
+| Scope owner | [ ] interface [ ] motion [ ] mixed bundle |
 
 ---
 
@@ -49,11 +49,9 @@ This card blocks pre-work drift. Fill the surface, register, dials, loaded-file 
 | `../register.md` | [ ] yes [ ] no |
 | `../../design-interface/references/design-process/brief-to-dials.md` | [ ] yes [ ] no |
 | `../../design-interface/SKILL.md` | [ ] yes [ ] no [ ] N/A |
-| `../../design-foundations/SKILL.md` | [ ] yes [ ] no [ ] N/A |
 | `../../design-interface/assets/interface-preflight-card.md` | [ ] yes [ ] no [ ] N/A |
-| Foundations contrast refs for color/text-surface work | [ ] yes [ ] no [ ] N/A |
-| `../../design-audit/references/audit-contract.md` for audit/readiness claims | [ ] yes [ ] no [ ] N/A |
-| Audit evidence refs or worksheet for score/accessibility/release claims | [ ] yes [ ] no [ ] N/A |
+| Interface contrast refs for color/text-surface work | [ ] yes [ ] no [ ] N/A |
+| Interface evidence refs for score/accessibility/release claims | [ ] yes [ ] no [ ] N/A |
 | Small-model profile for delegation | [ ] yes [ ] no [ ] N/A |
 
 ---

@@ -1,351 +1,7 @@
 [
   {
-    "command": "/interface:audit",
-    "ownerMode": "interface",
-    "commandSubworkflow": "audit",
-    "description": "Design QA report: accessibility, performance, responsive, anti-slop, scoring, hardening. sk-design interface mode, audit subworkflow.",
-    "descriptionRole": "hub-keyword-projection",
-    "autoTriggerEligible": false,
-    "hubKeywordProjection": ["accessibility", "performance", "responsive", "anti-slop", "scoring", "hardening"],
-    "argumentHint": "<target> [--scope a11y|performance|responsive|anti-slop] [--score] [--register brand|product] [:auto|:confirm]",
-    "aliases": ["audit design quality", "critique ui surface", "score design readiness"],
-    "userIntent": {
-      "job": "I want to review, score, and harden the quality of a design surface I already have.",
-      "ownedSignals": ["audit design quality", "critique ui surface", "score design readiness"]
-    },
-    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
-    "accepts": "a design target plus optional scope and scoring flags",
-    "returns": "a findings-first design quality report with evidence, scores, owners, and verification notes",
-    "examples": [
-      {
-        "invocation": "/interface:audit src/components/Checkout.tsx --scope a11y --score",
-        "returnsArtifact": "a findings-first design quality report with evidence, scores, owners, and verification notes"
-      }
-    ],
-    "argumentGrammar": {
-      "positional": [
-        { "name": "target", "required": true, "kind": "design-target" }
-      ],
-      "flags": [
-        { "name": "--scope", "required": false, "takesValue": true, "valueName": "scope", "kind": "scope-filter" },
-        { "name": "--score", "required": false, "takesValue": false, "kind": "boolean" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
-      ],
-      "render": "<target> [--scope a11y|performance|responsive|anti-slop] [--score] [--register brand|product] [:auto|:confirm]"
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "sk-design",
-        "resource": ".opencode/skills/sk-design/SKILL.md",
-        "action": "load the parent hub routing table and shared references"
-      },
-      {
-        "order": 2,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/audit/contract.md",
-        "action": "load the audit subworkflow contract"
-      },
-      {
-        "order": 3,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/audit/procedures/",
-        "action": "choose at most one private procedure card (accessibility-audit.md for WCAG/contrast/keyboard/forms review, ai-slop-check.md for AI-template/generic-visual-language detection) matching the request, or ../shared/procedures/polish-gate-orchestration.md for full pre-delivery polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline audit workflow' if no card matches"
-      },
-      {
-        "order": 4,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/references/audit/",
-        "action": "load subworkflow references and assets as the work requires, then apply the audit workflow to $ARGUMENTS"
-      },
-      {
-        "order": 5,
-        "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
-        "action": "prepare implementation handoff only when accepted design output moves to code"
-      }
-    ],
-    "next": ["/interface:foundations", "/interface:design", "/interface:motion"],
-    "handoff": {
-      "nextOptions": [
-        {
-          "command": "/interface:foundations",
-          "when": "audit findings need static token, contrast, or system decisions before another pass"
-        },
-        {
-          "command": "/interface:design",
-          "when": "findings point to a changed interface direction rather than local fixes"
-        },
-        {
-          "command": "/interface:motion",
-          "when": "findings involve animation, timing, state feedback, or reduced-motion behavior"
-        }
-      ],
-      "handoffRequired": false,
-      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
-    },
-    "proofFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
-    "taskProjections": [
-      {
-        "verb": "harden",
-        "ownerMode": "interface",
-        "strictness": "advisory",
-        "referenceSources": [
-          "design-interface/references/audit/hardening-edge-cases.md",
-          "design-interface/references/audit/transform-remediation.md"
-        ],
-        "requires": "a built surface to harden for production",
-        "fixtures": ["harden.positive", "harden.negative.mint-command"]
-      },
-      {
-        "verb": "polish",
-        "ownerMode": "interface",
-        "strictness": "advisory",
-        "referenceSources": [
-          "design-interface/references/audit/critique-hardening.md",
-          "design-interface/references/audit/transform-remediation.md"
-        ],
-        "requires": "a near-final surface to assess for polish readiness",
-        "fixtures": ["polish.positive", "polish.negative.mint-command"]
-      }
-    ],
-    "registerPolicy": {
-      "accepted": ["brand", "product"],
-      "default": "auto",
-      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
-      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
-      "proofFields": ["register", "auditSeverity"]
-    },
-    "deferToHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
-    "preconditions": {
-      "requiredInputKind": "a concrete design target - a URL, component, screen, or file - to inspect",
-      "missingInputQuestion": "What is the audit target (URL, component, screen, or file), and what scope/score do you want?",
-      "cannotRunWhen": "no target is given, or the named target cannot be opened or inspected",
-      "escalateIf": "the target needs build or run state the audit cannot reach to evidence a finding",
-      "routeInstead": "the ask is to create new direction, a static system, or motion rather than review existing quality"
-    },
-    "discriminator": {
-      "whenToUse": "Use this command when the request is to review, score, or harden an existing design surface.",
-      "preferSiblingWhen": [
-        {
-          "sibling": "/interface:foundations",
-          "when": "Prefer foundations when the request is to create or repair a static token system, palette, typography, layout, or spacing plan."
-        },
-        {
-          "sibling": "/interface:design",
-          "when": "Prefer interface when the request is to invent a new visual direction, interface concept, or signature surface."
-        },
-        {
-          "sibling": "/interface:design-reference",
-          "when": "Prefer md-generator when the request is to extract measured CSS from a live site into a Style Reference DESIGN.md."
-        },
-        {
-          "sibling": "/interface:motion",
-          "when": "Prefer motion when the request is to create animation choreography, transitions, or micro-interaction behavior."
-        },
-        {
-          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
-          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than review an existing design surface."
-        }
-      ],
-      "pairWithHubWhen": "the request asks for new direction, static system design, or motion choreography rather than quality review",
-      "sequence": {
-        "typicallyAfter": ["/interface:design", "/interface:foundations", "/interface:motion"],
-        "typicallyBefore": ["/interface:foundations", "/interface:design", "/interface:motion"]
-      }
-    },
-    "toolPolicy": {
-      "mutatesWorkspace": false
-    },
-    "outputContract": {
-      "primaryArtifactName": "Design Quality Audit Report",
-      "artifactKind": "report",
-      "requiredFields": ["target", "evidenceInventory", "severityFindings", "qualityScore"],
-      "fileOutputs": []
-    },
-    "pipeline": {
-      "stage": "review",
-      "acceptsFrom": ["/interface:foundations", "/interface:design", "/interface:design-reference", "/interface:motion"],
-      "produces": "Design Quality Audit Report",
-      "nextCommands": ["/interface:foundations", "/interface:design", "/interface:motion"],
-      "proofRequired": ["target", "evidenceInventory", "severityFindings", "qualityScore"]
-    }
-  },
-  {
-    "command": "/interface:foundations",
-    "ownerMode": "interface",
-    "commandSubworkflow": "foundations",
-    "description": "Visual system plan: color, typography, layout, spacing, tokens, theming. sk-design interface mode, foundations subworkflow.",
-    "descriptionRole": "hub-keyword-projection",
-    "autoTriggerEligible": false,
-    "hubKeywordProjection": ["color", "typography", "layout", "spacing", "tokens", "theming"],
-    "argumentHint": "<color|typography|layout|spacing|tokens|theming> <target> [--register brand|product] [:auto|:confirm]",
-    "aliases": ["design visual system", "define design tokens", "plan static foundations"],
-    "userIntent": {
-      "job": "I want to design or repair the static visual system - color, type, layout, spacing, tokens - for a surface.",
-      "ownedSignals": ["design visual system", "define design tokens", "plan static foundations"]
-    },
-    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
-    "accepts": "a static design-system axis and the target surface or product context",
-    "returns": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable",
-    "examples": [
-      {
-        "invocation": "/interface:foundations color marketing-site",
-        "returnsArtifact": "a static visual-system plan with color, type, layout, spacing, responsive, and token guidance as applicable"
-      }
-    ],
-    "argumentGrammar": {
-      "positional": [
-        { "name": "axis", "required": true, "kind": "design-axis" },
-        { "name": "target", "required": true, "kind": "design-target" }
-      ],
-      "flags": [
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
-      ],
-      "render": "<color|typography|layout|spacing|tokens|theming> <target> [--register brand|product] [:auto|:confirm]"
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "sk-design",
-        "resource": ".opencode/skills/sk-design/SKILL.md",
-        "action": "load the parent hub routing table and shared references"
-      },
-      {
-        "order": 2,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/foundations/contract.md",
-        "action": "load the foundations subworkflow contract"
-      },
-      {
-        "order": 3,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/foundations/procedures/",
-        "action": "choose at most one private procedure card (tweakable-design-controls.md for user-adjustable options/controls/tunable variants, component-system-inventory.md for component extraction/reusable parts/system inventory, hierarchy-rhythm-review.md for hierarchy/rhythm/spacing/density review) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline foundations workflow' if no card matches"
-      },
-      {
-        "order": 4,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/references/foundations/",
-        "action": "load subworkflow references and assets as the work requires, then apply the foundations workflow to $ARGUMENTS"
-      },
-      {
-        "order": 5,
-        "skill": "sk-code",
-        "resource": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
-        "action": "prepare implementation handoff only when accepted design output moves to code"
-      }
-    ],
-    "next": ["/interface:design", "/interface:motion", "/interface:audit"],
-    "handoff": {
-      "nextOptions": [
-        {
-          "command": "/interface:design",
-          "when": "static system decisions are ready to become a concrete interface direction or screen treatment"
-        },
-        {
-          "command": "/interface:motion",
-          "when": "tokens or layout decisions need temporal behavior, transitions, or state choreography"
-        },
-        {
-          "command": "/interface:audit",
-          "when": "the static system is ready for quality review, contrast evidence, or hardening"
-        }
-      ],
-      "handoffRequired": false,
-      "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
-    },
-    "proofFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
-    "taskProjections": [
-      {
-        "verb": "typeset",
-        "ownerMode": "interface",
-        "strictness": "advisory",
-        "referenceSources": [
-          "design-interface/references/foundations/type/typography-system.md",
-          "design-interface/assets/foundations/token-starter.md"
-        ],
-        "requires": "a type system or target surface to set",
-        "fixtures": ["typeset.positive", "typeset.negative.mint-command"]
-      },
-      {
-        "verb": "colorize",
-        "ownerMode": "interface",
-        "strictness": "advisory",
-        "referenceSources": [
-          "design-interface/references/foundations/color/oklch-workflow.md",
-          "design-interface/references/foundations/color/palette-theming.md"
-        ],
-        "requires": "a palette or surface to color",
-        "fixtures": ["colorize.positive", "colorize.negative.mint-command"]
-      }
-    ],
-    "registerPolicy": {
-      "accepted": ["brand", "product"],
-      "default": "auto",
-      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
-      "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
-      "proofFields": ["register", "colorStrategy", "tokenDensity"]
-    },
-    "deferToHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
-    "preconditions": {
-      "requiredInputKind": "a design-system axis (color, type, layout, spacing, or tokens) plus the target surface or product context",
-      "missingInputQuestion": "Which axis (color, type, layout, spacing, tokens) and for which target surface?",
-      "cannotRunWhen": "no axis is named, or no target/product context is given to ground the system",
-      "escalateIf": "the request actually needs full interface invention, not a single static axis",
-      "routeInstead": "the work is overall interface direction, motion behavior, or release-quality audit"
-    },
-    "discriminator": {
-      "whenToUse": "Use this command when the request is to design or correct the static visual system.",
-      "preferSiblingWhen": [
-        {
-          "sibling": "/interface:audit",
-          "when": "Prefer audit when the request is to review, score, accessibility-check, or harden a design surface."
-        },
-        {
-          "sibling": "/interface:design",
-          "when": "Prefer interface when the request is to invent the overall interface direction, voice, or signature visual concept first."
-        },
-        {
-          "sibling": "/interface:design-reference",
-          "when": "Prefer md-generator when the request is to extract measured tokens from a live site into DESIGN.md."
-        },
-        {
-          "sibling": "/interface:motion",
-          "when": "Prefer motion when the request is animation, transition choreography, micro-interactions, or reduced-motion behavior."
-        },
-        {
-          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
-          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than author a static visual system from judgment."
-        }
-      ],
-      "pairWithHubWhen": "the request spans invention of the overall interface direction, motion choreography, or release-quality audit",
-      "sequence": {
-        "typicallyAfter": ["/interface:design"],
-        "typicallyBefore": ["/interface:motion", "/interface:audit"]
-      }
-    },
-    "toolPolicy": {
-      "mutatesWorkspace": false
-    },
-    "outputContract": {
-      "primaryArtifactName": "Visual System Foundations Plan",
-      "artifactKind": "plan",
-      "requiredFields": ["axis", "target", "tokenDecisions", "contrastEvidence"],
-      "fileOutputs": []
-    },
-    "pipeline": {
-      "stage": "system",
-      "acceptsFrom": ["/interface:audit", "/interface:design", "/interface:design-reference", "/interface:motion"],
-      "produces": "Visual System Foundations Plan",
-      "nextCommands": ["/interface:design", "/interface:motion", "/interface:audit"],
-      "proofRequired": ["axis", "target", "tokenDecisions", "contrastEvidence"]
-    }
-  },
-  {
     "command": "/interface:design",
     "ownerMode": "interface",
-    "commandSubworkflow": null,
     "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -407,20 +63,12 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/interface:foundations", "/interface:motion", "/interface:audit"],
+    "next": ["/interface:motion"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/interface:foundations",
-          "when": "the direction needs a static token, type, spacing, or theming system"
-        },
-        {
           "command": "/interface:motion",
           "when": "the direction needs purposeful animation, transitions, or micro-interactions"
-        },
-        {
-          "command": "/interface:audit",
-          "when": "the interface direction is ready for findings-first review and scoring"
         }
       ],
       "handoffRequired": false,
@@ -453,6 +101,18 @@
         "surface": "--mode preflight: run the pre-ship mechanical gate"
       },
       {
+        "lane": "UX_QUALITY",
+        "label": "quality",
+        "class": "internal",
+        "surface": "quality floor and mechanical preflight checks inside the workflow"
+      },
+      {
+        "lane": "VISUAL_SYSTEM",
+        "label": "visual-system",
+        "class": "internal",
+        "surface": "static visual system inside the workflow: color, type, spacing, tokens, theming"
+      },
+      {
         "lane": "REAL_UI_LOOP",
         "label": "handoff",
         "class": "argument",
@@ -463,12 +123,6 @@
         "label": "aesthetic",
         "class": "argument",
         "surface": "--mode aesthetic: name a realized look"
-      },
-      {
-        "lane": "UX_QUALITY",
-        "label": "quality",
-        "class": "sibling-command",
-        "surface": "audit sibling route: accessibility, contrast, scoring, and production hardening"
       },
       {
         "lane": "REGISTER_DIALS",
@@ -508,8 +162,7 @@
         "strictness": "advisory",
         "referenceSources": [
           "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/design-principles.md",
-          "design-audit/references/transform-remediation.md"
+          "design-interface/references/design-process/design-principles.md"
         ],
         "requires": "an interface surface to push louder",
         "fixtures": ["bolder.positive", "bolder.negative.mint-command"]
@@ -520,8 +173,7 @@
         "strictness": "advisory",
         "referenceSources": [
           "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/design-principles.md",
-          "design-audit/references/transform-remediation.md"
+          "design-interface/references/design-process/design-principles.md"
         ],
         "requires": "an interface surface to calm",
         "fixtures": ["quieter.positive", "quieter.negative.mint-command"]
@@ -532,8 +184,7 @@
         "strictness": "advisory",
         "referenceSources": [
           "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/variation-diversity.md",
-          "design-audit/references/transform-remediation.md"
+          "design-interface/references/design-process/variation-diversity.md"
         ],
         "requires": "an interface surface to reduce to essentials",
         "fixtures": ["distill.positive", "distill.negative.mint-command"]
@@ -544,8 +195,7 @@
         "strictness": "advisory",
         "referenceSources": [
           "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/real-ui-loop.md",
-          "design-audit/references/transform-remediation.md"
+          "design-interface/references/design-process/real-ui-loop.md"
         ],
         "requires": "an interface surface to add an earned moment to",
         "fixtures": ["delight.positive", "delight.negative.mint-command"]
@@ -558,25 +208,17 @@
       "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
       "proofFields": ["register", "density", "motionBudget", "colorStrategy"]
     },
-    "deferToHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
+    "deferToHubWhen": "the request is primarily motion behavior or measured CSS extraction",
     "preconditions": {
       "requiredInputKind": "an interface target (surface, screen, or component set) plus the register and any mode hint",
       "missingInputQuestion": "Which interface surface, and is this Brand or Product register?",
       "cannotRunWhen": "no interface target is named to shape",
       "escalateIf": "the register is genuinely mixed or unresolved and changes the design dials",
-      "routeInstead": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction"
+      "routeInstead": "the request is primarily motion behavior or measured CSS extraction"
     },
     "discriminator": {
       "whenToUse": "Use this command when the request is to invent or reshape a distinctive interface direction.",
       "preferSiblingWhen": [
-        {
-          "sibling": "/interface:audit",
-          "when": "Prefer audit when the request is findings-first review, accessibility, performance, scoring, or production hardening."
-        },
-        {
-          "sibling": "/interface:foundations",
-          "when": "Prefer foundations when the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming."
-        },
         {
           "sibling": "/interface:design-reference",
           "when": "Prefer md-generator when the request is extracting a live site's measured CSS into DESIGN.md."
@@ -590,10 +232,10 @@
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction."
         }
       ],
-      "pairWithHubWhen": "the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction",
+      "pairWithHubWhen": "the request is primarily motion behavior or measured CSS extraction",
       "sequence": {
         "typicallyAfter": [],
-        "typicallyBefore": ["/interface:foundations", "/interface:motion", "/interface:audit"]
+        "typicallyBefore": ["/interface:motion"]
       }
     },
     "toolPolicy": {
@@ -607,16 +249,15 @@
     },
     "pipeline": {
       "stage": "direction",
-      "acceptsFrom": ["/interface:audit", "/interface:foundations", "/interface:design-reference", "/interface:motion"],
+      "acceptsFrom": ["/interface:design-reference", "/interface:motion"],
       "produces": "Interface Direction Spec",
-      "nextCommands": ["/interface:foundations", "/interface:motion", "/interface:audit"],
+      "nextCommands": ["/interface:motion"],
       "proofRequired": ["target", "register", "designDials", "preflightResult"]
     }
   },
   {
     "command": "/interface:design-reference",
     "ownerMode": "md-generator",
-    "commandSubworkflow": null,
     "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -678,20 +319,12 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/interface:foundations", "/interface:design", "/interface:audit"],
+    "next": ["/interface:design"],
     "handoff": {
       "nextOptions": [
         {
-          "command": "/interface:foundations",
-          "when": "measured CSS should be distilled into a static visual-system plan"
-        },
-        {
           "command": "/interface:design",
           "when": "measured evidence should inform a new or reshaped interface direction"
-        },
-        {
-          "command": "/interface:audit",
-          "when": "the captured surface needs quality review or hardening based on measured evidence"
         }
       ],
       "handoffRequired": false,
@@ -718,14 +351,6 @@
       "whenToUse": "Use this command when the request is to extract a live site's real measured CSS into DESIGN.md.",
       "preferSiblingWhen": [
         {
-          "sibling": "/interface:audit",
-          "when": "Prefer audit when the request is to review or score an existing design rather than extract its measured CSS."
-        },
-        {
-          "sibling": "/interface:foundations",
-          "when": "Prefer foundations when the request is to author a static token or visual system from judgment rather than measurement."
-        },
-        {
           "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent a new design direction instead of capturing what already exists."
         },
@@ -741,7 +366,7 @@
       "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
       "sequence": {
         "typicallyAfter": [],
-        "typicallyBefore": ["/interface:foundations", "/interface:design", "/interface:audit"]
+        "typicallyBefore": ["/interface:design"]
       }
     },
     "toolPolicy": {
@@ -757,14 +382,13 @@
       "stage": "extract",
       "acceptsFrom": [],
       "produces": "Style Reference DESIGN.md",
-      "nextCommands": ["/interface:foundations", "/interface:design", "/interface:audit"],
+      "nextCommands": ["/interface:design"],
       "proofRequired": ["sourceUrl", "extractedTokensDigest", "fidelityScore"]
     }
   },
   {
     "command": "/interface:motion",
     "ownerMode": "motion",
-    "commandSubworkflow": null,
     "description": "Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -826,20 +450,12 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/interface:design", "/interface:foundations", "/interface:audit"],
+    "next": ["/interface:design"],
     "handoff": {
       "nextOptions": [
         {
           "command": "/interface:design",
           "when": "motion choices change or depend on the overall interface direction"
-        },
-        {
-          "command": "/interface:foundations",
-          "when": "motion constraints affect static layout, token, or responsive decisions"
-        },
-        {
-          "command": "/interface:audit",
-          "when": "the motion spec is ready for performance, accessibility, or quality review"
         }
       ],
       "handoffRequired": false,
@@ -854,25 +470,17 @@
       "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
       "proofFields": ["register", "motionBudget"]
     },
-    "deferToHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
+    "deferToHubWhen": "the request is primarily static visual-system design, interface direction, or measured CSS extraction",
     "preconditions": {
       "requiredInputKind": "a component or state transition to animate, plus an optional animation library",
       "missingInputQuestion": "Which component or state transition should the motion describe, and which library?",
       "cannotRunWhen": "no component or state transition is named to animate",
       "escalateIf": "the motion depends on an interface direction that has not been decided yet",
-      "routeInstead": "the request is static visual-system design, interface direction, audit scoring, or measured CSS extraction"
+      "routeInstead": "the request is static visual-system design, interface direction, or measured CSS extraction"
     },
     "discriminator": {
       "whenToUse": "Use this command when the request is to design purposeful animation, transitions, or reduced-motion behavior.",
       "preferSiblingWhen": [
-        {
-          "sibling": "/interface:audit",
-          "when": "Prefer audit when the request is findings-first quality review, release scoring, or motion-performance assessment."
-        },
-        {
-          "sibling": "/interface:foundations",
-          "when": "Prefer foundations when the request is static color, type, layout, responsive, or theme-token work."
-        },
         {
           "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent the full visual direction or interface concept first."
@@ -886,10 +494,10 @@
           "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than design animation or motion behavior."
         }
       ],
-      "pairWithHubWhen": "the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction",
+      "pairWithHubWhen": "the request is primarily static visual-system design, interface direction, or measured CSS extraction",
       "sequence": {
-        "typicallyAfter": ["/interface:design", "/interface:foundations"],
-        "typicallyBefore": ["/interface:audit"]
+        "typicallyAfter": ["/interface:design"],
+        "typicallyBefore": []
       }
     },
     "toolPolicy": {
@@ -903,9 +511,9 @@
     },
     "pipeline": {
       "stage": "behavior",
-      "acceptsFrom": ["/interface:audit", "/interface:foundations", "/interface:design"],
+      "acceptsFrom": ["/interface:design"],
       "produces": "Motion Design Spec",
-      "nextCommands": ["/interface:design", "/interface:foundations", "/interface:audit"],
+      "nextCommands": ["/interface:design"],
       "proofRequired": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"]
     }
   }

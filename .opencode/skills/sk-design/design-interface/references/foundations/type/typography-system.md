@@ -101,7 +101,7 @@ The percentages above demonstrate descriptor placement only; they are not design
 
 #### CLS Proof
 
-Treat fallback matching as unverified until a manual audit records a numeric CLS score from a run where fallback text renders before the real face. Record viewport, cache/network condition, before/after score, and the shifted text region; repeat after the overrides are applied. A visual side-by-side or “looks stable” judgment does not satisfy the proof. The audit procedure and P0-P3 impact mapping live in `../../../design-audit/references/audit-contract.md` under Manual CLS Evidence For Web Fonts.
+Treat fallback matching as unverified until a manual audit records a numeric CLS score from a run where fallback text renders before the real face. Record viewport, cache/network condition, before/after score, and the shifted text region; repeat after the overrides are applied. A visual side-by-side or “looks stable” judgment does not satisfy the proof.
 
 ### OpenType Polish
 

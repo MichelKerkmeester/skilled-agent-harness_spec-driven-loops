@@ -2,7 +2,7 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "resourceContractVersion": 1,
-  "description": "Declarative registry for four top-level sk-design modes plus permanent interface-owned command subworkflows. The advisor routes one sk-design identity; the hub resolves a registered mode, while /interface:foundations and /interface:audit select typed subworkflows without creating additional mode or skill identities.",
+  "description": "Declarative registry for the four top-level sk-design modes. The advisor routes one sk-design identity and the hub resolves one registered mode from this four-mode registry.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for the three registered design-judgment modes (interface/motion/md-generator); 'transport' for the Open Design bridge.",
@@ -10,20 +10,14 @@
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
-    "packetSkillName": "The registered packet's SKILL.md name. Command subworkflows use contract.md and never declare packetSkillName.",
+    "packetSkillName": "The registered packet's SKILL.md name.",
     "grandfatheredFolderMismatch": "true only when a registered packet folder differs from packetSkillName. All four registered modes use matching names.",
-    "command": "The bound slash command for a registered mode, or null for a no-command transport. Commands owned by an internal interface subworkflow are declared only in commandSubworkflows."
+    "command": "The bound slash command for a registered mode, or null for a no-command transport."
   },
   "extensions": {
     "transform-verbs": {
-      "description": "Declares the transform-verb routing extension: framing-split verb aliases (interface-frame 'make it' applies the move; audit-frame 'should it be' evaluates it), with excludedAliases and aliasOnly carve-outs. Activates the in-place top-level transformVerbRouting block without relocating it — the hub router vocabulary, command projection parity, and playbook scenarios all read it at that location.",
+      "description": "Declares the transform-verb routing extension: framing-split verb aliases (interface-frame 'make it' applies the move; audit-frame 'should it be' evaluates it), with aliasOnly carve-outs. Activates the in-place top-level transformVerbRouting block without relocating it — the hub router vocabulary, command projection parity, and playbook scenarios all read it at that location.",
       "declaredField": "transformVerbRouting"
-    },
-    "command-subworkflows": {
-      "description": "Declares permanent public commands that execute complete workflows owned by one registered mode without adding peer mode or nested skill identities.",
-      "declaredField": "commandSubworkflows",
-      "ownerMode": "interface",
-      "commands": ["/interface:foundations", "/interface:audit"]
     },
     "transport-axis": {
       "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (backendKind:'od-cli-transport', routingClass:'metadata', mutatesWorkspace:false since writes land in the external tool, not this repo). They never perform design judgment themselves — every entry on this axis has its own mandatory-pairing contract requiring sk-design's own workflow modes before any design-affecting operation.",
@@ -31,49 +25,13 @@
     }
   },
   "transformVerbRouting": {
-    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move. excludedAliases governs free-text transform-verb framing only (e.g. 'make it typeset'); command-metadata.json's taskProjections is a separate layer governing which mode owns the SAME verb under an explicit slash command (e.g. /interface:foundations typeset). The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
+    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move. command-metadata.json's taskProjections is a separate layer governing which mode owns the same verb under an explicit slash command. The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
     "interfaceFrame": "make it",
     "auditFrame": "should it be",
     "interfaceAliases": ["bolder", "quieter", "distill", "clarify", "delight"],
     "aliasOnly": ["clarify"],
-    "commandProjectionParity": ["bolder", "quieter", "distill", "delight"],
-    "excludedAliases": {
-      "foundations": ["typeset", "colorize"],
-      "audit": ["harden", "polish"]
-    }
+    "commandProjectionParity": ["bolder", "quieter", "distill", "delight"]
   },
-  "commandSubworkflows": [
-    {
-      "id": "foundations",
-      "ownerMode": "interface",
-      "command": "/interface:foundations",
-      "contract": "design-interface/foundations/contract.md",
-      "proceduresPath": "design-interface/foundations/procedures",
-      "referencesPath": "design-interface/references/foundations",
-      "assetsPath": "design-interface/assets/foundations",
-      "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep"],
-        "forbidden": ["Write", "Edit", "Bash"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      }
-    },
-    {
-      "id": "audit",
-      "ownerMode": "interface",
-      "command": "/interface:audit",
-      "contract": "design-interface/audit/contract.md",
-      "proceduresPath": "design-interface/audit/procedures",
-      "referencesPath": "design-interface/references/audit",
-      "assetsPath": "design-interface/assets/audit",
-      "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep"],
-        "forbidden": ["Write", "Edit", "Bash"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      }
-    }
-  ],
   "modes": [
     {
       "workflowMode": "interface",
@@ -90,7 +48,7 @@
       "packetSkillName": "design-interface",
       "grandfatheredFolderMismatch": false,
       "command": "/interface:design",
-      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter", "design audit", "ui critique", "design review", "review the ui", "audit the design", "accessibility audit", "wcag contrast", "performance audit", "anti-slop detection", "ai tell", "production hardening", "design quality score", "ui quality review", "p0 p1 design findings"],
+      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter"],
       "advisorRouting": {
         "routingClass": "metadata",
         "packetSkillName": "design-interface"
