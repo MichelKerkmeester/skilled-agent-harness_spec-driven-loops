@@ -87,4 +87,4 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 - **Critical path**: Yes
 - **Destructive**: No
 - **Concurrent-safe**: Yes
-- **Last validated**: Router replay passed in `benchmark/2026-07-06--after-009--router/report.json`; live/manual operator execution is required before READY.
+- **Last validated**: Router replay passed in `benchmark/reports/2026-07-06--after-009--router/report.json`; live/manual operator execution is required before READY.

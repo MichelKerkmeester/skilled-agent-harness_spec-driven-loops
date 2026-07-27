@@ -37,7 +37,7 @@ Baseline captured with all six modes registered (three workflow + three transpor
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill mcp-tooling \
-  --outputs-dir .opencode/skills/mcp-tooling/benchmark/<run-label> \
+  --outputs-dir .opencode/skills/mcp-tooling/benchmark/reports/<run-label> \
   --trace-mode router
 ```
 

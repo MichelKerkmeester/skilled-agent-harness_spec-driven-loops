@@ -120,7 +120,7 @@ Router mode (deterministic, no network — the CI gate):
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill={{HUB_PATH}} \
-  --outputs-dir={{HUB_PATH}}/benchmark/{{NEW_RUN_LABEL}} \
+  --outputs-dir={{HUB_PATH}}/benchmark/reports/{{NEW_RUN_LABEL}} \
   --trace-mode=router
 ```
 
@@ -130,7 +130,7 @@ Live mode (dispatches through `cli-opencode`, needs a configured provider):
 SKILL_BENCH_OPENCODE_MODEL={{PROVIDER_MODEL}} SKILL_BENCH_OPENCODE_VARIANT=high \
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill={{HUB_PATH}} \
-  --outputs-dir={{HUB_PATH}}/benchmark/{{NEW_RUN_LABEL}} \
+  --outputs-dir={{HUB_PATH}}/benchmark/reports/{{NEW_RUN_LABEL}} \
   --trace-mode=live
 ```
 
