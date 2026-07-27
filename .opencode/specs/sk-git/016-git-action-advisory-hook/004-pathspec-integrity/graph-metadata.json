@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
+  "spec_folder": "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
+  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pathspec-integrity",
+      "git advisory pathspec-integrity",
+      "004-pathspec-integrity plan",
+      "004-pathspec-integrity tasks",
+      "004-pathspec-integrity implementation-summary"
+    ],
+    "key_topics": [
+      "pathspec-integrity",
+      "git",
+      "advisory",
+      "004-pathspec-integrity",
+      "plan",
+      "tasks",
+      "implementation-summary",
+      "commit",
+      "only",
+      "paths",
+      "silently",
+      "skips"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pathspec Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`git commit --only <paths>` silently skips paths that are untracked",
+    "created_at": "2026-07-27T18:47:26Z",
+    "last_save_at": "2026-07-27T19:50:11.084Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e67fc51a23d7c9f7cb3d7fcbd12eaf456df08d4e36613c2e6475734b2fcc619e",
+    "source_doc_hashes": {
+      "spec.md": "095524e557460dbe6b13d569f44eba9590eed73829226c3d876f8e81a338caae",
+      "plan.md": "1fe8ab33b000ca02aaf68b56be295304295f4f0e0c7683c1ffd58499da4b7dc8",
+      "tasks.md": "409ea840f031f9b15122e894bc6acc4ff0fa7bf5c97f632d1cf00db6f6116617",
+      "implementation-summary.md": "f4a147016d07719ed2880e53543164b3d7a8251403938acaedf09cfc35924ce0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

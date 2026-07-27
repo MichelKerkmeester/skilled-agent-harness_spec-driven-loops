@@ -1,0 +1,51 @@
+{
+  "topic": "Determine which git operations warrant a preflight advisory in a PreToolUse Bash hook, what pre-execution state each candidate rule can evaluate, and where the noise threshold sits.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-git/016-git-action-advisory-hook/001-advisory-research",
+  "fanout_lineage_artifact_dir": ".opencode/specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-27T18:55:37Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "type": "cli-opencode",
+    "model": "openai/gpt-5.6-sol",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1785178337201-eaydo6",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

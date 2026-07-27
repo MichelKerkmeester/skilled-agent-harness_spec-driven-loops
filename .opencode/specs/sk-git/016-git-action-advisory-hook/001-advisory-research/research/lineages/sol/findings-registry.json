@@ -1,0 +1,132 @@
+{
+  "sessionId": "fanout-sol-1785178337201-eaydo6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-27T19:41:12Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "q-operation-families",
+      "text": "Which git operation families can be classified reliably from the Bash command before execution?",
+      "resolved": true,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "q-prestate",
+      "text": "Which repository, worktree, index, remote, config, and account state is genuinely available before each candidate command runs?",
+      "resolved": true,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "q-new-rules",
+      "text": "Which high-cost failures beyond the five observed incidents warrant new advisory rules?",
+      "resolved": true,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "q-noise",
+      "text": "How often would each candidate fire in real repository history, and what is the defensible noise threshold?",
+      "resolved": true,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "q-silence",
+      "text": "Which dangerous-looking operations should remain silent because enforcement already owns them or preflight state is unavailable or too noisy?",
+      "resolved": true,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": ["q-operation-families", "q-prestate", "q-new-rules", "q-noise", "q-silence"],
+  "carriedForwardOpenQuestions": [
+    "Which bounded state probes make destructive-history predicates precise enough?",
+    "How often do state-gated candidates match without exact argv telemetry?",
+    "Which staging and commit predicates detect cross-session contamination without warning on intentional multi-path commits?",
+    "Which positive local coordination and remote/account facts justify advisories despite unavoidable race windows?",
+    "What final candidate tiers, coalescing rules, latency limits, and aggregate alert budget keep advisories below the attention threshold?",
+    "No key questions remain; implementation must validate the retained classifier in privacy-preserving shadow mode."
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "f1-command-state-boundary",
+      "iteration": 1,
+      "text": "The evaluator accepts only command text today; direct branch creation and --no-verify are command-only, while most valuable destructive candidates need bounded repository-state probes."
+    },
+    {
+      "id": "f1-noise-proxy",
+      "iteration": 1,
+      "text": "Broad reflog prevalence was amend 0.47%, rebase 2.97%, reset 13.56%, and commit 73.55%; broad family warnings above roughly 1% require state gating."
+    },
+    {
+      "id": "f2-destructive-probes",
+      "iteration": 2,
+      "text": "Retained destructive rules can be narrowed to positive state: published containment, nonempty exact-path overwrite, clean dry-run removals, unique branch commits, dirty or active forced worktree removal, unrescued stash entries, and nonempty immediate-expiry/prune exposure."
+    },
+    {
+      "id": "f2-built-in-safety",
+      "iteration": 2,
+      "text": "Routine and recovery forms should stay silent where Git already blocks or preserves state, including branch -d, checked-out branch deletion, ordinary dirty worktree removal, clean without force, and conflicted stash pop."
+    },
+    {
+      "id": "f3-selection-mismatch",
+      "iteration": 3,
+      "text": "Retain staging advisories only when exact broad/selective commands expose objective mismatches: held-back staged paths, one-sided inferred renames, forced ignored files, or reproducible expansion beyond explicit paths."
+    },
+    {
+      "id": "f3-no-ownership",
+      "iteration": 3,
+      "text": "Git state has no session-owner field and PreToolUse sees only the pre-hook candidate, so advisories must be neutral and cannot guarantee final commit contents."
+    },
+    {
+      "id": "f4-local-push-consequences",
+      "iteration": 4,
+      "text": "Detached or linked pushes to a branch checked out elsewhere and manual wrapper publication have predictable local coordination consequences, but push success and follower reconciliation remain unknown."
+    },
+    {
+      "id": "f4-uncovered-refspecs",
+      "iteration": 4,
+      "text": "Current pre-push enforcement skips tags and does not own force/delete/mirror/prune or destructive multi-ref semantics; these require positive destination evidence and coalesced advisories."
+    },
+    {
+      "id": "f5-final-matrix",
+      "iteration": 5,
+      "text": "Twenty-three exact command/state rules survive ranking; fourteen broad, unavailable, enforcement-owned, or over-budget classes are rejected."
+    },
+    {
+      "id": "f5-attention-budget",
+      "iteration": 5,
+      "text": "Shadow-mode targets are under 0.5 alerts per 100 eligible invocations per rule and under 2 per 100 aggregate, with hard ceilings of 1 and 3; emit one coalesced line at most."
+    }
+  ],
+  "ruledOutDirections": [
+    "Unconditional warnings for generic commit, reset, rebase, pull, or push",
+    "Duplicating existing pre-push branch naming and permission enforcement",
+    "Using Git history as exact argv telemetry",
+    "Treating raceable remote snapshots or post-execution outcomes as facts"
+    ,"Generic destructive-family and recovery-form warnings"
+    ,"Using absent remote containment as proof that history is unpublished"
+    ,"Path-count-only, cross-top-level, and unconditional selective-commit warnings"
+    ,"Predicting interactive or stdin path selections and hook-time final commit state"
+    ,"Generic push, account, detached-worktree, and nondestructive multi-ref warnings"
+    ,"Duplicating pre-push naming and permission blockers"
+    ,"Treating gh identity, API permission, or network snapshots as remote outcome proof"
+    ,"Network probes, full object scans, and all-worktree sweeps in the synchronous path"
+    ,"Generic filter-rewrite name matching without a validated mutating predicate"
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 46,
+    "convergenceScore": 0.8,
+    "coverageBySources": {"code": 33, "history": 20, "state": 30, "web": 2, "network": 2, "benchmark": 13}
+  }
+}

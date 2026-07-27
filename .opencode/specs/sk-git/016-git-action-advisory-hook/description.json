@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-git/016-git-action-advisory-hook",
+  "description": "sk-git already documents the rules that would have prevented four separate incidents in a single session",
+  "keywords": [
+    "sk-git",
+    "already",
+    "documents",
+    "rules",
+    "prevented",
+    "four",
+    "separate",
+    "incidents",
+    "single",
+    "session"
+  ],
+  "lastUpdated": "2026-07-27T19:52:16.016Z",
+  "specId": "016",
+  "folderSlug": "git-action-advisory-hook",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-07-26_20-52__scaffolded-the-sk-git-git-action-advisory-hook.md"
+  ]
+}

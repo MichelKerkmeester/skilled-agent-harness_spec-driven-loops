@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/016-git-action-advisory-hook/001-advisory-research",
+  "description": "The incident list in the parent spec is a starting point drawn from one session, not a survey",
+  "keywords": [
+    "incident",
+    "list",
+    "parent",
+    "spec",
+    "starting",
+    "point",
+    "drawn",
+    "one",
+    "session",
+    "survey"
+  ],
+  "lastUpdated": "2026-07-27T19:53:25.257Z",
+  "specId": "001",
+  "folderSlug": "advisory-research",
+  "parentChain": [
+    "sk-git",
+    "016-git-action-advisory-hook"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "27-07-26_20-50__scaffolded-the-sk-git-git-action-advisory-hook.md",
+    "27-07-26_20-53__scaffolded-the-sk-git-git-action-advisory-hook.md"
+  ]
+}

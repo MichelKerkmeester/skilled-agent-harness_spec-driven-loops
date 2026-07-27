@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
+  "spec_folder": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
+  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rule-encoding",
+      "git advisory rule-encoding",
+      "002-rule-encoding plan",
+      "002-rule-encoding tasks",
+      "002-rule-encoding implementation-summary"
+    ],
+    "key_topics": [
+      "rule-encoding",
+      "git",
+      "advisory",
+      "002-rule-encoding",
+      "plan",
+      "tasks",
+      "implementation-summary",
+      "sk-git",
+      "declares",
+      "hardrules",
+      "frontmatter",
+      "existing"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rule Encoding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-git declares no `hardrules:` frontmatter, so the existing evaluator has nothing to read for git commands",
+    "created_at": "2026-07-27T18:47:25Z",
+    "last_save_at": "2026-07-27T19:50:10.855Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba56a6574c3585e66587241375f1e3d6aae467e1efa7511b5722726ea88071d7",
+    "source_doc_hashes": {
+      "spec.md": "84496ef58a663bf2d820bd1de0ee1250f89c15a993fd77d69423ece6d77da6ca",
+      "plan.md": "ba139fe7a1da87323ac01e489dd3ac77105c5d2b5291d8459c43bce0df298874",
+      "tasks.md": "c740d4f6f0e4e8300e75472579c55e0ed8f39885b46728003e61fd444ee5653f",
+      "implementation-summary.md": "b693c8c3bda8eac0a4d076db0294e073715d9e0fc7acaa72f5d6aea4ac9d9b80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

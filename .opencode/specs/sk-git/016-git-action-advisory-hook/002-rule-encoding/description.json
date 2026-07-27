@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
+  "description": "sk-git declares no `hardrules:` frontmatter, so the existing evaluator has nothing to read for git commands",
+  "keywords": [
+    "sk-git",
+    "declares",
+    "hardrules",
+    "frontmatter",
+    "existing",
+    "evaluator",
+    "nothing",
+    "read",
+    "git",
+    "commands"
+  ],
+  "lastUpdated": "2026-07-27T19:51:09.259Z",
+  "specId": "002",
+  "folderSlug": "rule-encoding",
+  "parentChain": [
+    "sk-git",
+    "016-git-action-advisory-hook"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-07-26_20-51__scaffolded-the-sk-git-git-action-advisory-hook.md"
+  ]
+}

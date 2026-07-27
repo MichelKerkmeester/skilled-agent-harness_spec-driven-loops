@@ -1,0 +1,67 @@
+# Research Briefing: Git Action Advisory Hook
+
+## What exists already
+
+The advisory mechanism is built and proven. Do not redesign it; research what should go *into* it.
+
+- `.claude/settings.json` runs a `PreToolUse` hook with `matcher: Bash` on every Bash command.
+- `.opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs`
+  exports `parseHardRules(text)`, `readHardRules(skillMdPath)`, `evaluate(command, rules)`.
+- `.opencode/skills/cli-external-orchestration/cli-devin/SKILL.md` declares the frontmatter schema:
+  `hard_rules:` with `id`, `check`, `message`, `severity`.
+- `.opencode/skills/sk-git/SKILL.md` holds the rules as prose and declares **no** `hard_rules:`.
+
+That last line is the gap. sk-git's rules are surfaced by *prompt* routing, never by the *command*.
+
+## The question
+
+Which git operations warrant a preflight advisory, what state can each rule evaluate before the
+command runs, and where is the noise threshold?
+
+## Observed incidents (a floor, not the answer)
+
+Five failures from one session. Each had a matching sk-git rule that did not fire, except the last,
+which has no rule at all.
+
+| Incident | Rule | Pre-evaluable? |
+|---|---|---|
+| `git add <dir>` swept another session's staged deletions in, staging half a rename | ALWAYS #13 | dirty tree + directory pathspec |
+| Pushed from a cherry-pick worktree; primary checkout never moved | ALWAYS #15 | detached / linked-worktree HEAD |
+| Push rejected 403; active `gh` account was not the remote owner | ESCALATE #2 | active account vs remote owner |
+| Nearly ran an autostash-prone op against a 93-file dirty tree | ALWAYS #14 | dirty count + operation |
+| `git commit --only <paths>` silently dropped a named path | **none** | partly |
+
+**Treat this table as the floor.** Findings that only restate it are worth little. The value is in
+what it misses: operations that fail rarely but expensively, and operations that look dangerous but
+are routine and would only generate noise.
+
+## Required fields per finding
+
+A finding without these is not usable by the next phase.
+
+1. **Operation** — the exact git invocation shape.
+2. **Pre-execution state** — the specific state the rule reads, and whether it is genuinely
+   available *before* the command runs. A rule needing post-execution information cannot be a
+   preflight advisory; say so plainly rather than hand-waving.
+3. **Noise estimate** — how often this would fire, grounded in real repository history where you
+   can measure it. If you did not measure, say you did not measure.
+4. **Source** — existing sk-git prose (name the rule), an observed incident, or new. New rules need
+   justification.
+5. **Confidence** — confirmed (you checked) or inferred (you reasoned). Do not blur these.
+
+## Hard constraints
+
+- **Advisory, never blocking.** The pre-commit, commit-msg and pre-push hooks own enforcement. A
+  false positive must cost one line of text, never a failed command.
+- **Read-only.** Write only under this packet's `research/` directory. Touch no other file.
+- **An advisory that fires constantly is worse than none** — it consumes attention and provides no
+  protection, because operators learn to skim past it. Noise is a first-class research subject, not
+  an afterthought.
+
+---
+
+YOUR FOCUS FOR THIS PASS:
+
+Survey prior art for pre-execution git advisories and, critically, where they FAIL. Cover git own hooks, husky, lefthook, pre-commit.com, the GitHub CLI warnings, GitLens, and any IDE that warns before destructive git actions. For each: what does it warn about, at what moment, and is there evidence that users ignore or disable it? The central question is not what to warn about but what warning frequency people tolerate before they stop reading. Bring back concrete numbers or documented complaints where they exist, and say when you are inferring.
+
+Write your findings to .opencode/specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research/manual-devin/devin-04.md as markdown. Do not modify any file outside .opencode/specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research/. Report findings only; do not implement anything.

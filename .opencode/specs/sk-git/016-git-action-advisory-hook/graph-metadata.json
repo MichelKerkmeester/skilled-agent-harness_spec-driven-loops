@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/016-git-action-advisory-hook",
+  "spec_folder": "sk-git/016-git-action-advisory-hook",
+  "parent_id": null,
+  "children_ids": [
+    "sk-git/016-git-action-advisory-hook/001-advisory-research",
+    "sk-git/016-git-action-advisory-hook/002-rule-encoding",
+    "sk-git/016-git-action-advisory-hook/003-preflight-hook",
+    "sk-git/016-git-action-advisory-hook/004-pathspec-integrity"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git advisory hook",
+      "git action advisor",
+      "sk-git preflight advisory",
+      "git hard rules"
+    ],
+    "key_topics": [
+      "git",
+      "advisory",
+      "hook",
+      "action",
+      "advisor",
+      "sk-git",
+      "preflight",
+      "hard",
+      "rules",
+      "already",
+      "documents",
+      "prevented"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".claude/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Action Advisory Hook Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-git already documents the rules that would have prevented four separate incidents in a single session",
+    "created_at": "2026-07-27T18:47:24Z",
+    "last_save_at": "2026-07-27T19:53:27.354Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:c79816f139be70e8619456471033006d75281312d9ba7e50c01181516d108ff6",
+    "source_doc_hashes": {
+      "spec.md": "1bdb231513e2fb7ab431c2dcd07807c2c06798c4d9d3a87e7df10eb57a13698b"
+    },
+    "last_active_child_id": "sk-git/016-git-action-advisory-hook/001-advisory-research",
+    "last_active_at": "2026-07-27T19:53:27.354Z"
+  }
+}

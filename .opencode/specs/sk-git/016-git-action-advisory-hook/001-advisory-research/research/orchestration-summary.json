@@ -1,0 +1,22 @@
+{
+  "run_id": "1785178337201-eaydo6",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-git/016-git-action-advisory-hook/001-advisory-research",
+  "base_artifact_dir": ".opencode/specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

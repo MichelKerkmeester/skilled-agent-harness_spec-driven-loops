@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/016-git-action-advisory-hook/001-advisory-research",
+  "spec_folder": "sk-git/016-git-action-advisory-hook/001-advisory-research",
+  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git advisory research",
+      "which git operations warrant advisory",
+      "git hook noise threshold",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "advisory research checklist",
+      "git advisory verification"
+    ],
+    "key_topics": [
+      "git",
+      "advisory",
+      "research",
+      "operations",
+      "warrant",
+      "hook",
+      "noise",
+      "threshold",
+      "implementation",
+      "plan",
+      "name",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md",
+      "research/BRIEFING.md",
+      "research/manual-devin/FOCUS-PLAN.md",
+      "research/manual-devin/devin-03.md",
+      "research/manual-devin/devin-04.md",
+      "research/lineages/sol/findings-registry.json",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "research/manual-devin/devin-05.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BRIEFING.md",
+        "kind": "doc",
+        "path": "research/BRIEFING.md",
+        "source": "derived"
+      },
+      {
+        "name": "FOCUS-PLAN.md",
+        "kind": "doc",
+        "path": "research/manual-devin/FOCUS-PLAN.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-03.md",
+        "kind": "doc",
+        "path": "research/manual-devin/devin-03.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-04.md",
+        "kind": "doc",
+        "path": "research/manual-devin/devin-04.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/lineages/sol/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "devin-05.md",
+        "kind": "doc",
+        "path": "research/manual-devin/devin-05.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisory Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The incident list in the parent spec is a starting point drawn from one session, not a survey",
+    "created_at": "2026-07-27T18:47:24Z",
+    "last_save_at": "2026-07-27T19:53:25.257Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:e17d2d86c31045e24e0ea7840da787c5c6428ed0bb33a56aae9f6bf2a256ec71",
+    "source_doc_hashes": {
+      "spec.md": "bf0cc15c5290a351062a25dc819fa2c13b68f5e9667934d3af21e07a75a2a3a7",
+      "plan.md": "bc2d8bb3f59a72b59c9851c3653ccdd953651da823cadd31916deadccefc253a",
+      "tasks.md": "24b249e54dc60645977a5ef19c07247bb1f3b5af31033fd8f02788aef3f8ea20",
+      "checklist.md": "4ea1a16264c86f23afd3e6cbf7eb8c51cc25317eaed6a761ab73df6973d15dc7",
+      "implementation-summary.md": "d54fde64379493aa274d0817ec64e7078b7c1a075c42b4fb9b140778776c97f7",
+      "research.md": "91c8ad98b7a394de185cde09fee5259a9d274fa4414792f30145a4f622b1c053"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
