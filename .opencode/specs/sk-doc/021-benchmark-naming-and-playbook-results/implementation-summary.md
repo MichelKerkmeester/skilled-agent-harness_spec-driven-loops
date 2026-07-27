@@ -10,9 +10,9 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T14:10:21Z"
+    last_updated_at: "2026-07-27T15:32:11Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Round 3 returned PASS over the fixed state"
+    recent_action: "Collapsed benchmark storage onto the reports layer"
     next_safe_action: "Open a deep-loop packet for brittle event-name validation and agent-written timestamps"
     blockers: []
     completion_pct: 100
@@ -136,6 +136,20 @@ its own evidence, because the spec named that edge case and the writer never imp
 owning skill declared a six-file report folder naming a report the writer never emits. A third,
 pre-existing, had the serving snapshot looking for parity evidence under a fixed label no writer
 produces. All three are fixed and covered.
+
+**The reports layer was declared but never occupied.** The convention, the writer and the scaffolder
+all pointed at `benchmark/reports/` while all 45 folders sat one level above it, because the earlier
+rename renamed in place rather than moving down. The operator caught it on `sk-prompt/benchmark`.
+
+That gap was hiding a dead feature rather than only a tidiness problem: the writer appends an index
+row only when a run folder's parent is named `reports`, so every historical run had failed to index
+itself with no error and no log line. The index built and tested in this packet had never executed
+against a real folder. Moving the folders is what switched it on, proven by a live run taking `sk-git`
+from two rows to three.
+
+The declared shape also described a raw-run layer beside `reports/` that no writer produced, which is
+why curated output landed in the raw slot. One location now, and `create-skill` states the
+corpus-and-output pair for both skill shapes while citing the skills that own their interiors.
 
 **Three review rounds, converging 3 findings, then 2, then 0.** Round 3 ran five iterations over the
 fixed state and returned PASS with no findings at any severity, citing the reservation code directly.

@@ -10,9 +10,9 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T14:10:21Z"
+    last_updated_at: "2026-07-27T15:32:11Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Round 3 returned PASS over the fixed state"
+    recent_action: "Collapsed benchmark storage onto the reports layer"
     next_safe_action: "Open a deep-loop packet for brittle event-name validation and agent-written timestamps"
     blockers: []
     completion_pct: 100
@@ -186,4 +186,9 @@ references to a sibling hub.
 - [x] CHK-039 [P1] Output allocation is concurrency-safe, not check-then-create. Evidence: three consecutive runs reserve `…-high`, `…-high-2`, `…-high-3` by non-recursive `mkdirSync`, which fails `EEXIST` atomically.
 - [x] CHK-040 [P1] The packet's own normative layout matches the writer. Evidence: `grep -rn "six files|six-file"` over the packet returns `1` hit, and that hit is the historical record of the defect rather than a current claim.
 - [x] CHK-041 [P1] The remediations converged. Evidence: round 3 over the fixed state returns `Verdict: PASS` with `P0 0, P1 0, P2 0` across five iterations, four of which cite the atomic-reservation code by name.
+- [x] CHK-042 [P0] Every run folder lives under the reports layer. Evidence: `45 / 45` at mapped locations, `0` dated folders left directly under any `benchmark/`.
+- [x] CHK-043 [P0] Index appending works for real folders. Evidence: a run with no `--outputs-dir` took `sk-git` from `2` index rows to `3`; the gate requiring a parent named `reports` had never matched a historical folder.
+- [x] CHK-044 [P0] The migration broke no links. Evidence: `diff` of the broken-link list against the recorded baseline returned empty after every one of 14 roots, at `85 broken` throughout.
+- [x] CHK-045 [P1] create-skill defines both trees. Evidence: a scaffolded skill receives `manual-testing-playbook/manual-testing-playbook.md` and `benchmark/reports/README.md`; both shapes in `SKILL.md` show the interiors and cite the owning skills.
+- [x] CHK-046 [P1] Editing the sk-design corpus did not move its measurement. Evidence: `BLOCKED-BY-ROUTE-GOLD` at `91` over `42` scenarios with the edit stashed and applied alike.
 <!-- /ANCHOR:review-remediation -->
