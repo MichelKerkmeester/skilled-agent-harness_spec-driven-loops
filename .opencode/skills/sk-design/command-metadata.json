@@ -5,14 +5,35 @@
     "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
-    "hubKeywordProjection": ["direction", "palette", "type", "layout", "motion"],
-    "argumentHint": "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]",
-    "aliases": ["shape interface direction", "redesign ui surface", "make ui distinctive"],
+    "hubKeywordProjection": [
+      "direction",
+      "palette",
+      "type",
+      "layout",
+      "motion"
+    ],
+    "argumentHint": "<target> [--mode direction|directions|redesign|preflight|handoff] [--register brand|product] [:auto|:confirm]",
+    "aliases": [
+      "shape interface direction",
+      "redesign ui surface",
+      "make ui distinctive"
+    ],
     "userIntent": {
       "job": "I want to invent or reshape a distinctive interface direction for a surface.",
-      "ownedSignals": ["shape interface direction", "redesign ui surface", "make ui distinctive"]
+      "ownedSignals": [
+        "shape interface direction",
+        "redesign ui surface",
+        "make ui distinctive"
+      ]
     },
-    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
+    "copyGuard": [
+      "Thin bridge",
+      "Pin the",
+      "parent skill's",
+      "parent hub to",
+      "loads the",
+      "mode directly"
+    ],
     "accepts": "an interface target plus an optional mode hint for direction, redesign, or build judgment",
     "returns": "a deliberate interface direction with rationale, visual choices, critique, and handoff notes",
     "examples": [
@@ -23,13 +44,33 @@
     ],
     "argumentGrammar": {
       "positional": [
-        { "name": "target", "required": true, "kind": "interface-target" }
+        {
+          "name": "target",
+          "required": true,
+          "kind": "interface-target"
+        }
       ],
       "flags": [
-        { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
+        {
+          "name": "--mode",
+          "required": false,
+          "takesValue": true,
+          "valueName": "mode",
+          "kind": "mode-selector"
+        },
+        {
+          "name": "--register",
+          "required": false,
+          "takesValue": true,
+          "valueName": "register",
+          "kind": "register-selector",
+          "values": [
+            "brand",
+            "product"
+          ]
+        }
       ],
-      "render": "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]"
+      "render": "<target> [--mode direction|directions|redesign|preflight|handoff] [--register brand|product] [:auto|:confirm]"
     },
     "choreography": [
       {
@@ -63,7 +104,9 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/interface:motion"],
+    "next": [
+      "/interface:motion"
+    ],
     "handoff": {
       "nextOptions": [
         {
@@ -74,7 +117,12 @@
       "handoffRequired": false,
       "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
     },
-    "proofFields": ["target", "register", "designDials", "preflightResult"],
+    "proofFields": [
+      "target",
+      "register",
+      "designDials",
+      "preflightResult"
+    ],
     "tasks": [
       {
         "lane": "DESIGN_PRINCIPLES",
@@ -119,12 +167,6 @@
         "surface": "--mode build: real UI loop and sk-code handoff manifest"
       },
       {
-        "lane": "AESTHETICS",
-        "label": "aesthetic",
-        "class": "argument",
-        "surface": "--mode aesthetic: name a realized look"
-      },
-      {
         "lane": "REGISTER_DIALS",
         "label": "register",
         "class": "internal",
@@ -165,7 +207,10 @@
           "design-interface/references/design-process/design-principles.md"
         ],
         "requires": "an interface surface to push louder",
-        "fixtures": ["bolder.positive", "bolder.negative.mint-command"]
+        "fixtures": [
+          "bolder.positive",
+          "bolder.negative.mint-command"
+        ]
       },
       {
         "verb": "quieter",
@@ -176,7 +221,10 @@
           "design-interface/references/design-process/design-principles.md"
         ],
         "requires": "an interface surface to calm",
-        "fixtures": ["quieter.positive", "quieter.negative.mint-command"]
+        "fixtures": [
+          "quieter.positive",
+          "quieter.negative.mint-command"
+        ]
       },
       {
         "verb": "distill",
@@ -187,7 +235,10 @@
           "design-interface/references/design-process/variation-diversity.md"
         ],
         "requires": "an interface surface to reduce to essentials",
-        "fixtures": ["distill.positive", "distill.negative.mint-command"]
+        "fixtures": [
+          "distill.positive",
+          "distill.negative.mint-command"
+        ]
       },
       {
         "verb": "delight",
@@ -198,15 +249,32 @@
           "design-interface/references/design-process/real-ui-loop.md"
         ],
         "requires": "an interface surface to add an earned moment to",
-        "fixtures": ["delight.positive", "delight.negative.mint-command"]
+        "fixtures": [
+          "delight.positive",
+          "delight.negative.mint-command"
+        ]
       }
     ],
     "registerPolicy": {
-      "accepted": ["brand", "product"],
+      "accepted": [
+        "brand",
+        "product"
+      ],
       "default": "auto",
-      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "resolutionOrder": [
+        "explicitFlag",
+        "declaredRegister",
+        "taskCue",
+        "surfaceInFocus",
+        "safeDefault"
+      ],
       "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
-      "proofFields": ["register", "density", "motionBudget", "colorStrategy"]
+      "proofFields": [
+        "register",
+        "density",
+        "motionBudget",
+        "colorStrategy"
+      ]
     },
     "deferToHubWhen": "the request is primarily motion behavior or measured CSS extraction",
     "preconditions": {
@@ -235,7 +303,9 @@
       "pairWithHubWhen": "the request is primarily motion behavior or measured CSS extraction",
       "sequence": {
         "typicallyAfter": [],
-        "typicallyBefore": ["/interface:motion"]
+        "typicallyBefore": [
+          "/interface:motion"
+        ]
       }
     },
     "toolPolicy": {
@@ -244,15 +314,30 @@
     "outputContract": {
       "primaryArtifactName": "Interface Direction Spec",
       "artifactKind": "spec",
-      "requiredFields": ["target", "register", "designDials", "preflightResult"],
+      "requiredFields": [
+        "target",
+        "register",
+        "designDials",
+        "preflightResult"
+      ],
       "fileOutputs": []
     },
     "pipeline": {
       "stage": "direction",
-      "acceptsFrom": ["/interface:design-reference", "/interface:motion"],
+      "acceptsFrom": [
+        "/interface:design-reference",
+        "/interface:motion"
+      ],
       "produces": "Interface Direction Spec",
-      "nextCommands": ["/interface:motion"],
-      "proofRequired": ["target", "register", "designDials", "preflightResult"]
+      "nextCommands": [
+        "/interface:motion"
+      ],
+      "proofRequired": [
+        "target",
+        "register",
+        "designDials",
+        "preflightResult"
+      ]
     }
   },
   {
@@ -261,14 +346,34 @@
     "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
-    "hubKeywordProjection": ["CSS", "Style Reference", "DESIGN.md", "extract"],
+    "hubKeywordProjection": [
+      "CSS",
+      "Style Reference",
+      "DESIGN.md",
+      "extract"
+    ],
     "argumentHint": "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]",
-    "aliases": ["extract website css", "generate design reference", "capture design tokens"],
+    "aliases": [
+      "extract website css",
+      "generate design reference",
+      "capture design tokens"
+    ],
     "userIntent": {
       "job": "I want to extract a live site's real measured CSS into a Style Reference DESIGN.md.",
-      "ownedSignals": ["extract website css", "generate design reference", "capture design tokens"]
+      "ownedSignals": [
+        "extract website css",
+        "generate design reference",
+        "capture design tokens"
+      ]
     },
-    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
+    "copyGuard": [
+      "Thin bridge",
+      "Pin the",
+      "parent skill's",
+      "parent hub to",
+      "loads the",
+      "mode directly"
+    ],
     "accepts": "a reachable live URL plus an output directory",
     "returns": "a Style Reference DESIGN.md and extracted token data under the output directory",
     "examples": [
@@ -279,11 +384,31 @@
     ],
     "argumentGrammar": {
       "positional": [
-        { "name": "live-url", "required": true, "kind": "live-url" }
+        {
+          "name": "live-url",
+          "required": true,
+          "kind": "live-url"
+        }
       ],
       "flags": [
-        { "name": "--output", "required": true, "takesValue": true, "valueName": "dir", "kind": "output-directory" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
+        {
+          "name": "--output",
+          "required": true,
+          "takesValue": true,
+          "valueName": "dir",
+          "kind": "output-directory"
+        },
+        {
+          "name": "--register",
+          "required": false,
+          "takesValue": true,
+          "valueName": "register",
+          "kind": "register-selector",
+          "values": [
+            "brand",
+            "product"
+          ]
+        }
       ],
       "render": "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]"
     },
@@ -319,7 +444,9 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/interface:design"],
+    "next": [
+      "/interface:design"
+    ],
     "handoff": {
       "nextOptions": [
         {
@@ -330,14 +457,29 @@
       "handoffRequired": false,
       "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
     },
-    "proofFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
+    "proofFields": [
+      "sourceUrl",
+      "extractedTokensDigest",
+      "fidelityScore"
+    ],
     "taskProjections": [],
     "registerPolicy": {
-      "accepted": ["brand", "product"],
+      "accepted": [
+        "brand",
+        "product"
+      ],
       "default": "auto",
-      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "resolutionOrder": [
+        "explicitFlag",
+        "declaredRegister",
+        "taskCue",
+        "surfaceInFocus",
+        "safeDefault"
+      ],
       "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
-      "proofFields": ["register"]
+      "proofFields": [
+        "register"
+      ]
     },
     "deferToHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
     "preconditions": {
@@ -366,7 +508,9 @@
       "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",
       "sequence": {
         "typicallyAfter": [],
-        "typicallyBefore": ["/interface:design"]
+        "typicallyBefore": [
+          "/interface:design"
+        ]
       }
     },
     "toolPolicy": {
@@ -375,15 +519,27 @@
     "outputContract": {
       "primaryArtifactName": "Style Reference DESIGN.md",
       "artifactKind": "reference-doc",
-      "requiredFields": ["sourceUrl", "extractedTokensDigest", "fidelityScore"],
-      "fileOutputs": ["<output>/DESIGN.md"]
+      "requiredFields": [
+        "sourceUrl",
+        "extractedTokensDigest",
+        "fidelityScore"
+      ],
+      "fileOutputs": [
+        "<output>/DESIGN.md"
+      ]
     },
     "pipeline": {
       "stage": "extract",
       "acceptsFrom": [],
       "produces": "Style Reference DESIGN.md",
-      "nextCommands": ["/interface:design"],
-      "proofRequired": ["sourceUrl", "extractedTokensDigest", "fidelityScore"]
+      "nextCommands": [
+        "/interface:design"
+      ],
+      "proofRequired": [
+        "sourceUrl",
+        "extractedTokensDigest",
+        "fidelityScore"
+      ]
     }
   },
   {
@@ -392,14 +548,34 @@
     "description": "Motion design spec: animation, transitions, micro-interactions, reduced motion. sk-design motion mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
-    "hubKeywordProjection": ["animation", "transitions", "micro-interactions", "reduced motion"],
+    "hubKeywordProjection": [
+      "animation",
+      "transitions",
+      "micro-interactions",
+      "reduced motion"
+    ],
     "argumentHint": "<component-state> [--library <name>] [--register brand|product] [:auto|:confirm]",
-    "aliases": ["design motion behavior", "plan micro interactions", "specify animation states"],
+    "aliases": [
+      "design motion behavior",
+      "plan micro interactions",
+      "specify animation states"
+    ],
     "userIntent": {
       "job": "I want to design purposeful animation, transitions, or reduced-motion behavior for a component or state.",
-      "ownedSignals": ["design motion behavior", "plan micro interactions", "specify animation states"]
+      "ownedSignals": [
+        "design motion behavior",
+        "plan micro interactions",
+        "specify animation states"
+      ]
     },
-    "copyGuard": ["Thin bridge", "Pin the", "parent skill's", "parent hub to", "loads the", "mode directly"],
+    "copyGuard": [
+      "Thin bridge",
+      "Pin the",
+      "parent skill's",
+      "parent hub to",
+      "loads the",
+      "mode directly"
+    ],
     "accepts": "a component or state transition plus an optional animation library hint",
     "returns": "a motion plan with purpose, timing, easing, interaction states, performance notes, and reduced-motion behavior",
     "examples": [
@@ -410,11 +586,31 @@
     ],
     "argumentGrammar": {
       "positional": [
-        { "name": "component-state", "required": true, "kind": "component-state" }
+        {
+          "name": "component-state",
+          "required": true,
+          "kind": "component-state"
+        }
       ],
       "flags": [
-        { "name": "--library", "required": false, "takesValue": true, "valueName": "library", "kind": "library-hint" },
-        { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
+        {
+          "name": "--library",
+          "required": false,
+          "takesValue": true,
+          "valueName": "library",
+          "kind": "library-hint"
+        },
+        {
+          "name": "--register",
+          "required": false,
+          "takesValue": true,
+          "valueName": "register",
+          "kind": "register-selector",
+          "values": [
+            "brand",
+            "product"
+          ]
+        }
       ],
       "render": "<component-state> [--library <name>] [--register brand|product] [:auto|:confirm]"
     },
@@ -450,7 +646,9 @@
         "action": "prepare implementation handoff only when accepted design output moves to code"
       }
     ],
-    "next": ["/interface:design"],
+    "next": [
+      "/interface:design"
+    ],
     "handoff": {
       "nextOptions": [
         {
@@ -461,14 +659,31 @@
       "handoffRequired": false,
       "handoffReason": "recommend-only; the user or the sk-design hub chooses the next step, never an automatic chain"
     },
-    "proofFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
+    "proofFields": [
+      "componentState",
+      "motionPurpose",
+      "timingModel",
+      "reducedMotionPath"
+    ],
     "taskProjections": [],
     "registerPolicy": {
-      "accepted": ["brand", "product"],
+      "accepted": [
+        "brand",
+        "product"
+      ],
       "default": "auto",
-      "resolutionOrder": ["explicitFlag", "declaredRegister", "taskCue", "surfaceInFocus", "safeDefault"],
+      "resolutionOrder": [
+        "explicitFlag",
+        "declaredRegister",
+        "taskCue",
+        "surfaceInFocus",
+        "safeDefault"
+      ],
       "askWhen": "the register cannot be resolved from the flag, a declared field, the task cue, or the surface, or the surface is genuinely mixed across Brand and Product so the dials would diverge",
-      "proofFields": ["register", "motionBudget"]
+      "proofFields": [
+        "register",
+        "motionBudget"
+      ]
     },
     "deferToHubWhen": "the request is primarily static visual-system design, interface direction, or measured CSS extraction",
     "preconditions": {
@@ -496,7 +711,9 @@
       ],
       "pairWithHubWhen": "the request is primarily static visual-system design, interface direction, or measured CSS extraction",
       "sequence": {
-        "typicallyAfter": ["/interface:design"],
+        "typicallyAfter": [
+          "/interface:design"
+        ],
         "typicallyBefore": []
       }
     },
@@ -506,15 +723,29 @@
     "outputContract": {
       "primaryArtifactName": "Motion Design Spec",
       "artifactKind": "spec",
-      "requiredFields": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"],
+      "requiredFields": [
+        "componentState",
+        "motionPurpose",
+        "timingModel",
+        "reducedMotionPath"
+      ],
       "fileOutputs": []
     },
     "pipeline": {
       "stage": "behavior",
-      "acceptsFrom": ["/interface:design"],
+      "acceptsFrom": [
+        "/interface:design"
+      ],
       "produces": "Motion Design Spec",
-      "nextCommands": ["/interface:design"],
-      "proofRequired": ["componentState", "motionPurpose", "timingModel", "reducedMotionPath"]
+      "nextCommands": [
+        "/interface:design"
+      ],
+      "proofRequired": [
+        "componentState",
+        "motionPurpose",
+        "timingModel",
+        "reducedMotionPath"
+      ]
     }
   }
 ]

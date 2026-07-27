@@ -1,6 +1,6 @@
 ---
 description: "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode."
-argument-hint: "<target> [--mode direction|directions|redesign|preflight|handoff|aesthetic] [--register brand|product] [:auto|:confirm]"
+argument-hint: "<target> [--mode direction|directions|redesign|preflight|handoff] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
@@ -57,7 +57,7 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 
 ### INTERFACE TASK LANES
 
-- **direction** (default), **directions**, **redesign**, **preflight**, **handoff**, and **aesthetic** are selectable argument lanes.
+- **direction** (default), **directions**, **redesign**, **preflight** and **handoff** are selectable argument lanes.
 - **quality** uses the interface mode's mechanical preflight card at `design-interface/assets/interface-preflight-card.md`.
 - **visual-system** covers static color, type, spacing, token, and theming decisions inside the workflow.
 - **register**, **copy-gate**, **grounding**, **transform**, and **reference** are internal or hidden: they are not surfaced and not selectable.

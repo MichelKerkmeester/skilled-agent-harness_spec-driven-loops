@@ -82,7 +82,7 @@ DESIGN TASK
 | CONDITIONAL | Grounding a direction in the local styles corpus | `corpus/README.md` and `corpus/relational-exemplar.mjs` (one mode-selected anchor plus an optional bounded contrast or rejected default, with a decision-only handoff) |
 | CONDITIONAL | Internal procedure support | `procedures/discovery-question-round.md`, `procedures/aesthetic-direction.md`, `procedures/wireframe-exploration.md`, `procedures/variation-set.md`, `procedures/prototype-flow-spec.md`, `procedures/deck-direction-spec.md`, and `../shared/procedures/polish-gate-orchestration.md` when the trigger matches |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design-inventory.md` |
-| ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against only, never a chooser or preset — see `references/aesthetics/README.md` and Reference Loading Notes §3. |
+| ON_DEMAND | Naming a realized look in one line as the default to critique against | The local styles corpus via `corpus/README.md` and `corpus/relational-exemplar.mjs`, which retrieves real shipped exemplars rather than hand-written descriptions |
 | INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS) or Refero (web). Routes through Code Mode, one reference, never copied — full initiative/ask/fallback rule in ALWAYS #8 and `references/design-grounding/design-references-mcp.md`. |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
@@ -113,7 +113,6 @@ INTENT_SIGNALS = {
     "REDESIGN_INTAKE": {"weight": 4, "keywords": ["redesign", "preserve", "overhaul", "greenfield", "existing surface", "existing interface", "do not surprise", "keep the nav", "keep urls", "locked tokens", "form fields", "legal copy"]},
     "REAL_SYSTEM_GROUNDING": {"weight": 4, "keywords": ["design system", "design inventory", "ground in a system", "existing design system", "our design system", "reuse-ground"]},
     "REAL_WORLD_REFERENCE": {"weight": 4, "keywords": ["mobbin", "refero", "real-world reference", "shipped ui", "critique against", "default to deviate from", "the cliche", "the usual look", "typical look"]},
-    "AESTHETICS": {"weight": 3, "keywords": ["aesthetic", "brutalist", "minimalist", "soft ui", "apple bento", "name the look", "name a realized look", "realized default", "named default look", "vibe"]},
     "TRANSFORM_APPLICATION": {"weight": 4, "keywords": ["make it bolder", "make it quieter", "make it distill", "make it clarify", "make it delight", "bolder", "quieter", "distill", "clarify", "delight the interaction", "earned moment", "keep ledger", "remove ledger"]},
     "VISUAL_SYSTEM": {"weight": 4, "keywords": ["design foundations", "visual system", "static system", "color system", "oklch", "color ramp", "palette theming", "type scale", "typographic scale", "spacing scale", "design tokens", "token system", "token starter", "theming", "dark mode", "light mode", "grid system", "breakpoints", "adaptation matrix", "contrast pairs"]},
 }
@@ -130,7 +129,6 @@ RESOURCE_MAP = {
     "REDESIGN_INTAKE": ["references/design-process/redesign-intake.md"],
     "REAL_SYSTEM_GROUNDING": ["references/design-grounding/design-inventory.md"],
     "REAL_WORLD_REFERENCE": ["references/design-grounding/design-references-mcp.md", "references/mcp-tooling/mobbin-tools.md", "references/mcp-tooling/refero-tools.md"],
-    "AESTHETICS": ["references/aesthetics/README.md", "references/aesthetics/brutalist.md", "references/aesthetics/minimalist.md", "references/aesthetics/soft.md", "references/aesthetics/apple-bento.md"],
     "VISUAL_SYSTEM": ["references/foundations/color/oklch-workflow.md", "references/foundations/color/palette-theming.md", "references/foundations/type/typography-system.md", "references/foundations/layout/layout-responsive.md", "references/foundations/layout/adaptation-matrix.md", "references/foundations/design-system-artifact-contract.md", "references/foundations/worked-examples.md", "references/foundations/corpus-map.md", "references/foundations/smart-router-pseudocode.md", "assets/foundations/token-starter.md", "assets/foundations/contrast-pair-inventory.md"],
 }
 
@@ -287,7 +285,6 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`procedures/prototype-flow-spec.md`](procedures/prototype-flow-spec.md) - Private prototype-flow spec support before `sk-code` implementation.
 - [`procedures/deck-direction-spec.md`](procedures/deck-direction-spec.md) - Private deck/presentation planning support.
 - [`../shared/procedures/polish-gate-orchestration.md`](../shared/procedures/polish-gate-orchestration.md) - Shared private final-polish orchestration when interface owns visual-direction repair.
-- [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues, critique-against only, subordinate to grounding, never a chooser or preset.
 
 ### Manual Testing Playbook
 
