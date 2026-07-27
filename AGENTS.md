@@ -312,8 +312,7 @@ Every spec folder (Level 1+) MUST contain:
 
 | Tool | Purpose |
 | ------| ---------|
-| **Spec Kit Memory MCP** | Research, context recovery, saves. See Memory Save Rule below for save mechanics. |
-| **System Code Graph MCP** | Structural code search, impact analysis, relationship queries. Use with Grep for concept discovery; `memory_search` indexes spec docs and saved memory, not arbitrary code. |
+| **Spec Kit Memory MCP** | Research, context recovery, saves. See Memory Save Rule below for save mechanics. Note: `memory_search` indexes spec docs and saved memory, not arbitrary code. |
 | **Git (sk-git)** | Worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Triggers: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes |
 
 ##### Git Workspace Safety
@@ -329,7 +328,7 @@ Every spec folder (Level 1+) MUST contain:
 
 #### Daemon-Backed CLI Fallbacks
 
-The three daemons also expose additive warm-only CLI fallbacks (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`); see Daemon CLI Transport Fallback below. Exit `75` is retryable.
+Both daemons also expose additive warm-only CLI fallbacks (`spec-memory.cjs`, `skill-advisor.cjs`); see Daemon CLI Transport Fallback below. Exit `75` is retryable.
 
 #### Code Search Decision Tree
 
@@ -339,7 +338,7 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 | ------| -----|
 | Exact text / token / symbol | **Grep** — `rg -n "<pattern>" <path>` |
 | Known file or path | **Glob** |
-| Concept, intent, "how does X work", or unfamiliar code | **Code Graph** (`code_graph_query`, `code_graph_context`, `detect_changes`) + Grep; verify hits with Read |
+| Concept, intent, "how does X work", or unfamiliar code | **Grep** for likely vocabulary → **Glob** to map the surrounding tree → **Read** to confirm. Widen the pattern rather than trusting a single hit |
 
 > **Note:** `memory_search` is for spec docs and saved memory only — it does not index arbitrary code.
 
@@ -347,14 +346,15 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 
 **Two systems:**
 
-1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **5 servers registered:**
+1. **Native MCP** (`opencode.json`) - Direct tools, called natively. **4 servers registered:**
    - Sequential Thinking
    - Spec Kit Memory (`mk-spec-memory`, 41 tools)
    - Skill Advisor (`mk_skill_advisor`, 9 tools — 4 advisor + 5 skill_graph)
-   - Code Graph (`mk_code_index`, 8 tools)
    - Code Mode
 
-   The Spec Kit Memory, Code Graph, and Skill Advisor daemons also have daemon-backed CLI front doors over the same tool surfaces. These CLIs are additive IPC clients, not separate MCP servers and not replacements for the registered MCP transports.
+   The Spec Kit Memory and Skill Advisor daemons also have daemon-backed CLI front doors over the same tool surfaces. These CLIs are additive IPC clients, not separate MCP servers and not replacements for the registered MCP transports.
+
+   Registration is per runtime and not uniform: `.claude/mcp.json` (shared with Cursor) omits Sequential Thinking, and `.codex/config.toml` carries only Spec Kit Memory, Skill Advisor and Code Mode.
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Figma, Github, ClickUp, Chrome DevTools, etc.
@@ -375,7 +375,7 @@ Before enabling any results-affecting path, check `ENV-REFERENCE.md` ("Feature f
 | ----| --------|
 | 1 | `/speckit:resume` → rebuild context: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md` → `tasks.md` → `plan.md` → `spec.md`) |
 | 2 | **Phase parent** (has `[0-9]{3}-name/` children): honor `graph-metadata.json.derived.last_active_child_id`, else list children with statuses. Lean trio policy — only `spec.md`, `description.json`, `graph-metadata.json` at parent; read chosen child's continuity ladder |
-| 3 | **Stale/missing context:** `session_bootstrap()` → `code_graph_scan` if needed. Graph unavailable: Grep/Glob + direct reads; continuity ladder is source-of-truth |
+| 3 | **Stale/missing context:** `session_bootstrap()`, then Grep/Glob + direct reads; the continuity ladder is source-of-truth |
 | 4 | Re-anchor on spec folder, current task, blockers, next steps before changes |
 
 #### Daemon CLI Transport Fallback
@@ -385,7 +385,6 @@ Use a daemon's CLI only when MCP tools are missing, fail to initialize, or retur
 | Daemon | Warm read invocation |
 | --------| ----------------------|
 | Spec Memory | `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000` |
-| Code Index | `node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 3000 --warm-only` |
 | Skill Advisor | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000` |
 
 ---
@@ -462,7 +461,7 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 | **Code work**                     | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |                                                                                                                                                                          |
 | **UI / design work**              | `sk-design` (design judgment, required) → `design-mcp-open-design` (nested) or `mcp-figma` (external, via the `mcp-tooling` hub) as transport; `mcp-refero`/`mcp-mobbin` (mcp-tooling transports) supply real-app design references → hand the build to `sk-code`                                                              |                                                                                                                                                                          |
 | **File modification**             | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                                                                                  |                                                                                                                                                                          |
-| **Code search**                   | Code Graph for structure + Grep for concept/token discovery → Glob for file paths → Read for contents                                                                                       |                                                                                                                                                                          |
+| **Code search**                   | Grep for concept/token discovery → Glob for file paths → Read for contents                                                                                                                 |                                                                                                                                                                          |
 | **Research/exploration**          | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                                                                                |                                                                                                                                                                          |
 | **Git workflow**                  | sk-git skill → Worktree setup / Commit / Finish (PR); see §5 Git Workspace Safety                                                                                                           |                                                                                                                                                                          |
 | **Prompt improvement**            | Prompt engineering via `sk-prompt`. Dispatched by `/prompt`                                                                                                                                 |                                                                                                                                                                          |
