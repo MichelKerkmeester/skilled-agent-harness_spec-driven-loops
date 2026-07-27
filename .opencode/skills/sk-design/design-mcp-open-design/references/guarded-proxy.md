@@ -12,17 +12,33 @@ version: 1.0.0.0
 
 # Open Design Guarded Proxy Contract
 
-This document defines a contract, not a running server. The guarded proxy is the agent-side boundary that every wired Open Design surface must traverse before a call can spawn an inner agent, fire a build, mutate project state, or provide Open Design content as design-decision input.
+This document defines a contract, not a running server: the agent-side boundary every wired Open Design surface must traverse before a call can mutate state or feed a design decision.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+The guarded proxy is the agent-side boundary that every wired Open Design surface must traverse before a call can spawn an inner agent, fire a build, mutate project state, or provide Open Design content as design-decision input.
+
+### When to Use
+
+Apply this contract whenever an MCP tool, HTTP route, `od` CLI command, or in-app Skills action could mutate Open Design state or feed a design decision — not only for calls that look obviously destructive.
+
+### Core Principle
 
 The contract is deny-by-default. Anything not positively recognized as pure transport for a positive purpose is guarded. The controlling invariant is "unknown ⇒ guarded": unknown tool AND unknown purpose both deny without a token.
 
-## Boundary
+---
+
+## 2. BOUNDARY
 
 Open Design exposes one daemon through interchangeable surfaces: MCP tools, HTTP routes, the `od` CLI, and in-app Skills. Per-surface checks drift too easily, so the guarded proxy sits at the shared agent-side adapter boundary, immediately before inner-agent spawn or build-fire and before any Open Design mutating verb is forwarded.
 
 The boundary governs requests that pass through the agent-side adapter. It does not claim to alter the bundled daemon, patch the desktop app, or intercept calls that bypass the adapter.
 
-## Canonical Request
+## 3. CANONICAL REQUEST
 
 Every surface adapter MUST normalize its request into this canonical shape before classification or execution:
 
@@ -39,7 +55,7 @@ Every surface adapter MUST normalize its request into this canonical shape befor
 
 Normalization MUST be lossless for `surface`, `toolOrVerb`, `mutationClass`, `openDesignPurpose`, `target`, token metadata, and payload digest inputs. If any of those fields cannot be reconstructed unambiguously, the request is treated as guarded and denied unless a valid token can be checked against the real outgoing payload.
 
-## Surface Mapping
+## 4. SURFACE MAPPING
 
 | Surface | Adapter mapping |
 |---|---|
@@ -50,7 +66,7 @@ Normalization MUST be lossless for `surface`, `toolOrVerb`, `mutationClass`, `op
 
 HTTP and Skills adapters MUST map to the same canonical operation classes as MCP and CLI. A route or message that cannot be mapped is not exempt transport; it is guarded.
 
-## Classification
+## 5. CLASSIFICATION
 
 Classification uses two axes:
 
@@ -64,7 +80,7 @@ Classification uses two axes:
 
 This mirrors the design gate without relying on a caller boolean. Running Open Design generation is design work, and a read that feeds the design decision is also design work. Bare inventory, status, diagnostics, and non-design transport can pass without a design token only when the caller positively asserts `openDesignExemption`.
 
-## `openDesignDesignPrecondition`
+## 6. PRECONDITION FUNCTION (`openDesignDesignPrecondition`)
 
 `openDesignDesignPrecondition(canonicalRequest)` is invoked after normalization and classification but before forwarding the inner request.
 
@@ -91,13 +107,13 @@ The proxy MUST fail closed. Absence, ambiguity, stale token state, exceptions, o
 
 The `od` CLI design-mutating Bash surface is enforced by the opencode PreToolUse hook's `od` CLI lane; that Bash lane is enforced at the hook, not by this proxy.
 
-## Exemption Model
+## 7. EXEMPTION MODEL
 
 `exemptTransport` is a positive allowlist. These operations are allowed without `DESIGN_PROOF_TOKEN` only when the caller supplies `openDesignPurpose: "openDesignExemption"` and the operation is listed in the allowlist. Either condition missing means guarded.
 
 A listed read becomes guarded when its output is used to decide layout, visual language, component styling, content hierarchy, motion, prototype behavior, or a build brief. A caller that asserts `openDesignExemption` also asserts that the returned artifact will not later be used as design-decision input. This prevents laundering design context through a nominally read-only operation while still allowing harmless transport, inventory, status, and polling.
 
-## Policy
+## 8. POLICY
 
 The policy is derived from the Open Design tool-surface reference.
 
@@ -188,7 +204,7 @@ The policy is derived from the Open Design tool-surface reference.
 
 Anything omitted from `exemptTransport` is guarded. A new Open Design tool, route, command, or Skills action starts guarded until the tool-surface reference classifies it and this policy is updated. Missing, unknown, or any other `openDesignPurpose` starts as `unclassified` and is guarded. The policy is deny-by-default on both axes: unknown operation and unknown purpose.
 
-## Named Residual
+## 9. NAMED RESIDUAL
 
 The bundled Open Design daemon ships inside the Mac app and is not modified by this contract. A raw HTTP-port call, or an in-app Skills-UI message, that reaches the daemon without traversing the agent-side adapter cannot be forced through this proxy.
 
@@ -196,7 +212,7 @@ That daemon-side bypass is out of scope for this contract. The honest boundary i
 
 Any PreToolUse hook, policy file, adapter, or caller still reading a `feedsDesignDecision` boolean instead of required `openDesignPurpose` speaks the old contract. That consumer can still misclassify omission as non-design until it is migrated.
 
-## Acceptance
+## 10. ACCEPTANCE
 
 The contract is acceptable when all of these are true:
 
@@ -208,7 +224,7 @@ The contract is acceptable when all of these are true:
 | A new or unknown design-affecting tool is absent from `exemptTransport`. | `DENY` without a token; unknown ⇒ guarded. |
 | A caller reaches the bundled daemon without traversing the agent-side adapter. | Not enforceable by this proxy; the daemon residual is explicitly out of scope. |
 
-## Automation Freeze
+## 11. AUTOMATION FREEZE
 
 A design-affecting automation is FROZEN — DENIED by default. This includes `od automation create` or `od automation run` when the automation triggers a design-mutating operation, and any scheduled `start_run` fire that would launch design work. The reason is the token contract itself: [`DESIGN_PROOF_TOKEN` Section 2](../../shared/design-proof-token.md#2-field-schema-v1) requires `singleUse: true` and a short `expiresAt` window of approximately 300 seconds. An unattended automation cannot mint or carry a live interactive single-use token at fire time.
 

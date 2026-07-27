@@ -51,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned — no work started |
+| **Status** | Complete (Track A: 5/6 sites fixed, 1 explicitly deferred to sibling scope; Track B: all 4 leaves verified+reconciled, 2 findings left open for operator decision) |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |

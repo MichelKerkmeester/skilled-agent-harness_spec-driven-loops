@@ -11,12 +11,11 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/012-remaining-mode-conformance"
-    last_updated_at: "2026-07-27T12:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored spec covering design-md-generator + design-mcp-open-design conformance"
-    next_safe_action: "Decide relocate-vs-exempt for the four examples/**/DESIGN.md files before touching them"
-    blockers:
-      - "The four examples/**/DESIGN.md files need an operator or executor decision: relocate out of references/ or document an exemption, not a content rewrite"
+    last_updated_at: "2026-07-27T18:03:42Z"
+    last_updated_by: "conformance-executor"
+    recent_action: "Executed and verified all fixes across both packets, 20 files"
+    next_safe_action: "Packet complete, no further action required"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md"
       - ".opencode/skills/sk-design/design-md-generator/references/examples/vercel/DESIGN.md"
@@ -28,9 +27,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Relocate vs. exempt for the four exemplar DESIGN.md files: documented exemption (see references/examples/README.md)"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned — no work started |
+| **Status** | Complete — all in-scope fixes landed, verified, gate green |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |
@@ -79,28 +79,53 @@ Close both modes' conformance gaps: fix the one real enum violation (`extraction
 - Deciding relocate-vs-exempt for the four `examples/**/DESIGN.md` files: either move them out of `references/` (e.g. to an `examples/` sibling outside the frontmatter-checked tree, if the tooling distinguishes) or document a written exemption explaining why an output exemplar legitimately carries `contextType: reference` despite the enum, without touching their content.
 - Numbering and upper-casing H2 headings in the 5 non-conformant `design-mcp-open-design/references/*.md` files: `cli-child-pairing.md`, `freshness-invalidation.md`, `guarded-proxy.md`, `inner-generator-binding.md`, `smart-router-pseudocode.md`.
 - Stating, without re-doing, that sibling `003-design-motion`'s conformance leaves are superseded by `010-motion-merge`.
+- **Exhaustive sweep addendum (found during execution, same conformance class, kept in-scope per this spec's own edge case "a sixth file turns out unnumbered... treat as in-scope"):** the same two off-enum bugs (`importance_tier: "high"`, `contextType: reference`) and the same missing-`OVERVIEW` structural defect recur beyond the files named above. All instances were fixed under the identical rule already governing REQ-001/REQ-002/REQ-003:
+  - `design-md-generator/assets/cardinal-rules-card.md` — second `importance_tier: "high"` instance.
+  - `design-md-generator/references/guided-run.md` — `contextType: reference` (off-enum) plus missing `## 1. OVERVIEW`.
+  - `design-md-generator/references/authoring-boundary.md` — missing `## 1. OVERVIEW` (renumbered 1-7 -> 2-8).
+  - `design-md-generator/assets/source-of-truth-router-card.md` — missing `## 1. OVERVIEW` (renumbered 1-5 -> 2-6).
+  - `design-md-generator/references/writing-style-guide.md` — intro paragraph exceeded the 1-2 sentence limit; second paragraph moved into `## 1. OVERVIEW`.
+  - `design-md-generator/references/design-md-format.md` — sections 3-15 used literal backtick-quoted output heading text instead of an ALL-CAPS title (fixed by adding an ALL-CAPS title with the literal quoted inline); trailing `## Section presence` renumbered to `## 16. SECTION PRESENCE`. The file's `## 0.`-based numbering and absent `OVERVIEW` section were NOT restructured — see Key Decisions in `implementation-summary.md` for the cross-reference blast-radius rationale.
+  - `design-md-generator/references/examples/{linear,stripe,supabase,vercel}/writing-notes.md` (4 files) and `references/examples/editorial-exemplar.md` — same off-enum `contextType: reference` as the 4 `DESIGN.md` files. The 4 `writing-notes.md` files are exempted alongside their paired `DESIGN.md` (companion editorial notes on the same exemplar, same rationale). `editorial-exemplar.md` is genuine agent guidance, not an output mockup, so it was brought fully into conformance (added `## 1. OVERVIEW`, renumbered 1-4 -> 2-5) rather than exempted.
+  - `design-md-generator/references/examples/README.md` (new file) — records the relocate-vs-exempt decision for the 4 `DESIGN.md` + 4 `writing-notes.md` files per REQ-002.
+  - `design-md-generator/manual-testing-playbook/authoring-boundary/authoring-boundary.md` and `.../source-of-truth/source-of-truth-card.md` — stray `contextType: reference` field not part of the manual-testing-playbook scenario template (`title`/`description`/`version` only); removed.
+  - `design-mcp-open-design/references/design-parity-transport.md` — a 6th `design-mcp-open-design` reference file, not in the originally-named 5, found missing `## 1. OVERVIEW` during the exhaustive sweep; renumbered 1-5 -> 2-6 and trailing `## RELATED` -> `## 7. RELATED RESOURCES`.
 
 ### Out of Scope
 
-- Any content/guidance rewrite inside the four exemplar `DESIGN.md` files — they are measured output artifacts, not authored prose; only their placement or documented exemption changes.
+- Any content/guidance rewrite inside the four exemplar `DESIGN.md` files or their `writing-notes.md` companions — they are measured output artifacts and editorial annotations, not authored prose; only their frontmatter `contextType` and a documented exemption changed.
 - `design-md-generator`'s or `design-mcp-open-design`'s design judgment, extraction pipeline, or transport logic — structural/frontmatter conformance only.
 - `003-design-motion`'s conformance work — fully superseded by `010-motion-merge`; not touched, not re-scoped here.
-- The already-conformant 4 `design-mcp-open-design/references/*.md` files (`design-parity-transport.md`, `mcp-wiring.md`, `od-cli-reference.md`, `tool-surface.md`).
+- The already-conformant `design-mcp-open-design/references/*.md` files (`mcp-wiring.md`, `od-cli-reference.md`, `tool-surface.md`).
+- Renaming `INSTALL-GUIDE.md` or the exemplar `DESIGN.md` files to satisfy `package_skill.py --check --strict`'s kebab-case filename rule — both filenames are mandated by their own governing conventions (the install-guide convention repo-wide; `DESIGN.md` must match the literal output filename it demonstrates). This is a pre-existing gap in the shared, not-packet-owned checker script (it exempts `README.md`/`SKILL.md` but not these), predating this packet.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `design-md-generator/references/extraction-workflow.md` | Modify (frontmatter only) | `importance_tier: "high"` -> in-enum value |
-| `design-md-generator/references/examples/vercel/DESIGN.md` | Relocate or document exemption | Off-enum `contextType: reference`; decision-dependent |
-| `design-md-generator/references/examples/linear/DESIGN.md` | Relocate or document exemption | Off-enum `contextType: reference`; decision-dependent |
-| `design-md-generator/references/examples/supabase/DESIGN.md` | Relocate or document exemption | Off-enum `contextType: reference`; decision-dependent |
-| `design-md-generator/references/examples/stripe/DESIGN.md` | Relocate or document exemption | Off-enum `contextType: reference`; decision-dependent |
-| `design-mcp-open-design/references/cli-child-pairing.md` | Modify | Number + uppercase H2 headings |
-| `design-mcp-open-design/references/freshness-invalidation.md` | Modify | Number + uppercase H2 headings |
-| `design-mcp-open-design/references/guarded-proxy.md` | Modify | Number + uppercase H2 headings (worst case, 234 lines) |
-| `design-mcp-open-design/references/inner-generator-binding.md` | Modify | Number + uppercase H2 headings |
-| `design-mcp-open-design/references/smart-router-pseudocode.md` | Modify | Number + uppercase H2 headings |
+| `design-md-generator/references/extraction-workflow.md` | Modify (frontmatter only) | `importance_tier: "high"` -> `important` |
+| `design-md-generator/assets/cardinal-rules-card.md` | Modify (frontmatter only) | `importance_tier: "high"` -> `important` |
+| `design-md-generator/references/guided-run.md` | Modify | `contextType: reference` -> `implementation`; added `## 1. OVERVIEW`, renumbered |
+| `design-md-generator/references/authoring-boundary.md` | Modify | Added `## 1. OVERVIEW`, renumbered 1-7 -> 2-8 |
+| `design-md-generator/assets/source-of-truth-router-card.md` | Modify | Added `## 1. OVERVIEW`, renumbered 1-5 -> 2-6 |
+| `design-md-generator/references/writing-style-guide.md` | Modify | Intro trimmed to 1-2 sentences; moved paragraph into OVERVIEW |
+| `design-md-generator/references/design-md-format.md` | Modify | Sections 3-15 ALL-CAPS titled (literal quote kept inline); `## Section presence` -> `## 16. SECTION PRESENCE` |
+| `design-md-generator/references/examples/vercel/DESIGN.md` | Documented exemption | Off-enum `contextType: reference` -> `general` |
+| `design-md-generator/references/examples/linear/DESIGN.md` | Documented exemption | Off-enum `contextType: reference` -> `general` |
+| `design-md-generator/references/examples/supabase/DESIGN.md` | Documented exemption | Off-enum `contextType: reference` -> `general` |
+| `design-md-generator/references/examples/stripe/DESIGN.md` | Documented exemption | Off-enum `contextType: reference` -> `general` |
+| `design-md-generator/references/examples/{vercel,linear,supabase,stripe}/writing-notes.md` | Documented exemption | Off-enum `contextType: reference` -> `general` |
+| `design-md-generator/references/examples/editorial-exemplar.md` | Modify (conformant, not exempt) | `contextType` fixed; added `## 1. OVERVIEW`, renumbered 1-4 -> 2-5 |
+| `design-md-generator/references/examples/README.md` | New file | Records the relocate-vs-exempt decision |
+| `design-md-generator/manual-testing-playbook/authoring-boundary/authoring-boundary.md` | Modify | Removed stray `contextType` field |
+| `design-md-generator/manual-testing-playbook/source-of-truth/source-of-truth-card.md` | Modify | Removed stray `contextType` field |
+| `design-mcp-open-design/references/cli-child-pairing.md` | Modify | Number + uppercase H2 headings, added `## 1. OVERVIEW` |
+| `design-mcp-open-design/references/freshness-invalidation.md` | Modify | Number + uppercase H2 headings, added `## 1. OVERVIEW` |
+| `design-mcp-open-design/references/guarded-proxy.md` | Modify | Number + uppercase H2 headings (worst case, 234 lines), added `## 1. OVERVIEW` |
+| `design-mcp-open-design/references/inner-generator-binding.md` | Modify | Number + uppercase H2 headings, added `## 1. OVERVIEW` |
+| `design-mcp-open-design/references/smart-router-pseudocode.md` | Modify | Number + uppercase H2 headings, added `## 1. OVERVIEW` |
+| `design-mcp-open-design/references/design-parity-transport.md` | Modify | 6th file found via sweep; added `## 1. OVERVIEW`, renumbered |
+| `sk-design/leaf-manifest.json` | Regenerated | New `references/examples/README.md` leaf added |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -170,7 +195,7 @@ Close both modes' conformance gaps: fix the one real enum violation (`extraction
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- **Relocate vs. exempt for the four exemplar `DESIGN.md` files**: moving them out of `references/` avoids the enum check entirely but may break any tooling or documentation that expects them at their current path; a documented exemption is lower-risk but leaves a permanent enum carve-out in the checker's conscience. This is a placement/exemption tradeoff for the operator or executing agent to decide before Phase 2, not something this spec pre-resolves.
+- **RESOLVED — Relocate vs. exempt for the four exemplar `DESIGN.md` files (+ their 4 `writing-notes.md` companions)**: a citing-site check (`rg -n "examples/(vercel|linear|supabase|stripe)/(DESIGN|writing-notes)\.md"`) found the files referenced from `SKILL.md`, the feature-catalog, and 3 manual-testing-playbook scenarios by path, with no fragment/section-number anchors. Relocating would require updating every one of those citations for zero functional gain, since the underlying issue (a universal, content-independent frontmatter schema field) is fully resolved by fixing the field value. Decision: **documented exemption**, recorded in the new `references/examples/README.md`. Body structure stays untouched (the files ARE the DESIGN.md format being demonstrated); only the `contextType` field value changed to the in-enum `general`.
 <!-- /ANCHOR:questions -->
 
 ---

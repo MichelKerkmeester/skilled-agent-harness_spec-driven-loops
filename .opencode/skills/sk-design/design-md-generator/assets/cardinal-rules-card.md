@@ -6,7 +6,7 @@ trigger_phrases:
   - "fidelity checklist"
   - "verbatim value rule"
   - "design md pre-validate check"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "implementation"
 version: 1.0.0.3
 ---

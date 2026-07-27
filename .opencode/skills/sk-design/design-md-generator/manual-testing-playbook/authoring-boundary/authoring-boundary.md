@@ -1,7 +1,6 @@
 ---
 title: "BOUNDARY-001 -- Authoring Boundary Sorts Values By Origin"
 description: "This scenario validates the authoring-boundary reference for BOUNDARY-001. It confirms a written v3 Style Reference keeps the four value origins legible: measured values sit unlabeled in token tables, brief-provided values stay out of the tables as stated intent, inferred claims carry [INFERRED] and cite a measured token, absent values are stamped or omitted, while a brief-only request with no live site is refused as out-of-scope forward-authoring."
-contextType: reference
 version: 1.0.0.1
 expected_intent: EXTRACT_WRITE
 expected_resources:

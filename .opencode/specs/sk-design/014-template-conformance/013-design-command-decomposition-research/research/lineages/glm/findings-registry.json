@@ -1,0 +1,14 @@
+{
+  "openQuestions": [
+    "Q1-SEAMS: Which INTENT_SIGNALS co-occur (share resources / always load together) and which never co-occur?",
+    "Q2-LANES: Which of the 5 argument lanes and 12 internal lanes are genuinely separable jobs versus sequential phases of one job?",
+    "Q3-COST: What does a split actually cost in docs, YAML assets, presentation assets, metadata, registry/router wiring, runtime mirrors, and test updates?",
+    "Q4-MIDDLE: Is there a middle path (richer argument lanes, subcommands, mode-internal routing) that separates concerns without multiplying the command surface?",
+    "Q5-HARM: What failure modes does the current single-command shape actually produce today?"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "promotedIdeas": []
+}

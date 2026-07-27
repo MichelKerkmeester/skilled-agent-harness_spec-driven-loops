@@ -95,7 +95,7 @@
     ],
     "causal_summary": "An audit of every folder across every `sk-design` mode (`design-interface`, `design-motion`, `design-md-generator`, `design-mcp-open-design`, `shared`, plus the hub root) against the `sk-doc` create-skill templates and standards found the hub's 75 reference files are frontmatter-conformant but structurally uneven: numbered-section discipline, separator hygiene, and a handful of frontmatter enum values drift per folder rather than uniformly, and one folder (`design-interface`) still carries a committed Apache-2.0 license artefact for content that was never de-vendored into original words",
     "created_at": "2026-07-27T14:48:40.384Z",
-    "last_save_at": "2026-07-27T17:15:44.456Z",
+    "last_save_at": "2026-07-27T17:36:43.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -105,7 +105,7 @@
     "source_doc_hashes": {
       "spec.md": "d32883f029a649c0facfb344184bebfd98d4654ab20bb45cd056ed0506a518a6"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "sk-design/014-template-conformance/012-remaining-mode-conformance",
+    "last_active_at": "2026-07-27T17:36:43.927Z"
   }
 }

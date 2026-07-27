@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/014-template-conformance/013-design-command-decomposition-research",
+  "spec_folder": "sk-design/014-template-conformance/013-design-command-decomposition-research",
+  "parent_id": "sk-design/014-template-conformance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design command decomposition research",
+      "interface design command split",
+      "sk-design command surface research",
+      "design-interface lane seams",
+      "design command decomposition research plan",
+      "interface design command split plan",
+      "sk-design command surface research plan",
+      "design command decomposition research tasks",
+      "interface design command split tasks",
+      "sk-design command surface research tasks",
+      "design command decomposition research checklist",
+      "interface design command split checklist"
+    ],
+    "key_topics": [
+      "design",
+      "command",
+      "decomposition",
+      "research",
+      "interface",
+      "split",
+      "sk-design",
+      "surface",
+      "design-interface",
+      "lane",
+      "seams",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Lineage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/interface:design` is now one of only two public sk-design commands (with `/interface:design-reference`), after a consolidation that took the hub from 6 modes / 5 commands to 2 workflow modes + 1 transport / 2 commands",
+    "created_at": "2026-07-27T17:50:43.207Z",
+    "last_save_at": "2026-07-27T17:52:05.897Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c7f19ccc21fd2233dd7744bd61f3b11dec3b73a1a6d35e940f246c1e4962d6aa",
+    "source_doc_hashes": {
+      "spec.md": "866ee56e6529bae80219f0c3246f15cd2c9be5f36eb73580b756d1668ced704b",
+      "plan.md": "9647c14dabf6cea067dceadaac8334df7f1537379ba8934f33bee428aa7fba8a",
+      "tasks.md": "a3a8f65b1e841ea0626d4c06365e01f36f4a69fef9e928d36f9c28005f6778dd",
+      "checklist.md": "00c87a0153b617013e45f5a4b60ec39502e23e4e8828f37101afbfba284eab4a",
+      "implementation-summary.md": "9a381ffc3f234e2c32569554985d502536d48d5adb5d246e7657ac2301e2760f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -34,22 +34,16 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
       "spec.md",
+      ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,15 +51,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "changelog-template.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -78,6 +72,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`changelog/` holds exactly 2 files: `v1.0.0.0.md` (65 lines, titled \"interface v1.0.0.0 - Data-backed and Claude Design parity\", genuinely about `design-interface`) and `v1.0.0.0-foundations.md` (21 lines, titled \"foundations v1.0.0.0 - Initial Release\")",
     "created_at": "2026-07-27T14:56:09.053Z",
-    "last_save_at": "2026-07-27T15:06:26.288Z",
+    "last_save_at": "2026-07-27T18:09:09.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de56f52960eacec322f4c36b535233f69d245060b9c8d37e00d762f747fa9426",
+    "source_fingerprint": "sha256:5e228ad34a916180be48a83379e38fb43007736d3a371f41caed4d279b4bf05e",
     "source_doc_hashes": {
-      "spec.md": "eeb92af7746ecdc3a525ed33a4fb99c4db8ad26bb03b3acea510d200be511997",
+      "spec.md": "eec73461aeaf69f79a5df05cda8a063ac7e95486b115aa0160bd214752a23f47",
       "plan.md": "921f5582a00ea8501a5cc2add8e2000b7626498ed4f2de37a740d19849286353",
       "tasks.md": "760b46cde91c7d36e60e90bc2a39e83511d9aaad58d66d1cb42b06e1cb8d0417",
-      "checklist.md": "b64bb022a49cafa8fbf1cdcef4b6de3bc5cb050f57d51e6c3d3b8301d8a7ebaf",
-      "implementation-summary.md": "353d612d53d1ab724dbd6ffb375c536483bce0597122cff348e9a7df50eead3a"
+      "checklist.md": "e713e2bca141faf1fe806fb83871541aed411fe3d7af0277f0e54cccded97675",
+      "implementation-summary.md": "94ce6c8e77db4ac935d8f7a13e0d09fe15e5f10361572409a2390ac24e2a8144"
     },
     "last_active_child_id": null,
     "last_active_at": null

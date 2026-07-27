@@ -6,7 +6,7 @@ trigger_phrases:
   - "non-SaaS exemplar"
   - "ecommerce extraction study"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 
@@ -14,7 +14,25 @@ version: 1.0.0.0
 
 This exemplar is illustrative and non-SaaS. It describes how to study a real editorial or ecommerce extraction without turning it into a reusable preset.
 
-## 1. CANDIDATE SURFACE
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Broadens exemplar study coverage beyond SaaS/developer-tool brands so the writer learns how the v3 Style Reference names roles across editorial, ecommerce, culture, or hospitality design languages.
+
+### When to Use
+
+Use this exemplar when studying a real extraction from a non-SaaS site, to calibrate voice and role-naming outside the default developer-tool aesthetic.
+
+### Core Principle
+
+Every characterizing claim still traces to a measured token — broadening the study surface never relaxes the verbatim-value rule.
+
+---
+
+## 2. CANDIDATE SURFACE
 
 Use a public editorial, cultural or ecommerce site with a clearly different design language from developer-tool brands.
 
@@ -27,7 +45,7 @@ Good candidates:
 
 Avoid another developer-tool, SaaS dashboard or infrastructure brand for this exemplar.
 
-## 2. EXTRACTION FOCUS
+## 3. EXTRACTION FOCUS
 
 Study these signals after a real extraction:
 
@@ -40,7 +58,7 @@ Study these signals after a real extraction:
 | Components | Cards, article teasers, product tiles, newsletter blocks and navigation |
 | Fidelity | Every value still comes from `tokens.json` |
 
-## 3. WRITING NOTES TEMPLATE
+## 4. WRITING NOTES TEMPLATE
 
 ```text
 Source category: editorial | ecommerce | culture | hospitality
@@ -52,6 +70,6 @@ What not to copy: the category look, palette or type choice
 What to learn: how the v3 Style Reference names roles outside SaaS aesthetics
 ```
 
-## 4. GUARDRAIL
+## 5. GUARDRAIL
 
 This exemplar broadens study coverage. It is not a palette preset, landing page recipe or permission to fabricate a DESIGN.md without a live site.

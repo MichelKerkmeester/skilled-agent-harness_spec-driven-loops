@@ -13,11 +13,23 @@ version: 1.0.0.0
 
 # Source-of-Truth Router Card
 
-Fill this in before writing values into a Style Reference. It sorts every value by origin so only measured values land in the token tables and nothing gets invented or backfilled. Full rationale: [`../references/authoring-boundary.md`](../references/authoring-boundary.md).
+Fill this in before writing values into a Style Reference. It sorts every value by origin so only measured values land in the token tables and nothing gets invented or backfilled.
 
 ---
 
-## 1. SORT EACH VALUE
+## 1. OVERVIEW
+
+### Purpose
+
+Sort every value bound for a Style Reference into measured, brief-provided, inferred, or absent, so a writer never fabricates a token or backfills missing data. Full rationale: [`../references/authoring-boundary.md`](../references/authoring-boundary.md).
+
+### Usage
+
+Work the card top to bottom for each value before it is written: sort by origin, route it per the rule table, list any doubtful values on the record, then run the stop check before finishing.
+
+---
+
+## 2. SORT EACH VALUE
 
 For each value you are about to write, walk the questions top to bottom. The first yes decides the origin.
 
@@ -32,7 +44,7 @@ A value can have only one origin. When the brief states a value AND the extracto
 
 ---
 
-## 2. ROUTE BY ORIGIN
+## 3. ROUTE BY ORIGIN
 
 Copy the row for each value's origin and follow its rule.
 
@@ -47,7 +59,7 @@ An unlabeled value is a promise it was measured. If you cannot point to its row 
 
 ---
 
-## 3. FILL IN THE DOUBTFUL VALUES
+## 4. FILL IN THE DOUBTFUL VALUES
 
 List any value whose origin was not obvious, so the boundary call is on the record.
 
@@ -61,7 +73,7 @@ If a row cannot name a measured token and the origin is not honestly brief-provi
 
 ---
 
-## 4. STOP CHECK
+## 5. STOP CHECK
 
 ```text
 □ Every value in a token table is measured and verbatim from tokens.json
@@ -75,7 +87,7 @@ If the last box fails, this is forward-authoring. It is out of scope for this mo
 
 ---
 
-## 5. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - [`../references/authoring-boundary.md`](../references/authoring-boundary.md) - the four origins, the source-of-truth labels and why forward-authoring stays out of scope.
 - [`cardinal-rules-card.md`](cardinal-rules-card.md) - the pre-validate fidelity checklist.

@@ -33,17 +33,23 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "spec.md",
       "feature-catalog/feature-catalog.md",
       ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
-      "spec.md",
       "plan.md",
-      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "feature-catalog.md",
         "kind": "doc",
@@ -57,21 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -84,6 +78,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`feature-catalog/` has 5 kebab-case category directories with no numeric prefix (`adaptation-and-data/`, `aesthetic-direction-process/`, `delivery-gates/`, `procedure-cards/`, `token-system/`) holding 11 feature files, plus the root `feature-catalog.md` (`lastupdated: \"2026-07-06\"` present)",
     "created_at": "2026-07-27T14:56:08.741Z",
-    "last_save_at": "2026-07-27T15:05:16.731Z",
+    "last_save_at": "2026-07-27T18:09:09.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:301665bc7ecd7873dcc8548221951159694ee72ff4df244ea8254f78ac502dac",
+    "source_fingerprint": "sha256:efcd046bfba17b21e04bc7cbb91c9f500cf5a2d3300b97adc7df8d836751e91b",
     "source_doc_hashes": {
-      "spec.md": "dc2dd6b35ce28bf5b661806f23cc56087e208a06ac415500290df40390b3253e",
+      "spec.md": "272cf8bc1f3198b205c3a5133afccba8e2ceca863c78e15373f7860f28335c79",
       "plan.md": "620b14df04941554af50413585c17ea5843b0da94f0489622aa2d8cab9a05fa2",
       "tasks.md": "ae73e03f3e8d5ad13792937d5335ebf02fa862d16c96df83ac2a54f2842fdce7",
-      "checklist.md": "d01e73e4bfea45b35a0f1bbe08234b08412c6574daf4ac8f4fb98c73649d2618",
-      "implementation-summary.md": "86fa05b6877e8d4ad9195f99e150ea98a3703e3105b46bda29debfaecbafd77e"
+      "checklist.md": "5a45410f6bc4326c3f02d8917901c9ec60f001c6fd9632476a82ccce5d031779",
+      "implementation-summary.md": "16abcca48e16050c58b76900dc167fb9f7a21aa85ed0f8073b75bd80a4b7b392"
     },
     "last_active_child_id": null,
     "last_active_at": null

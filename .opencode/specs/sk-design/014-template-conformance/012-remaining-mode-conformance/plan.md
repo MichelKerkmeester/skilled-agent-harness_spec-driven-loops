@@ -10,19 +10,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/012-remaining-mode-conformance"
-    last_updated_at: "2026-07-27T12:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored three-phase plan"
-    next_safe_action: "Execute Phase 1: fix extraction-workflow.md's importance_tier"
-    blockers:
-      - "Phase 2 needs the relocate-vs-exempt decision before executing"
+    last_updated_at: "2026-07-27T18:03:42Z"
+    last_updated_by: "conformance-executor"
+    recent_action: "Executed all four phases plus the sweep addendum"
+    next_safe_action: "Packet complete, no further action required"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,6 +46,8 @@ _memory:
 
 ### Overview
 Three phases, each independently low-risk. Phase 1 is a one-line frontmatter fix. Phase 2 decides relocate-vs-exempt for the four exemplar `DESIGN.md` files and executes without touching their content. Phase 3 numbers and upper-cases H2 headings in the 5 non-conformant `design-mcp-open-design` reference files, leaving the other 4 untouched. `003-design-motion`'s own conformance is explicitly out of scope, superseded by `010-motion-merge`.
+
+**Execution addendum:** the exhaustive sweep required by the executing task (beyond this plan's originally-named files) found the identical bug classes recurring in 13 more files — see `spec.md`'s Scope addendum and `implementation-summary.md` for the full list and evidence. All were fixed under the same low-blast-radius discipline this plan already established (grep for citing sites before renumbering; content stays byte-identical for exempted files).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,13 +56,13 @@ Three phases, each independently low-risk. Phase 1 is a one-line frontmatter fix
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The relocate-vs-exempt tradeoff for the four exemplar files has been weighed (does anything else in `design-md-generator` cite their current path?).
-- [ ] Each of the 5 `design-mcp-open-design` files' current H2 list is recorded before renumbering.
+- [x] The relocate-vs-exempt tradeoff for the four exemplar files has been weighed (does anything else in `design-md-generator` cite their current path?).
+- [x] Each of the 5 `design-mcp-open-design` files' current H2 list is recorded before renumbering.
 
 ### Definition of Done
-- [ ] `extraction-workflow.md`'s `importance_tier` is in-enum.
-- [ ] The four exemplar files' conformance is resolved (relocated or exempted), content unchanged.
-- [ ] All 5 non-conformant `design-mcp-open-design` files use `## N. HEADING` form; the other 4 are untouched.
+- [x] `extraction-workflow.md`'s `importance_tier` is in-enum.
+- [x] The four exemplar files' conformance is resolved (relocated or exempted), content unchanged.
+- [x] All 5 non-conformant `design-mcp-open-design` files use `## N. HEADING` form; the other 4 are untouched.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -87,25 +88,25 @@ Fix `extraction-workflow.md`'s enum -> decide relocate-vs-exempt for the four ex
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Fix the enum violation
-- [ ] Change `extraction-workflow.md:10`'s `importance_tier` from `"high"` to `important`.
+- [x] Change `extraction-workflow.md:10`'s `importance_tier` from `"high"` to `important`.
 
 ### Phase 2: Resolve the exemplar DESIGN.md files
-- [ ] Check whether any other file cites `references/examples/{vercel,linear,supabase,stripe}/DESIGN.md` by path.
-- [ ] Decide relocate vs. documented exemption based on that citation check.
-- [ ] Execute the decision (move the four files, or author an exemption note) without altering their content.
-- [ ] If relocated, update any citing site found in the check above.
+- [x] Check whether any other file cites `references/examples/{vercel,linear,supabase,stripe}/DESIGN.md` by path.
+- [x] Decide relocate vs. documented exemption based on that citation check.
+- [x] Execute the decision (move the four files, or author an exemption note) without altering their content.
+- [x] If relocated, update any citing site found in the check above.
 
 ### Phase 3: Number design-mcp-open-design reference headings
-- [ ] Record the current H2 list for `cli-child-pairing.md`, `freshness-invalidation.md`, `guarded-proxy.md`, `inner-generator-binding.md`, `smart-router-pseudocode.md`.
-- [ ] Number + uppercase each file's H2 headings in place.
-- [ ] Diff each against its pre-edit H2 list to confirm no heading was dropped or altered in meaning.
-- [ ] Confirm the other 4 `design-mcp-open-design/references/*.md` files remain untouched.
+- [x] Record the current H2 list for `cli-child-pairing.md`, `freshness-invalidation.md`, `guarded-proxy.md`, `inner-generator-binding.md`, `smart-router-pseudocode.md`.
+- [x] Number + uppercase each file's H2 headings in place.
+- [x] Diff each against its pre-edit H2 list to confirm no heading was dropped or altered in meaning.
+- [x] Confirm the other 4 `design-mcp-open-design/references/*.md` files remain untouched.
 
 ### Phase 4: Verification
-- [ ] `rg -n "importance_tier" design-md-generator/references/extraction-workflow.md` shows an in-enum value.
-- [ ] Exemplar-file conformance resolution is documented (relocation path or exemption note).
-- [ ] All 5 renumbered files use `## N. HEADING`; the other 4 are unchanged in `git diff`.
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/014-template-conformance/012-remaining-mode-conformance --strict` exits 0.
+- [x] `rg -n "importance_tier" design-md-generator/references/extraction-workflow.md` shows an in-enum value.
+- [x] Exemplar-file conformance resolution is documented (relocation path or exemption note).
+- [x] All 5 renumbered files use `## N. HEADING`; the other 4 are unchanged in `git diff`.
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/014-template-conformance/012-remaining-mode-conformance --strict` exits 0.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -164,8 +165,8 @@ Phase 3 (Heading numbering) ──┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Relocate-vs-exempt decision recorded with rationale before Phase 2 executes
-- [ ] Each Phase 3 file's pre-edit H2 list recorded before renumbering
+- [x] Relocate-vs-exempt decision recorded with rationale before Phase 2 executes
+- [x] Each Phase 3 file's pre-edit H2 list recorded before renumbering
 
 ### Rollback Procedure
 1. **Immediate**: If a heading diff shows content loss, do not proceed to the next file.

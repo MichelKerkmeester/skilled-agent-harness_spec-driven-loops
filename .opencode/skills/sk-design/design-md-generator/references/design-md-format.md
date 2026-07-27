@@ -69,9 +69,9 @@ characterizing claim must map to a real token (a hex, a size, a weight). Restrai
 purple. No assumed audience ("targets captains and port agents") unless the page states
 it.
 
-## 3. `## Tokens — Colors`
+## 3. TOKENS — COLORS
 
-A table, most-prominent first:
+Rendered verbatim in the output as `## Tokens — Colors`. A table, most-prominent first:
 
 ```
 | Name | Value | Token | Role |
@@ -92,9 +92,9 @@ A table, most-prominent first:
 - L1/L2 colours in the main table. L3 in a `### Current Campaign Colors (Subject to
   change)` sub-table. L4 excluded entirely.
 
-## 4. `## Tokens — Typography`
+## 4. TOKENS — TYPOGRAPHY
 
-Per-font block, then a Type Scale table.
+Rendered verbatim in the output as `## Tokens — Typography`. Per-font block, then a Type Scale table.
 
 ```
 ### <Font Family> — <role prose> · `--font-<slug>`
@@ -122,7 +122,9 @@ Then:
   ("div"). Map the extracted levels onto this scale by ascending size.
 - Token: `--text-<role>`.
 
-## 5. `## Tokens — Spacing & Shapes`
+## 5. TOKENS — SPACING & SHAPES
+
+Rendered verbatim in the output as `## Tokens — Spacing & Shapes`.
 
 ```
 **Base unit:** <Npx>   (omit if no clear base)
@@ -155,7 +157,9 @@ Then:
 - Density: `spacious` if section gaps are large relative to content; `compact` if tight.
 - Border Radius: map measured radii to element roles (buttons/cards/inputs/badges/etc.).
 
-## 6. `## Components`
+## 6. COMPONENTS
+
+Rendered verbatim in the output as `## Components`.
 
 ```
 ### <Named Component>
@@ -173,13 +177,15 @@ radius, border, hover/focus states, transition, and an example label or use.>
   focus" line on every component — characterize it once where it matters (and flag it in
   Accessibility / Agent Guide if it is an a11y problem).
 
-## 7. `## Do's and Don'ts`
+## 7. DO'S AND DON'TS
 
-`### Do` and `### Don't` bullet lists. Each bullet cites a concrete value and reads as an
+Rendered verbatim in the output as `## Do's and Don'ts`. `### Do` and `### Don't` bullet lists. Each bullet cites a concrete value and reads as an
 instruction ("Use `#06458c` for all link colors", "Do not add `box-shadow` — there are
 zero shadow tokens; any shadow is an invention").
 
-## 8. `## Surfaces`
+## 8. SURFACES
+
+Rendered verbatim in the output as `## Surfaces`.
 
 ```
 | Level | Name | Value | Purpose |
@@ -192,26 +198,26 @@ Derive levels from the background colours actually used, ordered base → elevat
 cards share the canvas hex, say so ("same hex as canvas — cards are defined by radius +
 padding, not fill").
 
-## 9. `## Elevation`
+## 9. ELEVATION
 
-Either a per-component shadow list, or — when there are 0 shadow tokens — a prose line
+Rendered verbatim in the output as `## Elevation`. Either a per-component shadow list, or — when there are 0 shadow tokens — a prose line
 stating the system is flat and HOW depth is achieved instead (border, tonal contrast,
 whitespace). This is the honest replacement for the old "gradient-as-depth" failure.
 
-## 10. `## Imagery`
+## 10. IMAGERY
 
-Prose: what imagery the site uses and its treatment (B&W, full-bleed, rounded, etc.),
+Rendered verbatim in the output as `## Imagery`. Prose: what imagery the site uses and its treatment (B&W, full-bleed, rounded, etc.),
 grounded in what was observed. If no meaningful imagery signal was extracted, say so
 plainly rather than inventing a visual language.
 
-## 11. `## Layout`
+## 11. LAYOUT
 
-Prose: max-width, hero structure, section rhythm, nav behavior, grid vs asymmetric —
+Rendered verbatim in the output as `## Layout`. Prose: max-width, hero structure, section rhythm, nav behavior, grid vs asymmetric —
 grounded in the breakpoint/spacing/column data.
 
-## 12. `## Motion`
+## 12. MOTION
 
-This section is conditional and deterministic. Emit it only when the extracted
+Rendered verbatim in the output as `## Motion`. This section is conditional and deterministic. Emit it only when the extracted
 `MotionSystem.durationScale` contains at least one measured duration band. Words such as
 "motion", "animation", or a duration in page copy never activate it.
 
@@ -248,7 +254,9 @@ This section is conditional and deterministic. Emit it only when the extracted
 - This measured section does not infer `motionCharacter`; that semantic handoff belongs
   to authored design decisions, not extracted evidence.
 
-## 13. `## Agent Prompt Guide`
+## 13. AGENT PROMPT GUIDE
+
+Rendered verbatim in the output as `## Agent Prompt Guide`.
 
 ```
 ### Quick Color Reference
@@ -265,16 +273,16 @@ This section is conditional and deterministic. Emit it only when the extracted
 If no distinct CTA/action colour was observed, say "no distinct CTA color" — do not
 invent one.
 
-## 14. `## Similar Brands`
+## 14. SIMILAR BRANDS
 
-3–5 brands with a one-line WHY each, as **confident grounded inference** from the
+Rendered verbatim in the output as `## Similar Brands`. 3–5 brands with a one-line WHY each, as **confident grounded inference** from the
 observed system (palette discipline, type scale, layout rhythm). This section is
 explicitly inferential and that is allowed — it characterizes the design's family, it
 does not fabricate the site's own data.
 
-## 15. `## Quick Start`
+## 15. QUICK START
 
-Two fenced code blocks, every value verbatim from tokens, slugs matching §3/§4/§5.
+Rendered verbatim in the output as `## Quick Start`. Two fenced code blocks, every value verbatim from tokens, slugs matching §3/§4/§5.
 
 ````
 ### CSS Custom Properties
@@ -321,7 +329,7 @@ Two fenced code blocks, every value verbatim from tokens, slugs matching §3/§4
 
 ---
 
-## Section presence
+## 16. SECTION PRESENCE
 
 | Section | Required | Omit when |
 |---|---|---|

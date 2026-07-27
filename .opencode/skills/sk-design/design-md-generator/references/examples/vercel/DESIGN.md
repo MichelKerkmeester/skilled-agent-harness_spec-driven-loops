@@ -6,7 +6,7 @@ trigger_phrases:
   - light developer style reference example
   - study Vercel design tokens
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

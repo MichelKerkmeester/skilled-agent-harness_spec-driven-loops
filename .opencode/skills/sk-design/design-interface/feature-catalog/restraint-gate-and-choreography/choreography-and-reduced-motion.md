@@ -57,7 +57,7 @@ Animation stays on the compositor (`transform`, `opacity`) by default; layout pr
 ## 4. SOURCE METADATA
 
 - Group: Restraint Gate And Choreography
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `restraint-gate-and-choreography/choreography-and-reduced-motion.md`
 
 Related references:

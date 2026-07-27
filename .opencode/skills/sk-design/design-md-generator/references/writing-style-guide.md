@@ -16,15 +16,15 @@ version: 1.0.0.6
 ---
 # DESIGN.md Writing Style Guide
 
-Writing quality standard for the v3 **Style Reference** output (see `design-md-format.md`). The Style Reference is a named, role-driven, ship-ready design-system handoff — not an extraction report. Every value still traces verbatim to `tokens.json`; what this guide governs is the prose voice (named + restrained, not mechanical + hedged).
-
-**Division of labour (read this first).** In the v3 pipeline the value-bearing sections — `## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start` — are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters) and pasted into the doc unchanged. The agent writes **prose only** (header, intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). You never hand-author a value table, so "100rem where the tokens say 100%" cannot happen — this guide is about making the prose worthy of the named tokens, not about transcribing numbers.
+Writing quality standard for the v3 **Style Reference** output (see `design-md-format.md`). This guide governs the prose voice only — named and restrained, not mechanical and hedged.
 
 ---
 
 ## 1. OVERVIEW
 
-Write like a design-systems lead handing the system off to the team that will ship it tomorrow. The reader already knows CSS, typography, and color theory -- never explain fundamentals.
+The Style Reference is a named, role-driven, ship-ready design-system handoff — not an extraction report. Every value still traces verbatim to `tokens.json`. Write like a design-systems lead handing the system off to the team that will ship it tomorrow. The reader already knows CSS, typography, and color theory -- never explain fundamentals.
+
+**Division of labour (read this first).** In the v3 pipeline the value-bearing sections — `## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start` — are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters) and pasted into the doc unchanged. The agent writes **prose only** (header, intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). You never hand-author a value table, so "100rem where the tokens say 100%" cannot happen — this guide is about making the prose worthy of the named tokens, not about transcribing numbers.
 
 **Voice characteristics — named, confident, restrained:**
 - **Named.** Colours, components, and surfaces carry evocative, grounded names (Obsidian Ink, Voltage, Primary CTA, Canvas), never "Color 1" or "Variant-1". Naming is a grounded inference about hue, lightness, and role — it is allowed and expected.

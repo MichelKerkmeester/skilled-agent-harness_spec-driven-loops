@@ -7,7 +7,7 @@ trigger_phrases:
   - "generate design.md workflow"
   - "tokens.json output path"
   - "design extraction handoff"
-importance_tier: "high"
+importance_tier: "important"
 contextType: implementation
 version: 1.0.0.7
 ---

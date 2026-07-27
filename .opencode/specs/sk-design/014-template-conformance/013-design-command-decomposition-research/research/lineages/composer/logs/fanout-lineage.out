@@ -1,0 +1,28 @@
+## Composer lineage complete
+
+**Verdict: do not split `/interface:design`.** Ten forced iterations across `research/lineages/composer/` ground on files read in-repo.
+
+### Confirmed findings
+
+1. **RESOURCE_MAP clusters** — Six `MOTION_*` intents share `animation-decision-framework.md` (sequential phases, not command seams). `MECHANICAL_PREFLIGHT` bridges to `REGISTER_DIALS` and `COPY_MOCK_DATA`. 118 intent pairs have zero resource overlap, but that reflects conditional loading, not separable jobs (`design-interface/SKILL.md:112-153`).
+
+2. **Lanes** — Five `--mode` argument lanes are job variants of one creative task; twelve internal lanes are creation-contract phases (`design.md:60-69`, `command-metadata.json:127-234`, `creation-contract.md:57-69`). `preflight` = Proof stage; `handoff` = Deliver stage.
+
+3. **Split cost** — ~5–6 files per new command plus `command-metadata.json`, sibling-graph rewiring, and test updates. Validators bind `next`, `preferSiblingWhen`, `typicallyBefore`, and `handoff.nextOptions` (`design-command-surface-check.mjs:357-360,916-917,978-983,1247-1248`).
+
+4. **Middle path already exists** — `--mode` lanes + `tasks[]` + INTENT_SIGNALS routing already decompose without new slash commands.
+
+5. **Demonstrated harm (not size)** — Stale `/interface:motion` in `design.md:27`; SKILL.md at 4991/5000 words; `handoff` vs `--mode build` drift in `command-metadata.json:167`. No confirmed wrong-command routing from intent collisions.
+
+### Top recommendations (value/cost)
+
+| Rank | Action | Confidence |
+|------|--------|------------|
+| 1 | Remove stale `/interface:motion` discriminators | High |
+| 2 | Align `handoff` naming in command-metadata | High |
+| 3 | Continue SKILL.md dedup under word cap | High |
+| **Not worth doing** | Re-split preflight, motion, or directions into commands | High |
+
+Full synthesis: `research/lineages/composer/research.md`
+
+FANOUT_LINEAGE_COMPLETE:composer

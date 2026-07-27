@@ -39,7 +39,7 @@
       "parent"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
       ".opencode/skills/sk-design/design-md-generator/references/examples/vercel/DESIGN.md",
@@ -47,12 +47,12 @@
       ".opencode/skills/sk-design/design-md-generator/references/examples/supabase/DESIGN.md",
       ".opencode/skills/sk-design/design-md-generator/references/examples/stripe/DESIGN.md",
       ".opencode/skills/sk-design/design-mcp-open-design/references/guarded-proxy.md",
-      "spec.md",
+      "checklist.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -74,9 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -92,15 +98,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -146,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -176,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Data Flow Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -188,21 +188,21 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Result Schema",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "Parent Re",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The program parent's hub-wide audit covered `design-interface`, `design-motion`, `shared`, and the hub root, but never reached `design-md-generator` or `design-mcp-open-design`",
     "created_at": "2026-07-27T16:52:21.147Z",
-    "last_save_at": "2026-07-27T16:55:49.085Z",
+    "last_save_at": "2026-07-27T18:06:16.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e10bf11fdc6676147b97bb97196f9f902fc1c4f2003f1e1e3dd86fd21b746ba",
+    "source_fingerprint": "sha256:596df3ebedcf6634f84b5744d772214cdc3857beada0d535d8e18509f7f759a4",
     "source_doc_hashes": {
-      "spec.md": "b0aaa87c65f63c72561232fc4580fd6c372fdf8c0ff66d85f18c552d0e355fdf",
-      "plan.md": "104dc6c92faaa3c58b7c5acf87d329699113c812f1b49c88e4d1915e6800c8d9",
-      "tasks.md": "dfecd488fbf6a94688cc3ffd3ec279d8dd67665d5b1da0d021f2ca64fb5401d2",
-      "checklist.md": "9a55df35c3bdfb7c2bfa071811f8adb44a28a5d652919fd1e9105b1d8ae3a444",
-      "implementation-summary.md": "c8376040adc4d885279f9787af0e6e565525cb102e91bc19f1612b84b9db199b"
+      "spec.md": "4f55fcf97cab726dfa37f93f0588be2d498b7f0879c3232de8302d5420c36705",
+      "plan.md": "3e89ef4d52c16e325ca0f33a232730881b3049ceb0d770092c11e5dbf555bd9e",
+      "tasks.md": "cacc40385e3166351575fdf111d73114cd81c44e9f2f58bc5dd6e77dd052d11f",
+      "checklist.md": "e9bbfb7f794d07d5c832c81204021fb781d5f33be092e70938c7b76162ba9cb7",
+      "implementation-summary.md": "44ed62639faff5e235180d59dfb3b6e6ba3922de408df708a23320271bf8afbe"
     },
     "last_active_child_id": null,
     "last_active_at": null

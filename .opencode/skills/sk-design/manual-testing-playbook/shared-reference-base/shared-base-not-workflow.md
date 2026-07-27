@@ -27,11 +27,11 @@ This scenario verifies that the shared reference base is not user-invoked as a m
 Use the shared design reference base as the workflow for this task.
 ```
 
-**Expected mode resolution**: defer for clarification, or select a real mode only after the user provides a concrete interface, foundations, motion, audit, or md-generator task. It must not resolve `shared`.
+**Expected mode resolution**: defer for clarification, or select a real mode only after the user provides a concrete interface or md-generator task. It must not resolve `shared`.
 
 **Why**:
 - `SKILL.md` says the shared reference base itself is not a user workflow.
-- `mode-registry.json` lists only five workflow modes: `interface`, `foundations`, `motion`, `audit`, and `md-generator`.
+- `mode-registry.json` lists only two workflow modes: `interface` and `md-generator` (plus the `design-mcp-open-design` transport).
 - `hub-router.json` `routerPolicy.outcomes.defer` says unclear or contradictory design intent asks for disambiguation.
 
 **Expected packet loaded**:

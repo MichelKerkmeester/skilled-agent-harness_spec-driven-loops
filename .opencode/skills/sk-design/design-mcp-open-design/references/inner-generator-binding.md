@@ -13,7 +13,17 @@ version: 1.0.0.0
 
 # Open Design Inner Generator Binding Contract
 
-`INNER_GENERATOR_BINDING v1` binds the Open Design inner generator's effective input payload to the authorized `DESIGN_PROOF_TOKEN` payload digests. A run may only proceed when the boundary can recompute the payload digests from the actual inner payload that will be forwarded.
+`INNER_GENERATOR_BINDING v1` binds the Open Design inner generator's effective input payload to the authorized `DESIGN_PROOF_TOKEN` payload digests.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+A run may only proceed when the boundary can recompute the payload digests from the actual inner payload that will be forwarded, closing the gap where a drifted prompt, answers object, lineage object, or model could let the generated design differ from the authorized design request.
+
+### Dependencies
 
 This contract depends on the proof-token and guarded-proxy contracts:
 
@@ -22,11 +32,13 @@ This contract depends on the proof-token and guarded-proxy contracts:
 | [`DESIGN_PROOF_TOKEN`](../../shared/design-proof-token.md) | Defines token schema, payload digest fields, freshness, replay, surface binding, validator behavior, and §4 digest canonicalization. This document cites that contract and does not redefine token internals. |
 | [`Open Design Guarded Proxy`](./guarded-proxy.md) | Defines the agent-side precondition before an Open Design call is forwarded. This document extends that recompute point across the inner generator's multi-turn run flow. |
 
+### Core Principle
+
 The binding is a boundary rule, not a new token. It extends no token field and never re-mints or amends a `DESIGN_PROOF_TOKEN`.
 
 ---
 
-## Inner Generation Boundary
+## 2. INNER GENERATION BOUNDARY
 
 Open Design generation is multi-turn. The first turn starts the run and may spawn the inner agent:
 
@@ -39,7 +51,7 @@ The token authorizes the outgoing request, but the build-fire turn is where a dr
 
 ---
 
-## Bound Inner Payload
+## 3. BOUND INNER PAYLOAD
 
 The adapter MUST reconstruct the complete inner generator payload as structured metadata before forwarding either turn. Prose summaries, inferred intent, and human-readable command text are not sufficient.
 
@@ -54,7 +66,7 @@ The inner agent and pinned model are bound by declared equality against the auth
 
 ---
 
-## Recompute And Reject
+## 4. RECOMPUTE AND REJECT
 
 The adapter MUST recompute `subjectDigest`, `briefDigest`, `formAnswersDigest`, and `openDesignLineageDigest` from the actual inner payload for both the turn 1 request and the build-fire turn. It MUST compare the recomputed values to the same `DESIGN_PROOF_TOKEN` that authorized the run.
 
@@ -85,7 +97,7 @@ The boundary MUST return `ALLOW` only when both turns can be reconstructed, ever
 
 ---
 
-## Where It Binds
+## 5. WHERE IT BINDS
 
 The guarded-proxy precondition is the recompute point. Surface adapters normalize the request, classify it, rebuild `payloadDigestInputs` from the actual outgoing payload, and invoke the token validator before forwarding.
 
@@ -101,7 +113,7 @@ The binding is carried as structured metadata through the adapter. It must not b
 
 ---
 
-## Named Residual
+## 6. NAMED RESIDUAL
 
 The bundled Open Design daemon spawns the inner agent inside the closed app. The agent-side adapter can bind the inner payload only at the adapter boundary across the turn 1 request and the build-fire turn.
 
@@ -111,7 +123,7 @@ That residual is explicit: this contract rejects drift visible at the adapter bo
 
 ---
 
-## Acceptance
+## 7. ACCEPTANCE
 
 | Scenario | Expected result |
 |---|---|

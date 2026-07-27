@@ -53,7 +53,7 @@ The feedback, hover, and focus cards check for a visible active/hover/focus-visi
 ## 4. SOURCE METADATA
 
 - Group: Build Cards
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `build-cards/motion-fill-in-cards.md`
 
 Related references:

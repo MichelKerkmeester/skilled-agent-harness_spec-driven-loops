@@ -6,7 +6,7 @@ trigger_phrases:
   - "md-generator smoke lane"
   - "preflight extract write prompt validate"
 importance_tier: normal
-contextType: reference
+contextType: implementation
 version: 1.0.0.0
 ---
 
@@ -14,7 +14,21 @@ version: 1.0.0.0
 
 The guided run wrapper reduces command friction while preserving the existing extract, write, validate and report contract.
 
-## 1. WHAT THE WRAPPER DOES
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Reduce command friction across the extract, write-prompt, validate, and report phases without ever auto-authoring `DESIGN.md` itself.
+
+### Core Principle
+
+The wrapper orchestrates and gates; the operator (or a later actor) always writes `DESIGN.md` explicitly from the generated prompt.
+
+---
+
+## 2. WHAT THE WRAPPER DOES
 
 It checks:
 
@@ -31,7 +45,7 @@ It can run:
 - Validation with `validate.ts` only when `DESIGN.md` already exists.
 - Optional report generation when both source files exist.
 
-## 2. WHAT IT NEVER DOES
+## 3. WHAT IT NEVER DOES
 
 - It does not auto-author `DESIGN.md` content.
 - It does not invent values.
@@ -39,7 +53,7 @@ It can run:
 - It does not skip `build-write-prompt.ts`.
 - It does not treat missing `DESIGN.md` as validation success.
 
-## 3. NORMAL RUN SHAPE
+## 4. NORMAL RUN SHAPE
 
 ```bash
 npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts https://example.com --output .opencode/specs/<track>/<packet>/output --design-md .opencode/specs/<track>/<packet>/output/DESIGN.md --fast
@@ -53,6 +67,6 @@ Expected phases:
 4. If `DESIGN.md` exists, validation runs.
 5. If validation ran and report was requested, report generation runs.
 
-## 4. OPERATOR HANDOFF
+## 5. OPERATOR HANDOFF
 
 If the wrapper stops after prompt generation, the next actor writes `DESIGN.md` using the prompt and the loaded references. The wrapper has done its job. Authorship remains explicit and fidelity remains inspectable.

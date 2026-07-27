@@ -49,7 +49,7 @@ When the request is primarily an accessibility release claim, `interface`'s pre-
 ## 4. SOURCE METADATA
 
 - Group: Procedure Cards
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `procedure-cards/motion-procedure-card-inventory.md`
 
 Related references:

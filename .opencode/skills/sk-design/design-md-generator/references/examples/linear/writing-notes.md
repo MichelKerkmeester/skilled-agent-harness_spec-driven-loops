@@ -6,7 +6,7 @@ trigger_phrases:
   - Linear style reference validation
   - Linear extraction caveats
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

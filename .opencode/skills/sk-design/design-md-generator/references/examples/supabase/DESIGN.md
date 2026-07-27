@@ -6,7 +6,7 @@ trigger_phrases:
   - dark developer style reference example
   - study Supabase design tokens
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

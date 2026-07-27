@@ -1,0 +1,24 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: INTENT_SIGNALS/RESOURCE_MAP co-occurrence",
+    "Q2: Lane taxonomy (job vs phase)",
+    "Q3: Split cost quantification",
+    "Q4: Middle-path alternatives",
+    "Q5: Observed failure modes"
+  ],
+  "keyFindings": [
+    "RESOURCE_MAP non-co-occurrence reflects conditional loading, not command seams",
+    "Motion intents form one tightly coupled cluster sharing animation-decision-framework.md",
+    "Argument lanes map to jobs; internal lanes map to creation-contract phases",
+    "Split cost ~6+ files per command plus discriminator graph rewiring",
+    "Middle path already implemented via --mode lanes and tasks[] metadata",
+    "Demonstrated harm: stale /interface:motion discriminator, handoff/build naming drift, word-cap pressure"
+  ],
+  "ruledOutDirections": [
+    "Split because SKILL.md is large",
+    "Re-expose /interface:motion as separate command",
+    "Split preflight to standalone command without routing failure evidence",
+    "Split motion cluster to separate command (reverses 010-motion-merge)"
+  ]
+}

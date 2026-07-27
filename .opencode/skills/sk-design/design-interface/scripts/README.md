@@ -15,7 +15,7 @@ description: "Python checkers that give filled foundations token artifacts struc
 
 | File | Purpose |
 |------|---------|
-| `baseline_rhythm_check.py` | Checks the `assets/token-starter.md` spacing scale table: every spacing value must resolve to the declared baseline, a small sub-baseline fraction, or an explicit `exception` label. Fixed px/rem/em anchors inside a `clamp()` still must resolve, and fluid units are exempt. |
+| `baseline_rhythm_check.py` | Checks the `assets/foundations/token-starter.md` spacing scale table: every spacing value must resolve to the declared baseline, a small sub-baseline fraction, or an explicit `exception` label. Fixed px/rem/em anchors inside a `clamp()` still must resolve, and fluid units are exempt. |
 | `contrast_check.py` | WCAG contrast calculator for foreground/background hex pairs. Targets 4.5:1 for body text and 3:1 for large text or UI components, so a contrast-pair inventory row cannot claim a pass on eyeballed arithmetic. |
 | `naming_doc_check.py` | Naming and required-heading gate for filled token, component, or library artifacts. Applies only to artifacts with a recognized `artifactKind`. Ordinary skill, reference, and vocabulary markdown exits cleanly as not applicable. |
 | `fixtures/naming-doc/compliant.md` | A `token`-kind artifact that satisfies `naming_doc_check.py`, used as the positive example when validating the checker itself. |

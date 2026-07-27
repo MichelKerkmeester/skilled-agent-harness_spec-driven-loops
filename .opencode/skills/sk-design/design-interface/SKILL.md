@@ -45,7 +45,7 @@ Detect design intent and how much of the visual direction the brief fixes:
 
 Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. Once one of those transform verbs routes here, apply it through `references/design-process/transform-application.md` (the interface-side landing lane: shared application contract, per-verb ledgers, and fillable proof cards for bolder/quieter/distill/clarify/delight) rather than improvising the change. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, that is this mode's own pre-delivery gate (`assets/interface-preflight-card.md`), not a separate mode. `hierarchy`, `spacing`, `grid`, and token language are also this mode's own static-system work; only route out when `DESIGN.md` or `tokens.json` is a measured artifact, which goes to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence — the registry's alias list overrides this noun-based heuristic.
 
-This mode also owns the temporal layer: animation, transitions, micro-interactions, `AnimatePresence`, and reduced motion, relocated in whole from the retired `motion` mode. Whether an interaction should animate at all is decided by the restraint gate in `references/motion/animation-decision-framework.md` — frequency, the keyboard rule, a named purpose, and the register motion-budget dial — and that gate runs before any timing, easing, or material choice from `references/motion/motion-strategy.md`. A choice that survives the gate is choreographed and specced with `assets/motion/motion-pattern-cards.md`, checked against `assets/motion/animate-presence-checklist.md` for any exit, and cleared against `assets/motion/motion-performance-failure-card.md` before handoff. If the static hierarchy is unclear before motion can help, resolve that first through this same mode's static-system work rather than choreographing around an unclear layout.
+This mode also owns the temporal layer (animation, transitions, micro-interactions, `AnimatePresence`, reduced motion), relocated in whole from the retired `motion` mode — see Section 3 "Motion Design Workflow" for the gate-first sequencing. If the static hierarchy is unclear before motion can help, resolve that first through this mode's static-system work rather than choreographing around an unclear layout.
 
 ```bash
 # Direction freedom (pseudo)
@@ -217,18 +217,9 @@ The five-step flow (ground, brainstorm a token system, critique against the brie
 
 ### Motion Design Workflow
 
-Relocated in whole from the retired `motion` mode: the gate runs first, choreography second, verification last, in this fixed order.
+Relocated in whole from the retired `motion` mode. Fixed order, gate first: **run the restraint gate** ([`references/motion/animation-decision-framework.md`](references/motion/animation-decision-framework.md) — frequency, keyboard rule, purpose, register dial, stop at the first no) before any timing or easing choice; a failed choice ships as an instant state change, not a downgrade. What survives gets a named purpose, a motion budget, timing/easing/material from [`references/motion/motion-strategy.md`](references/motion/motion-strategy.md) (`100-150ms` feedback, `200-300ms` state, `300-500ms` layout, `500-800ms` one earned entrance), and a reduced-motion equivalent. Spec it with [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md), clear [`assets/motion/animate-presence-checklist.md`](assets/motion/animate-presence-checklist.md) for any exit and [`assets/motion/motion-performance-failure-card.md`](assets/motion/motion-performance-failure-card.md) before handing off to `sk-code` via `../shared/sk-code-handoff.md`.
 
-1. **Run the restraint gate first** ([`references/motion/animation-decision-framework.md`](references/motion/animation-decision-framework.md)): check frequency, the keyboard rule, a named purpose, and the register motion-budget dial, stopping at the first no. This gate runs before any timing or easing choice — never choreograph first and justify the gate afterward. A choice that fails ships as an instant state change, not a downgrade.
-2. Name the purpose: feedback, orientation, focus, continuity, perceived performance, or earned delight.
-3. Decide the motion budget: one hero moment, local feedback layer, state transitions, or no motion.
-4. Choose timing and easing from [`references/motion/motion-strategy.md`](references/motion/motion-strategy.md): `100-150ms` instant feedback, `200-300ms` small state transitions, `300-500ms` modal/drawer/layout transitions, `500-800ms` only for one earned entrance or brand choreography.
-5. Choose the material: transform/opacity first; bounded blur, filter, mask, clip-path, shadow, or color only when it creates a real effect and can be verified smooth.
-6. Define reduced-motion behavior that preserves state information without non-essential movement.
-7. Spec the pattern with [`assets/motion/motion-pattern-cards.md`](assets/motion/motion-pattern-cards.md), run [`assets/motion/animate-presence-checklist.md`](assets/motion/animate-presence-checklist.md) for any exit, and clear [`assets/motion/motion-performance-failure-card.md`](assets/motion/motion-performance-failure-card.md) before handoff.
-8. Hand implementation to `sk-code` with timing, easing, states, reduced-motion fallback, and performance risks via `../shared/sk-code-handoff.md` (motion-owned field: `IMPLEMENTATION MECHANISM / STACK BOUNDARY`).
-
-The mechanical pre-flight card's motion section (§10 of `assets/interface-preflight-card.md`) is the checkable form of this ordering guarantee: its binary boxes assume the restraint gate already ran, so a passing card is evidence the gate-before-choreography order was followed, not just that motion exists and has a reduced-motion path.
+The pre-flight card's motion section (§10 of `assets/interface-preflight-card.md`) is the checkable form of this ordering guarantee: its binary boxes assume the gate already ran.
 
 ### Corpus Relational Exemplar Pilot
 
@@ -253,7 +244,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 
 ### Mechanical Delivery Gates
 
-A taste read misses structural and content tells, so binary gates run before delivery: the layout gate (`references/design-process/mechanical-defaults.md` — hero lines, bento cells, eyebrow ceiling, button contrast), the content gate (`references/design-process/copy-and-mock-data.md` — lorem, AI-tell phrasing, fake-precise numbers, mixed copy register, lazy image seeds), and the motion restraint gate (`references/motion/animation-decision-framework.md` — frequency, keyboard rule, purpose, register coupling, run before any timing/easing choice). The fill-in `assets/interface-preflight-card.md` is the checkable form of all three plus the dials: every box is binary, and a single fail means the surface is not done.
+A taste read misses structural and content tells, so binary gates run before delivery: the layout gate (`references/design-process/mechanical-defaults.md`), the content gate (`references/design-process/copy-and-mock-data.md`), and the motion restraint gate (`references/motion/animation-decision-framework.md`, run before any timing/easing choice). The fill-in `assets/interface-preflight-card.md` is the checkable form of all three plus the dials: every box is binary, and a single fail means the surface is not done.
 
 ### Required sk-code Build Manifest
 
@@ -275,13 +266,13 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 8. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it — Refero specifically runs as the `mcp-refero` transport over `mcp-code-mode` (the transport never decides taste); if Code Mode is unavailable, fall back to the generic process. See `references/design-grounding/design-references-mcp.md`.
 9. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
 10. **ALWAYS keep corpus grounding subordinate to the brief, owned system, target render and preflight**, and preserve provenance and rights state for every selected reference.
-11. **ALWAYS run the motion restraint gate before any timing or easing choice**: frequency, the keyboard rule, a named purpose, and the register motion-budget dial, in that order, stopping at the first no.
+11. **ALWAYS run the motion restraint gate before any timing or easing choice** (frequency, keyboard rule, purpose, register dial), stopping at the first no.
 
 ### ⛔ NEVER
 
 1. **NEVER ship a templated default** (cream + serif + terracotta, near-black + one acid accent, or broadsheet hairlines) on a free axis just because it is safe.
 2. **NEVER add decoration that does not serve the brief**, including numbered markers (01 / 02 / 03) when the content is not actually a sequence.
-3. **NEVER let motion pile up, and never choreograph before the restraint gate has run**. Scattered animation reads as AI-generated, so prefer one orchestrated moment; a high-frequency or keyboard-driven action stays instant regardless of how good the timing would look.
+3. **NEVER let motion pile up, and never choreograph before the restraint gate has run**. Scattered animation reads as AI-generated; a high-frequency or keyboard-driven action stays instant regardless of timing.
 4. **NEVER override a brief that pins the direction**. The brief's own words always win, even when they ask for a default look.
 5. **NEVER average source token values, copy source-specific literals or assets, expose hydrated corpus bodies, or treat corpus rank as mode judgment.**
 

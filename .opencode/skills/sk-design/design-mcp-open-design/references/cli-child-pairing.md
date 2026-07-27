@@ -12,7 +12,17 @@ version: 1.0.0.0
 
 # Open Design CLI Child Pairing Contract
 
-`OPEN_DESIGN_TRANSPORT_RESULT v1` is the return-path contract a CLI child emits after it uses Open Design transport. It gives the parent enough structured evidence to replay the operation boundary, compare digests, reconcile the proof-token reference, and deny a handoff that cannot be reconstructed.
+`OPEN_DESIGN_TRANSPORT_RESULT v1` is the return-path contract a CLI child emits after it uses Open Design transport.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+The contract gives the parent enough structured evidence to replay the operation boundary, compare digests, reconcile the proof-token reference, and deny a handoff that cannot be reconstructed.
+
+### Dependencies
 
 This contract is the counterpart to two existing request-path contracts:
 
@@ -21,11 +31,13 @@ This contract is the counterpart to two existing request-path contracts:
 | [`DESIGN_PROOF_TOKEN`](../../shared/design-proof-token.md) | Defines token minting, digest convention, freshness, replay, surface binding, and validator behavior. This document references that contract and does not redefine token internals. |
 | [`Open Design Guarded Proxy`](./guarded-proxy.md) | Defines the request-path precondition and guarded/exempt policy before an Open Design call is forwarded. This document references that policy and does not redefine the proxy. |
 
+### Core Principle
+
 The transport result is a post-operation receipt, not a new authorization token. It never re-mints or extends a `DESIGN_PROOF_TOKEN`.
 
 ---
 
-## Result Schema
+## 2. RESULT SCHEMA
 
 The child MUST return the result as structured metadata named `OPEN_DESIGN_TRANSPORT_RESULT v1`. Prose summaries may accompany it, but prose is never the gate.
 
@@ -129,7 +141,7 @@ Required conditionals are evaluated by operation class. A guarded `RUN`, mutatin
 
 ---
 
-## Parent Re-Validation
+## 3. PARENT RE-VALIDATION
 
 The parent treats the result as evidence to verify, not as a trust signal.
 
@@ -147,7 +159,7 @@ Operation-class consistency is conservative. A child may classify a pure read as
 
 ---
 
-## Deny Rules
+## 4. DENY RULES
 
 The parent MUST fail closed for these cases:
 
@@ -161,7 +173,7 @@ The parent also denies on unsupported version, malformed schema, unsupported ope
 
 ---
 
-## Named Residual
+## 5. NAMED RESIDUAL
 
 `cli-claude-code` can be used in a text-only mode where the parent receives no machine-readable tool stream. In that path, the parent cannot deterministically prove the child did not replay a stale token or omit an Open Design call from prose.
 
@@ -171,7 +183,7 @@ This residual is not hidden by the result schema. It is the honest boundary of a
 
 ---
 
-## Agent I/O Is Not The Gate
+## 6. AGENT I/O IS NOT THE GATE
 
 The [`Agent I/O Contract`](../../../system-spec-kit/references/workflows/agent-io-contract.md) is optional-advisory. It may carry routing hints, summaries, evidence fields, or the transport-result payload as data, but it is not the Open Design gate.
 
@@ -179,7 +191,7 @@ Absence of Agent I/O never allows an Open Design handoff. Presence of Agent I/O 
 
 ---
 
-## Acceptance
+## 7. ACCEPTANCE
 
 This contract is acceptable when all of these are true:
 
@@ -193,7 +205,7 @@ This contract is acceptable when all of these are true:
 
 ---
 
-## Cross-Delegation Token Laundering Guard
+## 8. CROSS-DELEGATION TOKEN LAUNDERING GUARD
 
 The laundering guard is the request-path token-side twin of the transport-result re-validation above. It prevents a child or delegated workflow from replaying, omitting, or weakening the `DESIGN_PROOF_TOKEN` while preserving the rule that this document consumes the proof-token contract and does not define a second token schema.
 
@@ -244,7 +256,7 @@ This guard is acceptable when all of these are true:
 
 ---
 
-## Open Design Transport Assertion Pairing
+## 9. OPEN DESIGN TRANSPORT ASSERTION PAIRING
 
 `OPEN_DESIGN_TRANSPORT_ASSERTION v1` is the child-side, pre-operation assertion paired with the post-operation `OPEN_DESIGN_TRANSPORT_RESULT v1`. It is evidence the parent re-validates, not a replacement authorization token, and it reuses `DESIGN_PROOF_TOKEN v1` §2 for digest field shape and §6 for boundary-side recompute-and-reject rules. This section defines no second token schema.
 
@@ -343,7 +355,7 @@ This assertion-pairing extension is acceptable when all of these are true:
 
 ---
 
-## Register Acceptance Gate
+## 10. REGISTER ACCEPTANCE GATE
 
 The cross-CLI design dispatch boundary MUST fail closed when the effective design register is unresolved or outside the accepted register policy. The parent resolves the effective register before launch using `registerPolicy.resolutionOrder` and the operating postures defined by `shared/register.md`: Brand means the design is the product; Product means the design serves the product.
 

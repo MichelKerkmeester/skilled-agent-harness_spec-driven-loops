@@ -15,11 +15,23 @@ version: 1.0.1.0
 
 # Authoring Boundary
 
-This mode extracts a live site and renders its real CSS into a Style Reference. Every numeric value is copied verbatim from `tokens.json`. That is the cardinal fidelity rule and it is absolute. This document draws the line around it. It names four origins a value can have, gives each a source-of-truth label and states plainly which origins this mode is allowed to write. Read it as a boundary map, not a feature. It adds no new capability and it does not relax the fidelity contract by one digit.
+This mode extracts a live site and renders its real CSS into a Style Reference; every numeric value is copied verbatim from `tokens.json`, and that cardinal fidelity rule is absolute.
 
 ---
 
-## 1. WHY THE BOUNDARY EXISTS
+## 1. OVERVIEW
+
+### Purpose
+
+This document draws the line around the cardinal fidelity rule. It names four origins a value can have, gives each a source-of-truth label, and states plainly which origins this mode is allowed to write.
+
+### Core Principle
+
+Read this as a boundary map, not a feature. It adds no new capability and it does not relax the fidelity contract by one digit.
+
+---
+
+## 2. WHY THE BOUNDARY EXISTS
 
 A Style Reference is trusted because a reader can assume every hex, pixel, weight, radius and shadow in it was measured from a running page. The moment a value with a different origin slips in unlabeled, that assumption breaks for the whole document and the reader can no longer tell ground truth from a guess.
 
@@ -29,29 +41,29 @@ This mode captures what already exists. It does not author a design from a brief
 
 ---
 
-## 2. THE FOUR ORIGINS
+## 3. THE FOUR ORIGINS
 
 Every value a reader might want in a Style Reference comes from one of four origins. The first is the only one this mode writes into token tables.
 
-### 2.1 Measured
+### 3.1 Measured
 
 A value read off the running page by the extractor and present in `tokens.json`. Hex codes, pixel sizes, font weights, border radii, box shadows, spacing steps, durations. These are the only values allowed in the Tokens tables, Surfaces, Elevation and the Quick Start blocks. They are copied verbatim, never rounded, never normalized, never concretized.
 
-### 2.2 Brief-provided
+### 3.2 Brief-provided
 
 A value the user supplied in the request rather than the site. A stakeholder might say the brand red is a specific hex or that the body font should be a named family, before any extraction confirms it on the page. A brief-provided value is a stated intent, not a measurement. It is not ground truth about the live surface and it never enters a token table as if the extractor found it.
 
-### 2.3 Inferred
+### 3.3 Inferred
 
 A characterization the writer derives from measured values. Naming a near-black `Obsidian Ink`, stating a color's role, calling the density spacious, listing Similar Brands. These are grounded inferences built on real tokens and the format already allows them. The line is exact: name and characterize what IS measured, never invent a fact, a value or an audience that is not.
 
-### 2.4 Absent
+### 3.4 Absent
 
 A value the extractor did not capture. No dark palette, no shadow tokens, no imagery signal, no accessibility data. Absent is a real state with a real treatment in the format. A section with no backing data is omitted when conditional or stamped that no data was extracted. Absent is never filled by reaching for a brief-provided guess or by deriving a value the page never showed.
 
 ---
 
-## 3. SOURCE-OF-TRUTH LABELS
+## 4. SOURCE-OF-TRUTH LABELS
 
 Labels keep the four origins legible inside one document so the cardinal rule stays enforceable by inspection.
 
@@ -70,7 +82,7 @@ Three rules govern the labels.
 
 ---
 
-## 4. WHAT THIS MODE WRITES
+## 5. WHAT THIS MODE WRITES
 
 This mode writes measured values and grounded inferences about them. Nothing else reaches a token table.
 
@@ -83,7 +95,7 @@ The Quick Start exists because the output is ship-ready, and it is ship-ready pr
 
 ---
 
-## 5. FORWARD-AUTHORING IS OUT OF SCOPE
+## 6. FORWARD-AUTHORING IS OUT OF SCOPE
 
 Generating a Style Reference from a brief alone, with no live site to measure, is forward-authoring. It is OUT OF SCOPE for this mode and this document does not enable it.
 
@@ -99,7 +111,7 @@ When a user wants a design authored from a brief with no site to measure, that i
 
 ---
 
-## 6. QUICK BOUNDARY CHECK
+## 7. QUICK BOUNDARY CHECK
 
 Run this before writing any value into a Style Reference.
 
@@ -113,7 +125,7 @@ Run this before writing any value into a Style Reference.
 
 ---
 
-## 7. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 - [design-md-format.md](design-md-format.md) - the Style Reference section specification and the Section 0 cardinal rules this boundary protects.
 - [../assets/source-of-truth-router-card.md](../assets/source-of-truth-router-card.md) - the fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing.

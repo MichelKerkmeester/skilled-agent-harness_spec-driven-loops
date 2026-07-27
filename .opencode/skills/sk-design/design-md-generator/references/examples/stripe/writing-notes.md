@@ -6,7 +6,7 @@ trigger_phrases:
   - Stripe style reference validation
   - Stripe extraction caveats
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

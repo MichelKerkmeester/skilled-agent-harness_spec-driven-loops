@@ -6,7 +6,7 @@ trigger_phrases:
   - dark style reference example
   - study Linear design tokens
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

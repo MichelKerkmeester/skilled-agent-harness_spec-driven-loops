@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/013-design-command-decomposition-research",
+  "description": "`/interface:design` is now one of only two public sk-design commands (with `/interface:design-reference`), after a consolidation that took the hub",
+  "keywords": [
+    "interface",
+    "design",
+    "now",
+    "one",
+    "only",
+    "two",
+    "public",
+    "sk-design",
+    "commands",
+    "design-reference",
+    "consolidation",
+    "took",
+    "hub"
+  ],
+  "lastUpdated": "2026-07-27T17:51:59.056Z",
+  "specId": "013",
+  "folderSlug": "design-command-decomposition-research",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
