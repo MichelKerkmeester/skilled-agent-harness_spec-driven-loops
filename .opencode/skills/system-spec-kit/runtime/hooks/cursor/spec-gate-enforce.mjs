@@ -47,10 +47,21 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
+// A `||` chain picks the first truthy VALUE, not the first valid string -- a
+// truthy non-string in an earlier field (e.g. a stray object) would suppress
+// a valid string in a later one and still resolve to null. This picks the
+// first field that is actually a non-blank string, confirmed-canonical field
+// first, so partial/malformed payloads never silently mask a real alias.
+function firstNonBlankString(...candidates) {
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim().length > 0) return candidate;
+  }
+  return null;
+}
+
 function filePathFrom(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') return null;
-  const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  return typeof candidate === 'string' && candidate ? candidate : null;
+  return firstNonBlankString(toolInput.file_path, toolInput.filePath, toolInput.path);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

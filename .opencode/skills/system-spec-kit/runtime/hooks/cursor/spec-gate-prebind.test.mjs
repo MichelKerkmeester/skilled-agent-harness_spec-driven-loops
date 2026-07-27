@@ -345,3 +345,112 @@ test('a whitespace-only workspace_root is treated as absent by both producer and
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+function openGate(root, sessionID) {
+  runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, sessionID), {
+    [guardCore.ENFORCE_ENV]: '1',
+  });
+}
+
+test('enforce recognizes the filePath alias when file_path is absent', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'filepath-alias';
+    openGate(root, sessionID);
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+      ...sessionPayload(root, sessionID),
+      tool_name: 'Write',
+      tool_input: { filePath: 'src/app.js' },
+    }, { [guardCore.ENFORCE_ENV]: '1' });
+    assert.equal(enforce.status, 2, enforce.stderr);
+    assert.equal(JSON.parse(enforce.stdout).permission, 'deny');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('enforce recognizes the generic path alias when file_path and filePath are absent', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'path-alias';
+    openGate(root, sessionID);
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+      ...sessionPayload(root, sessionID),
+      tool_name: 'Write',
+      tool_input: { path: 'src/app.js' },
+    }, { [guardCore.ENFORCE_ENV]: '1' });
+    assert.equal(enforce.status, 2, enforce.stderr);
+    assert.equal(JSON.parse(enforce.stdout).permission, 'deny');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('enforce prefers file_path over filePath/path when multiple fields are present', () => {
+  // file_path points at an exempt target (the spec tree) while filePath/path
+  // point at a real, non-exempt file. Canonical-field-first precedence means
+  // the exempt file_path wins -> allow. If a later alias won instead, this
+  // would deny, so this test discriminates precedence order observably.
+  const { root, folderRel } = makeWorkspace();
+  try {
+    const sessionID = 'precedence-session';
+    openGate(root, sessionID);
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+      ...sessionPayload(root, sessionID),
+      tool_name: 'Write',
+      tool_input: {
+        file_path: `${folderRel}/spec.md`,
+        filePath: 'src/app.js',
+        path: 'src/app.js',
+      },
+    }, { [guardCore.ENFORCE_ENV]: '1' });
+    assertAllowed(enforce);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a missing/blank path resolves to an exempt allow, not a deny', () => {
+  // spec-gate-core.mjs's isExemptTargetPath() treats a non-string or blank
+  // filePath as exempt, and evaluateMutation() allows any exempt non-bash
+  // target -- this is corrected, verified behavior, not enforcement-conservative
+  // fail-toward-deny. Locking it in as a regression gate.
+  const { root } = makeWorkspace();
+  try {
+    for (const toolInput of [{}, { file_path: '' }, { file_path: '   ' }]) {
+      const sessionID = `blank-path-${JSON.stringify(toolInput)}`;
+      openGate(root, sessionID);
+      const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+        ...sessionPayload(root, sessionID),
+        tool_name: 'Write',
+        tool_input: toolInput,
+      }, { [guardCore.ENFORCE_ENV]: '1' });
+      assertAllowed(enforce);
+    }
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a truthy non-string in an earlier field does not mask a valid string in a later field', () => {
+  // Regression test for the exact bug the || -> firstNonBlankString fix
+  // closed: a `||` chain picks the first truthy VALUE, so a truthy object in
+  // file_path would previously short-circuit past a real string in `path`,
+  // resolve to null via the old typeof-string guard, and fall through to the
+  // exempt-allow branch above -- a silent enforcement bypass despite a valid
+  // path being available. The fix must still find and use `path` here.
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'masking-fix-session';
+    openGate(root, sessionID);
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+      ...sessionPayload(root, sessionID),
+      tool_name: 'Write',
+      tool_input: { file_path: { nested: 'object' }, path: 'src/app.js' },
+    }, { [guardCore.ENFORCE_ENV]: '1' });
+    assert.equal(enforce.status, 2, enforce.stderr);
+    assert.equal(JSON.parse(enforce.stdout).permission, 'deny');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
