@@ -93,22 +93,22 @@ Fix the shared evidence base and question framing -> dispatch Lineage A and Line
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the five research questions and hard constraint text match this packet's `spec.md` verbatim in both lineages' iteration framing.
-- [ ] Snapshot `design-interface/SKILL.md`'s current lane structure, argument lanes, and `INTENT_SIGNALS`/`RESOURCE_MAP` tables as the shared, stable evidence base for both lineages.
-- [ ] Create `research/lineages/glm/` and `research/lineages/composer/` directories.
+- [x] Confirm the five research questions and hard constraint text match this packet's `spec.md` verbatim in both lineages' iteration framing.
+- [x] Snapshot `design-interface/SKILL.md`'s current lane structure, argument lanes, and `INTENT_SIGNALS`/`RESOURCE_MAP` tables as the shared, stable evidence base for both lineages.
+- [x] Create `research/lineages/glm/` and `research/lineages/composer/` directories.
 
 ### Phase 2: Implementation
-- [ ] Dispatch Lineage A: `cli-devin` (`glm-5-2`), 10 forced iterations, no early convergence stop.
-- [ ] Dispatch Lineage B: `cli-cursor` (`composer-2.5`), 10 forced iterations, no early convergence stop.
-- [ ] Each lineage produces its own converged synthesis: recommendations ranked by value-to-cost with explicit confidence, plus a "not worth doing" section.
-- [ ] Each lineage's synthesis addresses all five research questions explicitly, including "no evidence found" where applicable.
+- [x] Dispatch Lineage A: `cli-devin` (`glm-5-2`), 10 forced iterations, no early convergence stop.
+- [x] Dispatch Lineage B: `cli-cursor` (`composer-2.5`), 10 forced iterations, no early convergence stop.
+- [x] Each lineage produces its own converged synthesis: recommendations ranked by value-to-cost with explicit confidence, plus a "not worth doing" section.
+- [x] Each lineage's synthesis addresses all five research questions explicitly, including "no evidence found" where applicable.
 
 ### Phase 3: Verification
-- [ ] Confirm both lineages show 10 completed iteration records.
-- [ ] Confirm each synthesis is ranked, confidence-scored, and carries a "not worth doing" section.
-- [ ] Produce the cross-lineage comparison: named agreements, named disagreements, and which disagreement is most load-bearing for a future decision.
-- [ ] Spot-check every ranked-above-"not worth doing" recommendation against the hard constraint (demonstrated problem, smallest fix, stated cost).
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research --strict` exits 0.
+- [x] Confirm both lineages show 10 completed iteration records.
+- [x] Confirm each synthesis is ranked, confidence-scored, and carries a "not worth doing" section.
+- [x] Produce the cross-lineage comparison: named agreements, named disagreements, and which disagreement is most load-bearing for a future decision.
+- [x] Spot-check every ranked-above-"not worth doing" recommendation against the hard constraint (demonstrated problem, smallest fix, stated cost).
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/014-template-conformance/013-design-command-decomposition-research --strict` exits 0.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -167,8 +167,8 @@ Phase 1 (Setup) --> Phase 2 (Implementation: Lineage A + Lineage B, independent)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Both lineages' iteration framing verified identical (research questions + hard constraint) before dispatch.
-- [ ] Evidence-base snapshot recorded before either lineage starts.
+- [x] Both lineages' iteration framing verified identical (research questions + hard constraint) before dispatch.
+- [x] Evidence-base snapshot recorded before either lineage starts.
 
 ### Rollback Procedure
 1. **Immediate**: If a lineage's synthesis is unusable (pervasive constraint violations, or fewer than 10 completed iterations), do not fold it into the cross-lineage comparison yet.
