@@ -2,6 +2,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Cursor SessionStart Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b; primes context via session-prime.js.
 
 import {
   emitCursorResponse,

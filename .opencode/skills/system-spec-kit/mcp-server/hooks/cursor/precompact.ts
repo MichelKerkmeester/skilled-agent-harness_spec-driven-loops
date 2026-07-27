@@ -2,6 +2,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Cursor PreCompact Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: registered, delivery unconfirmed and untestable in isolation -- no known CLI compaction trigger.
 //
 // REGISTERED, DELIVERY UNCONFIRMED -- AND UNTESTABLE IN ISOLATION. Research
 // found no forcing mechanism for `preCompact` reachable from a single

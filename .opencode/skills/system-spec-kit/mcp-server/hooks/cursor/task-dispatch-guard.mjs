@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Cursor preToolUse Task Dispatch Guard                         ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Evaluate deep-loop dispatch policy for a Task tool call.        ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor preToolUse Task Dispatch Guard
+// ───────────────────────────────────────────────────────────────────
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b for Task tool calls; advisory/deny per shared core.
 // Cursor's counterpart to Claude's task-dispatch-guard.cjs. Wired under a SEPARATE
 // preToolUse array entry with `"matcher": "Task"` (a confirmed hooks.json
 // schema field -- hook-contract.md §2) so it runs alongside, not instead of,

@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Cursor beforeSubmitPrompt Classify Hook                       ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Surface the Gate-3 advisory question for a mutating turn.       ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor beforeSubmitPrompt Classify Hook
+// ───────────────────────────────────────────────────────────────────
+// STATUS: dormant, not wired -- beforeSubmitPrompt has no confirmed CLI attachment point yet.
 // The Cursor sibling of the Codex spec-gate-classify hook. Runs the shared spec-gate core against each
 // user turn: opens the session gate and surfaces the bounded Gate-3 question
 // as an agent_message when the turn triggers file-mutation intent.
 //
-// STATUS: DORMANT, NOT WIRED. A live probe (3 separate cursor-agent -p
+// A live probe (3 separate cursor-agent -p
 // dispatches including a --continue turn) confirmed `beforeSubmitPrompt`
 // never fires under the installed cursor-agent CLI (2026.07.23-e383d2b) --
 // there is no confirmed CLI attachment point for this hook today. This file

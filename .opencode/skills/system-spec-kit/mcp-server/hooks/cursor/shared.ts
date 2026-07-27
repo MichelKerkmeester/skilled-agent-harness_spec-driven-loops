@@ -1,6 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Cursor Hook Adapter Utilities
 // ───────────────────────────────────────────────────────────────────
+// STATUS: shared read/translate/delegate/emit utilities consumed by every Cursor hook adapter in this directory.
 
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';

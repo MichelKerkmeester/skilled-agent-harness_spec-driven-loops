@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Cursor postToolUse Hook                                       ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Chain Write/Shell tool calls into the Claude quality hooks.     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor postToolUse Hook
+// ───────────────────────────────────────────────────────────────────
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b for Write and Shell tool_name payloads.
 // Proxies to the Claude PostToolUse counterparts. Confirmed live via a temporary probe-hook dispatch against
 // cursor-agent 2026.07.23-e383d2b: `postToolUse` fires for both `Write` and
 // `Shell` tool_name payloads (plus `postToolUseFailure` for failed calls,

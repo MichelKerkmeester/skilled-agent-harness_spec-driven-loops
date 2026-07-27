@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor SessionStart Gate-3 Prebind Hook
+// ───────────────────────────────────────────────────────────────────
+// STATUS: active -- process-tested; disabled, child, malformed, and missing-session cases write no state.
 // Cursor does not deliver its prompt-classification event under the CLI, so
 // sessionStart is the only confirmed place to establish state before the
 // pre-tool mutation guard runs. This adapter only initializes state; the
@@ -12,10 +16,17 @@
 //    open the gate so the existing evaluator enforces for the rest of the
 //    top-level session. Disabled and dispatched child sessions remain no-ops;
 //    the shared core owns that child-session contract centrally.
-'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
 import { validateSpecFolderBinding } from '../../../shared/dist/gate-3-classifier.js';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function allow() {
   process.stdout.write(JSON.stringify({ permission: 'allow' }));
@@ -27,6 +38,10 @@ async function readStdin() {
   for await (const chunk of process.stdin) chunks.push(chunk);
   return Buffer.concat(chunks).toString('utf8');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MAIN
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let payload;
@@ -80,5 +95,9 @@ async function main() {
 
   return allow();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => allow());

@@ -1,3 +1,14 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor SessionStart Gate-3 Prebind Hook Tests
+// ───────────────────────────────────────────────────────────────────
+// STATUS: process-level regression coverage for spec-gate-prebind.mjs and its
+// downstream interaction with spec-gate-enforce.mjs, across disabled/child/
+// malformed/declared-folder/whitespace-root/padded-session-id cases.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import assert from 'node:assert/strict';
 import {
   existsSync,
@@ -16,8 +27,16 @@ import { test } from 'node:test';
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const PREBIND_HOOK_PATH = fileURLToPath(new URL('./spec-gate-prebind.mjs', import.meta.url));
 const ENFORCE_HOOK_PATH = fileURLToPath(new URL('./spec-gate-enforce.mjs', import.meta.url));
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TEST FIXTURES
+// ─────────────────────────────────────────────────────────────────────────────
 
 function makeWorkspace() {
   const root = mkdtempSync(join(tmpdir(), 'cursor-spec-gate-prebind-'));
@@ -63,6 +82,10 @@ function assertAllowed(result) {
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(JSON.parse(result.stdout), { permission: 'allow' });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. TESTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('malformed input and missing session identity fail open without state', () => {
   const { root } = makeWorkspace();
@@ -262,6 +285,62 @@ test('a valid declared folder satisfies the gate even when enforcement is off', 
       tool_input: { file_path: 'src/app.js' },
     });
     assertAllowed(enforce);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a missing workspace_roots field falls back to process.cwd() and still enforces', () => {
+  // Cursor may omit workspace_roots entirely in some builds. The prebind's
+  // cwd fallback must write state under the spawn cwd (the test root), and
+  // the enforce consumer must read it from the same place. Without this row
+  // the fallback path is untested -- a future regression breaking it would
+  // pass silently.
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'missing-roots';
+    const prebind = runHook(PREBIND_HOOK_PATH, root, { session_id: sessionID }, {
+      [guardCore.ENFORCE_ENV]: '1',
+    });
+    assertAllowed(prebind);
+    assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
+
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+      session_id: sessionID,
+      tool_name: 'Write',
+      tool_input: { file_path: 'src/app.js' },
+    }, { [guardCore.ENFORCE_ENV]: '1' });
+    assert.equal(enforce.status, 2, enforce.stderr);
+    assert.equal(JSON.parse(enforce.stdout).permission, 'deny');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('a whitespace-only workspace_root is treated as absent by both producer and consumer', () => {
+  // The prebind trims and falls back to cwd for a whitespace-only root; the
+  // enforce consumer must agree, or it would look for state under a
+  // different directory and silently fail open. This row fails on the
+  // pre-fix enforce consumer (raw `||` treated "   " as a truthy root), so
+  // it is the discriminating evidence for the producer-consumer agreement.
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'whitespace-root';
+    const prebind = runHook(PREBIND_HOOK_PATH, root,
+      { session_id: sessionID, workspace_roots: ['   '] }, {
+        [guardCore.ENFORCE_ENV]: '1',
+      });
+    assertAllowed(prebind);
+    assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
+
+    const enforce = runHook(ENFORCE_HOOK_PATH, root, {
+      session_id: sessionID,
+      workspace_roots: ['   '],
+      tool_name: 'Write',
+      tool_input: { file_path: 'src/app.js' },
+    }, { [guardCore.ENFORCE_ENV]: '1' });
+    assert.equal(enforce.status, 2, enforce.stderr);
+    assert.equal(JSON.parse(enforce.stdout).permission, 'deny');
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

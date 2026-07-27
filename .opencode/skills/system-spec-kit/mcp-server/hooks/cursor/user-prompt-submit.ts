@@ -2,6 +2,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Cursor UserPromptSubmit Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: registered for parity, delivery unconfirmed -- beforeSubmitPrompt has not fired under the tested CLI build.
 //
 // REGISTERED FOR PARITY, DELIVERY UNCONFIRMED AS OF THIS PASS. Prior live-fire
 // research (3 separate `cursor-agent -p` dispatches including a --continue

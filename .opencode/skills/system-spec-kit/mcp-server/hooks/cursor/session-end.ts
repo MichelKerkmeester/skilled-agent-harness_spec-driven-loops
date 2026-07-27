@@ -2,6 +2,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Cursor SessionEnd Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b; `stop` never fires, this is the substitute.
 //
 // Delegates to the existing session-stop.js completion-evidence owner on
 // Cursor's `sessionEnd` event, NOT `stop` — `stop` is confirmed live (phase

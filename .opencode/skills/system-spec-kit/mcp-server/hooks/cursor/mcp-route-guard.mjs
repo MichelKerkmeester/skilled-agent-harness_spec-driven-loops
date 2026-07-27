@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Cursor beforeMCPExecution Route Guard                         ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Advise routing an MCP call through Code Mode on a match.        ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor beforeMCPExecution Route Guard
+// ───────────────────────────────────────────────────────────────────
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b; advisory only, fails open.
 // Cursor's counterpart to Claude's mcp-route-guard.cjs (PreToolUse `mcp__claude_ai_.*` matcher).
 //
 // `beforeMCPExecution` is confirmed live-firing against cursor-agent

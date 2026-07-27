@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Cursor preToolUse Enforce Hook                                ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Evaluate the spec-gate mutation policy before a tool call runs. ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Cursor preToolUse Enforce Hook
+// ───────────────────────────────────────────────────────────────────
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b; deny path live-verified to block a tool call.
 // The Cursor sibling of the Codex spec-gate-enforce hook. Intercepts a Cursor tool call BEFORE it runs and
 // evaluates the shared spec-gate core's evaluateMutation() policy. Wired to
 // `preToolUse` (confirmed live to fire before every tool call: Shell, Read,
@@ -69,7 +68,16 @@ async function main() {
   const tool = CURSOR_TOOL_MAP[String(payload?.tool_name || '')];
   if (!tool) return approve();
 
-  const projectDir = payload?.workspace_roots?.[0] || process.cwd();
+  // Match the prebind producer's workspace-root resolution exactly: a
+  // whitespace-only root is treated as absent and falls back to the cwd, so
+  // producer and consumer derive the same state directory for every payload
+  // shape. A raw `||` here would treat "   " as a truthy root and read state
+  // from a different directory than the prebind wrote it, silently failing
+  // enforcement open for that pathological input.
+  const workspaceRoot = payload?.workspace_roots?.[0];
+  const projectDir = typeof workspaceRoot === 'string' && workspaceRoot.trim()
+    ? workspaceRoot
+    : process.cwd();
   const filePath = filePathFrom(payload?.tool_input);
   const sessionID = payload?.session_id;
   const result = guardCore.evaluateMutation({
