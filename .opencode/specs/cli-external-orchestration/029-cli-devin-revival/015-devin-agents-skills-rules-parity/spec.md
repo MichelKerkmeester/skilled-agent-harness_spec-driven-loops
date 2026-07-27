@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../008-devin-hook-parity/spec.md` (dependency — established live-CLI-probe-before-build discipline this phase follows) |
+| **Predecessor** | `../014-hook-adapter-shared-boilerplate-and-claude-codex-fix/spec.md` (sequential); `../008-devin-hook-parity/spec.md` (dependency — established live-CLI-probe-before-build discipline this phase follows) |
 <!-- /ANCHOR:metadata -->
 
 ---

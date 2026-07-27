@@ -16,7 +16,8 @@
     "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
     "cli-external-orchestration/030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix",
     "cli-external-orchestration/030-cli-cursor-creation/012-codex-claude-hooks-discovery-mirrors",
-    "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind"
+    "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
+    "cli-external-orchestration/030-cli-cursor-creation/014-cursor-agents-skills-rules-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -53,6 +54,7 @@
     "status": "planned",
     "key_files": [
       "013-cursor-spec-gate-prebind/spec.md",
+      "014-cursor-agents-skills-rules-parity/spec.md",
       ".cursor/hooks.json",
       ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
       ".opencode/agents/context.md",
@@ -197,16 +199,16 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-07-27T03:50:32.264Z",
+    "last_save_at": "2026-07-27T06:27:32.308Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9386a885df1b188bd1eb5aa6a80f604434e4df67c403c60175e61e500722d212",
+    "source_fingerprint": "sha256:c55cce3845b61e6a0e75787b210080746e6a228c212fb3540864c06caf64c15c",
     "source_doc_hashes": {
-      "spec.md": "5a94d12afd239c83e68834d4b9660dc0e56b2c49455082d99d984dd06a5d3ec9",
+      "spec.md": "1c5ed524e5e463d9948f607180c1f227f98c696259b0c3692bbe2393193af948",
       "handover.md": "fc98e8115efa03c5dcb34f42be55ef11c2a08ec2031afc10f04ad830662fc33c"
     },
     "last_active_child_id": "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",

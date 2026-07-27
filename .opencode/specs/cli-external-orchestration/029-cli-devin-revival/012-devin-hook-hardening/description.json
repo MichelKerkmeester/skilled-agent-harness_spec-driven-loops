@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening",
+  "description": "An independent review of the 10 Devin hook adapters (built in phases 004 and 008) found four hardening gaps:",
+  "keywords": [
+    "independent",
+    "review",
+    "devin",
+    "hook",
+    "adapters",
+    "phases",
+    "found",
+    "four",
+    "hardening",
+    "gaps"
+  ],
+  "lastUpdated": "2026-07-27T06:24:06.681Z",
+  "specId": "012",
+  "folderSlug": "devin-hook-hardening",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-07-26_10-30__devin-hook-hardening.md"
+  ]
+}

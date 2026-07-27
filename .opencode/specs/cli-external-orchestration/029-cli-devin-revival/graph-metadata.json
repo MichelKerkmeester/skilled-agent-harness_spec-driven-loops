@@ -57,6 +57,7 @@
       "004-devin-hook-adapter-layer/implementation-summary.md",
       "008-devin-hook-parity/implementation-summary.md",
       "011-hook-truth-and-runtime-readmes/spec.md",
+      "013-devin-permission-request-handler/spec.md",
       ".devin/hooks.v1.json",
       ".opencode/agents/context.md",
       "008-devin-hook-parity/spec.md",
@@ -72,8 +73,7 @@
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md",
-      ".claude/settings.json",
-      ".opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs"
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -110,12 +110,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "task-dispatch-guard.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs",
         "source": "derived"
       },
       {
@@ -219,11 +213,17 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "Confirmed Hook Truth",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-27T05:51:19.140Z",
+    "last_save_at": "2026-07-27T06:18:50.009Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,9 +231,9 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a263a44f2b71b7cc51f1dd91faaa008a5b0abe2ca5b40ff0e3360208d5f308e6",
+    "source_fingerprint": "sha256:b3521ffaf327a4f119c4d0ca7162f62e6b649428f2f9b53824d02f31024a84a8",
     "source_doc_hashes": {
-      "spec.md": "69021697f42d2481bc861b6c3837a29edf28dfb702f99cbda15729d4b1eb2e3d",
+      "spec.md": "a467ac4156b057626396ef2155d72673353388a0a50860616d723b9326425727",
       "research/research.md": "cc7a5420d7fe9d95849f9d80d5190814225f22588ce0471280c4e7ef2a366c7a",
       "handover.md": "87b21823d332f79741fc9affbcbd1d496e460797de89034a37a048e9e6446050"
     },

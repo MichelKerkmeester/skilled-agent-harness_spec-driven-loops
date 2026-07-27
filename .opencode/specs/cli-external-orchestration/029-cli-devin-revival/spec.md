@@ -10,7 +10,7 @@ _memory:
     last_updated_at: "2026-07-27T07:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded phases 013-015 (Planned); PermissionRequest live-fire confirmed via direct probe test"
-    next_safe_action: "Execute phase 013 (build the adapter), then phase 014; rotate the removed Zed credentials at their providers remains operator-only"
+    next_safe_action: "Execute phase 013, then 014."
     blockers: []
     key_files: ["hook-testing-results.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "011-hook-truth-and-runtime-readmes/spec.md", "013-devin-permission-request-handler/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }

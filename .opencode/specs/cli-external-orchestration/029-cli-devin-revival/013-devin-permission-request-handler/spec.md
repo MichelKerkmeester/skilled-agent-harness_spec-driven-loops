@@ -45,6 +45,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../012-devin-hook-hardening/spec.md` (dependency — the trim-and-fallback pattern and process-test-suite shape this phase reuses); `../008-devin-hook-parity/spec.md` (dependency — built the adapters and shared cores this phase composes) |
+| **Successor** | `../014-hook-adapter-shared-boilerplate-and-claude-codex-fix/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

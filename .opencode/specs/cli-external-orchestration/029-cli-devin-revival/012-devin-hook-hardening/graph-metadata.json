@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
-  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
+  "packet_id": "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening",
+  "spec_folder": "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening",
   "parent_id": "cli-external-orchestration/029-cli-devin-revival",
   "children_ids": [],
   "manual": {
@@ -11,34 +11,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "hook adapter shared boilerplate",
-      "claude codex spec gate alias fix",
-      "firstNonBlankString claude codex",
-      "hook adapter shared boilerplate plan",
-      "hook adapter shared boilerplate tasks",
-      "hook adapter shared boilerplate checklist"
+      "devin hook hardening",
+      "devin workspace root agreement",
+      "devin spec-gate test suite",
+      "devin hook hardening plan",
+      "devin hook hardening tasks",
+      "devin hook hardening checklist",
+      "devin hook hardening summary"
     ],
     "key_topics": [
+      "devin",
       "hook",
-      "adapter",
-      "shared",
-      "boilerplate",
-      "claude",
-      "codex",
-      "spec",
-      "gate",
-      "alias",
-      "firstnonblankstring",
+      "hardening",
+      "workspace",
+      "root",
+      "agreement",
+      "spec-gate",
+      "test",
+      "suite",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      ".devin/hooks.v1.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,7 +69,25 @@
         "source": "derived"
       },
       {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Successor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -78,25 +99,19 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Two",
+        "name": "Problem Statement An",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Create",
+        "name": "If Devin",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Preserve Codex",
+        "name": "Purpose Apply",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,19 +123,13 @@
         "source": "derived"
       },
       {
-        "name": "Implement Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Create",
+        "name": "Overview Apply",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,6 +142,12 @@
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -156,53 +171,43 @@
         "source": "derived"
       },
       {
+        "name": "trim-and-fallback",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Two independent findings from the 5-iteration deep-research pass (GPT-5.6-SOL, high effort) on the cli-devin and cli-cursor hook adapter layers:",
-    "created_at": "2026-07-27T06:06:41.642Z",
-    "last_save_at": "2026-07-27T06:18:49.562Z",
-    "save_lineage": "graph_only",
+    "causal_summary": "An independent review of the 10 Devin hook adapters (built in phases 004 and 008) found four hardening gaps:",
+    "created_at": "2026-07-26T10:00:00Z",
+    "last_save_at": "2026-07-27T06:24:14.639Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5510f88c9b26e7cd811c8c446a2fb1957258537ccdf8f637e34a45f3bfe50602",
+    "source_fingerprint": "sha256:714b73e0a13c7b134d173b80fc7b4744f70836774bd7552d251135e104810200",
     "source_doc_hashes": {
-      "spec.md": "86168262648ef751a7a907cdb08be8f7869466e7e0b25f4d0d1a76a3d068e63f",
-      "plan.md": "d14c40df15732eea47528db7aeff7a270866f3a7621ae4bc8a0e3fdc5bcb1057",
-      "tasks.md": "ae46db23718d8a54dd4b12c81072957f81fba6ee9a7a89d6fde4530741380f5d",
-      "checklist.md": "0db9e4782ee385775c1373093125cbfa4eb905189268a8100d5e1e370c658d2b"
+      "spec.md": "3f9efe4b33d52eddc47311211213503ef7f9c7fe907bf0a37a3ab55f1de67467",
+      "plan.md": "8ccfb633b029cbe5a40fe9cbe5533cf1b0c45545f8be245426cfd785042bfe6b",
+      "tasks.md": "8463d1c63d082424ca715a45a5dd91da1484c474035c93b60c4bea656488779e",
+      "checklist.md": "16eb9c1765b8a1b9eb0b0f31c36d7fcc993ec131a039187bb7ee3faf02c2c62a",
+      "implementation-summary.md": "70b4ea7a96cfc7c83562024fac2e66d1d8c77e86c8b10ec2e8594ffbc8dc3142"
     },
     "last_active_child_id": null,
     "last_active_at": null

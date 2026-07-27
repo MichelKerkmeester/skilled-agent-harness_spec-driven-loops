@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../004-cursor-hook-adapter-layer/spec.md` (dependency — provides access to the `UserPromptSubmit` hook source this phase must read first) |
+| **Predecessor** | `../013-cursor-spec-gate-prebind/spec.md` (sequential); `../004-cursor-hook-adapter-layer/spec.md` (dependency — provides access to the `UserPromptSubmit` hook source this phase must read first) |
 <!-- /ANCHOR:metadata -->
 
 ---

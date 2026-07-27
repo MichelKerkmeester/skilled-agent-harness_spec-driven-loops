@@ -9,8 +9,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
     last_updated_at: "2026-07-27T07:10:00Z"
     last_updated_by: "claude"
-    recent_action: "Scaffolded phase 014 (Planned): resolve UserPromptSubmit skill-advisor-equivalent-context question, populate .cursor/rules/*.md, record agents/commands non-applicability decisions."
-    next_safe_action: "Build phase 014: read .cursor/hooks.json UserPromptSubmit hook source to resolve the open question, then populate .cursor/rules/*.md via cursor-agent rule/generate-rule."
+    recent_action: "Phase 014 scaffolded (Planned)."
+    next_safe_action: "Read UserPromptSubmit hook source; then build phase 014."
     blockers: []
     key_files: ["013-cursor-spec-gate-prebind/spec.md", "014-cursor-agents-skills-rules-parity/spec.md", ".cursor/hooks.json", ".cursor/rules/", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }

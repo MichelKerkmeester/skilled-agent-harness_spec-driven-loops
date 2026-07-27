@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
     "created_at": "2026-07-25T13:39:58Z",
-    "last_save_at": "2026-07-27T03:48:32.075Z",
+    "last_save_at": "2026-07-27T06:30:56.949Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1c2318a1f34cdfd60d40e4f6270bbf001de8260cb4451fe22fb47a9df1fbe840",
+    "source_fingerprint": "sha256:b510e658261d6d9de32ac86026e374e3e823f67f8a28ed271aeef0feae51f5f6",
     "source_doc_hashes": {
-      "spec.md": "a88984e189132964fef63d4150ec423f697c029eb816936b0905842f01583876",
-      "plan.md": "3f2066b062fc36ac2eb17f96fffb6b095b1e99b2f213446e482b075758caefed",
-      "tasks.md": "61374f91c66b0de12e7760c75c61793d699d43fa82c27c6ea0cdfb5852638b40",
-      "checklist.md": "ec798ce5a8e0b9344d0e94282a13fb2445c12028eb788f5eb5f8d54fa26af270",
-      "implementation-summary.md": "bafe801501c623e31e31aa30785d38f0667c082f71d54052f2a0c30e028ecbd5",
+      "spec.md": "57034755f0153111b3b72e2b9b626069582604fc9798c68bf4bd7a6cf173a785",
+      "plan.md": "b661cadb8df56a327b74f5f38a4876dd7ab32c7e94f22707e8266ac09b62677b",
+      "tasks.md": "efb9cdcaae12cffc3c2f2627244f4645e2eff2ed75d4b3979be3620c408a8562",
+      "checklist.md": "1fe800225465dfa5383db8282c7a54f1bff03de23bdb4586717e0648d0967ccd",
+      "implementation-summary.md": "20ac16bfe23f307d952d1e7a36f51b4014199646739120b4ec099daddac83dc0",
       "handover.md": "7c04273538f7ce5052659523daabfd7d95926385caa4b4639c301663b0cdadd8"
     },
     "last_active_child_id": null,

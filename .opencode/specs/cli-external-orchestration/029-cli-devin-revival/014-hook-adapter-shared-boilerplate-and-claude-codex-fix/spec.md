@@ -46,6 +46,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../012-devin-hook-hardening/spec.md` (dependency — established the trim-and-fallback and firstNonBlankString alias-fix precedent this phase generalizes); `../013-devin-permission-request-handler/spec.md` (sibling — independent, no shared files) |
+| **Successor** | `../015-devin-agents-skills-rules-parity/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
