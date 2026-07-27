@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/005-corpus"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:21:47Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Planned tasks.md"
     next_safe_action: "Start T001"
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-read `overview.md` §2 directory-organization principle
+- [x] T001 Re-read `overview.md` §2 directory-organization principle
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Run `package_skill.py --check`, extract `corpus/`-scoped output
-- [ ] T003 Decide and apply the `corpus/README.md` frontmatter question
-- [ ] T004 Confirm kebab-case naming for all `.mjs` files
+- [x] T002 Run `package_skill.py --check`, extract `corpus/`-scoped output — 0 corpus-specific violations
+- [x] T003 Decide and apply the `corpus/README.md` frontmatter question — decision: no fix needed, README.md files are exempt from the 5-field block per `frontmatter-templates.md` §2, zero-frontmatter and minimal-frontmatter READMEs are both valid
+- [x] T004 Confirm kebab-case naming for all `.mjs` files — all 7 files confirmed kebab-case: `relational-exemplar.mjs`, `relationship-blueprint.mjs`, `fixtures.mjs`, `fixtures-foundations.mjs`, `relational-exemplar.test.mjs`, `relationship-blueprint.schema.test.mjs`, `relationship-blueprint.test.mjs`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Run `node --test .opencode/skills/sk-design/design-interface/corpus/tests/*.test.mjs`
-- [ ] T006 Re-run `package_skill.py --check`
+- [x] T005 Run `node --test .opencode/skills/sk-design/design-interface/corpus/tests/*.test.mjs` — 47/47 tests pass
+- [x] T006 Re-run `package_skill.py --check` — `strict mode`, PASS
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

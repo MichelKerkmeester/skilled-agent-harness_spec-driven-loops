@@ -15,9 +15,13 @@ expected_leaf_resources:
 
 # MDR-006: Mode Hint Override to Motion
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a mode hint such as `motion: ...` resolves the matching mode through the hub.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -52,6 +56,8 @@ motion: make the menu transition feel bolder and more deliberate.
 
 **Expected tool surface**: read-only. The `motion` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -76,12 +82,16 @@ motion: make the menu transition feel bolder and more deliberate.
 2. If the response lacks motion strategy, inspect `design-motion/references/motion-strategy.md` loading.
 3. If the hint conflicts with future prompt wording, rerun with a transition-only prompt to isolate hint parsing from intent ambiguity.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

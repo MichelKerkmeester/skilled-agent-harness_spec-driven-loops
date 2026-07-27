@@ -17,9 +17,13 @@ expected_leaf_resources:
 
 # MG-002: Validate DESIGN.md
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that an existing `DESIGN.md` plus `tokens.json` pair routes to md-generator validation rather than interface or audit.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -54,6 +58,8 @@ Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex acc
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -78,11 +84,15 @@ Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex acc
 2. If validation resources are missing, inspect `design-md-generator/SKILL.md` `RESOURCE_MAP.VALIDATE`.
 3. If `DESIGN.md` is edited before validation, inspect the cardinal fidelity rule.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

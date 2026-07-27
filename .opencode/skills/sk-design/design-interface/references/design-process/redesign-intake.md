@@ -63,6 +63,8 @@ Capture one lock ledger for the site or product, then keep page composition deci
 
 **Amend; do not override.** If a page genuinely needs to break a MUST-SHARE axis, add an exception to the lock ledger with the page, axis, user or brand reason, scope, approver, and verification. Do not silently replace the shared value in a local file. The amendment becomes the visible contract for later pages; an unrecorded override is drift.
 
+---
+
 ## 3. AUDIT BEFORE TOUCHING
 
 Before changing layout or tokens, capture:
@@ -74,6 +76,8 @@ Before changing layout or tokens, capture:
 - Locked brand tokens, logo use, typefaces and icon style.
 - Existing IA, content blocks, reusable patterns and SEO-visible headings.
 - Components to preserve, components to retire and components to rebuild.
+
+---
 
 ## 4. NEVER SILENTLY CHANGE
 
@@ -87,6 +91,8 @@ These require explicit approval before changing:
 - Analytics ids, SEO titles, meta descriptions and structured data.
 
 If a design improvement depends on one of these changes, state it as a required decision rather than hiding it inside the visual pass.
+
+---
 
 ## 5. LANE-SPECIFIC MOVES
 
@@ -107,6 +113,8 @@ If a design improvement depends on one of these changes, state it as a required 
 - Name the broken job before replacing structure.
 - Keep recognizers users rely on, such as account areas, pricing labels or support paths.
 - Provide a migration note for any approved URL, nav or form change.
+
+---
 
 ## 6. OUTPUT CONTRACT
 

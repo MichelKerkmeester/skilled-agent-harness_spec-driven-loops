@@ -33,32 +33,26 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
       ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "changelog-template.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
@@ -71,6 +65,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/changelog/` has not been audited against `.opencode/skills/sk-doc/shared/assets/changelog-template.md`",
     "created_at": "2026-07-27T14:59:54.043Z",
-    "last_save_at": "2026-07-27T14:59:54.043Z",
+    "last_save_at": "2026-07-27T16:20:12.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36b0ff10f10515496795756a699836b33ea5217171269e472903f69ef2cf9195",
+    "source_fingerprint": "sha256:b4fff0f75e07861a4d51d68e95c0cfe79710fee4efc6ab646116ba813b9027dd",
     "source_doc_hashes": {
-      "spec.md": "4ef13016dfc00c171e86ad617788ba278d2fc52240fddf737111ed208779ad97",
+      "spec.md": "bd61708756620d944aea6da5d0f01a1c96374dc03861a54e7877c7c344fcf172",
       "plan.md": "0f2d9228ab56d3ef712866596dd0ec770a333a1c7e5ebd0354277689947aab96",
       "tasks.md": "78858ac0bb48498a2ffd3441ab7fd01537207cab1fa186cc77881016f9fa5935",
-      "checklist.md": "0017616218e4bfe3bf0c010beb06bf78ee3ccddcc15355f527f1615b2466679c",
-      "implementation-summary.md": "dfc28a79e875ab42fcd49999022a5774e18cab33702fc1704707255f196768b2"
+      "checklist.md": "073a7a3bf1b49486b5e8334a91a90b65331d5ac3d779720f69c271587841ff4f",
+      "implementation-summary.md": "844524ca7f4b2c93f6d22845a424ddb815e4b63e61eff0e2833959afb13c22cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

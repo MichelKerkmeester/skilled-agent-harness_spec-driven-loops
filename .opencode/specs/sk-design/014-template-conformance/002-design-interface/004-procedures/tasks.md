@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/004-procedures"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:20:08Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Planned tasks.md"
     next_safe_action: "Start T001"
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-read `skill-procedure-template.md` §2-§3
+- [x] T001 Re-read `skill-procedure-template.md` §2-§3
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,12 +56,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 [P] Audit `component-system-inventory.md`, `deck-direction-spec.md`
-- [ ] T003 [P] Audit `discovery-question-round.md`, `hierarchy-rhythm-review.md`
-- [ ] T004 [P] Audit `prototype-flow-spec.md`, `tweakable-design-controls.md`
-- [ ] T005 [P] Audit `variation-set.md`, `wireframe-exploration.md`
-- [ ] T006 Grep `Owning mode` across all 9 cards + `SKILL.md`
-- [ ] T007 Apply the resolved field-label decision across all 9 cards
+- [x] T002 [P] Audit `component-system-inventory.md`, `deck-direction-spec.md` — both conformant, no changes
+- [x] T003 [P] Audit `discovery-question-round.md`, `hierarchy-rhythm-review.md` — both conformant, no changes
+- [x] T004 [P] Audit `prototype-flow-spec.md`, `tweakable-design-controls.md` — both conformant, no changes
+- [x] T005 [P] Audit `variation-set.md`, `wireframe-exploration.md` — both conformant, no changes
+- [x] T006 Grep `Owning mode` across all 9 cards + `SKILL.md` — found in all 9 cards, consistent usage
+- [x] T007 Apply the resolved field-label decision across all 9 cards — decision: `Owning mode` is correct per `sk-design/shared/procedure-card-schema.md` §2; no rename applied
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run `package_skill.py --check`
+- [x] T008 Run `package_skill.py --check` — `strict mode`, PASS; also ran `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs`, 12/12 cards pass
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -77,9 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

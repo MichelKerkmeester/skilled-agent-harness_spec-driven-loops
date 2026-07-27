@@ -13,9 +13,13 @@ version: 1.0.0.0
 
 Orientation stays stable while the depth and shape of adjacent content changes.
 
+---
+
 ## 1. Regions and composition
 
 Use an opening region to establish the page promise, followed by two or more bodies whose headings occupy a consistent orienting role. Bodies may change density, media balance, and evidence type; the heading relationship, not a repeated container, makes them feel related. Close with a decision region that names what the accumulated evidence enables.
+
+---
 
 ## 2. Remaining rhythm axes
 
@@ -24,9 +28,13 @@ Use an opening region to establish the page promise, followed by two or more bod
 - **Image treatment:** let imagery enter or leave without displacing the orienting heading relationship.
 - **Reveal pattern:** expose each heading before or with its body so orientation never arrives after detail.
 
+---
+
 ## 3. Navigation and footer pairing
 
 Navigation should preview the same small set of page territories the heading rail later makes visible. The footer should compress those territories into next-step paths rather than introduce a second taxonomy or repeat every local heading.
+
+---
 
 ## 4. Applicability guard
 
@@ -34,9 +42,13 @@ Navigation should preview the same small set of page territories the heading rai
 
 **Avoid when:** the experience is a short single-task flow, headings would become redundant labels, or content order is intentionally exploratory rather than hierarchical.
 
+---
+
 ## 5. Responsive-collapse note
 
 The shared responsive gate must test heading ownership, reading order, long heading wrap, and the transition from the orienting role into each body. It decides the target-specific transformation; this card supplies no breakpoint or alternate layout rule.
+
+---
 
 ## 6. Failure modes
 
@@ -44,6 +56,8 @@ The shared responsive gate must test heading ownership, reading order, long head
 - Headings become decorative tags that do not describe the following content job.
 - The rail consumes space while bodies remain too shallow to need orientation.
 - Navigation, body headings, and footer labels express competing information models.
+
+---
 
 ## 7. Evidence and diversification stamp
 

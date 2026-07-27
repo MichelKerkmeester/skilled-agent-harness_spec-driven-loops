@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # PB-002: Context and Proof Gates
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a read-only `sk-design` advisory mode reports context and proof evidence before presenting findings as ready.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -47,6 +51,8 @@ Review the supplied dashboard screenshot description for hierarchy and spacing r
 
 **Expected tool surface**: read-only. The `interface` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -71,6 +77,8 @@ Review the supplied dashboard screenshot description for hierarchy and spacing r
 2. If `motion` or `md-generator` wins instead, check whether the prompt lost the hierarchy, rhythm, spacing, and scale terms.
 3. If unsupported readiness is claimed, route the output through `interface`'s pre-delivery gate (`design-interface/assets/interface-preflight-card.md`) before release acceptance.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
@@ -78,6 +86,8 @@ Review the supplied dashboard screenshot description for hierarchy and spacing r
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/design-interface/procedures/hierarchy-rhythm-review.md`
 - `.opencode/skills/sk-design/shared/context-loading-contract.md`
+
+---
 
 ## 5. SOURCE METADATA
 

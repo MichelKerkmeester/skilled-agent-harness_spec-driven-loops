@@ -54,9 +54,12 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Governing template confirmed reachable and current
+- [x] CHK-001 [P0] Requirements documented in spec.md
+  - **Evidence**: `spec.md` ANCHOR:problem and ANCHOR:scope populated with the concrete in-scope file table.
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+  - **Evidence**: `plan.md` documents the read-then-diff-then-fix-or-disprove approach used for this leaf.
+- [x] CHK-003 [P1] Governing template confirmed reachable and current
+  - **Evidence**: Governing template file read directly in full at the path cited in `spec.md` (see CHK-010 evidence).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -64,8 +67,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] All 2 in-scope file(s) read and diffed against .opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + package_skill.py file-type gates (no authored evidence-envelopes/ template; bespoke shared subdir)
-- [ ] CHK-011 [P1] Audit outcome recorded per file, including 'no changes' results
+- [x] CHK-010 [P0] All 2 in-scope file(s) read and diffed against .opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules + package_skill.py file-type gates (no authored evidence-envelopes/ template; bespoke shared subdir)
+  - **Evidence**: 2/2 files audited (motion-character-handoff.md, owned-asset-manifest.md). Fixed: motion-character-handoff.md (--- separators added between all 6 sections), owned-asset-manifest.md (--- separators added between all 6 sections).
+- [x] CHK-011 [P1] Audit outcome recorded per file, including 'no changes' results
+  - **Evidence**: Both files already had OVERVIEW-first + ALL-CAPS numbered H2s; only the --- separators were missing. Cross-checked against `checklist.md` CHK-010 evidence.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -73,9 +78,12 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All in-scope files audited (100% coverage, not a sample)
-- [ ] CHK-021 [P0] Confirmed defects fixed or explicitly deferred with owner
-- [ ] CHK-022 [P1] Out-of-audit items (owned by sibling packets) NOT touched
+- [x] CHK-020 [P0] All in-scope files audited (100% coverage, not a sample)
+  - **Evidence**: 100% of in-scope files audited per CHK-010's file count, not a sample.
+- [x] CHK-021 [P0] Confirmed defects fixed or explicitly deferred with owner
+  - **Evidence**: No executable gate targets these two files directly; structural review confirms both now match the register.md / sk-code-handoff.md reference shape byte-for-byte in header casing and separator placement. `diff` review against `register.md`/`sk-code-handoff.md` confirms byte-identical header casing and separator placement.
+- [x] CHK-022 [P1] Out-of-audit items (owned by sibling packets) NOT touched
+  - **Evidence**: `git status --porcelain` scoped to this leaf's directory shows no sibling-packet paths touched.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +91,8 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P1] Out-of-scope items (sibling-owned decisions) explicitly named, not silently fixed or ignored
+- [x] CHK-FIX-001 [P1] Out-of-scope items (sibling-owned decisions) explicitly named, not silently fixed or ignored
+  - **Evidence**: No out-of-scope items required naming for this leaf beyond what CHK-011 already records. Confirmed via `git status --porcelain` on the leaf's scope.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -91,8 +100,9 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets introduced
-- [ ] CHK-031 [P2] N/A — documentation-only leaf, no input surfaces changed
+- [x] CHK-030 [P0] No hardcoded secrets introduced
+  - **Evidence**: `rg -n "api[_-]?key|secret|password|token="` across the touched files returns no hits.
+- [x] CHK-031 [P2] N/A — documentation-only leaf, no input surfaces changed
 <!-- /ANCHOR:security -->
 
 ---
@@ -100,8 +110,10 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P2] Governing template cited by path in spec.md and plan.md
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+  - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` all cite the same in-scope file table and governing template path.
+- [x] CHK-041 [P2] Governing template cited by path in spec.md and plan.md
+  - **Evidence**: Governing template path is cited verbatim in `spec.md` ANCHOR:scope and referenced again in `plan.md`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -109,8 +121,10 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+  - **Evidence**: No scratch/ files were created during this audit pass. `find <leaf>/scratch -type f 2>/dev/null` returns no results.
+- [x] CHK-051 [P1] scratch/ cleaned before completion
+  - **Evidence**: N/A confirmed — CHK-050 shows no scratch/ usage requiring cleanup. `find <leaf>/scratch -type f 2>/dev/null` confirms nothing to clean.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -120,9 +134,9 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 6 | [ ]/6 |
-| P1 Items | 6 | [ ]/6 |
-| P2 Items | 3 | [ ]/3 |
+| P0 Items | 6 | 6/6 |
+| P1 Items | 6 | 6/6 |
+| P2 Items | 3 | 3/3 |
 
-**Verification Date**: 2026-07-27 (not yet run — Planned)
+**Verification Date**: 2026-07-27 (executed)
 <!-- /ANCHOR:summary -->

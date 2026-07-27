@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/002-references"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:13:03Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Planned spec with confirmed and corrected defect findings"
     next_safe_action: "Run exhaustive per-file audit across all 29 reference files"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance/002-design-interface` |
@@ -128,7 +128,7 @@ Read every one of the 29 files in full against `skill-reference-template.md` §1
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should `refero-tools.md`, `aesthetics/README.md`, `resource-loading-notes.md`, and `corpus-map.md` be consolidated into larger sibling files, or kept standalone with a documented under-200-line exception (e.g., they are intentionally thin pointers)?
+- **Resolved**: `refero-tools.md` was structurally fixed (added `## 1. OVERVIEW`, fixed a broken `tool_surface.md` -> `tool-surface.md` link), so it is no longer a consolidation candidate. `aesthetics/README.md` (45 lines) and `foundations/corpus-map.md` (51 lines) remain flagged as consolidation candidates — both are already structurally conformant (5-field frontmatter, OVERVIEW-first, ALL-CAPS numbered sections), so under-200-line status is the only open item. Recommend keeping both standalone (they serve distinct navigational/index roles their siblings don't duplicate) unless the operator wants a stricter line-count policy. `resource-loading-notes.md` (36 lines) was fixed for a missing intro sentence and 2 missing `---` separators; it remains thin by design (a rationale appendix to `SKILL.md` Section 2) and is not a consolidation candidate.
 <!-- /ANCHOR:questions -->
 
 ---

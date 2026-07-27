@@ -29,7 +29,7 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 ---
 
-## 2. Color Tokens
+## 2. COLOR TOKENS
 
 - **Canvas**: the dominant surface color behind content.
 - **Surface**: cards, panels, sheets, and contained regions placed on the canvas.
@@ -42,7 +42,7 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 ---
 
-## 3. Typography Tokens
+## 3. TYPOGRAPHY TOKENS
 
 - **Display**: large expressive text for moments of identity.
 - **Heading**: structural section titles and page hierarchy.
@@ -54,7 +54,7 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 ---
 
-## 4. Layout and Spacing Tokens
+## 4. LAYOUT AND SPACING TOKENS
 
 - **Grid**: the macro alignment system.
 - **Cluster**: a group of related controls or content items.
@@ -66,7 +66,7 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 ---
 
-## 5. Elevation and Shape Tokens
+## 5. ELEVATION AND SHAPE TOKENS
 
 - **Radius**: corner treatment and softness.
 - **Shadow**: depth cue, not decoration by default.
@@ -78,7 +78,7 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 ---
 
-## 6. Motion and State Tokens
+## 6. MOTION AND STATE TOKENS
 
 - **Duration**: time a transition takes.
 - **Easing**: acceleration curve and perceived weight.
@@ -89,7 +89,7 @@ Use these terms when naming or critiquing tokens. Children own the detailed math
 
 ---
 
-## 7. Token Quality Checks
+## 7. TOKEN QUALITY CHECKS
 
 - Each token should have a role, not just a value.
 - Similar tokens should collapse unless they express distinct meaning.

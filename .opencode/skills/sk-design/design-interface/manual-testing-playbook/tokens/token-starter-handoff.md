@@ -10,13 +10,13 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: COLOR
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/color/oklch-workflow.md
-  - references/color/palette-theming.md
-  - assets/token-starter.md
-  - references/type/typography-system.md
-  - references/layout/layout-responsive.md
+  - references/foundations/color/oklch-workflow.md
+  - references/foundations/color/palette-theming.md
+  - assets/foundations/token-starter.md
+  - references/foundations/type/typography-system.md
+  - references/foundations/layout/layout-responsive.md
   - ../shared/design-token-vocabulary.md
   - ../shared/sk-code-handoff.md
 ---
@@ -35,8 +35,8 @@ Scaffold a token system for a restrained product UI with a teal brand hue and da
 
 ## Expected Process
 
-1. Route to `foundations` first. The token scaffold is filled here before any `sk-code` implementation handoff.
-2. Read `../shared/register.md` first, then load `assets/token-starter.md`.
+1. Recognize this as `interface`'s `foundations` static-system subworkflow. The token scaffold is filled here before any `sk-code` implementation handoff.
+2. Read `../shared/register.md` first, then load `assets/foundations/token-starter.md`.
 3. Set the register and copy the color strategy and density answers into the scaffold.
 4. Fill the OKLCH ramp, type scale and spacing scale, pulling the brand hue from evidence rather than a default.
 5. Fill the dark-mode block as its own surface system rather than inverted light values.

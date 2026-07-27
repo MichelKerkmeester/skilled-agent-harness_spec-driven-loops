@@ -14,24 +14,26 @@ version: 1.0.0.0
 
 # Brief to Dials
 
-Before choosing a palette or a layout, read the brief into a small set of working values. The aesthetic direction in `design-principles.md` decides what is distinctive. This intake decides how much variance, motion, and density the surface should carry, so the direction has a calibrated starting point instead of a silent default. Three dials hold those values: variance, motion, and density. Set them from the brief, state them, and let every downstream layout, motion, and density choice answer to them.
-
-This is an intake, not a chooser. The dials are working calibration the agent sets by reading the brief, never a menu of styles the user picks from and never a preset that survives across briefs. A choosable style axis is exactly the templated default the skill exists to resist. Read the brief, set the values, build, and adjust the values conversationally if the work calls for it.
-
-The posture decision comes first and it lives elsewhere. Whether the surface is a Brand surface (design is the product) or a Product surface (design serves the product) is set in `../../../shared/register.md`, and that decision gates density, the motion budget, color dosage, copy register, anti-slop strictness, and audit severity. This intake defers the posture to the register and works the three dials within it. Set the register first, then read the dials.
+Before choosing a palette or a layout, read the brief into three working dials, variance, motion, and density, so the direction has a calibrated starting point instead of a silent default.
 
 ---
 
 ## 1. OVERVIEW
 
-### Core principle
+### Core Principle
 
 A brief carries signals about how expressive, how kinetic, and how packed a surface should be. The model tends to ignore those signals and reach for one middle-of-the-road default. The Design Read makes the signals explicit: name the subject and the page's one job, read the posture from the register, then set three dials the rest of the work answers to.
 
-### When to use
+This is an intake, not a chooser. The dials are working calibration the agent sets by reading the brief, never a menu of styles the user picks from and never a preset that survives across briefs. A choosable style axis is exactly the templated default the skill exists to resist. Read the brief, set the values, build, and adjust the values conversationally if the work calls for it.
+
+### When to Use
 
 - At the start of any interface task, after the register posture is set and before the token system is brainstormed.
 - When a brief is ambiguous about how loud or dense the surface should be, the dials force the ambiguity into a stated value rather than a silent guess.
+
+### Prerequisites
+
+The posture decision comes first and it lives elsewhere. Whether the surface is a Brand surface (design is the product) or a Product surface (design serves the product) is set in `../../../shared/register.md`, and that decision gates density, the motion budget, color dosage, copy register, anti-slop strictness, and audit severity. This intake defers the posture to the register and works the three dials within it. Set the register first, then read the dials.
 
 ### The dials, named once
 

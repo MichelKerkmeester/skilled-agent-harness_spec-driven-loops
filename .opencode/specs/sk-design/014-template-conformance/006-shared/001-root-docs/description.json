@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/006-shared/001-root-docs",
   "description": "`.opencode/skills/sk-design/shared/ (11 root markdown files)` has not been audited against `no single authored template for loose shared-root",
   "keywords": [
@@ -17,7 +18,7 @@
     "loose",
     "shared-root"
   ],
-  "lastUpdated": "2026-07-27T14:59:40.052Z",
+  "lastUpdated": "2026-07-27T16:17:17.053Z",
   "specId": "001",
   "folderSlug": "root-docs",
   "parentChain": [
@@ -26,6 +27,5 @@
     "006-shared"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

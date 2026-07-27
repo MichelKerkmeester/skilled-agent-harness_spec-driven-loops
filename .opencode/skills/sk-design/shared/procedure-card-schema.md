@@ -15,7 +15,25 @@ version: 1.0.0.1
 
 Private procedure cards are internal reference material for the existing `sk-design` modes. They add repeatable process without adding public skill identities, public modes, or tool requirements beyond the owning mode's allowed surface.
 
-## 1. Card File Contract
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Define the private procedure card format so `sk-design` modes can add repeatable process without minting a public skill identity, public mode, or extra tool requirement.
+
+### When To Use
+
+Use when authoring, reviewing, or lint-checking a private procedure card under a mode's `procedures/` folder or `shared/procedures/`.
+
+### Core Principle
+
+A procedure card adds process inside an already-selected public mode; it never becomes a second routable identity.
+
+---
+
+## 2. CARD FILE CONTRACT
 
 Each card is a private markdown file under an owning mode's `procedures/` folder or under `shared/procedures/` when it coordinates multiple modes.
 
@@ -46,7 +64,9 @@ Every card must use this order:
 4. Optional numbered sections for read-only compatibility, tool boundary, placement rationale, related cards, or conflict rules when applicable.
 5. Numbered `PROCEDURE` section with the operating steps.
 
-## 2. Required Fields
+---
+
+## 3. REQUIRED FIELDS
 
 Every private card must use these fields in this order:
 
@@ -60,7 +80,9 @@ Every private card must use these fields in this order:
 | Proof gate | Evidence required before the mode can say the card was followed. |
 | Privacy rule | Statement that the card is private implementation guidance and does not create a public OpenCode skill or mode. |
 
-## 3. Optional Fields
+---
+
+## 4. OPTIONAL FIELDS
 
 Use these only when they materially improve reviewability:
 
@@ -72,7 +94,9 @@ Use these only when they materially improve reviewability:
 | Read-only compatibility | Required for `design-interface` and `design-motion` cards. State that the mode may cite the card and return guidance or handoff content without writing files or running commands. |
 | Tool boundary | Required for `design-md-generator` cards. State the mutating permission boundary and that the card does not grant those permissions to read-only modes. |
 
-## 4. Required-Field Lint
+---
+
+## 5. REQUIRED-FIELD LINT
 
 Rules 1-7 and 9 below are automated: `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs` checks every card under any mode's `procedures/` folder and exits non-zero on a failure. Rules 8 and 10 are semantic judgment calls the script does not attempt to automate (it says so explicitly in its output) — review those two by hand before publishing or updating a card.
 
@@ -93,7 +117,9 @@ For each procedure card:
 10. Read-only modes do not gain Write, Edit, Bash, or execution authority through the card.
 ```
 
-## 5. Worked Example
+---
+
+## 6. WORKED EXAMPLE
 
 ```markdown
 ---
@@ -125,7 +151,9 @@ Private procedure card for applying the existing design-interface accessibility 
 | Privacy rule | This is private audit guidance and not a public accessibility skill. |
 ```
 
-## 6. Selection Rules
+---
+
+## 7. SELECTION RULES
 
 1. The public `sk-design` hub chooses a current mode first through `mode-registry.json`.
 2. The selected mode evaluates only its own `procedures/` folder plus shared cards whose trigger names that mode.
@@ -134,7 +162,9 @@ Private procedure card for applying the existing design-interface accessibility 
 5. If no card matches, the mode follows its existing `SKILL.md` behavior and states that no private procedure card applied.
 6. If a request spans multiple modes, the parent hub still decides the bundle. Cards do not change public routing.
 
-## 7. Source Adaptation Rules
+---
+
+## 8. SOURCE ADAPTATION RULES
 
 1. Cite only the external source filename.
 2. Preserve intent, not phrasing.
@@ -142,11 +172,15 @@ Private procedure card for applying the existing design-interface accessibility 
 4. Do not include long source excerpts, starter code, command snippets, or proprietary prompt text from external files.
 5. Review cards by comparing purpose, trigger, output contract, and proof gate against the source theme.
 
-## 8. Shared Placement Rule
+---
+
+## 9. SHARED PLACEMENT RULE
 
 Use `shared/procedures/` only when the procedure genuinely coordinates two or more modes and cannot be owned by one mode without duplicating orchestration. Every shared card must name one owning reviewer who is responsible for keeping the card aligned with the mode contracts.
 
-## 9. Publication Checklist
+---
+
+## 10. PUBLICATION CHECKLIST
 
 Before publishing or updating a card, verify:
 

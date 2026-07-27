@@ -13,6 +13,10 @@ version: 1.0.0.0
 
 # sk-design Surface Router — per-intent leaf sets
 
+Maps a request's design intent to the packet-local leaf resources the selected `sk-design` mode should load.
+
+---
+
 ## 1. OVERVIEW
 
 This is sk-design's second-layer (surface) router. The hub selects a workflow
@@ -120,6 +124,8 @@ RESOURCE_MAP = {
     ],
 }
 ```
+
+---
 
 ## 4. HOW TO READ THIS
 

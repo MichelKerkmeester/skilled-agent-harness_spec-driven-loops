@@ -11,6 +11,8 @@ description: "Cross-mode Python and Node checkers plus their node:test coverage,
 
 `shared/scripts/` owns the deterministic gates and row-parsing helpers reused across sk-design modes, plus the `node:test` coverage for the two largest checkers. Python checkers here validate shared reference documents (`numeric-design-laws.md`, `variant-parameter-contract.md` and the proof-of-application card), while the Node checkers validate procedure cards and the `/interface:*` command surface itself against `command-metadata.json`, `mode-registry.json` and `hub-router.json`.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -19,15 +21,19 @@ description: "Cross-mode Python and Node checkers plus their node:test coverage,
 | `numeric_law_check.py` | Completeness and uniqueness gate for `shared/numeric-design-laws.md`'s Law Index table: every row needs all six required cells filled and no duplicate values. |
 | `variant_parameter_check.py` | Schema gate for `shared/assets/variant-parameter-contract.md`: every variant knob row must have its required cells filled and name every canonical transport. |
 | `proof_check.py` | Proof-of-application gate for a filled context-loading notes file or `shared/assets/proof-of-application-card.md`: requires REGISTER/DIALS, CONTRAST PAIRS, INTERFACE PREFLIGHT, and AUDIT EVIDENCE fields plus a READY verdict. |
-| `procedure-card-schema-check.mjs` | Automates rules 1-7 and 9 of the Required-Field Lint in `shared/procedure-card-schema.md` Section 4 against every `procedures/*.md` card: frontmatter fields and the seven required field rows (Purpose, Owning mode, Source reference, Trigger, Output contract, Proof gate, Privacy rule). Rules 8 and 10 stay a called-out manual review item. |
+| `procedure-card-schema-check.mjs` | Automates rules 1-7 and 9 of the Required-Field Lint in `shared/procedure-card-schema.md` Section 5 against every `procedures/*.md` card: frontmatter fields and the seven required field rows (Purpose, Owning mode, Source reference, Trigger, Output contract, Proof gate, Privacy rule). Rules 8 and 10 stay a called-out manual review item. |
 | `design-command-surface-check.mjs` | Validates the `/interface:*` command surface: every command in `command-metadata.json` carries its required fields, the auto/confirm YAML assets exist and match the registry, and intent-signal keys stay in sync with `design-interface/SKILL.md`. |
 | `design-command-surface-check.test.mjs` | `node:test` coverage for `design-command-surface-check.mjs`'s exported helpers (`commandSetForModes`, `validateMetadata`, `validateDiscriminator`, and related parsers). |
 | `interface-command-contract.test.mjs` | `node:test` coverage asserting the canonical `/interface:*` commands resolve to stable internal modes and that each command surface exposes its required output blocks (Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff). |
+
+---
 
 ## 3. CONSUMERS
 
 - `design-interface/scripts/baseline_rhythm_check.py` and `naming_doc_check.py` import `md_table.py`.
 - `shared/numeric-design-laws.md` and `shared/context-loading-contract.md` document `numeric_law_check.py` and `proof_check.py` as their own verification commands.
+
+---
 
 ## 4. VALIDATION
 
@@ -42,6 +48,8 @@ node --test .opencode/skills/sk-design/shared/scripts/*.test.mjs
 ```
 
 Exit 0 means satisfied, exit 1 means a violation, exit 2 means a usage, read, or parse error for the Python checkers. The Node checkers accept `--json` where noted in-file.
+
+---
 
 ## 5. RELATED
 

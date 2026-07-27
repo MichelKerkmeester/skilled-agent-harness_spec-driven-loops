@@ -14,7 +14,7 @@ version: 1.5.0.3
 
 # Variation Diversity (Seed of Thought)
 
-A debiasing mechanism for the one moment this skill is most likely to fail: when a brief asks for several directions at once. Read it only when producing two or more design directions. It does not replace the grounded, anti-default process in [`design-principles.md`](./design-principles.md). It protects that process from the median pull. When a single direction is wanted, this file does not apply.
+A debiasing mechanism for the one moment this skill is most likely to fail: when a brief asks for several directions at once. Read it only when producing two or more design directions.
 
 ---
 
@@ -28,6 +28,7 @@ Asked for five variations, a model tends to return five versions of the same saf
 
 - Whenever the brief asks for more than one direction, a set of options, or "a few" layouts to compare.
 - As the debiasing engine behind the pre-build direction gate in [`real-ui-loop.md`](./real-ui-loop.md) Section 7, which sketches and critiques two or three brief-specific directions before building.
+- Does not replace the grounded, anti-default process in [`design-principles.md`](./design-principles.md); it protects that process from the median pull. When a single direction is wanted, this file does not apply.
 
 ### The Role of the Seed
 

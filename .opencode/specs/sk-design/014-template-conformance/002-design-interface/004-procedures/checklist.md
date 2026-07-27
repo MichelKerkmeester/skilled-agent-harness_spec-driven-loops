@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/004-procedures"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:20:08Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Planned checklist.md"
     next_safe_action: "Verify CHK items once audit runs"
@@ -45,8 +45,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-001 [P0] Requirements documented in spec.md — see `spec.md` Section 4
+- [x] CHK-002 [P0] Technical approach defined in plan.md — see `plan.md`
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,8 +54,8 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] All 9 cards audited with recorded verdict
-- [ ] CHK-011 [P1] Field-label question resolved with operator sign-off
+- [x] CHK-010 [P0] All 9 cards audited with recorded verdict — all 9 conformant, verified by `node procedure-card-schema-check.mjs` 12/12 pass hub-wide
+- [x] CHK-011 [P1] Field-label question resolved — `Owning mode` confirmed correct per `sk-design/shared/procedure-card-schema.md` §2, not an operator sign-off item since the local schema is already authoritative and machine-checked
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] `package_skill.py --check` passes
+- [x] CHK-020 [P0] `package_skill.py --check` passes — `strict mode`, PASS
 <!-- /ANCHOR:testing -->
 
 ---
@@ -87,7 +87,7 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized — `spec.md` Status=Complete, `tasks.md` 8/8 tasks marked x
 <!-- /ANCHOR:docs -->
 
 ---
@@ -95,8 +95,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only — no `scratch/` files created
+- [x] CHK-051 [P1] scratch/ cleaned before completion — not applicable, no `scratch/` dir was ever created
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -106,9 +106,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 3 | 0/3 |
-| P1 Items | 3 | 0/3 |
+| P0 Items | 3 | 3/3 |
+| P1 Items | 3 | 3/3 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: pending
+**Verification Date**: 2026-07-27
 <!-- /ANCHOR:summary -->

@@ -10,10 +10,10 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: LAYOUT
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/layout/layout-responsive.md
-  - references/data-viz.md
+  - references/foundations/layout/layout-responsive.md
+  - references/foundations/data-viz.md
 ---
 
 **Exact prompt**
@@ -30,8 +30,8 @@ Design the data visualization layer for a finance dashboard: a metric trend, a c
 
 ## Expected Process
 
-1. Route to `foundations` first. Chart encoding and color-for-data decisions resolve here before any `sk-code` implementation handoff.
-2. Load `references/data-viz.md`.
+1. Recognize this as `interface`'s `foundations` static-system subworkflow. Chart encoding and color-for-data decisions resolve here before any `sk-code` implementation handoff.
+2. Load `references/foundations/data-viz.md`.
 3. Match each chart to the question rather than the dataset shape, trend to a line, comparison to a bar, density to a sequential scale.
 4. Choose the color-for-data scale type per question and keep data color separate from brand color.
 5. Align the numeric table with right-aligned columns and tabular numerals.

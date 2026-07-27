@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/006-shared/007-authored-brand",
   "description": "`.opencode/skills/sk-design/shared/authored-brand/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md",
   "keywords": [
@@ -14,7 +15,7 @@
     "references",
     "overview"
   ],
-  "lastUpdated": "2026-07-27T14:59:40.057Z",
+  "lastUpdated": "2026-07-27T16:17:17.054Z",
   "specId": "007",
   "folderSlug": "authored-brand",
   "parentChain": [
@@ -23,6 +24,5 @@
     "006-shared"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

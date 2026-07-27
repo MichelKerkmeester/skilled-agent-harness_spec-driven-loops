@@ -33,7 +33,7 @@
       "holds"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "implementation-summary.md",
       ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
@@ -158,6 +158,12 @@
         "source": "derived"
       },
       {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -165,12 +171,6 @@
       },
       {
         "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files (`interface-preflight-card.md`, 210 lines; `foundations/contrast-pair-inventory.md`, 55 lines; `foundations/token-starter.md`, 147 lines), governed by `skill-asset-template.md`",
     "created_at": "2026-07-27T14:56:08.126Z",
-    "last_save_at": "2026-07-27T15:05:15.609Z",
+    "last_save_at": "2026-07-27T16:18:26.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff8ed652f9af227d56ca51c3f8c87db7b48e639866e4e908adad884370236b4a",
+    "source_fingerprint": "sha256:07126d8197fb710b6385397b849bc450207e2bc727c302427383b290f1618ee0",
     "source_doc_hashes": {
-      "spec.md": "8adb163f7c3307816be3354a2aeac041c3a02ab3710c242526244dbc63e86db2",
-      "plan.md": "ef087abb194261eee5827d3bc1d240d1b4968670bf12bc66419b1768f4652574",
-      "tasks.md": "df879c40d1d5100a58e33bba184298197342c1e8610ce751325236e885300a99",
-      "checklist.md": "cbe2c572486337618a6a8177655012e160598a78f908c4295de06c2720beaae4",
-      "implementation-summary.md": "03585b95ad643578192c2199635f2e8daa19e9398eb3812eca8282cbf54e178c"
+      "spec.md": "339f4d8cc539d47bc869027a34568f2dfda6de8454f25ae0997a055a7bd127a1",
+      "plan.md": "2604e0eb9fc454f4b77cb1611f492a69bf51ebdc0596b4597bbafded7e62cefa",
+      "tasks.md": "68545b920c783602a35f7ffa859983cae1ec3122c2dc1c947fe8c700a0b03454",
+      "checklist.md": "49601c84e6c6e7bf82158bfd326ceb80f23f2d3c60794b107e3ad1d0b80fd97d",
+      "implementation-summary.md": "eb91c943fc3efd1cedf6461829f4b573f57d65bb022beecab6c8bd2cdea268b3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Data Visualization Foundations
 
-Chart-type selection, axis and encoding discipline, color-for-data scales, sparklines and data-table alignment. This reference owns how a static system encodes quantitative content. It does not re-derive OKLCH channels, contrast math or general palette roles, which live in the color references.
+This reference owns how a static system encodes quantitative content: chart-type selection, axis and encoding discipline, color-for-data scales, sparklines and data-table alignment. It does not re-derive OKLCH channels, contrast math or general palette roles, which live in the color references.
 
 ---
 

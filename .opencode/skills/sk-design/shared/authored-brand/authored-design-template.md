@@ -14,11 +14,31 @@ version: 1.0.0.0
 
 This template produces two authored-only exports: `AUTHORED-DESIGN.md` and `authored-tokens.json`. Neither filename, schema id, nor value record overlaps the measured `DESIGN.md`, `tokens.json`, or `styles/` corpus.
 
-## 1. Input contract
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Give the Brand-First Authoring Lane one fixed template pair so an authored brand proposal never collides with the measured `DESIGN.md`, `tokens.json`, or `styles/` corpus.
+
+### When To Use
+
+Use when rendering `AUTHORED-DESIGN.md` or `authored-tokens.json` from a product description, or when reviewing whether an authored export keeps its provenance fields.
+
+### Core Principle
+
+Every authored value carries its own origin and provenance; nothing here is measured evidence until a signed reviewed-conversion record says otherwise.
+
+---
+
+## 2. INPUT CONTRACT
 
 Start from one short product description that names the product, audience, desired posture, practical constraints, and any explicit exclusions. Do not treat a reference site, screenshot estimate, or generated value as measured evidence.
 
-## 2. `AUTHORED-DESIGN.md` template
+---
+
+## 3. `AUTHORED-DESIGN.md` TEMPLATE
 
 ```markdown
 ---
@@ -61,7 +81,9 @@ authoredAt: "[YYYY-MM-DD]"
 
 Add rows as needed, but never merge multiple values into a row that has only one provenance record. Every palette, type, and voice value needs its own origin and provenance cells.
 
-## 3. `authored-tokens.json` template
+---
+
+## 4. `authored-tokens.json` TEMPLATE
 
 ```json
 {
@@ -106,7 +128,9 @@ Add rows as needed, but never merge multiple values into a row that has only one
 }
 ```
 
-## 4. Generation rule
+---
+
+## 5. GENERATION RULE
 
 Generate at least one palette value, one type-system value, and one voice value from the supplied description. Prefer semantic roles over a preset catalog. Record uncertainty honestly; `origin: authored` is immutable while the value remains in either authored export.
 

@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # MDR-002: Foundations-Flavored Token Routing
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a static visual-system request (the kind that used to route to the retired `foundations` mode) still routes through the `sk-design` hub to `workflowMode: interface`, since the `design-foundations` capability folded into `interface`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -41,6 +45,8 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 
 **Expected tool surface**: read-only. The `interface` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -64,11 +70,15 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 1. If `motion` or `md-generator` wins, check whether the prompt was accidentally rewritten to emphasize temporal or extraction language.
 2. If no color/type/layout/token resource is cited, that is the known `RESOURCE_MAP` gap above, not a routing failure — file it separately rather than blocking this scenario's PASS.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

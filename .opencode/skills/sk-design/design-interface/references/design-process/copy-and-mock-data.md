@@ -14,11 +14,7 @@ version: 1.0.0.0
 
 # Copy and Mock Data
 
-A page can have a grounded palette, a clean layout, and a real signature, and still announce itself as AI-generated through its words and its fake data. "Jane Doe" in a testimonial, `99.99%` in a stat block, "Elevate your workflow" in a headline, a lorem paragraph in a feature card, and three picsum images all seeded `image`, each of those is a content default the model reaches for when it stops thinking about the words and starts filling space.
-
-This is the content gate. It runs alongside the layout gate in `mechanical-defaults.md` and the aesthetic direction in `design-principles.md`. Copy is design material, not decoration, so it gets the same intentionality as spacing and color. Where this reference gives a rule, it is a pass or fail rule, run it before calling the work done. The audit mode references this gate rather than restating it, so author the content rules here once.
-
-Copy register inherits the Brand-vs-Product posture from `../../../shared/register.md`. A Brand surface carries voice and identity in the words, a Product surface stays plain and functional. The rules below hold for both, the posture only sets how expressive the one register is allowed to be.
+A page can have a grounded palette, a clean layout, and a real signature, and still announce itself as AI-generated through its words and its fake data. This is the content gate that catches those defaults before delivery.
 
 ---
 
@@ -26,7 +22,9 @@ Copy register inherits the Brand-vs-Product posture from `../../../shared/regist
 
 ### What this gate is for
 
-The model has a stable set of content reflexes. It writes marketing cliche when it should write a plain claim. It invents engineering-precise numbers the brand never published. It mixes a technical register, an editorial register, and a marketing register in one composition. It fills empty space with lorem rather than draft copy. It seeds every placeholder image with the same generic word. Each of those is mechanical, and a pass or fail check catches it.
+"Jane Doe" in a testimonial, `99.99%` in a stat block, "Elevate your workflow" in a headline, a lorem paragraph in a feature card, and three picsum images all seeded `image`, each of those is a content default the model reaches for when it stops thinking about the words and starts filling space. The model has a stable set of content reflexes: it writes marketing cliche when it should write a plain claim, invents engineering-precise numbers the brand never published, mixes a technical register, an editorial register, and a marketing register in one composition, fills empty space with lorem rather than draft copy, and seeds every placeholder image with the same generic word. Each of those is mechanical, and a pass or fail check catches it.
+
+This gate runs alongside the layout gate in `mechanical-defaults.md` and the aesthetic direction in `design-principles.md`. Copy is design material, not decoration, so it gets the same intentionality as spacing and color. Where this reference gives a rule, it is a pass or fail rule, run it before calling the work done. The audit mode references this gate rather than restating it, so author the content rules here once.
 
 ### How to run it
 
@@ -35,6 +33,10 @@ Before declaring any task done, re-read every visible string on the surface and 
 ### What it does not cover
 
 This gate does not cover layout, hero line count, bento math, or eyebrows, that is `mechanical-defaults.md`. It does not decide the aesthetic direction or the signature, that is `design-principles.md`. It covers the words, the mock data, and the placeholder imagery, and where those reveal the page as machine-made.
+
+### Prerequisites
+
+Copy register inherits the Brand-vs-Product posture from `../../../shared/register.md`. A Brand surface carries voice and identity in the words, a Product surface stays plain and functional. The rules below hold for both, the posture only sets how expressive the one register is allowed to be.
 
 ---
 

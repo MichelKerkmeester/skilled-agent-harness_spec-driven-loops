@@ -33,32 +33,26 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
       ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "feature-catalog-template.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md",
         "source": "derived"
       },
       {
@@ -71,6 +65,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/feature-catalog/` has not been audited against `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md`",
     "created_at": "2026-07-27T14:59:54.390Z",
-    "last_save_at": "2026-07-27T14:59:54.390Z",
+    "last_save_at": "2026-07-27T16:17:31.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddbf1c6f0a309ff84ea6a22582c6616f73f13c7045af854ecec6dd84f71f155c",
+    "source_fingerprint": "sha256:7b8afd344d46d3f43c4bffd74571b96d74b396fff0b86dee2c891f9905414ced",
     "source_doc_hashes": {
-      "spec.md": "12ceb7ae3ed9a6b21bfaad6a306f81d808a7b37c3f0325a301cbbadea1fc5dc3",
+      "spec.md": "f548ec8b10740d642213af39d4be380665b73c1bdfd88e856aece2e702d6254a",
       "plan.md": "ee5aec93086e4326a254f6cdecd673bcb04eb86e5090a79343c243014e94590a",
       "tasks.md": "c76ccbcefa3823e2033ee01e7a58b9e4ad3c4c402574d2d8e984eeae97a77456",
-      "checklist.md": "59bd72504f7c014b994a9ab3f2b981c51bceb9a23dd530d896d0bb769af42a04",
-      "implementation-summary.md": "6d49e789a32c2cbf4c22457b9cfedc7d018d677dcd668c6689af8b1a078b5d48"
+      "checklist.md": "d623f7b1a21b36c0a75a58717ddae890be88da04e9d0872e6389c2c1c727ebe0",
+      "implementation-summary.md": "db63bff211543f08d0a1c26b4b0d69b082133c0a54052243038b71c2c2afd9d3"
     },
     "last_active_child_id": null,
     "last_active_at": null

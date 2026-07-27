@@ -12,9 +12,13 @@ version: 1.0.0.0
 
 # Brand-First Authoring Lane
 
+---
+
 ## 1. OVERVIEW
 
 Use this lane when the operator explicitly wants a new brand direction authored from a product description. It creates proposals, not evidence. The measured extraction pipeline and style corpus remain separate authorities.
+
+---
 
 ## 2. INPUTS AND OUTPUTS
 
@@ -28,6 +32,8 @@ Required outputs:
 
 Do not add a command or mode for this lane. It is a shared procedure used by the existing Interface and Foundations owners when the operator explicitly requests authored brand creation.
 
+---
+
 ## 3. AUTHORING WORKFLOW
 
 1. Preserve the input description verbatim as `sourceDescription`.
@@ -36,6 +42,8 @@ Do not add a command or mode for this lane. It is a shared procedure used by the
 4. Validate the complete record with `validateAuthoredBrand`.
 5. Render `AUTHORED-DESIGN.md` and refresh both authored exports through `refreshAuthoredExports`.
 6. Report the two authored filenames and the unresolved validation work. Never describe the result as measured or verified.
+
+---
 
 ## 4. OVERWRITE POLICY
 
@@ -50,6 +58,8 @@ An authored run may create or replace only `AUTHORED-DESIGN.md` and `authored-to
 - any third filename.
 
 The writer performs path validation before filesystem I/O. It exposes no measured writer and no conversion function. If a caller supplies a measured path, the run stops and the existing measured file remains byte-unchanged.
+
+---
 
 ## 5. REVIEWED-CONVERSION PROCEDURE
 
@@ -110,6 +120,8 @@ The machine-readable companion record uses:
 
 After the checklist passes human review, the existing measured owner may manually recreate the approved value from the attached measurement evidence. Preserve the conversion record as lineage. Do not copy the authored record wholesale, strip its provenance, or use an automated `verified=true` flag.
 
+---
+
 ## 6. HARD BOUNDARY
 
 The invariant is structural:
@@ -121,6 +133,8 @@ There is no automatic edge from authored exports to measured artifacts. The only
 `authored value -> signed reviewed-conversion record -> independent measurement evidence -> existing measured owner`
 
 Missing checklist, missing signature, missing attestation, missing evidence, or an evidence-free verified flag blocks the bridge. The authored lane never writes the measured destination, even after review.
+
+---
 
 ## 7. CLEAN-ROOM AND ASSET BOUNDARY
 

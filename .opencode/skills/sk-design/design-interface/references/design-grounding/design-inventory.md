@@ -14,7 +14,7 @@ version: 1.5.0.7
 
 # Design Inventory (reuse-ground or critique-against)
 
-How to put a real, fully-realized design system to work without letting it turn the skill into a chooser. When you have access to a real design system you own, read one matching system live. That system is either the ground to reuse or the named default to deviate from. It is never a menu of vibes to pick.
+How to put a real, fully-realized design system to work as reuse-ground or the named default to critique against, without turning the skill into a chooser.
 
 ---
 

@@ -10,9 +10,13 @@ expected_leaf_resources: []
 
 # AI-002: Pure Code Routes to sk-code
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that `sk-design` does not false-fire on a pure code prompt with no visual, UI, motion, audit, or extraction intent.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -38,6 +42,8 @@ Refactor the parseExecutorConfig function in a TypeScript config loader to throw
 
 **Expected advisor behavior**: route elsewhere. Expected top-1 is `sk-code`; `sk-design` must not be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -62,10 +68,14 @@ Refactor the parseExecutorConfig function in a TypeScript config loader to throw
 2. If the hub was invoked manually despite advisor losing, discard the run as operator error and rerun from advisor-first flow.
 3. If the prompt was rewritten to mention a UI surface, restore the exact prompt.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
+
+---
 
 ## 5. SOURCE METADATA
 

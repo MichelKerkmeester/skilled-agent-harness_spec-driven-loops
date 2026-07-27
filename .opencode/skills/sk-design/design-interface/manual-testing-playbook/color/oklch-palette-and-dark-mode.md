@@ -10,10 +10,10 @@ contextType: reference
 version: 1.0.0.1
 expected_intent: COLOR
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
-  - references/color/oklch-workflow.md
-  - references/color/palette-theming.md
+  - references/foundations/color/oklch-workflow.md
+  - references/foundations/color/palette-theming.md
 ---
 
 **Exact prompt**
@@ -30,8 +30,8 @@ Create a color token system for a finance dashboard with a teal brand color, res
 
 ## Expected Process
 
-1. Route to `foundations` rather than `interface`.
-2. Load `references/color/oklch-workflow.md` and `references/color/palette-theming.md`.
+1. Recognize this as `interface`'s `foundations` static-system subworkflow (color/token-system intent), not the aesthetic-direction or delivery-gate path.
+2. Load `references/foundations/color/oklch-workflow.md` and `references/foundations/color/palette-theming.md`.
 3. Ground the palette in one physical-scene sentence before choosing light, dark, restrained, committed, full-palette, or drenched.
 4. Produce semantic roles before values.
 5. State contrast, dangerous meaning-pair, color-vision, and dark-mode rules.

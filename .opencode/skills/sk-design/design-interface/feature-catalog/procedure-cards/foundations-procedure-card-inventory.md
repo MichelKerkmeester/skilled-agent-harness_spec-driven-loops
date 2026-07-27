@@ -51,7 +51,7 @@ Each card names a conflict rule that routes elsewhere when the request does not 
 ## 4. SOURCE METADATA
 
 - Group: Procedure Cards
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `procedure-cards/foundations-procedure-card-inventory.md`
 
 Related references:

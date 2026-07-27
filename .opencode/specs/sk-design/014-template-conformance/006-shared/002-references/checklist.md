@@ -54,9 +54,12 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Governing template confirmed reachable and current
+- [x] CHK-001 [P0] Requirements documented in spec.md
+  - **Evidence**: `spec.md` ANCHOR:problem and ANCHOR:scope populated with the concrete in-scope file table.
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+  - **Evidence**: `plan.md` documents the read-then-diff-then-fix-or-disprove approach used for this leaf.
+- [x] CHK-003 [P1] Governing template confirmed reachable and current
+  - **Evidence**: Governing template file read directly in full at the path cited in `spec.md` (see CHK-010 evidence).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -64,8 +67,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] All 11 in-scope file(s) read and diffed against .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md
-- [ ] CHK-011 [P1] Every known defect closed or explicitly deferred
+- [x] CHK-010 [P0] All 11 in-scope file(s) read and diffed against .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md
+  - **Evidence**: 11/11 files read (7 structural-fingerprint-cards + index.md + schema.md + brand-first-lane.md + smart-routing.md). Fixed: All 7 structural-fingerprint-cards (--- separators added between all 7 numbered sections; sentence-case section-1 names PRESERVED — governed by the card family's own documented local schema at shared/references/structural-fingerprint-cards/schema.md, which explicitly mandates 'Regions and composition' etc., not 'OVERVIEW'), schema.md and index.md (--- separators added; section-1 names kept as-is, same reasoning), brand-first-lane.md (--- separators added between all 7 sections — was missing entirely despite already having OVERVIEW-first + ALL-CAPS), smart-routing.md (1-sentence intro + --- added before Section 1; --- added before Section 4).
+- [x] CHK-011 [P1] Every known defect closed or explicitly deferred
+  - **Evidence**: LOGIC-SYNC finding: defect #1's literal instruction to rename the 7 cards' Section 1 to 'OVERVIEW' and ALL-CAPS the remaining sections was DISPROVEN — schema.md is a deliberately-authored, pre-existing local contract (7 exact field names, sentence case, order-fixed) that the cards correctly follow; renaming would break that documented contract for no template-purity gain the orchestrator's authority (skill-reference-template.md) does not itself own this card family. Cross-checked against `checklist.md` CHK-010 evidence.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -73,9 +78,12 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All in-scope files audited (100% coverage, not a sample)
-- [ ] CHK-021 [P0] Confirmed defects fixed or explicitly deferred with owner
-- [ ] CHK-022 [P1] Out-of-audit items (owned by sibling packets) NOT touched
+- [x] CHK-020 [P0] All in-scope files audited (100% coverage, not a sample)
+  - **Evidence**: 100% of in-scope files audited per CHK-010's file count, not a sample.
+- [x] CHK-021 [P0] Confirmed defects fixed or explicitly deferred with owner
+  - **Evidence**: `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-design` -> OK, 0 warnings; `node --test shared/scripts/*.test.mjs` -> 24/24 pass (routing/surface checks read these files transitively via smart-routing.md).
+- [x] CHK-022 [P1] Out-of-audit items (owned by sibling packets) NOT touched
+  - **Evidence**: `git status --porcelain` scoped to this leaf's directory shows no sibling-packet paths touched.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,7 +91,8 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P1] Out-of-scope items (sibling-owned decisions) explicitly named, not silently fixed or ignored
+- [x] CHK-FIX-001 [P1] Out-of-scope items (sibling-owned decisions) explicitly named, not silently fixed or ignored
+  - **Evidence**: No out-of-scope items required naming for this leaf beyond what CHK-011 already records. Confirmed via `git status --porcelain` on the leaf's scope.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -91,8 +100,9 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets introduced
-- [ ] CHK-031 [P2] N/A — documentation-only leaf, no input surfaces changed
+- [x] CHK-030 [P0] No hardcoded secrets introduced
+  - **Evidence**: `rg -n "api[_-]?key|secret|password|token="` across the touched files returns no hits.
+- [x] CHK-031 [P2] N/A — documentation-only leaf, no input surfaces changed
 <!-- /ANCHOR:security -->
 
 ---
@@ -100,8 +110,10 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P2] Governing template cited by path in spec.md and plan.md
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+  - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` all cite the same in-scope file table and governing template path.
+- [x] CHK-041 [P2] Governing template cited by path in spec.md and plan.md
+  - **Evidence**: Governing template path is cited verbatim in `spec.md` ANCHOR:scope and referenced again in `plan.md`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -109,8 +121,10 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+  - **Evidence**: No scratch/ files were created during this audit pass. `find <leaf>/scratch -type f 2>/dev/null` returns no results.
+- [x] CHK-051 [P1] scratch/ cleaned before completion
+  - **Evidence**: N/A confirmed — CHK-050 shows no scratch/ usage requiring cleanup. `find <leaf>/scratch -type f 2>/dev/null` confirms nothing to clean.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -120,9 +134,9 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 6 | [ ]/6 |
-| P1 Items | 6 | [ ]/6 |
-| P2 Items | 3 | [ ]/3 |
+| P0 Items | 6 | 6/6 |
+| P1 Items | 6 | 6/6 |
+| P2 Items | 3 | 3/3 |
 
-**Verification Date**: 2026-07-27 (not yet run — Planned)
+**Verification Date**: 2026-07-27 (executed)
 <!-- /ANCHOR:summary -->

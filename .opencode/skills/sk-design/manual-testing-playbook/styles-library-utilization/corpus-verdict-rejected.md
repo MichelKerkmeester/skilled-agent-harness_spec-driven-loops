@@ -6,6 +6,8 @@ version: 1.0.0.0
 
 # SLU-004: Corpus Verdict Is Rejected
 
+---
+
 ## 1. OVERVIEW
 
 This scenario adds a corpus-authored acceptance verdict to an otherwise valid neutral plan and confirms the closed validator rejects it.

@@ -55,7 +55,7 @@ Core functionality stays available in every context, one information architectur
 ## 4. SOURCE METADATA
 
 - Group: Adaptation And Data
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `adaptation-and-data/context-adaptation-matrix.md`
 
 Related references:

@@ -50,7 +50,7 @@ The card files are `discovery_question_round.md`, `aesthetic_direction.md`, `wir
 ## 4. SOURCE METADATA
 
 - Group: Procedure Cards
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `procedure-cards/interface-procedure-card-inventory.md`
 
 Related references:

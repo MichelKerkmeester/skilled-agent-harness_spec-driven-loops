@@ -13,9 +13,7 @@ version: 1.5.0.8
 
 # Real-UI Loop
 
-The loop this skill follows so a design plan becomes a verified, handed-off render without drifting into AI defaults. `design-principles.md` owns the look and the anti-default mandate; `ux-quality-reference.md` owns the objective floor; this reference owns the path from an approved plan to a checked, handed-off result. Read it when producing or iterating on real UI.
-
-This loop is transport-agnostic: it applies whether the render comes from code you control, a repo recreation, or a terminal-driven generation tool. A generation transport documents its own render and revision mechanics in its own reference; this loop owns the judgment those mechanics serve.
+The loop this skill follows so a design plan becomes a verified, handed-off render without drifting into AI defaults: ground, reuse, render, check, revise, hand off.
 
 ---
 
@@ -29,6 +27,10 @@ Strong UI work treats context, iteration, and handoff as explicit objects, and g
 
 - Whenever UI is being produced or reshaped past a plan into a real render (a generation run, repo recreation, post-build adaptation, or a design direction headed for code).
 - After `design-principles.md` has set the direction and you need a repeatable path from intent to a verified, handed-off result.
+
+### Prerequisites
+
+`design-principles.md` owns the look and the anti-default mandate; `ux-quality-reference.md` owns the objective floor; this reference owns the path from an approved plan to a checked, handed-off result. This loop is transport-agnostic: it applies whether the render comes from code you control, a repo recreation, or a terminal-driven generation tool. A generation transport documents its own render and revision mechanics in its own reference; this loop owns the judgment those mechanics serve.
 
 ### The loop
 

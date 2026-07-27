@@ -15,9 +15,13 @@ expected_leaf_resources:
 
 # MDR-001: Interface Mode Routing
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a broad visual-direction request routes through the `sk-design` hub to `workflowMode: interface`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -51,6 +55,8 @@ Make this SaaS pricing page look less generic and give it a distinctive visual d
 
 **Expected tool surface**: read-only. The `interface` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -75,11 +81,15 @@ Make this SaaS pricing page look less generic and give it a distinctive visual d
 2. If `foundations` wins, check whether the prompt was accidentally rewritten to emphasize tokens, palette, typography, layout, or grid.
 3. If resources are missing, verify `design-interface/SKILL.md` still lists `shared/register.md`, `shared/context-loading-contract.md`, `design-principles.md`, `brief-to-dials.md`, and `interface-preflight-card.md`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -34,7 +34,7 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
       "spec.md",
@@ -159,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "Core Principle",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -167,12 +173,6 @@
       {
         "name": "current",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`references/` holds 29 files (5 in `aesthetics/`, 2 in `design-grounding/`, 10 in `design-process/`, 10 in `foundations/` including `color/`, `layout/`, `type/` subfolders, 2 in `mcp-tooling/`), all governed by `skill-reference-template.md`",
     "created_at": "2026-07-27T14:56:07.863Z",
-    "last_save_at": "2026-07-27T15:05:15.352Z",
+    "last_save_at": "2026-07-27T16:16:23.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8b5b0f3c68a9e03e9914d7ad8ef5a418c0a4faf1b7feb6d922e7155b1d6b4e8",
+    "source_fingerprint": "sha256:790565ce3a0e7d96932d42ac039eb637b3e7b98b8986e37b555141798a46d327",
     "source_doc_hashes": {
-      "spec.md": "3105345c96fb8284aaf46a807ebb015c4ae73feebeb553b93b9ed9d92803482b",
-      "plan.md": "c0a1d672256e301f25d4ebc259158c00331b43023d251a0df48bc241194498d2",
-      "tasks.md": "ef7585ff0714c7c9ef5f52630131ca15dbba5d2ffd97144c9f9bc9ed3e84699f",
-      "checklist.md": "f2285c178f2f2b578f0c2efbdaa44d7e003b4896826ccfc4021283ff0a7cf118",
-      "implementation-summary.md": "079b5fbce6537b8e1202f00aa6ca0ce738004640c8f74abefb07efce7237031e"
+      "spec.md": "0444b27df230608c4bdf13fb6b0bd0652c075105c6b01d633e140c0a3f5fed80",
+      "plan.md": "e1d20c888ff3cf4c78b5b64b0be2bbabe0638a4dff9a3bff03f84669fe762adf",
+      "tasks.md": "938b617b327984114aeaff373e5adb7573d3c6e4a7e76241d0aa870cbaf0d84e",
+      "checklist.md": "707d309db04ab3b71c9479730c70f069742bd6854353ef2436bb6edc442bc3f8",
+      "implementation-summary.md": "b28e134941de4546bb694be28568f6d12cdbea6c15e567596ca1d0a4b4765aab"
     },
     "last_active_child_id": null,
     "last_active_at": null

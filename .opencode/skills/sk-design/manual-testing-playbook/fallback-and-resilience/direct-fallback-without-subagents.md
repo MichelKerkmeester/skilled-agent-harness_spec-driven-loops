@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # FR-002: Direct Fallback Without Subagents
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that direct fallback is not a weaker workflow. The four advisory modes must stay Read/Glob/Grep-only, while `md-generator` keeps its normal backend boundary.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -29,6 +33,8 @@ Subagents are unavailable. motion: define the feedback states and reduced-motion
 **Expected fallback**: Execute directly with Read, Glob, and Grep only, preserving the same proof bar.
 
 **md-generator variant**: `Subagents are unavailable. md-generator: validate this DESIGN.md against tokens.json directly in the current session and show the selected procedure or fallback, backend entrypoint, provenance proof, and validation result.` The expected fallback preserves md-generator's normal Write/Edit/Bash-capable backend boundary and dedicated validation entrypoint.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -54,11 +60,15 @@ Subagents are unavailable. motion: define the feedback states and reduced-motion
 2. For read-only modes, compare observed tool calls with Read/Glob/Grep-only language.
 3. For md-generator, re-read `Backend Boundary Preservation` and confirm fallback does not weaken extract/write/validate requirements.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
+
+---
 
 ## 5. SOURCE METADATA
 

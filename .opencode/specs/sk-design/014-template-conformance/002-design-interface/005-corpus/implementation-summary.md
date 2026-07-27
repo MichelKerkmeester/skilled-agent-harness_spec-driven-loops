@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [design-interface corpus conformance]"
-description: "Not yet started — this child is Planned. The audit against overview.md and package_skill.py is task 1."
+description: "Audit complete: 0 violations. README frontmatter question resolved — both zero-frontmatter and partial-frontmatter README.md files are exempt from the 5-field block."
 trigger_phrases:
   - "corpus implementation summary"
 importance_tier: "normal"
@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/005-corpus"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:21:47Z"
     last_updated_by: "spec-author"
     recent_action: "Authored placeholder implementation-summary for Planned child"
     next_safe_action: "Populate after the audit and README decision land"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-corpus |
-| **Completed** | Not yet — status Planned |
+| **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,7 +45,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. A read of `corpus/README.md` found it has zero YAML frontmatter, unlike the sibling `scripts/README.md` which carries a minimal title/description pair. No template governs `corpus/` directly, so this is recorded as an inconsistency to resolve, not an automatic defect. `package_skill.py --check` has not been run yet.
+All 7 files under `corpus/` (`README.md`, `relational-exemplar.mjs`, `relationship-blueprint.mjs`, `tests/README.md`, `tests/fixtures.mjs`, `tests/fixtures-foundations.mjs`, `tests/relational-exemplar.test.mjs`, `tests/relationship-blueprint.schema.test.mjs`, `tests/relationship-blueprint.test.mjs` — 9 files total counting both README.md and the .mjs files) were checked. Zero violations found; zero fixes needed.
+
+**README frontmatter question resolved:** `corpus/README.md` has zero frontmatter; `corpus/tests/README.md` has a partial 2-field frontmatter (title + description only, no trigger_phrases/importance_tier/contextType). Neither is a defect — `frontmatter-templates.md` §2 explicitly exempts `README.md` files from the 5-field block requirement that governs `references/` and `assets/`. A README may carry zero, partial, or full frontmatter at the author's discretion.
+
+**Naming confirmed:** all `.mjs` files use kebab-case (`relational-exemplar.mjs`, `relationship-blueprint.mjs`, `fixtures.mjs`, `fixtures-foundations.mjs`, `relational-exemplar.test.mjs`, `relationship-blueprint.schema.test.mjs`, `relationship-blueprint.test.mjs`).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -53,7 +57,7 @@ Nothing yet. A read of `corpus/README.md` found it has zero YAML frontmatter, un
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet.
+Read-only audit; no edits were needed. Verified with `package_skill.py --check --strict` and `node --test corpus/tests/*.test.mjs`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -63,7 +67,7 @@ Not delivered yet.
 
 | Decision | Why |
 |----------|-----|
-| Treated the missing frontmatter as an open question, not a pre-judged defect | `corpus/` has no authored template requiring frontmatter; the sibling `scripts/README.md` convention is evidence, not a rule |
+| Resolved the missing-frontmatter question as "not a defect" rather than adding frontmatter to `corpus/README.md` | `frontmatter-templates.md` §2 names README.md files as categorically exempt; adding frontmatter would not fix a real deviation, it would just impose the sibling's stylistic choice |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -73,8 +77,8 @@ Not delivered yet.
 
 | Check | Result |
 |-------|--------|
-| `package_skill.py --check` | Not run yet |
-| `node --test corpus/tests/*.test.mjs` | Not run yet |
+| `package_skill.py --check --strict` | PASS, 0 corpus-scoped violations |
+| `node --test .opencode/skills/sk-design/design-interface/corpus/tests/*.test.mjs` | 47/47 tests pass |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -82,5 +86,5 @@ Not delivered yet.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No exhaustive audit yet.** Only `corpus/README.md` was read in full.
+None. All files were read and verified.
 <!-- /ANCHOR:limitations -->

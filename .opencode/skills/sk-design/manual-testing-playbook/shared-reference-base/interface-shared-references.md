@@ -15,9 +15,13 @@ expected_leaf_resources:
 
 # SR-001: Interface Shared References
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that interface mode cites the shared reference base instead of duplicating shared design vocabulary inside the hub.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -52,6 +56,8 @@ Make this landing page look less generic and state the register before recommend
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -76,12 +82,16 @@ Make this landing page look less generic and state the register before recommend
 2. If hub logic appears in the response, inspect `SKILL.md` rules that the hub stays routing-only.
 3. If token vocabulary is needed but missing, inspect `shared/design-token-vocabulary.md` availability.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/shared/`
+
+---
 
 ## 5. SOURCE METADATA
 

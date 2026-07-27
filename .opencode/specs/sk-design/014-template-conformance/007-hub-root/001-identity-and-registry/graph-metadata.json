@@ -33,21 +33,15 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -64,6 +58,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/ (8 hub-root identity/registry files)` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md (SKILL.md) + skill-readme-template.md (README.md) + parent-skill-description-template.json, parent-skill-graph-metadata-template.json, parent-skill-hub-router-template.json, parent-skill-registry-template.json (JSON companions); doctrine: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`",
     "created_at": "2026-07-27T14:59:53.751Z",
-    "last_save_at": "2026-07-27T14:59:53.751Z",
+    "last_save_at": "2026-07-27T16:17:30.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6c3f4ae82ca728e1658ab7849da2b39395a1c8c325289f09d59227672144860",
+    "source_fingerprint": "sha256:f4fc4d5aa32c43cf49b9d18f8724083343bc9af3644c33708e4b3a02cba5d571",
     "source_doc_hashes": {
-      "spec.md": "c0fe938e84bbb4bbe5fda86988a8fc59df43dae1bb3a3dcf04f23a9644501445",
+      "spec.md": "549e3a3d2537bf61debb5d8203e3906dde00e213bb2e25f4d6ca512d16e37fd5",
       "plan.md": "3fb35267e85660b3a56281f94f1edb76f3357419bf4b99a8ed1cdadf29871067",
       "tasks.md": "da19bf08d9d630e87ea71f5160d9b78cb37d3e147315db638c999e7b4bd66b85",
-      "checklist.md": "04f3eaafe7ff7162da88513974bc76100360b55bbace10f9c0a93e3a82ef48d8",
-      "implementation-summary.md": "c33230be9f19a29389cced510be49372bf6e45d160fbbec5ec122679ab0a1de4"
+      "checklist.md": "0bd9ea319865a4d4eebdfd776727a8d4295ee377d95304075d503fe55fff9c16",
+      "implementation-summary.md": "3ada8a42209a4a89e66285b9ac3d0aa026effaa92ca4cc1b03365131a2022892"
     },
     "last_active_child_id": null,
     "last_active_at": null

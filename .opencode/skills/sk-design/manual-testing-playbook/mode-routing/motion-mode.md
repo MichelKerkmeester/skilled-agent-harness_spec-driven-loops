@@ -19,9 +19,13 @@ expected_leaf_resources:
 
 # MDR-003: Motion Mode Routing
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that animation, micro-interaction, and reduced-motion requests route through the `sk-design` hub to `workflowMode: motion`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -56,6 +60,8 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 
 **Expected tool surface**: read-only. The `motion` registry entry allows `Read`, `Glob`, and `Grep`; it forbids `Write`, `Edit`, and `Bash`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -80,11 +86,15 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 2. If `interface` wins, verify the temporal terms `micro-interactions`, `hover`, and `reduced-motion` were preserved.
 3. If reduced-motion resources are missing, inspect `design-motion/SKILL.md` `RESOURCE_MAP.PERFORMANCE`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

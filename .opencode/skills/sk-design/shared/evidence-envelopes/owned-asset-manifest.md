@@ -16,11 +16,15 @@ version: 1.0.0.0
 
 This manifest records why an asset may be used and how a consumer should place it. It is evidence, not a downloader: reading the manifest never grants permission to fetch, execute, bundle, or redistribute the referenced material.
 
+---
+
 ## 2. AUTHORITY AND BOUNDARY
 
 Use one entry per owned, commissioned, generated-with-verified-rights, or separately licensed asset. A usable entry must point to a local repository path or an owner-controlled origin, record affirmative reuse rights, and provide a fallback that is independently safe to ship.
 
 Hallmark binaries must never be hotlinked, copied, bundled, cached, or redistributed through this contract. The same prohibition applies to any third-party binary whose rights and hosting authority are not independently established. A Hallmark page or research citation may explain precedent, but it can never populate `source.location` for a shippable entry.
+
+---
 
 ## 3. MANIFEST SHAPE
 
@@ -66,6 +70,8 @@ Hallmark binaries must never be hotlinked, copied, bundled, cached, or redistrib
 }
 ```
 
+---
+
 ## 4. FIELD CONTRACT
 
 | Field | Required | Contract |
@@ -86,6 +92,8 @@ Hallmark binaries must never be hotlinked, copied, bundled, cached, or redistrib
 | `checksum` | yes | Digest of the exact local/shippable binary; use lowercase SHA-256. |
 | `fallback` | yes | Another manifest `assetId` and the condition that selects it. The fallback must pass this contract independently. |
 
+---
+
 ## 5. VALIDATION AND CONSUMPTION
 
 An entry is ready only when all of these checks pass:
@@ -97,6 +105,8 @@ An entry is ready only when all of these checks pass:
 - The fallback exists, is not the same entry, and has its own valid rights, dimensions, crop/aspect, and checksum evidence.
 
 Consumers must not auto-fetch `source.location`, execute file content, or treat a checksum as permission. Acquisition and hosting remain explicit owner actions outside this document.
+
+---
 
 ## 6. PROVENANCE OF THE CONTRACT
 

@@ -21,7 +21,7 @@ foundations: answer this narrow semantic-token naming question and state whether
 
 ## 1. OVERVIEW
 
-This scenario validates the exact fallback line `Procedure applied: none - baseline foundations workflow`.
+This scenario validates the exact fallback line `Procedure applied: none - baseline interface workflow`.
 
 ## 2. SCENARIO CONTRACT
 
@@ -51,4 +51,4 @@ This scenario validates the exact fallback line `Procedure applied: none - basel
 - Group: Procedure Card Contract
 - Playbook ID: FOUND-PROCCARD-002
 - Canonical root source: `manual-testing-playbook.md`
-- Feature file path: `procedure-card-contract/no-card-fallback.md`
+- Feature file path: `procedure-card-contract/foundations-no-card-fallback.md`

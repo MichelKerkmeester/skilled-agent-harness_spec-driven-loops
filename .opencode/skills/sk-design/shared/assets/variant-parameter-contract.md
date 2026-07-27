@@ -18,7 +18,19 @@ The checker proves only that every knob row is present, complete, and declared f
 
 ---
 
-## 1. KNOB SCHEMA
+## 1. OVERVIEW
+
+### Purpose
+
+Give Figma, Open Design, and live-render transports one shared schema for the variant knobs a design direction may expose, so no transport silently drops or renames a knob.
+
+### Usage
+
+Cite a knob by name when wiring a new transport or reviewing whether a variant declares every required cell. The design read, register posture, and rendered critique still decide whether a variant is good; this contract only proves the schema is complete.
+
+---
+
+## 2. KNOB SCHEMA
 
 | Knob | Range/Values | Step | Owner Mode | Transports | Caveat |
 |---|---|---|---|---|---|
@@ -30,7 +42,7 @@ The checker proves only that every knob row is present, complete, and declared f
 
 ---
 
-## 2. APPLICATION NOTES
+## 3. APPLICATION NOTES
 
 - `interface` owns density and structure because the register and design read set posture, packing, and layout family before render work.
 - `foundations` owns type-scale, color-amount, and pairing because those knobs belong to the static token system, color dosage, and type roles.

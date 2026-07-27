@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # PB-004: Motion Procedure Selection Proof
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a public `motion` request with state feedback needs selects the private interaction-states card without exposing the card as a public mode.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -31,6 +35,8 @@ motion: define hover, focus, active, loading, disabled, and reduced-motion behav
 - `SKILL.md` section `Context, Proof, And Direct Fallback` requires public mode, loaded references, selected card, affected states, motion budget, reduced-motion bar, and verification risks before a ready or handoff claim.
 
 **Expected tool surface**: read-only. The `motion` mode may use Read, Glob, and Grep only.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -56,11 +62,15 @@ motion: define hover, focus, active, loading, disabled, and reduced-motion behav
 2. Confirm the exact prompt includes interaction-state vocabulary rather than generic animation vocabulary.
 3. Compare observed tool calls against the read-only `motion` surface.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
 - `.opencode/skills/sk-design/design-motion/procedures/interaction-states-pass.md`
 - `.opencode/skills/sk-design/mode-registry.json`
+
+---
 
 ## 5. SOURCE METADATA
 

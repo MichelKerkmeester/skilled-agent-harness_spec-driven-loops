@@ -10,9 +10,13 @@ expected_leaf_resources: []
 
 # AI-003: Documentation Write Routes Elsewhere
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that `sk-design` does not capture documentation authoring prompts whose target is prose rather than design judgment.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -38,6 +42,8 @@ Write a README section explaining how the sk-design hub routes its four modes.
 
 **Expected advisor behavior**: route elsewhere. Expected top-1 is `sk-doc` or another documentation owner; `sk-design` must not be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -62,10 +68,14 @@ Write a README section explaining how the sk-design hub routes its four modes.
 2. If `sk-doc` is missing, inspect advisor graph health before changing sk-design signals.
 3. If the prompt was expanded with UI examples, restore the exact prompt.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

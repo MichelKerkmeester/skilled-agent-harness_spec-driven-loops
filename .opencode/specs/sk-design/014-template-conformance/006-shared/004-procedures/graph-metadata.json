@@ -33,32 +33,26 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
       ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "skill-procedure-template.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-procedure-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
         "source": "derived"
       },
       {
@@ -71,6 +65,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/procedures/` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md`",
     "created_at": "2026-07-27T14:59:52.385Z",
-    "last_save_at": "2026-07-27T14:59:52.385Z",
+    "last_save_at": "2026-07-27T16:17:28.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec7ac0360b3e44f80897647e61eeed874d378b97fd61610781d7664b6abbec1b",
+    "source_fingerprint": "sha256:e2fb2220548939ca220b5986a07c3cf3f339727b577b70d29a657af63fea7b6c",
     "source_doc_hashes": {
-      "spec.md": "8397b4de38181743777277b14c0ebd1787fdb1aa024676b01370405063443c1f",
+      "spec.md": "09546f61a1f6fc9f97068efaaeb1d865a58c9de6e1120a2c67190b3745a68028",
       "plan.md": "6bd4414d377968664e15b70849826345b47da9d25289fdf9fa837f92dd449362",
       "tasks.md": "a8bcee40719d3ca364825d82c307010cae2e08713734a50f99e6211b194b1672",
-      "checklist.md": "4131d6d0b7f97d792e75a12bdb816f1c00c531e28b37d0496b861a1c20ac7711",
-      "implementation-summary.md": "960a01de2c49569982989626563e6d3942add073afba962c2a077852e33894f1"
+      "checklist.md": "32a7965960f37559f0c28d109f61ad7d01a41e2da3cb2391771ec1de01acf703",
+      "implementation-summary.md": "a78ca50ca4dc9eb2cdd2e7270efb286699349990e4f46fe6b494e4c278dd1707"
     },
     "last_active_child_id": null,
     "last_active_at": null

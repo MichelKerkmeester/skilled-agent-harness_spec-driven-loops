@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [design-interface assets conformance]"
-description: "Not yet started — this child is Planned. No defects were confirmed at sampling; the exhaustive audit is task 1."
+description: "Exhaustive 3-file audit complete. All 3 files had a real structural defect (missing --- separator or over-long intro); all fixed."
 trigger_phrases:
   - "assets implementation summary"
 importance_tier: "normal"
@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/003-assets"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:18:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored placeholder implementation-summary for Planned child"
     next_safe_action: "Populate after the audit runs, even if the verdict is no-change"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-assets |
-| **Completed** | Not yet — status Planned |
+| **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,7 +45,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. No defect in `assets/` surfaced in the program-level sampling pass, but none of the 3 files was read section-by-section against `skill-asset-template.md`. This child may legitimately conclude "conformant, no changes" once the audit runs — that conclusion has not been reached yet, only assumed by absence of a finding.
+All 3 files under `assets/` were read in full against `skill-asset-template.md`. Contrary to the program-level "no defect surfaced" sampling assumption, all 3 had a real, confirmed structural deviation:
+
+- `assets/foundations/contrast-pair-inventory.md` — the H1 intro was a 6-sentence paragraph (script invocation example, tool-boundary note, and a repair-logic pointer all folded into the intro), violating the template's "1-2 SHORT sentences, no headers" rule; Section 1 OVERVIEW also lacked the template's Purpose/Usage subsection structure. Fixed: trimmed the intro to 1 sentence, added `### Purpose` and `### Usage` subsections in Section 1 carrying the moved content verbatim (no information lost).
+- `assets/foundations/token-starter.md` — the H1 intro (1 sentence, correctly short) was followed directly by `## 1. OVERVIEW` with no `---` separator between them. Fixed: added the separator.
+- `assets/interface-preflight-card.md` — same missing-`---`-before-Section-1 defect. Fixed: added the separator.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -53,7 +57,7 @@ Nothing yet. No defect in `assets/` surfaced in the program-level sampling pass,
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet.
+Direct `Edit` tool changes to each file. Verified with `package_skill.py --check --strict` after all edits.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -63,7 +67,8 @@ Not delivered yet.
 
 | Decision | Why |
 |----------|-----|
-| Did not assume conformance from absence of a sampling-pass finding | "No defect flagged" is not the same as "audited and confirmed conformant" |
+| Did not assume conformance from absence of a sampling-pass finding | "No defect flagged" is not the same as "audited and confirmed conformant" — a full read found 3/3 files had a real, fixable deviation |
+| Moved `contrast-pair-inventory.md`'s intro content into new Purpose/Usage subsections rather than deleting it | Preserves the script-invocation example and tool-boundary note the intro carried, while meeting the 1-2-sentence intro rule |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -73,7 +78,7 @@ Not delivered yet.
 
 | Check | Result |
 |-------|--------|
-| `package_skill.py --check` | Not run yet |
+| `package_skill.py --check --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -81,5 +86,5 @@ Not delivered yet.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No exhaustive audit yet.** All 3 files await a section-by-section read against the governing template.
+None. All 3 files were read and fixed in full.
 <!-- /ANCHOR:limitations -->

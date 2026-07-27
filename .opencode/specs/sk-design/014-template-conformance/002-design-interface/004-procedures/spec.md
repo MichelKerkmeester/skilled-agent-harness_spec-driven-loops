@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/004-procedures"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:20:08Z"
     last_updated_by: "spec-author"
     recent_action: "Sampled one card as near-conformant with a minor field-name variance"
     next_safe_action: "Read all 9 procedure cards against the required-fields table in order"
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance/002-design-interface` |
@@ -129,7 +129,7 @@ Read all 9 cards against `skill-procedure-template.md` §2 (document structure/b
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Is `Owning mode` an intentional design-interface house style (since every card here is owned by the same single mode) or an unintentional drift from the template's `Owning skill/mode`? Needs operator confirmation before a 9-file rename.
+- **Resolved**: `Owning mode` is the correct, intentional field label — NOT drift. `sk-design/shared/procedure-card-schema.md` §2 (the hub-local, more specific schema that `skill-procedure-template.md`'s own text names as "the schema this template generalizes from") canonically requires `Owning mode` with the enum `design-interface | design-motion | design-md-generator | shared`, not the generic template's `Owning skill/mode`. Confirmed by running `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs`: all 12 cards hub-wide (including all 9 `design-interface` cards) PASS with 0 failures. No rename performed — renaming to `Owning skill/mode` would itself be the deviation.
 <!-- /ANCHOR:questions -->
 
 ---

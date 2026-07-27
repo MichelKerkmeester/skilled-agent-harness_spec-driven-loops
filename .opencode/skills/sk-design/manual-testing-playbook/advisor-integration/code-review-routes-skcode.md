@@ -10,9 +10,13 @@ expected_leaf_resources: []
 
 # AI-004: Code-Correctness Review Routes to sk-code
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that `sk-design` does not capture a code-correctness review prompt merely because it uses review/audit-adjacent wording that overlaps with `interface`'s quality-review vocabulary (the audit capability folded into `interface` when the standalone `audit` mode was retired). It proves the sibling-collision boundary: a code review outside design/UI concerns must route to `sk-code`'s code-review mode, not `sk-design`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -39,6 +43,8 @@ Review this checkout API handler for SQL-injection risk and missing input valida
 
 **Expected advisor behavior**: route elsewhere. Expected top-1 is `sk-code` (its code-review mode); `sk-design` must not be top-1 at confidence `>= 0.80`. No `design-interface` packet or procedure card should load.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -63,11 +69,15 @@ Review this checkout API handler for SQL-injection risk and missing input valida
 2. If `design-interface/SKILL.md`'s When-NOT-to-Use trigger for pure back-end work is missing or was edited, treat as a `SKILL.md` regression, not an advisor scoring bug.
 3. If the prompt was rewritten to include UI, visual, or design-system terms, restore the exact prompt.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
+
+---
 
 ## 5. SOURCE METADATA
 

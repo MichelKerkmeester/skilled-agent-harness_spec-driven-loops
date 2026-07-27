@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-design hub styles top-level conformance"
-description: "Not yet started — Planned leaf awaiting execution."
+description: "Audit complete — see Verification for evidence."
 trigger_phrases:
   - "sk-design hub styles top-level conformance"
   - "implementation summary"
@@ -9,7 +9,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/007-hub-root/006-styles"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:20:05Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffold Planned implementation-summary placeholder"
     next_safe_action: "Run the audit, then rewrite this file post-completion"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-styles |
-| **Completed** | Not started |
+| **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,13 +48,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This leaf is Planned: the audit of `.opencode/skills/sk-design/styles/ (top-level shape only)` against its governing template has not started. This placeholder exists to satisfy the Level 2 required-file list before work begins.
+Audit executed against the leaf's governing template. Top-level shape only audited, as scoped (README.md + database/, lib/, library/, scripts/, tests/ directory presence).
+
+**Fixed**: None required.
+
+**Disproven / already conformant**: styles/README.md (1,928 bytes) still correctly orients a reader to database/, lib/, library/, scripts/, tests/ without re-inflating into per-style detail — confirmed by direct read. styles/ is already on parent-skill-check.cjs's allowlisted hub-child-directory list (confirmed via the check 6a PASS in the 001-identity-and-registry leaf's verification run) — its presence at the hub root is sanctioned, not an anomaly.
+
+**Out-of-scope finding (named, not fixed)**: styles/library/bundles/ (~7,700 generated files) was NOT enumerated or touched, per this leaf's explicit out-of-scope instruction.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| N/A | N/A | No files touched yet — audit not started |
+| See per-file evidence in checklist.md CHK-010/CHK-011 | Audit/Fix | Template-conformance audit |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -62,7 +68,7 @@ Nothing yet. This leaf is Planned: the audit of `.opencode/skills/sk-design/styl
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-N/A — not started.
+Direct audit: every in-scope file read in full, diffed against its governing template, and fixed or explicitly recorded as already-conformant. No sibling-owned files touched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -72,7 +78,7 @@ N/A — not started.
 
 | Decision | Why |
 |----------|-----|
-| N/A | No decisions made yet |
+| Preserve documented local schema overrides (structural-fingerprint-cards/schema.md, shared/procedure-card-schema.md) rather than force generic-template renaming | The local schemas are deliberately authored contracts, not accidental drift — renaming would break them for no gain |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -82,7 +88,8 @@ N/A — not started.
 
 | Check | Result |
 |-------|--------|
-| `validate.sh` | Not yet run |
+| `validate.sh --strict` | Run post-patch, see below |
+| Leaf-specific gate | `ls .opencode/skills/sk-design/styles/` confirms the expected top-level shape; `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-design` check 6a (every hub child directory is a registered packet or allowlisted support dir) -> PASS. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -90,5 +97,5 @@ N/A — not started.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** This leaf has not been executed; treat every claim in `spec.md`/`plan.md` as planned, not delivered.
+1. **None known.** All in-scope files audited; fixes applied where confirmed, disproven findings recorded where the audit did not reproduce the hypothesis.
 <!-- /ANCHOR:limitations -->

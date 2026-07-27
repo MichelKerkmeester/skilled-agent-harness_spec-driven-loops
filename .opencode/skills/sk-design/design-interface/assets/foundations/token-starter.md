@@ -15,6 +15,8 @@ version: 1.0.0.0
 
 A fill-in scaffold for turning register decisions into concrete color, type, spacing and dark-mode tokens.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose

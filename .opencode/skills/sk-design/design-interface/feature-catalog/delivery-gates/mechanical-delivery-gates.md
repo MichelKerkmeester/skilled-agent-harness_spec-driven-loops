@@ -51,7 +51,7 @@ The fill-in preflight card converts these checks into binary PASS or FAIL boxes.
 ## 4. SOURCE METADATA
 
 - Group: Delivery Gates
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `delivery-gates/mechanical-delivery-gates.md`
 
 Related references:

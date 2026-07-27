@@ -33,7 +33,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
       "spec.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`procedures/` holds 9 cards (39-44 lines each: `aesthetic-direction.md`, `component-system-inventory.md`, `deck-direction-spec.md`, `discovery-question-round.md`, `hierarchy-rhythm-review.md`, `prototype-flow-spec.md`, `tweakable-design-controls.md`, `variation-set.md`, `wireframe-exploration.md`), governed by `skill-procedure-template.md`",
     "created_at": "2026-07-27T14:56:08.290Z",
-    "last_save_at": "2026-07-27T15:05:15.867Z",
+    "last_save_at": "2026-07-27T16:20:08.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63fbbc49f74a3b184d2a4740364f8c35176dfdc88e45b0a587493a293a609a4d",
+    "source_fingerprint": "sha256:856eef56e452f63aca2cab5f5b622ccd4471866ef157b6e02d1c5cee836ffcc8",
     "source_doc_hashes": {
-      "spec.md": "e66a54f88f148d8bece571099ca97a3b2e8e71b816aa41ebeda0ff0a7d9eef55",
-      "plan.md": "bdc3a61b34a417cb86794f8489d8f6dcdbfcecd74418cbcf1980d5efcf6c22da",
-      "tasks.md": "94d11381f2c1e4cbcc7c03a3c24430113eb1abd6fbd058f2b92c0536903649e1",
-      "checklist.md": "70678a6c88212232aa030a520c27c10b869bc771ca079489c9b2c403b94f3caa",
-      "implementation-summary.md": "09f7e704c9923452b3fc05d404ac7403d9f5e97fff9475495ec92cb5427ae6bb"
+      "spec.md": "72b0c5771fe3a18382831d19bd5e6d77eca78d0b25d1b22eab279687212309ce",
+      "plan.md": "26b6ce939a175a8940356da692b6519b9f7d5429fae1031a1e7dc8d65f2a7f1c",
+      "tasks.md": "9a97c3dd38465cefa5c6210bfe7c5f87359c87dda1e146da68da64a74de82b6c",
+      "checklist.md": "e550f67865761cc2f7fac5090e09a9551b383d889206fb1c75df845f516f6a6f",
+      "implementation-summary.md": "6b857f611b98367b5ce47a828a92a418871aa739c1212b6069634ae58ebfd163"
     },
     "last_active_child_id": null,
     "last_active_at": null

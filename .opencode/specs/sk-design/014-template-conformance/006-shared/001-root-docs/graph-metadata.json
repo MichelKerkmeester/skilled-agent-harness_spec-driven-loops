@@ -33,21 +33,15 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -64,6 +58,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/ (11 root markdown files)` has not been audited against `no single authored template for loose shared-root contracts; closest structural analog is .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md (numbered OVERVIEW, --- separators) — apply as a judgment call and record it`",
     "created_at": "2026-07-27T14:59:51.122Z",
-    "last_save_at": "2026-07-27T14:59:51.122Z",
+    "last_save_at": "2026-07-27T16:17:27.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:868ed2c5dc7812d3b9647bddf6d2d4e87031bca24b51e1a8d8ecfee433f0c2f5",
+    "source_fingerprint": "sha256:7f3adb608b5bd6b7d0f1d53f31960568f759307cdd58211a095c63eae38d05fc",
     "source_doc_hashes": {
-      "spec.md": "0d7f708f6d5ede2d69108c917c5121336321a109852f64008ed7839f7a906d5e",
+      "spec.md": "fa65c9621fba84aaef1361647321d0258dfa009b7ee9df7cd312d152337e6e96",
       "plan.md": "5413ddeac0aad430d6c6e558917603d5fb9a76334ea346a3f4114e2038f7d78c",
       "tasks.md": "c864dbcc1ac5baacd118bdd533af4b9e05b57cbf0acf0f190677b262912e1aa1",
-      "checklist.md": "601c9a3552ca113fed4c2371dd67cb98c3a4fac3365755a64d1eec5412410644",
-      "implementation-summary.md": "e358123956b61da285ab228c5511efb9220cc449e3b2f8ef24dac6f7e7c94d48"
+      "checklist.md": "5a6426c3d60d1ab70af6a1d8e5fb09631273eb0268e7a13daff252454f7c206c",
+      "implementation-summary.md": "0b692af6a79b312dd75901bd82fe1ca563abe751fc7b486e36e42af9f4447244"
     },
     "last_active_child_id": null,
     "last_active_at": null

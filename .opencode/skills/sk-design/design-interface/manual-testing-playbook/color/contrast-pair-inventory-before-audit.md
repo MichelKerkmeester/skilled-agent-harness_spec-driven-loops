@@ -10,11 +10,11 @@ contextType: reference
 version: 1.0.0.0
 expected_intent: COLOR
 expected_resources:
-  - references/corpus-map.md
+  - references/foundations/corpus-map.md
   - ../shared/register.md
   - ../shared/context-loading-contract.md
-  - references/color/oklch-workflow.md
-  - assets/contrast-pair-inventory.md
+  - references/foundations/color/oklch-workflow.md
+  - assets/foundations/contrast-pair-inventory.md
 ---
 
 # FOUND-COLOR-002 | Contrast Pair Inventory Before Audit
@@ -44,7 +44,7 @@ Color tokens can look coherent while a muted label, button text, or status color
 - Objective: Confirm a realistic color-token request loads the foundations contrast references, fills contrast pairs early, and blocks handoff while required pairs fail or remain unassessed.
 - Real user request: `Refresh the healthcare dashboard color system, but make sure no contrast issues get kicked to audit.`
 - Prompt: `Create a refreshed color token plan for a healthcare appointments dashboard with new card, button, status, and muted text colors, and prove the text and control contrast before handoff.`
-- Expected execution process: Route to `foundations`; load `../../references/color/oklch-workflow.md`, `../../assets/contrast-pair-inventory.md`, and `../../../shared/context-loading-contract.md`; set the register from `../../../shared/register.md`; inventory actual pairs for body text, muted text, primary buttons, focus rings, status text, and disabled controls; repair failed pairs through OKLCH lightness first.
+- Expected execution process: Recognize this as `interface`'s `foundations` static-system subworkflow; load `../../references/foundations/color/oklch-workflow.md`, `../../assets/foundations/contrast-pair-inventory.md`, and `../../../shared/context-loading-contract.md`; set the register from `../../../shared/register.md`; inventory actual pairs for body text, muted text, primary buttons, focus rings, status text, and disabled controls; repair failed pairs through OKLCH lightness first.
 - Expected signals: `CONTRAST PAIRS:` or the worksheet appears before final token handoff; each required pair has foreground token/value, background token/value, surface, target, result, and fix-if-fail; failed and unknown pairs block ready language.
 - Desired user-visible outcome: A color token plan with a completed contrast inventory and no late audit-only discovery of WCAG-AA failures.
 - Pass/fail: PASS if contrast pairs are inventoried and checked during foundations work; FAIL if the response only promises a later audit, uses palette intent without pair data, or marks unassessed pairs as passing.
@@ -63,7 +63,7 @@ Color tokens can look coherent while a muted label, button text, or status color
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FOUND-COLOR-002 | Contrast-pair inventory before audit | Confirm changed foreground/background pairs are inventoried during foundations work before audit | `Create a refreshed color token plan for a healthcare appointments dashboard with new card, button, status, and muted text colors, and prove the text and control contrast before handoff.` | bash: rg -n "contrast-pair inventory|changed foreground/background" ../../SKILL.md -> bash: rg -n "CONTRAST REPAIR|OKLCH lightness" ../../references/color/oklch-workflow.md -> bash: rg -n "INVENTORY THE PAIRS|WCAG AA" ../../assets/contrast-pair-inventory.md -> agent: produce the token plan plus contrast-pair inventory | Step 1: foundations contrast requirement found; Step 2: repair logic found; Step 3: inventory worksheet found; Step 4: output includes actual pairs, targets, results, and fixes before handoff | Terminal transcript, token plan, contrast-pair inventory, and final PASS or FAIL verdict | PASS if required pairs are assessed early and failed or unknown pairs block handoff; FAIL if pair inventory is absent, deferred to audit, or inferred from palette intent only | 1. Re-read ../../assets/contrast-pair-inventory.md Sections 2 through 4; 2. Re-read ../../../shared/context-loading-contract.md Required Proof Fields; 3. Re-run with one known low-contrast muted-text pair and confirm it is marked fail or fixed |
+| FOUND-COLOR-002 | Contrast-pair inventory before audit | Confirm changed foreground/background pairs are inventoried during foundations work before audit | `Create a refreshed color token plan for a healthcare appointments dashboard with new card, button, status, and muted text colors, and prove the text and control contrast before handoff.` | bash: rg -n "contrast-pair inventory|changed foreground/background" ../../SKILL.md -> bash: rg -n "CONTRAST REPAIR|OKLCH lightness" ../../references/foundations/color/oklch-workflow.md -> bash: rg -n "INVENTORY THE PAIRS|WCAG AA" ../../assets/foundations/contrast-pair-inventory.md -> agent: produce the token plan plus contrast-pair inventory | Step 1: foundations contrast requirement found; Step 2: repair logic found; Step 3: inventory worksheet found; Step 4: output includes actual pairs, targets, results, and fixes before handoff | Terminal transcript, token plan, contrast-pair inventory, and final PASS or FAIL verdict | PASS if required pairs are assessed early and failed or unknown pairs block handoff; FAIL if pair inventory is absent, deferred to audit, or inferred from palette intent only | 1. Re-read ../../assets/contrast-pair-inventory.md Sections 2 through 4; 2. Re-read ../../../shared/context-loading-contract.md Required Proof Fields; 3. Re-run with one known low-contrast muted-text pair and confirm it is marked fail or fixed |
 
 ---
 
@@ -73,8 +73,8 @@ Color tokens can look coherent while a muted label, button text, or status color
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | foundations resource-loading rule for contrast-pair inventory on changed foreground/background pairs |
-| `../../references/color/oklch-workflow.md` | Contrast repair rules and OKLCH lightness-first repair |
-| `../../assets/contrast-pair-inventory.md` | Fill-in worksheet for actual pairs and targets |
+| `../../references/foundations/color/oklch-workflow.md` | Contrast repair rules and OKLCH lightness-first repair |
+| `../../assets/foundations/contrast-pair-inventory.md` | Fill-in worksheet for actual pairs and targets |
 | `../../../shared/context-loading-contract.md` | `CONTRAST PAIRS` proof field and Foundations Contrast hard gate |
 | `../../../shared/register.md` | Register posture that sets color strategy and token density |
 

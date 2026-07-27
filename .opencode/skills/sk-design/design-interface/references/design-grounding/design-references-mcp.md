@@ -14,7 +14,7 @@ version: 1.5.0.7
 
 # Design References (real-world critique-against via Mobbin and Refero)
 
-How to put real-world shipped UI to work as judgment input without letting it turn the skill into a trend-copier or a chooser. Mobbin and Refero index hundreds of thousands of real app screens and flows. Read one matching reference live through Code Mode to see what the real-world default for a pattern actually is, so a deliberate move off it reads as a choice. It is never a gallery to copy from and never a menu of vibes to pick.
+How to read real-world shipped UI live via Mobbin and Refero (Code Mode) to name the real-world default for a pattern and then deviate from it deliberately.
 
 ---
 

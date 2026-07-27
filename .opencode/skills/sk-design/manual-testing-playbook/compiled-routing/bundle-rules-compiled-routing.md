@@ -58,9 +58,13 @@ version: 1.0.0.0
 
 # sk-design bundle-rules md-generator route serves compiled and matches legacy
 
+---
+
 ## 1. OVERVIEW
 
 Serving-authority focus: sk-design resolves through **bundle rules** — a URL-to-DESIGN.md extraction request matches the `md-generator` rule and assembles that mode's format/style/taxonomy leaves. This scenario proves the compiled engine serves that bundle-rule decision (`servingAuthority: compiled`) and matches the legacy routing decision. Distinct rationale versus the sibling bundle-rules hub (sk-doc): sk-design's rules key off a **design extraction/pipeline signal** (a live-site source plus a DESIGN.md target), not a documentation-authoring intent.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -72,6 +76,8 @@ Extract the design system from https://example.com into /tmp/skd-compiled-routin
 **Expected route**:
 - Mode: `md-generator`
 - Route shape: `bundleRules` — a design-extraction rule selects the mode and its bundle.
+
+---
 
 ## 3. COMMAND SEQUENCE
 

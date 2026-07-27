@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Context Adaptation Matrix
 
-Device, input and context adaptation across mobile, tablet, desktop, print and constrained surfaces. This reference treats adaptation as rethinking the experience for a new context. It extends the responsive section in `layout-responsive.md` with a matrix of what actually changes per context. It does not re-derive the spacing scale or container-query mechanics, which live there.
+Device, input and context adaptation across mobile, tablet, desktop, print and constrained surfaces, treating adaptation as rethinking the experience for a new context rather than scaling pixels.
 
 ---
 
@@ -29,6 +29,10 @@ Adaptation is rethinking the experience for a new context, not scaling pixels. T
 - Deciding what changes per context across layout, interaction, content and navigation.
 - Adapting to input method and orientation rather than to screen width alone.
 - Checking that core functionality survives every target context.
+
+### Prerequisites
+
+This reference extends the responsive section in `layout-responsive.md` with a matrix of what actually changes per context. It does not re-derive the spacing scale or container-query mechanics, which live there.
 
 ---
 

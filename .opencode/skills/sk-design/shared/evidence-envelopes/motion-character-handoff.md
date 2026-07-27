@@ -16,6 +16,8 @@ version: 1.0.0.0
 
 `motionCharacter` communicates temporal intent from an upstream design decision to the Motion owner. It never creates a duration, easing, spring, or theme token. Motion still chooses exact behavior from the existing timing bands and easing rules in `design-motion/references/motion-strategy.md` after the restraint gate passes.
 
+---
+
 ## 2. SEMANTIC ENUM
 
 ```ts
@@ -30,6 +32,8 @@ type MotionCharacter = 'quiet' | 'snappy' | 'elastic' | 'static-first';
 | `static-first` | Instant for keyboard, high-frequency, dense, or comprehension-sensitive paths; `100-150ms` only for an earned non-moving cue | Instant state, color, focus, or opacity feedback | Movement is opt-in and must survive the restraint gate. |
 
 The existing `500-800ms` entrance band remains available only for one earned brand or entrance moment. No `motionCharacter` value selects it automatically.
+
+---
 
 ## 3. HANDOFF SHAPE
 
@@ -49,6 +53,8 @@ The existing `500-800ms` entrance band remains available only for one earned bra
 
 `timingBand` and `easingBand` cite existing Motion guidance. They do not mint aliases or write to the token vocabulary. Exact implementation values remain locked only after the Motion owner selects them for the target interaction.
 
+---
+
 ## 4. INTERRUPTION AND REVERSAL PROOF
 
 | Proof | Required evidence |
@@ -60,6 +66,8 @@ The existing `500-800ms` entrance band remains available only for one earned bra
 | Reduced motion | The state change, focus, progress, success, and error meanings remain available with travel, scaling, shimmer, and decorative loops removed. |
 
 Proof must exercise at least normal completion, rapid reversal before completion, repeated retriggering, keyboard access, and the reduced-motion path.
+
+---
 
 ## 5. ASYNC AND ROLLBACK PROOF
 
@@ -76,6 +84,8 @@ An optimistic transition is ready only when:
 - late responses cannot overwrite a newer user action.
 
 Required scenarios are fast success, sustained pending, rejection with rollback, retry after rejection, cancellation, duplicate trigger, reversed intent while pending, and reduced motion. Each scenario records expected state, visible output, and the observed result.
+
+---
 
 ## 6. AUTHORITY BOUNDARY
 

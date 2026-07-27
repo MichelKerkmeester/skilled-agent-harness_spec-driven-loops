@@ -13,9 +13,13 @@ version: 1.0.0.0
 
 Imagery changes the weight and interpretation of the page because it carries evidence the prose cannot replace.
 
+---
+
 ## 1. Regions and composition
 
 Open with a clear premise that can stand without media, then place one or more image-bearing regions where visual evidence changes understanding. Section headings establish what to inspect or infer; adjacent bodies interpret rather than caption the obvious. Text-led regions create relief so the page does not become a continuous gallery.
+
+---
 
 ## 2. Remaining rhythm axes
 
@@ -24,9 +28,13 @@ Open with a clear premise that can stand without media, then place one or more i
 - **Image treatment:** every image has a semantic role, controlled source, intended crop/aspect, and safe fallback in the owned-asset evidence contract.
 - **Reveal pattern:** essential interpretation is available without waiting for media motion or progressive effects.
 
+---
+
 ## 3. Navigation and footer pairing
 
 Navigation remains task-led rather than turning image categories into the whole information architecture. The footer returns from visual evidence to durable destinations and ownership or provenance paths when those matter to trust.
+
+---
 
 ## 4. Applicability guard
 
@@ -34,9 +42,13 @@ Navigation remains task-led rather than turning image categories into the whole 
 
 **Avoid when:** rights or fallback evidence is unresolved, the imagery is generic atmosphere, the page's main task becomes harder to reach, or text already communicates the same information more directly.
 
+---
+
 ## 5. Responsive-collapse note
 
 The shared responsive gate must test media ownership, focal integrity, interpretation order, fallback behavior, and whether essential actions remain visible when image prominence changes. It selects the target-specific treatment; this card defines no crop or layout recipe.
+
+---
 
 ## 6. Failure modes
 
@@ -44,6 +56,8 @@ The shared responsive gate must test media ownership, focal integrity, interpret
 - Text and image repeat each other while competing for attention.
 - Cropping removes the detail that made the asset informative.
 - A missing, slow, or reduced-motion asset collapses the meaning of the region.
+
+---
 
 ## 7. Evidence and diversification stamp
 

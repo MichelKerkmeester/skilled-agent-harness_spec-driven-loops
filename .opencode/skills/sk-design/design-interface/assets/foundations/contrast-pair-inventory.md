@@ -12,13 +12,19 @@ version: 1.0.0.0
 
 # Contrast Pair Inventory
 
-Fill this in for any UI build that changes text, icon, control, or surface color pairs. Use actual token names and values from the surface, not palette intentions. Every ratio recorded here must trace to `../../scripts/contrast_check.py` (e.g. `python3 ../../scripts/contrast_check.py "#787878" "#ffffff"`) rather than an eyeballed estimate — a calculator, not eyeballs; it exits non-zero when a pair fails the 4.5:1 body target. `foundations` itself is a read-only `Read`/`Glob`/`Grep` mode and never runs this script; the script runs downstream, in whichever step actually builds or ships the surface (typically `sk-code` implementation, a human check, or CI). Until that run has produced a value, mark `Tested by` (Section 2) and the row's `Result` (Section 3) `not assessed` rather than guessing. Full repair logic lives in `../../references/foundations/color/oklch-workflow.md`; the shared gate is `../../../shared/context-loading-contract.md`.
+Fill this in for any UI build that changes text, icon, control, or surface color pairs, and verify every ratio with the contrast checker rather than an eyeballed estimate.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This worksheet proves that changed foreground/background pairs were checked against the target surface rather than assumed from palette intent. It travels with the foundations output when color, token, surface, or UI-control changes affect readability.
+
+### Usage
+
+Use actual token names and values from the surface, not palette intentions. Every ratio recorded here must trace to `../../scripts/contrast_check.py` (e.g. `python3 ../../scripts/contrast_check.py "#787878" "#ffffff"`) rather than an eyeballed estimate — a calculator, not eyeballs; it exits non-zero when a pair fails the 4.5:1 body target. `foundations` itself is a read-only `Read`/`Glob`/`Grep` mode and never runs this script; the script runs downstream, in whichever step actually builds or ships the surface (typically `sk-code` implementation, a human check, or CI). Until that run has produced a value, mark `Tested by` (Section 2) and the row's `Result` (Section 3) `not assessed` rather than guessing. Full repair logic lives in `../../references/foundations/color/oklch-workflow.md`; the shared gate is `../../../shared/context-loading-contract.md`.
 
 ---
 

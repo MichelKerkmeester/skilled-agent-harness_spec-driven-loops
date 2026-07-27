@@ -13,16 +13,36 @@ version: 1.6.0.0
 
 # Refero MCP Tools Reference
 
+Pointer to the canonical Refero tool surface, now owned by the `mcp-refero` transport packet, plus the judgment-side guidance that stays sk-design's own.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Keep the styles-first critique-against framing and the anti-averaging mandate here, in this skill, while the Refero tool catalog itself lives with its owning transport packet.
+
+### When to Use
+
+Read this before calling any `refero.*` tool from interface work, to keep the judgment side (which layer to cite, how to avoid averaging references, where the taste boundary sits) separate from the transport mechanics.
+
+### Core Principle
+
+Transport output is evidence, never a verdict — the design decision, and the discipline that governs it, stay in this skill even though the tool surface does not.
+
+### Prerequisites
+
 > **Canonical home moved.** The Refero tool surface — the eight-tool contract (arguments, bounds, ID typing, result shapes), the doubled-prefix Code Mode call convention (`refero.refero_refero_<tool>`), wiring and OAuth, plan gating, the Node 24 runtime constraint, and troubleshooting — is owned by the **`mcp-refero` transport packet** in the `mcp-tooling` hub:
 >
 > - [`mcp-refero/SKILL.md`](../../../../mcp-tooling/mcp-refero/SKILL.md) — the runtime transport contract
-> - [`mcp-refero/references/tool_surface.md`](../../../../mcp-tooling/mcp-refero/references/tool_surface.md) — the full eight-tool catalog and research funnel
+> - [`mcp-refero/references/tool-surface.md`](../../../../mcp-tooling/mcp-refero/references/tool-surface.md) — the full eight-tool catalog and research funnel
 >
 > Refero lookups route as **the mcp-refero transport over mcp-code-mode**; this skill co-loads the transport for retrieval and keeps every design judgment here. Do not duplicate the catalog back into this file.
 
 ---
 
-## 1. WHAT STAYS SK-DESIGN'S OWN (JUDGMENT SIDE)
+## 2. WHAT STAYS SK-DESIGN'S OWN (JUDGMENT SIDE)
 
 - **Layer roles for critique-against**: styles are the starting point for visual direction (web marketing/product coverage), screens answer concrete interface decisions, flows answer journey logic. Inside interface these are a CRITIQUE-AGAINST reference; the discipline (one reference, read live, never copy) lives in [`design_references_mcp.md`](../design-grounding/design-references-mcp.md).
 - **The anti-averaging mandate**: do not average references into a safe middle. A dark, acid, or saturated reference should not become a warm cream canvas with muted accents. Strong references stay strong or get rejected, never softened into generic AI taste. Treat a style as a reference ingredient, never a wholesale copy.
@@ -30,7 +50,7 @@ version: 1.6.0.0
 
 ---
 
-## 2. RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 - [`design_references_mcp.md`](../design-grounding/design-references-mcp.md) - the critique-against discipline that governs WHEN and HOW to use these tools (one reference, read live, never copy, grounding stays upstream).
 - [`mobbin-tools.md`](./mobbin-tools.md) - the sibling real-world reference MCP (screens, flows).

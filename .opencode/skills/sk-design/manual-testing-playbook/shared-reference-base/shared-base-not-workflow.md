@@ -10,9 +10,13 @@ expected_leaf_resources: []
 
 # SR-003: Shared Base Is Not a Workflow
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that the shared reference base is not user-invoked as a mode. It is vocabulary and guidance cited by modes.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -38,6 +42,8 @@ Use the shared design reference base as the workflow for this task.
 
 **Expected advisor behavior**: defer or low-confidence `sk-design`. If `sk-design` is invoked, the hub must not invent `workflowMode: shared`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -62,12 +68,16 @@ Use the shared design reference base as the workflow for this task.
 2. If shared resources are loaded as a packet, inspect `SKILL.md` `When NOT to Use` and `Backend` sections.
 3. If the AI proceeds without a concrete task, inspect `hub-router.json` `routerPolicy.outcomes.defer`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/shared/`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # FR-001: No-Card-Matches Fallback
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies the negative-control path where a design-family prompt is valid for a public mode but does not match any private procedure-card trigger.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -29,6 +33,8 @@ interface: explain whether this existing neutral token name should be semantic o
 **Expected variant checks**:
 - `motion`: `Procedure applied: none - baseline motion workflow`.
 - `md-generator`: `Procedure applied: none - baseline md-generator pipeline`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -54,11 +60,15 @@ interface: explain whether this existing neutral token name should be semantic o
 2. Check whether the prompt accidentally included a card trigger.
 3. If md-generator says read-only, re-read its `Backend Boundary Preservation` section.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+
+---
 
 ## 5. SOURCE METADATA
 

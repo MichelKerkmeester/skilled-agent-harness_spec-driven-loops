@@ -55,7 +55,7 @@ Numeric table columns right-align with tabular numerals and consistent decimal p
 ## 4. SOURCE METADATA
 
 - Group: Adaptation And Data
-- Canonical catalog source: `feature_catalog.md`
+- Canonical catalog source: `feature-catalog.md`
 - Feature file path: `adaptation-and-data/data-visualization-discipline.md`
 
 Related references:

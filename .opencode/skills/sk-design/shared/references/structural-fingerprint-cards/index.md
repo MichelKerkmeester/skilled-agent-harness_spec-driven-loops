@@ -14,6 +14,8 @@ version: 1.0.0.0
 
 Use this index to select one structural direction without loading a preset catalog.
 
+---
+
 ## 1. LOAD-ON-DEMAND RULE
 
 1. Read the existing `structuralFingerprintSelections` evidence envelope.
@@ -24,6 +26,8 @@ Use this index to select one structural direction without loading a preset catal
 6. After application, append one selection entry using the envelope below.
 
 The index is a routing aid, not a visual chooser. Card names do not authorize a style, component set, or fixed layout.
+
+---
 
 ## 2. CARD INDEX
 
@@ -36,6 +40,8 @@ The index is a routing aid, not a visual chooser. Card names do not authorize a 
 | `image-counterweight` | `card-image-counterweight.md` | Use when owned imagery carries evidence and must counterbalance, not decorate, the narrative. |
 | `staged-reveal` | `card-staged-reveal.md` | Use when comprehension depends on exposing complexity in a controlled sequence. |
 | `reciprocal-frame` | `card-reciprocal-frame.md` | Use when navigation and footer must visibly share one information model across a multi-surface experience. |
+
+---
 
 ## 3. SHARED SELECTION EVIDENCE ENVELOPE
 
@@ -68,6 +74,8 @@ Reuse this versioned collection in the project's existing design evidence record
 }
 ```
 
+---
+
 ## 4. FIELD CONTRACT
 
 | Field | Required | Contract |
@@ -85,11 +93,15 @@ Reuse this versioned collection in the project's existing design evidence record
 | `proof.status` | yes | `pending`, `confirmed`, or `blocked`. |
 | `proof.evidence` | yes | Visible observations that prove the selected relationship appears in the result. |
 
+---
+
 ## 5. DIVERSIFICATION CHECK
 
 Before selection, form the used-id set from every prior `cardId` in the envelope. Remove those ids from the index. Selection succeeds when one remaining card fits the brief and its entry can name concrete proof.
 
 Dry-run example: if `heading-rail` is already recorded, the next pass starts with the other six cards. It cannot select `heading-rail` again merely because it is familiar. Reuse is allowed only after the unused set has no applicable card and the new entry's rationale starts with `no-unused-fit:` followed by the mismatch.
+
+---
 
 ## 6. VALIDATION AND AUTHORITY BOUNDARY
 

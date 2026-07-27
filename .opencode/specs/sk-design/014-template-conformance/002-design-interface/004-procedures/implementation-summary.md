@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [design-interface procedures conformance]"
-description: "Not yet started — this child is Planned. One card sampled near-conformant; the remaining 8-card audit is task 1."
+description: "All 9 procedure cards audited and confirmed conformant. Field-label question resolved: Owning mode is correct per the hub-local schema, not drift."
 trigger_phrases:
   - "procedures implementation summary"
 importance_tier: "normal"
@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/004-procedures"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:20:08Z"
     last_updated_by: "spec-author"
     recent_action: "Authored placeholder implementation-summary for Planned child"
     next_safe_action: "Populate after the audit and field-label decision land"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-procedures |
-| **Completed** | Not yet — status Planned |
+| **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,7 +45,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. `aesthetic-direction.md` was read in full and found near-conformant against `skill-procedure-template.md`, with one field-label variance (`Owning mode` vs the template's `Owning skill/mode`). The other 8 cards have not been read against the template, and no fixes have been applied.
+All 9 procedure cards under `procedures/` were checked against `skill-procedure-template.md` and, decisively, against `sk-design/shared/procedure-card-schema.md` (the hub-local schema `skill-procedure-template.md` §9 names as the authority this generic template generalizes from). All 9 cards are conformant, with zero fixes needed.
+
+**Field-label question resolved (not a defect):** `aesthetic-direction.md` uses the field label `Owning mode`, which differs from the generic `skill-procedure-template.md`'s `Owning skill/mode`. `sk-design/shared/procedure-card-schema.md` §2 canonically requires `Owning mode` with the enum `design-interface | design-motion | design-md-generator | shared` — this is sk-design's own established, machine-checked contract, not an unintentional drift. Running `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs` confirms all 12 procedure cards hub-wide (9 in `design-interface`, plus `design-md-generator`, `design-motion`, and `shared`) PASS with zero failures using `Owning mode`. No rename was applied — renaming to `Owning skill/mode` would itself introduce a deviation from the authoritative local schema.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -53,7 +55,7 @@ Nothing yet. `aesthetic-direction.md` was read in full and found near-conformant
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet.
+Read-only audit; no edits were needed since all 9 cards already conform to the correct (hub-local) schema. Verified with `package_skill.py --check --strict` and the dedicated `procedure-card-schema-check.mjs` linter.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -63,7 +65,8 @@ Not delivered yet.
 
 | Decision | Why |
 |----------|-----|
-| Deferred the field-label rename pending operator confirmation | Renaming across 9 files without confirming whether `Owning mode` is intentional house style risks an unnecessary or even wrong-direction edit |
+| Resolved the field-label question by reading `sk-design/shared/procedure-card-schema.md` directly, rather than treating the generic template as the tie-breaker | The generic template explicitly defers to this local schema as its real-world source ("the schema this template generalizes from"); the local schema and its automated linter are authoritative for this hub |
+| Did not rename `Owning mode` to `Owning skill/mode` | The local schema, and the linter that enforces it hub-wide (12/12 pass), both require `Owning mode`; renaming would break conformance, not fix it |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -73,7 +76,8 @@ Not delivered yet.
 
 | Check | Result |
 |-------|--------|
-| `package_skill.py --check` | Not run yet |
+| `package_skill.py --check --strict` | PASS |
+| `node .opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs` | PASS, `cardCount: 12`, `failingCardCount: 0` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -81,5 +85,5 @@ Not delivered yet.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No exhaustive audit yet.** Only `aesthetic-direction.md` was read in full; the other 8 cards await the same pass.
+None. All 9 cards were read and machine-verified.
 <!-- /ANCHOR:limitations -->

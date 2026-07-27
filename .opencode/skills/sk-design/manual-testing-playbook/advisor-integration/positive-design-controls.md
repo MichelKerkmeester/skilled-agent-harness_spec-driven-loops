@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # AI-001: Positive Design Controls
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies end-to-end advisor integration for the single public advisor identity `sk-design`. The advisor should choose `sk-design`; the hub should then resolve the mode from the registry and router.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -46,6 +50,8 @@ This scenario verifies end-to-end advisor integration for the single public advi
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 for every positive prompt at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -70,11 +76,15 @@ This scenario verifies end-to-end advisor integration for the single public advi
 2. If a child packet appears as an advisor identity, inspect the one-graph-metadata invariant and packet folders for accidental discoverable markers.
 3. If advisor wins but hub mode is wrong, inspect `hub-router.json` vocabulary classes for the lost prompt.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -9,9 +9,13 @@ expected_leaf_resources: []
 
 # SR-002: Reference-Base Backend Modes
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that non-md-generator design modes use `backendKind: reference-base` and cite shared references rather than owning duplicated family vocabulary.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -46,6 +50,8 @@ This scenario verifies that non-md-generator design modes use `backendKind: refe
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for all probes.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -70,6 +76,8 @@ This scenario verifies that non-md-generator design modes use `backendKind: refe
 2. If shared register is missing, inspect each mode packet's Resource Loading Levels.
 3. If mutating tools are used, compare the run with the registry `toolSurface` for the resolved mode.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
@@ -77,6 +85,8 @@ This scenario verifies that non-md-generator design modes use `backendKind: refe
 - `.opencode/skills/sk-design/design-interface/SKILL.md`
 - `.opencode/skills/sk-design/design-motion/SKILL.md`
 - `.opencode/skills/sk-design/shared/register.md`
+
+---
 
 ## 5. SOURCE METADATA
 

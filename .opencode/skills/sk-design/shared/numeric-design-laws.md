@@ -16,7 +16,19 @@ Shared index of numeric design laws that design modes cite for contrast, motion,
 
 ---
 
-## 1. Law Index
+## 1. OVERVIEW
+
+### Purpose
+
+Give every design mode one stable, citable row per numeric design law instead of re-deriving contrast, motion, spacing, type, and neutral-color thresholds independently.
+
+### Usage
+
+Cite a row by `law_id` when a finding or decision depends on a numeric threshold. The owner source in the `source` column still holds the authoritative law; this file only gives it a stable row and an honest enforcement status.
+
+---
+
+## 2. LAW INDEX
 
 | law_id | value/range | owner mode | enforcement target | source | caveat |
 |---|---|---|---|---|---|
@@ -35,7 +47,7 @@ Shared index of numeric design laws that design modes cite for contrast, motion,
 
 ---
 
-## 2. Application Notes
+## 3. APPLICATION NOTES
 
 - `foundations` cites contrast, spacing, type, and neutral rows when shaping static systems and proof artifacts.
 - `motion` owns timing-band rows and applies them with purpose, easing, staging, and reduced-motion checks.

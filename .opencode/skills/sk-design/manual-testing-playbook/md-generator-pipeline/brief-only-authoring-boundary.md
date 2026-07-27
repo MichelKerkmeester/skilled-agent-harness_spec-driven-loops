@@ -19,9 +19,13 @@ expected_leaf_resources:
 
 # MG-004: Brief-Only Authoring Boundary
 
+---
+
 ## 1. OVERVIEW
 
 This scenario verifies that a brief-only Style Reference request, with no live site to crawl, still resolves `md-generator` via its aliases but does not cross into forward-authoring: brief-supplied values must never land in an unlabeled Tokens table, and the response must cite the two dedicated authoring-boundary resources rather than silently handing the request to `foundations`.
+
+---
 
 ## 2. SCENARIO CONTRACT
 
@@ -59,6 +63,8 @@ Generate a DESIGN.md style reference for our new checkout product from this brie
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -85,6 +91,8 @@ Generate a DESIGN.md style reference for our new checkout product from this brie
 3. If the mode defers to `foundations` without comment, inspect `SKILL.md` Section 1 "When NOT to Use" and the Section 2 routing line "Do not route brief-only token-system authoring here; that belongs to `foundations`" for how the deferral must name the boundary, not happen silently.
 4. If `tokens.json` or `DESIGN.md` is written despite no live URL, stop and treat as a cardinal-rule breach; inspect the Phase 1 `EXTRACT` tool-readiness check for a missing live-URL precondition.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
@@ -92,6 +100,8 @@ Generate a DESIGN.md style reference for our new checkout product from this brie
 - `.opencode/skills/sk-design/design-md-generator/SKILL.md`
 - `.opencode/skills/sk-design/design-md-generator/references/authoring-boundary.md`
 - `.opencode/skills/sk-design/design-md-generator/assets/source-of-truth-router-card.md`
+
+---
 
 ## 5. SOURCE METADATA
 

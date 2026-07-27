@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/006-shared/004-procedures",
   "description": "`.opencode/skills/sk-design/shared/procedures/` has not been audited against",
   "keywords": [
@@ -10,7 +11,7 @@
     "audited",
     "against"
   ],
-  "lastUpdated": "2026-07-27T14:59:40.055Z",
+  "lastUpdated": "2026-07-27T16:17:17.053Z",
   "specId": "004",
   "folderSlug": "procedures",
   "parentChain": [
@@ -19,6 +20,5 @@
     "006-shared"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/002-design-interface/005-corpus"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:21:47Z"
     last_updated_by: "spec-author"
     recent_action: "Found corpus/README.md has zero frontmatter unlike scripts/README.md"
     next_safe_action: "Audit corpus/ against overview.md rules and package_skill.py"
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance/002-design-interface` |
@@ -125,7 +125,7 @@ Read `corpus/README.md`, both `.mjs` adapters, and the `tests/` subfolder agains
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Is a directory README for a non-canonical bundled-resource folder (`corpus/` is design-interface-specific, not one of `scripts/references/assets`) required to carry frontmatter at all, or is the current zero-frontmatter narrative style acceptable?
+- **Resolved**: No, frontmatter is not required. `frontmatter-templates.md` §2 explicitly names `skill and folder README.md files` as exempt from the 5-field block regardless of subfolder canonicity. `corpus/README.md` (zero frontmatter, narrative style) and `corpus/tests/README.md` (partial 2-field frontmatter, title+description) are both acceptable README conventions under this exemption — no fix applied to either.
 <!-- /ANCHOR:questions -->
 
 ---

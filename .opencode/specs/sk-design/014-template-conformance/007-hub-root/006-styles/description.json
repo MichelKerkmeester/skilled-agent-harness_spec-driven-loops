@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/014-template-conformance/007-hub-root/006-styles",
   "description": "`.opencode/skills/sk-design/styles/ (top-level shape only)` has not been audited against",
   "keywords": [
@@ -12,7 +13,7 @@
     "audited",
     "against"
   ],
-  "lastUpdated": "2026-07-27T14:59:40.097Z",
+  "lastUpdated": "2026-07-27T16:19:58.507Z",
   "specId": "006",
   "folderSlug": "styles",
   "parentChain": [
@@ -21,6 +22,5 @@
     "007-hub-root"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

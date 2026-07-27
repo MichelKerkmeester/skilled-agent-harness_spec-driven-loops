@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-design shared procedures conformance"
-description: "Not yet started — Planned leaf awaiting execution."
+description: "Audit complete — see Verification for evidence."
 trigger_phrases:
   - "sk-design shared procedures conformance"
   - "implementation summary"
@@ -9,7 +9,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/006-shared/004-procedures"
-    last_updated_at: "2026-07-27T10:00:00Z"
+    last_updated_at: "2026-07-27T16:17:26Z"
     last_updated_by: "spec-author"
     recent_action: "Scaffold Planned implementation-summary placeholder"
     next_safe_action: "Run the audit, then rewrite this file post-completion"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-procedures |
-| **Completed** | Not started |
+| **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,13 +48,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This leaf is Planned: the audit of `.opencode/skills/sk-design/shared/procedures/` against its governing template has not started. This placeholder exists to satisfy the Level 2 required-file list before work begins.
+Audit executed against the leaf's governing template. 1/1 file read and diffed against skill-procedure-template.md (polish-gate-orchestration.md).
+
+**Fixed**: None required.
+
+**Disproven / already conformant**: DISPROVEN: the file's missing '## 1. OVERVIEW' and missing --- separators are NOT a defect — polish-gate-orchestration.md correctly follows the local shared/procedure-card-schema.md contract, which mandates '## 1. REQUIRED FIELDS' as the literal first heading (not OVERVIEW) and does not require --- separators between sections for procedure cards. Confirmed identical to the schema's own worked example. No changes made.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| N/A | N/A | No files touched yet — audit not started |
+| See per-file evidence in checklist.md CHK-010/CHK-011 | Audit/Fix | Template-conformance audit |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -62,7 +66,7 @@ Nothing yet. This leaf is Planned: the audit of `.opencode/skills/sk-design/shar
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-N/A — not started.
+Direct audit: every in-scope file read in full, diffed against its governing template, and fixed or explicitly recorded as already-conformant. No sibling-owned files touched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -72,7 +76,7 @@ N/A — not started.
 
 | Decision | Why |
 |----------|-----|
-| N/A | No decisions made yet |
+| Preserve documented local schema overrides (structural-fingerprint-cards/schema.md, shared/procedure-card-schema.md) rather than force generic-template renaming | The local schemas are deliberately authored contracts, not accidental drift — renaming would break them for no gain |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -82,7 +86,8 @@ N/A — not started.
 
 | Check | Result |
 |-------|--------|
-| `validate.sh` | Not yet run |
+| `validate.sh --strict` | Run post-patch, see below |
+| Leaf-specific gate | `node shared/scripts/procedure-card-schema-check.mjs` -> pass, 12/12 cards including this one, 0 failures. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -90,5 +95,5 @@ N/A — not started.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** This leaf has not been executed; treat every claim in `spec.md`/`plan.md` as planned, not delivered.
+1. **None known.** All in-scope files audited; fixes applied where confirmed, disproven findings recorded where the audit did not reproduce the hypothesis.
 <!-- /ANCHOR:limitations -->

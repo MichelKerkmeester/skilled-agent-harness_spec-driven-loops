@@ -6,6 +6,8 @@ version: 1.0.0.0
 
 # SLU-002: Generation-Guarded Hydration Refuses Mismatch
 
+---
+
 ## 1. OVERVIEW
 
 This scenario queries one live candidate, changes only the requested generation and confirms hydration returns the closed `generation-mismatch` refusal.
