@@ -150,19 +150,24 @@ function loadDeltaPayloads(deltaDir) {
     .flatMap((fileName) => parseJsonl(readUtf8(path.join(deltaDir, fileName))));
 }
 
-// Sum of discovered artifacts across all lanes from the DISCOVER-state corpus
-// (deep-alignment-corpus.json). Absent or malformed file counts as zero
-// (DISCOVER has not run yet), matching check-convergence.cjs's tolerant read so
-// the two layers agree on what "the corpus is empty" means.
-function readTotalDiscovered(corpusPath) {
-  if (!fs.existsSync(corpusPath)) return 0;
+// Read discovered artifact counts per lane so partial coverage cannot be hidden
+// by activity in another lane. Absent or malformed input remains an empty
+// corpus, matching the convergence check's tolerant pre-discovery behavior.
+function readCorpusCoverage(corpusPath) {
+  const empty = { totalDiscovered: 0, discoveredByLane: new Map() };
+  if (!fs.existsSync(corpusPath)) return empty;
   let parsed;
-  try { parsed = JSON.parse(readUtf8(corpusPath)); } catch { return 0; }
+  try { parsed = JSON.parse(readUtf8(corpusPath)); } catch { return empty; }
   const lanes = Array.isArray(parsed && parsed.lanes) ? parsed.lanes : [];
-  return lanes.reduce(
-    (sum, lane) => sum + (Array.isArray(lane && lane.artifacts) ? lane.artifacts.length : 0),
-    0,
-  );
+  const discoveredByLane = new Map();
+  let totalDiscovered = 0;
+  for (const lane of lanes) {
+    const discovered = Array.isArray(lane && lane.artifacts) ? lane.artifacts.length : 0;
+    const id = normalizeText(lane && lane.laneId) || laneKey(lane);
+    discoveredByLane.set(id, discovered);
+    totalDiscovered += discovered;
+  }
+  return { totalDiscovered, discoveredByLane };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -203,7 +208,7 @@ function findingDedupKey(finding) {
   }
   const severity = normalizeText(finding && finding.severity);
   const type = normalizeText(finding && finding.type);
-  const message = normalizeText(finding && finding.message).slice(0, 120);
+  const message = normalizeText(finding && (finding.message || finding.summary)).slice(0, 120);
   const artifact = normalizeText(
     (finding && (finding.artifactPath || finding.artifactTarget || finding.artifactRef || finding.artifactId)) || '',
   );
@@ -225,9 +230,10 @@ function findingDedupKey(finding) {
  * @param {{laneId:string, authority:string, artifactClass:string, scope:Object}} requiredLane
  * @param {Array<Object>} deltaRecords - Parsed deltas/iter-*.jsonl records (all lanes).
  * @param {Array<Object>} iterationRecords - Parsed main state-log {type:'iteration'} records (all lanes).
+ * @param {number|null} discoveredArtifactCount - Corpus size for this lane.
  * @returns {Object} Per-lane registry entry.
  */
-function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
+function buildLaneEntry(requiredLane, deltaRecords, iterationRecords, discoveredArtifactCount = null) {
   const { laneId } = requiredLane;
 
   const laneIterations = iterationRecords.filter(
@@ -237,6 +243,11 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
     .filter((record) => record && record.type === 'finding' && record.laneId === laneId)
     .map((record) => record.finding)
     .filter((finding) => finding && typeof finding === 'object');
+  const laneEmbeddedFindings = laneIterations.flatMap((record) => (
+    Array.isArray(record.findingDetails)
+      ? record.findingDetails.filter((finding) => finding && typeof finding === 'object')
+      : []
+  ));
 
   // An iteration's artifactsChecked may arrive as an array of the artifact paths
   // audited that iteration (the richer form a live agent naturally reports) or as
@@ -265,7 +276,7 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
   // the same finding; only the first occurrence counts as "open").
   const byKey = new Map();
   let invalidSeverityCount = 0;
-  for (const finding of laneDeltaFindings) {
+  for (const finding of [...laneDeltaFindings, ...laneEmbeddedFindings]) {
     const severity = normalizeSeverity(finding.severity);
     if (!severity) {
       // A finding whose severity is not a recognized P0/P1/P2 is a data-integrity
@@ -289,15 +300,21 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
     compositeScore += SEVERITY_WEIGHTS[finding.severity] || 0;
   }
 
-  // Zero-artifact lane: discover() found nothing for this lane's scope.
-  // NOT_APPLICABLE, never silently folded into an aggregate PASS (spec.md
-  // Data Boundaries).
-  const zeroArtifacts = laneIterations.length > 0 && artifactsChecked === 0 && openFindings.length === 0;
+  const hasKnownDiscovery = Number.isFinite(discoveredArtifactCount);
+  const artifactsDiscovered = hasKnownDiscovery ? Math.max(0, discoveredArtifactCount) : null;
+  const coverageChecked = hasKnownDiscovery ? Math.min(artifactsChecked, artifactsDiscovered) : artifactsChecked;
+  const zeroArtifacts = hasKnownDiscovery
+    ? artifactsDiscovered === 0
+    : laneIterations.length > 0 && artifactsChecked === 0 && openFindings.length === 0;
+  const incompleteCoverage = hasKnownDiscovery && artifactsDiscovered > coverageChecked;
+
+  // Only a lane whose discovery result is empty is not applicable. A configured
+  // non-empty lane that was untouched or only partially checked fails closed.
   let verdict;
-  if (laneIterations.length === 0) {
-    verdict = 'NOT_APPLICABLE'; // lane never ran an iteration yet (loop not started / mid-partition)
-  } else if (zeroArtifacts) {
+  if (zeroArtifacts || (!hasKnownDiscovery && laneIterations.length === 0)) {
     verdict = 'NOT_APPLICABLE';
+  } else if (incompleteCoverage) {
+    verdict = 'FAIL';
   } else if (findingsBySeverity.P0 > 0) {
     verdict = 'FAIL';
   } else if (findingsBySeverity.P1 > 0) {
@@ -312,7 +329,10 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords) {
     artifactClass: requiredLane.artifactClass,
     scope: requiredLane.scope,
     iterationsRun: laneIterations.length,
+    artifactsDiscovered,
     artifactsChecked,
+    coverageChecked,
+    incompleteCoverage,
     // The identity set behind artifactsChecked, when iterations reported artifact
     // paths (not bare counts). Progress consumers use this to advance by identity —
     // a set difference against the corpus — instead of trusting artifactsChecked as
@@ -371,7 +391,14 @@ function buildOverallRollup(laneEntries, integrity = {}) {
   const totalDiscovered = Number.isFinite(integrity.totalDiscovered) ? integrity.totalDiscovered : 0;
   const emptyCorpus = totalDiscovered === 0;
   const nothingToConverge = emptyCorpus && (laneEntries.length === 0 || applicableLanes.length === 0);
-  const incompleteCoverage = !emptyCorpus && applicableLanes.length === 0;
+  const totalChecked = laneEntries.reduce(
+    (sum, entry) => sum + (Number.isFinite(entry.coverageChecked) ? entry.coverageChecked : 0),
+    0,
+  );
+  const incompleteCoverage = !emptyCorpus && (
+    laneEntries.some((entry) => entry.incompleteCoverage === true)
+    || totalChecked < totalDiscovered
+  );
 
   let verdict;
   if (integrityFault || incompleteCoverage) {
@@ -400,6 +427,8 @@ function buildOverallRollup(laneEntries, integrity = {}) {
     sealed,
     nothingToConverge,
     incompleteCoverage,
+    artifactsDiscovered: totalDiscovered,
+    artifactsChecked: Math.min(totalChecked, totalDiscovered),
     integrityFault,
     invalidSeverityCount,
   };
@@ -429,6 +458,7 @@ function renderAlignmentReport(config, laneEntries, overall) {
     `- Lanes: ${overall.laneCount} (${overall.applicableLaneCount} applicable)`,
     `- Overall verdict: ${overall.verdict}${overall.nothingToConverge ? ' (nothing to converge -- zero applicable lanes)' : ''}`,
     `- Result state: ${overall.sealed ? 'SEALED (authoritative -- the loop reached synthesis)' : 'PRELIMINARY (not sealed -- seed or interrupted run; the verdict above is NOT authoritative)'}`,
+    `- Coverage: ${overall.artifactsChecked} / ${overall.artifactsDiscovered} artifacts${overall.incompleteCoverage ? ' (incomplete)' : ''}`,
     `- Findings: P0 ${overall.findingsBySeverity.P0} / P1 ${overall.findingsBySeverity.P1} / P2 ${overall.findingsBySeverity.P2}`,
     `- Composite score: ${overall.compositeScore}`,
     '',
@@ -438,7 +468,7 @@ function renderAlignmentReport(config, laneEntries, overall) {
     lines.push(`## Lane: ${entry.authority} / ${entry.artifactClass} / ${summarizeScope(entry.scope)}`, '');
     lines.push(`- Verdict: ${entry.verdict}`);
     lines.push(`- Iterations run: ${entry.iterationsRun}`);
-    lines.push(`- Artifacts checked: ${entry.artifactsChecked}`);
+    lines.push(`- Artifacts checked: ${entry.coverageChecked}${entry.artifactsDiscovered === null ? '' : ` / ${entry.artifactsDiscovered}`}`);
     lines.push(`- Findings: P0 ${entry.findingsBySeverity.P0} / P1 ${entry.findingsBySeverity.P1} / P2 ${entry.findingsBySeverity.P2}`);
     lines.push(`- Composite score: ${entry.compositeScore}`, '');
 
@@ -453,7 +483,7 @@ function renderAlignmentReport(config, laneEntries, overall) {
       for (const finding of bucket) {
         const artifact = finding.artifactPath || finding.artifactTarget || finding.artifactRef || finding.artifactId || 'unknown-artifact';
         const layer = finding.layer || finding.producedBy || 'unlabeled';
-        lines.push(`- **${finding.type || 'finding'}** (${layer}) — \`${artifact}\` — ${normalizeText(finding.message)}`);
+        lines.push(`- **${finding.type || 'finding'}** (${layer}) — \`${artifact}\` — ${normalizeText(finding.message || finding.summary)}`);
       }
       lines.push('');
     }
@@ -495,8 +525,15 @@ function reduceAlignmentState(specFolder, options = {}) {
   const deltaRecords = loadDeltaPayloads(deltaDir);
 
   const requiredLanes = resolveRequiredLanes(config);
-  const laneEntries = requiredLanes.map((lane) => buildLaneEntry(lane, deltaRecords, iterationRecords));
-  const totalDiscovered = readTotalDiscovered(path.join(alignmentDir, 'deep-alignment-corpus.json'));
+  const { totalDiscovered, discoveredByLane } = readCorpusCoverage(
+    path.join(alignmentDir, 'deep-alignment-corpus.json'),
+  );
+  const laneEntries = requiredLanes.map((lane) => buildLaneEntry(
+    lane,
+    deltaRecords,
+    iterationRecords,
+    discoveredByLane.has(lane.laneId) ? discoveredByLane.get(lane.laneId) : null,
+  ));
   const overall = buildOverallRollup(laneEntries, {
     totalDiscovered,
     hasCorruption: corruptionWarnings.length > 0,

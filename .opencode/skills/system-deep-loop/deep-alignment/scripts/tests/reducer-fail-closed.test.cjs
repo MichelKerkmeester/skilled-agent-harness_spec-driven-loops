@@ -66,6 +66,39 @@ function testUncheckedCorpusIsNotPass() {
   assert.notEqual(decision.decision, DECISIONS.NOTHING_TO_CONVERGE, 'convergence must not exit clean on an unaudited corpus');
 }
 
+// 1b. Activity in one lane must not hide an untouched non-empty lane.
+function testPartialLaneCoverageIsNotPass() {
+  const { specFolder, alignmentDir } = makeSpecFolder('partial-lanes');
+  const lanes = resolveLanesFromConfig([
+    { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/'] } },
+    { authority: 'sk-code', artifactClass: 'code', scope: { type: 'paths', values: ['src/'] } },
+  ]);
+  const laneIds = lanes.map(laneKey);
+  writeJson(path.join(alignmentDir, 'deep-alignment-config.json'), { alignmentTarget: 'partial fixture', lanes });
+  writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
+    lanes: lanes.map((lane, index) => ({
+      laneId: laneIds[index],
+      authority: lane.authority,
+      artifactClass: lane.artifactClass,
+      scope: lane.scope,
+      artifacts: [{ path: index === 0 ? 'docs/a.md' : 'src/a.cjs' }],
+    })),
+  });
+  appendState(alignmentDir, JSON.stringify({
+    type: 'iteration',
+    laneId: laneIds[0],
+    artifactsChecked: ['docs/a.md'],
+    newFindingsRatio: 0,
+  }));
+
+  const { registry } = reduceAlignmentState(specFolder, { write: false });
+  assert.equal(registry.overall.verdict, 'FAIL');
+  assert.equal(registry.overall.incompleteCoverage, true);
+  assert.equal(registry.overall.artifactsChecked, 1);
+  assert.equal(registry.overall.artifactsDiscovered, 2);
+  assert.equal(registry.lanes[1].verdict, 'FAIL', 'an untouched non-empty lane is not NOT_APPLICABLE');
+}
+
 // 2. Genuinely empty corpus (discover found nothing) is still a trivial PASS.
 function testEmptyCorpusIsTrivialPass() {
   const { specFolder, alignmentDir } = makeSpecFolder('empty');
@@ -107,8 +140,34 @@ function testUnknownSeverityFailsClosed() {
   assert.equal(registry.overall.verdict, 'FAIL', 'unrecognized severity must fail closed');
 }
 
+// 4. Canonical iteration findingDetails remain authoritative when a delta row
+// is absent, and summary-only findings render useful report text.
+function testEmbeddedFindingDetailsAreReduced() {
+  const { specFolder, alignmentDir } = makeSpecFolder('embedded-findings');
+  const laneId = seedLane(alignmentDir, [{ path: 'docs/a.md' }]);
+  appendState(alignmentDir, JSON.stringify({
+    type: 'iteration',
+    laneId,
+    artifactsChecked: ['docs/a.md'],
+    newFindingsRatio: 1,
+    findingDetails: [{
+      severity: 'P1',
+      type: 'reality-drift',
+      summary: 'The documented behavior does not match the live surface.',
+      artifactPath: 'docs/a.md',
+    }],
+  }));
+
+  const { registry, report } = reduceAlignmentState(specFolder, { write: false });
+  assert.equal(registry.overall.verdict, 'CONDITIONAL');
+  assert.equal(registry.overall.findingsBySeverity.P1, 1);
+  assert.match(report, /The documented behavior does not match the live surface\./);
+}
+
 testUncheckedCorpusIsNotPass();
+testPartialLaneCoverageIsNotPass();
 testEmptyCorpusIsTrivialPass();
 testCorruptStateFailsClosed();
 testUnknownSeverityFailsClosed();
+testEmbeddedFindingDetailsAreReduced();
 console.log('[deep-alignment] reducer fail-closed regression passed');
