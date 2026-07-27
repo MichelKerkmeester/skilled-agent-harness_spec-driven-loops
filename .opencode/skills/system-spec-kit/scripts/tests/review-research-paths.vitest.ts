@@ -4,7 +4,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
@@ -17,12 +17,15 @@ const pathsModule = require(path.join(
   resolveArtifactRoot: (
     specFolder: string,
     mode?: 'review' | 'research',
+    repoRoot?: string,
   ) => {
     rootDir: string;
     subfolder: string | null;
     artifactDir: string;
     artifactArchiveRoot: string;
   };
+  getApprovedArtifactRoots: (repoRoot?: string) => string[];
+  getRegisteredWorktreeRoots: (repoRoot?: string) => string[];
 };
 
 const tempDirs: string[] = [];
@@ -67,12 +70,78 @@ function makeWorkspaceFixture(): { rootSpec: string; childSpec: string; nestedSp
 }
 
 afterEach(() => {
+  vi.restoreAllMocks();
   while (tempDirs.length) {
     fs.rmSync(tempDirs.pop() as string, { recursive: true, force: true });
   }
 });
 
 describe('review-research path resolution', () => {
+  it('approves spec roots from a bidirectionally registered linked worktree', () => {
+    const repositoryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'registered-worktree-repo-'));
+    const worktreeRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'registered-worktree-target-'));
+    tempDirs.push(repositoryRoot, worktreeRoot);
+    const registrationDir = path.join(repositoryRoot, '.git', 'worktrees', 'linked');
+
+    writeFile(path.join(registrationDir, 'gitdir'), `${path.join(worktreeRoot, '.git')}\n`);
+    writeFile(path.join(worktreeRoot, '.git'), `gitdir: ${registrationDir}\n`);
+
+    expect(pathsModule.getRegisteredWorktreeRoots(repositoryRoot)).toEqual([
+      fs.realpathSync(worktreeRoot),
+    ]);
+    expect(pathsModule.getApprovedArtifactRoots(repositoryRoot)).toContain(
+      path.join(fs.realpathSync(worktreeRoot), '.opencode', 'specs'),
+    );
+  });
+
+  it('rejects a worktree registration whose local backlink does not match', () => {
+    const repositoryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'mismatched-worktree-repo-'));
+    const worktreeRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'mismatched-worktree-target-'));
+    tempDirs.push(repositoryRoot, worktreeRoot);
+    const registrationDir = path.join(repositoryRoot, '.git', 'worktrees', 'linked');
+
+    writeFile(path.join(registrationDir, 'gitdir'), `${path.join(worktreeRoot, '.git')}\n`);
+    writeFile(
+      path.join(worktreeRoot, '.git'),
+      `gitdir: ${path.join(repositoryRoot, '.git', 'worktrees', 'other')}\n`,
+    );
+
+    expect(pathsModule.getRegisteredWorktreeRoots(repositoryRoot)).toEqual([]);
+    expect(pathsModule.getApprovedArtifactRoots(repositoryRoot)).not.toContain(
+      path.join(fs.realpathSync(worktreeRoot), '.opencode', 'specs'),
+    );
+  });
+
+  it('uses the production resolver predicate to accept a registered worktree and reject a lookalike', () => {
+    const repositoryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'resolver-worktree-repo-'));
+    const worktreeRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'resolver-worktree-target-'));
+    const lookalikeRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'resolver-worktree-lookalike-'));
+    tempDirs.push(repositoryRoot, worktreeRoot, lookalikeRoot);
+    const registrationDir = path.join(repositoryRoot, '.git', 'worktrees', 'linked');
+    const approvedTemp = path.join(repositoryRoot, 'approved-temp');
+    fs.mkdirSync(approvedTemp, { recursive: true });
+    vi.spyOn(os, 'tmpdir').mockReturnValue(approvedTemp);
+    writeFile(path.join(registrationDir, 'gitdir'), `${path.join(worktreeRoot, '.git')}\n`);
+    writeFile(path.join(worktreeRoot, '.git'), `gitdir: ${registrationDir}\n`);
+    const registeredSpec = makeSpecFolder(worktreeRoot, '.opencode/specs/001-registered');
+    const lookalikeSpec = makeSpecFolder(lookalikeRoot, '.opencode/specs/001-lookalike');
+
+    expect(pathsModule.resolveArtifactRoot(registeredSpec, 'research', repositoryRoot).artifactDir)
+      .toBe(path.join(registeredSpec, 'research'));
+    expect(() => pathsModule.resolveArtifactRoot(lookalikeSpec, 'research', repositoryRoot))
+      .toThrow('outside the approved specs roots');
+  });
+
+  it('rejects a symlinked artifact directory before routing writes through it', () => {
+    const { rootSpec } = makeWorkspaceFixture();
+    const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'resolver-artifact-outside-'));
+    tempDirs.push(outsideDir);
+    fs.symlinkSync(outsideDir, path.join(rootSpec, 'research'));
+
+    expect(() => pathsModule.resolveArtifactRoot(rootSpec, 'research'))
+      .toThrow('research artifact root must be a real directory');
+  });
+
   it('keeps root-spec research runs at the root spec folder', () => {
     const { rootSpec } = makeWorkspaceFixture();
 

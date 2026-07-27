@@ -41,6 +41,19 @@
     },
     {
       "leaves": [
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
+        "references/agent-delegation.md",
+        "references/cli-reference.md",
+        "references/cloud-handoff.md",
+        "references/devin-tools.md",
+        "references/integration-patterns.md"
+      ],
+      "packet": "cli-devin",
+      "workflowMode": "cli-devin"
+    },
+    {
+      "leaves": [
         "assets/permissions-matrix.example-packet-local.json",
         "assets/permissions-matrix.example-readonly.json",
         "assets/permissions-matrix.example-repo-wide.json",

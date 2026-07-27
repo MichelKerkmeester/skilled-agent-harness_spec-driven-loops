@@ -1,0 +1,3 @@
+The repo-wide reference scan for `cli-exit-taxonomy-smoke` finished successfully (~57s). Outside `.opencode/specs/`, the only hit in the main tree is `.opencode/bin/README.md`; the rest are the same README copies under `.worktrees/*/`. That matches **F1** in the composer lineage: the script is documented but not wired into CI, validate, or other runtime callers.
+
+All composer lineage artifacts are already written under `research/lineages/composer/` (5 iterations, synthesis, state JSONL).

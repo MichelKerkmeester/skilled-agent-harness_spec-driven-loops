@@ -468,6 +468,44 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     await waitFor(() => countProcessesMatching(workspace.launcherPath) === 0, 5000, 'zero respawn launchers after client close');
   });
 
+  it('respawns when the lease holder socket is missing and serves the second client', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    await waitFor(() => readLeasePid(workspace) === first.child.pid, 2000, 'first launcher lease');
+    await waitFor(() => readOwnerLeasePid(workspace) === first.child.pid, 2000, 'first owner lease');
+    const firstChildPid = await (async () => {
+      await waitFor(() => readChildPid(workspace) !== null, 2000, 'first daemon child');
+      return readChildPid(workspace);
+    })();
+    expect(firstChildPid).toEqual(expect.any(Number));
+
+    const second = spawnLauncher(workspace, {}, { interactive: true });
+    await waitFor(() => second.stderr.includes('requesting respawn'), 3000, 'missing socket respawn request');
+    await waitFor(() => second.stderr.includes('reaping recorded skill-advisor daemon pid'), 5000, 'missing socket reap log');
+    await waitFor(() => readChildPid(workspace) !== null && readChildPid(workspace) !== firstChildPid, 5000, 'replacement daemon child');
+
+    expect(readLeasePid(workspace)).toBe(second.child.pid);
+    expect(readOwnerLeasePid(workspace)).toBe(second.child.pid);
+    second.child.stdin.write(`${JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'init-after-missing-socket',
+      method: 'initialize',
+      params: {
+        protocolVersion: '2025-06-18',
+        capabilities: {},
+        clientInfo: { name: 'advisor-missing-socket-test', version: '0' },
+      },
+    })}\n`);
+    second.child.stdin.end();
+
+    await waitFor(() => second.stdout.includes('respawned-advisor'), 5000, 'replacement advisor response');
+    const exit = await waitForExit(second.child, 5000);
+
+    expect(exit.code).toBe(0);
+    expect(processLive(firstChildPid as number)).toBe(false);
+    await waitFor(() => countProcessesMatching(workspace.launcherPath) === 0, 5000, 'zero missing-socket launchers after client close');
+  });
+
   it('reaps a live wedged child from a stale launcher lease before replacement spawn', async () => {
     const workspace = createWorkspace();
     const deadPid = await createDeadPid();

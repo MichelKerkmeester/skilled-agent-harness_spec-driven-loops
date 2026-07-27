@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -10,6 +10,7 @@ const nodeRequire = createRequire(import.meta.url);
 const {
   deriveRejectedPatternIndex,
   filterRejectedIdeaCandidates,
+  emitFanoutResourceMap,
   parseIterationFile,
   reduceResearchState,
 } = nodeRequire('../../../deep-research/scripts/reduce-state.cjs') as {
@@ -37,6 +38,13 @@ const {
       matchType: string;
       rejectedPattern: string;
     }>;
+  };
+  emitFanoutResourceMap: (specFolder: string, options?: { write?: boolean }) => {
+    resourceMap: string | null;
+    resourceMapPath: string;
+    resourceMapSkipped: boolean;
+    resourceMapSkipReason: string | null;
+    deltaSourceCount: number;
   };
   reduceResearchState: (specFolder: string, options?: {
     write?: boolean;
@@ -250,6 +258,88 @@ afterEach(() => {
 });
 
 describe('deep-research reduce-state recovery gate', () => {
+  it('aggregates same-named lineage deltas without changing merged registry bytes', () => {
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    const canonicalRegistry = join(researchDir, 'findings-registry.json');
+    const compatibilityRegistry = join(researchDir, 'deep-research-findings-registry.json');
+    writeFileSync(
+      join(researchDir, 'deep-research-config.json'),
+      `${JSON.stringify({ topic: 'Fan-out resource map', resource_map: { emit: true } }, null, 2)}\n`,
+      'utf8',
+    );
+    const registryBytes = `${JSON.stringify({ keyFindings: [{ id: 'F1', title: 'Merged finding' }] }, null, 2)}\n`;
+    writeFileSync(canonicalRegistry, registryBytes, 'utf8');
+    writeFileSync(compatibilityRegistry, registryBytes, 'utf8');
+
+    for (const [label, source] of [
+      ['alpha', '.opencode/skills/sk-design/design-interface/SKILL.md'],
+      ['beta', '.opencode/skills/sk-design/design-motion/SKILL.md'],
+    ]) {
+      const deltaDir = join(researchDir, 'lineages', label, 'deltas');
+      mkdirSync(deltaDir, { recursive: true });
+      writeFileSync(
+        join(deltaDir, 'iter-001.jsonl'),
+        `${JSON.stringify({ type: 'iteration', iteration: 1, sourcesQueried: [source] })}\n`,
+        'utf8',
+      );
+    }
+
+    const result = emitFanoutResourceMap(specFolder, { write: true });
+
+    expect(result.resourceMapSkipped).toBe(false);
+    expect(result.deltaSourceCount).toBe(2);
+    expect(result.resourceMap).toContain('- **Total references**: 2');
+    expect(result.resourceMap).toContain('.opencode/skills/sk-design/design-interface/SKILL.md');
+    expect(result.resourceMap).toContain('.opencode/skills/sk-design/design-motion/SKILL.md');
+    expect(result.resourceMap).toContain('| alpha | lineages/alpha/deltas/iter-001.jsonl |');
+    expect(result.resourceMap).toContain('| beta | lineages/beta/deltas/iter-001.jsonl |');
+    expect(readFileSync(canonicalRegistry, 'utf8')).toBe(registryBytes);
+    expect(readFileSync(compatibilityRegistry, 'utf8')).toBe(registryBytes);
+  });
+
+  it('rejects symlinked lineage delta files before reading external evidence', () => {
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    writeFileSync(
+      join(researchDir, 'deep-research-config.json'),
+      `${JSON.stringify({ topic: 'Linked delta', resource_map: { emit: true } }, null, 2)}\n`,
+      'utf8',
+    );
+    const deltaDir = join(researchDir, 'lineages', 'alpha', 'deltas');
+    mkdirSync(deltaDir, { recursive: true });
+    const externalDelta = join(specFolder, 'external-delta.jsonl');
+    writeFileSync(externalDelta, `${JSON.stringify({ sourcesQueried: ['outside.md'] })}\n`, 'utf8');
+    symlinkSync(externalDelta, join(deltaDir, 'iter-001.jsonl'));
+
+    expect(() => emitFanoutResourceMap(specFolder, { write: true }))
+      .toThrow('lineage alpha delta source must be a real file');
+  });
+
+  it('rejects a symlinked resource-map output without changing its target', () => {
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    writeFileSync(
+      join(researchDir, 'deep-research-config.json'),
+      `${JSON.stringify({ topic: 'Linked output', resource_map: { emit: true } }, null, 2)}\n`,
+      'utf8',
+    );
+    const deltaDir = join(researchDir, 'deltas');
+    mkdirSync(deltaDir, { recursive: true });
+    writeFileSync(
+      join(deltaDir, 'iter-001.jsonl'),
+      `${JSON.stringify({ sourcesQueried: ['inside.md'] })}\n`,
+      'utf8',
+    );
+    const outputTarget = join(specFolder, 'outside-resource-map.md');
+    writeFileSync(outputTarget, 'outside-bytes\n', 'utf8');
+    symlinkSync(outputTarget, join(researchDir, 'resource-map.md'));
+
+    expect(() => emitFanoutResourceMap(specFolder, { write: true }))
+      .toThrow('resource-map output must be a real file');
+    expect(readFileSync(outputTarget, 'utf8')).toBe('outside-bytes\n');
+  });
+
   it('refuses a missing expected state log in validate-existing-state mode', () => {
     const specFolder = makeTempSpec();
 

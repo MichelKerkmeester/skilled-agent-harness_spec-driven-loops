@@ -1,0 +1,18 @@
+Read-only repository audit. Spec folder: .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit (pre-approved, skip Gate 3).
+
+FOCUS FOR THIS PASS ONLY: The external-CLI and MCP orchestration hubs: .opencode/skills/cli-external-orchestration/ (all five cli-* nested packets) and .opencode/skills/mcp-tooling/ (all nested transport packets), including their SKILL.md, mode-registry.json, hub-router.json, leaf-manifest.json, shared/, references/ and assets/.
+Do not audit anything outside that focus. Other passes cover the rest.
+
+Find and report, by category:
+CAT-1 dead code (symbols, scripts, flags with no reachable caller and no external contract)
+CAT-2 legacy or superseded files whose live successor already exists
+CAT-3 backup and scratch residue (.bak/.old/.orig/-copy, dated snapshots, stray node_modules, committed temp output)
+CAT-4 misplaced files contradicting the owning subsystem's documented layout
+CAT-5 architecture problems (layering violations, duplicated responsibility, contracts documented in one place but enforced in another)
+CAT-6 over-engineering whose current usage does not justify its cost, each with a concrete simpler shape proposed
+
+EVIDENCE RULES: report only findings whose path exists on disk. Every finding needs path, category, file:line evidence, and the exact reproducible shell command that proves the claim. For dead-code candidates you MUST search string literals across .ts, .js, .cjs, .md, .yaml, .json, because dynamic dispatch, hook registries and YAML-named scripts never appear in an import graph. Write UNKNOWN rather than producing a plausible path you did not check. Exclude .opencode/specs/ content.
+
+BANNED OPERATIONS: do not delete, move, rename, or modify any file. Do not run any git command that mutates state. This is read-only; remediation is a separate approved phase.
+
+OUTPUT: markdown. One section per finding: ### F<n> — CAT-<n>: <one-line claim>, then Path, Evidence (file:line), Verify (exact command), Blast radius.

@@ -74,7 +74,7 @@ const SURFACE_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 const DIRECTORY_ALLOWLIST = new Set([
   'shared', 'changelog', 'benchmark',
   'manual-testing-playbook', 'feature-catalog',
-  'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist', 'runtime',
+  'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist', 'runtime', 'styles',
 ]);
 
 // The deep-loop reference drift-guard. A hub with lexical/alias-fold modes must
@@ -333,6 +333,7 @@ function main() {
   const hasRuntimeLoop = Object.prototype.hasOwnProperty.call(extensions, 'runtime-loop');
   const hasAdvisorProjection = Object.prototype.hasOwnProperty.call(extensions, 'advisor-projection');
   const hasSurfaceAxis = Object.prototype.hasOwnProperty.call(extensions, 'surface-axis');
+  const hasCommandSubworkflows = Object.prototype.hasOwnProperty.call(extensions, 'command-subworkflows');
 
   const registeredPackets = new Set();
   let surfaceCount = 0;
@@ -625,6 +626,66 @@ function main() {
         extOk = false;
       }
     }
+    const commandSubworkflows = Array.isArray(registry.commandSubworkflows)
+      ? registry.commandSubworkflows
+      : [];
+    if (hasCommandSubworkflows) {
+      const cfg = extensions['command-subworkflows'];
+      const registeredModeIds = new Set((registry.modes || []).map((mode) => mode.workflowMode));
+      const seenSubworkflowIds = new Set();
+      const seenSubworkflowCommands = new Set();
+      const subworkflowIssues = [];
+      if (!cfg || typeof cfg !== 'object' || cfg.declaredField !== 'commandSubworkflows') {
+        subworkflowIssues.push('extension must declare declaredField "commandSubworkflows"');
+      }
+      if (commandSubworkflows.length === 0) {
+        subworkflowIssues.push('commandSubworkflows must be a non-empty array');
+      }
+      for (const subworkflow of commandSubworkflows) {
+        const id = subworkflow && subworkflow.id;
+        if (typeof id !== 'string' || id.length === 0) {
+          subworkflowIssues.push('each command subworkflow needs a non-empty id');
+          continue;
+        }
+        if (seenSubworkflowIds.has(id)) subworkflowIssues.push(`duplicate command subworkflow id "${id}"`);
+        seenSubworkflowIds.add(id);
+        if (registeredModeIds.has(id)) subworkflowIssues.push(`command subworkflow "${id}" must not also be a registered mode`);
+        if (!registeredModeIds.has(subworkflow.ownerMode)) subworkflowIssues.push(`command subworkflow "${id}" has unknown ownerMode "${subworkflow.ownerMode}"`);
+        if (typeof subworkflow.command !== 'string' || !/^\/[a-z][a-z0-9-]*:[a-z0-9-]+$/.test(subworkflow.command)) {
+          subworkflowIssues.push(`command subworkflow "${id}" has an invalid command`);
+        } else if (seenSubworkflowCommands.has(subworkflow.command)) {
+          subworkflowIssues.push(`duplicate command subworkflow command "${subworkflow.command}"`);
+        } else {
+          seenSubworkflowCommands.add(subworkflow.command);
+        }
+        for (const field of ['contract', 'proceduresPath', 'referencesPath', 'assetsPath']) {
+          const value = subworkflow[field];
+          if (typeof value !== 'string' || value.length === 0 || !fs.existsSync(path.join(target, value))) {
+            subworkflowIssues.push(`command subworkflow "${id}" ${field} does not resolve on disk`);
+          }
+        }
+        if (typeof subworkflow.contract === 'string' && path.basename(subworkflow.contract) !== 'contract.md') {
+          subworkflowIssues.push(`command subworkflow "${id}" contract must end in contract.md`);
+        }
+        const ts = subworkflow.toolSurface;
+        if (!ts || typeof ts !== 'object' || !Array.isArray(ts.allowed) || !Array.isArray(ts.forbidden)
+            || typeof ts.mutatesWorkspace !== 'boolean' || !Array.isArray(ts.bashAllowlist)) {
+          subworkflowIssues.push(`command subworkflow "${id}" has a malformed toolSurface`);
+        }
+      }
+      const declaredCommands = new Set(Array.isArray(cfg && cfg.commands) ? cfg.commands : []);
+      if (declaredCommands.size !== seenSubworkflowCommands.size
+          || [...declaredCommands].some((command) => !seenSubworkflowCommands.has(command))) {
+        subworkflowIssues.push('extension commands[] must exactly match commandSubworkflows commands');
+      }
+      if (subworkflowIssues.length > 0) {
+        for (const issue of subworkflowIssues) fail(`3f: ${issue}`);
+        extOk = false;
+      }
+    } else if (commandSubworkflows.length > 0) {
+      fail('3f: commandSubworkflows present but command-subworkflows extension is not declared');
+      extOk = false;
+    }
     if (extOk && Object.keys(extensions).length > 0) {
       pass(`3f: extensions {${Object.keys(extensions).join(', ')}} are internally consistent`);
     } else if (Object.keys(extensions).length === 0) {
@@ -757,6 +818,9 @@ function main() {
     }
     if (router) {
       const signals = router.routerSignals && typeof router.routerSignals === 'object' ? router.routerSignals : {};
+      const subworkflowSignals = router.commandSubworkflowSignals && typeof router.commandSubworkflowSignals === 'object'
+        ? router.commandSubworkflowSignals
+        : {};
       const classes = router.vocabularyClasses && typeof router.vocabularyClasses === 'object' ? router.vocabularyClasses : {};
       const signalKeys = new Set(Object.keys(signals));
 
@@ -774,6 +838,9 @@ function main() {
       for (const sig of Object.values(signals)) {
         for (const c of (sig && Array.isArray(sig.classes) ? sig.classes : [])) referenced.add(c);
       }
+      for (const sig of Object.values(subworkflowSignals)) {
+        for (const c of (sig && Array.isArray(sig.classes) ? sig.classes : [])) referenced.add(c);
+      }
       const missingClasses = [...referenced].filter((c) => !(c in classes));
       if (missingClasses.length === 0) {
         pass(`5c: all ${referenced.size} referenced vocabulary classes are defined`);
@@ -784,6 +851,11 @@ function main() {
       // 5d — resources referenced by signals resolve on disk.
       const missingResources = [];
       for (const sig of Object.values(signals)) {
+        for (const r of (sig && Array.isArray(sig.resources) ? sig.resources : [])) {
+          if (!fs.existsSync(path.join(target, r))) missingResources.push(r);
+        }
+      }
+      for (const sig of Object.values(subworkflowSignals)) {
         for (const r of (sig && Array.isArray(sig.resources) ? sig.resources : [])) {
           if (!fs.existsSync(path.join(target, r))) missingResources.push(r);
         }
@@ -878,6 +950,33 @@ function main() {
         }
       }
       if (tieOrderOk && tbOrder.length > 0) pass('5i: tieBreak orders workflow modes before surface/transport modes');
+
+      // 5j — command-subworkflow router signals exactly mirror their registry declarations.
+      const declaredSubworkflows = new Map(
+        (registry && Array.isArray(registry.commandSubworkflows) ? registry.commandSubworkflows : [])
+          .map((subworkflow) => [subworkflow.id, subworkflow]),
+      );
+      const subworkflowSignalKeys = new Set(Object.keys(subworkflowSignals));
+      const missingSubworkflowSignals = [...declaredSubworkflows.keys()].filter((id) => !subworkflowSignalKeys.has(id));
+      const straySubworkflowSignals = [...subworkflowSignalKeys].filter((id) => !declaredSubworkflows.has(id));
+      const mismatchedSubworkflowSignals = [];
+      for (const [id, declared] of declaredSubworkflows) {
+        const signal = subworkflowSignals[id];
+        if (!signal) continue;
+        if (signal.ownerMode !== declared.ownerMode || signal.command !== declared.command) {
+          mismatchedSubworkflowSignals.push(id);
+        }
+      }
+      if (missingSubworkflowSignals.length === 0 && straySubworkflowSignals.length === 0
+          && mismatchedSubworkflowSignals.length === 0) {
+        if (declaredSubworkflows.size > 0) {
+          pass(`5j: commandSubworkflowSignals match all ${declaredSubworkflows.size} registry declaration(s)`);
+        } else {
+          info('5j: hub declares no command subworkflows');
+        }
+      } else {
+        softFail(`5j: command subworkflow routing mismatch — missing: [${missingSubworkflowSignals.join(', ') || 'none'}], stray: [${straySubworkflowSignals.join(', ') || 'none'}], owner/command mismatch: [${mismatchedSubworkflowSignals.join(', ') || 'none'}]`);
+      }
     }
   }
 

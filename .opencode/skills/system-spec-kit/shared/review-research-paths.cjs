@@ -196,6 +196,63 @@ function isWithinRoot(root, candidate) {
   return candidate.startsWith(prefix);
 }
 
+function readRegisteredWorktreeRoot(registrationDir) {
+  try {
+    const gitdirRecord = path.join(registrationDir, 'gitdir');
+    if (!fs.lstatSync(gitdirRecord).isFile()) {
+      return null;
+    }
+
+    const linkedGitFile = path.resolve(
+      registrationDir,
+      fs.readFileSync(gitdirRecord, 'utf8').trim(),
+    );
+    if (path.basename(linkedGitFile) !== '.git' || !fs.lstatSync(linkedGitFile).isFile()) {
+      return null;
+    }
+
+    const backlinkMatch = fs.readFileSync(linkedGitFile, 'utf8').trim().match(/^gitdir:\s*(.+)$/);
+    if (!backlinkMatch) {
+      return null;
+    }
+
+    const backlink = canonicalizeForContainment(
+      path.resolve(path.dirname(linkedGitFile), backlinkMatch[1]),
+    );
+    if (backlink !== canonicalizeForContainment(registrationDir)) {
+      return null;
+    }
+
+    return canonicalizeForContainment(path.dirname(linkedGitFile));
+  } catch (_error) {
+    return null;
+  }
+}
+
+function getRegisteredWorktreeRoots(repoRoot = REPO_ROOT) {
+  const registrationsRoot = path.join(repoRoot, '.git', 'worktrees');
+  try {
+    if (!fs.lstatSync(registrationsRoot).isDirectory()) {
+      return [];
+    }
+  } catch (_error) {
+    return [];
+  }
+
+  const canonicalRegistrationsRoot = canonicalizeForContainment(registrationsRoot);
+  return fs.readdirSync(registrationsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }))
+    .flatMap((entry) => {
+      const registrationDir = path.join(registrationsRoot, entry.name);
+      if (!isWithinRoot(canonicalRegistrationsRoot, canonicalizeForContainment(registrationDir))) {
+        return [];
+      }
+      const worktreeRoot = readRegisteredWorktreeRoot(registrationDir);
+      return worktreeRoot ? [worktreeRoot] : [];
+    });
+}
+
 /**
  * Allowed roots for resolveArtifactRoot() writes: this repo's two spec-folder
  * roots (.opencode/specs, specs — the convention also used by
@@ -206,20 +263,39 @@ function isWithinRoot(root, candidate) {
  * matching the same os.tmpdir()-as-allowed-root convention already used by
  * shared/ipc/socket-server.ts's allowedSocketRoots().
  */
-function getApprovedArtifactRoots() {
+function getApprovedArtifactRoots(repoRoot = REPO_ROOT) {
   const roots = new Set();
-  roots.add(path.join(REPO_ROOT, '.opencode', 'specs'));
-  roots.add(canonicalizeForContainment(path.join(REPO_ROOT, '.opencode', 'specs')));
-  roots.add(path.join(REPO_ROOT, 'specs'));
-  roots.add(canonicalizeForContainment(path.join(REPO_ROOT, 'specs')));
+  for (const repositoryRoot of [repoRoot, ...getRegisteredWorktreeRoots(repoRoot)]) {
+    roots.add(path.join(repositoryRoot, '.opencode', 'specs'));
+    roots.add(canonicalizeForContainment(path.join(repositoryRoot, '.opencode', 'specs')));
+    roots.add(path.join(repositoryRoot, 'specs'));
+    roots.add(canonicalizeForContainment(path.join(repositoryRoot, 'specs')));
+  }
   roots.add(path.resolve(os.tmpdir()));
   roots.add(canonicalizeForContainment(os.tmpdir()));
   return [...roots];
 }
 
-function isWithinApprovedArtifactRoot(resolvedSpecFolder) {
+function isWithinApprovedArtifactRoot(resolvedSpecFolder, repoRoot = REPO_ROOT) {
   const candidate = canonicalizeForContainment(resolvedSpecFolder);
-  return getApprovedArtifactRoots().some((root) => isWithinRoot(root, candidate));
+  return getApprovedArtifactRoots(repoRoot).some((root) => isWithinRoot(root, candidate));
+}
+
+function assertSafeArtifactDirectory(specRoot, candidate, label) {
+  if (!fs.existsSync(candidate)) {
+    return;
+  }
+
+  const stat = fs.lstatSync(candidate);
+  if (stat.isSymbolicLink() || !stat.isDirectory()) {
+    throw new Error(`resolveArtifactRoot: ${label} must be a real directory: ${candidate}`);
+  }
+
+  const canonicalRoot = canonicalizeForContainment(specRoot);
+  const canonicalCandidate = canonicalizeForContainment(candidate);
+  if (!isWithinRoot(canonicalRoot, canonicalCandidate)) {
+    throw new Error(`resolveArtifactRoot: ${label} resolves outside the spec folder: ${candidate}`);
+  }
 }
 
 /**
@@ -256,7 +332,7 @@ function isWithinApprovedArtifactRoot(resolvedSpecFolder) {
  *   artifactArchiveRoot: string
  * }} Resolved packet root plus canonical packet/archive directories
  */
-function resolveArtifactRoot(specFolder, mode = 'review') {
+function resolveArtifactRoot(specFolder, mode = 'review', repoRoot = REPO_ROOT) {
   // Workflow write-authority: reject specFolder values that contain
   // shell metacharacters or quote characters. The YAML workflow interpolates
   // {spec_folder} into a `node -e` shell command; without this guard, a
@@ -280,35 +356,43 @@ function resolveArtifactRoot(specFolder, mode = 'review') {
   // traversal (e.g. "../../etc") or an absolute path elsewhere on disk with
   // no forbidden shell metacharacters would sail past the guard above and
   // route workflow writes outside the intended packet.
-  if (!isWithinApprovedArtifactRoot(resolved)) {
+  if (!isWithinApprovedArtifactRoot(resolved, repoRoot)) {
     throw new Error(
       `resolveArtifactRoot: specFolder resolves outside the approved specs roots (.opencode/specs, specs) or the OS temp dir; refusing to proceed: ${resolved}`,
     );
   }
 
   const rootDir = path.join(resolved, mode);
-  const artifactArchiveRoot = path.join(resolved, `${mode}_archive`);
+  const artifactArchiveRoot = path.join(resolved, mode === 'review' ? 'review-archive' : `${mode}_archive`);
   const ancestorSpecFolder = findAncestorSpecFolder(resolved);
+  assertSafeArtifactDirectory(resolved, rootDir, `${mode} artifact root`);
+  assertSafeArtifactDirectory(resolved, artifactArchiveRoot, `${mode} archive root`);
+
+  function finalize(result) {
+    assertSafeArtifactDirectory(resolved, result.artifactDir, `${mode} artifact directory`);
+    assertSafeArtifactDirectory(resolved, result.artifactArchiveRoot, `${mode} artifact archive directory`);
+    return result;
+  }
 
   // ROOT spec: always flat
   if (!ancestorSpecFolder) {
-    return {
+    return finalize({
       rootDir,
       subfolder: null,
       artifactDir: rootDir,
       artifactArchiveRoot,
-    };
+    });
   }
 
   // CHILD phase: prefer existing pt-NN packet for current target if any
   const existingPacket = findExistingPacket(rootDir, resolved, mode);
   if (existingPacket) {
-    return {
+    return finalize({
       rootDir,
       subfolder: existingPacket,
       artifactDir: path.join(rootDir, existingPacket),
       artifactArchiveRoot: path.join(artifactArchiveRoot, existingPacket),
-    };
+    });
   }
 
   // CHILD phase: check for flat artifact at rootDir
@@ -321,12 +405,12 @@ function resolveArtifactRoot(specFolder, mode = 'review') {
     const flatSpecFolder = readPacketSpecFolder(rootDir, mode);
     if (flatSpecFolder === null || flatSpecFolder === targetSpecFolder) {
       // Flat artifact matches current target (or its config is unreadable but rootDir is owned by this target's path) → reuse flat
-      return {
+      return finalize({
         rootDir,
         subfolder: null,
         artifactDir: rootDir,
         artifactArchiveRoot,
-      };
+      });
     }
     // Flat artifact is for a different target — fall through to allocate pt-NN
   }
@@ -336,27 +420,30 @@ function resolveArtifactRoot(specFolder, mode = 'review') {
 
   // CHILD phase first run: empty rootDir → flat
   if (!hasFlatArtifact && !hasPtFolders) {
-    return {
+    return finalize({
       rootDir,
       subfolder: null,
       artifactDir: rootDir,
       artifactArchiveRoot,
-    };
+    });
   }
 
   // CHILD phase: prior content exists (flat for different target, or pt-NN folders)
   // and no matching packet for current target → allocate next pt-NN
   const subfolder = allocateShortSubfolder(rootDir, path.basename(resolved));
-  return {
+  return finalize({
     rootDir,
     subfolder,
     artifactDir: path.join(rootDir, subfolder),
     artifactArchiveRoot: path.join(artifactArchiveRoot, subfolder),
-  };
+  });
 }
 
 module.exports = {
   resolveArtifactRoot,
   allocateShortSubfolder,
+  getApprovedArtifactRoots,
+  getRegisteredWorktreeRoots,
+  isWithinApprovedArtifactRoot,
   normalizeSpecFolderReference,
 };

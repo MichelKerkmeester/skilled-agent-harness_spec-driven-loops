@@ -31,7 +31,7 @@
 import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
@@ -217,12 +217,19 @@ function createChildEnv(sourceEnv = process.env) {
   );
 }
 
-function resolveCliSocketDir(env = process.env) {
+function resolveCliSocketDir(env = process.env, workspaceRoot = process.cwd()) {
   // Default to the same short /tmp directory as the launcher and CLI shim.
   // Defaulting to the database directory produced a socket path longer than
   // Darwin's 103-byte sun_path limit, so the warm probe always failed and the
   // CLI fallback could never engage. An explicit env override still wins.
-  return env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR;
+  const baseSocketDir = env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR;
+  if (baseSocketDir.startsWith('tcp://')) return baseSocketDir;
+  const bridge = loadBridgeHelper();
+  if (!bridge || typeof bridge.getIpcSocketPath !== 'function') return baseSocketDir;
+  const dbDir = env.MK_SKILL_ADVISOR_DB_DIR
+    ? resolve(workspaceRoot, env.MK_SKILL_ADVISOR_DB_DIR)
+    : resolve(workspaceRoot, '.opencode/skills/system-skill-advisor/mcp-server/database');
+  return dirname(bridge.getIpcSocketPath('mk-skill-advisor', { dbDir }));
 }
 
 function createCliChildEnv(sourceEnv = process.env) {
@@ -233,8 +240,8 @@ function createCliChildEnv(sourceEnv = process.env) {
   };
 }
 
-function resolveCliSocketPath(env = process.env) {
-  const socketDir = resolveCliSocketDir(env);
+function resolveCliSocketPath(env = process.env, workspaceRoot = process.cwd()) {
+  const socketDir = resolveCliSocketDir(env, workspaceRoot);
   if (socketDir.startsWith('tcp://')) {
     return socketDir;
   }
@@ -267,8 +274,8 @@ function loadBridgeHelper() {
   }
 }
 
-async function probeCliWarmDaemon(env = process.env, timeoutMs = resolveCliTimeoutMs(env)) {
-  const socketPath = resolveCliSocketPath(env);
+async function probeCliWarmDaemon(env = process.env, timeoutMs = resolveCliTimeoutMs(env), workspaceRoot = process.cwd()) {
+  const socketPath = resolveCliSocketPath(env, workspaceRoot);
   if (socketPathTooLong(socketPath)) {
     return { available: false, reason: 'CLI_SOCKET_PATH_TOO_LONG', socketPath };
   }
@@ -802,7 +809,7 @@ function runCliRecommend(input, env, timeoutMs) {
 async function buildCliBrief(input, dependencies = {}) {
   const env = dependencies.env ?? process.env;
   const timeoutMs = resolveCliTimeoutMs(env);
-  const probe = await probeCliWarmDaemon(env, timeoutMs);
+  const probe = await probeCliWarmDaemon(env, timeoutMs, input.workspaceRoot);
   if (!probe.available) {
     return cliFallbackResponse(input, `CLI_RETRYABLE_UNAVAILABLE:${probe.reason ?? 'warm-daemon-unavailable'}`, false);
   }

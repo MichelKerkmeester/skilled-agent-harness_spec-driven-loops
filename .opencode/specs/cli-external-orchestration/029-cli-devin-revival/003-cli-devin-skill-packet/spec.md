@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet"
-    last_updated_at: "2026-07-23T00:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored spec.md for the planned cli-devin skill-packet phase"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md, and decision-record.md for this phase"
-    blockers: ["Phase 002 (deep-loop-executor-support) must land and pass validate.sh --strict before this phase's implementation starts, per the parent packet's Phase Transition Rules"]
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
-    completion_pct: 0
-    open_questions: ["Exact env-var namespace Devin uses for an active-session signal (COGNITION_* vs DEVIN_*) is unconfirmed pending a live self-invocation-guard test", "Whether the bare alias \"cli-devin\" could collide with an identically-named alias in a skill outside this hub (cross-hub collision is not covered by the intra-hub check 3d-alias)", "Whether the hub-root README.md's stale \"defaultMode is cli-opencode\" prose (mode-registry.json actually has defaultMode:null) should be corrected in this phase or left as a separate, out-of-scope fix"]
-    answered_questions: ["The exact 14-step build checklist and the additional gates that fire on adding a 4th mode were confirmed by direct research against sk-doc/create-skill's SKILL.md, its parent-skill doctrine, and a live 0-fail/0-warning parent-skill-check.cjs baseline run against the hub today"]
+    last_updated_at: "2026-07-26T17:30:00Z"
+    last_updated_by: "devin-cli"
+    recent_action: "Phase complete: packet built, hub wired, all validators 0/0, ADRs Accepted"
+    next_safe_action: "Update parent phase map; select next phase"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md", "implementation-summary.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-packet-build", parent_session_id: null }
+    completion_pct: 100
+    open_questions: ["Whether the bare alias \"cli-devin\" could collide with an identically-named alias in a skill outside this hub (cross-hub collision is not covered by the intra-hub check 3d-alias)", "Whether the hub-root README.md's stale \"defaultMode is cli-opencode\" prose (mode-registry.json actually has defaultMode:null) should be corrected in this phase or left as a separate, out-of-scope fix"]
+    answered_questions: ["The exact 14-step build checklist and the additional gates that fire on adding a 4th mode were confirmed by direct research against sk-doc/create-skill's SKILL.md, its parent-skill doctrine, and a live 0-fail/0-warning parent-skill-check.cjs baseline run against the hub today", "DEVIN_PROJECT_DIR is the confirmed active-session env-var signal (resolved the ADR-002 open question during implementation)", "cli-devin is the 5th mode, not 4th, due to 030-cli-cursor-creation landing between authoring and implementation (benign scope drift, documented in implementation-summary.md)"]
 ---
 # Feature Specification: cli-devin skill packet
 
@@ -42,7 +42,7 @@ _memory:
 |---|---|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-23 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

@@ -69,6 +69,29 @@ function writeUtf8(filePath, content) {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
+function writeUtf8Atomic(filePath, content) {
+  const tempPath = path.join(
+    path.dirname(filePath),
+    `.${path.basename(filePath)}.${process.pid}.${crypto.randomBytes(6).toString('hex')}.tmp`,
+  );
+  let fileHandle;
+  try {
+    fileHandle = fs.openSync(tempPath, 'wx', 0o600);
+    fs.writeFileSync(fileHandle, content, 'utf8');
+    fs.fsyncSync(fileHandle);
+    fs.closeSync(fileHandle);
+    fileHandle = undefined;
+    fs.renameSync(tempPath, filePath);
+  } finally {
+    if (fileHandle !== undefined) {
+      fs.closeSync(fileHandle);
+    }
+    if (fs.existsSync(tempPath)) {
+      fs.unlinkSync(tempPath);
+    }
+  }
+}
+
 function readJson(filePath) {
   return JSON.parse(readUtf8(filePath));
 }
@@ -1478,16 +1501,61 @@ function warnLegacyImportQuestions(questions) {
   );
 }
 
-function loadDeltaPayloads(deltaDir) {
+function assertRealContainedDirectory(rootDir, candidateDir, label) {
+  if (!fs.existsSync(candidateDir)) {
+    throw new Error(`${label} does not exist: ${candidateDir}`);
+  }
+  const stat = fs.lstatSync(candidateDir);
+  if (stat.isSymbolicLink() || !stat.isDirectory()) {
+    throw new Error(`${label} must be a real directory: ${candidateDir}`);
+  }
+  const realRoot = fs.realpathSync(rootDir);
+  const realCandidate = fs.realpathSync(candidateDir);
+  const relative = path.relative(realRoot, realCandidate);
+  if (relative !== '' && (relative.startsWith(`..${path.sep}`) || relative === '..' || path.isAbsolute(relative))) {
+    throw new Error(`${label} resolves outside the research artifact root: ${candidateDir}`);
+  }
+  return realCandidate;
+}
+
+function resolveContainedFile(rootDir, candidatePath, label) {
+  const stat = fs.lstatSync(candidatePath);
+  if (stat.isSymbolicLink() || !stat.isFile()) {
+    throw new Error(`${label} must be a real file: ${candidatePath}`);
+  }
+  const realRoot = fs.realpathSync(rootDir);
+  const realCandidate = fs.realpathSync(candidatePath);
+  const relative = path.relative(realRoot, realCandidate);
+  if (relative !== '' && (relative.startsWith(`..${path.sep}`) || relative === '..' || path.isAbsolute(relative))) {
+    throw new Error(`${label} resolves outside the research artifact root: ${candidatePath}`);
+  }
+  return realCandidate;
+}
+
+function assertSafeResourceMapOutput(researchDir, resourceMapPath) {
+  assertRealContainedDirectory(researchDir, path.dirname(resourceMapPath), 'resource-map parent');
+  if (!fs.existsSync(resourceMapPath)) return;
+  resolveContainedFile(researchDir, resourceMapPath, 'resource-map output');
+}
+
+function loadDeltaPayloads(deltaDir, researchDir) {
   if (!fs.existsSync(deltaDir)) {
     return [];
   }
 
-  return fs.readdirSync(deltaDir)
-    .filter((fileName) => /^iter-\d+\.jsonl$/.test(fileName))
+  assertRealContainedDirectory(researchDir, deltaDir, 'delta directory');
+  return fs.readdirSync(deltaDir, { withFileTypes: true })
+    .filter((entry) => /^iter-\d+\.jsonl$/.test(entry.name))
+    .map((entry) => {
+      if (entry.isSymbolicLink() || !entry.isFile()) {
+        throw new Error(`delta source must be a real file: ${path.join(deltaDir, entry.name)}`);
+      }
+      return entry.name;
+    })
     .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
     .map((fileName) => {
-      const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(path.join(deltaDir, fileName)));
+      const sourcePath = resolveContainedFile(researchDir, path.join(deltaDir, fileName), 'delta source');
+      const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(sourcePath));
       if (!corruptionWarnings.length) {
         return records;
       }
@@ -1496,6 +1564,149 @@ function loadDeltaPayloads(deltaDir) {
       );
       return records.concat(new Array(corruptionWarnings.length).fill(null));
     });
+}
+
+function loadDeltaSources(deltaDir, researchDir, lineage) {
+  if (!fs.existsSync(deltaDir)) {
+    return [];
+  }
+
+  assertRealContainedDirectory(researchDir, deltaDir, `lineage ${lineage} delta directory`);
+  return fs.readdirSync(deltaDir, { withFileTypes: true })
+    .filter((entry) => /^iter-\d+\.jsonl$/.test(entry.name))
+    .map((entry) => {
+      if (entry.isSymbolicLink() || !entry.isFile()) {
+        throw new Error(`lineage ${lineage} delta source must be a real file: ${path.join(deltaDir, entry.name)}`);
+      }
+      return entry.name;
+    })
+    .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
+    .map((fileName) => {
+      const sourcePath = path.join(deltaDir, fileName);
+      const realSourcePath = resolveContainedFile(researchDir, sourcePath, `lineage ${lineage} delta source`);
+      const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(realSourcePath));
+      if (corruptionWarnings.length) {
+        console.warn(
+          `[deep-research] resource-map extractor skipped ${corruptionWarnings.length} malformed delta row(s) from ${path.relative(researchDir, sourcePath)}`,
+        );
+      }
+      return {
+        lineage,
+        sourcePath: path.relative(researchDir, sourcePath).replace(/\\/g, '/'),
+        records: records.map((record) => {
+          if (
+            !record
+            || typeof record !== 'object'
+            || Array.isArray(record)
+            || !Array.isArray(record.sourcesQueried)
+            || Array.isArray(record.sources)
+          ) {
+            return record;
+          }
+          return { ...record, sources: record.sourcesQueried };
+        }).concat(new Array(corruptionWarnings.length).fill(null)),
+      };
+    });
+}
+
+function loadFanoutDeltaSources(researchDir) {
+  const sources = loadDeltaSources(path.join(researchDir, 'deltas'), researchDir, 'root');
+  const lineagesDir = path.join(researchDir, 'lineages');
+  if (!fs.existsSync(lineagesDir)) {
+    return sources;
+  }
+
+  assertRealContainedDirectory(researchDir, lineagesDir, 'lineages directory');
+  const lineageLabels = fs.readdirSync(lineagesDir, { withFileTypes: true })
+    .map((entry) => {
+      if (entry.isSymbolicLink()) {
+        throw new Error(`lineage directory entries must not be symbolic links: ${path.join(lineagesDir, entry.name)}`);
+      }
+      return entry;
+    })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
+
+  for (const label of lineageLabels) {
+    sources.push(...loadDeltaSources(path.join(lineagesDir, label, 'deltas'), researchDir, label));
+  }
+  return sources;
+}
+
+function appendDeltaSourceProvenance(resourceMap, deltaSources) {
+  const rows = deltaSources.map(({ lineage, sourcePath }) =>
+    `| ${String(lineage).replace(/\|/g, '\\|')} | ${String(sourcePath).replace(/\|/g, '\\|')} |`,
+  );
+  return [
+    resourceMap.trimEnd(),
+    '',
+    '---',
+    '',
+    '## Lineage Delta Sources',
+    '',
+    '| Lineage | Delta |',
+    '|---------|-------|',
+    ...rows,
+    '',
+  ].join('\n');
+}
+
+function emitFanoutResourceMap(specFolder, options = {}) {
+  const write = options.write !== false;
+  const resolvedSpecFolder = path.resolve(specFolder);
+  const { artifactDir: researchDir } = resolveArtifactRoot(resolvedSpecFolder, 'research');
+  const configPath = path.join(researchDir, 'deep-research-config.json');
+  const resourceMapPath = path.join(researchDir, 'resource-map.md');
+  const config = JSON.parse(readUtf8(resolveContainedFile(researchDir, configPath, 'research config')));
+
+  if (getResourceMapEmitSetting(config) === false) {
+    return {
+      configPath,
+      resourceMapPath,
+      resourceMap: null,
+      resourceMapSkipped: true,
+      resourceMapSkipReason: 'config.resource_map.emit=false',
+      deltaSourceCount: 0,
+    };
+  }
+
+  const deltaSources = loadFanoutDeltaSources(researchDir);
+  if (!deltaSources.length) {
+    return {
+      configPath,
+      resourceMapPath,
+      resourceMap: null,
+      resourceMapSkipped: true,
+      resourceMapSkipReason: 'no delta files found',
+      deltaSourceCount: 0,
+    };
+  }
+
+  const resourceMap = appendDeltaSourceProvenance(emitResourceMap({
+    shape: 'research',
+    deltas: deltaSources,
+    packet: {
+      title: config.topic || path.basename(resolvedSpecFolder),
+      specFolder: resolvedSpecFolder,
+    },
+    scope: `research convergence output for ${path.basename(resolvedSpecFolder)}`,
+    createdAt: new Date().toISOString(),
+  }), deltaSources);
+
+  if (write) {
+    assertSafeResourceMapOutput(researchDir, resourceMapPath);
+    writeUtf8Atomic(resourceMapPath, resourceMap);
+  }
+
+  return {
+    configPath,
+    resourceMapPath,
+    resourceMap,
+    resourceMapSkipped: false,
+    resourceMapSkipReason: null,
+    deltaSourceCount: deltaSources.length,
+  };
 }
 
 function createCorruptionError(stateLogPath, corruptionWarnings) {
@@ -2689,6 +2900,9 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
  * @returns {Object} Paths and content for registry, strategy, and dashboard
  */
 function reduceResearchState(specFolder, options = {}) {
+  if (options.fanoutResourceMapOnly) {
+    return emitFanoutResourceMap(specFolder, options);
+  }
   const write = options.write !== false;
   const lenient = Boolean(options.lenient);
   const emitResourceMapOutput = Boolean(options.emitResourceMap);
@@ -2799,7 +3013,7 @@ function reduceResearchState(specFolder, options = {}) {
     if (getResourceMapEmitSetting(config) === false) {
       resourceMapSkipReason = 'config.resource_map.emit=false';
     } else {
-      const deltaPayloads = loadDeltaPayloads(deltaDir);
+      const deltaPayloads = loadDeltaPayloads(deltaDir, researchDir);
       if (!deltaPayloads.length) {
         resourceMapSkipReason = 'no delta files found';
       } else {
@@ -2834,7 +3048,8 @@ function reduceResearchState(specFolder, options = {}) {
     writeUtf8(strategyPath, strategy.endsWith('\n') ? strategy : `${strategy}\n`);
     writeUtf8(dashboardPath, dashboard);
     if (emitResourceMapOutput && resourceMap) {
-      writeUtf8(resourceMapPath, resourceMap);
+      assertSafeResourceMapOutput(researchDir, resourceMapPath);
+      writeUtf8Atomic(resourceMapPath, resourceMap);
     }
   }
 
@@ -2863,7 +3078,8 @@ function reduceResearchState(specFolder, options = {}) {
 if (require.main === module) {
   const args = process.argv.slice(2);
   const lenient = args.includes('--lenient');
-  const emitResourceMapOutput = args.includes('--emit-resource-map');
+  const fanoutResourceMapOnly = args.includes('--fanout-resource-map-only');
+  const emitResourceMapOutput = args.includes('--emit-resource-map') || fanoutResourceMapOnly;
   const requireExistingState = args.includes('--require-existing-state');
   const positional = args.filter((arg) => !arg.startsWith('--'));
   const specFolder = positional[0];
@@ -2880,19 +3096,22 @@ if (require.main === module) {
       write: true,
       lenient,
       emitResourceMap: emitResourceMapOutput,
+      fanoutResourceMapOnly,
       requireExistingState,
     });
+    const iterationsCompleted = fanoutResourceMapOnly ? null : result.registry.metrics.iterationsCompleted;
     process.stdout.write(
       `${JSON.stringify(
         {
           registryPath: result.registryPath,
           dashboardPath: result.dashboardPath,
           strategyPath: result.strategyPath,
-          iterationsCompleted: result.registry.metrics.iterationsCompleted,
-          corruptionCount: result.corruptionWarnings.length,
+          iterationsCompleted,
+          corruptionCount: fanoutResourceMapOnly ? 0 : result.corruptionWarnings.length,
           resourceMapPath: emitResourceMapOutput ? result.resourceMapPath : null,
           resourceMapSkipped: emitResourceMapOutput ? result.resourceMapSkipped : null,
           resourceMapSkipReason: emitResourceMapOutput ? result.resourceMapSkipReason : null,
+          deltaSourceCount: fanoutResourceMapOnly ? result.deltaSourceCount : null,
         },
         null,
         2,
@@ -2928,6 +3147,7 @@ module.exports = {
   computeGraphConvergenceScore,
   deriveRejectedPatternIndex,
   deriveDashboardStatus,
+  emitFanoutResourceMap,
   filterRejectedIdeaCandidates,
   findRejectedPatternMatch,
   formatTrendAdvisoryEvent,

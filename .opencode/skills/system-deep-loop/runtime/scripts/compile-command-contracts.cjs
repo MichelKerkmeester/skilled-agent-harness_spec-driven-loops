@@ -34,7 +34,7 @@ const COMMANDS = {
     id: 'deep/ai-council',
     commandName: '/deep:ai-council',
     title: 'Deep Council',
-    slug: 'deep_ai-council',
+    slug: 'deep-ai-council',
     mode: 'ai-council',
     runtimeLoopType: 'council',
     commandPath: '.opencode/commands/deep/ai-council.md',
@@ -158,7 +158,7 @@ const COMMANDS = {
     id: 'deep/alignment',
     commandName: '/deep:alignment',
     title: 'Deep Alignment',
-    slug: 'deep_alignment',
+    slug: 'deep-alignment',
     mode: 'alignment',
     runtimeLoopType: 'alignment',
     commandPath: '.opencode/commands/deep/alignment.md',
@@ -254,7 +254,7 @@ const COMMANDS = {
     id: 'deep/review',
     commandName: '/deep:review',
     title: 'Deep Review',
-    slug: 'deep_review',
+    slug: 'deep-review',
     mode: 'review',
     runtimeLoopType: 'review',
     commandPath: '.opencode/commands/deep/review.md',
@@ -356,7 +356,7 @@ const COMMANDS = {
     id: 'deep/research',
     commandName: '/deep:research',
     title: 'Deep Research',
-    slug: 'deep_research',
+    slug: 'deep-research',
     mode: 'research',
     runtimeLoopType: 'research',
     commandPath: '.opencode/commands/deep/research.md',
@@ -785,7 +785,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node compile-command-contracts.cjs --command deep/ai-council|deep/review|deep/research [--write]\n');
+  process.stdout.write('Usage: node compile-command-contracts.cjs --command deep/ai-council|deep/alignment|deep/review|deep/research [--write]\n');
 }
 
 function main(argv = process.argv.slice(2)) {

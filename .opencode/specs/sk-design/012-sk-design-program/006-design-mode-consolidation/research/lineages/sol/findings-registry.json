@@ -1,0 +1,809 @@
+{
+  "sessionId": "fanout-sol-1785131642060-92i4rs",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-27T06:11:21Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "q1",
+      "inboxId": null,
+      "text": "Which current hub artifacts still carry duplicated or retired-surface ceremony that imposes a concrete maintenance or routing cost?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "q2",
+      "inboxId": null,
+      "text": "Where does the current hub drift from sk-doc create-skill parent-hub doctrine, and which drift is worth fixing now?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "q3",
+      "inboxId": null,
+      "text": "Did folding foundations and audit into interface create a present capability or proof gap that the seven binary preflight checks do not cover?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "q4",
+      "inboxId": null,
+      "text": "Does the storage-neutral styles facade or 7,812-file package create a current operational burden that can be reduced without a new abstraction?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "q5",
+      "inboxId": null,
+      "text": "Which evidence-backed refinements rank highest by value-to-cost, and which plausible proposals are explicitly not worth doing?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "inboxId": null,
+      "text": "Which current hub artifacts still carry duplicated or retired-surface ceremony that imposes a concrete maintenance or routing cost?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "q2",
+      "inboxId": null,
+      "text": "Where does the current hub drift from sk-doc create-skill parent-hub doctrine, and which drift is worth fixing now?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "q3",
+      "inboxId": null,
+      "text": "Did folding foundations and audit into interface create a present capability or proof gap that the seven binary preflight checks do not cover?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "q4",
+      "inboxId": null,
+      "text": "Does the storage-neutral styles facade or 7,812-file package create a current operational burden that can be reduced without a new abstraction?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "q5",
+      "inboxId": null,
+      "text": "Which evidence-backed refinements rank highest by value-to-cost, and which plausible proposals are explicitly not worth doing?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether the folded interface preflight retains audit/foundations capability at adequate depth.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Final value-to-cost ranking across all evidence.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the styles facade creates a current operational burden.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether folded audit/foundations coverage has a present proof gap.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Final recommendation ranking and rejection list.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Final value-to-cost ranking and explicit rejection list.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which current duplicated workflow or presentation assets impose a concrete maintenance cost rather than merely having similar shapes?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which evidence-backed refinements rank highest by value-to-cost, and which plausible proposals are explicitly not worth doing?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None within the research topic.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-mode-registry-json-retains-an-audit-era-semantic-inside-a-live-extension-the-fou",
+      "text": "**`mode-registry.json` retains an audit-era semantic inside a live extension.** The four-mode registry has no `audit` mode, yet the transform-verb extension still defines an `auditFrame` and explains an audit/interface split. Direct compiled-route probes for “Should it be bolder?”, “Make it bolder,” and an explicit audit request all currently resolve to `interface`, so this is not a routing outage. It is current maintenance drift: the live registry describes an impossible target and keeps audit-specific test/docs alive. The smallest fix is to delete only the audit-frame field and audit wording while preserving the interface aliases if they still serve routing. Cost: small registry/doc/test edits and manifest refresh. [SOURCE: .opencode/skills/sk-design/mode-registry.json:17] [SOURCE: .opencode/skills/sk-design/mode-registry.json:27] [SOURCE: .opencode/skills/sk-design/mode-registry.json:35] [SOURCE: command: node .opencode/bin/compiled-route.cjs --hub sk-design --prompt \"Should it be bolder?\"]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/mode-registry.json`",
+        "`.opencode/skills/sk-design/hub-router.json`",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "`python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design`",
+        "`node .opencode/bin/compiled-route.cjs --hub sk-design --prompt ...`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-consolidated-hub-otherwise-matches-the-core-parent-hub-doctrine-it-has-one-a",
+      "text": "**The consolidated hub otherwise matches the core parent-hub doctrine.** It has one advisor identity, one `modes[]` registry, matching router-signal keys/tie-break order, matching folder and packet skill names, exactly one root `graph-metadata.json`, and real per-packet procedure sets. The official validator passes the package, compiled-routing readiness, and parent-skill check. A hub rebuild, registry redesign, or procedure removal is therefore not justified. [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:227] [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:231] [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:234] [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:236] [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:244] [SOURCE: .opencode/skills/sk-design/mode-registry.json:35] [SOURCE: .opencode/skills/sk-design/hub-router.json:4] [SOURCE: command: python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/mode-registry.json`",
+        "`.opencode/skills/sk-design/hub-router.json`",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "`python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design`",
+        "`node .opencode/bin/compiled-route.cjs --hub sk-design --prompt ...`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-shared-creation-contract-is-the-highest-value-live-cleanup-target-its-openin",
+      "text": "**The shared creation contract is the highest-value live cleanup target.** Its opening correctly says it serves three commands, but later text still treats `foundations` and `audit` as live proof rows, says `no-fit` is valid for them, describes “four advisory modes,” and says audit routes findings. Because each live command includes this shared contract, the stale model is on the active command path rather than confined to history. The smallest fix is to delete the retired rows and rewrite the remaining sentences around `interface`, `motion`, and `md-generator`; no replacement construct is needed. Cost: a small documentation edit plus the existing command-contract test. [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:16] [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:126] [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:164] [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:176] [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:194] [SOURCE: .opencode/commands/interface/design.md:9] [SOURCE: .opencode/commands/interface/motion.md:9] [SOURCE: .opencode/commands/interface/design-reference.md:9]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/mode-registry.json`",
+        "`.opencode/skills/sk-design/hub-router.json`",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "`python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design`",
+        "`node .opencode/bin/compiled-route.cjs --hub sk-design --prompt ...`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-transport-extension-is-warranted-unlike-the-stale-audit-subfield-sk-doc-allo",
+      "text": "**The transport extension is warranted, unlike the stale audit subfield.** Sk-doc allows named extensions when real routing semantics require them. Open Design is a real fourth packet with a different `packetKind`, backend, tool surface, and mandatory taste-authority boundary. Deleting the transport axis or coercing it into `surface` would create a larger schema/behavior change without solving a present failure. [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:249] [SOURCE: .opencode/skills/sk-design/mode-registry.json:22] [SOURCE: .opencode/skills/sk-design/mode-registry.json:99]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/mode-registry.json`",
+        "`.opencode/skills/sk-design/hub-router.json`",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "`python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design`",
+        "`node .opencode/bin/compiled-route.cjs --hub sk-design --prompt ...`"
+      ]
+    },
+    {
+      "id": "finding-2-2-delete-the-1-290-row-root-readme-table-instead-of-repairing-it-styles-readme-md-",
+      "text": "**Delete the 1,290-row root README table instead of repairing it.** `styles/README.md` is 165,030 bytes and says bundles live directly under the styles root; its table links such as `099-supply/` are broken because bundles now live under `library/bundles/`. The short bundle README and machine manifests already carry the authoritative inventory. The smallest fix is to reduce the root README to overview, supported commands, architecture links, and a pointer to `library/bundles/`/the manifest. Cost: very low; one generated or hand-maintained document shrink. Value: removes broken navigation and repeated context load. [SOURCE: .opencode/skills/sk-design/styles/README.md:5] [SOURCE: .opencode/skills/sk-design/styles/README.md:23] [SOURCE: .opencode/skills/sk-design/styles/library/README.md:5] [SOURCE: .opencode/skills/sk-design/styles/library/bundles/README.md:1] [SOURCE: command: wc -c .opencode/skills/sk-design/styles/README.md] [SOURCE: command: test -e .opencode/skills/sk-design/styles/099-supply]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md`",
+        "`.opencode/skills/sk-design/styles/library/README.md`",
+        "`.opencode/skills/sk-design/styles/library/bundles/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/paths.mjs`",
+        "`.opencode/skills/sk-design/styles/database/README.md`",
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/README.md`",
+        "Interface/motion corpus consumer imports",
+        "File-count, disk-usage, build-check, and query commands"
+      ]
+    },
+    {
+      "id": "finding-2-1-fix-the-active-path-drift-before-touching-storage-architecture-the-hub-skill-hub",
+      "text": "**Fix the active path drift before touching storage architecture.** The hub SKILL, hub README, and current manual-testing material still point to `styles/_engine/` and `styles/_db/`, but the live implementation is `styles/lib/engine/` and `styles/database/` with database code under `styles/lib/database/`. The supported path passes `build --check` with 1,290 records and serves queries; the documented `_engine` command fails with `MODULE_NOT_FOUND`. The smallest fix is a bounded path correction across active docs/playbooks—no adapter change. Cost: low; search-replace, command verification, and any generated manifest refresh. [SOURCE: .opencode/skills/sk-design/SKILL.md:207] [SOURCE: .opencode/skills/sk-design/SKILL.md:218] [SOURCE: .opencode/skills/sk-design/SKILL.md:255] [SOURCE: .opencode/skills/sk-design/README.md:72] [SOURCE: .opencode/skills/sk-design/styles/README.md:12] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:15] [SOURCE: command: node .opencode/skills/sk-design/styles/lib/engine/style-library.mjs build --check] [SOURCE: command: node .opencode/skills/sk-design/styles/_engine/style-library.mjs query ...]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md`",
+        "`.opencode/skills/sk-design/styles/library/README.md`",
+        "`.opencode/skills/sk-design/styles/library/bundles/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/paths.mjs`",
+        "`.opencode/skills/sk-design/styles/database/README.md`",
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/README.md`",
+        "Interface/motion corpus consumer imports",
+        "File-count, disk-usage, build-check, and query commands"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-corpus-size-is-real-but-not-yet-an-evidenced-defect-the-package-has-7-812-tr",
+      "text": "**The corpus size is real but not yet an evidenced defect.** The package has 7,812 tracked files, 1,290 bundle directories, and uses 135 MB, but freshness checks pass with zero added/changed/removed records and queries return bounded cards. A database-only migration, corpus pruning, Git LFS move, or remote fetch layer would add migration and operational complexity without a measured present failure. Keep the flat corpus authoritative until clone, status, packaging, or retrieval latency is measured as unacceptable. Cost of doing nothing: repository size remains; cost of redesign: high and unjustified. [SOURCE: .opencode/skills/sk-design/styles/library/README.md:15] [SOURCE: .opencode/skills/sk-design/styles/database/README.md:5] [SOURCE: command: git ls-files .opencode/skills/sk-design/styles | wc -l] [SOURCE: command: du -sh .opencode/skills/sk-design/styles] [SOURCE: command: node .opencode/skills/sk-design/styles/lib/engine/style-library.mjs build --check]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md`",
+        "`.opencode/skills/sk-design/styles/library/README.md`",
+        "`.opencode/skills/sk-design/styles/library/bundles/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/paths.mjs`",
+        "`.opencode/skills/sk-design/styles/database/README.md`",
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/README.md`",
+        "Interface/motion corpus consumer imports",
+        "File-count, disk-usage, build-check, and query commands"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-facade-is-useful-and-should-stay-current-interface-and-motion-consumers-impo",
+      "text": "**The facade is useful and should stay.** Current interface and motion consumers import `runQuery`/`runHydrate` from one engine surface, while `paths.mjs` centralizes the physical layout. This directly limits the blast radius of the already-completed folder restructure. Deleting the facade would spread storage knowledge back into consumers, the reverse of the requested simplification. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:28] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:24] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:1] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:17] [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:12]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md`",
+        "`.opencode/skills/sk-design/styles/library/README.md`",
+        "`.opencode/skills/sk-design/styles/library/bundles/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/paths.mjs`",
+        "`.opencode/skills/sk-design/styles/database/README.md`",
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/README.md`",
+        "Interface/motion corpus consumer imports",
+        "File-count, disk-usage, build-check, and query commands"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-query-s-degraded-true-is-not-evidence-to-enable-persistent-storage-by-defaul",
+      "text": "**The query’s `degraded: true` is not evidence to enable persistent storage by default.** The source-scan fallback still returned eligible cards from all 1,290 records, and the current contract intentionally keeps the flat corpus authoritative. Without a latency target or failing relevance oracle, changing the default backend would be speculative optimization. [SOURCE: .opencode/skills/sk-design/styles/README.md:12] [SOURCE: .opencode/skills/sk-design/styles/library/README.md:16] [SOURCE: command: node .opencode/skills/sk-design/styles/lib/engine/style-library.mjs query ...]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/README.md`",
+        "`.opencode/skills/sk-design/styles/library/README.md`",
+        "`.opencode/skills/sk-design/styles/library/bundles/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/README.md`",
+        "`.opencode/skills/sk-design/styles/lib/paths.mjs`",
+        "`.opencode/skills/sk-design/styles/database/README.md`",
+        "`.opencode/skills/sk-design/SKILL.md`",
+        "`.opencode/skills/sk-design/README.md`",
+        "Interface/motion corpus consumer imports",
+        "File-count, disk-usage, build-check, and query commands"
+      ]
+    },
+    {
+      "id": "finding-3-1-foundations-capability-survived-the-fold-and-does-not-need-a-new-mode-or-command",
+      "text": "**Foundations capability survived the fold and does not need a new mode or command.** The interface router maps static-system requests to `VISUAL_SYSTEM`, whose eleven color, type, layout, artifact, example, and asset resources all exist. `/interface:design` also explicitly owns color, typography, layout, spacing, responsive adaptation, and theming. Restoring `/interface:foundations` would add another public route without recovering a missing capability. Cost of the recommended action—keep the fold—is zero. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:122] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:138] [SOURCE: .opencode/commands/interface/design.md:25] [SOURCE: command: VISUAL_SYSTEM path existence check]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/design-interface/SKILL.md`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md`",
+        "`.opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md`",
+        "`.opencode/skills/sk-design/shared/anti-slop-principles.md`",
+        "`.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "Interface command-contract test suite"
+      ]
+    },
+    {
+      "id": "finding-3-4-retirement-left-live-dead-owner-language-inside-resources-the-interface-router-c",
+      "text": "**Retirement left live dead-owner language inside resources the interface router can load.** `mechanical-defaults.md` twice says an audit mode consumes the gate; the `VISUAL_SYSTEM` resource map loads `foundations/corpus-map.md`, which still assigns review/scoring to audit; the shared anti-slop reference still lists both retired children. These are not historical changelog mentions: they are current operational guidance and can direct a reader toward nonexistent owners. The smallest fix is to delete the retired ownership sentences or replace them with the existing `design-interface`/`sk-code` owner—no compatibility aliases. Cost: low, bounded documentation edits and package validation. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:132] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:138] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md:19] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md:147] [SOURCE: .opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md:27] [SOURCE: .opencode/skills/sk-design/shared/anti-slop-principles.md:55]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/design-interface/SKILL.md`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md`",
+        "`.opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md`",
+        "`.opencode/skills/sk-design/shared/anti-slop-principles.md`",
+        "`.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "Interface command-contract test suite"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-current-commands-overclaim-what-the-mechanical-card-proves-interface-design-",
+      "text": "**The current commands overclaim what the mechanical card proves.** `/interface:design` routes “performance” and “scoring” to the card, and `/interface:motion` routes “motion-performance” there. The card is a binary visual/content/responsive/state checklist with only `SHIP` or `FIX`; it has no performance measurement or score. The objective quality reference explicitly assigns React/runtime performance to `sk-code`. The smallest fix is deletion: remove `performance`, `scoring`, and `motion-performance` from those discriminator sentences, leaving binary quality/preflight work in interface and existing measured runtime handoff in `sk-code`. Cost: very low—two command-line edits plus contract tests. [SOURCE: .opencode/commands/interface/design.md:24] [SOURCE: .opencode/commands/interface/motion.md:24] [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md:201] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md:117]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/design-interface/SKILL.md`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md`",
+        "`.opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md`",
+        "`.opencode/skills/sk-design/shared/anti-slop-principles.md`",
+        "`.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "Interface command-contract test suite"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-proof-architecture-already-supplies-the-evidence-layer-the-binary-card-omits",
+      "text": "**The proof architecture already supplies the evidence layer the binary card omits.** The card deliberately records pass/fail and failing box numbers, while the public commands require a separate `Evidence Ledger`; the shared command-contract tests reject evidence-free verified flags. Adding severity, confidence, or a new result schema to every checkbox would duplicate the existing evidence contract and add ceremony. Keep the card binary. Cost of doing nothing: reviewers must use the already-required ledger; cost of expansion: widespread template and test churn. [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md:201] [SOURCE: .opencode/commands/interface/design.md:75] [SOURCE: .opencode/commands/interface/motion.md:68] [SOURCE: command: node --test .opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/design-interface/SKILL.md`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md`",
+        "`.opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md`",
+        "`.opencode/skills/sk-design/shared/anti-slop-principles.md`",
+        "`.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "Interface command-contract test suite"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-shared-polish-card-has-a-real-routing-defect-not-a-missing-capability-it-cor",
+      "text": "**The shared polish card has a real routing defect, not a missing capability.** It correctly points to an existing hierarchy/rhythm procedure, but calls that procedure a `foundations` subworkflow and tells reviewers to route fixes to a nonexistent owner. Rename the owner in two sentences to `design-interface` and retain the procedure. Cost: negligible; two prose changes. Recreating a subworkflow would be strictly larger. [SOURCE: .opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md:31] [SOURCE: .opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md:43] [SOURCE: .opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md:49]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/skills/sk-design/design-interface/SKILL.md`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md`",
+        "`.opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md`",
+        "`.opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md`",
+        "`.opencode/skills/sk-design/shared/anti-slop-principles.md`",
+        "`.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md`",
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "Interface command-contract test suite"
+      ]
+    },
+    {
+      "id": "finding-4-4-commandsubworkflows-is-already-fully-absent-from-active-command-sources-the-live",
+      "text": "**`commandSubworkflows` is already fully absent from active command sources.** The live command package contains no key, compatibility alias, retired command file, or nested public-command invocation. The shared creation contract directly prohibits public commands invoking public commands, and the command-contract tests pass that rule. There is nothing further to delete under that machinery name. Cost of additional work would be search/test churn with no current behavior change. [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:28] [SOURCE: .opencode/commands/interface/design.md:90] [SOURCE: .opencode/commands/interface/motion.md:83] [SOURCE: .opencode/commands/interface/design-reference.md:83] [SOURCE: command: active commandSubworkflows search]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "Nine current interface command assets",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "Active-source reference search and auto/confirm exact-line comparison"
+      ]
+    },
+    {
+      "id": "finding-4-2-close-the-performance-scoring-wording-fix-across-the-presentation-boundary-the-d",
+      "text": "**Close the performance/scoring wording fix across the presentation boundary.** The design presentation still recommends the binary card for “findings-first review and scoring,” so editing only the command discriminator would leave a conflicting current output surface. Delete “and scoring” there as part of the same bounded fix identified in iteration 3. Cost: negligible—one additional phrase deletion. This is closure of one defect, not a new scoring system. [SOURCE: .opencode/commands/interface/assets/interface-design-presentation.txt:50] [SOURCE: .opencode/commands/interface/design.md:24] [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md:201]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "Nine current interface command assets",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "Active-source reference search and auto/confirm exact-line comparison"
+      ]
+    },
+    {
+      "id": "finding-4-5-current-sk-doc-parent-hub-doctrine-does-not-justify-a-structural-rewrite-iterati",
+      "text": "**Current sk-doc parent-hub doctrine does not justify a structural rewrite.** Iteration 1’s package validator passed the one-hub/one-registry topology, matching child identities, and procedure connectivity. The worth-fixing drift is content authority leaking into duplicate literals and live resources naming retired owners—not the existence of mode packets, procedure folders, transports, or command workflow assets. Cost: low for bounded deletions; high and unjustified for a hub rebuild. [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md] [SOURCE: command: python3 .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py .opencode/skills/sk-design] [SOURCE: .opencode/commands/interface/design.md:18]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "Nine current interface command assets",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "Active-source reference search and auto/confirm exact-line comparison"
+      ]
+    },
+    {
+      "id": "finding-4-1-delete-the-redundant-lane-enum-from-interface-design-auto-yaml-the-public-comman",
+      "text": "**Delete the redundant lane enum from `interface-design-auto.yaml`.** The public command is the route authority and exposes `direction|directions|redesign|preflight|handoff|aesthetic`; its auto execution target separately declares `direction|directions|redesign|preflight|build|aesthetic`. That duplicate drops `handoff` and invents `build`, even though implementation belongs to `sk-code`. The smallest fix is deleting the YAML `user_inputs.mode` line rather than synchronizing another enum. Cost: negligible—one deletion and command-contract verification. [SOURCE: .opencode/commands/interface/design.md:3] [SOURCE: .opencode/commands/interface/design.md:60] [SOURCE: .opencode/commands/interface/assets/interface-design-auto.yaml:154] [SOURCE: .opencode/commands/interface/assets/interface-design-auto.yaml:157]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "Nine current interface command assets",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "Active-source reference search and auto/confirm exact-line comparison"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-nine-command-assets-are-repetitive-but-wholesale-consolidation-is-not-worth-",
+      "text": "**The nine command assets are repetitive, but wholesale consolidation is not worth doing now.** The asset set is 1,826 lines and 108,241 bytes; each auto/confirm pair shares 184–191 exact unique non-comment lines. Yet auto and confirm have a real behavioral distinction—the confirm version owns one bundled intake/presentation wait—and all current commands explicitly select these files as execution targets. Merging them would require conditional workflow semantics or another shared template, both forbidden new abstraction. Keep the files and remove only duplicated literals that have actually drifted. Cost of keeping them: repeated maintenance; cost of consolidation: medium-to-high workflow and contract-test churn. [SOURCE: .opencode/commands/interface/design.md:77] [SOURCE: .opencode/commands/interface/motion.md:70] [SOURCE: .opencode/commands/interface/design-reference.md:70] [SOURCE: .opencode/commands/interface/assets/interface-design-confirm.yaml:172] [SOURCE: command: wc -l -c interface command assets] [SOURCE: command: auto/confirm exact-line comparison]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/commands/interface/design.md`",
+        "`.opencode/commands/interface/motion.md`",
+        "`.opencode/commands/interface/design-reference.md`",
+        "Nine current interface command assets",
+        "`.opencode/skills/sk-design/shared/creation-contract.md`",
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md`",
+        "Active-source reference search and auto/confirm exact-line comparison"
+      ]
+    },
+    {
+      "id": "finding-5-1-rank-1-correct-live-styles-paths-value-very-high-cost-low-current-hub-guidance-p",
+      "text": "**Rank 1 — correct live styles paths. Value: very high; cost: low.** Current hub guidance points at missing `_engine`/`_db` executables while the supported engine passes a 1,290-record freshness check. This is the only finding with a directly reproduced command failure. Change only active operational docs/playbooks to `styles/lib/engine`, `styles/lib/database`, and `styles/database` as appropriate; execute every corrected command. Do not add compatibility wrappers. [SOURCE: .opencode/skills/sk-design/SKILL.md:207] [SOURCE: .opencode/skills/sk-design/SKILL.md:218] [SOURCE: .opencode/skills/sk-design/README.md:72] [SOURCE: command: style-library build --check] [SOURCE: command: path existence checks]",
+      "addedAtIteration": 5,
+      "sources": [
+        "All prior iteration sources",
+        "Current sk-design package validator",
+        "Current interface command-contract test suite",
+        "Current style-library freshness check",
+        "Direct old/new path existence checks",
+        "Bounded exact search across the proposed edit surfaces"
+      ]
+    },
+    {
+      "id": "finding-5-2-rank-2-remove-live-retired-owner-routing-language-value-high-cost-low-the-shared",
+      "text": "**Rank 2 — remove live retired-owner routing language. Value: high; cost: low.** The shared creation contract, registry audit-frame wording, mechanically loaded interface references, anti-slop usage table, and polish procedure still describe audit/foundations owners that do not exist. Delete retired rows/keys where they have no current semantic role; rename the real hierarchy/rhythm procedure owner to `design-interface`; preserve interface transform aliases and real procedures. This fixes current route semantics without compatibility machinery. [SOURCE: .opencode/skills/sk-design/shared/creation-contract.md:126] [SOURCE: .opencode/skills/sk-design/mode-registry.json:19] [SOURCE: .opencode/skills/sk-design/mode-registry.json:27] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/mechanical-defaults.md:19] [SOURCE: .opencode/skills/sk-design/design-interface/references/foundations/corpus-map.md:27] [SOURCE: .opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md:31]",
+      "addedAtIteration": 5,
+      "sources": [
+        "All prior iteration sources",
+        "Current sk-design package validator",
+        "Current interface command-contract test suite",
+        "Current style-library freshness check",
+        "Direct old/new path existence checks",
+        "Bounded exact search across the proposed edit surfaces"
+      ]
+    },
+    {
+      "id": "finding-5-3-rank-3-narrow-unsupported-performance-scoring-claims-value-high-cost-very-low-de",
+      "text": "**Rank 3 — narrow unsupported performance/scoring claims. Value: high; cost: very low.** Delete `performance`, `scoring`, and `motion-performance` from the two command discriminators and delete `and scoring` from the design presentation. Keep binary preflight/quality language and use the existing `sk-code` boundary for measured runtime claims. This aligns promises with proof without changing tools or schemas. [SOURCE: .opencode/commands/interface/design.md:24] [SOURCE: .opencode/commands/interface/motion.md:24] [SOURCE: .opencode/commands/interface/assets/interface-design-presentation.txt:50] [SOURCE: .opencode/skills/sk-design/design-interface/references/design-process/ux-quality-reference.md:117]",
+      "addedAtIteration": 5,
+      "sources": [
+        "All prior iteration sources",
+        "Current sk-design package validator",
+        "Current interface command-contract test suite",
+        "Current style-library freshness check",
+        "Direct old/new path existence checks",
+        "Bounded exact search across the proposed edit surfaces"
+      ]
+    },
+    {
+      "id": "finding-5-4-rank-4-delete-the-generated-root-styles-inventory-table-value-medium-high-cost-v",
+      "text": "**Rank 4 — delete the generated root styles inventory table. Value: medium-high; cost: very low.** The 165,030-byte README repeats 1,290 bundle entries with broken root-relative links, while the short bundle README and machine manifests already own inventory. Retain a small overview, supported commands, architecture links, and a pointer to `library/bundles/`; delete the table rather than repairing 1,290 links. [SOURCE: .opencode/skills/sk-design/styles/README.md:23] [SOURCE: .opencode/skills/sk-design/styles/library/README.md:15] [SOURCE: .opencode/skills/sk-design/styles/library/bundles/README.md:1] [SOURCE: command: wc -c styles/README.md] [SOURCE: command: representative bundle path existence check]",
+      "addedAtIteration": 5,
+      "sources": [
+        "All prior iteration sources",
+        "Current sk-design package validator",
+        "Current interface command-contract test suite",
+        "Current style-library freshness check",
+        "Direct old/new path existence checks",
+        "Bounded exact search across the proposed edit surfaces"
+      ]
+    },
+    {
+      "id": "finding-5-5-rank-5-delete-the-design-auto-yaml-s-duplicate-lane-enum-value-medium-cost-negli",
+      "text": "**Rank 5 — delete the design auto YAML’s duplicate lane enum. Value: medium; cost: negligible.** The YAML’s `build` lane conflicts with the command’s canonical `handoff` lane and with `sk-code` implementation ownership. Deleting the redundant `user_inputs.mode` literal removes a second authority; copying the command enum into the YAML would preserve the maintenance trap. [SOURCE: .opencode/commands/interface/design.md:3] [SOURCE: .opencode/commands/interface/design.md:60] [SOURCE: .opencode/commands/interface/assets/interface-design-auto.yaml:157]",
+      "addedAtIteration": 5,
+      "sources": [
+        "All prior iteration sources",
+        "Current sk-design package validator",
+        "Current interface command-contract test suite",
+        "Current style-library freshness check",
+        "Direct old/new path existence checks",
+        "Bounded exact search across the proposed edit surfaces"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-hub-s-core-structure-is-healthy-parent-packaging-compiled-routing-readiness-",
+      "text": "**The hub’s core structure is healthy.** Parent packaging, compiled routing readiness, and parent-skill checks pass; all eight command-contract tests pass; style freshness reports zero record changes. The refinement program should therefore stop after the five bounded changes above. No evidence supports a new abstraction or structural migration. [SOURCE: command: validate_skill_package.py .opencode/skills/sk-design] [SOURCE: command: interface-command-contract.test.mjs] [SOURCE: command: style-library build --check]",
+      "addedAtIteration": 5,
+      "sources": [
+        "All prior iteration sources",
+        "Current sk-design package validator",
+        "Current interface command-contract test suite",
+        "Current style-library freshness check",
+        "Direct old/new path existence checks",
+        "Bounded exact search across the proposed edit surfaces"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-3b61e4269806",
+      "text": "**Rebuild the hub or redesign the registry schema:** validation passes and the core one-hub/one-registry topology conforms.",
+      "contentHash": "3b61e4269806",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1352d19ff4ba",
+      "text": "**Remove or reclassify the Open Design transport axis:** it represents current distinct routing semantics and would require more change than it saves.",
+      "contentHash": "1352d19ff4ba",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5be852d38f4c",
+      "text": "**Remove procedure folders:** each workflow packet has concrete, separately triggered procedures, which sk-doc explicitly permits.",
+      "contentHash": "5be852d38f4c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6e1a123af788",
+      "text": "`commandSubworkflows` produced no active-source hit and should not be reintroduced as a cleanup target.",
+      "contentHash": "6e1a123af788",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-29ae921a8fb6",
+      "text": "Historical changelog and benchmark hits for retired modes were not treated as live drift; they are provenance, not runtime authority.",
+      "contentHash": "29ae921a8fb6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-77c3445d8221",
+      "text": "**Enable the persistent backend by default:** the fallback works and no performance target was supplied.",
+      "contentHash": "77c3445d8221",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1bfa6fcc9180",
+      "text": "**Migrate to database-only storage:** no measured failure justifies removing the flat authority.",
+      "contentHash": "1bfa6fcc9180",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3144ed59d4b3",
+      "text": "**Prune or remotely fetch the corpus:** would add selection policy, availability, and migration ceremony.",
+      "contentHash": "3144ed59d4b3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7309d4e24ec1",
+      "text": "**Remove the storage-neutral facade:** it is the smallest existing isolation seam and has live consumers.",
+      "contentHash": "7309d4e24ec1",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-383337597143",
+      "text": "Counting files proves scale, not harm; it cannot justify a migration by itself.",
+      "contentHash": "383337597143",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1a674a62cfce",
+      "text": "The user-provided “7,812 files” count is accurate, so no further inventory reconciliation is needed.",
+      "contentHash": "1a674a62cfce",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f89c9a15cdec",
+      "text": "**Add severity, confidence, or evidence fields to the mechanical card:** the public command already requires an Evidence Ledger.",
+      "contentHash": "f89c9a15cdec",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5cc18262e749",
+      "text": "**Grant Bash/browser tools to interface:** existing `sk-code` and browser integration own measured runtime proof.",
+      "contentHash": "5cc18262e749",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5e1b1797585c",
+      "text": "**Restore `/interface:foundations` or an internal foundations subworkflow:** all current static-system resources are reachable from interface.",
+      "contentHash": "5e1b1797585c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-40bf57131c27",
+      "text": "**Restore an audit mode:** current review capability exists; the defects are overclaimed proof and stale ownership labels.",
+      "contentHash": "40bf57131c27",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7ef02c4ee747",
+      "text": "Counting card boxes does not establish coverage quality; comparing claimed proof to the card and quality-floor boundaries does.",
+      "contentHash": "7ef02c4ee747",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c1c16c3f95e5",
+      "text": "Treating every occurrence of “audit” as stale would wrongly flag ordinary auditability language and historical provenance.",
+      "contentHash": "c1c16c3f95e5",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b0677bf8556c",
+      "text": "**Delete all presentation assets:** confirm mode has a current bundled-intake display responsibility.",
+      "contentHash": "b0677bf8556c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-b4863e6af6a4",
+      "text": "**Further `commandSubworkflows` cleanup:** no active implementation remains.",
+      "contentHash": "b4863e6af6a4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-24d4a1e3d627",
+      "text": "**Merge auto and confirm YAMLs:** requires conditional workflow semantics or a new shared template.",
+      "contentHash": "24d4a1e3d627",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-965ef64652df",
+      "text": "**Rebuild the hub to remove all repetition:** package structure validates and repetition alone is not a runtime defect.",
+      "contentHash": "965ef64652df",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-bf3ed3797786",
+      "text": "Measuring lines and bytes identified review surface, not value; the recommendation emerged only after finding a contradictory duplicated lane enum.",
+      "contentHash": "bf3ed3797786",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-814473348f56",
+      "text": "Searching all `.opencode` consumers pulled historical specs and logs; those do not prove a current runtime dependency.",
+      "contentHash": "814473348f56",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1283e7812533",
+      "text": "**Not worth doing: add checklist evidence/severity schema or grant interface runtime tools.** The existing Evidence Ledger and `sk-code` boundary cover those jobs.",
+      "contentHash": "1283e7812533",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7630ccdd0396",
+      "text": "**Not worth doing: merge auto/confirm YAMLs or delete presentation assets.** That creates conditional workflow abstraction and removes real confirm-mode behavior.",
+      "contentHash": "7630ccdd0396",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e1dd414ff009",
+      "text": "**Not worth doing: more `commandSubworkflows` cleanup or historical-term scrubbing.** Active machinery is absent; history is provenance.",
+      "contentHash": "e1dd414ff009",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-da64109195a0",
+      "text": "**Not worth doing: redesign the registry/hub, delete procedure folders, or remove Open Design transport.** Current topology validates and those surfaces have distinct present roles.",
+      "contentHash": "da64109195a0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e72bcadef61c",
+      "text": "**Not worth doing: remove the styles facade, migrate to database-only storage, prune/remote-fetch the corpus, or enable persistent storage by default.** No measured storage failure exists.",
+      "contentHash": "e72bcadef61c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3d76cf71cf55",
+      "text": "**Not worth doing: restore audit or foundations commands/modes/subworkflows.** Capabilities are reachable from interface.",
+      "contentHash": "3d76cf71cf55",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ddb1246b258c",
+      "text": "Broad retired-term cleanup would conflate real topology labels with ordinary auditability language.",
+      "contentHash": "ddb1246b258c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b92131e2df7b",
+      "text": "Re-running route/package/storage checks found no hidden structural failure; further validation would repeat established evidence.",
+      "contentHash": "b92131e2df7b",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 9,
+    "keyFindings": 25,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.28,
+    "coverageBySources": {
+      "other": 71
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/research/lineages/sol/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

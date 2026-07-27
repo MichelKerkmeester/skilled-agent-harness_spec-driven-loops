@@ -47,6 +47,7 @@ Templates and tooling land first so all authoring runs against a correct, enforc
 | 009 | `009-titlecase-config-and-closeout` | Harden the validator ALL-CAPS check; flip `h2UppercaseRequired` for reference/asset; uppercase the genuine offender headers |
 | 010 | `010-deferred-code-and-checker-fixes` | Fix the 10a leaf-manifest checker path and the two data gaps it surfaced; flip skill/command `h2UppercaseRequired`; record the not-fixed decisions |
 | 011 | `011-review-remediation` | Remediate the deep-review FAIL blockers: NUL-byte header corruption, non-runnable commands, and validator correctness |
+| 012 | `012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy` | Correct ten sealed post-019 catalog findings against current registries, hooks, command metadata, playbooks, and live filesystem evidence |
 
 > **Phase-parent note:** this `spec.md` is the only authored document at the parent level. Per-phase scope, plans, tasks, and evidence live in the phase children. A per-phase cross-reference is maintained in `context-index.md`.
 

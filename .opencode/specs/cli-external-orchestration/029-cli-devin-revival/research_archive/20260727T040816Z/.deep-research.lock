@@ -1,0 +1,11 @@
+{
+  "owner_pid": 16455,
+  "started_at_iso": "2026-07-27T04:08:02.645Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-27T04:08:02.645Z",
+  "packet_id": ".opencode/specs/cli-external-orchestration/029-cli-devin-revival",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-27T04:08:02.645Z",
+  "acquire_nonce": "16455-1785125282645-6f29e5d0-907e-44e4-b79c-44686fc131fe"
+}

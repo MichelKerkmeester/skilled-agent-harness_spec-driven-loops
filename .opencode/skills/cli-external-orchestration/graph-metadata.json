@@ -56,7 +56,12 @@
     "cursor agent",
     "delegate to cursor",
     "composer",
-    "cli-cursor"
+    "cli-cursor",
+    "devin cli",
+    "delegate to devin",
+    "cognition cli second opinion",
+    "devin handoff",
+    "cli-devin"
   ],
   "derived": {
     "trigger_phrases": [
@@ -153,7 +158,19 @@
       "cursor plan mode",
       "cursor ask mode",
       "cursor worktree",
-      "cursor cloud worker"
+      "cursor cloud worker",
+      "devin cli",
+      "delegate to devin",
+      "cognition cli second opinion",
+      "devin handoff",
+      "cli-devin",
+      "cli devin",
+      "devin-handoff",
+      "cognition-cli",
+      "delegate-to-devin",
+      "devin subagent",
+      "devin cloud handoff",
+      "swe-1.6 dispatch"
     ],
     "key_topics": [
       "cli",
@@ -208,7 +225,16 @@
       "cursor-ask-mode",
       "cursor-worktree",
       "cursor-cloud-worker",
-      "cursor-shared-editor-config"
+      "cursor-shared-editor-config",
+      "cli-devin",
+      "devin cli",
+      "devin-cli",
+      "cognition",
+      "cognition-cli",
+      "devin-cloud-handoff",
+      "devin-subagent",
+      "swe-1.6",
+      "devin-mcp-host"
     ],
     "intent_signals": [
       "delegate to opencode",
@@ -231,7 +257,12 @@
       "cursor composer",
       "cursor plan mode",
       "cursor ask mode",
-      "cursor review"
+      "cursor review",
+      "delegate to devin",
+      "devin handoff",
+      "devin subagent",
+      "cognition cli second opinion",
+      "devin cloud handoff"
     ],
     "key_files": [
       ".opencode/skills/cli-external-orchestration/SKILL.md",
@@ -268,7 +299,16 @@
       ".opencode/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md"
+      ".opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md"
     ],
     "entities": [
       {
@@ -300,9 +340,15 @@
         "kind": "skill",
         "path": ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-devin",
+        "kind": "skill",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "cli-external-orchestration is the single public advisor identity for four CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. It matters because it gives all four dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and self-invocation guard; the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
+    "causal_summary": "cli-external-orchestration is the single public advisor identity for five CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. It matters because it gives all five dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and self-invocation guard; the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -315,9 +361,11 @@
       "cli-codex/SKILL.md",
       "cli-codex/README.md",
       "cli-cursor/SKILL.md",
-      "cli-cursor/README.md"
+      "cli-cursor/README.md",
+      "cli-devin/SKILL.md",
+      "cli-devin/README.md"
     ],
     "created_at": "2026-07-10T12:00:00Z",
-    "last_updated_at": "2026-07-24T09:00:00Z"
+    "last_updated_at": "2026-07-26T00:00:00Z"
   }
 }

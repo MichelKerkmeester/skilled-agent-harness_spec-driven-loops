@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit",
+  "parent_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dead code audit",
+      "legacy file cleanup audit",
+      "backup file removal audit",
+      "architecture simplification audit",
+      "overengineering audit",
+      "release cleanup 016",
+      "dead code audit plan",
+      "release cleanup 016 plan",
+      "architecture simplification plan",
+      "dead code audit tasks",
+      "release cleanup 016 tasks",
+      "dead code audit checklist"
+    ],
+    "key_topics": [
+      "dead",
+      "code",
+      "audit",
+      "legacy",
+      "file",
+      "cleanup",
+      "backup",
+      "removal",
+      "architecture",
+      "simplification",
+      "overengineering",
+      "release"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Artifact",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Simplification Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository has grown across dozens of packets, several migrations (spec re-nesting, hyphen-case renaming, parent-hub merges), and multiple superseded experiments",
+    "created_at": "2026-07-27T05:50:45.833Z",
+    "last_save_at": "2026-07-27T05:50:45.833Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cbb56134c0dd9b31c40a723bfc0b76494118e35c28cf7b8f744855fbb49c04c5",
+    "source_doc_hashes": {
+      "spec.md": "af345e8aa84c9817213622f04cc6deef82564848fe4c4f9474bdad73f89b43aa",
+      "plan.md": "ecf2a2ae20b8c722b471f19f601726ef76729b6725059e7da98af76bb0d9ff45",
+      "tasks.md": "f4fba7104bf2a797a44f56aa36dabafc63da066e9567c9d55480c204b0102a0c",
+      "checklist.md": "6700a9618fd039abf10cb906a171ac7c0170aa9b3cd97be7a8dd7c3474860516",
+      "implementation-summary.md": "f568432ef6c1195322772e2d21883a6d79f252f72521029871582c9c6902f883"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

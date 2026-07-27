@@ -7,17 +7,17 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "715bc6237c9b64cdf40b1afa47cbd8bf5eaee933389f24f9797539c6b1e686e7",
+      "sha256": "9abfbf849ab4799185401b4f3261ed715e84c1526bcf96b7fe2b6bcc9b1ace44",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "8e63ca3c2302f9646784e3f2012567d5abdb7e445c107d870647c03878bc9810",
+      "sha256": "53484e369599b3c484ae222c5a56af7ae903c93404975d2831aa1b081c9f0143",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "cc283b7c5e62bd8b012a8f249f4cc63f4f353ad264358e1a5c9b85d753713d64",
+      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
       "section": "full"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "bc35e18f1f3c09722661c187f33cdddac423d33efad9c85c6a92262978a2c6b8",
+      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
+      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "910f917ad4c6435b1832f13af65887d8324e02dd378174e9e9e25dec3701a46a",
+      "sha256": "68ac939b725626b1c32c4d26ab22d505c8f55273ca9844a8beebac4394361a7d",
       "section": "full"
     },
     {
@@ -52,37 +52,37 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md",
-      "sha256": "2222aec67a336e767381428da2a0aa731eab46f022fdbddeb1238bd64b21313e",
+      "sha256": "95a8383f4b7acb132c4052ec8dc5514db2d9981de9d35ede8a4fc0b38d53370a",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
-      "sha256": "66053680f1539349db866128e2a0ac2c51ecd24ae903d966fd30cff265cb9468",
+      "sha256": "a60fb8372b2a21b93afa94ad223b3baa7707ec4970025f492876fc2c1619cb4f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
-      "sha256": "46d3c5c54055b42fca33bd3ba56ad993540a1d8f71ea000fa619a3f53fd1c67c",
+      "sha256": "bda20e5c028760c3d86630e038240a943984927581ea67bddb5206f381cc9120",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md",
-      "sha256": "0667b57517050c045e4b54cff6771d8a189abe1839ab430d60028764dca552dd",
+      "sha256": "f9ee9f29b4819eb174ab3118bf426818024c2af76ebcf0a2e60abd6632f140a9",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
-      "sha256": "1f00ba8a822c8763bc4c636a40c082fbb0e4aff94b69fb15f3f1677e1d38fe72",
+      "sha256": "96eefc0561163ea9a6566eed725c5318a9a0eb21f3d4ad55b48523ce35f121b2",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      "sha256": "e863f05ee1bf944ad91da092ccbafb66ab87aaf3cbb217d2412cb0fc5cd2e071",
+      "sha256": "b60e696ab7b39a1a641367409e5611c6a942efd3f4481e606ae172e746815af6",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md",
-      "sha256": "b8c6a0245e2e22dff01d639c302d8c1af6d2f86b2a06315bafb0f21d0b6a1946",
+      "sha256": "ba7ba4080f65eb69eef42647a019297f930c043c0bff375e3f6f16a01611a03b",
       "section": "full"
     },
     {
@@ -92,32 +92,32 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
-      "sha256": "59d5c5d953ea64431346ca386bd80d84bfe76c3e7dc48b7ef5c426b53f27c129",
+      "sha256": "cb0a4686bc4dc86d9c6bf9bf0d158214161e262820b308bf25736502f7f74c06",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
-      "sha256": "c90186af1f78ca3cda1ec267a0f1a76b16472e303b0a00486cb0932365bb5517",
+      "sha256": "853c29ee97a5b88a29ba683fea09bb96d1dcf52091b22dd7e40ee18d082b9dda",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
-      "sha256": "bbc42fc68ba7e2368b2aadac73fc7d1089acdee2f1ac5f8082f824a132f9bcb0",
+      "sha256": "21fb38f24553af0d3f2b8948a9af8a5ce6e4544dcd007e6635aea376f52871a6",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md",
-      "sha256": "f2b53426de10d877dd72b5e5c94ef0900326a38db09168c29d9746e34d4a1f8a",
+      "sha256": "7fa13ead2b38466a301d904104cc045727def19e91fa2ff71c836c193c8c11f0",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      "sha256": "621638b6911dc9c5adf88dd32f09a4b9974cdaac34c2f3a823f1679f261abfdb",
+      "sha256": "f56c22bba055e9daaa4b3f5d76aa461ba52efb5abe20e2352a75662d45cbb666",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "a21df9076d1e7a8222fbb44d0feb61fbaad4365afb3566fcdcb86cc0eaa4463f",
+      "sha256": "1141ae53a47ae63cde0bca51080ec23f4a5758ff18950b484845bb469fa4b489",
       "section": "full"
     },
     {
@@ -127,7 +127,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
-      "sha256": "2bdf4813b69603a13a45ef971a1edcec0fbe1ad202de64b493bf66cff17da2f0",
+      "sha256": "2aca209f21b6b10ddbac26251fdcef94b66db8f88e52fde0391fd0e29894e5ec",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "3eb00551e33cb95eacdef9cc3f28bb1dc186eb4550eb94dc46d9925dd1a0895d",
+      "sha256": "768f4aed7c285f902c47c7cd507537a4d25cd2297dbcb940303e529735f4a686",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "a4cf6c52b49750aeeff047b4c386fc6596c97c31c198f4167e59120040e3c829"
+  "compiledBodyDigest": "4b9f784d66139a6421d0596e145e1d8cfe4d2131eac2cead9e730eb418ce4b48"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council

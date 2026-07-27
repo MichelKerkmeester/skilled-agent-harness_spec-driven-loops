@@ -1,0 +1,67 @@
+{
+  "topic": "Dead code, legacy files, backup/scratch residue, misplaced files, architecture problems, and over-engineered subsystems across .opencode/, repo-root config, and runtime mirrors (.claude/, .codex/, .cursor/, .devin/)",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "forced-depth",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit",
+  "artifactDir": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit/research/lineages/composer",
+  "createdAt": "2026-07-27T06:30:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanoutLineage": "composer",
+  "executor": {
+    "kind": "cli-cursor",
+    "model": "composer-2.5-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-composer-1785133613018-3fbdzo",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "pauseSentinelPath": "deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

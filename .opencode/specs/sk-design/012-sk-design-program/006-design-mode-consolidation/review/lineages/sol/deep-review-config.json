@@ -1,0 +1,116 @@
+{
+  "topic": "Review: .opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "sessionId": "fanout-sol-1785128932566-ou7z2l",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "createdAt": "2026-07-27T05:10:48Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/spec.md",
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/plan.md",
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/tasks.md",
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/checklist.md",
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/decision-record.md",
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/implementation-summary.md",
+    ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/handover.md",
+    ".opencode/skills/sk-design/SKILL.md",
+    ".opencode/skills/sk-design/mode-registry.json",
+    ".opencode/skills/sk-design/hub-router.json",
+    ".opencode/skills/sk-design/command-metadata.json",
+    ".opencode/skills/sk-design/design-interface/SKILL.md",
+    ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
+    ".opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md",
+    ".opencode/commands/interface/design.md",
+    ".opencode/commands/interface/motion.md",
+    ".opencode/commands/interface/design-reference.md",
+    ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+    ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
+    ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.test.mjs",
+    ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

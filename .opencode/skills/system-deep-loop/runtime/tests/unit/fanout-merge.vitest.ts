@@ -1,7 +1,8 @@
 import { createRequire } from 'node:module';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { appendFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -55,9 +56,80 @@ afterEach(() => {
 });
 
 const fanoutMergeScript = join(runtimeRoot, 'scripts', 'fanout-merge.cjs');
+const researchWorkflowPaths = [
+  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml'),
+  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-confirm.yaml'),
+];
 
 function registryBytes(value: unknown): string {
   return JSON.stringify(value);
+}
+
+function extractSynthesisInvariantCommand(yamlPath: string): string {
+  const workflow = readFileSync(yamlPath, 'utf8');
+  const stepStart = workflow.indexOf('      step_convergence_report:\n');
+  if (stepStart < 0) throw new Error(`step_convergence_report missing from ${yamlPath}`);
+  const match = workflow.slice(stepStart).match(/\n        command: \|\n([\s\S]*?)(?=\n        [a-zA-Z_]+:|\n      [a-zA-Z_]+:|\n  #)/);
+  if (!match) throw new Error(`step_convergence_report command missing from ${yamlPath}`);
+  return match[1].replace(/^          /gm, '').trim();
+}
+
+function runSynthesisInvariant(
+  yamlPath: string,
+  registryFindings: string[],
+  expectedExitCode = 0,
+  appendMalformedState = false,
+): Record<string, unknown> {
+  const artifactDir = makeTempDir('research-lineage-invariant-');
+  const stateLogPath = join(artifactDir, 'deep-research-state.jsonl');
+  const registryPath = join(artifactDir, 'findings-registry.json');
+  const researchPath = join(artifactDir, 'research.md');
+  const dashboardPath = join(artifactDir, 'deep-research-dashboard.md');
+  writeFileSync(stateLogPath, `${JSON.stringify({ type: 'config', mode: 'research' })}\n`, 'utf8');
+  writeFileSync(
+    registryPath,
+    `${JSON.stringify({ keyFindings: registryFindings.map((title, index) => ({ id: `F${index + 1}`, title })) })}\n`,
+    'utf8',
+  );
+  writeFileSync(researchPath, '# Research\n', 'utf8');
+  writeFileSync(dashboardPath, '# Dashboard\n', 'utf8');
+
+  for (const [label, finding] of [['alpha', 'alpha finding'], ['beta', 'beta finding']]) {
+    const lineageDir = join(artifactDir, 'lineages', label);
+    mkdirSync(join(lineageDir, 'iterations'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, findingsCount: 1, findings: [finding] })}\n`,
+      'utf8',
+    );
+    writeFileSync(join(lineageDir, 'iterations', 'iteration-001.md'), `# ${finding}\n`, 'utf8');
+  }
+  if (appendMalformedState) {
+    appendFileSync(join(artifactDir, 'lineages', 'beta', 'deep-research-state.jsonl'), 'not-json\n', 'utf8');
+  }
+
+  const replacements: Record<string, string> = {
+    '{state_paths.packet_dir}': artifactDir,
+    '{state_paths.state_log}': stateLogPath,
+    '{state_paths.registry}': registryPath,
+    '{state_paths.research_output}': researchPath,
+    '{state_paths.dashboard}': dashboardPath,
+    '{answered_count}': '0',
+    '{total_questions}': '0',
+    '{reason}': 'converged',
+    '{ISO_8601_NOW}': '2026-07-25T00:00:00.000Z',
+  };
+  const command = Object.entries(replacements).reduce(
+    (rendered, [placeholder, value]) => rendered.split(placeholder).join(value),
+    extractSynthesisInvariantCommand(yamlPath),
+  );
+  const result = spawnSync('/bin/sh', ['-c', command], {
+    cwd: runtimeRoot,
+    encoding: 'utf8',
+  });
+  expect(result.status, result.stderr).toBe(expectedExitCode);
+  const records = readFileSync(stateLogPath, 'utf8').trim().split(/\r?\n/).map((line) => JSON.parse(line));
+  return records.at(-1) as Record<string, unknown>;
 }
 
 // ─── Research merge unit tests ─────────────────────────────────────────────
@@ -778,6 +850,54 @@ describe('reconstructResearchRegistryFromState — leaf-only lineage fallback', 
   });
 });
 
+describe('research synthesis lineage evidence', () => {
+  it('keeps duplicate iteration basenames distinct and completes against all lineage findings in both workflows', () => {
+    for (const yamlPath of researchWorkflowPaths) {
+      const workflow = readFileSync(yamlPath, 'utf8');
+      expect(workflow).toContain('{state_paths.packet_dir}/lineages/*/iterations/iteration-*.md');
+      expect(workflow).toContain('Duplicate basenames from different lineages are distinct synthesis inputs');
+      expect(runSynthesisInvariant(yamlPath, ['alpha finding', 'beta finding'])).toMatchObject({
+        event: 'synthesis_complete',
+        totalIterations: 2,
+      });
+    }
+  });
+
+  it('reports incomplete synthesis when one lineage finding is missing from the registry in both workflows', () => {
+    for (const yamlPath of researchWorkflowPaths) {
+      expect(runSynthesisInvariant(yamlPath, ['alpha finding'], 2)).toMatchObject({
+        event: 'synthesis_incomplete',
+        severity: 'error',
+        totalIterations: 2,
+        identifiableFindingCount: 2,
+        missingStructuredFindingCount: 1,
+        invariantFailures: expect.arrayContaining([
+          'structured_state_findings_partially_reflected_in_registry',
+          'structured_state_findings_missing_from_registry',
+        ]),
+      });
+    }
+  });
+
+  it('fails synthesis when any lineage state row is malformed in both workflows', () => {
+    for (const yamlPath of researchWorkflowPaths) {
+      expect(runSynthesisInvariant(yamlPath, ['alpha finding', 'beta finding'], 2, true)).toMatchObject({
+        event: 'synthesis_incomplete',
+        severity: 'error',
+        stateParseFailureCount: 1,
+        invariantFailures: expect.arrayContaining(['state_jsonl_parse_failure']),
+      });
+    }
+  });
+
+  it('keeps confirm-mode resource-map emission bound to the parsed command flag', () => {
+    const confirmWorkflow = readFileSync(researchWorkflowPaths[1], 'utf8');
+    expect(confirmWorkflow).toContain('resource_map.emit: "{resource_map_emit}"');
+    expect(confirmWorkflow).toContain('"resource_map":{"emit":{resource_map_emit}}');
+    expect(confirmWorkflow).not.toContain('resource_map.emit: true');
+  });
+});
+
 describe('fanout-merge.cjs — script', () => {
   it('exits 0 with ok when no lineages directory exists', async () => {
     const baseDir = makeTempDir('fanout-merge-empty-');
@@ -880,5 +1000,191 @@ describe('fanout-merge.cjs — script', () => {
     });
     const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
     expect(payload).toMatchObject({ merged_lineages: 1, skipped_no_registry: 0, key_findings: 1 });
+  });
+
+  it('reconstructs an existing-empty canonical registry and publishes byte-identical registry names', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-empty-registry-');
+    const lineageDir = join(baseDir, 'lineages', 'sol');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'findings-registry.json'),
+      `${JSON.stringify({ keyFindings: [], openQuestions: [{ id: 'Q1', text: 'Preserved question' }], metrics: { iterationsCompleted: 0 } })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 5, findingsCount: 1, findings: ['lineage state survives empty registry initialization'], newInfoRatio: 0.4 })}\n`,
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(0);
+    const canonicalPath = join(baseDir, 'findings-registry.json');
+    const compatibilityPath = join(baseDir, 'deep-research-findings-registry.json');
+    expect(readFileSync(canonicalPath)).toEqual(readFileSync(compatibilityPath));
+    const merged = JSON.parse(readFileSync(canonicalPath, 'utf8')) as Record<string, unknown>;
+    expect(merged.keyFindings as unknown[]).toHaveLength(1);
+    expect(merged.openQuestions).toEqual([expect.objectContaining({ id: 'Q1' })]);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload).toMatchObject({
+      merged_registry_path: canonicalPath,
+      compatibility_registry_path: compatibilityPath,
+      key_findings: 1,
+    });
+  });
+
+  it('reconstructs count-only state from same-named lineage iteration files without collapsing either input', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-count-only-');
+    for (const [label, finding] of [['alpha', 'alpha lineage finding'], ['beta', 'beta lineage finding']]) {
+      const lineageDir = join(baseDir, 'lineages', label);
+      mkdirSync(join(lineageDir, 'iterations'), { recursive: true });
+      writeFileSync(
+        join(lineageDir, 'deep-research-state.jsonl'),
+        `${JSON.stringify({ type: 'iteration', run: 1, findingsCount: 1, newInfoRatio: 0.5 })}\n`,
+        'utf8',
+      );
+      writeFileSync(
+        join(lineageDir, 'iterations', 'iteration-001.md'),
+        `# Iteration 1\n\n## Findings\n\n1. ${finding}\n\n## Next Focus\n\nDone.\n`,
+        'utf8',
+      );
+    }
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const canonicalPath = join(baseDir, 'findings-registry.json');
+    const compatibilityPath = join(baseDir, 'deep-research-findings-registry.json');
+    expect(readFileSync(canonicalPath)).toEqual(readFileSync(compatibilityPath));
+    const merged = JSON.parse(readFileSync(canonicalPath, 'utf8')) as {
+      keyFindings: Array<{ title: string; _iteration_source: string }>;
+      metrics: { sourceFindings: number; reconstructionGaps: number };
+    };
+    expect(merged.keyFindings.map((finding) => finding.title)).toEqual([
+      'alpha lineage finding',
+      'beta lineage finding',
+    ]);
+    expect(merged.keyFindings.map((finding) => finding._iteration_source)).toEqual([
+      'lineages/alpha/iterations/iteration-001.md',
+      'lineages/beta/iterations/iteration-001.md',
+    ]);
+    expect(merged.metrics).toMatchObject({ sourceFindings: 2, reconstructionGaps: 0 });
+  });
+
+  it('treats numbered finding subheadings as findings instead of nested numbered detail', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-heading-findings-');
+    const lineageDir = join(baseDir, 'lineages', 'alpha');
+    mkdirSync(join(lineageDir, 'iterations'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 5, findingsCount: 2, newInfoRatio: 0.5 })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'iterations', 'iteration-005.md'),
+      [
+        '# Iteration 5',
+        '',
+        '## Findings',
+        '',
+        '### 1. Topology decision',
+        '',
+        '1. Nested migration step',
+        '2. Another nested migration step',
+        '',
+        '### 2. Compatibility boundary',
+        '',
+        '1. Nested verification step',
+        '',
+        '## Questions Answered',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      keyFindings: Array<{ title: string }>;
+    };
+    expect(merged.keyFindings.map((finding) => finding.title)).toEqual([
+      'Compatibility boundary',
+      'Topology decision',
+    ]);
+  });
+
+  it('fails closed on malformed lineage state instead of merging the valid prefix', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-malformed-');
+    const lineageDir = join(baseDir, 'lineages', 'alpha');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, findings: ['valid prefix'] })}\nnot-json\n`,
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('invalid JSONL at line 2');
+    expect(existsSync(join(baseDir, 'findings-registry.json'))).toBe(false);
+  });
+
+  it('rejects symlinked lineage directories before reading external evidence', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-linked-lineage-');
+    const outsideDir = makeTempDir('fanout-merge-research-outside-lineage-');
+    mkdirSync(join(baseDir, 'lineages'), { recursive: true });
+    writeFileSync(
+      join(outsideDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, findings: ['external finding'] })}\n`,
+      'utf8',
+    );
+    symlinkSync(outsideDir, join(baseDir, 'lineages', 'external'));
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('lineage directory entries must not be symbolic links');
+  });
+
+  it('rejects a symlinked merged-registry output without changing its target', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-linked-output-');
+    const outsideDir = makeTempDir('fanout-merge-research-output-target-');
+    const lineageDir = join(baseDir, 'lineages', 'alpha');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, findings: ['contained finding'] })}\n`,
+      'utf8',
+    );
+    const targetPath = join(outsideDir, 'target.json');
+    writeFileSync(targetPath, 'outside-bytes\n', 'utf8');
+    symlinkSync(targetPath, join(baseDir, 'findings-registry.json'));
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('merged registry must be a real file');
+    expect(readFileSync(targetPath, 'utf8')).toBe('outside-bytes\n');
   });
 });

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end scenarios (MCP tool call sequences, CLI invocations, degraded-mode behavior) that stress tests don't cover",
     "created_at": "2026-07-02T04:40:48.870Z",
-    "last_save_at": "2026-07-17T17:19:47.403Z",
+    "last_save_at": "2026-07-27T05:50:46.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b0924ec975059c7c27637c1412b735b2a3243b56639a85f6943585b428f16541",
+    "source_fingerprint": "sha256:a4bb7c45efa63591ad2c023ece8fc7ef6ee3598d909c965abbd2b46673709c98",
     "source_doc_hashes": {
-      "spec.md": "b9c2f84a2ddd2010084c7a6fda6d3678b267938ad15ba0c115268664fb28da87",
+      "spec.md": "338ae745a22fb00d1d7260c3d25432e303a659aebb6d6397077cb38ce500368c",
       "plan.md": "4a248715d81f8ff0431d0f4c898e651b7ec601c8910d017cfa6dd03f00c52285",
       "tasks.md": "f4b8060af2e39f17a489a4a2a43a11accb9bd1b35b2cd0c978b71f391820ef41",
       "checklist.md": "c16283841a1546a2e025de6d32384c13992e3acb1391c44cb30729137e616368",

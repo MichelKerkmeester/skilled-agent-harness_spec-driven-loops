@@ -21,7 +21,13 @@
     "composer",
     "cli dispatch",
     "cross-ai delegation",
-    "executor delegation"
+    "executor delegation",
+    "cli-devin",
+    "devin-cli",
+    "delegate-to-devin",
+    "cognition-cli",
+    "devin-handoff",
+    "swe-1.6"
   ],
   "trigger_examples": [
     "Delegate this to OpenCode for a full-runtime dispatch",
@@ -29,7 +35,11 @@
     "Run this task through opencode run with the deepseek provider",
     "Use cli-codex for an OpenAI-backed code review and web-research pass",
     "Use cli-cursor to get Composer's opinion on this diff",
-    "Route this CLI dispatch request"
+    "Route this CLI dispatch request",
+    "delegate to devin",
+    "use cli-devin",
+    "devin cloud handoff",
+    "cognition cli second opinion"
   ],
-  "lastUpdated": "2026-07-24T09:00:00Z"
+  "lastUpdated": "2026-07-26T00:00:00Z"
 }

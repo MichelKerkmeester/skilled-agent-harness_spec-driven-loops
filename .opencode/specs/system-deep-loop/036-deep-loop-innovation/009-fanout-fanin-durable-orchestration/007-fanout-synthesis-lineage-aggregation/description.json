@@ -1,0 +1,36 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+  "description": "Make deep-research fan-out synthesis consume lineage artifacts in place, reconstruct empty registries, preserve merged state, and produce canonical sy",
+  "keywords": [
+    "deep-research",
+    "fan-out",
+    "synthesis",
+    "consume",
+    "lineage",
+    "artifacts",
+    "place",
+    "reconstruct",
+    "empty",
+    "registries",
+    "preserve",
+    "merged",
+    "state",
+    "produce",
+    "canonical",
+    "outputs"
+  ],
+  "lastUpdated": "2026-07-26T08:54:26.465Z",
+  "specId": "007",
+  "folderSlug": "fanout-synthesis-lineage-aggregation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "009-fanout-fanin-durable-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "26-07-26_09-49__completed-lineage-aware-deep-research-fan-in-with.md",
+    "26-07-26_09-54__finalized-the-complete-packet-1-evidence-set.md"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"q1","text":"Direct child packet consistency","iteration":1},
+    {"id":"q2","text":"Analogous defects beyond known 012 and 017 errors","iteration":1},
+    {"id":"q3","text":"Parent references versus live routing runtime","iteration":3},
+    {"id":"q4","text":"Defects introduced by commit 140266be3e","iteration":8},
+    {"id":"q5","text":"Lifecycle and nested topology truthfulness","iteration":7},
+    {"id":"q6","text":"Cross-document links and resume safety","iteration":10}
+  ],
+  "keyFindings": [
+    {"id":"CF-01","severity":"P1","classification":"PRE-EXISTING","summary":"Direct child 012 violates its Level-3 file/level contract"},
+    {"id":"CF-02","severity":"P1","classification":"PRE-EXISTING","summary":"Direct child 017 has an invalid memory continuity block"},
+    {"id":"CF-03","severity":"P1","classification":"PRE-EXISTING","summary":"Direct child 015 lifecycle surfaces disagree"},
+    {"id":"CF-04","severity":"P1","classification":"PRE-EXISTING","summary":"Direct child 019 completion, graph, and continuity disagree"},
+    {"id":"CF-05","severity":"P1","classification":"PRE-EXISTING","summary":"Null pointers at 020 and 020/007 prevent deterministic descent"},
+    {"id":"CF-06","severity":"P2","classification":"PRE-EXISTING","summary":"Duplicate 012 numbers make numeric-only selection ambiguous"},
+    {"id":"CF-07","severity":"P1","classification":"PRE-EXISTING","summary":"Nested 015 map exposes only 12 of 14 children"},
+    {"id":"CF-08","severity":"P1","classification":"PRE-EXISTING","summary":"Nested 015 resumes to stale child 011"},
+    {"id":"CF-09","severity":"P1","classification":"NEW","summary":"Routing canon simultaneously claims 2/7 and 7/7 typed-resource population"},
+    {"id":"CF-10","severity":"P1","classification":"PRE-EXISTING","summary":"Parent prose conflates benchmark replay with live compiled serving"},
+    {"id":"CF-11","severity":"P1","classification":"NEW","summary":"Context index says fleet default remains operator-gated although runtime is default-on"},
+    {"id":"CF-12","severity":"P1","classification":"PRE-EXISTING","summary":"Spec retains the stale operator-gated/default-on contradiction"},
+    {"id":"CF-13","severity":"P1","classification":"PRE-EXISTING","summary":"sk-design invariant 6a prevents full fleet hard-invariant closure"},
+    {"id":"CF-14","severity":"P2","classification":"NEW","summary":"Parent handoff row names wrong 020/spec.md and 021/spec.md paths"},
+    {"id":"CF-15","severity":"P1","classification":"PRE-EXISTING","summary":"Direct child 012 uses stale pre-migration sk-doc paths"},
+    {"id":"CF-16","severity":"P1","classification":"PRE-EXISTING","summary":"Direct child 013 verification commands use removed paths and names"},
+    {"id":"CF-17","severity":"P2","classification":"PRE-EXISTING","summary":"020 context-index new-location paths have an ambiguous base"},
+    {"id":"CF-18","severity":"P1","classification":"NEW","summary":"7/7 hubs PASS overstates route-gold applicability"},
+    {"id":"CF-19","severity":"P1","classification":"PRE-EXISTING","summary":"Nested 009 claims complete with an open P0 gate"},
+    {"id":"CF-20","severity":"P2","classification":"PRE-EXISTING","summary":"Nested 013 claims complete with P1/P2 and sign-off work open"},
+    {"id":"CF-21","severity":"P1","classification":"PRE-EXISTING","summary":"021 parent is planned with no pointer although child 011 is active"},
+    {"id":"CF-22","severity":"P1","classification":"PRE-EXISTING","summary":"020/004 and 020/006 omit required Level-2 files"},
+    {"id":"CF-23","severity":"P2","classification":"PRE-EXISTING","summary":"020/004 spec and graph statuses disagree"},
+    {"id":"CF-24","severity":"P1","classification":"PRE-EXISTING","summary":"All eight 020/005 idea children omit required Level-2 files"},
+    {"id":"CF-25","severity":"P1","classification":"PRE-EXISTING","summary":"020/005 children 001-004 claim complete without completion evidence"},
+    {"id":"CF-26","severity":"P1","classification":"PRE-EXISTING","summary":"020/005 parent overstates children 005-007 as complete"},
+    {"id":"CF-27","severity":"P1","classification":"PRE-EXISTING","summary":"020/005 parent lifecycle and active-child pointer are stale"}
+  ],
+  "ruledOutDirections": [
+    "Planned 013/014 packets as direct analogues to 012",
+    "Lean phase-parent heavy-document absence as a defect",
+    "Canonical full-ID resume collision for duplicate 012 prefixes",
+    "The 91/106 and 91/91 arithmetic as false",
+    "Fleet compiled activation as false",
+    "Nested 015 as having only 12 children"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "keyFindings": 27,
+    "p1": 22,
+    "p2": 5,
+    "new": 4,
+    "preExisting": 23,
+    "verifiedSourceAnchors": 62,
+    "convergenceScore": 1
+  }
+}

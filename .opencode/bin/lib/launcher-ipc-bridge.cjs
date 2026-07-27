@@ -10,6 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
+const crypto = require('crypto');
 const net = require('net');
 const path = require('path');
 const { StringDecoder } = require('string_decoder');
@@ -19,6 +20,7 @@ const { StringDecoder } = require('string_decoder');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+const DEFAULT_SKILL_ADVISOR_SOCKET_DIR = '/tmp/mk-skill-advisor';
 const DEFAULT_PROBE_TIMEOUT_MS = 5000;
 const MAX_PROBE_TIMEOUT_MS = 6999;
 const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
@@ -98,13 +100,44 @@ function defaultDbDirForService(serviceName) {
   throw new Error(`Unknown MCP service name: ${serviceName}`);
 }
 
+function shouldScopeIpcSocket(serviceName, socketDir = process.env.SPECKIT_IPC_SOCKET_DIR, env = process.env) {
+  if (serviceName !== 'mk-skill-advisor') return false;
+  if (String(socketDir ?? '').startsWith('tcp://')) return false;
+  if (env.SPECKIT_IPC_SOCKET_SCOPE === 'database') return true;
+  return path.resolve(socketDir ?? DEFAULT_SKILL_ADVISOR_SOCKET_DIR)
+    === path.resolve(DEFAULT_SKILL_ADVISOR_SOCKET_DIR);
+}
+
+function canonicalSocketScopePath(value) {
+  const resolved = path.resolve(value);
+  try {
+    return fs.realpathSync.native(resolved);
+  } catch (error) {
+    if (error.code === 'ENOENT') return resolved;
+    throw error;
+  }
+}
+
+function resolveIpcSocketDir(serviceName, options = {}) {
+  const env = options.env ?? process.env;
+  const rawSocketDir = env.SPECKIT_IPC_SOCKET_DIR
+    ?? options.socketDir
+    ?? options.dbDir
+    ?? defaultDbDirForService(serviceName);
+  if (String(rawSocketDir).startsWith('tcp://')) return String(rawSocketDir);
+  const socketDir = path.resolve(rawSocketDir);
+  if (!shouldScopeIpcSocket(serviceName, rawSocketDir, env)) return socketDir;
+
+  const dbDir = canonicalSocketScopePath(options.dbDir ?? defaultDbDirForService(serviceName));
+  const scope = crypto.createHash('sha256').update(dbDir).digest('hex').slice(0, 12);
+  return path.join(socketDir, scope);
+}
+
 function getIpcSocketPath(serviceName, options = {}) {
   if (process.env.SPECKIT_IPC_SOCKET_DIR?.startsWith('tcp://')) {
     return process.env.SPECKIT_IPC_SOCKET_DIR;
   }
-  const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR
-    ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(options.dbDir ?? defaultDbDirForService(serviceName));
+  const socketDir = resolveIpcSocketDir(serviceName, options);
   return path.join(socketDir, SOCKET_FILE_NAME);
 }
 
@@ -417,6 +450,7 @@ async function maybeBridgeLeaseHolder(options) {
     probeTimeoutMs,
     connect,
     bridge,
+    respawnOnMissingSocket = false,
   } = options;
   const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
   const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
@@ -441,13 +475,21 @@ async function maybeBridgeLeaseHolder(options) {
   // to recomputation for legacy leases that predate socketPath and for the other launchers whose
   // leases never carry it.
   const storedSocketPath = leaseResult.socketPath;
+  const recomputedSocketPath = getIpcSocketPath(serviceName, { dbDir });
+  const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SKILL_ADVISOR_SOCKET_DIR;
+  const scopedSocket = shouldScopeIpcSocket(serviceName, socketDir);
   const usableStoredSocketPath = typeof storedSocketPath === 'string'
     && storedSocketPath.length > 0
     && (storedSocketPath.startsWith('tcp://') || fs.existsSync(storedSocketPath))
+    && (!scopedSocket || storedSocketPath === recomputedSocketPath)
     ? storedSocketPath
     : null;
-  const socketPath = usableStoredSocketPath ?? getIpcSocketPath(serviceName, { dbDir });
+  const socketPath = usableStoredSocketPath ?? recomputedSocketPath;
   if (!socketPath.startsWith('tcp://') && !fs.existsSync(socketPath)) {
+    if (respawnOnMissingSocket) {
+      process.stderr.write(`[${loggerPrefix}] lease holder pid=${ownerPid} has no socket at ${socketPath}; requesting respawn\n`);
+      return { action: 'respawn', reason: 'no-bridge-socket', socketPath };
+    }
     writeLeaseHeld(' (no-bridge-socket)');
     return { action: 'report', reason: 'no-bridge-socket', socketPath };
   }
@@ -499,6 +541,7 @@ module.exports = {
   DEFAULT_MODEL_SERVER_LOADING_MAX_MS,
   bridgeStdioToSocket,
   getIpcSocketPath,
+  resolveIpcSocketDir,
   maybeBridgeLeaseHolder,
   normalizeExistingServiceProbeResult,
   probeDaemon,

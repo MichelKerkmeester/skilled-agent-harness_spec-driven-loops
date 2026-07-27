@@ -7,72 +7,72 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "f6b82dd416b3a7cac8a7f8c5595c6bdc42a29d8c864d7bc9107673a4909693c7",
+      "sha256": "e27652c62b3815b3020464149aab0dab7e776b86ee54e7b54abf0bdf6d312072",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "168f4ea884a6f5188a455c9ab5c1fea8efbe61f85ba31ced0956490db960784b",
+      "sha256": "a8c26be872c92336903fbef2729026a059ed41f047567cf6d2d47e4a2cd88c54",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "cc283b7c5e62bd8b012a8f249f4cc63f4f353ad264358e1a5c9b85d753713d64",
+      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "5bdbe9246a4aa4eb031810d29698e2ec39caca856fc377a331ed9cd31cb5c1c1",
+      "sha256": "f7a98fff671ccf4ccce85ee5cfb2229259aeec8b82e6c64f319aee977deab52c",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "4424e22f513de019e238b91835dee9f88202bf4a96542d575900f408e7074f60",
+      "sha256": "d30a9cdf88a8fe9f251226b178467105b52bfe9af585997209342eb3247a89a0",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "bc35e18f1f3c09722661c187f33cdddac423d33efad9c85c6a92262978a2c6b8",
+      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
+      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "da8206207d6689b466c03882f3446bdc4941b9306a452cbc8464b3ba97d2ee38",
+      "sha256": "3d9baf37ddec298662253197adcd1b6c64c49c12d29674016f68cdd3b0531967",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "9d4f5e8fe55eb3e3ec2aa9c88a00393019507597719a904ab0cfba4ca486484f",
+      "sha256": "fe2ad298d15331a20d41b6430b37d6ef5286a64a8d2d0ba6d736e3306285192e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
-      "sha256": "18fd54c8024f85d447bafbdcbd849c5eab5f61a47c81b398fd6b57a6810cd4d8",
+      "sha256": "f34370a914c0bea4bfc45873429ac5f59bdb6480e00b6a7dd93aec814802a935",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-format.md",
-      "sha256": "0669a7f683b3dfaaeedb6d5ed5ae6619354de9457b819aa3248781b06988ac08",
+      "sha256": "0f74a85c354cea084a26d235166201e18a25fff005d86b7c35c406f9c34ef59f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "fe7ac548e359951d11905f938ae1761dfd17d80c5a6b4a2333c4ec2460f3acd3",
+      "sha256": "84f5caf5450d6c1102da8d618b61896485b32f464e968b2713bb3f038edef7bb",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json",
-      "sha256": "ca1af4a91a3bb06332812eb43356523d3dab27bf5c1f1155d5040257acd45139",
+      "sha256": "364d3ad811d3f352ab9c149d12d73aeb9c70e5174e8a0edbdb6fa312d2206fa4",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
-      "sha256": "ec5a50cd9f1dbb9e3577988119818574935e5a0acdc5967a54f2ec6c29b454fe",
+      "sha256": "ee645fc39e876f967943df8497d098dc63eca2b0c33d7dd78763071c65defacd",
       "section": "full"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "15e836a94646c0728b39d77e9fcd991e64b659263d04f15b978c04ce2a34d989",
+      "sha256": "5d04b209806df7519759c587e6edb542965cd763a7e180a285b1115d658e20c7",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "742c75fe55c2cf6a5bccfb72e845625e6c74815f2005acffe7a7fb3e8238967c"
+  "compiledBodyDigest": "c7197c5d3f977d3f2963f21e64554007afae4a624d62b2f8bd643264722688c2"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research

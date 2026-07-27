@@ -87,25 +87,127 @@ function ensureString(args, key) {
   return args[key];
 }
 
-function tryReadJson(filePath) {
+function isWithinRoot(root, candidate) {
+  const relative = path.relative(root, candidate);
+  return relative === '' || (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative));
+}
+
+function requireRealDirectory(root, directoryPath, label) {
+  if (!fs.existsSync(directoryPath)) {
+    throw inputError(`${label} does not exist: ${directoryPath}`);
+  }
+  const stat = fs.lstatSync(directoryPath);
+  if (stat.isSymbolicLink() || !stat.isDirectory()) {
+    throw inputError(`${label} must be a real directory: ${directoryPath}`);
+  }
+  const realDirectory = fs.realpathSync(directoryPath);
+  if (!isWithinRoot(root, realDirectory)) {
+    throw inputError(`${label} resolves outside the artifact root: ${directoryPath}`);
+  }
+  return realDirectory;
+}
+
+function resolveOptionalRealFile(root, filePath, label) {
   if (!fs.existsSync(filePath)) return null;
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch {
-    return null;
+  const stat = fs.lstatSync(filePath);
+  if (stat.isSymbolicLink() || !stat.isFile()) {
+    throw inputError(`${label} must be a real file: ${filePath}`);
+  }
+  const realFile = fs.realpathSync(filePath);
+  if (!isWithinRoot(root, realFile)) {
+    throw inputError(`${label} resolves outside the artifact root: ${filePath}`);
+  }
+  return realFile;
+}
+
+function assertSafeOutputPath(root, filePath, label) {
+  requireRealDirectory(root, path.dirname(filePath), `${label} parent`);
+  if (!fs.existsSync(filePath)) return;
+  const stat = fs.lstatSync(filePath);
+  if (stat.isSymbolicLink() || !stat.isFile()) {
+    throw inputError(`${label} must be a real file when it already exists: ${filePath}`);
+  }
+  const realFile = fs.realpathSync(filePath);
+  if (!isWithinRoot(root, realFile)) {
+    throw inputError(`${label} resolves outside the artifact root: ${filePath}`);
   }
 }
 
-function readStateLog(stateLogPath) {
-  if (!fs.existsSync(stateLogPath)) return [];
-  const lines = fs.readFileSync(stateLogPath, 'utf8').trim().split('\n').filter(Boolean);
-  return lines.flatMap((line) => {
+function readJsonFile(root, filePath, label) {
+  const realFile = resolveOptionalRealFile(root, filePath, label);
+  if (!realFile) return null;
+  try {
+    return JSON.parse(fs.readFileSync(realFile, 'utf8'));
+  } catch (error) {
+    throw inputError(`${label} contains invalid JSON: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+function readStateLog(root, stateLogPath, label) {
+  const realFile = resolveOptionalRealFile(root, stateLogPath, label);
+  if (!realFile) return [];
+  const records = [];
+  const lines = fs.readFileSync(realFile, 'utf8').split(/\r?\n/);
+  lines.forEach((line, index) => {
+    if (!line.trim()) return;
     try {
-      return [JSON.parse(line)];
-    } catch {
-      return [];
+      records.push(JSON.parse(line));
+    } catch (error) {
+      throw inputError(`${label} contains invalid JSONL at line ${index + 1}: ${error instanceof Error ? error.message : String(error)}`);
     }
   });
+  return records;
+}
+
+function parseIterationMarkdownFindings(content, run, sourcePath) {
+  const lines = content.split(/\r?\n/);
+  const headingIndex = lines.findIndex((line) => /^##\s+Findings\s*$/i.test(line.trim()));
+  if (headingIndex < 0) return [];
+  const sectionLines = [];
+  for (let index = headingIndex + 1; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (/^##\s+/.test(line)) break;
+    sectionLines.push(line);
+  }
+  const subheadingFindings = sectionLines.flatMap((line) => {
+    const match = line.match(/^###\s+\d+\.\s+(.+)$/);
+    return match ? [match[1]] : [];
+  });
+  const findingTexts = subheadingFindings.length > 0
+    ? subheadingFindings
+    : sectionLines.flatMap((line) => {
+      const match = line.match(/^\d+\.\s+(.+)$/);
+      return match ? [match[1]] : [];
+    });
+  return findingTexts.map((text, index) => ({
+      id: `iteration-${run}-finding-${index + 1}`,
+      title: text,
+      text,
+      addedAtIteration: run,
+      _iteration_source: sourcePath,
+    }));
+}
+
+function loadIterationFindings(root, lineageDir, label) {
+  const iterationsDir = path.join(lineageDir, 'iterations');
+  if (!fs.existsSync(iterationsDir)) return new Map();
+  requireRealDirectory(root, iterationsDir, `lineage ${label} iterations directory`);
+  const findingsByRun = new Map();
+  for (const entry of fs.readdirSync(iterationsDir, { withFileTypes: true })) {
+    if (!/^iteration-\d+\.md$/.test(entry.name)) continue;
+    if (entry.isSymbolicLink() || !entry.isFile()) {
+      throw inputError(`lineage ${label} iteration source must be a real file: ${path.join(iterationsDir, entry.name)}`);
+    }
+    const sourcePath = path.join(iterationsDir, entry.name);
+    const realFile = resolveOptionalRealFile(root, sourcePath, `lineage ${label} iteration source`);
+    const run = Number(entry.name.match(/^iteration-(\d+)\.md$/)[1]);
+    findingsByRun.set(run, parseIterationMarkdownFindings(
+      fs.readFileSync(realFile, 'utf8'),
+      run,
+      path.relative(root, realFile).replace(/\\/g, '/'),
+    ));
+  }
+  return findingsByRun;
 }
 
 function stableValue(value) {
@@ -475,14 +577,15 @@ function normalizeRegistrySchema(registry, { canonicalKey, aliases, lineage }) {
   if (!registry) return { registry, warnings: [] };
   const warnings = [];
 
-  // If canonical key is already present and an array, nothing to do.
-  if (Array.isArray(registry[canonicalKey])) {
+  // Prefer a populated canonical array, but allow a populated alias to repair
+  // an initialized-yet-empty canonical projection.
+  if (Array.isArray(registry[canonicalKey]) && registry[canonicalKey].length > 0) {
     return { registry, warnings };
   }
 
   // Try each alias in priority order.
   for (const [aliasKey, targetKey] of Object.entries(aliases)) {
-    if (Array.isArray(registry[aliasKey])) {
+    if (Array.isArray(registry[aliasKey]) && registry[aliasKey].length > 0) {
       // Alias found — coerce to canonical key.
       registry[targetKey] = registry[aliasKey];
       warnings.push({
@@ -496,6 +599,10 @@ function normalizeRegistrySchema(registry, { canonicalKey, aliases, lineage }) {
       });
       return { registry, warnings };
     }
+  }
+
+  if (Array.isArray(registry[canonicalKey])) {
+    return { registry, warnings };
   }
 
   // No usable findings array found — registry will be skipped.
@@ -608,6 +715,14 @@ function mergeResearchRegistries(lineageData, options = {}) {
       openQuestions: openQuestionsById.size,
       resolvedQuestions: resolvedQuestionsById.size,
       keyFindings: mergedFindings.length,
+      sourceFindings: lineageData.reduce(
+        (sum, { registry }) => sum + (Number(registry?.metrics?.sourceFindings) || registry?.keyFindings?.length || 0),
+        0,
+      ),
+      reconstructionGaps: lineageData.reduce(
+        (sum, { registry }) => sum + (Number(registry?.metrics?.reconstructionGaps) || 0),
+        0,
+      ),
       convergenceScore: Math.round(avgConvergence * 1000) / 1000,
       coverageBySources: {},
     },
@@ -828,34 +943,50 @@ function normalizeResearchFindingCandidate(candidate, record, index) {
     ...(candidate.text ? { text: candidate.text } : { text }),
     ...(candidate.confidence ? { confidence: candidate.confidence } : {}),
     addedAtIteration: candidate.addedAtIteration ?? run,
+    ...(candidate._iteration_source ? { _iteration_source: candidate._iteration_source } : {}),
     _reconstructed_from_state: true,
   };
 }
 
-function researchCandidatesFromIteration(record) {
+function researchCandidatesFromIteration(record, iterationFindingsByRun = new Map()) {
   if (!record || record.type !== 'iteration') return [];
+  const run = Number.isFinite(Number(record.run ?? record.iteration)) ? Math.floor(Number(record.run ?? record.iteration)) : 0;
+  const expectedCount = Number(record.findingsCount);
   const structured = [record.keyFindings, record.findings, record.findingDetails]
     .find((value) => Array.isArray(value) && value.length > 0);
   if (Array.isArray(structured)) {
+    if (Number.isFinite(expectedCount) && expectedCount > 0 && structured.length !== Math.floor(expectedCount)) {
+      throw inputError(`iteration ${run} findingsCount=${Math.floor(expectedCount)} does not match ${structured.length} structured finding(s)`);
+    }
     return structured;
   }
 
-  const findingsCount = Number(record.findingsCount);
-  if (!Number.isFinite(findingsCount) || findingsCount <= 0) return [];
-  const run = Number.isFinite(Number(record.run ?? record.iteration)) ? Math.floor(Number(record.run ?? record.iteration)) : 0;
-  const narrative = firstNonEmptyString([
-    record.summary,
-    record.findingsSummary,
-    record.focus,
-    record.nextFocus,
-    record.reflection,
-  ]);
-  return [{
-    id: `state-finding-${run}-1-${crypto.createHash('sha256').update(narrative || String(run)).digest('hex').slice(0, 12)}`,
-    title: narrative || `Iteration ${run} recorded ${Math.floor(findingsCount)} finding(s)`,
-    summary: narrative || `State log recorded ${Math.floor(findingsCount)} finding(s) but no structured finding text.`,
-    addedAtIteration: run,
-  }];
+  const iterationFindings = iterationFindingsByRun.get(run) ?? [];
+  const graphFindings = Array.isArray(record.graphEvents)
+    ? record.graphEvents
+      .filter((event) => event?.type === 'node' && event?.kind === 'FINDING' && firstNonEmptyString([event.label, event.title, event.text]))
+      .map((event, index) => ({
+        id: event.id || `state-finding-${run}-${index + 1}`,
+        title: firstNonEmptyString([event.label, event.title, event.text]),
+        text: firstNonEmptyString([event.text, event.label, event.title]),
+        addedAtIteration: run,
+      }))
+    : [];
+  if (Number.isFinite(expectedCount) && expectedCount > 0) {
+    const normalizedExpectedCount = Math.floor(expectedCount);
+    if (iterationFindings.length === normalizedExpectedCount) return iterationFindings;
+    if (graphFindings.length === normalizedExpectedCount) return graphFindings;
+    if (iterationFindings.length > 0 || graphFindings.length > 0) {
+      throw inputError(
+        `iteration ${run} findingsCount=${normalizedExpectedCount} does not match markdown=${iterationFindings.length} or graph=${graphFindings.length} finding evidence`,
+      );
+    }
+    throw inputError(`iteration ${run} reports ${normalizedExpectedCount} finding(s) without structured, markdown, or graph finding evidence`);
+  }
+
+  if (iterationFindings.length > 0) return iterationFindings;
+  if (graphFindings.length > 0) return graphFindings;
+  return [];
 }
 
 /**
@@ -869,11 +1000,11 @@ function researchCandidatesFromIteration(record) {
  * @param {string} label - Lineage label, for attribution.
  * @returns {{keyFindings:Array,Object}|null} Reconstructed registry, or null when no findings exist.
  */
-function reconstructResearchRegistryFromState(stateRecords, label) {
+function reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun = new Map()) {
   if (!Array.isArray(stateRecords)) return null;
   const keyFindings = [];
   for (const record of stateRecords) {
-    const candidates = researchCandidatesFromIteration(record);
+    const candidates = researchCandidatesFromIteration(record, iterationFindingsByRun);
     candidates.forEach((candidate, index) => {
       const mapped = normalizeResearchFindingCandidate(candidate, record, index);
       if (!mapped) return;
@@ -903,6 +1034,26 @@ function reconstructResearchRegistryFromState(stateRecords, label) {
   };
 }
 
+function hasUsableResearchFindings(registry) {
+  return Boolean(registry && [registry.keyFindings, registry.findings]
+    .some((findings) => Array.isArray(findings) && findings.length > 0));
+}
+
+function mergeReconstructedResearchRegistry(registry, reconstructed) {
+  if (!registry) return reconstructed;
+  return {
+    ...registry,
+    ...reconstructed,
+    openQuestions: Array.isArray(registry.openQuestions) ? registry.openQuestions : reconstructed.openQuestions,
+    resolvedQuestions: Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : reconstructed.resolvedQuestions,
+    ruledOutDirections: Array.isArray(registry.ruledOutDirections) ? registry.ruledOutDirections : reconstructed.ruledOutDirections,
+    metrics: {
+      ...(registry.metrics && typeof registry.metrics === 'object' ? registry.metrics : {}),
+      ...reconstructed.metrics,
+    },
+  };
+}
+
 async function main() {
   const { writeStateAtomic, writeTextAtomic } = await import('../lib/deep-loop/atomic-state.ts');
   const args = parseArgs();
@@ -910,7 +1061,15 @@ async function main() {
   if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
     throw inputError('loopType must be "research", "review", or "context"');
   }
-  const artifactDir = ensureString(args, 'artifactDir');
+  const artifactDir = path.resolve(ensureString(args, 'artifactDir'));
+  if (!fs.existsSync(artifactDir)) {
+    throw inputError(`artifactDir does not exist: ${artifactDir}`);
+  }
+  const artifactStat = fs.lstatSync(artifactDir);
+  if (artifactStat.isSymbolicLink() || !artifactStat.isDirectory()) {
+    throw inputError(`artifactDir must be a real directory: ${artifactDir}`);
+  }
+  const artifactRoot = fs.realpathSync(artifactDir);
   const lineagesDir = path.join(artifactDir, 'lineages');
 
   if (!fs.existsSync(lineagesDir)) {
@@ -918,8 +1077,15 @@ async function main() {
     return;
   }
 
-  const labelDirs = fs.readdirSync(lineagesDir)
-    .filter((entry) => fs.statSync(path.join(lineagesDir, entry)).isDirectory())
+  requireRealDirectory(artifactRoot, lineagesDir, 'lineages directory');
+  const lineageEntries = fs.readdirSync(lineagesDir, { withFileTypes: true });
+  const linkedLineage = lineageEntries.find((entry) => entry.isSymbolicLink());
+  if (linkedLineage) {
+    throw inputError(`lineage directory entries must not be symbolic links: ${path.join(lineagesDir, linkedLineage.name)}`);
+  }
+  const labelDirs = lineageEntries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
     .sort();
 
   if (labelDirs.length === 0) {
@@ -928,16 +1094,21 @@ async function main() {
   }
 
   // Load per-lineage data
-  const registryName =
-    loopType === 'review' ? 'deep-review-findings-registry.json' : 'deep-research-findings-registry.json';
+  const registryName = loopType === 'review' ? 'deep-review-findings-registry.json' : 'findings-registry.json';
+  const compatibilityRegistryName = loopType === 'research' ? 'deep-research-findings-registry.json' : null;
   const stateLogName = loopType === 'review' ? 'deep-review-state.jsonl' : 'deep-research-state.jsonl';
   const summaryPath = path.join(artifactDir, 'orchestration-summary.json');
-  const orchestrationSummary = tryReadJson(summaryPath) ?? {};
+  const orchestrationSummary = readJsonFile(artifactRoot, summaryPath, 'orchestration summary') ?? {};
 
   const lineageData = labelDirs.map((label) => {
     const lineageDir = path.join(lineagesDir, label);
-    let registry = tryReadJson(path.join(lineageDir, registryName));
-    const stateRecords = readStateLog(path.join(lineageDir, stateLogName));
+    requireRealDirectory(artifactRoot, lineageDir, `lineage ${label} directory`);
+    let registry = readJsonFile(artifactRoot, path.join(lineageDir, registryName), `lineage ${label} registry`);
+    if (!registry && compatibilityRegistryName) {
+      registry = readJsonFile(artifactRoot, path.join(lineageDir, compatibilityRegistryName), `lineage ${label} compatibility registry`);
+    }
+    const stateRecords = readStateLog(artifactRoot, path.join(lineageDir, stateLogName), `lineage ${label} state log`);
+    const iterationFindingsByRun = loadIterationFindings(artifactRoot, lineageDir, label);
     // Leaf-only review/research lineages (orchestrator-managed direct-leaf convention) may carry
     // active findings only in their state log's findingDetails, with no registry file.
     // Without a registry, such a lineage was silently skipped by the registry-only merge,
@@ -946,8 +1117,13 @@ async function main() {
     if (!registry && loopType === 'review') {
       registry = reconstructReviewRegistryFromState(stateRecords, label);
     }
-    if (!registry && loopType === 'research') {
-      registry = reconstructResearchRegistryFromState(stateRecords, label);
+    if (loopType === 'research' && !hasUsableResearchFindings(registry)) {
+      const reconstructed = reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun);
+      if (reconstructed) {
+        reconstructed.metrics.sourceFindings = reconstructed.keyFindings.length;
+        reconstructed.metrics.reconstructionGaps = 0;
+        registry = mergeReconstructedResearchRegistry(registry, reconstructed);
+      }
     }
     // Infer kind/model from state log executor records
     const executorRecord = stateRecords.find((r) => r.type === 'event' && r.event === 'executor_start');
@@ -974,10 +1150,22 @@ async function main() {
   // Atomic temp+fsync+rename so a mid-write kill never hands synthesis a
   // truncated registry — readers see the prior file or the complete new one.
   const mergedRegistryPath = path.join(artifactDir, registryName);
-  writeStateAtomic(mergedRegistryPath, mergedRegistry);
+  let compatibilityRegistryPath = null;
+  if (compatibilityRegistryName) {
+    const serializedRegistry = `${JSON.stringify(mergedRegistry, null, 2)}\n`;
+    compatibilityRegistryPath = path.join(artifactDir, compatibilityRegistryName);
+    assertSafeOutputPath(artifactRoot, mergedRegistryPath, 'merged registry');
+    assertSafeOutputPath(artifactRoot, compatibilityRegistryPath, 'compatibility registry');
+    writeTextAtomic(mergedRegistryPath, serializedRegistry);
+    writeTextAtomic(compatibilityRegistryPath, serializedRegistry);
+  } else {
+    assertSafeOutputPath(artifactRoot, mergedRegistryPath, 'merged registry');
+    writeStateAtomic(mergedRegistryPath, mergedRegistry);
+  }
 
   // Write attribution markdown atomically (same torn-write guarantee; text, not JSON).
   const attributionPath = path.join(artifactDir, 'fanout-attribution.md');
+  assertSafeOutputPath(artifactRoot, attributionPath, 'fan-out attribution');
   writeTextAtomic(attributionPath, buildAttributionMd(lineageData, loopType));
 
   jsonOut({
@@ -986,6 +1174,7 @@ async function main() {
     merged_lineages: lineagesWithRegistry.length,
     skipped_no_registry: lineageData.length - lineagesWithRegistry.length,
     merged_registry_path: mergedRegistryPath,
+    ...(compatibilityRegistryPath ? { compatibility_registry_path: compatibilityRegistryPath } : {}),
     attribution_path: attributionPath,
     ...(loopType === 'review'
       ? { merged_verdict: mergedRegistry.mergedVerdict, active_p0: mergedRegistry.activeP0, active_p1: mergedRegistry.activeP1 }

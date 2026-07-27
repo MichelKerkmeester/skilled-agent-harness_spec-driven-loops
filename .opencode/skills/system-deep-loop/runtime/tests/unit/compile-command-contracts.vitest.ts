@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const compiler = require('../../scripts/compile-command-contracts.cjs') as {
   WORKSPACE_ROOT: string;
   buildContract: (command: string) => string;
+  outputPathFor: (command: string) => string;
   computeCompiledBodyDigestFromContract: (contractText: string) => string;
   parseDigestHeader: (contractText: string) => {
     compiledBodyDigest: string;
@@ -17,7 +18,7 @@ const compiler = require('../../scripts/compile-command-contracts.cjs') as {
   sha256: (input: string | Buffer) => string;
 };
 
-const commands = ['deep/review', 'deep/research'] as const;
+const commands = ['deep/ai-council', 'deep/alignment', 'deep/review', 'deep/research'] as const;
 const schemaBlocks = [
   '## gate3Precedence',
   '## renderBlocks.auto',
@@ -36,6 +37,17 @@ function sourceSha(sourcePath: string): string {
 }
 
 describe('compile-command-contracts', () => {
+  it.each([
+    ['deep/ai-council', 'deep-ai-council.contract.md'],
+    ['deep/alignment', 'deep-alignment.contract.md'],
+    ['deep/review', 'deep-review.contract.md'],
+    ['deep/research', 'deep-research.contract.md'],
+  ])('writes %s to its tracked renderer path', (command, fileName) => {
+    expect(compiler.outputPathFor(command)).toBe(
+      join(compiler.WORKSPACE_ROOT, '.opencode/commands/deep/assets/compiled', fileName),
+    );
+  });
+
   it.each(commands)('emits every schema block for %s', (command) => {
     const contract = compiler.buildContract(command);
 

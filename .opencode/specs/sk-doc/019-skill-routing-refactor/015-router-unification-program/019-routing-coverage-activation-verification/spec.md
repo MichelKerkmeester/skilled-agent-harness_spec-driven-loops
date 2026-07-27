@@ -45,6 +45,7 @@ A **25-iteration deep-research pass** (`001-research/`; 143 findings → 47 cons
 | P3 | 012-p3-canonical-minter-foundation/ | Canonical initial manifest minter and exact freshness predicate for new registry-driven hubs; additive status visibility and sync durability; no eligibility-map removal or default-on cohort change | 3 | 002, 006 compiler |
 | P3 | 013-compiled-coverage-buildout/ | Real parity run (`SPECKIT_COMPILED_ROUTING=1`, route-gold on) proving the compiled router is byte-identical to legacy on covered scenarios; per-hub compiled-coverage buildout | 3 | 002 |
 | — | 016-review-remediation/ | Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) of the v4 compiled-routing landing, plus remediation of their findings | 2 | 011, 013 |
+| P3 | 017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/ | **Complete:** repaired sync tracing after authored-tree flattening, atomically published the stable serving closure, verified seven fresh hubs, and closed cleanup and validation | 3 | 016 |
 
 ## SHARED MIGRATION-GATE MODEL
 

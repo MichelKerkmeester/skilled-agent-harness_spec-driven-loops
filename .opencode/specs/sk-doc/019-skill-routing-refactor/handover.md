@@ -1,6 +1,6 @@
 ---
 title: "Handover: post-019 survey, drift remediation, and deep-loop runs"
-description: "State of the post-019 work as of 2026-07-24: the two-agent angle survey, the six shipped routing-drift fixes, and the alignment (sealed 10/10) and research (stopped 8/10) loops — with the open decisions, the unfixed sync-path defect, and the containment lesson that shaped how the loops were rerun."
+description: "State of the post-019 work as of 2026-07-25: earlier survey/remediation, a sealed 10-iteration alignment audit, and an eight-iteration manually stopped research synthesis, with local worktrees awaiting separate integration."
 trigger_phrases:
   - "post-019 handover"
   - "where did we leave the routing work"
@@ -11,12 +11,12 @@ parent: "sk-doc/019-skill-routing-refactor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor"
-    last_updated_at: "2026-07-24T20:55:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Stopped both deep loops after the alignment run sealed at 10/10 and research reached 8/10"
-    next_safe_action: "Triage the ten P1 catalog findings"
+    last_updated_at: "2026-07-25T07:50:37Z"
+    last_updated_by: "opencode"
+    recent_action: "Corrected both reducers, synthesized the existing alignment and research evidence, and strictly validated phases 017 and 018"
+    next_safe_action: "Review the two dirty worktrees, then decide how to integrate them without weakening the recorded findings"
     blockers: []
-    completion_pct: 80
+    completion_pct: 90
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover-core | v2.2 -->
@@ -27,7 +27,7 @@ _memory:
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
-Four threads ran in this session, all on `skilled/v4.0.0.0`, all pushed.
+Four threads now make up the post-019 follow-up. The earlier angle survey and drift remediation were pushed previously; the two loop closeouts below remain local and uncommitted in their isolated worktrees.
 
 1. **Angle survey** — two independent GPT-5.6-SOL agents surveyed all twelve skill hubs for follow-up
    work grounded in packet 019, producing eleven alignment angles and thirteen research angles. Persisted
@@ -35,13 +35,12 @@ Four threads ran in this session, all on `skilled/v4.0.0.0`, all pushed.
 2. **Drift remediation** — six confirmed defects fixed, including a compiled-route status probe that
    reported serving state it could not substantiate. Documented in `019-routing-drift-remediation/`
    (validates `--strict` clean).
-3. **Deep-alignment loop** — ran to completion, ten of ten iterations, **SEALED** and authoritative.
-   Verdict **CONDITIONAL**: the runtime lane PASSED, the documentation lane returned **ten P1 findings**.
-4. **Deep-research loop** — reached eight of ten iterations before being stopped on request. Every
-   iteration returned high new-information ratios; the highest-value question packet 019 never answered
-   is now answered.
+3. **Deep-alignment loop** - ran ten of ten iterations and reached **SEALED** terminal synthesis.
+   The corrected fail-closed verdict is **FAIL**: 49 of 1,794 artifacts were checked and **11 P1 findings** remain.
+4. **Deep-research loop** - synthesized the eight completed iterations under the approved `manualStop`.
+   The dashboard is terminal `COMPLETE`, the five original questions are resolved, and iterations 9-10 were not executed.
 
-Nothing is mid-write. Both loops are stopped, no stray processes remain, and every artifact is committed.
+Nothing is mid-write. Both loops are terminal, the research lock is absent, and phase 017/018 strict validation reports zero errors and zero warnings. The worktree artifacts are not committed, merged, or pushed.
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -55,15 +54,15 @@ Nothing is mid-write. Both loops are stopped, no stray processes remain, and eve
 |--------|----------|-------|
 | Angle survey | `research/post-019-angles/` | Complete — README plus both agent reports |
 | Drift remediation | `019-routing-drift-remediation/` | Complete — `--strict` 0 errors, 0 warnings |
-| Alignment loop | `017-post-019-alignment/` | Sealed, 10/10, verdict CONDITIONAL |
-| Research loop | `018-post-019-research/` | Stopped at 8/10, resumable |
+| Alignment loop | `017-post-019-alignment/` | Complete audit; sealed FAIL, 49/1,794 coverage, 11 P1 |
+| Research loop | `018-post-019-research/` | Complete synthesis; 8 iterations, manualStop, 5/5 original questions |
 
 Loop artifacts from the resumed runs are in two worktrees and are **not yet merged**:
 
 - `.worktrees/0105-sk-doc-post-019-alignment-resume` on branch `sk-doc/0105-post-019-alignment-resume`
 - `.worktrees/0106-sk-doc-post-019-research-resume` on branch `sk-doc/0106-post-019-research-resume`
 
-The main tree holds only the iteration 1–2 state that was committed before the resume.
+The main tree still does not contain the worktree-local phase artifacts. This handover is the only parent update in the main workspace; integration remains a separate operator decision.
 
 ### What the drift remediation changed
 
@@ -87,18 +86,14 @@ conformance.
 
 | Lane | Verdict | Checked | Findings |
 |------|---------|---------|----------|
-| `sk-code` / code — compiled-routing runtime | **PASS** | 19 | none |
-| `sk-doc` / docs — feature catalogs + `create-*` | **CONDITIONAL** | 30 | **10 P1** |
-| `sk-doc` / docs — hub routing metadata | NOT_APPLICABLE | 0 | none |
-| `sk-design` / designs | NOT_APPLICABLE | 0 | none |
+| `sk-code` / code - compiled-routing runtime | **CONDITIONAL** | 19 / 19 | **1 P1** |
+| `sk-doc` / docs - feature catalogs + `create-*` | **FAIL** | 30 / 465 | **10 P1** |
+| `sk-doc` / docs - hub routing metadata | **FAIL** | 0 / 12 | none observed |
+| `sk-design` / designs | **FAIL** | 0 / 1,298 | none observed |
 
-The runtime PASS independently corroborates the drift remediation. The ten P1s are `reality-drift` and
-`creation-standard-drift` in feature catalogs across `cli-external-orchestration`, `sk-code`, and
-`sk-design` — documentation describing behaviour that no longer matches the code.
+The runtime lane's one P1 is the reproducibility defect in `compiled-route-sync.cjs`: the active manifests resolve compiled, but the sync check targets a missing authored runtime root. The other ten P1s are `reality-drift` and `creation-standard-drift` findings in feature catalogs across `cli-external-orchestration`, `sk-code`, and `sk-design`.
 
-**Caveat:** the findings registry JSON is empty while the report shows ten P1s. The loop reported that a
-malformed raw delta line was ignored by the reducer, so the registry under-counts. Read the report, not
-the registry.
+The reducer now consumes canonical iteration `findingDetails`, deduplicates them with delta findings, and fails closed on every non-empty partially checked lane. The registry and report agree on all 11 P1 findings; corruption count is zero.
 
 ### What the research loop covered
 
@@ -113,13 +108,23 @@ Eight iterations, new-information ratios 0.67–0.85 throughout (no saturation):
 7. Reproducing the staged join across the other hubs
 8. A privacy-preserving sampling frame for sealed evaluation
 
-**Headline result (iteration 1)** — the decomposition question packet 019 planned but never ran:
+**Headline result (iteration 1)** - the decomposition question packet 019 planned but never ran:
 `(T,R,P)` holds fleet-wide as a policy posture, but the evidence **falsifies "authority as a fourth
 scalar coordinate."** Compiled policy keeps an `authorityGraph` beside the posture, decisions hold
 authority `WithheldUntilVerify`, and route proof cannot grant commit capability. The correct model is
 `(T,R,P)` for selection plus an **independent authority invariant** for destination-local
 PREPARE → VERIFY → COMMIT. It further flags that `Provenance` needs typed sub-kinds or it silently
 absorbs authority.
+
+The final synthesis connects that model to a measurement-first program:
+
+- Treat advisor `0.82` as policy strength, not an empirical correctness probability.
+- Prove leaf use through an immutable route decision, leaf-originated start, and terminal finish receipt.
+- Mint one prompt-free evaluation-unit ID before routing and preserve every sampled request in the denominator.
+- Run required/supplemental versus monolithic selection only as a paired, budget-matched sealed ablation.
+- Build natural-prompt gold inside a trusted research environment with split sampling, labeling, and analysis roles.
+
+Canonical output: `018-post-019-research/research/research.md`. The generated resource map is structurally valid but contains zero normalized references because the current delta schema did not project citations into the emitter; source citations remain in the iteration narratives and synthesis.
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -129,12 +134,11 @@ absorbs authority.
 
 ### Immediate, highest value
 
-1. **Triage the ten P1 catalog findings.** Read
+1. **Triage the eleven P1 findings.** Read
    `017-post-019-alignment/alignment/alignment-report.md`. They are documentation-versus-reality drift in
-   three hubs' feature catalogs. Treat each as a hypothesis and confirm against the code before editing —
+   three hubs' feature catalogs plus one compiled sync-path reproducibility defect. Treat each as a hypothesis and confirm against the code before editing -
    the same discipline that made this session's fixes hold.
-2. **Merge the two loop worktrees** (`0105`, `0106`) so the iteration artifacts live on the branch. They
-   are disjoint from the main tree and from each other.
+2. **Review and integrate the two loop worktrees** (`0105`, `0106`) when authorized. No commit, merge, or push was performed during synthesis.
 
 ### Open decisions
 
@@ -144,8 +148,7 @@ absorbs authority.
    authored numbering, while the authored tree shifted by three positions, so repointing the root would
    renumber the **live serving mirror**. Decide whether the promoted layout tracks the authored
    renumbering or the sync tool pins its source path independently.
-4. **Finish the research loop** (two iterations remain) or synthesize what exists. Eight iterations is
-   already a substantial evidence base and no saturation was observed.
+4. **Choose the measurement follow-up scope.** The research loop is already terminal; the remaining work is a new implementation/research packet for evaluation identity, causal receipts, privacy approval, and preregistered fleet measurement.
 
 ### Standing risks
 
@@ -168,12 +171,18 @@ absorbs authority.
 - [x] Remediation packet validates clean
   - **Evidence**: `validate.sh --strict` reports 0 errors, 0 warnings
 - [x] Alignment run reached synthesis and sealed
-  - **Evidence**: report states `SEALED (authoritative)` with `STOP_MAX_ITERATIONS`
+  - **Evidence**: report states `SEALED`, coverage `49 / 1794`, verdict `FAIL`, findings P1=11
+- [x] Research run reached terminal synthesis after the approved stop
+  - **Evidence**: dashboard states `COMPLETE`, iteration `8 of 10`, `stopReason: manualStop`, questions `5/5`
+- [x] Both phase packets pass strict validation
+  - **Evidence**: phase 017 and phase 018 each report `Errors: 0 / Warnings: 0`
+- [x] Reducer regression gates pass
+  - **Evidence**: alignment scripts pass 3/3; research targeted Vitest passes 20/20
 - [x] Resumed loops produced no new containment violations
   - **Evidence**: the only violation records carry `iter1`/`iter2` labels from the pre-isolation run
 - [x] Co-active session's work intact
   - **Evidence**: every path containment touched is either committed at `HEAD` or was recreated and committed by that session
-- [ ] Ten P1 catalog findings triaged
+- [ ] Eleven P1 findings triaged
 - [ ] Sync-path layout decision made
 <!-- /ANCHOR:validation-checklist -->
 

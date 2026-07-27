@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"
-    last_updated_at: "2026-07-25T10:15:41Z"
+    last_updated_at: "2026-07-26T19:05:13Z"
     last_updated_by: "opencode"
     recent_action: "Reconciled hook truth, runtime mirrors, Cursor discovery and local Zed MCP settings"
     next_safe_action: "Rotate or revoke the removed credentials in the provider dashboards"
@@ -52,9 +52,9 @@ Devin hooks are live under `devin -p` when `.devin/hooks.v1.json` uses top-level
 | **Created** | 2026-07-25 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 11 of 11 |
+| **Phase** | 11 of 12 |
 | **Predecessor** | `../010-devin-feature-catalog/spec.md` (sequential neighbor only, not a dependency) |
-| **Successor** | None |
+| **Successor** | `../012-devin-hook-hardening/spec.md` |
 | **Handoff Criteria** | Current docs describe live hooks, runtime READMEs validate, Cursor mirror parity is restored, obsolete Zed MCP registrations are absent and recursive strict validation passes. |
 <!-- /ANCHOR:metadata -->
 

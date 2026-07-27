@@ -7,62 +7,62 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "2c8049990e2208d377788addbbe0b8658dd78fa92997566c71a0e692cb76fd22",
+      "sha256": "1e624374cab9bb2c181a8c1654d02f1a93d570c6817abcf592089981f93f4101",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "4283099c0835f8916cbb455d87b61d258d8bdae3b421afdbc1d1a762a54c0fb1",
+      "sha256": "0eb92612cfd679cf0a9ce2ef9cfd1655f37b0b2725c067801ba52d68a16157a8",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "cc283b7c5e62bd8b012a8f249f4cc63f4f353ad264358e1a5c9b85d753713d64",
+      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "eaac5f3c9f04f4b3579c49140bd274bfc6deefb41ac353e21896db40e90b8d3b",
+      "sha256": "1fccf235ea6f20efb7cfe9565f50cebdaf6849487f793baa3d4dbd276e126942",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "5792959363857cc2d818dd5da688984762cc388e7936e92766d1e9d1a106b9dd",
+      "sha256": "da9aea9cb7872db9b2d92540a688a60737bc79a39d5f30d7e067cce9366c86e9",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "bc35e18f1f3c09722661c187f33cdddac423d33efad9c85c6a92262978a2c6b8",
+      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
+      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "bc22366b07144194a72a2a6669ca003cfc5c3e14c29766785bdbd3384ee96147",
+      "sha256": "095cdde0fbc3ef9d6d80c97783f98d3c1faab19f1d847c4a610e687df5226033",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "56f4d581e3b02611dc3f703033128f3c0984d9c15de6593302f7e1a786b734bf",
+      "sha256": "a283826a038b48c701dcaba2bfa77cc0cc86f33472fd4b8d8545edfed891f862",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "27370a8ca9ab8915102e1e22fc87d55e40a3871d50a706153c6d94da5f49affd",
+      "sha256": "0d3acf364ae21c1fc2a924e9daa700fb8e184b7c1f8eb8677dbf487b9c47ee55",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "0995afb31138227def5d8c74e540fde2e9e0151d74c979d1fc28873387aafe16",
+      "sha256": "bbf491be3b65c23f5c455e88648c9ec49cec6ca25df603b3ddd047d3311f9f23",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "73fd3025697cec9b568164f5150af7a0122ae45d4e78a6a36114714f03fb90cc",
+      "sha256": "fe91f50f10b0a8475b9ce1a6b2a64914e5ebfe7d1d4719a2856f0c9786c4da9f",
       "section": "full"
     },
     {
@@ -72,12 +72,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "a60d8a13cbe6e5804caa3545ce2db90048384c9488ad536de99582e3c8a761b7",
+      "sha256": "bf9d4b76e7924691d2cf8b46b4ce8e628337fa090e67828920ddfcd54c86ee57",
       "section": "full"
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "c1213b7ebbec8474d428126d4037aa570b6cfbf80f634a8233e632a7e32d1919",
+      "sha256": "ca98339e26678bfb355be7653618c28c3c8b91cfce9132155212f14b765e2f36",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "fb026c34b73c53e162be5f600ce17b5bd96d474030c3a6d950136cf264563db9"
+  "compiledBodyDigest": "c4e565c6046df270de789c8814fbe6769ade5d73268132b1f397e86de8854505"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review

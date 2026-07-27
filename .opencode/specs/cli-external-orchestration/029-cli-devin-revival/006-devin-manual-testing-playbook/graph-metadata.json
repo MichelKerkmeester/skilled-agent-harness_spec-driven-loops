@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:0122abe028b81d9a31692d9116d8adfefa6adb800fe2141662a8cf4baf4a8a5e",
+    "source_fingerprint": "sha256:04dbb342e2e1cf72dc7dd7117cff7942514c88bed897360ebf98fd4a73379e68",
     "source_doc_hashes": {
-      "spec.md": "1812e09890faa8f94f2ed21931d32c09e46c3e2b9599e17fe9ad29a327b7e1cc",
-      "plan.md": "36f97bf44c5d26fdeb0a7e0dc7c460fdc6ebe1d5d3991efd8f8f9f05598e396b",
       "tasks.md": "9da3fd3d4682ad8c2afb1d8a859ff1ab0adff753484880eb2a18f5c6b756c784",
-      "checklist.md": "e6f3f884a4742fabe9c04a748a721c494aab7879bbb6acc7c186dbc8b20708d7"
+      "checklist.md": "e6f3f884a4742fabe9c04a748a721c494aab7879bbb6acc7c186dbc8b20708d7",
+      "plan.md": "36f97bf44c5d26fdeb0a7e0dc7c460fdc6ebe1d5d3991efd8f8f9f05598e396b",
+      "spec.md": "c611319e182bd5b3ccb9ede2aa011ad8f887492fc2e4d061ad257533feaa5f07"
     },
     "last_active_child_id": null,
     "last_active_at": null

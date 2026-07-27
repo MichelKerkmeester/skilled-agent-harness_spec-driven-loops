@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet"
-    last_updated_at: "2026-07-23T00:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored decision-record.md with 3 ADRs for the planned cli-devin skill-packet phase"
-    next_safe_action: "Wait for phase 002 to land before implementation begins"
-    blockers: ["Phase 002 (deep-loop-executor-support) must land and pass validate.sh --strict before this phase's implementation starts, per the parent packet's Phase Transition Rules"]
-    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
-    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
-    completion_pct: 0
+    last_updated_at: "2026-07-26T17:30:00Z"
+    last_updated_by: "devin-cli"
+    recent_action: "All 3 ADRs Accepted; ADR-002 env-var resolved"
+    next_safe_action: "Update parent phase map; select next phase"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md", "implementation-summary.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-packet-build", parent_session_id: null }
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions: ["DEVIN_PROJECT_DIR is the confirmed active-session env-var signal (resolved ADR-002 open question)", "cli-devin is the 5th mode, not 4th, due to 030-cli-cursor-creation landing between authoring and implementation"]
 ---
 # Decision Record: cli-devin skill packet
 
@@ -33,9 +33,9 @@ _memory:
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-23 |
-| **Deciders** | claude-code (authoring), operator (approval pending) |
+| **Deciders** | claude-code (authoring), devin-cli (implementation), operator (approval pending) |
 
 ---
 
@@ -133,9 +133,10 @@ We need to place `cli-devin` on the same discriminator without inventing a new a
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-23 |
-| **Deciders** | claude-code (authoring), operator (approval pending) |
+| **Deciders** | claude-code (authoring), devin-cli (implementation), operator (approval pending) |
+| **Implementation Note** | The env-var open question is resolved: `DEVIN_PROJECT_DIR` is the confirmed active-session signal (verified against the installed v3000.2.17 binary's hooks overview). The 3rd guard layer uses `~/.local/share/devin/credentials.toml` as a session-in-flight heuristic instead of `devin list --format json`, which is more reliable for detecting self-referential sessions. The guard is upgraded in place, not restructured — exactly as ADR-002's Open Horizons check anticipated. |
 
 ---
 
@@ -234,9 +235,9 @@ Devin's confirmed contract (phase 001, live-verified against `docs.devin.ai` and
 
 | Field | Value |
 |---|---|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-23 |
-| **Deciders** | claude-code (authoring), operator (approval pending) |
+| **Deciders** | claude-code (authoring), devin-cli (implementation), operator (approval pending) |
 
 ---
 

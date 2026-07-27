@@ -1,0 +1,22 @@
+{
+  "run_id": "1785131642060-92i4rs",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "base_artifact_dir": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

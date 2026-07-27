@@ -4,60 +4,171 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["cli-opencode", "cli-claude-code", "cli-codex", "cli-cursor"],
+    "tieBreak": [
+      "cli-opencode",
+      "cli-claude-code",
+      "cli-codex",
+      "cli-cursor",
+      "cli-devin"
+    ],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
       "orderedBundle": "multiple explicitly requested executors route in tie-break order",
       "defer": "unclear or contradictory dispatch intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/smart-routing.md", "mode-registry.json"]
+    "defaultResource": [
+      "shared/references/smart-routing.md",
+      "mode-registry.json"
+    ]
   },
   "routerSignals": {
     "cli-opencode": {
       "weight": 4,
-      "classes": ["cli-opencode-aliases", "opencode-dispatch"],
-      "resources": ["cli-opencode/SKILL.md"]
+      "classes": [
+        "cli-opencode-aliases",
+        "opencode-dispatch"
+      ],
+      "resources": [
+        "cli-opencode/SKILL.md"
+      ]
     },
     "cli-claude-code": {
       "weight": 4,
-      "classes": ["cli-claude-code-aliases", "claude-dispatch"],
-      "resources": ["cli-claude-code/SKILL.md"]
+      "classes": [
+        "cli-claude-code-aliases",
+        "claude-dispatch"
+      ],
+      "resources": [
+        "cli-claude-code/SKILL.md"
+      ]
     },
     "cli-codex": {
       "weight": 4,
-      "classes": ["cli-codex-aliases", "codex-dispatch"],
-      "resources": ["cli-codex/SKILL.md"]
+      "classes": [
+        "cli-codex-aliases",
+        "codex-dispatch"
+      ],
+      "resources": [
+        "cli-codex/SKILL.md"
+      ]
     },
     "cli-cursor": {
       "weight": 4,
-      "classes": ["cli-cursor-aliases", "cursor-dispatch"],
-      "resources": ["cli-cursor/SKILL.md"]
+      "classes": [
+        "cli-cursor-aliases",
+        "cursor-dispatch"
+      ],
+      "resources": [
+        "cli-cursor/SKILL.md"
+      ]
+    },
+    "cli-devin": {
+      "weight": 4,
+      "classes": [
+        "cli-devin-aliases",
+        "devin-dispatch"
+      ],
+      "resources": [
+        "cli-devin/SKILL.md"
+      ]
     }
   },
   "vocabularyClasses": {
     "cli-opencode-aliases": {
-      "keywords": ["opencode", "opencode cli", "opencode run", "delegate to opencode", "parallel detached session", "cli-opencode"]
+      "keywords": [
+        "opencode",
+        "opencode cli",
+        "opencode run",
+        "delegate to opencode",
+        "parallel detached session",
+        "cli-opencode"
+      ]
     },
     "opencode-dispatch": {
-      "keywords": ["spec kit runtime", "spec kit memory", "full plugin runtime dispatch", "full plugin and memory stack", "cross-ai handback opencode", "worker farm opencode", "ablation suite opencode"]
+      "keywords": [
+        "spec kit runtime",
+        "spec kit memory",
+        "full plugin runtime dispatch",
+        "full plugin and memory stack",
+        "cross-ai handback opencode",
+        "worker farm opencode",
+        "ablation suite opencode"
+      ]
     },
     "cli-claude-code-aliases": {
-      "keywords": ["claude code", "claude cli", "delegate to claude", "anthropic cli second opinion", "cli-claude-code"]
+      "keywords": [
+        "claude code",
+        "claude cli",
+        "delegate to claude",
+        "anthropic cli second opinion",
+        "cli-claude-code"
+      ]
     },
     "claude-dispatch": {
-      "keywords": ["extended thinking", "deep reasoning handoff", "deeply-reasoned opinion", "structured claude code output", "claude code review"]
+      "keywords": [
+        "extended thinking",
+        "deep reasoning handoff",
+        "deeply-reasoned opinion",
+        "structured claude code output",
+        "claude code review"
+      ]
     },
     "cli-codex-aliases": {
-      "keywords": ["codex cli", "codex exec", "delegate to codex", "openai cli second opinion", "cli-codex"]
+      "keywords": [
+        "codex cli",
+        "codex exec",
+        "delegate to codex",
+        "openai cli second opinion",
+        "cli-codex"
+      ]
     },
     "codex-dispatch": {
-      "keywords": ["openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]
+      "keywords": [
+        "openai coding agent",
+        "codex web search",
+        "codex diff review",
+        "codex sandbox",
+        "gpt codex dispatch"
+      ]
     },
     "cli-cursor-aliases": {
-      "keywords": ["cursor", "cursor cli", "delegate to cursor", "cursor agent", "cli-cursor"]
+      "keywords": [
+        "cursor",
+        "cursor cli",
+        "delegate to cursor",
+        "cursor agent",
+        "cli-cursor"
+      ]
     },
     "cursor-dispatch": {
-      "keywords": ["composer", "cursor composer", "cursor plan mode", "cursor ask mode", "cursor worktree", "cursor cloud worker"]
+      "keywords": [
+        "composer",
+        "cursor composer",
+        "cursor plan mode",
+        "cursor ask mode",
+        "cursor worktree",
+        "cursor cloud worker"
+      ]
+    },
+    "cli-devin-aliases": {
+      "keywords": [
+        "devin",
+        "devin cli",
+        "delegate to devin",
+        "cognition cli",
+        "cognition cli second opinion",
+        "devin handoff",
+        "cli-devin"
+      ]
+    },
+    "devin-dispatch": {
+      "keywords": [
+        "devin handoff",
+        "cognition devin",
+        "devin subagent",
+        "devin cloud handoff",
+        "swe-1.6 dispatch"
+      ]
     }
   }
 }

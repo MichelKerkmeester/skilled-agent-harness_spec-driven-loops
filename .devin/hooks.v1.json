@@ -122,7 +122,18 @@
       ]
     }
   ],
-  "PermissionRequest": [],
+  "PermissionRequest": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs'",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
   "Stop": [
     {
       "matcher": "",

@@ -112,7 +112,7 @@ function isNonAuthoritySource(sourcePath) {
   if (/(^|\/)tests\//.test(sourcePath)) return true;
   if (/(^|\/)behavior_benchmark\//.test(sourcePath)) return true;
   if (canonicalNonAuthorityPackageRoot(sourcePath)) return true;
-  if (/\/assets\/.*_(?:strategy|dashboard)\.md$/.test(sourcePath)) return true;
+  if (/\/assets\/.*[-_](?:strategy|dashboard)\.md$/.test(sourcePath)) return true;
   return false;
 }
 
@@ -143,12 +143,12 @@ function isAuthoritySource(sourcePath) {
   if (/\/SKILL\.md$/.test(sourcePath)) return true;
   if (/\.opencode\/commands\/deep\//.test(sourcePath)) return true;
   if (/\/references\/protocol\//.test(sourcePath)) return true;
-  if (/\/references\/state\/state_format\.md$/.test(sourcePath)) return true;
+  if (/\/references\/state\/state[-_]format\.md$/.test(sourcePath)) return true;
   if (/\/references\/convergence\/convergence\.md$/.test(sourcePath)) return true;
-  if (/\/assets\/[^/]+_config\.json$/.test(sourcePath)) return true;
-  if (/\/assets\/[^/]+_mode_contract\.ya?ml$/.test(sourcePath)) return true;
-  if (/\/assets\/context_report_template\.md$/.test(sourcePath)) return true;
-  if (/\/assets\/prompt_pack_[^/]+\.md\.tmpl$/.test(sourcePath)) return true;
+  if (/\/assets\/[^/]+[-_]config\.json$/.test(sourcePath)) return true;
+  if (/\/assets\/[^/]+[-_]mode[-_]contract\.ya?ml$/.test(sourcePath)) return true;
+  if (/\/assets\/context[-_]report[-_]template\.md$/.test(sourcePath)) return true;
+  if (/\/assets\/prompt[-_]pack[-_][^/]+\.md\.tmpl$/.test(sourcePath)) return true;
   if (/^\.opencode\/agents\/[^/]+\.md$/.test(sourcePath)) return true;
   if (/\/mode-registry\.json$/.test(sourcePath)) return true;
   return false;
@@ -233,7 +233,7 @@ function addYamlAuthoritySources(sources, yamlText) {
       addAuthoritySource(sources, candidate);
       continue;
     }
-    if (/\/assets\/prompt_pack_[^/]+\.md\.tmpl$/.test(candidate)) {
+    if (/\/assets\/prompt[-_]pack[-_][^/]+\.md\.tmpl$/.test(candidate)) {
       addAuthoritySource(sources, candidate);
     }
   }

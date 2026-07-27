@@ -184,6 +184,12 @@ function loadBridgeModule() {
           : path.resolve(options.dbDir ?? resolvedAdvisorDbDir());
         return path.join(socketDir, 'daemon-ipc.sock');
       },
+      resolveIpcSocketDir(_serviceName, options = {}) {
+        const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR
+          ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
+          : path.resolve(options.dbDir ?? resolvedAdvisorDbDir());
+        return socketDir;
+      },
       async maybeBridgeLeaseHolder({ leaseResult, legacyReport }) {
         if (process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1' && legacyReport) {
           legacyReport(leaseResult);
@@ -287,6 +293,13 @@ function createChildEnv(sourceEnv = process.env) {
     ? sourceEnv.MK_SKILL_ADVISOR_MEMORY_DB_PATH
     : undefined;
   filtered.MEMORY_DB_PATH = explicitOverride ?? advisorDbPath();
+  const bridge = loadBridgeModule();
+  if (typeof bridge.resolveIpcSocketDir === 'function') {
+    filtered.SPECKIT_IPC_SOCKET_DIR = bridge.resolveIpcSocketDir(
+      'mk-skill-advisor',
+      { dbDir: resolvedAdvisorDbDir(), env: sourceEnv },
+    );
+  }
   return filtered;
 }
 
@@ -809,6 +822,7 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
     dbDir: resolvedAdvisorDbDir(),
     bridge: bridgeStdioThroughSessionProxy,
     legacyReport: reportLeaseHeld,
+    respawnOnMissingSocket: true,
   });
   if (decision && decision.action === 'respawn') {
     return await respawnAfterDeadSocket(leaseResult, decision);

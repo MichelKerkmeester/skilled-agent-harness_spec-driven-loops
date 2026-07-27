@@ -10,11 +10,10 @@
  * and each guard code fails closed on its own class of drift without hiding
  * behind a single catch-all message.
  *
- * The checker resolves the leaf-resource contract library relative to the
- * target hub, never the repo root, so every fixture here carries its own
- * copy of the real library/generator under create-skill/scripts/. Fixtures
- * live under the OS temp directory and are built fresh per test; nothing
- * here reads or writes the real sk-doc hub.
+ * The checker resolves the leaf-resource contract library from the canonical
+ * sibling sk-doc hub, never the process repo root, so every fixture carries an
+ * isolated copy of the real library/generator at that topology. Fixtures live
+ * under the OS temp directory and never write the real sk-doc hub.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -52,15 +51,19 @@ function writeJson(p, data) {
 }
 
 function makeTempHubDir() {
-  return fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-leaf-manifest-'));
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-leaf-manifest-'));
+  const hubRoot = path.join(fixtureRoot, 'demo-hub');
+  fs.mkdirSync(hubRoot);
+  return hubRoot;
 }
 
-// The generator/library resolve relative to the hub itself, so every fixture
-// needs its own copy at the same relative path the real hub uses.
+// The generator/library resolve from the sibling sk-doc hub, matching the real
+// multi-hub layout while keeping each fixture isolated.
 function installContractLibrary(hubRoot) {
-  const libDir = path.join(hubRoot, 'create-skill', 'scripts', 'lib');
+  const scriptsDir = path.join(path.dirname(hubRoot), 'sk-doc', 'create-skill', 'scripts');
+  const libDir = path.join(scriptsDir, 'lib');
   fs.mkdirSync(libDir, { recursive: true });
-  fs.copyFileSync(REAL_GENERATOR_PATH, path.join(hubRoot, 'create-skill', 'scripts', 'generate-leaf-manifest.cjs'));
+  fs.copyFileSync(REAL_GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
   fs.copyFileSync(REAL_CONTRACT_LIB_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
 }
 
@@ -145,7 +148,7 @@ function buildCleanFixture() {
 
   installContractLibrary(hubRoot);
 
-  const generatorPath = path.join(hubRoot, 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
+  const generatorPath = path.join(path.dirname(hubRoot), 'sk-doc', 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const generator = require(generatorPath);
   fs.writeFileSync(path.join(hubRoot, 'leaf-manifest.json'), generator.buildManifestBytes(hubRoot));

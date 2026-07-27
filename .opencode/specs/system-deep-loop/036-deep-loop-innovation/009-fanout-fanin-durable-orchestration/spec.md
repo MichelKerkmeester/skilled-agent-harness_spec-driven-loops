@@ -65,6 +65,7 @@ This phase turns that proven execution surface into durable orchestration throug
 | 004 | `004-conditional-budget-aware-fanin/` | Conditional fan-in gated by the phase-007 typed budgets: decide how many results to await and when to stop early under budget or sufficiency. | Planned |
 | 005 | `005-partial-failure-policy/` | An explicit partial-failure policy: how many leaf failures are tolerated, how degradation is recorded, and when fan-in proceeds vs aborts. | Planned |
 | 006 | `006-provenance-balanced-reduction/` | Provenance-balanced reduction that merges leaf results weighting by source/model provenance, generalizing the run-2 fan-out prototype's provenance merge. | Planned |
+| 007 | `007-fanout-synthesis-lineage-aggregation/` | Lineage-aware deep-research fan-in, contained evidence reads, byte-identical registry projections, and canonical synthesis over immutable lineage artifacts. | Complete |
 
-The six children build one durable orchestration contract over the phase-006 ledger and phase-007 control services, behind the phase-008 compatibility boundary. Their combined output is the stable, provenance-bearing fan-in surface required by phase 010.
+The seven children build one durable orchestration contract over the phase-006 ledger and phase-007 control services, behind the phase-008 compatibility boundary. Their combined output is the stable, provenance-bearing fan-in surface required by phase 010.
 <!-- /ANCHOR:phase-map -->

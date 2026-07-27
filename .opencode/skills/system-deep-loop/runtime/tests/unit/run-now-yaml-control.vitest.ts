@@ -93,14 +93,14 @@ function runCommand(command: string, fixture: Fixture): void {
   expect(result.status, result.stderr).toBe(0);
 }
 
-function runRenderedCommand(command: string, env: HermeticEnv): void {
+function runRenderedCommand(command: string, env: HermeticEnv, expectedStatus = 0): void {
   const result = spawnSync('/bin/sh', ['-c', command], {
     cwd: runtimeRoot,
     env: env.env,
     encoding: 'utf8',
   });
 
-  expect(result.status, result.stderr).toBe(0);
+  expect(result.status, result.stderr).toBe(expectedStatus);
 }
 
 function readRecords(stateLogPath: string): JsonRecord[] {
@@ -253,14 +253,14 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
     for (const mode of ['research', 'review'] as const) {
       const fixture = createSynthesisFixture(mode, 'synthesis-missing', 1);
       try {
-        runRenderedCommand(renderSynthesisCommand(mode, fixture), fixture.env);
+        runRenderedCommand(renderSynthesisCommand(mode, fixture), fixture.env, mode === 'research' ? 2 : 0);
 
         const records = readRecords(fixture.stateLogPath);
         expect(records.at(-1)).toMatchObject({
           type: 'event',
           event: 'synthesis_incomplete',
           mode,
-          severity: 'warning',
+          severity: mode === 'research' ? 'error' : 'warning',
           reason: 'synthesis_artifact_invariant_failed',
           iterationFindingCount: 1,
         });
@@ -304,7 +304,7 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
         writeFileSync(fixture.outputPath, 'ok\n', 'utf8');
         writeFileSync(fixture.dashboardPath, 'ok\n', 'utf8');
 
-        runRenderedCommand(renderSynthesisCommand(mode, fixture), fixture.env);
+        runRenderedCommand(renderSynthesisCommand(mode, fixture), fixture.env, mode === 'research' ? 2 : 0);
 
         const records = readRecords(fixture.stateLogPath);
         expect(records.at(-1)).toMatchObject({
@@ -335,7 +335,7 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
         writeFileSync(fixture.outputPath, 'ok\n', 'utf8');
         writeFileSync(fixture.dashboardPath, 'ok\n', 'utf8');
 
-        runRenderedCommand(renderSynthesisCommand(mode, fixture), fixture.env);
+        runRenderedCommand(renderSynthesisCommand(mode, fixture), fixture.env, mode === 'research' ? 2 : 0);
 
         const records = readRecords(fixture.stateLogPath);
         expect(records.at(-1)).toMatchObject({

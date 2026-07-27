@@ -182,12 +182,13 @@ function findRepoPaths(startFile = currentModulePath()): RepoPaths {
     if (existsSync(launcherPath) && existsSync(bridgePath)) {
       const repoRoot = path.dirname(directOpencodeDir);
       const mcpServerDir = path.join(directOpencodeDir, 'skills', 'system-skill-advisor', 'mcp-server');
+      const configuredDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
       return {
         opencodeDir: directOpencodeDir,
         repoRoot,
         launcherPath,
         bridgePath,
-        dbDir: path.join(mcpServerDir, 'database'),
+        dbDir: configuredDbDir ? path.resolve(repoRoot, configuredDbDir) : path.join(mcpServerDir, 'database'),
         packageJsonPath: path.join(mcpServerDir, 'package.json'),
         packageLockPath: path.join(mcpServerDir, 'package-lock.json'),
       };

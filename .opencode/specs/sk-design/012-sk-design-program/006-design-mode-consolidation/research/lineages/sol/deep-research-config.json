@@ -1,0 +1,78 @@
+{
+  "topic": "Research refinement opportunities for the sk-design skill hub as it now stands after retiring the /interface:audit and /interface:foundations commands and deleting the commandSubworkflows machinery. Current shape: four registered modes (interface, motion, md-generator, design-mcp-open-design), three commands (/interface:design, /interface:motion, /interface:design-reference), foundations capability folded flat into design-interface, anti-slop essentials reduced to seven binary checks in the interface mechanical preflight card, and a 7812-file styles package shared behind a storage-neutral facade. Identify concrete, high-value refinements: simplifications, removable ceremony, structural drift against sk-doc create-skill doctrine, and capability gaps the retirement created. HARD CONSTRAINT: the operator has explicitly rejected over-engineering. Every recommendation must be justified against a CURRENT problem with evidence, must state its cost, and must be the smallest change that solves it. Reject any proposal that adds new abstraction, new schema constructs, new ceremony, or speculative future-proofing. Prefer deleting over adding. Rank recommendations by value-to-cost and state explicitly which ones are NOT worth doing.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation",
+  "fanout_lineage_artifact_dir": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-27T05:57:06Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1785131642060-92i4rs",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

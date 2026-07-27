@@ -1,0 +1,597 @@
+{
+  "sessionId": "fanout-luna-1784833766851-nhdtp",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-do-all-21-child-packets-agree-internally-on-status-required-files-metadata-check",
+      "inboxId": null,
+      "text": "Do all 21 child packets agree internally on status, required files, metadata, checklists, and completion truthfulness?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-does-the-parent-documentation-match-the-compiled-routing-runtime-and-all-seven-h",
+      "inboxId": null,
+      "text": "Does the parent documentation match the compiled-routing runtime and all seven hub manifests after commit 140266be3e?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-are-lifecycle-metadata-links-duplicate-prefixes-nested-topology-and-resume-paths",
+      "inboxId": null,
+      "text": "Are lifecycle metadata, links, duplicate prefixes, nested topology, and resume paths safe across the entire tree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-do-all-21-child-packets-agree-internally-on-status-required-files-metadata-check",
+      "inboxId": null,
+      "text": "Do all 21 child packets agree internally on status, required files, metadata, checklists, and completion truthfulness?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-does-the-parent-documentation-match-the-compiled-routing-runtime-and-all-seven-h",
+      "inboxId": null,
+      "text": "Does the parent documentation match the compiled-routing runtime and all seven hub manifests after commit 140266be3e?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-are-lifecycle-metadata-links-duplicate-prefixes-nested-topology-and-resume-paths",
+      "inboxId": null,
+      "text": "Are lifecycle metadata, links, duplicate prefixes, nested topology, and resume paths safe across the entire tree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Are the parent graph children_ids and last_active_child_id correct across nested 020/007 and 015 topology?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which cross-document links are broken after 140266be3e?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does compiled-routing match the four parent reference documents and seven live hubs?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do parent and nested graph metadata agree with the actual 21-child and nested topology?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `140266be3e` leave any new wrong metric, stale link, or changed claim beyond these pre-existing contradictions?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which cross-document links are broken or non-rooted after excluding frozen artifacts?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do parent and nested graph metadata have complete, unique, and resumable child topology?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do duplicate `012` prefixes and the 14-child `015` sub-parent cause actual graph or resume ambiguity?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are there status contradictions deeper in the nested tree beyond the direct-child scan?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the seven live hub manifests, compiled snapshots, and authored registries agree byte-for-byte on identity and mode counts?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are there stale cross-document path references outside Markdown link syntax in the nested tree?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a full validator/status pass reveal additional completion-truthfulness defects in children not yet sampled?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the full non-excluded status matrix contain more completion claims that disagree with graph/checklist state?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the final re-read passes confirm every finding's classification and evidence?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are authored path references outside Markdown-link syntax stale in the nested tree?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a final all-finding re-read change any severity or NEW/PRE-EXISTING classification?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are there additional lifecycle mismatches hidden by intentional deferred checklists?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do any other active child documents contain stale path tokens that resolve only because of generated or untracked directories?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are the parent reference contradictions best retained as separate findings or consolidated by affected contract?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can synthesis be written entirely inside the lineage while preserving the max-iterations telemetry record?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the final re-read find any classification or severity error in the 14 accumulated findings?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the final citation re-read preserve the P1 classification and distinguish this defect from the already reported parent-document contradictions?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are all ten iteration records, registry entries, and synthesis artifacts complete inside the lineage?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Final synthesis must preserve the distinction between a clean seven-hub identity/closure audit and the sk-code-only typed resource-contract failure.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Final state must record iteration 10 and synthesis completion inside this lineage only.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Synthesis must consolidate the evidence without rewriting or mutating the audited parent/child packets.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Do all 21 child packets agree internally on status, required files, metadata, checklists, and completion truthfulness?",
+    "Does the parent documentation match the compiled-routing runtime and all seven hub manifests after commit 140266be3e?",
+    "Are lifecycle metadata, links, duplicate prefixes, nested topology, and resume paths safe across the entire tree?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-p1-pre-existing-012-fails-level-match",
+      "text": "P1: PRE-EXISTING — 012 fails LEVEL_MATCH",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:36`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/checklist.md:32`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research/implementation-summary.md:15-16`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/spec.md:46`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/implementation-summary.md:45`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/graph-metadata.json:42`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:113-118`"
+      ]
+    },
+    {
+      "id": "finding-1-1-p1-pre-existing-012-missing-a-required-level-3-file",
+      "text": "P1: PRE-EXISTING — 012 missing a required Level-3 file",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:36`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/checklist.md:32`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research/implementation-summary.md:15-16`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/spec.md:46`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/implementation-summary.md:45`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/graph-metadata.json:42`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:113-118`"
+      ]
+    },
+    {
+      "id": "finding-1-4-p1-pre-existing-019-lifecycle-status-drift",
+      "text": "P1: PRE-EXISTING — 019 lifecycle status drift",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:36`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/checklist.md:32`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research/implementation-summary.md:15-16`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/spec.md:46`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/implementation-summary.md:45`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/graph-metadata.json:42`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:113-118`"
+      ]
+    },
+    {
+      "id": "finding-1-3-p2-pre-existing-017-continuity-fields-violate-the-frontmatter-memory-block-contr",
+      "text": "P2: PRE-EXISTING — 017 continuity fields violate the frontmatter memory-block contract",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:36`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/checklist.md:32`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research/implementation-summary.md:15-16`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/spec.md:46`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/implementation-summary.md:45`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/graph-metadata.json:42`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:113-118`"
+      ]
+    },
+    {
+      "id": "finding-1-5-p2-pre-existing-pending-state-representation-varies",
+      "text": "P2: PRE-EXISTING — pending-state representation varies",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:36`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/checklist.md:32`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/017-system-code-graph-routing-research/implementation-summary.md:15-16`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/spec.md:46`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/implementation-summary.md:45`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/019-sk-prompt-routing-research/graph-metadata.json:42`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:113-118`"
+      ]
+    },
+    {
+      "id": "finding-2-2-p1-pre-existing-the-parent-describes-hub-router-selection-as-telemetry-only-whil",
+      "text": "P1: PRE-EXISTING — the parent describes hub-router selection as telemetry-only while the live compiled serving path consumes compiled hub policy",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/routing-config-and-advisor-reference.md:136,184,191,199,202`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:131`",
+        "`.opencode/bin/compiled-route.cjs:4-45`",
+        "`.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs:65-106`",
+        "`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:167-172`",
+        "`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/router.cjs:158-163`",
+        "`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/003-mcp-tooling/lib/router.cjs:119-127`"
+      ]
+    },
+    {
+      "id": "finding-2-1-p1-pre-existing-the-parent-reference-contradicts-itself-about-the-seven-hub-surf",
+      "text": "P1: PRE-EXISTING — the parent reference contradicts itself about the seven-hub surface-router contract",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/routing-config-and-advisor-reference.md:136,184,191,199,202`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:131`",
+        "`.opencode/bin/compiled-route.cjs:4-45`",
+        "`.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/compiled-route.cjs:65-106`",
+        "`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/007-sk-doc/lib/router.cjs:167-172`",
+        "`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/006-sk-design/lib/router.cjs:158-163`",
+        "`.opencode/bin/lib/compiled-routing/006-parent-hub-rollout/003-mcp-tooling/lib/router.cjs:119-127`"
+      ]
+    },
+    {
+      "id": "finding-3-1-p2-pre-existing-route-gold-hub-denominator-is-inconsistent-across-the-parent-and",
+      "text": "P2: PRE-EXISTING — route-gold hub denominator is inconsistent across the parent and its verification evidence",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:17,154,161`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard/verification-report.md:32-55`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard/implementation-summary.md:54,111`",
+        "`git diff 140266be3e^ 140266be3e -- parent documents`"
+      ]
+    },
+    {
+      "id": "finding-4-1-p1-new-the-commit-s-new-root-pointer-leaves-the-nested-resume-chain-stranded-at-",
+      "text": "P1: NEW — the commit's new root pointer leaves the nested resume chain stranded at 020",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/graph-metadata.json:112,122`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/graph-metadata.json:6-13,41,109`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/graph-metadata.json:6-23,51,111`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/graph-metadata.json:6-20,48,168-169`",
+        "`.opencode/skills/system-spec-kit/README.md:198`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:195-225`"
+      ]
+    },
+    {
+      "id": "finding-4-2-p1-pre-existing-the-14-child-015-parent-points-resume-at-an-older-child-than-lat",
+      "text": "P1: PRE-EXISTING — the 14-child 015 parent points resume at an older child than later saved work",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/graph-metadata.json:112,122`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/graph-metadata.json:6-13,41,109`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/graph-metadata.json:6-23,51,111`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/graph-metadata.json:6-20,48,168-169`",
+        "`.opencode/skills/system-spec-kit/README.md:198`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:195-225`"
+      ]
+    },
+    {
+      "id": "finding-4-3-p2-pre-existing-nested-children-expose-completion-claims-while-graph-checklist-s",
+      "text": "P2: PRE-EXISTING — nested children expose completion claims while graph/checklist state remains in progress",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/graph-metadata.json:112,122`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/graph-metadata.json:6-13,41,109`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/graph-metadata.json:6-23,51,111`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/graph-metadata.json:6-20,48,168-169`",
+        "`.opencode/skills/system-spec-kit/README.md:198`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:195-225`"
+      ]
+    },
+    {
+      "id": "finding-6-1-p1-pre-existing-packet-013-s-files-to-change-table-points-the-advisor-work-at-an",
+      "text": "P1: PRE-EXISTING — packet 013's Files-to-Change table points the advisor work at an untracked underscore build tree",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes/spec.md:114-136`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes/decision-record.md:580-582`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:90,124,149`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/plan.md:102`",
+        "`.opencode/skills/sk-doc/shared/references/smart-routing.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/`",
+        "`git ls-files .opencode/skills/system-skill-advisor/mcp_server` (zero tracked files)"
+      ]
+    },
+    {
+      "id": "finding-6-2-p2-pre-existing-packet-012-retains-the-removed-smart-routing-md-path-in-scope-an",
+      "text": "P2: PRE-EXISTING — packet 012 retains the removed `smart_routing.md` path in scope and acceptance text",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes/spec.md:114-136`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes/decision-record.md:580-582`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/spec.md:90,124,149`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/012-sk-doc-routing-fixes/plan.md:102`",
+        "`.opencode/skills/sk-doc/shared/references/smart-routing.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/`",
+        "`git ls-files .opencode/skills/system-skill-advisor/mcp_server` (zero tracked files)"
+      ]
+    },
+    {
+      "id": "finding-7-1-p1-pre-existing-the-parent-phase-map-overstates-nested-program-lifecycle-relativ",
+      "text": "P1: PRE-EXISTING — the parent phase map overstates nested program lifecycle relative to machine status",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:115-116`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:113-118`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/graph-metadata.json:41`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/graph-metadata.json:41`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/001-3-tier-consistency-standard/graph-metadata.json:51`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/011-review-remediation/graph-metadata.json:42`"
+      ]
+    },
+    {
+      "id": "finding-8-1-p1-pre-existing-sk-code-s-live-typed-resource-contract-resolves-no-routed-resour",
+      "text": "P1: PRE-EXISTING — sk-code's live typed resource contract resolves no routed resources",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:235-261`",
+        "`.opencode/skills/sk-code/shared/references/smart-routing.md:17,29,40-41,317-322,347-350,399-409,411-417`",
+        "`.opencode/skills/sk-code/leaf-manifest.json:4-72`",
+        "`.opencode/specs/sk-doc/019-skill-routing-refactor/routing-config-and-advisor-reference.md:122-138`",
+        "Live `router-replay.cjs --skill .opencode/skills/sk-code --task 'review routing implementation and debug the compiled router'` output",
+        "`git diff 140266be3e^ 140266be3e`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-0940810f95b4",
+      "text": "The compiled runtime being absent or merely represented by a manifest was ruled out: the tracked closure contains the runtime engine, seven activation manifests, and the public front door executed successfully for all seven hubs.",
+      "contentHash": "0940810f95b4",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-654e67606d44",
+      "text": "Treating the 2-of-7 statement as current runtime truth was ruled out by direct seven-hub enumeration.",
+      "contentHash": "654e67606d44",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8cb3514c03bb",
+      "text": "Broken Markdown links in the non-excluded packet tree were ruled out by direct filesystem resolution.",
+      "contentHash": "8cb3514c03bb",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-22d6a3d67210",
+      "text": "Treating the frozen review iteration links to historical worktree paths as current defects was ruled out by the operator's frozen-artifact exclusion.",
+      "contentHash": "22d6a3d67210",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-699f62dedb9c",
+      "text": "A missing-child or duplicate-`children_ids` defect was ruled out for the parent, 020, 020/007, and 015 nested parents.",
+      "contentHash": "699f62dedb9c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-6cd94e34740f",
+      "text": "The duplicate `012` numeric prefix causing an actual resolver collision was ruled out; the full packet IDs preserve disambiguation.",
+      "contentHash": "6cd94e34740f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fb22fad6876e",
+      "text": "Manifest regeneration drift in any of the seven hubs.",
+      "contentHash": "fb22fad6876e",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-f07753136134",
+      "text": "Missing serving-closure files or activation manifests.",
+      "contentHash": "f07753136134",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-88a878291a4a",
+      "text": "Registry/router/manifest mode-set drift across the seven hubs.",
+      "contentHash": "88a878291a4a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6a6a3143f4af",
+      "text": "Historical underscore references in frozen verification/research artifacts were not promoted to findings.",
+      "contentHash": "6a6a3143f4af",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f3f15ac4189f",
+      "text": "The untracked underscore advisor directory was not treated as the canonical source merely because it exists locally.",
+      "contentHash": "f3f15ac4189f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-959361e8c521",
+      "text": "`in_progress` states with explicit deferred requirements or blocked gates were not treated as contradictions by themselves.",
+      "contentHash": "959361e8c521",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-713ff60663b4",
+      "text": "Frozen historical review/research/benchmark statuses were excluded from the matrix.",
+      "contentHash": "713ff60663b4",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-a274324da8f6",
+      "text": "No equivalent unresolved typed contract was found in representative replays for the other six hubs.",
+      "contentHash": "a274324da8f6",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-beb8cc90613e",
+      "text": "No fleet-wide manifest identity defect: the seven hub registry/router/manifest sets and check-only generation audit were clean.",
+      "contentHash": "beb8cc90613e",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-19e8c0d008e5",
+      "text": "The finding is not based on a missing resource-list entry alone; it is based on the runtime's own `pairs: []` and `unresolved` output after manifest cross-checking.",
+      "contentHash": "19e8c0d008e5",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-0310e2f911fd",
+      "text": "No promotion of frozen historical artifacts or missing Markdown links to current findings.",
+      "contentHash": "0310e2f911fd",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-2650819f2320",
+      "text": "No severity downgrade: the P1 findings affect validator correctness, lifecycle/resume safety, serving-contract truthfulness, or live typed resource resolution.",
+      "contentHash": "2650819f2320",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-1844dae01d26",
+      "text": "No excluded research, benchmark, lineage, log, output, or run-record artifact was promoted into the result.",
+      "contentHash": "1844dae01d26",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-bfc7b0b0823a",
+      "text": "No speculative or duplicate finding was added merely to fill the tenth iteration.",
+      "contentHash": "bfc7b0b0823a",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 3,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 26,
+    "keyFindings": 15,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.08,
+    "coverageBySources": {
+      "code": 37,
+      "other": 18
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/research/round-2-multimodel/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

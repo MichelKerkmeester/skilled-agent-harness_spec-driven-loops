@@ -305,7 +305,7 @@ workflow:
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
           resource_map_present: "{resource_map_present}"
-          resource_map.emit: true
+          resource_map.emit: "{resource_map_emit}"
           createdAt: "{ISO_8601_NOW}"
           status: "initialized"
           executionMode: "confirm"
@@ -320,7 +320,7 @@ workflow:
         action: "Initialize JSONL state log with config record"
         dry_run_boundary: "state-mutation"
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_state_log","detail":"The initial config record would be written to the state log.","timestamp":"{ISO_8601_NOW}"}'
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"resource_map_present":{resource_map_present},"resource_map":{"emit":true},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:
@@ -1179,8 +1179,11 @@ workflow:
           - "{state_paths.state_log}"
           - "{state_paths.registry}"
           - "{state_paths.strategy}"
+        read_patterns:
+          - "{state_paths.packet_dir}/lineages/*/deep-research-state.jsonl"
+          - "{state_paths.packet_dir}/lineages/*/deep-research-strategy.md"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
+          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
           - current_iteration: "iteration_count + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
@@ -1219,20 +1222,32 @@ workflow:
 
       step_read_all_iterations:
         action: "Read all iteration files and strategy"
-        read_pattern: "{state_paths.iteration_dir}/iteration-*.md"
+        read_patterns:
+          - "{state_paths.iteration_dir}/iteration-*.md"
+          - "{state_paths.packet_dir}/lineages/*/iterations/iteration-*.md"
         read_also: "{state_paths.strategy}"
+        identity: "Preserve each full source path and lineage label. Duplicate basenames from different lineages are distinct synthesis inputs; do not copy or renumber them."
+        selection: "When lineage iteration files exist, synthesize from those files in stable lineage-plus-iteration order; otherwise use root iterations."
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
         dry_run_boundary: "reducer-refresh"
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"reducer-refresh","step":"step_emit_resource_map","detail":"The reducer would emit resource-map output.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
-        command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
-        read:
-          - "{state_paths.config}"
-          - "{state_paths.delta_dir}/iter-*.jsonl"
+        branch_on: "config.fanout"
+        if_present:
+          command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map --fanout-resource-map-only"
+          read:
+            - "{state_paths.config}"
+            - "{state_paths.delta_dir}/iter-*.jsonl"
+            - "{state_paths.packet_dir}/lineages/*/deltas/iter-*.jsonl"
+        if_absent:
+          command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+          read:
+            - "{state_paths.config}"
+            - "{state_paths.delta_dir}/iter-*.jsonl"
         write:
           - "{state_paths.resource_map_output}"
-        guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
+        guarantee: "Fan-out resource-map emission reads lineage deltas in place and writes only resource-map.md; it never rewrites merged registries, strategy, or dashboard. Single-executor reduction remains unchanged."
 
       step_compile_research:
         action: "Compile or finalize research/research.md"
@@ -1271,7 +1286,195 @@ workflow:
           - Convergence threshold: {convergence_threshold}
           - Divergence summary: {divergence_summary}
           - Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
-        append_to_jsonl: '{"type":"event","event":"synthesis_complete","totalIterations":{iteration_count},"answeredCount":{answered_count},"totalQuestions":{total_questions},"stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+        command: |
+          node --input-type=module <<'EOF'
+          import { appendFileSync, existsSync, lstatSync, readFileSync, realpathSync, readdirSync } from 'node:fs';
+          import { isAbsolute, join, relative, resolve, sep } from 'node:path';
+
+          const paths = {
+            artifactDir: String.raw`{state_paths.packet_dir}`,
+            stateLog: String.raw`{state_paths.state_log}`,
+            registry: String.raw`{state_paths.registry}`,
+            research: String.raw`{state_paths.research_output}`,
+            dashboard: String.raw`{state_paths.dashboard}`,
+          };
+
+          function hasFile(filePath) {
+            try {
+              return existsSync(filePath) && !lstatSync(filePath).isSymbolicLink() && lstatSync(filePath).isFile();
+            } catch {
+              return false;
+            }
+          }
+
+          function readJson(filePath) {
+            try {
+              return JSON.parse(readFileSync(filePath, 'utf8'));
+            } catch {
+              return null;
+            }
+          }
+
+          function readJsonl(filePath) {
+            if (!hasFile(filePath)) return { records: [], parseFailures: 0 };
+            const records = [];
+            let parseFailures = 0;
+            for (const line of readFileSync(filePath, 'utf8').split(/\r?\n/).map((entry) => entry.trim()).filter(Boolean)) {
+              try {
+                records.push(JSON.parse(line));
+              } catch {
+                parseFailures += 1;
+              }
+            }
+            return { records, parseFailures };
+          }
+
+          function lineageStateLogs(artifactDir) {
+            const lineagesDir = join(artifactDir, 'lineages');
+            if (!existsSync(lineagesDir)) return [];
+            if (lstatSync(lineagesDir).isSymbolicLink() || !lstatSync(lineagesDir).isDirectory()) {
+              throw new Error(`lineages must be a real directory: ${lineagesDir}`);
+            }
+            const root = realpathSync(resolve(artifactDir));
+            return readdirSync(lineagesDir, { withFileTypes: true })
+              .map((entry) => {
+                if (entry.isSymbolicLink()) throw new Error(`lineage must be a real directory: ${join(lineagesDir, entry.name)}`);
+                return entry;
+              })
+              .filter((entry) => entry.isDirectory())
+              .sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }))
+              .flatMap((entry) => {
+                const label = entry.name;
+                const candidate = join(lineagesDir, label, 'deep-research-state.jsonl');
+                if (!hasFile(candidate)) return [];
+                const candidatePath = realpathSync(candidate);
+                const rel = relative(root, candidatePath);
+                if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) {
+                  throw new Error(`lineage state resolves outside the artifact directory: ${candidate}`);
+                }
+                return [candidatePath];
+              });
+          }
+
+          function countIterationFindings(record) {
+            if (!record || record.type !== 'iteration') return 0;
+            const numeric = Number(record.findingsCount);
+            if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
+            if (Array.isArray(record.keyFindings)) return record.keyFindings.length;
+            if (Array.isArray(record.findings)) return record.findings.length;
+            return 0;
+          }
+
+          function normalizeFindingKey(value) {
+            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+          }
+
+          function findingKeys(candidate) {
+            if (typeof candidate === 'string') {
+              const key = normalizeFindingKey(candidate);
+              return key ? [key] : [];
+            }
+            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
+            return [...new Set([
+              candidate.id,
+              candidate.title,
+              candidate.summary,
+              candidate.text,
+              candidate.finding,
+              candidate.description,
+            ].map(normalizeFindingKey).filter(Boolean))];
+          }
+
+          function collectIterationFindingGroups(record) {
+            if (!record || record.type !== 'iteration') return [];
+            const structured = [record.keyFindings, record.findings]
+              .find((value) => Array.isArray(value) && value.length > 0);
+            if (!Array.isArray(structured)) return [];
+            return structured
+              .map(findingKeys)
+              .filter((keys) => keys.length > 0);
+          }
+
+          function collectRegistryFindingKeys(registry) {
+            if (!Array.isArray(registry?.keyFindings)) return [];
+            return registry.keyFindings.flatMap(findingKeys);
+          }
+
+          function appendEvent(event) {
+            appendFileSync(paths.stateLog, `${JSON.stringify(event)}\n`, 'utf8');
+          }
+
+          const registry = readJson(paths.registry);
+          const registryFindingCount = Array.isArray(registry?.keyFindings) ? registry.keyFindings.length : null;
+          const lineageLogs = lineageStateLogs(paths.artifactDir);
+          const parsedState = (lineageLogs.length > 0 ? lineageLogs : [paths.stateLog]).map(readJsonl);
+          const stateRecords = parsedState.flatMap((entry) => entry.records);
+          const stateParseFailureCount = parsedState.reduce((sum, entry) => sum + entry.parseFailures, 0);
+          const totalIterations = stateRecords.filter((record) => record?.type === 'iteration').length;
+          const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
+          const countOnlyFindingCount = stateRecords.reduce((sum, record) => {
+            if (!record || record.type !== 'iteration') return sum;
+            const structured = [record.keyFindings, record.findings, record.findingDetails]
+              .find((value) => Array.isArray(value) && value.length > 0);
+            return structured ? sum : sum + countIterationFindings(record);
+          }, 0);
+          const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
+          const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
+          const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
+          const identifiableFindingCount = identifiableFindingGroups.length;
+          const sourceFindingCount = Number(registry?.metrics?.sourceFindings);
+          const reconstructionGapCount = Number(registry?.metrics?.reconstructionGaps);
+          const missingArtifacts = [
+            ['registry', paths.registry],
+            ['research', paths.research],
+            ['dashboard', paths.dashboard],
+          ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
+          const invariantFailures = [];
+          if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
+          if (stateParseFailureCount > 0) invariantFailures.push('state_jsonl_parse_failure');
+          if (registryFindingCount === null) invariantFailures.push('registry_missing_keyFindings');
+          if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
+          if (identifiableFindingCount > 0 && registryFindingCount !== null && registryFindingCount < identifiableFindingCount) invariantFailures.push('structured_state_findings_partially_reflected_in_registry');
+          if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
+          if (countOnlyFindingCount > 0 && (!Number.isFinite(sourceFindingCount) || sourceFindingCount < countOnlyFindingCount)) invariantFailures.push('count_only_state_findings_not_reconstructed');
+          if (Number.isFinite(reconstructionGapCount) && reconstructionGapCount > 0) invariantFailures.push('state_finding_reconstruction_gap');
+
+          if (invariantFailures.length > 0) {
+            appendEvent({
+              type: 'event',
+              event: 'synthesis_incomplete',
+              mode: 'research',
+              severity: 'error',
+              totalIterations,
+              answeredCount: Number('{answered_count}'),
+              totalQuestions: Number('{total_questions}'),
+              stopReason: '{reason}',
+              reason: 'synthesis_artifact_invariant_failed',
+              invariantFailures,
+              missingArtifacts,
+              registryFindingCount,
+              iterationFindingCount,
+              countOnlyFindingCount,
+              identifiableFindingCount,
+              missingStructuredFindingCount,
+              sourceFindingCount: Number.isFinite(sourceFindingCount) ? sourceFindingCount : null,
+              reconstructionGapCount: Number.isFinite(reconstructionGapCount) ? reconstructionGapCount : null,
+              stateParseFailureCount,
+              timestamp: '{ISO_8601_NOW}',
+            });
+            process.exitCode = 2;
+          } else {
+            appendEvent({
+              type: 'event',
+              event: 'synthesis_complete',
+              totalIterations,
+              answeredCount: Number('{answered_count}'),
+              totalQuestions: Number('{total_questions}'),
+              stopReason: '{reason}',
+              timestamp: '{ISO_8601_NOW}',
+            });
+          }
+          EOF
 
       gate_post_synthesis_spec_writeback:
         type: approval_gate

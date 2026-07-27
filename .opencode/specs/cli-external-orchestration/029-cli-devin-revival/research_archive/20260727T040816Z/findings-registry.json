@@ -1,0 +1,465 @@
+{
+  "sessionId": "research-devin-mcp-host-2026-07-24",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "q-devin-mcp-surface",
+      "inboxId": null,
+      "text": "What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "q-mcp-servers-needs",
+      "inboxId": null,
+      "text": "What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "q-fit-assessment",
+      "inboxId": null,
+      "text": "How well does Devin's MCP surface match what these three servers need? Concrete gap list.",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "q-scope-decision",
+      "inboxId": null,
+      "text": "Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "q-devin-mcp-surface",
+      "inboxId": null,
+      "text": "What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "q-mcp-servers-needs",
+      "inboxId": null,
+      "text": "What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "q-fit-assessment",
+      "inboxId": null,
+      "text": "How well does Devin's MCP surface match what these three servers need? Concrete gap list.",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "q-scope-decision",
+      "inboxId": null,
+      "text": "Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?",
+      "origin": "operator",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Does Devin invoke project-scoped relative commands from the repository root in all supported session modes?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which embedding tier is reliable and acceptable in Devin's sandbox, especially on first start without Ollama?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can the live `devin mcp list/get/enable/disable` commands be exercised outside this shell's rolling-log permission failure?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Has a clean Devin Linux session successfully bootstrapped all three launchers and completed MCP `tools/list` discovery?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the least-privilege Devin permission/trust policy for advisor mutation tools and memory writes?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Devin invoke all three relative launcher commands from the repository root in a clean Linux session?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which embedding tier and network allowlist are reliable on Devin's first cold start?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a project-level deny survive or get overridden by a session-level “allow all tools on this server” grant?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Devin normalize the three hyphenated server names to underscores in actual MCP tool names, and do deny rules match that normalized form?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Devin invoke all three relative launcher commands from the repository root?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a clean Devin Linux session preserve hyphens, normalize them to underscores, or reject one of the candidate server IDs?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a project-level deny remain effective when a session-level server-wide allow is granted?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a clean Linux Devin session preserve hyphens, normalize them to underscores, or reject one of the candidate IDs?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Devin invoke all three relative launcher commands from the repository root in a clean session?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact namespace spelling does Devin emit for the mixed server IDs, and do permission denies match that spelling?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which embedding tier and network/socket allowlist are reliable on a first cold start without Ollama?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Devin's stdio subprocess launcher always use the repository root for project-scoped servers across fresh, resumed, sandboxed, and handed-off sessions?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the three commands complete a clean Linux `initialize` plus `tools/list` discovery with dependencies already present in the Devin snapshot?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What is the real Devin CLI MCP surface (subcommands, config schema, transport options)?",
+    "What do spec-kit-memory, code-graph, and skill-advisor MCP servers actually require (transport, env, auth, working directory)?",
+    "How well does Devin's MCP surface match what these three servers need? Concrete gap list.",
+    "Is bringing this surface into the cli-devin revival worthwhile, and if so what would a new phase need to cover?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-advisor-trust-boundary-p1-the-checked-in-registration-sets-mk-skill-advisor-trus",
+      "text": "**Advisor trust boundary (P1).** The checked-in registration sets `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` (`opencode.json:56-65`), which allows transport-absent callers to use advisor mutation tools. Devin's stdio client will fit that transport, but the phase must explicitly test whether Devin permissions and the server's trust default should remain shared with OpenCode or be tightened for Devin. MCP permission matchers can allow/deny/ask by tool namespace, but they do not replace the server-side trust decision.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-cold-bootstrap-and-native-modules-p1-the-launchers-may-run-npm-install-npm-ci-an",
+      "text": "**Cold bootstrap and native modules (P1).** The launchers may run `npm install`/`npm ci` and TypeScript builds on first start. `better-sqlite3`, `sqlite-vec`, and tree-sitter/WASM dependencies must build or resolve on Devin's Linux environment. This is feasible but unverified here; a prebuilt artifact assumption would be unsafe.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-memory-embeddings-network-p1-mk-spec-memory-defaults-to-a-local-first-cascade-ol",
+      "text": "**Memory embeddings/network (P1).** `mk-spec-memory` defaults to a local-first cascade: Ollama, supervised hf-local, then OpenAI or Voyage (`mcp-server/README.md:41-52`; `INSTALL-GUIDE.md:103-114`). A Devin environment may not have Ollama. The hf-local fallback can download a roughly 250–600 MB model on first use (`INSTALL-GUIDE.md:105-112`), and cloud tiers require `OPENAI_API_KEY` or `VOYAGE_API_KEY`. The new phase must choose and verify a Devin-compatible embedding tier, including network allowlisting and cache behavior.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-working-directory-assumption-p1-devin-s-mcp-config-has-no-cwd-field-the-install-",
+      "text": "**Working-directory assumption (P1).** Devin's MCP config has no `cwd` field. The install guides list the repository root as a prerequisite (`system-code-graph/INSTALL-GUIDE.md:70-77`, `system-skill-advisor/INSTALL-GUIDE.md:48-55`), and the launcher commands are relative paths. The launchers themselves force their child server to the repository root, but Devin must still invoke `node .opencode/bin/...` from the checked-out repository root. A phase must smoke-test this in a real Devin project session and document the root requirement.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-devin-config-json-project-level-entries-for-all-three-launchers-with-devin-confi",
+      "text": "`.devin/config.json` project-level entries for all three launchers, with `.devin/config.local.json` guidance for secrets and optional provider overrides.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-a-clean-devin-session-smoke-test-for-devin-mcp-add-list-get-remove-enable-disabl",
+      "text": "A clean Devin-session smoke test for `devin mcp add/list/get/remove/enable/disable`, tool discovery, and at least one read-only call per server.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-a-deliberate-embedding-profile-local-ollama-hf-local-or-an-explicitly-configured",
+      "text": "A deliberate embedding profile: local Ollama, hf-local, or an explicitly configured cloud provider; no silent dependency on a developer laptop daemon.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-a-manual-rollback-path-disable-or-remove-the-three-project-entries-without-delet",
+      "text": "A manual rollback path: disable or remove the three project entries without deleting repository databases or source files.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-linux-node-20-11-0-dependency-bootstrap-native-module-loading-database-path-cont",
+      "text": "Linux/Node `>=20.11.0` dependency bootstrap, native module loading, database path containment, and cold-start timing/evidence.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-permission-tests-for-mcp-mk-spec-memory-mcp-mk-code-index-and-mcp-mk-skill-advis",
+      "text": "Permission tests for `mcp__mk_spec_memory__*`, `mcp__mk_code_index__*`, and `mcp__mk_skill_advisor__*`, including advisor mutation denial/approval behavior.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-allow-only-confirmed-read-only-tools-by-exact-server-tool-name-after-a-clean-too",
+      "text": "Allow only confirmed read-only tools by exact server/tool name after a clean tools/list discovery.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-checkpoint-create-checkpoint-restore-and-checkpoint-delete",
+      "text": "checkpoint_create, checkpoint_restore, and checkpoint_delete",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-deny-high-impact-mutation-tools-explicitly-and-leave-unlisted-tools-at-the-defau",
+      "text": "Deny high-impact mutation tools explicitly and leave unlisted tools at the default prompt or an explicit ask rule.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-do-not-grant-mcp-or-mcp-server-those-convert-a-useful-read-only-integration-into",
+      "text": "Do not grant mcp__* or mcp__server__*; those convert a useful read-only integration into blanket access.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-keep-devin-in-normal-mode-do-not-use-bypass-for-this-integration",
+      "text": "Keep Devin in normal mode. Do not use Bypass for this integration.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-maintainer-local-override-optional-provider-secrets-in-devin-config-local-json-p",
+      "text": "Maintainer-local override: optional provider secrets in .devin/config.local.json plus an explicit advisor trust-default opt-in only for a maintainer who has accepted the mutation risk. This override must not be committed or silently inherited by other sessions.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-mcp-mk-spec-memory-embedder-set",
+      "text": "mcp__mk-spec-memory__embedder_set",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-mcp-mk-spec-memory-memory-bulk-delete",
+      "text": "mcp__mk-spec-memory__memory_bulk_delete",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-mcp-mk-spec-memory-memory-delete",
+      "text": "mcp__mk-spec-memory__memory_delete",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-mcp-mk-spec-memory-memory-embedding-reconcile",
+      "text": "mcp__mk-spec-memory__memory_embedding_reconcile",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-mcp-mk-spec-memory-memory-index-scan",
+      "text": "mcp__mk-spec-memory__memory_index_scan",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-mcp-mk-spec-memory-memory-ingest-start",
+      "text": "mcp__mk-spec-memory__memory_ingest_start",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-mcp-mk-spec-memory-memory-learned-clear",
+      "text": "mcp__mk-spec-memory__memory_learned_clear",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-mcp-mk-spec-memory-memory-learned-expire",
+      "text": "mcp__mk-spec-memory__memory_learned_expire",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-mcp-mk-spec-memory-memory-retention-sweep",
+      "text": "mcp__mk-spec-memory__memory_retention_sweep",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-mcp-mk-spec-memory-memory-save",
+      "text": "mcp__mk-spec-memory__memory_save",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-mcp-mk-spec-memory-memory-update",
+      "text": "mcp__mk-spec-memory__memory_update",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-never-persist-a-broad-allow-all-tools-on-this-server-approval-during-initial-rol",
+      "text": "Never persist a broad “allow all tools on this server” approval during initial rollout.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-shared-project-config-three-stdio-server-entries-no-advisor-trust-default-enviro",
+      "text": "Shared project config: three stdio server entries, no advisor trust-default environment variable, exact read-only MCP allows, explicit denies for memory and graph mutations, and default prompting for everything else.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-node-opencode-bin-mk-code-index-launcher-cjs",
+      "text": "`node .opencode/bin/mk-code-index-launcher.cjs`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-node-opencode-bin-mk-skill-advisor-launcher-cjs",
+      "text": "`node .opencode/bin/mk-skill-advisor-launcher.cjs`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-node-opencode-bin-mk-spec-memory-launcher-cjs",
+      "text": "`node .opencode/bin/mk-spec-memory-launcher.cjs`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-code-graph-builds-from-the-skill-local-package-and-spawns-index-js-with-cwd-root",
+      "text": "Code Graph builds from the skill-local package and spawns `index.js` with `cwd: root` (`mk-code-index-launcher.cjs:24,1279-1284,1611-1615`).",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-skill-advisor-builds-its-package-and-spawns-advisor-server-js-with-cwd-root-mk-s",
+      "text": "Skill Advisor builds its package and spawns `advisor-server.js` with `cwd: root` (`mk-skill-advisor-launcher.cjs:23,1090-1179,1275-1279`).",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-spec-kit-memory-builds-the-mcp-and-script-workspaces-with-cwd-root-as-the-defaul",
+      "text": "Spec Kit Memory builds the MCP and script workspaces with `cwd: root` as the default and spawns `context-server.js` with `cwd: root` (`mk-spec-memory-launcher.cjs:55,1189-1262,1522-1525`).",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 4,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 18,
+    "keyFindings": 35,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.31,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/cli-external-orchestration/029-cli-devin-revival/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

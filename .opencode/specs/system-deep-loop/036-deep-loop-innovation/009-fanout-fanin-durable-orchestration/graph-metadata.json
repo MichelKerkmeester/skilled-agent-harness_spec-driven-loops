@@ -15,7 +15,8 @@
     "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
     "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
     "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy",
-    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction"
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation"
   ],
   "manual": {
     "depends_on": [],
@@ -109,17 +110,17 @@
     ],
     "causal_summary": "Make fan-out and fan-in durable over the canonical ledger through dispatch receipts, result envelopes, resumable branch orchestration, budget-aware completion policy, and provenance-balanced reduction.",
     "created_at": "2026-07-16T03:43:59.417Z",
-    "last_save_at": "2026-07-17T13:21:15.687Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-26T08:54:30.416Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9db469d19a8e8402cffd3a61f1c336197d23d83e6881d8be3ffa70fe8fc09ede",
+    "source_fingerprint": "sha256:7e1b855c94e2e8dd25ac79b27bf18c400f3fbbdbf4ca4d185d05443a866bc1a2",
     "source_doc_hashes": {
-      "spec.md": "864c71d0b0082b1038710ba6362f79f429598580a34ae937b295714d1723f566"
+      "spec.md": "999818697a7ac7389649ef9f486a2ac3b3b96c4a2f126bba7d56b1636877f368"
     },
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+    "last_active_at": "2026-07-26T08:54:30.416Z"
   }
 }

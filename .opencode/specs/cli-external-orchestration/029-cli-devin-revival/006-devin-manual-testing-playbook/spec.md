@@ -9,8 +9,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
     last_updated_at: "2026-07-24T18:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 011 corrected hook status: six events observed, two remain unobserved or empty"
-    next_safe_action: "Wait for phases 003/005; author 8 hook scenarios using observed/unobserved status"
+    recent_action: "Expanded to include deny-branch live observation scenario per phase 012 hardening review"
+    next_safe_action: "Wait for phases 003/005; author 8 hook scenarios including deny-branch observation"
     blockers: ["devin auth login requires an interactive OAuth browser flow only the operator can complete - blocks scenario EXECUTION, not this phase's authoring work"]
     key_files: [".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
@@ -114,6 +114,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | REQ-010 | `cloud-handoff` category tests `/handoff` thoroughly, not as a single throwaway scenario | The category contains `>=2` scenario files. |
 | REQ-011 | Playbook cross-referenced from `cli-devin/SKILL.md` | `cli-devin/SKILL.md` contains at least one reference to `manual-testing-playbook`. |
 | REQ-012 | This phase's own docs do not fabricate a changelog/version-history narrative | None of this phase's spec-kit docs contain a changelog or version-history section; that concern is deferred to phase 007, which is flagged not to fabricate one either. |
+| REQ-014 | The `hooks` category includes a dedicated deny-branch live observation scenario for `spec-gate-enforce.mjs`: dispatch a Write/Edit to a non-exempt in-repo file with the gate open and `MK_SPEC_GATE_ENFORCE=1` set, then verify the deny envelope (`permissionDecision: "deny"`) reaches the model under a real `devin -p` session. | The scenario file exists in the `hooks/` category, its Pass/Fail criteria name the deny-envelope shape, and its execution notes state that direct-invocation tests (phase 012's `spec-gate-devin.test.mjs`) confirm the envelope shape but live `devin -p` deny observation remains the gap this scenario closes. |
 <!-- /ANCHOR:requirements -->
 
 ---

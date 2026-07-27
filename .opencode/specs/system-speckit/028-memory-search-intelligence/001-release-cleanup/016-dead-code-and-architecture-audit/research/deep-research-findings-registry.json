@@ -1,0 +1,423 @@
+{
+  "mergedFrom": [
+    "composer",
+    "sol"
+  ],
+  "openQuestions": [
+    {
+      "id": "cf-calibration-closure",
+      "text": "Are 005-decision-evaluator and 008-calibration files required only for compiled-route-sync manifest closure?",
+      "source": "iteration-1 F4",
+      "_lineages": [
+        "composer"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "kq-dead-code-bin",
+      "text": "Which bin/ and launcher scripts lack runtime callers outside documentation?",
+      "answeredAtIteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "kq-mcp-legacy",
+      "text": "What MCP-server legacy paths, broken symlinks, or deleted runtime artifacts remain?",
+      "answeredAtIteration": 2,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "kq-deep-loop-scripts",
+      "text": "Which deep-loop runtime scripts are minimally referenced outside their own tree?",
+      "answeredAtIteration": 3,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "kq-hub-metadata-drift",
+      "text": "Where do hub mode registries contradict live routing or retain removed modes?",
+      "answeredAtIteration": 4,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "kq-mirror-drift",
+      "text": "How do commands/, agents/, and runtime mirror directories diverge from .opencode/ authority?",
+      "answeredAtIteration": 5,
+      "_lineages": [
+        "composer"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "SOL-05",
+      "severity": "P2",
+      "category": [
+        "CAT-6"
+      ],
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/deep-research-resume-adapter.ts",
+      "summary": "A 4,667-line resume and shadow-parity pair composes a parallel transactional architecture not referenced by active research YAML.",
+      "source": "research.md#sol-05-p2-deep-research-maintains-a-parallel-shadow-resume-architecture",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-09",
+      "severity": "P2",
+      "category": [
+        "CAT-4"
+      ],
+      "path": ".opencode/skills/system-spec-kit/scripts/.scan-one.sh",
+      "summary": "Committed hidden scan scripts embed one developer workstation's absolute repository and spec paths.",
+      "source": "research.md#sol-09-p2-hidden-scan-scripts-are-workstation-pinned",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-01",
+      "severity": "P1",
+      "category": [
+        "CAT-4",
+        "CAT-5"
+      ],
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+      "summary": "Distinct live skill-advisor SQLite state exists under both mcp-server and mcp_server paths while current config names only the canonical hyphenated path.",
+      "source": "research.md#sol-01-p1-split-skill-advisor-database-authority",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-07",
+      "severity": "P2",
+      "category": [
+        "CAT-5",
+        "CAT-6"
+      ],
+      "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      "summary": "Four deep commands retain legacy bodies and compiled contracts, with fix mode concatenating both representations.",
+      "source": "research.md#sol-07-p2-deep-commands-maintain-dual-live-representations",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-04",
+      "severity": "P2",
+      "category": [
+        "CAT-6"
+      ],
+      "path": ".opencode/skills/system-code-graph/mcp-server/lib/shared/metrics-stub.ts",
+      "summary": "Four production modules retain guarded metrics calls behind a provider that always disables emission and implements no-op methods.",
+      "source": "research.md#sol-04-p2-code-graph-metrics-scaffolding-is-permanently-inert",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-06",
+      "severity": "P2",
+      "category": [
+        "CAT-4",
+        "CAT-5",
+        "CAT-6"
+      ],
+      "path": ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      "summary": "Generated production routing preserves phase-numbered topology and carries seven distinct hub compilers totaling 3,155 lines.",
+      "source": "research.md#sol-06-p2-compiled-routing-preserves-program-topology-and-seven-compilers",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-10",
+      "severity": "P3",
+      "category": [
+        "CAT-3"
+      ],
+      "path": ".opencode/logs/dist-freshness-guard.log.1",
+      "summary": "The plugin-generated rotated log is not ignored because the repository ignores *.log but not *.log.*.",
+      "source": "research.md#sol-10-p3-rotated-log-generation-leaks-into-git-status",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-08",
+      "severity": "P2",
+      "category": [
+        "CAT-5",
+        "CAT-6"
+      ],
+      "path": ".opencode/agents/README.txt",
+      "summary": "Thirteen agent definitions are packaged in each of three runtime trees, and the two Markdown inventories already omit deep-alignment.",
+      "source": "research.md#sol-08-p2-agent-mirror-maintenance-has-produced-inventory-drift",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-02",
+      "severity": "P2",
+      "category": [
+        "CAT-5",
+        "CAT-6"
+      ],
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "summary": "Three launcher programs plus shared supervision total 8,457 lines and intentionally implement different daemon lifecycle policies.",
+      "source": "research.md#sol-02-p2-launcher-supervision-is-large-and-policy-split",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "SOL-03",
+      "severity": "P2",
+      "category": [
+        "CAT-5",
+        "CAT-6"
+      ],
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts",
+      "summary": "Three package-local shared-payload implementations total 2,373 lines and are protected by an isolation policy that creates drift cost.",
+      "source": "research.md#sol-03-p2-isolation-policy-duplicates-shared-payload-contracts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F1",
+      "category": "CAT-1",
+      "path": ".opencode/bin/cli-exit-taxonomy-smoke.cjs",
+      "iteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F10",
+      "category": "CAT-1",
+      "path": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      "iteration": 3,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F22",
+      "category": "CAT-1",
+      "path": ".opencode/bin/check-no-spec-imports.cjs",
+      "iteration": 5,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F9",
+      "category": "CAT-1",
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs",
+      "iteration": 2,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F18",
+      "category": "CAT-2",
+      "path": ".opencode/commands/doctor/mcp.md",
+      "iteration": 5,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F5",
+      "category": "CAT-2",
+      "path": ".opencode/skills/system-spec-kit/:memory:",
+      "iteration": 2,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F7",
+      "category": "CAT-2",
+      "path": ".opencode/skills/system-spec-kit/vectors/",
+      "iteration": 2,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F13",
+      "category": "CAT-3",
+      "path": ".opencode/install-guides/ (broken symlinks)",
+      "iteration": 3,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F21",
+      "category": "CAT-3",
+      "path": ".opencode/skills/system-spec-kit/node_modules",
+      "iteration": 5,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F6",
+      "category": "CAT-3",
+      "path": ".opencode/skills/system-spec-kit/mcp-server/database/vectors/.gitkeep",
+      "iteration": 2,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F16",
+      "category": "CAT-4",
+      "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/*/description.json",
+      "iteration": 4,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F2",
+      "category": "CAT-4",
+      "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md",
+      "iteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F11",
+      "category": "CAT-5",
+      "path": ".opencode/skills/system-deep-loop/**/reduce-state.cjs",
+      "iteration": 3,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F14",
+      "category": "CAT-5",
+      "path": ".opencode/skills/sk-design/mode-registry.json",
+      "iteration": 4,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F17",
+      "category": "CAT-5",
+      "path": ".opencode/bin/lib/compiled-routing/013-live-activation/activation/*/fence-state.json",
+      "iteration": 4,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F19",
+      "category": "CAT-5",
+      "path": ".opencode/agents/ vs .claude/agents/",
+      "iteration": 5,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F20",
+      "category": "CAT-5",
+      "path": "opencode.json vs .cursor/mcp.json",
+      "iteration": 5,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F3",
+      "category": "CAT-5",
+      "path": ".opencode/bin/mk-*-launcher.cjs",
+      "iteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F8",
+      "category": "CAT-5",
+      "path": "**/post-compaction.cjs",
+      "iteration": 2,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F12",
+      "category": "CAT-6",
+      "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-*.cjs",
+      "iteration": 3,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F15",
+      "category": "CAT-6",
+      "path": ".opencode/skills/*/feature-catalog/compiled-routing-and-legacy-fallback/",
+      "iteration": 4,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "id": "F4",
+      "category": "CAT-6",
+      "path": ".opencode/bin/lib/compiled-routing/005-decision-evaluator",
+      "iteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "009-parent-hub-rollout router.cjs import-dead",
+      "reason": "Dynamic require in compiled-route.cjs",
+      "iteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    },
+    {
+      "direction": "Committed node_modules as CAT-3",
+      "reason": "gitignored via .opencode/.gitignore",
+      "iteration": 1,
+      "_lineages": [
+        "composer"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 1,
+    "resolvedQuestions": 5,
+    "keyFindings": 32,
+    "sourceFindings": 32,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.44,
+    "coverageBySources": {}
+  }
+}

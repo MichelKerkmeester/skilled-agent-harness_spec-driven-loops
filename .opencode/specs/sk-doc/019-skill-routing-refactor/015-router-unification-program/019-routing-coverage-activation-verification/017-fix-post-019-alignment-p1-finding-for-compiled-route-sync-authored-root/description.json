@@ -1,0 +1,40 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
+  "description": "Restore reproducible compiled-route closure checks after the router implementation tree was flattened and renumbered.",
+  "keywords": [
+    "restore",
+    "reproducible",
+    "compiled-route",
+    "closure",
+    "checks",
+    "router",
+    "implementation",
+    "tree",
+    "flattened",
+    "renumbered"
+  ],
+  "lastUpdated": "2026-07-26T08:02:10.364Z",
+  "specId": "017",
+  "folderSlug": "fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program",
+    "019-routing-coverage-activation-verification"
+  ],
+  "memorySequence": 11,
+  "memoryNameHistory": [
+    "25-07-26_18-24__implemented-publication-safe-compiled-route.md",
+    "25-07-26_18-28__implemented-publication-safe-compiled-route.md",
+    "25-07-26_18-29__implemented-publication-safe-compiled-route.md",
+    "25-07-26_18-31__implemented-publication-safe-compiled-route.md",
+    "26-07-26_07-23__implemented-and-independently-reviewed.md",
+    "26-07-26_07-24__implemented-and-independently-reviewed.md",
+    "26-07-26_08-16__authorized-live-publication-62958-1785049921029.md",
+    "26-07-26_08-56__the-authorized-packet-local-failed-upgrade-backup.md",
+    "26-07-26_08-58__live-publication-is-finalized-backup-cleanup-is.md",
+    "26-07-26_09-00__publication-62958-1785049921029-is-finalized-with.md",
+    "26-07-26_09-02__all-36-checklist-items-now-carry-evidence.md"
+  ]
+}

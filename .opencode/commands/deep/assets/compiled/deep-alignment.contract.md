@@ -7,62 +7,62 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "09ef3c1af64154a386ff6b88400d2f93a5c47f8059d46c40d6e2f4adac0ebdc2",
+      "sha256": "31c2864bcb2316a7b8227104c00a08a18201d1c8521fcc645392876777007d96",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
-      "sha256": "980601e3ef25db844e6dd6f1a358fa81138b64e920bac054627ad976a5c1047a",
+      "sha256": "bc0d2dcd6c50ab3eb3236b023dc26f8dbcc20d772cca31bd0dd2746c368e21b6",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "cc283b7c5e62bd8b012a8f249f4cc63f4f353ad264358e1a5c9b85d753713d64",
+      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
-      "sha256": "56ee83f20f2ffcd300b480bcbe38203a11b97c89af7c4b0fbc5ecea9c32e56e8",
+      "sha256": "0e93da1561791a4c8fb916700725118af693d9cad3926057f217f54774585e42",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-confirm.yaml",
-      "sha256": "11a3674a1f439eb7cbd140e7afc3f5627bd08c5daba2fa8a282e223fe69bacef",
+      "sha256": "486d3a6797f0f88c71df1b06a33b6edf1b0db855bcc6a2b1aa822de84fe37fbd",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "bc35e18f1f3c09722661c187f33cdddac423d33efad9c85c6a92262978a2c6b8",
+      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "110f52629f0081839dabf547157d9ed1ecd50b2f3d7e7e87767a50105777c241",
+      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      "sha256": "a957a561db5380ab84e6329e5b4ba8bcc98a8ee5a5d6ed9f7e846e3324611e1b",
+      "sha256": "e6e69bfe1f47ebb7bea2b3dc29e05741aa858a89bbf0ca5ed3441ec2e0bddeaa",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md",
-      "sha256": "c5316ee0d435f2e26a445c9ceef63aa7061003d743a3099c3092160a70a5039d",
+      "sha256": "963bfbf751b99b7bd4d485d69a3113ace20add2672b16cbd8d88f54829602162",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md",
-      "sha256": "e4b2ef7e60eaac8cf9456344b00279c3c490a36c489b560baaf35716493d1b66",
+      "sha256": "b5144530eee268133f464ae0182df521709a06e16ba9cab5c7519cc175385b8e",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md",
-      "sha256": "eb5dff2c8d4588721c1daa018977c084a93f1839f7abb468e069f0c3ce49faff",
+      "sha256": "bdb213c275fa28f41c66b6c68a15604c12fe0b6d6d7204d652e2ed5f8b0e1e49",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md",
-      "sha256": "d6c1446afb04c4cd4ce5330279652cc6752c158d83b477ac68c6122ab99764ae",
+      "sha256": "10d404e0e2ea5da121357ed3c1610c66fe2eeef49cdab1e0f69d2a1953217fdb",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/agents/deep-alignment.md",
-      "sha256": "b0323d46a2aadb0c131b6f6405a643e1c047045ffea2905c2d0d1e755d2bb055",
+      "sha256": "6df2ab581af9382ea21894a710072896fcab1c12c3abec1986b6790aa2701006",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "9de1aa9f6c6de444f884c4961eb2f7f2fea965d695cfa7b68c23a71c57634af8"
+  "compiledBodyDigest": "ffda77017c08ca0a04f11acb7c616085e0cc08167311b8dbff54f2291b34c92d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:alignment
@@ -153,7 +153,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto-
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + the `PRE-BOUND SETUP ANSWERS:` block (below) + the Default Resolution Table (below). Resolve lanes from `--lane-config` when present. When every required field is resolved, resolve `{artifact_dir}` from `spec_folder` and persist `{artifact_dir}/deep-alignment-config.json` (shape: `alignmentTarget`, `lanes`, `specFolder`, `maxIterations`, `convergence.coverageThreshold`, `convergence.stabilityWindow`, `convergence.combination: "AND"`, `executionMode: "auto"`, `lineageMode`, `executor` native-fixed, `batchSize`, `status`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep-alignment-auto.yaml`. End setup.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + the `PRE-BOUND SETUP ANSWERS:` block (below) + the Default Resolution Table (below). Resolve lanes from `--lane-config` when present. When every required field is resolved, resolve `{artifact_dir}` from `spec_folder` and persist `{artifact_dir}/deep-alignment-config.json` (shape: `alignmentTarget`, `lanes`, `specFolder`, `maxIterations`, `convergence.coverageThreshold`, `convergence.stabilityWindow`, `convergence.mode`, `convergence.combination: "AND"`, `executionMode: "auto"`, `lineageMode`, `executor`, `batchSize`, `status`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep-alignment-auto.yaml`. End setup.
 
 2. **Tier 2 — Resolve lanes** (the one input that is never guessed): when `--lane-config` is absent, emit ONLY the structured three-axis scoping question (`authority` x `artifactClass` x `scope`) from `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`, bind the resolved lanes, then return to Tier 1. `spec_folder` may also be asked here when it is genuinely ambiguous and no default resolves it. Never guess a scope — SKILL.md ALWAYS #1.
 
@@ -175,8 +175,13 @@ PRE-BOUND SETUP ANSWERS:
   max_iterations: 10
   coverage_threshold: 1.0
   stability_window: 2
+  convergence_mode: default  # one of: default | off
   batch_size: 5
-  executor_timeout: 900  # optional; the only executor knob this mode reads
+  executor_kind: native  # one of: native | cli-codex | cli-opencode
+  model: ""  # required for cli-opencode; optional for cli-codex
+  reasoning_effort: ""  # optional for cli-codex/cli-opencode
+  service_tier: ""  # optional for cli-codex only
+  executor_timeout: 900
 ```
 
 Rules:
@@ -186,7 +191,8 @@ Rules:
 - Unknown fields are warnings, not errors.
 - Malformed lines, including a missing `:`, emit a parse error naming the offending line. Known fields parsed before the error may still be used, and unresolved fields continue to Tier 2 or Tier 3.
 - Empty strings count as unresolved for required fields.
-- This mode dispatches the native `@deep-alignment` agent on a fixed model. It resolves no external executor and honors only `executor_timeout`. Do NOT accept or advertise `executor_model`, `executor_reasoning`, `executor_service_tier`, or `sandbox_mode` as configurable — the workflow never reads them, and the contract must match the dispatch.
+- Native rejects `model`, `reasoning_effort`, and `service_tier`. `cli-codex` accepts all three. `cli-opencode` requires `model`, accepts `reasoning_effort` as `--variant`, and rejects `service_tier`. `sandbox_mode` is never configurable on this command.
+- External executor kinds are auto-only. `:confirm` and no-suffix interactive execution remain native-only and reject `cli-codex` / `cli-opencode`.
 
 ### Default Resolution Table
 
@@ -200,12 +206,17 @@ Rules:
 | `max_iterations` | Y | flag `--max-iterations`, marker `max_iterations`, or default | `10` | N |
 | `coverage_threshold` | Y | flag `--coverage-threshold`, marker `coverage_threshold`, or default | `1.0` | N |
 | `stability_window` | Y | flag `--stability-window`, marker `stability_window`, or default | `2` | N |
+| `convergence_mode` | Y | flag `--convergence-mode=default|off`, marker `convergence_mode`, or default | `default` | N |
 | `batch_size` | N | marker `batch_size`, or default | `5` | N |
+| `executor_kind` | Y | flag `--executor-kind`, marker `executor_kind`, or default | `native` | N |
+| `model` | Conditional | flag `--model`, marker `model`, or executor-specific validation | none; required for `cli-opencode` | N |
+| `reasoning_effort` | N | flag `--reasoning-effort`, marker `reasoning_effort`, or executor default | none | N |
+| `service_tier` | N | flag `--service-tier`, marker `service_tier`, or executor default | none; `cli-codex` only | N |
 | `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
 
 **Lane policy:** `--lane-config <file.json>` is the ONLY non-interactive lane-resolution path (ADR-011 LOCKED). The file is a JSON array of `{authority, artifactClass, scope}` objects; see `.opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md`. There is no inline per-flag lane syntax. An empty resolved lane set is a fail-fast, never a guessed scope.
 
-**Convergence policy:** `--coverage-threshold <F>` (default `1.0`) and `--stability-window <N>` (default `2`) tune a two-signal AND-gate. Both must hold together before STOP is legal, and `--max-iterations` remains an independent hard stop regardless. Do NOT transfer `deep-review`'s single `convergenceThreshold` ratio semantics onto these two flags — they are not equivalent.
+**Convergence policy:** `--coverage-threshold <F>` (default `1.0`) and `--stability-window <N>` (default `2`) tune a two-signal AND-gate. With `--convergence-mode=default`, both must hold together before STOP is legal. With `--convergence-mode=off`, the evaluator cannot return `CONVERGED`; applicable runs continue until exactly `--max-iterations`, then return `STOP_MAX_ITERATIONS`. A zero-applicable-lane run still returns `NOTHING_TO_CONVERGE`. Do NOT transfer `deep-review`'s single `convergenceThreshold` ratio semantics onto these two flags.
 
 **Lifecycle policy:** `lineage_mode=auto` preserves the classifier behavior, `lineage_mode=resume` continues a valid packet, and `lineage_mode=restart` archives the resolved `{artifact_dir}` before any config write or phase init. In `:auto`, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization for this archive move, so do not ask for a second confirmation. Preserve rollback by moving the timestamped archive back to `alignment/` if needed. A restart request must never silently downgrade to resume; if the archive step cannot run, halt with `STATUS=FAIL`.
 ~~~
@@ -241,16 +252,23 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --max-iterations=N -> max_iterations = N
    |-- --coverage-threshold=F -> coverage_threshold = F
    |-- --stability-window=N -> stability_window = N
+   |-- --convergence-mode=default|off -> convergence_mode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q-Spec
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
+   |-- --executor-kind=native|cli-codex|cli-opencode -> executor.kind = value
+   |-- --model=MODEL -> executor.model = MODEL
+   |-- --reasoning-effort=LEVEL -> executor.reasoningEffort = LEVEL
+   |-- --service-tier=TIER -> executor.serviceTier = TIER
    |-- --executor-timeout=SECONDS -> executor_timeout = SECONDS (positive integer, default 900)
    |
    +-- Defaults: max_iterations=10, coverage_threshold=1.0, stability_window=2, batch_size=5,
-       lineage_mode=auto, executor=native (fixed), executor_timeout=900
+       convergence_mode=default, lineage_mode=auto, executor.kind=native, executor_timeout=900
 
-   This mode resolves NO external executor. It never asks for or accepts an executor model,
-   reasoning effort, or service tier; those are reserved placeholders the workflow never reads.
+   Validate executor flags before loading YAML. Native rejects model/reasoning/service-tier.
+   cli-codex accepts model, reasoning effort, and service tier. cli-opencode requires model,
+   accepts reasoning effort, and rejects service tier. When execution_mode is INTERACTIVE,
+   require executor.kind=native and fail fast on either external kind; confirm YAML remains native-only.
 
 4. Search for related spec folders across alias roots:
    $ find specs .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
@@ -302,8 +320,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - max_iterations = from Q-Iters or flag or default 10
    - coverage_threshold = from Q-Converge or flag or default 1.0
    - stability_window = from Q-Converge or flag or default 2
+   - convergence_mode = from flag, marker, or default `default`
    - batch_size = from marker or default 5
-   - executor = native (fixed); executor_timeout from flag or default 900
+   - executor = resolved kind/model/reasoningEffort/serviceTier; executor_timeout from flag or default 900
 
 9. SET STATUS: PASSED
 
@@ -318,8 +337,8 @@ NEVER split questions into multiple prompts
 **Phase Output:**
 
 - `alignment_target` | `lanes` | `lane_config_path`
-- `spec_choice` | `spec_path` | `execution_mode` | `max_iterations` | `coverage_threshold` | `stability_window` | `batch_size`
-- `lineage_mode` | `executor_timeout`
+- `spec_choice` | `spec_path` | `execution_mode` | `max_iterations` | `coverage_threshold` | `stability_window` | `convergence_mode` | `batch_size`
+- `lineage_mode` | `executor` | `executor_timeout`
 ~~~
 <!-- END renderBlocks.confirm -->
 

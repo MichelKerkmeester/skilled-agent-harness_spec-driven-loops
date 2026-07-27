@@ -60,6 +60,7 @@ This packet runs every manual testing playbook scenario across the three system-
 | **Parent Packet** | `system-speckit/028-memory-search-intelligence` |
 | **Phase** | 014 |
 | **Predecessor** | ../014-spec-regrouping-renumber-reindex/spec.md |
+| **Successor** | ../016-dead-code-and-architecture-audit/spec.md |
 <!-- /ANCHOR:metadata -->
 
 ---

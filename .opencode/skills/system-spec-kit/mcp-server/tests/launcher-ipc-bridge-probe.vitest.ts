@@ -11,7 +11,8 @@ const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const bridgeModulePath = join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
 const supervisionModulePath = join(repoRoot, '.opencode/bin/lib/model-server-supervision.cjs');
-const { maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
+const { getIpcSocketPath, maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
+  getIpcSocketPath: (serviceName: string, options?: { dbDir?: string }) => string;
   maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string; socketPath?: string }>;
   probeDaemon: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
   probeModelServer: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
@@ -287,9 +288,12 @@ describe('launcher IPC bridge liveness probe', () => {
 describe('lease socketPath: stored owner path preferred over recomputed', () => {
   const tempDirs: string[] = [];
   const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
+  const originalSocketScope = process.env.SPECKIT_IPC_SOCKET_SCOPE;
 
   afterEach(() => {
     process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    if (originalSocketScope === undefined) delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
+    else process.env.SPECKIT_IPC_SOCKET_SCOPE = originalSocketScope;
     while (tempDirs.length > 0) {
       const dir = tempDirs.pop();
       if (dir) rmSync(dir, { recursive: true, force: true });
@@ -301,6 +305,19 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
     tempDirs.push(dir);
     return dir;
   }
+
+  it('scopes advisor sockets by database under the shared default socket directory', () => {
+    const firstDbDir = tempDir('lease-scope-first-');
+    const secondDbDir = tempDir('lease-scope-second-');
+    process.env.SPECKIT_IPC_SOCKET_DIR = '/tmp/mk-skill-advisor';
+    delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
+
+    const firstSocket = getIpcSocketPath('mk-skill-advisor', { dbDir: firstDbDir });
+    const secondSocket = getIpcSocketPath('mk-skill-advisor', { dbDir: secondDbDir });
+
+    expect(firstSocket).toMatch(/^\/tmp\/mk-skill-advisor\/[0-9a-f]{12}\/daemon-ipc\.sock$/);
+    expect(secondSocket).not.toBe(firstSocket);
+  });
 
   // (1) A freshly written mk-spec-memory lease now carries the owner's actual socket path.
   it('emits socketPath in the lease payload when the owner supplies one', () => {

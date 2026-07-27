@@ -103,13 +103,13 @@ describe('prompt-pack', () => {
       deepLoopRoot,
       'deep-research',
       'assets',
-      'prompt_pack_iteration.md.tmpl',
+      'prompt-pack-iteration.md.tmpl',
     );
     const reviewTemplatePath = join(
       deepLoopRoot,
       'deep-review',
       'assets',
-      'prompt_pack_iteration.md.tmpl',
+      'prompt-pack-iteration.md.tmpl',
     );
 
     const researchRendered = renderPromptPack(researchTemplatePath, {
