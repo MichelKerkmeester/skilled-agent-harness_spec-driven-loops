@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex PostToolUse Dispatch Audit                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Append a redacted audit line for a completed dispatch.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex PostToolUse Dispatch Audit
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// PostToolUse `exec` matcher group.
 // PostToolUse(exec) CLI dispatch audit trail for Codex CLI -- the Codex sibling of
 // the Claude dispatch-audit hook. Observes a completed exec call, recognizes an
 // `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends one

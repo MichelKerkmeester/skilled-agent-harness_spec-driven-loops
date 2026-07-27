@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex PostToolUse Quality Check                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Run the edited file's quality checkers, warn-only.              ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex PostToolUse Quality Check
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// PostToolUse `apply_patch|edit` matcher group.
 // PostToolUse quality-check hook for Codex CLI -- the Codex sibling of the Claude
 // post-edit quality hook. Reads the hook's stdin JSON, resolves the edited file's
 // checker via the shared post-edit-router core, and runs it under the hook

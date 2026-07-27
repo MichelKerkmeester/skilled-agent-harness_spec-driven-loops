@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex PreToolUse Dispatch Preflight                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Lint a CLI dispatch command against the skill's hard rules.     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex PreToolUse Dispatch Preflight
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// PreToolUse `exec` matcher group.
 // PreToolUse(exec) preflight for CLI dispatch under Codex CLI -- the Codex sibling
 // of the Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` command BEFORE it spawns on the exec surface and

@@ -2,6 +2,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Codex PreCompact Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// PreCompact event, running the compiled `dist/hooks/codex/compact-inject.js`.
 
 import {
   readCodexHookInput,

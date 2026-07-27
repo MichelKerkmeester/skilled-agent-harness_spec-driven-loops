@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex UserPromptSubmit Spec Gate Classify                     ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Surface the spec-folder question on a mutating turn.            ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex UserPromptSubmit Spec Gate Classify
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// second UserPromptSubmit hook group, run directly as source.
 // UserPromptSubmit classify hook for Codex CLI -- the Codex sibling of the Claude
 // spec-gate-classify hook. Runs the shared spec-gate core against each user turn:
 // opens the session gate and surfaces the bounded Gate-3 question as

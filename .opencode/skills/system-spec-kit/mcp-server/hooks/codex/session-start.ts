@@ -2,6 +2,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Codex SessionStart Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// SessionStart event, running the compiled `dist/hooks/codex/session-start.js`.
 
 import {
   emitCodexContext,

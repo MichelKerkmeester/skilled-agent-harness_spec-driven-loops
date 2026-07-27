@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex PostToolUse Code Graph Freshness                        ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Queue an incremental rescan after an edit lands.                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex PostToolUse Code Graph Freshness
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// second PostToolUse `apply_patch|edit` matcher group.
 // PostToolUse code-graph freshness guard for Codex CLI -- the Codex sibling of
 // the Claude code-graph-freshness hook. After an apply_patch/edit lands, it
 // evaluates the same runtime-neutral policy (debounce -> empty gate -> warm probe

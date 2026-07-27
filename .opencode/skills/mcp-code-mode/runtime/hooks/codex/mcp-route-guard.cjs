@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex PreToolUse MCP Route Guard                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Advise routing an MCP call through Code Mode on a match.        ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex PreToolUse MCP Route Guard
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// PreToolUse `mcp__.*` matcher group; dormant until an external,
+// non-`mk_`-prefixed MCP server is registered under Codex.
 // PreToolUse advisory hook for native external MCP calls under Codex CLI -- the
 // Codex sibling of the Claude mcp-route-guard hook. Reads a matched `mcp__.*`
 // tool call and evaluates the runtime-neutral mcp-route-guard core; a match

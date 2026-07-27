@@ -1,6 +1,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Codex Hook Adapter Utilities
 // ───────────────────────────────────────────────────────────────────
+// STATUS: shared utility for the compiled Codex hook adapters registered
+// live in `.codex/hooks.json` (SessionStart, UserPromptSubmit, Stop, PreCompact).
 
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';

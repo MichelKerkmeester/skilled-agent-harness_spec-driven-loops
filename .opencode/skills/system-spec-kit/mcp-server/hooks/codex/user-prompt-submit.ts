@@ -2,6 +2,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Codex UserPromptSubmit Hook Adapter
 // ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// UserPromptSubmit event, running the compiled `dist/hooks/codex/user-prompt-submit.js`.
 
 import {
   emitNormalizedCodexContext,

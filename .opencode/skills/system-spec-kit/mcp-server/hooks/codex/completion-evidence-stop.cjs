@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex Stop Completion Evidence Sentinel                       ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Advise when a completion claim lacks packet evidence.           ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex Stop Completion Evidence Sentinel
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// Stop event, run directly as source (no build step).
 // Stop hook for Codex CLI -- the Codex sibling of the Claude completion-evidence
 // Stop sentinel. Plain, directly-runnable .cjs (no build step) that reads its own
 // Stop payload, resolves the active packet from the shared lifecycle state file,

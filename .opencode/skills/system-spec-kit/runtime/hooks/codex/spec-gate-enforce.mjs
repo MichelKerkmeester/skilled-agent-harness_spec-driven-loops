@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Codex PreToolUse Spec Gate Enforce                            ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Deny an unscoped mutation while the spec gate is open.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex PreToolUse Spec Gate Enforce
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
+// PreToolUse `exec|apply_patch|edit` matcher group.
 // PreToolUse enforce hook for Codex CLI -- the Codex sibling of the Claude
 // spec-gate-enforce hook. Intercepts a Codex tool call BEFORE it runs and
 // evaluates the shared spec-gate core's evaluateMutation() policy. A deny emits
