@@ -32,7 +32,7 @@ The remaining 5 scenarios (`styles-library-utilization/SLU-001..005`) carry **no
 | `score-skill-benchmark.cjs` | `d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c` | YES |
 | `load-playbook-scenarios.cjs` | `5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029` | YES |
 
-Identical to the hashes cited in the sibling `cli-external-orchestration/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md` run and in packet `013-compiled-coverage-buildout`'s `handover.md`, confirming these cross-hub shared scripts are genuinely untouched. Re-hashed at report-write time (below, §7) to confirm start==end for this sweep specifically.
+Identical to the hashes cited in the sibling `cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md` run and in packet `013-compiled-coverage-buildout`'s `handover.md`, confirming these cross-hub shared scripts are genuinely untouched. Re-hashed at report-write time (below, §7) to confirm start==end for this sweep specifically.
 
 ---
 
@@ -49,7 +49,7 @@ Identical to the hashes cited in the sibling `cli-external-orchestration/benchma
 
 - **Archived sources**:
   - `.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md` — CHK-022: *"Route-gold parity run shows `compiled-serving` for sk-design with TV-003 resolved — Verified, 38/0 (0 drift rules out the TV-003 over-detection pattern re-surfacing)"*
-  - `.opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/sk-design.{json,md}` — `compiledRouting: {subVerdict:"compiled-serving", scored:38, match:38, drift:0}`, all 38 rows `status:"match"`, `firstDifference:null`
+  - `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/sk-design.{json,md}` — `compiledRouting: {subVerdict:"compiled-serving", scored:38, match:38, drift:0}`, all 38 rows `status:"match"`, `firstDifference:null`
 - **Archived figure**: **38/0** — 100% compiled==legacy parity across the 38 canonical playbook scenario IDs
 - **Reconciliation**: **CORROBORATED, with one precise addendum.**
   - 4 of the official 38 rows (`AI-001`, `TV-001`, `TV-002`, `SR-002`) are **vacuous** `defer`/`defer` matches — confirmed directly from `sk-design.json`: `routeTelemetry.workflowMode:null`, `deferReason:"no-mode-scored"`, both `legacyProjection` and `compiledProjection` = `{action:"defer",targets:[]}` for all 4. Root cause: these 4 files specify their scenario content as a multi-row probe/variant **table**, not a single top-level `**Exact prompt**:` fenced block, so `load-playbook-scenarios.cjs` extracted `prompt:null` for each and the harness graded a trivial empty-prompt agreement rather than testing any of the 17 real probe/variant texts those 4 files actually document.
@@ -218,7 +218,7 @@ All 5 exit 0 and match their documented Pass/Fail Criteria exactly.
 - Compiled engine: `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` (+ `.../006-parent-hub-rollout/006-sk-design/lib/router.cjs`, `registry-compiler.cjs` for root-cause tracing)
 - Legacy replay: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs`
 - Hub router policy: `.opencode/skills/sk-design/hub-router.json`, `.opencode/skills/sk-design/mode-registry.json`
-- Lane C cross-check source: `.opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/sk-design.{json,md}`
+- Lane C cross-check source: `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/sk-design.{json,md}`
 - Packet source for the 38/0 citation: `.opencode/specs/sk-doc/019-sk-doc-router-alignment/020-router-unification-program/007-unified-refactor-implementation/015-routing-coverage-activation-verification/013-compiled-coverage-buildout/checklist.md`, `handover.md`
 - Styles-library engine: `.opencode/skills/sk-design/styles/_engine/style-library.mjs`, `.opencode/skills/sk-design/shared/corpus-context/{validate-context-plan.mjs,__tests__/fixtures.mjs}`, `.opencode/skills/sk-design/design-md-generator/backend/tests/study-exemplars.test.ts`
-- Sibling precedent (same method, other hubs): `.opencode/skills/cli-external-orchestration/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md`, `.opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/`, `.opencode/skills/system-deep-loop/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/`
+- Sibling precedent (same method, other hubs): `.opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md`, `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/`, `.opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/`

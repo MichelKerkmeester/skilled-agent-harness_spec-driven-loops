@@ -22,8 +22,6 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
-| 2026-07-10 | [`2026-07-10--router-final--router/`](./2026-07-10--router-final--router/) | router | 4 PASS | **PASS** 100/100 | not recorded |
-| 2026-07-10 | [`2026-07-10--live-final--live/`](./2026-07-10--live-final--live/) | live | 4 PASS | **PASS** 100/100 | not recorded |
 
 ## 3. STORAGE RULE
 

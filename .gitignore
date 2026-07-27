@@ -150,6 +150,9 @@ code-graph.sqlite
 # Database: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
+# The pre-kebab spelling is retired. It survived only as two committed sqlite
+# files, so every checkout recreated the directory long after the rename.
+.opencode/skills/system-skill-advisor/mcp_server/
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
 .opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
 .opencode/skills/system-skill-advisor/mcp-server/database/*.db

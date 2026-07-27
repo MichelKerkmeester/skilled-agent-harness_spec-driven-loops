@@ -32,7 +32,7 @@ SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode live \
   --scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --d4 \
   --d4-scenarios LS-001,LS-002,LS-003,LS-004,SD-002 --grader-mode real \
-  --outputs-dir .opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live
+  --outputs-dir .opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live
 ```
 
 Paid + non-deterministic (15 gpt-5.5 dispatches + 10 grader calls; ~45–55 min). `--d4` requires `--trace-mode live`. Skill-OFF is an approximation (`MK_SKILL_ADVISOR_HOOK_DISABLED=1` + preamble + a contamination guard that drops a pair if the skill leaked in), so scores are stamped `attribution: approximate`.

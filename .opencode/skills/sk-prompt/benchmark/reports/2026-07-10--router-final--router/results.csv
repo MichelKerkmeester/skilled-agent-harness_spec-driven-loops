@@ -1,6 +1,0 @@
-# derived after the fact from this run's stored record
-scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
-SP-001,sk-prompt,playbook,,routing,,,,100,PASS,
-SP-002,sk-prompt,playbook,,routing,,,,100,PASS,
-SP-003,sk-prompt,playbook,,routing,,,,100,PASS,
-SP-004,sk-prompt,playbook,,routing,,,,100,PASS,

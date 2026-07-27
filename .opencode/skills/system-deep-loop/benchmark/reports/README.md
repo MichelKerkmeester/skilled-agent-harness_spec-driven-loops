@@ -22,9 +22,6 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
-| 2026-07-10 | [`2026-07-10--router-mode-a--router/`](./2026-07-10--router-mode-a--router/) | router | 18 PASS | **PASS** 100/100 | not recorded |
-| 2026-07-10 | [`2026-07-10--live-mode-b--live/`](./2026-07-10--live-mode-b--live/) | live | 15 PASS, 3 FAIL | **PASS** 93/100 | not recorded |
-| 2026-07-08 | [`2026-07-08--after-d3-proxy--router/`](./2026-07-08--after-d3-proxy--router/) | router | 18 PASS | **PASS** 100/100 | not recorded |
 
 ## 3. STORAGE RULE
 
