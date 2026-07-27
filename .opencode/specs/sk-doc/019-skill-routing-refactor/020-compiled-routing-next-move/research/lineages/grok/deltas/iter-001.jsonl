@@ -1,0 +1,1 @@
+{"type":"iteration-delta","run":1,"focus":"Q1 activation-manifest ownership model","findingsCount":6,"answeredQuestions":["q1-activation-manifest-ownership"],"ruledOut":["pure runtime-authoritative ownership","pure authored-only with no runtime mirror","advisory-only dual-location forever"],"newInfoRatio":1.0}

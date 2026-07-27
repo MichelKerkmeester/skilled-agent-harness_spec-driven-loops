@@ -1,0 +1,119 @@
+{
+  "sessionId": "fanout-grok-1785124318112-qa7rq8",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-27T03:56:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "q1-activation-manifest-ownership",
+      "text": "Q1. Which activation-manifest ownership model should be the long-term contract, and what breaks under authored-only, runtime-authoritative, or a better third model?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "q2-closure-resolution-mechanism",
+      "text": "Q2. What exact mechanism makes authored closure tracing fail for `cli-external-orchestration` and `sk-design` while byte-identical runtime manifests resolve?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "q3-freshness-guard-placement",
+      "text": "Q3. Where should compiled-route freshness block—pre-commit, pre-push, CI, or session hook—and how should legitimately uncompilable in-progress hubs escape?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "q4-staging-rollback-retention",
+      "text": "Q4. Should staging and rollback remain for a single-operator git-backed build tool, given the former live-runtime `rmSync` hazard?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "q5-sequenced-work",
+      "text": "Q5. What is the minimum sequenced work for reproducibility, self-reporting, and unattended safety, split into work safe now versus work that must wait for `sk-design`?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "q1-activation-manifest-ownership",
+    "q2-closure-resolution-mechanism",
+    "q3-freshness-guard-placement",
+    "q4-staging-rollback-retention",
+    "q5-sequenced-work"
+  ],
+  "keyFindings": [
+    {
+      "id": "f-dual-location",
+      "iteration": 1,
+      "summary": "Adopt derived dual-location activation-manifest ownership"
+    },
+    {
+      "id": "f-closure-mechanism",
+      "iteration": 2,
+      "summary": "Closure fails via resolveRoute null from live snapshot compile errors / identity bind; not manifest bytes"
+    },
+    {
+      "id": "f-ci-guard",
+      "iteration": 3,
+      "summary": "Block freshness in CI; allowlist only inputs-do-not-compile"
+    },
+    {
+      "id": "f-keep-staging",
+      "iteration": 4,
+      "summary": "Retain staging/rename/rollback; never restore live rmSync"
+    },
+    {
+      "id": "f-sequence",
+      "iteration": 5,
+      "summary": "Fix cli harness + dual write-back + CI now; wait on sk-design remint"
+    }
+  ],
+  "ruledOutDirections": [
+    "pure runtime-authoritative ownership",
+    "pure authored-only ownership",
+    "manifest-byte comparison as Q2 root cause",
+    "authoritative pre-commit/pre-push/session blocking",
+    "live-root rmSync publication",
+    "open-ended sk-design exemption"
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "newInfoRatioHistory": [1.0, 1.0, 1.0, 1.0, 0.85]
+  },
+  "baselineContradictions": [
+    "Runtime resolution currently fails for cli-external-orchestration and sk-design",
+    "sk-design authored vs runtime manifests currently differ"
+  ]
+}
