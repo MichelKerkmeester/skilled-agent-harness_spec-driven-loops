@@ -39,19 +39,36 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
       ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
       ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/design-mcp-open-design/grounding-receipt.mjs",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
+      ".opencode/commands/interface/design.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md"
+      ".opencode/commands/interface/design-reference.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md",
+      "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface-preflight-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
+        "source": "derived"
+      },
       {
         "name": "design-command-surface-check.mjs",
         "kind": "file",
@@ -65,15 +82,39 @@
         "source": "derived"
       },
       {
-        "name": "grounding-receipt.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/design-mcp-open-design/grounding-receipt.mjs",
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/design.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-reference.md",
+        "kind": "doc",
+        "path": ".opencode/commands/interface/design-reference.md",
         "source": "derived"
       },
       {
@@ -89,15 +130,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -131,7 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Outcome Shipped",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -143,19 +178,7 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -173,33 +196,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Key Components",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`design-motion` (39 files, 4,175 lines) is a standalone mode with its own `SKILL.md`, `README.md`, and `/interface:motion` command",
+    "causal_summary": "`design-motion` (39 files, 4,175 lines — confirmed by `git ls-tree -r c1981d2b91^`) was a standalone mode with its own `SKILL.md`, `README.md`, and `/interface:motion` command",
     "created_at": "2026-07-27T16:52:20.903Z",
-    "last_save_at": "2026-07-27T16:55:43.018Z",
+    "last_save_at": "2026-07-27T18:48:35.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:790a13b8ec5ca931ba3383a9e72b4c421c8a352edcbb343bee3afcfd873e4b7f",
+    "source_fingerprint": "sha256:a495ec9cbc4b6f5ffb9ada1d88e3bbe3fc644950662ee1ad9ff7d80c44a47b63",
     "source_doc_hashes": {
-      "spec.md": "14b4239f03c8e00e99e889cb0865a32060b2aa4001cce5f0b903f0916e424a80",
-      "plan.md": "7e3fbef61d8d37947c1833b5e31709d386b6a4b845ec64e506c71b4e7abaa528",
-      "tasks.md": "6075344f9a3099fbbe922153049d30ab10524f6a5688e26146a291e871e659bf",
-      "checklist.md": "647b4dab0c8c7490eeff81a324577066dd8bb16d7774c083e3883c577c5f8e0b",
-      "implementation-summary.md": "e6486e09c095b5b3f789768c932140b2f15d02c8fde342970b53e9fd1cf6294f"
+      "spec.md": "1a8f7444104233c6cdcd54546acdfc5b203528df55f68f4d7d15e80e5edbd313",
+      "plan.md": "23a4a0c6f77d487ce7fae7ee06a7f7c6ddb36f195b14856f80e57b87d0e3542a",
+      "tasks.md": "b6cfa865403bbf932af8e8aa5e0e75e5da554293b936bce26fd80d24a94d168b",
+      "checklist.md": "375f10c0d47f514599dc0455ed581d44810ed8df38a117fc1c8549c5664042f6",
+      "implementation-summary.md": "abdb8ab761f6ece4cb9fb94b79dd19b8de2b6ab99968fca856f87854fc8ab044"
     },
     "last_active_child_id": null,
     "last_active_at": null

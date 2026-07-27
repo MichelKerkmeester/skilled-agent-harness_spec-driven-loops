@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: De-vendor design-interface's Apache-2.0 dependency"
-description: "design-interface carries a committed Apache-2.0 LICENSE.txt for guidance vendored verbatim from Anthropic's frontend-design skill. This packet rewrites that guidance in original words first, then removes the license and every citing site, in that order."
+description: "design-interface carried a committed Apache-2.0 LICENSE.txt for guidance vendored verbatim from Anthropic's frontend-design skill. This packet rewrote that guidance in original words first, then removed the license and every citing site, in that order. Shipped as commit 8fa4752968."
 trigger_phrases:
   - "apache devendoring"
   - "design-interface license removal"
@@ -11,22 +11,22 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
-    last_updated_at: "2026-07-27T14:52:12.976Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored spec with ordered de-vendor-then-delete steps"
-    next_safe_action: "Rewrite design-principles.md guidance in original words (step 1)"
+    last_updated_at: "2026-07-27T19:00:00Z"
+    last_updated_by: "spec-reconciler"
+    recent_action: "Reconciled packet docs against the shipped de-vendor commit 8fa4752968"
+    next_safe_action: "None; packet complete and verified against design-interface on disk"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/design-interface/LICENSE.txt"
       - ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md"
       - ".opencode/skills/sk-design/design-interface/SKILL.md"
       - ".opencode/skills/sk-design/design-interface/README.md"
+      - ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md"
       - ".opencode/skills/sk-design/design-interface/manual-testing-playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned — no work started |
+| **Status** | Complete — shipped as commit `8fa4752968` |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |
@@ -57,11 +57,15 @@ _memory:
 
 ### Problem Statement
 
-`.opencode/skills/sk-design/design-interface/LICENSE.txt` is the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill. Nothing regenerates it — there is no script, postinstall hook, or download step — so it persists purely because it is a tracked git object: any checkout, branch switch, or new worktree restores it. As long as `references/design-process/design-principles.md` is genuinely vendored Apache-2.0 text, the license is legally required and cannot simply be deleted.
+`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill. Nothing regenerated it — there was no script, postinstall hook, or download step — so it persisted purely because it was a tracked git object: any checkout, branch switch, or new worktree restored it. As long as `references/design-process/design-principles.md` was genuinely vendored Apache-2.0 text, the license was legally required and could not simply be deleted.
 
 ### Purpose
 
 Remove the Apache-2.0 obligation honestly by de-vendoring the guidance first — rewriting it in original words while preserving its intent — and only then deleting `LICENSE.txt` and every site that cites it. Deleting the license before the rewrite would ship Apache-2.0 content without its required license; this packet's ordering exists specifically to prevent that.
+
+### Outcome
+
+Both steps shipped in that order inside a single commit, `8fa4752968` ("refactor(sk-design): re-author the interface design guidance in original words"). All six sections of `design-principles.md` were re-authored, `LICENSE.txt` was removed with `git rm`, every citing site was cleared, the licensing-and-provenance manual-testing scenario was deleted, and `changelog/v1.1.0.0.md` records the change. `design-interface` no longer carries any Apache-2.0 obligation.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -87,15 +91,17 @@ Remove the Apache-2.0 obligation honestly by de-vendoring the guidance first —
 
 ### Files to Change
 
+Delivered exactly as scoped, in commit `8fa4752968` (9 files, +80/-332). The `git show --stat` file list matches this table row for row; the only two resolutions the plan left open are noted in the Description column.
+
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `design-interface/references/design-process/design-principles.md` | Rewrite (guidance) + edit (attribution line) | Original-words rewrite of the vendored guidance; attribution line at `:17` rewritten to match the new provenance state |
-| `design-interface/LICENSE.txt` | Delete (`git rm`) | The Apache-2.0 text itself, only after the rewrite lands |
-| `design-interface/SKILL.md` | Modify | Remove `license: Apache-2.0; see LICENSE.txt` (`:9`) and provenance citations (`:295`, `:345`) |
-| `design-interface/README.md` | Modify | Remove licensing Q&A (`:166`) and resource-table row (`:199`) |
-| `design-interface/manual-testing-playbook/licensing-and-provenance/licensing-and-provenance-integrity.md` | Delete or invert | ID-007's PASS condition currently depends on `LICENSE.txt` existing |
-| `design-interface/manual-testing-playbook/manual-testing-playbook.md` | Modify | Two summary references to ID-007/`LICENSE.txt` (`:68`, `:349`/`:355`) |
-| `design-interface/changelog/` | Create (new entry) | Record the de-vendor as a versioned change |
+| `design-interface/references/design-process/design-principles.md` | Rewrite (guidance) + edit (attribution line) | Original-words rewrite of the vendored guidance across all six H2 sections (`+50/-50`). Delivered: the attribution line was **removed** rather than rewritten, since after the rewrite there was no upstream source left to attribute |
+| `design-interface/LICENSE.txt` | Delete (`git rm`) | The Apache-2.0 text itself (177 lines), removed after the rewrite landed in the same commit |
+| `design-interface/SKILL.md` | Modify | `license: Apache-2.0; see LICENSE.txt` frontmatter line and both provenance citations removed |
+| `design-interface/README.md` | Modify | Licensing Q&A and resource-table row removed |
+| `design-interface/manual-testing-playbook/licensing-and-provenance/licensing-and-provenance-integrity.md` | Delete or invert | Delivered: **deleted** (93 lines). Its PASS condition was the presence of `LICENSE.txt`, so inverting it would have preserved a scenario with no remaining subject |
+| `design-interface/manual-testing-playbook/manual-testing-playbook.md` | Modify | ID-007 summary references removed; scenario counts reconciled from 31 across 20 categories to 30 across 19 |
+| `design-interface/changelog/` | Create (new entry) | `v1.1.0.0.md` — "Original design guidance, Apache dependency removed" |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,9 +131,9 @@ Remove the Apache-2.0 obligation honestly by de-vendoring the guidance first —
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `design-interface` carries no Apache-2.0 obligation — no `LICENSE.txt`, no license frontmatter, no provenance citation.
-- **SC-002**: The rewritten `design-principles.md` still teaches the same direction, voice, and process it did before, in original words.
-- **SC-003**: `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design/design-interface/ --check` still reports the skill valid after the removal.
+- **SC-001**: `design-interface` carries no Apache-2.0 obligation — no `LICENSE.txt`, no license frontmatter, no provenance citation. **Met** — `LICENSE.txt` does not resolve on disk, and `grep -rn 'Apache\|LICENSE.txt' design-interface/ --exclude-dir=changelog` returns nothing.
+- **SC-002**: The rewritten `design-principles.md` still teaches the same direction, voice, and process it did before, in original words. **Met** — the file retains all six H2 sections (OVERVIEW, GROUND IT IN THE SUBJECT, DESIGN PRINCIPLES, PROCESS, RESTRAINT AND SELF-CRITIQUE, WRITING IN DESIGN); `changelog/v1.1.0.0.md` §2 enumerates the preserved substance.
+- **SC-003**: `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design/design-interface/ --check` still reports the skill valid after the removal. **Met** — `Result: PASS` ("Skill is valid!"), one unrelated advisory warning about `SKILL.md` word count.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -169,7 +175,7 @@ Remove the Apache-2.0 obligation honestly by de-vendoring the guidance first —
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None outstanding — the ordering and hard-stop condition are fixed by the parent packet's decision.
+- None outstanding — the ordering and hard-stop condition were fixed by the parent packet's decision, and the hard stop was never reached: the rewrite preserved intent, so Phase 2 proceeded as planned.
 <!-- /ANCHOR:questions -->
 
 ---

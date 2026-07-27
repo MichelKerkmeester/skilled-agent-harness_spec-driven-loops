@@ -39,9 +39,9 @@ Open Design transport accepts a metadata-only grounding receipt, freezes the mod
 |---|---|---|
 | `.opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs` | Handler | Produces a bounded decision-only relational handoff. |
 | `.opencode/skills/sk-design/design-interface/corpus/relationship-blueprint.mjs` | Handler | Produces typed relationships and transformation records. |
-| `.opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs` | Handler | Applies restraint-first, source-bound temporal eligibility. |
-| `.opencode/skills/sk-design/design-mcp-open-design/grounding-receipt.mjs` | Handler | Validates metadata-only transport grounding receipts. |
-| `.opencode/skills/sk-design/design-mcp-open-design/return-reconciliation.mjs` | Handler | Recomputes semantic outcome and divergence from returned evidence. |
+| `.opencode/skills/sk-design/design-interface/corpus/motion-evidence.mjs` | Handler | Applies restraint-first, source-bound temporal eligibility. |
+| `.opencode/skills/sk-design/design-mcp-open-design/transport/grounding-receipt.mjs` | Handler | Validates metadata-only transport grounding receipts. |
+| `.opencode/skills/sk-design/design-mcp-open-design/transport/return-reconciliation.mjs` | Handler | Recomputes semantic outcome and divergence from returned evidence. |
 
 ### Validation And Tests
 
@@ -49,7 +49,7 @@ Open Design transport accepts a metadata-only grounding receipt, freezes the mod
 |---|---|---|
 | `.opencode/skills/sk-design/design-interface/corpus/tests/relational-exemplar.test.mjs` | Automated test | Covers authority locks, source attestation and handoff leakage. |
 | `.opencode/skills/sk-design/design-interface/corpus/tests/relationship-blueprint.test.mjs` | Automated test | Covers relationships, ledger binding and explicit-none. |
-| `.opencode/skills/sk-design/design-motion/corpus/tests/motion-evidence.test.mjs` | Automated test | Covers restraint-first flow and source-bound eligibility. |
+| `.opencode/skills/sk-design/design-interface/corpus/tests/motion-evidence.test.mjs` | Automated test | Covers restraint-first flow and source-bound eligibility. |
 | `.opencode/skills/sk-design/design-mcp-open-design/tests/transport-grounding.test.mjs` | Automated test | Covers no-cache receipts, frozen proposals and reconciliation. |
 
 ---

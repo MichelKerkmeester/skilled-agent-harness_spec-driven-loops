@@ -11,19 +11,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
-    last_updated_at: "2026-07-27T14:52:12.976Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored ordered de-vendor-then-delete plan"
-    next_safe_action: "Execute Phase 1 rewrite"
+    last_updated_at: "2026-07-27T19:00:00Z"
+    last_updated_by: "spec-reconciler"
+    recent_action: "Marked all three plan phases delivered by commit 8fa4752968"
+    next_safe_action: "None; plan fully executed and verified against files on disk"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/design-interface/LICENSE.txt"
       - ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md"
+      - ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 | **Testing** | Manual grep sweep + `package_skill.py --check` |
 
 ### Overview
-This is a two-phase, strictly ordered change. Phase 1 rewrites `design-principles.md`'s guidance in original words and verifies the rewrite preserves intent — this is load-bearing: until it lands, the Apache-2.0 license may not be removed. Phase 2 removes `LICENSE.txt` via `git rm` and every site that cites it (SKILL.md, README.md, the manual-testing playbook), then records the change in `changelog/`. If Phase 1 cannot genuinely preserve intent in original words, the packet halts before Phase 2 and escalates.
+**Delivered** — all three phases landed in commit `8fa4752968`. This is a two-phase, strictly ordered change. Phase 1 rewrites `design-principles.md`'s guidance in original words and verifies the rewrite preserves intent — this is load-bearing: until it lands, the Apache-2.0 license may not be removed. Phase 2 removes `LICENSE.txt` via `git rm` and every site that cites it (SKILL.md, README.md, the manual-testing playbook), then records the change in `changelog/`. If Phase 1 cannot genuinely preserve intent in original words, the packet halts before Phase 2 and escalates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,15 +56,15 @@ This is a two-phase, strictly ordered change. Phase 1 rewrites `design-principle
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `design-principles.md` current text has been read in full, section by section.
-- [ ] Every citing site (`SKILL.md:9,295,345`; `README.md:166,199`; `design-principles.md:17`; the manual-testing playbook) has been located and line-confirmed.
+- [x] `design-principles.md` current text has been read in full, section by section.
+- [x] Every citing site (`SKILL.md:9,295,345`; `README.md:166,199`; `design-principles.md:17`; the manual-testing playbook) has been located and line-confirmed.
 
 ### Definition of Done
-- [ ] The rewritten `design-principles.md` carries no verbatim Apache-2.0 sentence and preserves the original guidance's intent.
-- [ ] `LICENSE.txt` is removed via `git rm` (not a plain `rm`).
-- [ ] All six citing sites plus the manual-testing scenario are updated.
-- [ ] `changelog/` has a new entry recording the de-vendor.
-- [ ] `rg -n "Apache|LICENSE.txt" .opencode/skills/sk-design/design-interface/` (excluding `changelog/`) returns nothing.
+- [x] The rewritten `design-principles.md` carries no verbatim Apache-2.0 sentence and preserves the original guidance's intent.
+- [x] `LICENSE.txt` is removed via `git rm` (not a plain `rm`).
+- [x] All six citing sites plus the manual-testing scenario are updated.
+- [x] `changelog/` has a new entry recording the de-vendor.
+- [x] `rg -n "Apache|LICENSE.txt" .opencode/skills/sk-design/design-interface/` (excluding `changelog/`) returns nothing.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -91,28 +91,28 @@ Read current `design-principles.md` in full -> draft original-words rewrite pres
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: De-vendor (load-bearing; must land before Phase 2)
-- [ ] Read `design-principles.md` in full and list every guidance point it makes.
-- [ ] Draft an original-words rewrite that preserves each point.
-- [ ] Compare rewrite against the original point-by-point; confirm no guidance was lost or altered in meaning.
-- [ ] HARD STOP CHECK: if any point cannot be genuinely rewritten without losing intent, halt here and escalate to the operator — do not proceed to Phase 2.
+### Phase 1: De-vendor (load-bearing; must land before Phase 2) — DELIVERED
+- [x] Read `design-principles.md` in full and list every guidance point it makes.
+- [x] Draft an original-words rewrite that preserves each point.
+- [x] Compare rewrite against the original point-by-point; confirm no guidance was lost or altered in meaning.
+- [x] HARD STOP CHECK: if any point cannot be genuinely rewritten without losing intent, halt here and escalate to the operator — do not proceed to Phase 2. *(Not triggered; the rewrite preserved intent.)*
 
-### Phase 2: Delete the license and its citations (only after Phase 1 passes)
-- [ ] `git rm .opencode/skills/sk-design/design-interface/LICENSE.txt`
-- [ ] Remove `license: Apache-2.0; see LICENSE.txt` from `SKILL.md:9`
-- [ ] Remove provenance citations from `SKILL.md:295` and `SKILL.md:345`
-- [ ] Remove the licensing Q&A from `README.md:166`
-- [ ] Remove the resource-table row from `README.md:199`
-- [ ] Rewrite the attribution line at `design-principles.md:17`
-- [ ] Delete or invert manual-testing scenario `licensing-and-provenance-integrity.md` (ID-007)
-- [ ] Update the two ID-007 summary references in `manual-testing-playbook.md:68,349,355`
-- [ ] Author a new `changelog/` entry recording the de-vendor
-- [ ] Confirm `.gitignore` is untouched
+### Phase 2: Delete the license and its citations (only after Phase 1 passes) — DELIVERED
+- [x] `git rm .opencode/skills/sk-design/design-interface/LICENSE.txt`
+- [x] Remove `license: Apache-2.0; see LICENSE.txt` from `SKILL.md:9`
+- [x] Remove provenance citations from `SKILL.md:295` and `SKILL.md:345`
+- [x] Remove the licensing Q&A from `README.md:166`
+- [x] Remove the resource-table row from `README.md:199`
+- [x] Rewrite the attribution line at `design-principles.md:17` *(delivered as a removal — no upstream source remained to attribute)*
+- [x] Delete or invert manual-testing scenario `licensing-and-provenance-integrity.md` (ID-007) *(deleted)*
+- [x] Update the two ID-007 summary references in `manual-testing-playbook.md:68,349,355`
+- [x] Author a new `changelog/` entry recording the de-vendor *(`v1.1.0.0.md`)*
+- [x] Confirm `.gitignore` is untouched
 
-### Phase 3: Verification
-- [ ] `rg -n "Apache|LICENSE.txt" .opencode/skills/sk-design/design-interface/` (excluding `changelog/`) returns nothing
-- [ ] `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design/design-interface/ --check` still reports the skill valid
-- [ ] `validate.sh .opencode/specs/sk-design/014-template-conformance/001-apache-devendoring --strict` passes
+### Phase 3: Verification — DELIVERED
+- [x] `rg -n "Apache|LICENSE.txt" .opencode/skills/sk-design/design-interface/` (excluding `changelog/`) returns nothing
+- [x] `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design/design-interface/ --check` still reports the skill valid
+- [x] `validate.sh .opencode/specs/sk-design/014-template-conformance/001-apache-devendoring --strict` passes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -134,8 +134,8 @@ Read current `design-principles.md` in full -> draft original-words rewrite pres
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 1 rewrite quality | Internal | Not started | Blocks all of Phase 2 — this is the load-bearing gate |
-| `changelog/` naming convention | Internal | Existing (`v1.0.0.0*.md`) | New entry must match or the packet is inconsistent with prior releases |
+| Phase 1 rewrite quality | Internal | Satisfied | Blocked all of Phase 2 — this was the load-bearing gate, and it passed |
+| `changelog/` naming convention | Internal | Satisfied (`v1.1.0.0.md` alongside `v1.0.0.0*.md`) | New entry must match or the packet is inconsistent with prior releases |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -143,6 +143,7 @@ Read current `design-principles.md` in full -> draft original-words rewrite pres
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
+- **Status**: Not exercised. The change shipped in commit `8fa4752968` and remains revertible from there.
 - **Trigger**: Rewrite is later found to have dropped guidance, or a citing site was missed and the skill still claims Apache-2.0 without the license.
 - **Procedure**: Revert the de-vendor commit(s); `LICENSE.txt` and its citations return via git history; re-attempt Phase 1 with the missing guidance restored.
 <!-- /ANCHOR:rollback -->
@@ -169,8 +170,8 @@ Phase 1 (De-vendor) ──(HARD GATE)──> Phase 2 (Delete license + citations
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Rewrite comparison recorded (point-by-point, not just "looks fine")
-- [ ] All six citing sites plus the manual-testing scenario identified before any deletion
+- [x] Rewrite comparison recorded (point-by-point, not just "looks fine") — the six preserved points are enumerated in `changelog/v1.1.0.0.md` §2
+- [x] All six citing sites plus the manual-testing scenario identified before any deletion
 
 ### Rollback Procedure
 1. **Immediate**: If the rewrite is found lossy after the fact, do not delete `LICENSE.txt` retroactively-restore it via git revert.

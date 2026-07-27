@@ -11,18 +11,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
-    last_updated_at: "2026-07-27T14:52:12.976Z"
-    last_updated_by: "spec-author"
-    recent_action: "Recorded the de-vendor-before-delete ordering decision"
-    next_safe_action: "Execute Phase 1 rewrite per plan.md"
+    last_updated_at: "2026-07-27T19:00:00Z"
+    last_updated_by: "spec-reconciler"
+    recent_action: "Moved ADR-001 from Accepted to Implemented by commit 8fa4752968"
+    next_safe_action: "None; the ordering decision is discharged and needs no follow-up"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-design/design-interface/LICENSE.txt"
+      - ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (not yet implemented) |
+| **Status** | Accepted — implemented in commit `8fa4752968` |
 | **Date** | 2026-07-27 |
 | **Deciders** | Operator |
 
@@ -65,6 +65,8 @@ _memory:
 **We chose**: Rewrite `design-principles.md`'s guidance in original words first, verify the rewrite preserves the original's intent point-by-point, and only then `git rm LICENSE.txt` plus every site that cites it. If the rewrite cannot genuinely preserve intent, halt before deletion and escalate.
 
 **How it works**: Phase 1 (rewrite + verify) is a hard gate on Phase 2 (delete). The ordering itself is the safety mechanism — there is no valid execution path where the license is removed before the rewrite is confirmed to preserve intent.
+
+**As executed**: both phases landed inside the single commit `8fa4752968`, with the rewrite and the removal ordered within it. The commit message states the constraint explicitly: "The licence could only go once the text it covered was genuinely replaced; removing it first would have left borrowed wording shipping without its terms." No intermediate commit shipped Apache-2.0 wording without its licence, because no intermediate commit existed.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -87,7 +89,8 @@ _memory:
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-- `design-interface` gains an original-words version of its aesthetic-direction guidance, which must be maintained going forward as first-party content rather than a passthrough of upstream Anthropic changes.
-- Manual-testing scenario ID-007, whose entire premise is "confirm Apache-2.0 provenance," no longer applies in its current form and must be deleted or inverted rather than left as a false-passing check.
-- The `changelog/` entry becomes the permanent record of why the license disappeared, which matters for anyone auditing the skill's history later.
+- `design-interface` gained an original-words version of its aesthetic-direction guidance, which must be maintained going forward as first-party content rather than a passthrough of upstream Anthropic changes.
+- Manual-testing scenario ID-007, whose entire premise was "confirm Apache-2.0 provenance," was **deleted** rather than inverted. Inverting it would have left a scenario whose subject no longer existed; the de-vendored state is already asserted by the grep sweep in `checklist.md` (CHK-060).
+- `changelog/v1.1.0.0.md` is the permanent record of why the license disappeared, which matters for anyone auditing the skill's history later.
+- Three documents that claimed the live-read grounding policy "keeps the skill Apache-2.0 only" were corrected in the same commit — that claim became false in a new way once the skill carried no such licence. Two passages describing which licences *would* attach if external content were copied were deliberately left untouched, since they remain accurate.
 <!-- /ANCHOR:adr-001-consequences -->

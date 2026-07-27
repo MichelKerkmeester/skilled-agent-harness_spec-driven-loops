@@ -39,28 +39,21 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/design-interface/LICENSE.txt",
       ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md",
       ".opencode/skills/sk-design/design-interface/SKILL.md",
       ".opencode/skills/sk-design/design-interface/README.md",
-      "spec.md",
+      ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md",
+      "decision-record.md",
+      "checklist.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "decision-record.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md",
-      ".opencode/skills/sk-design/design-interface/manual-testing-playbook/licensing-and-provenance/licensing-and-provenance-integrity.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "LICENSE.txt",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/design-interface/LICENSE.txt",
-        "source": "derived"
-      },
       {
         "name": "design-principles.md",
         "kind": "doc",
@@ -80,9 +73,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "v1.1.0.0.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -98,21 +103,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "licensing-and-provenance-integrity.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/manual-testing-playbook/licensing-and-provenance/licensing-and-provenance-integrity.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -146,13 +139,13 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Outcome Both",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -164,19 +157,7 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,15 +175,33 @@
         "source": "derived"
       },
       {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` is the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill",
+    "causal_summary": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill",
     "created_at": "2026-07-27T14:48:39.949Z",
-    "last_save_at": "2026-07-27T14:52:30.941Z",
+    "last_save_at": "2026-07-27T18:38:44.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e044f1494daa53f1c242e9e0a8d8d445afd7516368d3d0481b3e3e2445262889",
+    "source_fingerprint": "sha256:fa603ca9b7f2c9b142f1a2a0b8937a2718e66a08b6f64f5bfdd53072b3d33e03",
     "source_doc_hashes": {
-      "spec.md": "ac7c6d4b8e6c1953cc68e28d74a3ddb7d9a74d5d0b1bae53d39b23a87ec8a3f1",
-      "plan.md": "25279d2ff5a141435644bf7df2aacdca1cf58f9ce67dff5edfd0ab1e72f68d3b",
-      "tasks.md": "48304b28930696c1415828d1538939828093849591018e8594a0a93d854bdc54",
-      "checklist.md": "5c3378c303484e382024d332db8e129247ae614bf9292906a91a31c084d8d0b2",
-      "decision-record.md": "2625c20917db945fe36dbda714db501af398265175d9481c6c8e85f98d2d30c9",
-      "implementation-summary.md": "8720fd1edc88ec9f4e78ffb4ef7dc908801bf2d831b587512ad43516ffc2b2c4"
+      "spec.md": "26d19b33dd682302d609efc6ad9bb6771d2ff23ab49c82aef26f269a3c200721",
+      "plan.md": "01d377e8c865fe963398543f8033eac06a9dc60d1a5c8a1224eb14e250d94490",
+      "tasks.md": "65018b5f63e68c12f2a9c5cad22fb1bcdc9efdc4ab9a93df0dc4a2ddf7fe53cf",
+      "checklist.md": "93e7014d5dbecbe4d40eaa9903c4af3314c5335c4625e6ccfecb224ec4ddd7d7",
+      "decision-record.md": "ef92254f747a5063ebb57b712d581d078acf7a81b062801c30e3464b2d8107e5",
+      "implementation-summary.md": "114f6c4868fe94a9f0198b26d6d5c7bd6bb00be406a9122b1967b292ce5f9b13"
     },
     "last_active_child_id": null,
     "last_active_at": null
