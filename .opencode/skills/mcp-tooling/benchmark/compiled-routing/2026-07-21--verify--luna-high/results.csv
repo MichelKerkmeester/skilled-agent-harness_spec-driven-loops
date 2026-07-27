@@ -1,0 +1,4 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+LUNA-MT-R,mcp-tooling,,routing,,mcp-refero,openai/gpt-5.6-luna,high,,PASS,routed-to-gold (mcp-refero)
+LUNA-MT-H,mcp-tooling,,holdout,,mcp-refero,openai/gpt-5.6-luna,high,,PASS,routed-to-gold (mcp-refero)

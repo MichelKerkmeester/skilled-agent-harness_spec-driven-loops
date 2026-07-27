@@ -506,8 +506,15 @@ function renderRunReadme(report, context = {}) {
   out.push('');
   out.push('| File | Contents |');
   out.push('|---|---|');
-  out.push('| [`skill-benchmark-report.json`](./skill-benchmark-report.json) | The machine record every other file here derives from |');
-  out.push('| [`skill-benchmark-report.md`](./skill-benchmark-report.md) | Rendered scoring report, regenerated from the JSON and never hand-edited |');
+  // Older runs wrote report.{json,md}; the caller names what this folder holds so
+  // the table links a file that exists rather than the one this renderer prefers.
+  const stem = context.reportStem || 'skill-benchmark-report';
+  out.push(`| [\`${stem}.json\`](./${stem}.json) | The machine record every other file here derives from |`);
+  // A run that wrote no rendered report gets no row for one. Linking a file that
+  // was never written would break the link and imply evidence that does not exist.
+  if (context.hasRenderedReport !== false) {
+    out.push(`| [\`${stem}.md\`](./${stem}.md) | Rendered scoring report, regenerated from the JSON and never hand-edited |`);
+  }
   out.push('| [`results.csv`](./results.csv) | One row per scenario, for spreadsheet and diff use |');
   out.push('| [`failed-runs.md`](./failed-runs.md) | Per-scenario failure detail, or a statement that none was captured |');
   out.push('| [`findings-and-recommendations.md`](./findings-and-recommendations.md) | Failures grouped by their recorded reason |');
@@ -542,7 +549,8 @@ function renderSource(report, context = {}) {
   out.push(`| Scenario corpus | ${context.corpus ? `\`${context.corpus}\`` : NOT_RECORDED} |`);
   out.push(`| Scoring method | \`${report.scoringMethod || NOT_RECORDED}\` |`);
   out.push(`| Topology digest | \`${report.topologyDigest || NOT_RECORDED}\` |`);
-  out.push('| Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |');
+  const stem = context.reportStem || 'skill-benchmark-report';
+  out.push(`| Machine record | [\`${stem}.json\`](./${stem}.json) |`);
   out.push('| Curated result set | [`results.csv`](./results.csv) |');
   out.push('');
 

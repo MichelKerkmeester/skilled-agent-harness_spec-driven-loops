@@ -1,0 +1,7 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+SD-001,sk-code,live,,routing,,,,65,PASS,
+LS-001,sk-code,live,,routing,,,,79,PASS,
+RD-002,sk-code,live,,advisor,,,,55,FAIL,first failing stage: activated-inter
+MR-001,sk-code,browser-gated,,browser,,,,100,PASS,
+CS-001,sk-code,live,,routing,,,,57,PASS,

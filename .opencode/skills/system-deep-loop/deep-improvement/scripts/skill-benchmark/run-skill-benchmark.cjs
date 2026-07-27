@@ -548,6 +548,7 @@ function run(args) {
   const companionDir = path.dirname(reportJsonPath);
   const companionContext = {
     runLabel: path.basename(companionDir),
+    reportStem: path.basename(reportJsonPath).replace(/\.json$/, ''),
     corpus: playbookCorpusRel({ skillRoot, playbookDir: args['playbook-dir'], fixturesDir: args['fixtures-dir'] }),
   };
   const companions = [

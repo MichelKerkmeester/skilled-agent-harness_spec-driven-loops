@@ -1,0 +1,4 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+LUNA-DL-R,system-deep-loop,,routing,,research,openai/gpt-5.6-luna,high,,PASS,routed-to-gold (research)
+LUNA-DL-H,system-deep-loop,,holdout,,research,openai/gpt-5.6-luna,high,,PASS,routed-to-gold (research)

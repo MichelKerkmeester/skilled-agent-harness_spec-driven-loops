@@ -125,14 +125,14 @@ npm run build
 RERANK_DEVICE=mps bash .opencode/skills/system-rerank-sidecar/scripts/start.sh > /tmp/rerank-sidecar.log 2>&1 &
 
 # 5) Bench
-bash benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh \
-  --fixture .../benchmark-2026-05-21-cap-top-k/rerank-ab-fixture.json \
+bash benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh \
+  --fixture .../2026-05-21--cap-top-k--unspecified/rerank-ab-fixture.json \
   --out .../runs/arm-a-off.jsonl --arm A --runs 3 \
   --cross-encoder false --reranker-local false
 
 SPECKIT_RERANK_LOCAL_MAX_DOCS=10 RERANK_DEVICE=mps \
-  bash benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh \
-  --fixture .../benchmark-2026-05-21-cap-top-k/rerank-ab-fixture.json \
+  bash benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh \
+  --fixture .../2026-05-21--cap-top-k--unspecified/rerank-ab-fixture.json \
   --out .../runs/arm-b-cap10.jsonl --arm B --runs 3 \
   --cross-encoder true --reranker-local true
 

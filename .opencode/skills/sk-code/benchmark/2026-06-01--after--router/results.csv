@@ -1,0 +1,4 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+sk-code-loadspeed-001,sk-code,T2,,,,,,69,PASS,
+sk-code-motion-002,sk-code,T2,,,,,,69,PASS,

@@ -1,0 +1,15 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+WF-009,code-webflow,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+WF-007,code-webflow,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+WF-008,code-webflow,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+WF-006,code-webflow,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+WF-013,code-webflow,live,,routing,,,,95,PASS,
+WF-002,code-webflow,live,,routing,,,,100,PASS,
+WF-003,code-webflow,live,,routing,,,,84,PASS,
+WF-001,code-webflow,live,,routing,,,,90,PASS,
+WF-005,code-webflow,live,,routing,,,,69,PASS,
+WF-004,code-webflow,live,,routing,,,,78,PASS,
+WF-010,code-webflow,live,,routing,,,,86,PASS,
+WF-011,code-webflow,live,,routing,,,,84,PASS,
+WF-012,code-webflow,live,,routing,,,,100,PASS,

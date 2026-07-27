@@ -1,0 +1,27 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+MR-001,sk-design,browser-gated,,browser,,,,100,PASS,
+MR-002,sk-design,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+MR-003,sk-design,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+MR-004,sk-design,browser-gated,,browser,,,,50,FAIL,first failing stage: browser
+MR-005,sk-design,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+MR-006,sk-design,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+MR-007,sk-design,browser-gated,,browser,,,,,FAIL,first failing stage: browser
+AI-001,sk-design,live,,routing,,,,100,PASS,
+AI-002,sk-design,live,,routing,,,,100,PASS,
+AI-003,sk-design,live,,routing,,,,100,PASS,
+TV-001,sk-design,live,,routing,,,,100,PASS,
+TV-002,sk-design,live,,routing,,,,100,PASS,
+TV-003,sk-design,live,,routing,,,,100,PASS,
+TV-004,sk-design,live,,routing,,,,100,PASS,
+TV-005,sk-design,live,,routing,,,,100,PASS,
+MG-001,sk-design,live,,advisor,,,,100,PASS,
+MG-002,sk-design,live,,advisor,,,,100,PASS,
+MG-003,sk-design,live,,advisor,,,,100,PASS,
+SR-001,sk-design,live,,routing,,,,100,PASS,
+SR-002,sk-design,live,,routing,,,,100,PASS,
+SR-003,sk-design,live,,routing,,,,100,PASS,
+SR-004,sk-design,live,,routing,,,,100,PASS,
+PB-001,sk-design,live,,advisor,,,,100,PASS,
+PB-002,sk-design,live,,advisor,,,,100,PASS,
+PB-003,sk-design,live,,advisor,,,,100,PASS,

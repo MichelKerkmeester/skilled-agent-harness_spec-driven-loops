@@ -199,7 +199,7 @@ node -e "const D=require('better-sqlite3'); const db=new D('.opencode/skills/sys
 | [`SOURCE.md`](./SOURCE.md) | Pointer to authoritative spec packets (016/002/016-019 fix arc) |
 | [`results.csv`](./results.csv) | One-row aggregate with hit rate, latency, threshold |
 | [`per-probe.jsonl`](./per-probe.jsonl) | Per-probe top-3 IDs, titles, latency |
-| [`../benchmark-2026-05-17/benchmark-report.md`](../../../mcp-server/benchmarks/benchmark-2026-05-17/benchmark-report.md) | Prior baseline: jina-v3 plus retrieval-rescue, 9/10 cat-24/409 at top-3 |
+| [`../2026-05-17--run--unspecified/benchmark-report.md`](../../../mcp-server/benchmarks/2026-05-17--run--unspecified/benchmark-report.md) | Prior baseline: jina-v3 plus retrieval-rescue, 9/10 cat-24/409 at top-3 |
 | [`../README.md`](../README.md) | Index of all mk-spec-memory benchmarks |
 
 ### Source packets
