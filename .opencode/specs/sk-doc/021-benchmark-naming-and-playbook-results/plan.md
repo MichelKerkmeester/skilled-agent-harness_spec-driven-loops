@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T11:48:33Z"
+    last_updated_at: "2026-07-27T12:18:18Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Remediated the three verified deep-review findings"
-    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
+    recent_action: "Fixed the two findings from the isolated re-run"
+    next_safe_action: "Decide whether the deep-review leaf timestamp fabrication warrants its own packet"
     blockers: []
     completion_pct: 100
 ---
@@ -45,7 +45,7 @@ The migration is gated by a link checker whose starting number was captured befo
 | Link integrity | `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs` | No worse than the captured baseline of 85 broken |
 | Lane C suite | `npx vitest run skill-benchmark/tests` | No new failures against the pre-change baseline |
 | Label validator | Direct exercise of `RUN_LABEL_RE` | Accepts the grammar, rejects dots, underscores, uppercase, and `baseline` |
-| End-to-end | A run with no `--outputs-dir` | Lands in the dated reports path with all six files and appends its index row |
+| End-to-end | A run with no `--outputs-dir` | Lands in the dated reports path with all seven files and appends its index row |
 | Packet | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | Exit 0 |
 <!-- /ANCHOR:quality-gates -->
 
@@ -74,7 +74,7 @@ was a separate act that could be skipped.
 
 | Surface | Change |
 |---|---|
-| `create-benchmark/SKILL.md` | Declares the grammar and the six-file report shape |
+| `create-benchmark/SKILL.md` | Declares the grammar and the seven-file report shape |
 | `create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md` | Run-label table replaced by the grammar |
 | `create-benchmark/scripts/archive-compiled-routing.cjs` | Label validator accepts the field separator |
 | `create-benchmark/scripts/render-serving-snapshot.cjs` | Derives paths rather than hardcoding labels |
@@ -99,7 +99,7 @@ was a separate act that could be skipped.
 |---|---|---|
 | 1 | Declare the grammar in `create-benchmark` | Both naming sections state one rule |
 | 2 | Unblock the validators | A field-separated label passes; the frozen anchor is still refused |
-| 3 | Build the writer and the storage contract | A run emits six files; the playbook skill documents where they go |
+| 3 | Build the writer and the storage contract | A run emits seven files; the playbook skill documents where they go |
 | 4 | Scaffold the tree for new skills | A freshly scaffolded skill has an index and a reports directory |
 | 5 | Automate the index row | Re-running into the same folder refreshes its row rather than duplicating it |
 

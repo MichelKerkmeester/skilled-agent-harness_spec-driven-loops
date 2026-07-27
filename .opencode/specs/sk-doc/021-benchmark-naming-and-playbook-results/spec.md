@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: One dated benchmark convention and a home for playbook results"
-description: "Converge 78 benchmark run folders across four incompatible naming styles onto a single dated grammar, and give manual-testing-playbook runs a curated report folder beside other benchmarks, with the six-file report shape and an auto-appended index."
+description: "Converge 78 benchmark run folders across four incompatible naming styles onto a single dated grammar, and give manual-testing-playbook runs a curated report folder beside other benchmarks, with the seven-file report shape and an auto-appended index."
 trigger_phrases:
   - "benchmark naming convention"
   - "playbook results storage"
@@ -12,10 +12,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T11:48:33Z"
+    last_updated_at: "2026-07-27T12:18:18Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Remediated the three verified deep-review findings"
-    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
+    recent_action: "Fixed the two findings from the isolated re-run"
+    next_safe_action: "Decide whether the deep-review leaf timestamp fabrication warrants its own packet"
     blockers: []
     completion_pct: 0
 ---
@@ -86,7 +86,7 @@ curated report folder with a real writer, and converge the existing tree onto it
 
 - The grammar `<YYYY-MM-DD>--<subject>--<variant>/`, declared in `create-benchmark`.
 - Relaxing the run-label validators that currently reject the field separator.
-- A results-storage contract for manual-testing-playbook runs, plus the writer that emits the six files.
+- A results-storage contract for manual-testing-playbook runs, plus the writer that emits the seven files.
 - Scaffolding `benchmark/` and `benchmark/reports/` for newly created skills.
 - Auto-appending an index row after each run.
 - Renaming all 78 run folders and repairing every inbound path reference repo-wide.
@@ -125,7 +125,7 @@ curated report folder with a real writer, and converge the existing tree onto it
 | REQ-001 | One grammar declared in the owning skill | Both naming sections state the same rule with no per-family exception beyond the frozen anchor |
 | REQ-002 | Validators accept the grammar | A field-separated label passes, dots and underscores and uppercase still fail |
 | REQ-003 | The frozen anchor keeps its name | The refusal that protects it stays in force |
-| REQ-004 | Playbook runs produce a durable artifact | A run with no explicit output path lands in the dated reports folder with all six files |
+| REQ-004 | Playbook runs produce a durable artifact | A run with no explicit output path lands in the dated reports folder with all seven files |
 | REQ-005 | No fabricated evidence | Backfilled files derive only from data present in the run record, and say so when a run captured none |
 
 ### P1 - Required (complete OR user-approved deferral)

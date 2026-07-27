@@ -50,6 +50,11 @@ const {
 
 const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode/skills
 
+// Ceiling on same-day reruns of one subject/variant before the operator is asked
+// to name a path. High enough never to be reached by real use, low enough that a
+// runaway caller fails loudly instead of spinning.
+const MAX_OUTPUT_ORDINAL = 100;
+
 // Where the last run() call actually wrote. The optional D4-R pass re-reads that
 // report, and a derived destination carries a timestamp it must not re-derive:
 // a run started before midnight and augmented after it would look in the wrong
@@ -143,16 +148,34 @@ function defaultOutputsDir({ skillRoot, subject, traceMode, env = process.env, n
   const base = runFolderName({ now, subject, variant });
 
   // Two runs of the same subject and variant on one day resolve to the same name,
-  // and the writes below are unconditional — so without a disambiguator the second
-  // run silently replaces the first run's evidence. A benchmark that overwrites its
-  // own history is worse than one that never ran, because the loss is invisible.
-  // The next free ordinal is taken rather than failing, since a derived default
-  // exists precisely so the operator does not have to invent a path.
-  let candidate = path.join(reportsDir, base);
-  for (let ordinal = 2; fs.existsSync(candidate) && ordinal <= 100; ordinal += 1) {
-    candidate = path.join(reportsDir, `${base}-${ordinal}`);
+  // and the writes that follow are unconditional — so without a disambiguator the
+  // second run silently replaces the first run's evidence. A benchmark that
+  // overwrites its own history is worse than one that never ran, because the loss
+  // is invisible.
+  //
+  // The folder is reserved by creating it rather than by testing for it: a
+  // check-then-create pair leaves a window in which two concurrent runs both see
+  // the name free, and the loser of that race overwrites the winner. A
+  // non-recursive mkdir fails with EEXIST atomically, so a losing run simply
+  // advances to the next ordinal. The next free ordinal is taken rather than
+  // failing outright, since a derived default exists precisely so the operator
+  // does not have to invent a path.
+  fs.mkdirSync(reportsDir, { recursive: true });
+  for (let ordinal = 1; ordinal <= MAX_OUTPUT_ORDINAL; ordinal += 1) {
+    const candidate = ordinal === 1
+      ? path.join(reportsDir, base)
+      : path.join(reportsDir, `${base}-${ordinal}`);
+    try {
+      fs.mkdirSync(candidate);
+      return candidate;
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err;
+    }
   }
-  return candidate;
+  throw new Error(
+    `run-skill-benchmark: no free output folder for "${base}" after ${MAX_OUTPUT_ORDINAL} attempts; `
+    + 'pass --outputs-dir to name one explicitly',
+  );
 }
 
 /**

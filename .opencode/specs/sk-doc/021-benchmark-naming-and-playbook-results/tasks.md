@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T11:48:33Z"
+    last_updated_at: "2026-07-27T12:18:18Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Remediated the three verified deep-review findings"
-    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
+    recent_action: "Fixed the two findings from the isolated re-run"
+    next_safe_action: "Decide whether the deep-review leaf timestamp fabrication warrants its own packet"
     blockers: []
     completion_pct: 100
 ---
@@ -67,7 +67,7 @@ _memory:
 - [x] T-016 Link checker returns to the captured baseline. Result: `85 broken`, identical set.
 - [x] T-017 Lane C suite shows no new failures. Result: 259 passed, the same 11 pre-existing failures.
 - [x] T-018 Label validator accepts the grammar and still refuses dots, underscores, uppercase and `baseline`.
-- [x] T-019 A run with no `--outputs-dir` lands in the dated reports path with six files and an index row.
+- [x] T-019 A run with no `--outputs-dir` lands in the dated reports path with seven files and an index row.
 - [x] T-020 No live reference to an old folder name survives. Result: 0 live, 1093 in historical records by design.
 - [x] T-021 Packet passes `validate.sh --strict`. Result: `Errors: 0`.
 <!-- /ANCHOR:phase-3 -->

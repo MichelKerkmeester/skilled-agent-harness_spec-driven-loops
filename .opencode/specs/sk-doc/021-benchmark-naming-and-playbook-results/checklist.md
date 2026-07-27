@@ -10,10 +10,10 @@ parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/021-benchmark-naming-and-playbook-results"
-    last_updated_at: "2026-07-27T11:48:33Z"
+    last_updated_at: "2026-07-27T12:18:18Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Remediated the three verified deep-review findings"
-    next_safe_action: "Re-run the deep review in an isolated worktree against the fixed state"
+    recent_action: "Fixed the two findings from the isolated re-run"
+    next_safe_action: "Decide whether the deep-review leaf timestamp fabrication warrants its own packet"
     blockers: []
     completion_pct: 100
 ---
@@ -158,7 +158,7 @@ references to a sibling hub.
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [x] CHK-033 [P0] The results-storage contract names the six files and the never-hand-edit rule. Evidence: `create-manual-testing-playbook/SKILL.md` section 4.
+- [x] CHK-033 [P0] The results-storage contract names the seven files and the never-hand-edit rule. Evidence: `create-manual-testing-playbook/SKILL.md` section 4.
 - [x] CHK-034 [P1] Deferred questions are recorded rather than silently dropped. Evidence: `spec.md` section 12.
 <!-- /ANCHOR:docs-verify -->
 
@@ -183,4 +183,6 @@ references to a sibling hub.
 - [x] CHK-036 [P1] The report-folder contract matches the writer. Evidence: the owning skill now states seven Lane C files with `skill-benchmark-report.{json,md}`, and names the promotion family's `benchmark-report.md` separately.
 - [x] CHK-037 [P1] Parity-baseline discovery survives the dated grammar. Evidence: `scanParityBaseline` falls back to newest-captured dated discovery instead of a single fixed label no writer produces.
 - [x] CHK-038 [P0] No regression from the remediation. Evidence: storage suite `11 passed`, lane suite `260 passed` against the same `11` pre-existing failures, link checker `85 broken`.
+- [x] CHK-039 [P1] Output allocation is concurrency-safe, not check-then-create. Evidence: three consecutive runs reserve `…-high`, `…-high-2`, `…-high-3` by non-recursive `mkdirSync`, which fails `EEXIST` atomically.
+- [x] CHK-040 [P1] The packet's own normative layout matches the writer. Evidence: `grep -rn "six files|six-file"` over the packet returns `1` hit, and that hit is the historical record of the defect rather than a current claim.
 <!-- /ANCHOR:review-remediation -->
