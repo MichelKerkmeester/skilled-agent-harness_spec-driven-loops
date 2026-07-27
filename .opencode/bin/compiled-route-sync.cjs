@@ -835,7 +835,11 @@ function build({
       published = true;
     } catch (installError) {
       if (!priorMoved) throw installError;
-      let rollbackRestored = false;
+      // One recovery attempt: put the prior closure back where it was. If even that
+      // fails, stop guessing — both the prior and the staged closure are still on
+      // disk under known names, so retain them and report what happened. These are
+      // sibling renames inside one writable directory; a cascade of them failing
+      // means something is wrong that another rename will not fix.
       try {
         renamePhase(
           rollbackRoot,
@@ -843,26 +847,17 @@ function build({
           'staging-install-rollback-restore',
           _testFailRename,
         );
-        rollbackRestored = true;
         priorMoved = false;
       } catch (restoreError) {
-        try {
-          renamePhase(
-            stagingRoot,
-            runtimeResolved,
-            'staging-install-fallback',
-            _testFailRename,
-          );
-          published = true;
-          retainLock = true;
-        } catch (fallbackError) {
-          retainLock = true;
-          retainStaging = true;
-          priorMoved = false;
-          throw new Error(`staging installation failed; rollback and staging remain recoverable: ${installError.message}; ${restoreError.message}; ${fallbackError.message}`);
-        }
+        // Leave `priorMoved` set so the finally-block net reinstates the prior
+        // closure: without a serving root every hub loses compiled routing, and
+        // that net is the last thing standing between a failed swap and an empty
+        // runtime path.
+        retainLock = true;
+        retainStaging = true;
+        throw new Error(`staging installation failed and the prior closure could not be restored; both roots remain on disk: ${installError.message}; ${restoreError.message}`);
       }
-      if (rollbackRestored) throw installError;
+      throw installError;
     }
 
     try {
@@ -872,29 +867,15 @@ function build({
       fs.renameSync(runtimeResolved, failedRoot);
       published = false;
       if (priorMoved) {
+        // One recovery attempt, mirroring the install path: reinstate the prior
+        // closure. If that fails, retain the lock and leave the displaced root under
+        // its `.failed-<id>` name so both closures stay recoverable by hand.
         try {
           renamePhase(rollbackRoot, runtimeResolved, 'post-publish-restore', _testFailRename);
           priorMoved = false;
         } catch (restoreError) {
-          try {
-            renamePhase(failedRoot, runtimeResolved, 'post-publish-new-restore', _testFailRename);
-            published = true;
-            priorMoved = false;
-            retainLock = true;
-          } catch (newRootRestoreError) {
-            try {
-              fs.renameSync(rollbackRoot, runtimeResolved);
-              published = false;
-              priorMoved = false;
-              if (fs.existsSync(failedRoot)) fs.rmSync(failedRoot, { recursive: true, force: true });
-            } catch (fallbackError) {
-              retainLock = true;
-              priorMoved = false;
-              throw new Error(`post-publish verification failed; neither closure could be restored: ${restoreError.message}; ${newRootRestoreError.message}; ${fallbackError.message}`);
-            }
-            throw new Error(`post-publish verification failed; the new root restore failed, so the verified prior root was reinstalled: ${newRootRestoreError.message}`);
-          }
-          throw new Error(`post-publish verification failed; rollback restoration failed, so the verified new root was restored and the rollback retained: ${restoreError.message}`);
+          retainLock = true;
+          throw new Error(`post-publish verification failed and the prior closure could not be restored; the displaced root is retained as ${path.basename(failedRoot)}: ${error.message}; ${restoreError.message}`);
         }
       }
       if (fs.existsSync(failedRoot)) fs.rmSync(failedRoot, { recursive: true, force: true });

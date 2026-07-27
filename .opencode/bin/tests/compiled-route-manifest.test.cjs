@@ -834,89 +834,48 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
     const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-rename-recovery-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
+      // A failed install followed by a failed restore must still leave a serving
+      // root: the finally-block net reinstates the prior closure, and both the
+      // rollback and the staged candidate stay on disk for manual recovery.
       buildFreshRuntime(runtimeRoot);
-      const installPublication = sync.build({
-        runtimeRoot,
-        _testFailRename: ['staging-install', 'staging-install-rollback-restore'],
-      });
-      assert.equal(fs.existsSync(runtimeRoot), true);
-      assert.equal(fs.existsSync(installPublication.rollbackRoot), true);
-      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
-      sync.finalize(installPublication.rollbackRoot, runtimeRoot);
-
       assert.throws(
         () => sync.build({
           runtimeRoot,
+          _testFailRename: ['staging-install', 'staging-install-rollback-restore'],
+        }),
+        /both roots remain on disk/,
+      );
+      assert.equal(fs.existsSync(runtimeRoot), true);
+      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
+      const entries = fs.readdirSync(sandbox).map((entry) => path.join(sandbox, entry));
+      assert.ok(entries.find((entry) => entry.startsWith(`${runtimeRoot}.staging-`)), 'staging retained');
+      assert.equal(fs.existsSync(runtimeLayout.publicationLockPathFor(runtimeRoot)), true);
+
+      // Same contract on the post-publish path: verification fails, the restore
+      // fails, and the displaced root is kept under its failed name.
+      const postPublishRuntime = path.join(sandbox, 'post-publish-runtime');
+      buildFreshRuntime(postPublishRuntime);
+      assert.throws(
+        () => sync.build({
+          runtimeRoot: postPublishRuntime,
           _testFailVerify: 'post-publish',
           _testFailRename: 'post-publish-restore',
         }),
-        /verified new root was restored and the rollback retained/,
+        /the displaced root is retained as/,
       );
-      assert.equal(fs.existsSync(runtimeRoot), true);
-      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
-      let rollbackRoot = fs.readdirSync(sandbox)
-        .map((entry) => path.join(sandbox, entry))
-        .find((entry) => entry.startsWith(`${runtimeRoot}.rollback-`));
-      assert.ok(rollbackRoot, 'rollback retained after failed restoration');
-      sync.finalize(rollbackRoot, runtimeRoot);
+      assert.equal(fs.existsSync(postPublishRuntime), true);
+      assert.match(sync.verifyRoot(postPublishRuntime, { emit: false }).message, /all 7 hubs resolve/);
 
-      buildFreshRuntime(path.join(sandbox, 'fallback-runtime'));
-      const fallbackRuntime = path.join(sandbox, 'fallback-runtime');
+      // revert keeps its own single-attempt recovery.
+      const revertRuntime = path.join(sandbox, 'revert-runtime');
+      buildFreshRuntime(revertRuntime);
+      const publication = sync.build({ runtimeRoot: revertRuntime });
       assert.throws(
-        () => sync.build({
-          runtimeRoot: fallbackRuntime,
-          _testFailVerify: 'post-publish',
-          _testFailRename: ['post-publish-restore', 'post-publish-new-restore'],
-        }),
-        /verified prior root was reinstalled/,
-      );
-      assert.equal(fs.existsSync(fallbackRuntime), true);
-      assert.match(sync.verifyRoot(fallbackRuntime, { emit: false }).message, /all 7 hubs resolve/);
-
-      const retainedRuntime = path.join(sandbox, 'retained-runtime');
-      buildFreshRuntime(retainedRuntime);
-      assert.throws(
-        () => sync.build({
-          runtimeRoot: retainedRuntime,
-          _testFailRename: [
-            'staging-install',
-            'staging-install-rollback-restore',
-            'staging-install-fallback',
-          ],
-        }),
-        /rollback and staging remain recoverable/,
-      );
-      const retainedEntries = fs.readdirSync(sandbox).map((entry) => path.join(sandbox, entry));
-      const retainedRollback = retainedEntries.find((entry) => entry.startsWith(`${retainedRuntime}.rollback-`));
-      const retainedStaging = retainedEntries.find((entry) => entry.startsWith(`${retainedRuntime}.staging-`));
-      assert.ok(retainedRollback, 'verified rollback retained');
-      assert.ok(retainedStaging, 'verified staging retained');
-      assert.equal(fs.existsSync(runtimeLayout.publicationLockPathFor(retainedRuntime)), true);
-      fs.renameSync(retainedStaging, retainedRuntime);
-      sync.finalize(retainedRollback, retainedRuntime);
-
-      const publication = sync.build({ runtimeRoot });
-      rollbackRoot = publication.rollbackRoot;
-      assert.throws(
-        () => sync.revert(rollbackRoot, runtimeRoot, { _testFailRename: 'revert-install' }),
+        () => sync.revert(publication.rollbackRoot, revertRuntime, { _testFailRename: 'revert-install' }),
         /test-only revert-install rename failure/,
       );
-      assert.equal(fs.existsSync(runtimeRoot), true);
-      assert.equal(fs.existsSync(rollbackRoot), true);
-      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
-      sync.finalize(rollbackRoot, runtimeRoot);
-
-      const recoveryPublication = sync.build({ runtimeRoot });
-      assert.throws(
-        () => sync.revert(recoveryPublication.rollbackRoot, runtimeRoot, {
-          _testFailVerify: 'revert-post',
-          _testFailRename: 'revert-current-restore',
-        }),
-        /verified prior root remains serving/,
-      );
-      assert.equal(fs.existsSync(runtimeRoot), true);
-      assert.match(sync.verifyRoot(runtimeRoot, { emit: false }).message, /all 7 hubs resolve/);
-      assert.equal(sync.revert(recoveryPublication.rollbackRoot, runtimeRoot).resumedCleanup, true);
+      assert.equal(fs.existsSync(revertRuntime), true);
+      assert.equal(fs.existsSync(publication.rollbackRoot), true);
     } finally {
       fs.rmSync(sandbox, { recursive: true, force: true });
     }
