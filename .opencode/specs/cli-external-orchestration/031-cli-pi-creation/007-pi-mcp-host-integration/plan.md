@@ -7,16 +7,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration"
-    last_updated_at: "2026-07-27T10:22:00Z"
+    last_updated_at: "2026-07-27T14:20:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Docs re-fetched live: stdio config now documented, narrowing REQ-002's scope"
-    next_safe_action: "Commit as Blocked; a future execution phase installs pi-mcp-extension and runs Phase 1"
-    blockers: ["Installing pi-mcp-extension is out of this phase's own Hard Constraint (planning only); deferred to a future execution phase"]
-    key_files: ["implementation-summary.md"]
+    recent_action: "Extension installed, stdio live-confirmed, Tier1/Tier2 .pi/mcp.json authored and committed"
+    next_safe_action: "None -- this phase is Complete"
+    blockers: []
+    key_files: [".pi/mcp.json", "implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-creation-phase-007-planning", parent_session_id: null }
-    completion_pct: 60
-    open_questions: ["Which mechanism gives a safe Tier 2 opt-in for .pi/mcp.json specifically: project/global split, or a gitignored project-local file?"]
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Tier 2 mechanism: lifecycle:lazy inside the same committed .pi/mcp.json, no separate gitignored file or global config needed.", "Deny-by-default enforcement point: Pi core's --tools/--exclude-tools flags, confirmed to apply to extension-bridged tools identically to built-ins."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Pi MCP-host integration (pi-mcp-extension, third-party)
@@ -62,7 +62,7 @@ Plan the translation of `.mcp.json`'s 5 native stdio servers into `.pi/mcp.json`
 - [x] (For this planning phase only) `spec.md`/`plan.md`/`tasks.md`/`checklist.md` fully authored with concrete, falsifiable acceptance criteria. [EVIDENCE: all 4 docs authored and closed out]
 - [x] Every claim sourced from pi.dev documentation rather than live verification is explicitly marked as such. [EVIDENCE: `rg -c "UNCONFIRMED\|per pi.dev docs" spec.md plan.md`]
 - [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` passes for this phase folder once authored. [EVIDENCE: `implementation-summary.md` Verification table]
-- [B] REQ-002's live stdio-connection confirmation (installing pi-mcp-extension, authoring a single-entry `.pi/mcp.json` probe) [DEFERRED: out of this phase's own scope per its Hard Constraint - planning only, no `pi install` command run - a future execution phase performs this step]
+- [x] REQ-002's live stdio-connection confirmation [EVIDENCE: `implementation-summary.md` -- `pi install npm:pi-mcp-extension -l --approve` then a single-entry `sequential_thinking` probe connected live, tool discovered]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,7 +71,7 @@ Plan the translation of `.mcp.json`'s 5 native stdio servers into `.pi/mcp.json`
 ## 3. ARCHITECTURE
 
 ### Pattern
-Two-tier host config, mirroring `029/009`'s design intent: a committed, minimal, no-mutation-by-default tier, plus a maintainer-opt-in tier that is never silently inherited. The concrete file mechanics differ from Devin's, because Pi's documented config model is a **project/global split** (`.pi/mcp.json` overrides `~/.pi/agent/mcp.json`, "nested objects are merged" per the settings docs) rather than Devin's **committed/gitignored-local split** (`config.json` + `config.local.json` in the same directory). Which of these two shapes actually gives a safe Tier-2 opt-in for `.pi/mcp.json` specifically (not just `.pi/settings.json`) is an open question this phase's own live check must resolve — it is not assumed to carry over unchanged from Devin's precedent.
+Two-tier host config, RESOLVED as: a single committed `.pi/mcp.json` where every server carries its own `lifecycle` field — `"eager"` (Tier 1, auto-starts) for servers with no known mutation-capable tool, `"lazy"` (Tier 2, requires an explicit maintainer `/mcp:start`) for the 2 servers that do. This differs from both the plan's original project/global-split hypothesis AND Devin's committed/gitignored-local-split precedent: pi-mcp-extension's real, confirmed mechanism is per-server `lifecycle`, live-verified to work (the 2 lazy servers correctly never auto-connected). The deny-by-default enforcement point is Pi core's `--tools`/`--exclude-tools` CLI flags (confirmed via `pi --help` to apply to extension-bridged tools identically to built-ins) — a dispatch-time control, layered on top of the config-time `lifecycle` gate.
 
 ### Key Components
 - **pi-mcp-extension** (third-party, `pi install npm:pi-mcp-extension`): the only reason `.pi/mcp.json` is read at all. Without it, Pi ignores MCP configuration entirely — this is not an optional add-on to a first-party feature, it *is* the feature.
