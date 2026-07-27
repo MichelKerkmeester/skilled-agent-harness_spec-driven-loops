@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "summary",
-      "impl summary core"
+      "dead code removal summary",
+      "017 phase 003 summary"
     ],
     "key_topics": [
       "dead",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Scripts, npm entries, dependencies, CLI subcommands and config references exist with no reachable caller or with targets that no longer exist",
     "created_at": "2026-07-27T08:41:09Z",
-    "last_save_at": "2026-07-27T08:47:44.151Z",
+    "last_save_at": "2026-07-27T14:24:44.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3253afb3da0beebdf8fb2246fe6fb9b8f91dccfccdaf48527caa4b34583d394",
+    "source_fingerprint": "sha256:d21305ea4be1202fa925cb461acd65502756f91f4b7c9e79db6a16b4e4a42760",
     "source_doc_hashes": {
       "spec.md": "f788594d04173258ecf3e22c97f75a113bae14b316c2e6ae17103e429b8cbff9",
       "plan.md": "a7442e21b6abe2b310a59619775bba9f2aaa05c33233c9f61b1c54d50908cf51",
       "tasks.md": "86a2fc179a74e77b42607365d3939246040eeb1a26f8300c2a3e57b5a76a732a",
-      "implementation-summary.md": "9808c1e2174dcf047be2494ca9df79a91082158229c04d30f9150c6f9e7b0592"
+      "implementation-summary.md": "c03cfdee5f78964ea59aee0e0ba7bb86c1b0f0cc530e7bbdcfab2f67bd1910ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

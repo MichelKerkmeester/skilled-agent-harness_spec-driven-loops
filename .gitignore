@@ -21,6 +21,7 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 .env
 .env.*
+!.env.example
 .env.*.local
 .env.local
 .env.pre-pat-removal.bak
