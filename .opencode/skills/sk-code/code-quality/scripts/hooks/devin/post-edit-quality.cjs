@@ -1,21 +1,16 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin PostToolUse Quality Check                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Run the edited file's quality checkers, warn-only.              ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PostToolUse Quality Check
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // PostToolUse quality-check hook for Devin CLI -- the Devin sibling of the
 // Codex/Claude post-edit quality hook. Reads the hook's stdin JSON, resolves the
 // edited file's checker via the shared post-edit-router core, and runs it under
 // the hook budget; separately preserves the dist-staleness coverage. Warn-only,
 // fail-open: a checker bug, a missing binary, or a malformed payload must never
 // block the tool call this hook observes.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────

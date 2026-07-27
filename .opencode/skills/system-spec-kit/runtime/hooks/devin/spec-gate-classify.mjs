@@ -1,20 +1,15 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin UserPromptSubmit Spec Gate Classify                     ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Surface the spec-folder question on a mutating turn.            ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin UserPromptSubmit Spec Gate Classify
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // UserPromptSubmit classify hook for Devin CLI -- the Devin sibling of the Codex
 // spec-gate-classify hook. Runs the shared spec-gate core against each user turn:
 // opens the session gate and surfaces the bounded Gate-3 question as
 // additionalContext when the turn triggers file-mutation intent, or parses an
 // answer to an already-open gate. Advisory only -- no deny capability.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -50,8 +45,15 @@ async function main() {
   }
 
   const prompt = typeof payload?.prompt === 'string' ? payload.prompt : '';
-  const sessionID = payload?.session_id;
-  const projectDir = payload?.cwd || process.env.DEVIN_PROJECT_DIR || process.cwd();
+  const sessionID = typeof payload?.session_id === 'string' ? payload.session_id : '';
+  if (sessionID.trim().length === 0) return approve();
+  // Match the enforce consumer's cwd resolution exactly: a whitespace-only
+  // root is treated as absent, so producer and consumer derive the same state
+  // directory for every payload shape.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
 
   const result = guardCore.classifyIntent({ prompt, sessionID, projectDir, env: process.env });
 

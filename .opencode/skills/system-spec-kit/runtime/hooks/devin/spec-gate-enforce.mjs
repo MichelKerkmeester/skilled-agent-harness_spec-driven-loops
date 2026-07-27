@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin PreToolUse Spec Gate Enforce                            ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Deny an unscoped mutation while the spec gate is open.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PreToolUse Spec Gate Enforce
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // PreToolUse enforce hook for Devin CLI -- the Devin sibling of the Claude/Codex
 // spec-gate-enforce hook. Intercepts a Devin tool call BEFORE it runs and
 // evaluates the shared spec-gate core's evaluateMutation() policy. A deny emits
@@ -14,12 +15,6 @@
 // Claude hook, the OpenCode plugin, and the Codex hook -- no core change.
 // FAILS OPEN -- any missing payload or internal error approves silently, so a
 // bug here never blocks correctly-scoped work.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -72,9 +67,17 @@ async function main() {
   const tool = DEVIN_TOOL_MAP[String(payload?.tool_name || '').toLowerCase()];
   if (!tool) return approve();
 
-  const projectDir = payload?.cwd || process.env.DEVIN_PROJECT_DIR || process.cwd();
+  const sessionID = typeof payload?.session_id === 'string' ? payload.session_id : '';
+  if (sessionID.trim().length === 0) return approve();
+
+  // Match the classify producer's cwd resolution exactly: a whitespace-only
+  // root is treated as absent, so producer and consumer derive the same state
+  // directory for every payload shape.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
   const filePath = filePathFrom(payload?.tool_input);
-  const sessionID = payload?.session_id;
   const result = guardCore.evaluateMutation({
     tool,
     filePath,

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin PostToolUse Code Graph Freshness                        ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Queue an incremental rescan after an edit lands.                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PostToolUse Code Graph Freshness
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // PostToolUse code-graph freshness guard for Devin CLI -- the Devin sibling of
 // the Codex/Claude code-graph-freshness hook. After an edit lands, it evaluates
 // the same runtime-neutral policy (debounce -> empty gate -> warm probe ->
@@ -12,12 +13,6 @@
 // code_graph_scan. The primary signal is the shared append-only freshness log,
 // not stdout; this hook never writes hookSpecificOutput. FAILS OPEN -- any
 // missing payload or internal error exits 0 silently.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -95,7 +90,11 @@ async function main() {
 
   if (!DEVIN_EDIT_TOOLS.has(String(payload?.tool_name || '').toLowerCase())) return exitOpen();
 
-  const projectDir = payload?.cwd || process.env.DEVIN_PROJECT_DIR || process.cwd();
+  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
   const filePath = filePathFrom(payload?.tool_input, projectDir);
   const sessionID = payload?.session_id || '__unknown-session__';
 

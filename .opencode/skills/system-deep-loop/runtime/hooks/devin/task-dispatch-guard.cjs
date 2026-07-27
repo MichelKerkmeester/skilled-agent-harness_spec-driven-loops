@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin PreToolUse Subagent Dispatch Guard                      ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Reject a deep-loop mode mismatch before the dispatch runs.      ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PreToolUse Subagent Dispatch Guard
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // PreToolUse(run_subagent) deep-loop dispatch guard for Devin CLI -- a deliberate
 // divergence from the Codex precedent, not a port. Codex folds this concern into
 // its exec-shape recognizer because Codex has no native subagent-dispatch tool.
@@ -13,12 +14,6 @@
 // the same runtime-neutral policy (Deep Route mode mismatch + loop-like repeated
 // hand-offs to command-owned loop executors) through the shared dispatch-guard
 // core. FAILS OPEN -- any missing payload or internal error approves silently.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -57,7 +52,11 @@ async function main() {
   if (String(payload?.tool_name || '').toLowerCase() !== 'run_subagent') return approve();
 
   const toolInput = payload?.tool_input || {};
-  const projectDir = payload?.cwd || process.env.DEVIN_PROJECT_DIR || process.cwd();
+  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
 
   const result = guardCore.evaluateDispatch({
     subagentType: toolInput.subagent_type || toolInput.subagentType || toolInput.agent_type || toolInput.agentType,

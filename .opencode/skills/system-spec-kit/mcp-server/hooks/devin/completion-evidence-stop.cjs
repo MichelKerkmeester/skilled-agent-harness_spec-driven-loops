@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin Stop Completion Evidence Sentinel                       ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Advise when a completion claim lacks packet evidence.           ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin Stop Completion Evidence Sentinel
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // Stop hook for Devin CLI -- the Devin sibling of the Codex/Claude completion-
 // evidence Stop sentinel. Plain, directly-runnable .cjs (no build step) that
 // reads its own Stop payload, resolves the active packet from the shared
@@ -11,12 +12,6 @@
 // completion-evidence core. NEVER emits a block/continue decision -- advisory
 // only, so a bug or a false-positive claim can never force continuation. Fails
 // open on any missing payload or internal error.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -93,7 +88,12 @@ async function main() {
   const claimText = typeof payload?.last_assistant_message === 'string' ? payload.last_assistant_message : '';
   if (!sessionId || !sentinelCore.detectCompletionClaim(claimText)) return approve();
 
-  const projectDir = process.cwd();
+  // Match the other 9 devin adapters: prefer payload cwd, then DEVIN_PROJECT_DIR,
+  // then process.cwd(). A whitespace-only cwd is treated as absent.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
   const specFolder = readLastSpecFolder(projectDir, sessionId);
   if (!specFolder) return approve();
 

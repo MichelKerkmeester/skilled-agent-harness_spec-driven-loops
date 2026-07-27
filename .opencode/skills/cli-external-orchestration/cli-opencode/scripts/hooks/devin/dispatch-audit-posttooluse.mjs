@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin PostToolUse Dispatch Audit                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Append a redacted audit line for a completed dispatch.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PostToolUse Dispatch Audit
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // PostToolUse(exec) CLI dispatch audit trail for Devin CLI -- the Devin sibling of
 // the Codex/Claude dispatch-audit hook. Observes a completed exec call, recognizes
 // an `opencode run` / `claude -p` / `codex exec -p` dispatch shape, and appends
@@ -11,12 +12,6 @@
 // primitives, tagged runtime:'devin'. Strictly observational -- never emits a
 // permissionDecision. FAILS OPEN -- any missing payload, parse error, or
 // audit-path failure exits 0 with no output.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -69,7 +64,11 @@ async function main() {
   const shape = DISPATCH_SHAPES.find((candidate) => candidate.test.test(command));
   if (!shape) return done();
 
-  const projectDir = payload?.cwd || process.env.DEVIN_PROJECT_DIR || process.cwd();
+  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
   const logPath = join(projectDir, DEFAULT_LOG_RELATIVE_PATH);
 
   const toolResponse = payload?.tool_response && typeof payload.tool_response === 'object'

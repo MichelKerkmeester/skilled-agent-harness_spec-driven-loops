@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin PreToolUse Dispatch Preflight                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Lint a CLI dispatch command against the skill's hard rules.     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin PreToolUse Dispatch Preflight
+// ───────────────────────────────────────────────────────────────────
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
 // PreToolUse(exec) preflight for CLI dispatch under Devin CLI -- the Devin sibling
 // of the Codex/Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` / `codex exec -p` command BEFORE it spawns on the
@@ -11,12 +12,6 @@
 // `hard_rules:` frontmatter). A `block`-severity violation denies with the rule's
 // reason; `warn` violations attach an advisory and let the normal permission flow
 // proceed. FAILS OPEN -- any internal error approves silently, never blocks.
-// STATUS: LIVE. Verified firing 2026-07-24 against devin 3000.2.17 under
-// `devin -p`: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and
-// SessionEnd all fire, and the real adapters' output reaches the model. An
-// earlier revision of this file claimed the hook system was dormant; that was a
-// registration-schema bug in .devin/hooks.v1.json (events must be top-level with
-// nested {matcher, hooks:[...]} entries), not a limitation of the CLI.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -61,7 +56,11 @@ async function main() {
   const match = DISPATCH_SHAPES.find((d) => d.test.test(command));
   if (!match) return approve();
 
-  const projectDir = payload?.cwd || process.env.DEVIN_PROJECT_DIR || process.cwd();
+  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
   const skillMd = path.join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md');
   const rules = readHardRules(skillMd);
   if (rules.length === 0) return approve(); // nothing declared -> nothing to enforce
