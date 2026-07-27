@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout"
-    last_updated_at: "2026-07-27T13:59:00Z"
+    last_updated_at: "2026-07-27T16:50:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed packet: cli-pi+devin added to 5 doc surfaces, leaf-manifest fixed, validate clean"
+    recent_action: "Closed at 11 phases; successor field updated post-hoc for the 012/013 extension"
     next_safe_action: "None -- this is the terminal phase; packet 031-cli-pi-creation is closed"
     blockers: []
     key_files: [".opencode/skills/cli-external-orchestration/README.md", "README.md", ".opencode/skills/README.md", ".opencode/agents/deep-improvement.md", ".claude/agents/deep-improvement.md"]
@@ -51,10 +51,10 @@ FAILURE MODES:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `cli-external-orchestration/031-cli-pi-creation` |
-| **Phase** | 11 of 11 |
+| **Phase** | 11 of 13 (originally 11 of 11; the packet was extended post-hoc with `012`/`013` at operator request after this phase closed) |
 | **Predecessor** | `../010-pi-manual-testing-playbook/spec.md` |
-| **Successor** | None (final phase) |
-| **Handoff Criteria** | **Entry (from 010)**: the playbook's scenario coverage is judged proportional to the sibling CLIs' playbooks (both in count and category breadth) -- reviewed, not re-litigated, at the start of this phase. **Exit (terminal)**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/cli-external-orchestration/031-cli-pi-creation --recursive --strict` returns `Errors: 0` across the whole packet -- this is the packet's final gate, there is no successor phase to hand off to. |
+| **Successor** | `../012-pi-runtime-compatibility/spec.md` (added post-hoc; this phase's own scope stayed the original 11-phase governance closeout) |
+| **Handoff Criteria** | **Entry (from 010)**: the playbook's scenario coverage is judged proportional to the sibling CLIs' playbooks (both in count and category breadth) -- reviewed, not re-litigated, at the start of this phase. **Exit (at the time this phase closed)**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/cli-external-orchestration/031-cli-pi-creation --recursive --strict` returned `Errors: 0` across the 11-phase packet -- this was the packet's terminal gate at that time; the parent packet's own final gate now covers all 13 phases after the post-hoc extension. |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
-  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
   "parent_id": "cli-external-orchestration/031-cli-pi-creation",
   "children_ids": [],
   "manual": {
@@ -11,62 +11,38 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cli-pi closeout",
-      "cli-pi governance docs",
-      "cli-pi agent roster",
-      "pi docs and closeout",
-      "cli-pi closeout plan",
-      "pi governance plan",
-      "cli-pi closeout tasks",
-      "pi governance tasks",
-      "cli-pi closeout checklist",
-      "pi governance checklist",
-      "cli-pi closeout summary",
-      "pi governance docs summary"
+      "pi manual testing playbook authoring",
+      "cli-pi playbook build",
+      "pi manual testing playbook authoring plan",
+      "pi manual testing playbook authoring tasks",
+      "pi manual testing playbook authoring checklist",
+      "pi manual testing playbook authoring summary"
     ],
     "key_topics": [
+      "manual",
+      "testing",
+      "playbook",
+      "authoring",
       "cli-pi",
-      "closeout",
-      "governance",
-      "docs",
-      "agent",
-      "roster",
       "plan",
       "tasks",
       "checklist",
       "summary",
-      "6th",
-      "cli"
+      "manual-testing-playbook",
+      "contains",
+      "only"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/README.md",
-      ".opencode/skills/README.md",
-      ".opencode/agents/deep-improvement.md",
-      ".claude/agents/deep-improvement.md",
       "spec.md",
-      ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+      "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "plan.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-improvement.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,9 +50,9 @@
         "source": "derived"
       },
       {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -98,21 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
         "source": "derived"
       },
       {
@@ -164,13 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Grep",
+        "name": "Overview Author",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Docs",
+        "name": "Pattern Mirror",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -182,9 +146,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow No",
+        "name": "Data Flow Phase",
         "kind": "proper_noun",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,15 +164,33 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`) already appear across agent rosters, governance docs, and hub-level catalogs",
-    "created_at": "2026-07-27T06:48:18.460Z",
-    "last_save_at": "2026-07-27T16:48:39.622Z",
+    "causal_summary": "`cli-pi/manual-testing-playbook/` contains only a `.gitkeep` today",
+    "created_at": "2026-07-27T16:34:14.380Z",
+    "last_save_at": "2026-07-27T16:34:14.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a08fa9bd3c94f116758f3f3360563b22238dc002b31f452f62b71db3c659747",
+    "source_fingerprint": "sha256:701ccc53e25023329bf1233183def48785bd14b9aa0ece8689b875e6194fc295",
     "source_doc_hashes": {
-      "spec.md": "52360b4141d9453b3a52b1b5bbc10ec74a69afe854697eaf1b6fc1f38130faf8",
-      "plan.md": "4f283dbe95f1977b715f99a1c12f4b26259678feb4e8525a40c2dfbc0987654f",
-      "tasks.md": "31308eb2092f217ffd0eca9c788d296f341d7e1e75ef33bf805e174d0802247f",
-      "checklist.md": "9295ac3383e58817abe3d754d432b2a230b1170c520c463b6c5e02ab7235784c",
-      "implementation-summary.md": "c2662df69232535857ef0ed86f3dce207fe94d4bfc882e90caf16ab4d54d0b88"
+      "spec.md": "d30d7d4a4237bdf53ccfcfe36a5ae0bdb0b063358767c8af3e0675fc5a99a0e4",
+      "plan.md": "3df46b6d81e12060825d6b9dc274aa50a0d6b3651379d876567402ecfc29ffe1",
+      "tasks.md": "c884aa1834481510da1db7c9cd88be31f2be838b87e1c7b7c3d4f03aa2d4c3c2",
+      "checklist.md": "a4b5a1ecc7a590b9fe539cf21e45ee1870c82dc87667410534479b8bec7cc56a",
+      "implementation-summary.md": "225d22ef9cd03a98c03e2659c0c632d29dc9fe9f479c9c61fa0a3dcc44689376"
     },
     "last_active_child_id": null,
     "last_active_at": null
