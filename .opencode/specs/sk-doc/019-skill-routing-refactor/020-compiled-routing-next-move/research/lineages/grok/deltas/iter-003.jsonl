@@ -1,0 +1,1 @@
+{"type":"iteration-delta","run":3,"focus":"Q3 freshness guard enforcement and exception semantics","findingsCount":7,"answeredQuestions":["q3-freshness-guard-placement"],"ruledOut":["authoritative pre-commit blocking","authoritative pre-push blocking","session hook as sole blocking gate"],"newInfoRatio":1.0}
