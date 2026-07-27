@@ -143,7 +143,7 @@ Reuse the Lane C skill-benchmark engine as-is (it already scores Type-1 intra-ro
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| **P0** | Drift reconciliation — fix gold↔disk path drift; capture the `sk-code/benchmark/router-baseline/` invariant | ✅ Done |
+| **P0** | Drift reconciliation — fix gold↔disk path drift; capture the `sk-code/benchmark/2026-07-10--router-baseline--router/` invariant | ✅ Done |
 | **P1** | Architecture ADR — ratify the six decisions; enumerate the parent-owned-tier allowlist (this packet's `decision-record.md`) | ✅ Done |
 | **P2** | Per-child router creation ×8 — webflow/opencode inline slice, code-quality thin, code-review tighten, deep-ai-council normalize, deep-{research,review,improvement} verify parseable | ✅ Done (8/8) |
 | **P3** | Parent projection + drift guard (sk-code) — rewrite parent `RESOURCE_MAP` as the union; extend the guard | ✅ Done |

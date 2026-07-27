@@ -105,7 +105,7 @@ Deterministic router-replay over the 3 positive scenarios (D2 floors, surfaceMat
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The 011 research recommendation (the design) and the live benchmark baseline (`sk-code/benchmark/live-final/`) for the D2 floors.
+The 011 research recommendation (the design) and the live benchmark baseline (`sk-code/benchmark/2026-06-01--live-final--live/`) for the D2 floors.
 <!-- /ANCHOR:dependencies -->
 
 ---

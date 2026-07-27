@@ -70,7 +70,7 @@ Bring the playbook, skill-level advisor descriptor, and graph metadata into sync
 - Sync the skill-level advisor descriptor `description.json` (description, keywords, trigger_examples, `modes[]`, `backend_kinds[]`) to include `design-mcp-open-design` / `od-cli-transport`.
 - Sync `graph-metadata.json`'s `causal_summary` and `intent_signals` to mention the sixth mode and its transport nature.
 - Re-run the router-mode skill-benchmark (fast, deterministic) to confirm the new scenario is picked up and D5 connectivity stays clean.
-- Re-run the live-mode skill-benchmark (dispatches through `cli-opencode`) for a fresh whole-hub baseline, saved as `benchmark/after-018-transport-integration/`.
+- Re-run the live-mode skill-benchmark (dispatches through `cli-opencode`) for a fresh whole-hub baseline, saved as `benchmark/2026-07-07--after-018-transport-integration--live/`.
 
 ### Out of Scope
 
@@ -89,7 +89,7 @@ Bring the playbook, skill-level advisor descriptor, and graph metadata into sync
 | `.opencode/skills/sk-design/README.md` | Edit | Playbook description line (also fixes a pre-existing separate staleness: "24-scenario" when the playbook already declared 32) |
 | `.opencode/skills/sk-design/description.json` | Edit | description, keywords, trigger_examples, modes[], backend_kinds[]; version bump |
 | `.opencode/skills/sk-design/graph-metadata.json` | Edit | causal_summary, intent_signals |
-| `.opencode/skills/sk-design/benchmark/after-018-transport-integration/{report.json,report.md}` | Create | Fresh live-mode benchmark baseline |
+| `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/{report.json,report.md}` | Create | Fresh live-mode benchmark baseline |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,7 +103,7 @@ Bring the playbook, skill-level advisor descriptor, and graph metadata into sync
 |----|-------------|---------------------|
 | REQ-001 | New `MR-007` scenario correctly exercises the transport mode | Router-mode benchmark scenario count increases from 24 to 25; MR-007 appears in the report |
 | REQ-002 | Router-mode benchmark still passes after the playbook changes | Verdict PASS, D5 connectivity 100/100 |
-| REQ-003 | Live-mode benchmark produces a fresh baseline reflecting the six-mode hub | `benchmark/after-018-transport-integration/report.json` written with a verdict |
+| REQ-003 | Live-mode benchmark produces a fresh baseline reflecting the six-mode hub | `benchmark/2026-07-07--after-018-transport-integration--live/report.json` written with a verdict |
 
 ### P1 - Required (complete OR user-approved deferral)
 

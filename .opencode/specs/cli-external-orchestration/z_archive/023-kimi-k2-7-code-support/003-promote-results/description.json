@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support/003-promote-results",
-  "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/006-kimi-k2.7-prompt-framework/`",
+  "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`",
   "keywords": [
     "phase",
     "runs",

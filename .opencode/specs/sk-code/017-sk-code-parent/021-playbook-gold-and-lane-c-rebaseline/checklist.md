@@ -70,7 +70,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-024 [P0] Benchmark regression recovered [EVIDENCE: regenerated router-final recovers the pre-regression historical baseline after the three broken components had dropped the benchmark to 47 FAIL]
-- [x] CHK-025 [P0] Regenerated outputs are scoped to router-final [EVIDENCE: fresh `benchmark/router-final/skill-benchmark-report.{json,md}` recorded the deterministic router-mode run while frozen `benchmark/baseline/` stayed untouched]
+- [x] CHK-025 [P0] Regenerated outputs are scoped to router-final [EVIDENCE: fresh `benchmark/2026-06-01--router-final--router/skill-benchmark-report.{json,md}` recorded the deterministic router-mode run while frozen `benchmark/baseline/` stayed untouched]
 - [x] CHK-026 [P1] Translation did not re-curate scenario intent [EVIDENCE: this packet performed a path refresh preserving each scenario's curated resource set, not a router-derived gold regeneration]
 
 <!-- /ANCHOR:fix-completeness -->

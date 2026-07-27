@@ -50,7 +50,7 @@ _memory:
 - [x] T003 Read current mode registry before editing (`.opencode/skills/sk-design/mode-registry.json`) [10m]
   - Evidence target: confirm each mode's `proceduresPath` and, for `design-md-generator`, its `aliases` array as the frontmatter `trigger_phrases` source.
 - [x] T004 List `benchmark/` and `manual_testing_playbook/` contents at the hub root (`.opencode/skills/sk-design/benchmark/`, `.opencode/skills/sk-design/manual_testing_playbook/`) [10m]
-  - Evidence target: confirm `benchmark/baseline/` and `benchmark/after-009/` exist, and confirm the current scenario/category count in `manual_testing_playbook/manual_testing_playbook.md`.
+  - Evidence target: confirm `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/` exist, and confirm the current scenario/category count in `manual_testing_playbook/manual_testing_playbook.md`.
 - [x] T005 List each of the five modes' `procedures/` directories (`design-interface/procedures/`, `design-foundations/procedures/`, `design-motion/procedures/`, `design-audit/procedures/`, `design-md-generator/procedures/`) [15m]
   - Evidence target: confirm the current card count and file names per mode before drafting each README edit.
 - [x] T006 Re-read `design-motion/manual_testing_playbook/manual_testing_playbook.md` Section 1 to confirm the live scenario count and category list [10m]

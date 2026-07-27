@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Run the benchmark and review after phase 006"
     blockers: []
     key_files:
-      - ".opencode/skills/cli-external/benchmark/router-final/skill-benchmark-report.md"
+      - ".opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-007-routing-benchmark-and-review"
@@ -50,7 +50,7 @@ FAILURE MODES:
 |--------|-------|
 | **Language/Stack** | Lane-C skill-benchmark harness, live scorer routing, deep-review pass |
 | **Framework** | deep-improvement Lane-C skill-benchmark plus deep-review |
-| **Storage** | Benchmark report files under the hub `benchmark/router-final/` |
+| **Storage** | Benchmark report files under the hub `benchmark/2026-06-01--router-final--router/` |
 | **Testing** | Router-mode benchmark, live delegation routing, deep-review triage |
 
 ### Overview
@@ -68,7 +68,7 @@ This phase produces the empirical evidence cutover depends on: a router-mode Lan
 - [ ] Real delegation prompts for both executors are prepared for the live re-baseline
 
 ### Definition of Done
-- [ ] Benchmark report `.md` and `.json` exist under `benchmark/router-final/`
+- [ ] Benchmark report `.md` and `.json` exist under `benchmark/2026-06-01--router-final--router/`
 - [ ] Live delegation routing resolves both executor kinds with no silent misroute
 - [ ] P0 deep-review findings triaged; routingClass decision recorded per mode
 <!-- /ANCHOR:quality-gates -->
@@ -99,7 +99,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `cli-external/benchmark/router-final/` | Benchmark output target | Create the two report files | Both report files exist and are legible |
+| `cli-external/benchmark/2026-06-01--router-final--router/` | Benchmark output target | Create the two report files | Both report files exist and are legible |
 | Rewritten executor-delegation scorer | Live delegation resolution | Exercise with real prompts | Both executor kinds resolve with no misroute |
 | Phases 003-006 diff | The full fold-in change | Independent deep-review | P0 findings triaged with evidence |
 

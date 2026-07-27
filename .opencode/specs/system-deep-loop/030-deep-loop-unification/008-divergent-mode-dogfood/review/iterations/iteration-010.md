@@ -9,12 +9,12 @@ Final sweep across correctness, security, traceability, and maintainability for 
 - `.opencode/skills/system-deep-loop/benchmark/README.md:16-52`
 - `.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json:1-165`
 - `.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md:1-84`
-- `.opencode/skills/system-deep-loop/benchmark/router-mode-a/skill-benchmark-report.json:1-165`
-- `.opencode/skills/system-deep-loop/benchmark/router-mode-a/skill-benchmark-report.md:1-84`
-- `.opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.json:1-309`
-- `.opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.md:1-71`
-- `.opencode/skills/system-deep-loop/benchmark/after-d3-proxy/skill-benchmark-report.json:1-165`
-- `.opencode/skills/system-deep-loop/benchmark/after-d3-proxy/skill-benchmark-report.md:1-84`
+- `.opencode/skills/system-deep-loop/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.json:1-165`
+- `.opencode/skills/system-deep-loop/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md:1-84`
+- `.opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.json:1-309`
+- `.opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:1-71`
+- `.opencode/skills/system-deep-loop/benchmark/2026-07-08--after-d3-proxy--router/skill-benchmark-report.json:1-165`
+- `.opencode/skills/system-deep-loop/benchmark/2026-07-08--after-d3-proxy--router/skill-benchmark-report.md:1-84`
 - `.opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:1-34`
 - `.opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25`
 - `.opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42`
@@ -43,7 +43,7 @@ None.
 - Recommendation: Make unscored reasons trace-mode-aware and prevent PASS from representing complete success when the same report carries active P1 bottlenecks or required dimensions were not exercised.
 
 ```json
-{"type":"claim_adjudication","findingId":"R10-P1-001","claim":"The live benchmark report presents an incomplete run as PASS while emitting Mode-A-only rerun guidance and an active P1 funnel bottleneck.","evidenceRefs":[".opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.json:4-6,29-61,153-172",".opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.md:3-23,30-50",".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1347-1399",".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:48-76"],"counterevidenceSought":"Compared every benchmark JSON/Markdown pair, README caveats, trace-mode metadata, weighted verdict rules, and rendered bottleneck output for an explicit contract that permits PASS with P1 or explains Mode-A labels in a live run.","alternativeExplanation":"PASS may intentionally mean only aggregate score above 80 and D1-inter/D4 may require separate live flags. The report does not communicate that narrower meaning; it instead labels the already-live run as needing live mode and ranks its own failures P1.","finalSeverity":"P1","confidence":0.97,"downgradeTrigger":"Downgrade to P2 if the benchmark contract explicitly defines PASS as aggregate-only, consumers cannot treat it as completion, and live-mode wording is corrected to identify the exact missing advisor/D4 flags."}
+{"type":"claim_adjudication","findingId":"R10-P1-001","claim":"The live benchmark report presents an incomplete run as PASS while emitting Mode-A-only rerun guidance and an active P1 funnel bottleneck.","evidenceRefs":[".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.json:4-6,29-61,153-172",".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:3-23,30-50",".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1347-1399",".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:48-76"],"counterevidenceSought":"Compared every benchmark JSON/Markdown pair, README caveats, trace-mode metadata, weighted verdict rules, and rendered bottleneck output for an explicit contract that permits PASS with P1 or explains Mode-A labels in a live run.","alternativeExplanation":"PASS may intentionally mean only aggregate score above 80 and D1-inter/D4 may require separate live flags. The report does not communicate that narrower meaning; it instead labels the already-live run as needing live mode and ranks its own failures P1.","finalSeverity":"P1","confidence":0.97,"downgradeTrigger":"Downgrade to P2 if the benchmark contract explicitly defines PASS as aggregate-only, consumers cannot treat it as completion, and live-mode wording is corrected to identify the exact missing advisor/D4 flags."}
 ```
 
 #### R10-P1-002: Reducer preserves resolved checklist search debt and drops the executed failure from current traceability
@@ -67,7 +67,7 @@ None.
 
 | Protocol | Level | Status | Evidence | Result |
 |---|---|---|---|---|
-| `spec_code` | core | partial | `benchmark/live-mode-b/skill-benchmark-report.md:3-50`; `score-skill-benchmark.cjs:1347-1399` | Live report claims and scorer behavior conflict; R10-P1-001 records the mismatch. |
+| `spec_code` | core | partial | `benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:3-50`; `score-skill-benchmark.cjs:1347-1399` | Live report claims and scorer behavior conflict; R10-P1-001 records the mismatch. |
 | `checklist_evidence` | core | fail | `review/iterations/iteration-005.md:51-68`; `deep-review-findings-registry.json:557-565,668-683,977-1010` | The obligation was executed in iteration 5 and failed, not deferred; R5-P1-001 remains active, while R10-P1-002 records why canonical state still loses that closure. |
 | `skill_agent` | overlay | fail | `review/iterations/iteration-003.md:27-39` | Prior result retained; direction not re-entered. |
 | `agent_cross_runtime` | overlay | fail | `review/iterations/iteration-003.md:27-39` | Prior result retained; direction not re-entered. |

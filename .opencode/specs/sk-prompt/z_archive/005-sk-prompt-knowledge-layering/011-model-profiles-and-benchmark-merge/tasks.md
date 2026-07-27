@@ -88,5 +88,5 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Merged benchmark**: `benchmarks/005-mimo-minimax-capability-discrimination/`
+- **Merged benchmark**: `benchmarks/2026-06-02--minimax-capability-discrimination--mimo/`
 <!-- /ANCHOR:cross-refs -->

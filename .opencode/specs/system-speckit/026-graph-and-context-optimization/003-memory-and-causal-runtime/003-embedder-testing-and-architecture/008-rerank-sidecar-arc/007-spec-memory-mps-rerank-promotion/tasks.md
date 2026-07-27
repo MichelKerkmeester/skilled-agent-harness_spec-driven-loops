@@ -93,7 +93,7 @@ All T001-T020 with evidence. Path-tag respected (T014-T016 only on PROMOTE). Arc
 - `plan.md` §4 Implementation Phases — Phase A-E mapping
 - Predecessor `../004-spec-memory-rerank-benchmark/` — original CPU bench that gated HOLD
 - Predecessor `../006-cocoindex-dedup-from-shared-sidecar/` — multi-model sidecar arrived here
-- Reference: `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py` — harness reused
+- Reference: `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py` — harness reused
 - Reference: `mcp_server/lib/search/cross-encoder.ts:54` — model field flips on PROMOTE
 - Reference: `mcp_server/lib/search/search-flags.ts` — `SPECKIT_CROSS_ENCODER` default flips on PROMOTE
 <!-- /ANCHOR:cross-refs -->

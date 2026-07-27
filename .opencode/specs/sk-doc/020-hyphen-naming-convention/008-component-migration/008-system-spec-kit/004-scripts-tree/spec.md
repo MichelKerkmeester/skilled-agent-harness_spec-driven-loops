@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The live inventory identifies .opencode/skills/system-spec-kit/scripts/setup/_utils.sh and mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh as non-Python script filenames with underscores. Their sourcing and benchmark callers are path-sensitive, while nearby run_arm.py and test_dual_threshold.py files are explicitly exempt.
+The live inventory identifies .opencode/skills/system-spec-kit/scripts/setup/_utils.sh and mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh as non-Python script filenames with underscores. Their sourcing and benchmark callers are path-sensitive, while nearby run_arm.py and test_dual_threshold.py files are explicitly exempt.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -59,7 +59,7 @@ The live inventory identifies .opencode/skills/system-spec-kit/scripts/setup/_ut
 
 ### In Scope
 - Rename scripts/setup/_utils.sh to scripts/setup/utils.sh.
-- Rename mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh to run-arm.sh.
+- Rename mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh to run-arm.sh.
 - Update shell sourcing, benchmark launch commands, README inventories, registry entries, and import/path references to those scripts.
 - Sweep the scripts tree for additional non-Python script filenames and record the concrete zero or positive result before moving anything.
 

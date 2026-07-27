@@ -72,7 +72,7 @@ _memory:
 
 - [x] CHK-024 [P0] Routing metadata reconciled [EVIDENCE: `hub-router.json`, `mode-registry.json`, and `shared/references/smart_routing.md` dropped dissolved-mode and `code-animation` routes, with tie-breaks trimmed to quality/review/webflow/opencode]
 - [x] CHK-025 [P0] External references repointed [EVIDENCE: agents and specs/docs were repointed off dissolved sub-skills in Stage A; `code-review` wiring in agents/review.md remains intact]
-- [x] CHK-026 [P1] Playbook gold and benchmark harness re-baselined [EVIDENCE: 17 manual testing playbook gold files re-translated; three benchmark harness vitests repointed off dissolved modes; `benchmark/router-final` regenerated]
+- [x] CHK-026 [P1] Playbook gold and benchmark harness re-baselined [EVIDENCE: 17 manual testing playbook gold files re-translated; three benchmark harness vitests repointed off dissolved modes; `benchmark/2026-06-01--router-final--router` regenerated]
 
 <!-- /ANCHOR:fix-completeness -->
 ---

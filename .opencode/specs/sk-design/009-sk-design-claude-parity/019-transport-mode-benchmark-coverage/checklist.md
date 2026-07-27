@@ -66,7 +66,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Router-mode benchmark: scenario count 24 -> 25, verdict PASS, aggregate 100/100, D5 connectivity 100/100 (verified)
-- [x] CHK-021 [P0] Live-mode benchmark: verdict PASS, aggregate 93/100, 25 scenarios, saved to `benchmark/after-018-transport-integration/` (verified)
+- [x] CHK-021 [P0] Live-mode benchmark: verdict PASS, aggregate 93/100, 25 scenarios, saved to `benchmark/2026-07-07--after-018-transport-integration--live/` (verified)
 - [x] CHK-022 [P0] Direct `router-replay.cjs` call (correct API: `{skillRoot, taskText}`) confirms `design-mcp-open-design` wins for two independent phrasings ("wire Open Design MCP server..." and "connect open design and let me use the od cli") and that `interface`/`audit`/`motion` spot-checks remain correctly routed, unaffected by the new registry entry (verified)
 - [x] CHK-023 [P1] `MR-007`'s browser-class classification (routed out, unscored, in both router and live mode) is the same treatment given to all 6 sibling `MR-*` scenarios — confirmed not a defect specific to the new scenario, but the benchmark harness's existing ID-prefix classification rule (verified)
 <!-- /ANCHOR:testing -->

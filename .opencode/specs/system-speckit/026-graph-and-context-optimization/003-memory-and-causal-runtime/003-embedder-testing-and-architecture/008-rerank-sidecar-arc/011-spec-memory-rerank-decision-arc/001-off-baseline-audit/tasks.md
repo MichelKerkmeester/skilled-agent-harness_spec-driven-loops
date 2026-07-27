@@ -34,7 +34,7 @@ _memory:
 
 | Task | P | Description | Status | Evidence |
 |------|---|-------------|--------|----------|
-| T001 | P0 | Locate rerank benchmark harness via grep in skills/system-spec-kit/ | `[x]` | Harness found at `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py`; package has no `bench:rerank` script |
+| T001 | P0 | Locate rerank benchmark harness via grep in skills/system-spec-kit/ | `[x]` | Harness found at `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py`; package has no `bench:rerank` script |
 | T002 | P0 | Identify how to run with reranker OFF (env, CLI arg, or harness mode flag) | `[x]` | OFF mode is `SPECKIT_CROSS_ENCODER=false RERANKER_LOCAL=false --cross-encoder false --reranker-local false` |
 | T003 | P1 | Inspect 50-probe fixture for known-weak probe categories (short query → long doc, etc.) | `[x]` | Fixture categories: arc-context 12, paraphrase 27, terminology 11 |
 <!-- /ANCHOR:phase-1 -->

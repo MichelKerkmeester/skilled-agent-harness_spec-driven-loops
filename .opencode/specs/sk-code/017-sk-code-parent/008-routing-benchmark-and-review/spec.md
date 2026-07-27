@@ -84,7 +84,7 @@ The review also found one **P1 merge-blocker**: the folded review package's Iron
 - **Advisor rebuild + memory reindex** → main post-merge (unchanged from 007).
 
 **Deliverables**:
-- Official router-mode benchmark record (aggregate 71) captured under `benchmark/router-final/`.
+- Official router-mode benchmark record (aggregate 71) captured under `benchmark/2026-06-01--router-final--router/`.
 - Harness re-layer + negative-scoring fix with vitest coverage, zero net-new failures.
 - The P1 canary gate restored; four cheap in-family defects fixed.
 - Phase 008 documentation and metadata.
@@ -135,7 +135,7 @@ Produce an honest routing verdict: run the deterministic benchmark, review the f
 | `.opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md` | Update | Fix a broken CR-018 link |
 | `.opencode/skills/sk-code/benchmark/README.md` | Update | Repoint two stale `smart_routing.md` paths to `shared/references/` |
 | `.opencode/skills/sk-code/code-review/SKILL.md` | Update | Fix a stale sub-file count |
-| `.opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.{md,json}` | Update | Regenerated official router-mode record (aggregate 71) |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.{md,json}` | Update | Regenerated official router-mode record (aggregate 71) |
 | `.opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/` | Create | Phase 008 documentation and metadata |
 <!-- /ANCHOR:scope -->
 
@@ -164,7 +164,7 @@ Produce an honest routing verdict: run the deterministic benchmark, review the f
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: `benchmark/router-final/skill-benchmark-report.{md,json}` records `verdict=CONDITIONAL aggregate=71 scenarios=29`, generated via `loop-host.cjs --mode=skill-benchmark --skill=sk-code --trace-mode=router`.
+- **SC-001**: `benchmark/2026-06-01--router-final--router/skill-benchmark-report.{md,json}` records `verdict=CONDITIONAL aggregate=71 scenarios=29`, generated via `loop-host.cjs --mode=skill-benchmark --skill=sk-code --trace-mode=router`.
 - **SC-002**: Aggregate rose 44 (flat) → 71 (hub): D1-intra 73→87, D2 55→79, D3 27→47, D5 100.
 - **SC-003**: `check-rule-copies.js` exits 0; the Iron-Law canary resolves against `code-verify/SKILL.md`.
 - **SC-004**: A pristine-harness baseline (my three files stashed) = 8 failures; with the changes = 8 failures (99 tests) — zero net-new.

@@ -78,7 +78,7 @@ Because `cross-encoder.ts` still points at `cross-encoder/ms-marco-MiniLM-L-6-v2
 The benchmark used the same 50-probe fixture as Phase 1:
 
 ```text
-mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json
+mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json
 ```
 
 The normal JSON-RPC harness remains unsuitable in this sandbox because `daemon-ipc.sock` binding is blocked. The run used the same direct-handler replay approach as Phase 1 by importing `dist/handlers/memory-search.js` and calling `handleMemorySearch()`.

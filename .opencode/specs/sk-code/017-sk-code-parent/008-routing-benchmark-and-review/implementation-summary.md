@@ -75,7 +75,7 @@ A P1 merge-blocker and four cheap defects, all verified.
 | harness `tests/skill-benchmark.vitest.ts` | Update the negative-scoring test to the corrected model + add a positive-set regression test |
 | `manual_testing_playbook/.../opencode-config.md` | Fix a broken fixture (unsubstituted `<spec-folder>` placeholder) |
 | `code-review/.../manual_testing_playbook.md`, `benchmark/README.md`, `code-review/SKILL.md` | Fix a broken link, stale router paths, a stale count |
-| `benchmark/router-final/` | Regenerated official router-mode record (aggregate 71) |
+| `benchmark/2026-06-01--router-final--router/` | Regenerated official router-mode record (aggregate 71) |
 | 008 spec folder | Created |
 <!-- /ANCHOR:what-built -->
 

@@ -58,7 +58,7 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 - Update `deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` so D3 returns null/not-applicable when a scenario declares no positive-resource gold, and mode A weighted normalization excludes null D3 using the same convention as D1-inter.
 - Refresh `sk-doc/references/skill_creation/parent_hub_router_schema.md` from the stale five-mode sk-code worked example to the current surface-primary two-axis model with workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null`.
 - Repair the two sk-code manual playbook scenarios `cwv-gates-animation-heavy.md` and `prefers-reduced-motion.md` by replacing three dead expected-asset paths with their real on-disk homes.
-- Regenerate `sk-code/benchmark/router-final` and write new sibling benchmark reports `sk-design/benchmark/after-d3-proxy` and `deep-loop-workflows/benchmark/after-d3-proxy`.
+- Regenerate `sk-code/benchmark/2026-06-01--router-final--router` and write new sibling benchmark reports `sk-design/benchmark/2026-07-06--after-d3-proxy--router` and `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router`.
 
 ### Out of Scope
 - Shared advisor-scorer root fixes in `system-skill-advisor/mcp_server/lib/scorer/*.ts`, including WS1 post-cap penalty-demotion, WS2 executor-delegation resolver, WS3 TypeScript/Python parity re-baseline, WS4 graph-causal BFS fix, WS5 eval-gate hardening, and WS6 semantic-shadow ablation.
@@ -76,9 +76,9 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 | `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md` | Modify | Refresh sk-code worked example and allow `defaultMode: null` for surface-primary hubs |
 | `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/cwv-gates-animation-heavy.md` | Modify | Reconcile dead expected-asset paths to real homes |
 | `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/prefers-reduced-motion.md` | Modify | Reconcile dead expected-asset paths to real homes |
-| `.opencode/skills/sk-code/benchmark/router-final/` | Regenerate | Current/regenerable sk-code router benchmark report |
-| `.opencode/skills/sk-design/benchmark/after-d3-proxy/` | Add | Sibling report preserving frozen `baseline/` |
-| `.opencode/skills/deep-loop-workflows/benchmark/after-d3-proxy/` | Add | Sibling report preserving frozen `baseline/` |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/` | Regenerate | Current/regenerable sk-code router benchmark report |
+| `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/` | Add | Sibling report preserving frozen `baseline/` |
+| `.opencode/skills/deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router/` | Add | Sibling report preserving frozen `baseline/` |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -115,7 +115,7 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: sk-code router-mode benchmark improves from aggregate 71 / CONDITIONAL to aggregate 84 / PASS, with D1intra 87 to 91, D2 79 to 85, D3 47 to 68, D5 100 unchanged, CS-006 D2 recall 0.375 to 1.0, CS-007 D2 recall 0.43 to 0.86, and zero scenarios regressed below 50. [EVIDENCE: commit `ec014f95c6` benchmark report]
-- **SC-002**: D3 empty-gold proxy removal is reflected by sibling reports: sk-design 69 to 100 and deep-loop-workflows 71 to 100. [EVIDENCE: `sk-design/benchmark/after-d3-proxy`, `deep-loop-workflows/benchmark/after-d3-proxy`]
+- **SC-002**: D3 empty-gold proxy removal is reflected by sibling reports: sk-design 69 to 100 and deep-loop-workflows 71 to 100. [EVIDENCE: `sk-design/benchmark/2026-07-06--after-d3-proxy--router`, `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router`]
 - **SC-003**: Gates are green. [EVIDENCE: sk-code parent-skill-check STRICT 0; vocab-sync exit 0; router drift-guards 8/8; skill-benchmark vitest suite 106/107; markdown-links clean on all four changed docs; all six JSON examples in the refreshed schema doc parse; validate.sh --strict exit 0]
 
 ### Acceptance Scenarios

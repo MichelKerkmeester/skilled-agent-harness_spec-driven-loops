@@ -88,7 +88,7 @@ Do not promote Qwen-backed reranking as the spec-memory default from this run. P
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-- Phase A read `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` §8 and consumed its `HOLD` verdict mechanically.
+- Phase A read `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md` §8 and consumed its `HOLD` verdict mechanically.
 - Phase B applied only doc/metadata edits: `ENV_REFERENCE.md`, `embedder_architecture.md`, `system-rerank-sidecar/SKILL.md`, this packet's docs, and arc-parent docs/metadata.
 - Phase C closed the phase parent by setting the phase-map row to `Complete (HOLD)` and `derived.last_active_child_id` to `005-promote-qwen-as-default`.
 

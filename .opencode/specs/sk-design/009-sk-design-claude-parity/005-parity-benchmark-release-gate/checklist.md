@@ -113,8 +113,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-060 [P0] Packet creation writes only inside the Phase 005 root (plus the explicitly approved playbook and benchmark artifact paths named in `spec.md` Files to Change). [EVIDENCE: `git status` shows Phase 005 writes limited to the spec folder, `benchmark/after-009/**`, `manual_testing_playbook/parity-behavior/**`, and the playbook index update.]
-- [x] CHK-061 [P0] Future benchmark artifacts are append-only unless overwrite authority is recorded. [EVIDENCE: `benchmark/baseline/` untouched; the new run was written only to `benchmark/after-009/`.]
+- [x] CHK-060 [P0] Packet creation writes only inside the Phase 005 root (plus the explicitly approved playbook and benchmark artifact paths named in `spec.md` Files to Change). [EVIDENCE: `git status` shows Phase 005 writes limited to the spec folder, `benchmark/2026-07-06--after-009--router/**`, `manual_testing_playbook/parity-behavior/**`, and the playbook index update.]
+- [x] CHK-061 [P0] Future benchmark artifacts are append-only unless overwrite authority is recorded. [EVIDENCE: `benchmark/baseline/` untouched; the new run was written only to `benchmark/2026-07-06--after-009--router/`.]
 - [x] CHK-062 [P1] Temporary or scratch artifacts are removed before claiming release readiness. [EVIDENCE: no scratch artifacts remain in the Phase 005 root; this phase does not claim release-ready (CONDITIONAL only).]
 <!-- /ANCHOR:file-org -->
 

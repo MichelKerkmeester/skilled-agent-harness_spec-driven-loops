@@ -1424,16 +1424,16 @@ git: error: couldn't create cache file '/tmp/xcrun_db-HYYJDv8k' (errno=Operation
 .opencode/skills/system-spec-kit/mcp_server/README.md
 .opencode/skills/system-spec-kit/mcp_server/api/README.md
 .opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md
 .opencode/skills/system-spec-kit/mcp_server/configs/README.md
 .opencode/skills/system-spec-kit/mcp_server/core/README.md
 .opencode/skills/system-spec-kit/mcp_server/data/README.md
@@ -2934,7 +2934,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-enljNc4A' (errno=Operation
 1e58d845af:.opencode/skills/sk-git/changelog/CHANGELOG.md:50:- Removed table of contents from README.md (forbidden by sk-doc standards)
 1e58d845af:.opencode/skills/system-spec-kit/SKILL.md:455:19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 1e58d845af:.opencode/skills/system-spec-kit/mcp_server/.github/hooks/README.md:16:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:134:## TABLE OF CONTENTS
+1e58d845af:.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:134:## TABLE OF CONTENTS
 1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:421:      /recovery scenarios|diagnostic commands|table of contents|placeholder|auto-truncated/.test(normalized),
 1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:435:const HARD_DROP_WRAPPER_CUES = /\b(conversation transcript|generic recovery hints|tool telemetry|table of contents|raw tool|repository state|assistant:|user:|tool:|recovery scenarios|diagnostic commands)\b/u;
 1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1070:  if (/\brecovery scenarios|diagnostic commands|table of contents\b/.test(normalizedText)) {
@@ -3402,16 +3402,16 @@ git: error: couldn't create cache file '/tmp/xcrun_db-0WDzHYmB' (errno=Operation
 .opencode/skills/system-spec-kit/mcp_server/README.md @@ -17,16 +16,0 @@ importance_tier: "important" -## TABLE OF CONTENTS
 .opencode/skills/system-spec-kit/mcp_server/api/README.md @@ -12,13 +11,0 @@ trigger_phrases: -## TABLE OF CONTENTS
 .opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md @@ -19,16 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md @@ -19,16 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md @@ -22,19 +21,0 @@ contextType: "implementation" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md @@ -19,17 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md @@ -18,11 +17,0 @@ Quick re-run of the phase 004 benchmark on the same 50-probe fixture, asking whe -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md @@ -18,17 +17,0 @@ contextType: "reference" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md @@ -19,19 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md @@ -20,19 +19,0 @@ contextType: "implementation" -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md @@ -20,13 +19,0 @@ Same 50-probe fixture as packets 004 / 007. Same harness. Same MPS sidecar. The -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md @@ -20,13 +19,0 @@ Three orthogonal MPS unblock attempts tested. All three HOLD. This packet docume -## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md @@ -18,14 +17,0 @@ Same 50-probe fixture, 3 runs × 50 probes, same harness as phase 004 and the 20 -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md @@ -19,16 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md @@ -22,19 +21,0 @@ contextType: "implementation" -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md @@ -19,17 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark_report.md @@ -18,11 +17,0 @@ Quick re-run of the phase 004 benchmark on the same 50-probe fixture, asking whe -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md @@ -18,17 +17,0 @@ contextType: "reference" -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md @@ -19,19 +18,0 @@ contextType: "reference" -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md @@ -20,19 +19,0 @@ contextType: "implementation" -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md @@ -20,13 +19,0 @@ Same 50-probe fixture as packets 004 / 007. Same harness. Same MPS sidecar. The -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md @@ -20,13 +19,0 @@ Three orthogonal MPS unblock attempts tested. All three HOLD. This packet docume -## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md @@ -18,14 +17,0 @@ Same 50-probe fixture, 3 runs × 50 probes, same harness as phase 004 and the 20 -## TABLE OF CONTENTS
 .opencode/skills/system-spec-kit/mcp_server/configs/README.md @@ -16,15 +15,0 @@ trigger_phrases: -## TABLE OF CONTENTS
 .opencode/skills/system-spec-kit/mcp_server/core/README.md @@ -12,14 +11,0 @@ trigger_phrases: -## TABLE OF CONTENTS
 .opencode/skills/system-spec-kit/mcp_server/data/README.md @@ -11,7 +10,0 @@ trigger_phrases: -## TABLE OF CONTENTS

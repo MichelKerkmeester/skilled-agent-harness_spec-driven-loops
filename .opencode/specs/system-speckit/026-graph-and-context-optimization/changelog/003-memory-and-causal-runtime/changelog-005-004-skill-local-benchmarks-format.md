@@ -29,7 +29,7 @@ A new `mcp_server/benchmarks/` folder convention was introduced, with a date-fol
 ### Added
 
 - `mcp_server/benchmarks/FORMAT.md` in system-spec-kit (canonical single-source convention doc with 10-section structure and authority hierarchy)
-- `mcp_server/benchmarks/benchmark-2026-05-17/` in system-spec-kit with `results.csv`, `per-probe-with-rescue.jsonl`, `runtime-measurements.md`, `SOURCE.md`, `benchmark_report.md`
+- `mcp_server/benchmarks/2026-05-17--run--unspecified/` in system-spec-kit with `results.csv`, `per-probe-with-rescue.jsonl`, `runtime-measurements.md`, `SOURCE.md`, `benchmark_report.md`
 - `mcp_server/benchmarks/README.md` index for system-spec-kit
 - `mcp_server/benchmarks/benchmark-2026-05-18/` in mcp-coco-index with `results.csv`, `per-probe.jsonl`, `SOURCE.md`, `benchmark_report.md`
 - `mcp_server/benchmarks/README.md` index and `FORMAT.md` relative symlink for mcp-coco-index
@@ -57,11 +57,11 @@ None.
 |------|--------------|
 | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md` (NEW) | Canonical convention doc for the `mcp_server/benchmarks/` layout and 10-section benchmark_report.md structure |
 | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md` (NEW) | Top-level index listing all benchmark runs for mk-spec-memory |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md` (NEW) | sk-doc-compliant 10-section report for the May 17, 2026 text-embedder bake-off |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/results.csv` (NEW) | Aggregate CSV promoted from the spec packet evidence |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/per-probe-with-rescue.jsonl` (NEW) | Per-probe rows with rescue-layer outcomes |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md` (NEW) | Jina runtime measurement notes |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md` (NEW) | Pointer back to authoritative spec packet and key evidence files |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md` (NEW) | sk-doc-compliant 10-section report for the May 17, 2026 text-embedder bake-off |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/results.csv` (NEW) | Aggregate CSV promoted from the spec packet evidence |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/per-probe-with-rescue.jsonl` (NEW) | Per-probe rows with rescue-layer outcomes |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md` (NEW) | Jina runtime measurement notes |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md` (NEW) | Pointer back to authoritative spec packet and key evidence files |
 | `.opencode/skills/sk-doc/references/benchmarks_format.md` (NEW) | Adoption decision-aid reference explaining the convention for future MCP authors |
 | `.opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md` (NEW) | Fillable scaffold for new benchmark_report.md files |
 | `.opencode/skills/sk-doc/SKILL.md` | BENCHMARK intent signal and resource map entry added |

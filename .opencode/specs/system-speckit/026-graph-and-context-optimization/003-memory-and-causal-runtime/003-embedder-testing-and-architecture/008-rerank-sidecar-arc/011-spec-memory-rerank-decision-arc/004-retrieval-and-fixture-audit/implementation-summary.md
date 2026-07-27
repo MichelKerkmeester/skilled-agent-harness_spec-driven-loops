@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-To be filled. Will produce five evidence files under `evidence/`: `probe-classification-2026-05-21.json`, `candidate-coverage-2026-05-21.json`, `handler-parity-2026-05-21.md`, `rerank-effect-2026-05-21.json`, and `valid-subset-metrics-2026-05-21.json`. Plus removable audit scripts under `scripts/`. Reference fixture: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json`. Reference DB: `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`. Expected sections:
+To be filled. Will produce five evidence files under `evidence/`: `probe-classification-2026-05-21.json`, `candidate-coverage-2026-05-21.json`, `handler-parity-2026-05-21.md`, `rerank-effect-2026-05-21.json`, and `valid-subset-metrics-2026-05-21.json`. Plus removable audit scripts under `scripts/`. Reference fixture: `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json`. Reference DB: `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`. Expected sections:
 
 - §Probe Classification: counts per class (valid/stale/replaced/unusable) + per-category breakdown
 - §Candidate Coverage: per-lane (FTS / vector / fused / final) top-20/50/100 hit rates on valid+replaced subset
@@ -86,7 +86,7 @@ To be filled. Expected commands:
 ```bash
 # Phase A
 .venv/bin/python scripts/audit_classify_probes.py \
-  --fixture mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json \
+  --fixture mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json \
   --db mcp_server/database/context-index.sqlite \
   --out evidence/probe-classification-2026-05-21.json
 

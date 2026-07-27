@@ -26,7 +26,7 @@
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip/scratch/probe-1k-corpus.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/017-llama-cpp-default-flip/scratch/probe-1k-queries.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/019-lineage-and-metadata-repair-runner/implementation-summary.md
-./.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-rerank-ab-msmarco/runs/arm-b-msmarco.jsonl
+./.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--rerank-ab-msmarco--unspecified/runs/arm-b-msmarco.jsonl
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial/evidence/bge-v2-m3-bench-2026-05-21.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit/evidence/off-baseline-2026-05-21.json
 ./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json

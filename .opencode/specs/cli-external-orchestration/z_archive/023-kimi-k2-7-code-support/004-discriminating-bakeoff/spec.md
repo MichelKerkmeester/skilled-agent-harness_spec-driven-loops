@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json"
-      - ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--discriminating--kimi-k2-7/synthesis.md"
       - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -116,7 +116,7 @@ Re-run the bakeoff on invalid-dominant strict validators so correctness varies b
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json` | Create | Strict-validator bakeoff profile: 5 frameworks, gate threshold 0.0, 6 samples/cell |
-| `.opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/` | Create | Run outputs: `aggregate.json`, `synthesis.md`, `results.json`, `per-fixture-correctness.json` |
+| `.opencode/skills/sk-prompt-models/benchmarks/2026-06-15--discriminating--kimi-k2-7/` | Create | Run outputs: `aggregate.json`, `synthesis.md`, `results.json`, `per-fixture-correctness.json` |
 | `.opencode/skills/sk-prompt-models/assets/model-profiles.json` | Modify | Promote `kimi-k2.7-code.recommended_frameworks` to costar/tidd-ec/avoid-rcaf, status empirical, evidence run 007 |
 | `.opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md` | Modify | Rewrite §1/§3/§4/§5 to the costar default and the run-007 leaderboard |
 | `.opencode/skills/sk-prompt-models/references/models/_index.md` | Modify | Kimi row to empirical (benchmark 007) |

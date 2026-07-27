@@ -92,7 +92,7 @@ No CLI executor dispatch needed — every edit was a targeted single-line or sin
 <!-- ANCHOR:decisions -->
 ## 4. KEY DECISIONS
 
-- **Frozen benchmark artifacts preserved.** 4 hits in `mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/` reference a `z_archive/` spec path. Per sk-doc benchmark template convention, dated benchmark folders are immutable historical records — modifying them would falsify the benchmark.
+- **Frozen benchmark artifacts preserved.** 4 hits in `mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/` reference a `z_archive/` spec path. Per sk-doc benchmark template convention, dated benchmark folders are immutable historical records — modifying them would falsify the benchmark.
 - **Path-replacement target chosen as `hf-local.ts`** for manual-testing-playbook scenarios because it's a real existing file (not a hypothetical), keeps the scenario realistic.
 - **Stress-harness string replacement preserved workload shape.** `'llama cpp'` (8 chars) → `'ollama embed'` (12 chars) keeps the topic-similarity character distribution roughly comparable; the workload measures latency p50/p95, not topic-specific scoring, so minor shifts are acceptable.
 - **`MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` env var dropped from docs.** Was a one-time migration knob for arc 018 with no remaining runtime consumer; removing from docs reflects actual code state.
@@ -114,7 +114,7 @@ No CLI executor dispatch needed — every edit was a targeted single-line or sin
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-- 4 remaining `llama-cpp` hits live in `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/` — each references the path `specs/.../z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation/scratch/probe-gpulayers-zero.mjs`. Per sk-doc benchmark template convention these are frozen historical artifacts; modifying them would falsify the benchmark record.
+- 4 remaining `llama-cpp` hits live in `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/` — each references the path `specs/.../z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation/scratch/probe-gpulayers-zero.mjs`. Per sk-doc benchmark template convention these are frozen historical artifacts; modifying them would falsify the benchmark record.
 - All hits in `z_archive/**`, `*/scratch/**`, `iteration-*.md`, and old commit history are intentionally preserved as historical record.
 - `node-llama-cpp` may still appear as a dependency in `package.json` / `package-lock.json`; a separate dep-cleanup pass would be needed to fully prune it.
 - The `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` env var was removed from documentation only; if any runtime code still respects it, a follow-on cleanup is needed (none expected — arc 018 was the last consumer).
@@ -149,7 +149,7 @@ Verification: rg sweep empty in non-archived non-benchmark paths;
   npx tsc --noEmit clean; node --check passes on both .mjs files;
   install-guide cascade reads consistent across sections.
 
-Out of scope (preserved): 4 hits in benchmarks/benchmark-2026-05-20/
+Out of scope (preserved): 4 hits in benchmarks/2026-05-20--run--unspecified/
   (frozen artifacts), all z_archive/ + scratch/ paths.
 ```
 

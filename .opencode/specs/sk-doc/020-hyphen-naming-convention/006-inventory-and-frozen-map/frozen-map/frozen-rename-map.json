@@ -9870,7 +9870,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/d4r_live",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/d4r-live",
+      "target": ".opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live",
       "target_exists": false
     },
     {
@@ -9896,7 +9896,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/live_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/live-final",
+      "target": ".opencode/skills/sk-code/benchmark/2026-06-01--live-final--live",
       "target_exists": false
     },
     {
@@ -9909,7 +9909,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/live-mode-b",
+      "target": ".opencode/skills/sk-code/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -9922,7 +9922,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/live_remediated",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/live-remediated",
+      "target": ".opencode/skills/sk-code/benchmark/2026-06-01--live-remediated--live",
       "target_exists": false
     },
     {
@@ -9935,7 +9935,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/router_baseline",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/router-baseline",
+      "target": ".opencode/skills/sk-code/benchmark/2026-07-10--router-baseline--router",
       "target_exists": false
     },
     {
@@ -9948,7 +9948,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/benchmark/router_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/benchmark/router-final",
+      "target": ".opencode/skills/sk-code/benchmark/2026-06-01--router-final--router",
       "target_exists": false
     },
     {
@@ -10220,7 +10220,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-opencode/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/benchmark/live-mode-b",
+      "target": ".opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -10233,7 +10233,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-opencode/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/benchmark/router-mode-a",
+      "target": ".opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -11369,7 +11369,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-quality/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-quality/benchmark/live-mode-b",
+      "target": ".opencode/skills/sk-code/code-quality/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -11382,7 +11382,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-quality/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-quality/benchmark/router-mode-a",
+      "target": ".opencode/skills/sk-code/code-quality/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -11555,7 +11555,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-review/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-review/benchmark/live-mode-b",
+      "target": ".opencode/skills/sk-code/code-review/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -11568,7 +11568,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-review/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-review/benchmark/router-mode-a",
+      "target": ".opencode/skills/sk-code/code-review/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -12461,7 +12461,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-webflow/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-webflow/benchmark/live-mode-b",
+      "target": ".opencode/skills/sk-code/code-webflow/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -12474,7 +12474,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/code-webflow/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-webflow/benchmark/router-mode-a",
+      "target": ".opencode/skills/sk-code/code-webflow/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -15083,7 +15083,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_009",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/after-009",
+      "target": ".opencode/skills/sk-design/benchmark/2026-07-06--after-009--router",
       "target_exists": false
     },
     {
@@ -15096,7 +15096,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_012_routing_rigor",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/after-012-routing-rigor",
+      "target": ".opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router",
       "target_exists": false
     },
     {
@@ -15109,7 +15109,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_016_hub_routing",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/after-016-hub-routing",
+      "target": ".opencode/skills/sk-design/benchmark/2026-07-07--after-016-hub-routing--live",
       "target_exists": false
     },
     {
@@ -15122,7 +15122,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_018_transport_integration",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/after-018-transport-integration",
+      "target": ".opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live",
       "target_exists": false
     },
     {
@@ -15135,7 +15135,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_022_coverage_fill",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/after-022-coverage-fill",
+      "target": ".opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live",
       "target_exists": false
     },
     {
@@ -15148,7 +15148,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-design/benchmark/after_d3_proxy",
       "source_exists": true,
-      "target": ".opencode/skills/sk-design/benchmark/after-d3-proxy",
+      "target": ".opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router",
       "target_exists": false
     },
     {
@@ -23141,7 +23141,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-git/benchmark/live_glm_5.2_high",
       "source_exists": true,
-      "target": ".opencode/skills/sk-git/benchmark/live-glm-5.2-high",
+      "target": ".opencode/skills/sk-git/benchmark/2026-07-10--live--glm-5-2-high",
       "target_exists": false
     },
     {
@@ -23154,7 +23154,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-git/benchmark/live_kimi_2.7",
       "source_exists": true,
-      "target": ".opencode/skills/sk-git/benchmark/live-kimi-2.7",
+      "target": ".opencode/skills/sk-git/benchmark/2026-07-10--live--kimi-2-7",
       "target_exists": false
     },
     {
@@ -24049,7 +24049,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-prompt/benchmark/live_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/benchmark/live-final",
+      "target": ".opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live",
       "target_exists": false
     },
     {
@@ -24062,7 +24062,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-prompt/benchmark/router_final",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/benchmark/router-final",
+      "target": ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router",
       "target_exists": false
     },
     {
@@ -24205,7 +24205,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-prompt/prompt-improve/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-improve/benchmark/router-mode-a",
+      "target": ".opencode/skills/sk-prompt/prompt-improve/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -24822,9 +24822,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -24835,9 +24835,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -24848,9 +24848,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -24861,9 +24861,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -24874,9 +24874,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/race--chunk.json",
       "target_exists": false
     },
     {
@@ -24887,9 +24887,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -24900,9 +24900,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -24913,9 +24913,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -24926,9 +24926,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -24939,9 +24939,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -24952,9 +24952,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -24965,9 +24965,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -24978,9 +24978,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -24991,9 +24991,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -25004,9 +25004,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/race--chunk.json",
       "target_exists": false
     },
     {
@@ -25017,9 +25017,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -25030,9 +25030,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -25043,9 +25043,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -25056,9 +25056,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -25069,9 +25069,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -25082,9 +25082,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -25095,9 +25095,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -25108,9 +25108,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -25121,9 +25121,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -25134,9 +25134,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/race--chunk.json",
       "target_exists": false
     },
     {
@@ -25147,9 +25147,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -25160,9 +25160,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf--chunk.M3-FAILED-empty-exit0.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf--chunk.M3-FAILED-empty-exit0.json",
       "target_exists": false
     },
     {
@@ -25173,9 +25173,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -25186,9 +25186,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -25199,9 +25199,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -25212,9 +25212,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -25225,9 +25225,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -25238,9 +25238,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -25251,9 +25251,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -25264,9 +25264,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -25277,9 +25277,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/race--chunk.json",
       "target_exists": false
     },
     {
@@ -25290,9 +25290,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -25303,9 +25303,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -25316,9 +25316,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -25329,9 +25329,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -25342,9 +25342,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -25355,9 +25355,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -25368,9 +25368,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -25381,9 +25381,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -25394,9 +25394,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -25407,9 +25407,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/race--chunk.json",
       "target_exists": false
     },
     {
@@ -25420,9 +25420,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -25433,9 +25433,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -25446,9 +25446,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__parseRange.FAILED-exit124.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__parseRange.FAILED-exit124.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf--parseRange.FAILED-exit124.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf--parseRange.FAILED-exit124.json",
       "target_exists": false
     },
     {
@@ -25459,9 +25459,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__parseRange.RETRY-ok.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__parseRange.RETRY-ok.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf--parseRange.RETRY-ok.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf--parseRange.RETRY-ok.json",
       "target_exists": false
     },
     {
@@ -25472,9 +25472,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -25485,9 +25485,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -25498,9 +25498,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -25511,9 +25511,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -25524,9 +25524,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -25537,9 +25537,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -25550,9 +25550,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -25563,9 +25563,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/race--chunk.json",
       "target_exists": false
     },
     {
@@ -25576,9 +25576,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -25589,9 +25589,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf--chunk.M3-FAILED-empty-exit0.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf--chunk.M3-FAILED-empty-exit0.json",
       "target_exists": false
     },
     {
@@ -25602,9 +25602,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -25615,9 +25615,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -25628,9 +25628,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -25641,9 +25641,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -25654,9 +25654,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/cidi__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/cidi__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/cidi--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/cidi--chunk.json",
       "target_exists": false
     },
     {
@@ -25667,9 +25667,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/cidi__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/cidi__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/cidi--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/cidi--parseRange.json",
       "target_exists": false
     },
     {
@@ -25680,9 +25680,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/costar__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/costar__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/costar--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/costar--chunk.json",
       "target_exists": false
     },
     {
@@ -25693,9 +25693,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/costar__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/costar__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/costar--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/costar--parseRange.json",
       "target_exists": false
     },
     {
@@ -25706,9 +25706,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/race__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/race__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/race--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/race--chunk.json",
       "target_exists": false
     },
     {
@@ -25719,9 +25719,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/race__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/race__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/race--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/race--parseRange.json",
       "target_exists": false
     },
     {
@@ -25732,9 +25732,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf__chunk.M3-FAILED-empty-exit0.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf--chunk.M3-FAILED-empty-exit0.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf--chunk.M3-FAILED-empty-exit0.json",
       "target_exists": false
     },
     {
@@ -25745,9 +25745,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf--chunk.json",
       "target_exists": false
     },
     {
@@ -25758,9 +25758,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf--parseRange.json",
       "target_exists": false
     },
     {
@@ -25771,9 +25771,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/tidd-ec__chunk.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/tidd-ec__chunk.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/tidd-ec--chunk.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/tidd-ec--chunk.json",
       "target_exists": false
     },
     {
@@ -25784,9 +25784,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/tidd-ec__parseRange.json",
+      "source": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/tidd-ec__parseRange.json",
       "source_exists": true,
-      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/tidd-ec--parseRange.json",
+      "target": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/tidd-ec--parseRange.json",
       "target_exists": false
     },
     {
@@ -27049,7 +27049,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/benchmark/after_d3_proxy",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/benchmark/after-d3-proxy",
+      "target": ".opencode/skills/system-deep-loop/benchmark/2026-07-08--after-d3-proxy--router",
       "target_exists": false
     },
     {
@@ -27062,7 +27062,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/benchmark/live-mode-b",
+      "target": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -27075,7 +27075,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/benchmark/router-mode-a",
+      "target": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -31915,7 +31915,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live-mode-b",
+      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -31928,7 +31928,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router-mode-a",
+      "target": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -54500,9 +54500,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-17/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-17--run--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {
@@ -54513,9 +54513,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {
@@ -54526,9 +54526,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {
@@ -54538,7 +54538,7 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "Python filenames retain snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py"
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py"
     },
     {
       "classification": "exempt",
@@ -54547,7 +54547,7 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "Python filenames retain snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py"
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py"
     },
     {
       "classification": "rename",
@@ -54557,9 +54557,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-arm.sh",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-arm.sh",
       "target_exists": false
     },
     {
@@ -54572,9 +54572,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-20/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-20--run--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {
@@ -54585,9 +54585,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {
@@ -54598,9 +54598,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {
@@ -54611,9 +54611,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md",
+      "source": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md",
       "source_exists": true,
-      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark-report.md",
+      "target": ".opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark-report.md",
       "target_exists": false
     },
     {

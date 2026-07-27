@@ -33,11 +33,11 @@ _memory:
 | **Surface** | OpenCode `sk-design` hub and five mode packets' SMART ROUTING content |
 | **Primary Area** | `.opencode/skills/sk-design/SKILL.md`, `.opencode/skills/sk-design/hub-router.json`, `.opencode/skills/sk-design/mode-registry.json`, and the five `design-*/SKILL.md` Section 2 blocks after Phase 007 gates close |
 | **Spec Level** | 2 |
-| **Testing** | Strict spec validation, Lane-C skill-benchmark rerun compared against `benchmark/after-009/report.json`, scoped registry/router diff, negative controls |
+| **Testing** | Strict spec validation, Lane-C skill-benchmark rerun compared against `benchmark/2026-07-06--after-009--router/report.json`, scoped registry/router diff, negative controls |
 | **Mutation Policy** | Implemented after Phase 007 gate closure; vocabulary/prose only |
 
 ### Overview
-This plan defines how Phase 008 will sharpen the SMART ROUTING keyword/alias prose in the `sk-design` hub and its five mode packets, grounded in the `benchmark/baseline/` and `benchmark/after-009/` report evidence and the `mode-registry.json` transform-verb routing table. The pass resolves ambiguity that the benchmark's D1/D3 dimensions expose, makes each mode's Phase 004 procedure-card selection logic an explicit part of its routing prose, and keeps `hub-router.json` `vocabularyClasses`/`routerSignals` synchronized with any change — without touching registry structure, `workflowMode` values, or `toolSurface` entries.
+This plan defines how Phase 008 will sharpen the SMART ROUTING keyword/alias prose in the `sk-design` hub and its five mode packets, grounded in the `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/` report evidence and the `mode-registry.json` transform-verb routing table. The pass resolves ambiguity that the benchmark's D1/D3 dimensions expose, makes each mode's Phase 004 procedure-card selection logic an explicit part of its routing prose, and keeps `hub-router.json` `vocabularyClasses`/`routerSignals` synchronized with any change — without touching registry structure, `workflowMode` values, or `toolSurface` entries.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -79,7 +79,7 @@ Content-quality routing optimization pass: sharpen SMART ROUTING prose in the hu
 ### Data Flow
 1. Confirm Phase 007 gates are closed and implementation is allowed.
 2. Re-read the current hub `SKILL.md`, all five mode `SKILL.md` Section 2 blocks, `mode-registry.json`, and `hub-router.json` without mutating unrelated files.
-3. Re-read (or re-run if stale) `benchmark/baseline/` and `benchmark/after-009/` reports and extract D1/D3 findings and named contamination scenarios.
+3. Re-read (or re-run if stale) `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/` reports and extract D1/D3 findings and named contamination scenarios.
 4. Draft the per-mode ambiguity resolution map, citing specific findings for each proposed keyword/alias/prose change.
 5. Draft the sharpened SMART ROUTING prose for the hub and each of the five modes, including the explicit procedure-card cross-reference.
 6. Draft the corresponding `hub-router.json` `vocabularyClasses`/`routerSignals` sync and `mode-registry.json` vocabulary-only edits.
@@ -94,7 +94,7 @@ Content-quality routing optimization pass: sharpen SMART ROUTING prose in the hu
 ### Phase 1: Entry Gate and Current Routing Review
 - [x] Verify Phase 007 P0 gates are closed with evidence.
 - [x] Read the current hub `SKILL.md`, all five mode `SKILL.md` Section 2 blocks, `mode-registry.json`, and `hub-router.json`.
-- [x] Re-read or re-run `benchmark/baseline/` and `benchmark/after-009/` reports and extract D1/D3 findings and named contamination scenarios.
+- [x] Re-read or re-run `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/` reports and extract D1/D3 findings and named contamination scenarios.
 - [x] Record any logic-sync conflict between this plan and current hub/mode/registry/router shape. Evidence: no conflict found; Phase 007 continuity freshness warning was non-blocking per user policy.
 
 ### Phase 2: Keyword/Alias Sharpening Contract
@@ -110,7 +110,7 @@ Content-quality routing optimization pass: sharpen SMART ROUTING prose in the hu
 
 ### Phase 4: Verification and Handoff
 - [x] Run strict spec validation for this phase docs after authored changes. Evidence recorded in `implementation-summary.md` after final metadata regeneration.
-- [x] Run the canonical Lane-C skill-benchmark command after implementation and compare against `benchmark/after-009/report.json`. Evidence: `benchmark-after-008/report.md` remains aggregate 69 with D2 100, D5 100, D3 0, D1inter/D4 unscored.
+- [x] Run the canonical Lane-C skill-benchmark command after implementation and compare against `benchmark/2026-07-06--after-009--router/report.json`. Evidence: `benchmark-after-008/report.md` remains aggregate 69 with D2 100, D5 100, D3 0, D1inter/D4 unscored.
 - [x] Update checklist with evidence or approved deferrals.
 - [x] Hand off README-alignment detail to Phase 009.
 
@@ -124,7 +124,7 @@ Content-quality routing optimization pass: sharpen SMART ROUTING prose in the hu
 |-----------|-------|-------|
 | Spec validation | Phase docs structure and required metadata | `validate.sh --strict` |
 | Entry gate review | Phase 007 closure and go/no-go state | Phase 007 checklist and implementation-summary evidence |
-| Benchmark rerun | Routing vocabulary sharpening does not regress D2/D5 and honestly reports D1/D3 status | Lane-C `run-skill-benchmark.cjs` command from `benchmark/README.md`, compared against `benchmark/after-009/report.json` |
+| Benchmark rerun | Routing vocabulary sharpening does not regress D2/D5 and honestly reports D1/D3 status | Lane-C `run-skill-benchmark.cjs` command from `benchmark/README.md`, compared against `benchmark/2026-07-06--after-009--router/report.json` |
 | Registry/router sync | Vocabulary fields updated together; structural keys unchanged | Scoped `git diff` on `mode-registry.json` and `hub-router.json` |
 | Negative controls | No registry-key rename, no `toolSurface` drift, no new public mode | File inventory and content review |
 | Procedure-card cross-reference review | Each mode's routing prose cites its own procedure-card table | Content review across the five `design-*/SKILL.md` files |
@@ -139,7 +139,7 @@ Content-quality routing optimization pass: sharpen SMART ROUTING prose in the hu
 |------------|------|--------|-------------------|
 | Phase 007 closure | Governance | Closed with Errors: 0 and one accepted continuity warning | Gate allowed implementation |
 | Current hub/mode SMART ROUTING shape | Evidence | Re-inspected before edit | Sharpening targets live prose |
-| `benchmark/baseline/` and `benchmark/after-009/` reports | Evidence | Read before implementation; Phase 008 rerun captured in `benchmark-after-008/` | Keyword changes stay grounded |
+| `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/` reports | Evidence | Read before implementation; Phase 008 rerun captured in `benchmark-after-008/` | Keyword changes stay grounded |
 | `mode-registry.json` / `hub-router.json` | Architecture | Must stay structurally frozen; vocabulary only may change | Public routing could drift or duplicate |
 | Phase 004 procedure-card layer | Prior work | Already implemented; this phase cross-references it, does not modify its schema | Routing prose could describe procedure selection inaccurately if not cross-checked |
 | Phase 009 README alignment | Follow-on | Not started | This phase must hand off cleanly without pre-empting Phase 009 scope |

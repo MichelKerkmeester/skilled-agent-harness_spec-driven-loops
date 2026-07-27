@@ -38,7 +38,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Node CJS harness (`router-replay`, `score`, `load-playbook-scenarios`), vitest, skill/agent markdown + JSON routers |
 | **Framework** | deep-improvement Lane C skill-benchmark (router mode) + three-lens deep-review |
-| **Storage** | `benchmark/router-final/` official record; hub `hub-router.json` + `mode-registry.json` + `shared/references/smart_routing.md` |
+| **Storage** | `benchmark/2026-06-01--router-final--router/` official record; hub `hub-router.json` + `mode-registry.json` + `shared/references/smart_routing.md` |
 | **Testing** | Deterministic router-mode replay, vitest suite, pristine-harness regression baseline, comment-hygiene gate |
 
 ### Overview
@@ -113,7 +113,7 @@ Run benchmark → CONDITIONAL 51 → three-lens review root-causes it as an arti
 - [x] Restore the P1 canary (`check-rule-copies.js`); fix the four cheap defects.
 
 ### Phase 3: Verification
-- [x] Re-run the benchmark; capture the official record (aggregate 71) under `benchmark/router-final/`.
+- [x] Re-run the benchmark; capture the official record (aggregate 71) under `benchmark/2026-06-01--router-final--router/`.
 - [x] Pristine-harness baseline (stash → count → pop): 8 failures pristine, 8 with changes → zero net-new.
 - [x] Run the canary (exit 0) and comment-hygiene on all four edited code files (clean).
 - [x] Confirm deferrals (8 test failures, vocab-sync, CS-003) are documented for 009.

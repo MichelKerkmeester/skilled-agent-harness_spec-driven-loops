@@ -91,14 +91,14 @@
     },
     {
       "id": "luna-high-verify-archive-validation",
-      "description": "Confirmed existence + validated the named archive .../benchmark/compiled-routing/luna-high-verify-20260721-120348/ for all 7 hubs",
+      "description": "Confirmed existence + validated the named archive .../benchmark/compiled-routing/2026-07-21--verify--luna-high/ for all 7 hubs",
       "executedThisSession": true,
       "method": "Programmatic validation via the exported validateServingSnapshot() against each archived serving-snapshot.json, plus direct read of each skill-benchmark-report.json",
       "result": "All 7: serving-snapshot.json VALID (schema V1); skill-benchmark-report.json verdict=PASS, traceMode=live, executor=codex, model=openai/gpt-5.6-luna, variant=high, all captured within the same ~2026-07-21T12:04:06-07Z window"
     },
     {
       "id": "luna-high-real-archive-validation-bonus",
-      "description": "Found + validated a SECOND same-day archive per hub not explicitly named in the task, .../compiled-routing/luna-high-real-20260721-073315/ (present for all 7 hubs)",
+      "description": "Found + validated a SECOND same-day archive per hub not explicitly named in the task, .../compiled-routing/2026-07-21--real--luna-high/ (present for all 7 hubs)",
       "executedThisSession": true,
       "result": "serving-snapshot.json VALID for all 7. skill-benchmark-report.json verdict PASS for 6/7; mcp-tooling=FAIL.",
       "interpretation": "This archive is timestamped 07:33:15, ~4.5h before the 12:03:48 'verify' archive. mcp-tooling's FAIL here is a stale/superseded pre-fix snapshot, consistent with the packet's documented commit f9f639674b ('sk-design, system-deep-loop, mcp-tooling coverage'), which landed between the two timestamps. The later, canonical 'verify' archive (already confirmed 7/7 PASS above) supersedes it. Not a current issue.",

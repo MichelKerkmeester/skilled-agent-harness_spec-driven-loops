@@ -32,7 +32,7 @@
       "ref": "./SOURCE.md",
       "basename": "SOURCE.md",
       "candidate_count": 3,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md",
       "confidence": "ambiguous"
     },
     {
@@ -41,7 +41,7 @@
       "ref": "./results.csv",
       "basename": "results.csv",
       "candidate_count": 3,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/results.csv",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/results.csv",
       "confidence": "ambiguous"
     },
     {
@@ -50,7 +50,7 @@
       "ref": "./per-probe.jsonl",
       "basename": "per-probe.jsonl",
       "candidate_count": 2,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/per-probe.jsonl",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/per-probe.jsonl",
       "confidence": "ambiguous"
     },
     {
@@ -59,7 +59,7 @@
       "ref": "./runtime-measurements.md",
       "basename": "runtime-measurements.md",
       "candidate_count": 1,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md",
       "confidence": "unique"
     },
     {
@@ -68,7 +68,7 @@
       "ref": "./SOURCE.md",
       "basename": "SOURCE.md",
       "candidate_count": 3,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md",
       "confidence": "ambiguous"
     },
     {
@@ -77,7 +77,7 @@
       "ref": "./results.csv",
       "basename": "results.csv",
       "candidate_count": 3,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/results.csv",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/results.csv",
       "confidence": "ambiguous"
     },
     {
@@ -86,7 +86,7 @@
       "ref": "./per-probe.jsonl",
       "basename": "per-probe.jsonl",
       "candidate_count": 2,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/per-probe.jsonl",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/per-probe.jsonl",
       "confidence": "ambiguous"
     },
     {
@@ -95,7 +95,7 @@
       "ref": "./runtime-measurements.md",
       "basename": "runtime-measurements.md",
       "candidate_count": 1,
-      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md",
+      "proposed_correct_target": "../../../system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md",
       "confidence": "unique"
     },
     {

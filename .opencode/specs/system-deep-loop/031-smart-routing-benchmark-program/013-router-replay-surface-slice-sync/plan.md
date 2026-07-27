@@ -101,7 +101,7 @@ The benchmark builds a sk-code resource map from the current packet layout, dete
 ### Phase 4: Parent Rollup and Optional Catalogs
 - [x] Capture the post-slicing sk-code router-mode baseline as aggregate 48, D1-intra 68, D2 52, D3 25, D5 100, hard gate pass.
 - [x] Document that the aggregate is gold-limited because the playbook gold still uses pre-rename paths and is not packet-037 success evidence.
-- [x] Record the sk-code playbook gold alignment and `benchmark/router-final/` regeneration as the separate follow-up packet.
+- [x] Record the sk-code playbook gold alignment and `benchmark/2026-06-01--router-final--router/` regeneration as the separate follow-up packet.
 - [x] Run final close-out doc self-verification for frontmatter, anchors, checked boxes, and evidence consistency.
 
 <!-- /ANCHOR:phases -->

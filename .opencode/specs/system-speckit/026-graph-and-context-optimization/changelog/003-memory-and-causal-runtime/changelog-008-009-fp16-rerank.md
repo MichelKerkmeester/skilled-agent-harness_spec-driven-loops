@@ -30,7 +30,7 @@ Phase A added the `RERANK_TORCH_DTYPE` env handler to `rerank_sidecar.py:_load_m
 
 - `RERANK_TORCH_DTYPE` env handler in `rerank_sidecar.py:_load_model` accepting `float16`, `fp16`, `half`, `bfloat16`, `bf16` (default unset, preserves fp32 behavior)
 - `RERANK_TORCH_DTYPE` added to `scripts/start.sh` env allowlist
-- `benchmarks/benchmark-2026-05-21-fp16-rerank/` with fixture, two arm run files and `benchmark_report.md` documenting the smoke-vs-bench divergence
+- `benchmarks/2026-05-21--fp16-rerank--unspecified/` with fixture, two arm run files and `benchmark_report.md` documenting the smoke-vs-bench divergence
 
 ### Changed
 
@@ -58,10 +58,10 @@ None.
 |------|--------------|
 | `.opencode/skills/system-rerank-sidecar/scripts/rerank_sidecar.py` | `RERANK_TORCH_DTYPE` env handler added in `_load_model`. Supports float16, fp16, half, bfloat16, bf16. Defaults to fp32 when unset. |
 | `.opencode/skills/system-rerank-sidecar/scripts/start.sh` | `RERANK_TORCH_DTYPE` added to the env allowlist. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md` (NEW) | Full A/B bench report with §1-§8 documenting smoke-vs-bench divergence and verdict. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/rerank-ab-fixture.json` (NEW) | 50-probe fixture reused from packets 004, 007 and 008. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/runs/arm-a-off.jsonl` (NEW) | Arm A baseline run, 150 rows. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/runs/arm-b-fp16.jsonl` (NEW) | Arm B MPS fp16 run, 150 rows. 23 cross-encoder reaches before OOM cascades. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md` (NEW) | Full A/B bench report with §1-§8 documenting smoke-vs-bench divergence and verdict. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/rerank-ab-fixture.json` (NEW) | 50-probe fixture reused from packets 004, 007 and 008. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/runs/arm-a-off.jsonl` (NEW) | Arm A baseline run, 150 rows. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/runs/arm-b-fp16.jsonl` (NEW) | Arm B MPS fp16 run, 150 rows. 23 cross-encoder reaches before OOM cascades. |
 
 ### Follow-Ups
 

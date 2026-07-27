@@ -43,7 +43,7 @@ _memory:
 - [x] T001 Confirm Phase 004 implementation evidence exists before benchmark execution (`../004-mode-packet-refactor/`). Evidence: user provided verified fact that Phase 004 is closed before this run.
 - [x] T002 Name the release owner for failure, conditional release, and baseline overwrite decisions (`decision-record.md`). Evidence: repository owner, delegated to this session for automated gate record.
 - [x] T003 Locate existing baseline or record missing-baseline status (benchmark baseline ledger). Evidence: `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json` exists and was read.
-- [x] T004 Approve append-only artifact location for benchmark runs (future benchmark output root). Evidence: current run wrote only `.opencode/skills/sk-design/benchmark/after-009/`.
+- [x] T004 Approve append-only artifact location for benchmark runs (future benchmark output root). Evidence: current run wrote only `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/`.
 - [x] T005 Freeze the release report schema with lane verdict, baseline, current result, delta, evidence, and authority fields (`release-report.md`). Evidence: `release-report.md` sections 1-7.
 <!-- /ANCHOR:phase-1 -->
 
@@ -84,7 +84,7 @@ _memory:
 ## L3: Architecture Tasks
 
 - [x] T023 Confirm the release gate keeps routing invariants and usefulness evidence as separate proof tracks (`plan.md`). Evidence: `release-report.md` separates router replay from live/manual gaps.
-- [x] T024 Confirm the baseline ledger is append-only unless explicit overwrite authority is recorded (benchmark baseline ledger). Evidence: baseline path preserved; current run written to `benchmark/after-009/`.
+- [x] T024 Confirm the baseline ledger is append-only unless explicit overwrite authority is recorded (benchmark baseline ledger). Evidence: baseline path preserved; current run written to `benchmark/2026-07-06--after-009--router/`.
 - [x] T025 Confirm md-generator preservation remains a P0 release lane, not a best-effort check (`checklist.md`). Evidence: CHK-028 is marked conditional/release-blocking pending operator live extraction.
 - [x] T026 Confirm failure authority is recorded before any blocked or conditional release proceeds (`decision-record.md`). Evidence: repository owner authority and CONDITIONAL verdict recorded.
 <!-- /ANCHOR:architecture-tasks -->

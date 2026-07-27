@@ -75,7 +75,7 @@ _memory:
 
 - [x] T012 Router-mode benchmark: confirm scenario count 24 -> 25, verdict PASS, D5 100/100
 - [x] T013 JSON parse check on `description.json` and `graph-metadata.json`
-- [x] T014 Live-mode benchmark: fresh baseline to `benchmark/after-018-transport-integration/`
+- [x] T014 Live-mode benchmark: fresh baseline to `benchmark/2026-07-07--after-018-transport-integration--live/`
 - [x] T015 Grep sweep: 0 stale "five modes" hits in sk-design's own live docs
 - [x] T017 Direct `router-replay.cjs` verification against real prompts, since MR-007 is browser-classified and skipped by both benchmark modes: confirms `design-mcp-open-design` wins its own vocabulary and the 3 spot-checked design modes (interface/audit/motion) are unaffected
 - [x] T016 Write this phase's own `implementation-summary.md`

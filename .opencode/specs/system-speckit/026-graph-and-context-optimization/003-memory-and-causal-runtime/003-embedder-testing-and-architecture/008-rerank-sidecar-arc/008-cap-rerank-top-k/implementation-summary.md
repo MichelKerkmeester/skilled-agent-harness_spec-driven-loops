@@ -45,14 +45,14 @@ _memory:
 
 - `mcp_server/lib/search/cross-encoder.ts:478` — `SPECKIT_RERANK_LOCAL_MAX_DOCS` env override added. When the env var is a positive integer, it caps the local-provider batch at that size via `Math.min(providerCap, parsed)`.
 - `mcp_server/dist/lib/search/cross-encoder.js` — rebuilt artifact, env read present in compiled output.
-- `benchmarks/benchmark-2026-05-21-cap-top-k/` — fixture + 2 arm runs (150 rows each) + `benchmark_report.md` documenting the HOLD verdict + the surprising OOM evidence (76 GiB and 135 GiB MTLBuffer allocations even with cap=10).
+- `benchmarks/2026-05-21--cap-top-k--unspecified/` — fixture + 2 arm runs (150 rows each) + `benchmark_report.md` documenting the HOLD verdict + the surprising OOM evidence (76 GiB and 135 GiB MTLBuffer allocations even with cap=10).
 - Source revert at end: `cross-encoder.ts:54` restored from Qwen (which was pinned for the bench) back to `cross-encoder/ms-marco-MiniLM-L-6-v2`. The env override stays.
 
 Original planned shape:
 
 - `mcp_server/lib/search/cross-encoder.ts:478` — `SPECKIT_RERANK_LOCAL_MAX_DOCS` env override at the providerCap site
 - `mcp_server/dist/lib/search/cross-encoder.js` — rebuilt artifact
-- `benchmarks/benchmark-2026-05-21-cap-top-k/` — fixture + runs + benchmark_report.md
+- `benchmarks/2026-05-21--cap-top-k--unspecified/` — fixture + runs + benchmark_report.md
 - On PROMOTE: `cross-encoder.ts:57` (local maxDocuments default flipped to 10) + `search-flags.ts` (SPECKIT_CROSS_ENCODER default flipped to true)
 <!-- /ANCHOR:what-built -->
 
@@ -131,7 +131,7 @@ grep "SPECKIT_RERANK_LOCAL_MAX_DOCS" .opencode/skills/system-spec-kit/mcp_server
 # expect: env read present in dist
 
 SPECKIT_RERANK_LOCAL_MAX_DOCS=10 RERANK_DEVICE=mps \
-  bash .opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh \
+  bash .opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh \
   --fixture .../benchmark-2026-05-21-cap-top-k/rerank-ab-fixture.json \
   --out .../runs/arm-b-cap10.jsonl --arm B --runs 3 \
   --cross-encoder true --reranker-local true

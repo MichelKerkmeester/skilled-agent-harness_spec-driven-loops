@@ -75,4 +75,4 @@ MT-H01 is the certified chrome-vs-aside boundary case for the six-mode hub: deve
 ## 4. RELATED
 
 - Packet-level playbooks: `mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-click-up/manual-testing-playbook/manual-testing-playbook.md`, `mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-figma/manual-testing-playbook/manual-testing-playbook.md`, `mcp-refero/manual-testing-playbook/manual-testing-playbook.md`, `mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md` (each covers its packet's internal behavior and intra-packet routing recall).
-- Lane-C automated benchmark: `benchmark/` — frozen pre-remediation run under `benchmark/baseline/` (PASS 95), enforced route-gold re-run under `benchmark/after-routing-remediation/` (PASS 98, routeGold 13/13); see `benchmark/README.md` for the run table.
+- Lane-C automated benchmark: `benchmark/` — frozen pre-remediation run under `benchmark/baseline/` (PASS 95), enforced route-gold re-run under `benchmark/2026-07-16--after-routing-remediation--router/` (PASS 98, routeGold 13/13); see `benchmark/README.md` for the run table.

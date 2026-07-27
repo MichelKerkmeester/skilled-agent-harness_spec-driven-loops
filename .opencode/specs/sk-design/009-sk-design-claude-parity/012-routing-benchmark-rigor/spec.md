@@ -1,6 +1,6 @@
 ---
 title: "Phase 012 - Rigorous Routing Benchmark and Skill-Advisor Verification"
-description: "Level 3 phase packet reconciled to the existing sk-design Mode A routing benchmark PASS at benchmark/after-012-routing-rigor, with explicit floor-by-floor evidence and caveats for live-only metrics not measured by that report."
+description: "Level 3 phase packet reconciled to the existing sk-design Mode A routing benchmark PASS at benchmark/2026-07-06--after-012-routing-rigor--router, with explicit floor-by-floor evidence and caveats for live-only metrics not measured by that report."
 trigger_phrases:
   - "routing benchmark rigor"
   - "sk-design routing accuracy"
@@ -28,11 +28,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 012 is reconciled to the existing `sk-design` Mode A router benchmark evidence at `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.{json,md}`. That run is complete and passed: `report.json` records `verdict: "PASS"`, `aggregateScore: 100`, `traceMode: "router"`, `scoringMethod: "mode-a-router-replay"`, and `gate.d5Score: 100`; `report.md` renders `Verdict: PASS · aggregate 100/100`, 18 scored text-executor scenarios, 6 browser scenarios routed out, and 24 total scenarios. This reconciliation updates the Phase 012 tracking docs to that real evidence and preserves the exact caveat that D1-inter, advisor confidence, gap-to-second, D4, and live-only procedure-card selection were not measured by the authoritative Mode A report.
+Phase 012 is reconciled to the existing `sk-design` Mode A router benchmark evidence at `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}`. That run is complete and passed: `report.json` records `verdict: "PASS"`, `aggregateScore: 100`, `traceMode: "router"`, `scoringMethod: "mode-a-router-replay"`, and `gate.d5Score: 100`; `report.md` renders `Verdict: PASS · aggregate 100/100`, 18 scored text-executor scenarios, 6 browser scenarios routed out, and 24 total scenarios. This reconciliation updates the Phase 012 tracking docs to that real evidence and preserves the exact caveat that D1-inter, advisor confidence, gap-to-second, D4, and live-only procedure-card selection were not measured by the authoritative Mode A report.
 
-**Key Decisions**: Accept the existing parent-verified Mode A benchmark as Phase 012's authoritative closeout evidence; record every ADR-001 floor against the actual report instead of inventing live-only scores; treat D1-inter, advisor confidence, gap-to-second, and live-only procedure-card selection as unscored by this run rather than failed; keep the orphaned duplicate `benchmark/after-d3-proxy/` artifact as a known naming inconsistency without deleting either artifact.
+**Key Decisions**: Accept the existing parent-verified Mode A benchmark as Phase 012's authoritative closeout evidence; record every ADR-001 floor against the actual report instead of inventing live-only scores; treat D1-inter, advisor confidence, gap-to-second, and live-only procedure-card selection as unscored by this run rather than failed; keep the orphaned duplicate `benchmark/2026-07-06--after-d3-proxy--router/` artifact as a known naming inconsistency without deleting either artifact.
 
-**Critical Dependencies**: Existing benchmark report `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.{json,md}`, duplicate artifact `.opencode/skills/sk-design/benchmark/after-d3-proxy/skill-benchmark-report.{json,md}`, and strict spec validation for this phase folder after metadata regeneration.
+**Critical Dependencies**: Existing benchmark report `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}`, duplicate artifact `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/skill-benchmark-report.{json,md}`, and strict spec validation for this phase folder after metadata regeneration.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -65,7 +65,7 @@ Phase 012 is reconciled to the existing `sk-design` Mode A router benchmark evid
 
 ### Problem Statement
 
-The Phase 012 packet still described future work as "Planned / Not Started" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.{json,md}`. The stale docs created a tracking mismatch: the parent packet's final verification could cite a passing Phase 012 benchmark, while Phase 012's own `spec.md`, `tasks.md`, and `checklist.md` still showed 0 verified items and no implementation summary. The actual report also has narrower evidence than the original planning packet: it proves the Mode A router gate, D1-intra, D2, and D5, but it explicitly leaves D1-inter, advisor confidence/gap-to-second, D4, and live-only evidence unscored.
+The Phase 012 packet still described future work as "Planned / Not Started" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}`. The stale docs created a tracking mismatch: the parent packet's final verification could cite a passing Phase 012 benchmark, while Phase 012's own `spec.md`, `tasks.md`, and `checklist.md` still showed 0 verified items and no implementation summary. The actual report also has narrower evidence than the original planning packet: it proves the Mode A router gate, D1-intra, D2, and D5, but it explicitly leaves D1-inter, advisor confidence/gap-to-second, D4, and live-only evidence unscored.
 
 ### Purpose
 
@@ -80,7 +80,7 @@ Reconcile the Phase 012 tracking documents to the real benchmark state without r
 ### In Scope
 
 - Update only this phase's tracking docs to reflect the existing Mode A benchmark PASS.
-- Cite `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.json` and `report.md` as the authoritative evidence.
+- Cite `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.json` and `report.md` as the authoritative evidence.
 - Check each ADR-001 numeric floor against the actual report values and record PASS / UNSCORED / NOT APPLICABLE honestly.
 - Record that `after-d3-proxy/skill-benchmark-report.{json,md}` is an orphaned duplicate of the Phase 012 report naming pattern and leave it untouched.
 - Regenerate `description.json` and `graph-metadata.json` after all content edits.
@@ -122,12 +122,12 @@ Reconcile the Phase 012 tracking documents to the real benchmark state without r
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Existing benchmark evidence is identified | `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.json` and `report.md` are cited as the authoritative Phase 012 evidence; `report.json` records `verdict: "PASS"`, `aggregateScore: 100`, `traceMode: "router"`, and `scoringMethod: "mode-a-router-replay"` |
+| REQ-001 | Existing benchmark evidence is identified | `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.json` and `report.md` are cited as the authoritative Phase 012 evidence; `report.json` records `verdict: "PASS"`, `aggregateScore: 100`, `traceMode: "router"`, and `scoringMethod: "mode-a-router-replay"` |
 | REQ-002 | Benchmark is not re-run or edited | No `.opencode/skills/sk-design/**` file is changed by this reconciliation; the existing report remains the source of truth |
 | REQ-003 | Mode A pass is recorded exactly | `report.md` records `Verdict: PASS · aggregate 100/100`, 18 scored text-executor scenarios, 6 browser scenarios routed out, and 24 total scenarios |
 | REQ-004 | ADR-001 floors are checked against real report data | `decision-record.md` and `checklist.md` record PASS for D1-intra, D2, D5, aggregate verdict, and no benchmark divergences, and record UNSCORED / NOT APPLICABLE for D1-inter, advisor confidence, gap-to-second, and live-only procedure-card selection |
 | REQ-005 | Unscored dimensions stay visible | `report.json` / `report.md` evidence that D1-inter and D4 are `unscored-mode-a` is preserved in the docs; no score is invented |
-| REQ-006 | Duplicate artifact is documented, not deleted | `implementation-summary.md` notes that `.opencode/skills/sk-design/benchmark/after-d3-proxy/skill-benchmark-report.{json,md}` is an orphaned duplicate naming artifact matching the Phase 012 report content pattern |
+| REQ-006 | Duplicate artifact is documented, not deleted | `implementation-summary.md` notes that `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/skill-benchmark-report.{json,md}` is an orphaned duplicate naming artifact matching the Phase 012 report content pattern |
 | REQ-007 | Phase docs are synchronized to complete | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` all state the same final evidence state and no longer claim "Planned / Not Started" |
 | REQ-008 | Metadata is regenerated last | `description.json` and `graph-metadata.json` are regenerated after all content edits, before strict validation |
 | REQ-009 | Strict validation is run | `implementation-summary.md` records the strict validation command and exit code for this phase folder |

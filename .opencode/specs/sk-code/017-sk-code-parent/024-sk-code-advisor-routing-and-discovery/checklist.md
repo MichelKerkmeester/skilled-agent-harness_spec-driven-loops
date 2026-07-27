@@ -71,7 +71,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-024 [P0] Playbook expected-asset paths reconciled [EVIDENCE: commit `ec014f95c6` repairs `cwv-gates-animation-heavy.md` and `prefers-reduced-motion.md` expected assets to `shared/references/`, `code-review/assets/`, and `code-webflow/assets/webflow-verification_checklist.md`]
-- [x] CHK-025 [P0] Benchmark reports regenerated without overwriting frozen baselines [EVIDENCE: `sk-code/benchmark/router-final` regenerated; `sk-design/benchmark/after-d3-proxy` and `deep-loop-workflows/benchmark/after-d3-proxy` written as sibling reports]
+- [x] CHK-025 [P0] Benchmark reports regenerated without overwriting frozen baselines [EVIDENCE: `sk-code/benchmark/2026-06-01--router-final--router` regenerated; `sk-design/benchmark/2026-07-06--after-d3-proxy--router` and `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router` written as sibling reports]
 - [x] CHK-026 [P1] Benchmark deltas recorded [EVIDENCE: sk-code aggregate 71 to 84 and verdict CONDITIONAL to PASS; sk-design 69 to 100; deep-loop-workflows 71 to 100]
 
 <!-- /ANCHOR:fix-completeness -->

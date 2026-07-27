@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Regenerate description.json/graph-metadata.json, validate --strict, proceed to phase 008"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md"
+      - ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md"
       - ".opencode/skills/sk-prompt/hub-router.json"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
       - "../002-architecture-decision/decision-record.md"
@@ -57,7 +57,7 @@ The merged `sk-prompt` hub carried one open architecture question out of phase 0
 
 ### Router-mode Lane-C benchmark
 
-`sk-prompt/benchmark/router-final/` now holds a legible `skill-benchmark-report.md` and `skill-benchmark-report.json` produced by `loop-host.cjs --mode=skill-benchmark --skill=sk-prompt --trace-mode=router`. Four scenarios (SP-001 through SP-004) exercise both `prompt-improve` and named-small-model `prompt-models` queries (DeepSeek, GLM-5.2). All four score 100/100. D1-intra (router self-consistency) is 100/100, D2 discovery is 100/100, and D5 connectivity (the hard gate) is 100/100. D1-inter and D4 stay unscored in Mode A by design — they need a live advisor/ablation run, which is explicitly out of scope for this phase per `spec.md`'s deliverables.
+`sk-prompt/benchmark/2026-07-10--router-final--router/` now holds a legible `skill-benchmark-report.md` and `skill-benchmark-report.json` produced by `loop-host.cjs --mode=skill-benchmark --skill=sk-prompt --trace-mode=router`. Four scenarios (SP-001 through SP-004) exercise both `prompt-improve` and named-small-model `prompt-models` queries (DeepSeek, GLM-5.2). All four score 100/100. D1-intra (router self-consistency) is 100/100, D2 discovery is 100/100, and D5 connectivity (the hard gate) is 100/100. D1-inter and D4 stay unscored in Mode A by design — they need a live advisor/ablation run, which is explicitly out of scope for this phase per `spec.md`'s deliverables.
 
 ### Router-weight fix for named-model queries
 
@@ -71,8 +71,8 @@ A second, unrelated bug surfaced in the same investigation: `load-playbook-scena
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md` | Created | Human-readable router-mode benchmark evidence (PASS 100/100). |
-| `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json` | Created | Machine-readable benchmark results backing the report. |
+| `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md` | Created | Human-readable router-mode benchmark evidence (PASS 100/100). |
+| `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json` | Created | Machine-readable benchmark results backing the report. |
 | `.opencode/skills/sk-prompt/manual_testing_playbook/hub-routing/{001,002,003,004}-*.md` | Created | Per-scenario Lane-C scenario gold with `id`/`expected_intent`/`expected_resources` frontmatter (neither the sk-code-shape index-table loader nor the sk-doc-shape per-file loader matched the hub's original inline playbook). |
 | `.opencode/skills/sk-prompt/hub-router.json` | Modified | `routerSignals.prompt-models.weight` raised 3 → 5 to fix the named-model routing regression. |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs` | Modified | `expected_intent` regex widened from `[A-Za-z_]+` to `[A-Za-z0-9_-]+` to stop truncating hyphenated intent values. |
@@ -108,7 +108,7 @@ Ran the router-mode Lane-C benchmark, hit a `NO-SCENARIOS` failure from a playbo
 | Check | Result |
 |-------|--------|
 | Router-mode Lane-C benchmark (`loop-host.cjs --mode=skill-benchmark --skill=sk-prompt --trace-mode=router`) | PASS 100/100 — 4/4 scenarios, D1-intra 100, D2 100, D5 100. |
-| `skill-benchmark-report.md` / `.json` exist under `.opencode/skills/sk-prompt/benchmark/router-final/` | PASS — both files present and legible. |
+| `skill-benchmark-report.md` / `.json` exist under `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/` | PASS — both files present and legible. |
 | Deep-review pass over the phases 003-006 diff | PASS — no untriaged P0 findings; two bugs found were fixed and are documented above, not deferred. |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision --strict` (after the ADR-001 amendment) | PASS — 0 errors, 0 warnings. |
 <!-- /ANCHOR:verification -->

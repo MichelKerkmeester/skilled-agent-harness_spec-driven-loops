@@ -111,7 +111,7 @@ Summary of aggregate file scope; per-phase detail lives in each child's `plan.md
 | `.opencode/skills/system-skill-advisor/mcp_server/{lib/scorer/executor-delegation.ts,scripts/skill_advisor.py}` | Modify | 005 | Hardcoded `model_profiles.json` path joins |
 | `.opencode/commands/deep/model-benchmark.md` + `assets/deep_model-benchmark_{auto,confirm}.yaml` | Modify | 005 | Live write-target path repoint (bundled with the directory move) |
 | `.opencode/skills/{cli-opencode,system-deep-loop,sk-code,sk-doc}/*` + `AGENTS.md`/`README.md`/install guides | Modify | 006 | Documentation/graph-edge referrer sweep (~50 files) |
-| `.opencode/skills/sk-prompt/benchmark/router-final/*` | Create | 007 | Lane-C skill-benchmark output |
+| `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/*` | Create | 007 | Lane-C skill-benchmark output |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -62,7 +62,7 @@ children AND the parent machine block, keeping keyword scope tight per language:
 
 The split DELIBERATELY changes the sk-code hub's Mode-A routing output (a single-language task
 loads fewer files), so the P0/P3 "byte-identical hub baseline" invariant is intentionally
-broken here. Re-capture `sk-code/benchmark/router-baseline/` as part of the follow-up and note
+broken here. Re-capture `sk-code/benchmark/2026-07-10--router-baseline--router/` as part of the follow-up and note
 the delta (fewer routed files = the intended improvement), rather than treating it as a regression.
 
 ## Residual not fixed by the split (separate issue)

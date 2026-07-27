@@ -39,13 +39,13 @@ The existing language contract loads one detected language trio, while quality c
 - D1-intra `100`
 - D2 discovery `100`
 - D5 connectivity `100`
-- No connectivity-gate failure, hub-route regression, known gap, or tool-surface violation [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/router-mode-a/skill-benchmark-report.md:3-23] [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/router-mode-a/skill-benchmark-report.md:30-49] [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/router-mode-a/skill-benchmark-report.json:11-27]
+- No connectivity-gate failure, hub-route regression, known gap, or tool-surface violation [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md:3-23] [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md:30-49] [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.json:11-27]
 
-**Confirmed:** D1-inter advisor behavior and D4 usefulness are not measured by Mode A. They must not be represented as green merely because router replay passes. [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/router-mode-a/skill-benchmark-report.md:23-28] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:106-111]
+**Confirmed:** D1-inter advisor behavior and D4 usefulness are not measured by Mode A. They must not be represented as green merely because router replay passes. [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md:23-28] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md:106-111]
 
 **Important gate defect:** The benchmark orchestrator returns exit code `0` after writing the report regardless of the report verdict. CI must inspect `skill-benchmark-report.json`; process success alone does not prove a green benchmark. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:208-218]
 
-The checked-in directory named `live-mode-b` reports `traceMode: live`, but its report still describes D1-inter and D4 as unscored. It is supporting routing evidence, not a substitute for the deterministic Mode-A gate or a complete live usefulness evaluation. [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/live-mode-b/skill-benchmark-report.json:3-12] [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/live-mode-b/skill-benchmark-report.md:23-28]
+The checked-in directory named `live-mode-b` reports `traceMode: live`, but its report still describes D1-inter and D4 as unscored. It is supporting routing evidence, not a substitute for the deterministic Mode-A gate or a complete live usefulness evaluation. [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.json:3-12] [SOURCE: .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md:23-28]
 
 ### Exact Gate Plan
 
@@ -64,7 +64,7 @@ Green means every test passes, including the exact parent-union assertion. This 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill .opencode/skills/sk-code/code-opencode \
-  --outputs-dir .opencode/skills/sk-code/code-opencode/benchmark/router-mode-a \
+  --outputs-dir .opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router \
   --trace-mode router
 ```
 
@@ -72,7 +72,7 @@ Then fail closed on the generated report:
 
 ```bash
 node -e '
-const r = require("./.opencode/skills/sk-code/code-opencode/benchmark/router-mode-a/skill-benchmark-report.json");
+const r = require("./.opencode/skills/sk-code/code-opencode/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.json");
 const allPassed = r.funnel?.passed === r.coverage?.scored;
 if (r.verdict !== "PASS" || r.gate?.gateFailed || r.gate?.d5Score !== 100 || !allPassed) {
   console.error(JSON.stringify({

@@ -59,7 +59,7 @@ Collapse the hub to a surface-primary model with four sub-skills — `code-openc
 - Symlink any `shared/` reference a surviving sub-skill consumes into that sub-skill so each is self-contained; `shared/` stays the source of truth.
 - Reconcile routing: `hub-router.json` (drop implement/debug/verify/code-animation signals + their vocabulary classes, keep quality/review/webflow/opencode), `mode-registry.json` (remove the three dissolved modes), `shared/references/smart_routing.md` RESOURCE_MAP (repoint `code-animation/*` → `code-webflow/*`, drop dissolved-mode routes). Run vocab-sync.
 - Repoint external references to the dissolved sub-skills in `.opencode/agents/{orchestrate,deep-review,review,code}.md`, `agents/README.txt`, and any specs/docs.
-- Re-baseline the Lane-C benchmark: re-translate the playbook gold (`code-animation/*` → `code-webflow/*`, drop dissolved-mode gold), regenerate `benchmark/router-final/`.
+- Re-baseline the Lane-C benchmark: re-translate the playbook gold (`code-animation/*` → `code-webflow/*`, drop dissolved-mode gold), regenerate `benchmark/2026-06-01--router-final--router/`.
 
 ### Out of Scope
 - `code-review` and `code-quality` internal content (kept as-is).
@@ -77,7 +77,7 @@ Collapse the hub to a surface-primary model with four sub-skills — `code-openc
 | `.opencode/skills/sk-code/code-{opencode,webflow}/` | Modify/Add | Symlinks to shared workflow doctrine; webflow gains animation refs/assets |
 | `.opencode/skills/sk-code/{hub-router.json,mode-registry.json}` | Modify | Drop dissolved-mode + code-animation routing |
 | `.opencode/skills/sk-code/shared/references/smart_routing.md` | Modify | Repoint code-animation → code-webflow; drop dissolved-mode routes |
-| `.opencode/skills/sk-code/manual_testing_playbook/**`, `benchmark/router-final/**`, `benchmark/README.md` | Modify | Re-translated gold + regenerated baseline |
+| `.opencode/skills/sk-code/manual_testing_playbook/**`, `benchmark/2026-06-01--router-final--router/**`, `benchmark/README.md` | Modify | Re-translated gold + regenerated baseline |
 | `.opencode/agents/{orchestrate,deep-review,review,code}.md`, `agents/README.txt` | Modify | Repoint dissolved sub-skill references |
 
 <!-- /ANCHOR:scope -->

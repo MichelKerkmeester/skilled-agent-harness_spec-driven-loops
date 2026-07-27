@@ -26,7 +26,7 @@ Each case study records what triggered the adoption decision, the load-bearing i
 
 ## 2. CASE STUDY 1: TEXT-EMBEDDER BAKE-OFF (mk-spec-memory, May 17, 2026)
 
-Path: `.opencode/skills/system-spec-kit/mcp-server/benchmarks/benchmark-2026-05-17/`
+Path: `.opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-17--run--unspecified/`
 
 The bake-off compared six text embedders against a deterministic paraphrase-recall fixture. Twelve ADRs landed in a single day across rollbacks, fixture surgery and a retrieval-rescue pivot. The spec packet ended with the winning embedder plus retrieval-rescue layer as the production default.
 

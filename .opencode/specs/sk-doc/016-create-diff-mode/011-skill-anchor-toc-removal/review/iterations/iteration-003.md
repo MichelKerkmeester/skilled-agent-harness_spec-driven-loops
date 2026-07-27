@@ -997,16 +997,16 @@ CommitDate: Tue May 26 11:55:15 2026 +0200
 .opencode/skills/system-spec-kit/mcp_server/README.md
 .opencode/skills/system-spec-kit/mcp_server/api/README.md
 .opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md
 .opencode/skills/system-spec-kit/mcp_server/configs/README.md
 .opencode/skills/system-spec-kit/mcp_server/core/README.md
 .opencode/skills/system-spec-kit/mcp_server/data/README.md
@@ -6409,29 +6409,29 @@ exec
 .opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D1.json:28:    "## Table of Contents",
 .opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D1.json:33:    "<!-- ANCHOR:overview -->",
 .opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D1.json:40:    "<!-- /ANCHOR:overview -->",
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:133:<!-- ANCHOR:table-of-contents -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:134:## TABLE OF CONTENTS
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:147:<!-- /ANCHOR:table-of-contents -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:151:<!-- ANCHOR:headline-overview -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:170:<!-- /ANCHOR:headline-overview -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:174:<!-- ANCHOR:aggregate-results -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:189:<!-- /ANCHOR:aggregate-results -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:193:<!-- ANCHOR:methodology -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:226:<!-- /ANCHOR:methodology -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:230:<!-- ANCHOR:per-candidate-profiles -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:255:<!-- /ANCHOR:per-candidate-profiles -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:259:<!-- ANCHOR:process-notes -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:265:<!-- /ANCHOR:process-notes -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:269:<!-- ANCHOR:findings -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:304:<!-- /ANCHOR:findings -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:308:<!-- ANCHOR:caveats -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:316:<!-- /ANCHOR:caveats -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:320:<!-- ANCHOR:recommendations -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:343:<!-- /ANCHOR:recommendations -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:347:<!-- ANCHOR:reproducibility -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:365:<!-- /ANCHOR:reproducibility -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:369:<!-- ANCHOR:related-resources -->
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py:378:<!-- /ANCHOR:related-resources -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:133:<!-- ANCHOR:table-of-contents -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:134:## TABLE OF CONTENTS
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:147:<!-- /ANCHOR:table-of-contents -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:151:<!-- ANCHOR:headline-overview -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:170:<!-- /ANCHOR:headline-overview -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:174:<!-- ANCHOR:aggregate-results -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:189:<!-- /ANCHOR:aggregate-results -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:193:<!-- ANCHOR:methodology -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:226:<!-- /ANCHOR:methodology -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:230:<!-- ANCHOR:per-candidate-profiles -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:255:<!-- /ANCHOR:per-candidate-profiles -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:259:<!-- ANCHOR:process-notes -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:265:<!-- /ANCHOR:process-notes -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:269:<!-- ANCHOR:findings -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:304:<!-- /ANCHOR:findings -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:308:<!-- ANCHOR:caveats -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:316:<!-- /ANCHOR:caveats -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:320:<!-- ANCHOR:recommendations -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:343:<!-- /ANCHOR:recommendations -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:347:<!-- ANCHOR:reproducibility -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:365:<!-- /ANCHOR:reproducibility -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:369:<!-- ANCHOR:related-resources -->
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:378:<!-- /ANCHOR:related-resources -->
 
 exec
 /bin/zsh -lc 'git diff 1e58d845af''^ 1e58d845af -- .opencode/commands/create/README.txt .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml | sed -n '"'1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public

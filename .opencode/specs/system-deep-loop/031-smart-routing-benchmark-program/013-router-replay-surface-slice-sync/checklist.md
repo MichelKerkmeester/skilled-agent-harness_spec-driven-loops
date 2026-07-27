@@ -71,7 +71,7 @@ _memory:
 
 - [x] CHK-024 [P0] Documented contract contradiction resolved in harness [EVIDENCE: smart-routing docs assert deterministic router-replay enforces slicing; harness prefix constants now match the same `code-*` resource layout]
 - [x] CHK-025 [P1] Pre-existing intents failure left out of scope with reason [EVIDENCE: DEFERRED WITH REASON — `skill-benchmark.vitest.ts` still expects `res.intents` to contain `implement`, but current `hub-router.json` returns `['code-webflow']`; this is intent/mode-projection sync, not surface-slicing]
-- [x] CHK-026 [P1] sk-code gold alignment left out of scope with reason [EVIDENCE: DEFERRED WITH REASON — playbook gold still uses pre-rename paths; alignment and `benchmark/router-final/` regeneration belong to `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`]
+- [x] CHK-026 [P1] sk-code gold alignment left out of scope with reason [EVIDENCE: DEFERRED WITH REASON — playbook gold still uses pre-rename paths; alignment and `benchmark/2026-06-01--router-final--router/` regeneration belong to `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`]
 
 <!-- /ANCHOR:fix-completeness -->
 ---

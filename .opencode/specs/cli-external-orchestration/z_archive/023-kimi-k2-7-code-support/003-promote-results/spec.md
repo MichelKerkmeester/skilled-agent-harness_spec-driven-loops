@@ -89,7 +89,7 @@ This is **Phase 3** of the kimi-k2-7-code-support specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/006-kimi-k2.7-prompt-framework/`. The registry (`model-profiles.json#kimi-k2.7-code`) still carries the placeholder: `primary: "rcaf"`, `status: "default-unverified"`, all evidence null. The reference doc `references/models/kimi-k2.7-code.md` still describes RCAF as a reasoned-but-unverified default. Dispatch guidance stays a guess until the result is folded back into the data source and its mirror.
+After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`. The registry (`model-profiles.json#kimi-k2.7-code`) still carries the placeholder: `primary: "rcaf"`, `status: "default-unverified"`, all evidence null. The reference doc `references/models/kimi-k2.7-code.md` still describes RCAF as a reasoned-but-unverified default. Dispatch guidance stays a guess until the result is folded back into the data source and its mirror.
 
 ### Purpose
 Promote the bakeoff-006 verdict into the registry and the kimi reference doc so dispatch guidance for kimi-k2.7-code becomes evidence-based, then prove the mirror stays in sync with the card-sync guard.

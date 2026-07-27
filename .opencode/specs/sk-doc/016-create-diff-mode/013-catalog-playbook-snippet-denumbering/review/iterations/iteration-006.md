@@ -16,8 +16,8 @@
 | P1 | WRONG_SLUG_TARGET_EXISTS | `.opencode/skills/system-skill-advisor/references/runtime/freshness_contract.md` | `../feature_catalog/01--daemon-and-freshness/` | no | Change ../ to ../../ |
 | P1 | WRONG_SLUG_TARGET_EXISTS | `.opencode/skills/system-skill-advisor/references/runtime/freshness_contract.md` | `../manual_testing_playbook/05--auto-update-daemon/` | no | Change ../ to ../../ |
 | P1 | WRONG_SLUG_TARGET_EXISTS | `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | `./INSTALL_GUIDE.md` | no | Change to ./mcp_server/INSTALL_GUIDE.md |
-| P2 | REAL_BROKEN | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md` | `../FORMAT.md` | no | Create FORMAT.md in benchmarks/ describing the convention, or remove the link. |
-| P2 | REAL_BROKEN | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/README.md` | `../README.md` | no | Either create a README.md in benchmark-2026-05-20-rerank-ab/ or change link to ../../README.md |
+| P2 | REAL_BROKEN | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md` | `../FORMAT.md` | no | Create FORMAT.md in benchmarks/ describing the convention, or remove the link. |
+| P2 | REAL_BROKEN | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/README.md` | `../README.md` | no | Either create a README.md in benchmark-2026-05-20-rerank-ab/ or change link to ../../README.md |
 | P1 | REAL_BROKEN | `.opencode/skills/system-spec-kit/mcp_server/lib/enrichment/README.md` | `../../code_graph/README.md` | no | Remove link or point to .opencode/skills/system-code-graph/mcp_server/README.md |
 | P2 | REAL_BROKEN | `.opencode/skills/system-spec-kit/mcp_server/lib/providers/README.md` | `../contracts/README.md` | no | Remove link or create the missing contracts/README.md |
 | P1 | WRONG_SLUG_TARGET_EXISTS | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md` | `../skill_advisor/README.md` | no | Change to ../../system-skill-advisor/mcp_server/README.md |

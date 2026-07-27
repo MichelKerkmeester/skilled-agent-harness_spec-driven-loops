@@ -42,8 +42,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
-      ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json",
-      ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md",
+      ".opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md",
       ".opencode/skills/sk-code/benchmark/README.md",
       "plan.md",
       "tasks.md",
@@ -61,13 +61,13 @@
       {
         "name": "skill-benchmark-report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json",
+        "path": ".opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json",
         "source": "derived"
       },
       {
         "name": "skill-benchmark-report.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md",
+        "path": ".opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md",
         "source": "derived"
       },
       {

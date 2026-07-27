@@ -48,7 +48,7 @@ _memory:
 - [x] T003 [P] Read current `mode-registry.json` before editing, including `aliases` and `transformVerbRouting` (`.opencode/skills/sk-design/mode-registry.json`) [10m]
 - [x] T004 [P] Read current `hub-router.json` before editing, including `vocabularyClasses` and `routerSignals` (`.opencode/skills/sk-design/hub-router.json`) [10m]
 - [x] T005 Read each of the five mode packets' `SKILL.md` Section 2 SMART ROUTING, including existing procedure-card CONDITIONAL tables (`design-interface/`, `design-foundations/`, `design-motion/`, `design-audit/`, `design-md-generator/`) [30m]
-- [x] T006 Re-read or re-run `benchmark/baseline/skill-benchmark-report.json` and `benchmark/after-009/report.json`, extracting D1/D2/D3/D5 scores and named contamination scenarios (benchmark evidence) [20m]
+- [x] T006 Re-read or re-run `benchmark/baseline/skill-benchmark-report.json` and `benchmark/2026-07-06--after-009--router/report.json`, extracting D1/D2/D3/D5 scores and named contamination scenarios (benchmark evidence) [20m]
 - [x] T007 Record any logic-sync conflict between this plan and current hub/mode/registry/router shape (`plan.md` or implementation notes) [10m]
 
 <!-- /ANCHOR:phase-1 -->
@@ -98,7 +98,7 @@ _memory:
 
 ### Verification
 - [x] T023 Run strict spec validation for this phase folder (validation evidence) [5m]
-- [x] T024 Run or record the canonical Lane-C skill-benchmark command after implementation and compare against `benchmark/after-009/report.json` (benchmark evidence) [20m]
+- [x] T024 Run or record the canonical Lane-C skill-benchmark command after implementation and compare against `benchmark/2026-07-06--after-009--router/report.json` (benchmark evidence) [20m]
 - [x] T025 Review negative controls for registry authority, `toolSurface` boundary, and public-identity preservation (`checklist.md`) [15m]
 - [x] T026 Update checklist P0/P1 rows with evidence or approved deferral (`checklist.md`) [15m]
 
@@ -146,6 +146,6 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Predecessor Gate**: See `../007-procedure-card-template-alignment/`
-- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/after-009/report.md`
+- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/2026-07-06--after-009--router/report.md`
 
 <!-- /ANCHOR:cross-refs -->

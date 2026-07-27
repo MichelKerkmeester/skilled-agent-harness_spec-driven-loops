@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json"
-      - ".opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/"
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-framework-bakeoff"
@@ -77,7 +77,7 @@ This is **Phase 2** of the kimi-k2-7-code-support specification.
 
 **Deliverables**:
 - A bakeoff profile at `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json`.
-- A completed run `006-kimi-k2.7-prompt-framework` with outputs under `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`).
+- A completed run `006-kimi-k2.7-prompt-framework` with outputs under `.opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/` (`results.json`, `aggregate.json`, `synthesis.md`).
 - A verdict (WINNER | TIE | INCONCLUSIVE) and per-framework leaderboard that Phase 003 promotes.
 
 **Changelog**:
@@ -116,7 +116,7 @@ Empirically determine kimi-k2.7-code's best prompt framework by running the mode
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json` | Create | Bakeoff profile cloned from `framework-bakeoff.json`, retargeted to kimi-k2.7-code + real fixtures |
-| `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/` | Create | Run outputs: `results.json`, `aggregate.json`, `synthesis.md` (written by the command) |
+| `.opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/` | Create | Run outputs: `results.json`, `aggregate.json`, `synthesis.md` (written by the command) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -146,7 +146,7 @@ Empirically determine kimi-k2.7-code's best prompt framework by running the mode
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Run `006-kimi-k2.7-prompt-framework` completes and writes `results.json`, `aggregate.json`, and `synthesis.md` under `.opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/`.
+- **SC-001**: Run `006-kimi-k2.7-prompt-framework` completes and writes `results.json`, `aggregate.json`, and `synthesis.md` under `.opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`.
 - **SC-002**: The synthesis records a verdict (WINNER \| TIE \| INCONCLUSIVE) and a per-framework leaderboard that Phase 003 can promote without re-running the bakeoff.
 <!-- /ANCHOR:success-criteria -->
 

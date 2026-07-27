@@ -47,7 +47,7 @@ The first Kimi K2.7 Code prompt-framework bakeoff ran as a real model-under-test
 - Documented the deviation that the plan's `--grader=llm` flag is architecturally incompatible with the framework-bakeoff engine, because the sweep scores through a deterministic code oracle and has no LLM-judge hook.
 - Documented the deviation that `--grader llm` lives on the loop-host engine, which does not sweep frameworks or dispatch the model under test.
 - Drove `runSweep` programmatically with the correct `registryPath` to work around a registry-path bug without editing the engine.
-- Confirmed `aggregate.json`, `results.json` and `synthesis.md` exist under `benchmarks/006-kimi-k2.7-prompt-framework/`.
+- Confirmed `aggregate.json`, `results.json` and `synthesis.md` exist under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`.
 - Confirmed the correctness gate did not silently saturate, since `correctness_saturated: true` was surfaced and the engine fell to efficiency as the ranking key.
 - Verified the run output includes verdict TIE and a leaderboard.
 
@@ -56,7 +56,7 @@ The first Kimi K2.7 Code prompt-framework bakeoff ran as a real model-under-test
 | Check | Result |
 |-------|--------|
 | Strict validation | PASS: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <002 folder> --strict` exited 0 after close reconciliation. |
-| Run outputs | PASS: run `006-kimi-k2.7-prompt-framework` wrote `aggregate.json`, `results.json` and `synthesis.md` under `benchmarks/006-kimi-k2.7-prompt-framework/`. |
+| Run outputs | PASS: run `006-kimi-k2.7-prompt-framework` wrote `aggregate.json`, `results.json` and `synthesis.md` under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`. |
 | Correctness gate honesty | PASS: saturation surfaced explicitly as `correctness_saturated: true`, and the engine fell to efficiency as the ranking key. |
 | Verdict and leaderboard | PASS: `synthesis.md` recorded verdict TIE inside the noise floor and a five-row efficiency leaderboard of `cidi` > `costar` > `race` > `rcaf` > `tidd-ec`. |
 | Real Kimi dispatches | PASS: 30/30 real `kimi-for-coding/k2p7` dispatches succeeded, no fallback used and all cells generated. |
@@ -67,8 +67,8 @@ The first Kimi K2.7 Code prompt-framework bakeoff ran as a real model-under-test
 | File | Action | What changed |
 |------|--------|--------------|
 | `kimi-k2.7-frameworks.json` | Created | Bakeoff profile with Kimi-only model, five frameworks, real T3 fixtures and `5dim` plus correctness gate threshold 1.0. |
-| `benchmarks/006-kimi-k2.7-prompt-framework/ (aggregate.json, results.json, synthesis.md)` | Created | Authoritative sweep outputs with per-framework leaderboard and TIE verdict. |
-| `benchmarks/006-kimi-k2.7-prompt-framework/ (llm-judge-board.json, llm-judge-results.json, llm-judge-synthesis.md)` | Created | Secondary `gpt-5.5` clarity tie-break, subjective and not a correctness verdict. |
+| `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/ (aggregate.json, results.json, synthesis.md)` | Created | Authoritative sweep outputs with per-framework leaderboard and TIE verdict. |
+| `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/ (llm-judge-board.json, llm-judge-results.json, llm-judge-synthesis.md)` | Created | Secondary `gpt-5.5` clarity tie-break, subjective and not a correctness verdict. |
 | `002-framework-bakeoff/improvement/ (model-benchmark-state.jsonl, benchmark-run-pointer.json)` | Created | Run state and pointer recording the deterministic TIE plus the judge top and bottom. |
 
 ### Follow-Ups

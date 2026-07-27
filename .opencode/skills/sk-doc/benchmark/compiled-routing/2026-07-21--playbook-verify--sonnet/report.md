@@ -48,7 +48,7 @@ The root `manual-testing-playbook.md` Scenario Index is stale relative to the ac
 
 ## Cross-check vs Lane C compiled-serving parity (32/0)
 
-An independent, concurrently-running Lane C harness sweep (`.opencode/skills/sk-doc/benchmark/compiled-routing/r3-benchmark-sweep-20260721-131432/hub-reports/sk-doc.md`, not produced by this pass) enumerated the **identical 32-scenario corpus** (same 32 ids, including all 13 holdout + SD-CR-001 + both agent-dispatch scenarios, and likewise excluding SD-017/SD-019) and reported:
+An independent, concurrently-running Lane C harness sweep (`.opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/sk-doc.md`, not produced by this pass) enumerated the **identical 32-scenario corpus** (same 32 ids, including all 13 holdout + SD-CR-001 + both agent-dispatch scenarios, and likewise excluding SD-017/SD-019) and reported:
 
 - Route gold (hard lane): rows scored **32**, matches **32**, violations **0**
 - Compiled routing parity: scored **32**, match **32**, drift **0**, resolver-missing **0**

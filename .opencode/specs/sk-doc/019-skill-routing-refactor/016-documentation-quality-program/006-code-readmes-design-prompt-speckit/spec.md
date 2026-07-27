@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/runtime/lib/spec-gate"
       - ".opencode/skills/sk-design/design-mcp-open-design/tests"
-      - ".opencode/skills/sk-prompt/prompt-models/benchmarks/003-minimax-prompt-framework/eval-rig/grader"
+      - ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/grader"
 ---
 
 # Feature Specification: Code READMEs (Design, Prompt, Spec-Kit Batch)

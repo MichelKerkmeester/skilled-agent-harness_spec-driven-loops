@@ -88,7 +88,7 @@ Cost: 1-2 hours wall clock vs Phase 3's 3-5 days. Expected value of running the 
 
 ### In Scope
 
-For each of 50 probes in `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json`:
+For each of 50 probes in `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json`:
 
 1. **Gold ID resolution**: query the current `memory_index` for each `gold_memory_id`. Classify the probe as:
    - `valid` — gold_memory_id resolves to an active memory row
@@ -192,7 +192,7 @@ Dependencies:
 
 - Phase 1 evidence (`001/evidence/off-baseline-2026-05-21.json`) — read-only, for cross-reference
 - Phase 2 evidence (`002/evidence/bge-v2-m3-bench-2026-05-21.json`) — read-only, for cross-reference
-- Fixture (`mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json`) — read-only
+- Fixture (`mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json`) — read-only
 - Current `memory_index` SQLite DB at `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` — read-only
 - The sidecar (running canonical multi-model is fine; bench will request bge-v2-m3 by name when comparing rerank effect)
 - The daemon IPC socket (if the sandbox permits — see Risks)

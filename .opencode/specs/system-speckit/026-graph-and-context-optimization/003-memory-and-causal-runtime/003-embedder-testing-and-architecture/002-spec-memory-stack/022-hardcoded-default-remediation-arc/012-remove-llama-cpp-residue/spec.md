@@ -35,7 +35,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Runtime code was already llama-cpp-free — only historical comments + docs + a stray env var + 2 test-fixture strings remained"
-      - "Frozen benchmark artifacts under .opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/ are out of scope per sk-doc benchmark template convention"
+      - "Frozen benchmark artifacts under .opencode/skills/mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/ are out of scope per sk-doc benchmark template convention"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -72,7 +72,7 @@ Operator directive: "remove all references to llama-cpp." Arc 016 phases 003/006
 
 ### Out of Scope (intentionally preserved)
 
-- 4 hits in `mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/` — frozen historical benchmark artifacts per sk-doc benchmark template convention; their hits reference a `z_archive/` spec path that is also immutable.
+- 4 hits in `mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/` — frozen historical benchmark artifacts per sk-doc benchmark template convention; their hits reference a `z_archive/` spec path that is also immutable.
 - All `z_archive/**` and `*/scratch/**` spec content — historical artifacts.
 - `node-llama-cpp` package.json dependency cleanup — separate dep-prune pass, not in scope here.
 - Pre-commit hook wiring for `validate-doc-model-refs.js` — task #39, separate work.

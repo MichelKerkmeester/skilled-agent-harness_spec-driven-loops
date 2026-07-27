@@ -100,7 +100,7 @@ The repair changed only the path-prefix-facing regex alternatives in the four in
 | Export `extractForbiddenPrefixes` | Forbidden-prefix parsing needed direct unit coverage to prevent another silent prefix blind spot |
 | Leave the router-doc finder unchanged | It resolves a router documentation path under `references/`, not sk-code surface gold |
 | Prove success with direct parser proof, guard tests, and temporary end-to-end measurement | Whole-path parse behavior is the packet invariant; the downstream gold update remains separate |
-| Defer playbook gold translation and `benchmark/router-final/` regeneration | Operator directed keeping harness fixes separate from sk-code gold work |
+| Defer playbook gold translation and `benchmark/2026-06-01--router-final--router/` regeneration | Operator directed keeping harness fixes separate from sk-code gold work |
 | Leave the pre-existing intents assertion failure unchanged | It belongs to intent/mode-projection expectation sync, not path parsing |
 
 <!-- /ANCHOR:decisions -->
@@ -154,7 +154,7 @@ None. The harness parser fix, export, regression guard, direct parser proof, and
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The sk-code playbook GOLD translation plus `benchmark/router-final/` regeneration is the separate follow-up packet `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`, explicitly out of packet-038 scope by operator direction.
+1. The sk-code playbook GOLD translation plus `benchmark/2026-06-01--router-final--router/` regeneration is the separate follow-up packet `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`, explicitly out of packet-038 scope by operator direction.
 2. The pre-existing `skill-benchmark.vitest.ts` `res.intents` failure remains. It expects `implement` for a Webflow task, while the current hub router returns `['code-webflow']`; this is a separate intent/mode-projection expectation issue.
 3. No commit SHA exists at authoring time. Close-out validation and push are pending after these docs are authored.
 4. The end-to-end 71 CONDITIONAL verdict was a temporary proof with translated gold; the playbook gold was reverted so the downstream packet owns the durable gold update and re-baseline.
@@ -169,6 +169,6 @@ None. The harness parser fix, export, regression guard, direct parser proof, and
 |---------|--------|--------|
 | Keep gold translation out of packet 038 | Temporary gold translation was applied, measured, and reverted during discovery | Needed to prove the loader fix plus corrected router unblocked real gold-router recall without taking ownership of the downstream gold artifact |
 | Full harness suite green | Suite remains 1 failed / 106 passed | The single failure is pre-existing and belongs to intent/mode-projection expectation sync, not path parsing |
-| sk-code gold re-baseline as packet output | Gold translation and `benchmark/router-final/` regeneration deferred to follow-up | Operator directed keeping harness fixes separate from sk-code gold work |
+| sk-code gold re-baseline as packet output | Gold translation and `benchmark/2026-06-01--router-final--router/` regeneration deferred to follow-up | Operator directed keeping harness fixes separate from sk-code gold work |
 
 <!-- /ANCHOR:deviations -->

@@ -31,11 +31,11 @@
    | `references/pattern-index.md` | Authoritative index mapping each small-model pattern to its executor-owned canonical location + ship status |
    | `assets/model-profiles.json` | Unified model registry (9 entries); the DATA source each profile mirrors |
    | `assets/cli_prompt_quality_card.md` | Canonical cross-CLI prompt quality card: framework selection table, CLEAR checklist, composition precedence |
-   | `benchmarks/001-swe-1.6-eval-loop/` | SWE-1.6 benchmark run data (6 iterations) |
-   | `benchmarks/002-swe-1.6-extraction-rerun/` | SWE-1.6 extraction rerun with confirmation runs and synthesis |
-   | `benchmarks/003-minimax-prompt-framework/` | MiniMax prompt-framework benchmark (7 iterations, dispatch scripts, run on M2.7) |
-   | `benchmarks/004-mimo-prompt-framework/` | MiMo-V2.5-Pro prompt-framework benchmark (10 real runs, 5 frameworks) |
-   | `benchmarks/005-mimo-minimax-capability-discrimination/` | MiMo vs MiniMax capability discrimination (strict validation + capability-discrimination eval) |
+   | `benchmarks/2026-07-10--eval-loop--swe-1-6/` | SWE-1.6 benchmark run data (6 iterations) |
+   | `benchmarks/2026-07-10--extraction-rerun--swe-1-6/` | SWE-1.6 extraction rerun with confirmation runs and synthesis |
+   | `benchmarks/2026-07-10--prompt-framework--minimax/` | MiniMax prompt-framework benchmark (7 iterations, dispatch scripts, run on M2.7) |
+   | `benchmarks/2026-06-01--prompt-framework--mimo/` | MiMo-V2.5-Pro prompt-framework benchmark (10 real runs, 5 frameworks) |
+   | `benchmarks/2026-06-02--minimax-capability-discrimination--mimo/` | MiMo vs MiniMax capability discrimination (strict validation + capability-discrimination eval) |
 
 6. **Boundaries** — The skill does NOT own: executor mechanics (binary flags, invocation wrappers, budgets, permissions — owned by `cli-devin` and `cli-opencode`); generic prompt-engineering framework definitions (the 7-framework set RCAF/COSTAR/RACE/CIDI/TIDD-EC/CRISPE/CRAFT — owned by `sk-prompt`); runtime logic or TypeScript helpers (owned by `system-spec-kit`/`deep-loop-runtime`); shell commands, scripts, or agent-config recipes (none exist in this skill). STAR/BUILD are `cli-devin` task-shapes, not `sk-prompt` frameworks, and stay `cli-devin`-local. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 

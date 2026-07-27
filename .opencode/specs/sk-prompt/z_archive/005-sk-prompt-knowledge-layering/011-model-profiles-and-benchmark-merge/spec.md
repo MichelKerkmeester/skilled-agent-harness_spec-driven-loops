@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Validate then commit phase 011"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt-models/benchmarks/005-mimo-minimax-capability-discrimination/"
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-02--minimax-capability-discrimination--mimo/"
       - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
       - ".opencode/skills/sk-prompt-models/references/pattern-index.md"
     session_dedup:

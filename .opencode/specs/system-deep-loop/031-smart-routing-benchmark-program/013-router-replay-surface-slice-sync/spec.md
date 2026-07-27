@@ -59,7 +59,7 @@ Re-sync the three prefix sites in `router-replay.cjs` to the `code-<surface>/` p
 - Verify no regression to the existing harness vitest suite and that surface-slicing is restored (over-routing eliminated).
 
 ### Out of Scope
-- Aligning the sk-code `manual_testing_playbook` gold to the corrected router and regenerating `benchmark/router-final/` (the sk-code re-baseline is the separate follow-up packet).
+- Aligning the sk-code `manual_testing_playbook` gold to the corrected router and regenerating `benchmark/2026-06-01--router-final--router/` (the sk-code re-baseline is the separate follow-up packet).
 - The pre-existing, unrelated harness test failure asserting `res.intents` contains `implement` (an intent/mode-projection expectation now stale because `hub-router.json` scores the `code-webflow` packet signal over the `implement` mode for a Webflow task) — a different subsystem, not surface-slicing.
 - The task-text surface/language detectors (`detectSurface`, `detectOpencodeLanguage`), which key on prompt tokens, not resource-folder names, and are correct as-is.
 - Any change to other benchmarked skills (`hasSurfaceLayout` requires both `code-webflow/` and `code-opencode/` prefixes, which only sk-code's map carries).

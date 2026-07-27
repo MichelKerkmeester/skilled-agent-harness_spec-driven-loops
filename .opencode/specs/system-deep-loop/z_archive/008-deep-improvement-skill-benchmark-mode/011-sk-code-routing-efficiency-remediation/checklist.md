@@ -39,7 +39,7 @@ _memory:
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [x] CHK-01 [P1] Live benchmark D3/D4 evidence snapshotted (`sk-code/benchmark/live-final/`).
+- [x] CHK-01 [P1] Live benchmark D3/D4 evidence snapshotted (`sk-code/benchmark/2026-06-01--live-final--live/`).
 - [x] CHK-02 [P1] §11 router + the surface-flattening tradeoff read before researching.
 <!-- /ANCHOR:pre-impl -->
 

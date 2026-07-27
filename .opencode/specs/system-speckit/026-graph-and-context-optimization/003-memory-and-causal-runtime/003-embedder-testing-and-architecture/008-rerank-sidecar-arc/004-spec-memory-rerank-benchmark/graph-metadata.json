@@ -40,18 +40,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/results.csv",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe.jsonl",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-a.jsonl",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-b.jsonl",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-ab.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/aggregate.py",
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/results.csv",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe-arm-a.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe-arm-b.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-ab.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/aggregate.py",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -61,73 +61,73 @@
       {
         "name": "SOURCE.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md",
         "source": "derived"
       },
       {
         "name": "benchmark_report.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md",
         "source": "derived"
       },
       {
         "name": "results.csv",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/results.csv",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/results.csv",
         "source": "derived"
       },
       {
         "name": "per-probe.jsonl",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe.jsonl",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe.jsonl",
         "source": "derived"
       },
       {
         "name": "per-probe-arm-a.jsonl",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-a.jsonl",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe-arm-a.jsonl",
         "source": "derived"
       },
       {
         "name": "per-probe-arm-b.jsonl",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-b.jsonl",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe-arm-b.jsonl",
         "source": "derived"
       },
       {
         "name": "rerank-ab-fixture.json",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
         "source": "derived"
       },
       {
         "name": "run-ab.sh",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-ab.sh",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-ab.sh",
         "source": "derived"
       },
       {
         "name": "run_arm.sh",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh",
         "source": "derived"
       },
       {
         "name": "run_arm.py",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
         "source": "derived"
       },
       {
         "name": "aggregate.py",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/aggregate.py",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/aggregate.py",
         "source": "derived"
       },
       {
         "name": "generate_report.py",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py",
         "source": "derived"
       },
       {

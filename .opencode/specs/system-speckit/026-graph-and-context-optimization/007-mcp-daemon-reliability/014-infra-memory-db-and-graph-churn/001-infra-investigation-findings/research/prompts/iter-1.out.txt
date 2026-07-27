@@ -5377,12 +5377,12 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:10:// them with explicit provenance markers so downstream hooks can
 .opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:55:/** URL-escape a provenance field value so forged markers cannot break out of the marker line. */
 .opencode/skills/system-spec-kit/mcp_server/hooks/shared-provenance.ts:82:/** Add explicit provenance markers around recovered compact context */
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md:24:Result: the cap was honored (per the head/tail audit markers from the existing code path), but the sidecar STILL crashed mid-bench with MPS OOM. The OOM allocation requests recorded in the uvicorn log were larger than packet 007's, not smaller — 135 GiB and 76 GiB attempted on top of 17.81 GiB live. The binding constraint is something other than per-call attention buffer size.
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md:24:Result: the cap was honored (per the head/tail audit markers from the existing code path), but the sidecar STILL crashed mid-bench with MPS OOM. The OOM allocation requests recorded in the uvicorn log were larger than packet 007's, not smaller — 135 GiB and 76 GiB attempted on top of 17.81 GiB live. The binding constraint is something other than per-call attention buffer size.
 .opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts:811:    // marker persisted by `persistState()` and is therefore stable across filesystem touches.
 .opencode/skills/system-spec-kit/mcp_server/lib/config/type-inference.ts:136:  // Check for tier markers in content
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py:40:    for marker in (".opencode/specs/", ".opencode/skills/"):
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py:41:        if marker in path:
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py:42:            return path.split(marker, 1)[1]
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py:40:    for marker in (".opencode/specs/", ".opencode/skills/"):
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py:41:        if marker in path:
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py:42:            return path.split(marker, 1)[1]
 .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:260:      'Strip recovered hook-cache source markers before transcript summarization.',
 .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:344:      'Strip recovered hook-cache source markers before transcript summarization.',
 .opencode/skills/system-spec-kit/mcp_server/lib/merge/README.md:18:- Validates anchor markers, conflict markers and merge invariants before returning output.

@@ -84,7 +84,7 @@ These choices mirror `recommended_frameworks` in [`../../assets/model-profiles.j
 | 4 | race | 1.000 | 1.000 | 94 |
 | 5 | rcaf | 0.976 | 0.889 | 85 |
 
-**Trust verdict: TIE on correctness** — the four perfect frameworks cannot be statistically separated (top-pair COSTAR vs TIDD-EC margin 0, 90% CI [0,0]). But the structure is actionable: **`rcaf` is objectively the weakest** — it was the only framework to miss strict-validator cases and had the worst format adherence — so it is avoided for this model, and the default sits in the perfect tier (COSTAR; see §3 for why COSTAR over the equally-correct TIDD-EC/RACE/CIDI). 1 of 45 dispatches was a transient infra failure (exit -1, `dispatch_failed`) and was excluded from scoring; the affected framework (costar) was perfect on its 8 valid dispatches. Outputs: `prompt-models/benchmarks/008-glm-5.2-prompt-framework/` (`results.json`, `aggregate.json`, `synthesis.md`). Do not carry scores from sibling models — contexts and providers differ; the cross-model COSTAR agreement is corroboration, not transfer.
+**Trust verdict: TIE on correctness** — the four perfect frameworks cannot be statistically separated (top-pair COSTAR vs TIDD-EC margin 0, 90% CI [0,0]). But the structure is actionable: **`rcaf` is objectively the weakest** — it was the only framework to miss strict-validator cases and had the worst format adherence — so it is avoided for this model, and the default sits in the perfect tier (COSTAR; see §3 for why COSTAR over the equally-correct TIDD-EC/RACE/CIDI). 1 of 45 dispatches was a transient infra failure (exit -1, `dispatch_failed`) and was excluded from scoring; the affected framework (costar) was perfect on its 8 valid dispatches. Outputs: `prompt-models/benchmarks/2026-06-28--prompt-framework--glm-5-2/` (`results.json`, `aggregate.json`, `synthesis.md`). Do not carry scores from sibling models — contexts and providers differ; the cross-model COSTAR agreement is corroboration, not transfer.
 
 ---
 
@@ -212,5 +212,5 @@ Round 1: attach the reference image + the house-style/design-system contract →
 - [`../pattern-index.md`](../pattern-index.md) — Index of all MECHANICS patterns + ship status.
 - [`../models/_index.md`](../models/_index.md) — Sibling model index; see mimo-v2.5-pro for the other 1M-context rotation peer, and kimi-k2.7-code for the other COSTAR-winning coding model.
 - [`../vision-audit-benchmark.md`](../vision-audit-benchmark.md) — Cross-model vision capability + design-audit accuracy (GLM generates but confabulates audits; MiniMax-M3 is the accurate auditor).
-- **Benchmark outputs:** `../../benchmarks/008-glm-5.2-prompt-framework/` — results.json, aggregate.json, synthesis.md.
+- **Benchmark outputs:** `../../benchmarks/2026-06-28--prompt-framework--glm-5-2/` — results.json, aggregate.json, synthesis.md.
 - **Adoption packet:** `157-glm-5-2-support` — phase 1 registration; phase 2 framework bakeoff (008); phase 3 promotion.

@@ -36,7 +36,7 @@ _memory:
 Research first, change second. A 3-iteration native-Opus deep-research pass investigated how to tighten sk-code's resource loading before any router edit, then recommended one approach with a recall-vs-efficiency frontier and a D1/D2 regression guard. The build is the follow-on phase 012.
 
 ### Technical Context
-The research consumes the live benchmark evidence (`sk-code/benchmark/live-final/`) and the documented surface-flattening tradeoff in `smart_routing.md` §11. It dispatched native `@deep-research` (Opus) iterations and externalized state under `research/`.
+The research consumes the live benchmark evidence (`sk-code/benchmark/2026-06-01--live-final--live/`) and the documented surface-flattening tradeoff in `smart_routing.md` §11. It dispatched native `@deep-research` (Opus) iterations and externalized state under `research/`.
 
 ### Overview
 Four hypotheses were weighed; the converged recommendation is a surface-nested `RESOURCE_MAP` (H1) with a full unranked cross-surface overlay, intra-surface intent-score ranking (H4), and asset deferral.
@@ -105,7 +105,7 @@ The research is validated by convergence (newInfoRatio trend 0.70 → 0.62 → 0
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The live benchmark baseline (`sk-code/benchmark/live-final/`) and the §11 router doc.
+The live benchmark baseline (`sk-code/benchmark/2026-06-01--live-final--live/`) and the §11 router doc.
 <!-- /ANCHOR:dependencies -->
 
 ---

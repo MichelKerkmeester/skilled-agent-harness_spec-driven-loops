@@ -45,14 +45,14 @@ _memory:
 
 - `scripts/rerank_sidecar.py:_load_model` — `RERANK_TORCH_DTYPE` env handler. Supports `float16`/`fp16`/`half` and `bfloat16`/`bf16`. Defaults unset → fp32 (no behavior change).
 - `scripts/start.sh` env allowlist — `RERANK_TORCH_DTYPE` added.
-- `benchmarks/benchmark-2026-05-21-fp16-rerank/` — fixture + 2 arm runs (150 rows each) + `benchmark_report.md` with §1-§8 documenting the smoke-vs-bench divergence.
+- `benchmarks/2026-05-21--fp16-rerank--unspecified/` — fixture + 2 arm runs (150 rows each) + `benchmark_report.md` with §1-§8 documenting the smoke-vs-bench divergence.
 - Source revert at end: `cross-encoder.ts:54` restored to `cross-encoder/ms-marco-MiniLM-L-6-v2`. fp16 env handler stays.
 
 Original planned shape:
 
 - `scripts/rerank_sidecar.py:_load_model` — `RERANK_TORCH_DTYPE` env handler (fp16 / bf16 / fp32 default)
 - `scripts/start.sh` — env allowlist extended with `RERANK_TORCH_DTYPE`
-- `benchmarks/benchmark-2026-05-21-fp16-rerank/` — fixture + runs + benchmark_report.md
+- `benchmarks/2026-05-21--fp16-rerank--unspecified/` — fixture + runs + benchmark_report.md
 - On PROMOTE: `search-flags.ts` SPECKIT_CROSS_ENCODER default flipped; sidecar dtype recommendation documented
 <!-- /ANCHOR:what-built -->
 

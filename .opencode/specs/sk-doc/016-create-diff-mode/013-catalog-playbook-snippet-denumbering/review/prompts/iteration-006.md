@@ -26,9 +26,9 @@ resolves under NEITHER base):
      link target: ../manual_testing_playbook/05--auto-update-daemon/
 7. [skill:system] .opencode/skills/system-spec-kit/ARCHITECTURE.md
      link target: ./INSTALL_GUIDE.md
-8. [skill:system] .opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md
+8. [skill:system] .opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md
      link target: ../FORMAT.md
-9. [skill:system] .opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/README.md
+9. [skill:system] .opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/README.md
      link target: ../README.md
 10. [skill:system] .opencode/skills/system-spec-kit/mcp_server/lib/enrichment/README.md
      link target: ../../code_graph/README.md

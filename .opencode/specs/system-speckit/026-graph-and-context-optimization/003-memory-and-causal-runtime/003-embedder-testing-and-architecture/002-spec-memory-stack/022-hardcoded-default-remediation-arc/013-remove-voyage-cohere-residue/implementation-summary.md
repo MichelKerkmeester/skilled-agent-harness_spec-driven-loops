@@ -68,7 +68,7 @@ _memory:
 
 ### Out-of-scope hits preserved
 
-- 4 hits in `benchmarks/benchmark-2026-05-20/` and other dated benchmark folders — frozen historical artifacts per sk-doc benchmark template convention.
+- 4 hits in `benchmarks/2026-05-20--run--unspecified/` and other dated benchmark folders — frozen historical artifacts per sk-doc benchmark template convention.
 - `changelog/v1.2.0.0.md` + `changelog/v3.4.0.0.md` — historical release notes that legitimately describe past Voyage/Cohere support.
 - z_archive specs, scratch markdowns, iteration files — all retain their references as historical record.
 - `mcp-coco-index/SKILL.md` keywords list mention of `voyage-code-3` — that's the EMBEDDING model name in cocoindex's separate provider registry; out of scope.

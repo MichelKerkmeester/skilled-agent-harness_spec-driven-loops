@@ -7971,377 +7971,377 @@
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-default/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-default/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-high/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-high/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/mimo-v25pro-high/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/mimo-v25pro-high/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-default/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-default/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__parseRange.FAILED-exit124.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__parseRange.FAILED-exit124.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__parseRange.RETRY-ok.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__parseRange.RETRY-ok.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-high/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-high/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf__chunk.M3-FAILED-empty-exit0.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs-archive/minimax-m3-high/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs-archive/minimax-m3-high/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/cidi__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/cidi__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/cidi__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/cidi__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/costar__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/costar__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/costar__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/costar__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/race__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/race__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/race__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/race__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf__chunk.M3-FAILED-empty-exit0.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/rcaf__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/rcaf__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/tidd-ec__chunk.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/tidd-ec__chunk.json",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/004-mimo-prompt-framework/eval/runs/tidd-ec__parseRange.json",
+      "path": ".opencode/skills/sk-prompt/prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/runs/tidd-ec__parseRange.json",
       "kind": "file",
       "exemption-class": "rename"
     },
@@ -17701,42 +17701,42 @@
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.sh",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.sh",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md",
+      "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md",
       "kind": "file",
       "exemption-class": "rename"
     },

@@ -42,7 +42,7 @@
       "spec.md",
       "implementation-summary.md",
       "plan.md",
-      "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+      "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
       "tasks.md"
     ],
     "entities": [
@@ -73,7 +73,7 @@
       {
         "name": "run_arm.py",
         "kind": "file",
-        "path": "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+        "path": "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
         "source": "derived"
       },
       {

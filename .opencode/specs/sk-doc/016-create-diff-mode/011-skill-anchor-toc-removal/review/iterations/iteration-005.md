@@ -2672,7 +2672,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-lLo4Leic' (errno=Operation
  .../skills/system-spec-kit/mcp_server/README.md    |  46 -----
  .../system-spec-kit/mcp_server/api/README.md       |  27 ---
  .../mcp_server/benchmarks/README.md                |  36 ----
- .../benchmarks/benchmark-2026-05-17/SOURCE.md      |  36 ----
+ .../benchmarks/2026-05-17--run--unspecified/SOURCE.md      |  36 ----
  .../benchmark-2026-05-17/benchmark_report.md       |  48 -----
  .../benchmark-2026-05-17/runtime-measurements.md   |  40 ----
  .../benchmark_report.md                            |  11 --
@@ -3596,16 +3596,16 @@ CommitDate: Tue May 26 11:55:15 2026 +0200
 .opencode/skills/system-spec-kit/mcp_server/README.md
 .opencode/skills/system-spec-kit/mcp_server/api/README.md
 .opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/SOURCE.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/runtime-measurements.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-fp16-rerank/benchmark_report.md
-.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/SOURCE.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/runtime-measurements.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab-rerun--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--fp16-rerank--unspecified/benchmark_report.md
+.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md
 .opencode/skills/system-spec-kit/mcp_server/configs/README.md
 .opencode/skills/system-spec-kit/mcp_server/core/README.md
 .opencode/skills/system-spec-kit/mcp_server/data/README.md

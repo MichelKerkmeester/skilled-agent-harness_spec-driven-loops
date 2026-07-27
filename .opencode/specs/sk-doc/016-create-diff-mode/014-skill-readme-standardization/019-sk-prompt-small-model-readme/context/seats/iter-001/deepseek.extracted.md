@@ -38,11 +38,11 @@ The skill is reached automatically when an operator names a small model — the 
 | `references/pattern-index.md` | Index mapping every executor-owned mechanic to its canonical cli-* location plus ship status; carries the adoption checklist (§4) |
 | `assets/model-profiles.json` | Unified model registry (version 1.4, 9 entries): the canonical DATA source each profile mirrors |
 | `assets/cli_prompt_quality_card.md` | Canonical cross-CLI prompt quality card: framework selection table, CLEAR checklist, pre-planning density guidance, bundle-gate strictness, prompt-composition precedence (Tiers 1–3) |
-| `benchmarks/001-swe-1.6-eval-loop/` | SWE-1.6 evaluation-loop benchmark run data |
-| `benchmarks/002-swe-1.6-extraction-rerun/` | SWE-1.6 extraction rerun benchmark data |
-| `benchmarks/003-minimax-prompt-framework/` | MiniMax prompt-framework bakeoff (7-fixture rig, 49 dispatches) — establishes TIDD-EC/dense |
-| `benchmarks/004-mimo-prompt-framework/` | MiMo prompt-framework bakeoff (10/10 runs) — establishes COSTAR/lean |
-| `benchmarks/005-mimo-minimax-capability-discrimination/` | MiMo vs MiniMax capability discrimination runs |
+| `benchmarks/2026-07-10--eval-loop--swe-1-6/` | SWE-1.6 evaluation-loop benchmark run data |
+| `benchmarks/2026-07-10--extraction-rerun--swe-1-6/` | SWE-1.6 extraction rerun benchmark data |
+| `benchmarks/2026-07-10--prompt-framework--minimax/` | MiniMax prompt-framework bakeoff (7-fixture rig, 49 dispatches) — establishes TIDD-EC/dense |
+| `benchmarks/2026-06-01--prompt-framework--mimo/` | MiMo prompt-framework bakeoff (10/10 runs) — establishes COSTAR/lean |
+| `benchmarks/2026-06-02--minimax-capability-discrimination--mimo/` | MiMo vs MiniMax capability discrimination runs |
 | `changelog/` | Version changelogs (v0.1.0.0 through v0.7.2.0, 10 entries) |
 
 ## 6. BOUNDARIES

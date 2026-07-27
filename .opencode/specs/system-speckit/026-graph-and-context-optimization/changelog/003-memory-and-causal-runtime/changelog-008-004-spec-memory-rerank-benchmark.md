@@ -28,12 +28,12 @@ A 50-probe fixture was authored by combining 10 probes from cat-24/409 with 12 f
 
 ### Added
 
-- `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json` (NEW): 50-probe deterministic fixture combining cat-24/409 with cat-13/416-418 plus fresh paraphrase probes
-- `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` (NEW): sk-doc 10-section benchmark report with HOLD verdict in section 8
-- `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/results.csv` (NEW): per-arm aggregate metrics including hit-rate, MRR@10, p95/p50/p99 latency plus 95% CI bounds
-- `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe.jsonl` (NEW): 500 combined rows (50 probes, 2 arms, 5 runs each)
-- `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md` (NEW): fixture provenance and pointer to this spec packet
-- A/B harness scripts in `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/` (NEW): `run-ab.sh`, `run_arm.sh`, `run_arm.py`, `aggregate.py`, `generate_report.py`
+- `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json` (NEW): 50-probe deterministic fixture combining cat-24/409 with cat-13/416-418 plus fresh paraphrase probes
+- `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md` (NEW): sk-doc 10-section benchmark report with HOLD verdict in section 8
+- `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/results.csv` (NEW): per-arm aggregate metrics including hit-rate, MRR@10, p95/p50/p99 latency plus 95% CI bounds
+- `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe.jsonl` (NEW): 500 combined rows (50 probes, 2 arms, 5 runs each)
+- `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md` (NEW): fixture provenance and pointer to this spec packet
+- A/B harness scripts in `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/` (NEW): `run-ab.sh`, `run_arm.sh`, `run_arm.py`, `aggregate.py`, `generate_report.py`
 
 ### Changed
 
@@ -64,17 +64,17 @@ A 50-probe fixture was authored by combining 10 probes from cat-24/409 with 12 f
 
 | File | What changed |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/SOURCE.md` (NEW) | Fixture provenance and spec-packet pointer |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md` (NEW) | sk-doc 10-section benchmark report, HOLD verdict in section 8 |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json` (NEW) | 50-probe deterministic fixture file |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/results.csv` (NEW) | Per-arm aggregate metrics with CI bounds |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe.jsonl` (NEW) | 500 raw per-probe result rows |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-a.jsonl` (NEW) | Arm A per-probe rows |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/per-probe-arm-b.jsonl` (NEW) | Arm B per-probe rows |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run-ab.sh` (NEW) | Top-level A/B harness orchestrator |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py` (NEW) | Per-arm runner invoking `memory_search` via JSON-RPC |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/aggregate.py` (NEW) | Aggregation script computing hit-rate, MRR, latency percentiles |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py` (NEW) | Report generator applying the promotion decision rule |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/SOURCE.md` (NEW) | Fixture provenance and spec-packet pointer |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/benchmark_report.md` (NEW) | sk-doc 10-section benchmark report, HOLD verdict in section 8 |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json` (NEW) | 50-probe deterministic fixture file |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/results.csv` (NEW) | Per-arm aggregate metrics with CI bounds |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe.jsonl` (NEW) | 500 raw per-probe result rows |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe-arm-a.jsonl` (NEW) | Arm A per-probe rows |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/per-probe-arm-b.jsonl` (NEW) | Arm B per-probe rows |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run-ab.sh` (NEW) | Top-level A/B harness orchestrator |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py` (NEW) | Per-arm runner invoking `memory_search` via JSON-RPC |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/aggregate.py` (NEW) | Aggregation script computing hit-rate, MRR, latency percentiles |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py` (NEW) | Report generator applying the promotion decision rule |
 
 ### Follow-Ups
 

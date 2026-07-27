@@ -27,7 +27,7 @@
     "routingDriftObserved": "0/6 meaningful routing scenarios (CE-P01/CE-P02 excluded from this count — vacuous/non-signal-bearing by design, reported separately)"
   },
   "laneCCrossCheck": {
-    "archivedSource": ".opencode/skills/sk-doc/benchmark/compiled-routing/r3-benchmark-sweep-20260721-131432/hub-reports/cli-external-orchestration.json (committed 23ba6f5f32f, captured same day ~1h50m before this sweep)",
+    "archivedSource": ".opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json (committed 23ba6f5f32f, captured same day ~1h50m before this sweep)",
     "archivedFigure": "compiledRouting.scored=8, match=8, drift=0, subVerdict=compiled-serving — i.e. Lane C parity 8/0",
     "archivedScenarioIds": ["CE-P01", "CE-P02", "CE-003", "CE-002", "CE-H01", "CE-H02", "CE-001", "CE-CR-001"],
     "corroboration": "EXACT MATCH. This sweep independently re-derived routing decisions (via manual per-scenario resolve.cjs/router-replay.cjs invocations, not by re-invoking the Lane C harness itself) for all 8 of the same scenario IDs and found 8/8 agreement with the archived report's per-row frontDoorOutcome/status: CE-001 route/cli-opencode, CE-002 route/cli-claude-code, CE-003 defer, CE-H01 route/cli-opencode, CE-H02 route/cli-claude-code, CE-CR-001 route/cli-opencode, CE-P01 defer (vacuous), CE-P02 defer (vacuous). 0 drift confirmed independently.",

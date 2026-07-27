@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Partially exercised — the hard-gate and router-scored floors (D1 intra, D2, D5, aggregate verdict) are verified against the real existing `benchmark/after-012-routing-rigor/report.json` (verdict PASS, aggregate 100/100). The live-only floors (D1 inter, advisor confidence, gap-to-second, procedure-card selection accuracy, router/live reconciliation) remain unverified because the expanded battery and harness extension were never built; see ADR-003 for the formal descope decision. |
+| **Status** | Partially exercised — the hard-gate and router-scored floors (D1 intra, D2, D5, aggregate verdict) are verified against the real existing `benchmark/2026-07-06--after-012-routing-rigor--router/report.json` (verdict PASS, aggregate 100/100). The live-only floors (D1 inter, advisor confidence, gap-to-second, procedure-card selection accuracy, router/live reconciliation) remain unverified because the expanded battery and harness extension were never built; see ADR-003 for the formal descope decision. |
 | **Date** | 2026-07-06 |
 | **Deciders** | Phase packet owner, user-provided task scope, release owner (to confirm at execution time) |
 
@@ -43,7 +43,7 @@ Phase 005 froze parity-benchmark evidence showing D1 intra, D2, and D5 all at 10
 
 ### Constraints
 
-- Floors must be evidence-linked to `benchmark/baseline/` and `benchmark/after-009/`, not chosen arbitrarily.
+- Floors must be evidence-linked to `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/`, not chosen arbitrarily.
 - D5 connectivity is a hard gate in the existing harness (`score-skill-benchmark.cjs`) and must remain an exact 100, with no tolerance, consistent with Phase 005's precedent.
 - The advisor confidence floor should reuse the project's own existing Gate 2 skill-routing confidence threshold (0.8) rather than inventing an unrelated number, for repo-wide consistency.
 - Gap-to-second must have a defined behavior for prompts with no plausible second candidate (report N/A, not a forced value).
@@ -76,7 +76,7 @@ Phase 005 froze parity-benchmark evidence showing D1 intra, D2, and D5 all at 10
 <!-- ANCHOR:adr-001-actual-result -->
 ### Actual Result Against the Real Existing Report (2026-07-06 Reconciliation)
 
-No `after-011/`/`after-011-live/` rerun was performed. Instead, this reconciliation checks each ADR-001 floor against the real, already-existing `benchmark/after-012-routing-rigor/report.json` / `report.md` (verdict `PASS`, aggregate `100/100`, `traceMode: "router"`, `scoringMethod: "mode-a-router-replay"`, 24 total scenarios, 18 scored, 6 routed out to browser). That report scores the **same, non-expanded** 24-scenario corpus as `benchmark/after-009/` — the >=60-scenario expanded battery, the `07--procedure-card-selection/` and `08--advisor-confidence-battery/` categories, and the `advisor-probe.cjs`/`score-skill-benchmark.cjs` `topConfidence`/`gapToSecond` extension were never built.
+No `after-011/`/`after-011-live/` rerun was performed. Instead, this reconciliation checks each ADR-001 floor against the real, already-existing `benchmark/2026-07-06--after-012-routing-rigor--router/report.json` / `report.md` (verdict `PASS`, aggregate `100/100`, `traceMode: "router"`, `scoringMethod: "mode-a-router-replay"`, 24 total scenarios, 18 scored, 6 routed out to browser). That report scores the **same, non-expanded** 24-scenario corpus as `benchmark/2026-07-06--after-009--router/` — the >=60-scenario expanded battery, the `07--procedure-card-selection/` and `08--advisor-confidence-battery/` categories, and the `advisor-probe.cjs`/`score-skill-benchmark.cjs` `topConfidence`/`gapToSecond` extension were never built.
 
 | Dimension | Floor | Actual Value (report.json) | Result | Citation |
 |-----------|-------|------------------------------|--------|----------|
@@ -87,7 +87,7 @@ No `after-011/`/`after-011-live/` rerun was performed. Instead, this reconciliat
 | Advisor top-1 confidence | >= 0.80 per scenario; >= 0.90 median | Not present in `report.json`; the `advisor-probe.cjs` `topConfidence` extension named in `plan.md` T011 was never built | **UNSCORED / NOT MEASURED** — no harness instrumentation exists to compute this value | Confirmed via `git status` showing zero diff to `advisor-probe.cjs` |
 | Gap-to-second | >= 0.15 (N/A if no plausible second candidate) | Not present in `report.json`; the `gapToSecond` extension named in `plan.md` T011 was never built | **UNSCORED / NOT MEASURED** | Same as above |
 | Procedure-card selection accuracy | >= 95% overall; 100% P0 | No `07--procedure-card-selection/` category exists in this corpus; `coverage.routing = 12`, `coverage.advisor = 6`, matching the original `after-009`-era category shape | **UNSCORED / NOT MEASURED** — dedicated card-selection scenarios were never authored | `report.json` `coverage`; `manual_testing_playbook/` category count unchanged from Phase 011 |
-| Router/live reconciliation | At most 1 unexplained divergence per rerun | No live-mode rerun (`after-011-live/`) exists to compare against | **NOT APPLICABLE** — nothing to reconcile without a live-mode counterpart | Confirmed via directory listing: only `benchmark/after-012-routing-rigor/` exists, no `after-011-live/` sibling |
+| Router/live reconciliation | At most 1 unexplained divergence per rerun | No live-mode rerun (`after-011-live/`) exists to compare against | **NOT APPLICABLE** — nothing to reconcile without a live-mode counterpart | Confirmed via directory listing: only `benchmark/2026-07-06--after-012-routing-rigor--router/` exists, no `after-011-live/` sibling |
 
 **Verdict on ADR-001 as a whole**: Every floor this run is actually capable of measuring (D1 intra, D2, D5, aggregate verdict) is met or exceeded. Every floor requiring the unbuilt expanded battery or harness extension is honestly recorded as UNSCORED/NOT MEASURED, never defaulted to a pass. ADR-003 records the decision to accept this narrower evidence as Phase 012's closeout rather than leaving the phase indefinitely "Planned."
 <!-- /ANCHOR:adr-001-actual-result -->
@@ -181,7 +181,7 @@ ADR-001 defines numeric floors, but a floor without a defined remediation path j
 ### Constraints
 
 - The remediation loop must not silently expand Phase 012's write boundary into `mode-registry.json`, `hub-router.json`, procedure cards, or `skill_advisor.py`.
-- Baseline promotion must never overwrite `benchmark/baseline/` or `benchmark/after-009/`.
+- Baseline promotion must never overwrite `benchmark/baseline/` or `benchmark/2026-07-06--after-009--router/`.
 - Remediation re-runs must be traceable to a specific sibling folder, not an in-place edit of `after-011/`.
 
 ### Decision
@@ -250,13 +250,13 @@ ADR-001 defines numeric floors, but a floor without a defined remediation path j
 
 ### Context
 
-A real Mode A router-mode benchmark run already exists and passed at `benchmark/after-012-routing-rigor/report.{json,md}` (verdict PASS, aggregate 100/100). This run is content-identical to `benchmark/after-d3-proxy/skill-benchmark-report.{json,md}` (confirmed via `diff`, both files byte-identical), an orphaned duplicate-named artifact from earlier proxy work, left untouched per this reconciliation's scope. The run scores the same 24-scenario corpus as `benchmark/after-009/`; it is not the >=60-scenario expanded battery, procedure-card-selection category, advisor-confidence-battery, or `topConfidence`/`gapToSecond` harness extension that this phase's `plan.md` and `tasks.md` originally described. Before this reconciliation pass, `spec.md` had already been updated (by an earlier, incomplete pass) to state Status: Complete and cite this report, but `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` still described the original unexecuted expanded-battery plan, and no `implementation-summary.md` existed. This left the packet internally inconsistent.
+A real Mode A router-mode benchmark run already exists and passed at `benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}` (verdict PASS, aggregate 100/100). This run is content-identical to `benchmark/2026-07-06--after-d3-proxy--router/skill-benchmark-report.{json,md}` (confirmed via `diff`, both files byte-identical), an orphaned duplicate-named artifact from earlier proxy work, left untouched per this reconciliation's scope. The run scores the same 24-scenario corpus as `benchmark/2026-07-06--after-009--router/`; it is not the >=60-scenario expanded battery, procedure-card-selection category, advisor-confidence-battery, or `topConfidence`/`gapToSecond` harness extension that this phase's `plan.md` and `tasks.md` originally described. Before this reconciliation pass, `spec.md` had already been updated (by an earlier, incomplete pass) to state Status: Complete and cite this report, but `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` still described the original unexecuted expanded-battery plan, and no `implementation-summary.md` existed. This left the packet internally inconsistent.
 
 Separately, `009-sk-design-claude-parity/010-feature-catalog-completeness/` has no `implementation-summary.md` at the time of this reconciliation, meaning `plan.md`'s "Phases 006-011 confirmed complete" Definition-of-Ready gate is not fully satisfied by documentation. This reconciliation does not resolve Phase 010's status; it only records the gap.
 
 ### Decision
 
-**We chose**: Accept `benchmark/after-012-routing-rigor/report.{json,md}` as Phase 012's authoritative closeout evidence, exactly as `spec.md`'s reconciled Executive Summary states. Every ADR-001 floor the report can measure (D1 intra, D2, D5, aggregate verdict) is checked and passes; every floor requiring the unbuilt expanded battery or harness extension (D1 inter, advisor confidence, gap-to-second, procedure-card selection, router/live reconciliation) is recorded as UNSCORED/NOT MEASURED across `checklist.md`, `tasks.md`, and this decision record, per ADR-002 outcome (b): accepted as documented risk, because nothing that was actually scored missed its floor. The expanded battery, the `advisor-probe.cjs`/`score-skill-benchmark.cjs` harness extension, and the `benchmark/baseline-post-011/` promotion remain explicitly open and are handed to a future phase rather than silently claimed as done or silently dropped. This reconciliation touches only this phase's own spec-folder documents; it does not re-run the benchmark harness, edit `.opencode/skills/sk-design/**`, or resolve Phase 010's missing `implementation-summary.md`.
+**We chose**: Accept `benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}` as Phase 012's authoritative closeout evidence, exactly as `spec.md`'s reconciled Executive Summary states. Every ADR-001 floor the report can measure (D1 intra, D2, D5, aggregate verdict) is checked and passes; every floor requiring the unbuilt expanded battery or harness extension (D1 inter, advisor confidence, gap-to-second, procedure-card selection, router/live reconciliation) is recorded as UNSCORED/NOT MEASURED across `checklist.md`, `tasks.md`, and this decision record, per ADR-002 outcome (b): accepted as documented risk, because nothing that was actually scored missed its floor. The expanded battery, the `advisor-probe.cjs`/`score-skill-benchmark.cjs` harness extension, and the `benchmark/baseline-post-011/` promotion remain explicitly open and are handed to a future phase rather than silently claimed as done or silently dropped. This reconciliation touches only this phase's own spec-folder documents; it does not re-run the benchmark harness, edit `.opencode/skills/sk-design/**`, or resolve Phase 010's missing `implementation-summary.md`.
 
 ### Alternatives Considered
 
@@ -316,7 +316,7 @@ Separately, `009-sk-design-claude-parity/010-feature-catalog-completeness/` has 
 
 ### Context
 
-The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`, finding P2-002) flagged that `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/{report.json,report.md}` and `.opencode/skills/sk-design/benchmark/after-d3-proxy/{skill-benchmark-report.json,skill-benchmark-report.md}` are byte-identical (confirmed again via `diff`, no output either time) and use two incompatible naming conventions for the exact same benchmark run. ADR-003 above already named `after-d3-proxy/` "an orphaned duplicate-named artifact from earlier proxy work" and explicitly left it untouched, out of scope for that reconciliation pass.
+The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`, finding P2-002) flagged that `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/{report.json,report.md}` and `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/{skill-benchmark-report.json,skill-benchmark-report.md}` are byte-identical (confirmed again via `diff`, no output either time) and use two incompatible naming conventions for the exact same benchmark run. ADR-003 above already named `after-d3-proxy/` "an orphaned duplicate-named artifact from earlier proxy work" and explicitly left it untouched, out of scope for that reconciliation pass.
 
 ### Decision
 
@@ -341,5 +341,5 @@ The 10-iteration deep review of the 009 packet (`.opencode/specs/sk-design/009-s
 
 **Risks**: None beyond that already-accepted duplication risk carried since ADR-003.
 
-**How to roll back**: A future cleanup phase may `git rm -r .opencode/skills/sk-design/benchmark/after-d3-proxy/` directly, citing this ADR, once it owns that blast radius explicitly.
+**How to roll back**: A future cleanup phase may `git rm -r .opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/` directly, citing this ADR, once it owns that blast radius explicitly.
 <!-- /ANCHOR:adr-004 -->

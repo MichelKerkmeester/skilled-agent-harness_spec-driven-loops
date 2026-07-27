@@ -37,7 +37,7 @@ _memory:
 - [x] [T001] [P1] Operator directive captured ("remove all references to llama-cpp")
 - [x] [T002] [P1] Live-surface inventory produced via `rg` with explicit exclusions (z_archive, scratch, benchmarks, locks, jsonl, iteration-*.md, descriptions.json, specs/) — 11 live files identified
 - [x] [T003] [P1] Categorization complete: 3 source comments + 2 scripts + 6 docs
-- [x] [T004] [P1] Out-of-scope hits confirmed frozen (4 in benchmarks/benchmark-2026-05-20/, all z_archive paths)
+- [x] [T004] [P1] Out-of-scope hits confirmed frozen (4 in benchmarks/2026-05-20--run--unspecified/, all z_archive paths)
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->

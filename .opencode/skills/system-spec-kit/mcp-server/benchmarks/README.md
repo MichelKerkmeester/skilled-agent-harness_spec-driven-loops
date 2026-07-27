@@ -41,14 +41,14 @@ One row per dated folder. Sorted newest first.
 
 | Date | Bench | Winner | Status | Spec packet |
 |---|---|---|---|---|
-| May 21, 2026 | [`benchmark-2026-05-21-spec-memory-mps/`](./benchmark-2026-05-21-spec-memory-mps/) | Qwen-MPS smoke was fast, but real spec-memory batches OOM and fall back | HOLD | — |
-| May 21, 2026 | [`benchmark-2026-05-21-rerank-ab-msmarco/`](./benchmark-2026-05-21-rerank-ab-msmarco/) | Raw ms-marco/BGE rerank arms preserved; no curated `benchmark-report.md` verdict present | UNREPORTED | — |
-| May 21, 2026 | [`benchmark-2026-05-21-fp16-rerank/`](./benchmark-2026-05-21-fp16-rerank/) | Qwen-MPS-fp16 smoke passed, but sustained real-corpus load still OOMs | HOLD | — |
-| May 21, 2026 | [`benchmark-2026-05-21-cap-top-k/`](./benchmark-2026-05-21-cap-top-k/) | Qwen-MPS with `SPECKIT_RERANK_LOCAL_MAX_DOCS=10` still OOMs | HOLD | — |
-| May 20, 2026 | [`benchmark-2026-05-20-rerank-ab-rerun/`](./benchmark-2026-05-20-rerank-ab-rerun/) | Sidecar-enabled spec-memory rerank re-run: -1 hit, -0.007 MRR, +9881 ms p95 | HOLD | — |
-| May 20, 2026 | [`benchmark-2026-05-20-rerank-ab/`](./benchmark-2026-05-20-rerank-ab/) | Positional fallback beats Qwen3 sidecar for default promotion: +0.4 pp hit-rate, +0.004 MRR, +9832.7 ms p95 | HOLD | `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/` |
-| May 20, 2026 | [`benchmark-2026-05-20/`](./benchmark-2026-05-20/) | `nomic-embed-text-v1.5` (ADR-013) re-bench: 9/10 top-1 ID-match (regenerated fixture, Z_SCORE_THRESHOLD tuned 1.5 -> 1.3, shared harness, embedding_cache reset), median 1071 ms, p95 2627 ms | PASS, matches May 17 baseline at stricter top-1 | `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/` through `019-lineage-and-metadata-repair-runner/` |
-| May 17, 2026 | [`benchmark-2026-05-17/`](./benchmark-2026-05-17/) | `jina-embeddings-v3` + retrieval-rescue layer (9/10 cat-24/409) | SHIPPED (ADR-012) | `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/` |
+| May 21, 2026 | [`benchmark-2026-05-21-spec-memory-mps/`](./2026-05-21--spec-memory-mps--unspecified/) | Qwen-MPS smoke was fast, but real spec-memory batches OOM and fall back | HOLD | — |
+| May 21, 2026 | [`benchmark-2026-05-21-rerank-ab-msmarco/`](./2026-05-21--rerank-ab-msmarco--unspecified/) | Raw ms-marco/BGE rerank arms preserved; no curated `benchmark-report.md` verdict present | UNREPORTED | — |
+| May 21, 2026 | [`benchmark-2026-05-21-fp16-rerank/`](./2026-05-21--fp16-rerank--unspecified/) | Qwen-MPS-fp16 smoke passed, but sustained real-corpus load still OOMs | HOLD | — |
+| May 21, 2026 | [`benchmark-2026-05-21-cap-top-k/`](./2026-05-21--cap-top-k--unspecified/) | Qwen-MPS with `SPECKIT_RERANK_LOCAL_MAX_DOCS=10` still OOMs | HOLD | — |
+| May 20, 2026 | [`benchmark-2026-05-20-rerank-ab-rerun/`](./2026-05-20--rerank-ab-rerun--unspecified/) | Sidecar-enabled spec-memory rerank re-run: -1 hit, -0.007 MRR, +9881 ms p95 | HOLD | — |
+| May 20, 2026 | [`benchmark-2026-05-20-rerank-ab/`](./2026-05-20--rerank-ab--unspecified/) | Positional fallback beats Qwen3 sidecar for default promotion: +0.4 pp hit-rate, +0.004 MRR, +9832.7 ms p95 | HOLD | `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/004-spec-memory-rerank-benchmark/` |
+| May 20, 2026 | [`benchmark-2026-05-20/`](./2026-05-20--run--unspecified/) | `nomic-embed-text-v1.5` (ADR-013) re-bench: 9/10 top-1 ID-match (regenerated fixture, Z_SCORE_THRESHOLD tuned 1.5 -> 1.3, shared harness, embedding_cache reset), median 1071 ms, p95 2627 ms | PASS, matches May 17 baseline at stricter top-1 | `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/016-reindex-populates-vec-memories-knn-table/` through `019-lineage-and-metadata-repair-runner/` |
+| May 17, 2026 | [`benchmark-2026-05-17/`](./2026-05-17--run--unspecified/) | `jina-embeddings-v3` + retrieval-rescue layer (9/10 cat-24/409) | SHIPPED (ADR-012) | `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off/` |
 
 Open each folder's `benchmark-report.md` for the full headline, methodology, per-candidate profile, and reproducibility instructions. Open `SOURCE.md` for the spec-packet pointer.
 
@@ -98,7 +98,7 @@ The flow assumes the bench has already completed inside a spec packet.
    - `results.csv` (one row per candidate, headline metrics, verdict)
    - `per-probe-*.jsonl` (per-query rows) when the bench produced per-probe data
    - `runtime-measurements.md` when there is a meaningful runtime profile worth promoting
-4. **Write [`SOURCE.md`](./benchmark-2026-05-17/SOURCE.md)** as a thin pointer to the spec packet. Include the spec packet path, the list of key files inside it, and a "last updated" date.
+4. **Write [`SOURCE.md`](./2026-05-17--run--unspecified/SOURCE.md)** as a thin pointer to the spec packet. Include the spec packet path, the list of key files inside it, and a "last updated" date.
 5. **Write `benchmark-report.md`** following `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`. The required 10-section structure is:
    1. Overview and headline
    2. Aggregate results
@@ -136,8 +136,8 @@ The bake-off promotion flow is documented in `.opencode/skills/sk-doc/create-ben
 | File | Purpose |
 |---|---|
 | `references/README.md` | Convention every dated subfolder follows. The overflow route-map / convention index is `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`; the canonical report contract and mechanics live in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` §3-8. |
-| [`benchmark-2026-05-17/benchmark-report.md`](./benchmark-2026-05-17/benchmark-report.md) | The May 17, 2026 mk-spec-memory text-embedder bake-off report. |
-| [`benchmark-2026-05-17/SOURCE.md`](./benchmark-2026-05-17/SOURCE.md) | Pointer to the May 17, 2026 spec packet. |
+| [`benchmark-2026-05-17/benchmark-report.md`](./2026-05-17--run--unspecified/benchmark-report.md) | The May 17, 2026 mk-spec-memory text-embedder bake-off report. |
+| [`benchmark-2026-05-17/SOURCE.md`](./2026-05-17--run--unspecified/SOURCE.md) | Pointer to the May 17, 2026 spec packet. |
 
 ### Tracking and authoritative spec
 

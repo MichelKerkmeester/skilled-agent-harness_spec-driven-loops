@@ -32,11 +32,11 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown skills, JSON router metadata, Python verification scripts, deterministic router benchmark reports |
 | **Framework** | sk-code surface-primary two-axis parent hub, parent-hub router, manual testing playbook, Lane-C router benchmark |
-| **Storage** | Repository filesystem: `.opencode/skills/sk-code/`, `.opencode/agents/`, specs/docs references, manual testing playbook, and `benchmark/router-final/` |
+| **Storage** | Repository filesystem: `.opencode/skills/sk-code/`, `.opencode/agents/`, specs/docs references, manual testing playbook, and `benchmark/2026-06-01--router-final--router/` |
 | **Testing** | parent-skill-check STRICT, parent-hub vocab-sync, check-rule-copies canary, drift-guard vitest, full skill-benchmark vitest suite, markdown link check, router-final comparison |
 
 ### Overview
-This phase completed the structural collapse of the sk-code parent hub from eight sub-skills to exactly four. The near-empty workflow-mode skills `code-implement`, `code-debug`, and `code-verify` were dissolved into shared workflow doctrine that is symlinked into both surviving surface skills. `code-animation` was folded into `code-webflow` as non-skill references and assets. Routing metadata, external references, playbook gold, benchmark harness expectations, and `benchmark/router-final/` were reconciled to the surface-primary model. The shipped result preserves all real capability while reducing routable sub-skill surface area to `code-opencode`, `code-webflow`, `code-review`, and `code-quality`.
+This phase completed the structural collapse of the sk-code parent hub from eight sub-skills to exactly four. The near-empty workflow-mode skills `code-implement`, `code-debug`, and `code-verify` were dissolved into shared workflow doctrine that is symlinked into both surviving surface skills. `code-animation` was folded into `code-webflow` as non-skill references and assets. Routing metadata, external references, playbook gold, benchmark harness expectations, and `benchmark/2026-06-01--router-final--router/` were reconciled to the surface-primary model. The shipped result preserves all real capability while reducing routable sub-skill surface area to `code-opencode`, `code-webflow`, `code-review`, and `code-quality`.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -71,7 +71,7 @@ Surface-primary parent hub collapse with shared doctrine preservation: dissolve 
 - **Shared workflow doctrine**: `shared/references/workflow_implement.md`, `shared/references/workflow_debug.md`, and `shared/references/workflow_verify.md` preserve the dissolved mode doctrine.
 - **Surface symlinks**: `code-opencode/references/` and `code-webflow/references/` expose the shared workflow doctrine from inside each surface.
 - **Relocated assets**: Verification scripts live under `code-opencode/assets/scripts/`; animation references/assets live under `code-webflow/{references,assets}/animation/`; checklists remain under their preserved homes.
-- **Router and benchmark surfaces**: `hub-router.json`, `mode-registry.json`, `shared/references/smart_routing.md`, manual testing playbook gold, benchmark harness tests, and `benchmark/router-final/` all reflect the four-sub-skill model.
+- **Router and benchmark surfaces**: `hub-router.json`, `mode-registry.json`, `shared/references/smart_routing.md`, manual testing playbook gold, benchmark harness tests, and `benchmark/2026-06-01--router-final--router/` all reflect the four-sub-skill model.
 
 ### Data Flow
 The parent hub now routes authoring work to the relevant surviving surface first, with implement/debug/verify doctrine loaded from the surface-local symlinks rather than from separate workflow-mode skills. Motion.dev animation prompts are handled as a cross-stack MOTION overlay loaded alongside the appropriate surface, not as a `code-animation` surface leak. Quality and review remain standalone modes. Benchmark gold and router-final regeneration consume the same four-sub-skill model, so deterministic Lane-C scoring measures the shipped routing shape.
@@ -104,7 +104,7 @@ The parent hub now routes authoring work to the relevant surviving surface first
 - [x] Re-translate manual testing playbook gold for folded animation and dissolved verify-mode paths.
 - [x] Update benchmark harness vitests off dissolved implement/debug/verify modes and onto the two-axis model.
 - [x] Update the router-replay surface-slicer so Motion.dev animation classifies as a cross-stack MOTION overlay.
-- [x] Regenerate `benchmark/router-final/` and confirm the verdict remains CONDITIONAL 71.
+- [x] Regenerate `benchmark/2026-06-01--router-final--router/` and confirm the verdict remains CONDITIONAL 71.
 - [x] Record scoped deviations and live-mode deferral in close-out docs.
 
 <!-- /ANCHOR:phases -->
@@ -121,7 +121,7 @@ The parent hub now routes authoring work to the relevant surviving surface first
 | Router sync | sk-code router drift guard | `sk-code-router-sync.vitest.ts` |
 | Benchmark suite | Full skill benchmark harness | 107/107 vitest pass across 8 files |
 | Link integrity | sk-code markdown links | check-markdown-links with 0 sk-code links flagged |
-| Router-final baseline | Deterministic Lane-C report | `benchmark/router-final` verdict CONDITIONAL, aggregate 71 |
+| Router-final baseline | Deterministic Lane-C report | `benchmark/2026-06-01--router-final--router` verdict CONDITIONAL, aggregate 71 |
 
 <!-- /ANCHOR:testing -->
 ---
@@ -187,7 +187,7 @@ The parent hub now routes authoring work to the relevant surviving surface first
 ### Rollback Procedure
 1. Restore sk-code folder layout and router metadata from the prior branch tip.
 2. Restore external references and manual testing playbook gold from the same change set.
-3. Restore the prior `benchmark/router-final/` report if the regenerated report is invalid.
+3. Restore the prior `benchmark/2026-06-01--router-final--router/` report if the regenerated report is invalid.
 4. Re-run parent-hub strict checks, drift checks, full skill-benchmark vitests, markdown link checks, and router-final before attempting a narrower collapse.
 
 ### Data Reversal

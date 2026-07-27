@@ -38,8 +38,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
-      "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
+      "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
       "lib/search/pipeline/stage3-rerank.ts",
       "evidence/probe-classification-2026-05-21.json",
       "evidence/candidate-coverage-2026-05-21.json",
@@ -54,7 +54,7 @@
       {
         "name": "rerank-ab-fixture.json",
         "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
         "source": "derived"
       },
       {

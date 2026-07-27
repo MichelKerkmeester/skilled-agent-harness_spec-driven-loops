@@ -24,8 +24,8 @@ _memory:
       - "description.json"
       - "graph-metadata.json"
       - "sk-code/manual_testing_playbook/"
-      - "sk-code/benchmark/router-final/skill-benchmark-report.json"
-      - "sk-code/benchmark/router-final/skill-benchmark-report.md"
+      - "sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json"
+      - "sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md"
       - "sk-code/benchmark/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -62,7 +62,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 021 completed the sk-code playbook gold refresh and Lane-C router-final re-baseline. The work translated stale pre-013 playbook gold paths to the current `code-<surface>/` packet layout, preserving each scenario's curated resource set rather than re-curating or deriving gold from router output. Every translated path was existence-checked before applying. The deterministic `benchmark/router-final/` baseline was regenerated in offline router trace mode, the benchmark README latest-router-verdict statistic was refreshed, and the residual 66% gold-vs-router recall signal was reported honestly.
+Phase 021 completed the sk-code playbook gold refresh and Lane-C router-final re-baseline. The work translated stale pre-013 playbook gold paths to the current `code-<surface>/` packet layout, preserving each scenario's curated resource set rather than re-curating or deriving gold from router output. Every translated path was existence-checked before applying. The deterministic `benchmark/2026-06-01--router-final--router/` baseline was regenerated in offline router trace mode, the benchmark README latest-router-verdict statistic was refreshed, and the residual 66% gold-vs-router recall signal was reported honestly.
 
 ### Files Changed
 
@@ -70,8 +70,8 @@ Phase 021 completed the sk-code playbook gold refresh and Lane-C router-final re
 |------|--------|---------|--------|
 | `.opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md` | Updated before close-out | Define scope, requirements, success criteria, risks, and out-of-scope boundaries for the gold refresh and re-baseline | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Updated | Translate stale gold paths from `references/{motion_dev,webflow,opencode}/` and `assets/{...}/` to `code-animation/`, `code-webflow/`, and `code-opencode/` packet paths | no commit SHA at authoring time |
-| `.opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json` | Regenerated | Record deterministic router-mode baseline data after the refreshed gold | no commit SHA at authoring time |
-| `.opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md` | Regenerated | Record human-readable router-final verdict and dimension evidence | no commit SHA at authoring time |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json` | Regenerated | Record deterministic router-mode baseline data after the refreshed gold | no commit SHA at authoring time |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md` | Regenerated | Record human-readable router-final verdict and dimension evidence | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/benchmark/README.md` | Updated | Refresh stale latest-router-verdict statistic to match router-final | no commit SHA at authoring time |
 | `plan.md` | Added | Record implementation plan, gates, dependencies, rollback, and effort for packet 021 | no commit SHA at authoring time |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | no commit SHA at authoring time |
@@ -100,7 +100,7 @@ The refreshed gold was then scored through the deterministic offline router-fina
 |----------|-----------|
 | Translate paths instead of re-curating scenarios | The stale failure was path layout drift, not a decision to change each scenario's curated expected resources |
 | Existence-check all translated paths before applying | Gold paths define benchmark scoring, so dead paths would create false failures |
-| Regenerate only `benchmark/router-final/` | Router-final is the deterministic current CI gate; frozen `benchmark/baseline/` remains the before-picture snapshot |
+| Regenerate only `benchmark/2026-06-01--router-final--router/` | Router-final is the deterministic current CI gate; frozen `benchmark/baseline/` remains the before-picture snapshot |
 | Report 66% recall honestly | The residual 34-path gap is a real gold-curation-vs-router signal and should not be hidden by forcing gold to 100% |
 | Defer live mode | Live-mode re-baseline needs a configured provider; router mode is the deterministic offline gate |
 
@@ -144,7 +144,7 @@ None. The path refresh, router-final regeneration, README statistic refresh, and
 
 | NFR ID | Target | Actual | Status |
 |--------|--------|--------|--------|
-| NFR-R01 | Router-final re-baseline is deterministic | Router trace mode offline regenerated the current `benchmark/router-final/` report | Pass |
+| NFR-R01 | Router-final re-baseline is deterministic | Router trace mode offline regenerated the current `benchmark/2026-06-01--router-final--router/` report | Pass |
 | NFR-M01 | Gold refresh preserves scenario intent | Translation was a path refresh preserving curated resource sets, not router-derived re-curation | Pass |
 | NFR-S01 | Benchmark evidence remains honest | Recall reported as 65/99 = 66%; residual gap recorded instead of forced to 100% | Pass |
 

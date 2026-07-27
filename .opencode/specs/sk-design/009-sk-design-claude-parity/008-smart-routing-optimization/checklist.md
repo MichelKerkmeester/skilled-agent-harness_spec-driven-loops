@@ -83,7 +83,7 @@ _memory:
   - **Evidence required**: File inventory or route review shows no new `workflowMode`, no mode-packet graph metadata added, and no registry/router structural diff.
   - **Current state**: Verified.
 - [x] CHK-022 [P1] Benchmark rerun evidence is captured after implementation [EVIDENCE: `benchmark-after-008/report.md` shows aggregate 69/100, D1inter unscored-mode-a, D2 100, D3 0, D5 100, D4 unscored-mode-a; `toolSurface.violations` is empty in `report.json`.]
-  - **Evidence required**: Lane-C skill-benchmark command output compared against `benchmark/after-009/report.json` (D2/D5 not regressed; D1inter/D3 status honestly reported).
+  - **Evidence required**: Lane-C skill-benchmark command output compared against `benchmark/2026-07-06--after-009--router/report.json` (D2/D5 not regressed; D1inter/D3 status honestly reported).
   - **Current state**: Captured.
 - [x] CHK-023 [P1] Proposed keyword/alias changes are individually traceable to a named benchmark finding [EVIDENCE: `tasks.md` Implementation Evidence maps AI-003, TV-003, TV-005, MG-001, MG-002, MG-003, SR-001, SR-004, PB-001, PB-002, and PB-003 to mode-boundary changes or explicit no-change decisions.]
   - **Evidence required**: Ambiguity resolution map cites specific `baseline/`/`after-009/` scenario IDs or dimension scores for each change.

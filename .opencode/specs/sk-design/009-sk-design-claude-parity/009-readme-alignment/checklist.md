@@ -59,7 +59,7 @@ _memory:
 
 - [x] CHK-010 [P0] [EVIDENCE: hub README RELATED DOCUMENTS] Hub `README.md` names `benchmark/` and `manual_testing_playbook/`
   - **Evidence required**: Both paths appear with a one-line description each and resolve on disk.
-  - **Evidence**: `.opencode/skills/sk-design/README.md` lines 102-103 list `benchmark/` and `manual_testing_playbook/` with one-line descriptions; both directories confirmed present on disk (`benchmark/baseline/`, `benchmark/after-009/`; `manual_testing_playbook/` with 6 category folders, 24 scenario files).
+  - **Evidence**: `.opencode/skills/sk-design/README.md` lines 102-103 list `benchmark/` and `manual_testing_playbook/` with one-line descriptions; both directories confirmed present on disk (`benchmark/baseline/`, `benchmark/2026-07-06--after-009--router/`; `manual_testing_playbook/` with 6 category folders, 24 scenario files).
 - [x] CHK-011 [P0] [EVIDENCE: hub README Section 4] Hub `README.md` names the Phase 002 hub-shell contract sections by number
   - **Evidence required**: `Manager Intake Before Routing`, `Visible Plan Before Design or Build Work`, `Proof Gates and Verifier Cadence`, and the transport-vs-taste separation are each attributed to their live `SKILL.md` section.
   - **Evidence**: `.opencode/skills/sk-design/README.md` line 76 names all three `SKILL.md` Section 2 headings verbatim plus `SKILL.md` Section 7 for the transport-vs-taste separation.
@@ -87,7 +87,7 @@ _memory:
   - **Evidence**: Exit 0; output ends `OK: parent-skill-check — all hard invariants passed, 0 warnings`, re-run and confirmed during this verification pass.
 - [x] CHK-022 [P1] [EVIDENCE: link resolution review] Every newly added or edited link resolves on disk
   - **Evidence required**: `Read`/`Glob` confirmation for each `procedures/`, `benchmark/`, and `manual_testing_playbook/` path cited.
-  - **Evidence**: Confirmed on disk: `benchmark/baseline/`, `benchmark/after-009/`, `manual_testing_playbook/` (6 category dirs, 24 scenario files), and each mode's `procedures/` directory with the exact card counts cited (6/3/1/2/1).
+  - **Evidence**: Confirmed on disk: `benchmark/baseline/`, `benchmark/2026-07-06--after-009--router/`, `manual_testing_playbook/` (6 category dirs, 24 scenario files), and each mode's `procedures/` directory with the exact card counts cited (6/3/1/2/1).
 - [x] CHK-023 [P1] [EVIDENCE: HVR manual review] Human Voice Rules pass on every edited README
   - **Evidence required**: No em dashes, semicolons, Oxford commas, banned words, or setup phrases in any new or edited passage.
   - **Evidence**: `git diff` added-line review across all six files found no em dashes, semicolons, Oxford commas, or banned words (leverage, seamless, robust, utilize, delve, boasts) in the new/edited passages.

@@ -68,7 +68,7 @@ Use an authored-artifact map plus a generated-output ledger. The map is path-awa
 
 ### Key Components
 - **Hub reports**: `benchmark/live_final/` and `benchmark/router_final/` become `live-final/` and `router-final/`.
-- **Prompt-improve report**: `benchmark/router_mode_a/` becomes `benchmark/router-mode-a/`.
+- **Prompt-improve report**: `benchmark/router_mode_a/` becomes `benchmark/2026-07-10--router-mode-a--router/`.
 - **Prompt-models corpus**: inspect fixtures, variants, eval/state storage, profiles, and raw runs; preserve generated raw names such as `cidi__chunk.json` with a recorded disposition.
 - **Consumers**: `BENCHMARK-SUMMARY.md`, skill/README links, report references, harness paths, and storage guides.
 

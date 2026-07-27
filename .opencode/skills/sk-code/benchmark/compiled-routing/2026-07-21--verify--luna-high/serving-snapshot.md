@@ -19,4 +19,4 @@
 ## Parity anchors
 
 - Parity baseline (`router-compiled-parity-baseline`): not yet archived
-- Last real-model run (`luna-high-verify-20260721-120348`): verdict PASS · model openai/gpt-5.6-luna · captured 2026-07-21T12:04:06.585Z
+- Last real-model run (`2026-07-21--verify--luna-high`): verdict PASS · model openai/gpt-5.6-luna · captured 2026-07-21T12:04:06.585Z

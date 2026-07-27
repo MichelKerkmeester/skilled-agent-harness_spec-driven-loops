@@ -104,9 +104,9 @@ Prompt text enters smart routing through intent keywords. CWV vocabulary now tri
 
 ### Phase 4: Parent Rollup and Optional Catalogs
 - [x] Repair dead expected-asset paths in `cwv-gates-animation-heavy.md` and `prefers-reduced-motion.md`.
-- [x] Regenerate `sk-code/benchmark/router-final` as the current/regenerable benchmark folder.
-- [x] Write `sk-design/benchmark/after-d3-proxy` as a sibling report instead of overwriting frozen `baseline/`.
-- [x] Write `deep-loop-workflows/benchmark/after-d3-proxy` as a sibling report instead of overwriting frozen `baseline/`.
+- [x] Regenerate `sk-code/benchmark/2026-06-01--router-final--router` as the current/regenerable benchmark folder.
+- [x] Write `sk-design/benchmark/2026-07-06--after-d3-proxy--router` as a sibling report instead of overwriting frozen `baseline/`.
+- [x] Write `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router` as a sibling report instead of overwriting frozen `baseline/`.
 - [x] Record downstream scorer and projection-vocabulary work as out of scope.
 
 <!-- /ANCHOR:phases -->

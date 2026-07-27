@@ -34,7 +34,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (primary artifact) {deps: T###}`
 
-> **Reconciliation note (2026-07-06)**: Per `decision-record.md` ADR-003, T001-T019 and T021-T023 (the corpus audit, battery expansion, harness extension, live-mode rerun, and baseline promotion) were never executed and remain `[ ]` below as an honest record, open for a future phase. Only T020, T024, and T025 (strict validation, doc reconciliation, handoff notes) were performed, against the existing `benchmark/after-012-routing-rigor/` evidence rather than a fresh `after-011`/`after-011-live` run.
+> **Reconciliation note (2026-07-06)**: Per `decision-record.md` ADR-003, T001-T019 and T021-T023 (the corpus audit, battery expansion, harness extension, live-mode rerun, and baseline promotion) were never executed and remain `[ ]` below as an honest record, open for a future phase. Only T020, T024, and T025 (strict validation, doc reconciliation, handoff notes) were performed, against the existing `benchmark/2026-07-06--after-012-routing-rigor--router/` evidence rather than a fresh `after-011`/`after-011-live` run.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -45,7 +45,7 @@ _memory:
 ### Corpus and Change-Surface Audit
 
 - [ ] T001 Confirm Phases 006-011 are independently validated and each `implementation-summary.md` records completion (Phases 006-011 evidence).
-- [ ] T002 Read `benchmark/baseline/skill-benchmark-report.{json,md}` and `benchmark/after-009/report.{json,md}` in full to capture existing scenario ids, dimension scores, and known measurement gaps (`benchmark/baseline/`, `benchmark/after-009/`).
+- [ ] T002 Read `benchmark/baseline/skill-benchmark-report.{json,md}` and `benchmark/2026-07-06--after-009--router/report.{json,md}` in full to capture existing scenario ids, dimension scores, and known measurement gaps (`benchmark/baseline/`, `benchmark/2026-07-06--after-009--router/`).
 - [ ] T003 Read `benchmark/README.md` to confirm the append-only baseline convention and the exact rerun command shape (`benchmark/README.md`).
 - [ ] T004 [P] Build the change-surface inventory: for each Phases 006-011 file-list entry, classify it as scenario-update, net-new-scenario, or no-benchmark-impact (inventory table, this packet's future revision).
 - [ ] T005 [P] Read `advisor-probe.cjs` and `score-skill-benchmark.cjs` in full, confirming `probeAdvisor`'s ranked `recommendations` array and `scoreD1Inter`'s current return shape (`score`, `rank`, `topSkill`) (`advisor-probe.cjs`, `score-skill-benchmark.cjs`).
@@ -79,7 +79,7 @@ _memory:
 - [ ] T015 Run the expanded battery in router mode and capture `benchmark/after-011/report.json` and `report.md` (`run-skill-benchmark.cjs --trace-mode router`) {deps: T007, T008, T009, T012}.
 - [ ] T016 Run the expanded battery in live mode and capture `benchmark/after-011-live/report.json` and `report.md`, including D1-inter, advisor confidence, gap-to-second, and browser-class scenarios (`run-skill-benchmark.cjs --trace-mode live`) {deps: T015}.
 - [ ] T017 Build a per-scenario router-vs-live reconciliation table; document any divergence as a routing risk rather than an averaged score (release report draft) {deps: T015, T016}.
-- [x] T018 Compare the fresh run's D1 intra/inter, D2, D5, advisor confidence, gap-to-second, and procedure-card selection scores against the numeric floors in `decision-record.md` ADR-001 (gate comparison table) {deps: T017}. **Evidence**: performed against the existing `benchmark/after-012-routing-rigor/report.json` (no fresh `after-011` run exists); see `decision-record.md` ADR-001 "Actual Result Against the Real Existing Report" table for the full per-floor comparison. T015-T017 (fresh router/live runs and reconciliation table) remain not executed.
+- [x] T018 Compare the fresh run's D1 intra/inter, D2, D5, advisor confidence, gap-to-second, and procedure-card selection scores against the numeric floors in `decision-record.md` ADR-001 (gate comparison table) {deps: T017}. **Evidence**: performed against the existing `benchmark/2026-07-06--after-012-routing-rigor--router/report.json` (no fresh `after-011` run exists); see `decision-record.md` ADR-001 "Actual Result Against the Real Existing Report" table for the full per-floor comparison. T015-T017 (fresh router/live runs and reconciliation table) remain not executed.
 - [x] T019 Invoke the remediation loop (`decision-record.md` ADR-002) for any scenario or dimension below its floor; re-run only the affected scope and record the outcome {deps: T018}. **Evidence**: not triggered — nothing that was actually scored (D1 intra, D2, D5) fell below its floor. The unscored dimensions (D1 inter, advisor confidence, gap-to-second, procedure-card selection) are handled via ADR-002 outcome (b) / ADR-003's accepted-risk descope, not a remediation fix.
 - [x] T020 Run strict spec validation for the Phase 012 packet and record the exit code (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-root> --strict`). **Evidence**: run after all content edits and metadata regeneration in this reconciliation pass; exit code recorded in `implementation-summary.md`.
 <!-- /ANCHOR:phase-3 -->
@@ -90,7 +90,7 @@ _memory:
 ## Phase 4: Baseline Promotion and Handoff
 
 - [ ] T021 Obtain explicit release-owner confirmation that Phases 006-011 are complete and the rigorous pass meets its floors, or has documented accepted risk (release-owner sign-off record) {deps: T018, T019}.
-- [ ] T022 Promote the passing run to `benchmark/baseline-post-011/skill-benchmark-report.{json,md}` as a new, appended sibling folder; do not overwrite `benchmark/baseline/` or `benchmark/after-009/` (`benchmark/baseline-post-011/`) {deps: T021}.
+- [ ] T022 Promote the passing run to `benchmark/baseline-post-011/skill-benchmark-report.{json,md}` as a new, appended sibling folder; do not overwrite `benchmark/baseline/` or `benchmark/2026-07-06--after-009--router/` (`benchmark/baseline-post-011/`) {deps: T021}.
 - [ ] T023 Update `benchmark/README.md` with the new corpus size, new confidence/gap-to-second metrics, and the new baseline pointer (`benchmark/README.md`) {deps: T022}.
 - [x] T024 Update this phase's `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` with final evidence, and add `implementation-summary.md` (phase docs) {deps: T020, T022}. **Evidence**: all five docs reconciled and `implementation-summary.md` created in this pass, against the accepted existing evidence per ADR-003 (T022's `baseline-post-011/` promotion was not performed).
 - [x] T025 Record Phase 013 handoff notes in `implementation-summary.md` (next-safe-action and remaining risks) {deps: T024}. **Evidence**: `implementation-summary.md` Follow-Up Items names Phase 013 as the next safe action and lists the descoped expanded-battery work as an open item.

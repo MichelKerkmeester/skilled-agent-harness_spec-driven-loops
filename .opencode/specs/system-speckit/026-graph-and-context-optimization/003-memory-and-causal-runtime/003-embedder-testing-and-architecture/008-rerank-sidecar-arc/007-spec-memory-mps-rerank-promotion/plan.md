@@ -98,7 +98,7 @@ Acceptance: warmup returns `status:warmed`; smoke rerank 200 with `latency_ms` <
 
 ### Phase B — Harness setup
 
-1. Create `benchmarks/benchmark-2026-05-21-spec-memory-mps/` folder.
+1. Create `benchmarks/2026-05-21--spec-memory-mps--unspecified/` folder.
 2. Copy the canonical 50-probe fixture.
 3. Confirm `cross-encoder.ts:54` is Qwen for this bench (NOT ms-marco). Edit + rebuild TS if not.
 4. Sidecar already has Qwen in its default allowlist.

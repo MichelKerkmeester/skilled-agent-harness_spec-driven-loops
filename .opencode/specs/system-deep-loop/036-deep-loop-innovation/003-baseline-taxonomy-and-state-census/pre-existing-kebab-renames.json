@@ -173,32 +173,32 @@
     {
       "similarity": 100,
       "from": ".opencode/skills/system-deep-loop/benchmark/after_d3_proxy/skill-benchmark-report.json",
-      "to": ".opencode/skills/system-deep-loop/benchmark/after-d3-proxy/skill-benchmark-report.json"
+      "to": ".opencode/skills/system-deep-loop/benchmark/2026-07-08--after-d3-proxy--router/skill-benchmark-report.json"
     },
     {
       "similarity": 100,
       "from": ".opencode/skills/system-deep-loop/benchmark/after_d3_proxy/skill-benchmark-report.md",
-      "to": ".opencode/skills/system-deep-loop/benchmark/after-d3-proxy/skill-benchmark-report.md"
+      "to": ".opencode/skills/system-deep-loop/benchmark/2026-07-08--after-d3-proxy--router/skill-benchmark-report.md"
     },
     {
       "similarity": 95,
       "from": ".opencode/skills/system-deep-loop/benchmark/live_mode_b/skill-benchmark-report.json",
-      "to": ".opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.json"
+      "to": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.json"
     },
     {
       "similarity": 100,
       "from": ".opencode/skills/system-deep-loop/benchmark/live_mode_b/skill-benchmark-report.md",
-      "to": ".opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.md"
+      "to": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md"
     },
     {
       "similarity": 100,
       "from": ".opencode/skills/system-deep-loop/benchmark/router_mode_a/skill-benchmark-report.json",
-      "to": ".opencode/skills/system-deep-loop/benchmark/router-mode-a/skill-benchmark-report.json"
+      "to": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.json"
     },
     {
       "similarity": 100,
       "from": ".opencode/skills/system-deep-loop/benchmark/router_mode_a/skill-benchmark-report.md",
-      "to": ".opencode/skills/system-deep-loop/benchmark/router-mode-a/skill-benchmark-report.md"
+      "to": ".opencode/skills/system-deep-loop/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md"
     },
     {
       "similarity": 100,
@@ -1968,22 +1968,22 @@
     {
       "similarity": 90,
       "from": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live_mode_b/skill-benchmark-report.json",
-      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live-mode-b/skill-benchmark-report.json"
+      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.json"
     },
     {
       "similarity": 72,
       "from": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live_mode_b/skill-benchmark-report.md",
-      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/live-mode-b/skill-benchmark-report.md"
+      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--live-mode-b--live/skill-benchmark-report.md"
     },
     {
       "similarity": 97,
       "from": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router_mode_a/skill-benchmark-report.json",
-      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router-mode-a/skill-benchmark-report.json"
+      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.json"
     },
     {
       "similarity": 77,
       "from": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router_mode_a/skill-benchmark-report.md",
-      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/router-mode-a/skill-benchmark-report.md"
+      "to": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.md"
     },
     {
       "similarity": 86,

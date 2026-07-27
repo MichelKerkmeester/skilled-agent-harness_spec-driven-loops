@@ -31,7 +31,7 @@ The env override remains in source post-HOLD as a useful operator tunable for co
 ### Added
 
 - `SPECKIT_RERANK_LOCAL_MAX_DOCS` env override in `cross-encoder.ts:478` that applies `Math.min(providerCap, parsed)` for the local provider only
-- Benchmark directory `benchmarks/benchmark-2026-05-21-cap-top-k/` with fixture, two arm run files plus a benchmark report documenting the HOLD verdict
+- Benchmark directory `benchmarks/2026-05-21--cap-top-k--unspecified/` with fixture, two arm run files plus a benchmark report documenting the HOLD verdict
 
 ### Changed
 
@@ -59,10 +59,10 @@ None.
 | File | What changed |
 |------|--------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/cross-encoder.ts` | `SPECKIT_RERANK_LOCAL_MAX_DOCS` env read added at line 478. Local provider batch capped via `Math.min`. Model pin reverted to ms-marco post-bench. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/benchmark_report.md` (NEW) | HOLD verdict report with per-arm aggregates. Gate evaluations plus OOM evidence included. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/rerank-ab-fixture.json` (NEW) | 50-probe fixture reused from packets 004 and 007. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/runs/arm-a-off.jsonl` (NEW) | 150-row Arm A run. Sidecar off. Positional scoring baseline. |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-cap-top-k/runs/arm-b-cap10.jsonl` (NEW) | 150-row Arm B run. Sidecar on, cap=10, MPS. Cross-encoder reached 22 rows. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/benchmark_report.md` (NEW) | HOLD verdict report with per-arm aggregates. Gate evaluations plus OOM evidence included. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/rerank-ab-fixture.json` (NEW) | 50-probe fixture reused from packets 004 and 007. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/runs/arm-a-off.jsonl` (NEW) | 150-row Arm A run. Sidecar off. Positional scoring baseline. |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--cap-top-k--unspecified/runs/arm-b-cap10.jsonl` (NEW) | 150-row Arm B run. Sidecar on, cap=10, MPS. Cross-encoder reached 22 rows. |
 
 ### Follow-Ups
 

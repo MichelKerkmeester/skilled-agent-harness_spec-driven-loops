@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Run the benchmark and review after phase 006"
     blockers: []
     key_files:
-      - ".opencode/skills/cli-external/benchmark/router-final/skill-benchmark-report.md"
+      - ".opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-007-routing-benchmark-and-review"
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Run the router-mode Lane-C benchmark and write both report files under `benchmark/router-final/`
+- [ ] T004 Run the router-mode Lane-C benchmark and write both report files under `benchmark/2026-06-01--router-final--router/`
 - [ ] T005 Run the live delegation-routing re-baseline and confirm both executor kinds resolve with no silent misroute
 - [ ] T006 Run the independent deep-review pass over the phases 003-006 diff, weighting the scorer rewrite and the fail-open hook
 - [ ] T007 Record the routingClass decision per mode from D1/D2 evidence

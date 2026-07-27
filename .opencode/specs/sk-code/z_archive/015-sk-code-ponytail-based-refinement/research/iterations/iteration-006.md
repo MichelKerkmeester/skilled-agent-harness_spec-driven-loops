@@ -24,8 +24,8 @@ Ponytail contributes the arm shape and deterministic LOC idea: prompt arms, repe
 Yes, most harness infrastructure already exists:
 - `sk-code` has benchmark artifacts and reports under `.opencode/skills/sk-code/benchmark/`; the benchmark README says Lane C scores D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity (`sk-code/benchmark/README.md:18-33`).
 - Router and live invocations already exist (`sk-code/benchmark/README.md:49-69`).
-- Latest reports exist: router `FAIL 44/100`, live `CONDITIONAL 71/100` (`sk-code/benchmark/router-final/skill-benchmark-report.md:3-23`, `sk-code/benchmark/live-final/skill-benchmark-report.md:3-23`).
-- D4 ablation exists but is approximate and advisory (`sk-code/benchmark/live-final/d4-ablation.json:1-29`).
+- Latest reports exist: router `FAIL 44/100`, live `CONDITIONAL 71/100` (`sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md:3-23`, `sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.md:3-23`).
+- D4 ablation exists but is approximate and advisory (`sk-code/benchmark/2026-06-01--live-final--live/d4-ablation.json:1-29`).
 - Lane B sweep already has the correctness-gated shape ponytail lacks: “Correctness is a GATE, not a score” (`deep-improvement:scripts/model-benchmark/SWEEP.md:13-16`, `82-90`) and `correctness-gate.cjs` explicitly ranks only eligible groups (`deep-improvement:scripts/model-benchmark/lib/correctness-gate.cjs:7-20`, `124-171`).
 
 What’s missing: a produced-code simplicity dimension. Existing Lane C D3 is routing over-efficiency, not generated-code LOC. Existing Lane B has `output_words/chars`, not deterministic `code_loc` or over-engineering markers.

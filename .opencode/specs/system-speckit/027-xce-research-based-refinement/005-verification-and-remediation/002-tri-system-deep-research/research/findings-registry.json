@@ -1293,7 +1293,7 @@
    "class": "REFINEMENT",
    "severity": "P2",
    "title": "Vector storage has no declared single source of truth",
-   "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:81-90 dual-writes vec_memories and vec_<dim>; .opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:4-6 says both active vector surfaces must exist; .opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:318-327 treats either missing surface as coverage loss; .opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20/benchmark_report.md:31-38 records vec_memories 7771 vs vec_768 3808.",
+   "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:81-90 dual-writes vec_memories and vec_<dim>; .opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:4-6 says both active vector surfaces must exist; .opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:318-327 treats either missing surface as coverage loss; .opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--run--unspecified/benchmark_report.md:31-38 records vec_memories 7771 vs vec_768 3808.",
    "detail": "The code treats vec_memories and vec_<dim> as co-required write targets rather than one authoritative payload plus a derived index. The benchmark already records a large historical divergence, which makes migration and repair semantics harder to reason about.",
    "fix_sketch": "Declare one canonical embedding payload table and make the other surface a rebuildable derived index with explicit divergence health and repair.",
    "angle": 6

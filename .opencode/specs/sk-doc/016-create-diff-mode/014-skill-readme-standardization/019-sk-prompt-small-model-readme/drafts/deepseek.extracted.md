@@ -179,7 +179,7 @@ The skill ships benchmark data that backs the framework assignments for MiniMax 
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-models/README.md --type readme` reports zero issues |
 | SKILL.md structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-models/SKILL.md --type skill` reports zero issues |
 | Profile mirror check | Diff each profile's framework block against its `model-profiles.json` row |
-| Benchmarks | Review the synthesis under `benchmarks/003-minimax-prompt-framework/` and `benchmarks/004-mimo-prompt-framework/` |
+| Benchmarks | Review the synthesis under `benchmarks/2026-07-10--prompt-framework--minimax/` and `benchmarks/2026-06-01--prompt-framework--mimo/` |
 
 ---
 

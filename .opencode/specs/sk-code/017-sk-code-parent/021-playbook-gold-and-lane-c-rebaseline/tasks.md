@@ -61,7 +61,7 @@ _memory:
 - [x] T009 Preserve universal-tier paths [small] — universal references such as `references/universal/*`, `references/stack_detection.md`, and `references/smart_routing.md` remained unchanged
 
 ### deep-loop Baseline
-- [x] T010 Regenerate deterministic router-final baseline [large] — offline router trace mode wrote fresh `benchmark/router-final/skill-benchmark-report.{json,md}`
+- [x] T010 Regenerate deterministic router-final baseline [large] — offline router trace mode wrote fresh `benchmark/2026-06-01--router-final--router/skill-benchmark-report.{json,md}`
 - [x] T011 Leave frozen benchmark baseline untouched [small] — `benchmark/baseline/` remained unchanged per its contract
 
 ### Comparison

@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exactly four. `code-implement`, `code-debug`, and `code-verify` were dissolved by consolidating their generic doctrine into `shared/references/workflow_{implement,debug,verify}.md`, symlinking that doctrine into both surviving surface skills, and relocating real assets without loss. `code-animation` was folded into `code-webflow` as non-skill animation references/assets. Routing metadata, external references, manual testing playbook gold, benchmark harness expectations, and `benchmark/router-final/` were reconciled to the surface-primary two-axis model. The deterministic Lane-C gate held at CONDITIONAL 71.
+Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exactly four. `code-implement`, `code-debug`, and `code-verify` were dissolved by consolidating their generic doctrine into `shared/references/workflow_{implement,debug,verify}.md`, symlinking that doctrine into both surviving surface skills, and relocating real assets without loss. `code-animation` was folded into `code-webflow` as non-skill animation references/assets. Routing metadata, external references, manual testing playbook gold, benchmark harness expectations, and `benchmark/2026-06-01--router-final--router/` were reconciled to the surface-primary two-axis model. The deterministic Lane-C gate held at CONDITIONAL 71.
 
 ### Files Changed
 
@@ -72,7 +72,7 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 | `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Repoint animation resources to Webflow and remove dissolved-mode routes from RESOURCE_MAP | `2cd3b3f7a9` |
 | `.opencode/agents/*` and specs/docs references | Updated | Repoint external references off dissolved sub-skills while preserving code-review wiring | `2cd3b3f7a9` |
 | `.opencode/skills/sk-code/manual_testing_playbook/**` | Updated | Re-translate gold paths for folded animation and dissolved verify-mode script/checklist moves | `6c0d9959b9` |
-| `.opencode/skills/sk-code/benchmark/router-final/` | Regenerated | Record deterministic router-final baseline after the four-sub-skill collapse | `6c0d9959b9` |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/` | Regenerated | Record deterministic router-final baseline after the four-sub-skill collapse | `6c0d9959b9` |
 | Benchmark harness vitests | Updated | Repoint surface-slice sync, code-surface path parse, and skill-benchmark routing expectations to the two-axis model | `6c0d9959b9` |
 | `plan.md` | Added | Record retrospective implementation plan, gates, dependencies, rollback, and effort for packet 022 | close-out doc |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | close-out doc |
@@ -87,7 +87,7 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 
 The packet shipped in two pushed stages on branch `system-speckit/028-memory-search-intelligence`. Stage A (`2cd3b3f7a9`) performed the structural collapse: dissolved `code-implement`, `code-debug`, and `code-verify`; consolidated shared workflow doctrine; symlinked doctrine into both surviving surfaces; relocated verify scripts and preserved checklists; folded animation into `code-webflow`; reconciled hub routing and smart-routing maps; repointed external references; restored the verify Iron Law; and repointed rule-copy and verify-script references.
 
-Stage B (`6c0d9959b9`) re-baselined the benchmark layer against the new hub shape. The manual testing playbook gold was re-translated across 17 files, the router-replay surface-slicer was updated so Motion.dev animation is a cross-stack MOTION overlay rather than a Webflow surface leak, three benchmark harness vitests were repointed off dissolved modes, and `benchmark/router-final/` was regenerated. The result held the prior deterministic gate at CONDITIONAL 71.
+Stage B (`6c0d9959b9`) re-baselined the benchmark layer against the new hub shape. The manual testing playbook gold was re-translated across 17 files, the router-replay surface-slicer was updated so Motion.dev animation is a cross-stack MOTION overlay rather than a Webflow surface leak, three benchmark harness vitests were repointed off dissolved modes, and `benchmark/2026-06-01--router-final--router/` was regenerated. The result held the prior deterministic gate at CONDITIONAL 71.
 
 <!-- /ANCHOR:how-delivered -->
 ---

@@ -142,8 +142,8 @@ Golden prompts and manual scenarios feed benchmark runs. Runs produce mode/proce
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Benchmark | Golden prompts and negative controls for all five public modes | Router-mode benchmark harness rerun into `benchmark/after-009/` |
-| Routing | Advisor identity, mode-registry, hub-router, public/private boundary | Router-mode replay in `benchmark/after-009/report.json`; live D1-inter not scored |
+| Benchmark | Golden prompts and negative controls for all five public modes | Router-mode benchmark harness rerun into `benchmark/2026-07-06--after-009--router/` |
+| Routing | Advisor identity, mode-registry, hub-router, public/private boundary | Router-mode replay in `benchmark/2026-07-06--after-009--router/report.json`; live D1-inter not scored |
 | Manual | Live usefulness, parity feel, anti-slop, accessibility, hierarchy, interaction, polish | Not run in this pass; requires operator execution before READY |
 | Preservation | md-generator extraction and output behavior | Router replay confirms `md-generator`/`playwright-extract`; live extraction not run |
 | Documentation | Phase packet validity and release report consistency | `validate.sh <phase-root> --strict` |

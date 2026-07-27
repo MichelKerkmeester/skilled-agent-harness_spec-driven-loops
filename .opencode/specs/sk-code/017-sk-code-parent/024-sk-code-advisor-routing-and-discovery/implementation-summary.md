@@ -68,9 +68,9 @@ Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing 
 | `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md` | Updated | Refresh stale sk-code worked example to workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null` | `ec014f95c6` |
 | `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/cwv-gates-animation-heavy.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
 | `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/prefers-reduced-motion.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
-| `.opencode/skills/sk-code/benchmark/router-final/` | Regenerated | Record current/regenerable sk-code router-mode benchmark after routing discovery and D3 changes | `ec014f95c6` |
-| `.opencode/skills/sk-design/benchmark/after-d3-proxy/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
-| `.opencode/skills/deep-loop-workflows/benchmark/after-d3-proxy/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/` | Regenerated | Record current/regenerable sk-code router-mode benchmark after routing discovery and D3 changes | `ec014f95c6` |
+| `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
+| `.opencode/skills/deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
 | `spec.md` | Added | Record retrospective specification for packet 024 | close-out doc |
 | `plan.md` | Added | Record retrospective implementation plan, gates, dependencies, rollback, and effort for packet 024 | close-out doc |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | close-out doc |
@@ -85,7 +85,7 @@ Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing 
 
 The packet shipped in commit `ec014f95c6` on branch `system-speckit/028-memory-search-intelligence`. The sk-code smart-routing block was updated first so CWV and accessibility vocabulary fired existing RESOURCE_MAP references rather than inventing new resource paths. Router replay then received word-boundary matching for `lcp`, `inp`, and `cls`, and the skill benchmark scorer was updated so D3 is null/not-applicable when positive-resource gold is empty.
 
-The documentation and artifact layer was reconciled in the same increment. The sk-doc parent-hub schema example was refreshed to the current sk-code surface-primary model, two cross-stack playbooks were repaired to point at real expected-asset paths, sk-code `benchmark/router-final` was regenerated as its README-documented current folder, and sk-design plus deep-loop-workflows wrote `after-d3-proxy/` sibling reports instead of overwriting frozen baselines.
+The documentation and artifact layer was reconciled in the same increment. The sk-doc parent-hub schema example was refreshed to the current sk-code surface-primary model, two cross-stack playbooks were repaired to point at real expected-asset paths, sk-code `benchmark/2026-06-01--router-final--router` was regenerated as its README-documented current folder, and sk-design plus deep-loop-workflows wrote `after-d3-proxy/` sibling reports instead of overwriting frozen baselines.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -168,7 +168,7 @@ None for this packet. Commit `ec014f95c6` shipped and pushed the sk-code-local r
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Re-baseline `sk-design/benchmark/baseline` and `deep-loop-workflows/benchmark/baseline` | Wrote `sk-design/benchmark/after-d3-proxy` and `deep-loop-workflows/benchmark/after-d3-proxy` sibling folders; frozen `baseline/` folders were left intact | Each benchmark README documents `baseline/` as a frozen comparison anchor and instructs adding new baselines as sibling folders |
+| Re-baseline `sk-design/benchmark/baseline` and `deep-loop-workflows/benchmark/baseline` | Wrote `sk-design/benchmark/2026-07-06--after-d3-proxy--router` and `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router` sibling folders; frozen `baseline/` folders were left intact | Each benchmark README documents `baseline/` as a frozen comparison anchor and instructs adding new baselines as sibling folders |
 | Fold shared advisor-scorer root fix into the same lane | Deferred to downstream packet `028/003-skill-advisor/010-scorer-saturation-root-fix` | Scorer edits touch `system-skill-advisor/mcp_server/lib/scorer/*.ts`, the live agent's actively-worked 009 dispatch-hardening lane, and require a full 193-row advisor corpus re-baseline |
 | Make CS-007 recall 1.0 | Left CS-007 at 6/7 recall | Adding a JavaScript trigger would re-route every Webflow `.js` scenario; trimming gold would misrepresent the benchmark |
 

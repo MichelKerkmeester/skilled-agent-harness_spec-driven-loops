@@ -65,7 +65,7 @@ A cli-devin SWE-1.6 sweep ran 10 iterations across every README, INSTALL_GUIDE, 
 | `.opencode/skills/mcp-coco-index/references/tool_reference.md` | `## Pipeline architecture` block moved to numbered Section 2. 6 H2 headers renumbered. |
 | `.opencode/skills/mcp-coco-index/references/settings_reference.md` | 5 evergreen packet-ID violations replaced with feature names and source anchors. |
 | `.opencode/skills/mcp-coco-index/references/search_patterns.md` | Evergreen alignment pass to match post-restructure surface names. |
-| `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/` (NEW) | 15-file bench folder: 6 lane JSONs, `results.csv`, `per-probe.jsonl`, `SOURCE.md`, `benchmark_report.md`, 4 narrative sidecars, fixture JSON. |
+| `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/` (NEW) | 15-file bench folder: 6 lane JSONs, `results.csv`, `per-probe.jsonl`, `SOURCE.md`, `benchmark_report.md`, 4 narrative sidecars, fixture JSON. |
 | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md` | Updated to reflect renamed bench folder and correct file count. |
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/embedders/registered_embedders.py` | Path string updated from `benchmark-2026-05-20-expanded` to `benchmark-2026-05-20`. |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_calibration_perturbation.py` | Fixture path updated to `benchmark-2026-05-20`. |

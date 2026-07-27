@@ -31,11 +31,11 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Markdown playbook scenarios, JSON/Markdown benchmark reports, deterministic router trace mode |
 | **Framework** | sk-code two-axis parent hub, manual testing playbook, Lane-C router benchmark |
-| **Storage** | Repository filesystem: `.opencode/skills/sk-code/manual_testing_playbook/`, `.opencode/skills/sk-code/benchmark/router-final/`, benchmark README, and phase docs |
+| **Storage** | Repository filesystem: `.opencode/skills/sk-code/manual_testing_playbook/`, `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/`, benchmark README, and phase docs |
 | **Testing** | Stale-path grep, translated-path existence checks, offline router-final regeneration, leak check, recall comparison, strict spec validation at close-out |
 
 ### Overview
-This phase completes the third and final piece of the sk-code benchmark recovery. The two-axis rename left the benchmark harness broken in two places and the playbook gold stale. The harness fixes landed first as separate packets for router-replay surface slicing and scenario-loader `code-<surface>/` parsing. This packet performs the gold work those fixes unblocked: translate stale playbook gold paths from the pre-013 monolithic layout to the current `code-<surface>/` packet layout, regenerate the deterministic `benchmark/router-final/` baseline, refresh the benchmark README statistic, and record the honest residual gold-vs-router recall gap instead of hiding it.
+This phase completes the third and final piece of the sk-code benchmark recovery. The two-axis rename left the benchmark harness broken in two places and the playbook gold stale. The harness fixes landed first as separate packets for router-replay surface slicing and scenario-loader `code-<surface>/` parsing. This packet performs the gold work those fixes unblocked: translate stale playbook gold paths from the pre-013 monolithic layout to the current `code-<surface>/` packet layout, regenerate the deterministic `benchmark/2026-06-01--router-final--router/` baseline, refresh the benchmark README statistic, and record the honest residual gold-vs-router recall gap instead of hiding it.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -52,7 +52,7 @@ This phase completes the third and final piece of the sk-code benchmark recovery
 ### Definition of Done
 - [x] Every stale playbook gold path is translated to the `code-<surface>/` packet layout while preserving each scenario's curated resource set.
 - [x] All 71 translated gold paths are existence-checked on disk before applying, and the post-translation stale-path grep returns 0 files.
-- [x] The deterministic `benchmark/router-final/` baseline is regenerated in offline router trace mode with verdict CONDITIONAL and aggregate 71/100.
+- [x] The deterministic `benchmark/2026-06-01--router-final--router/` baseline is regenerated in offline router trace mode with verdict CONDITIONAL and aggregate 71/100.
 - [x] Benchmark README's stale latest-router-verdict statistic is refreshed to match the regenerated router-final result.
 - [x] Scoped deferrals are documented: residual 66% gold-vs-router recall gap, live-mode re-baseline, and the pre-existing unrelated harness `intents` test failure.
 
@@ -68,7 +68,7 @@ Deterministic path translation with evidence-preserving re-baseline: map only st
 ### Key Components
 - **Playbook scenario gold**: Curated expected resource paths in `.opencode/skills/sk-code/manual_testing_playbook/**/*.md`.
 - **Path translation map**: Pre-013 `references/{motion_dev,webflow,opencode}/` and `assets/{motion_dev,webflow,opencode}/` prefixes translated to `code-animation/`, `code-webflow/`, and `code-opencode/` packet locations.
-- **Router-final baseline**: Deterministic offline router trace report under `.opencode/skills/sk-code/benchmark/router-final/`.
+- **Router-final baseline**: Deterministic offline router trace report under `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/`.
 - **Benchmark README statistic**: Human-facing latest-router-verdict line aligned to the regenerated report.
 
 ### Data Flow
@@ -94,7 +94,7 @@ The harness dependency fixes make playbook scenarios parse and slice `code-<surf
 ### Phase 3: Validator Promotion
 - [x] Verify the post-translation stale-path grep returns 0 files.
 - [x] Verify all 71 translated gold paths exist after applying the translation.
-- [x] Regenerate `benchmark/router-final/skill-benchmark-report.{json,md}` in deterministic router trace mode.
+- [x] Regenerate `benchmark/2026-06-01--router-final--router/skill-benchmark-report.{json,md}` in deterministic router trace mode.
 - [x] Verify verdict CONDITIONAL, aggregate 71/100, D5 connectivity 100/100, and 0 scored scenarios routing both code-webflow/ and code-opencode/.
 - [x] Record honest gold-vs-router recall as 65/99 = 66%.
 
@@ -115,7 +115,7 @@ The harness dependency fixes make playbook scenarios parse and slice `code-<surf
 |-----------|-------|-------|
 | Stale-path sweep | Playbook scenario gold paths | Post-translation grep for old `references/{motion_dev,webflow,opencode}/` and `assets/{...}/` prefixes |
 | Path integrity | 71 translated gold paths | Existence checks against the current sk-code packet filesystem |
-| Baseline regeneration | `benchmark/router-final/` report | Offline router trace mode |
+| Baseline regeneration | `benchmark/2026-06-01--router-final--router/` report | Offline router trace mode |
 | Signal honesty | Leak and recall metrics | Router-final verdict review: 0 leaks, recall 65/99 = 66% |
 | Spec validation | Phase close-out docs | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh --strict` at close-out |
 

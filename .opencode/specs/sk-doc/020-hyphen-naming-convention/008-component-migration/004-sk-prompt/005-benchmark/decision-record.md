@@ -46,8 +46,8 @@ exempts generated output and requires benchmark data and payload semantics to re
 
 ### DR-001 — Use an explicit authored benchmark path map
 
-Map `benchmark/live_final/` to `benchmark/live-final/`, `benchmark/router_final/` to `benchmark/router-final/`, and
-`prompt-improve/benchmark/router_mode_a/` to `prompt-improve/benchmark/router-mode-a/`. Any additional authored
+Map `benchmark/live_final/` to `benchmark/2026-06-01--live-final--live/`, `benchmark/router_final/` to `benchmark/2026-06-01--router-final--router/`, and
+`prompt-improve/benchmark/router_mode_a/` to `prompt-improve/benchmark/2026-07-10--router-mode-a--router/`. Any additional authored
 fixture, profile, storage-guide, report, or path directory discovered during execution must receive its own ledger row;
 there is no blanket underscore substitution.
 

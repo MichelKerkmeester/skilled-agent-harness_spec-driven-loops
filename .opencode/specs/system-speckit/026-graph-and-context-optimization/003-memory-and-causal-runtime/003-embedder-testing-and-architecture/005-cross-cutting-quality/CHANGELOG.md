@@ -63,7 +63,7 @@ The cat-24 fixture surgery (in phase 008 of `001-local-embeddings-foundation/`) 
 
 #### Skill-local benchmarks folder convention (004)
 
-Benchmark evidence was living in spec packets far from the code it informed. Operators asking "which embedder is the production default and why?" had to read packet docs. Phase 004 formalised the `mcp_server/benchmarks/` folder convention with date-based subfolders for ISO sort order and `SOURCE.md` pointers back to authoritative spec packets, then populated the first two adopters: `mk-spec-memory/benchmarks/benchmark-2026-05-17/` and `mcp-coco-index/benchmarks/benchmark-2026-05-18/` both with `results.csv`, per-probe JSONL data, runtime measurements and `SOURCE.md`. Phase C (sk-doc-compliant `benchmark_report.md` plus README files via `@markdown` agents) and Phase D (validation) are pending.
+Benchmark evidence was living in spec packets far from the code it informed. Operators asking "which embedder is the production default and why?" had to read packet docs. Phase 004 formalised the `mcp_server/benchmarks/` folder convention with date-based subfolders for ISO sort order and `SOURCE.md` pointers back to authoritative spec packets, then populated the first two adopters: `mk-spec-memory/benchmarks/2026-05-17--run--unspecified/` and `mcp-coco-index/benchmarks/benchmark-2026-05-18/` both with `results.csv`, per-probe JSONL data, runtime measurements and `SOURCE.md`. Phase C (sk-doc-compliant `benchmark_report.md` plus README files via `@markdown` agents) and Phase D (validation) are pending.
 
 &nbsp;
 
@@ -112,7 +112,7 @@ This quality arc focuses on alignment, auditing and documentation. There are no 
 | Benchmark format | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md` | Modified (006) |
 | Benchmark evidence | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/historical FORMAT.md` | Created (004 Phase A) |
 | Benchmark evidence | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/historical FORMAT.md` | Created (004 Phase A) |
-| Benchmark evidence | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/` | Created (004 Phase B) |
+| Benchmark evidence | `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/` | Created (004 Phase B) |
 | Benchmark evidence | `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/` | Created (004 Phase B) |
 | Deep review | `002-deep-review-stack/review/review-report.md` | Created (002) |
 | Deep review | `002-deep-review-stack/review/deep-review-state.jsonl` | Created (002) |

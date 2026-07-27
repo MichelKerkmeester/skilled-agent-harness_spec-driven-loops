@@ -49,7 +49,7 @@ edit(FC, (c) => {
 
 // 2 standalone README dead list items
 const README_LINES = [
-  { f: '.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/README.md', line: '- [`../README.md`](../README.md)\n' },
+  { f: '.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/README.md', line: '- [`../README.md`](../README.md)\n' },
   { f: '.opencode/skills/deep-loop-runtime/tests/fixtures/council-value/README.md', line: '- [Parent: Fixtures](../README.md)\n' },
 ];
 for (const { f, line } of README_LINES) {

@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This packet executed the automated router-mode benchmark release gate for `sk-design` parity behavior: it compared a fresh `benchmark/after-009/` run against the frozen `benchmark/baseline/` ledger, added the PB-001..PB-003 parity-behavior manual playbook scenarios, and recorded a CONDITIONAL release verdict in `release-report.md`. Router/advisor invariants, procedure-selection route replay, and md-generator route replay pass. Live/manual/browser-mode scenario execution, design-quality reviewer lanes, and D1-inter/D4 usefulness scoring remain explicitly out of scope for this automated dispatch and are tracked as named operator follow-up items. No parent root files, sibling phases, `external/**`, `research/**` files, or `.opencode/skills/sk-design/**` files outside the approved Phase 005 artifact paths (`benchmark/after-009/**`, `manual_testing_playbook/parity-behavior/**`, `manual_testing_playbook/manual_testing_playbook.md`) were changed by this packet.
+This packet executed the automated router-mode benchmark release gate for `sk-design` parity behavior: it compared a fresh `benchmark/2026-07-06--after-009--router/` run against the frozen `benchmark/baseline/` ledger, added the PB-001..PB-003 parity-behavior manual playbook scenarios, and recorded a CONDITIONAL release verdict in `release-report.md`. Router/advisor invariants, procedure-selection route replay, and md-generator route replay pass. Live/manual/browser-mode scenario execution, design-quality reviewer lanes, and D1-inter/D4 usefulness scoring remain explicitly out of scope for this automated dispatch and are tracked as named operator follow-up items. No parent root files, sibling phases, `external/**`, `research/**` files, or `.opencode/skills/sk-design/**` files outside the approved Phase 005 artifact paths (`benchmark/2026-07-06--after-009--router/**`, `manual_testing_playbook/parity-behavior/**`, `manual_testing_playbook/manual_testing_playbook.md`) were changed by this packet.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -65,7 +65,7 @@ Executed a Level 3 phase packet covering the automated portion of the parity rel
 | `graph-metadata.json` | Regenerated | Graph traversal metadata refreshed after content reconciliation |
 | `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/*.md` | Added (approved path) | PB-001, PB-002, PB-003 parity-behavior scenarios |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Updated (approved path) | Root index now includes category 06 and PB-001..PB-003 |
-| `.opencode/skills/sk-design/benchmark/after-009/report.json` + `report.md` | Added (approved path) | Fresh router-mode benchmark run compared against the frozen baseline |
+| `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json` + `report.md` | Added (approved path) | Fresh router-mode benchmark run compared against the frozen baseline |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -73,7 +73,7 @@ Executed a Level 3 phase packet covering the automated portion of the parity rel
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The router-mode benchmark harness was run against `.opencode/skills/sk-design` with `--trace-mode router`, writing `benchmark/after-009/report.json` and `report.md` without touching `benchmark/baseline/`. The measured rerun completed in `0.040 total` and produced `verdict=CONDITIONAL aggregate=69 scenarios=24`. The PB-001..PB-003 parity-behavior scenarios were added to the manual playbook and included in the replay corpus (24 scenarios total, 18 scored, 6 routed out to the browser harness). `release-report.md` compares the baseline (69/100, 21 scenarios, 15 scored) against `after-009` (69/100, 24 scenarios, 18 scored) and records a CONDITIONAL verdict: router/advisor invariants and route replays pass, but live/manual/browser-mode usefulness, design-quality review lanes, and md-generator live extraction were not run in this automated pass and remain release-blocking before any READY claim. This reconciliation pass then aligned `checklist.md`, `decision-record.md`, and this summary with the evidence already recorded in `plan.md`, `tasks.md`, and `release-report.md`.
+The router-mode benchmark harness was run against `.opencode/skills/sk-design` with `--trace-mode router`, writing `benchmark/2026-07-06--after-009--router/report.json` and `report.md` without touching `benchmark/baseline/`. The measured rerun completed in `0.040 total` and produced `verdict=CONDITIONAL aggregate=69 scenarios=24`. The PB-001..PB-003 parity-behavior scenarios were added to the manual playbook and included in the replay corpus (24 scenarios total, 18 scored, 6 routed out to the browser harness). `release-report.md` compares the baseline (69/100, 21 scenarios, 15 scored) against `after-009` (69/100, 24 scenarios, 18 scored) and records a CONDITIONAL verdict: router/advisor invariants and route replays pass, but live/manual/browser-mode usefulness, design-quality review lanes, and md-generator live extraction were not run in this automated pass and remain release-blocking before any READY claim. This reconciliation pass then aligned `checklist.md`, `decision-record.md`, and this summary with the evidence already recorded in `plan.md`, `tasks.md`, and `release-report.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,7 +84,7 @@ The router-mode benchmark harness was run against `.opencode/skills/sk-design` w
 | Decision | Status | Impact |
 |----------|--------|--------|
 | Release requires routing invariants and live parity evidence | Accepted | Prevents router-only false confidence; enforced via separate lane verdicts in `release-report.md` |
-| Baselines are append-only by default | Accepted | `benchmark/baseline/` preserved untouched; current run isolated to `benchmark/after-009/` |
+| Baselines are append-only by default | Accepted | `benchmark/baseline/` preserved untouched; current run isolated to `benchmark/2026-07-06--after-009--router/` |
 | Release owner controls failure and overwrite authority | Accepted | Repository owner delegated authority for this session; CONDITIONAL verdict recorded, no overwrite authorized |
 
 See `decision-record.md` for full rationale and alternatives.

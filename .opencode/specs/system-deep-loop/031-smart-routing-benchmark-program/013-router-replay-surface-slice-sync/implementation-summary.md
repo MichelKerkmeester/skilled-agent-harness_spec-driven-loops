@@ -97,7 +97,7 @@ The repair changed only the resource-folder-facing constants: `SURFACE_PREFIXES`
 | Fix only the three resource-prefix sites | The regression was a path-layout drift, not a prompt-classification failure |
 | Leave `detectSurface` and `detectOpencodeLanguage` unchanged | Those functions key on task text and should not be coupled to folder names |
 | Prove success with leak diagnostic and guard tests | The sk-code aggregate remains gold-limited, so direct leak evidence is the reliable proof |
-| Defer playbook gold alignment and `benchmark/router-final/` regeneration | Operator directed a two-packet split to keep this harness fix clean |
+| Defer playbook gold alignment and `benchmark/2026-06-01--router-final--router/` regeneration | Operator directed a two-packet split to keep this harness fix clean |
 | Leave the pre-existing intents assertion failure unchanged | It belongs to intent/mode-projection expectation sync, not surface-slicing |
 
 <!-- /ANCHOR:decisions -->
@@ -151,7 +151,7 @@ None. The harness fix, regression guard, and direct leak proof are complete. Rem
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The sk-code playbook GOLD is still stale and uses pre-rename monolithic paths. Aligning it to the corrected router and regenerating `benchmark/router-final/` is the separate follow-up packet `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`.
+1. The sk-code playbook GOLD is still stale and uses pre-rename monolithic paths. Aligning it to the corrected router and regenerating `benchmark/2026-06-01--router-final--router/` is the separate follow-up packet `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`.
 2. The pre-existing `skill-benchmark.vitest.ts` `res.intents` failure remains. It expects `implement` for a Webflow task, while current `hub-router.json` returns `['code-webflow']`; this is a separate intent/mode-projection expectation issue.
 3. No commit SHA exists at authoring time. Close-out validation and push are pending after these docs are authored.
 4. The sk-code post-slicing aggregate remains gold-limited, so packet success is proven by leak diagnostic and regression guard evidence instead.

@@ -5,7 +5,7 @@
 
 - **[P1] SWE 1.6 eval-loop validation command targets a removed eval-rig**
 
-  `.opencode/skills/sk-prompt/prompt-models/benchmarks/001-swe-1.6-eval-loop/scripts/README.md:31`
+  `.opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--eval-loop--swe-1-6/scripts/README.md:31`
 
   Evidence: The advertised `node scripts/loop.cjs --mock --max-iters 2` loads `../002-eval-rig` through `loop.cjs:27` and `score-variant.cjs:30-32`. No `benchmarks/002-eval-rig/` directory exists; the current top-level directories are `001-swe-1.6-eval-loop`, `002-swe-1.6-extraction-rerun`, and `003-minimax-prompt-framework`.
 
@@ -13,7 +13,7 @@
 
 - **[P1] Extraction-rerun validation command fails on two stale package paths**
 
-  `.opencode/skills/sk-prompt/prompt-models/benchmarks/002-swe-1.6-extraction-rerun/scripts/README.md:31`
+  `.opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--extraction-rerun--swe-1-6/scripts/README.md:31`
 
   Evidence: `confirm-variant.cjs:26-31` requires modules from sibling directories named `003-eval-loop` and `002-eval-rig`; neither directory exists. Module loading therefore fails before `--mock` can exercise the confirmation pipeline.
 
@@ -21,8 +21,8 @@
 
 - **[P1] Both eval-loop READMEs document exit codes the loops do not emit**
 
-  `.opencode/skills/sk-prompt/prompt-models/benchmarks/001-swe-1.6-eval-loop/scripts/README.md:35`  
-  `.opencode/skills/sk-prompt/prompt-models/benchmarks/003-minimax-prompt-framework/eval-loop/scripts/README.md:36`
+  `.opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--eval-loop--swe-1-6/scripts/README.md:35`  
+  `.opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-loop/scripts/README.md:36`
 
   Evidence: Both `loop.cjs` implementations break on convergence or mutation exhaustion, write synthesis, and return naturally—exit `0`. Reaching `--max-iters` also returns `0`, not `1`. Exit `1` is used for a rejected iteration-one sanity gate; exit `2` is pause; uncaught failures exit `3`.
 

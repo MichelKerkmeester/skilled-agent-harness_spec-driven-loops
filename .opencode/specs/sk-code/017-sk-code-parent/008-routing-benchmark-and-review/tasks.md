@@ -67,7 +67,7 @@ _memory:
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [x] T010 Capture the official router-mode record; evidence: `benchmark/router-final/skill-benchmark-report.{md,json}` = `verdict=CONDITIONAL aggregate=71 scenarios=29` (D1-intra 87, D2 79, D3 47, D5 100).
+- [x] T010 Capture the official router-mode record; evidence: `benchmark/2026-06-01--router-final--router/skill-benchmark-report.{md,json}` = `verdict=CONDITIONAL aggregate=71 scenarios=29` (D1-intra 87, D2 79, D3 47, D5 100).
 - [x] T011 Pristine-harness regression baseline; evidence: `git stash push` on the three harness files → 8 failures; `git stash pop` + changes → 8 failures (99 tests) → zero net-new; the design-family failure is unrelated and pre-existing.
 - [x] T012 Run the restored gate + hygiene; evidence: `check-rule-copies.js` exit 0; comment-hygiene rc=0 on `router-replay.cjs`, `score-skill-benchmark.cjs`, `load-playbook-scenarios.cjs`, `check-rule-copies.js`.
 - [x] T013 Confirm deferrals; evidence: 8 pre-existing test failures (flat/pre-fold casualties), `parent-hub-vocab-sync` generalization, and the CS-003 matcher recorded as 009 work.

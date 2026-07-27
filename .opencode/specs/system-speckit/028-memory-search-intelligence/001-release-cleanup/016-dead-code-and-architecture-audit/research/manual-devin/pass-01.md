@@ -120,7 +120,7 @@ Read-only audit. No files were modified, moved, renamed, or deleted. Findings me
 ### F15 — CAT-3: Committed benchmark reports unreferenced by any docs
 
 **Path:** `.opencode/skills/sk-git/benchmark/{live-glm-5.2-high,live-kimi-2.7}/`
-**Evidence:** `benchmark/live-glm-5.2-high/skill-benchmark-report.json` (2282 lines) + `.md`; same for `live-kimi-2.7/`. Not referenced in SKILL.md, README.md, or `references/*.md` (the only `benchmark` mention is `references/finish-workflows.md:691` in an unrelated example). No `.gitignore` excludes `benchmark/`.
+**Evidence:** `benchmark/2026-07-10--live--glm-5-2-high/skill-benchmark-report.json` (2282 lines) + `.md`; same for `live-kimi-2.7/`. Not referenced in SKILL.md, README.md, or `references/*.md` (the only `benchmark` mention is `references/finish-workflows.md:691` in an unrelated example). No `.gitignore` excludes `benchmark/`.
 **Verify:** `ls .opencode/skills/sk-git/benchmark/ && rg -l "benchmark" .opencode/skills/sk-git/{SKILL.md,README.md,references/*.md}`
 **Blast radius:** Low — report artifacts; gitignore or relocate.
 
@@ -178,13 +178,13 @@ Read-only audit. No files were modified, moved, renamed, or deleted. Findings me
 
 ### F21 — CAT-3 + CAT-6: Broken benchmark packages 001 and 002 with non-existent dependency paths
 
-**Path:** `.opencode/skills/sk-prompt/prompt-models/benchmarks/001-swe-1.6-eval-loop/` and `.../002-swe-1.6-extraction-rerun/`
+**Path:** `.opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--eval-loop--swe-1-6/` and `.../002-swe-1.6-extraction-rerun/`
 *(merges sk-prompt subagent F2 + F6 — same packages, both broken-paths and over-engineered)*
 **Evidence:**
 - `001/.../scripts/README.md:35` states: "This command currently fails before running any iteration. `loop.cjs` and `score-variant.cjs` resolve their rig dependency to a sibling `../002-eval-rig` directory, which does not exist at that path anymore (the shared eval-rig now lives at `003-minimax-prompt-framework/eval-rig/`)."
 - `002/.../scripts/README.md:34` states: "This command currently fails before dispatching anything. `confirm-variant.cjs` resolves its eval-loop and rig dependencies to sibling `../003-eval-loop` and `../002-eval-rig` directories, and neither exists at those paths anymore."
 - 001 contains 9 .cjs scripts (loop, dispatch-swe16, mutate, render-variant, score-variant, converge, seed-fixtures, synthesize, + check.cjs in fixtures); 002 contains 7. Neither is integrated into current hub routing.
-**Verify:** `ls .opencode/skills/sk-prompt/prompt-models/benchmarks/002-eval-rig 2>&1; ls .opencode/skills/sk-prompt/prompt-models/benchmarks/003-minimax-prompt-framework/eval-rig; rg "currently fails" .opencode/skills/sk-prompt/prompt-models/benchmarks/001-swe-1.6-eval-loop/scripts/README.md`
+**Verify:** `ls .opencode/skills/sk-prompt/prompt-models/benchmarks/002-eval-rig 2>&1; ls .opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig; rg "currently fails" .opencode/skills/sk-prompt/prompt-models/benchmarks/2026-07-10--eval-loop--swe-1-6/scripts/README.md`
 **Blast radius:** Medium — non-functional historical packages consuming space and creating confusion.
 **Proposed simpler shape:** Remove 001 and 002 entirely (their own READMEs declare them broken). Keep 003-minimax-prompt-framework and 004-mimo-prompt-framework which have working eval-rig infrastructure. Preserve synthesis.md results as historical docs if needed, outside `benchmarks/`.
 

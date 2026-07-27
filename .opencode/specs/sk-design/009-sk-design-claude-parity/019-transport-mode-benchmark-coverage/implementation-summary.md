@@ -23,7 +23,7 @@ _memory:
       - "checklist.md"
       - ".opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md"
       - ".opencode/skills/sk-design/description.json"
-      - ".opencode/skills/sk-design/benchmark/after-018-transport-integration/report.json"
+      - ".opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "transport-benchmark-019"
@@ -67,7 +67,7 @@ Phase 018 registered `design-mcp-open-design` as a new `packetKind: "transport"`
 | `.opencode/skills/sk-design/README.md` | Edited | Fixed playbook description line (also resolved a pre-existing, unrelated staleness: it said "24-scenario" when the playbook already had 32) |
 | `.opencode/skills/sk-design/description.json` | Edited | description, keywords, trigger_examples, modes[], backend_kinds[]; version 1.1.0.0 -> 1.2.0.0 |
 | `.opencode/skills/sk-design/graph-metadata.json` | Edited | causal_summary, intent_signals |
-| `.opencode/skills/sk-design/benchmark/after-018-transport-integration/{report.json,report.md}` | Created | Fresh live-mode benchmark baseline |
+| `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/{report.json,report.md}` | Created | Fresh live-mode benchmark baseline |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -60,11 +60,11 @@ Spec-memory's `SPECKIT_CROSS_ENCODER` default remained off after Phase 005 locke
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/benchmark_report.md` (NEW) | Created | Nine-section A/B bench report with smoke evidence, OOM log, gate evaluations, HOLD verdict |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/rerank-ab-fixture.json` (NEW) | Created | Canonical 50-probe fixture copied from Phase 004 harness unchanged |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/runs/arm-a-off.jsonl` (NEW) | Created | 150-row Arm A result set, sidecar OFF baseline |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/runs/arm-b-mps.jsonl` (NEW) | Created | 150-row Arm B v1 result set, Qwen on MPS without explicit env export |
-| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-21-spec-memory-mps/runs/arm-b-mps-v2.jsonl` (NEW) | Created | 150-row Arm B v2 result set, Qwen on MPS with `RERANK_DEVICE=mps` exported |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/benchmark_report.md` (NEW) | Created | Nine-section A/B bench report with smoke evidence, OOM log, gate evaluations, HOLD verdict |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/rerank-ab-fixture.json` (NEW) | Created | Canonical 50-probe fixture copied from Phase 004 harness unchanged |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/runs/arm-a-off.jsonl` (NEW) | Created | 150-row Arm A result set, sidecar OFF baseline |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/runs/arm-b-mps.jsonl` (NEW) | Created | 150-row Arm B v1 result set, Qwen on MPS without explicit env export |
+| `.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-21--spec-memory-mps--unspecified/runs/arm-b-mps-v2.jsonl` (NEW) | Created | 150-row Arm B v2 result set, Qwen on MPS with `RERANK_DEVICE=mps` exported |
 | `.opencode/specs/.../008-rerank-sidecar-arc/spec.md` | Updated | Phase-map row 007 set to HOLD |
 | `.opencode/specs/.../008-rerank-sidecar-arc/graph-metadata.json` | Updated | `derived.status` restored to complete. `last_active_child_id` repointed to 007 |
 

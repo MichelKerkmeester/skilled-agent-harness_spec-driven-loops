@@ -42,7 +42,7 @@ _memory:
 
 | Metric | Baseline | Current after-009 | Delta | Evidence |
 |--------|----------|-------------------|-------|----------|
-| Artifact | `benchmark/baseline/skill-benchmark-report.json` | `benchmark/after-009/report.json` | Append-only current run; baseline preserved | Files read after rerun |
+| Artifact | `benchmark/baseline/skill-benchmark-report.json` | `benchmark/2026-07-06--after-009--router/report.json` | Append-only current run; baseline preserved | Files read after rerun |
 | Trace mode | router | router | No mode change | `report.md` line 3 |
 | Verdict | CONDITIONAL | CONDITIONAL | No verdict change | Baseline report line 5; after-009 report line 5 |
 | Aggregate | 69/100 | 69/100 | 0 | Baseline report line 5; after-009 report line 5 |
@@ -59,15 +59,15 @@ _memory:
 Benchmark command executed in this pass:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir .opencode/skills/sk-design/benchmark/after-009 --trace-mode router --output .opencode/skills/sk-design/benchmark/after-009/report.json
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir .opencode/skills/sk-design/benchmark/2026-07-06--after-009--router --trace-mode router --output .opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json
 ```
 
 Observed output:
 
 ```text
 skill-benchmark: sk-design verdict=CONDITIONAL aggregate=69 scenarios=24
-report.json -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/after-009/report.json
-report.md   -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/after-009/report.md
+report.json -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json
+report.md   -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.md
 node  --skill .opencode/skills/sk-design --outputs-dir  --trace-mode router    0.03s user 0.01s system 102% cpu 0.040 total
 ```
 
@@ -81,10 +81,10 @@ Runtime note: the second router-mode rerun was measured with shell `time` and co
 
 | Scenario | Lane | Automated Router-Mode Result | Live/Manual Status | Evidence |
 |----------|------|------------------------------|--------------------|----------|
-| PB-001 | Procedure-selection proof | Passed replay; `workflowMode: interface`, aliases `less generic` and `sk-design`, packet `design-interface` | Not run in this pass, requires operator execution | `benchmark/after-009/report.json` lines 1850-1868; `manual_testing_playbook/parity-behavior/procedure-selection-proof.md` |
-| PB-002 | Context and proof gates | Passed replay; `workflowMode: foundations`, alias `hierarchy`, packet `design-foundations` | Not run in this pass, requires operator execution | `benchmark/after-009/report.json` lines 1953-1970; `manual_testing_playbook/parity-behavior/context-proof-gates.md` |
-| PB-003 | md-generator preservation confirmation | Passed replay; `workflowMode: md-generator`, alias `design.md`, backend `playwright-extract`, packet `design-md-generator` | Not run in this pass, requires operator execution for live extraction | `benchmark/after-009/report.json` lines 2055-2071; `manual_testing_playbook/parity-behavior/md-generator-preservation-confirmation.md` |
-| MR-001..MR-006 | Browser/live mode routing | Routed out by router harness | Not run in this pass, requires operator execution | `benchmark/after-009/report.md` lines 42-47 |
+| PB-001 | Procedure-selection proof | Passed replay; `workflowMode: interface`, aliases `less generic` and `sk-design`, packet `design-interface` | Not run in this pass, requires operator execution | `benchmark/2026-07-06--after-009--router/report.json` lines 1850-1868; `manual_testing_playbook/parity-behavior/procedure-selection-proof.md` |
+| PB-002 | Context and proof gates | Passed replay; `workflowMode: foundations`, alias `hierarchy`, packet `design-foundations` | Not run in this pass, requires operator execution | `benchmark/2026-07-06--after-009--router/report.json` lines 1953-1970; `manual_testing_playbook/parity-behavior/context-proof-gates.md` |
+| PB-003 | md-generator preservation confirmation | Passed replay; `workflowMode: md-generator`, alias `design.md`, backend `playwright-extract`, packet `design-md-generator` | Not run in this pass, requires operator execution for live extraction | `benchmark/2026-07-06--after-009--router/report.json` lines 2055-2071; `manual_testing_playbook/parity-behavior/md-generator-preservation-confirmation.md` |
+| MR-001..MR-006 | Browser/live mode routing | Routed out by router harness | Not run in this pass, requires operator execution | `benchmark/2026-07-06--after-009--router/report.md` lines 42-47 |
 <!-- /ANCHOR:scenario-evidence -->
 
 ---
@@ -94,7 +94,7 @@ Runtime note: the second router-mode rerun was measured with shell `time` and co
 
 | Lane | Verdict | Evidence | Release Impact |
 |------|---------|----------|----------------|
-| Baseline discipline | PASS | Baseline remained under `benchmark/baseline/`; new run wrote only `benchmark/after-009/`. | Supports no-regression comparison for router mode. |
+| Baseline discipline | PASS | Baseline remained under `benchmark/baseline/`; new run wrote only `benchmark/2026-07-06--after-009--router/`. | Supports no-regression comparison for router mode. |
 | Router/advisor replay | PASS for router-mode replay | 18 scored scenarios passed; no ranked bottlenecks; no D5 hard-gate failure. | Supports conditional release evidence only. |
 | Procedure-selection proof | CONDITIONAL | PB-001 replay route passed; manual response proof not run. | Blocks READY until operator captures response evidence. |
 | Context/proof gates | CONDITIONAL | PB-002 replay route passed; manual response proof not run. | Blocks READY until operator captures confirmed/inferred/proof-gap evidence. |
@@ -124,7 +124,7 @@ Runtime note: the second router-mode rerun was measured with shell `time` and co
 <!-- ANCHOR:scope-note -->
 ## 6. SCOPE AND WORKTREE NOTE
 
-`git status --short` before this doc reconciliation showed pre-existing changed and untracked files outside the Phase 005 allowed write paths, including sk-design hub/mode files, procedure-card directories, Phase 003/004 docs, and unrelated system-code-graph/spec-memory files. This Phase 005 pass did not edit or revert those paths. The automated benchmark rerun touched only `benchmark/after-009/report.json` and `benchmark/after-009/report.md`; the documentation reconciliation is scoped to this Phase 005 folder.
+`git status --short` before this doc reconciliation showed pre-existing changed and untracked files outside the Phase 005 allowed write paths, including sk-design hub/mode files, procedure-card directories, Phase 003/004 docs, and unrelated system-code-graph/spec-memory files. This Phase 005 pass did not edit or revert those paths. The automated benchmark rerun touched only `benchmark/2026-07-06--after-009--router/report.json` and `benchmark/2026-07-06--after-009--router/report.md`; the documentation reconciliation is scoped to this Phase 005 folder.
 <!-- /ANCHOR:scope-note -->
 
 ---
@@ -148,7 +148,7 @@ The repository owner delegated release/threshold authority to this session for t
 If an `after-009` benchmark artifact is later found to be malformed, incomplete, or based on the wrong corpus, the correction path is:
 
 1. Stop any release-ready claim that cites the bad artifact.
-2. Preserve the bad `benchmark/after-009/` artifact for audit rather than overwriting the frozen baseline.
+2. Preserve the bad `benchmark/2026-07-06--after-009--router/` artifact for audit rather than overwriting the frozen baseline.
 3. Rerun the canonical router-mode benchmark into the approved append-only current-run location or a newly named sibling run folder if the repository owner wants to keep both current attempts side by side.
 4. Update this release report with the bad-artifact finding, corrected artifact path, benchmark command output, and release-owner decision.
 5. Rerun strict Phase 005 validation after metadata regeneration before making any completion claim.

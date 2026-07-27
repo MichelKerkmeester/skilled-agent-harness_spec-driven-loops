@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json"
-      - ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--discriminating--kimi-k2-7/synthesis.md"
       - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
       - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
       - ".opencode/skills/sk-prompt-models/references/models/_index.md"
@@ -83,7 +83,7 @@ The orchestrator folded the separating result into `.opencode/skills/sk-prompt-m
 | File | Action | Purpose |
 |------|--------|---------|
 | `kimi-k2.7-discriminating.json` | Created | Strict-validator bakeoff profile: 5 frameworks, invalid-dominant validators, gate threshold 0.0, 6 samples/cell |
-| `benchmarks/007-kimi-k2.7-discriminating/` (`aggregate.json`, `synthesis.md`, `results.json`, `per-fixture-correctness.json`) | Created | Run outputs: separable verdict, 5-row correctness leaderboard, per-fixture correctness |
+| `benchmarks/2026-06-15--discriminating--kimi-k2-7/` (`aggregate.json`, `synthesis.md`, `results.json`, `per-fixture-correctness.json`) | Created | Run outputs: separable verdict, 5-row correctness leaderboard, per-fixture correctness |
 | `model-profiles.json` | Modified | `kimi-k2.7-code` promoted to costar/tidd-ec/avoid-rcaf, status empirical, evidence run 007 |
 | `references/models/kimi-k2.7-code.md` | Modified | §1/§3/§4/§5 rewritten to the costar default and the run-007 leaderboard |
 | `references/models/_index.md` | Modified | Kimi row to empirical (benchmark 007; perfect tier tied, rcaf weakest) |

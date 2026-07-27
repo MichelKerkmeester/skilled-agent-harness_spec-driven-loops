@@ -1,6 +1,6 @@
 # Skill Benchmark Report — mcp-tooling
 
-> Rendered from report.json (do not hand-edit). Scoring: `undefined` · trace mode: `live`.
+> Rendered from report.json (do not hand-edit). Scoring: `undefined` · trace mode: `2026-06-01--live--live`.
 
 **Verdict: FAIL**
 

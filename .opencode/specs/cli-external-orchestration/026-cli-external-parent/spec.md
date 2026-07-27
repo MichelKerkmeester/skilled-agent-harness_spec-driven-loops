@@ -113,7 +113,7 @@ Summary of aggregate file scope; per-phase detail lives in each child's `plan.md
 | `check-prompt-quality-card-sync.sh` (per-skill paths) | Modify | 004, 005 | Repoint each skill's card path in the SAME commit as its move to avoid a red-CI window on `.github/workflows/prompt-card-sync.yml` |
 | `system-skill-advisor/mcp_server/scripts/skill_advisor.py` + `outsourced-agent-handback-docs.vitest.ts` | Modify | 006 | Repoint the hardcoded advisor alias maps and the vitest's flat cli SKILL.md / prompt_templates paths |
 | `CLAUDE.md` / `AGENTS.md` / `cli-dispatch-skill-preload.md` + graph-edge referrers | Modify | 006 | Repoint the constitutional path template and reciprocal advisor edges (~sweep) |
-| `.opencode/skills/cli-external/benchmark/router-final/*` | Create | 007 | Lane-C skill-benchmark output |
+| `.opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/*` | Create | 007 | Lane-C skill-benchmark output |
 <!-- /ANCHOR:scope -->
 
 ---

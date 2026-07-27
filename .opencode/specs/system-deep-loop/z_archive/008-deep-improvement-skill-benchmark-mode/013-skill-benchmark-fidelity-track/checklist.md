@@ -64,7 +64,7 @@ _memory:
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [x] CHK-07 [P0] **REQ-001** D4-R integrated (opt-in `--d4` → `augmentWithD4R`); `D4_task_outcome` advisory, separate from `D4_hallucination`; run on LS-001/002/003/004 + SD-002 → aggregate **54/100**, per-scenario evidence in `sk-code/benchmark/d4r-live/`.
+- [x] CHK-07 [P0] **REQ-001** D4-R integrated (opt-in `--d4` → `augmentWithD4R`); `D4_task_outcome` advisory, separate from `D4_hallucination`; run on LS-001/002/003/004 + SD-002 → aggregate **54/100**, per-scenario evidence in `sk-code/benchmark/2026-06-02--d4r-live--live/`.
 - [x] CHK-08 [P0] **REQ-002** `expectedAssets` scored as a separate `assetRecall` (router: deferred + visible; live: recall lane); D3 stays stated-reference efficiency; un-merge removes the stated-asset D3 waste artifact.
 - [x] CHK-09 [P1] **REQ-003** synonyms recognize the CS-001/SD-001 wording; D2 rises with no floor breach. Evidence: SD-001 D2 0.455→0.636, CS-001 D2 0.200→0.500, 0 regressions/24, drift 4/4, suite 251/251.
 - [x] CHK-10 [P0] **REQ-004** suite 295/295 + drift 4/4 green; `skill-benchmark-report.v1` preserved (advisory fields additive).
@@ -82,14 +82,14 @@ _memory:
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [x] CHK-13 [P2] `sk-code/benchmark/d4r-live/README.md` documents the D4-R instrument, the n=5 result, the two-number split, and reproduction.
+- [x] CHK-13 [P2] `sk-code/benchmark/2026-06-02--d4r-live--live/README.md` documents the D4-R instrument, the n=5 result, the two-number split, and reproduction.
 <!-- /ANCHOR:docs -->
 
 ---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] CHK-14 [P2] Changes confined to the skill-benchmark harness (5 `.cjs`) + the new grader prompt + sk-code INTENT_SIGNALS; live result artifact under `sk-code/benchmark/d4r-live/`.
+- [x] CHK-14 [P2] Changes confined to the skill-benchmark harness (5 `.cjs`) + the new grader prompt + sk-code INTENT_SIGNALS; live result artifact under `sk-code/benchmark/2026-06-02--d4r-live--live/`.
 <!-- /ANCHOR:file-org -->
 
 ---

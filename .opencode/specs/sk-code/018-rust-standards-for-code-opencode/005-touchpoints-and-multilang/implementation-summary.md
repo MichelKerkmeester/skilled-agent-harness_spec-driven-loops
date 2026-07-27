@@ -123,7 +123,7 @@ The five sk-code-local touchpoints were applied and verified first with tooling 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Mode-B (live) benchmark not regenerated.** The `benchmark/live-mode-b/` report is a live-LLM snapshot outside the deterministic gate plan; regenerating it requires an executor dispatch and is out of scope for phase 6's deterministic gates. Its numbers predate the Rust scenario.
+1. **Mode-B (live) benchmark not regenerated.** The `benchmark/2026-07-10--live-mode-b--live/` report is a live-LLM snapshot outside the deterministic gate plan; regenerating it requires an executor dispatch and is out of scope for phase 6's deterministic gates. Its numbers predate the Rust scenario.
 2. **Rust drift checks are dormant today.** No `.rs` files exist in the repo yet, so `check_rust` is forward-looking; it is exercised only by the unit-test fixtures.
 3. **Phase-2 prose retains the historical `004-rust-standards.md` / OC-004 names.** Those docs record what phase 2 authored at the time; the OC-009 rename is recorded here as the phase-5 correction (the live manifest and index point to 009).
 

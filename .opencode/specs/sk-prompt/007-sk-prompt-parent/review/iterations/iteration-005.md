@@ -22,10 +22,10 @@
 - `.opencode/skills/sk-prompt/description.json:1-26`
 - `.opencode/skills/sk-prompt/graph-metadata.json:1-180`
 - `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:7-47`
-- `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md:12-58`
-- `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json:29-117`
-- `.opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.md:12-50`
-- `.opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.json:29-153`
+- `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:12-58`
+- `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:29-117`
+- `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md:12-50`
+- `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.json:29-153`
 
 ## Findings By Severity
 
@@ -48,14 +48,14 @@
 - Overlay `skill_agent`: PASS for hub routing metadata in this slice. The hub keeps packet behavior unflattened and points to registry/router files; no new packet-loading contradiction beyond existing R4-P1-001 was found. [SOURCE: `.opencode/skills/sk-prompt/SKILL.md:32-85`; `.opencode/skills/sk-prompt/mode-registry.json:30-40`]
 - Overlay `agent_cross_runtime`: NOT RETRIED as a new direction because stale `/prompt` agent metadata is already covered by R1-P1-001. [SOURCE: `.opencode/specs/sk-prompt/007-sk-prompt-parent/review/deep-review-findings-registry.json:10-38`]
 - Overlay `feature_catalog_code`: NOT APPLICABLE; no feature-catalog file is in the declared review scope. [SOURCE: `.opencode/specs/sk-prompt/007-sk-prompt-parent/review/deep-review-strategy.md:16-90`]
-- Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json:108-117`]
+- Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
 
 ## Search Ledger Summary
 
-- Ruled out named-model router regression: `prompt-models` weight remains 5, named-model scenarios pass in both router and live reports. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:16-25`; `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.md:40-45`; `.opencode/skills/sk-prompt/benchmark/live-final/skill-benchmark-report.md:40-45`]
+- Ruled out named-model router regression: `prompt-models` weight remains 5, named-model scenarios pass in both router and live reports. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:16-25`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:40-45`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md:40-45`]
 - Ruled out new benchmark overclaim beyond prior R3-P2-001: the current benchmark summary explicitly states D1-inter and weighted D4 remain unscored and lists them as follow-ups. [SOURCE: `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:12-16`; `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:41-47`]
 - Ruled out hub metadata dissolution regression: hub graph metadata retains the folded `cli-opencode` enhancement and only one graph metadata identity was present in the reviewed hub files. [SOURCE: `.opencode/skills/sk-prompt/graph-metadata.json:6-19`; `.opencode/skills/sk-prompt/SKILL.md:104-107`]
-- Deferred ordered-bundle coverage: the router declares the outcome, but no scoped spec or benchmark row requires a bundle route to pass this correctness iteration. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/router-final/skill-benchmark-report.json:108-117`]
+- Deferred ordered-bundle coverage: the router declares the outcome, but no scoped spec or benchmark row requires a bundle route to pass this correctness iteration. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
 
 ## SCOPE VIOLATIONS
 

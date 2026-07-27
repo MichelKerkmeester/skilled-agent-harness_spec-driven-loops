@@ -65,8 +65,8 @@
   "repoMutations": {
     "commit": false,
     "filesWrittenByThisSweep": [
-      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/playbook-verify-sonnet-20260721-132746/report.json",
-      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/playbook-verify-sonnet-20260721-132746/report.md"
+      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/report.json",
+      ".opencode/skills/system-deep-loop/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md"
     ],
     "preexistingDirtyFilesObservedNotCausedByThisSweep": [
       ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/research.md (one of the 2 explicitly out-of-scope strays named in the task -- confirmed pre-existing, untouched)",
@@ -74,7 +74,7 @@
       ".opencode/bin/compiled-routing-foundation.vitest.ts (outside this sweep's scope; this session made zero Edit/Write calls into the repo, so this predates or is concurrent-sibling activity)",
       ".opencode/bin/tests/compiled-route-manifest.test.cjs (same as above)"
     ],
-    "concurrentSiblingActivityObserved": "A live cli-external-orchestration/benchmark/compiled-routing/playbook-verify-sonnet-20260721-152551/ directory appeared mid-sweep, and report.json/report.md/scenarios.json/playbook-verify-results.json pre-existing in the shared scratchpad were confirmed (by content) to belong to sibling sk-code and sk-doc agents, not this sweep -- this worktree is being used concurrently by multiple per-hub playbook-verify agents."
+    "concurrentSiblingActivityObserved": "A live cli-external-orchestration/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/ directory appeared mid-sweep, and report.json/report.md/scenarios.json/playbook-verify-results.json pre-existing in the shared scratchpad were confirmed (by content) to belong to sibling sk-code and sk-doc agents, not this sweep -- this worktree is being used concurrently by multiple per-hub playbook-verify agents."
   },
   "scenarios": [
     {

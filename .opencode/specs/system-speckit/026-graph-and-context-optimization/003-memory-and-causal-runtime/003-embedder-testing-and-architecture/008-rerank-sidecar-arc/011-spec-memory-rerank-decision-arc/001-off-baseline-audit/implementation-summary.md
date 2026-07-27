@@ -44,7 +44,7 @@ _memory:
 
 ### Baseline Numbers
 
-The OFF baseline was measured on the existing 50-probe fixture from `mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json` with `SPECKIT_CROSS_ENCODER=false` and `RERANKER_LOCAL=false`.
+The OFF baseline was measured on the existing 50-probe fixture from `mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json` with `SPECKIT_CROSS_ENCODER=false` and `RERANKER_LOCAL=false`.
 
 The normal JSON-RPC harness could not bind `daemon-ipc.sock` in this Codex sandbox (`listen EPERM`), and the fixture's frozen `gold_memory_ids` had 16 stale ids in the current `memory_index`. I therefore imported `dist/handlers/memory-search.js` directly, kept the same fixture/search arguments, and scored against `gold_doc_ids` plus any still-valid `gold_memory_ids`.
 
@@ -139,8 +139,8 @@ Baseline measurement:
 ```bash
 cd .opencode/skills/system-spec-kit/mcp_server
 SPECKIT_CROSS_ENCODER=false RERANKER_LOCAL=false \
-  python3 benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py \
-  --fixture benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json \
+  python3 benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py \
+  --fixture benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json \
   --out /tmp/off-baseline-2026-05-21.jsonl \
   --arm A --runs 1 --cross-encoder false --reranker-local false --query-timeout 180
 ```

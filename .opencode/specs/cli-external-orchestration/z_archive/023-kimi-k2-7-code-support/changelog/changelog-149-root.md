@@ -36,9 +36,9 @@ Spec 149 turned Kimi K2.7 Code from a live provider slug into a documented, rout
 - `kimi-k2.7-code` in `sk-prompt-models/assets/model-profiles.json`, later renamed to `model_profiles.json`.
 - `sk-prompt-models/references/models/kimi-k2.7-code.md`, a seven-section prompt-craft profile.
 - `kimi-k2.7-frameworks.json`, cloned from `framework-bakeoff.json` for the first five-framework run.
-- `benchmarks/006-kimi-k2.7-prompt-framework/` outputs, including `aggregate.json`, `results.json`, `synthesis.md`, `llm-judge-board.json`, `llm-judge-results.json` and `llm-judge-synthesis.md`.
+- `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/` outputs, including `aggregate.json`, `results.json`, `synthesis.md`, `llm-judge-board.json`, `llm-judge-results.json` and `llm-judge-synthesis.md`.
 - `kimi-k2.7-discriminating.json`, a strict-validator bakeoff profile with five frameworks, invalid-dominant validators, `correctnessGate.threshold` 0.0 and 6 samples per cell.
-- `benchmarks/007-kimi-k2.7-discriminating/` outputs, including `aggregate.json`, `synthesis.md`, `results.json` and `per-fixture-correctness.json`.
+- `benchmarks/2026-06-15--discriminating--kimi-k2-7/` outputs, including `aggregate.json`, `synthesis.md`, `results.json` and `per-fixture-correctness.json`.
 - A `variant_flag` operational caveat, wall-clock observation and over-exploration weakness for Kimi K2.7 Code.
 
 ### Changed
@@ -82,8 +82,8 @@ Spec 149 turned Kimi K2.7 Code from a live provider slug into a documented, rout
 | `sk-prompt-models/SKILL.md` | Updated | Added Kimi K2.7 routing, aliases and dispatch matrix content, then repointed renamed links. |
 | `cli-opencode/SKILL.md` | Updated | Added provider login, model selection, renamed references and the operational caveat. |
 | `sk-prompt-models/graph-metadata.json` and `cli-opencode/graph-metadata.json` | Updated | Added routing metadata for Kimi K2.7 Code and Kimi For Coding. |
-| `benchmarks/006-kimi-k2.7-prompt-framework/` | Created | First bakeoff outputs and secondary judge outputs. |
-| `benchmarks/007-kimi-k2.7-discriminating/` | Created | Strict-validator bakeoff outputs and per-fixture correctness. |
+| `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/` | Created | First bakeoff outputs and secondary judge outputs. |
+| `benchmarks/2026-06-15--discriminating--kimi-k2-7/` | Created | Strict-validator bakeoff outputs and per-fixture correctness. |
 | `kimi-k2.7-frameworks.json` and `kimi-k2.7-discriminating.json` | Created | Benchmark profiles for runs 006 and 007. |
 | `sk-prompt-models` references and assets | Renamed | Seven dash-named files moved to underscore names and inbound links were repaired. |
 | `cli-opencode/references/cli_reference.md` and `cli-opencode/references/context-budget.md` | Updated | Stale Kimi K2.6 references repaired and timeout caveat added. |

@@ -61,7 +61,7 @@ Run 006 proved the first bakeoff was too easy, so this phase built the sharper t
 | File | Action | What changed |
 |------|--------|--------------|
 | `kimi-k2.7-discriminating.json` | Created | Strict-validator bakeoff profile with five frameworks, invalid-dominant validators, gate threshold 0.0 and 6 samples per cell. |
-| `benchmarks/007-kimi-k2.7-discriminating/ (aggregate.json, synthesis.md, results.json, per-fixture-correctness.json)` | Created | Run outputs with separable verdict, five-row correctness leaderboard and per-fixture correctness. |
+| `benchmarks/2026-06-15--discriminating--kimi-k2-7/ (aggregate.json, synthesis.md, results.json, per-fixture-correctness.json)` | Created | Run outputs with separable verdict, five-row correctness leaderboard and per-fixture correctness. |
 | `model-profiles.json` | Updated | `kimi-k2.7-code` promoted to `costar`, `tidd-ec`, avoid `rcaf`, status empirical and evidence run 007. |
 | `references/models/kimi-k2.7-code.md` | Updated | §1, §3, §4 and §5 rewritten to the COSTAR default and the run 007 leaderboard. |
 | `references/models/_index.md` | Updated | Kimi row changed to empirical with benchmark 007, perfect tier tied and RCAF weakest. |

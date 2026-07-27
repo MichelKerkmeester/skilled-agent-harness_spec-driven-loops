@@ -75,7 +75,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T008 Ran the bakeoff via the deep-loop **sweep** engine (`sweep-benchmark.cjs`, run-label `006-kimi-k2.7-prompt-framework`), then ran the gpt-5.5 LLM-judge as a standalone secondary pass over Kimi's real generations. **Deviation:** the plan's `--grader=llm` flag is architecturally incompatible with the framework-bakeoff engine (the sweep scores via a deterministic code oracle, no LLM-judge hook; `--grader llm` lives on the loop-host engine that does not sweep frameworks or dispatch the model-under-test — code-verified). Also drove `runSweep` programmatically with the correct `registryPath` to work around a registry-path bug, with no engine edit (scope lock). Both are documented deviations, not silent substitutions
-- [x] T009 Confirmed `aggregate.json` / `results.json` / `synthesis.md` exist under `benchmarks/006-kimi-k2.7-prompt-framework/`; the correctness gate did NOT silently saturate — saturation was detected and surfaced (`correctness_saturated: true`), and the engine fell to `efficiency` as the ranking key
+- [x] T009 Confirmed `aggregate.json` / `results.json` / `synthesis.md` exist under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`; the correctness gate did NOT silently saturate — saturation was detected and surfaced (`correctness_saturated: true`), and the engine fell to `efficiency` as the ranking key
 - [x] T010 Recorded the verdict (**TIE**, inside the noise floor) plus the per-framework leaderboard; folded the finding and the subjective secondary ranking into the Phase 003 hand-off
 <!-- /ANCHOR:phase-3 -->
 

@@ -168,7 +168,7 @@ The trade-off is first-call latency: the first `memory_search`, `memory_context`
 
 ### Stage 3 Reranking (removed)
 
-Only the model-based cross-encoder reranker was removed: `mcp-server/lib/search/cross-encoder.ts` is gone and the local rerank sidecar skill was deleted (cloud rerankers were removed earlier). Stage 3 itself is NOT gone — `mcp-server/lib/search/pipeline/stage3-rerank.ts` still runs algorithmic MMR diversity pruning (gated by `SPECKIT_MMR`) and MPAB chunk-collapse over the fused vector/BM25/FTS/graph/degree results. The retired A/B benchmark (`mcp-server/benchmarks/benchmark-2026-05-20-rerank-ab/`) had already kept the cross-encoder out of the default config (negligible hit-rate gain, large p95 latency regression) and is retained only as a historical record.
+Only the model-based cross-encoder reranker was removed: `mcp-server/lib/search/cross-encoder.ts` is gone and the local rerank sidecar skill was deleted (cloud rerankers were removed earlier). Stage 3 itself is NOT gone — `mcp-server/lib/search/pipeline/stage3-rerank.ts` still runs algorithmic MMR diversity pruning (gated by `SPECKIT_MMR`) and MPAB chunk-collapse over the fused vector/BM25/FTS/graph/degree results. The retired A/B benchmark (`mcp-server/benchmarks/2026-05-20--rerank-ab--unspecified/`) had already kept the cross-encoder out of the default config (negligible hit-rate gain, large p95 latency regression) and is retained only as a historical record.
 
 ### Lexical Search Engine
 

@@ -111,7 +111,7 @@ Remove the perishable pointers from the affected comments while preserving the d
 | bin/mk-skill-advisor-launcher.cjs | Modify | Drop `008-REQ-001/002`, `REQ-011`, deep-review iter pointer (4) |
 | bin/lib/launcher-ipc-bridge.cjs | Modify | Drop `031/005`, `026/007/011` (2) |
 | bin/mk-code-index-launcher.cjs | Modify | Drop `DR-*`, `REQ-011`, `016/006/009`, packet pointer (~12) — owner-authorized |
-| mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/generate_report.py | Modify | Drop `Phase 005` from generated report output |
+| mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py | Modify | Drop `Phase 005` from generated report output |
 
 <!-- /ANCHOR:scope -->
 ---

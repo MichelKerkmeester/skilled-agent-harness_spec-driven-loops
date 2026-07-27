@@ -86,7 +86,7 @@ _memory:
 - [ ] T012 Off-turn isolation test: with the flag off, the synchronous on-save reconsolidation path is byte-identical vs the T004 baseline and zero off-turn archival mutation occurs in shadow mode (`mcp_server/__tests__/`), PENDING: sync dispatch hook intentionally not wired before sibling 010
 - [ ] T013 Idempotency test: an off-turn pass re-driven over 010's clock host + C4-C cursor re-derives the same archival reorganization and never double-applies on a replay (`mcp_server/__tests__/`), PENDING: depends on sibling 010 cursor implementation
 - [ ] T014 Confirm the synchronous path stays unaltered: `git diff` shows only an additive off-turn dispatch hook in `reconsolidation-bridge.ts`. Sync behavior unchanged, PENDING: no dispatch hook has been added yet
-- [ ] T015 Build and run the shadow telemetry harness: record off-turn reorganization candidates (would-archive ranges, cadence). Record numbers and the promote-to-live-opt-in / keep-shadow / drop decision (`mcp_server/__tests__/`), PENDING: benchmark/live telemetry required before promotion
+- [ ] T015 Build and run the shadow telemetry harness: record off-turn reorganization candidates (would-archive ranges, cadence). Record numbers and the promote-to-live-opt-in / keep-shadow / drop decision (`mcp_server/__tests__/`), PENDING: benchmark/2026-06-01--live--live telemetry required before promotion
 - [ ] T016 node --check + tsc + existing suite green. `validate.sh --strict` passes on this packet, PENDING until final cross-phase verification
 <!-- /ANCHOR:phase-3 -->
 

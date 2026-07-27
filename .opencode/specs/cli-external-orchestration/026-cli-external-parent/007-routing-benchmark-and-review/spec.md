@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Run the benchmark and review after phase 006"
     blockers: []
     key_files:
-      - ".opencode/skills/cli-external/benchmark/router-final/skill-benchmark-report.md"
+      - ".opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-007-routing-benchmark-and-review"
@@ -117,8 +117,8 @@ Produce a benchmark report, a live delegation-routing re-baseline, and a review 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/cli-external/benchmark/router-final/skill-benchmark-report.md` | Create | Human-readable Lane-C router-mode benchmark report for the merged `cli-external` hub. |
-| `.opencode/skills/cli-external/benchmark/router-final/skill-benchmark-report.json` | Create | Machine-readable benchmark results used to inspect D1-D5 scores and routing evidence. |
+| `.opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/skill-benchmark-report.md` | Create | Human-readable Lane-C router-mode benchmark report for the merged `cli-external` hub. |
+| `.opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/skill-benchmark-report.json` | Create | Machine-readable benchmark results used to inspect D1-D5 scores and routing evidence. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -130,7 +130,7 @@ Produce a benchmark report, a live delegation-routing re-baseline, and a review 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Generate a router-mode Lane-C benchmark report for the new `cli-external` hub covering D1-D5 for both modes. | The benchmark command writes `skill-benchmark-report.md` and `skill-benchmark-report.json` under `.opencode/skills/cli-external/benchmark/router-final/`, legible enough to support the cutover decision. |
+| REQ-001 | Generate a router-mode Lane-C benchmark report for the new `cli-external` hub covering D1-D5 for both modes. | The benchmark command writes `skill-benchmark-report.md` and `skill-benchmark-report.json` under `.opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/`, legible enough to support the cutover decision. |
 | REQ-002 | Run a live delegation-routing re-baseline against the rewritten scorer. | Real delegation prompts resolve the correct executor-kind string for both `cli-opencode` and `cli-claude-code` with no silent misroute; the result is recorded alongside the benchmark. |
 | REQ-003 | Triage P0 deep-review findings from the full phases 003-006 diff. | Every P0 finding is marked fixed, deferred-with-reason, or false-positive with evidence or a named follow-up before handoff to cutover. |
 
@@ -147,7 +147,7 @@ Produce a benchmark report, a live delegation-routing re-baseline, and a review 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The two benchmark report files exist under `.opencode/skills/cli-external/benchmark/router-final/` and clearly report D1-D5 results for both workflow modes.
+- **SC-001**: The two benchmark report files exist under `.opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/` and clearly report D1-D5 results for both workflow modes.
 - **SC-002**: The live delegation-routing re-baseline confirms both executor kinds resolve, and no untriaged P0 review finding remains.
 - **SC-003**: The routingClass decision for each mode is recorded with D1/D2 benchmark evidence.
 <!-- /ANCHOR:success-criteria -->

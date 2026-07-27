@@ -91,7 +91,7 @@ _memory:
 ### Parent Rollup
 - [x] T018 Capture post-slicing sk-code router-mode benchmark baseline [small] — scratch output recorded aggregate 48, D1-intra 68, D2 52, D3 25, D5 100, hard gate pass
 - [x] T019 Classify the benchmark aggregate honestly [small] — the aggregate remains gold-limited because playbook gold still uses pre-rename paths and is not packet-037 success evidence
-- [x] T020 Document sk-code gold alignment deferral [small] — alignment to the corrected router and `benchmark/router-final/` regeneration are deferred to `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`
+- [x] T020 Document sk-code gold alignment deferral [small] — alignment to the corrected router and `benchmark/2026-06-01--router-final--router/` regeneration are deferred to `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`
 
 ### Optional Feature Catalogs
 - [x] T021 [P] Hub-router intent-projection expectation sync [small] — DEFERRED; the pre-existing `res.intents` failure is an intent/mode-projection expectation, not surface-slicing

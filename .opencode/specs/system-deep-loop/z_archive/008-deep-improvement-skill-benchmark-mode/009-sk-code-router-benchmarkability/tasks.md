@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T-06 Re-benchmark + record before/after — `sk-code/benchmark/after/` (4-dim) → CONDITIONAL 69; `sk-code/benchmark/full/` (5-dim, advisor on) → CONDITIONAL 55, D5 91, 2 scenarios.
+- [x] T-06 Re-benchmark + record before/after — `sk-code/benchmark/2026-06-01--after--router/` (4-dim) → CONDITIONAL 69; `sk-code/benchmark/2026-06-01--full--router/` (5-dim, advisor on) → CONDITIONAL 55, D5 91, 2 scenarios.
 - [x] T-07 Spec docs + metadata + validate + reconcile — this packet.
 - [x] T-08 Drift guard for the §11 machine block — `sk-code-router-sync.vitest.ts` (no dead paths, full coverage, prose explicit paths present); suite 218 passing.
 <!-- /ANCHOR:phase-3 -->

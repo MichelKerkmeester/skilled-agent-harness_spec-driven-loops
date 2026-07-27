@@ -37,10 +37,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+      "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
       "evidence/off-baseline-2026-05-21.json",
       "lib/search/search-flags.ts",
-      "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+      "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,7 +50,7 @@
       {
         "name": "rerank-ab-fixture.json",
         "kind": "config",
-        "path": "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
+        "path": "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
         "source": "derived"
       },
       {
@@ -68,7 +68,7 @@
       {
         "name": "run_arm.py",
         "kind": "file",
-        "path": "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/run_arm.py",
+        "path": "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
         "source": "derived"
       },
       {

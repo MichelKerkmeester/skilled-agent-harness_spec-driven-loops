@@ -90,11 +90,11 @@ Source: `model-profiles.json:35-48` (swe-1.6), `:95-109` (deepseek), `:148-162` 
 | `references/pattern-index.md` | Index mapping every executor-owned pattern to its canonical location + ship status |
 | `assets/model-profiles.json` | Unified model registry (version 1.4); the DATA each profile mirrors and cites |
 | `assets/cli_prompt_quality_card.md` | Canonical cross-CLI prompt quality card: framework table, CLEAR checklist, precedence tiers |
-| `benchmarks/001-swe-1.6-eval-loop/` | SWE-1.6 eval-loop benchmark data + synthesis |
-| `benchmarks/002-swe-1.6-extraction-rerun/` | SWE-1.6 extraction rerun data |
-| `benchmarks/003-minimax-prompt-framework/` | MiniMax prompt framework comparison (TIDD-EC vs RCAF, 7-fixture rig) |
-| `benchmarks/004-mimo-prompt-framework/` | MiMo prompt framework comparison (COSTAR winner, 10 real runs) |
-| `benchmarks/005-mimo-minimax-capability-discrimination/` | MiMo vs MiniMax capability discrimination data |
+| `benchmarks/2026-07-10--eval-loop--swe-1-6/` | SWE-1.6 eval-loop benchmark data + synthesis |
+| `benchmarks/2026-07-10--extraction-rerun--swe-1-6/` | SWE-1.6 extraction rerun data |
+| `benchmarks/2026-07-10--prompt-framework--minimax/` | MiniMax prompt framework comparison (TIDD-EC vs RCAF, 7-fixture rig) |
+| `benchmarks/2026-06-01--prompt-framework--mimo/` | MiMo prompt framework comparison (COSTAR winner, 10 real runs) |
+| `benchmarks/2026-06-02--minimax-capability-discrimination--mimo/` | MiMo vs MiniMax capability discrimination data |
 
 ---
 

@@ -31,7 +31,7 @@ _memory:
 
 <!-- ANCHOR:correctness -->
 ## Correctness
-- [x] The official record is generated from the real hub configs (`hub-router.json` + `mode-registry.json`), not a flat stand-in — evidence: `router-replay.cjs` hub branch; `benchmark/router-final/` regenerated via `loop-host.cjs`.
+- [x] The official record is generated from the real hub configs (`hub-router.json` + `mode-registry.json`), not a flat stand-in — evidence: `router-replay.cjs` hub branch; `benchmark/2026-06-01--router-final--router/` regenerated via `loop-host.cjs`.
 - [x] The re-layer preserves mode telemetry (`workflowMode` intact) — evidence: hub branch returns `routeTelemetry` from `buildHubRouteTelemetry` before surface recall.
 - [x] Negative-activation scored against a real forbidden set, not the positive gold — evidence: `extractForbiddenPrefixes` + the corrected negative branch in `score-skill-benchmark.cjs`.
 - [x] A no-positive/no-forbidden disambiguation scenario (RD-001) stays neutral, not penalized — evidence: `return { score: leaked ? 0 : 1, ... }` for the no-positive path.

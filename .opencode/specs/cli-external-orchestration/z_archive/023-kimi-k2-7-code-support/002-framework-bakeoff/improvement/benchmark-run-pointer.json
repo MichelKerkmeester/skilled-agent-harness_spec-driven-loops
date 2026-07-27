@@ -1,6 +1,6 @@
 {
   "run_label": "006-kimi-k2.7-prompt-framework",
-  "outputs_dir": ".opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework",
+  "outputs_dir": ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7",
   "deterministic_verdict": "TIE",
   "correctness_saturated": true,
   "llm_judge_top": [

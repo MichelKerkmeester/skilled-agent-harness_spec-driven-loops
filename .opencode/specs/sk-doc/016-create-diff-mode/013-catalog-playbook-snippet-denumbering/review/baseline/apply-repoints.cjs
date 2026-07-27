@@ -33,7 +33,7 @@ const FIXES = [
     new: '../../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/',
   })),
   // benchmark FORMAT.md consolidated into sk-doc
-  { f: S + 'system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md', old: '../FORMAT.md', new: '../../../../sk-doc/references/benchmark_creation.md' },
+  { f: S + 'system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md', old: '../FORMAT.md', new: '../../../../sk-doc/references/benchmark_creation.md' },
   // resource-map logical token -> manifest template
   { f: S + 'system-spec-kit/scripts/resource-map/README.md', old: '../../templates/level_contract_optional_resource-map.md', new: '../../templates/manifest/resource-map.md.tmpl' },
 ];

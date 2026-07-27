@@ -44,7 +44,7 @@ _memory:
 - [x] T002 Diagnose Lane-C scenario loader path truncation [medium] — loader and live-result parser recognized only `references/`, `assets/`, and `../shared/` prefixes after sk-code moved surface resources under `code-*` packet folders
 - [x] T003 Confirm concrete truncation symptom [small] — a gold entry like `code-animation/references/decision_matrix.md` was parsed as `references/decision_matrix.md`, which neither exists nor matches the corrected router output
 - [x] T004 Capture baseline harness Vitest state [small] — baseline was 1 failed / 104 passed across 105 tests in 7 files, with the known `res.intents` expectation failure
-- [x] T005 Confirm follow-up boundary [small] — sk-code playbook gold translation and `benchmark/router-final/` regeneration are owned by `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`
+- [x] T005 Confirm follow-up boundary [small] — sk-code playbook gold translation and `benchmark/2026-06-01--router-final--router/` regeneration are owned by `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline`
 
 <!-- /ANCHOR:phase-1 -->
 ---

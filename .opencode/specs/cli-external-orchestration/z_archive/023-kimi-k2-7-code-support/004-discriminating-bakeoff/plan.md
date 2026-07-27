@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json"
-      - ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/aggregate.json"
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--discriminating--kimi-k2-7/aggregate.json"
       - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

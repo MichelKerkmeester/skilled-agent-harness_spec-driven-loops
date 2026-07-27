@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
       - ".opencode/skills/sk-code/shared/references/smart_routing.md"
-      - ".opencode/skills/sk-code/*/benchmark/router-mode-a/"
+      - ".opencode/skills/sk-code/*/benchmark/2026-07-10--router-mode-a--router/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session_01Ht7J9NZTEBBXwzTeNvras9"
@@ -149,7 +149,7 @@ spec / plan / tasks / decision-record / checklist / implementation-summary stay 
 
 ## Mode-B corroboration (REQ-004, P1)
 - [x] CHK-015 [P1] Live pipeline proven [EVIDENCE: scoringMethod=mode-b-live, traceMode=live in captured reports] (verified)
-- [~] CHK-016 [P1] Representative-per-family captured: code-quality (gap 58) + deep-review (gap 22) [EVIDENCE: benchmark/live-mode-b reports]
+- [~] CHK-016 [P1] Representative-per-family captured: code-quality (gap 58) + deep-review (gap 22) [EVIDENCE: benchmark/2026-07-10--live-mode-b--live reports]
 - [x] CHK-017 [P1] Circularity meter published (large gap = overfit/thin; small gap = real capability) [EVIDENCE: decision-record ADR-005 + implementation-summary table] (verified)
 
 ## Commit hygiene (NFR-R01, P1)

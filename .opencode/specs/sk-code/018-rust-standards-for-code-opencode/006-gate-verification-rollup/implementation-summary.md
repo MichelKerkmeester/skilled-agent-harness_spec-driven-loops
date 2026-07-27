@@ -56,7 +56,7 @@ This phase ran the four gates from `research.md` Deliverable 4 and rolled up the
 | `implementation-summary.md` | Create | Gate evidence for this phase |
 | [`../spec.md`](../spec.md) | Modify | Parent Status → Complete; phase-map statuses |
 | [`../graph-metadata.json`](../graph-metadata.json) | Modify | Parent rollup: status complete + last_active_child_id |
-| `benchmark/router-mode-a/skill-benchmark-report.{json,md}` | Modify | Regenerated Gate-2 evidence (9 scenarios incl. OC-009) |
+| `benchmark/2026-07-10--router-mode-a--router/skill-benchmark-report.{json,md}` | Modify | Regenerated Gate-2 evidence (9 scenarios incl. OC-009) |
 
 <!-- /ANCHOR:what-built -->
 ---

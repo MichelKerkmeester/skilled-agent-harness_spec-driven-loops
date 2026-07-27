@@ -75,7 +75,7 @@ None.
 
 ### Follow-Ups
 
-- Remaining llama-cpp hits in `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/` reference a `z_archive/` spec path. These are frozen historical benchmark artifacts per sk-doc benchmark template convention. Do not modify.
+- Remaining llama-cpp hits in `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/` reference a `z_archive/` spec path. These are frozen historical benchmark artifacts per sk-doc benchmark template convention. Do not modify.
 - All hits in `z_archive/`, `/scratch/`, `iteration-*.md`, plus old commit history are intentionally preserved as historical record. No action needed.
 - Confirm whether `node-llama-cpp` still appears as a dependency in `package.json` or `package-lock.json`. A separate dep-prune pass would be needed to fully remove it. Verify that no transitive consumer remains before pruning.
 - Confirm whether any runtime code still respects `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA`. The env var was removed from documentation only. Arc 018 was expected to be the last consumer. No action expected but confirm before closing.

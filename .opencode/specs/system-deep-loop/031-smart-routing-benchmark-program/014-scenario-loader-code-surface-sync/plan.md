@@ -103,7 +103,7 @@ The playbook loader parses expected-resource gold from scenario Markdown, the li
 ### Phase 4: Parent Rollup and Optional Catalogs
 - [x] Temporarily translate gold to code-<surface>/ paths to prove the downstream unblock, then revert the gold so the follow-up packet owns it.
 - [x] Record the end-to-end proof: gold-router recall rises from ~0 to 66% (65 of 99 gold paths) and sk-code router-mode verdict recovers from 47 FAIL to 71 CONDITIONAL with D1-intra 87, D2 79, D3 47, D5 100.
-- [x] Document the sk-code playbook gold translation and `benchmark/router-final/` regeneration as the separate follow-up packet.
+- [x] Document the sk-code playbook gold translation and `benchmark/2026-06-01--router-final--router/` regeneration as the separate follow-up packet.
 - [x] Run final close-out doc self-verification for frontmatter, anchors, checked boxes, and evidence consistency.
 
 <!-- /ANCHOR:phases -->

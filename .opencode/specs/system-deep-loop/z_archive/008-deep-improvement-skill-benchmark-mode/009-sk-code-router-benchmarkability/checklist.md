@@ -33,7 +33,7 @@ _memory:
 ## Verification Protocol
 
 - Run from `.opencode/skills/deep-improvement/scripts`: `npx vitest run`.
-- Benchmark (fixtures are skill-local, so `--fixtures-dir` is required): `node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=skill-benchmark --skill=sk-code --fixtures-dir=.opencode/skills/sk-code/benchmark/fixtures/sk-code --outputs-dir=.opencode/skills/sk-code/benchmark/full --trace-mode=router --advisor-mode=python`. See `sk-code/benchmark/README.md`.
+- Benchmark (fixtures are skill-local, so `--fixtures-dir` is required): `node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=skill-benchmark --skill=sk-code --fixtures-dir=.opencode/skills/sk-code/benchmark/fixtures/sk-code --outputs-dir=.opencode/skills/sk-code/benchmark/2026-06-01--full--router --trace-mode=router --advisor-mode=python`. See `sk-code/benchmark/README.md`.
 - Every item below is marked `[x]` only with cited evidence.
 <!-- /ANCHOR:protocol -->
 

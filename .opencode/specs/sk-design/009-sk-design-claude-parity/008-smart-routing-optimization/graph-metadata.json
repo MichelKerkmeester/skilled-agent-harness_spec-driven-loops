@@ -203,7 +203,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/after-009/` rerun (24 scenarios, post-Phase-005)",
+    "causal_summary": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/2026-07-06--after-009--router/` rerun (24 scenarios, post-Phase-005)",
     "created_at": "2026-07-06T04:34:34.389Z",
     "last_save_at": "2026-07-09T10:02:44.472Z",
     "save_lineage": "same_pass",

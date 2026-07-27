@@ -39,7 +39,7 @@ _memory:
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] CHK-01 [P1] Baseline D2/D1/D3 snapshotted from `sk-code/benchmark/live-final/skill-benchmark-report.json`.
+- [ ] CHK-01 [P1] Baseline D2/D1/D3 snapshotted from `sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.json`.
 - [ ] CHK-02 [P1] 011 recommendation re-read; route order + overlay contract confirmed.
 <!-- /ANCHOR:pre-impl -->
 

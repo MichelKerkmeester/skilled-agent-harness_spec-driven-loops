@@ -72,7 +72,7 @@ Fold assets into recall (not D3) so correct routing counts without re-introducin
 
 <!-- ANCHOR:verification -->
 ## Verification
-RED/GREEN unit test; full-suite no-new-regression (origin vs fixed); Mode-A byte-identical (fix is live-only). Re-baselined reports captured under each skill's `benchmark/live-mode-b/`.
+RED/GREEN unit test; full-suite no-new-regression (origin vs fixed); Mode-A byte-identical (fix is live-only). Re-baselined reports captured under each skill's `benchmark/2026-07-10--live-mode-b--live/`.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

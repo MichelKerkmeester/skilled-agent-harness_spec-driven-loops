@@ -290,7 +290,7 @@ would risk pointing at the wrong file.
 - `../../skill_advisor/tests/README.md`
 - `../../skill_advisor/lib/README.md`
 
-**system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/README.md** (1)
+**system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/README.md** (1)
 - `../README.md`
 
 **system-spec-kit/mcp_server/lib/enrichment/README.md** (1)
@@ -322,7 +322,7 @@ listing. Each needs a quick individual call: repoint or remove.
 - `../feature_catalog/01--daemon-and-freshness/`
 - `../manual_testing_playbook/05--auto-update-daemon/`
 
-**system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md** (1)
+**system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md** (1)
 - `../FORMAT.md`
 
 **system-spec-kit/scripts/resource-map/README.md** (1)

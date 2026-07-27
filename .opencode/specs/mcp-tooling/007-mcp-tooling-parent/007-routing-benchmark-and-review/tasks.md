@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Run the Lane-C skill-benchmark; capture the report under `mcp-tooling/benchmark/router-final/` [evidence: `run-skill-benchmark.cjs --skill mcp-tooling --trace-mode router` verdict=PASS aggregate=95 scenarios=13; captured under `benchmark/baseline/` (frozen baseline naming per the storage guide supersedes the drafted `router-final/` label)]
+- [x] T004 Run the Lane-C skill-benchmark; capture the report under `mcp-tooling/benchmark/2026-06-01--router-final--router/` [evidence: `run-skill-benchmark.cjs --skill mcp-tooling --trace-mode router` verdict=PASS aggregate=95 scenarios=13; captured under `benchmark/baseline/` (frozen baseline naming per the storage guide supersedes the drafted `router-final/` label)]
 - [x] T005 Run the independent deep-review pass; record P0/P1/P2 findings [evidence: `review-report.md` recorded: verdict FAIL, P0=3 P1=10 P2=2 across 4/4 iterations (state in `review/lineages/sol-review/`)]
 - [x] T006 Resolve the figma-transport routing carve-out: keep metadata routing, or record a routing-config amendment against phase 002's ADR-001/ADR-006 [evidence: metadata routing KEPT; figma phrasing routes sk-design-first per doctrine but the committed positive scenario scores 0/13 figma keyword hits in lexical replay (verified against `hub-router.json`); remediation routed to the planning packet, 0 silent routing-config amendments]
 <!-- /ANCHOR:phase-2 -->
@@ -105,7 +105,7 @@ _memory:
 Dated amendment — task text and evidence above are preserved as authored:
 
 - Task wording that says "the three modes" (T002, T004 heading lineage, T007) executed against the SIX-mode hub (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-figma`, `mcp-refero`, `mcp-mobbin`) — 13 hub scenarios, one blind holdout per mode, as T002/T007 evidence already records.
-- The T004 target path `benchmark/router-final/` was superseded by frozen-baseline naming: real evidence lives at `.opencode/skills/mcp-tooling/benchmark/baseline/` (PASS 95) and, post-remediation, `.opencode/skills/mcp-tooling/benchmark/after-routing-remediation/` (PASS 98, route-gold enforced 13/13).
+- The T004 target path `benchmark/2026-06-01--router-final--router/` was superseded by frozen-baseline naming: real evidence lives at `.opencode/skills/mcp-tooling/benchmark/baseline/` (PASS 95) and, post-remediation, `.opencode/skills/mcp-tooling/benchmark/2026-07-16--after-routing-remediation--router/` (PASS 98, route-gold enforced 13/13).
 - The 15 deferred review findings (T008) were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/`.
 <!-- /ANCHOR:amendment-2026-07-16 -->
 

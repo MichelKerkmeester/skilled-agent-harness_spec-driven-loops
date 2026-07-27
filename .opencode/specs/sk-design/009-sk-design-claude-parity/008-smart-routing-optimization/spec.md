@@ -57,11 +57,11 @@ _memory:
 
 ### Problem Statement
 
-The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/after-009/` rerun (24 scenarios, post-Phase-005). In both runs, D3 efficiency scored `0/100` and D1inter (advisor routing precision) stayed `unscored-mode-a` — the harness cannot fully score routing precision or route-efficiency without a live-mode run and route-gold fixtures that do not currently exist. The `after-009/report.md` contamination findings also show literal keyword overlap across mode boundaries in several scenario prompts (for example TV-003 carries `hero section, clarify, hierarchy`, spanning `design-interface` aliases and the `design-foundations` "Use it for" vocabulary), which is a qualitative signal that the hub and mode SMART ROUTING keyword/alias prose has not been re-audited since Phase 004 refactored the five mode packets and added private procedure-card CONDITIONAL selection tables inside each mode's Section 2. Those procedure-card tables exist in all five modes today, but the surrounding keyword/alias prose was not deliberately re-tuned against the benchmark's ambiguity signals or explicitly cross-referenced as part of the same routing contract.
+The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/2026-07-06--after-009--router/` rerun (24 scenarios, post-Phase-005). In both runs, D3 efficiency scored `0/100` and D1inter (advisor routing precision) stayed `unscored-mode-a` — the harness cannot fully score routing precision or route-efficiency without a live-mode run and route-gold fixtures that do not currently exist. The `after-009/report.md` contamination findings also show literal keyword overlap across mode boundaries in several scenario prompts (for example TV-003 carries `hero section, clarify, hierarchy`, spanning `design-interface` aliases and the `design-foundations` "Use it for" vocabulary), which is a qualitative signal that the hub and mode SMART ROUTING keyword/alias prose has not been re-audited since Phase 004 refactored the five mode packets and added private procedure-card CONDITIONAL selection tables inside each mode's Section 2. Those procedure-card tables exist in all five modes today, but the surrounding keyword/alias prose was not deliberately re-tuned against the benchmark's ambiguity signals or explicitly cross-referenced as part of the same routing contract.
 
 ### Purpose
 
-Implement a content-quality optimization pass over the SMART ROUTING sections in `sk-design/SKILL.md` (hub) and all five mode packets' `SKILL.md`, grounded in the `benchmark/baseline/` and `benchmark/after-009/` report evidence and the `mode-registry.json` transform-verb routing table. The pass sharpens keyword/alias coverage per mode, resolves the ambiguity the benchmark's D1/D3 dimensions expose where prose or vocabulary can safely help, makes each mode's existing private procedure-card selection logic (added Phase 004) explicit within its routing prose, and keeps `hub-router.json` `vocabularyClasses`/`routerSignals` synchronized with keyword changes — all without altering registry structure, `workflowMode` values, or `toolSurface` entries.
+Implement a content-quality optimization pass over the SMART ROUTING sections in `sk-design/SKILL.md` (hub) and all five mode packets' `SKILL.md`, grounded in the `benchmark/baseline/` and `benchmark/2026-07-06--after-009--router/` report evidence and the `mode-registry.json` transform-verb routing table. The pass sharpens keyword/alias coverage per mode, resolves the ambiguity the benchmark's D1/D3 dimensions expose where prose or vocabulary can safely help, makes each mode's existing private procedure-card selection logic (added Phase 004) explicit within its routing prose, and keeps `hub-router.json` `vocabularyClasses`/`routerSignals` synchronized with keyword changes — all without altering registry structure, `workflowMode` values, or `toolSurface` entries.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -71,7 +71,7 @@ Implement a content-quality optimization pass over the SMART ROUTING sections in
 
 ### In Scope
 
-- Read `benchmark/baseline/skill-benchmark-report.json`/`.md` and `benchmark/after-009/report.json`/`.md` and extract the concrete D1/D3-linked ambiguity findings (contamination list, D3 route-gold gap, D1inter live-mode gap) that will ground the proposed keyword changes.
+- Read `benchmark/baseline/skill-benchmark-report.json`/`.md` and `benchmark/2026-07-06--after-009--router/report.json`/`.md` and extract the concrete D1/D3-linked ambiguity findings (contamination list, D3 route-gold gap, D1inter live-mode gap) that will ground the proposed keyword changes.
 - Implement sharpened keyword/alias prose for `sk-design/SKILL.md` Section 2 SMART ROUTING (hub-level routing rule, discriminator, and manager-intake vocabulary).
 - Implement sharpened keyword/alias prose for each of the five mode packets' `SKILL.md` Section 2 SMART ROUTING: `design-interface`, `design-foundations`, `design-motion`, `design-audit`, `design-md-generator`.
 - Implement explicit cross-referencing of each mode's existing private procedure-card CONDITIONAL selection table (added Phase 004) within its routing prose, so procedure-card selection and keyword/alias routing read as one coherent contract.
@@ -127,7 +127,7 @@ Implement a content-quality optimization pass over the SMART ROUTING sections in
 | REQ-004 | All five mode SMART ROUTING vocabularies are covered | Plan names keyword/alias sharpening targets for `design-interface`, `design-foundations`, `design-motion`, `design-audit`, and `design-md-generator` |
 | REQ-005 | `hub-router.json` sync obligation is explicit | Plan states that `vocabularyClasses`/`routerSignals` must be updated to match any implemented keyword/alias change, and names the 22 existing `vocabularyClasses` entries as the baseline to reconcile against |
 | REQ-006 | Procedure-card cross-reference obligation is explicit | Plan requires each mode's routing prose to cite its own procedure-card CONDITIONAL selection table by relative path as part of the same routing contract |
-| REQ-007 | Benchmark evidence grounds every proposed change | Plan cites `benchmark/baseline/skill-benchmark-report.json` and `benchmark/after-009/report.json` dimension scores and named contamination scenarios as the basis for the keyword changes it proposes |
+| REQ-007 | Benchmark evidence grounds every proposed change | Plan cites `benchmark/baseline/skill-benchmark-report.json` and `benchmark/2026-07-06--after-009--router/report.json` dimension scores and named contamination scenarios as the basis for the keyword changes it proposes |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -174,7 +174,7 @@ Implement a content-quality optimization pass over the SMART ROUTING sections in
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Traceability
-- **NFR-T01**: Every proposed keyword/alias change traces to a named `benchmark/baseline/` or `benchmark/after-009/` finding (dimension score or contamination scenario ID).
+- **NFR-T01**: Every proposed keyword/alias change traces to a named `benchmark/baseline/` or `benchmark/2026-07-06--after-009--router/` finding (dimension score or contamination scenario ID).
 - **NFR-T02**: Every later implementation change must have an explicit Routing Optimization Target row or checklist item.
 
 ### Maintainability
@@ -231,6 +231,6 @@ Implement a content-quality optimization pass over the SMART ROUTING sections in
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/after-009/report.md`
+- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/2026-07-06--after-009--router/report.md`
 
 <!-- /ANCHOR:related-docs -->

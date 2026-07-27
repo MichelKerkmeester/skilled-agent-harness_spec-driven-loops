@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/mcp-coco-index/references/settings_reference.md"
       - ".opencode/skills/mcp-coco-index/references/tool_reference.md"
       - ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/README.md"
-      - ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20/"
+      - ".opencode/skills/mcp-coco-index/mcp_server/benchmarks/2026-05-20--run--unspecified/"
     session_dedup:
       fingerprint: "sha256:010c0d0e0f1a1b1c1d1e1f2a2b2c2d2e2f3a3b3c3d3e3f4a4b4c5a5b5c5d5e5f"
       session_id: "023-deep-research-arc-blind-spots/010-public-repo-docs-alignment"

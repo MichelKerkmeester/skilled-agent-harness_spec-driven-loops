@@ -51,7 +51,7 @@ FAILURE MODES:
 |--------|-------|
 | **Language/Stack** | Lane-C skill-benchmark harness plus an independent deep-review pass |
 | **Framework** | Skill-benchmark tooling and deep-review loop |
-| **Storage** | Benchmark output under `.opencode/skills/mcp-tooling/benchmark/router-final/` |
+| **Storage** | Benchmark output under `.opencode/skills/mcp-tooling/benchmark/2026-06-01--router-final--router/` |
 | **Testing** | The benchmark IS the test; deep-review provides the second, independent lens |
 
 ### Overview
@@ -121,7 +121,7 @@ Required inventories:
 - [ ] Scope the independent deep-review over the full fold-in diff
 
 ### Phase 2: Core Implementation
-- [ ] Run the Lane-C skill-benchmark and capture the report under `benchmark/router-final/`
+- [ ] Run the Lane-C skill-benchmark and capture the report under `benchmark/2026-06-01--router-final--router/`
 - [ ] Run the independent deep-review pass and record P0/P1/P2 findings
 - [ ] Resolve the figma-transport routing carve-out: keep metadata routing, or record a routing-config amendment against phase 002's ADRs
 
@@ -171,7 +171,7 @@ Required inventories:
 Dated amendment — planning prose above is preserved as authored:
 
 - **Six modes, not three.** The hub inventory grew to six modes (`+ mcp-aside-devtools, mcp-refero, mcp-mobbin`) before execution; the matrix axis "three modes x routing/discovery/efficiency/usefulness" executed as six modes across 13 hub scenarios.
-- **Storage naming superseded.** Benchmark output did NOT land under `benchmark/router-final/` — the storage guide's frozen naming applied instead: `.opencode/skills/mcp-tooling/benchmark/baseline/` (pre-remediation run, PASS 95) and `.opencode/skills/mcp-tooling/benchmark/after-routing-remediation/` (post-remediation re-run, PASS 98 with the route-gold hard gate enforced 13/13).
+- **Storage naming superseded.** Benchmark output did NOT land under `benchmark/2026-06-01--router-final--router/` — the storage guide's frozen naming applied instead: `.opencode/skills/mcp-tooling/benchmark/baseline/` (pre-remediation run, PASS 95) and `.opencode/skills/mcp-tooling/benchmark/2026-07-16--after-routing-remediation--router/` (post-remediation re-run, PASS 98 with the route-gold hard gate enforced 13/13).
 - **Amendment path outcome.** No routing-config amendment against the phase 002 ADRs was needed; routing fixes and the review's 15 findings were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/`.
 <!-- /ANCHOR:amendment-2026-07-16 -->
 

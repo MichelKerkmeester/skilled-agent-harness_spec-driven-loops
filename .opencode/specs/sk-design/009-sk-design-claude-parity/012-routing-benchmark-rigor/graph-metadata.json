@@ -53,7 +53,7 @@
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/description.json",
-      ".opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.json",
+      ".opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.json",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/graph-metadata.json",
       "manual_testing_playbook/manual_testing_playbook.md",
@@ -105,7 +105,7 @@
       {
         "name": "report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.json",
+        "path": ".opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.json",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Phase 012 packet still described future work as \"Planned / Not Started\" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.{json,md}`",
+    "causal_summary": "The Phase 012 packet still described future work as \"Planned / Not Started\" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}`",
     "created_at": "2026-07-06T04:40:02.795Z",
     "last_save_at": "2026-07-09T10:02:44.502Z",
     "save_lineage": "same_pass",

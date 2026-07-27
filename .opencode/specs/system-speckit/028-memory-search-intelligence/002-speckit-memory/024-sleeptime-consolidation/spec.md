@@ -271,7 +271,7 @@ Add a background, cadence-gated reorganization pass that amortizes consolidation
 | Default-off flags | DONE | `SPECKIT_SLEEPTIME_CONSOLIDATION` and `SPECKIT_SLEEPTIME_LIVE_WRITE` are registered in `lib/search/search-flags.ts` and the flag-ceiling known list. |
 | Off-turn dispatch + cadence/cursor consumption | PENDING | Sibling 010 remains the owner of the clock host, cursor and cadence gate. This phase must not build a duplicate counter. |
 | LLM-selected archival chunking | PENDING | Live archival mutation needs shadow telemetry and a benchmark-backed promotion decision. The markdown chunker remains unchanged. |
-| Shadow telemetry benchmark/live promotion | PENDING | Deterministic unit tests prove bounds and default-off behavior, but no measured recall/cost delta exists yet. |
+| Shadow telemetry benchmark/2026-06-01--live--live promotion | PENDING | Deterministic unit tests prove bounds and default-off behavior, but no measured recall/cost delta exists yet. |
 
 ---
 

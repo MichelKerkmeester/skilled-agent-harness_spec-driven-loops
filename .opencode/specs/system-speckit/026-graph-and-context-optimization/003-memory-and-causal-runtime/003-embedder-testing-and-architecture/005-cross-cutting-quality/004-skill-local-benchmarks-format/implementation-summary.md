@@ -45,7 +45,7 @@ _memory:
 - `mcp-coco-index/mcp_server/benchmarks/historical FORMAT.md` — relative symlink to system-spec-kit's copy
 
 ### Phase B — Evidence promotion
-- mk-spec-memory: `benchmarks/benchmark-2026-05-17/` with `results.csv`, `per-probe-with-rescue.jsonl`, `runtime-measurements.md`, `SOURCE.md`
+- mk-spec-memory: `benchmarks/2026-05-17--run--unspecified/` with `results.csv`, `per-probe-with-rescue.jsonl`, `runtime-measurements.md`, `SOURCE.md`
 - mcp-coco-index: `benchmarks/benchmark-2026-05-18/` with `results.csv`, `per-probe.jsonl`, `SOURCE.md`
 
 ### Phase C — Pending (in-flight)
@@ -81,7 +81,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 
 # sk-doc validate each authored file
 bash .opencode/skills/sk-doc/scripts/validate_document.py \
-  .opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md
+  .opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-17--run--unspecified/benchmark_report.md
 bash .opencode/skills/sk-doc/scripts/validate_document.py \
   .opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-18/benchmark_report.md
 bash .opencode/skills/sk-doc/scripts/validate_document.py \

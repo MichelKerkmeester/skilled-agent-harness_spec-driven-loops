@@ -22,7 +22,7 @@ Full arc 008 audit across all 4 dimensions. Targets:
 - Tests: `stage3-rerank-regression.vitest.ts` (added 2 cases)
 - Runtime configs: `.mcp.json`, `opencode.json`, `.gemini/settings.json`, `.codex/config.toml` (RERANK_SIDECAR_PORT additions)
 - Docs: `ENV_REFERENCE.md` (SPECKIT_CROSS_ENCODER row), `embedder_architecture.md` (Stage 3 section), `system-rerank-sidecar/SKILL.md` (Consumers + Known Limitations sections)
-- Benchmark artifacts: `benchmarks/benchmark-2026-05-20-rerank-ab/` (12 files including sk-doc-compliant report with HOLD verdict)
+- Benchmark artifacts: `benchmarks/2026-05-20--rerank-ab--unspecified/` (12 files including sk-doc-compliant report with HOLD verdict)
 - Continuity: `008-rerank-sidecar-arc/scratch/autonomous-run-state.md`
 
 ## 3. REVIEW DIMENSIONS (remaining)

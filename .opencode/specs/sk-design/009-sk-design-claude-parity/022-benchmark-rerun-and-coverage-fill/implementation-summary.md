@@ -22,7 +22,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.json"
+      - ".opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "benchmark-coverage-022"
@@ -65,7 +65,7 @@ Two asks handled together: confirm phase 021's validator rewrite and finding fix
 | `.opencode/skills/sk-design/manual_testing_playbook/hub-manager-intake/design-mode-pairing-before-run.md` | Created | `HM-004`: hub-level visible design-mode pairing before an Open Design RUN |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Edited | 4 category tables, critical-path list, cross-reference index, totals (33->37, 15->16, 8->10), coverage-note prose; version 1.1.0.0 -> 1.2.0.0 |
 | `.opencode/skills/sk-design/README.md` | Edited | Fixed stale "33-scenario" playbook description line -> 37 |
-| `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/{report.json,report.md}` | Created | Final live-mode baseline: PASS 94/100, 27 scenarios |
+| `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/{report.json,report.md}` | Created | Final live-mode baseline: PASS 94/100, 27 scenarios |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -72,7 +72,7 @@ _memory:
 
 - [x] CHK-024 [P0] Loader-router path contract restored [EVIDENCE: code-surface packet paths now parse whole, so parsed gold can match corrected router emissions instead of collapsing to nonexistent universal-tier suffixes]
 - [x] CHK-025 [P1] Pre-existing intents failure left out of scope with reason [EVIDENCE: DEFERRED WITH REASON — `skill-benchmark.vitest.ts` still expects `res.intents` to contain `implement`, but current hub router returns `['code-webflow']`; this is intent/mode-projection sync, not path parsing]
-- [x] CHK-026 [P1] sk-code gold translation left out of scope with reason [EVIDENCE: DEFERRED WITH REASON — playbook gold translation and `benchmark/router-final/` regeneration belong to `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline` by operator direction]
+- [x] CHK-026 [P1] sk-code gold translation left out of scope with reason [EVIDENCE: DEFERRED WITH REASON — playbook gold translation and `benchmark/2026-06-01--router-final--router/` regeneration belong to `124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline` by operator direction]
 
 <!-- /ANCHOR:fix-completeness -->
 ---

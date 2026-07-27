@@ -94,7 +94,7 @@ Additive-only playbook and descriptor updates — no change to the registries th
 | `manual_testing_playbook/advisor-integration/` | 3 existing scenarios | Extend `AI-001`, fix `AI-003` prompt text | Router-mode benchmark report |
 | `manual_testing_playbook/manual_testing_playbook.md` | Root index | Update overview, preconditions, critical-path list, cross-reference index, totals | Grep sweep + validate.sh |
 | `sk-design/description.json`, `sk-design/graph-metadata.json` | Skill-level advisor descriptors | Sync to six modes | JSON parse + grep sweep |
-| `sk-design/benchmark/after-018-transport-integration/` | Does not exist yet | New live-mode baseline | Directory listing + report verdict |
+| `sk-design/benchmark/2026-07-07--after-018-transport-integration--live/` | Does not exist yet | New live-mode baseline | Directory listing + report verdict |
 
 Required inventories:
 - Same-class producers: this is the first `MR-*`/probe addition since phases 016-018; no other in-flight work touches the playbook concurrently (confirmed via scoped `git status`).
@@ -123,7 +123,7 @@ Required inventories:
 
 ### Phase 3: Verification
 - [x] Router-mode benchmark re-run: scenario count 25, PASS, D5 100/100
-- [ ] Live-mode benchmark re-run, saved to `benchmark/after-018-transport-integration/`
+- [ ] Live-mode benchmark re-run, saved to `benchmark/2026-07-07--after-018-transport-integration--live/`
 - [ ] Write this phase's own `implementation-summary.md`
 <!-- /ANCHOR:phases -->
 

@@ -55,7 +55,7 @@ _memory:
 - [ ] CHK-010 [P0] **NOT MET** Change-surface inventory maps every Phases 006-011 file-list entry to a scenario-update, net-new-scenario, or no-benchmark-impact classification.
   - **Evidence**: No change-surface inventory was built. Descoped per `decision-record.md` ADR-003; open for a future phase.
 - [ ] CHK-011 [P0] **NOT MET** Combined battery (mode-routing + procedure-card-selection + advisor-confidence) totals at least 60 scenarios/prompts.
-  - **Evidence**: `benchmark/after-012-routing-rigor/report.json` `coverage` totals 24 scenarios (18 scored + 6 routed out), matching `benchmark/after-009/` exactly. No expansion occurred.
+  - **Evidence**: `benchmark/2026-07-06--after-012-routing-rigor--router/report.json` `coverage` totals 24 scenarios (18 scored + 6 routed out), matching `benchmark/2026-07-06--after-009--router/` exactly. No expansion occurred.
 - [ ] CHK-012 [P0] **NOT MET** Every active procedure card after Phases 006-011 land has a router-mode and live-mode selection scenario.
   - **Evidence**: No `07--procedure-card-selection/` category exists; `report.json` `coverage.routing = 12`, `coverage.advisor = 6`, the same category shape as the pre-existing corpus.
 - [ ] CHK-013 [P0] **NOT MET** `advisor-probe.cjs`'s `scoreD1Inter` extension adds `topConfidence` and `gapToSecond` without removing or renaming `score`, `rank`, or `topSkill`.
@@ -72,7 +72,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] [EVIDENCE: report.json D1intra/D2/D5=100] **PASS (existing report accepted in place of a fresh `after-011` run)** Router-mode rerun (`benchmark/after-011/`) completes and reports scores for all weighted dimensions.
-  - **Evidence**: No `after-011/` folder was created. The existing `benchmark/after-012-routing-rigor/report.json` (router-mode, `scoringMethod: "mode-a-router-replay"`) is accepted per ADR-003 as the equivalent evidence: it reports `D1intra = 100`, `D2 = 100`, `D5 = 100` (the dimensions Mode A can score); `D1inter`/`D4` are `unscored-mode-a` by the harness's own router-mode methodology, not a new gap introduced by this reconciliation.
+  - **Evidence**: No `after-011/` folder was created. The existing `benchmark/2026-07-06--after-012-routing-rigor--router/report.json` (router-mode, `scoringMethod: "mode-a-router-replay"`) is accepted per ADR-003 as the equivalent evidence: it reports `D1intra = 100`, `D2 = 100`, `D5 = 100` (the dimensions Mode A can score); `D1inter`/`D4` are `unscored-mode-a` by the harness's own router-mode methodology, not a new gap introduced by this reconciliation.
 - [ ] CHK-021 [P0] **NOT MET** Live-mode rerun (`benchmark/after-011-live/`) completes and reports D1-inter, advisor confidence, gap-to-second, and browser-class scenario results.
   - **Evidence**: No live-mode rerun exists. `ls .opencode/skills/sk-design/benchmark/` confirms no `after-011-live/` sibling folder.
 - [ ] CHK-022 [P0] **NOT MET** Per-scenario router-vs-live reconciliation table exists and any divergence is documented as a routing risk.
@@ -150,7 +150,7 @@ _memory:
 | P1 Items | 21 | 17/21 | 4/21 (CHK-004, CHK-014, CHK-015, CHK-052) |
 | P2 Items | 3 | 1/3 | 0/3 (2 N/A) |
 
-**Verification Date**: 2026-07-06 — doc-only reconciliation pass against the real, existing `benchmark/after-012-routing-rigor/report.{json,md}`.
+**Verification Date**: 2026-07-06 — doc-only reconciliation pass against the real, existing `benchmark/2026-07-06--after-012-routing-rigor--router/report.{json,md}`.
 **Verified By**: claude-sonnet-5 (independent verification pass; every cited command re-run, every cited report field re-read directly from `report.json`).
 **Gate Status**: CLOSED-WITH-ACCEPTED-DESCOPE. Every floor the existing report can actually measure (D1 intra, D2, D5, aggregate verdict) passes. Every NOT MET item above corresponds to the originally-planned expanded battery, harness extension, live-mode rerun, or baseline promotion, which `decision-record.md` ADR-003 formally accepts as descoped rather than fabricated or silently dropped. No NOT MET item represents a routing regression, a fabricated score, or a defect in the existing evidence.
 <!-- /ANCHOR:summary -->

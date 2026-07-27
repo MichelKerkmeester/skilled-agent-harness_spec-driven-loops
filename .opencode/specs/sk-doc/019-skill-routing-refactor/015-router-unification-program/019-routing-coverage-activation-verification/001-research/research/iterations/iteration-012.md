@@ -27,7 +27,7 @@ All seven hubs already carry `servingAuthority: compiled, shadowOnly: false` aft
 
 ### The 014 Lane C spec has no archive mapping
 
-`014-benchmark-alignment/spec.md:79` says "JSON and Markdown report additions" inside `report.compiledRouting` (a Lane C parity block), and the harness writes to caller-provided `--outputs-dir` (per `run-skill-benchmark.cjs` and the existing `sk-code/benchmark/live-final/` shape). 014 does not name where the per-hub serving snapshot persists across runs — the natural mapping `<hub>/benchmark/compiled-routing/<run-label>/{serving-snapshot.json, serving-snapshot.md}` parallels the Lane C convention (`sk-code/benchmark/README.md:73-83`) but no spec calls for it. A LUNA-high routed-subject run today would either pollute the parity outputs dir or vanish.
+`014-benchmark-alignment/spec.md:79` says "JSON and Markdown report additions" inside `report.compiledRouting` (a Lane C parity block), and the harness writes to caller-provided `--outputs-dir` (per `run-skill-benchmark.cjs` and the existing `sk-code/benchmark/2026-06-01--live-final--live/` shape). 014 does not name where the per-hub serving snapshot persists across runs — the natural mapping `<hub>/benchmark/compiled-routing/<run-label>/{serving-snapshot.json, serving-snapshot.md}` parallels the Lane C convention (`sk-code/benchmark/README.md:73-83`) but no spec calls for it. A LUNA-high routed-subject run today would either pollute the parity outputs dir or vanish.
 
 ### Per-hub audit history is silently overwritten
 

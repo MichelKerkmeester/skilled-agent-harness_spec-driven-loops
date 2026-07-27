@@ -47,18 +47,18 @@ Shared files:
 Benchmark files:
 
 - `.opencode/skills/sk-design/benchmark/README.md:1`
-- `.opencode/skills/sk-design/benchmark/after-009/report.md:1`
-- `.opencode/skills/sk-design/benchmark/after-009/report.json:1`
-- `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.md:1`
-- `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.json:1`
-- `.opencode/skills/sk-design/benchmark/after-016-hub-routing/report.md:1`
-- `.opencode/skills/sk-design/benchmark/after-016-hub-routing/report.json:1`
-- `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:1`
-- `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.json:1`
-- `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:1`
-- `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.json:1`
-- `.opencode/skills/sk-design/benchmark/after-d3-proxy/skill-benchmark-report.md:1`
-- `.opencode/skills/sk-design/benchmark/after-d3-proxy/skill-benchmark-report.json:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.md:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.md:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/report.json:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-07--after-016-hub-routing--live/report.md:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-07--after-016-hub-routing--live/report.json:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.json:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.json:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/skill-benchmark-report.md:1`
+- `.opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/skill-benchmark-report.json:1`
 - `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.md:1`
 - `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1`
 
@@ -93,7 +93,7 @@ None.
 #### P1-003-002 [P1] Live benchmark reports carry Mode-A caveats and PASS verdicts alongside P1 browser bottlenecks
 
 - Claim: Several benchmark artifacts marked as live-mode reports are internally inconsistent: they declare `mode-b-live`/`trace mode: live`, then still say D1-inter and D4 are `_unscored-mode-a_` and need live mode, while also reporting a PASS verdict despite P1 browser funnel attrition rows.
-- Evidence refs: `.opencode/skills/sk-design/benchmark/README.md:20`, `.opencode/skills/sk-design/benchmark/README.md:21`, `.opencode/skills/sk-design/benchmark/README.md:34`, `.opencode/skills/sk-design/benchmark/README.md:37`, `.opencode/skills/sk-design/benchmark/README.md:49`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:3`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:5`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:16`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:20`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:23`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:35`, `.opencode/skills/sk-design/benchmark/after-018-transport-integration/report.md:41`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:3`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:5`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:16`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:20`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:23`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:35`, `.opencode/skills/sk-design/benchmark/after-022-coverage-fill/report.md:41`.
+- Evidence refs: `.opencode/skills/sk-design/benchmark/README.md:20`, `.opencode/skills/sk-design/benchmark/README.md:21`, `.opencode/skills/sk-design/benchmark/README.md:34`, `.opencode/skills/sk-design/benchmark/README.md:37`, `.opencode/skills/sk-design/benchmark/README.md:49`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:3`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:5`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:16`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:20`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:23`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:35`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/report.md:41`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:3`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:5`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:16`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:20`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:23`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:35`, `.opencode/skills/sk-design/benchmark/2026-07-07--after-022-coverage-fill--live/report.md:41`.
 - Evidence: The benchmark README defines router mode as deterministic CI baseline and live mode as the operator default for a true routing verdict, with D1-inter/D4 unscored in router mode. However, live reports such as `after-018-transport-integration` and `after-022-coverage-fill` still contain Mode-A unscored labels and "need live mode" caveats despite already declaring `trace mode: live`. The same reports declare PASS while listing a P1 `funnel_attrition` browser bottleneck.
 - Counterevidence sought: The README clearly marks `baseline/` as the frozen comparison anchor and tells operators to add sibling baselines rather than overwrite it, so stale baseline trust is not the issue. The inconsistency is inside generated sibling reports that are otherwise presented as benchmark evidence.
 - Alternative explanation: The PASS verdict may be aggregate-score-only and the P1 row may be an advisory bottleneck. If so, the report needs to label that explicitly; as written, a live evidence artifact contains mutually contradictory mode and severity semantics.

@@ -44,7 +44,7 @@ _memory:
 The sk-code `manual_testing_playbook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt. That gold still named resources by the pre-013 monolithic layout (`references/motion_dev/…`, `references/webflow/…`, `references/opencode/…`), even though the two-axis split moved every per-surface resource under `code-webflow/`, `code-opencode/`, and `code-animation/` packet folders and the smart router's `RESOURCE_MAP` was updated to match. Because the gold pointed at paths the corrected router never emits, the deterministic Lane-C benchmark could not credit any surface scenario, and the committed router-final baseline no longer reflected a fresh run. This is the follow-up to the two harness fixes (surface-slicing sync and the scenario-loader code-<surface>/ parse) that had to land first for the gold to be measurable.
 
 ### Purpose
-Translate the stale gold paths in the playbook scenarios to the current `code-<surface>/` layout (preserving each scenario's curated resource set — a path refresh, not a re-curation) and regenerate the deterministic `benchmark/router-final/` baseline so the benchmark reports an honest, current verdict.
+Translate the stale gold paths in the playbook scenarios to the current `code-<surface>/` layout (preserving each scenario's curated resource set — a path refresh, not a re-curation) and regenerate the deterministic `benchmark/2026-06-01--router-final--router/` baseline so the benchmark reports an honest, current verdict.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -54,7 +54,7 @@ Translate the stale gold paths in the playbook scenarios to the current `code-<s
 
 ### In Scope
 - Translate every stale `references/{motion_dev,webflow,opencode}/` and `assets/{…}` gold path in the playbook scenarios to its `code-<surface>/` location (a deterministic prefix mapping; every translated path verified to exist on disk).
-- Regenerate `benchmark/router-final/` (the deterministic CI-gate run) against the corrected harness and refreshed gold.
+- Regenerate `benchmark/2026-06-01--router-final--router/` (the deterministic CI-gate run) against the corrected harness and refreshed gold.
 - Update the benchmark README's stale "latest router verdict" line to the regenerated result.
 
 ### Out of Scope
@@ -68,7 +68,7 @@ Translate the stale gold paths in the playbook scenarios to the current `code-<s
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Modify | Translate stale gold/forbidden/source paths to the code-<surface>/ layout |
-| `.opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.{json,md}` | Modify | Regenerated deterministic baseline |
+| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/skill-benchmark-report.{json,md}` | Modify | Regenerated deterministic baseline |
 | `.opencode/skills/sk-code/benchmark/README.md` | Modify | Refresh the stale latest-router-verdict statistic |
 
 <!-- /ANCHOR:scope -->
@@ -177,6 +177,6 @@ Translate the stale gold paths in the playbook scenarios to the current `code-<s
 
 - **Harness dependencies**: `system-deep-loop/036-router-replay-surface-slice-sync`, `system-deep-loop/037-scenario-loader-code-surface-sync`
 - **Corpus refreshed**: `.opencode/skills/sk-code/manual_testing_playbook/`
-- **Baseline regenerated**: `.opencode/skills/sk-code/benchmark/router-final/`
+- **Baseline regenerated**: `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/`
 
 <!-- /ANCHOR:related-docs -->

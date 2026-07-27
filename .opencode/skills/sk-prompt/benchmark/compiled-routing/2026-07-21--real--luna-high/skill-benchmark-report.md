@@ -1,6 +1,6 @@
 # Skill Benchmark Report — sk-prompt
 
-> Rendered from report.json (do not hand-edit). Scoring: `undefined` · trace mode: `live`.
+> Rendered from report.json (do not hand-edit). Scoring: `undefined` · trace mode: `2026-06-01--live--live`.
 
 **Verdict: PASS**
 

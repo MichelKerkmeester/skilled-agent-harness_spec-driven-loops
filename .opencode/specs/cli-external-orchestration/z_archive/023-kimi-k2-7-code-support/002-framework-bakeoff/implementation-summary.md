@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json"
-      - ".opencode/skills/sk-prompt-models/benchmarks/006-kimi-k2.7-prompt-framework/synthesis.md"
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/synthesis.md"
       - ".opencode/specs/cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff/improvement/model-benchmark-state.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -58,7 +58,7 @@ _memory:
 
 ### Built: kimi-k2.7-code prompt-framework bakeoff
 
-The phase created one bakeoff profile, `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json`, cloned from `framework-bakeoff.json` and retargeted to a single model (`kimi-for-coding/k2p7`) across the full five-framework set (`rcaf`, `race`, `cidi`, `tidd-ec`, `costar`) over two T3 coding fixtures × 3 samples. The bakeoff then ran via the deep-loop **sweep** engine (run label `006-kimi-k2.7-prompt-framework`), producing a per-framework leaderboard and verdict under `benchmarks/006-kimi-k2.7-prompt-framework/`. A gpt-5.5 LLM-judge ran as a standalone secondary pass over Kimi's real generations for a subjective clarity tie-break.
+The phase created one bakeoff profile, `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json`, cloned from `framework-bakeoff.json` and retargeted to a single model (`kimi-for-coding/k2p7`) across the full five-framework set (`rcaf`, `race`, `cidi`, `tidd-ec`, `costar`) over two T3 coding fixtures × 3 samples. The bakeoff then ran via the deep-loop **sweep** engine (run label `006-kimi-k2.7-prompt-framework`), producing a per-framework leaderboard and verdict under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`. A gpt-5.5 LLM-judge ran as a standalone secondary pass over Kimi's real generations for a subjective clarity tie-break.
 
 **Result.** Every framework scored correctness 1.0 + format 1.0 on the deterministic oracle, so correctness could not rank them. The saturation guard fell to efficiency, where the top-pair margin (0.5 words) sat inside the noise floor (90% CI [-4.67, 5.17] overlaps zero). Verdict: **TIE**, with the engine prescribing "demote-to-smoke" for these fixtures. The secondary gpt-5.5 judge (subjective, not a correctness verdict) ranked cidi 0.989 ≈ costar 0.989 > tidd-ec 0.983 ≫ race 0.881 > rcaf 0.726; that judge misread some oracle-confirmed-correct code as buggy, a known LLM-judge failure mode. The verdict is the input Phase 003 promoted into the registry.
 
@@ -67,8 +67,8 @@ The phase created one bakeoff profile, `.opencode/skills/deep-loop-workflows/dee
 | File | Action | Purpose |
 |------|--------|---------|
 | `kimi-k2.7-frameworks.json` | Created | Bakeoff profile: kimi-only model, five frameworks, real T3 fixtures, 5dim + correctness gate threshold 1.0 |
-| `benchmarks/006-kimi-k2.7-prompt-framework/` (`aggregate.json`, `results.json`, `synthesis.md`) | Created | Authoritative sweep outputs: per-framework leaderboard + TIE verdict |
-| `benchmarks/006-kimi-k2.7-prompt-framework/` (`llm-judge-board.json`, `llm-judge-results.json`, `llm-judge-synthesis.md`) | Created | Secondary gpt-5.5 clarity tie-break (subjective; not a correctness verdict) |
+| `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/` (`aggregate.json`, `results.json`, `synthesis.md`) | Created | Authoritative sweep outputs: per-framework leaderboard + TIE verdict |
+| `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/` (`llm-judge-board.json`, `llm-judge-results.json`, `llm-judge-synthesis.md`) | Created | Secondary gpt-5.5 clarity tie-break (subjective; not a correctness verdict) |
 | `002-framework-bakeoff/improvement/` (`model-benchmark-state.jsonl`, `benchmark-run-pointer.json`) | Created | Run state + pointer recording the deterministic TIE and the judge top/bottom |
 <!-- /ANCHOR:what-built -->
 
@@ -105,7 +105,7 @@ The bakeoff ran through the deep-loop **sweep** engine (`sweep-benchmark.cjs`), 
 | Check | Result |
 |-------|--------|
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <002 folder> --strict` | PASS (exit 0; reconciled on close) |
-| Run `006-kimi-k2.7-prompt-framework` writes `aggregate.json` / `results.json` / `synthesis.md` | PASS (all three present under `benchmarks/006-kimi-k2.7-prompt-framework/`) |
+| Run `006-kimi-k2.7-prompt-framework` writes `aggregate.json` / `results.json` / `synthesis.md` | PASS (all three present under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`) |
 | Correctness gate did not silently saturate | PASS (saturation surfaced explicitly: `correctness_saturated: true`; engine fell to `efficiency` as the ranking key) |
 | Verdict + per-framework leaderboard present in `synthesis.md` | PASS (verdict TIE inside the noise floor; 5-row leaderboard cidi > costar > race > rcaf > tidd-ec on efficiency) |
 | 30/30 real `kimi-for-coding/k2p7` dispatches succeeded | PASS (no fallback used; all cells generated) |

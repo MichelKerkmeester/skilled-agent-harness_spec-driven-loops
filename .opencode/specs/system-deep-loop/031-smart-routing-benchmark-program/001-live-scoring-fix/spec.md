@@ -82,7 +82,7 @@ Live-mode benchmark scores reflect true routing quality: correct asset routing i
 |-----------|-------------|-------------|
 | `.../skill-benchmark/score-skill-benchmark.cjs` | Modify | Live-tier asset fold + intent-drop in `scoreScenario`/`scoreD1Intra` |
 | `.../skill-benchmark/tests/live-asset-recall.vitest.ts` | Create | RED/GREEN guard for both behaviors |
-| `.../{sk-code,system-deep-loop}/*/benchmark/live-mode-b/**` | Modify | Re-baselined live reports |
+| `.../{sk-code,system-deep-loop}/*/benchmark/2026-07-10--live-mode-b--live/**` | Modify | Re-baselined live reports |
 | `../054 packet docs` | Modify | Corrected circularity meter |
 <!-- /ANCHOR:scope -->
 
