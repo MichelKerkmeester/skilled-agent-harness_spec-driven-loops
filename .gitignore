@@ -299,3 +299,7 @@ AGENTS_Barter.md
 
 # Native-module node/ABI version markers (regenerated per machine, never tracked)
 **/.node-version-marker
+
+# Routing test sandboxes: kept in-repo because the promoted harness resolves the
+# skill tree by walking up to the repo root, but never committed.
+.opencode/bin/tests/.sandboxes/

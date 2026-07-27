@@ -15,6 +15,13 @@ const path = require('node:path');
 const { spawn, spawnSync } = require('node:child_process');
 const { after, before, describe, test } = require('node:test');
 
+// Sandboxes must stay inside the repo: the promoted harness locates the live skill
+// tree by walking up to the repo root, so a closure outside it resolves no hubs.
+// They must NOT sit in the live serving parent, where a failed cleanup leaves debris
+// beside the running closure.
+const SANDBOX_ROOT = path.join(__dirname, '.sandboxes');
+fs.mkdirSync(SANDBOX_ROOT, { recursive: true });
+
 const manifestContract = require('../lib/compiled-route-manifest.cjs');
 const status = require('../compiled-route-status.cjs');
 const sync = require('../compiled-route-sync.cjs');
@@ -442,10 +449,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('publishes the current authored topology atomically into an isolated runtime', () => {
-    const sandbox = fs.mkdtempSync(path.join(
-      path.dirname(sync.RUNTIME_ROOT),
-      'compiled-route-sync-test-',
-    ));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-test-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
     buildFreshRuntime(runtimeRoot);
@@ -501,7 +505,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('refuses to replace an existing root that is not a verified closure', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-invalid-prior-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-invalid-prior-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
     fs.mkdirSync(runtimeRoot);
@@ -519,7 +523,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('aborts at staging-verify failure without touching the serving root', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-staging-fail-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-staging-fail-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
     buildFreshRuntime(runtimeRoot);
@@ -539,7 +543,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('restores the exact prior closure when post-publish verification fails', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-postpublish-fail-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-postpublish-fail-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const sentinelPath = path.join(runtimeRoot, 'prior-serving-sentinel.txt');
     const markerDir = path.join(runtimeRoot, 'prior-only-marker');
@@ -562,7 +566,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('a concurrent external manifest created during publication survives finalize', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-concurrent-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-concurrent-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     buildFreshRuntime(runtimeRoot);
     fs.writeFileSync(path.join(runtimeRoot, 'prior-serving-sentinel.txt'), 'prior-serving');
@@ -593,7 +597,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('revert swaps the retained rollback back into the serving root', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-revert-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-revert-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
       // Build #1 establishes a real coherent prior closure. runtimeRoot does not
@@ -624,7 +628,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('rejects arbitrary, symlinked, and stale rollback paths without mutation', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-path-safety-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-path-safety-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
       const { rollbackRoot } = buildRetainedPublication(runtimeRoot);
@@ -657,7 +661,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('three-way reconciliation preserves a serving-only external update', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-serving-update-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-serving-update-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const externalHub = `serving-update-${process.pid}`;
     try {
@@ -678,7 +682,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('failed finalize and revert verification retain both recoverable roots', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-verify-fail-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-verify-fail-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
       let publication = buildRetainedPublication(runtimeRoot);
@@ -704,7 +708,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('closure fingerprints reject code-byte drift in the retained rollback', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-content-drift-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-content-drift-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
       const publication = buildRetainedPublication(runtimeRoot);
@@ -723,7 +727,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('finalize and revert cleanup resume after individual removal failures', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-cleanup-resume-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-cleanup-resume-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const realRmSync = fs.rmSync;
     try {
@@ -779,7 +783,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('terminal cleanup resumes lock failure without deleting newer publication state', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-terminal-resume-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-terminal-resume-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     const lockPath = runtimeLayout.publicationLockPathFor(runtimeRoot);
     const statePath = path.join(runtimeRoot, '.compiled-route-publication.json');
@@ -831,7 +835,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('rename failures retain a serving root and recoverable publication state', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-sync-rename-recovery-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-sync-rename-recovery-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
       // A failed install followed by a failed restore must still leave a serving
@@ -882,7 +886,7 @@ describe('canonical compiled-route manifest', { concurrency: false }, () => {
   });
 
   test('long-lived status rebinding follows an atomic generation replacement', () => {
-    const sandbox = fs.mkdtempSync(path.join(path.dirname(sync.RUNTIME_ROOT), 'compiled-route-status-rebind-'));
+    const sandbox = fs.mkdtempSync(path.join(SANDBOX_ROOT, 'compiled-route-status-rebind-'));
     const runtimeRoot = path.join(sandbox, 'compiled-routing');
     try {
       fs.cpSync(sync.RUNTIME_ROOT, runtimeRoot, { recursive: true });

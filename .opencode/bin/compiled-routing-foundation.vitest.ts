@@ -258,7 +258,11 @@ describe('status causeCode matrix (drift vs breakage)', () => {
 
 describe('move-simulation: no runtime read under .opencode/specs', () => {
   it('an isolated authored closure resolves all hubs with 0 spec reads', () => {
-    const sandbox = mkdtempSync(join(dirname(sync.RUNTIME_ROOT), 'compiled-route-move-'));
+    // Inside the repo so the promoted harness's root-walk still finds the skill tree,
+    // but out of the live serving parent so a failed cleanup cannot litter it.
+    const sandboxRoot = join(__dirname, 'tests', '.sandboxes');
+    mkdirSync(sandboxRoot, { recursive: true });
+    const sandbox = mkdtempSync(join(sandboxRoot, 'compiled-route-move-'));
     const runtimeRoot = join(sandbox, 'compiled-routing');
     try {
       sync.build({ runtimeRoot });
