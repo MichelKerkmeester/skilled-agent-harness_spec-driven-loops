@@ -49,7 +49,7 @@ _memory:
 
 `.cursor/rules/skill-routing.md` is a new always-on static Cursor rule. It points code, design, documentation/spec, Git, prompt-engineering, deep-loop, and Cursor-delegation work to the corresponding top-level `.opencode/skills/*/SKILL.md` packet. It is intentionally a compact routing index, not a second `AGENTS.md`.
 
-`cli-cursor/SKILL.md` now records three resolved boundaries: the `beforeSubmitPrompt` adapter is designed to call the shared skill-advisor brief builder but is dormant under the tested CLI; `cursor-agent --help` exposes no custom-agent-loading concept; and Cursor has no dedicated command-file-system concept.
+`cli-cursor/SKILL.md` now records three resolved boundaries: the `beforeSubmitPrompt` adapter is designed to call the shared skill-advisor brief builder but is dormant under the tested CLI; Cursor **does** load custom subagents from `.cursor/agents/*.md` and additionally auto-imports Claude-format `.claude/agents/*.md` (correcting an earlier wrong claim in this same phase); and Cursor has no dedicated command-file-system concept.
 
 `tasks.md` and `checklist.md` now contain evidence for the source read, static rule, parity decisions, sibling comparison, and validation gates.
 <!-- /ANCHOR:what-built -->
@@ -75,7 +75,7 @@ The sibling Devin phase was read before documenting the parallel command non-app
 |----------|-----|
 | Use one static `.cursor/rules/skill-routing.md` file | The directory was empty, and a single compact index covers the requested skill families without duplicating repository governance. |
 | Treat the dynamic advisor path as dormant | The adapter is wired for the shared builder, but the installed CLI's live `beforeSubmitPrompt` delivery is absent. Static rules are therefore a complement, not a substitute claim for dynamic classification. |
-| Record custom agents as a non-concept | `cursor-agent --help` has no custom-agent-loading flag or command; Cursor's editor-native subagent system is a separate internal surface. |
+| CORRECTED -- mirror all 13 agents instead of recording a non-concept | The earlier "no custom-agent concept" call was inferred from a missing `--help` flag, but profiles are discovered by file convention. Cursor loads `.cursor/agents/*.md` and auto-imports `.claude/agents/*.md`; both confirmed live. |
 | Record commands as a non-concept | `cursor-agent --help` has no `commands` command or dedicated command-file system, matching the Devin-side parity decision. |
 <!-- /ANCHOR:decisions -->
 
@@ -89,7 +89,8 @@ The sibling Devin phase was read before documenting the parallel command non-app
 | Hook source read | PASS: `user-prompt-submit.ts:5-14` and `:45-51` were read before `.cursor/rules/skill-routing.md` was created. |
 | Dynamic delivery finding | PASS: the supplied live marker re-probe found no `beforeSubmitPrompt` delivery; `hook-contract.md:106` records the result. |
 | Rule generator/help surface | PASS: `cursor-agent generate-rule --help` checked; interactive generator only, with no required frontmatter convention established. |
-| Cursor CLI parity boundaries | PASS: `cursor-agent --help` has no custom-agent-loading concept and no dedicated command-file-system/`commands` concept. |
+| Cursor agent roster | PASS: live roster probe lists all 13 repo agents with no duplicate entries; a real `prompt-improver` dispatch returned content derived from the mirrored agent body. |
+| Cursor CLI parity boundaries | PASS: no dedicated command-file-system/`commands` concept. (The earlier companion claim about custom agents is corrected above.) |
 | Static rule content | PASS: `.cursor/rules/skill-routing.md` is non-empty and contains only repository-relative routing pointers. |
 | Non-overlap check | PASS: the adapter transports the current prompt to the shared advisor builder; the rule supplies static packet pointers. No dynamic brief text or hook response envelope is copied into the rule. |
 | Hook immutability | PASS: `git diff --stat -- .cursor/hooks.json` produced no output. |

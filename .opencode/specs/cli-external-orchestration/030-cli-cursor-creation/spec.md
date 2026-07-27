@@ -16,7 +16,7 @@ _memory:
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
     completion_pct: 100
     open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?", "Does .cursor/hooks.json's UserPromptSubmit entry already inject skill-advisor-equivalent context (phase 014 open question)?"]
-    answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op.", "cursor-agent --help has no custom-agent-loading concept (architectural non-concept, confirmed live)."]
+    answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op.", "CORRECTED: Cursor DOES support custom subagents via .cursor/agents/*.md plus Claude-format auto-import; all 13 repo agents are mirrored in and confirmed dispatchable live. The earlier non-concept claim was inferred from a missing --help flag and was wrong."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -106,7 +106,7 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 | 11 | `011-cursor-mcp-wiring-and-route-guard-fix/` | Wire `.cursor/mcp.json`; find and fix the `mcp-route-guard.mjs` dead wire. | Complete |
 | 12 | `012-codex-claude-hooks-discovery-mirrors/` | `.codex/hooks/` and `.claude/hooks/` discovery mirrors. | Complete |
 | 13 | `013-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | Complete |
-| 14 | `014-cursor-agents-skills-rules-parity/` | Resolve whether `UserPromptSubmit` already injects skill-advisor-equivalent context, populate `.cursor/rules/*.md` (currently empty, unlike Devin's auto-discovered `CLAUDE.md`/`AGENTS.md`), and record that custom agent-profile loading and a dedicated command-file system are not concepts this CLI supports. | Complete |
+| 14 | `014-cursor-agents-skills-rules-parity/` | Resolve whether `UserPromptSubmit` already injects skill-advisor-equivalent context, populate `.cursor/rules/*.md` (currently empty, unlike Devin's auto-discovered `CLAUDE.md`/`AGENTS.md`), mirror the 13-agent roster into `.cursor/agents/`, and record that a dedicated command-file system is not a concept this CLI supports. | Complete |
 
 **Children of `009-cursor-hooks-lifecycle/`** (lean-trio phase parent; full docs live on each child — see `009-cursor-hooks-lifecycle/spec.md` for its own Phase Documentation Map):
 | Child | Folder | Focus | Status |

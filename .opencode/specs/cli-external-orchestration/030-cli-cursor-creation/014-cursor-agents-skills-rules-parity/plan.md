@@ -103,7 +103,7 @@ Matrix axes: mechanism (rules/agents/commands), status (gap/non-concept), questi
 
 ### Phase 2: Build and document
 - [x] Populate `.cursor/rules/*.md` with static routing pointers; `cursor-agent generate-rule --help` was checked and exposes an interactive generator without a required repository frontmatter convention.
-- [x] Record the agents non-applicability decision (`cursor-agent --help` has no custom-agent-loading concept).
+- [x] CORRECTED: Cursor does support custom agents (`.cursor/agents/*.md` + Claude-format auto-import, both confirmed live). All 13 repo agents mirrored in as symlinks; the earlier non-concept claim is flagged as wrong wherever it was recorded.
 - [x] Record the commands non-applicability decision, mirroring the Devin-side sibling phase.
 
 ### Phase 3: Verification and closeout

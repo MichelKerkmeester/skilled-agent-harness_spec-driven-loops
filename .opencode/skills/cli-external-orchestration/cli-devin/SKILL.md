@@ -288,12 +288,20 @@ Available Rules
 
 This means root `CLAUDE.md`/`AGENTS.md` context is already surfaced by Devin. It is discovery behavior to document, not a build gap.
 
-The first native proof profile is `.devin/agents/code-reviewer/AGENT.md`. It uses Devin's documented `allowed-tools` field with `read`, `grep`, `glob`, and `exec`, and denies `write` and `edit`. Invoke it by asking Devin to target the profile explicitly:
+#### Agent Roster Parity
+
+All 13 repo agents are dispatchable through `run_subagent`: `ai-council`, `code`, `context`, `debug`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, `review`. A live roster probe lists them alongside Devin's own `subagent_explore` and `subagent_general`.
+
+Each `.devin/agents/<name>/AGENT.md` is a **symlink** to the canonical `.claude/agents/<name>.md`, matching the discovery-mirror precedent already used for `.claude/hooks/` and `.codex/hooks/`. One source of truth, so a mirror can never drift from the agent it mirrors.
+
+This works because Devin's failure with Claude-format agents is a *discovery-path* limitation, not a *format-parsing* one: the same file Devin ignores at `.claude/agents/<name>.md` registers correctly once reachable at Devin's own `.devin/agents/<name>/AGENT.md` path -- Claude's `tools:` frontmatter field is accepted as-is, so no per-agent translation to `allowed-tools:` is needed.
+
+Invoke by naming the profile explicitly:
 
 ```bash
 command -v devin
-devin -p --model adaptive --permission-mode auto \
-  "Use the code-reviewer subagent to review the current diff for correctness, security, and repository-convention consistency. Cite file paths and line numbers." \
+devin --permission-mode bypass -p \
+  "Use the review subagent to review the current diff for correctness, security, and repository-convention consistency. Cite file paths and line numbers." \
   2>&1
 ```
 

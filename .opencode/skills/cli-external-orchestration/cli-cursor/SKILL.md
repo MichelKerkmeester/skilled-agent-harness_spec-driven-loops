@@ -258,7 +258,24 @@ Cursor CLI reads project `.cursor/rules/*.md`, root `AGENTS.md`, root `CLAUDE.md
 
 The `beforeSubmitPrompt` adapter is designed to deliver a dynamic skill-advisor-equivalent brief, but delivery is confirmed dormant under the installed Cursor CLI build. Its source marks the status as registered but unconfirmed and records the shared-advisor delegation in [`user-prompt-submit.ts`](../../system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts#L5-L14) and [`user-prompt-submit.ts`](../../system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts#L45-L51). A live marker re-probe against `cursor-agent 2026.07.23-e383d2b` confirmed that `beforeSubmitPrompt` did not fire. The static rules file therefore complements a missing dynamic brief; it does not claim to provide per-turn advisor output. The hook registration and adapter remain unchanged.
 
-`cursor-agent --help` has no custom-agent-loading concept: there is no named profile flag or custom-agent command to build. Cursor's native editor-side subagent/skill system is a separate internal surface, not a profile-loading contract exposed by this CLI. The same help output has no dedicated command-file-system concept or `commands` command; commands are a non-applicable parity category for Cursor, mirroring the Devin-side decision.
+#### Custom Subagents (CORRECTION -- earlier claim was wrong)
+
+An earlier pass recorded that "`cursor-agent --help` has no custom-agent-loading concept." **That was wrong**, and the error is instructive: agent profiles are discovered by *file convention*, never by a CLI flag, so grepping `--help` for a flag proves nothing about whether the concept exists.
+
+Cursor CLI loads custom subagents from two places, confirmed live:
+
+| Source | Scope | Status here |
+|--------|-------|-------------|
+| `.cursor/agents/*.md` | project | This repo mirrors all 13 roster agents here |
+| `.claude/agents/*.md` | project (Claude-format auto-import) | Already worked before any mirror existed |
+
+Cursor's own bundled `create-subagent` skill documents the format: `name` + `description` frontmatter (both required), markdown body as the system prompt. A live `cursor-agent --force -p` roster probe lists all 13 repo agents (`ai-council`, `code`, `context`, `debug`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, `review`) alongside Cursor's own built-ins, with no duplicate entries when both sources define the same name.
+
+Each `.cursor/agents/<name>.md` is a **symlink** to the canonical `.claude/agents/<name>.md`, matching the discovery-mirror precedent already used for `.claude/hooks/` and `.codex/hooks/`. One source of truth, so a mirror can never drift from the agent it mirrors.
+
+Note: `~/.cursor/agents/` (user-level) is documented by Cursor but a live probe found the CLI did **not** load a profile placed there; only the project-level paths above are verified working. Dispatch remains subject to this repo's own `preToolUse` spec-gate, which is correct behavior.
+
+`cursor-agent --help` does have no dedicated command-file-system concept or `commands` command; commands remain a non-applicable parity category for Cursor, mirroring the Devin-side decision.
 
 | Task Type | Execution mode |
 |-----------|-----------------|
