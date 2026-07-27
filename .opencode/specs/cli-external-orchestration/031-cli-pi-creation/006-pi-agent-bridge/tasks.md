@@ -9,19 +9,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge"
-    last_updated_at: "2026-07-27T08:45:00Z"
+    last_updated_at: "2026-07-27T10:08:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored tasks.md: 11 tasks across Setup/Implementation/Verification"
-    next_safe_action: "Author checklist.md"
+    recent_action: "This phase's own planning tasks complete; T001/T003-T010 deferred (future execution)"
+    next_safe_action: "Commit; phase 007 proceeds with the MCP-dependency list"
     blockers: []
-    key_files: ["plan.md", "spec.md"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-phase-006"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: ["Does pi-subagents support nested subagent-of-subagent dispatch, needed for T007 (Tier 4)?"]
-    answered_questions: []
+    completion_pct: 100
+    open_questions: ["Does pi-subagents support nested subagent-of-subagent dispatch, needed for T007 (Tier 4)? - deferred to a future execution phase"]
+    answered_questions: ["13-agent count and tools:-scoped 11/13 MCP-dependency tally re-verified live at closeout, zero drift"]
 ---
 # Tasks: Pi agent bridge (pi-subagents third-party translation)
 
@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-confirm `pi` CLI is installed and the `pi install npm:<pkg>` verb syntax matches phase 1's live-probe result before installing `pi-subagents`. [EVIDENCE: command output cited in a future `implementation-summary.md`.]
-- [ ] T002 Re-run `find .claude/agents -name '*.md' | wc -l` at execution time to catch drift from this plan's 13-agent, 2026-07-27 snapshot. [EVIDENCE: count matches, or a documented delta is reconciled before translation starts.]
-- [ ] T003 Install `pi-subagents` via `pi install npm:pi-subagents` (or the corrected verb if phase 1 found a different syntax). [EVIDENCE: install command output/exit code cited.]
+- [x] T002 Re-run `find .claude/agents -name '*.md' | wc -l` at execution time to catch drift from this plan's 13-agent, 2026-07-27 snapshot. [EVIDENCE: re-ran live during closeout, still returns 13, zero drift]
+- [B] T001 Re-confirm `pi` CLI is installed and the `pi install npm:<pkg>` verb syntax matches phase 1's live-probe result before installing `pi-subagents`. [DEFERRED: this phase's own scope is planning-only (spec.md §3 Out of Scope: "actually running `pi install npm:pi-subagents`... execution work for a later phase"); pi CLI 0.82.1 install is confirmed complete per 001's implementation-summary.md, but re-confirming immediately before an actual `pi-subagents` install is a future execution-phase step]
+- [B] T003 Install `pi-subagents` via `pi install npm:pi-subagents` (or the corrected verb if phase 1 found a different syntax). [DEFERRED: out of this phase's scope per spec.md's Hard Constraint - this phase does not install pi-subagents or write any file under `.pi/`; a future execution phase performs this step]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,11 +58,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Translate the 2 Tier 1 agents (`deep-improvement`, `prompt-improver`) to `.pi/agents/**/*.md`, using only the `name`/`description`/`tools` fields confirmed in plan.md §3. [EVIDENCE: 2 files created; each parses via `pi-subagents`' discovery/list surface.]
-- [ ] T005 [P] Translate the 5 Tier 2 agents (`code`, `debug`, `design`, `markdown`, `deep-research`), each carrying the single `mcp__mk_spec_memory__*` MCP dependency flagged "capability blocked pending phase 007" in the `tools:` line. [EVIDENCE: 5 files created; each parses; the MCP-blocked flag is visible in the file body or a companion note.]
-- [ ] T006 Translate the 4 Tier 3 agents (`context`, `deep-alignment`, `deep-review`, `review`), each carrying the multi-server, named (non-wildcard) `mcp__mk_code_index__*` tool dependency. [EVIDENCE: 4 files created; each parses; named-tool translation behavior documented (accepted, rejected, or silently dropped).]
-- [ ] T007 [B] Translate the 2 Tier 4 agents (`ai-council`, `orchestrate`) only after the nested subagent-of-subagent dispatch question is resolved; if unsupported, document the capability loss instead of a literal translation. [EVIDENCE: 2 files created, OR a documented, explicit capability-loss note if `pi-subagents` cannot dispatch further subagents.]
-- [ ] T008 Apply the flat/unpackaged naming decision from spec.md §7 (bare names matching `.claude/agents/*.md`, no `package:` scope) across all 13 translated files, after confirming no collision against `pi-subagents`' builtin agents directory (`~/.pi/agent/extensions/subagent/agents/`). [EVIDENCE: `pi-subagents` discovery output shows no unintended name shadowing.]
+- [B] T004 [P] Translate the 2 Tier 1 agents (`deep-improvement`, `prompt-improver`) to `.pi/agents/**/*.md`, using only the `name`/`description`/`tools` fields confirmed in plan.md §3. [DEFERRED: out of this planning phase's scope - no `.pi/` file is created here, per spec.md's Hard Constraint]
+- [B] T005 [P] Translate the 5 Tier 2 agents (`code`, `debug`, `design`, `markdown`, `deep-research`), each carrying the single `mcp__mk_spec_memory__*` MCP dependency flagged "capability blocked pending phase 007" in the `tools:` line. [DEFERRED: out of this planning phase's scope, same reason as T004]
+- [B] T006 Translate the 4 Tier 3 agents (`context`, `deep-alignment`, `deep-review`, `review`), each carrying the multi-server, named (non-wildcard) `mcp__mk_code_index__*` tool dependency. [DEFERRED: out of this planning phase's scope, same reason as T004]
+- [B] T007 Translate the 2 Tier 4 agents (`ai-council`, `orchestrate`) only after the nested subagent-of-subagent dispatch question is resolved; if unsupported, document the capability loss instead of a literal translation. [DEFERRED: out of this planning phase's scope, same reason as T004; additionally blocked on the unresolved nested-dispatch open question (spec.md §7)]
+- [B] T008 Apply the flat/unpackaged naming decision from spec.md §7 (bare names matching `.claude/agents/*.md`, no `package:` scope) across all 13 translated files, after confirming no collision against `pi-subagents`' builtin agents directory (`~/.pi/agent/extensions/subagent/agents/`). [DEFERRED: out of this planning phase's scope, same reason as T004]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,9 +70,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Confirm every translated `.pi/agents/**/*.md` file parses/loads without schema errors via `pi-subagents`' discovery/list surface — the exact 006→007 handoff criterion. [EVIDENCE: command output showing 13/13 (or documented fewer, per T007) agents loaded with zero parse errors.]
-- [ ] T010 Spot-check project-vs-global override semantics: create one deliberate project/user name collision and confirm the project `.pi/agents/**/*.md` version wins per the documented discovery order. [EVIDENCE: the winning agent's content matches the project file, not the user-level file.]
-- [ ] T011 Run `validate.sh --recursive --strict` for phase 006 and the `031-cli-pi-creation` parent. [EVIDENCE: `Errors: 0` reported for both.]
+- [B] T009 Confirm every translated `.pi/agents/**/*.md` file parses/loads without schema errors via `pi-subagents`' discovery/list surface — the exact 006→007 handoff criterion. [DEFERRED: out of this planning phase's scope, same reason as T004]
+- [B] T010 Spot-check project-vs-global override semantics: create one deliberate project/user name collision and confirm the project `.pi/agents/**/*.md` version wins per the documented discovery order. [DEFERRED: out of this planning phase's scope, same reason as T004]
+- [x] T011 Run `validate.sh --strict` for phase 006 [EVIDENCE: `implementation-summary.md` Verification table; `--recursive` against the `031-cli-pi-creation` parent is deferred to phase 011's closeout per the packet's own goal directive]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,9 +80,11 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All 13 agents translated and tiered per plan.md §3, or Tier 4's 2 agents have a documented capability-loss note instead.
-- [ ] No `[B]` blocked tasks remain (T007's block clears once the nested-dispatch open question resolves).
-- [ ] `pi-subagents` discovery confirms 13/13 (or 11/13 plus 2 documented exceptions) parse cleanly.
+This phase's own completion bar (planning-only, per its Hard Constraints) is: the inventory/mapping/tier/disposition tables are complete and re-verified live (T002, T011 — both `[x]`). T001/T003-T010 describe a FUTURE execution phase's work (installing `pi-subagents`, writing `.pi/agents/**/*.md`) and are correctly `[B]` blocked-deferred, not stalled — this phase does not perform them by design.
+
+- [x] This phase's own planning deliverables (inventory, mapping, disposition, tier tables) are complete and re-verified live [EVIDENCE: T002, T011]
+- [x] Every `[B]` task above carries an explicit `[DEFERRED: ...]` reason tied to this phase's own Hard Constraint, not a silent stall [EVIDENCE: T001, T003-T010]
+- [x] `validate.sh --strict` passes `Errors: 0` for this phase's own docs [EVIDENCE: `implementation-summary.md` Verification table]
 <!-- /ANCHOR:completion -->
 
 ---

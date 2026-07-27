@@ -20,7 +20,9 @@
       "pi agent bridge tasks",
       "pi-subagents translation tasks",
       "pi agent bridge checklist",
-      "pi-subagents translation verification"
+      "pi-subagents translation verification",
+      "pi agent bridge summary",
+      "pi-subagents translation implementation"
     ],
     "key_topics": [
       "agent",
@@ -37,18 +39,31 @@
       "tiers"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "plan.md",
+      "spec.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -61,12 +76,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -154,26 +163,26 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Hard Constraint",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "only",
-        "kind": "key_phrase",
+        "name": "Completion Criteria This",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "zero",
-        "kind": "key_phrase",
+        "name": "Hard Constraints",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "the MCP-dependency",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -182,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo's 13 real `.claude/agents/.md` role files (confirmed via `find .claude/agents -name '.md' | wc -l` = 13, not the 14 files this phase's driving brief assumed, and not the 12 the directory's own `README.txt` inventories — `README.txt` predates `deep-alignment.md` and is stale) encode Claude Code-specific runtime conventions — hard-block dispatch gates, an \"ILLEGAL NESTING\" no-sub-dispatch rule, hook-injected advisor-context prose, and MCP tool wildcards (`mcpmkspecmemory`, `mcpmkcodeindex`) in the `tools:` frontmatter field — that have no native Pi equivalent",
     "created_at": "2026-07-27T06:48:17.834Z",
-    "last_save_at": "2026-07-27T07:00:36.107Z",
+    "last_save_at": "2026-07-27T10:09:30.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f256a45fbd387f5b6b6dded1626b1741b564cd577bbe4265aef629df80067168",
+    "source_fingerprint": "sha256:34040886a4e46354f7e12f07261fc30459a5577ba768b74369f44538a8d3bcce",
     "source_doc_hashes": {
-      "spec.md": "b3d2a9ddc4f200b6949ceedde9aece96c168ce138e36fae64adcfd5e1c57a075",
-      "plan.md": "8df6eaa0ad356ce8925e2996016a485c21cc436498cb00dcad311d4c2ba122c8",
-      "tasks.md": "dabd031dfcb5b41f68a2180d795d254d2edcc9444038ece586ed69ed24a44296",
-      "checklist.md": "708ed8756afd86405365fcbc758731ed5ec9f12b44212ac3514a62aa87b2ff0c"
+      "spec.md": "730f0bbdd0bb4ea8410a7867b05060ad9e4f1dc7598cb753cf367e0b67979c0a",
+      "plan.md": "37118fc87a3d1f197b1efc78126b51e2ff0279f87099abccca5c80e22bb48144",
+      "tasks.md": "8aec33854a11f04297f82344f99a2c61cd84a09b2d8e35a1b504a76bc8a784fd",
+      "checklist.md": "337f49eaf668dc134975a91f5933b60fd3a2bad5d6fc7bbe3e15af250ce4a762",
+      "implementation-summary.md": "7e76441f1ff614864377d4c992fee494e3e4814f38ca69c2b044e2ff66da6b0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

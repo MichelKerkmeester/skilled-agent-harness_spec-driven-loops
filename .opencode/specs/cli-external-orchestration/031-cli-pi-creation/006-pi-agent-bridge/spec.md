@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge"
-    last_updated_at: "2026-07-27T07:50:00Z"
+    last_updated_at: "2026-07-27T10:08:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec.md for phase 006 (Planned), third-party package, nothing built"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md"
+    recent_action: "Design re-verified live, zero drift; planning phase complete"
+    next_safe_action: "Commit; phase 007 proceeds with the MCP-dependency list"
     blockers: []
-    key_files: [".claude/agents/*.md (13 files)", "https://pi.dev/packages/pi-subagents"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-phase-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: ["Does pi-subagents support nested subagent dispatch (orchestrate.md needs it)?", "What is Pi's built-in tool-name vocabulary for the tools allowlist?", "Does tools allowlist support MCP-sourced names, under what convention?", "Which model IDs are valid; should translated agents pin one or omit it?"]
     answered_questions: ["Real agent count is 13, not 14 (brief) or 12 (stale README.txt) - confirmed via find", "None of the 13 real agent files declare a model field today - only name/description/tools", "pi-subagents schema confirmed live: name required, 14 more fields optional", "pi-subagents discovery order: builtin, installed-package, user, project (project wins)"]
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete - planning doctrine fully verified and re-derived live with zero drift; actual `pi-subagents` install and `.pi/agents/**/*.md` creation stay out of scope (deferred to a future execution phase) |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

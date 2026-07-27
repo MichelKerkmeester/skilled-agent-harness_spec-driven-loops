@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge"
-    last_updated_at: "2026-07-27T08:40:00Z"
+    last_updated_at: "2026-07-27T10:08:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md with agent inventory, schema mapping, disposition table"
-    next_safe_action: "Author tasks.md and checklist.md"
+    recent_action: "Inventory/mapping re-verified live, zero drift; dependency table refreshed"
+    next_safe_action: "Commit; phase 007 proceeds with the MCP-dependency list"
     blockers: []
-    key_files: [".claude/agents/*.md (13 files, tools: frontmatter grepped verbatim 2026-07-27)", "https://pi.dev/packages/pi-subagents"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-phase-006"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: ["Does pi-subagents support nested subagent-of-subagent dispatch, needed for ai-council/orchestrate (Tier 4)?", "What is Pi's canonical built-in tool-name vocabulary for the tools: allowlist?", "Does tools: support MCP-sourced tool names, and under what naming convention?", "Flat/unpackaged vs package-scoped agent naming - pending a collision check against pi-subagents' builtin agents directory."]
     answered_questions: ["MCP-dependent count is 11 of 13 by a fresh grep across tools: frontmatter (2026-07-27), not the 10 of 13 spec.md's Risks table states - the two non-MCP agents are deep-improvement and prompt-improver in both counts.", "code.md and review.md real frontmatter read live: name/description/tools only, no model field, confirming spec.md's finding.", "Only 2 of 13 agents (ai-council, orchestrate) carry the Agent tool (cross-agent dispatch capability) - these are the Tier 4 agents blocked on the nested-dispatch open question."]
 ---
@@ -65,9 +65,9 @@ This plan inventories all 13 real `.claude/agents/*.md` frontmatter blocks (capt
 - [x] Dependencies identified. [EVIDENCE: spec.md §6 names `001`/`004`/the `pi-subagents` page as dependencies; Phase Context cross-references `005`.]
 
 ### Definition of Done
-- [ ] All acceptance criteria met. [EVIDENCE: pending — REQ-001 through REQ-006 verified against this plan.md in `checklist.md`.]
-- [ ] Every one of the 13 agents assigned to exactly one of the 4 translation tiers with a cited rationale. [EVIDENCE: pending — §3 Architecture tier table below.]
-- [ ] No `.pi/agents/**/*.md` file created and no `pi install` command run by this phase. [EVIDENCE: pending — confirmed by `git status` showing no changes outside this phase folder.]
+- [x] All acceptance criteria met. [EVIDENCE: REQ-001 through REQ-006 verified against this plan.md in `checklist.md`.]
+- [x] Every one of the 13 agents assigned to exactly one of the 4 translation tiers with a cited rationale. [EVIDENCE: §3 Architecture tier table, 2+5+4+2=13, re-verified live at closeout.]
+- [x] No `.pi/agents/**/*.md` file created and no `pi install` command run by this phase. [EVIDENCE: `git status --porcelain .pi/` and `.claude/agents/` both empty.]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -203,9 +203,9 @@ These are the future execution phase's steps — not performed by this planning 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `001-pi-contract-pin` (pi CLI installed + `pi install` verb confirmed) | Internal | Planned | This phase's install-plan assumes the verb syntax; a mismatch blocks Phase 1 of the future execution work, not this planning doc. |
-| `004-pi-skill-discovery-bridge` (skill-path resolution for "load `sk-code`" body prose) | Internal | Planned | Affects `inheritSkills`/`skills`/`skillPath` field values only; the rest of the translation plan is independent. |
-| `007-pi-mcp-host-integration` (MCP stdio-transport support) | Internal | Planned | 11 of 13 agents lose their MCP capability in translation until this resolves; already flagged per-agent in the inventory table, not a blocker for the literal frontmatter translation itself. |
+| `001-pi-contract-pin` (pi CLI installed + `pi install` verb confirmed) | Internal | Complete — Pi CLI 0.82.1 installed; `pi install npm:<pkg> -l --approve` confirmed as the real verb | This phase's install-plan assumes the verb syntax, now confirmed; a future execution phase can proceed directly to `pi install npm:pi-subagents` |
+| `004-pi-skill-discovery-bridge` (skill-path resolution for "load `sk-code`" body prose) | Internal | Complete — Candidate A accepted with a re-verification trigger; live discovery-shape confirmation still blocked on provider credentials | Affects `inheritSkills`/`skills`/`skillPath` field values only; the rest of the translation plan is independent |
+| `007-pi-mcp-host-integration` (MCP stdio-transport support) | Internal | Not started | 11 of 13 agents lose their MCP capability in translation until this resolves; already flagged per-agent in the inventory table, not a blocker for the literal frontmatter translation itself |
 | `pi-subagents` package page (`https://pi.dev/packages/pi-subagents`) | External | Confirmed live 2026-07-27 | Docs can drift before execution; re-verify rather than trusting this snapshot indefinitely (per spec.md §6). |
 <!-- /ANCHOR:dependencies -->
 
