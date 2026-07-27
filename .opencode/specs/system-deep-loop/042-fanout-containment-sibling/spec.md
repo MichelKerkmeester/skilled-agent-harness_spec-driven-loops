@@ -1,26 +1,29 @@
 ---
-title: "Feature Specification: fanout containment sibling lineage scope [template:level-2/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: fanout containment sibling lineage scope"
+description: "Stop the fan-out write-containment guard from reverting sibling lineages' artifacts: under concurrency a sibling's concurrent writes are unattributable to the leaf that trips the guard, and reverting them destroys completed research runs."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "fanout containment sibling scope"
+  - "containment reverted sibling lineage"
+  - "write containment concurrency bug"
+  - "lineage artifacts deleted by containment"
+  - "042 fanout containment"
+importance_tier: "critical"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/042-fanout-containment-sibling"
-    last_updated_at: "2026-07-27T18:10:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-deep-loop/042-fanout-containment-sibling"
+    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Scoped fan-out containment away from sibling lineages"
+    next_safe_action: "Re-run the research fan-out now that siblings are protected"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/042-fanout-containment-sibling"
+      session_id: "2026-07-27-042-fanout-containment"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -30,13 +33,6 @@ _memory:
 # Feature Specification: fanout containment sibling lineage scope
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
 ---
 
@@ -46,10 +42,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P0 |
+| **Status** | In Progress |
 | **Created** | 2026-07-27 |
-| **Branch** | `scaffold/042-fanout-containment-sibling` |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | None |
+| **Parent Packet** | system-deep-loop |
+| **Predecessor** | 041-cli-devin-executor-wiring |
+| **Successor** | None |
+| **Handoff Criteria** | A leaf tripping containment reverts only its own out-of-scope writes; sibling lineage artifacts survive, proven by regression test |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,10 +59,14 @@ FAILURE MODES:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's directory is out of scope. The pre-dispatch baseline is captured when the leaf starts, before concurrent siblings have written anything. When a leaf writes outside its directory, the guard therefore classifies **every file its siblings produced since dispatch** as that leaf's violation and reverts it — restoring tracked files from HEAD and deleting untracked ones.
+
+This is not theoretical. On a three-lane research fan-out, one `cli-codex` lineage wrote to 16 repository paths; the guard reverted 55 paths, of which **39 were the two sibling lineages' artifacts**. A lineage that had already completed all five of its iterations lost its `research.md`, state log, findings registry, deltas, and every iteration file. A second lineage was rolled back from three iterations to one. Both had done nothing wrong.
+
+The underlying error is one of attribution: under concurrency the guard cannot distinguish a write made by the leaf it is policing from one made by a sibling running at the same time, yet it acts as though it can.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Confine the guard to writes it can actually attribute. Sibling lineage directories become explicitly unattributable — excluded from both detection and revert — while every path outside the leaf's directory and its siblings' stays fully guarded.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -70,19 +75,24 @@ FAILURE MODES:
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- An `unattributableDirs` option on the containment surface, resolved with the same repo-relative rules as `artifactDir`.
+- Exclusion of those directories from the pre-dispatch snapshot and from post-dispatch violation detection.
+- The fan-out worker passing its sibling lineage directories on both calls.
+- Regression coverage proving a sibling's completed artifacts survive a leaf's violation.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Changing which executor kinds are guarded — containment stays enabled for `cli-codex` only.
+- Preventing a leaf from writing into a sibling's directory; that write is now unattributable and therefore untouched rather than mis-reverted.
+- Recovering the artifacts already destroyed by the observed failure.
+- Any change to how the guard treats genuine out-of-scope repository writes.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `runtime/lib/deep-loop/write-containment.ts` | Modify | `unattributableDirs` option, scope resolution, exclusion in snapshot and detect |
+| `runtime/scripts/fanout-run.cjs` | Modify | Compute sibling lineage dirs; pass on snapshot and enforce |
+| `runtime/tests/unit/write-containment.vitest.ts` | Modify | Concurrent-sibling regression block |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -94,13 +104,18 @@ FAILURE MODES:
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | A sibling's writes are never reported as this leaf's violation | Detection returns empty when only a sibling wrote |
+| REQ-002 | A sibling's completed artifacts survive a leaf's violation | The sibling file still exists with original content after enforce |
+| REQ-003 | Genuine out-of-scope writes are still caught and reverted | A repo write by the leaf is detected and restored from HEAD |
+| REQ-004 | The fan-out worker passes sibling dirs on both calls | Snapshot and enforce receive the same exclusion set |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-005 | Exclusions that are not repo-relative subpaths are ignored | An absolute outside path does not widen or break scope |
+| REQ-006 | The leaf's own dir is never treated as unattributable | Passing it as an exclusion is a no-op |
+| REQ-007 | Typecheck and affected suites stay green | `npm run typecheck` clean; affected unit files pass |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -108,8 +123,9 @@ FAILURE MODES:
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The observed failure is reproducible without the fix and absent with it.
+- **SC-002**: A three-lane fan-out can survive one lane tripping containment with the other two intact.
+- **SC-003**: No reduction in coverage of genuine repository writes.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -119,90 +135,23 @@ FAILURE MODES:
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Excluding sibling dirs hides a leaf writing into a sibling | A cross-lineage write goes unreported | Accepted: the write is unattributable under concurrency, and mis-reverting is strictly worse than not reverting |
+| Risk | Over-broad exclusion weakens the guard | Real violations missed | Exclusions are an explicit list of sibling dirs, never a prefix of the whole repo |
+| Risk | Fix masks the separate problem that a research lane wrote to the repo at all | Stray writes keep happening, just unreverted elsewhere | Out of scope here; the guard still catches and reverts those repository writes |
 <!-- /ANCHOR:risks -->
 
 ---
 
 <!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
 
----
-
-<!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
-
-### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
-
-### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
-<!-- /ANCHOR:nfr -->
-
----
-
-<!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
-
-### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
-
-### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
-
-### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
-<!-- /ANCHOR:edge-cases -->
-
----
-
-<!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Notes |
-|-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
-<!-- /ANCHOR:complexity -->
-
----
-
-## 10. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Should a research-mode lineage run under a read-only sandbox so stray repository writes are impossible rather than reverted after the fact?
+- Should the guard emit a distinct advisory event when it observes activity in a sibling directory, so cross-lineage writes are still visible without being reverted?
 <!-- /ANCHOR:questions -->
 
 ---
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
 <!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
 **Given**
 **Given**
 **Given**

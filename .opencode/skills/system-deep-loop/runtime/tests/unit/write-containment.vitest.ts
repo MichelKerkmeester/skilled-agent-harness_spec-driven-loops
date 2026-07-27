@@ -298,6 +298,111 @@ describe('write-containment — classify + event builder', () => {
   });
 });
 
+// Regression: a concurrent fan-out gave every lineage its own artifact dir, so a
+// sibling's artifacts read as out-of-scope writes by whichever leaf tripped the
+// guard — and were reverted. One leaf's stray write erased a sibling's completed
+// run. Sibling dirs are now excluded from attribution, not reverted as damage.
+describe('write-containment — concurrent sibling lineages', () => {
+  function fanoutRepo(): { root: string; solDir: string; grokDir: string } {
+    const root = makeRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'ORIGINAL_OUTSIDE\n');
+    const solDir = join(root, 'lineages/sol');
+    const grokDir = join(root, 'lineages/grok');
+    mkdirSync(solDir, { recursive: true });
+    mkdirSync(grokDir, { recursive: true });
+    writeFileSync(join(solDir, 'seed.md'), 'seed\n');
+    writeFileSync(join(grokDir, 'seed.md'), 'seed\n');
+    commitAll(root, 'fix(containment): fan-out baseline');
+    return { root, solDir, grokDir };
+  }
+
+  it('does not report a sibling lineage write as this leaf violation', () => {
+    const { root, solDir, grokDir } = fanoutRepo();
+    const pre = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [grokDir],
+    });
+
+    // The sibling finishes its own run while this leaf is dispatched.
+    writeFileSync(join(grokDir, 'research.md'), 'grok findings\n');
+    writeFileSync(join(grokDir, 'deep-research-state.jsonl'), '{"type":"iteration"}\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [grokDir],
+      preDispatchDirtyPaths: pre,
+    });
+    expect(violations).toEqual([]);
+  });
+
+  it('leaves a completed sibling run on disk when this leaf trips containment', () => {
+    const { root, solDir, grokDir } = fanoutRepo();
+    const pre = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [grokDir],
+    });
+
+    const siblingArtifact = join(grokDir, 'research.md');
+    writeFileSync(siblingArtifact, 'grok findings\n');
+    // This leaf's genuine violation: a write to the wider repo.
+    writeFileSync(join(root, 'tracked-outside.txt'), 'CLOBBERED_BY_SOL\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [grokDir],
+      preDispatchDirtyPaths: pre,
+      label: 'sol',
+    });
+
+    // The real violation is still caught and reverted...
+    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+    // ...while the sibling's completed work survives untouched.
+    expect(existsSync(siblingArtifact)).toBe(true);
+    expect(readFileSync(siblingArtifact, 'utf8')).toBe('grok findings\n');
+  });
+
+  it('still guards paths outside both this leaf dir and its siblings', () => {
+    const { root, solDir, grokDir } = fanoutRepo();
+    const pre = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [grokDir],
+    });
+    writeFileSync(join(root, 'stray.txt'), 'leaf wrote outside\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [grokDir],
+      preDispatchDirtyPaths: pre,
+    });
+    expect(violations.map((v) => v.path)).toEqual(['stray.txt']);
+  });
+
+  it('ignores an unattributable dir that is not a repo-relative subpath', () => {
+    const { root, solDir } = fanoutRepo();
+    const pre = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [join(tmpdir(), 'not-in-this-repo')],
+    });
+    writeFileSync(join(root, 'stray.txt'), 'leaf wrote outside\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir: solDir,
+      unattributableDirs: [join(tmpdir(), 'not-in-this-repo')],
+      preDispatchDirtyPaths: pre,
+    });
+    expect(violations.map((v) => v.path)).toEqual(['stray.txt']);
+  });
+});
+
 function dirtySorted(arr: string[]): string[] {
   return [...arr].sort();
 }

@@ -1,20 +1,28 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/042-fanout-containment-sibling",
-  "description": "fanout containment sibling lineage scope",
+  "description": "The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's",
   "keywords": [
-    "fanout",
-    "containment",
-    "sibling",
+    "fan-out",
+    "worker",
+    "calls",
+    "write-containment",
+    "guard",
+    "artifactdir",
+    "set",
+    "single",
     "lineage",
-    "scope"
+    "own",
+    "directory",
+    "every",
+    "sibling"
   ],
-  "lastUpdated": "2026-07-27T18:10:15.339Z",
+  "lastUpdated": "2026-07-27T18:14:17.262Z",
   "specId": "042",
   "folderSlug": "fanout-containment-sibling",
   "parentChain": [
     "system-deep-loop"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: fanout containment sibling lineage scope [template:level-2/plan.md]"
+title: "Implementation Plan: fanout containment sibling lineage scope"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"
@@ -11,16 +11,16 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/042-fanout-containment-sibling"
+    packet_pointer: "system-deep-loop/042-fanout-containment-sibling"
     last_updated_at: "2026-07-27T18:10:15Z"
-    last_updated_by: "template-author"
+    last_updated_by: "claude-code"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/042-fanout-containment-sibling"
+      session_id: "2026-07-27-042-fanout-containment-sibling"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
