@@ -1,0 +1,479 @@
+{
+  "mergedFrom": [
+    "sol"
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-design-foundations-capabilities-are-actually-invoked-and-should-they-fold-",
+      "inboxId": null,
+      "text": "Which `design-foundations` capabilities are actually invoked, and should they fold into interface or shared?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "question-2-which-design-audit-capabilities-are-actually-invoked-and-should-they-become-an-i",
+      "inboxId": null,
+      "text": "Which `design-audit` capabilities are actually invoked, and should they become an interface gate or shared procedure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "question-3-what-consumes-the-styles-database-and-adapter-and-where-should-those-assets-live",
+      "inboxId": null,
+      "text": "What consumes the styles database and adapter, and where should those assets live?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "question-4-what-routing-and-reference-evidence-distinguishes-used-capability-from-dead-weig",
+      "inboxId": null,
+      "text": "What routing and reference evidence distinguishes used capability from dead weight in every current mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "question-5-should-the-four-survivors-remain-hub-modes-or-become-standalone-skills",
+      "inboxId": null,
+      "text": "Should the four survivors remain hub modes or become standalone skills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "question-6-what-ordered-migration-compatibility-rollback-and-verification-plan-can-a-build-",
+      "inboxId": null,
+      "text": "What ordered migration, compatibility, rollback, and verification plan can a build packet execute?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-4-finding-1",
+      "title": "`/interface:audit` is a real, independently invokable user command — not an interface completion gate",
+      "text": "`/interface:audit` is a real, independently invokable user command — not an interface completion gate",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "Advisor utilization exists only at hub granularity. The advisor metadata declares one `sk-design` skill identity and carries mode phrases inside that identity; the hub explicitly says the advisor routes to `sk-design` first and the hub selects the packet. Therefore packet extraction into standalone skills would change advisor topology, while folding foundations/audit inside the hub can preserve the current advisor contract. [SOURCE: .opencode/skills/sk-design/graph-metadata.json:1-6] [SOURCE: .opencode/skills/sk-design/graph-metadata.json:53-80] [SOURCE: .opencode/skills/sk-design/graph-metadata.json:146-178] [SOURCE: .opencode/skills/sk-design/SKILL.md:52-60]",
+      "text": "Advisor utilization exists only at hub granularity. The advisor metadata declares one `sk-design` skill identity and carries mode phrases inside that identity; the hub explicitly says the advisor routes to `sk-design` first and the hub selects the packet. Therefore packet extraction into standalone skills would change advisor topology, while folding foundations/audit inside the hub can preserve the current advisor contract. [SOURCE: .opencode/skills/sk-design/graph-metadata.json:1-6] [SOURCE: .opencode/skills/sk-design/graph-metadata.json:53-80] [SOURCE: .opencode/skills/sk-design/graph-metadata.json:146-178] [SOURCE: .opencode/skills/sk-design/SKILL.md:52-60]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/sol/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "All six packets are structurally reachable through the hub: each has a `workflowMode`, packet path, metadata routing block, equal router weight, and aliases. Five judgment modes also have dedicated `/interface:*` commands; Open Design alone has `command:null` and is reachable as a mandatory-paired transport. The router has no configured default and uses a six-entry tie-break order. This proves maintained routing surface, not observed user frequency. [SOURCE: .opencode/skills/sk-design/mode-registry.json:15-24] [SOURCE: .opencode/skills/sk-design/mode-registry.json:41-161] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-93] [SOURCE: .opencode/commands/interface/design.md:7-18] [SOURCE: .opencode/commands/interface/foundations.md:7-18] [SOURCE: .opencode/commands/interface/motion.md:7-18] [SOURCE: .opencode/commands/interface/audit.md:7-18] [SOURCE: .opencode/commands/interface/design-reference.md:7-18]",
+      "text": "All six packets are structurally reachable through the hub: each has a `workflowMode`, packet path, metadata routing block, equal router weight, and aliases. Five judgment modes also have dedicated `/interface:*` commands; Open Design alone has `command:null` and is reachable as a mandatory-paired transport. The router has no configured default and uses a six-entry tie-break order. This proves maintained routing surface, not observed user frequency. [SOURCE: .opencode/skills/sk-design/mode-registry.json:15-24] [SOURCE: .opencode/skills/sk-design/mode-registry.json:41-161] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-93] [SOURCE: .opencode/commands/interface/design.md:7-18] [SOURCE: .opencode/commands/interface/foundations.md:7-18] [SOURCE: .opencode/commands/interface/motion.md:7-18] [SOURCE: .opencode/commands/interface/audit.md:7-18] [SOURCE: .opencode/commands/interface/design-reference.md:7-18]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/sol/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "Artifact requests are mode-specific upper bounds, not guarantees that every named file is loaded. Interface and motion request `DESIGN.md` plus `source.md`; foundations and audit request those plus `design-tokens.json`; md-generator STUDY requests `DESIGN.md` plus `design-tokens.json`. Interface budgets 8 KiB for the anchor and 2 KiB for the secondary, foundations and motion budget 8 KiB per card, and audit budgets 4 KiB per comparison. The live facade probe returned a real `getburnt` card, but each 8 KiB hydration contained only a truncated `getburnt/DESIGN.md`; later requested artifacts did not fit. Therefore a migration must preserve include allowlists, artifact ordering, truncation flags, and byte-cap behavior, and callers must not equate `includes` with a complete payload. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:126-128] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:566-575] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:217-218] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:798-807] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:159-160] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:732-741] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:101-103] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:448-457] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/tests/study-exemplars.test.ts:228-233] [SOURCE: local execution of `runQuery` followed by four `runHydrate` calls against the committed corpus]",
+      "text": "Artifact requests are mode-specific upper bounds, not guarantees that every named file is loaded. Interface and motion request `DESIGN.md` plus `source.md`; foundations and audit request those plus `design-tokens.json`; md-generator STUDY requests `DESIGN.md` plus `design-tokens.json`. Interface budgets 8 KiB for the anchor and 2 KiB for the secondary, foundations and motion budget 8 KiB per card, and audit budgets 4 KiB per comparison. The live facade probe returned a real `getburnt` card, but each 8 KiB hydration contained only a truncated `getburnt/DESIGN.md`; later requested artifacts did not fit. Therefore a migration must preserve include allowlists, artifact ordering, truncation flags, and byte-cap behavior, and callers must not equate `includes` with a complete payload. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:126-128] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:566-575] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:217-218] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:798-807] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:159-160] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:732-741] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:101-103] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:448-457] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/tests/study-exemplars.test.ts:228-233] [SOURCE: local execution of `runQuery` followed by four `runHydrate` calls against the committed corpus]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/sol/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-9",
+      "title": "Audit carries its own corpus, parity tests, and large reference corpus — too big for a sub-call",
+      "text": "Audit carries its own corpus, parity tests, and large reference corpus — too big for a sub-call",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "Audit owns a private severity model and scoring rubric that no sibling duplicates",
+      "text": "Audit owns a private severity model and scoring rubric that no sibling duplicates",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "Audit owns the AI-fingerprint registry and its fixture parity — a capability no other mode references",
+      "text": "Audit owns the AI-fingerprint registry and its fixture parity — a capability no other mode references",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "Audit owns two executable, Bash-dependent checks that downstream consumers run",
+      "text": "Audit owns two executable, Bash-dependent checks that downstream consumers run",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "Backend selection is centralized and transparent to all consumers. The four direct importers call only `style-library.mjs`; none imports the database plane. They do not pass `styleDatabaseMode`, so the adapter resolves an explicit option first, then `SK_DESIGN_STYLE_DB_MODE`, then defaults to `legacy`. Md-generator spawns the same facade CLI and inherits that environment. One facade-preserving relocation can therefore keep all five consumers compatible, while moving database APIs into individual modes would duplicate a boundary that is currently singular. [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:5-20] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:97-111] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-89]",
+      "text": "Backend selection is centralized and transparent to all consumers. The four direct importers call only `style-library.mjs`; none imports the database plane. They do not pass `styleDatabaseMode`, so the adapter resolves an explicit option first, then `SK_DESIGN_STYLE_DB_MODE`, then defaults to `legacy`. Md-generator spawns the same facade CLI and inherits that environment. One facade-preserving relocation can therefore keep all five consumers compatible, while moving database APIs into individual modes would duplicate a boundary that is currently singular. [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:5-20] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:97-111] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:54-89]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/sol/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "Compatibility consumers (every migrated stage must keep these working)",
+      "text": "Compatibility consumers (every migrated stage must keep these working)",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "Existing tests are migration constraints, not proof that foundations must remain a mode",
+      "text": "Existing tests are migration constraints, not proof that foundations must remain a mode",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/sol/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-7",
+      "title": "Final recommendations (sized for a build packet)",
+      "text": "Final recommendations (sized for a build packet)",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "Fold foundations into `design-interface` as a named internal subworkflow, while preserving `/interface:foundations` as a compatibility alias",
+      "text": "Fold foundations into `design-interface` as a named internal subworkflow, while preserving `/interface:foundations` as a compatibility alias",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/sol/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "Foundations is independently invoked, not merely declared in a routing table",
+      "text": "Foundations is independently invoked, not merely declared in a routing table",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/sol/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "Interface owns its own mechanical preflight card — pre-delivery SHIP/FIX is already an interface obligation",
+      "text": "Interface owns its own mechanical preflight card — pre-delivery SHIP/FIX is already an interface obligation",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "Ordered migration stages (six stages)",
+      "text": "Ordered migration stages (six stages)",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-10",
+      "title": "Parity tests encode the current topology — compatibility consumers, not invariants",
+      "text": "Parity tests encode the current topology — compatibility consumers, not invariants",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "Repository evidence can quantify calls per workflow invocation but cannot establish observed user frequency. There is no production invocation telemetry in the examined surfaces. Executable call sites, focused tests, and the successful live facade probe establish that the boundary is real and operable; they do not show how often users invoke interface, foundations, motion, audit, or STUDY. Any migration claim based on “rarely used” versus “frequently used” needs external telemetry or must retain this explicit confidence ceiling. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/tests/relational-exemplar.test.mjs:17] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/tests/relationship-blueprint.test.mjs:17] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/tests/motion-evidence.test.mjs:17] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/tests/comparison-lane.test.mjs:17] [SOURCE: .opencode/skills/sk-design/styles/tests/database/adapter.test.mjs:9-10]",
+      "text": "Repository evidence can quantify calls per workflow invocation but cannot establish observed user frequency. There is no production invocation telemetry in the examined surfaces. Executable call sites, focused tests, and the successful live facade probe establish that the boundary is real and operable; they do not show how often users invoke interface, foundations, motion, audit, or STUDY. Any migration claim based on “rarely used” versus “frequently used” needs external telemetry or must retain this explicit confidence ceiling. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/tests/relational-exemplar.test.mjs:17] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/tests/relationship-blueprint.test.mjs:17] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/tests/motion-evidence.test.mjs:17] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/tests/comparison-lane.test.mjs:17] [SOURCE: .opencode/skills/sk-design/styles/tests/database/adapter.test.mjs:9-10]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/sol/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-6",
+      "title": "Risk register",
+      "text": "Risk register",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "Rollback + abort criteria",
+      "text": "Rollback + abort criteria",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "Shared ownership should stop at mode-neutral contracts and utilities",
+      "text": "Shared ownership should stop at mode-neutral contracts and utilities",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/sol/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-7",
+      "title": "Sibling commands treat audit as an external workflow with hand-off, not a sub-call",
+      "text": "Sibling commands treat audit as an external workflow with hand-off, not a sub-call",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "The adapter preserves a compatibility boundary that a migration must keep intact: the facade exports `runQuery` and `runHydrate`, while `SK_DESIGN_STYLE_DB_MODE` or an explicit option selects `legacy`, `shadow`, or `persistent`; the default is `legacy`. The flat corpus remains the authority even for persistent hydration. That makes the facade path and response contract more load-bearing than the current parent directory name. [SOURCE: .opencode/skills/sk-design/styles/lib/engine/style-library.mjs:178-204] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:97-111] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:144-170] [SOURCE: .opencode/skills/sk-design/styles/README.md:10-18]",
+      "text": "The adapter preserves a compatibility boundary that a migration must keep intact: the facade exports `runQuery` and `runHydrate`, while `SK_DESIGN_STYLE_DB_MODE` or an explicit option selects `legacy`, `shadow`, or `persistent`; the default is `legacy`. The flat corpus remains the authority even for persistent hydration. That makes the facade path and response contract more load-bearing than the current parent directory name. [SOURCE: .opencode/skills/sk-design/styles/lib/engine/style-library.mjs:178-204] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:97-111] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:144-170] [SOURCE: .opencode/skills/sk-design/styles/README.md:10-18]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/sol/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "The five consumers have bounded, conditional call cardinality rather than open-ended corpus loading. Interface performs one query, then hydrates one anchor and optionally one secondary card. Foundations performs one query, then hydrates the coherent anchor plus up to three axis owners. Motion performs no retrieval when the restraint gate says “do not move” or no attested candidate exists; otherwise it performs one query and one hydration. Audit performs one query and hydrates zero to two requested comparisons. Md-generator’s STUDY preparation performs one query and one hydration through a child-process wrapper. All four direct mode consumers cap query results at five cards. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:126-128] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:607-612] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:642-678] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:216-218] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:838-867] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:759-795] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:820-822] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:101-103] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:487-533] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:75-113]",
+      "text": "The five consumers have bounded, conditional call cardinality rather than open-ended corpus loading. Interface performs one query, then hydrates one anchor and optionally one secondary card. Foundations performs one query, then hydrates the coherent anchor plus up to three axis owners. Motion performs no retrieval when the restraint gate says “do not move” or no attested candidate exists; otherwise it performs one query and one hydration. Audit performs one query and hydrates zero to two requested comparisons. Md-generator’s STUDY preparation performs one query and one hydration through a child-process wrapper. All four direct mode consumers cap query results at five cards. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:126-128] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:607-612] [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:642-678] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:216-218] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:838-867] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:759-795] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:820-822] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:101-103] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:487-533] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:75-113]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/sol/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "The ownership boundary is already explicit. `styles/lib/` is authored, importable source code and is neither generated nor mutable. `styles/library/` is the committed flat corpus and manifest surface generated by the extraction/build workflow; it remains the authority. `styles/database/` is mutable runtime state, and the SQLite database is a rebuildable projection whose normal query/hydrate paths never build it. Persistent mode selects from the published database but hydrates only selected, database-hash-verified authoritative artifacts. [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:5-13] [SOURCE: .opencode/skills/sk-design/styles/README.md:10-18] [SOURCE: .opencode/skills/sk-design/styles/scripts/README.md:67-85] [SOURCE: .opencode/skills/sk-design/styles/lib/database/README.md:5-20] [SOURCE: .opencode/skills/sk-design/styles/lib/database/README.md:41-45] [SOURCE: .opencode/skills/sk-design/styles/lib/database/README.md:143-149] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:24-32]",
+      "text": "The ownership boundary is already explicit. `styles/lib/` is authored, importable source code and is neither generated nor mutable. `styles/library/` is the committed flat corpus and manifest surface generated by the extraction/build workflow; it remains the authority. `styles/database/` is mutable runtime state, and the SQLite database is a rebuildable projection whose normal query/hydrate paths never build it. Persistent mode selects from the published database but hydrates only selected, database-hash-verified authoritative artifacts. [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:5-13] [SOURCE: .opencode/skills/sk-design/styles/README.md:10-18] [SOURCE: .opencode/skills/sk-design/styles/scripts/README.md:67-85] [SOURCE: .opencode/skills/sk-design/styles/lib/database/README.md:5-20] [SOURCE: .opencode/skills/sk-design/styles/lib/database/README.md:41-45] [SOURCE: .opencode/skills/sk-design/styles/lib/database/README.md:143-149] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:24-32]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/sol/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "The physical inventory is six registered mode packets plus one shared styles surface: `design-interface` 62 files, `design-foundations` 48, `design-motion` 39, `design-audit` 70, `design-md-generator` 115, `design-mcp-open-design` 43, and `styles` 7,812. The styles total decomposes into 7,745 library files, 41 tests, 21 library/adapter modules, two scripts, two database artifacts, and one root README. Its 1,290 bundles account for six files per style, while five manifest files complete the library count. [SOURCE: local inventory command `rg --files .opencode/skills/sk-design/<surface> | wc -l`] [SOURCE: .opencode/skills/sk-design/styles/README.md:5-21] [INFERENCE: 1,290 bundles × six documented files = 7,740; 7,745 library files therefore include five non-bundle manifest files]",
+      "text": "The physical inventory is six registered mode packets plus one shared styles surface: `design-interface` 62 files, `design-foundations` 48, `design-motion` 39, `design-audit` 70, `design-md-generator` 115, `design-mcp-open-design` 43, and `styles` 7,812. The styles total decomposes into 7,745 library files, 41 tests, 21 library/adapter modules, two scripts, two database artifacts, and one root README. Its 1,290 bundles account for six files per style, while five manifest files complete the library count. [SOURCE: local inventory command `rg --files .opencode/skills/sk-design/<surface> | wc -l`] [SOURCE: .opencode/skills/sk-design/styles/README.md:5-21] [INFERENCE: 1,290 bundles × six documented files = 7,740; 7,745 library files therefore include five non-bundle manifest files]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/sol/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "The safest ownership fate is a non-discoverable shared styles package inside the `sk-design` hub, not ownership by md-generator or interface and not a fifth workflow mode. Keep the facade plus adapter and path seam together; keep the generated corpus and rebuildable database lifecycle behind that facade; preserve the old facade import/CLI path temporarily or update all five consumers atomically. This follows the current dependency direction: five sibling consumers depend on one storage-neutral contract, while no consumer depends directly on the database implementation. [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:10-20] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/README.md:5-20] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:1-8] [INFERENCE: shared internal ownership minimizes import rewrites and avoids making a data/service boundary advisor-discoverable]",
+      "text": "The safest ownership fate is a non-discoverable shared styles package inside the `sk-design` hub, not ownership by md-generator or interface and not a fifth workflow mode. Keep the facade plus adapter and path seam together; keep the generated corpus and rebuildable database lifecycle behind that facade; preserve the old facade import/CLI path temporarily or update all five consumers atomically. This follows the current dependency direction: five sibling consumers depend on one storage-neutral contract, while no consumer depends directly on the database implementation. [SOURCE: .opencode/skills/sk-design/styles/lib/README.md:10-20] [SOURCE: .opencode/skills/sk-design/styles/lib/engine/README.md:5-20] [SOURCE: .opencode/skills/sk-design/styles/lib/paths.mjs:1-8] [INFERENCE: shared internal ownership minimizes import rewrites and avoids making a data/service boundary advisor-discoverable]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/sol/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "The shared `polish-gate-orchestration` procedure explicitly names `design-audit` as the owning reviewer",
+      "text": "The shared `polish-gate-orchestration` procedure explicitly names `design-audit` as the owning reviewer",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "The styles tree is load-bearing code, not an orphaned archive. Interface, foundations, motion, and audit each import the same `runQuery`/`runHydrate` facade, and md-generator invokes that facade as a child process for its STUDY workflow. The adapter therefore has five current mode consumers; relocating it under md-generator would invert four sibling dependencies. A shared asset boundary is the evidence-backed current shape, although the final ownership decision remains open. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:11-28] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:11-28] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:11-24] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:11-28] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:51-89]",
+      "text": "The styles tree is load-bearing code, not an orphaned archive. Interface, foundations, motion, and audit each import the same `runQuery`/`runHydrate` facade, and md-generator invokes that facade as a child process for its STUDY workflow. The adapter therefore has five current mode consumers; relocating it under md-generator would invert four sibling dependencies. A shared asset boundary is the evidence-backed current shape, although the final ownership decision remains open. [SOURCE: .opencode/skills/sk-design/design-interface/corpus/relational-exemplar.mjs:11-28] [SOURCE: .opencode/skills/sk-design/design-foundations/corpus/relationship-blueprint.mjs:11-28] [SOURCE: .opencode/skills/sk-design/design-motion/corpus/motion-evidence.mjs:11-24] [SOURCE: .opencode/skills/sk-design/design-audit/corpus/comparison-lane.mjs:11-28] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts:51-89]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/sol/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "The three foundations procedure cards are invoked by the foundations workflow, not by ordinary interface work",
+      "text": "The three foundations procedure cards are invoked by the foundations workflow, not by ordinary interface work",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/sol/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "Topology decision matrix (post-consolidation destinations)",
+      "text": "Topology decision matrix (post-consolidation destinations)",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-8",
+      "title": "Transform verbs create a deliberate audit/interface split that any consolidation must preserve",
+      "text": "Transform verbs create a deliberate audit/interface split that any consolidation must preserve",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/sol/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "Two documentation/configuration contradictions are migration hazards. The hub layout and references still name `styles/_engine` and `styles/_db`, while the working implementation and all five consumers use `styles/lib/engine` and `styles/lib/database`. Separately, `hub-router.json` sets `defaultMode:null`, while hub prose says generic prompts default to interface. These do not invalidate the live imports, but any build packet must choose a single canonical path and fallback rule before rewriting references. [SOURCE: .opencode/skills/sk-design/SKILL.md:208-226] [SOURCE: .opencode/skills/sk-design/SKILL.md:232-263] [SOURCE: .opencode/skills/sk-design/styles/README.md:10-18] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-7] [SOURCE: .opencode/skills/sk-design/SKILL.md:232-240]",
+      "text": "Two documentation/configuration contradictions are migration hazards. The hub layout and references still name `styles/_engine` and `styles/_db`, while the working implementation and all five consumers use `styles/lib/engine` and `styles/lib/database`. Separately, `hub-router.json` sets `defaultMode:null`, while hub prose says generic prompts default to interface. These do not invalidate the live imports, but any build packet must choose a single canonical path and fallback rule before rewriting references. [SOURCE: .opencode/skills/sk-design/SKILL.md:208-226] [SOURCE: .opencode/skills/sk-design/SKILL.md:232-263] [SOURCE: .opencode/skills/sk-design/styles/README.md:10-18] [SOURCE: .opencode/skills/sk-design/hub-router.json:5-7] [SOURCE: .opencode/skills/sk-design/SKILL.md:232-240]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/sol/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "Verification gates",
+      "text": "Verification gates",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/sol/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 6,
+    "resolvedQuestions": 0,
+    "keyFindings": 34,
+    "sourceFindings": 34,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.65,
+    "coverageBySources": {}
+  }
+}
