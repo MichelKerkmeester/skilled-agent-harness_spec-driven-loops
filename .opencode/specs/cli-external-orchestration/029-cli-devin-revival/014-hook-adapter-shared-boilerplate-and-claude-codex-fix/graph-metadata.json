@@ -16,7 +16,8 @@
       "firstNonBlankString claude codex",
       "hook adapter shared boilerplate plan",
       "hook adapter shared boilerplate tasks",
-      "hook adapter shared boilerplate checklist"
+      "hook adapter shared boilerplate checklist",
+      "hook adapter shared boilerplate summary"
     ],
     "key_topics": [
       "hook",
@@ -33,12 +34,13 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,6 +65,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -108,12 +116,6 @@
         "source": "derived"
       },
       {
-        "name": "Implement Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -133,6 +135,12 @@
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -178,31 +186,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two independent findings from the 5-iteration deep-research pass (GPT-5.6-SOL, high effort) on the cli-devin and cli-cursor hook adapter layers:",
     "created_at": "2026-07-27T06:06:41.642Z",
-    "last_save_at": "2026-07-27T06:18:49.562Z",
+    "last_save_at": "2026-07-27T08:19:46.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5510f88c9b26e7cd811c8c446a2fb1957258537ccdf8f637e34a45f3bfe50602",
+    "source_fingerprint": "sha256:d5cd241793a27ced56c28c9687dee31426458acddce719fa601128e669c27be5",
     "source_doc_hashes": {
-      "spec.md": "86168262648ef751a7a907cdb08be8f7869466e7e0b25f4d0d1a76a3d068e63f",
-      "plan.md": "d14c40df15732eea47528db7aeff7a270866f3a7621ae4bc8a0e3fdc5bcb1057",
-      "tasks.md": "ae46db23718d8a54dd4b12c81072957f81fba6ee9a7a89d6fde4530741380f5d",
-      "checklist.md": "0db9e4782ee385775c1373093125cbfa4eb905189268a8100d5e1e370c658d2b"
+      "spec.md": "d5ec3cb036271e1f542e3b334e2660d5c65ce525f4f2afb4adbb0c47422db6b1",
+      "plan.md": "35920e59f22b77153f8cdab58a6089b13ac401202ff52ef3212d0b4d885cc477",
+      "tasks.md": "aa5c158af879c5b1d1d659f893ba592f1fe291b6bbf1f5f25540de28a45354ee",
+      "checklist.md": "60862cff1e9ed6540217f1e7c3122337ef0ef81cda601c0989bce56d776d7cd0",
+      "implementation-summary.md": "2f4d6210f8325664954ebd8f2a8198ab275fe52803a16211d373ea934e990af7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,6 +18,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+import { parseJsonFailOpen, readStdin } from '../../lib/hook-adapter-shared.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -39,12 +40,6 @@ function approve() {
   // {"permission":"allow"} + exit 0 -> defer to the normal flow.
   process.stdout.write(JSON.stringify({ permission: 'allow' }));
   process.exit(0);
-}
-
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
 }
 
 // A `||` chain picks the first truthy VALUE, not the first valid string -- a
@@ -69,12 +64,8 @@ function filePathFrom(toolInput) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  let payload;
-  try {
-    payload = JSON.parse(await readStdin());
-  } catch {
-    return approve(); // no/invalid payload -> fail open
-  }
+  const payload = parseJsonFailOpen(await readStdin());
+  if (payload === null) return approve(); // no/invalid payload -> fail open
 
   const tool = CURSOR_TOOL_MAP[String(payload?.tool_name || '')];
   if (!tool) return approve();

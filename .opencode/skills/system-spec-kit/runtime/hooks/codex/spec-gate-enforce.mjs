@@ -19,6 +19,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
+import { parseJsonFailOpen, readStdin } from '../../lib/hook-adapter-shared.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -37,12 +38,6 @@ function approve() {
   process.exit(0);
 }
 
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
-}
-
 // Codex `apply_patch` carries the target inside the patch body (tool_input.command),
 // not a file_path field -- an `*** Add/Update/Delete File:` (or `*** Move to:`)
 // header per affected file. Parse those out so the gate sees the real target;
@@ -59,10 +54,22 @@ function pathsFromPatch(patchText) {
   return paths;
 }
 
+// A `||` chain picks the first truthy VALUE, not the first valid string -- a
+// truthy non-string in an earlier field (e.g. a stray object) would suppress
+// a valid string in a later one and still resolve to null. This picks the
+// first field that is actually a non-blank string, confirmed-canonical field
+// first, so partial/malformed payloads never silently mask a real alias.
+function firstNonBlankString(...candidates) {
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim().length > 0) return candidate;
+  }
+  return null;
+}
+
 function filePathFrom(toolInput, projectDir) {
   if (!toolInput || typeof toolInput !== 'object') return null;
-  const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  if (typeof candidate === 'string' && candidate) return candidate;
+  const candidate = firstNonBlankString(toolInput.file_path, toolInput.filePath, toolInput.path);
+  if (candidate !== null) return candidate;
   const paths = pathsFromPatch(toolInput.command || toolInput.input || toolInput.patch);
   if (paths.length === 0) return null;
   // Evaluate on the first path the gate would actually act on, so a multi-file
@@ -76,12 +83,8 @@ function filePathFrom(toolInput, projectDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  let payload;
-  try {
-    payload = JSON.parse(await readStdin());
-  } catch {
-    return approve(); // no/invalid payload -> fail open
-  }
+  const payload = parseJsonFailOpen(await readStdin());
+  if (payload === null) return approve(); // no/invalid payload -> fail open
 
   const tool = CODEX_TOOL_MAP[String(payload?.tool_name || '').toLowerCase()];
   if (!tool) return approve();

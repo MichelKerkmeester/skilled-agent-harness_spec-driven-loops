@@ -21,6 +21,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const guardCore = require('../../lib/deep-loop/dispatch-guard.cjs');
+const { parseJsonFailOpen, readStdin } = require('../../../../system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -43,23 +44,13 @@ function firstNonBlankString(...candidates) {
   return undefined;
 }
 
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  let payload;
-  try {
-    payload = JSON.parse(await readStdin());
-  } catch {
-    return approve(); // no/invalid payload -> fail open
-  }
+  const payload = parseJsonFailOpen(await readStdin());
+  if (payload === null) return approve(); // no/invalid payload -> fail open
 
   if (String(payload?.tool_name || '').toLowerCase() !== 'run_subagent') return approve();
 
