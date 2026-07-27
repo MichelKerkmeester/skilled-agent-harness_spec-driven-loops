@@ -17,7 +17,8 @@
       "buildPiLineageCommand",
       "cli-pi executor support plan",
       "cli-pi executor support tasks",
-      "cli-pi executor support checklist"
+      "cli-pi executor support checklist",
+      "cli-pi executor support results"
     ],
     "key_topics": [
       "cli-pi",
@@ -31,17 +32,24 @@
       "plan",
       "tasks",
       "checklist",
-      "runtime"
+      "results"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "tasks.md",
       "plan.md",
       "checklist.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "tasks.md",
         "kind": "doc",
@@ -163,13 +171,13 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "LUNA",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "passing",
+        "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -179,31 +187,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop runtime's typed executor union currently has 5 members — confirmed live at `executor-config.ts` line 11: `['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor']`",
     "created_at": "2026-07-27T06:48:17.397Z",
-    "last_save_at": "2026-07-27T07:00:35.667Z",
+    "last_save_at": "2026-07-27T09:00:38.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c78ab877bc89dc2ed0ee9737ad814b273346f2416debfa351f03d6303a06e238",
+    "source_fingerprint": "sha256:21c895e9579bb8d1ec8297ea608d91d9c87e9fa9e418e300230a7e3ce70435e0",
     "source_doc_hashes": {
-      "spec.md": "3d4c15485680d750efa5f0b9f3e96ace171b4685adfdbe686dc961b7fa1c46af",
-      "plan.md": "70abfb8c946b130d8465b28d28ff1a04c5d9cb8737bb245c8d60392c22ee886d",
-      "tasks.md": "15907bf11de185c97fa9ea03104040e86f1c654426554ee3ac037ded9ad0df3b",
-      "checklist.md": "6fc0b47f6faaee342aa741edd730831e07cff253746df1156a06c6f1c48ad70f"
+      "spec.md": "a2db2cabd75e705b45096bbefc197bccd3bdfc233765e09b14605228c2a7af97",
+      "plan.md": "e79e429c302d92c026fb99514f143a0caed4cf8094d8f0bb0c0f5e9f3168c5a3",
+      "tasks.md": "8386422528bc7627824f65f0abe6a6b77db64a7f1ce8159626c93d8f1048beeb",
+      "checklist.md": "8fd597e9c88f01a7f56922a44178eadf7e98abb25694db3911e05c6052294e3a",
+      "implementation-summary.md": "b300a601f283842f8cef62d1eb96ee1f6ae4c768aab8761d53608cba70c0957b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -12,6 +12,7 @@ const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/dee
 const require = createRequire(import.meta.url);
 
 const DISPATCH_MODEL_PATH = path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs');
+const PROFILE_VALIDATOR_PATH = path.join(SCRIPTS, 'model-benchmark/lib/profile-validator.cjs');
 const dispatchModel = require(DISPATCH_MODEL_PATH) as {
   dispatchReal: (opts: Record<string, unknown>) => {
     ok: boolean;
@@ -30,6 +31,7 @@ const dispatchModel = require(DISPATCH_MODEL_PATH) as {
   buildResumeHint: (sentinelPath: string) => string;
   KNOWN_EXECUTORS: Set<string>;
 };
+const profileValidator = require(PROFILE_VALIDATOR_PATH) as { KNOWN_EXECUTORS: Set<string> };
 const scorer = require(path.join(SCRIPTS, 'model-benchmark/scorer/score-model-variant.cjs')) as {
   score: (opts: Record<string, unknown>) => Promise<{ dimensions: Record<string, number>; weightedScore: number }>;
 };
@@ -243,6 +245,12 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);
     }
+  });
+
+  it('registers cli-pi in both hand-synced executor registries without live dispatch', () => {
+    expect(dispatchModel.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
+    expect(profileValidator.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
+    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', resolved)).toThrow(/headless invocation contract is confirmed/);
   });
 });
 

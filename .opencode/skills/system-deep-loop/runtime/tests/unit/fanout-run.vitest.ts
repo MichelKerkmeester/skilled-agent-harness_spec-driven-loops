@@ -1084,6 +1084,31 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
   });
 });
 
+describe('fanout-run.cjs — cli-pi adapter', () => {
+  const { buildLineageCommand, isPiBinaryAvailable } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv },
+    ) => unknown;
+    isPiBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+  };
+
+  it('fails closed before command construction when pi is absent', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-pi-') };
+    expect(isPiBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi', model: 'candidate-model' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env },
+    )).toThrow(/command -v pi failed/);
+  });
+});
+
 describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatch', () => {
   it('completes a hermetic live cli-codex leaf with top-level search argv', async () => {
     const binDir = makeTempDir('fanout-run-live-codex-leaf-bin-');

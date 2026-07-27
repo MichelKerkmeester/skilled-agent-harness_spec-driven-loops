@@ -8,7 +8,7 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor', 'cli-pi'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 // Ordered low→high. `ultra` is codex gpt-5.6-sol's top reasoning tier, above `max`.
@@ -82,6 +82,7 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // (e.g. `gpt-5.2-high`), not a separate flag. No configDir: no confirmed Cursor
   // CLI flag isolates the shared `.cursor/` config dir (open question, deferred).
   'cli-cursor': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
+  'cli-pi': ['model', 'timeoutSeconds', 'liveTools'],
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -118,7 +119,22 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
     cached: false,
     live: false,
   },
+  'cli-pi': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
+  },
 } as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
+
+/** Pi's model roster remains empty until a live-supported model set is confirmed. */
+export const PI_SUPPORTED_MODELS = [] as const;
+export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
+
+/** Fail closed while Pi's supported model roster is unconfirmed. */
+export function isPiModelAllowed(model: string): model is PiSupportedModel {
+  return (PI_SUPPORTED_MODELS as readonly string[]).includes(model);
+}
 
 /**
  * Enforced allowlist of cursor-agent --model ids. Cursor's live roster spans

@@ -157,6 +157,7 @@ const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
   'cli-cursor',
+  'cli-pi',
 ]);
 
 function sha256Hex(input) {
@@ -461,6 +462,12 @@ function buildSpawnSpec(executor, promptText, resolved) {
       const args = ['-p', promptText, '--model', resolvedModel, '--output-format', 'text'];
       if (writeCapable) args.push('--auto-review');
       return { bin: process.env.CURSOR_AGENT_BIN || 'cursor-agent', args, input: null };
+    }
+    case 'cli-pi': {
+      const piBin = process.env.PI_BIN || 'pi';
+      // TODO: Build args only after Pi's headless command contract is confirmed.
+      // Do not treat a subprocess exit code alone as proof of a successful dispatch.
+      throw new Error(`cli-pi command construction is unavailable for ${piBin} until its headless invocation contract is confirmed`);
     }
     default:
       throw new Error(`Unknown executor: ${executor}`);

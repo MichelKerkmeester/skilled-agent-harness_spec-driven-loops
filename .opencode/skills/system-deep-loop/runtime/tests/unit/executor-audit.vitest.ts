@@ -389,6 +389,7 @@ describe('executor-audit', () => {
     expect(detectFromAncestry('cli-claude-code', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/opencode'])).toBe(false);
     expect(detectFromAncestry('cli-codex', ['/usr/local/bin/node worker.js', '/opt/homebrew/bin/codex exec'])).toBe(true);
     expect(detectFromAncestry('cli-cursor', ['/usr/local/bin/node worker.js', '/Users/x/.local/bin/cursor-agent -p'])).toBe(true);
+    expect(detectFromAncestry('cli-pi', ['/usr/local/bin/node worker.js', '/Users/x/.local/bin/pi --print'])).toBe(true);
   });
 
   it('detectFromRuntimeEnv matches the runtime-specific session variable only', () => {
@@ -397,7 +398,42 @@ describe('executor-audit', () => {
     expect(detectFromRuntimeEnv('cli-codex', { CODEX_SESSION_ID: 'session-1' })).toBe(true);
     expect(detectFromRuntimeEnv('cli-cursor', { CURSOR_CONVERSATION_ID: 'session-1' })).toBe(true);
     expect(detectFromRuntimeEnv('cli-cursor', { CODEX_SESSION_ID: 'session-1' })).toBe(false);
+    expect(detectFromRuntimeEnv('cli-pi', { PI_SESSION_ID: 'session-1', PI_CODING_AGENT_DIR: '/tmp/pi' })).toBe(false);
     expect(detectFromRuntimeEnv('native', { CLAUDE_CODE_SESSION_ID: 'session-1' })).toBe(false);
+  });
+
+  it('uses Pi state and home metadata while keeping unconfirmed env surfaces absent', () => {
+    const stateDir = mkdtempSync(join(tmpdir(), 'executor-pi-state-'));
+    const homeDir = mkdtempSync(join(tmpdir(), 'executor-pi-home-'));
+
+    try {
+      mkdirSync(join(stateDir, 'locks'));
+      writeFileSync(join(stateDir, 'locks', 'pi.lock'), 'pid=123\n', 'utf8');
+      expect(validateExecutorDispatchAllowed({
+        ...cliClaudeExecutor(),
+        kind: 'cli-pi',
+        model: null,
+        reasoningEffort: null,
+      }, {
+        env: { SPECKIT_PI_STATE_DIR: stateDir },
+        ancestryCmdlines: [],
+      })).toMatchObject({ allowed: false, layer: 'lockfile', reason: 'recursion-guard-lockfile' });
+
+      mkdirSync(join(homeDir, '.pi', 'locks'), { recursive: true });
+      writeFileSync(join(homeDir, '.pi', 'locks', 'pi.lock'), 'pid=123\n', 'utf8');
+      expect(validateExecutorDispatchAllowed({
+        ...cliClaudeExecutor(),
+        kind: 'cli-pi',
+        model: null,
+        reasoningEffort: null,
+      }, {
+        env: { HOME: homeDir },
+        ancestryCmdlines: [],
+      })).toMatchObject({ allowed: false, layer: 'lockfile', reason: 'recursion-guard-lockfile' });
+    } finally {
+      rmSync(stateDir, { recursive: true, force: true });
+      rmSync(homeDir, { recursive: true, force: true });
+    }
   });
 
   it('detectFromLockfile rejects executor lockfiles in runtime state paths', () => {

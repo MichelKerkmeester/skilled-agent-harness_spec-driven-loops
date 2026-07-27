@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support"
     last_updated_at: "2026-07-27T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored spec.md grounded in the real 5-member EXECUTOR_KINDS union"
-    next_safe_action: "Author plan.md, tasks.md, checklist.md for this phase"
-    blockers: ["Phase 001 has not executed; command-construction body needs its live findings"]
-    key_files: ["system-deep-loop/runtime/lib/deep-loop/executor-config.ts", "system-deep-loop/runtime/scripts/fanout-run.cjs"]
+    recent_action: "Implemented and verified; cli-pi is now the 6th ExecutorKind"
+    next_safe_action: "Phase 003 may build the skill packet on this widened union"
+    blockers: ["Command-construction body stays a stub - real Pi invocation syntax unconfirmed"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: ["Pi's headless invocation syntax is unconfirmed pending phase 001", "Exit-code semantics on dispatch failure are unconfirmed", "Whether Pi has a sandbox/approval flag equivalent is unconfirmed", "Pi's model roster (pi.dev/models) was never fetched", "Pi's session-id env var equivalent is unconfirmed"]
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete - cli-pi is the 6th ExecutorKind, fail-closed and scaffolded; command-construction body stubbed pending Pi's confirmed invocation syntax |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

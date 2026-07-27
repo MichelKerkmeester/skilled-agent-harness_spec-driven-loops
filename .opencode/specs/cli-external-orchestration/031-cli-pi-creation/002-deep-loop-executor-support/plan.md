@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support"
     last_updated_at: "2026-07-27T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored plan.md grounded in the real current 5-member EXECUTOR_KINDS union"
-    next_safe_action: "Author tasks.md and checklist.md for this phase"
-    blockers: ["Phase 001 (pi-contract-pin) has not executed; the command-construction body of buildPiLineageCommand and dispatch-model.cjs's case 'cli-pi' stay explicitly gated until it lands."]
-    key_files: ["spec.md"]
+    recent_action: "Plan executed via LUNA (codex), re-verified, reviewed by GLM-5.2"
+    next_safe_action: "Commit; phase 003 builds on the widened union"
+    blockers: ["buildPiLineageCommand/dispatch-model.cjs cli-pi case stay stubbed - real syntax unconfirmed"]
+    key_files: ["implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---

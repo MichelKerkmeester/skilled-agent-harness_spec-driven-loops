@@ -440,6 +440,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
   'cli-cursor': 'SPECKIT_CURSOR_STATE_DIR',
+  'cli-pi': 'SPECKIT_PI_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -1680,12 +1681,22 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
+function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isPiBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-pi executor unavailable: command -v pi failed');
+  }
+  // TODO: Build args only after Pi's headless command contract is confirmed.
+  // Do not treat a subprocess exit code alone as proof of a successful dispatch.
+  throw inputError('cli-pi command construction is unavailable until its headless invocation contract is confirmed');
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
   'cli-claude-code': buildClaudeLineageCommand,
   'cli-opencode': buildOpencodeLineageCommand,
   'cli-cursor': buildCursorLineageCommand,
+  'cli-pi': buildPiLineageCommand,
 });
 
 /**
@@ -1714,6 +1725,14 @@ function isCodexBinaryAvailable(env = process.env) {
 // dispatch exit code.
 function isCursorBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v cursor-agent >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+function isPiBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v pi >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -2301,6 +2320,7 @@ module.exports = {
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
   isCursorBinaryAvailable,
+  isPiBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,

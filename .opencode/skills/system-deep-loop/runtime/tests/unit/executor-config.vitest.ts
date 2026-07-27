@@ -2,6 +2,7 @@ import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
   EXECUTOR_KINDS,
+  EXECUTOR_KIND_FLAG_SUPPORT,
   EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX,
   ExecutorConfigError,
   WEB_SEARCH_POLICIES,
@@ -15,9 +16,34 @@ import {
   CURSOR_SUPPORTED_MODELS,
   CURSOR_DEFAULT_MODEL,
   isCursorModelAllowed,
+  PI_SUPPORTED_MODELS,
+  isPiModelAllowed,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
+  it('defines six executor kinds including cli-pi', () => {
+    expect(EXECUTOR_KINDS).toHaveLength(6);
+    expect([...EXECUTOR_KINDS]).toEqual([
+      'native',
+      'cli-codex',
+      'cli-claude-code',
+      'cli-opencode',
+      'cli-cursor',
+      'cli-pi',
+    ]);
+  });
+
+  it('allows only confirmed-safe cli-pi fields', () => {
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'timeoutSeconds', 'liveTools']);
+    expect(parseExecutorConfig({
+      kind: 'cli-pi',
+      model: 'candidate-model',
+      timeoutSeconds: 120,
+      liveTools: { webSearch: 'inherit' },
+    })).toMatchObject({ kind: 'cli-pi', model: 'candidate-model', timeoutSeconds: 120 });
+    expect(() => parseExecutorConfig({ kind: 'cli-pi', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-pi'/);
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
   });
@@ -315,6 +341,7 @@ describe('executor web-search policy', () => {
       'cli-claude-code': { inherit: true, disabled: false, cached: false, live: false },
       'cli-opencode': { inherit: true, disabled: false, cached: false, live: true },
       'cli-cursor': { inherit: true, disabled: false, cached: false, live: false },
+      'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
 
@@ -724,5 +751,14 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
     expect(isCursorModelAllowed('auto')).toBe(false);
     expect(isCursorModelAllowed('gpt-5.6-sol-high-fast')).toBe(false);
     expect(isCursorModelAllowed('claude-opus-4-8-xhigh')).toBe(false);
+  });
+});
+
+describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
+  it('rejects every candidate while the allowlist is empty', () => {
+    expect(PI_SUPPORTED_MODELS).toEqual([]);
+    for (const model of ['candidate-a', 'candidate-b', '']) {
+      expect(isPiModelAllowed(model)).toBe(false);
+    }
   });
 });
