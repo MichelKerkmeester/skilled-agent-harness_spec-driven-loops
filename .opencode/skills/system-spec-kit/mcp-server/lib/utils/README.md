@@ -72,7 +72,6 @@ utils/
 
 ### Index Scope (`index-scope.ts`)
 
-Shared path-policy module (Packet 026/010/002) used as the single source of truth for memory indexing and code-graph scanning exclusions. Enforces permanent exclusion of `z-future/` and `/external/` subtrees across memory discovery, spec-doc classification, parser admissibility, and code-graph recursive scans. Exported helpers are consumed by `memory-index-discovery.ts`, `spec-doc-paths.ts`, `memory-parser.ts`, `memory-save.ts`, `vector-index-mutations.ts`, `post-insert-metadata.ts`, `checkpoints.ts`, `system-code-graph/mcp-server/lib/indexer-types.ts`, and `system-code-graph/mcp-server/lib/structural-indexer.ts`.
 
 | Function | Purpose |
 |----------|---------|

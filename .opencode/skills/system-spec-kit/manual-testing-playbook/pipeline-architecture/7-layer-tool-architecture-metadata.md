@@ -60,8 +60,6 @@ L2 name=Core tokenBudget=3500 priority=2 useCase=true tools=['memory_search', 'm
 L3 name=Discovery tokenBudget=1000 priority=3 useCase=true tools=['memory_list', 'memory_stats', 'memory_health', 'session_health']
 L4 name=Mutation tokenBudget=1000 priority=4 useCase=true tools=['memory_update', 'memory_delete', 'memory_validate', 'memory_bulk_delete', 'memory_retention_sweep', 'memory_embedding_reconcile']
 L5 name=Lifecycle tokenBudget=1000 priority=5 useCase=true tools=['checkpoint_create', 'checkpoint_list', 'checkpoint_restore', 'checkpoint_delete']
-L6 name=Analysis tokenBudget=1500 priority=6 useCase=true tools=['memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink', 'task_preflight', 'task_postflight', 'eval_run_ablation', 'eval_reporting_dashboard', 'code_graph_query', 'code_graph_context', 'detect_changes', 'skill_graph_query']
-L7 name=Maintenance tokenBudget=1000 priority=7 useCase=true tools=['memory_index_scan', 'memory_index_scan_status', 'memory_index_scan_cancel', 'memory_get_learning_history', 'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel', 'embedder_list', 'embedder_set', 'embedder_status', 'code_graph_scan', 'code_graph_status', 'code_graph_verify', 'skill_graph_scan', 'skill_graph_status', 'skill_graph_validate']
 recommendations=search: ['L1', 'L2'], browse: ['L3', 'L2'], modify: ['L4', 'L3'], checkpoint: ['L5'], analyze: ['L6', 'L2'], maintenance: ['L7', 'L3'], default: ['L1', 'L3', 'L2']
 contextImportsLayerDefinitions=true
 contextDispatchCall=true

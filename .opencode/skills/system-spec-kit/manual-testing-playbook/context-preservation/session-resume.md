@@ -20,10 +20,8 @@ This scenario validates the detailed Session resume tool (`session_resume`). It 
 
 
 - Objective: Verify that `session_resume` rebuilds recovery state from the current resume ladder (`handover.md -> _memory.continuity -> spec docs`), reports freshness-aware code graph status (`fresh | stale | empty | error`), checks Code Graph availability, appends the shared structural `ready | stale | missing` contract, binds explicit `args.sessionId` to the transport caller context by default, and merges everything into a single `SessionResumeResult`; Failures must degrade into hints and status fields instead of crashing the tool, except for strict auth mismatches with a corroborating HTTP/WS caller session which should reject cleanly; stdio calls with no caller-context session are intentionally allowed. The response must include `memory` (ladder-backed recovery context), `codeGraph` (freshness status with counts), `codeGraph` (available boolean with binary path), `structuralContext` (`status`, `summary`, `recommendedAction`, `sourceSurface`), and `hints`.
-- Real user request: `` Please validate Session resume returns detailed recovery state against session_resume({}) and tell me whether the expected signals are present: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs when the transport supplies a caller session; stdio calls with no caller-context session are allowed; permissive mode logs and continues. ``
 - Prompt: `Validate session_resume returns detailed recovery state across memory, code graph, Code Graph, and structural context.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `memory.source` is one of `handover`, `continuity`, `spec-docs`, or `none`; `memory.summary` and `memory.documents` reflect the winning ladder source when packet docs exist; `codeGraph.status` is `fresh`, `stale`, `empty`, or `error`, and counts are non-negative integers; codeGraph.available is boolean, binaryPath is string; structuralContext.status is one of `ready`, `stale`, `missing`; structuralContext.summary is a string, `recommendedAction` is a string, and `sourceSurface === "session_resume"`; hints array present (may be empty if all subsystems healthy; degraded states should point to `session_bootstrap` and/or `code_graph_scan`); strict mode rejects mismatched caller/session IDs when the transport supplies a caller session; stdio calls with no caller-context session are allowed; permissive mode logs and continues
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: All subsystem results and structuralContext fields are present in response when auth passes, the spec-doc record payload follows the resume ladder contract, degraded structural states emit the expected bootstrap guidance without throwing, strict HTTP/WS mismatches reject, stdio no-caller-session requests are allowed, and permissive session binding matches the documented contract; FAIL: Missing subsystem or structuralContext in response, unhandled exception from sub-call, missing type fields, or incorrect auth-binding behavior
 
@@ -189,7 +187,6 @@ Check `code_graph-path.ts` plus the availability probe used by session-resume.ts
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate Structural readiness and recovery hinting against session_resume({}). Verify structuralContext.status in [ready, stale, missing]; structuralContext.summary/recommendedAction/sourceSurface present; degraded states mention session_bootstrap and/or code_graph_scan in hints. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -198,7 +195,6 @@ As a context-and-code-graph validation operator, validate Structural readiness a
 
 ### Expected
 
-structuralContext.status in [ready, stale, missing]; structuralContext.summary/recommendedAction/sourceSurface present; degraded states mention session_bootstrap and/or code_graph_scan in hints
 
 ### Evidence
 
@@ -215,22 +211,18 @@ Observed degraded `structuralContext` and `hints`:
   "structuralContext": {
     "status": "missing",
     "summary": "No structural context available — code graph is empty or unavailable",
-    "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
     "sourceSurface": "session_resume"
   },
   "hints": [
-    "Code graph unavailable. Run `code_graph_scan` to initialize.",
     "Structural context is missing. Call session_bootstrap to refresh.",
     "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
   ]
 }
 ```
 
-Healthy graph state was not created because doing so would require running `code_graph_scan`, which would modify files outside the user-approved single writable scenario file.
 
 ### Pass / Fail
 
-- **Pass**: PASS - degraded state returned `structuralContext.status: "missing"`, string `summary`, string `recommendedAction`, `sourceSurface: "session_resume"`, and hints mention both `code_graph_scan` and `session_bootstrap`.
 - **Fail**: required contract fields are missing or recovery hint is wrong
 
 ### Failure Triage
@@ -285,11 +277,9 @@ Stdio strict-mode observed output returned the normal merged payload shape becau
     "structuralContext": {
       "status": "missing",
       "summary": "No structural context available — code graph is empty or unavailable",
-      "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
       "sourceSurface": "session_resume"
     },
     "hints": [
-      "Code graph unavailable. Run `code_graph_scan` to initialize.",
       "Structural context is missing. Call session_bootstrap to refresh.",
       "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
     ]
@@ -324,11 +314,9 @@ Permissive-mode observed output returned the same normal merged payload shape:
     "structuralContext": {
       "status": "missing",
       "summary": "No structural context available — code graph is empty or unavailable",
-      "recommendedAction": "Call session_bootstrap first. Then run code_graph_scan if structural context is needed.",
       "sourceSurface": "session_resume"
     },
     "hints": [
-      "Code graph unavailable. Run `code_graph_scan` to initialize.",
       "Structural context is missing. Call session_bootstrap to refresh.",
       "Resume ladder found no canonical recovery context. Pass specFolder explicitly or start with /spec_kit:plan."
     ]

@@ -40,10 +40,8 @@ Validate detect_changes stale/fresh preflight, path-traversal rejection, and 3-f
 
 **Block A — Stale-vs-fresh safety invariant (P1):**
 
-1. Modify a tracked source file to make the graph stale (or skip running `code_graph_scan`).
 2. Generate a unified diff that touches a known indexed function: `git diff -- path/to/file.ts > /tmp/diff.txt`.
 3. Call `detect_changes({ diff: <diff text>, rootDir: <workspace> })` with the stale graph and confirm `status: 'blocked'` plus a `blockedReason` describing the stale state.
-4. Run `code_graph_scan({ incremental: true })` to refresh the graph.
 5. Re-run `detect_changes` with the same diff and confirm `status: 'ok'` plus `affectedSymbols[]` containing the touched function/class/method by `fqName`.
 6. Inspect `affectedFiles` to confirm the touched file paths roll up correctly.
 
@@ -69,7 +67,6 @@ Validate detect_changes stale/fresh preflight, path-traversal rejection, and 3-f
 
 ### Evidence
 
-Stored response payloads from steps 3, 5, 9, 10, 13; the diff texts from steps 2, 7, 11; the file paths and known indexed symbol `fqNames` from `code_graph_query({ operation: 'outline', subject: <filePath> })`. For Block C, also store the per-file response payloads from running each file's diff in isolation, used as the boundary-correctness reference.
 
 ### Pass / Fail
 
@@ -78,9 +75,6 @@ Stored response payloads from steps 3, 5, 9, 10, 13; the diff texts from steps 2
 
 ### Failure Triage
 
-- Block A: confirm `ensureCodeGraphReady` is wired with `allowInlineIndex: false` so the read path doesn't silently scan → check `.opencode/skills/system-code-graph/mcp-server/handlers/detect-changes.ts:readinessRequiresBlock` switch is comparing against `'fresh'` only → if attribution misses, inspect `queryOutline(filePath)` rows and `parseUnifiedDiff` hunk ranges for off-by-one in line numbering.
-- Block B: confirm `.opencode/skills/system-code-graph/mcp-server/handlers/detect-changes.ts:118-160` returns the structured `CandidatePathResult` with `status: 'reject'` for paths escaping `canonicalRootDir` (010/007/T-D R-007-3); verify the `blockedReason` string carries the offending path.
-- Block C: confirm `.opencode/skills/system-code-graph/mcp-server/lib/diff-parser.ts:109-220` tracks `remainingOldLines` / `remainingNewLines` per hunk so subsequent `---`/`+++` headers terminate the hunk body (010/007/T-D R-007-4); compare hunk-body line counters against expected per-file totals.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

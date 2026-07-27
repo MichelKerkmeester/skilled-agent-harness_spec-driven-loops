@@ -24,7 +24,6 @@ Accepts shaped results from 3 sources. Renders sections: Constitutional Rules, A
 
 ## 2. HOW IT WORKS
 
-.opencode/skills/system-code-graph/mcp-server/lib/compact-merger.ts
 
 ---
 

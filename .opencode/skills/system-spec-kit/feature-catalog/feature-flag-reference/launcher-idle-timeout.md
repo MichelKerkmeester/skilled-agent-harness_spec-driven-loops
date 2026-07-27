@@ -1,6 +1,5 @@
 ---
 title: "Launcher Idle Timeout"
-description: "Shared MCP server idle self-exit knob for mk-spec-memory, mk_skill_advisor, and mk_code_index."
 trigger_phrases:
   - "launcher idle timeout"
   - "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN"
@@ -33,7 +32,6 @@ This knob is documented in `mcp-server/ENV-REFERENCE.md` and surfaced in the aff
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp-server/lib/ipc/launcher-idle-timeout.ts` | Spec Kit Memory | Parses the env value and creates the idle monitor. |
 | `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/launcher-idle-timeout.ts` | Skill Advisor | Package-local copy of the shared idle monitor. |
-| `.opencode/skills/system-code-graph/mcp-server/lib/ipc/launcher-idle-timeout.ts` | Code Graph | Package-local copy of the shared idle monitor. |
 | `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` | Documentation | Canonical env var reference. |
 
 ### Validation And Tests
@@ -43,7 +41,6 @@ This knob is documented in `mcp-server/ENV-REFERENCE.md` and surfaced in the aff
 | `.opencode/skills/system-spec-kit/mcp-server/tests/launcher-idle-timeout.vitest.ts` | Automated test | Spec Kit Memory idle parsing and timeout behavior. |
 | `.opencode/skills/system-spec-kit/mcp-server/tests/ipc-socket-activity.vitest.ts` | Automated test | IPC activity keeps the server alive. |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/launcher-idle-timeout.vitest.ts` | Automated test | Skill Advisor idle behavior. |
-| `.opencode/skills/system-code-graph/mcp-server/tests/launcher-idle-timeout.vitest.ts` | Automated test | Code Graph idle behavior. |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Manual dry-run and lifecycle guardrail scenario. |
 
 ## 4. SOURCE METADATA

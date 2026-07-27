@@ -51,7 +51,6 @@ ollama list | grep -q 'nomic-embed-text' \
 ls .opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite | head -3
 
 # Confirm Code Graph has indexed the repo (structural tree-sitter index):
-# call the code_graph_status MCP tool (run code_graph_scan first if the graph is empty)
 
 # Confirm at least 2 external CLIs are installed for cross-AI scenarios:
 which opencode && opencode --version

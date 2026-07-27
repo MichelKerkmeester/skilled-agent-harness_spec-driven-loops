@@ -17,8 +17,6 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 // Type-only seam
-import type { StructuralBootstrapContract as ContractFromSeam } from '../lib/session/structural-bootstrap-contract.js';
-import type { StructuralBootstrapContract as ContractFromSnapshot } from '../lib/session/session-snapshot.js';
 
 // Type-only seam
 import type {
@@ -43,12 +41,6 @@ describe('F-017-D2-01: StructuralBootstrapContract cycle break', () => {
     expect(aliased.status).toBe('ready');
   });
 
-  it('memory-surface imports the contract from the seam, not from session-snapshot', () => {
-    const memorySurfacePath = resolve(__dirname, '../hooks/memory-surface.ts');
-    const source = readFileSync(memorySurfacePath, 'utf8');
-    expect(source).toContain("from '../lib/session/structural-bootstrap-contract.js'");
-    expect(source).not.toMatch(/import\s+type\s*\{\s*StructuralBootstrapContract\s*\}\s+from\s+'\.\.\/lib\/session\/session-snapshot\.js'/);
-  });
 });
 
 describe('F-017-D2-02: Community types cycle break', () => {

@@ -58,7 +58,6 @@ for (const row of payload.results) {
 
 (async () => {
   const memoryBridge = await import('../skills/system-spec-kit/mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs');
-  const codeGraphBridge = await import('../skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs');
   const advisorBridge = await import('../skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs');
 
   for (const classify of [memoryBridge.classifyCliFailure, codeGraphBridge.classifyCliFailure]) {

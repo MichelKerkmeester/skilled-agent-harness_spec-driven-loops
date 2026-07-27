@@ -48,7 +48,6 @@ CHURN=$!
 FAILS=0
 for i in $(seq 1 20); do
   node .opencode/bin/spec-memory.cjs memory_stats --warm-only --timeout-ms 3000 --format jsonl >/dev/null 2>&1; [ $? -ne 75 ] && FAILS=$((FAILS+1))
-  node .opencode/bin/code-index.cjs code_graph_status --warm-only --timeout-ms 3000 --format jsonl >/dev/null 2>&1; [ $? -ne 75 ] && FAILS=$((FAILS+1))
   node .opencode/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 --format jsonl >/dev/null 2>&1; [ $? -ne 75 ] && FAILS=$((FAILS+1))
 done
 echo "non-75 probes: $FAILS / 60"
@@ -108,7 +107,6 @@ A sporadic non-75 exit under churn suggests probe-time interference (for example
 | File | Role |
 |---|---|
 | `mcp-server/spec-memory-cli.ts` | Warm-only probe branch (retryable error, exit 75) |
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | code-index warm-only branch |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor warm-only branch |
 | `mcp-server/tests/spec-memory-cli-lifecycle-hardening.vitest.ts` | Daemon churn driver (reap gating, transparent recycle) |
 

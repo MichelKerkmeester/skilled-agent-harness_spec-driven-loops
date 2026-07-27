@@ -70,7 +70,6 @@ node -e '
   const exec = hooks.tool.mk_speckit_completion.execute;
 
   const level2Complete = ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync";
-  const level2Incomplete = ".opencode/specs/system-code-graph/002-codegraph-seeded-ppr";
   const level3 = ".opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation";
 
   console.log("=== Level-2 COMPLETE ===");
@@ -212,7 +211,6 @@ Command 3 and real output (live tool `execute()` against three real fixtures):
 }
 === Level-2 EVIDENCE_MISSING ===
 {
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-code-graph/002-codegraph-seeded-ppr",
   "level": 2,
   "filesPresent": {
     "spec": true,
@@ -223,7 +221,6 @@ Command 3 and real output (live tool `execute()` against three real fixtures):
     "implementationSummary": true
   },
   "checklist": {
-    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-code-graph/002-codegraph-seeded-ppr",
     "status": "EVIDENCE_MISSING",
     "passed": false,
     "strict": false,
@@ -237,7 +234,6 @@ Command 3 and real output (live tool `execute()` against three real fixtures):
     "qualityGates": { "priorityContextMissing": 0, "p0MissingEvidence": 9, "p1MissingEvidence": 12 }
   },
   "placeholders": {
-    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-code-graph/002-codegraph-seeded-ppr",
     "files_analyzed": 4,
     "overall_completion": 100,
     "total_placeholders": 0,

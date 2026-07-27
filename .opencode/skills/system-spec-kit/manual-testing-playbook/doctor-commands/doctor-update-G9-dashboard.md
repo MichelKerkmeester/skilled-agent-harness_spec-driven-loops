@@ -69,8 +69,6 @@ The command loads `doctor-update.yaml` and renders the cross-subsystem dashboard
 
 ```text
 18:   state_log: "mcp-server/database/.doctor-update.last-run.json"
-100:     - ".opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite"  # structural code graph DB (skill-local)
-101:     - ".opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite.pre-doctor-update.*.bak"
 102:     - "mcp-server/database/context-index.sqlite"  # canonical memory DB
 103:     - "mcp-server/database/context-index.sqlite.pre-doctor-update.*.bak"
 104:     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"  # standalone advisor routing graph DB

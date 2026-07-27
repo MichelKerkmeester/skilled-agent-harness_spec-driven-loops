@@ -35,14 +35,6 @@ vi.mock('../lib/search/vector-index.js', async () => {
   };
 });
 
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  getGraphReadinessSnapshotFromMarker: vi.fn(() => ({
-    freshness: 'fresh',
-    action: 'none',
-    reason: 'test',
-  })),
-}));
-
 import { handleMemorySearch, applySearchScoringObservability } from '../handlers/memory-search.js';
 import { getScoringStats, initScoringObservability, resetDb } from '../lib/telemetry/scoring-observability.js';
 

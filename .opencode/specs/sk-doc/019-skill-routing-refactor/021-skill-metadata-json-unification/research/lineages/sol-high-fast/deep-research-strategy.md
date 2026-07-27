@@ -7,9 +7,9 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 ## 3. KEY QUESTIONS (remaining)
 - [x] What is the complete 12-skill by eight-file root-level census, and who produces each file type?
 - [x] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
-- [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
-- [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
-- [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
+- [x] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
+- [x] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
+- [x] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
 
 <!-- /ANCHOR:key-questions -->
 
@@ -27,6 +27,9 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 ## 6. ANSWERED QUESTIONS
 - What is the complete 12-skill by eight-file root-level census, and who produces each file type?
 - What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
+- What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
+- How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
+- Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
 
 <!-- /ANCHOR:answered-questions -->
 
@@ -36,6 +39,8 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - exact direct-child globbing produced a scope-safe census without admitting nested packet metadata; focused source reads then separated scaffold outputs, generated artifacts, and authored inputs. (iteration 1)
 - owner-scoped searches followed by implementation reads separated real file reads from thousands of continuity/docs mentions and exposed the direct-versus-indirect advisor boundary. (iteration 2)
 - executable-extension searches avoided the blocked prose/spec noise, while owner-focused reads exposed direct versus indirect consumers and the file-versus-surface cardinality distinction. (iteration 3)
+- consumer obligations reduced eight presence columns to two classes plus narrow overlays, allowing the census to expose defects rather than define classes. (iteration 4)
+- starting from the reducer's two-class model made missing-output discovery the first gate step, while focused reads of the authoring and enforcement surfaces exposed exactly where current presence-driven opt-ins fail. (iteration 5)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -44,6 +49,8 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - broad `command-metadata.json` search output was too large because repository-wide references include large records; narrowed producer searches were clean but yielded only negative evidence. (iteration 1)
 - broad exact-filename searches overflowed because identical names occur throughout spec packets and archived evidence. (iteration 2)
 - the prompt's expected four-consumer count did not match direct reader files because it implicitly grouped the validator and its test; treating the number literally would omit evidence. (iteration 3)
+- the freshness gate could not test missing-manifest eligibility because it discovers only committed manifests. (iteration 4)
+- broad integration searches overflowed on historical packet records; narrower package-script and executable-owner searches established the relevant negative evidence without repeating the blocked repository-wide approach. (iteration 5)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -53,6 +60,11 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - What was tried: A broad `command-metadata.json` search produced oversized output; narrowing to the create-command and command trees found no producer. Future work should search its consumers and Git history rather than repeat the broad search.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: A broad `command-metadata.json` search produced oversized output; narrowing to the create-command and command trees found no producer. Future work should search its consumers and Git history rather than repeat the broad search.
+
+### A generic command-metadata backfill remains unjustified because there is no fleet production consumer or shared schema to generate toward. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180] -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: A generic command-metadata backfill remains unjustified because there is no fleet production consumer or shared schema to generate toward. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: A generic command-metadata backfill remains unjustified because there is no fleet production consumer or shared schema to generate toward. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180]
 
 ### Counting `package.json`, `package-lock.json`, or `tsconfig.json`: they are root JSON files but not among the eight named metadata types. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Counting `package.json`, `package-lock.json`, or `tsconfig.json`: they are root JSON files but not among the eight named metadata types.
@@ -69,6 +81,36 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Counting only four direct reader files is stale: there are five; four is defensible only as the number of consumer surfaces after grouping a validator with its unit test. [INFERENCE: exact executable search results reconciled with the five reader files cited in Finding 5]
 
+### Creating a third sparse class for `sk-git`: class-first discovery makes it a failing S root and exposes the three missing files. [SOURCE: research/lineages/sol-high-fast/iterations/iteration-004.md:15-15] -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Creating a third sparse class for `sk-git`: class-first discovery makes it a failing S root and exposes the three missing files. [SOURCE: research/lineages/sol-high-fast/iterations/iteration-004.md:15-15]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Creating a third sparse class for `sk-git`: class-first discovery makes it a failing S root and exposes the three missing files. [SOURCE: research/lineages/sol-high-fast/iterations/iteration-004.md:15-15]
+
+### Extending the current manifest-first scanner alone: it cannot see a required output that does not exist. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71] -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Extending the current manifest-first scanner alone: it cannot see a required output that does not exist. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Extending the current manifest-first scanner alone: it cannot see a required output that does not exist. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]
+
+### Fleet command metadata based only on command ownership: registry commands are already generic, while the singleton validator is interface-specific. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Fleet command metadata based only on command ownership: registry commands are already generic, while the singleton validator is interface-specific. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Fleet command metadata based only on command ownership: registry commands are already generic, while the singleton validator is interface-specific. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179]
+
+### Generating aliases from file presence would erase explicit workflow-mode/shared ownership policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Generating aliases from file presence would erase explicit workflow-mode/shared ownership policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Generating aliases from file presence would erase explicit workflow-mode/shared ownership policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299]
+
+### Inferring H/S from `graph-metadata.json.family` is not reliable: live families describe domains (`cli`, `mcp`, `sk-hub`, `system`, and others), not the H/S file contract. [INFERENCE: bounded `jq` inventory of `.opencode/skills/*/graph-metadata.json` in this iteration] -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Inferring H/S from `graph-metadata.json.family` is not reliable: live families describe domains (`cli`, `mcp`, `sk-hub`, `system`, and others), not the H/S file contract. [INFERENCE: bounded `jq` inventory of `.opencode/skills/*/graph-metadata.json` in this iteration]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Inferring H/S from `graph-metadata.json.family` is not reliable: live families describe domains (`cli`, `mcp`, `sk-hub`, `system`, and others), not the H/S file contract. [INFERENCE: bounded `jq` inventory of `.opencode/skills/*/graph-metadata.json` in this iteration]
+
+### Legitimate sparse `sk-git` class: its router/corpus triggers the configured standalone contract. [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Legitimate sparse `sk-git` class: its router/corpus triggers the configured standalone contract. [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Legitimate sparse `sk-git` class: its router/corpus triggers the configured standalone contract. [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147]
+
 ### No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`] -- BLOCKED (iteration 3, 1 attempts)
 - What was tried: No standalone JSON Schema or create-command generator owns `command-metadata.json`; its executable schema is embedded in the `sk-design` surface validator, and bounded Git history confirms a hand-authored introduction. [INFERENCE: exact executable filename search plus introduction commit `2aa5fcff4a`]
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -78,6 +120,16 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - What was tried: Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Repository-wide filename searches exceeded output limits because spec continuity metadata and historical documentation dominate results. Narrowing to executable ownership surfaces recovered precise call sites; repeating the broad search is not useful.
+
+### Running the current freshness gate cannot classify missing-manifest eligibility because it enumerates only existing manifests. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Running the current freshness gate cannot classify missing-manifest eligibility because it enumerates only existing manifests. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Running the current freshness gate cannot classify missing-manifest eligibility because it enumerates only existing manifests. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]
+
+### Standalone-description class: descriptions are enforced for hubs but absent from advisor scoring ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [INFERENCE: exact production advisor search found no reader] -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Standalone-description class: descriptions are enforced for hubs but absent from advisor scoring ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [INFERENCE: exact production advisor search found no reader]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Standalone-description class: descriptions are enforced for hubs but absent from advisor scoring ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [INFERENCE: exact production advisor search found no reader]
 
 ### The similarly named root-name consumer-matrix test concerns catalog/playbook directory names, not this eight-file metadata census. [SOURCE: .opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:80-138] -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: The similarly named root-name consumer-matrix test concerns catalog/playbook directory names, not this eight-file metadata census. [SOURCE: .opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs:80-138]
@@ -103,6 +155,11 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - What was tried: Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91]
+
+### Treating all eight files as generated: aliases, registries, routers, graph intent, and command policy contain authored semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:94-126] -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Treating all eight files as generated: aliases, registries, routers, graph intent, and command policy contain authored semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:94-126]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating all eight files as generated: aliases, registries, routers, graph intent, and command policy contain authored semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:94-126]
 
 ### Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above] -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Treating every filename mention in specs, docs, fixtures, or generated records as a production call site; only executable reads and runtime/compiler inputs were classified as consumers. [INFERENCE: comparison of exact filename search results with the executable reads cited above]
@@ -131,6 +188,16 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] (iteration 3)
 - Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] (iteration 3)
 - Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91] (iteration 3)
+- Fleet command metadata based only on command ownership: registry commands are already generic, while the singleton validator is interface-specific. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] (iteration 4)
+- Generating aliases from file presence would erase explicit workflow-mode/shared ownership policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] (iteration 4)
+- Legitimate sparse `sk-git` class: its router/corpus triggers the configured standalone contract. [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147] (iteration 4)
+- Running the current freshness gate cannot classify missing-manifest eligibility because it enumerates only existing manifests. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71] (iteration 4)
+- Standalone-description class: descriptions are enforced for hubs but absent from advisor scoring ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [INFERENCE: exact production advisor search found no reader] (iteration 4)
+- A generic command-metadata backfill remains unjustified because there is no fleet production consumer or shared schema to generate toward. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180] (iteration 5)
+- Creating a third sparse class for `sk-git`: class-first discovery makes it a failing S root and exposes the three missing files. [SOURCE: research/lineages/sol-high-fast/iterations/iteration-004.md:15-15] (iteration 5)
+- Extending the current manifest-first scanner alone: it cannot see a required output that does not exist. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71] (iteration 5)
+- Inferring H/S from `graph-metadata.json.family` is not reliable: live families describe domains (`cli`, `mcp`, `sk-hub`, `system`, and others), not the H/S file contract. [INFERENCE: bounded `jq` inventory of `.opencode/skills/*/graph-metadata.json` in this iteration] (iteration 5)
+- Treating all eight files as generated: aliases, registries, routers, graph intent, and command policy contain authored semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:94-126] (iteration 5)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -159,12 +226,14 @@ Establish the consumer-derived contract for root-level metadata JSON files acros
 - What consumer-derived skill class taxonomy maps all 12 roots and classifies every presence difference? (iteration 3)
 - Where should the canonical contract and fleet-wide presence-plus-freshness gate live? (iteration 3)
 - Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective? (iteration 3)
+- Where should the canonical two-class contract live, what can be generated/backfilled, and what presence-plus-freshness gate should enforce it? (iteration 4)
+- No key research questions remain. Implementation still must prove the proposed classifier and gate against all 12 live roots and negative fixtures. (iteration 5)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective?
+[All tracked questions are resolved]
 
 <!-- /ANCHOR:next-focus -->
 <!-- MACHINE-OWNED: END -->

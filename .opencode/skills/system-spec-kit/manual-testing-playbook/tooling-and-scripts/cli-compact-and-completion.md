@@ -124,13 +124,10 @@ If counts drift, rerun the list-tools parity scenario first. If schemas appear i
 | File | Role |
 |---|---|
 | `.opencode/bin/spec-memory.cjs` | spec-memory shim |
-| `.opencode/bin/code-index.cjs` | code-index shim |
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
 | `mcp-server/spec-memory-cli.ts` | spec-memory compact/names-only and completion implementation |
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | code-index compact/names-only and completion implementation |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
 | `mcp-server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | spec-memory compact/names-only and completion tests |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-help-aliases-errors.vitest.ts` | code-index compact/names-only and completion tests |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
 
 ## 5. SOURCE METADATA

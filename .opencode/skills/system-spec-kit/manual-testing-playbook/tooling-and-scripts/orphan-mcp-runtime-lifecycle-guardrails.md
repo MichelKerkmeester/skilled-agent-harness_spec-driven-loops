@@ -43,7 +43,6 @@ Validate orphan MCP runtime lifecycle guardrails in dry-run mode and report cite
 2. `bash -n .opencode/scripts/claude-session-cleanup.sh`
 3. `plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`
 4. `bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log`
-5. `rg -n "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN|orphan-mcp-sweeper|claude-session-cleanup|orphan-sweep" README.md .opencode/scripts .opencode/skills/system-spec-kit .opencode/skills/system-skill-advisor .opencode/skills/system-code-graph`
 6. `test ! -f ~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist || echo "operator-installed copy exists outside repo"`
 
 ### Expected

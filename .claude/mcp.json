@@ -1,11 +1,5 @@
 {
   "mcpServers": {
-    "sequential_thinking": {
-      "command": "npx",
-      "args": [
-        "@modelcontextprotocol/server-sequential-thinking@2025.12.18"
-      ]
-    },
     "mk-spec-memory": {
       "command": "node",
       "args": [
@@ -53,24 +47,6 @@
         "_NOTE_DOC_TRIGGERS": "Opt-in doc-frontmatter harvest: skill_graph_scan ingests references/assets trigger_phrases into skill_docs and advisor_recommend returns matchedDocs pointers (dampened derived-lane signal). Default-off in code; enabled for this repo. Unset/false to roll back.",
         "_NOTE_TRUST_DEFAULT": "Daemon-owner trust grant for mutation tools (advisor_rebuild, skill_graph_scan, skill_graph_propagate_enhances). Callers whose _meta omits transport/trust markers default to UNTRUSTED unless this is 'trusted'. Native MCP clients (e.g. /doctor repair flows) send no _meta, so this grant keeps them working; remove it to fail-closed on every transport-absent caller. Explicit _meta trusted:false / callerAuthority:'untrusted' is always rejected.",
         "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)"
-      }
-    },
-    "mk_code_index": {
-      "command": "node",
-      "args": [
-        ".opencode/bin/mk-code-index-launcher.cjs"
-      ],
-      "env": {
-        "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_SPECS": "false",
-        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-code-index",
-        "SPECKIT_MAX_SECONDARY_CLIENTS": "64",
-        "_NOTE_DB": "Database lives SKILL-LOCAL at .opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite by default (shared across runtimes via the .opencode/skills symlink); SPECKIT_CODE_GRAPH_DB_DIR overrides. Former shared location (.opencode/.spec-kit/code-graph/database/) is migrated back on first launcher startup.",
-        "_NOTE_INDEX_DEFAULTS": "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE in .env.local (gitignored) to true (forces all 5 INDEX_* to true) or to a comma-separated subset such as skills,plugins (forces only those categories); the launcher applies the selection at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control.",
-        "_NOTE_RESCAN_THRESHOLD": "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100)."
       }
     },
     "code_mode": {

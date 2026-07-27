@@ -21,7 +21,7 @@
     "emit": true
   },
   "createdAt": "2026-07-27T17:56:03Z",
-  "status": "initialized",
+  "status": "complete",
   "executionMode": "auto",
   "executor": {
     "kind": "cli-opencode",

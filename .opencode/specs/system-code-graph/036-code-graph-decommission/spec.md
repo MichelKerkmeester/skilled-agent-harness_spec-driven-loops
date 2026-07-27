@@ -81,6 +81,7 @@ Retire the subsystem completely and safely: establish the true touchpoint invent
 - Designing or building a replacement indexing engine.
 - Editing archived spec packets, changelogs, or benchmark reports — they are the historical record.
 - The spec-doc and saved-memory search path, which is a separate subsystem.
+- **Every other graph subsystem in the repo.** Spec Memory's causal and knowledge graphs, the Skill Advisor's skill graph, and the deep-loop coverage and council graphs are unrelated and survive intact. Matching on the word "graph" rather than on the exact retiring identities is the fastest way to break three healthy subsystems while removing one.
 
 ### Files to Change
 Summary of aggregate file scope. Per-phase detail lives in child plans.
@@ -126,7 +127,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Phases 003 through 012 are decoupling; phase 013 is the only irreversible step and is gated on all of them
-- Every sweep and verification command MUST use `--no-ignore`, or it silently skips the MCP registration files
+- Every sweep and verification command MUST use both `--hidden` and `--no-ignore`; `--no-ignore` alone still skips every dot-prefixed control file
 - Archived surfaces are never edited, in any phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 

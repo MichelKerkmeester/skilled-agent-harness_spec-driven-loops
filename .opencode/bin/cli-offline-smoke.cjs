@@ -26,7 +26,6 @@ const DEFAULT_TIMEOUT_MS = 20_000;
 const MAX_BUFFER_BYTES = 1024 * 1024 * 10;
 const CHECKS = [
   { name: 'spec-memory', shim: path.join(__dirname, 'spec-memory.cjs'), expectedCount: 39 },
-  { name: 'code-index', shim: path.join(__dirname, 'code-index.cjs'), expectedCount: 8 },
   { name: 'skill-advisor', shim: path.join(__dirname, 'skill-advisor.cjs'), expectedCount: 9 },
 ];
 

@@ -18,7 +18,6 @@ version: 3.6.0.3
 
 The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 41 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
 
-The MCP registration stays untouched through the dual-stack window. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery. Sibling skills ship the same pattern: `code-index.cjs` (8 tools, system-code-graph) and `skill-advisor.cjs` (9 tools plus a trusted-mutation gate, system-skill-advisor).
 
 ## 2. HOW IT WORKS
 
@@ -49,7 +48,6 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 | `.opencode/bin/spec-memory.cjs` | Script | Stable shim: socket-dir defaulting, Darwin socket-path guard, dist-freshness refusal (exit 69), spawn-failure mapping (exit 75) |
 | `mcp-server/spec-memory-cli.ts` | CLI entrypoint | Runtime command generation from `TOOL_DEFINITIONS`, Zod argv validation, IPC `tools/call` path, warm-only probe, exit taxonomy, output rendering |
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Script | Auto-spawn target when the daemon probe fails outside warm-only mode |
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | Sibling CLI entrypoint | Compact/names-only list-tools and generated completion for the code-index CLI |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | Sibling CLI entrypoint | Compact/names-only list-tools and generated completion for the skill-advisor CLI |
 
 ### Validation And Tests
@@ -59,7 +57,6 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 | `mcp-server/tests/spec-memory-cli.vitest.ts` | Automated test | Parser, IPC, retryable, and protocol-drift coverage |
 | `mcp-server/tests/spec-memory-cli-parity-and-help.vitest.ts` | Automated test | Locks 41-tool parity and CLI help behavior |
 | `mcp-server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for spec-memory |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for code-index |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | Automated test | Compact/names-only list-tools and generated completion coverage for skill-advisor |
 | `mcp-server/tests/spec-memory-cli-dual-spawn-hardening.vitest.ts` | Automated test | Dual-spawn hardening with re-election on and off |
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Automated test | Real MCP and CLI clients running concurrently against one daemon |
@@ -72,5 +69,4 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 Related references:
 - [cli-runtime-warm-only-fallbacks.md](../../feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) — Warm-only CLI hook fallbacks and plugin bridges
 - [standalone-admin-cli.md](../../feature-catalog/tooling-and-scripts/standalone-admin-cli.md) — Direct-DB maintenance CLI (`spec-kit-cli`), unchanged by 028
-- `.opencode/skills/system-code-graph/feature-catalog/mcp-tool-surface/code-index-cli.md` — code-index CLI sibling surface
 - `.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-advisor-cli.md` — skill-advisor CLI sibling surface

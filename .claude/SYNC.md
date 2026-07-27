@@ -74,7 +74,6 @@ Agent frontmatter is Claude's own dialect:
 ---
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement
-tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes
 ---
 ```
 

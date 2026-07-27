@@ -93,7 +93,8 @@ Remove the executable surface and its supporting CI so that nothing in the repos
 ## 3. SCOPE
 
 ### In Scope
-- Deleting the launcher, the CLI shim, the IPC bridge library, and the six launcher vitest suites.
+- Deleting the launcher, the CLI shim, and the six launcher vitest suites.
+- **Stripping** — not deleting — the two shared launcher libraries that also serve the surviving `mk-spec-memory` and `mk-skill-advisor` daemons.
 - Updating the offline and exit-taxonomy smoke scripts.
 - Removing canonical-database references from the spec-memory launcher.
 - Deleting the isolation-check workflow.
@@ -111,11 +112,13 @@ Remove the executable surface and its supporting CI so that nothing in the repos
 | `.opencode/bin/mk-code-index-launcher.cjs` | Delete | Registered launcher for the removed server |
 | `.opencode/bin/mk-code-index-launcher-*.vitest.ts` | Delete | Six suites covering the launcher |
 | `.opencode/bin/code-index.cjs` | Delete | CLI front door |
-| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Delete | IPC bridge for the removed daemon |
+| `.opencode/bin/lib/launcher-ipc-bridge.cjs` | **Strip, never delete** | Shared by three launchers and branches on `serviceName` for `mk-spec-memory`, `mk-code-index`, and `mk-skill-advisor`. Remove only the code-graph branch |
+| `.opencode/bin/lib/launcher-session-proxy.cjs` | **Strip, never delete** | Shared the same way; only the replayability set differs per service |
 | `.opencode/bin/cli-*-smoke*.cjs` | Modify | Drop the removed CLI from the smoke matrix |
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Modify | Remove canonical database references |
 | `.github/workflows/isolation-check.yml` | Delete | Guards a boundary that no longer exists |
 | `.gitignore` | Modify | Remove artifact patterns |
+| `.opencode/skills/system-spec-kit/scripts/deploy-mcp.sh` | Modify | Drop the `build_pkg "code-graph"` step; the deploy script builds the removed package |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -157,6 +160,7 @@ Remove the executable surface and its supporting CI so that nothing in the repos
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
+| Risk | Deleting a shared launcher library | **Both** surviving daemons break at startup | The two shared libraries are strip-only, called out explicitly in scope; start `mk-spec-memory` and `mk-skill-advisor` to verify |
 | Risk | Spec-memory launcher shares code with the deleted one | Sibling daemon breaks | Change only the code-graph references; start the daemon to verify |
 | Risk | Deleting CI reduces coverage silently | A future regression goes unnoticed | Record the removed guard in the decision record |
 | Dependency | Phases 003–011 | A surviving caller would break on deletion | Sequence after all decoupling |

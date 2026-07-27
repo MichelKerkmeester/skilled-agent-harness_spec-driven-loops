@@ -64,7 +64,6 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DBs:                                                 │
 │    mcp-server/database/context-index.sqlite (canonical)          │
-│    skills/system-code-graph/.../database/code-graph.sqlite      │
 └────────────────────┬────────────────────────────────────────────┘
                      │
           ┌──────────┼──────────┐
@@ -96,7 +95,6 @@ This guide addresses the full installation lifecycle and common failures after m
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
 | `.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js` | Backend artifact the launcher spawns (built by `npm run build`) |
 | `.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` | Canonical repo-local memory database |
-| `.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite` | Default structural code-graph database (skill-local; override with `SPECKIT_CODE_GRAPH_DB_DIR`. The former shared `.opencode/.spec-kit/code-graph/database/` location is superseded and auto-migrated back on first launcher startup) |
 
 The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp-server/database/`. The runtime uses the canonical `context-index.sqlite` memory database; profile-specific vector shards remain under `vectors/context-vectors__*.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
@@ -130,18 +128,12 @@ If you skip Ollama, the cascade falls through to `hf-local` (a pure-Node `@huggi
 
 The Code Graph system uses a separate, skill-local database:
 
-- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored skill-local under `.opencode/skills/system-code-graph/mcp-server/database/`; override with `SPECKIT_CODE_GRAPH_DB_DIR`)
 - Tables: `code_files` (indexed source files), `code_nodes` (symbols), `code_edges` (relationships)
 - Edge types: `CONTAINS`, `CALLS`, `IMPORTS`, `EXPORTS`, `EXTENDS`, `IMPLEMENTS`, `DECORATES`, `OVERRIDES`, `TYPE_OF`
 
 Current code-graph behavior is intentionally bounded:
 - startup and resume surfaces report freshness-aware graph status (`fresh`, `stale`, `empty`, `error`)
 - startup/bootstrap payloads may also include `graphQualitySummary` so operators can see detector provenance and edge-enrichment quality from the last persisted scan
-- `code_graph_status` returns counts plus `readiness`, `canonicalReadiness`, `trustState`, and `graphQualitySummary`
-- `code_graph_query` and `code_graph_context` may repair small stale deltas inline
-- read-path tools do not run inline full scans; when the graph is empty or too stale they return a blocked payload with `status: "blocked"`, `requiredAction: "code_graph_scan"`, and `blockReason: "full_scan_required"`
-- successful `code_graph_context` responses include `metadata.partialOutput` and `graphMetadata.detectorProvenance` so you can tell whether the response was partial and which persisted graph metadata backed it
-- empty or broadly stale graphs still require explicit `code_graph_scan`
 
 ### Runtime Coverage Note (2026-04-04)
 
@@ -480,14 +472,6 @@ You should see `mk-spec-memory` tools listed, including:
 - `session_bootstrap` (complete session bootstrap)
 - `session_resume` (combined session resume)
 
-Code Graph is a separate MCP server named `mk_code_index` (8 tools), NOT part of `mk-spec-memory`. Its tool ids:
-- `code_graph_scan` (structural code indexing)
-- `code_graph_query` (structural relationship queries)
-- `code_graph_classify_query_intent` (route a query to graph vs lexical)
-- `code_graph_context` (LLM-oriented graph neighborhoods)
-- `code_graph_status` (graph health check)
-- `code_graph_verify` (integrity verification)
-- `code_graph_apply` (apply staged graph changes)
 - `detect_changes` (changed-file detection from a diff)
 
 Skill Advisor is a separate MCP server named `mk_skill_advisor`, registered alongside `mk-spec-memory`. Its public tool ids remain stable:
@@ -507,9 +491,7 @@ Run session bootstrap, then query the code graph for symbols in .opencode/skills
 Expected result:
 - the startup or bootstrap response reports freshness-aware graph status and may include `graphQualitySummary`
 - the structural query returns a `readiness` block with canonical/trust labels instead of only counts
-- successful `code_graph_context` responses include `metadata.partialOutput` and `graphMetadata.detectorProvenance`
 - if the graph is only lightly stale, the read path may refresh inline before returning results
-- if the graph is empty or too stale for bounded repair, the read path returns `status: "blocked"` with `requiredAction: "code_graph_scan"`
 
 ### Step 3: Run a Test Query
 
@@ -529,9 +511,7 @@ Run one smoke test per shipped capability to confirm the new behaviors are wired
 
 ```bash
 # 1. Stale path: leave the graph stale OR scan once and then modify a tracked source file
-#    (do NOT rerun code_graph_scan).
 # 2. Generate a unified diff that touches a known indexed function:
-git diff -- .opencode/skills/system-code-graph/mcp-server/code_graph/handlers/scan.ts > /tmp/diff.txt
 
 # 3. Call the detect_changes MCP tool with the stale graph:
 #       detect_changes({ diff: <contents of /tmp/diff.txt>, rootDir: <workspace root> })
@@ -541,7 +521,6 @@ git diff -- .opencode/skills/system-code-graph/mcp-server/code_graph/handlers/sc
 #    PASS criterion: status MUST be "blocked", affectedSymbols MUST be empty.
 #    FAIL criterion: status: "ok" with empty affectedSymbols (false-safe RISK-03 violation).
 
-# 4. Refresh the graph (code_graph_scan) and retry the same detect_changes call. Expected:
 #    { status: "ok", affectedSymbols: [...], affectedFiles: [...], readiness.freshness: "fresh" }
 ```
 
@@ -550,7 +529,6 @@ git diff -- .opencode/skills/system-code-graph/mcp-server/code_graph/handlers/sc
 ```text
 Ask your AI assistant:
 
-  Run `code_graph_query({ operation: "blast_radius", subject: "<known-symbol-or-file>",
     maxDepth: 2, minConfidence: 0.75 })` and confirm the response includes `depthGroups`,
   `riskLevel`, `minConfidence`, and (when the subject is ambiguous) `ambiguityCandidates`
   plus a structured `failureFallback`. Then run a relationship query and confirm each
@@ -958,8 +936,6 @@ bash .opencode/skills/system-spec-kit/scripts/validate.sh \
 | `NODE_MODULE_VERSION mismatch` | Node.js was updated after native modules were compiled | Run `bash scripts/setup/rebuild-native-modules.sh` |
 | `sqlite-vec unavailable` | Platform-specific native package failed to load | Run `npm install && npm rebuild` in both `mcp-server/` and `scripts/` |
 | Server starts but returns no memories | No indexed memories yet, or embeddings are pending | Run `memory_index_scan({ force: true })` via your AI |
-| `code_graph_query` reports `full_scan`, or `code_graph_context` / `code_graph_query` returns `status: "blocked"` with `requiredAction: "code_graph_scan"` | The graph is empty or too stale for bounded read-path repair | Run `code_graph_scan`, then retry the structural read |
-| Startup or resume shows graph `stale` | Freshness-aware startup detected drift before a structural read ran | Run a structural read to allow bounded inline repair, or run `code_graph_scan` for broader stale states |
 | Database appears stale after restore | Client still uses old MCP process with in-memory state | Fully restart OpenCode or Claude Code |
 | MCP server not in tools list | Configuration file error or path is wrong | Validate JSON syntax and verify binary path (see below) |
 | Wikilink validation fails | Broken `[[node-name]]` reference in a skill node file | Run `check-links.sh` and fix the reported broken links |
@@ -1073,11 +1049,8 @@ The MCP process loads the database on startup. A client reload does not always r
 
 ### Code Graph Status and Context Signals
 
-Use `code_graph_status` as the quickest operator probe for structural health. Expect `freshness`, `readiness`, `canonicalReadiness`, `trustState`, `parseHealth`, and `graphQualitySummary` in the response when the graph has persisted scan metadata.
 
-`graphQualitySummary` summarizes what kind of detector provenance and edge-enrichment evidence the last persisted scan produced. If the graph is brand new or still empty, the field may be `null` or absent until `code_graph_scan` writes the first persisted graph state.
 
-`code_graph_context` can refuse broad repair on the read path. In that case it returns `status: "blocked"` with `requiredAction: "code_graph_scan"` and `blockReason: "full_scan_required"` instead of attempting a full scan inline. Successful context responses still include `readiness`, `trustState`, `graphMetadata.detectorProvenance`, and `metadata.partialOutput`, which is the operator-facing signal that budget or deadline limits trimmed sections or anchors.
 
 ### Root Cause Summary (Post-Update Failures)
 
@@ -1162,7 +1135,6 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
 | `.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js` | Backend artifact the launcher spawns |
 | `.opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| `.opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite` | Structural code-graph database (skill-local) |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Verify Node.js version and prerequisites |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
 | `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Native module rebuild |

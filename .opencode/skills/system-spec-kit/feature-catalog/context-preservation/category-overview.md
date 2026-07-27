@@ -26,9 +26,7 @@ This category documents the hybrid context injection system that preserves criti
 
 The shipped surface now includes hook scripts, code graph modules, MCP tools, budget allocator, tree-sitter parser with regex fallback, query-intent routing, auto-trigger, session health/resume/bootstrap tools, the structural ready/stale/missing contract, and startup-brief follow-ons. Recovery treats `/speckit:resume` as the canonical surface and follows `handover.md -> _memory.continuity -> spec docs` before widening to broader memory artifacts.
 
-For runtime-package code-graph details, see `.opencode/skills/system-code-graph/feature-catalog/feature-catalog.md`.
 
-Phase 005 split code-graph-owned category-22 docs into the sibling skill. For the code-graph feature pages that moved, see `.opencode/skills/system-code-graph/feature-catalog/context-preservation/`; for code-graph manual scenarios, see `.opencode/skills/system-code-graph/manual-testing-playbook/context-preservation/`. Shared hook, runtime, budget, routing, skill-graph, and coverage-graph pages remain here.
 
 ---
 
@@ -39,12 +37,6 @@ Phase 005 split code-graph-owned category-22 docs into the sibling skill. For th
 | File | Layer | Role |
 |------|-------|------|
 | `mcp-server/hooks/claude/` | Hook | 6 Claude Code lifecycle hook scripts |
-| `.opencode/skills/system-code-graph/mcp-server/lib/` | Lib | 12 code graph library modules |
-| `.opencode/skills/system-code-graph/mcp-server/handlers/` | Handler | 4 MCP tool handlers |
-| `.opencode/skills/system-code-graph/mcp-server/tools/code-graph-tools.ts` | Dispatch | Tool dispatch for code graph tools |
-| `.opencode/skills/system-code-graph/mcp-server/lib/tree-sitter-parser.ts` | Lib | WASM-based AST parser (replaces regex) |
-| `.opencode/skills/system-code-graph/mcp-server/lib/query-intent-classifier.ts` | Lib | Structural/semantic/hybrid query routing |
-| `.opencode/skills/system-code-graph/mcp-server/lib/ensure-ready.ts` | Lib | Auto-trigger with git HEAD staleness detection |
 | `mcp-server/handlers/session-health.ts` | Handler | Session readiness and quality score |
 | `mcp-server/handlers/session-resume.ts` | Handler | Composite resume (memory + graph + Code Graph) |
 | `mcp-server/handlers/session-bootstrap.ts` | Handler | Canonical first-call bootstrap (resume + health + structural contract) |

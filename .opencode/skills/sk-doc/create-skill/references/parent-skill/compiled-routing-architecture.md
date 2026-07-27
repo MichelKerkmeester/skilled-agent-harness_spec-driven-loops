@@ -47,7 +47,6 @@ This same seven-hub set is independently pinned in `.opencode/bin/lib/compiled-r
 
 The router only ever selects **within** an already-identified hub — which of that hub's `workflowMode`/`packetKind` entries a prompt should resolve to. It never decides which hub owns a prompt in the first place; that step stays the advisor's job.
 
-**Why only these seven, and only hub-shaped skills:** the compiled router compiles a `hub-router.json` + `mode-registry.json` pair — the two-axis, `modes[]`-registry contract described in [parent-skills-nested-packets.md](parent-skills-nested-packets.md). A skill only carries this contract if it is a parent hub built with `create-skill-parent`. Non-hub skills (`sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit`, `mcp-code-mode`) and every standalone skill `create-skill` scaffolds are single advisor identities with no internal mode dispatch — there is no per-request "which packet" decision for a compiled policy to precompute, so they are structurally out of scope, not merely unbuilt yet.
 
 ---
 

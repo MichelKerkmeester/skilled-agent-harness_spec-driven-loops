@@ -73,7 +73,6 @@ The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Sho
 18:   state_log: "mcp-server/database/.doctor-update.last-run.json"
 98: mutation_boundaries:
 99:   allowed_targets:
-100:     - ".opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite"  # structural code graph DB (skill-local)
 102:     - "mcp-server/database/context-index.sqlite"  # canonical memory DB
 104:     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
 106:     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
@@ -81,7 +80,6 @@ The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Sho
 110:     - "mcp-server/database/.doctor-update.flock"  # single-instance lock
 112:     - "mcp-server/database/.doctor-update.last-run.json"  # orchestrator state log
 386:   phase_5_dependency_order_execute:
-397:       code-graph: "code_graph_scan({ incremental: false })"
 399:         action: "memory_index_scan({ incremental: false, force: true })"
 456:       skill-graph: "mk_skill_advisor.skill_graph_scan({})"
 457:       advisor: "mk_skill_advisor.advisor_rebuild({ force: true }) + mk_skill_advisor.advisor_validate({})"

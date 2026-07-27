@@ -28,7 +28,6 @@ The `session_resume` handler performs three recovery steps: (1) a filesystem-fir
 
 Commit `debb5d7a8` introduced `mcp-server/lib/context/caller-context.ts` and wrapped the MCP transport with AsyncLocalStorage caller binding. Commit `87636d923` then changed `mcp-server/handlers/session-resume.ts` so a supplied `args.sessionId` is compared against the caller-bound session identity by default. In the normal strict mode, a mismatch is rejected instead of being treated as an informational hint. `MCP_SESSION_RESUME_AUTH_MODE=permissive` is the canary rollout flag that logs the mismatch and allows the request to continue.
 
-The rest of the merged recovery payload is unchanged in shape: `memory` still comes from the `handover.md -> _memory.continuity -> spec docs` ladder, `codeGraph` still reports freshness-aware graph state, `codeGraph` still reports binary availability, and `structuralContext` plus `hints` still explain whether the caller should escalate to `session_bootstrap` or `code_graph_scan`. The current implementation therefore hardened who may resume a session without changing the overall recovery contract that callers consume.
 
 ---
 
@@ -42,7 +41,6 @@ The rest of the merged recovery payload is unchanged in shape: `memory` still co
 | `mcp-server/lib/context/caller-context.ts` | Lib | AsyncLocalStorage caller identity used to bind session_resume authorization to the transport caller |
 | `mcp-server/context-server.ts` | Transport | Wraps tool execution in the caller-context envelope |
 | `mcp-server/lib/resume/resume-ladder.ts` | Lib | Filesystem-first packet recovery ladder (`handover.md -> _memory.continuity -> spec docs`) |
-| `.opencode/skills/system-code-graph/mcp-server/lib/code-graph-db.ts` | Lib | Code graph status query |
 | `mcp-server/lib/session/session-snapshot.ts` | Lib | Shared structural context contract used for recovery hints |
 | `mcp-server/tools/lifecycle-tools.ts` | Dispatch | Tool dispatch registration for session_resume |
 

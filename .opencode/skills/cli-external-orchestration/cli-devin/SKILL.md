@@ -268,7 +268,6 @@ The installed Devin CLI discovers repository skills and rules that are already p
   /system-skill-advisor [user,model] (./.opencode/skills/system-skill-advisor)
   /system-spec-kit [user,model] (./.opencode/skills/system-spec-kit)
   /sk-code [user,model] (./.opencode/skills/sk-code)
-  /system-code-graph [user,model] (./.opencode/skills/system-code-graph)
   /system-deep-loop [user,model] (./.opencode/skills/system-deep-loop)
   /sk-prompt [user,model] (./.opencode/skills/sk-prompt)
   /sk-design [user,model] (./.opencode/skills/sk-design)

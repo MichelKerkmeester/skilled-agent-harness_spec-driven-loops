@@ -3,21 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 import { describe, it, expect, vi } from 'vitest';
 
-// Mock the code-graph boundary to avoid real marker reads in computeGraphFreshness.
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  getGraphStatsFromMarker: vi.fn(() => ({
-    totalFiles: 5,
-    totalNodes: 20,
-    totalEdges: 10,
-    lastScanTimestamp: new Date().toISOString(),
-    dbFileSize: 1024,
-    schemaVersion: 1,
-    nodesByKind: {},
-    edgesByType: {},
-    parseHealthSummary: {},
-  })),
-}));
-
 import {
   recordMetricEvent,
   getSessionMetrics,

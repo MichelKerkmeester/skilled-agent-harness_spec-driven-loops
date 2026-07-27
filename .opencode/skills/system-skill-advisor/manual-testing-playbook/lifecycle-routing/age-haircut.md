@@ -98,7 +98,6 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 2026-06-30T13:36:50+0200 .opencode/skills/mcp-open-design/SKILL.md
 2026-05-31T11:45:37+0200 .opencode/skills/mcp-click-up/SKILL.md
 2026-06-30T11:10:00+0200 .opencode/skills/sk-doc/SKILL.md
-2026-06-30T13:36:50+0200 .opencode/skills/system-code-graph/SKILL.md
 2026-06-15T20:16:53+0200 .opencode/skills/sk-code/SKILL.md
 2026-07-01T18:28:00+0200 .opencode/skills/system-deep-loop/runtime/SKILL.md
 2026-06-30T13:36:50+0200 .opencode/skills/system-skill-advisor/SKILL.md

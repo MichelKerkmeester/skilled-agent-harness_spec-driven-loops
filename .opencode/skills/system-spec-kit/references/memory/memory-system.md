@@ -153,7 +153,6 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L7: Maintenance | `embedder_list()` | List available embedder profiles | Inspect local/cloud embedding options |
 | L7: Maintenance | `embedder_set()` | Change the active embedder profile | Controlled embedder swap |
 | L7: Maintenance | `embedder_status()` | Report active embedder health and profile | Diagnose embedding readiness |
-Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; use `mk-code-index` for structural `code_graph_*` tools.
 
 ### memory_index_scan() Parameters
 

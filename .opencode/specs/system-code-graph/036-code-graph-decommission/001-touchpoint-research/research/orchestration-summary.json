@@ -1,0 +1,77 @@
+{
+  "run_id": "1785176679915-bjzj49",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-code-graph/036-code-graph-decommission/001-touchpoint-research",
+  "base_artifact_dir": ".opencode/specs/system-code-graph/036-code-graph-decommission/001-touchpoint-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [
+    {
+      "label": "glm",
+      "index": 1,
+      "started_at_iso": "2026-07-27T17:18:53.547Z"
+    }
+  ],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm",
+      "state_log": ".opencode/specs/system-code-graph/036-code-graph-decommission/001-touchpoint-research/research/lineages/glm/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-27T18:24:39.920Z",
+        "end_at_iso": "2026-07-27T18:45:05.793Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:28:00.000Z",
+          "deltaMs": 6054207
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:34:00.000Z",
+          "deltaMs": 6414207
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:40:00.000Z",
+          "deltaMs": 6774207
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:46:00.000Z",
+          "deltaMs": 7134207
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-27T20:52:00.000Z",
+          "deltaMs": 7494207
+        }
+      ]
+    }
+  ]
+}

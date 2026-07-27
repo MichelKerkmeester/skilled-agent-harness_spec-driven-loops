@@ -98,7 +98,6 @@ The framework adds four layers on top of the base platform:
          │                                          │
          │  mk-spec-memory      context + memory    │
          │  mk_skill_advisor     skill routing      │
-         │  mk_code_index        structural graph   │
          │  code_mode            external tools     │
          │  sequential_thinking  reasoning helper   │
          │                                          │
@@ -139,12 +138,9 @@ npm install
 # Each launcher is a self-contained .cjs that vendors its own deps on first run.
 node .opencode/bin/mk-spec-memory-launcher.cjs --help
 node .opencode/bin/mk-skill-advisor-launcher.cjs --help
-node .opencode/bin/mk-code-index-launcher.cjs --help
 ```
 
-The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first run and the checked-in runtime configs already point at them, so there is no separate build step. Launcher reliability (owner-disposal relaunch, lease-probe reap, mk-code-index reconnect, default-on daemon re-election and a single-writer database lock with `SPECKIT_DB_LOCK_DISABLE=1` as the kill switch) is operator-tunable and documented in [`ENV-REFERENCE.md`](.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md).
 
-The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 41 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon-cli-reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
 
 ### Set Up Embedding Provider
 
@@ -170,10 +166,8 @@ export OPENAI_API_KEY="your-key-here"
 # Confirm the launcher binaries respond
 node .opencode/bin/mk-spec-memory-launcher.cjs --help
 node .opencode/bin/mk-skill-advisor-launcher.cjs --help
-node .opencode/bin/mk-code-index-launcher.cjs --help
 
 # Confirm the active runtime's MCP config references the launchers
-grep -l 'mk-spec-memory\|mk_skill_advisor\|mk_code_index' \
   opencode.json .claude/mcp.json .vscode/mcp.json 2>/dev/null
 ```
 
@@ -195,7 +189,6 @@ See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full c
 
 ### Code-Graph Indexing
 
-The standalone `mk_code_index` MCP server indexes **your project's production code** by default, not the framework backend. End users inherit this behavior automatically through the committed config defaults. See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -370,7 +363,6 @@ The Memory Engine is a local-first cognitive memory system built as an MCP serve
 
 `/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot and Claude share the same compact-cache provenance path.
 
-The memory engine works with session lifecycle surfaces and hybrid retrieval. Structural code indexing now lives in the standalone [`system-code-graph`](.opencode/skills/system-code-graph/) skill and MCP server.
 
 Expired ephemeral rows are cleaned by a retention sweep on startup and hourly by default. Use `memory_retention_sweep` for manual or dry-run cleanup. The handler is defined at [memory-retention-sweep.ts](.opencode/skills/system-spec-kit/mcp-server/handlers/memory-retention-sweep.ts), with `SPECKIT_RETENTION_SWEEP` and `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` controlling the background interval.
 
@@ -392,7 +384,6 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L7** | Maintenance     | 7      | 1,000        | Memory index scans (run/status/cancel), async ingest and learning history    |
 | **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
 | **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
-| **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `runtime/` CLI scripts (not MCP tools) |
 |        | **Total**       | **41** | **~8,300**   |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 41 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
@@ -587,39 +578,32 @@ SPECKIT_CODE_GRAPH_DB_DIR=/path/to/code-graph-db # optional DB-dir override
 Per-call args override env vars when provided. Env vars apply only for fields omitted from the scan call:
 
 ```ts
-code_graph_scan({
   includeSkills: ['sk-code', 'sk-doc'], // granular: only these skills
   includeAgents: true,                         // all .opencode/agents/**
 })
 ```
 
-Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"` until you re-run the scan. See [system-code-graph README §8 SCAN SCOPE](.opencode/skills/system-code-graph/README.md#8-scan-scope) for the full scan-scope rules and precedence details.
 
 &nbsp;
 #### How the Code Graph Works
 
-The Code Graph is a SQLite-backed structural index owned by `.opencode/skills/system-code-graph/` and registered as the standalone `mk_code_index` MCP server. MCP callers use the `mcp__mk_code_index__*` namespace. Runtime config parity is mixed across clients during the rename transition, so docs use the canonical `mk_code_index` surface while follow-on config work handles remaining legacy bindings.
 
 **Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Claude Code transports the compact startup shared-payload through its runtime hook (`session-prime.ts`). OpenCode uses plugin surfaces for in-session context and routing. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
 
 **Auto-indexing.** The graph stays current through three mechanisms:
 1. **Startup scan** - indexes on server boot (async, non-blocking)
 2. **File watcher** - Chokidar monitors spec and source folders with a 2-second debounce, reindexing changed files in real time
-3. **Lazy refresh** - `code_graph_query` calls `ensureCodeGraphReady()` which detects staleness and triggers a bounded inline refresh before returning results
 
 The indexer uses tree-sitter to parse source files and extract functions, classes, imports and call relationships. It tracks per-file content hashes to skip unchanged files, making incremental scans fast.
 
 &nbsp;
 #### Readiness & Response Contract
 
-`code_graph_query` and `code_graph_context` share a readiness-aware response contract. When the graph is fresh enough, both return `status: "ok"` with resolved results plus a `readiness` / `canonicalReadiness` / `trustState` block. When readiness requires a full scan that cannot run inline, both return an explicit **`status: "blocked"`** payload naming `requiredAction: "code_graph_scan"`, `blockReason: "full_scan_required"`, `degraded` and `graphAnswersOmitted` instead of silently returning empty results. Callers should run `code_graph_scan` before retrying.
 
-Success payloads of `code_graph_context` carry structured `data.metadata.partialOutput` (`isPartial`, `reasons`, `omittedSections`, `omittedAnchors`, `truncatedText`) and an explicit `deadlineMs` field so callers can distinguish a complete answer from one trimmed by deadline or budget pressure. `code_graph_status` exposes `graphQualitySummary` (detector provenance + edge-enrichment confidence). CALLS queries on ambiguous subjects (e.g. `handle*`) prefer callable implementation nodes over wrapper-shadow candidates and return ambiguity / selected-candidate metadata so callers can audit the choice.
 
 &nbsp;
 #### Edge Explanations and Better Blast Radius
 
-Relationship answers from `code_graph_query` include short `reason` and `step` fields alongside confidence and provenance, so you can see *why* an edge is there instead of just *that* it exists. `code_graph_context` carries those same fields through to structured edges and text briefs.
 
 `blast_radius` keeps the prior payload (affected files, source files, hot files, multi-file union, depth) and adds:
 
@@ -634,7 +618,6 @@ All of this rides inside the existing `code_edges.metadata` JSON blob, no SQLite
 &nbsp;
 #### `detect_changes`: Preflight Impact Check
 
-`detect_changes` is a read-only Code Graph tool that takes a diff and tells you which symbols and files it touches. It runs alongside `code_graph_scan`, `code_graph_query`, `code_graph_status` and `code_graph_context`.
 
 You hand it `{ diff: string, rootDir?: string }`. It walks each diff hunk, overlaps the line ranges with stored symbols and returns `{ status, affectedSymbols[], affectedFiles[], blockedReason?, timestamp, readiness }`.
 
@@ -645,16 +628,13 @@ Under the hood the scan runner is split into four declared phases (`find-candida
 &nbsp;
 #### Apply-Pipeline Safety
 
-Mutating graph maintenance (`code_graph_apply`) runs behind layered guards. Destructive operations require an unconditional confirm gate **before** any snapshot or mutation; pre-dispatch refusals name the `requiredAction` instead of churning a rollback; operator rollbacks select a run-scoped target (never the snapshot the failing run just took), and dry-run previews the exact rollback target through the same selection logic. Snapshot retention prunes only after a committed apply and never touches protected known-good directories. The CLI front door refuses a bare `apply` without explicit mutation intent (an operation, `--dry-run`, or an explicit env opt-in), so a default rescan can never fire by accident. The same 8 tools are exposed 1:1 by the `code-index.cjs` daemon-backed CLI.
 
-The code graph runtime has its own feature catalog and operator playbook under [system-code-graph/feature-catalog](.opencode/skills/system-code-graph/feature-catalog/) and [system-code-graph/manual-testing-playbook](.opencode/skills/system-code-graph/manual-testing-playbook/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, and doctor-code-graph behavior.
 
 &nbsp;
 #### What Each System Does
 
 | System                   | Best for                                                                   | Primary surface                                                                  |
 | ------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| **Code Graph**           | Callers, imports, symbol outlines, impact analysis, neighborhood expansion | `mcp__mk_code_index__code_graph_*`, `mcp__mk_code_index__detect_changes` |
 | **Session bridge tools** | Session bootstrap, resume and health checks around graph availability      | `session_bootstrap`, `session_resume`, `session_health`                          |
 
 &nbsp;
@@ -672,7 +652,6 @@ The default routing order is: **Code Graph** (structural) -> **Memory** (session
 
 Structural search answers relationship questions that text matching cannot. Instead of "this code looks relevant", the Code Graph tells you how it connects: which functions call it, which files import it and what breaks if you change it. That turns impact analysis from a guess into a lookup.
 
-For the full code-graph tool and architecture reference, see the [`system-code-graph` skill](.opencode/skills/system-code-graph/SKILL.md) and [system-code-graph README](.opencode/skills/system-code-graph/README.md). Shared memory and lifecycle details stay in [`.opencode/skills/system-spec-kit/README.md`](.opencode/skills/system-spec-kit/README.md).
 
 ---
 
@@ -881,10 +860,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 - Integrates the 41-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
 - Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
-**system-code-graph**
-- Structural code-graph subsystem at `.opencode/skills/system-code-graph/`
 - Owns AST indexing, SQLite graph storage, readiness contracts and `detect_changes` impact checks
-- Current MCP server name: `mk_code_index`. Client namespace: `mcp__mk_code_index__*`
 
 **system-skill-advisor**
 - Gate 2 skill-routing subsystem at `.opencode/skills/system-skill-advisor/`
@@ -1217,14 +1193,11 @@ Canonical native server set:
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
 | `mk-spec-memory`      | 39    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
 | `mk_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
-| `mk_code_index`        | 8     | Structural code graph, `detect_changes` and impact analysis            |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
 | **Total**              | **64** |                                                                        |
 
-The three daemon servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) also expose full-parity CLI front doors (`spec-memory.cjs`, `skill-advisor.cjs`, `code-index.cjs` under `.opencode/bin/`) over the same warm daemons — additive IPC clients, not separate servers. See the [Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md).
 
-Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` use the shared idle-timeout knob `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. Orphan cleanup is documented in [.opencode/scripts/README.md](.opencode/scripts/README.md); the checked-in LaunchAgent is only a template until an operator copies and loads it.
 
 &nbsp;
 #### Code Mode Tools (7)
@@ -1356,7 +1329,6 @@ The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus 
 &nbsp;
 ### MCP Config Shape
 
-Abbreviated shape. Runtime config files can temporarily differ while the `mk_code_index` rename is being rolled out across clients. The canonical code-graph identity is `mk_code_index` / `mcp__mk_code_index__*`.
 
 ```json
 {
@@ -1367,7 +1339,6 @@ Abbreviated shape. Runtime config files can temporarily differ while the `mk_cod
     "mk_skill_advisor": {
       "type": "local"
     },
-    "mk_code_index": {
       "type": "local"
     },
     "code_mode": {
@@ -1398,7 +1369,6 @@ SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory overrid
 
 **Maintainers (us) have all 5 as `"true"`** locally because we navigate `.opencode/` to iterate on the framework. The smudge filter restores `"true"` on checkout/pull/clone after running `./scripts/setup-maintainer-filters.sh`.
 
-**Per-call override:** the same five flags exist as `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` arguments on `code_graph_scan`. Per-call args always override env defaults, so you can flip behavior for one scan without editing config.
 
 <a id="git-clean-filter--maintainer-mode-stays-local"></a>
 #### Git clean filter: maintainer mode stays local
@@ -1454,12 +1424,10 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 64 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 39 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts`, 8 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp-server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
 &nbsp;
 
 **Q: What is the feature catalog?**
 
-A: The feature catalog is the current technical reference documenting the memory system's live capabilities. It lives at `.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md`. The code graph runtime adds package-local docs at `.opencode/skills/system-code-graph/feature-catalog/`.
 
 <!-- /ANCHOR:faq -->
 
@@ -1477,7 +1445,6 @@ A: The feature catalog is the current technical reference documenting the memory
 - **[→ MCP Server README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Memory API reference and runtime support docs
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
 - **[→ Orphan MCP Leak Prevention Packet](.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
-- **[→ System Code Graph Skill](.opencode/skills/system-code-graph/SKILL.md)** - First-class structural graph skill and MCP routing rules
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `mk_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Install Guide](.opencode/skills/system-spec-kit/mcp-server/INSTALL-GUIDE.md)** - MCP server setup, embedding providers
 - **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes and session-resume auth flag
@@ -1486,8 +1453,6 @@ A: The feature catalog is the current technical reference documenting the memory
 - **[→ Skills Index](.opencode/skills/README.md)** - Skills library and invocation patterns
 - **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - Current technical reference
 - **[→ Manual Testing Playbook](.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
-- **[→ Code Graph Runtime Catalog](.opencode/skills/system-code-graph/feature-catalog/feature-catalog.md)** - Package-local code graph runtime inventory
-- **[→ Code Graph Manual Playbook](.opencode/skills/system-code-graph/manual-testing-playbook/manual-testing-playbook.md)** - Operator scenarios for code graph validation
 - **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes
 - **[→ Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - Full-parity CLI front doors over the three warm daemons
 
@@ -1500,4 +1465,3 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.16 | Last updated: 2026-07-08 | Framework: 12 agents, 12 skills, 28 commands, 64 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

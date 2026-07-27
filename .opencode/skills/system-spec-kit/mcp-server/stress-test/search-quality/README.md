@@ -157,4 +157,3 @@ Expected result: exit code `0`.
 ## 9. RELATED
 
 - [`../memory/README.md`](../memory/README.md)
-- [`../code-graph/README.md`](../../../../system-code-graph/mcp-server/stress-test/code-graph/README.md)
