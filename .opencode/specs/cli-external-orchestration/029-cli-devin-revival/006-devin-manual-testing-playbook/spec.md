@@ -1,16 +1,16 @@
 ---
 title: "Feature Specification: Devin manual-testing playbook"
-description: "Author a Devin-native manual-testing playbook for the cli-devin skill: a split-document Feature Catalog (root directory + 8 category folders, ~15-20 DV-NNN scenario files) reframed against Devin's actual 2026-07 CLI surface rather than a blind port of cli-codex's 27-file playbook."
+description: "Author a Devin-native manual-testing playbook for the cli-devin skill: a split-document Feature Catalog with 9 category folders and 20 DV-NNN scenario files grounded in Devin's actual 2026-07 CLI surface."
 trigger_phrases: ["devin manual testing playbook", "DV-NNN scenarios", "cli-devin playbook categories", "devin hallucination fixture scenario"]
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook"
-    last_updated_at: "2026-07-24T18:30:00Z"
+    last_updated_at: "2026-07-27T14:44:27Z"
     last_updated_by: "claude-code"
-    recent_action: "Expanded to include deny-branch live observation scenario per phase 012 hardening review"
-    next_safe_action: "Wait for phases 003/005; author 8 hook scenarios including deny-branch observation"
+    recent_action: "Authored the 20-scenario Devin playbook and reconciled the packet scope."
+    next_safe_action: "Run strict validation and refresh packet metadata."
     blockers: ["devin auth login requires an interactive OAuth browser flow only the operator can complete - blocks scenario EXECUTION, not this phase's authoring work"]
     key_files: [".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md", ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-authoring", parent_session_id: null }
@@ -30,7 +30,7 @@ _memory:
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-23 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -49,7 +49,7 @@ _memory:
 `cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism - there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate. `cli-devin` needs its own playbook, but several of Codex's categories (`agent-routing` via `config.toml` `-p profile` routing, `sandbox-modes` via local sandbox flags) are local-CLI-binary-specific and do not map 1:1 onto Devin's actual (2026-07) surface, confirmed live in phase 001. A blind port would fabricate test coverage for capabilities Devin doesn't have in that shape (Codex's 3-tier sandbox modes, `config.toml` profile files), while missing capabilities Devin genuinely does have that Codex doesn't (cloud handoff via `/handoff`, `devin mcp` subcommands, a 4-tier permission model separate from an OS-level `--sandbox` flag, custom `.devin/agents/[name]/AGENT.md` subagent profiles).
 
 ### Purpose
-Author a Devin-native manual-testing playbook that mirrors the confirmed cli-codex split-document template exactly (root directory file + category folders, universal per-feature scenario template, `DV-NNN` scenario IDs) but reframes the category set against Devin's live-verified 2026-07 surface: 8 categories targeting roughly 15-20 total scenario files, including a dedicated hallucination-fixture scenario grounded in documented `swe-1.6` failure modes, with an explicit note that playbook EXECUTION (not authoring) is gated on the operator completing `devin auth login`.
+Author a Devin-native manual-testing playbook that mirrors the confirmed cli-codex split-document template exactly (root directory file + category folders, universal per-feature scenario template, `DV-NNN` scenario IDs) but reframes the category set against Devin's live-verified 2026-07 surface: 9 categories and 20 total scenario files, including a dedicated hallucination-fixture scenario grounded in documented `swe-1.6` failure modes, with an explicit note that playbook EXECUTION (not authoring) is gated on the operator completing `devin auth login`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -59,14 +59,14 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 
 ### In Scope
 - Author the playbook root file `manual-testing-playbook.md` under `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/`, mirroring cli-codex's confirmed 17-section structure (EXECUTION POLICY banner, SELF-INVOCATION GUARD banner, then numbered §1 Overview through §17 Feature Catalog Cross-Reference Index).
-- Author 8 category subdirectories, each with at least 1 `DV-NNN` scenario file using the universal per-feature template (frontmatter, §1 Overview, §2 Scenario Contract, §3 Test Execution, §4 Source Files, §5 Source Metadata): `cli-invocation`, `permission-modes`, `subagents`, `hooks`, `session-continuity`, `cloud-handoff`, `prompt-templates`, `mcp-integration`.
-- Target roughly 15-20 total scenario files - smaller than Codex's 26 since several Codex categories don't apply in the same shape.
+- Author 9 category subdirectories, each with at least 1 `DV-NNN` scenario file using the universal per-feature template (frontmatter, §1 Overview, §2 Scenario Contract, §3 Test Execution, §4 Source Files, §5 Source Metadata): `cli-invocation`, `permission-modes`, `hooks`, `subagents`, `commands-and-skills`, `rules`, `mcp-integration`, `session-continuity`, and `cloud-handoff`.
+- Target 20 total scenario files - smaller than Codex's 26 because several Codex categories do not apply in the same shape, while retaining dedicated Devin-native roster and rules coverage.
 - Reframe Codex's `sandbox-modes` category as Devin's `permission-modes` category (the 4 permission modes - auto/accept-edits/smart/dangerous - plus the genuinely separate `--sandbox` OS-level flag), not a verbatim port of Codex's read-only/workspace-write/danger-full-access sandbox shape.
 - Reframe Codex's `agent-routing` (`config.toml` `-p profile`) category as Devin's `subagents` category (`subagent_explore`, `subagent_general`, custom `.devin/agents/[name]/AGENT.md` profiles), Devin's genuinely different delegation mechanism.
-- Add a `hooks` category with exactly 8 scenario files, one per Devin lifecycle event, each stating whether it is observed live, registered but unobserved or an explicit empty gap.
+- Add a `hooks` category with three scenarios: one matrix for the six confirmed-firing events, one for the PermissionRequest auto/bypass difference, and one for the PreToolUse-under-bypass safety invariant.
 - Add a `cloud-handoff` category testing `/handoff` thoroughly, since it may be one of Devin's primary invocation modes rather than a secondary one.
 - Add an `mcp-integration` category testing `devin mcp add/list/get/remove/login/logout/enable/disable` - a genuine Devin capability with no direct Codex analog in this shape.
-- Port the `prompt-templates` category near-verbatim from Codex's CLEAR/RCAF scoring apparatus - a shared, cli-family-generic pattern.
+- Keep prompt-quality guidance in the existing Devin skill assets; the requested 20-scenario playbook does not create a separate prompt-template category.
 - Include at least one scenario that dispatches a prompt likely to trigger flag hallucination (canonical example: a fabricated `--reasoning-effort` flag) and verifies the response does not reference a real-looking but fake flag, grounded in the archived 018 packet's documented `swe-1.6` failure modes (hallucinated CLI flags, wrong-cwd path defects, bundle-gate bypasses).
 - State explicitly, in the root file's Global Preconditions section, that playbook EXECUTION (not authoring) is gated on the operator completing `devin auth login` - an interactive OAuth flow that cannot be satisfied non-interactively.
 - Add a cross-reference to the playbook from `cli-devin/SKILL.md` once phase 003's skill packet exists.
@@ -83,7 +83,7 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | File Path | Change Type | Description |
 |---|---|---|
 | `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md` | Create | Root playbook file, 17-section structure mirroring cli-codex's root file. |
-| `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/{cli-invocation,permission-modes,subagents,hooks,session-continuity,cloud-handoff,prompt-templates,mcp-integration}/*.md` | Create | Roughly 15-20 `DV-NNN` scenario files, at least 1 per category, using the universal per-feature template. |
+| `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/{cli-invocation,permission-modes,hooks,subagents,commands-and-skills,rules,mcp-integration,session-continuity,cloud-handoff}/*.md` | Create | 20 `DV-NNN` scenario files, at least 1 per category, using the universal per-feature template. |
 | `.opencode/skills/cli-external-orchestration/cli-devin/SKILL.md` | Modify | Add a cross-reference to the manual-testing playbook (once phase 003 creates this file). |
 <!-- /ANCHOR:scope -->
 
@@ -97,8 +97,8 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Playbook root file authored with all 17 numbered sections in the confirmed order, plus both banners before §1 | Each of the 17 section headings (`## 1. OVERVIEW` through `## 17. FEATURE CATALOG CROSS-REFERENCE INDEX`) appears exactly once, in ascending order; the EXECUTION POLICY and SELF-INVOCATION GUARD banners appear before §1. |
-| REQ-002 | 8 category subdirectories authored, each with at least 1 `DV-NNN` scenario file | `find manual-testing-playbook -mindepth 1 -maxdepth 1 -type d` lists exactly `cli-invocation`, `permission-modes`, `subagents`, `hooks`, `session-continuity`, `cloud-handoff`, `prompt-templates`, `mcp-integration`; each directory contains `>=1` `.md` file. |
-| REQ-003 | Total scenario file count lands in the 15-20 range | `find manual-testing-playbook -mindepth 2 -name "*.md" \| wc -l` returns a value between 15 and 20 inclusive. |
+| REQ-002 | 9 category subdirectories authored, each with at least 1 `DV-NNN` scenario file | `find manual-testing-playbook -mindepth 1 -maxdepth 1 -type d` lists exactly the 9 categories named in scope; each directory contains `>=1` `.md` file. |
+| REQ-003 | Total scenario file count is 20 | `find manual-testing-playbook -mindepth 2 -name "*.md" \| wc -l` returns 20. |
 | REQ-004 | At least one scenario dispatches a prompt designed to trigger flag hallucination, with Pass/Fail criteria that explicitly reject a fake-flag reference | The scenario cites the archived `swe-1.6` failure modes (hallucinated CLI flags, wrong-cwd path defects, bundle-gate bypasses) and its Pass/Fail line names the FAIL condition (a referenced non-existent flag, e.g. a fabricated `--reasoning-effort`) explicitly, not just the PASS condition. |
 | REQ-005 | Root file's Global Preconditions section documents `devin auth login` as an operator-only, non-automatable interactive OAuth step, gating scenario EXECUTION (not authoring) | The preconditions section states this distinction explicitly, in prose a human or AI operator can act on without re-deriving it. |
 
@@ -106,15 +106,15 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | Scenario IDs use the `DV-NNN` prefix (Devin), globally unique and sequential with no gaps across all 8 categories | Extracting every `DV-\d{3}` token across all scenario files yields a sorted, gap-free, duplicate-free sequence starting at `DV-001`. |
-| REQ-007 | `permission-modes` category documents why it replaces Codex's `sandbox-modes` category (4 permission modes distinct from the separate `--sandbox` OS-level flag) | The category's overview text names all 4 modes (auto/accept-edits/smart/dangerous) and states `--sandbox` is a separate, OS-level mechanism, not a 5th mode. |
+| REQ-006 | Scenario IDs use the `DV-NNN` prefix (Devin), globally unique and sequential with no gaps across all 9 categories | Extracting every `DV-\d{3}` token across all scenario files yields a sorted, gap-free, duplicate-free sequence starting at `DV-001`. |
+| REQ-007 | `permission-modes` category documents why it replaces Codex's `sandbox-modes` category (four verified permission behaviors distinct from the separate `--sandbox` OS-level flag) | The category's overview text names `normal`/`auto`, `accept-edits`, `dangerous`/`bypass`, and `autonomous` with `--sandbox`, and states `smart` is a help/runtime mismatch rather than a valid mode. |
 | REQ-008 | `subagents` category documents why it replaces Codex's `agent-routing`/`-p profile`/`config.toml` category | The category's scenario files reference `subagent_explore`, `subagent_general`, and a custom `.devin/agents/[name]/AGENT.md` profile at least once each. |
-| REQ-009 | **Updated 2026-07-25**: `hooks` contains exactly 8 scenarios. `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop` and `SessionEnd` start from observed-live evidence. `PostCompaction` is registered but unobserved; `PermissionRequest` is an explicit empty gap. Each scenario tests its own state and preserves adapter-specific caveats such as unobserved `run_subagent` and deny behavior. | Exactly 8 hook scenarios exist and each Pass/Fail section names its evidence state without inferring failure from an event that did not occur. |
+| REQ-009 | `hooks` covers the six confirmed-firing events, the PermissionRequest auto-vs-bypass difference, and the critical PreToolUse-under-bypass invariant. | The three hook scenarios name the six-event matrix, the approval-event difference, and the bypass safety invariant without inferring that bypass disables all hooks. |
 | REQ-013 | Every `hooks` scenario cross-references its matching `feature-catalog/hooks/*.md` entry (phase 010) when that catalog exists at scenario-authoring time; if phase 010 hasn't landed yet, the scenario explicitly notes "no catalog entry yet" rather than a broken or omitted link. | Each `hooks` scenario file contains either a working link to `../../feature-catalog/hooks/<event>.md` or the explicit no-catalog-yet note. |
-| REQ-010 | `cloud-handoff` category tests `/handoff` thoroughly, not as a single throwaway scenario | The category contains `>=2` scenario files. |
+| REQ-010 | `cloud-handoff` category covers `/handoff` with a safe local inspection and explicit live-transfer boundary | The category contains the document-and-SKIP scenario with a named cloud-transfer blocker. |
 | REQ-011 | Playbook cross-referenced from `cli-devin/SKILL.md` | `cli-devin/SKILL.md` contains at least one reference to `manual-testing-playbook`. |
 | REQ-012 | This phase's own docs do not fabricate a changelog/version-history narrative | None of this phase's spec-kit docs contain a changelog or version-history section; that concern is deferred to phase 007, which is flagged not to fabricate one either. |
-| REQ-014 | The `hooks` category includes a dedicated deny-branch live observation scenario for `spec-gate-enforce.mjs`: dispatch a Write/Edit to a non-exempt in-repo file with the gate open and `MK_SPEC_GATE_ENFORCE=1` set, then verify the deny envelope (`permissionDecision: "deny"`) reaches the model under a real `devin -p` session. | The scenario file exists in the `hooks/` category, its Pass/Fail criteria name the deny-envelope shape, and its execution notes state that direct-invocation tests (phase 012's `spec-gate-devin.test.mjs`) confirm the envelope shape but live `devin -p` deny observation remains the gap this scenario closes. |
+| REQ-014 | The `hooks` category includes a dedicated PreToolUse-under-bypass safety scenario. | The scenario names the expected PreToolUse delivery under `--permission-mode bypass` and distinguishes it from the skipped PermissionRequest approval path. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -123,12 +123,12 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Root playbook file exists with all 17 confirmed sections, structurally mirroring the cli-codex root-file shape.
-- **SC-002**: All 8 categories authored, each with at least 1 scenario, total scenario count within the 15-20 target range.
+- **SC-002**: All 9 categories authored, each with at least 1 scenario, for exactly 20 scenario files.
 - **SC-003**: The hallucination-fixture scenario exists and its Pass/Fail criteria explicitly reject fake-flag references.
 - **SC-004**: Playbook cross-referenced from `cli-devin/SKILL.md`.
 - **SC-005**: sk-doc's `validate_document.py` reports 0 structural errors against every playbook file, and this phase's own spec-folder passes `validate.sh <phase-folder> --strict` with 0 errors and 0 warnings.
 - **SC-006**: Root file's Global Preconditions explicitly gate scenario EXECUTION (not authoring) on `devin auth login`.
-- **SC-007**: `hooks` has exactly 8 scenarios, each stating its observed-live, registered-unobserved or explicit-empty status and linking its matching phase-010 catalog entry where one exists.
+- **SC-007**: `hooks` covers the six confirmed-live events, the PermissionRequest auto/bypass difference, and PreToolUse under bypass; each scenario records the catalog-entry state honestly.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -139,11 +139,11 @@ Author a Devin-native manual-testing playbook that mirrors the confirmed cli-cod
 | Type | Item | Impact | Mitigation |
 |---|---|---|---|
 | Dependency | Phase 003 `cli-devin` skill packet (SKILL.md cross-reference target) | Yellow - Planned, not yet built | Author playbook content independently of SKILL.md's existence; add the cross-reference once phase 003 ships. |
-| Dependency | Phase 004 + phase 008 hook adapters and phase 011 corrected event matrix | Green - adapter phases Complete; six events observed live under corrected schema | Author all 8 scenarios against actual adapter paths and the event-specific matrix in `../hook-testing-results.md`, not a packet-wide status assumption. |
+| Dependency | Phase 004 + phase 008 hook adapters and phase 011 corrected event matrix | Green - adapter phases Complete; six events observed live under corrected schema | Author the three hook scenarios against actual adapter paths and the event matrix in `../hook-testing-results.md`, not a packet-wide status assumption. |
 | Dependency | Phase 005 model registry (current model slugs for the root file's model roster note) | Yellow - Planned | Author against phase 001's confirmed facts (`swe-1.6`, Adaptive router); confirm current sibling-model slugs once phase 005 ships. |
 | Dependency | `devin auth login` (operator-only interactive OAuth) | Red - not completed | Blocks scenario EXECUTION only; does not block authoring this phase's docs or the playbook content itself. |
 | Risk | Blind port of Codex categories fabricates coverage for capabilities Devin doesn't have in that shape | High if unmitigated | Reframe `permission-modes` and `subagents` per grounded facts (REQ-007/REQ-008); explicit Out-of-Scope callout against verbatim porting. |
-| Risk | Scenario-count target (15-20) drifts too high or low during authoring | Low | Track the running count during Phase 2 implementation tasks; verify against REQ-003 in Phase 3. |
+| Risk | Scenario count or category set drifts from the user-requested parity surface | Low | Track the 9-category/20-file inventory and verify against REQ-002 and REQ-003. |
 | Risk | `swe-1.6` hallucination-fixture facts (archived 018 packet) are stale by implementation time | Medium | Re-verify against live `swe-1.6` behavior where feasible at implementation time; cite the exact archived source for traceability regardless. |
 <!-- /ANCHOR:risks -->
 

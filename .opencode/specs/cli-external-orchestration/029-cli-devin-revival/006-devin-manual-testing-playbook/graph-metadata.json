@@ -18,7 +18,8 @@
       "devin manual testing playbook plan",
       "DV-NNN scenario authoring plan",
       "devin manual testing playbook tasks",
-      "devin manual testing playbook checklist"
+      "devin manual testing playbook checklist",
+      "devin manual testing playbook summary"
     ],
     "key_topics": [
       "devin",
@@ -35,18 +36,40 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md",
       ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md",
+      ".devin/hooks.v1.json",
+      ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -66,15 +89,15 @@
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -172,43 +195,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex` ships a 27-file manual-testing-playbook (1 root + 26 per-feature scenario files across 9 categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism - there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-23T19:51:59.132Z",
-    "last_save_at": "2026-07-25T10:06:40.876Z",
+    "last_save_at": "2026-07-27T14:44:27.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04dbb342e2e1cf72dc7dd7117cff7942514c88bed897360ebf98fd4a73379e68",
+    "source_fingerprint": "sha256:e34e8fc144b9fd4f435b652376f85c162cfb0b69acc3e3f722077952f458a4b3",
     "source_doc_hashes": {
-      "tasks.md": "9da3fd3d4682ad8c2afb1d8a859ff1ab0adff753484880eb2a18f5c6b756c784",
-      "checklist.md": "e6f3f884a4742fabe9c04a748a721c494aab7879bbb6acc7c186dbc8b20708d7",
-      "plan.md": "36f97bf44c5d26fdeb0a7e0dc7c460fdc6ebe1d5d3991efd8f8f9f05598e396b",
-      "spec.md": "c611319e182bd5b3ccb9ede2aa011ad8f887492fc2e4d061ad257533feaa5f07"
+      "spec.md": "24b54561b29efd797b10958476801f86a77c0668e6cb98c3a0fe98cd9b89d5bb",
+      "plan.md": "56c43637559df0cb1c898556b2873caf7c870eac32e436e63d8b780728645b48",
+      "tasks.md": "fe095c400ca58905c32d659aec6a94de6d7d571589d512006ac947e9509f21eb",
+      "checklist.md": "76209b98140d56b35576a85cc2af0fadd50357bb2e0c9fb7ec65c2b9659d7ebf",
+      "implementation-summary.md": "90a84e7a57637c2310747450de59c98d6f4e708a3be88524f5bc0aae1a9da693"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -96,7 +96,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 3 | `003-cli-devin-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Complete |
 | 4 | `004-devin-hook-adapter-layer/` | Add thin Devin hook adapters for `SessionStart` and `UserPromptSubmit`. Both events fire under `devin -p` with the corrected registration schema. | Complete |
 | 5 | `005-devin-model-registry-and-quota/` | Restore `swe-1.6` + sibling executor rows (current slugs) and the CI gate arrays. | Planned |
-| 6 | `006-devin-manual-testing-playbook/` | Author a Devin-native manual-testing playbook. | Planned |
+| 6 | `006-devin-manual-testing-playbook/` | Author a Devin-native manual-testing playbook. | Complete — 20 DV-NNN scenarios across nine categories, authored not executed (needs operator `devin auth login`) |
 | 7 | `007-docs-agents-governance-and-closeout/` | Restore agent/governance/sibling doc mentions; full recursive validation and closeout. | Planned |
 | 8 | `008-devin-hook-parity/` | Give every Claude hook and OpenCode plugin a correct Devin adapter, native equivalent or documented gap. Shipped 10 adapters and full lifecycle registration; six event categories are observed live, with `PermissionRequest` and `PostCompaction` still unobserved. | Complete |
 | 9 | `009-devin-mcp-host-integration/` | Register this repo's 3 MCP servers with Devin's native `devin mcp` surface under a two-tier deny-by-default permission policy — resolves Open Question 3. | Planned |
