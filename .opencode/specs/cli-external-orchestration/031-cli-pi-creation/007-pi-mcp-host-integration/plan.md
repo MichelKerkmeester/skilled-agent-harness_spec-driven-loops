@@ -7,14 +7,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration"
-    last_updated_at: "2026-07-27T07:55:00Z"
+    last_updated_at: "2026-07-27T10:22:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored implementation plan: 3-phase structure gated on live stdio-transport verification"
-    next_safe_action: "Wait for phase 001/006, then execute Phase 1 (install + single-entry stdio probe)"
-    blockers: ["stdio transport support in pi-mcp-extension is unconfirmed from docs"]
-    key_files: ["spec.md", "tasks.md", "checklist.md"]
+    recent_action: "Docs re-fetched live: stdio config now documented, narrowing REQ-002's scope"
+    next_safe_action: "Commit as Blocked; a future execution phase installs pi-mcp-extension and runs Phase 1"
+    blockers: ["Installing pi-mcp-extension is out of this phase's own Hard Constraint (planning only); deferred to a future execution phase"]
+    key_files: ["implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-creation-phase-007-planning", parent_session_id: null }
-    completion_pct: 0
+    completion_pct: 60
     open_questions: ["Which mechanism gives a safe Tier 2 opt-in for .pi/mcp.json specifically: project/global split, or a gitignored project-local file?"]
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ FAILURE MODES:
 | **Testing** | Live in-session verification only (`/mcp` or equivalent discovery). No fixture-only test meaningfully covers a host-integration config, mirroring `029/009`'s identical testing-strategy note. |
 
 ### Overview
-Plan the translation of `.mcp.json`'s 5 native stdio servers into `.pi/mcp.json`'s documented shape via the third-party `pi-mcp-extension` package, with the phase's very first live action resolving the primary open risk — whether pi-mcp-extension supports stdio transport at all, since its only documented example is a remote `streamable-http` server. Contingent on that result, design (not yet commit) a two-tier deny-by-default mutation policy mirroring `029/009`'s intent, while explicitly flagging that the concrete enforcement mechanism differs from Devin's and is itself unconfirmed.
+Plan the translation of `.mcp.json`'s 5 native stdio servers into `.pi/mcp.json`'s documented shape via the third-party `pi-mcp-extension` package. A live docs re-fetch at this phase's closeout found stdio transport IS now documented (a `command`/`args`/`env` example alongside the remote `streamable-http` one this phase was originally authored against) — narrowing the primary open risk from "does stdio exist" to "does the documented stdio config actually connect in a live session," which remains unconfirmed and is deferred to a future execution phase (installing the package is out of this planning phase's own scope). Contingent on that future result, design (not yet commit) a two-tier deny-by-default mutation policy mirroring `029/009`'s intent, while explicitly flagging that the concrete enforcement mechanism differs from Devin's and is itself unconfirmed (no per-tool permission/deny field is documented in pi-mcp-extension's config schema).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -54,14 +54,15 @@ Plan the translation of `.mcp.json`'s 5 native stdio servers into `.pi/mcp.json`
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement and scope documented in `spec.md`, including the third-party-package flag and the primary stdio-transport risk.
-- [ ] REQ-002 (stdio transport support) is explicitly named as this phase's go/no-go gate before any further config design is treated as final.
-- [ ] Dependencies (`001-pi-contract-pin`, `006-pi-agent-bridge`, the `pi-mcp-extension` package itself) identified.
+- [x] Problem statement and scope documented in `spec.md`, including the third-party-package flag and the primary stdio-transport risk. [EVIDENCE: `spec.md` §2/§3]
+- [x] REQ-002 (stdio transport support) is explicitly named as this phase's go/no-go gate before any further config design is treated as final. [EVIDENCE: `spec.md` §4 REQ-002, marked PRIMARY]
+- [x] Dependencies (`001-pi-contract-pin`, `006-pi-agent-bridge`, the `pi-mcp-extension` package itself) identified. [EVIDENCE: `plan.md` §6, both internal deps now Complete]
 
 ### Definition of Done
-- [ ] (For this planning phase only) `spec.md`/`plan.md`/`tasks.md`/`checklist.md` fully authored with concrete, falsifiable acceptance criteria — no `implementation-summary.md` exists, since status stays **Planned**.
-- [ ] Every claim sourced from pi.dev documentation rather than live verification is explicitly marked as such.
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` passes for this phase folder once authored.
+- [x] (For this planning phase only) `spec.md`/`plan.md`/`tasks.md`/`checklist.md` fully authored with concrete, falsifiable acceptance criteria. [EVIDENCE: all 4 docs authored and closed out]
+- [x] Every claim sourced from pi.dev documentation rather than live verification is explicitly marked as such. [EVIDENCE: `rg -c "UNCONFIRMED\|per pi.dev docs" spec.md plan.md`]
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` passes for this phase folder once authored. [EVIDENCE: `implementation-summary.md` Verification table]
+- [B] REQ-002's live stdio-connection confirmation (installing pi-mcp-extension, authoring a single-entry `.pi/mcp.json` probe) [DEFERRED: out of this phase's own scope per its Hard Constraint - planning only, no `pi install` command run - a future execution phase performs this step]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -124,9 +125,9 @@ Live-verify the designed `/mcp` connected set matches expectations, exercise the
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `001-pi-contract-pin` | Internal | Planned (not yet executed) | Every live check in this phase assumes a working Pi session/headless contract; blocks all of Phase 1-3. |
-| `006-pi-agent-bridge` | Internal | Planned (immediate predecessor, sequencing only) | No functional coupling — this phase does not depend on `pi-subagents` succeeding, only on phase ordering. |
-| `pi-mcp-extension` (npm, third-party) | External | Unconfirmed until installed (REQ-001) | The entire phase is blocked if the package fails to install or load; this is the single highest-leverage external dependency in the phase. |
+| `001-pi-contract-pin` | Internal | Complete — Pi CLI 0.82.1 installed, `pi install npm:<pkg> -l --approve` confirmed | Every live check in this phase assumes a working Pi session/headless contract; a future execution phase can proceed directly to Phase 1. |
+| `006-pi-agent-bridge` | Internal | Complete — planning-only, immediate predecessor, sequencing only | No functional coupling — this phase does not depend on `pi-subagents` succeeding, only on phase ordering. |
+| `pi-mcp-extension` (npm, third-party) | External | Unconfirmed until installed (REQ-001); docs re-fetched live 2026-07-27, v1.5.0, now documents stdio transport | Installing it is out of this planning phase's own scope; a future execution phase confirms it loads and connects. |
 <!-- /ANCHOR:dependencies -->
 
 ---

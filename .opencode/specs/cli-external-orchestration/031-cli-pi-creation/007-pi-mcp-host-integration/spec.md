@@ -7,14 +7,14 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration"
-    last_updated_at: "2026-07-27T07:55:00Z"
+    last_updated_at: "2026-07-27T10:22:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase 7 spec/plan/tasks/checklist (planning only, status Planned)"
-    next_safe_action: "Wait for phase 001 and phase 006, then live-verify pi-mcp-extension transport"
-    blockers: ["pi-mcp-extension's only documented config example uses streamable-http + remote url, not stdio; stdio support for local command-based servers is UNCONFIRMED"]
-    key_files: ["../../029-cli-devin-revival/009-devin-mcp-host-integration/spec.md", "../006-pi-agent-bridge/", "../../../../../.mcp.json", "../../../../../.utcp_config.json"]
+    recent_action: "Docs re-fetched live: stdio config now documented; pre-work re-verified"
+    next_safe_action: "Commit as Blocked; phase 008 proceeds independently (no functional coupling)"
+    blockers: ["Installing pi-mcp-extension and live-confirming the now-documented stdio config crosses this phase's own Hard Constraint (planning only); deferred to a future execution phase"]
+    key_files: ["implementation-summary.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-pi-creation-phase-007-planning", parent_session_id: null }
-    completion_pct: 0
+    completion_pct: 60
     open_questions: ["Does pi-mcp-extension support a stdio transport (command/args/env) for local Node-process servers at all?", "Does pi-mcp-extension expose any per-tool permission/deny surface, or must deny-by-default route through Pi's core Security/tool-approval settings instead?"]
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Blocked - planning re-verified live where possible (docs re-fetch found a material update: stdio config is now documented); the primary go/no-go gate (REQ-002, live-confirming that config actually connects) requires installing pi-mcp-extension, which is out of this phase's own Hard Constraint (planning only) — deferred to a future execution phase, not silently skipped |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -79,7 +79,9 @@ This is **Phase 7** of the CLI Pi creation specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This repo runs 5 native MCP servers (`sequential_thinking`, `mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`, `code_mode`) that Claude Code and OpenCode already reach via `.mcp.json`'s stdio `{command, args, env}` shape, plus 10 external UTCP manuals (`chrome_devtools_1/2`, `aside`, `clickup_official`, `figma`, `github`, `gitkraken`, `open_design`, `refero`, `mobbin`) reached transitively through `code_mode`'s own tool surface. Pi CLI has no first-party MCP support at all — the only path is a third-party, community-maintained package, `pi-mcp-extension` (https://pi.dev/packages/pi-mcp-extension), which is explicitly **not built into core Pi**. Its documentation shows exactly one config example, and it is a remote `streamable-http` server with a `url` field — there is no documented example of a local stdio server using the `command`/`args`/`env` shape our 5 servers actually need. Whether pi-mcp-extension supports stdio transport at all is therefore genuinely unconfirmed, not a detail to assume away.
+This repo runs 5 native MCP servers (`sequential_thinking`, `mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`, `code_mode`) that Claude Code and OpenCode already reach via `.mcp.json`'s stdio `{command, args, env}` shape, plus 10 external UTCP manuals (`chrome_devtools_1/2`, `aside`, `clickup_official`, `figma`, `github`, `gitkraken`, `open_design`, `refero`, `mobbin`) reached transitively through `code_mode`'s own tool surface. Pi CLI has no first-party MCP support at all — the only path is a third-party, community-maintained package, `pi-mcp-extension` (https://pi.dev/packages/pi-mcp-extension, author `irahardianto`, v1.5.0), which is explicitly **not built into core Pi**.
+
+**Correction from a live re-fetch at this phase's 2026-07-27 closeout** (superseding this phase's original authoring-time premise): the docs page now documents an explicit stdio config shape — `"command": "/path/to/pathfinder-mcp", "transport": "stdio", "lifecycle": "eager"`, plus an args/env variant (`"command": "npx", "args": ["-y", "@context7/mcp"], "env": {"NODE_ENV": "production"}`) — alongside the remote `streamable-http` + `url` example this phase was originally authored against. This narrows REQ-002 from "determine whether stdio is even possible" to "confirm the now-documented stdio config actually connects in a live session" — still genuinely unconfirmed (docs vs. live behavior), but a materially smaller gap than originally scoped. No per-tool permission/deny field is documented either way (config table: `transport`/`command`/`args`/`env`/`url`/`lifecycle`/`requestTimeoutMs`/`healthCheckIntervalMs` only) — REQ-005's premise is unchanged.
 
 ### Purpose
 Produce a concrete, falsifiable plan — not yet executed — for installing pi-mcp-extension, live-verifying stdio transport support as the phase's primary go/no-go gate, and (contingent on that result) translating `.mcp.json`'s 5 servers into `.pi/mcp.json` under a deny-by-default mutation policy that mirrors `029/009`'s two-tier design intent, while explicitly flagging every claim that rests on documentation rather than live Pi behavior.
@@ -162,12 +164,12 @@ This phase authors planning content only; it modifies no file outside this phase
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk (PRIMARY) | pi-mcp-extension may not support stdio transport for local command-based servers at all — the only documented example is a remote `streamable-http` server. | High — if unsupported, none of the 5 native servers (or the 10 UTCP manuals behind `code_mode`) can be wired under Pi at all via this package. | REQ-002 forces a live, single-entry probe before any further config work; a genuinely negative result is documented as a phase-level gap, not worked around with an unverified assumption. |
+| Risk (PRIMARY, downgraded 2026-07-27 closeout) | Originally: pi-mcp-extension might not support stdio transport at all (only a remote `streamable-http` example was documented at authoring time). A live re-fetch at closeout found the docs NOW show an explicit stdio config shape (`"transport": "stdio"` plus a `command`/`args`/`env` variant) — the package added or documented stdio support since this phase was authored. | Downgraded to Medium — the config shape is now documented, but whether it actually connects in a real Pi session (vs. merely being valid JSON per the docs) remains unconfirmed live. | REQ-002 still requires a live, single-entry probe before any further config work is trusted; the probe's job shifted from "does stdio exist at all" to "does the documented stdio config actually work." |
 | Risk | pi-mcp-extension's documented config shows no per-tool permission/deny surface, so the deny-by-default intent inherited from `029/009` may have no native enforcement point inside the package itself. | Medium-High — the phase's whole policy design could rest on a mechanism that doesn't exist. | REQ-005 live-checks whether Pi's core Security/tool-approval settings substitute; if neither mechanism exists, Tier 1 stays limited to servers with zero mutation-capable tools rather than trusting an unenforced deny. |
 | Risk | `code_mode`'s `call_tool_chain` is a single tool that fans out to all 10 external UTCP manuals, several write-capable (ClickUp, GitHub, GitKraken). A coarse "allow code_mode" grant would implicitly grant all 10. | Medium-High — the highest-leverage single tool in the whole surface. | REQ-007 requires an explicit, separate policy decision for `call_tool_chain`, not an inherited blanket allow. |
 | Risk | pi-mcp-extension is community-maintained (author page: https://pi.dev/packages/pi-mcp-extension), not a Pi core guarantee — version drift, abandonment, or a breaking config-schema change are all plausible for a third-party package. | Medium | Pin an exact installed version once phase 1 confirms the real `pi install` syntax; treat every claim about this package's behavior as needing re-verification if Pi core or the package itself is ever upgraded. |
-| Dependency | `001-pi-contract-pin` — the live session/headless contract this phase's every live check assumes. | This phase cannot start its live-verification requirements until 001 resolves. | Sequencing only; no config is authored before 001's findings are available. |
-| Dependency | `006-pi-agent-bridge` (immediate predecessor, per phase sequencing). | Sequencing only. | No functional coupling — this phase does not depend on `pi-subagents` succeeding. |
+| Dependency | `001-pi-contract-pin` — the live session/headless contract this phase's every live check assumes. | Complete — Pi CLI 0.82.1 installed, `pi install npm:<pkg> -l --approve` confirmed as the real install verb. | This phase's live-verification requirements can proceed once a future execution phase is authorized to install pi-mcp-extension. |
+| Dependency | `006-pi-agent-bridge` (immediate predecessor, per phase sequencing). | Complete — planning-only, same as this phase; no functional coupling. | No functional coupling — this phase does not depend on `pi-subagents` succeeding. |
 | Dependency (carried-forward discipline) | Cold-bootstrap of native modules (`better-sqlite3`, `sqlite-vec`, tree-sitter/WASM) inside `mk-spec-memory`/`mk_code_index` under whatever process Pi spawns them in. | Low likelihood — Pi appears to run locally like Claude Code/OpenCode/Cursor, not in a remote sandbox like Devin's cloud, so this is carried forward from `029/009`'s R-002 out of discipline, not because it is expected to be relevant. | Live-verify during REQ-004 rather than assuming local-machine parity with Claude/OpenCode. |
 <!-- /ANCHOR:risks -->
 
@@ -176,7 +178,7 @@ This phase authors planning content only; it modifies no file outside this phase
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does pi-mcp-extension support a stdio transport (`command`/`args`/`env`) for local command-based servers at all, or is remote `streamable-http` the only supported transport? (REQ-002 — this phase's PRIMARY open risk.)
+- Does pi-mcp-extension's now-documented stdio transport (`command`/`args`/`env`, confirmed present in the docs as of this phase's 2026-07-27 closeout re-fetch) actually connect and surface tools in a real Pi session, matching its documented shape? (REQ-002 — this phase's PRIMARY open risk, narrowed from "does stdio exist" to "does the documented stdio config work live.")
 - Does pi-mcp-extension expose any per-tool permission/deny surface of its own, or must deny-by-default be enforced entirely through Pi's core Security/tool-approval settings (or through neither, meaning Tier 1 must stay limited to inherently mutation-free tools)? (REQ-005)
 - What is the real `pi install npm:pi-mcp-extension` syntax — confirmed identically to how phase 1 must confirm `pi install npm:pi-subagents` for phase 6? (feeds REQ-001)
 - Is Pi's project-vs-global `.pi/mcp.json` split (`.pi/mcp.json` overriding `~/.pi/agent/mcp.json`, per the documented settings-merge behavior) enough to construct a Tier-1/Tier-2 pair analogous to Devin's `config.json`/`config.local.json`, or does the maintainer-opt-in tier have to live in the maintainer's own global `~/.pi/agent/mcp.json` instead, outside the repo entirely? (feeds REQ-006 — genuinely unconfirmed; Pi's documented mechanism is a project/global split, not a committed/gitignored-local split like Devin's.)
