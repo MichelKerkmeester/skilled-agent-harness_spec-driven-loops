@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi cli contract pin",
+      "pi.dev cli verification",
+      "pi headless dispatch contract",
+      "earendil-works pi-coding-agent",
+      "pi cli contract pin plan",
+      "pi headless dispatch verification plan",
+      "pi cli contract pin tasks",
+      "pi cli contract pin checklist"
+    ],
+    "key_topics": [
+      "cli",
+      "contract",
+      "pin",
+      "dev",
+      "verification",
+      "headless",
+      "dispatch",
+      "earendil-works",
+      "pi-coding-agent",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Install Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Install Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Programmatic Usage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Event Stream Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All 10 downstream phases of this packet plan their work against pi.dev's live-fetched documentation, not against a locally-installed and tested binary",
+    "created_at": "2026-07-27T06:48:17.288Z",
+    "last_save_at": "2026-07-27T06:57:37.191Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:bbc91c4a1b4b10baadb69182c41b9ead1160409349816e65a8ce49ce62d791b6",
+    "source_doc_hashes": {
+      "spec.md": "ab754041ba7c80daae42ff43d64444262800ce11d7537329520509d0cab4b056",
+      "plan.md": "bad14450b5d9f30812a092ecaae9c5276e1cd7ce9b91c15a71efbbf38fafdd9a",
+      "tasks.md": "d79a7ed2b784330e888f535a55f0dcaf02f4ad84c5d85c8bc32e392c574a1286",
+      "checklist.md": "273d49c5188a4d3d667197c1e334f767c0b5f5a73e0838e90aec849ec5219fe0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

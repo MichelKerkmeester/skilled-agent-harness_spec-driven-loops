@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-pi closeout",
+      "cli-pi governance docs",
+      "cli-pi agent roster",
+      "pi docs and closeout",
+      "cli-pi closeout plan",
+      "pi governance plan",
+      "cli-pi closeout tasks",
+      "pi governance tasks",
+      "cli-pi closeout checklist",
+      "pi governance checklist"
+    ],
+    "key_topics": [
+      "cli-pi",
+      "closeout",
+      "governance",
+      "docs",
+      "agent",
+      "roster",
+      "plan",
+      "tasks",
+      "checklist",
+      "6th",
+      "cli",
+      "mode"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/README.md",
+      ".opencode/skills/README.md",
+      ".opencode/agents/deep-improvement.md",
+      ".claude/agents/deep-improvement.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Grep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the T003",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`) already appear across agent rosters, governance docs, and hub-level catalogs",
+    "created_at": "2026-07-27T06:48:18.460Z",
+    "last_save_at": "2026-07-27T06:48:18.460Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:9e23e2847ad229143606a6e80d77e5038ecb6ba24c575bb84db92294d255cce6",
+    "source_doc_hashes": {
+      "spec.md": "2139f0b7ca78ad1d4cdecaf856f510fcb55116118659461939590eabce8d4a94",
+      "plan.md": "c781079ef499618f0bfdfa80e21c51a7221a9cabda980e7a33a4a1b5cccf99cf",
+      "tasks.md": "894a61f895627c7c8a7dc217ea32c0bd87e2e081c899c122c67c3536d56e3314",
+      "checklist.md": "7efa8509ea2141dae502755de61dd6b9f5f80e5232b9a8f907d865f290765d77"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi command layer",
+      "pi prompt templates",
+      "command flattening",
+      "argument translation",
+      "pi non-recursive discovery",
+      "pi command layer plan",
+      "flattening convention",
+      "argument translation table",
+      "pi command layer tasks",
+      "command flattening tasks",
+      "pi command layer checklist",
+      "command flattening verification"
+    ],
+    "key_topics": [
+      "command",
+      "layer",
+      "prompt",
+      "templates",
+      "flattening",
+      "argument",
+      "translation",
+      "non-recursive",
+      "discovery",
+      "plan",
+      "convention",
+      "table"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "scripts/README.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Static",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Constraints",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Deferred",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repository organizes 36 invokable operator commands (plus 13 non-command supporting files) as nested Markdown under `.opencode/commands/{create,deep,doctor,interface,memory,prompt,speckit}/.md` plus 2 top-level files, using Claude Code's colon-namespaced invocation (`/deep:research`, `/create:skill`) and a single opaque `$ARGUMENTS` string that each command's own router logic parses for flags and mode suffixes",
+    "created_at": "2026-07-27T06:48:17.724Z",
+    "last_save_at": "2026-07-27T06:57:37.638Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:d1c59f854999c40cf97e4c758a8183c00ce7a11aa4aa44e8c2a0261154fcc6bd",
+    "source_doc_hashes": {
+      "spec.md": "32857b4253e144247493b574fa5b1c2d026d925c18296adff85b04cb5386c904",
+      "plan.md": "99e4dd683022d6197b8b5eef0088caa80fb39b7f9c59ea262cb816ae95bbaf9c",
+      "tasks.md": "052b7abb5d0786653267222716927d1a61ee9588b476097e30767908ad0b38c0",
+      "checklist.md": "85a0983caf7861d99cd921695bfa8b7129d4515fab16b707753d29709bb59a12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
+  "description": "This repo's 13 real `.claude/agents/.md` role files (confirmed via `find .claude/agents -name '.md' | wc -l` = 13, not the 14 files this phase's",
+  "keywords": [
+    "repo",
+    "real",
+    "claude",
+    "agents",
+    "role",
+    "files",
+    "confirmed",
+    "via",
+    "find",
+    "name",
+    "phase"
+  ],
+  "lastUpdated": "2026-07-27T07:00:23.010Z",
+  "specId": "006",
+  "folderSlug": "pi-agent-bridge",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,28 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
+  "description": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`,",
+  "keywords": [
+    "6th",
+    "cli",
+    "mode",
+    "complete",
+    "until",
+    "appears",
+    "wherever",
+    "siblings",
+    "cli-opencode",
+    "cli-claude-code",
+    "cli-codex",
+    "cli-cursor"
+  ],
+  "lastUpdated": "2026-07-27T06:47:48.158Z",
+  "specId": "011",
+  "folderSlug": "docs-agents-governance-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

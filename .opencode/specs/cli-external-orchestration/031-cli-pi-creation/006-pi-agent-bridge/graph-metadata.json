@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi agent bridge",
+      "pi-subagents translation",
+      "pi subagent schema mapping",
+      "pi agent bridge plan",
+      "pi-subagents field mapping",
+      "claude agents pi-subagents translation tiers",
+      "pi agent bridge tasks",
+      "pi-subagents translation tasks",
+      "pi agent bridge checklist",
+      "pi-subagents translation verification"
+    ],
+    "key_topics": [
+      "agent",
+      "bridge",
+      "pi-subagents",
+      "translation",
+      "subagent",
+      "schema",
+      "mapping",
+      "plan",
+      "field",
+      "claude",
+      "agents",
+      "tiers"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Inventory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repo's 13 real `.claude/agents/.md` role files (confirmed via `find .claude/agents -name '.md' | wc -l` = 13, not the 14 files this phase's driving brief assumed, and not the 12 the directory's own `README.txt` inventories — `README.txt` predates `deep-alignment.md` and is stale) encode Claude Code-specific runtime conventions — hard-block dispatch gates, an \"ILLEGAL NESTING\" no-sub-dispatch rule, hook-injected advisor-context prose, and MCP tool wildcards (`mcpmkspecmemory`, `mcpmkcodeindex`) in the `tools:` frontmatter field — that have no native Pi equivalent",
+    "created_at": "2026-07-27T06:48:17.834Z",
+    "last_save_at": "2026-07-27T07:00:36.107Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:f256a45fbd387f5b6b6dded1626b1741b564cd577bbe4265aef629df80067168",
+    "source_doc_hashes": {
+      "spec.md": "b3d2a9ddc4f200b6949ceedde9aece96c168ce138e36fae64adcfd5e1c57a075",
+      "plan.md": "8df6eaa0ad356ce8925e2996016a485c21cc436498cb00dcad311d4c2ba122c8",
+      "tasks.md": "dabd031dfcb5b41f68a2180d795d254d2edcc9444038ece586ed69ed24a44296",
+      "checklist.md": "708ed8756afd86405365fcbc758731ed5ec9f12b44212ac3514a62aa87b2ff0c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

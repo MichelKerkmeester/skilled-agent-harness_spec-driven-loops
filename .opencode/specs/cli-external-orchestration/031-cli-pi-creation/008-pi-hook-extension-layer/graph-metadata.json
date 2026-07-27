@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi extension hooks",
+      "pi hook bridge",
+      "pi guard core adapter",
+      "pi lifecycle events",
+      "pi hook adapter plan",
+      "pi extension bridge plan",
+      "pi hook extension tasks",
+      "pi hook extension checklist"
+    ],
+    "key_topics": [
+      "extension",
+      "hooks",
+      "hook",
+      "bridge",
+      "guard",
+      "core",
+      "adapter",
+      "lifecycle",
+      "events",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/README.md",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      "hooks/codex/shared.ts",
+      "hooks/devin/shared.ts",
+      "hooks/cursor/shared.ts",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs",
+      ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
+      ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs",
+      ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "hooks/codex/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-core.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/runtime/lib/code-graph/freshness-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores (`spec-gate-core.mjs`, `dispatch-rule-checks.mjs`, `dispatch-audit.mjs`, `post-edit-router.cjs`, `freshness-core.cjs`, `mcp-route-guard.cjs`, `completion-evidence-sentinel.cjs`, `dispatch-guard.cjs`), each already bridged into Claude, Codex, Devin, and Cursor via thin per-CLI adapter directories (`mcp-server/hooks/<cli>/`, `runtime/hooks/<cli>/`, plus guard-owning-packet siblings) registered through each CLI's own external hook-config file (`.codex/hooks.json`,",
+    "created_at": "2026-07-27T06:48:18.102Z",
+    "last_save_at": "2026-07-27T06:48:18.102Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:3bd8f7ca7403c640b7160900ccc69aef01d4bed1d751e489b2dcbece67a09cf1",
+    "source_doc_hashes": {
+      "spec.md": "1e0d2dc86a82036468e9d1d52ea30da878be16172cd5551973ca8d9d99e48021",
+      "plan.md": "142b91c237999b414b9618bff45a88af8abcfb7381dd273ac178de0a4ae8eae7",
+      "tasks.md": "bb2c07b5ef1a587af1bc43937fafaf33d5e372c9044565c909b2011687383675",
+      "checklist.md": "87f3cbe3324ecfb055275732eefe43d5298c2adc734f9c99f18292dfbafbc0a4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

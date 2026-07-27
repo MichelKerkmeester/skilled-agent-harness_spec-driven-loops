@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-pi deep-loop executor",
+      "cli-pi executor kind",
+      "Pi fan-out adapter",
+      "buildPiLineageCommand",
+      "cli-pi executor support plan",
+      "cli-pi executor support tasks",
+      "cli-pi executor support checklist"
+    ],
+    "key_topics": [
+      "cli-pi",
+      "deep-loop",
+      "executor",
+      "kind",
+      "fan-out",
+      "adapter",
+      "buildpilineagecommand",
+      "support",
+      "plan",
+      "tasks",
+      "checklist",
+      "runtime"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Programmatic Usage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Widen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hand",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "passing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop runtime's typed executor union currently has 5 members — confirmed live at `executor-config.ts` line 11: `['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor']`",
+    "created_at": "2026-07-27T06:48:17.397Z",
+    "last_save_at": "2026-07-27T07:00:35.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c78ab877bc89dc2ed0ee9737ad814b273346f2416debfa351f03d6303a06e238",
+    "source_doc_hashes": {
+      "spec.md": "3d4c15485680d750efa5f0b9f3e96ace171b4685adfdbe686dc961b7fa1c46af",
+      "plan.md": "70abfb8c946b130d8465b28d28ff1a04c5d9cb8737bb245c8d60392c22ee886d",
+      "tasks.md": "15907bf11de185c97fa9ea03104040e86f1c654426554ee3ac037ded9ad0df3b",
+      "checklist.md": "6fc0b47f6faaee342aa741edd730831e07cff253746df1156a06c6f1c48ad70f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi skill discovery",
+      "pi settings.json skills array",
+      "pi skill flattening",
+      "pi hub mode discovery",
+      "pi skill discovery plan",
+      "pi settings.json skills design",
+      "pi skill discovery tasks",
+      "pi skill discovery checklist",
+      "pi skills array verification"
+    ],
+    "key_topics": [
+      "skill",
+      "discovery",
+      "settings",
+      "json",
+      "skills",
+      "array",
+      "flattening",
+      "hub",
+      "mode",
+      "plan",
+      "design",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "tasks.md",
+      "spec.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tree Pointer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Draft Candidate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Unlike Devin and Cursor (`029-cli-devin-revival`, `030-cli-cursor-creation`), which have no shared skill format at all and needed bespoke, repo-authored hook adapters to bridge this repo's guard/skill content into their native surfaces, Pi natively speaks `SKILL.md` and documents ingesting external `SKILL.md` trees directly — its own docs' only cross-harness example shows `{\"skills\": [\"~/.claude/skills\", \"~/.codex/skills\"]}`",
+    "created_at": "2026-07-27T06:48:17.614Z",
+    "last_save_at": "2026-07-27T07:00:35.889Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:09133d4deba6897a6c0e0428462e5665c160a42166cb23cb42f2c31b19bd184a",
+    "source_doc_hashes": {
+      "spec.md": "0df5b9fcb91fcff4681f13a933d53db19aa1d8de93ca00c7f6f88219b96e86b1",
+      "plan.md": "10b959898999606e88abef30f4324d982a7d59c31f1a37e438c41c2e7dd6ac2c",
+      "tasks.md": "6e12831fff4883ce623287828b0b76163e6381613ced01a593563b6c20fb3088",
+      "checklist.md": "b1e929f499fbe2f35d9c97e47fb331729f6c06458c23d4e8adf12ea6b3079312"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

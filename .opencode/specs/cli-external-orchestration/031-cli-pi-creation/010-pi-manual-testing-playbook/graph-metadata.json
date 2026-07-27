@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi manual testing playbook",
+      "PI-NNN scenarios",
+      "cli-pi playbook categories",
+      "pi manual testing playbook plan",
+      "pi manual testing playbook tasks",
+      "pi manual testing playbook checklist"
+    ],
+    "key_topics": [
+      "manual",
+      "testing",
+      "playbook",
+      "pi-nnn",
+      "scenarios",
+      "cli-pi",
+      "categories",
+      "plan",
+      "tasks",
+      "checklist",
+      "cli-codex",
+      "cli-devin"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "spec.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Coverage Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Global Preconditions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-codex`, `cli-devin`, and `cli-cursor` each ship a split-document manual-testing playbook (root file + category folders, `{PREFIX}-NNN` scenario IDs, strict PASS/FAIL/SKIP discipline) as their no-mocking validation gate -- there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
+    "created_at": "2026-07-27T06:48:18.351Z",
+    "last_save_at": "2026-07-27T06:48:18.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:6ac2a9a4a9fac7863460d4b0d502e7f3e782ccc8ba40e7d8414147acf0139492",
+    "source_doc_hashes": {
+      "spec.md": "d6915ce43264243166e9d0065029692cebb50a7a5dbcbc0215fe4a61415864c6",
+      "plan.md": "d50a91a6acd93e69179ec9b4e766c7fe402cc85704f8dcba07911cdd44eb7ed0",
+      "tasks.md": "4c616c7284f435d4dee33eb7cc1d35a956146e6d723a1537930ede8c649e51db",
+      "checklist.md": "97ea1c0f94447fc0fac0acc21609488a4f1afaaa4808c14546a451228ada5992"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
