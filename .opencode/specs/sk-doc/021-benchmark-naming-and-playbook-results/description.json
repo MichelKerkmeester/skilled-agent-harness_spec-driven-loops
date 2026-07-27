@@ -1,0 +1,19 @@
+{
+  "level": 3,
+  "specFolder": "sk-doc/021-benchmark-naming-and-playbook-results",
+  "description": "Two defects, one cause",
+  "keywords": [
+    "two",
+    "defects",
+    "one",
+    "cause"
+  ],
+  "lastUpdated": "2026-07-27T09:28:36.663Z",
+  "specId": "021",
+  "folderSlug": "benchmark-naming-and-playbook-results",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

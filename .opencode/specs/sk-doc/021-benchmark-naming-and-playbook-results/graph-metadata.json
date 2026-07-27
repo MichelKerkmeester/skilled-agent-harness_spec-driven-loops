@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/021-benchmark-naming-and-playbook-results",
+  "spec_folder": "sk-doc/021-benchmark-naming-and-playbook-results",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "benchmark naming convention",
+      "playbook results storage",
+      "dated benchmark folder",
+      "benchmark reports folder",
+      "benchmark naming plan",
+      "playbook results plan",
+      "benchmark naming tasks",
+      "playbook results tasks",
+      "benchmark naming checklist",
+      "playbook results checklist",
+      "benchmark naming decisions",
+      "playbook results decisions"
+    ],
+    "key_topics": [
+      "benchmark",
+      "naming",
+      "convention",
+      "playbook",
+      "results",
+      "storage",
+      "dated",
+      "folder",
+      "reports",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "assets/rename-map.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-map.json",
+        "kind": "config",
+        "path": "assets/rename-map.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Dated Benchmark Convention And",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Home For Playbook Results",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Declare",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convention And Validators",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two defects, one cause",
+    "created_at": "2026-07-27T09:25:16.484Z",
+    "last_save_at": "2026-07-27T09:28:36.942Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cfe27a712a6cabeabb73209004b4951216e5b68202ff9703847c4cbe1a839694",
+    "source_doc_hashes": {
+      "spec.md": "f0478fc34990d4cd9314f3a75d38f0d187d5814f839cff54e62df0e57161b3f0",
+      "plan.md": "944056a95685430ba8b426424f204d3160e1315001c9f710be4198fedb3d27db",
+      "tasks.md": "24c47d87ce139b8dd98a7ea6b3e39c9e62586c25b8c07934e4dd1806e98a8bd1",
+      "checklist.md": "3ed20e5df7ef03037451db0b85176e41931a4d2b911cbac528087aece5566334",
+      "decision-record.md": "cb80f76c9013ad7c654707aeaa4291db9e912bd098dea011788ceb354fe232b6",
+      "implementation-summary.md": "cf1cae780e9dd7b41990785320a86bbaa70bce44b964e1f8a45e019581c3ede2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
