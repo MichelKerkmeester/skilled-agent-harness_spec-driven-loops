@@ -21,6 +21,8 @@
 
 import { join } from 'node:path';
 
+import { findRepoRoot } from '../skills/system-spec-kit/runtime/lib/workspace/repo-root.mjs';
+
 // The audit core lives outside .opencode/plugins/ so this file can remain a thin,
 // default-export-only OpenCode plugin while the Claude hook consumes the same logic.
 import * as dispatchAuditCore from '../skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs';
@@ -43,7 +45,10 @@ import * as dispatchAuditCore from '../skills/cli-external-orchestration/cli-ope
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
 export default async function MkCliDispatchAuditPlugin(ctx) {
-  const projectDir = ctx?.directory || process.cwd();
+  // Anchor to the repository root: the plugin host can hand us a nested working
+  // directory, and writing the audit log relative to it plants a stray
+  // .opencode tree wherever the dispatch happened to run.
+  const projectDir = findRepoRoot(ctx?.directory || process.cwd());
   const logPath = join(projectDir, dispatchAuditCore.DEFAULT_LOG_RELATIVE_PATH);
 
   return {

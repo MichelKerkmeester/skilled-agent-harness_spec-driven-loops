@@ -36,6 +36,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { findRepoRoot } from '../workspace/repo-root.mjs';
 
 // The shared Gate-3 classifier compiles to ESM (`shared/package.json` declares
 // "type":"module"), so this core must be ESM too -- a CommonJS `require()` of an
@@ -126,7 +127,10 @@ export function sessionStateKey(sessionID) {
 }
 
 export function resolveGuardPaths(projectDir) {
-  const dir = projectDir || process.cwd();
+  // Anchor here rather than at each call site: gate state must land at the
+  // repository root even when the plugin host hands us a nested working
+  // directory, which is what planted stray .opencode trees across the tree.
+  const dir = findRepoRoot(projectDir || process.cwd());
   return { stateDir: join(dir, GATE_STATE_DIR_RELATIVE_PATH) };
 }
 

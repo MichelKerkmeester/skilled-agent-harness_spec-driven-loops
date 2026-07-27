@@ -306,3 +306,16 @@ AGENTS_Barter.md
 # Routing test sandboxes: kept in-repo because the promoted harness resolves the
 # skill tree by walking up to the repo root, but never committed.
 .opencode/bin/tests/.sandboxes/
+
+# Runtime state leaked into a nested .opencode tree. A writer that resolves its
+# state root from the working directory instead of the repo root plants these
+# wherever it happened to run. The leading segment keeps the legitimate root
+# .opencode/ tracked, and targeting the state dirs rather than .opencode itself
+# leaves deliberate fixture command-trees alone.
+/*/**/.opencode/skills/.advisor-state/
+/*/**/.opencode/skills/.spec-gate-state/
+/*/**/.opencode/logs/
+
+# Per-run temp workspaces created by the advisor's resident-service tests. The
+# suite names them with a pid and timestamp, so a committed one is always stale.
+**/tests/.tmp-*/

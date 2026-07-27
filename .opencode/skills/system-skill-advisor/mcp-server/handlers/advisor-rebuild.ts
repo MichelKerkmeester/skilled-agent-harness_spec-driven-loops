@@ -143,5 +143,3 @@ export async function handleAdvisorRebuild(
   };
 }
 
-/** Backward-compatible snake_case MCP handler alias. */
-export const handle_advisor_rebuild = handleAdvisorRebuild;

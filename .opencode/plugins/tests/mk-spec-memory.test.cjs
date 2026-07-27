@@ -21,7 +21,7 @@ const SCHEMA_PATH = path.join(
   'skills',
   'system-spec-kit',
   'mcp-server',
-  'plugin_bridges',
+  'plugin-bridges',
   'spec-kit-opencode-message-schema.mjs',
 );
 const HOOK_ROOT = path.join(
