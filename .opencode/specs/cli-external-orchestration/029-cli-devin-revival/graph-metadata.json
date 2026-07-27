@@ -14,7 +14,11 @@
     "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
     "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration",
     "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog",
-    "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"
+    "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
+    "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening",
+    "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler",
+    "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
+    "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -28,13 +32,10 @@
       "Devin hooks",
       "Devin agents",
       "cognition devin",
-      "devin mcp host",
-      "devin mcp integration",
-      "008-devin-mcp-host-integration",
-      "devin stdio mcp",
-      "spec-kit-memory devin",
-      "code-graph devin",
-      "skill-advisor devin"
+      "cli-devin handover",
+      "029 handover",
+      "Devin hook truth",
+      "runtime README parity"
     ],
     "key_topics": [
       "cli-devin",
@@ -45,10 +46,10 @@
       "hooks",
       "agents",
       "cognition",
-      "mcp",
-      "host",
-      "integration",
-      "008-devin-mcp-host-integration"
+      "handover",
+      "hook",
+      "truth",
+      "runtime"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -59,20 +60,20 @@
       ".devin/hooks.v1.json",
       ".opencode/agents/context.md",
       "008-devin-hook-parity/spec.md",
+      ".cursor/hooks.json",
       "research/research.md",
+      "research_archive/20260727T040816Z/research.md",
       "001-devin-contract-pin/spec.md",
       "002-deep-loop-executor-support/spec.md",
       "007-docs-agents-governance-and-closeout/spec.md",
       "011-hook-truth-and-runtime-readmes/implementation-summary.md",
       "009-devin-mcp-host-integration/spec.md",
-      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md",
-      "research/resource-map.md",
-      "spec.md",
-      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      "research/deep-research-config.json"
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md",
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md",
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary.md",
+      ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary.md",
+      ".claude/settings.json",
+      ".opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs"
     ],
     "entities": [
       {
@@ -88,39 +89,33 @@
         "source": "derived"
       },
       {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "hook-testing-results.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md",
+        "path": ".opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md",
         "source": "derived"
       },
       {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-config.json",
+        "name": "settings.json",
         "kind": "config",
-        "path": "research/deep-research-config.json",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "task-dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs",
         "source": "derived"
       },
       {
@@ -160,37 +155,37 @@
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Hook Adapter Refinements",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Kit Memory",
+        "name": "Dedup Opportunities",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Code Graph",
+        "name": "Executive Summary This",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Skill Advisor",
+        "name": "Next Focus",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Resolved Open Question",
+        "name": "Purpose Determine",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "Can Devin",
+        "name": "Scope In",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -218,11 +213,17 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-07-25T10:06:40.888Z",
+    "last_save_at": "2026-07-27T05:51:19.140Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -230,13 +231,13 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:00f44c7d84fc8ead1edc02f91892f186600bd2a516304557ed0e16b59eb0ed7b",
+    "source_fingerprint": "sha256:a263a44f2b71b7cc51f1dd91faaa008a5b0abe2ca5b40ff0e3360208d5f308e6",
     "source_doc_hashes": {
-      "spec.md": "0468df9e0a3aa3affe0a1115dc6e8b85cfb3d6db7a89501de401965957eeb5d4",
-      "research/research.md": "65003631e5154758de221824cf53bf1a152f7eb262c3e09c87bcca2b44be5708",
+      "spec.md": "69021697f42d2481bc861b6c3837a29edf28dfb702f99cbda15729d4b1eb2e3d",
+      "research/research.md": "cc7a5420d7fe9d95849f9d80d5190814225f22588ce0471280c4e7ef2a366c7a",
       "handover.md": "87b21823d332f79741fc9affbcbd1d496e460797de89034a37a048e9e6446050"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-07-24T06:02:56.642Z"
+    "last_active_at": "2026-07-27T04:47:34.199Z"
   }
 }

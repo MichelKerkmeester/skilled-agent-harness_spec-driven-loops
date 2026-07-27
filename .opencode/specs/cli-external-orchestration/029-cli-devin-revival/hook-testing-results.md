@@ -124,8 +124,59 @@ The three `.js` symlinks (`session-start.js`, `user-prompt-submit.js`, `session-
 
 ---
 
+## 7. POST-RESEARCH HARDENING + Q3 LIVE-VERIFICATION (2026-07-27)
+
+Follow-up to `research/research.md`'s recommendations (§7) and open questions (Q3-Q6, §10). Actioned directly rather than via another deep-research pass, since each item was independently well-scoped. **Note (2026-07-27, later same day)**: the code fixes described in §7a were reverted by an unrelated concurrent session's destructive git operation on this shared branch and had to be re-applied a second time; the content below describes the fix as it stands after that recovery, verified again at that point.
+
+### 7a. `||`-truthiness precedence fix (research §5 F4, §7 recommendation 1)
+
+Both alias-bearing adapter families picked the first *truthy* value, not the first *valid string* -- a truthy non-string in an earlier field (e.g. a malformed object) could suppress a valid string in a later alias and still resolve to `null`/`undefined`, silently discarding real data. Fixed in all 4 affected files with a `firstNonBlankString(...)` helper (first non-blank string wins, confirmed-canonical field first, behavior otherwise unchanged):
+- `system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs` (`filePathFrom`)
+- `system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` (`filePathFrom`)
+- `system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs` (`subagentType` resolution)
+- `system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs` (`subagentType` resolution) -- fixed here, not just Devin, because Cursor's own `task-dispatch-guard.mjs` has no independent alias logic of its own; it spawns this exact file as a subprocess and forwards its payload unchanged, so fixing "Cursor's" behavior required fixing the file it delegates to.
+
+**No alias was retired** -- research §7 recommendation 2 explicitly warned that removing `filePath`/`path` before a caller audit risks a silent enforcement bypass (a missing/blank path is treated as an *exempt* target, which allows rather than denies). All existing aliases remain exactly as tolerant as before; only the selection logic changed.
+
+**Not touched** (confirmed identical bug, out of the stated Devin+Cursor scope): `system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs` and `.../codex/spec-gate-enforce.mjs` have the same `file_path || filePath || path` pattern independently (not via delegation). Tracked as phase `014-hook-adapter-shared-boilerplate-and-claude-codex-fix`, not silently fixed here.
+
+Verified: `node --check` clean on all 4; direct-invocation smoke tests confirmed canonical fields, alias fields, and the specific masking scenario (`{file_path: {nested:'object'}, path: 'valid.js'}`) all resolve correctly post-fix; regression tests added to `spec-gate-devin.test.mjs` (15/15) and `spec-gate-prebind.test.mjs` (16/16); `claude-task-dispatch-guard.test.cjs` unaffected.
+
+### 7b. New regression test coverage (research §5 F6, §7 recommendation 3)
+
+Added to `system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs` (5 new tests, 15/15 total passing) and `system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` (5 new tests, 16/16 total passing): `filePath`-alias recognition, generic-`path`-alias recognition, canonical-field-first precedence (constructed so the choice is observable -- `file_path` points at an exempt target while the aliases point at a real file), missing/blank-path resolving to an **exempt allow, not a deny** (locking in the corrected safety understanding from the research as a regression gate), and the exact truthy-non-string-masking scenario the `||`-chain fix closed.
+
+### 7c. Q3 -- live-verified: `PermissionRequest` DOES fire; `PostCompaction` still unconfirmed
+
+Reused the controlled-probe methodology (temporary unconditional-log hook, restored after) to test both events directly against `devin 3000.2.17`.
+
+**`PermissionRequest`: confirmed firing, real payload captured.** Dispatching `devin -p "Create a new file at /tmp/..."` under the default `--permission-mode auto` (which auto-approves only read-only tools) produced a real `PermissionRequest` event:
+```json
+{"hook_event_name":"PermissionRequest","tool_name":"write","tool_input":{"file_path":"...","content":"..."},"tool_use_id":"...","session_id":"...","prompt_id":"..."}
+```
+`tool_name: "write"` and `tool_input.file_path` match this packet's existing field-name assumptions exactly -- no surprise there. **Actionable consequence**: `.devin/hooks.v1.json` currently registers `"PermissionRequest": []` (explicit empty, no handler, on the prior assumption that Claude has no equivalent source to port). That assumption is now known to be incomplete for Devin specifically -- with no handler, every real `PermissionRequest` under a non-`dangerous` permission mode is silently rejected (the CLI itself reported: *"the write was rejected -- the session is running in non-interactive mode without dangerous permission mode, so tool calls that need approval can't be auto-approved"*), with no chance for a smart, policy-driven auto-approval hook. Tracked as phase `013-devin-permission-request-handler`.
+
+**`PostCompaction`: still not verified live.** The same probe dispatch produced no `PostCompaction` firing, as expected -- a single short command cannot fill a context window enough to trigger real compaction. This remains genuinely open; forcing it deliberately would need a long-running session, which was out of scope for this pass.
+
+### 7d. Q4 -- `mcp-route-guard.cjs` dormancy: reconfirmed, unchanged, for both runtimes
+
+Live commands (`devin mcp list`, `cursor-agent mcp list`) both show only this repo's own 5 internal `mk_`-prefixed servers registered -- no external, non-`mk_` family for either runtime. Dormancy holds. Cursor's own `mcp-route-guard.mjs` did get a **real, separate fix** in an already-completed prior phase (`030-cli-cursor-creation/011-cursor-mcp-wiring-and-route-guard-fix`) -- a dead field-parsing bug (Cursor sends split `mcp_server_name`/`tool_name` fields the guard never matched) is now fixed and the guard genuinely fires, but the *observable outcome* is still silence, since no native external MCP family exists to match against yet.
+
+### 7e. Q5 -- upstream feature drift: nothing new for either CLI
+
+Live-refetched `docs.devin.ai`'s hooks docs and changelog (newest entry: v3000.2.17, 2026-07-19 -- the exact build already tested against) and Cursor's changelog/forum (newest hook-relevant entry: 2026-07-10, and explicitly scoped to **cloud agents only**, not the local CLI this packet targets). Neither upstream surface has changed anything that affects either packet's current hook inventory or schema assumptions.
+
+### 7f. Q6 -- dedup opportunity: narrow recommendation, tracked as phase 014
+
+Sampled `spec-gate-enforce`, `task-dispatch-guard`, and `mcp-route-guard` across all 4 runtimes. Tool-name maps, field-extraction, and envelope-emit blocks are irreducibly runtime-specific (or short enough that shared-helper indirection would cost more than it saves) and should stay as-is -- extracting them would break the "read one file top-to-bottom to know exactly what a security-relevant hook does" property every adapter currently has. The one safe, low-risk extraction candidate is the `readStdin()` + JSON.parse-fail-open boilerplate, which is byte-identical across every sampled file. Tracked as phase `014-hook-adapter-shared-boilerplate-and-claude-codex-fix`, not actioned here.
+
+---
+
 ## RELATED DOCUMENTS
 - `004-devin-hook-adapter-layer/implementation-summary.md` (full narrative + decisions for the 3 phase-004 adapters)
 - `008-devin-hook-parity/implementation-summary.md`, `.../checklist.md`, `.../decision-record.md` (full narrative + decisions for the 10 phase-008 adapters)
+- `011-hook-truth-and-runtime-readmes/`, `012-devin-hook-hardening/` (schema-correction and hardening phases)
+- `013-devin-permission-request-handler/`, `014-hook-adapter-shared-boilerplate-and-claude-codex-fix/`, `015-devin-agents-skills-rules-parity/` (follow-on phases from this section's findings)
+- `research/research.md` (the 5-iteration deep-research pass this section responds to)
 - `.opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md`, `.opencode/skills/system-spec-kit/runtime/hooks/devin/README.md` (per-directory live wiring and caveats)
 - `spec.md` (parent packet status)
