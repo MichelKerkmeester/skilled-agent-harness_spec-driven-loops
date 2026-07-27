@@ -17,7 +17,7 @@ traceability
 - `.opencode/skills/sk-prompt/hub-router.json:4-27`
 - `.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md:1-48`
 - `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:1-47`
-- `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md:16-23`
+- `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md:16-23`
 
 ## Findings by Severity
 
@@ -34,7 +34,7 @@ None new in this traceability iteration. Prior active P1s remain in the registry
 #### R3-P2-001 [P2] Closeout follow-up text points at a live dispatch that later evidence shows is insufficient
 
 - File: `.opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md:122`
-- Evidence: Phase 008 says running the optional live `cli-opencode` true-verdict dispatch would close D1-inter and D4. Later benchmark evidence under the same review scope records a `live-final/` Mode B run but still marks D1-inter and weighted D4 unscored, with the specific current requirements: an `SA-*` advisor-probe scenario for D1-inter and a full hallucination ablation for D4. [SOURCE: `.opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md:122`; `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:9-14`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md:16-23`; `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:43-46`]
+- Evidence: Phase 008 says running the optional live `cli-opencode` true-verdict dispatch would close D1-inter and D4. Later benchmark evidence under the same review scope records a `live-final/` Mode B run but still marks D1-inter and weighted D4 unscored, with the specific current requirements: an `SA-*` advisor-probe scenario for D1-inter and a full hallucination ablation for D4. [SOURCE: `.opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/implementation-summary.md:122`; `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:9-14`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md:16-23`; `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md:43-46`]
 - Finding class: matrix/evidence
 - Scope proof: Searched the 007/008 phase docs and benchmark artifacts for `D1-inter`, `D4`, `live-final`, `true-verdict`, and `advisor-probe`; the stale guidance appears in the phase closeout limitation while the benchmark summary/live-final report provide the newer traceability evidence.
 - Affected surface hints: [`phase closeout limitations`, `benchmark follow-up guidance`, `review traceability`]

@@ -1,0 +1,29 @@
+---
+title: "mcp-tooling Benchmark Reports"
+description: "Index of curated benchmark run reports for mcp-tooling, one row per run folder."
+trigger_phrases:
+  - "mcp-tooling benchmark reports"
+  - "mcp-tooling benchmark index"
+importance_tier: "important"
+contextType: "general"
+---
+
+# mcp-tooling Benchmark Reports
+
+> Curated reports derived from completed benchmark runs, newest first. Raw execution evidence stays in the packet that produced it, named in each run's `source.md`.
+
+---
+
+## 1. OVERVIEW
+
+Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
+
+## 2. RUN INDEX
+
+| Executed | Folder | Runtime | Result | Verdict | Source |
+|---|---|---|---|---|---|
+| 2026-07-16 | [`2026-07-16--after-routing-remediation--router/`](./2026-07-16--after-routing-remediation--router/) | router | 13 PASS | **PASS** 98/100 | not recorded |
+
+## 3. STORAGE RULE
+
+Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. Keep curated summaries and machine-readable result tables here, and raw transcripts and copied artifacts in the source packet. A run whose result changes gets a new folder rather than overwriting a prior one.

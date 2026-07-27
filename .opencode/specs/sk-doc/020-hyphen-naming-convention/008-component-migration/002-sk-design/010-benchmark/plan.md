@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/benchmark/README.md"
-      - ".opencode/skills/sk-design/benchmark/baseline/"
+      - ".opencode/skills/sk-design/benchmark/reports/baseline/"
       - ".opencode/skills/sk-design/benchmark/after_009/"
     completion_pct: 0
     open_questions: []

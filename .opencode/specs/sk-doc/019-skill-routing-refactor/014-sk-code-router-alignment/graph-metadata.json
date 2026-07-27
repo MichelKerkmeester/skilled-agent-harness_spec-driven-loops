@@ -45,8 +45,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
-      ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+      ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -77,13 +77,13 @@
       {
         "name": "skill-benchmark-report.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json",
+        "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
         "source": "derived"
       },
       {
         "name": "skill-benchmark-report.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.md",
+        "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md",
         "source": "derived"
       },
       {

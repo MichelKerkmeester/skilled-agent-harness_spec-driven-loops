@@ -52,7 +52,7 @@ Fresh evidence collected on 2026-07-05:
 | Scoped diff | `git diff --name-status -- ".opencode/skills/sk-design"` returned no output |
 | Scoped diff stat | `git diff --stat -- ".opencode/skills/sk-design"` returned no output |
 | Fresh benchmark | `/tmp/skd-bench-phase001/report.json` generated with verdict `CONDITIONAL`, aggregate `69`, 21 scenarios, 15 scored, 6 browser-routed, D5 `100`, no hub-route or tool-surface gate failures |
-| Committed baseline | `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json` matches the same router-mode headline values and remains preserved |
+| Committed baseline | `.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json` matches the same router-mode headline values and remains preserved |
 
 <!-- /ANCHOR:context -->
 ---
@@ -68,7 +68,7 @@ Fresh evidence collected on 2026-07-05:
 
 **Consequences**:
 - Later phases compare against the committed baseline plus the fresh Phase 001 artifact at `/tmp/skd-bench-phase001/report.json`.
-- `.opencode/skills/sk-design/benchmark/baseline/**` remains read-only for later phases unless a separate explicit owner decision authorizes a new sibling baseline location.
+- `.opencode/skills/sk-design/benchmark/reports/baseline/**` remains read-only for later phases unless a separate explicit owner decision authorizes a new sibling baseline location.
 - No `.opencode/skills/sk-design/**` file is edited by Phase 001.
 
 ### Decision 2: Freeze the Phase 001 benchmark as the comparison baseline for later phases
@@ -122,7 +122,7 @@ Fresh evidence collected on 2026-07-05:
 | Alternative | Why Rejected |
 |-------------|--------------|
 | Absorb pending `sk-design` changes into Phase 001 | No pending scoped `sk-design` changes exist; absorbing nothing would create false authorship. |
-| Overwrite `.opencode/skills/sk-design/benchmark/baseline/**` with the fresh run | The committed baseline is an ownership anchor; Phase 001 evidence belongs in `/tmp/skd-bench-phase001/` and later comparisons should write outside `benchmark/baseline/`. |
+| Overwrite `.opencode/skills/sk-design/benchmark/reports/baseline/**` with the fresh run | The committed baseline is an ownership anchor; Phase 001 evidence belongs in `/tmp/skd-bench-phase001/` and later comparisons should write outside `benchmark/baseline/`. |
 | Leave threshold authority open | The user delegated repository-owner authority to this session for this run, so leaving it open would contradict the task instruction. |
 | Manually allow read-only design modes to require mutating tools in later phases | This contradicts the parent hub contract and would break the Phase 001 ownership gate. |
 

@@ -170,7 +170,7 @@
   "keyFindings": [
     {
       "id": "finding-1-4-the-committed-baseline-confirms-that-leaf-recall-and-contract-validity-are-separ",
-      "text": "The committed baseline confirms that leaf recall and contract validity are separate signals. Scenario `SD-001` has flat and typed-pair recall of 3/7 (0.429), 26 observed typed pairs, and five unresolved raw resources; scenario `CS-001` has 5/8 recall (0.625), 19 observed pairs, and four unresolved resources. In both cases the unresolved preamble causes `routing_contract_error`, while the missed expected leaves remain a genuine intent/resource-selection gap. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:356-478] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1543-1667]",
+      "text": "The committed baseline confirms that leaf recall and contract validity are separate signals. Scenario `SD-001` has flat and typed-pair recall of 3/7 (0.429), 26 observed typed pairs, and five unresolved raw resources; scenario `CS-001` has 5/8 recall (0.625), 19 observed pairs, and four unresolved resources. In both cases the unresolved preamble causes `routing_contract_error`, while the missed expected leaves remain a genuine intent/resource-selection gap. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:356-478] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1543-1667]",
       "addedAtIteration": 1,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
@@ -178,7 +178,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
@@ -192,13 +192,13 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
     {
       "id": "finding-1-5-the-present-baseline-cannot-establish-generalization-all-23-scored-scenarios-are",
-      "text": "The present baseline cannot establish generalization: all 23 scored scenarios are fitted and there are zero holdouts, so the report explicitly leaves holdout score and generalization gap null. Its aggregate is 83/100 with D1-intra 90, D2 84, and D3 66; this means the carried-forward “about 65/100” figure is not the current typed baseline and should not be used as the optimization baseline without provenance. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:68-78]",
+      "text": "The present baseline cannot establish generalization: all 23 scored scenarios are fitted and there are zero holdouts, so the report explicitly leaves holdout score and generalization gap null. Its aggregate is 83/100 with D1-intra 90, D2 84, and D3 66; this means the carried-forward “about 65/100” figure is not the current typed baseline and should not be used as the optimization baseline without provenance. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:68-78]",
       "addedAtIteration": 1,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
@@ -206,7 +206,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
@@ -220,7 +220,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
@@ -234,7 +234,7 @@
         "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:43-275`",
         "`.opencode/skills/sk-code/mode-registry.json:21-99`",
         "`.opencode/skills/sk-code/leaf-manifest.json:1-223`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65,356-478,1543-1667`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-78,105-128`"
       ]
     },
@@ -250,7 +250,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65`"
       ]
     },
     {
@@ -265,12 +265,12 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65`"
       ]
     },
     {
       "id": "finding-2-5-fitted-versus-holdout-is-a-scenario-partition-summary-over-scored-rows-not-a-sec",
-      "text": "Fitted-versus-holdout is a scenario-partition summary over scored rows, not a second router replay: the renderer consumes fitted count/score, holdout count/score, negative count, and their gap from the aggregate report. The committed sk-code baseline has no declared holdouts, so it can establish fitted behavior and suppression coverage but cannot establish generalization; a non-null generalization gap requires independently declared holdout scenarios. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:89-113] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65] [INFERENCE: the renderer only reports aggregate partition fields, and the captured baseline reports zero holdouts and null holdout score/gap]",
+      "text": "Fitted-versus-holdout is a scenario-partition summary over scored rows, not a second router replay: the renderer consumes fitted count/score, holdout count/score, negative count, and their gap from the aggregate report. The committed sk-code baseline has no declared holdouts, so it can establish fitted behavior and suppression coverage but cannot establish generalization; a non-null generalization gap requires independently declared holdout scenarios. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:89-113] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65] [INFERENCE: the renderer only reports aggregate partition fields, and the captured baseline reports zero holdouts and null holdout score/gap]",
       "addedAtIteration": 2,
       "sources": [
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/deep-research-config.json:1-77`",
@@ -280,7 +280,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65`"
       ]
     },
     {
@@ -295,7 +295,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65`"
       ]
     },
     {
@@ -310,7 +310,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-346`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1-1228`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs:1-248`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65`"
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65`"
       ]
     },
     {
@@ -489,14 +489,14 @@
     },
     {
       "id": "finding-6-5-benchmark-json-should-prove-generalization-never-manufacture-a-gain-add-independ",
-      "text": "**Benchmark JSON should prove generalization, never manufacture a gain.** Add independently authored holdout prompts, exhaustive/minimum gold semantics, forbidden-resource negatives, route-count budgets, and frozen 18/18 surface expectations to source fixtures; do not edit generated report JSON or derive gold from current output. The current committed report has zero holdouts, and the current source probe no longer reproduces its exact routed counts, so it is useful historical evidence but not a post-change oracle. **Expected benefit:** no direct recall gain, high protection against fitted gaming. **Regression risk:** low if additive and independently authored. **Validation burden:** medium-high because a clean baseline and controlled candidate run are required. **Falsifying test:** a candidate that improves fitted recall but regresses holdout recall, negative suppression, route budgets, or any surface expectation must fail. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:176-184] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:356-440] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1543-1629] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:33-59] [INFERENCE: current-source replay returned different resource counts than the committed baseline, so exact before/after claims require a freshly generated baseline from the same source revision]",
+      "text": "**Benchmark JSON should prove generalization, never manufacture a gain.** Add independently authored holdout prompts, exhaustive/minimum gold semantics, forbidden-resource negatives, route-count budgets, and frozen 18/18 surface expectations to source fixtures; do not edit generated report JSON or derive gold from current output. The current committed report has zero holdouts, and the current source probe no longer reproduces its exact routed counts, so it is useful historical evidence but not a post-change oracle. **Expected benefit:** no direct recall gain, high protection against fitted gaming. **Regression risk:** low if additive and independently authored. **Validation burden:** medium-high because a clean baseline and controlled candidate run are required. **Falsifying test:** a candidate that improves fitted recall but regresses holdout recall, negative suppression, route budgets, or any surface expectation must fail. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:176-184] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:356-440] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1543-1629] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:33-59] [INFERENCE: current-source replay returned different resource counts than the committed baseline, so exact before/after claims require a freshly generated baseline from the same source revision]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
         "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
         "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
         "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
@@ -506,14 +506,14 @@
     },
     {
       "id": "finding-6-1-first-fix-the-d3-measurement-contract-it-is-not-currently-a-sound-guard-for-rout",
-      "text": "**First fix the D3 measurement contract; it is not currently a sound guard for router optimization.** The sk-code loader copies every path under “Expected references loaded” into `expectedResources`, with no sk-code-shape completeness flag, while D3 treats every routed path not exactly in that list as waste. Yet `SD-001` calls its list “exact” and then defines PASS as loading *at least three* implementation paths, making its gold a minimum set rather than a complete inventory. This explains why the committed row labels 23 of 26 routed pairs as waste even though the authored test does not forbid the other implementation guidance. Add an independent-gold field such as `resourceGoldCompleteness: \"minimum\" | \"exhaustive\"`; compute precision-style D3 only for `exhaustive`, and use declared forbidden prefixes/budget caps for `minimum`. **Expected benefit:** high confidence in no-waste claims, but no true recall gain. **Regression risk:** medium because aggregate D3 changes; old rows must default fail-closed or be migrated explicitly. **Validation burden:** medium. **Falsifying test:** an `SD-001` minimum-set row must no longer call all useful extras waste, while an exhaustive synthetic row must retain the current `1 - unexpected/routed` result. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:258-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:235-291] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:30-48] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:84-89] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:380-440]",
+      "text": "**First fix the D3 measurement contract; it is not currently a sound guard for router optimization.** The sk-code loader copies every path under “Expected references loaded” into `expectedResources`, with no sk-code-shape completeness flag, while D3 treats every routed path not exactly in that list as waste. Yet `SD-001` calls its list “exact” and then defines PASS as loading *at least three* implementation paths, making its gold a minimum set rather than a complete inventory. This explains why the committed row labels 23 of 26 routed pairs as waste even though the authored test does not forbid the other implementation guidance. Add an independent-gold field such as `resourceGoldCompleteness: \"minimum\" | \"exhaustive\"`; compute precision-style D3 only for `exhaustive`, and use declared forbidden prefixes/budget caps for `minimum`. **Expected benefit:** high confidence in no-waste claims, but no true recall gain. **Regression risk:** medium because aggregate D3 changes; old rows must default fail-closed or be migrated explicitly. **Validation burden:** medium. **Falsifying test:** an `SD-001` minimum-set row must no longer call all useful extras waste, while an exhaustive synthetic row must retain the current `1 - unexpected/routed` result. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:258-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:235-291] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:30-48] [SOURCE: .opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:84-89] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:380-440]",
       "addedAtIteration": 6,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
         "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
         "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
         "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
@@ -530,7 +530,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
         "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
         "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
         "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
@@ -547,7 +547,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
         "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
         "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
         "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
@@ -564,7 +564,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:39-218,400-696`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-298`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:250-527`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:150-704,1540-1919,2030-2409`",
         "`.opencode/skills/sk-code/manual_testing_playbook/surface_detection/webflow_detection.md:25-89`",
         "`.opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md:20-74`",
         "`.opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/webflow_plus_motion_dev.md:20-79`",
@@ -586,7 +586,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-190`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-128`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
@@ -594,7 +594,7 @@
     },
     {
       "id": "finding-7-1-the-benchmark-s-existing-stage-split-is-necessary-but-not-sufficient-for-anti-ga",
-      "text": "**The benchmark's existing stage split is necessary but not sufficient for anti-gaming.** The loader can represent `routing`, `holdout`, and `negative`, and aggregation excludes holdouts from the fitted headline while reporting fitted-minus-holdout gap. However, sk-code's index-table loader currently assigns every non-negative scenario to `routing`; the committed report therefore has 23 fitted rows, zero holdouts, and a null generalization gap. A valid optimization trial must freeze independently authored holdouts before candidate output exists; output-derived holdouts or thresholds selected after seeing results are invalid. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:293-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1499-1523] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1569-1575] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:11-20]",
+      "text": "**The benchmark's existing stage split is necessary but not sufficient for anti-gaming.** The loader can represent `routing`, `holdout`, and `negative`, and aggregation excludes holdouts from the fitted headline while reporting fitted-minus-holdout gap. However, sk-code's index-table loader currently assigns every non-negative scenario to `routing`; the committed report therefore has 23 fitted rows, zero holdouts, and a null generalization gap. A valid optimization trial must freeze independently authored holdouts before candidate output exists; output-derived holdouts or thresholds selected after seeing results are invalid. [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:293-315] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1499-1523] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1569-1575] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:11-20]",
       "addedAtIteration": 7,
       "sources": [
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
@@ -606,7 +606,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-190`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-128`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
@@ -614,7 +614,7 @@
     },
     {
       "id": "finding-7-5-the-current-artifacts-cannot-yet-pass-this-matrix-the-baseline-has-no-holdout-ro",
-      "text": "**The current artifacts cannot yet pass this matrix.** The baseline has no holdout rows, live scoring treats model-stated resources as primary while unordered reads are only corroboration, and current D3 has no gold-completeness discriminator. Therefore no implementation should claim generalization or actual leaf-load improvement until independent holdouts, explicit completeness/budgets, and ordered live provenance are present; the matrix is complete as a specification, but evidence for a candidate remains intentionally absent. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:13-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:303-327] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:241-291]",
+      "text": "**The current artifacts cannot yet pass this matrix.** The baseline has no holdout rows, live scoring treats model-stated resources as primary while unordered reads are only corroboration, and current D3 has no gold-completeness discriminator. Therefore no implementation should claim generalization or actual leaf-load improvement until independent holdouts, explicit completeness/budgets, and ordered live provenance are present; the matrix is complete as a specification, but evidence for a candidate remains intentionally absent. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:13-20] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:303-327] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:241-291]",
       "addedAtIteration": 7,
       "sources": [
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/prompts/iteration-7.md:1-39`",
@@ -626,7 +626,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-190`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-128`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
@@ -646,7 +646,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-190`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-128`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
@@ -666,7 +666,7 @@
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:179-303,958-1287,1450-1766`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:185-329`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs:220-384`",
-        "`.opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-190`",
+        "`.opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-190`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/implementation-summary.md:58-128`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-005.md:1-54`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/iterations/iteration-006.md:1-75`"
@@ -757,7 +757,7 @@
     },
     {
       "id": "ruled-out-865a2c4e86a1",
-      "text": "**Treating `routing_contract_error` as the cause of low recall:** unresolved preamble entries explain the error class, but baseline hit/expected counts independently show missed expected leaves. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:431-440] [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1620-1629]",
+      "text": "**Treating `routing_contract_error` as the cause of low recall:** unresolved preamble entries explain the error class, but baseline hit/expected counts independently show missed expected leaves. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:431-440] [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1620-1629]",
       "contentHash": "865a2c4e86a1",
       "addedAtIteration": 1
     },
@@ -769,7 +769,7 @@
     },
     {
       "id": "ruled-out-f2dfa5591ad4",
-      "text": "Using the current baseline's fitted score as evidence of holdout generalization: its holdout partition is empty. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:1-65]",
+      "text": "Using the current baseline's fitted score as evidence of holdout generalization: its holdout partition is empty. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:1-65]",
       "contentHash": "f2dfa5591ad4",
       "addedAtIteration": 2
     },
@@ -865,7 +865,7 @@
     },
     {
       "id": "ruled-out-0f82b3f6c442",
-      "text": "Accepting fitted-score improvement without a non-empty sealed holdout partition; the current null holdout cannot prove generalization. [SOURCE: .opencode/skills/sk-code/benchmark/baseline/skill-benchmark-report.json:13-20]",
+      "text": "Accepting fitted-score improvement without a non-empty sealed holdout partition; the current null holdout cannot prove generalization. [SOURCE: .opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json:13-20]",
       "contentHash": "0f82b3f6c442",
       "addedAtIteration": 7
     },

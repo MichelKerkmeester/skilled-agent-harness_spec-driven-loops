@@ -188,7 +188,7 @@ The workflow emitted `research/resource-map.md`, covering the cited sk-design ro
 - `.opencode/skills/sk-design/design-mcp-open-design/references/smart_router_pseudocode.md`
 - `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md`
 - `.opencode/skills/sk-design/benchmark/README.md`
-- `.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json`
+- `.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json`
 - `.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs`
 - `.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs`
 - `.opencode/specs/sk-doc/019-skill-routing-refactor/011-sk-doc-routing-fixes/decision-record.md`

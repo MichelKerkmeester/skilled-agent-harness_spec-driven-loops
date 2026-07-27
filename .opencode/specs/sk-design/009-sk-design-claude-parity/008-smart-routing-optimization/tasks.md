@@ -146,6 +146,6 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Predecessor Gate**: See `../007-procedure-card-template-alignment/`
-- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/2026-07-06--after-009--router/report.md`
+- **Benchmark Evidence**: `../../../../skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.md`, `../../../../skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md`
 
 <!-- /ANCHOR:cross-refs -->

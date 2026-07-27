@@ -171,7 +171,7 @@ Required inventories:
 Dated amendment — planning prose above is preserved as authored:
 
 - **Six modes, not three.** The hub inventory grew to six modes (`+ mcp-aside-devtools, mcp-refero, mcp-mobbin`) before execution; the matrix axis "three modes x routing/discovery/efficiency/usefulness" executed as six modes across 13 hub scenarios.
-- **Storage naming superseded.** Benchmark output did NOT land under `benchmark/2026-06-01--router-final--router/` — the storage guide's frozen naming applied instead: `.opencode/skills/mcp-tooling/benchmark/baseline/` (pre-remediation run, PASS 95) and `.opencode/skills/mcp-tooling/benchmark/2026-07-16--after-routing-remediation--router/` (post-remediation re-run, PASS 98 with the route-gold hard gate enforced 13/13).
+- **Storage naming superseded.** Benchmark output did NOT land under `benchmark/2026-06-01--router-final--router/` — the storage guide's frozen naming applied instead: `.opencode/skills/mcp-tooling/benchmark/reports/baseline/` (pre-remediation run, PASS 95) and `.opencode/skills/mcp-tooling/benchmark/reports/2026-07-16--after-routing-remediation--router/` (post-remediation re-run, PASS 98 with the route-gold hard gate enforced 13/13).
 - **Amendment path outcome.** No routing-config amendment against the phase 002 ADRs was needed; routing fixes and the review's 15 findings were remediated in `.opencode/specs/mcp-tooling/011-routing-remediation/`.
 <!-- /ANCHOR:amendment-2026-07-16 -->
 

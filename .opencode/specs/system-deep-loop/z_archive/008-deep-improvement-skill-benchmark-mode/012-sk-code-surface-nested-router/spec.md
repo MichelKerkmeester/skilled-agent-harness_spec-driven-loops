@@ -39,7 +39,7 @@ _memory:
 
 Phase 011's 3-iteration deep research recommended a concrete remediation for sk-code's over-routing (D3 42) and task-dependent usefulness (D4 ~49): the `RESOURCE_MAP` keys on intent only and unions resources across all surfaces, so a single-surface task pulls the cross-surface half too. This phase implements the fix — a surface-nested `RESOURCE_MAP` with a shared `UNIVERSAL` tier, a full unranked cross-surface overlay, intra-surface intent-score ranking, and asset deferral — and proves it holds D1/D2 via a baseline-floor regression guard.
 
-**Critical Dependencies**: the 011 research (`011-.../research/research.md`), the §11 machine-readable router, the `router-replay.cjs` route builder + the `sk-code-router-sync.vitest.ts` drift guard, and the live benchmark baseline (`sk-code/benchmark/2026-06-01--live-final--live/`).
+**Critical Dependencies**: the 011 research (`011-.../research/research.md`), the §11 machine-readable router, the `router-replay.cjs` route builder + the `sk-code-router-sync.vitest.ts` drift guard, and the live benchmark baseline (`sk-code/benchmark/reports/2026-06-01--live-final--live/`).
 
 ---
 

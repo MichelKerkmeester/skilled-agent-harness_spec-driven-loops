@@ -167,7 +167,7 @@ No divergent pivots were run because `convergence_mode=off`. Saturated direction
 - Hub topology: `.opencode/skills/sk-code/SKILL.md`, `mode-registry.json`, `hub-router.json`
 - Typed identity: `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs`, `generate-leaf-manifest.cjs`
 - Benchmark runner/scorer: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/`
-- Baseline/live reports: `.opencode/skills/sk-code/benchmark/baseline/`, `.opencode/skills/sk-code/benchmark/live_final/`
+- Baseline/live reports: `.opencode/skills/sk-code/benchmark/reports/baseline/`, `.opencode/skills/sk-code/benchmark/live_final/`
 - Scenario authority: `.opencode/skills/sk-code/manual_testing_playbook/`
 - Detailed evidence: `research/iterations/iteration-001.md` through `iteration-008.md`
 - Resource inventory: `research/resource-map.md`

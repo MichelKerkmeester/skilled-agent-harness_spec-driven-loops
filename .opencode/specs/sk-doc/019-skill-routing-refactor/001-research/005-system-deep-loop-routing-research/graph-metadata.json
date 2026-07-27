@@ -58,7 +58,7 @@
       "research/iterations/iteration-008.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json",
+      ".opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json",
       "research/resource-map.md",
       "research/deep-research-strategy.md"
     ],
@@ -168,7 +168,7 @@
       {
         "name": "skill-benchmark-report.json",
         "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json",
+        "path": ".opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json",
         "source": "derived"
       },
       {

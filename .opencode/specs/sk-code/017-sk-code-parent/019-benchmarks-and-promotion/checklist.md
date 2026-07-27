@@ -59,7 +59,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Fresh sk-code Lane-C baseline exists and reflects nested surface packets [EVIDENCE: fresh sk-code router run executed (aggregate 48, D5 100/100); router resolves nested `webflow/`/`opencode/`/`animation/` paths (check 5d PASS). Freezing a new gold baseline is deferred to the rename follow-up by operator decision — the 29-scenario gold encodes the pre-013 file-loading model, not a routing defect]
-- [x] CHK-021 [P0] Fresh sk-design Lane-C baseline exists [EVIDENCE: add-only `sk-design/benchmark/baseline/` (CONDITIONAL 69, D5 100/100); parent-skill-check 9b passes; commit `fc4644a98a`]
+- [x] CHK-021 [P0] Fresh sk-design Lane-C baseline exists [EVIDENCE: add-only `sk-design/benchmark/reports/baseline/` (CONDITIONAL 69, D5 100/100); parent-skill-check 9b passes; commit `fc4644a98a`]
 - [x] CHK-022 [P0] Fresh deep-loop Lane-C baseline exists after 018b [EVIDENCE: add-only `deep-loop-workflows/benchmark/baseline/` (CONDITIONAL 71, D5 100/100) generated after the settled 7-mode registry/router state; commit `50fbe53094`]
 - [x] CHK-023 [P1] Cross-hub benchmark comparison recorded [EVIDENCE: tasks.md T012 — sk-design 69 / deep-loop 71 / sk-code 48-stale-gold; D5 connectivity hard gate 100/100 on all three]
 

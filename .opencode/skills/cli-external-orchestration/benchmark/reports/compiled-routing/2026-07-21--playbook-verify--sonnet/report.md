@@ -29,7 +29,7 @@ For the 2 `plugins-and-hooks/` scenarios (CE-P01, CE-P02) — which the hub's ow
 | `router-replay.cjs` | `d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47` | YES |
 | `score-skill-benchmark.cjs` | `d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c` | YES |
 
-Identical to the hashes cited in the same-day `sk-code/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md` run, confirming these cross-hub shared scripts are genuinely untouched.
+Identical to the hashes cited in the same-day `sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md` run, confirming these cross-hub shared scripts are genuinely untouched.
 
 ---
 
@@ -43,7 +43,7 @@ Identical to the hashes cited in the same-day `sk-code/benchmark/compiled-routin
 
 ### Lane C cross-check
 
-- **Archived source**: `.opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json` (committed `23ba6f5f32f`, captured same day ~1h50m before this sweep)
+- **Archived source**: `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json` (committed `23ba6f5f32f`, captured same day ~1h50m before this sweep)
 - **Archived figure**: `compiledRouting.scored=8, match=8, drift=0, subVerdict=compiled-serving` — Lane C parity **8/0**, covering exactly the same 8 scenario IDs this sweep enumerates (CE-P01, CE-P02, CE-003, CE-002, CE-H01, CE-H02, CE-001, CE-CR-001)
 - **Corroboration**: **EXACT MATCH.** This sweep independently re-derived routing decisions by hand (direct `resolve.cjs`/`router-replay.cjs` invocations per scenario, not by re-invoking the Lane C harness itself) and found 8/8 agreement with the archived report's per-row `frontDoorOutcome`/`status`. 0 drift confirmed independently, via a fully separate execution path.
 - **Verdict**: **CORROBORATED**
@@ -150,5 +150,5 @@ No routing regressions, no compiled-vs-legacy drift, no manifest/registry/SKILL.
 - Compiled engine: `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs`
 - Legacy replay: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs`
 - Hub router policy: `.opencode/skills/cli-external-orchestration/hub-router.json`
-- Lane C cross-check source: `.opencode/skills/sk-doc/benchmark/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json`
-- Sibling precedent (same method, sk-code hub): `.opencode/skills/sk-code/benchmark/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md`
+- Lane C cross-check source: `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json`
+- Sibling precedent (same method, sk-code hub): `.opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md`

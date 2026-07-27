@@ -1259,8 +1259,8 @@ exec
 .opencode/skills/system-deep-loop/runtime/feature_catalog/state_safety/atomic_state_deferred_writer.md
 .opencode/skills/system-deep-loop/runtime/feature_catalog/state_safety/loop_lock_heartbeat_hardening.md
 .opencode/skills/system-deep-loop/runtime/feature_catalog/state_safety/atomic_state_serialize_diff.md
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 .opencode/skills/system-deep-loop/runtime/feature_catalog/testing/record_replay_cassette_harness.md
 .opencode/skills/system-deep-loop/runtime/feature_catalog/testing/hermetic_test_isolation.md
 .opencode/skills/system-deep-loop/benchmark/live_mode_b/skill-benchmark-report.json

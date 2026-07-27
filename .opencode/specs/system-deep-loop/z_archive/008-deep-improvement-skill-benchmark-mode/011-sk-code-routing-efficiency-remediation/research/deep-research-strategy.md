@@ -17,7 +17,7 @@ How to make sk-code load a tighter, task-appropriate resource slice that cuts D3
 ## Known context (evidence baseline)
 - Live benchmark: D1-intra 92, D2 87, D3 42 (routed ~16-20 vs gold ~5-8), D5 100.
 - D4 ablation (approximate, n=2): CS-001 skill helped (0.88 vs 0.78); LS-001 skill hurt (0.82 vs 0.95).
-- sk-code/benchmark/2026-06-01--live-final--live/{skill-benchmark-report.md, d4-ablation.json}; sk-code/references/smart_routing.md §11.
+- sk-code/benchmark/reports/2026-06-01--live-final--live/{skill-benchmark-report.md, d4-ablation.json}; sk-code/references/smart_routing.md §11.
 
 ## Stop conditions
 - Converge (newInfoRatio < 0.05) or reach iteration 3.

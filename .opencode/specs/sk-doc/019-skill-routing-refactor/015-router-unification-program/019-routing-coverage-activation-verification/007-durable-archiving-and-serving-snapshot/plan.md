@@ -113,7 +113,7 @@ active 013-live-activation/activation/<hub>/manifest.json (read-only source)
 | `run-skill-benchmark.cjs` / Lane C outputs | Caller-supplied `--outputs-dir` only | Add the durable convention as an additional, fail-closed archive target | Collision test: re-running a used `<run-label>` fails closed |
 | `build-report.cjs` (non-frozen) | JSON→Markdown report renderer | Add the `report.compiledRouting` block | Rendered-report fixture test |
 | Three frozen scorer files | Frozen route-gold scorer | **Unchanged — not a consumer** | Pre/post SHA-256 comparison stays identical |
-| `sk-code/benchmark/baseline/` (and sibling hubs' `baseline/`) | Frozen baseline label | **Unchanged — never repurposed** | `git diff` on every `baseline/` path stays empty |
+| `sk-code/benchmark/reports/baseline/` (and sibling hubs' `baseline/`) | Frozen baseline label | **Unchanged — never repurposed** | `git diff` on every `baseline/` path stays empty |
 | 7 hub `benchmark/README.md` | Existing archive-directory index | Add the compiled-routing convention row | Diff review per hub |
 
 Required inventories before implementation:

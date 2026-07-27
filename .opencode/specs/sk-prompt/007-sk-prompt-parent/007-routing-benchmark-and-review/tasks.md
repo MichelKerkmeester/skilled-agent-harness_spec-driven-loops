@@ -55,7 +55,7 @@ _memory:
 
 - [x] T001 Confirm phases 003-006 are the full diff target for independent review. — Evidence: all 4 phases validated `--strict` 0/0 individually and recursively before this phase started.
 - [x] T002 Confirm the merged `.opencode/skills/sk-prompt/` hub layout exists before benchmarking. — Evidence: `parent-skill-check.cjs` 0 invariant failures, 0 warnings.
-- [x] T003 Confirm the benchmark command will use `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router` as its output directory. — Evidence: `skill-benchmark-report.{md,json}` written there.
+- [x] T003 Confirm the benchmark command will use `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router` as its output directory. — Evidence: `skill-benchmark-report.{md,json}` written there.
 - [x] T004 Record that optional live true-verdict dispatch through `cli-opencode` is out of scope for this phase. — Evidence: only `--trace-mode=router` (deterministic Mode A) run; D1inter/D4 remain explicitly unscored, matching the original plan.
 <!-- /ANCHOR:phase-1 -->
 

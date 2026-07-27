@@ -371,13 +371,13 @@
     },
     {
       "id": "finding-3-5-applied-to-the-frozen-21-scenario-benchmark-corpus-16-are-typable-as-is-mr-001-m",
-      "text": "Applied to the frozen 21-scenario benchmark corpus, 16 are typable as-is (`MR-001..MR-006`, `TV-001..TV-005`, `MG-001..MG-003`, `SR-001`, `SR-004`), two require splitting (`AI-001`, `SR-002`), and three remain untyped (`AI-002`, `AI-003`, `SR-003`). This preserves the benchmark's router/live distinction: typed pairs can improve routing/resource attribution, but cannot turn browser, advisor, or behavior gaps into measured routing faults. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:20-43] [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-263] [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:357-1646] [INFERENCE: intersecting the frozen corpus IDs with the independently derived 37-scenario partition]",
+      "text": "Applied to the frozen 21-scenario benchmark corpus, 16 are typable as-is (`MR-001..MR-006`, `TV-001..TV-005`, `MG-001..MG-003`, `SR-001`, `SR-004`), two require splitting (`AI-001`, `SR-002`), and three remain untyped (`AI-002`, `AI-003`, `SR-003`). This preserves the benchmark's router/live distinction: typed pairs can improve routing/resource attribution, but cannot turn browser, advisor, or behavior gaps into measured routing faults. [SOURCE: .opencode/skills/sk-design/benchmark/README.md:20-43] [SOURCE: .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:168-263] [SOURCE: .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:357-1646] [INFERENCE: intersecting the frozen corpus IDs with the independently derived 37-scenario partition]",
       "addedAtIteration": 3,
       "sources": [
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
         "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:168-1646`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
       ]
     },
@@ -389,7 +389,7 @@
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
         "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:168-1646`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
       ]
     },
@@ -401,7 +401,7 @@
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
         "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:168-1646`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
       ]
     },
@@ -413,7 +413,7 @@
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
         "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:168-1646`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
       ]
     },
@@ -425,7 +425,7 @@
         "`.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md:30-43,110-147,178-322`",
         "`.opencode/skills/sk-design/manual_testing_playbook/mode_routing/interface_mode.md:9-67`",
         "`.opencode/skills/sk-design/benchmark/README.md:18-43`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:168-1646`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:168-1646`",
         "`.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs:8-28,43-51,70-100,165-221`"
       ]
     },
@@ -435,7 +435,7 @@
       "addedAtIteration": 4,
       "sources": [
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:1-180`",
         "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
@@ -445,11 +445,11 @@
     },
     {
       "id": "finding-4-2-d1-inter-and-d4-are-unavailable-measurements-not-zero-valued-losses-the-report-m",
-      "text": "D1-inter and D4 are unavailable measurements, not zero-valued losses. The report marks both `unscored-mode-a`, and the scorer includes D1-inter only when an advisor probe produces a numeric score while weighted D4 remains unscored; neither depresses the 69 aggregate. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:29-61] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1576-1607]",
+      "text": "D1-inter and D4 are unavailable measurements, not zero-valued losses. The report marks both `unscored-mode-a`, and the scorer includes D1-inter only when an advisor probe produces a numeric score while weighted D4 remains unscored; neither depresses the 69 aggregate. [SOURCE: .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:29-61] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1576-1607]",
       "addedAtIteration": 4,
       "sources": [
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:1-180`",
         "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
@@ -463,7 +463,7 @@
       "addedAtIteration": 4,
       "sources": [
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:1-180`",
         "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
@@ -473,11 +473,11 @@
     },
     {
       "id": "finding-4-1-the-frozen-69-is-exactly-attributable-to-the-three-scenario-weighted-mode-a-dime",
-      "text": "The frozen 69 is exactly attributable to the three scenario-weighted Mode-A dimensions: D1-intra is 100 at 13 points, D2 is 100 at 20 points, and D3 is 0 at 15 points, so `(13 + 20 + 0) / (13 + 20 + 15) = 68.75`, rounded once to 69. D5=100 is a separate hard gate and does not enter `modeAScore`; therefore the baseline’s only scored loss is the D3 proxy, not a demonstrated routing-recall failure. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:29-56] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
+      "text": "The frozen 69 is exactly attributable to the three scenario-weighted Mode-A dimensions: D1-intra is 100 at 13 points, D2 is 100 at 20 points, and D3 is 0 at 15 points, so `(13 + 20 + 0) / (13 + 20 + 15) = 68.75`, rounded once to 69. D5=100 is a separate hard gate and does not enter `modeAScore`; therefore the baseline’s only scored loss is the D3 proxy, not a demonstrated routing-recall failure. [SOURCE: .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:29-56] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1066-1078]",
       "addedAtIteration": 4,
       "sources": [
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:1-180`",
         "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
@@ -487,11 +487,11 @@
     },
     {
       "id": "finding-4-4-typed-gold-plus-a-committed-leaf-manifest-would-replace-the-flat-string-resource",
-      "text": "Typed gold plus a committed leaf manifest would replace the flat-string resource proxy for D1-intra/D2 with canonical pair recall and replace D3’s flat over-routing proxy with canonical pair precision. The frozen baseline has `routeGoldRows: 0`, so it measures none of that typed-pair behavior; adding valid typed gold would improve measurement validity, but it would not by itself prove a router repair. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:83-116] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1356]",
+      "text": "Typed gold plus a committed leaf manifest would replace the flat-string resource proxy for D1-intra/D2 with canonical pair recall and replace D3’s flat over-routing proxy with canonical pair precision. The frozen baseline has `routeGoldRows: 0`, so it measures none of that typed-pair behavior; adding valid typed gold would improve measurement validity, but it would not by itself prove a router repair. [SOURCE: .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:83-116] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1311-1356]",
       "addedAtIteration": 4,
       "sources": [
         "`.opencode/skills/sk-design/benchmark/README.md:18-55`",
-        "`.opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:1-180`",
+        "`.opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:1-180`",
         "`.opencode/skills/sk-design/benchmark/after_d3_proxy/skill-benchmark-report.json:1-120`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:1-320`",
         "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:35-43,65-70,1066-1078,1302-1387,1499-1745`",
@@ -897,7 +897,7 @@
     },
     {
       "id": "ruled-out-cc9a422557bf",
-      "text": "Treating D1-inter or D4 as contributors to the 31-point baseline shortfall: both are excluded from the Mode-A denominator rather than scored zero. [SOURCE: .opencode/skills/sk-design/benchmark/baseline/skill-benchmark-report.json:29-61]",
+      "text": "Treating D1-inter or D4 as contributors to the 31-point baseline shortfall: both are excluded from the Mode-A denominator rather than scored zero. [SOURCE: .opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json:29-61]",
       "contentHash": "cc9a422557bf",
       "addedAtIteration": 4
     },

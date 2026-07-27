@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-design/benchmark/README.md"
-      - ".opencode/skills/sk-design/benchmark/baseline/"
+      - ".opencode/skills/sk-design/benchmark/reports/baseline/"
       - ".opencode/skills/sk-design/benchmark/after_009/"
     completion_pct: 0
     open_questions: []
@@ -61,7 +61,7 @@ Update only path-valued README/changelog/storage references. Preserve report JSO
 ## References
 
 - `.opencode/skills/sk-design/benchmark/README.md` (storage and comparison guidance)
-- `.opencode/skills/sk-design/benchmark/baseline/` (frozen comparison anchor)
+- `.opencode/skills/sk-design/benchmark/reports/baseline/` (frozen comparison anchor)
 - `001-convention-policy-and-scope/decision-record.md` (semantic map and exemption boundary)
 <!-- /ANCHOR:references -->
 

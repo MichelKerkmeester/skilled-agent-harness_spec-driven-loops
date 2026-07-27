@@ -98,7 +98,7 @@
     },
     {
       "id": "luna-high-real-archive-validation-bonus",
-      "description": "Found + validated a SECOND same-day archive per hub not explicitly named in the task, .../compiled-routing/2026-07-21--real--luna-high/ (present for all 7 hubs)",
+      "description": "Found + validated a SECOND same-day archive per hub not explicitly named in the task, .../reports/compiled-routing/2026-07-21--real--luna-high/ (present for all 7 hubs)",
       "executedThisSession": true,
       "result": "serving-snapshot.json VALID for all 7. skill-benchmark-report.json verdict PASS for 6/7; mcp-tooling=FAIL.",
       "interpretation": "This archive is timestamped 07:33:15, ~4.5h before the 12:03:48 'verify' archive. mcp-tooling's FAIL here is a stale/superseded pre-fix snapshot, consistent with the packet's documented commit f9f639674b ('sk-design, system-deep-loop, mcp-tooling coverage'), which landed between the two timestamps. The later, canonical 'verify' archive (already confirmed 7/7 PASS above) supersedes it. Not a current issue.",

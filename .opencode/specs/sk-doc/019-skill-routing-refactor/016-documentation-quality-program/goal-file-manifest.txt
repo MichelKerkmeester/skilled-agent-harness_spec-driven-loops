@@ -17,7 +17,7 @@
 .opencode/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md
 .opencode/skills/mcp-tooling/mcp-figma/scripts/README.md
 .opencode/skills/mcp-tooling/shared/references/smart-routing.md
-.opencode/skills/sk-code/benchmark/2026-06-02--d4r-live--live/README.md
+.opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md
 .opencode/skills/sk-code/code-opencode/README.md
 .opencode/skills/sk-code/code-opencode/SKILL.md
 .opencode/skills/sk-code/code-opencode/references/typescript/quality-standards/overview-and-type-system.md

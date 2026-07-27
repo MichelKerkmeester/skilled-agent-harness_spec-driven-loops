@@ -84,9 +84,9 @@
   "id": "F9",
   "category": "CAT-3",
   "claim": "Dated benchmark output folders committed to repository",
-  "path": ".opencode/skills/sk-doc/benchmark/compiled-routing/ (5 dated subfolders: luna-high-acceptance-1784596615522/, luna-high-real-20260721-073315/, luna-high-verify-20260721-120348/, playbook-verify-sonnet-20260721-132527/, r3-benchmark-sweep-20260721-131432/)",
+  "path": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/ (5 dated subfolders: luna-high-acceptance-1784596615522/, luna-high-real-20260721-073315/, luna-high-verify-20260721-120348/, playbook-verify-sonnet-20260721-132527/, r3-benchmark-sweep-20260721-131432/)",
   "evidence": "`benchmark/README.md:31` states \"No Lane C skill-benchmark run has been archived for sk-doc yet\" \u2014 yet these dated output folders with Jul-2026 timestamps are present.",
-  "verify": "`ls -la .opencode/skills/sk-doc/benchmark/compiled-routing/`",
+  "verify": "`ls -la .opencode/skills/sk-doc/benchmark/reports/compiled-routing/`",
   "blast": "Low \u2014 output artifacts; move out of version control or gitignore."
  },
  {
@@ -556,7 +556,7 @@
   "claim": "`sk-design/benchmark/after-*` run-labels use `report.json`/`report.md` instead of the storage-standard `skill-benchmark-report.json`/`.md`, and three run-labels are unreferenced by the owning README",
   "path": ".opencode/skills/sk-design/benchmark/{after-009,after-012-routing-rigor,after-016-hub-routing,after-018-transport-integration,after-022-coverage-fill}/",
   "evidence": "The storage standard the owning README references (`sk-design/benchmark/README.md:63` cites `skill-benchmark-storage-guide.md`) mandates the canonical pair `skill-benchmark-report.json` + `skill-benchmark-report.md` per run-label (`.opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md:70-77` and `:147-148`). The five `after-*` folders instead hold `re",
-  "verify": "```bash ls .opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/ # report.json, report.md ls .opencode/skills/sk-design/benchmark/2026-07-06--after-d3-proxy--router/ # skill-benchmark-report.json, skill-benchmark-report.md ls .opencode/skills/sk-design/benchmark/2026-07-06--after-012-routing-rigor--router/ .opencode/skills/sk-design/benchmark/2026-07-07--after-016-hub-routing--live/ .opencode/skills/sk-design/benchmark/2026-07-07--after-018-transport-integration--live/ .opencod",
+  "verify": "```bash ls .opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/ # report.json, report.md ls .opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router/ # skill-benchmark-report.json, skill-benchmark-report.md ls .opencode/skills/sk-design/benchmark/reports/2026-07-06--after-012-routing-rigor--router/ .opencode/skills/sk-design/benchmark/reports/2026-07-07--after-016-hub-routing--live/ .opencode/skills/sk-design/benchmark/reports/2026-07-07--after-018-transport-integration--live/ .opencod",
   "blast": "Renaming `report.json`/`report.md` \u2192 `skill-benchmark-report.json`/`.md` must be done as a pair (the `.md` header reads \"Rendered from report.json\", so the render source reference inside each `.md` also needs updating). Any consumer that scrapes `sk-design/benchmark/*/report.json` by name would break; a grep shows no such consumer outside the benchmark tree itself. Adding a run-label index is docu"
  }
 ]

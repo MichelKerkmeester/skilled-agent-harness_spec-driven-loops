@@ -51,7 +51,7 @@ Router mode (deterministic, no network):
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router \
+  --outputs-dir=.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router \
   --trace-mode=router
 ```
 
@@ -61,7 +61,7 @@ Live mode (dispatches through cli-opencode, needs a configured provider):
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high \
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/2026-06-01--live-final--live \
+  --outputs-dir=.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live \
   --trace-mode=live --advisor-mode=python \
   --scenarios=SD-001,LS-001,CS-001,RD-002,MR-001
 ```
@@ -94,16 +94,16 @@ Every run-label folder on disk, one row each. `Status` separates current runs fr
 
 | Run label | What it is | Verdict | Status |
 |---|---|---|---|
-| [`router-final/`](./2026-06-01--router-final--router/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
-| [`live-final/`](./2026-06-01--live-final--live/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
-| [`d4r-live/`](./2026-06-02--d4r-live--live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
-| [`router-baseline/`](./2026-07-10--router-baseline--router/) | Router-mode sidecar run | PASS · 85 | sidecar |
-| [`live-mode-b/`](./2026-07-10--live-mode-b--live/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
-| [`live-remediated/`](./2026-06-01--live-remediated--live/) | Live-mode run after a remediation pass, an intermediate before `live-final/` | CONDITIONAL · 79 | superseded |
-| [`baseline/`](./baseline/) | Frozen pre-optimization snapshot; the D5 structural gate blocked this run | BLOCKED-BY-STRUCTURE | frozen |
-| [`after/`](./2026-06-01--after--router/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
-| [`full/`](./2026-06-01--full--router/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
-| [`live/`](./2026-06-01--live--live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
+| [`router-final/`](./reports/2026-06-01--router-final--router/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
+| [`live-final/`](./reports/2026-06-01--live-final--live/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
+| [`d4r-live/`](./reports/2026-06-02--d4r-live--live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
+| [`router-baseline/`](./reports/2026-07-10--router-baseline--router/) | Router-mode sidecar run | PASS · 85 | sidecar |
+| [`live-mode-b/`](./reports/2026-07-10--live-mode-b--live/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
+| [`live-remediated/`](./reports/2026-06-01--live-remediated--live/) | Live-mode run after a remediation pass, an intermediate before `live-final/` | CONDITIONAL · 79 | superseded |
+| [`baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot; the D5 structural gate blocked this run | BLOCKED-BY-STRUCTURE | frozen |
+| [`after/`](./reports/2026-06-01--after--router/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
+| [`full/`](./reports/2026-06-01--full--router/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
+| [`live/`](./reports/2026-06-01--live--live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
 | [`fixtures/sk-code/`](./fixtures/sk-code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a — see folder | legacy |
 
 ---

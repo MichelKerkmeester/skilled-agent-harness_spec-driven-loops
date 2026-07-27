@@ -72,7 +72,7 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 | `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Repoint animation resources to Webflow and remove dissolved-mode routes from RESOURCE_MAP | `2cd3b3f7a9` |
 | `.opencode/agents/*` and specs/docs references | Updated | Repoint external references off dissolved sub-skills while preserving code-review wiring | `2cd3b3f7a9` |
 | `.opencode/skills/sk-code/manual_testing_playbook/**` | Updated | Re-translate gold paths for folded animation and dissolved verify-mode script/checklist moves | `6c0d9959b9` |
-| `.opencode/skills/sk-code/benchmark/2026-06-01--router-final--router/` | Regenerated | Record deterministic router-final baseline after the four-sub-skill collapse | `6c0d9959b9` |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/` | Regenerated | Record deterministic router-final baseline after the four-sub-skill collapse | `6c0d9959b9` |
 | Benchmark harness vitests | Updated | Repoint surface-slice sync, code-surface path parse, and skill-benchmark routing expectations to the two-axis model | `6c0d9959b9` |
 | `plan.md` | Added | Record retrospective implementation plan, gates, dependencies, rollback, and effort for packet 022 | close-out doc |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | close-out doc |

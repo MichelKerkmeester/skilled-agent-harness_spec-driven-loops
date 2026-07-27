@@ -473,8 +473,8 @@ exec
 ../../../../../../.opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/baselines/claude-baseline.md
 ../../../../../../.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/depth_and_failure_handling/depth_detection_parallel_vs_sequential.md
 ../../../../../../.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/depth_and_failure_handling/resume_after_interrupted_state.md
-../../../../../../.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json
-../../../../../../.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.md
+../../../../../../.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json
+../../../../../../.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.md
 ../../../../../../.opencode/skills/system-deep-loop/runtime/lib/council/adjudicator-verdict-scoring.cjs
 ../../../../../../.opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs
 ../../../../../../.opencode/skills/system-deep-loop/runtime/lib/council/multi-seat-dispatch.cjs

@@ -32,8 +32,8 @@ Verdicts are read from each folder's rendered report; see [`BENCHMARK-SUMMARY.md
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
-| [`router-final/`](./2026-07-10--router-final--router/) | router (Mode A, CI gate) | PASS · 100 | current | Canonical deterministic run |
-| [`live-final/`](./2026-07-10--live-final--live/) | live (Mode B, `cli-opencode` dispatch) | PASS · 100 | current | Real dispatch confirmed via captured model responses |
+| [`router-final/`](./reports/2026-07-10--router-final--router/) | router (Mode A, CI gate) | PASS · 100 | current | Canonical deterministic run |
+| [`live-final/`](./reports/2026-07-10--live-final--live/) | live (Mode B, `cli-opencode` dispatch) | PASS · 100 | current | Real dispatch confirmed via captured model responses |
 
 ## 3. STRUCTURE
 

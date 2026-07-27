@@ -4,7 +4,7 @@ Re-test each claim. Record CONFIRMED, REFUTED or DEFERRED with the exact command
 
 | # | finding | cat | path | claim |
 |---|---|---|---|---|
-| 1 | `devin-01:F9` | CAT-3 | `.opencode/skills/sk-doc/benchmark/compiled-routing/ (5 dated subfolders: luna-high-acceptance-1784596615522/, luna-high-` | Dated benchmark output folders committed to repository |
+| 1 | `devin-01:F9` | CAT-3 | `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/ (5 dated subfolders: luna-high-acceptance-1784596615522/, luna-high-` | Dated benchmark output folders committed to repository |
 | 2 | `devin-01:F13` | CAT-4 | `.opencode/skills/sk-doc/feature-catalog/` | feature-catalog/ at hub root not documented in SKILL.md layout |
 | 3 | `devin-01:F15` | CAT-3 | `.opencode/skills/sk-git/benchmark/{live-glm-5.2-high,live-kimi-2.7}/` | Committed benchmark reports unreferenced by any docs |
 | 4 | `devin-01:F18` | CAT-4 | `UNKNOWN — .github/ does not exist under sk-git/` | Changelog documents `.github/workflows/` and `.github/hooks/scripts/` READMEs that do not exist |

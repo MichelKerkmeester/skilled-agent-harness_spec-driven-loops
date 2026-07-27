@@ -81,10 +81,10 @@ description: "Review strategy for the sk-prompt parent-hub merge program + post-
 - `.opencode/skills/sk-prompt/prompt-models/description.json`
 - `.opencode/skills/sk-prompt/benchmark/.gitkeep`
 - `.opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md`
-- `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.json`
-- `.opencode/skills/sk-prompt/benchmark/2026-07-10--live-final--live/skill-benchmark-report.md`
-- `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json`
-- `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md`
+- `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.json`
+- `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--live-final--live/skill-benchmark-report.md`
+- `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json`
+- `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md`
 - `.opencode/commands/prompt-improve.md`
 - `.opencode/agents/prompt-improver.md`
 - `.claude/agents/prompt-improver.md`
@@ -329,10 +329,10 @@ resource-map.md not present; skipping coverage gate.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Overlay `feature_catalog_code`: NOT APPLICABLE. No feature-catalog file is part of the declared review scope.
 
-### Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`] -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
+### Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`] -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
+- Do NOT retry: Overlay `playbook_capability`: DEFERRED for ordered-bundle scenario coverage. `hub-router.json` advertises `orderedBundle`, but the current playbook/benchmark evidence exercises four single-mode routing scenarios only; no gold row proves bundle behavior is a required correctness contract. [SOURCE: `.opencode/skills/sk-prompt/hub-router.json:8-14`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md:38-58`; `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json:108-117`]
 
 ### Overlay `playbook_capability`: DEFERRED to maintainability/traceability dimensions; this iteration only checked README and agent command-path correctness. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Overlay `playbook_capability`: DEFERRED to maintainability/traceability dimensions; this iteration only checked README and agent command-path correctness.

@@ -59,15 +59,15 @@ _memory:
 Benchmark command executed in this pass:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir .opencode/skills/sk-design/benchmark/2026-07-06--after-009--router --trace-mode router --output .opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs --skill .opencode/skills/sk-design --outputs-dir .opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router --trace-mode router --output .opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json
 ```
 
 Observed output:
 
 ```text
 skill-benchmark: sk-design verdict=CONDITIONAL aggregate=69 scenarios=24
-report.json -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.json
-report.md   -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/2026-07-06--after-009--router/report.md
+report.json -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json
+report.md   -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md
 node  --skill .opencode/skills/sk-design --outputs-dir  --trace-mode router    0.03s user 0.01s system 102% cpu 0.040 total
 ```
 

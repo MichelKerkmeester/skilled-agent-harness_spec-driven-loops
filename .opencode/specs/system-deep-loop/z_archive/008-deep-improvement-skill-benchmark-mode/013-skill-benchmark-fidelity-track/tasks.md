@@ -64,7 +64,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T-301 Full deep-improvement vitest suite green (295/295, 24 files; +5 new) + `sk-code-router-sync.vitest.ts` 4/4. Router benchmark unchanged (agg 46, D2 47, D3 32); advisory signals additive.
-- [x] T-302 D4-R live ablation (paid) run on LS-001/002/003/004 + SD-002: `D4_task_outcome` aggregate **54/100** (task-dependent — helps weak-baseline tasks, hurts strong ones). Artifact + README in `sk-code/benchmark/2026-06-02--d4r-live--live/`.
+- [x] T-302 D4-R live ablation (paid) run on LS-001/002/003/004 + SD-002: `D4_task_outcome` aggregate **54/100** (task-dependent — helps weak-baseline tasks, hurts strong ones). Artifact + README in `sk-code/benchmark/reports/2026-06-02--d4r-live--live/`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

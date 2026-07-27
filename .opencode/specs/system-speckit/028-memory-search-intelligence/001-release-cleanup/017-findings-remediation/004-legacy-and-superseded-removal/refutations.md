@@ -24,7 +24,7 @@ the folder is, not a disposal marker.
 "No longer the default corpus" is true. It does not follow that the inputs which produced retained
 benchmark results can be removed.
 
-**Verify**: `rg -l 'fixtures/sk-code' .opencode/skills/sk-code/benchmark/compiled-routing/`
+**Verify**: `rg -l 'fixtures/sk-code' .opencode/skills/sk-code/benchmark/reports/compiled-routing/`
 
 ## RF-004-3 — `devin-01:F3` the v3.x changelogs are the history, not stale docs
 

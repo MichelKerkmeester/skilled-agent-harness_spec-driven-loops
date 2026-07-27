@@ -38,7 +38,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.md",
+      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md",
       "research/research.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-strategy.md",
@@ -53,7 +53,7 @@
       {
         "name": "skill-benchmark-report.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.md",
+        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md",
         "source": "derived"
       },
       {

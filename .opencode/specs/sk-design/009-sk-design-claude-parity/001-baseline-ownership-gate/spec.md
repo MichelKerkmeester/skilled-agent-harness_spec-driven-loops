@@ -134,7 +134,7 @@ Create a hard ownership gate that records the current baseline, inventories touc
 | The four advisory modes use `backendKind: reference-base`, allow only `Read`, `Glob`, and `Grep`, forbid `Write`, `Edit`, and `Bash`, and set `mutatesWorkspace: false` | `.opencode/skills/sk-design/mode-registry.json` | Preserve |
 | `design-md-generator` is the only mutating mode, with `backendKind: playwright-extract` and `mutatesWorkspace: true` | `.opencode/skills/sk-design/mode-registry.json` | Preserve |
 | Exactly one `graph-metadata.json` exists for the whole `sk-design` skill, at the parent hub root | `.opencode/skills/sk-design/SKILL.md`; `.opencode/skills/sk-design/graph-metadata.json` | Preserve; never add mode-packet graph metadata |
-| The committed benchmark baseline under `.opencode/skills/sk-design/benchmark/baseline/` remains the packet-local comparison anchor | `.opencode/skills/sk-design/benchmark/README.md`; fresh `/tmp/skd-bench-phase001/report.json` | Preserve; never overwrite `benchmark/baseline/` |
+| The committed benchmark baseline under `.opencode/skills/sk-design/benchmark/reports/baseline/` remains the packet-local comparison anchor | `.opencode/skills/sk-design/benchmark/README.md`; fresh `/tmp/skd-bench-phase001/report.json` | Preserve; never overwrite `benchmark/baseline/` |
 | The manual testing playbook contains 21 scenarios across five categories | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Preserve coverage unless a later phase records an explicit corpus-change decision |
 
 <!-- /ANCHOR:requirements -->

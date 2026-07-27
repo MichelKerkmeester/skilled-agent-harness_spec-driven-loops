@@ -15,9 +15,9 @@ I chose **D4 measurement as the primary lever**, narrowed to a build-ready routi
 - Read `.opencode/skills/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs:7-11`, `:121-155`.
 - Read `.opencode/skills/sk-code/references/smart_routing.md:287-307`, `:450-459`.
 - Read `.opencode/skills/deep-improvement/scripts/skill-benchmark/router-replay.cjs:225-255`.
-- Read `.opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.json:18-39`, `:87-90`, `:163-166`, `:331-334`, `:374-386`.
-- Read `.opencode/skills/sk-code/benchmark/2026-06-01--live-remediated--live/skill-benchmark-report.json:18-39`, `:87-90`, `:155-158`, `:320-323`, `:362-368`.
-- Read `.opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/d4-ablation.json:1-28`.
+- Read `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.json:18-39`, `:87-90`, `:163-166`, `:331-334`, `:374-386`.
+- Read `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json:18-39`, `:87-90`, `:155-158`, `:320-323`, `:362-368`.
+- Read `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/d4-ablation.json:1-28`.
 - Read `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md:43-49`, `:75-84`, `:109-125`, `:189-198`.
 - Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md:16-38`.
 - Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md:16-38`.
@@ -29,9 +29,9 @@ I chose **D4 measurement as the primary lever**, narrowed to a build-ready routi
 
 ## Findings
 
-1. **f-i8-01: Post-remediation aggregate/D3 gains are real only for the existing stated-route proxy, not for D4.** Pre-remediation live reports `aggregateScore: 71`, D2 `87`, D3 `42`, and D4 `null`; post-remediation live reports `aggregateScore: 79`, D2 `95`, D3 `50`, and D4 still `null`. Sources: `.opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.json:11-39`, `.opencode/skills/sk-code/benchmark/2026-06-01--live-remediated--live/skill-benchmark-report.json:11-39`.
+1. **f-i8-01: Post-remediation aggregate/D3 gains are real only for the existing stated-route proxy, not for D4.** Pre-remediation live reports `aggregateScore: 71`, D2 `87`, D3 `42`, and D4 `null`; post-remediation live reports `aggregateScore: 79`, D2 `95`, D3 `50`, and D4 still `null`. Sources: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.json:11-39`, `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json:11-39`.
 
-2. **f-i8-02: The D3 improvement is scenario-visible in stated routing, but it is not an observed exploration-cost metric.** SD-001 improved from `routedCount: 20`, `wastedCount: 12`, D3 `0.4` to `16`, `8`, D3 `0.5`; LS-001 improved from `16`, `11`, D3 `0.3125` to `15`, `10`, D3 `0.3333`; CS-001 improved from `16`, `10`, D3 `0.375` to `15`, `5`, D3 `0.6667`. Sources: `.opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/skill-benchmark-report.json:87-90`, `:163-166`, `:331-334`; `.opencode/skills/sk-code/benchmark/2026-06-01--live-remediated--live/skill-benchmark-report.json:87-90`, `:155-158`, `:320-323`.
+2. **f-i8-02: The D3 improvement is scenario-visible in stated routing, but it is not an observed exploration-cost metric.** SD-001 improved from `routedCount: 20`, `wastedCount: 12`, D3 `0.4` to `16`, `8`, D3 `0.5`; LS-001 improved from `16`, `11`, D3 `0.3125` to `15`, `10`, D3 `0.3333`; CS-001 improved from `16`, `10`, D3 `0.375` to `15`, `5`, D3 `0.6667`. Sources: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.json:87-90`, `:163-166`, `:331-334`; `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json:87-90`, `:155-158`, `:320-323`.
 
 3. **f-i8-03: Live scoring still uses the same resource-overload proxy despite comments saying live mode should replace it with load-trace metrics.** The scorer computes D2 from `resourceRecall` and D3 from `routerResult.resources.length` plus expected-resource waste, while the live evidence block merely preserves `toolCalls`, `observedReads`, and `responseHead`. Sources: `.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:94-118`, `:152-161`.
 
@@ -43,7 +43,7 @@ I chose **D4 measurement as the primary lever**, narrowed to a build-ready routi
 
 7. **f-i8-07: The D4 formula compresses two independent hallucination scores into a delta, so the checked-in D4 number is not an absolute usefulness score.** The script computes `score = 0.5 + (onScore - offScore) / 2`, making `0.5` neutral, `1` skill-on fully better, and `0` skill-off better. Source: `.opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs:35-52`.
 
-8. **f-i8-08: The checked-in D4 artifact is not auditable enough to explain the LS-001 loss or CS-001 win.** The D4 module can return raw grader objects, but the saved `d4-ablation.json` only preserves aggregate, scenario id, `score`, `onScore`, `offScore`, attribution, grader mode, contamination, and activation. Sources: `.opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs:47-52`; `.opencode/skills/sk-code/benchmark/2026-06-01--live-final--live/d4-ablation.json:1-28`.
+8. **f-i8-08: The checked-in D4 artifact is not auditable enough to explain the LS-001 loss or CS-001 win.** The D4 module can return raw grader objects, but the saved `d4-ablation.json` only preserves aggregate, scenario id, `score`, `onScore`, `offScore`, attribution, grader mode, contamination, and activation. Sources: `.opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs:47-52`; `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/d4-ablation.json:1-28`.
 
 9. **f-i8-09: Normal skill-benchmark reports cannot currently lift D4 because the orchestrator never integrates `runD4Ablation`; it writes only the aggregate report where D4 is hard-coded null.** The run script labels D4 ablation “follow-on,” runs playbook scenarios through `dispatchScenario`, scores rows, aggregates, and writes `skill-benchmark-report.json/.md`; the scorer sets D4 `null` per row and in dimension scores. Sources: `.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:15-17`, `:105-135`, `:169-175`; `.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:130-131`, `:254-264`.
 
@@ -59,7 +59,7 @@ I chose **D4 measurement as the primary lever**, narrowed to a build-ready routi
 
 For **D3**, the post-remediation gain is partly real: the stated-route rows route fewer resources and waste fewer paths on SD-001, LS-001, and CS-001. The measured live D3 lift from `42` to `50` is therefore a real improvement under the current proxy.
 
-For **D3 honesty**, the same reports still show broad observed discovery paths such as `references/webflow/**/*`, `assets/webflow/**/*`, `references/**/*.md`, and `assets/**/*.md`. Because observed reads are stored as evidence but D3 is computed from stated routing, the real exploration-cost gain remains partly UNKNOWN. Sources: `.opencode/skills/sk-code/benchmark/2026-06-01--live-remediated--live/skill-benchmark-report.json:127-135`, `:193-201`, `:256-263`, `:362-368`.
+For **D3 honesty**, the same reports still show broad observed discovery paths such as `references/webflow/**/*`, `assets/webflow/**/*`, `references/**/*.md`, and `assets/**/*.md`. Because observed reads are stored as evidence but D3 is computed from stated routing, the real exploration-cost gain remains partly UNKNOWN. Sources: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json:127-135`, `:193-201`, `:256-263`, `:362-368`.
 
 For **D4**, no post-remediation usefulness lift is proven. The current live reports leave D4 unscored, and the only D4 sidecar is pre-remediation, two rows, approximate, and hallucination-delta based. The existing `D4 ~=49` should be treated as a measurement artifact for this follow-on question, not as a stable routine-task usefulness estimate.
 

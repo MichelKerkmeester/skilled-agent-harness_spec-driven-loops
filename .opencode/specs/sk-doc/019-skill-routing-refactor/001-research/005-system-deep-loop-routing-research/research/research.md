@@ -198,7 +198,7 @@ No research question remains open.
 - Manifest generation and topology: `generate-leaf-manifest.cjs`, `validate-playbook-topology.cjs`
 - Benchmark pipeline: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/`
 - Scenario authority: `.opencode/skills/system-deep-loop/**/manual_testing_playbook/`
-- Baseline: `.opencode/skills/system-deep-loop/benchmark/baseline/skill-benchmark-report.json`
+- Baseline: `.opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json`
 - Detailed evidence: `research/iterations/iteration-001.md` through `iteration-010.md`
 - Deterministic inventory: `research/resource-map.md`
 

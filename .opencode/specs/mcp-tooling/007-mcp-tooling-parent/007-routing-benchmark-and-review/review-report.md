@@ -123,7 +123,7 @@ Planning Packet
 #### F008 — Baseline benchmark passes seven route-contract violations
 
 - Dimension: traceability
-- Location: `.opencode/skills/mcp-tooling/benchmark/baseline/skill-benchmark-report.json:11-126,180-1329`
+- Location: `.opencode/skills/mcp-tooling/benchmark/reports/baseline/skill-benchmark-report.json:11-126,180-1329`
 - Evidence: Verdict is PASS, hub regressions are zero, and all 13 rows pass with `routeGoldRows:0`; telemetry nevertheless shows MT-004 selecting six modes and MT-003 plus MT-H02–H06 selecting no intended mode.
 - Impact: The designated deterministic CI gate certifies broken routing and supplies a false release signal.
 - Recommendation: Make expected intent/defer/resource assertions hard route gold and fail the benchmark on any mismatch.

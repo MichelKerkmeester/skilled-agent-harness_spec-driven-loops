@@ -77,7 +77,7 @@ Legend: `[x]` done · `[~]` partial/representative · `[ ]` gated/deferred.
 
 ## P0 — Drift reconciliation
 - [x] Fix `sk-code/manual_testing_playbook/surface-detection/webflow-detection.md` nonexistent checklist path (→ `code-webflow/assets/webflow-verification_checklist.md`) — commit `ed16475077`
-- [x] Capture the `sk-code/benchmark/2026-07-10--router-baseline--router/` invariant (hub Mode-A 85, no volatile timestamp) — commit `ed16475077`
+- [x] Capture the `sk-code/benchmark/reports/2026-07-10--router-baseline--router/` invariant (hub Mode-A 85, no volatile timestamp) — commit `ed16475077`
 
 ## P1 — Architecture ADR
 - [x] Ratify ADR-001..ADR-006; enumerate the parent-owned-tier allowlist (`decision-record.md`)
@@ -111,13 +111,13 @@ Legend: `[x]` done · `[~]` partial/representative · `[ ]` gated/deferred.
 - [x] 4 sk-code children baselines captured — commit `2825083449`
 - [x] 3 deep-loop children baselines captured — commit `3a0c10020f`
 - [x] sk-code hub baseline (P0)
-- [x] `system-deep-loop` hub Mode-A — PASS 100 (20 scenarios), captured under `system-deep-loop/benchmark/2026-07-10--router-mode-a--router/`
+- [x] `system-deep-loop` hub Mode-A — PASS 100 (20 scenarios), captured under `system-deep-loop/benchmark/reports/2026-07-10--router-mode-a--router/`
 - [x] `deep-ai-council` Mode-A — PASS 92, captured under `deep-ai-council/benchmark/2026-07-10--router-mode-a--router/`
 
 ## P7 — Mode-B runs (advisory)
 - [x] Live pipeline proven (`scoringMethod: mode-b-live`, `traceMode: live`)
 - [x] All 7 un-gated children scored live — captured under each child's `benchmark/2026-07-10--live-mode-b--live/`: deep-research 80, deep-review 71, deep-improvement 62, code-webflow 57, code-opencode 56, code-quality 31, code-review 0
-- [x] sk-code hub Mode-B — CONDITIONAL 67 (30 scenarios), captured under `sk-code/benchmark/2026-07-10--live-mode-b--live/`
+- [x] sk-code hub Mode-B — CONDITIONAL 67 (30 scenarios), captured under `sk-code/benchmark/reports/2026-07-10--live-mode-b--live/`
 - [x] `deep-ai-council` Mode-B — CONDITIONAL 76 (rr 0.91); `system-deep-loop` hub Mode-B — PASS 93 (20 scenarios)
 
 ## P8 — Synthesis / CI

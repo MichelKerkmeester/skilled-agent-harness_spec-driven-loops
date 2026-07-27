@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Proceed to phase 008 cutover"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md"
+      - ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -119,8 +119,8 @@ Produce a benchmark report and review sign-off before cutover, then record wheth
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md` | Create | Human-readable Lane-C router-mode benchmark report for the merged `sk-prompt` hub. |
-| `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json` | Create | Machine-readable benchmark results used to inspect D1-D5 scores and routing evidence. |
+| `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md` | Create | Human-readable Lane-C router-mode benchmark report for the merged `sk-prompt` hub. |
+| `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json` | Create | Machine-readable benchmark results used to inspect D1-D5 scores and routing evidence. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -132,7 +132,7 @@ Produce a benchmark report and review sign-off before cutover, then record wheth
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Generate a router-mode Lane-C benchmark report for the new `sk-prompt` hub covering D1-D5 dimensions for both `prompt-improve` and `prompt-models`. | The benchmark command writes `skill-benchmark-report.md` and `skill-benchmark-report.json` under `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/`, and the report is legible enough to support phase decisions. |
+| REQ-001 | Generate a router-mode Lane-C benchmark report for the new `sk-prompt` hub covering D1-D5 dimensions for both `prompt-improve` and `prompt-models`. | The benchmark command writes `skill-benchmark-report.md` and `skill-benchmark-report.json` under `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/`, and the report is legible enough to support phase decisions. |
 | REQ-002 | Triage P0 deep-review findings from the full phases 003-006 diff. | Every P0 finding is marked fixed, deferred-with-reason, or false-positive with evidence or a named follow-up before the phase can hand off to cutover. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -148,7 +148,7 @@ Produce a benchmark report and review sign-off before cutover, then record wheth
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.md` and `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/skill-benchmark-report.json` exist and clearly report D1-D5 results for both workflow modes.
+- **SC-001**: `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md` and `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.json` exist and clearly report D1-D5 results for both workflow modes.
 - **SC-002**: Deep-review findings are resolved or explicitly deferred with a named follow-up, and no untriaged P0 finding remains.
 - **SC-003**: The `prompt-models` routingClass decision is recorded with D1/D2 benchmark evidence.
 <!-- /ANCHOR:success-criteria -->
@@ -162,7 +162,7 @@ Produce a benchmark report and review sign-off before cutover, then record wheth
 |------|------|--------|------------|
 | Dependency | Phases 003-006 diff | Review cannot sign off if the target diff is unavailable or incomplete. | Confirm the diff scope before review; if incomplete, block cutover and name the missing phase output. |
 | Dependency | Router-mode benchmark command | Benchmark evidence cannot be produced if the command or output directory fails. | Capture the exact failure, do not infer routing safety, and defer cutover until the report is generated. |
-| Risk | Dead-path benchmark outputs | The moved benchmark directory is a live write target; stale paths could make evidence land in the wrong place. | Use the locked output path `.opencode/skills/sk-prompt/benchmark/2026-07-10--router-final--router/` and verify both report files exist there. |
+| Risk | Dead-path benchmark outputs | The moved benchmark directory is a live write target; stale paths could make evidence land in the wrong place. | Use the locked output path `.opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/` and verify both report files exist there. |
 | Risk | Advisor routing regression | `prompt-models` may lose small-model-dispatch routing accuracy after being folded into the hub. | Base the routingClass decision on D1/D2 benchmark results and require a carve-out if metadata does not hold up. |
 <!-- /ANCHOR:risks -->
 
