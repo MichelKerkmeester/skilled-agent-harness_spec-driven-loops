@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler",
+  "description": "A controlled live probe (temporary unconditional-log hook wired into `.devin/hooks.v1.json`, backed up first and restored after) confirmed that `devin",
+  "keywords": [
+    "controlled",
+    "live",
+    "probe",
+    "temporary",
+    "unconditional-log",
+    "hook",
+    "wired",
+    "devin",
+    "hooks",
+    "json",
+    "backed",
+    "first",
+    "restored",
+    "confirmed"
+  ],
+  "lastUpdated": "2026-07-27T06:04:06.159Z",
+  "specId": "013",
+  "folderSlug": "devin-permission-request-handler",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
