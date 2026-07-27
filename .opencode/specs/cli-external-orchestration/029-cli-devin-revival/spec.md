@@ -7,16 +7,16 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"
-    last_updated_at: "2026-07-25T09:57:33Z"
-    last_updated_by: "opencode"
-    recent_action: "Completed phase 011 hook-truth, runtime README, Cursor mirror and local Zed MCP reconciliation"
-    next_safe_action: "Rotate the removed credentials at their providers, then select the next planned revival phase"
+    last_updated_at: "2026-07-27T07:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Scaffolded phases 013-015 (Planned); PermissionRequest live-fire confirmed via direct probe test"
+    next_safe_action: "Execute phase 013 (build the adapter), then phase 014; rotate the removed Zed credentials at their providers remains operator-only"
     blockers: []
-    key_files: ["hook-testing-results.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "011-hook-truth-and-runtime-readmes/spec.md"]
+    key_files: ["hook-testing-results.md", "004-devin-hook-adapter-layer/implementation-summary.md", "008-devin-hook-parity/implementation-summary.md", "011-hook-truth-and-runtime-readmes/spec.md", "013-devin-permission-request-handler/spec.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-devin-revival-followups", parent_session_id: null }
-    completion_pct: 36
-    open_questions: ["Provider-side revocation and rotation of the credentials removed from Zed remains operator-only.", "Do PermissionRequest and PostCompaction fire when those events occur?", "Does run_subagent produce the registered tool name and expected payload shape?"]
-    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier packet-wide dormancy conclusion was caused by an unsupported hooks.v1.json wrapper shape."]
+    completion_pct: 40
+    open_questions: ["Provider-side revocation and rotation of the credentials removed from Zed remains operator-only.", "PostCompaction still not live-verified (needs a genuinely long session, not forced in a quick test).", "Does run_subagent produce the registered tool name and expected payload shape?"]
+    answered_questions: ["Phase 001 confirms Devin CLI is real and current (v3000.2.17), not a hypothetical revival target.", "With the documented top-level event schema, devin -p fires SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd.", "The earlier packet-wide dormancy conclusion was caused by an unsupported hooks.v1.json wrapper shape.", "PermissionRequest DOES fire live (confirmed via a controlled probe 2026-07-27) for write-class tools under the default auto permission mode - the explicit-empty registration means every such request is currently silently rejected."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | Active - phases 001, 004, 008 and 011 complete; phases 002, 003, 005, 006, 007, 009 and 010 planned |
+| **Status** | Active - phases 001, 003, 004, 008, 011 and 012 complete; phases 002, 005, 006, 007, 009 and 010 planned |
 | **Created** | 2026-07-23 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/029-cli-devin-revival` |
@@ -93,7 +93,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 |---|---|---|---|
 | 1 | `001-devin-contract-pin/` | Verify the live Devin CLI, hook, config, permission, model, and auth contract. | Complete |
 | 2 | `002-deep-loop-executor-support/` | Restore `cli-devin` as a 5th typed deep-loop executor kind, incl. dispatch builder. | Planned |
-| 3 | `003-cli-devin-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Planned |
+| 3 | `003-cli-devin-skill-packet/` | Build the skill packet under the hub per `sk-doc create-skill`; wire hub registries. | Complete |
 | 4 | `004-devin-hook-adapter-layer/` | Add thin Devin hook adapters for `SessionStart` and `UserPromptSubmit`. Both events fire under `devin -p` with the corrected registration schema. | Complete |
 | 5 | `005-devin-model-registry-and-quota/` | Restore `swe-1.6` + sibling executor rows (current slugs) and the CI gate arrays. | Planned |
 | 6 | `006-devin-manual-testing-playbook/` | Author a Devin-native manual-testing playbook. | Planned |
@@ -102,6 +102,10 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 | 9 | `009-devin-mcp-host-integration/` | Register this repo's 3 MCP servers with Devin's native `devin mcp` surface under a two-tier deny-by-default permission policy — resolves Open Question 3. | Planned |
 | 10 | `010-devin-feature-catalog/` | Author a `create-feature-catalog` package for cli-devin; the `hooks` category must enumerate all 8 lifecycle events with accurate observed/unobserved status. | Planned |
 | 11 | `011-hook-truth-and-runtime-readmes/` | Reconcile hook truth, align runtime READMEs and mirrors, then remove obsolete secret-bearing Zed MCP registrations. | Complete |
+| 12 | `012-devin-hook-hardening/` | Harden the 10 Devin hook adapters: uniform workspace-root resolution, cwd-fallback for completion-evidence, discriminating spec-gate test suite, and comment hygiene. | Complete |
+| 13 | `013-devin-permission-request-handler/` | Build a real `PermissionRequest` adapter (conservative default-deny policy over the existing spec-gate/dispatch-rule-checks cores), replacing the explicit-empty registration now that live testing confirmed the event fires and silently rejects every approval-needing call. | Planned |
+| 14 | `014-hook-adapter-shared-boilerplate-and-claude-codex-fix/` | Extract the byte-identical `readStdin()`/JSON-parse-fail-open boilerplate into shared helpers, and apply the already-shipped `firstNonBlankString()` alias-chain fix to Claude's and Codex's `spec-gate-enforce.mjs`, which carry the identical bug independently. | Planned |
+| 15 | `015-devin-agents-skills-rules-parity/` | Document Devin's already-working, undocumented `devin skills list`/`devin rules list` discovery, and build the first real `.devin/agents/*.AGENT.md` subagent profile (documented as supported in `cli-devin/SKILL.md`, never built). | Planned |
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
 - Phase 003 must not start authoring `cli-devin/graph-metadata.json` or `cli-devin/description.json` — the hub stays the single advisor identity (`parent-skill-check.cjs` rules 2a/2b fail hard on a nested one).
@@ -110,13 +114,14 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - Phase 007 must build its touch-list by grepping the **current** tree, not by replaying archived line numbers verbatim — several unrelated later changes (a hyphen-case filesystem-naming pass, a hub folder move, an agent filename change) landed between 2026-06-08 and today.
 - Phase 010's real dependencies are phases 003 (hosts `feature-catalog/`), 005 (model-dispatch content) and 009 (MCP-host content), not its numeric predecessor 006. Its `hooks` category sources the built adapter inventory from phases 004/008 and the corrected live matrix from `hook-testing-results.md` tests 10-14.
 - Phase 008 depends only on phase 004, and phase 009 depends only on phase 001. The earlier no-firing tests used an unsupported wrapper schema. After the schema correction, unauthenticated `devin -p` observed six lifecycle events; authentication remains relevant to phase 009's MCP-host work, not hook availability.
+- Phases 013-015 depend only on phase 008 (013, the empty registration it replaces) and the 2026-07-27 research pass (013's live-fire finding; 014's Q6 dedup scope and the Devin/Cursor alias fix it extends). None depends on 009, 010, or 012. Phase 014 also touches Claude's and Codex's `spec-gate-enforce.mjs`, outside this packet's own runtime scope but required because the identical bug lives there independently.
 
 ### Phase Handoff Criteria
 | From | To | Criteria | Verification |
 |---|---|---|---|
 | 001 | 002 | Live Devin CLI contract (version, hooks, config, permissions, models, auth) confirmed. | Met — `devin --version` (3000.2.17), `docs.devin.ai/cli/**` fetched and cross-checked (001 implementation-summary.md). |
 | 002 | 003 | `cli-devin` compiles as a 5th `ExecutorKind` and dispatches through `fanout-run.cjs` with a real `buildDevinLineageCommand`, rejecting cleanly when `devin` is absent from PATH. | Pending. |
-| 003 | 004 | `cli-devin/` exists under the hub, registered in `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`, and `parent-skill-check.cjs` + `validate_skill_package.py` both stay at 0 fails against the hub. | Pending. |
+| 003 | 004 | `cli-devin/` exists under the hub, registered in `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`, and `parent-skill-check.cjs` + `validate_skill_package.py` both stay at 0 fails against the hub. | Met — packet built, hub wired, both validators 0/0, compiled routing manifest fresh. |
 | 004 | 005 | Devin hook adapters installed and smoke-tested against the live `devin` binary for at least the `SessionStart`/`UserPromptSubmit` events. | Met after schema correction; both events observed under `devin -p`. |
 | 005 | 006 | `swe-1.6` and the 3 sibling executor rows present in `model-profiles.json`; `check-prompt-quality-card-sync.sh` passes. | Pending. |
 | 006 | 007 | Manual-testing playbook authored with Devin-native scenario categories, cross-referenced from `cli-devin/SKILL.md`. | Pending. |
@@ -131,9 +136,12 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 - Are the separate Devin IDE-runtime hooks (the deleted D5 surface) in scope for this revival, or strictly the `cli-devin` CLI-dispatch mode? Scoped **out** by default (see §3).
 - Is the "Devin-as-MCP-host" surface (`.devin/config.json` in `INSTALL_GUIDE`s) in scope? Scoped **out** by default (see §3), matching the original deprecation's own boundary.
 - `mk-goal.js` and `mk-speckit-completion.js` (2 of the 15 OpenCode plugins from the hooks-portability research) have no hook-based Devin target at all — no phase currently owns an alternative for either. Not solved by inventing a speculative new phase; recorded here so it isn't silently dropped. See `008-devin-hook-parity/spec.md` §3 Out of Scope.
+- What further hook refinements, upgrades, or additions should the cli-devin and cli-cursor cli hook adapter layers get, now that devin's hooks are confirmed to fire live and cursor's hook layer is independently built and wired via `.cursor/hooks.json`? (coverage gaps, guard field-name hardening, permissionrequest/postcompaction live-verification follow-up, mcp-route-guard dormancy status, upstream feature drift, cross-packet dedup)
+
+**Research Context:** `/deep:research:auto` is active (generation 2, session `research-cli-hook-adapters-2026-07-27`) investigating the hook-refinement question above. `research/research.md` in this packet remains the canonical synthesis; this note is a bounded pointer only.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
-**Resolution Status (deep-research 2026-07-24, generation 1, 5 iterations, `--stop-policy=max-iterations`):** Open Question 3 is **RESOLVED PROVISIONALLY** — the Devin CLI's current MCP-host surface (`devin mcp add/list/get/remove/login/logout/enable/disable`, stdio `command`/`args`/`env` schema) is real, protocol-aligned with the three repository servers, and worth bringing into scope as an additive phase (`009-devin-mcp-host-integration`). Four operational gaps require a clean Linux Devin session before phase 009 opens: (P1) no MCP `cwd` field, (P1) cold bootstrap / native modules, (P1) memory embedding/network, (P1) advisor/memory-write trust boundary. Recommended policy is two-tier: shared project config with exact read-only MCP allows + explicit memory/graph mutation denies, plus maintainer-local override in `.devin/config.local.json`. **Do NOT copy `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` into shared Devin config.** Canonical synthesis: `research/research.md` §1–§15. Acceptance matrix (forwarded to phase 009): clean Devin Linux `tools/list` for the three servers, exact namespace spelling captured, deny-rule survival against session-level wildcard grants, root-relative launcher invocation across fresh/resumed/sandboxed/handoff sessions.
+**Resolution Status (deep-research 2026-07-27, generation 2, 5 iterations, `--stop-policy=max-iterations`):** The hook-refinement question above is **PARTIALLY ANSWERED**. Q1 (coverage gaps) is answered: Devin's only event-level gap is the intentional empty `PermissionRequest`; Cursor's material gaps are dormant `UserPromptSubmit` delivery, missing dispatch-preflight lint, and missing completion-evidence checking. Q2 (fallback hardening) is answered with a mid-run safety correction: the three named Devin adapters already use the confirmed canonical snake_case envelope (no envelope-level fallback to remove), but **do not retire the `spec-gate-enforce.mjs` `filePath`/`path` aliases** — `spec-gate-core.mjs`'s `isExemptTargetPath()` treats a missing/blank path as exempt, and `evaluateMutation()` allows an exempt non-bash target, so losing that alias risks a silent enforcement bypass, not a conservative fail-toward-deny as an earlier iteration incorrectly claimed. Recommended safe hardening: fix the `||`-truthiness-chain precedence to first-nonblank-string resolution now; defer all alias retirement until fixture/caller-audit evidence exists. **Q3 (PermissionRequest/PostCompaction live-verification), Q4 (mcp-route-guard dormancy), Q5 (upstream feature drift), and Q6 (cross-packet dedup) were NOT investigated in this run** — the loop's Next-Focus anchor never advanced past Q2 across all 5 iterations (see `research/research.md` §6 for the loop-mechanism observation); a dedicated follow-up pass is recommended. Canonical synthesis: `research/research.md` §1–§17. The prior generation-1 finding (Devin-as-MCP-host feasibility, Open Question 3) is preserved at `research_archive/20260727T040816Z/research.md` and remains resolved as previously recorded; it is not restated here because this generated fence reflects only the most recent research run.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 

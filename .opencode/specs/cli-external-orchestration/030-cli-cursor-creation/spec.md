@@ -1,22 +1,22 @@
 ---
 title: "Feature Specification: cli-cursor creation"
-description: "Coordinate an 18-phase first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, a manual-testing playbook, live hook wiring, Claude parity, discovery mirrors, and a session-start Gate-3 prebind against the current (2026-07) Cursor CLI (cursor-agent). All 18 phases are complete."
+description: "Coordinate a first-time creation of a cli-cursor CLI-dispatch mode inside cli-external-orchestration, adding executor support, a skill packet, hook adapters, a Composer model profile, a manual-testing playbook, live hook wiring, Claude parity, discovery mirrors, and a session-start Gate-3 prebind against the current (2026-07) Cursor CLI (cursor-agent). Phases 1-13 are complete; phase 14 (agents/skills/rules parity) is planned."
 trigger_phrases: ["cli-cursor creation", "Cursor CLI executor", "cursor-agent mode", "delegate to cursor", "cursor cli hub mode"]
 importance_tier: important
 contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/030-cli-cursor-creation"
-    last_updated_at: "2026-07-26T06:54:58Z"
-    last_updated_by: "opencode"
-    recent_action: "Completed phase 018 in implementation commit 348b644283."
-    next_safe_action: "No further packet work; push only on explicit approval."
+    last_updated_at: "2026-07-27T07:10:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded phase 014 (Planned): resolve UserPromptSubmit skill-advisor-equivalent-context question, populate .cursor/rules/*.md, record agents/commands non-applicability decisions."
+    next_safe_action: "Build phase 014: read .cursor/hooks.json UserPromptSubmit hook source to resolve the open question, then populate .cursor/rules/*.md via cursor-agent rule/generate-rule."
     blockers: []
-    key_files: ["013-cursor-spec-gate-prebind/spec.md", ".cursor/hooks.json", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
+    key_files: ["013-cursor-spec-gate-prebind/spec.md", "014-cursor-agents-skills-rules-parity/spec.md", ".cursor/hooks.json", ".cursor/rules/", ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-creation-authoring", parent_session_id: null }
-    completion_pct: 100
-    open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?"]
-    answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op."]
+    completion_pct: 93
+    open_questions: ["Should a dispatched cursor-agent carry a --workspace/config-isolation flag so it does not inherit the operator's shared ~/.cursor/ hooks/mcp/rules?", "How should all Cursor hooks handle multi-root workspace_roots consistently?", "Does .cursor/hooks.json's UserPromptSubmit entry already inject skill-advisor-equivalent context (phase 014 open question)?"]
+    answered_questions: ["Phase 001 confirmed the live Cursor CLI contract.", "Phase 004 confirmed partial CLI hook-event delivery.", "Phase 018 resolves autonomous-child Gate-3 handling as a complete no-op.", "cursor-agent --help has no custom-agent-loading concept (architectural non-concept, confirmed live)."]
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -29,7 +29,7 @@ _memory:
 |---|---|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | Complete — all 18 phases implemented, validated, and committed |
+| **Status** | Phases 1-13 complete, validated, and committed; phase 14 (agents/skills/rules parity) planned |
 | **Created** | 2026-07-24 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/030-cli-cursor-creation` |
@@ -106,6 +106,7 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 | 11 | `011-cursor-mcp-wiring-and-route-guard-fix/` | Wire `.cursor/mcp.json`; find and fix the `mcp-route-guard.mjs` dead wire. | Complete |
 | 12 | `012-codex-claude-hooks-discovery-mirrors/` | `.codex/hooks/` and `.claude/hooks/` discovery mirrors. | Complete |
 | 13 | `013-cursor-spec-gate-prebind/` | Wire the session-start Gate-3 prebind; make autonomous-child sessions a complete shared-core no-op. | Complete |
+| 14 | `014-cursor-agents-skills-rules-parity/` | Resolve whether `UserPromptSubmit` already injects skill-advisor-equivalent context, populate `.cursor/rules/*.md` (currently empty, unlike Devin's auto-discovered `CLAUDE.md`/`AGENTS.md`), and record that custom agent-profile loading and a dedicated command-file system are not concepts this CLI supports. | Planned |
 
 **Children of `009-cursor-hooks-lifecycle/`** (lean-trio phase parent; full docs live on each child — see `009-cursor-hooks-lifecycle/spec.md` for its own Phase Documentation Map):
 | Child | Folder | Focus | Status |
@@ -128,6 +129,7 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 - Phase 9 (`009-cursor-hooks-lifecycle/`) is a Phase Parent: its own `spec.md`/`description.json`/`graph-metadata.json` are the lean trio only — no `plan.md`/`tasks.md`/`checklist.md`/`implementation-summary.md` at that level; those live on each of its 6 children.
 - Phase 10 (`010-hook-code-style-cross-runtime/`) stays a top-level sibling of `009-cursor-hooks-lifecycle/`, not its 7th child — it generalizes child 005's Cursor-only alignment to all four runtimes and is out of that packet's Cursor-hooks-adapter scope by its own admission.
 - Phase numbering 9-13 is contiguous by design; folder-history detail lives in the packet's own `scratch/` working notes, not in this spec.md, per Phase Parent content discipline.
+- Phase 14 depends only on phase 004 (`004-cursor-hook-adapter-layer/`, for hook-source access) and is otherwise independent of phases 5-13; it must resolve its `UserPromptSubmit` open question before populating `.cursor/rules/*.md`, and pairs with the sibling `029-cli-devin-revival/015-devin-agents-skills-rules-parity/` phase for cross-runtime parity comparison.
 
 ### Phase Handoff Criteria
 | From | To | Criteria | Verification |
@@ -156,7 +158,7 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 
 ## RELATED DOCUMENTS
 - `001-cursor-contract-pin/spec.md`, `.../implementation-summary.md`
-- `002-deep-loop-executor-support/spec.md` through `013-cursor-spec-gate-prebind/spec.md`
+- `002-deep-loop-executor-support/spec.md` through `014-cursor-agents-skills-rules-parity/spec.md`
 - `009-cursor-hooks-lifecycle/spec.md` (Phase Parent governing 6 nested children — the former phases 9-14)
 - `../027-cli-codex-revival/spec.md`, `../029-cli-devin-revival/spec.md` (structural precedents for a hub-mode CLI packet)
 - `../z_archive/002-cli-codex-creation/`, `../z_archive/003-cli-claude-code-creation/` (naming precedent for a first-time "-creation" CLI packet)
