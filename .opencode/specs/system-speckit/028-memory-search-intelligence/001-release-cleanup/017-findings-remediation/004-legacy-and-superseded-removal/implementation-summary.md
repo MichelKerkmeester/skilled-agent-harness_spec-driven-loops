@@ -1,35 +1,36 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Legacy and Superseded Artifact Removal"
+description: "All four approved findings were refuted at re-verification. Each proposed deleting something the repository still uses as evidence or history."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "legacy removal summary"
+  - "017 phase 004 summary"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/004-legacy-and-superseded-removal"
-    last_updated_at: "2026-07-27T08:41:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-07-27T14:28:01Z"
+    last_updated_by: "claude-opus-5"
+    recent_action: "Refuted all four legacy-removal findings before dispatch"
+    next_safe_action: "Begin phase 005 misplacement and layout"
     blockers: []
-    key_files: []
+    key_files:
+      - "approved-findings.md"
+      - "refutations.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-27-028-017-004"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Should the v3.x changelogs be consolidated into a historical summary? Lossy, needs a ruling."
+    answered_questions:
+      - "A phase that applies nothing is a valid outcome when the evidence contradicts every candidate."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
 ---
 
@@ -48,28 +49,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Nothing was deleted, and that is the finding.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+| Finding | Result | Reason |
+|---------|--------|--------|
+| `devin-01:F2` | REFUTED | Fixtures are cited in the file inventories of two retained 2026-07-21 benchmark reports |
+| `devin-05:F2` | REFUTED | Same fixtures, same evidence |
+| `devin-01:F3` | REFUTED | Eight v3.x changelogs are the release record; describing a superseded architecture is their job |
+| `devin-01:F4` | REFUTED | v4.0.0.0 records a real dated step; v4.1.0.0 completing it does not erase it |
 
-### [Feature Name]
+No worker was dispatched. Re-verification resolved all four before dispatch, which is the cheapest possible outcome for a phase whose every candidate was wrong.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### What the category got right and wrong
 
-### Files Changed
-
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The instinct is sound — superseded artifacts do accumulate, and a release-readiness sweep should look for them. But every candidate here turned out to be either an input to permanent evidence or a historical record, and both are things whose entire value is that they describe a state the system has moved past. "Superseded" describes a relationship to the present, not a licence to delete.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +70,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+Re-verification only. Each evidence command was re-run against current HEAD, then extended with the question the original finding never asked: is anything still pointing at this? For the fixtures, two archived benchmark reports were. For the changelogs, the root README and a sibling entry were, and the append-only nature of a changelog answers it regardless.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +78,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Refuse all four rather than find something to apply | The evidence contradicted every candidate; applying one for balance would be the wrong reason to delete a file |
+| Offer changelog consolidation as an alternative rather than doing it | It is lossy and it is a documentation decision, not a cleanup |
+| Dispatch no workers | Re-verification settled every finding; dispatching would have burned effort to reach the same answer |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +90,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Fixture citations in retained reports | CONFIRMED, two 2026-07-21 archives |
+| Changelog references outside the folder | CONFIRMED, root README and a sibling entry |
+| Containment | PASS, no repository file touched |
+| `validate.sh --strict` | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +103,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Changelog volume is unaddressed.** Eleven sequential version files remain. If that is a real problem, consolidation is the answer, and it needs an explicit ruling because it loses detail.
+2. **The fixtures stay indefinitely.** They are inert inputs retained for provenance. If the archives they support are ever pruned, the fixtures become removable with them.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-
