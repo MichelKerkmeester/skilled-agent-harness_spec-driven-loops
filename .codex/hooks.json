@@ -94,16 +94,6 @@
         ]
       },
       {
-        "matcher": "apply_patch|edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
-            "timeout": 5
-          }
-        ]
-      },
-      {
         "matcher": "exec",
         "hooks": [
           {
