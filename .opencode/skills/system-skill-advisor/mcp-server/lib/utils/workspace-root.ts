@@ -27,26 +27,28 @@ const DEFAULT_SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
 
 /**
  * When the sentinel walk-up fails, the resolver must never hand back a
- * directory that sits *inside* a `specs/` packet tree. The advisor writes
- * runtime state (e.g. `.opencode/skills/.advisor-state/...`) under whatever
- * root this returns; a dispatched executor whose cwd is a packet subdir would
- * otherwise materialize a stray `.opencode/skills/...` tree inside that packet
- * on every run — gitignored noise that also re-anchors future walk-ups.
+ * directory that sits *inside* an `.opencode/` tree. The advisor writes runtime
+ * state under whatever root this returns, so a root inside `.opencode/` would
+ * materialize a nested `.opencode/skills/...` tree there on every run — and that
+ * nested tree then satisfies future walk-ups, making the leak permanent.
  *
- * If `dir` lives under a `.opencode/specs/` (canonical) or bare `specs/`
- * (symlink alias) segment, hoist to the directory that *contains* that tree —
- * the workspace root — instead. Returns null when `dir` is not inside a specs
- * tree, so callers keep their prior fallback for ordinary paths.
+ * The rule is structural rather than an enumeration of known-bad subtrees: an
+ * `.opencode/` directory is by definition a child of the workspace root, so any
+ * candidate containing an `.opencode` path segment is provably not the root.
+ * Hoisting above the OUTERMOST such segment yields the real root.
+ *
+ * An earlier version listed `specs/` only. That shape could not protect subtrees
+ * nobody had thought of, and leaks into `skills/` continued unnoticed because
+ * neither the guard nor its test considered them.
+ *
+ * Returns null when `dir` is not inside an `.opencode` tree.
  */
-function hoistAboveSpecsTree(dir: string): string | null {
+function hoistAboveOpencodeTree(dir: string): string | null {
   const parts = resolve(dir).split(sep);
-  for (let index = parts.length - 2; index >= 1; index -= 1) {
-    if (parts[index] === '.opencode' && parts[index + 1] === 'specs') {
-      return parts.slice(0, index).join(sep) || sep;
-    }
-  }
-  for (let index = parts.length - 1; index >= 1; index -= 1) {
-    if (parts[index] === 'specs') {
+  // Outermost wins: a leak can nest several levels deep, and hoisting to the
+  // innermost `.opencode` would land inside the real one.
+  for (let index = 1; index < parts.length; index += 1) {
+    if (parts[index] === '.opencode') {
       return parts.slice(0, index).join(sep) || sep;
     }
   }
@@ -86,7 +88,8 @@ export function findAdvisorWorkspaceRoot(
     if (parent === current) break;
     current = parent;
   }
-  // Sentinel not found within maxDepth. Never fall back to a path inside a
-  // specs/ packet tree — hoist to the workspace root above it when possible.
-  return hoistAboveSpecsTree(start) ?? resolve(start);
+  // Sentinel not found within maxDepth. Never fall back to a path inside an
+  // .opencode/ tree — that is provably not a workspace root, and writing state
+  // there creates a nested tree that re-anchors every future walk-up.
+  return hoistAboveOpencodeTree(start) ?? resolve(start);
 }
