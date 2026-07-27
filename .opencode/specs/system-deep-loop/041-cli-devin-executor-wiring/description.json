@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/041-cli-devin-executor-wiring",
+  "description": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`,",
+  "keywords": [
+    "executorkinds",
+    "runtime",
+    "lib",
+    "deep-loop",
+    "executor-config",
+    "shipped",
+    "five",
+    "kinds",
+    "native",
+    "cli-codex",
+    "cli-claude-code",
+    "cli-opencode"
+  ],
+  "lastUpdated": "2026-07-27T17:14:09.180Z",
+  "specId": "041",
+  "folderSlug": "cli-devin-executor-wiring",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

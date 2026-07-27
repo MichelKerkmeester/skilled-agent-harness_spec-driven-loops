@@ -315,6 +315,7 @@ describe('executor web-search policy', () => {
       'cli-claude-code': { inherit: true, disabled: false, cached: false, live: false },
       'cli-opencode': { inherit: true, disabled: false, cached: false, live: true },
       'cli-cursor': { inherit: true, disabled: false, cached: false, live: false },
+      'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
 

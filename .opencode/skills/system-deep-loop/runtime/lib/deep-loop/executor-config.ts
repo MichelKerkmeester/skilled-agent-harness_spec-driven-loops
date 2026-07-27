@@ -8,7 +8,7 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor', 'cli-devin'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 // Ordered low→high. `ultra` is codex gpt-5.6-sol's top reasoning tier, above `max`.
@@ -82,6 +82,14 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // (e.g. `gpt-5.2-high`), not a separate flag. No configDir: no confirmed Cursor
   // CLI flag isolates the shared `.cursor/` config dir (open question, deferred).
   'cli-cursor': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
+  // No reasoningEffort and no serviceTier: `devin --help` (live 2026-07-27) lists
+  // only --model, --permission-mode, --sandbox, and --config. Both thinking tier
+  // and priority routing are baked into the model uid instead — `glm-5-2` vs
+  // `glm-5-2-max`, `gpt-5-6-sol-high` vs `gpt-5-6-sol-high-priority` — so neither
+  // is a separate flag. No configDir: --config takes a config *file* path
+  // (~/.config/devin/config.json), not a home directory, so it does not fit the
+  // configDir contract the way CLAUDE_CONFIG_DIR does.
+  'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -113,6 +121,15 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
   // No confirmed cursor-agent web-search flag (checked live, 2026-07-24): same
   // flag-less shape as cli-claude-code — inherit only, nothing enforceable.
   'cli-cursor': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
+  },
+  // No web-search flag in `devin --help` (checked live 2026-07-27): same
+  // flag-less shape as cli-cursor and cli-claude-code — inherit only, nothing
+  // enforceable either way.
+  'cli-devin': {
     inherit: true,
     disabled: false,
     cached: false,
@@ -153,6 +170,50 @@ export const CURSOR_DEFAULT_MODEL: CursorSupportedModel = 'composer-2.5';
 /** True when `model` is in the enforced cli-cursor allowlist. */
 export function isCursorModelAllowed(model: string): model is CursorSupportedModel {
   return (CURSOR_SUPPORTED_MODELS as readonly string[]).includes(model);
+}
+
+/**
+ * Enforced allowlist of devin --model ids. Devin exposes 37 model families and
+ * accepts a family slug, an alias, or a full model uid, which is far more
+ * surface than deep-loop dispatch needs or has prompt-craft data for. This set
+ * is the curated subset: the family aliases Devin itself declares, plus the
+ * GLM-5.2 uids and the free-tier ids that fan-out research lanes actually use.
+ * Every entry was read from `devin models list` (live 2026-07-27, account
+ * Michel Kerkmeester) — no id here was inferred from documentation.
+ *
+ * Tier naming matters and is easy to get wrong: `glm-5-2` is "GLM-5.2 High" and
+ * is the free tier, while `glm-5-2-max` is the separate paid "GLM-5.2 Max"
+ * tier. The skill's reference table lists these uids without their tier names,
+ * so read the live list rather than the doc when picking one.
+ */
+export const DEVIN_SUPPORTED_MODELS = [
+  // Family aliases declared by `devin models list`.
+  'adaptive',
+  'opus',
+  'sonnet',
+  'claude',
+  'haiku',
+  'swe',
+  'gpt',
+  'gemini',
+  'codex',
+  // GLM-5.2 uids. `glm-5-2` = "GLM-5.2 High" [200K, Free].
+  'glm-5-2',
+  'glm-5-2-max',
+  'glm-5-2-1m',
+  // Free-tier ids beyond GLM.
+  'swe-1-7',
+  'swe-1-7-medium',
+  'swe-1-6',
+] as const;
+export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
+
+/** Default model when a cli-devin dispatch omits one — Devin's own model router. */
+export const DEVIN_DEFAULT_MODEL: DevinSupportedModel = 'adaptive';
+
+/** True when `model` is in the enforced cli-devin allowlist. */
+export function isDevinModelAllowed(model: string): model is DevinSupportedModel {
+  return (DEVIN_SUPPORTED_MODELS as readonly string[]).includes(model);
 }
 
 // ───────────────────────────────────────────────────────────────────

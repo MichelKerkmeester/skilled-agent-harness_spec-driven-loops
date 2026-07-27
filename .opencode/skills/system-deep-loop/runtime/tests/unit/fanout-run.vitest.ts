@@ -1084,6 +1084,134 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
   });
 });
 
+describe('fanout-run.cjs — cli-devin adapter', () => {
+  const { buildLineageCommand, isDevinBinaryAvailable } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv; executableVersion?: string },
+    ) => {
+      command: string;
+      args: string[];
+      input?: string;
+      effectiveConfig: Record<string, unknown>;
+      invocationFingerprint: string;
+    };
+    isDevinBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+  };
+
+  it('builds the non-interactive devin command for workspace-write (accept-edits)', () => {
+    const binDir = makeTempDir('fanout-run-devin-');
+    writeStubBinary(binDir, 'devin');
+    const command = buildLineageCommand(
+      { kind: 'cli-devin', model: 'glm-5-2' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` }, executableVersion: 'devin 1.0.0' },
+    );
+    expect({ command: command.command, args: command.args, input: command.input }).toEqual({
+      command: 'devin',
+      args: [
+        '-p', 'bounded prompt',
+        '--model', 'glm-5-2',
+        '--permission-mode', 'accept-edits', '--sandbox',
+      ],
+      input: undefined,
+    });
+    expect(command.effectiveConfig).toMatchObject({
+      kind: 'cli-devin',
+      executable: 'devin',
+      model: 'glm-5-2',
+      reasoningEffort: null,
+      sandboxMode: 'workspace-write',
+      webSearch: 'inherit',
+    });
+    expect(command.invocationFingerprint).toMatch(/^inv:[a-f0-9]{64}$/);
+  });
+
+  it('maps read-only to permission-mode auto and danger-full-access to dangerous without --sandbox', () => {
+    const binDir = makeTempDir('fanout-run-devin-sandbox-');
+    writeStubBinary(binDir, 'devin');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+
+    const readOnly = buildLineageCommand({ kind: 'cli-devin', model: 'glm-5-2' }, 'p', 'read-only', 'plan', opts);
+    expect(readOnly.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'auto', '--sandbox']);
+
+    const danger = buildLineageCommand({ kind: 'cli-devin', model: 'glm-5-2' }, 'p', 'danger-full-access', 'bypassPermissions', opts);
+    expect(danger.args).toEqual(['-p', 'p', '--model', 'glm-5-2', '--permission-mode', 'dangerous']);
+    expect(danger.args).not.toContain('--sandbox');
+  });
+
+  it('never forwards reasoningEffort or serviceTier, since Devin bakes both into the model uid', () => {
+    const binDir = makeTempDir('fanout-run-devin-no-effort-');
+    writeStubBinary(binDir, 'devin');
+    const command = buildLineageCommand(
+      { kind: 'cli-devin', model: 'glm-5-2', reasoningEffort: 'high', serviceTier: 'fast' },
+      'p',
+      'workspace-write',
+      'default',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
+    );
+    expect(command.args).not.toContain('--reasoning-effort');
+    expect(command.args).not.toContain('--service-tier');
+    expect(command.effectiveConfig).toMatchObject({ reasoningEffort: null, serviceTier: null });
+  });
+
+  it('defaults an omitted model to the adaptive router', () => {
+    const binDir = makeTempDir('fanout-run-devin-default-model-');
+    writeStubBinary(binDir, 'devin');
+    const command = buildLineageCommand(
+      { kind: 'cli-devin' },
+      'p',
+      'workspace-write',
+      'default',
+      { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
+    );
+    expect(command.args).toContain('adaptive');
+    expect(command.effectiveConfig.model).toBe('adaptive');
+  });
+
+  it('accepts every model in the enforced allowlist', () => {
+    const binDir = makeTempDir('fanout-run-devin-allowlist-');
+    writeStubBinary(binDir, 'devin');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const allowed = [
+      'adaptive', 'opus', 'sonnet', 'claude', 'haiku', 'swe', 'gpt', 'gemini', 'codex',
+      'glm-5-2', 'glm-5-2-max', 'glm-5-2-1m',
+      'swe-1-7', 'swe-1-7-medium', 'swe-1-6',
+    ];
+    for (const model of allowed) {
+      const command = buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts);
+      expect(command.args).toContain(model);
+    }
+  });
+
+  it('rejects a model outside the enforced allowlist', () => {
+    const binDir = makeTempDir('fanout-run-devin-rejected-model-');
+    writeStubBinary(binDir, 'devin');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    for (const model of ['grok-4-5-high', 'gpt-5-6-sol-high', 'cursor-grok-4.5-high']) {
+      expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
+        .toThrow(/not in the enforced allowlist/);
+    }
+  });
+
+  it('fails closed before command construction when devin is absent', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-devin-') };
+    expect(isDevinBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-devin', model: 'glm-5-2' },
+      'bounded prompt',
+      'workspace-write',
+      'default',
+      { env },
+    )).toThrow(/command -v devin failed/);
+  });
+});
+
 describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatch', () => {
   it('completes a hermetic live cli-codex leaf with top-level search argv', async () => {
     const binDir = makeTempDir('fanout-run-live-codex-leaf-bin-');

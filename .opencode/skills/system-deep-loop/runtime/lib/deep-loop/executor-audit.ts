@@ -54,6 +54,7 @@ const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   // 'agent' is an alias symlink to the same binary on this CLI, never the
   // dispatch target — always resolve the canonical name.
   'cli-cursor': 'cursor-agent',
+  'cli-devin': 'devin',
 };
 
 const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
@@ -73,6 +74,10 @@ const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // --help` (checked live) — only the repo-owned detection var is listed, never
   // a fabricated CLI-native one.
   'cli-cursor': ['SPECKIT_CURSOR_STATE_DIR'],
+  // `devin --help` exposes DEVIN_MODEL, DEVIN_PERMISSION_MODE, and DEVIN_SANDBOX
+  // only (checked live) — no DEVIN_HOME-style state-dir override exists, so the
+  // repo-owned detection var is the sole entry rather than a fabricated one.
+  'cli-devin': ['SPECKIT_DEVIN_STATE_DIR'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
@@ -80,6 +85,7 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-claude-code': '.claude',
   'cli-opencode': '.opencode',
   'cli-cursor': '.cursor',
+  'cli-devin': '.devin',
 };
 
 const EXECUTOR_COMMON_ENV_ALLOWLIST = new Set([
@@ -112,6 +118,11 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // CURSOR_API_ENDPOINT) and subprocess env (CURSOR_CONVERSATION_ID/
   // CURSOR_AGENT/CURSOR_INVOKED_AS/CURSOR_RIPGREP_PATH) all share this prefix.
   'cli-cursor': ['CURSOR_'],
+  // Confirmed live: DEVIN_MODEL / DEVIN_PERMISSION_MODE / DEVIN_SANDBOX all
+  // share this prefix. No session-id env var is documented or observed, so
+  // cli-devin is deliberately absent from EXECUTOR_SESSION_ENV_BY_KIND rather
+  // than carrying a guessed name.
+  'cli-devin': ['DEVIN_'],
 };
 
 type RunAuditedExecutorCommandInput = {

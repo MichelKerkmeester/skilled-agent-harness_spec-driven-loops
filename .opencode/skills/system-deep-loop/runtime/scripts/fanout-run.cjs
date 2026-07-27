@@ -440,6 +440,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
   'cli-cursor': 'SPECKIT_CURSOR_STATE_DIR',
+  'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -1732,12 +1733,82 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
+// Mirrors DEVIN_SUPPORTED_MODELS in executor-config.ts, duplicated as a plain JS
+// literal for the same reason CURSOR_ALLOWED_MODELS is: buildDevinLineageCommand
+// stays synchronous and directly unit-testable.
+const DEVIN_ALLOWED_MODELS = new Set([
+  'adaptive',
+  'opus',
+  'sonnet',
+  'claude',
+  'haiku',
+  'swe',
+  'gpt',
+  'gemini',
+  'codex',
+  'glm-5-2',
+  'glm-5-2-max',
+  'glm-5-2-1m',
+  'swe-1-7',
+  'swe-1-7-medium',
+  'swe-1-6',
+]);
+const DEVIN_DEFAULT_MODEL = 'adaptive';
+
+function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isDevinBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-devin executor unavailable: command -v devin failed');
+  }
+  const webSearch = effectiveWebSearchPolicy(lineage);
+  const model = lineage.model || DEVIN_DEFAULT_MODEL;
+  if (!DEVIN_ALLOWED_MODELS.has(model)) {
+    throw inputError(
+      `cli-devin model '${model}' is not in the enforced allowlist: ${[...DEVIN_ALLOWED_MODELS].join(', ')}`,
+    );
+  }
+  // Devin has no --reasoning-effort and no service-tier flag: both the thinking
+  // tier and priority routing are encoded in the model uid itself (`glm-5-2` vs
+  // `glm-5-2-max`, `gpt-5-6-sol-high` vs `gpt-5-6-sol-high-priority`), so
+  // reasoningEffort/serviceTier are never forwarded here — matching the
+  // flag-support declaration in executor-config.ts.
+  //
+  // Permission mapping, from the live `devin --help` mode descriptions: "auto"
+  // auto-approves read-only tools, "accept-edits" also auto-approves workspace
+  // edits, "dangerous" auto-approves all tools. --sandbox is a boolean opt-in
+  // that enforces the active Read/Write scopes at the OS level, so it is set for
+  // the two bounded modes and dropped for full access.
+  const args = ['-p', prompt, '--model', model];
+  if (resolvedSandbox === 'danger-full-access') {
+    args.push('--permission-mode', 'dangerous');
+  } else if (resolvedSandbox === 'read-only') {
+    args.push('--permission-mode', 'auto', '--sandbox');
+  } else {
+    args.push('--permission-mode', 'accept-edits', '--sandbox');
+  }
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'devin',
+    args,
+    input: undefined,
+    prompt,
+    promptArgIndexes: [1],
+    executableVersion: resolveExecutableVersion('devin', options),
+    model,
+    reasoningEffort: null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch,
+  });
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
   'cli-claude-code': buildClaudeLineageCommand,
   'cli-opencode': buildOpencodeLineageCommand,
   'cli-cursor': buildCursorLineageCommand,
+  'cli-devin': buildDevinLineageCommand,
 });
 
 /**
@@ -1766,6 +1837,18 @@ function isCodexBinaryAvailable(env = process.env) {
 // dispatch exit code.
 function isCursorBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v cursor-agent >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+// PATH preflight only. Devin auth lives in a credentials file rather than the
+// environment, so an authenticated shell and an unauthenticated one look
+// identical here — `devin auth status` is the operator-facing check, not
+// something this builder can meaningfully gate on.
+function isDevinBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v devin >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -2354,6 +2437,7 @@ module.exports = {
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
   isCursorBinaryAvailable,
+  isDevinBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,
