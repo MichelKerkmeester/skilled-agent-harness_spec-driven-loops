@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T20:56:19Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase parent and all fifteen child specs"
     next_safe_action: "Wire the cli-devin executor, then launch the touchpoint research fan-out into 001"
@@ -107,21 +107,21 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-touchpoint-research/ | Multi-model research pass producing the cited touchpoint inventory, ordering graph, and per-consumer disposition | Pending |
-| 2 | 002-decommission-decision-record/ | Ratify the capability loss, the replacement routing, the archival boundary, and the rollback procedure | Pending |
-| 3 | 003-runtime-deregistration/ | Remove the MCP registration from all five runtime surfaces and the permission allowlist | Pending |
-| 4 | 004-plugin-and-hook-removal/ | Delete the two plugins; clear freshness hooks, the post-commit hook, session reapers, and worktree rules | Pending |
-| 5 | 005-spec-kit-runtime-decoupling/ | Remove the process boundary, shared contracts, mirrored schemas, and graph state from spec-kit source | Pending |
-| 6 | 006-spec-kit-test-and-harness-cleanup/ | Retire or rewrite the spec-kit tests, stress harnesses, and matrix templates covering that coupling | Pending |
-| 7 | 007-skill-advisor-decoupling/ | Remove the graph node, edges, signals, scorer lanes, and benches; rebuild the advisor | Pending |
-| 8 | 008-deep-loop-and-skill-surface/ | Clear references from deep-loop, mcp-code-mode route guards, sk-doc, sk-code, and the skills index | Pending |
-| 9 | 009-command-surface/ | Delete the doctor route, strip tool grants, and re-render the generated command contracts | Pending |
-| 10 | 010-agent-definitions/ | Strip grants and graph-first prose from eight agents across three runtime mirrors | Pending |
-| 11 | 011-doctrine-and-docs/ | Rewrite the Mandatory Tools table, search decision tree, server roster, READMEs, and install guides | Pending |
-| 12 | 012-ci-and-binaries/ | Delete the launcher, CLI, bridge, their tests, the isolation CI job, and stale ignore rules | Pending |
-| 13 | 013-skill-deletion-and-daemon-reap/ | Reap the daemon, release leases and sockets, remove the directory — gated on 003–012 | Pending |
-| 14 | 014-historical-reference-policy/ | Leave archived history intact; add one tombstone at the track root | Pending |
-| 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | Pending |
+| 1 | 001-touchpoint-research/ | Multi-model research pass producing the cited touchpoint inventory, ordering graph, and per-consumer disposition | Complete |
+| 2 | 002-decommission-decision-record/ | Ratify the capability loss, the replacement routing, the archival boundary, and the rollback procedure | Complete |
+| 3 | 003-runtime-deregistration/ | Remove the MCP registration from all five runtime surfaces and the permission allowlist | Complete |
+| 4 | 004-plugin-and-hook-removal/ | Delete the two plugins; clear freshness hooks, the post-commit hook, session reapers, and worktree rules | Complete |
+| 5 | 005-spec-kit-runtime-decoupling/ | Remove the process boundary, shared contracts, mirrored schemas, and graph state from spec-kit source | Complete |
+| 6 | 006-spec-kit-test-and-harness-cleanup/ | Retire or rewrite the spec-kit tests, stress harnesses, and matrix templates covering that coupling | Complete |
+| 7 | 007-skill-advisor-decoupling/ | Remove the graph node, edges, signals, scorer lanes, and benches; rebuild the advisor | Complete |
+| 8 | 008-deep-loop-and-skill-surface/ | Clear references from deep-loop, mcp-code-mode route guards, sk-doc, sk-code, and the skills index | Complete |
+| 9 | 009-command-surface/ | Delete the doctor route, strip tool grants, and re-render the generated command contracts | Complete |
+| 10 | 010-agent-definitions/ | Strip grants and graph-first prose from eight agents across three runtime mirrors | Complete |
+| 11 | 011-doctrine-and-docs/ | Rewrite the Mandatory Tools table, search decision tree, server roster, READMEs, and install guides | Complete |
+| 12 | 012-ci-and-binaries/ | Delete the launcher, CLI, bridge, their tests, the isolation CI job, and stale ignore rules | Complete |
+| 13 | 013-skill-deletion-and-daemon-reap/ | Reap the daemon, release leases and sockets, remove the directory — gated on 003–012 | Complete |
+| 14 | 014-historical-reference-policy/ | Leave archived history intact; add one tombstone at the track root | Complete |
+| 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | In Progress |
 
 ### Phase Transition Rules
 

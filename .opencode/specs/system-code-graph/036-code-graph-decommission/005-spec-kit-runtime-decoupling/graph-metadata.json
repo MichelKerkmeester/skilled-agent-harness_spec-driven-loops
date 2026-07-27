@@ -43,12 +43,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/code-graph-boundary.ts",
-      ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/code-index-cli-fallback.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -63,18 +60,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-boundary.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/code-graph-boundary.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-contracts.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
         "source": "derived"
       },
       {
@@ -96,12 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "code-index-cli-fallback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/code-index-cli-fallback.ts",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -115,12 +94,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -145,6 +118,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,11 +175,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`system-spec-kit` is the deepest consumer",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T18:49:14.697Z",
+    "last_save_at": "2026-07-27T20:56:20.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +206,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d914e6d8ebb659913f43495fd31af0d253aa8e41f8ec8781938524258f60ef1",
+    "source_fingerprint": "sha256:70c6f0eddae3c83a3d1555470383c3838c0b359b9739c2e6299e6438927f224f",
     "source_doc_hashes": {
-      "spec.md": "ac88d0f8109f024d2627c7ef8c6984357342ce65a83b022f8516c1b66db3aa3c",
+      "spec.md": "008aed6ed816622f09e58665359f08d57fe52895ebda5e8a4028398c24ce1ae7",
       "plan.md": "6efa7c19345b62c1b0ea0704a42d5d7d82d241e34785dcc01fe6b7df6f80ffcf",
       "tasks.md": "df1eebd6ba336780ac778d9a0cff7e5d02435b47ac72a3e5f46cc606f68822ab",
       "implementation-summary.md": "8df87a90957492447f16d00685a8e2e678b3fd622f8e84043494fea8213fdcfb"

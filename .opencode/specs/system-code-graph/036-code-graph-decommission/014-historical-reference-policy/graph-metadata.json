@@ -43,6 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      ".opencode/specs/system-code-graph/context-index.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -60,6 +61,12 @@
         "source": "derived"
       },
       {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-code-graph/context-index.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -73,12 +80,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -103,6 +104,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The overwhelming majority of references to the subsystem — several thousand files — live inside archived spec packets, changelogs, and benchmark reports",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-27T18:49:16.782Z",
+    "last_save_at": "2026-07-27T20:56:22.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +204,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21b0a70f87e85c365c3eca4ec8ea94bc61a2e5451e08023f0c66caa8858a861a",
+    "source_fingerprint": "sha256:addc4635ad31702ee8924df3be947e5f15ba72b77d70c24983e8fbd0e7ac2ae1",
     "source_doc_hashes": {
-      "spec.md": "be6c937b13dd0b651814b8876f028f6931dc1fc3bcd6840f862f77f3aaacfa37",
+      "spec.md": "e8dd89f1849a2b5628ccdac3ce89ae25f8d5a177548787d3eb3612042fd257b4",
       "plan.md": "b856dce23367078a2977782fb8c49c6272e07e7f58fa3bea4322bc5c8f65e3e7",
       "tasks.md": "9b4e04f0d6ad49958573864cab280a76345ff86b10c73292aae096f7728000e0",
       "implementation-summary.md": "5ee3c96820267574b1bd9f79ace5ef77c6a916393cade17f227baf58b109b02e"

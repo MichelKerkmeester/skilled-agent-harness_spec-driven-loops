@@ -43,7 +43,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/commands/doctor/assets/doctor-code-graph.yaml",
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
       "tasks.md",
@@ -60,12 +59,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-code-graph.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor-code-graph.yaml",
         "source": "derived"
       },
       {
@@ -99,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,6 +111,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The command surface is the largest single grouping outside the skills, and it mixes three kinds of file",
     "created_at": "2026-07-27T16:33:58Z",
-    "last_save_at": "2026-07-27T16:49:46.275Z",
+    "last_save_at": "2026-07-27T20:56:21.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +205,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f92613103fd5c6af348f30c3fd514608cea0e0721fde304c2394109a718e455c",
+    "source_fingerprint": "sha256:e34f86a04db5b6d9e2ff4b4fae6de445a5d219f0048e08594291c9928af26ef2",
     "source_doc_hashes": {
-      "spec.md": "4e60cf15e989740450cf4579402be3b51b946b96528e072dd2c4436bb14bfcad",
+      "spec.md": "95c927c4e1337d9fe694241598c420a4b8b3600badcd72233c951c6fff0071a3",
       "plan.md": "c81478837aa01ac95f3d22867885303d1a26fd32dfaafc06a8665c0b0de3e8b8",
       "tasks.md": "0789ea961becc400ee9dddadc4e0be0bccaf128affe5e891dba20eae95356814",
       "implementation-summary.md": "b6d93a64084f979bf3d28541ee259022576b11ce317f56b94b70d59c5bd59ec7"
