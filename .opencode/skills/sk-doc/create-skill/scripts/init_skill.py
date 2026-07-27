@@ -72,6 +72,111 @@ def title_case_skill_name(skill_name: str) -> str:
 # 2. SCAFFOLDING
 # ───────────────────────────────────────────────────────────────
 
+def scaffold_benchmark_tree(skill_dir: Path, skill_name: str) -> None:
+    """Create the benchmark tree a skill needs before its first measured run.
+
+    A skill scaffolded without this gets `benchmark/` as a bare empty directory,
+    so the first run has nowhere obvious to land and its results end up wherever
+    the operator happened to point them. Creating the reports directory and its
+    index up front means the first run has a home and a row waiting for it.
+
+    The reports index is written in the same shape the benchmark harness appends
+    to, so a scaffolded index and a harness-written one are the same document.
+    """
+    benchmark_dir = skill_dir / 'benchmark'
+    reports_dir = benchmark_dir / 'reports'
+    reports_dir.mkdir(parents=True, exist_ok=True)
+
+    tree_index = (
+        '---\n'
+        f'title: "{skill_name} Benchmark Artifacts"\n'
+        f'description: "Benchmark inputs and run reports for {skill_name}, kept beside the skill they measure."\n'
+        'trigger_phrases:\n'
+        f'  - "{skill_name} benchmark"\n'
+        f'  - "{skill_name} benchmark artifacts"\n'
+        'importance_tier: "important"\n'
+        'contextType: "general"\n'
+        '---\n'
+        '\n'
+        f'# {skill_name} Benchmark Artifacts\n'
+        '\n'
+        f'> Inputs and reports for benchmarking `{skill_name}`, kept beside the skill they measure.\n'
+        '\n'
+        '---\n'
+        '\n'
+        '## 1. OVERVIEW\n'
+        '\n'
+        'TODO describe what this skill is benchmarked on and by which harness.\n'
+        '\n'
+        '## 2. LAYOUT\n'
+        '\n'
+        '| Path | Contents |\n'
+        '|---|---|\n'
+        '| [`reports/`](./reports/) | One folder per run, indexed by `reports/README.md` |\n'
+        '\n'
+        '## 3. RUNNING A BENCHMARK\n'
+        '\n'
+        'The Lane C harness reads this skill\'s manual-testing playbook as its default corpus and\n'
+        'writes a dated run folder under `reports/`:\n'
+        '\n'
+        '```bash\n'
+        'node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \\\n'
+        f'  --skill {skill_name}\n'
+        '```\n'
+    )
+    _write_if_absent(benchmark_dir / 'README.md', tree_index)
+    _write_if_absent(reports_dir / 'README.md', empty_reports_index(skill_name))
+
+
+def empty_reports_index(skill_name: str) -> str:
+    """Return the empty run index, matching the harness writer byte for byte.
+
+    Two writers produce this document: this scaffolder and the benchmark harness
+    that appends rows to it. They must agree, or a scaffolded index would gain a
+    second table the first time a run recorded itself.
+    """
+    columns = ['Executed', 'Folder', 'Runtime', 'Result', 'Verdict', 'Source']
+    header = f"| {' | '.join(columns)} |"
+    divider = '|' + '|'.join('---' for _ in columns) + '|'
+    return '\n'.join([
+        '---',
+        f'title: "{skill_name} Benchmark Reports"',
+        f'description: "Index of curated benchmark run reports for {skill_name}, one row per run folder."',
+        'trigger_phrases:',
+        f'  - "{skill_name} benchmark reports"',
+        f'  - "{skill_name} benchmark index"',
+        'importance_tier: "important"',
+        'contextType: "general"',
+        '---',
+        '',
+        f'# {skill_name} Benchmark Reports',
+        '',
+        "> Curated reports derived from completed benchmark runs, newest first. Raw execution evidence stays in the packet that produced it, named in each run's `source.md`.",
+        '',
+        '---',
+        '',
+        '## 1. OVERVIEW',
+        '',
+        'Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.',
+        '',
+        '## 2. RUN INDEX',
+        '',
+        header,
+        divider,
+        '',
+        '## 3. STORAGE RULE',
+        '',
+        'Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. Keep curated summaries and machine-readable result tables here, and raw transcripts and copied artifacts in the source packet. A run whose result changes gets a new folder rather than overwriting a prior one.',
+        '',
+    ])
+
+
+def _write_if_absent(target: Path, content: str) -> None:
+    """Write a scaffold file only when nothing is there, never over real content."""
+    if not target.exists():
+        target.write_text(content, encoding='utf-8')
+
+
 def init_skill(skill_name: str, path: str) -> Optional[Path]:
     """Initialize a new skill directory with template SKILL.md.
 
@@ -118,6 +223,9 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     except OSError as exc:
         print(f"❌ Error creating directory: {exc}")
         return None
+
+    scaffold_benchmark_tree(skill_dir, skill_name)
+    print("✅ Created benchmark/reports/ with its run index")
 
     skill_md_path = skill_dir / 'SKILL.md'
     try:
@@ -372,9 +480,9 @@ def init_parent_skill(
         for directory_name in (
             'changelog',
             'manual-testing-playbook',
-            'benchmark',
         ):
             (skill_dir / directory_name).mkdir()
+        scaffold_benchmark_tree(skill_dir, skill_name)
         print(f"✅ Created parent skill directory: {skill_dir}")
 
         (skill_dir / 'SKILL.md').write_text(hub_content, encoding='utf-8')

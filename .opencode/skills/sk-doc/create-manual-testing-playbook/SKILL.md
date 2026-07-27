@@ -232,7 +232,61 @@ Each per-feature file must include:
 
 ---
 
-## 4. HOW IT WORKS - AUTHORING WORKFLOW
+## 4. RESULTS STORAGE CONTRACT
+
+A playbook is a corpus. Running it produces evidence, and that evidence has a home: the same
+`benchmark/` tree that holds every other measurement of the skill. Without this rule a run leaves
+nothing behind, and the next person has no way to know the playbook was ever executed.
+
+### Where A Run Lands
+
+```text
+<skill>/
+|-- manual-testing-playbook/          # the corpus, an input, never rewritten by a run
+`-- benchmark/
+    `-- reports/
+        |-- README.md                 # the run index, one row per folder
+        `-- 2026-07-27--manual-testing-playbook--openai-gpt-5-6-luna-high/
+            |-- README.md
+            |-- skill-benchmark-report.json
+            |-- skill-benchmark-report.md
+            |-- results.csv
+            |-- failed-runs.md
+            |-- findings-and-recommendations.md
+            `-- source.md
+```
+
+Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. `create-benchmark`
+owns that grammar in full; see its storage sections for the field vocabulary and the one carve-out.
+
+### What Writes It
+
+The Lane C harness reads a skill's playbook as its default corpus and writes the whole folder,
+including the index row:
+
+```bash
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+  --skill <skill-id>
+```
+
+Given no `--outputs-dir`, it derives the path above from the skill root, the execution date and the
+executor identity in the environment. Pass `--outputs-dir` only to send a run somewhere else on
+purpose; a run outside a `reports/` directory is deliberately left out of the index.
+
+### Rules
+
+- The corpus is an input. A run never edits `manual-testing-playbook/`, and gold that needs to change
+  gets a corpus revision rather than a rewritten scenario.
+- `skill-benchmark-report.md` is renderer-owned and regenerated from the JSON. Never hand-edit it.
+- Curated summaries and result tables live in the run folder. Raw transcripts and copied artifacts stay
+  in the spec packet that produced them, named in `source.md`.
+- A run whose result changes gets a new folder. A prior run is never overwritten.
+- Every file in the folder derives from the run record. A field the run did not capture reads as not
+  recorded; it is never filled in from inference.
+
+---
+
+## 5. HOW IT WORKS - AUTHORING WORKFLOW
 
 Follow this sequence:
 
@@ -264,7 +318,7 @@ Authoring sequence matters:
 
 ---
 
-## 5. SCENARIO DESIGN RULES
+## 6. SCENARIO DESIGN RULES
 
 ### Determinism
 
@@ -336,7 +390,7 @@ Do not ship unsynchronized prompt fields.
 
 ---
 
-## 6. VALIDATION AND RELEASE GATES
+## 7. VALIDATION AND RELEASE GATES
 
 ### Automated Checks
 
@@ -379,7 +433,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 ---
 
-## 7. RULES
+## 8. RULES
 
 ### ✅ ALWAYS
 
@@ -416,7 +470,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 
 ---
 
-## 8. SUCCESS CRITERIA
+## 9. SUCCESS CRITERIA
 
 A `create-manual-testing-playbook` run is done when:
 
@@ -429,7 +483,7 @@ A `create-manual-testing-playbook` run is done when:
 
 ---
 
-## 9. RESOURCES FOR DEEP DETAIL & REFERENCES
+## 10. RESOURCES FOR DEEP DETAIL & REFERENCES
 
 The core executable workflow lives in this `SKILL.md`. Use these only for overflow detail, exhaustive examples, or template text:
 

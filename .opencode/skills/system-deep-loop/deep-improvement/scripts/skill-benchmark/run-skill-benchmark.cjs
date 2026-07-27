@@ -32,8 +32,11 @@ const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
 const { scanConnectivity, scanHubRegistry } = require('./d5-connectivity.cjs');
 const { scoreScenario, aggregate, evaluateRouteGold } = require('./score-skill-benchmark.cjs');
 const { probeAdvisor } = require('./advisor-probe.cjs');
-const { renderReport } = require('./build-report.cjs');
+const {
+  renderReport, renderResultsCsv, renderFailedRuns, renderFindings, renderRunReadme, renderSource,
+} = require('./build-report.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
+const { appendRunIndex } = require('./append-run-index.cjs');
 const { expandMultiProbeScenarios } = require('./multi-probe-scenarios.cjs');
 const { dispatchScenario } = require('./executor-dispatch.cjs');
 const {
@@ -46,6 +49,12 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode/skills
+
+// Where the last run() call actually wrote. The optional D4-R pass re-reads that
+// report, and a derived destination carries a timestamp it must not re-derive:
+// a run started before midnight and augmented after it would look in the wrong
+// day's folder. Recording the resolved path removes the guess entirely.
+let lastRunOutputsDir = null;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -65,6 +74,98 @@ function resolveSkillRoot(skillArg) {
 
 function resolveSkillId(skillRoot) {
   return path.basename(skillRoot);
+}
+
+// ── Run-folder naming ────────────────────────────────────────────────────────
+//
+// A benchmark run folder is named `<YYYY-MM-DD>--<subject>--<variant>`: fields
+// separated by a double hyphen, words within a field by a single one, lowercase
+// ASCII throughout. The date is the execution date, so a folder sorts by when the
+// evidence was produced rather than when someone got around to publishing it.
+
+/**
+ * Flatten one field to the grammar's alphabet: lowercase, dots and slashes and
+ * underscores collapse to single hyphens, and no hyphen sits at either end.
+ * `openai/gpt-5.6-luna` becomes `openai-gpt-5-6-luna`.
+ *
+ * @param {string} value - Raw field text.
+ * @returns {string} Field slug, empty when nothing survives.
+ */
+function slugField(value) {
+  return String(value == null ? '' : value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Compose the run folder name. A field with no recorded value drops out rather
+ * than leaving an empty segment, so a run with no model identity still yields a
+ * well-formed name.
+ *
+ * @param {Object} params - Naming inputs.
+ * @param {Date} params.now - Execution timestamp.
+ * @param {string} params.subject - Corpus name, e.g. `manual-testing-playbook`.
+ * @param {string} [params.variant] - Executor identity or comparison label.
+ * @returns {string} Folder name in the dated grammar.
+ */
+function runFolderName({ now, subject, variant }) {
+  const date = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, '0'),
+    String(now.getDate()).padStart(2, '0'),
+  ].join('-');
+  return [date, slugField(subject), slugField(variant)].filter(Boolean).join('--');
+}
+
+/**
+ * Derive the outputs directory when the operator gave none. Runs land under the
+ * target skill's own `benchmark/reports/`, beside every other benchmark for that
+ * skill, which is what makes a playbook run findable at all.
+ *
+ * Executor identity is read from the environment the dispatch lane already sets;
+ * when it is absent the variant field falls back to the trace mode, which is
+ * always known, rather than inventing a model name.
+ *
+ * @param {Object} params - Resolution inputs.
+ * @param {string} params.skillRoot - Absolute skill root.
+ * @param {string} params.subject - Corpus name.
+ * @param {string} params.traceMode - Resolved trace mode.
+ * @param {NodeJS.ProcessEnv} [params.env] - Environment carrying executor identity.
+ * @param {Date} [params.now] - Execution timestamp.
+ * @returns {string} Absolute outputs directory.
+ */
+function defaultOutputsDir({ skillRoot, subject, traceMode, env = process.env, now = new Date() }) {
+  const model = env.SKILL_BENCH_OPENCODE_MODEL || env.SKILL_BENCH_MODEL || '';
+  const variantFlag = env.SKILL_BENCH_OPENCODE_VARIANT || env.SKILL_BENCH_VARIANT || '';
+  const variant = [model, variantFlag].filter(Boolean).join('-') || traceMode;
+  return path.join(skillRoot, 'benchmark', 'reports', runFolderName({ now, subject, variant }));
+}
+
+/**
+ * Name the corpus family this run scored, which becomes the folder's subject
+ * field. The playbook is the default corpus, so a run that names no fixtures dir
+ * is a playbook run.
+ *
+ * @param {Object} args - Parsed CLI args.
+ * @returns {string} Subject slug.
+ */
+function benchmarkSubject(args) {
+  return args['fixtures-dir'] ? 'skill-benchmark' : 'manual-testing-playbook';
+}
+
+/**
+ * Name the corpus a run scored against, repo-relative, for the folder's source map.
+ *
+ * @param {Object} params - Corpus inputs.
+ * @returns {string|null} Repo-relative corpus path, or null when it cannot be resolved.
+ */
+function playbookCorpusRel({ skillRoot, playbookDir, fixturesDir }) {
+  const abs = fixturesDir
+    ? path.resolve(fixturesDir)
+    : (playbookDir ? path.resolve(playbookDir) : path.join(skillRoot, 'manual-testing-playbook'));
+  if (!fs.existsSync(abs)) return null;
+  return path.relative(path.resolve(SKILLS_DIR, '..', '..'), abs);
 }
 
 // Hub-type detection for the route-gold gate default: a skill that ships a
@@ -287,12 +388,18 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
 function run(args) {
   const skillRoot = resolveSkillRoot(args.skill);
   const skillId = resolveSkillId(skillRoot);
-  const outputsDir = path.resolve(args['outputs-dir']);
-  fs.mkdirSync(outputsDir, { recursive: true });
   const advisorMode = args['advisor-mode'] || 'off';
   // The internal fallback stays 'router' so direct run() calls (the test suite)
   // are deterministic; the live default is injected by loop-host for operators.
   const traceMode = args['trace-mode'] || 'router';
+  // An operator who names no destination still gets a durable, findable folder
+  // rather than being forced to invent a path per run, which is how run results
+  // ended up scattered across four naming styles in the first place.
+  const outputsDir = args['outputs-dir']
+    ? path.resolve(args['outputs-dir'])
+    : defaultOutputsDir({ skillRoot, subject: benchmarkSubject(args), traceMode });
+  lastRunOutputsDir = outputsDir;
+  fs.mkdirSync(outputsDir, { recursive: true });
 
   if (!fs.existsSync(path.join(skillRoot, 'SKILL.md'))) {
     process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
@@ -434,8 +541,48 @@ function run(args) {
   fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2));
   fs.writeFileSync(reportMdPath, renderReport(report));
 
+  // The machine table, the two narrative files, the folder summary and the authority
+  // map land beside the rendered report so a run folder is readable without opening
+  // the JSON. All of them derive strictly from this run's record, including the case
+  // where it captured no failure detail.
+  const companionDir = path.dirname(reportJsonPath);
+  const companionContext = {
+    runLabel: path.basename(companionDir),
+    corpus: playbookCorpusRel({ skillRoot, playbookDir: args['playbook-dir'], fixturesDir: args['fixtures-dir'] }),
+  };
+  const companions = [
+    ['README.md', renderRunReadme(report, companionContext)],
+    ['results.csv', renderResultsCsv(report)],
+    ['failed-runs.md', renderFailedRuns(report)],
+    ['findings-and-recommendations.md', renderFindings(report)],
+    ['source.md', renderSource(report, companionContext)],
+  ];
+  for (const [name, body] of companions) {
+    fs.writeFileSync(path.join(companionDir, name), body);
+  }
+
+  // Record the run in its reports index from the same code path that wrote it, so
+  // the index cannot fall behind the folders beside it. Only runs that landed in a
+  // `reports/` directory are indexed: a one-off destination named on the command
+  // line is not part of any index and must not have a row invented for it.
+  let indexResult = null;
+  if (path.basename(path.dirname(companionDir)) === 'reports') {
+    indexResult = appendRunIndex({
+      reportsDir: path.dirname(companionDir),
+      folderName: path.basename(companionDir),
+      skillId,
+      report,
+      corpus: companionContext.corpus,
+    });
+  }
+
   process.stdout.write(`skill-benchmark: ${skillId} verdict=${report.verdict} aggregate=${report.aggregateScore} scenarios=${scenarioRows.length}\n`);
   process.stdout.write(`  report.json -> ${reportJsonPath}\n  report.md   -> ${reportMdPath}\n`);
+  process.stdout.write(`  companions  -> ${companions.map(([n]) => n).join(', ')}\n`);
+  if (indexResult) {
+    const verb = indexResult.replaced ? 'refreshed' : 'appended';
+    process.stdout.write(`  index row    -> ${verb} in ${indexResult.indexPath}\n`);
+  }
   // The D5 gate exists to make a structurally-broken skill (dead router, broken
   // hub registry) unusable regardless of weighted score. An exit code that stays
   // 0 on that verdict lets a CI caller treat "blocked" the same as "passed" —
@@ -470,8 +617,13 @@ function run(args) {
 async function augmentWithD4R(args) {
   const { runD4RAblation } = require('./d4-ablation.cjs');
   const skillRoot = resolveSkillRoot(args.skill);
-  const outputsDir = path.resolve(args['outputs-dir']);
-  const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
+  const outputsDir = args['outputs-dir'] ? path.resolve(args['outputs-dir']) : null;
+  // Without an explicit destination the D4-R pass cannot re-derive run()'s folder:
+  // the default carries a timestamp, and re-deriving it could name a different day.
+  // run() therefore records where it wrote, and this pass reads that back.
+  const reportJsonPath = args.output
+    ? path.resolve(args.output)
+    : path.join(outputsDir || lastRunOutputsDir, 'skill-benchmark-report.json');
   const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
   const { scenarios } = loadPlaybookScenarios({ skillRoot, playbookDir: args['playbook-dir'] });
   const explicit = args['d4-scenarios'] || args.scenarios;
@@ -524,8 +676,8 @@ module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTyp
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
-  if (!args.skill || !args['outputs-dir']) {
-    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--route-gold on|off|auto] [--compiled-routing-parity on|off|auto] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
+  if (!args.skill) {
+    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> [--outputs-dir <path>] [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--route-gold on|off|auto] [--compiled-routing-parity on|off|auto] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
     process.exit(2);
   }
   const code = run(args);

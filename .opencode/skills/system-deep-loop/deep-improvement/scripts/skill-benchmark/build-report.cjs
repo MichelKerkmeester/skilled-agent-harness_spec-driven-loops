@@ -312,20 +312,256 @@ function renderReport(report) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. EXPORTS
+// 4. CURATED REPORT COMPANIONS
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// A run folder carries a machine table, two narrative files and an authority map
+// beside the rendered report. Every one of them is derived STRICTLY from what the
+// run record contains. A run that captured no per-case detail produces a file
+// saying exactly that: an absent finding is information, and inventing one would
+// make the folder lie about what was measured.
+//
+// Two row shapes reach these emitters and both must read correctly. A live
+// dispatch lane writes an explicit `verdict` and `reason`. The deterministic
+// router-replay scorer writes neither: it records `firstFailingStage`, which is
+// null exactly when the scenario cleared every gate it was applicable to. Reading
+// only the first shape would report every replay run as having no failures, which
+// is the specific way this file could lie.
+
+const NOT_RECORDED = 'not recorded';
+
+/**
+ * Collapse either row shape onto one vocabulary. Every field comes from a
+ * recorded value or falls back to a recorded run-level value; nothing here
+ * infers an outcome the record does not state.
+ *
+ * @param {Object} row - One scenarioRows entry.
+ * @param {Object} report - The enclosing report, for run-level fallbacks.
+ * @returns {Object} Normalized row fields.
+ */
+function normalizeRow(row, report) {
+  const explicit = row.verdict == null ? null : String(row.verdict).toUpperCase();
+  let verdict;
+  if (explicit) verdict = explicit;
+  else if (row.applicable === false) verdict = 'SKIP';
+  else verdict = row.firstFailingStage == null ? 'PASS' : 'FAIL';
+
+  const reason = row.reason
+    || (row.firstFailingStage ? `first failing stage: ${row.firstFailingStage}` : '');
+
+  return {
+    scenarioId: row.scenarioId,
+    hubId: row.hubId || (report.targetSkill && report.targetSkill.id),
+    tier: row.tier,
+    stage: row.stage,
+    classKind: row.classKind,
+    goldMode: row.goldMode || row.expectedWorkflowMode,
+    providerModel: row.providerModel || report.model,
+    variant: row.variant || report.variant,
+    score: typeof row.modeAScore === 'number' ? row.modeAScore : '',
+    verdict,
+    reason,
+  };
+}
+
+function normalizedRows(report) {
+  const rows = Array.isArray(report.scenarioRows) ? report.scenarioRows : [];
+  return rows.map((row) => normalizeRow(row, report));
+}
+
+function csvCell(value) {
+  const text = value === undefined || value === null ? '' : String(value);
+  return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+}
+
+function renderResultsCsv(report) {
+  const header = [
+    'scenario_id', 'hub_id', 'tier', 'stage', 'class_kind',
+    'gold_mode', 'provider_model', 'variant', 'score', 'verdict', 'reason',
+  ];
+  const lines = [header.join(',')];
+  for (const row of normalizedRows(report)) {
+    lines.push([
+      row.scenarioId, row.hubId, row.tier, row.stage, row.classKind,
+      row.goldMode, row.providerModel, row.variant, row.score, row.verdict, row.reason,
+    ].map(csvCell).join(','));
+  }
+  return `${lines.join('\n')}\n`;
+}
+
+function runHeading(report) {
+  // targetSkill is an object carrying the skill id and its root.
+  const skill = report.targetSkill && typeof report.targetSkill === 'object'
+    ? report.targetSkill.id
+    : report.targetSkill;
+  const parts = [skill, report.traceMode, report.executor, report.model, report.variant]
+    .filter(Boolean).join(' · ');
+  return parts || 'skill benchmark run';
+}
+
+function tallyVerdicts(rows) {
+  const tally = new Map();
+  for (const row of rows) tally.set(row.verdict, (tally.get(row.verdict) || 0) + 1);
+  return [...tally.entries()].sort((a, b) => b[1] - a[1]);
+}
+
+function renderFailedRuns(report) {
+  const rows = normalizedRows(report);
+  const failed = rows.filter((row) => row.verdict === 'FAIL');
+  const out = ['# Failed Runs\n', `> ${runHeading(report)}\n`];
+
+  if (rows.length === 0) {
+    out.push('This run record contains no per-scenario rows, so no failure detail was captured.\n');
+    return out.join('\n');
+  }
+  if (failed.length === 0) {
+    const tally = tallyVerdicts(rows).map(([v, n]) => `${n} ${v}`).join(', ');
+    out.push(`No scenario recorded a FAIL verdict across ${rows.length} scenario(s): ${tally}.\n`);
+    return out.join('\n');
+  }
+
+  out.push(`${failed.length} of ${rows.length} scenario(s) recorded a FAIL verdict.\n`);
+  for (const row of failed) {
+    out.push(`## ${row.scenarioId || 'unnamed scenario'}\n`);
+    out.push('| Field | Value |');
+    out.push('|---|---|');
+    out.push(`| Hub | ${row.hubId || NOT_RECORDED} |`);
+    out.push(`| Stage | ${row.stage || NOT_RECORDED} |`);
+    out.push(`| Expected route | ${row.goldMode || NOT_RECORDED} |`);
+    out.push(`| Score | ${row.score === '' ? NOT_RECORDED : `${row.score}/100`} |`);
+    out.push(`| Model | ${row.providerModel || NOT_RECORDED}${row.variant ? ` (${row.variant})` : ''} |`);
+    out.push('');
+    out.push(row.reason
+      ? `**Recorded reason.** ${row.reason}\n`
+      : 'This run captured no reason for the failure. Re-run with transcript capture to obtain one.\n');
+  }
+  return out.join('\n');
+}
+
+function renderFindings(report) {
+  const rows = normalizedRows(report);
+  const failed = rows.filter((row) => row.verdict === 'FAIL');
+  const out = ['# Findings And Recommendations\n', `> ${runHeading(report)}\n`];
+
+  if (failed.length === 0) {
+    out.push(rows.length === 0
+      ? 'This run record contains no per-scenario rows, so no findings can be derived from it.\n'
+      : `No FAIL verdicts were recorded across ${rows.length} scenario(s), so this run yields no remediation findings.\n`);
+    return out.join('\n');
+  }
+
+  // Group by the recorded reason: repetition across scenarios is the only pattern
+  // the record actually supports. Anything beyond that would be interpretation.
+  const byReason = new Map();
+  for (const row of failed) {
+    const key = row.reason || '(no reason recorded)';
+    if (!byReason.has(key)) byReason.set(key, []);
+    byReason.get(key).push(row.scenarioId || 'unnamed');
+  }
+
+  out.push(`${failed.length} failing scenario(s) grouped into ${byReason.size} recorded pattern(s).\n`);
+  let index = 0;
+  for (const [reason, ids] of [...byReason.entries()].sort((a, b) => b[1].length - a[1].length)) {
+    index += 1;
+    out.push(`## ${index}. ${reason}\n`);
+    out.push(`Affects ${ids.length} scenario(s): ${ids.join(', ')}.\n`);
+  }
+  out.push('---\n');
+  out.push('Grouping reflects only the reasons this run recorded. Scenarios whose reason was not captured are grouped together and need a re-run before they can be diagnosed.\n');
+  return out.join('\n');
+}
+
+/**
+ * The folder-level summary a reader meets first. It states the outcome and the
+ * shape of the evidence, and nothing the record does not carry.
+ *
+ * @param {Object} report - Parsed report object.
+ * @param {Object} [context] - Run-time paths the report itself does not carry.
+ * @returns {string} Markdown document.
+ */
+function renderRunReadme(report, context = {}) {
+  const rows = normalizedRows(report);
+  const tally = tallyVerdicts(rows);
+  const skill = report.targetSkill && report.targetSkill.id;
+  const out = [];
+
+  out.push(`# ${context.runLabel || `${skill || 'Skill'} benchmark run`}\n`);
+  out.push(`> ${runHeading(report)}\n`);
+  out.push(`**Verdict: ${report.verdict || NOT_RECORDED}**${report.aggregateScore != null ? ` · aggregate ${report.aggregateScore}/100` : ''}\n`);
+
+  out.push('## Run');
+  out.push('');
+  out.push('| Field | Value |');
+  out.push('|---|---|');
+  out.push(`| Target skill | ${skill || NOT_RECORDED} |`);
+  out.push(`| Scoring method | ${report.scoringMethod || NOT_RECORDED} |`);
+  out.push(`| Trace mode | ${report.traceMode || NOT_RECORDED} |`);
+  out.push(`| Executor | ${report.executor || NOT_RECORDED} |`);
+  out.push(`| Model | ${report.model || NOT_RECORDED}${report.variant ? ` (${report.variant})` : ''} |`);
+  out.push(`| Scenarios | ${rows.length} |`);
+  out.push(`| Outcome tally | ${tally.length ? tally.map(([v, n]) => `${n} ${v}`).join(', ') : NOT_RECORDED} |`);
+  out.push('');
+
+  out.push('## Files');
+  out.push('');
+  out.push('| File | Contents |');
+  out.push('|---|---|');
+  out.push('| [`skill-benchmark-report.json`](./skill-benchmark-report.json) | The machine record every other file here derives from |');
+  out.push('| [`skill-benchmark-report.md`](./skill-benchmark-report.md) | Rendered scoring report, regenerated from the JSON and never hand-edited |');
+  out.push('| [`results.csv`](./results.csv) | One row per scenario, for spreadsheet and diff use |');
+  out.push('| [`failed-runs.md`](./failed-runs.md) | Per-scenario failure detail, or a statement that none was captured |');
+  out.push('| [`findings-and-recommendations.md`](./findings-and-recommendations.md) | Failures grouped by their recorded reason |');
+  out.push('| [`source.md`](./source.md) | Where the corpus, the gold and the raw evidence live |');
+  out.push('');
+
+  out.push('## Reading This Folder');
+  out.push('');
+  out.push('This is a curated report. Raw execution evidence stays in the packet that produced it, named in `source.md`. Every file here is generated from the run record: a field this run did not capture reads as not recorded rather than being filled in.');
+  out.push('');
+  return out.join('\n');
+}
+
+/**
+ * The authority and evidence map. Paths the report object does not carry are
+ * supplied by the runner; anything still absent is stated as absent.
+ *
+ * @param {Object} report - Parsed report object.
+ * @param {Object} [context] - Run-time paths the report itself does not carry.
+ * @returns {string} Markdown document.
+ */
+function renderSource(report, context = {}) {
+  const skill = report.targetSkill && report.targetSkill.id;
+  const out = [];
+  out.push(`# ${skill ? `${skill} ` : ''}Benchmark Sources\n`);
+  out.push(`> ${runHeading(report)}\n`);
+  out.push('This map separates the canonical contracts, the private gold, and the curated outputs in this folder.\n');
+
+  out.push('| Resource | Purpose |');
+  out.push('|---|---|');
+  out.push(`| Target skill | \`${(report.targetSkill && (report.targetSkill.rootRel || report.targetSkill.root)) || NOT_RECORDED}\` |`);
+  out.push(`| Scenario corpus | ${context.corpus ? `\`${context.corpus}\`` : NOT_RECORDED} |`);
+  out.push(`| Scoring method | \`${report.scoringMethod || NOT_RECORDED}\` |`);
+  out.push(`| Topology digest | \`${report.topologyDigest || NOT_RECORDED}\` |`);
+  out.push('| Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |');
+  out.push('| Curated result set | [`results.csv`](./results.csv) |');
+  out.push('');
+
+  out.push('## Boundary');
+  out.push('');
+  out.push('The corpus and its private gold are inputs and are never rewritten by a run. This folder holds outputs only. A run that needs different gold gets a new corpus revision and a new folder, so a prior run is never overwritten when its result changes.');
+  out.push('');
+  return out.join('\n');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { renderReport };
-
-if (require.main === module) {
-  const args = require('./_args.cjs').parse(process.argv.slice(2));
-  if (!args.report) {
-    process.stderr.write('usage: build-report.cjs --report <report.json> [--output <report.md>]\n');
-    process.exit(2);
-  }
-  const report = JSON.parse(fs.readFileSync(args.report, 'utf8'));
-  const md = renderReport(report);
-  if (args.output) { fs.writeFileSync(args.output, md); process.stdout.write(`wrote ${args.output}\n`); }
-  else process.stdout.write(md + '\n');
-  process.exit(0);
-}
+module.exports = {
+  renderReport,
+  renderResultsCsv,
+  renderFailedRuns,
+  renderFindings,
+  renderRunReadme,
+  renderSource,
+};
