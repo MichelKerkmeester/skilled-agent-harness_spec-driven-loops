@@ -28,15 +28,12 @@ SPECKIT_ADVISOR_DOC_TRIGGERS = "true"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-skill-advisor"
 SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 
-[mcp_servers.mk_code_index]
-command = "/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node"
-args = [".opencode/bin/mk-code-index-launcher.cjs"]
+# Pinned to Node 24, unlike its siblings above: the server bundles isolated-vm,
+# a native module built against the v24 ABI, and its package declares
+# engines >=24.0.0 <25.0.0. Launching it on v22 aborts in dlopen.
+[mcp_servers.code_mode]
+command = "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node"
+args = [".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"]
 
-[mcp_servers.mk_code_index.env]
-SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
-SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
-SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
-SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
-SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
-SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
-SPECKIT_MAX_SECONDARY_CLIENTS = "64"
+[mcp_servers.code_mode.env]
+UTCP_CONFIG_FILE = ".utcp_config.json"
