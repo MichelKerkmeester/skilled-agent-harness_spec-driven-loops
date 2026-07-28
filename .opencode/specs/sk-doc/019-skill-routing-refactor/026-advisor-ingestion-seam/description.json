@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
+  "description": "The creation journey ends at \"gates pass\" — but passing gates does not make a skill routable",
+  "keywords": [
+    "creation",
+    "journey",
+    "ends",
+    "gates",
+    "pass",
+    "passing",
+    "skill",
+    "routable"
+  ],
+  "lastUpdated": "2026-07-28T15:16:00.653Z",
+  "specId": "026",
+  "folderSlug": "advisor-ingestion-seam",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
