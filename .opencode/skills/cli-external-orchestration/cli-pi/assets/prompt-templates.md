@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi review prompt template"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Pi CLI Prompt Templates
@@ -33,7 +33,7 @@ This asset provides structured, copy-paste ready dispatch templates for invoking
 
 > **Exit code caveat:** the pin observed exit `0` then exit `1` on identical unauthenticated calls. Every template below assumes the caller inspects output text, not the exit code alone.
 > **Offline caveat:** `--verbose` without `--offline` can hang 2+ minutes when no network path is available. Pass `--offline` whenever no live provider call is intended.
-> **No enforced model allowlist at this layer:** unlike `cli-cursor`/`cli-devin`, Pi is a multi-provider passthrough; use the operator-confirmed roster in `model-dispatch-gpt-5.6.md` rather than guessing at an unconfirmed model id.
+> **No enforced model allowlist at this layer:** unlike `cli-cursor`/`cli-devin`, Pi is a multi-provider passthrough; use the authenticated provider roster in `cli-reference.md` §13 rather than guessing at an unconfirmed model id.
 
 | Flag | Purpose |
 |---|---|

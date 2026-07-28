@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi resource loader"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Pi Native Skills and Extensions
@@ -72,7 +72,7 @@ Use [prompt-templates.md](../assets/prompt-templates.md) for caller-side dispatc
 
 The local pin also confirmed that Pi discovered a project-local `.pi/extensions/probe.ts` and failed the whole session when it exported an invalid value; replacing the stub with a callable default factory removed that specific validation error. This means an invalid extension is fail-closed at startup — distinct from, and orthogonal to, the fail-open discipline of the 6 real extensions' own internal guard logic above.
 
-**Type-confirmed, not live-firing-confirmed (phase 008):** the extension API exposes 32 named lifecycle events (including block-capable `tool_call`), confirmed via a direct read of the installed package's `types.d.ts`. No live session has yet captured a specific event actually firing mid-dispatch (as opposed to loading without error) — that gap needs a credentialed provider session, per §8 below.
+**Live-firing-confirmed (2026-07-28):** the extension API exposes 33 named lifecycle events (including block-capable `tool_call`), confirmed via a direct read of the installed package's `types.d.ts`, and a probe-instrumented authenticated session captured `session_start`, `input`, `tool_call`, `tool_result`, and `session_shutdown(quit)` actually firing mid-dispatch with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced; it fires solely on manual `/compact`, the context threshold, or overflow recovery in an interactive session.
 
 Per Pi docs, unconfirmed: loading from user, CLI-flag, or package locations (only the project-local `.pi/extensions/` location has been built and tested), and inspecting structured system-prompt data. See [Pi extensions documentation](https://pi.dev/docs/latest/extensions).
 
@@ -129,7 +129,7 @@ Still open — needs a credentialed provider session:
 2. Record which slash commands appear in a live session and confirm precedence when the same name exists at more than one location.
 3. Compare project and global resources.
 4. Confirm whether nested hub packets flatten when Pi's own skill discovery walks `.opencode/skills/`.
-5. Capture one real lifecycle-event firing trace from a live session (the 32-event surface is currently type-confirmed only, per §5).
+5. Capture a `session_compact` firing trace from a long interactive session (every other registered event was live-traced in playbook scenario PI-020, per §5).
 6. Start Pi in JSON and RPC modes against a real provider (both remain doc-grounded, not live-executed, for this specific verification plan).
 
 Until the remaining items are done, preserve the phrase documented but unconfirmed for native skill discovery specifically — prompt templates and extensions have moved from that status to confirmed, per §4/§5 above.

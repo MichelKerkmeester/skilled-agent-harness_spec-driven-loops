@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.1.0.0
+version: 1.2.0.0
 hard_rules:
   - id: pi-availability-required
     check: command-v-pi-required
@@ -264,9 +264,8 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, and command examples
+- [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, model selection, and command examples
 - [pi-tools.md](./references/pi-tools.md) - Pi capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
-- [model-dispatch-gpt-5.6.md](./references/model-dispatch-gpt-5.6.md) - Operator-confirmed GPT-5.6 ids and unconfirmed Pi effort/tier syntax
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor/executor patterns, cross-validation, and anti-patterns
 - [agent-delegation.md](./references/agent-delegation.md) - Built-in boundary and community subagent package guidance
 - [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) - Pi-native discovery surfaces with confidence labels

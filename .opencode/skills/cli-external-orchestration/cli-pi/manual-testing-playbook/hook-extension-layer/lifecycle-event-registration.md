@@ -22,13 +22,13 @@ Registering a callback without a runtime error proves the loader accepted the ev
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm the extension API's event taxonomy and accepted registration for the event handlers used by the seven bridges.
+- Objective: Confirm the extension API's event taxonomy and accepted registration for the event handlers used by the eleven bridges.
 - Real user request: `Check which lifecycle events Pi exposes, then confirm these local extensions register against them without crashing.`
-- Prompt: `Start Pi with the local extensions and report the provider blocker if no model turn starts. The check is for extension registration; do not claim a handler fired unless a real event is observed.`
-- Expected execution process: Read the installed extension declarations -> count the named event set -> inspect the bridge registrations -> run the isolated Pi startup -> distinguish accepted registration from actual event firing.
-- Expected signals: The installed declaration file exposes 32 named events; local files register `tool_call`, `tool_result`, and `input`; startup reaches the provider gate without registration error.
+- Prompt: `Start Pi with the local extensions. The check is for extension registration; do not claim a handler fired unless a real event is observed.`
+- Expected execution process: Read the installed extension declarations -> count the named event set -> inspect the bridge registrations -> run the Pi startup -> distinguish accepted registration from actual event firing.
+- Expected signals: The installed declaration file exposes 33 named events; local files register `tool_call`, `tool_result`, `input`, `session_start`, `session_shutdown`, and `session_compact`; startup completes without registration error.
 - Desired user-visible outcome: A precise registration result and an explicit boundary around event firing.
-- Pass/fail: PASS for the registration-accepted check. SKIP the handler-fires-on-a-real-event sub-check with blocker `provider credentials are absent on this machine`. FAIL if Pi rejects an event registration or a documented event cannot load.
+- Pass/fail: PASS for the registration-accepted check. The handler-fires-on-a-real-event sub-check is owned by `PI-020`, which live-traced it with an authenticated provider. FAIL if Pi rejects an event registration or a documented event cannot load.
 
 ---
 
@@ -43,7 +43,7 @@ Registering a callback without a runtime error proves the loader accepted the ev
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-015 | Lifecycle event registration | Confirm event registration and separate it from event firing | `Start Pi with the local extensions and report the provider blocker if no model turn starts. The check is for extension registration; do not claim a handler fired unless a real event is observed.` | `rg -n 'pi\.on\("(tool_call|tool_result|input)"' .pi/extensions` -> read the installed Pi `types.d.ts` event union -> copy extensions into an isolated fixture -> `PI_CODING_AGENT_DIR=<tmp> pi --offline --approve -p "list your available tools" </dev/null` | Registrations for `tool_call`, `tool_result`, and `input`; no registration error; actual handler firing requires a real tool event | Captured registrations show `tool_call`, `tool_result`, and `input`. The installed declaration read records 32 named events. Isolated live output is `No API key found for the selected model.` with `probe_rc=1`; no registration error appears. | PASS for registration accepted. SKIP real handler firing with blocker `provider credentials are absent on this machine`. FAIL if registration itself errors. | Inspect the exact event spelling against `types.d.ts`, then use a credentialed tool call to verify handler body execution rather than retrying blind. |
+| PI-015 | Lifecycle event registration | Confirm event registration and separate it from event firing | `Start Pi with the local extensions. The check is for extension registration; do not claim a handler fired unless a real event is observed.` | `rg -n 'pi\.on\("' .pi/extensions/*.ts` -> read the installed Pi `types.d.ts` event union -> `pi --offline --approve -p "list your available tools" </dev/null` | Registrations for `tool_call` (3), `tool_result` (2), `input` (2), `session_start` (2), `session_shutdown` (1), and `session_compact` (1); no registration error | Captured registrations (2026-07-28) show exactly that six-event, eleven-handler set. The installed declaration read records 33 named `on(...)` overloads (one more than the earlier 32-event capture; the installed package moved). Live startup exits 0 with no registration error. | PASS for registration accepted. Real handler firing is live-traced in `PI-020`. FAIL if registration itself errors. | Inspect the exact event spelling against `types.d.ts`, then use `PI-020`'s probe method to verify handler body execution rather than retrying blind. |
 
 ### Optional Supplemental Checks
 

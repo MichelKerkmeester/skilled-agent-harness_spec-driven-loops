@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # cli-pi
