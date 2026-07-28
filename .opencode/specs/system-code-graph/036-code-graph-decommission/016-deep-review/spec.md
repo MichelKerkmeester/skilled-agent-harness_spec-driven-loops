@@ -1,42 +1,37 @@
 ---
-title: "Feature Specification: Phase 1: deep-review"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 16: deep-review"
+description: "Two-lane external deep review of the executed code-graph decommission: Grok 4.5 High and DeepSeek v4 Pro audit every touched surface for regressions, missed residue, and dishonest completion claims, with forced full depth and no early convergence."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "code graph decommission deep review"
+  - "036 deep review"
+  - "grok deepseek review lanes"
+  - "decommission audit"
+  - "016 deep review"
+importance_tier: "important"
+contextType: "review"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/016-deep-review"
-    last_updated_at: "2026-07-28T05:29:53Z"
+    last_updated_at: "2026-07-28T05:20:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded the decommission phase child"
-    next_safe_action: "Populate requirements from the touchpoint research synthesis"
+    recent_action: "Scaffolded the deep-review phase child"
+    next_safe_action: "Launch the two-lane review fan-out"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-27-036-016-deep-review"
+      session_id: "2026-07-28-036-016-deep-review"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Phase 1: deep-review
+# Feature Specification: Phase 16: deep-review
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
 
 ---
 
@@ -46,15 +41,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Not Started |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 16 of 16 |
 | **Predecessor** | 015-verification-and-closeout |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Both lanes complete 5/5 iterations, per-lane review reports exist, and every P0/P1 finding is confirmed-or-refuted against the repository |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,15 +57,18 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 16** of the code graph decommission deep review specification.
+This is **Phase 16** of the code graph decommission specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Read-only audit by external model lanes; fixes for confirmed findings land in the owning surfaces, not here. Lane artifacts write only under this child's `review/` directory.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phases 001–015 complete and committed.
+- The `cli-cursor` and `cli-opencode` executor kinds, both wired in the deep-loop runtime.
 
 **Deliverables**:
-- [To be defined during planning]
+- Two independent 5-iteration review lineages: `grok` (cli-cursor, `cursor-grok-4.5-high`) and `deepseek` (cli-opencode, `deepseek/deepseek-v4-pro`).
+- Per-lane `review-report.md` with P0/P1/P2 findings.
+- A triage record: each P0/P1 confirmed against the repo before any fix (a finding is a hypothesis, not a fact).
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +80,10 @@ This is **Phase 16** of the code graph decommission deep review specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The decommission touched five runtimes, the memory server's session payloads, the skill router's scoring lanes, fifty-plus command files, and four agent mirrors — verified so far only by the executing session's own checks. A change this broad deserves adversarial eyes that did not write it: an operator spot-check already caught six doctor assets the executing sweep missed, which is direct evidence that residue can survive self-review.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Have two unrelated external models independently audit every touched surface at forced full depth, so remaining regressions, residue, or overstated completion claims are found by reviewers with no authorship bias.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +92,21 @@ This is **Phase 16** of the code graph decommission deep review specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- All decommission-touched surfaces: `system-spec-kit/mcp-server`, `system-skill-advisor`, deep-loop runtime, `.opencode/commands` (doctor explicitly), the four agent mirrors, hooks and lifecycle scripts, and the packet's own completion claims.
+- The residual-sweep assertion that only inert string literals remain.
+- Honesty of the 001–015 closeout docs against the actual diffs.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Archived spec packets, changelogs, benchmark reports, `.worktrees/**` — historical record.
+- Re-litigating the ratified decision to retire structural search.
+- Unrelated concurrent-session work present in the branch history.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `review/**` | Create | Lane state, iterations, and per-lane review reports |
+| `implementation-summary.md` | Modify | Triage outcomes and closeout |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +118,17 @@ This is **Phase 16** of the code graph decommission deep review specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Both lanes run their full 5 iterations | `--stop-policy=max-iterations`; state records show 5/5 per lane, no early convergence stop |
+| REQ-002 | Lanes write only inside their lineage dirs | No out-of-scope repository edits from either lane |
+| REQ-003 | Every P0/P1 finding is verified before action | Each carries a confirmed/refuted verdict with file:line evidence |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-004 | Confirmed P0/P1 findings are fixed in the owning surface | Fix commits reference the finding; suites for the touched surface stay green |
+| REQ-005 | Both review reports survive to the packet | `review/lineages/{grok,deepseek}/review-report.md` present and non-empty |
+| REQ-006 | Stalled lanes are requeued, not abandoned | A lane killed by watchdog/timeout is restarted until 5/5 or a hard blocker is recorded |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +136,9 @@ This is **Phase 16** of the code graph decommission deep review specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: 10 recorded iterations total (5 grok + 5 deepseek), neither lane stopped by convergence.
+- **SC-002**: Zero unresolved P0 findings at closeout; P1s fixed or explicitly deferred with reason.
+- **SC-003**: The packet still validates at 0 errors after any fixes land.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +148,10 @@ This is **Phase 16** of the code graph decommission deep review specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Reviewer fabrication (seen in the research phase: two phantom findings) | Wasted fix work or false alarm | REQ-003 makes verification mandatory before action |
+| Risk | cli-opencode lane hangs at 0% CPU | Lane never completes | Runner injects the gate-bypass env and closes stdin; watchdog + requeue per REQ-006 |
+| Risk | Lane writes outside its lineage dir | Repository damage | Sibling-scope containment fix already shipped; neither kind is containment-gated, so monitor the ledger |
+| Dependency | Branch synced before review | Reviewers audit a moving target | Sync/push completes before the fan-out launches |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,27 +159,12 @@ This is **Phase 16** of the code graph decommission deep review specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Should confirmed P2 findings get a follow-up packet or be recorded and closed here?
 <!-- /ANCHOR:questions -->
 
 ---
 
-<!--
-CORE TEMPLATE (~80 lines)
-- Essential what/why/how only
-- No boilerplate sections
-- Add L2/L3 addendums for complexity
--->
-
-
 <!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
 **Given**
 **Given**
 **Given**

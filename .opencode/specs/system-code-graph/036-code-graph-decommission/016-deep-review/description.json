@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "system-code-graph/036-code-graph-decommission/016-deep-review",
-  "description": "Phase 1: deep-review",
+  "description": "The decommission touched five runtimes, the memory server's session payloads, the skill router's scoring lanes, fifty-plus command files, and four",
   "keywords": [
-    "phase",
-    "deep-review"
+    "decommission",
+    "touched",
+    "five",
+    "runtimes",
+    "memory",
+    "server",
+    "session",
+    "payloads",
+    "skill",
+    "router",
+    "scoring",
+    "lanes",
+    "fifty-plus",
+    "command",
+    "files",
+    "four"
   ],
-  "lastUpdated": "2026-07-28T05:29:53.136Z",
+  "lastUpdated": "2026-07-28T05:30:58.820Z",
   "specId": "016",
   "folderSlug": "deep-review",
   "parentChain": [
@@ -13,6 +28,5 @@
     "036-code-graph-decommission"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

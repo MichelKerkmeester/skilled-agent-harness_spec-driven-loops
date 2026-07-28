@@ -18,7 +18,8 @@
     "system-code-graph/036-code-graph-decommission/012-ci-and-binaries",
     "system-code-graph/036-code-graph-decommission/013-skill-deletion-and-daemon-reap",
     "system-code-graph/036-code-graph-decommission/014-historical-reference-policy",
-    "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
+    "system-code-graph/036-code-graph-decommission/015-verification-and-closeout",
+    "system-code-graph/036-code-graph-decommission/016-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -100,15 +101,15 @@
     ],
     "causal_summary": "The `system-code-graph` skill is not documentation — it is the live implementation of the `mkcodeindex` MCP server, hosting all eight `codegraph` tools, a SQLite graph store, and a CLI",
     "created_at": "2026-07-27T16:33:52Z",
-    "last_save_at": "2026-07-28T04:54:17.292Z",
+    "last_save_at": "2026-07-28T05:31:35.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6f77bf04bfc3ea655e4b6f1f2bb5c39f2ca8d5c8fbc581d9190b30970e7f763c",
+    "source_fingerprint": "sha256:ad2f57a7e52a866b658998df6013d8ec0270fd5748a9e91b2357fe9dfa17aa0f",
     "source_doc_hashes": {
-      "spec.md": "2210e7c458cf8f9b0061598ebbc5564977b53b4fead4993d4009be40bb41005f"
+      "spec.md": "070f0bd172414991c1e0b4d9dcecc371eb28b769d58b6791ea9f7f9575fbd165"
     },
     "last_active_child_id": null,
     "last_active_at": null
