@@ -1,1 +1,1 @@
-../../.opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh
+../../.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh

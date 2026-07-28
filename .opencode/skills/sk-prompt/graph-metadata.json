@@ -137,13 +137,13 @@
         "source": "derived"
       },
       {
-        "name": "prompt-improve",
+        "name": "sk-prompt-improve",
         "kind": "reference",
         "path": ".opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "prompt-models",
+        "name": "sk-prompt-models",
         "kind": "reference",
         "path": ".opencode/skills/sk-prompt/sk-prompt-models/SKILL.md",
         "source": "derived"
