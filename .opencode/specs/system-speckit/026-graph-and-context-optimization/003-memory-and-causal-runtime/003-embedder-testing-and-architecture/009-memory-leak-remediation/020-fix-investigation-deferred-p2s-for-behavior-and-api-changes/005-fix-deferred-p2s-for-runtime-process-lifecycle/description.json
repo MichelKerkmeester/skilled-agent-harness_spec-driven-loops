@@ -12,7 +12,7 @@
     "lifecycle",
     "code"
   ],
-  "lastUpdated": "2026-07-17T17:01:48.219Z",
+  "lastUpdated": "2026-07-21T05:58:28.851Z",
   "specId": "005",
   "folderSlug": "fix-deferred-p2s-for-runtime-process-lifecycle",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer",
   "description": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 8 runtime-neutral guard cores",
   "keywords": [
@@ -13,7 +14,7 @@
     "guard",
     "cores"
   ],
-  "lastUpdated": "2026-07-27T10:32:59.473Z",
+  "lastUpdated": "2026-07-27T18:14:30.721Z",
   "specId": "008",
   "folderSlug": "pi-hook-extension-layer",
   "parentChain": [
@@ -21,6 +22,5 @@
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

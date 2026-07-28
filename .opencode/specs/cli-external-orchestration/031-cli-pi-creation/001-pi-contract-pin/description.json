@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin",
   "description": "All 10 downstream phases of this packet plan their work against pi.dev's live-fetched documentation, not against a locally-installed and tested binary",
   "keywords": [
@@ -15,7 +16,7 @@
     "tested",
     "binary"
   ],
-  "lastUpdated": "2026-07-27T07:41:00.522Z",
+  "lastUpdated": "2026-07-27T18:14:30.716Z",
   "specId": "001",
   "folderSlug": "pi-contract-pin",
   "parentChain": [
@@ -23,6 +24,5 @@
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

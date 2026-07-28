@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
-  "description": "Stable logical branch identities, fenced worker ownership, deterministic wave admission, and ledger-only resume around the shipped capped pool.",
+  "description": "Stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that",
   "keywords": [
     "stable",
     "logical",
@@ -9,18 +9,18 @@
     "identities",
     "fenced",
     "worker",
-    "ownership",
-    "deterministic",
+    "leases",
+    "ordered",
     "wave",
-    "admission",
-    "ledger-only",
-    "resume",
-    "around",
-    "shipped",
+    "scheduling",
+    "existing",
     "capped",
-    "pool"
+    "pool",
+    "canonical",
+    "ledger",
+    "records"
   ],
-  "lastUpdated": "2026-07-21T04:47:10.881Z",
+  "lastUpdated": "2026-07-21T11:43:14.452Z",
   "specId": "003",
   "folderSlug": "logical-branch-ids-leases-waves",
   "parentChain": [

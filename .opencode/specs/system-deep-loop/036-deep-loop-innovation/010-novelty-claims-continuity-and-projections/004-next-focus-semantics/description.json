@@ -1,20 +1,23 @@
 {
   "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/004-next-focus-semantics",
-  "description": "Implemented a pivot-compatible deterministic next-focus selector with typed ledger replay and additive-dark authority.",
+  "description": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from",
   "keywords": [
-    "implemented",
-    "pivot-compatible",
+    "plan",
+    "typed",
     "deterministic",
     "next-focus",
-    "selector",
-    "typed",
-    "ledger",
-    "replay",
-    "additive-dark",
-    "authority"
+    "semantics",
+    "rank",
+    "coverage",
+    "gaps",
+    "open",
+    "contradictions",
+    "under-covered",
+    "semantic",
+    "communities"
   ],
-  "lastUpdated": "2026-07-21T08:28:57.475Z",
+  "lastUpdated": "2026-07-21T11:43:14.462Z",
   "specId": "004",
   "folderSlug": "next-focus-semantics",
   "parentChain": [

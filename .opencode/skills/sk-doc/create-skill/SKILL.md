@@ -52,6 +52,7 @@ SKILL AUTHORING REQUEST
     |   +- scripts/init_skill.py
     |   +- assets/skill/skill-md-template.md
     |   +- assets/skill/skill-readme-template.md
+    |   +- assets/skill/skill-sync-manifest-template.md
     |
     +- Parent hub -> workflowMode: create-skill-parent
         +- assets/parent-skill/parent-skill-hub-template.md
@@ -73,6 +74,7 @@ Ask one focused clarification before authoring if it is unclear whether the user
 | --- | --- | --- |
 | Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md` | Create or normalize standalone skill files. |
 | Resource templates | `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-smart-router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
+| Runtime sync manifests | `assets/skill/skill-sync-manifest-template.md` | Document how a runtime config dir derives from the canonical `.opencode` tree (SYNC manifest). |
 | Procedure cards | `assets/skill/skill-procedure-template.md` | Add a private, triggerable internal procedure to a skill or mode without a new public identity. |
 | Parent hubs | `assets/parent-skill/parent-skill-*` | Create hub SKILL, registry, router, description, and graph metadata files. |
 | Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
@@ -183,19 +185,20 @@ Follow these steps in order, skipping only when the target skill already exists 
 13. Delete generated example files and directories that the final skill does not need.
 14. Create reference markdown from `assets/skill/skill-reference-template.md`.
 15. Create asset markdown from `assets/skill/skill-asset-template.md`.
-16. Use kebab-case for generated filesystem names in `references/`, `assets/`, and other authored resource trees. Keep Python filenames, Python import-package directories, and tool-mandated names such as `SKILL.md` and `README.md` unchanged.
-17. Create `README.md` from `assets/skill/skill-readme-template.md` when operators need quick start, examples, troubleshooting, or a package map.
-18. Author `SKILL.md` as the executable runtime contract, not as a link farm.
-19. Keep `WHEN TO USE` limited to activation triggers, use cases, keyword triggers, and when-not-to-use boundaries.
-20. Put resource selection in `SMART ROUTING`, including detection signals, resource domains, loading levels, and smart-router pseudocode.
-21. Put the ordered execution path and decision points in `HOW IT WORKS`.
-22. Put required actions, forbidden actions, and escalation conditions in `RULES`.
-23. Put completion checks in `SUCCESS CRITERIA`.
-24. Put references only as overflow pointers for deep detail, examples, or schemas.
-25. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
-26. Fix every hard failure and rerun the check until it exits clean.
-27. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
-28. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
+16. When work creates or reshapes a runtime config dir (`.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.pi/`, or a new runtime), author or update that dir's `SYNC.md` from `assets/skill/skill-sync-manifest-template.md` and cross-link it from every sibling manifest.
+17. Use kebab-case for generated filesystem names in `references/`, `assets/`, and other authored resource trees. Keep Python filenames, Python import-package directories, and tool-mandated names such as `SKILL.md` and `README.md` unchanged.
+18. Create `README.md` from `assets/skill/skill-readme-template.md` when operators need quick start, examples, troubleshooting, or a package map.
+19. Author `SKILL.md` as the executable runtime contract, not as a link farm.
+20. Keep `WHEN TO USE` limited to activation triggers, use cases, keyword triggers, and when-not-to-use boundaries.
+21. Put resource selection in `SMART ROUTING`, including detection signals, resource domains, loading levels, and smart-router pseudocode.
+22. Put the ordered execution path and decision points in `HOW IT WORKS`.
+23. Put required actions, forbidden actions, and escalation conditions in `RULES`.
+24. Put completion checks in `SUCCESS CRITERIA`.
+25. Put references only as overflow pointers for deep detail, examples, or schemas.
+26. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
+27. Fix every hard failure and rerun the check until it exits clean.
+28. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
+29. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
 
 ### Required Standalone Skill Shape
 

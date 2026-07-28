@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration",
+  "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/001-model-registration",
   "description": "Kimi K2.7 Code (live slug `kimi-for-coding/k2p7`) is available on the dedicated \"Kimi For Coding\" coding-plan provider but is not registered anywhere",
   "keywords": [
     "kimi",
@@ -17,11 +17,12 @@
     "registered",
     "anywhere"
   ],
-  "lastUpdated": "2026-07-18T03:48:54.252Z",
+  "lastUpdated": "2026-07-24T13:10:49.845Z",
   "specId": "001",
   "folderSlug": "model-registration",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "023-kimi-k2-7-code-support"
   ],
   "memorySequence": 0,

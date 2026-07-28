@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/024-glm-5-2-support/001-model-registration",
+  "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/001-model-registration",
   "description": "GLM-5.2 (served through the Z.AI GLM Coding Plan, surfaced in opencode as \"Z.AI Coding Plan (api)\") is available to the operator but is not registered",
   "keywords": [
     "glm-5",
@@ -15,11 +15,12 @@
     "operator",
     "registered"
   ],
-  "lastUpdated": "2026-07-18T03:48:54.258Z",
+  "lastUpdated": "2026-07-24T13:10:49.857Z",
   "specId": "001",
   "folderSlug": "model-registration",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "024-glm-5-2-support"
   ],
   "memorySequence": 0,

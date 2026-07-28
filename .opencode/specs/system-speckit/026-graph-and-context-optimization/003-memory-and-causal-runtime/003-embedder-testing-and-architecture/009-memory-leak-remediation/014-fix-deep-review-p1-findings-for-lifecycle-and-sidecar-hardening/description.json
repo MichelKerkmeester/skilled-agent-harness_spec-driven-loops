@@ -14,7 +14,7 @@
     "issues",
     "advisories"
   ],
-  "lastUpdated": "2026-07-17T17:01:48.068Z",
+  "lastUpdated": "2026-07-21T05:58:28.824Z",
   "specId": "014",
   "folderSlug": "fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening",
   "parentChain": [

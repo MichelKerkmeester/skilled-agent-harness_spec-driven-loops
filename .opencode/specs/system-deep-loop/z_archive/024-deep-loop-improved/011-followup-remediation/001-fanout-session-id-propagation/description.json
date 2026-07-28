@@ -16,7 +16,7 @@
     "subprocess",
     "prompt"
   ],
-  "lastUpdated": "2026-07-18T03:48:56.747Z",
+  "lastUpdated": "2026-07-21T05:58:27.711Z",
   "specId": "001",
   "folderSlug": "fanout-session-id-propagation",
   "parentChain": [

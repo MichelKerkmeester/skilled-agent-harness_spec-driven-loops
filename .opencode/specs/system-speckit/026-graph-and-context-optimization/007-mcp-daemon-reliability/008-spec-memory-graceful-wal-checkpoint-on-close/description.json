@@ -15,7 +15,7 @@
     "checkpointing",
     "wal"
   ],
-  "lastUpdated": "2026-07-17T17:01:48.413Z",
+  "lastUpdated": "2026-07-21T05:58:28.952Z",
   "specId": "008",
   "folderSlug": "spec-memory-graceful-wal-checkpoint-on-close",
   "parentChain": [

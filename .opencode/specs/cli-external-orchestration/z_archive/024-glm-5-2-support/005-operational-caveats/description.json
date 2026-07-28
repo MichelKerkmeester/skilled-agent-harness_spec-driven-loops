@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/024-glm-5-2-support/005-operational-caveats",
+  "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/005-operational-caveats",
   "description": "The phase-1 profile records GLM-5.2's documented capabilities, but real dispatch behavior (reasoning-effort cost, thinking preservation,",
   "keywords": [
     "phase-1",
@@ -17,11 +17,12 @@
     "thinking",
     "preservation"
   ],
-  "lastUpdated": "2026-07-18T03:48:54.260Z",
+  "lastUpdated": "2026-07-24T13:10:49.863Z",
   "specId": "005",
   "folderSlug": "operational-caveats",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "024-glm-5-2-support"
   ],
   "memorySequence": 0,

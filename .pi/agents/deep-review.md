@@ -9,7 +9,6 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, detect_changes
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent

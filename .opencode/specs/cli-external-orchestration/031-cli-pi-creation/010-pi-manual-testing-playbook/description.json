@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook",
   "description": "`cli-codex`, `cli-devin`, and `cli-cursor` each ship a split-document manual-testing playbook (root file + category folders, `{PREFIX}-NNN` scenario",
   "keywords": [
@@ -17,7 +18,7 @@
     "nnn",
     "scenario"
   ],
-  "lastUpdated": "2026-07-27T11:34:43.538Z",
+  "lastUpdated": "2026-07-27T18:14:30.722Z",
   "specId": "010",
   "folderSlug": "pi-manual-testing-playbook",
   "parentChain": [
@@ -25,6 +26,5 @@
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

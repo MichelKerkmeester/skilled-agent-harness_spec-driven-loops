@@ -6,7 +6,6 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, external_directory
 ---
 
 # The Context Agent: Canonical Continuity Retrieval Specialist

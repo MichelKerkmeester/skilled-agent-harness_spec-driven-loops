@@ -93,7 +93,7 @@
     ],
     "causal_summary": "sk-git already documents the rules that would have prevented four separate incidents in a single session",
     "created_at": "2026-07-27T18:47:24Z",
-    "last_save_at": "2026-07-27T20:34:40.067Z",
+    "last_save_at": "2026-07-28T04:02:57.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -103,7 +103,7 @@
     "source_doc_hashes": {
       "spec.md": "1bdb231513e2fb7ab431c2dcd07807c2c06798c4d9d3a87e7df10eb57a13698b"
     },
-    "last_active_child_id": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
-    "last_active_at": "2026-07-27T20:34:40.067Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-28T04:02:57.789Z"
   }
 }

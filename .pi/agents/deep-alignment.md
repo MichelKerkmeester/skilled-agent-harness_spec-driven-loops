@@ -7,7 +7,6 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory
 ---
 
 # The Deep Aligner: Iterative Conformance-Audit Agent

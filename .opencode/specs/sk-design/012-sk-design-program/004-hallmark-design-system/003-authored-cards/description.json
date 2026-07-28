@@ -1,20 +1,16 @@
 {
   "level": "2",
   "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/003-authored-cards",
-  "description": "Seven independently authored structural fingerprint cards with load-on-demand routing and evidence-envelope diversification",
+  "description": "sk-design has no independently-authored library of abstract structural-fingerprint cards",
   "keywords": [
-    "seven",
-    "independently",
-    "authored",
-    "structural",
-    "fingerprint",
-    "cards",
-    "load-on-demand",
-    "routing",
-    "evidence-envelope",
-    "diversification"
+    "sk-design",
+    "independently-authored",
+    "library",
+    "abstract",
+    "structural-fingerprint",
+    "cards"
   ],
-  "lastUpdated": "2026-07-22T18:32:58.452Z",
+  "lastUpdated": "2026-07-23T05:36:34.416Z",
   "specId": "003",
   "folderSlug": "authored-cards",
   "parentChain": [

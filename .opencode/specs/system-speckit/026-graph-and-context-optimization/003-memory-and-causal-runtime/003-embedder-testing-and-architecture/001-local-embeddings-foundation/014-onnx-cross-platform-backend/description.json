@@ -11,7 +11,7 @@
     "sentence-transformers",
     "pytorch"
   ],
-  "lastUpdated": "2026-07-17T17:01:48.294Z",
+  "lastUpdated": "2026-07-21T05:58:28.608Z",
   "specId": "014",
   "folderSlug": "onnx-cross-platform-backend",
   "parentChain": [

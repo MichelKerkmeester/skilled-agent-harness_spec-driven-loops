@@ -9,7 +9,6 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: external_directory
 ---
 
 # The Recursive Agent: Proposal-Only Mutator
