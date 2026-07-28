@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-git/016-git-action-advisory-hook/005-destructive-tier",
+  "description": "The first ten rules covered the success-while-doing-less class",
+  "keywords": [
+    "first",
+    "ten",
+    "rules",
+    "covered",
+    "success-while-doing-less",
+    "class"
+  ],
+  "lastUpdated": "2026-07-28T03:39:58.227Z",
+  "specId": "005",
+  "folderSlug": "destructive-tier",
+  "parentChain": [
+    "sk-git",
+    "016-git-action-advisory-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

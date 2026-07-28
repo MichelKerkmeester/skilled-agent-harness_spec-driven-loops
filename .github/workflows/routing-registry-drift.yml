@@ -19,6 +19,12 @@ on:
       - '.opencode/skills/sk-doc/create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/create-skill/references/parent-skill/**'
       - '.opencode/skills/*/SKILL.md'
+      - '.opencode/skills/*/leaf-manifest.json'
+      - '.opencode/skills/*/leaf-manifest.config.json'
+      - '.opencode/skills/*/leaf-aliases.json'
+      - '.opencode/skills/*/description.json'
+      - '.opencode/skills/*/graph-metadata.json'
+      - '.opencode/skills/sk-doc/create-skill/scripts/**'
       - '.opencode/bin/compiled-route*'
       - '.opencode/bin/lib/compiled-route*'
       - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
@@ -33,6 +39,12 @@ on:
       - '.opencode/skills/sk-doc/create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/create-skill/references/parent-skill/**'
       - '.opencode/skills/*/SKILL.md'
+      - '.opencode/skills/*/leaf-manifest.json'
+      - '.opencode/skills/*/leaf-manifest.config.json'
+      - '.opencode/skills/*/leaf-aliases.json'
+      - '.opencode/skills/*/description.json'
+      - '.opencode/skills/*/graph-metadata.json'
+      - '.opencode/skills/sk-doc/create-skill/scripts/**'
       - '.opencode/bin/compiled-route*'
       - '.opencode/bin/lib/compiled-route*'
       - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
@@ -84,3 +96,13 @@ jobs:
             echo "── parent-skill-check: $hub"
             node .opencode/commands/doctor/scripts/parent-skill-check.cjs "$hub"
           done
+      - name: Skill-root metadata class contract — every root, hub or standalone
+        # The per-hub loop above enrolls only registry-bearing hubs, which is exactly
+        # how standalone roots drifted unnoticed. This gate discovers every root from
+        # its SKILL.md, classifies it, enforces the class-required/forbidden file set,
+        # and byte-checks generated manifests and derived alias projections — so a
+        # missing file is a failure here, not a silence.
+        run: |
+          set -euo pipefail
+          node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs
+          node .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs

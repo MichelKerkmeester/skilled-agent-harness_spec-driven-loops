@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter"
-    last_updated_at: "2026-07-15T23:10:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped sealed-ledger layers to resume decisions"
-    next_safe_action: "Resolve frontier and matrix-cell identity rules with shared contracts"
+    last_updated_at: "2026-07-28T05:35:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the authenticated resume decision layer"
+    next_safe_action: "Consume the frozen adapter in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,8 +35,8 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / model-benchmark child phase |
-| **Change class** | Planning contract: sealed-ledger reconstruction and idempotent re-entry |
-| **Execution** | Plan against the frozen ledger, reducer, shared-service, and phase-012 contracts; no authority cutover or runtime implementation in this phase |
+| **Change class** | Additive-dark runtime: sealed-ledger reconstruction and idempotent re-entry |
+| **Execution** | Implement against the frozen ledger, reducer, certificate, sealed-store, shared-service, and phase-012 contracts without authority cutover |
 
 ### Overview
 
@@ -50,22 +53,22 @@ budget, effect-recovery, and authority semantics are referenced, not reimplement
 
 ### Definition of Ready
 
-- [ ] The sealed-ledger contract identifies the finalized frontier, tail hash, stream high-watermarks, and authorized resume receipt boundary
-- [ ] `001-typed-ledger-schema` and `002-reducers-and-projections` expose stable event, reducer, projection, identity, and fingerprint inputs
-- [ ] Deep-improvement-common mode 004 ownership is recorded for evaluator, canary, promotion, receipt, budget, lock, and effect-recovery services
-- [ ] The continuity-ladder mapping names every source layer and the state each layer contributes to re-entry
-- [ ] The matrix-cell action table distinguishes reuse, reconcile, re-execute, compensate, unknown, and block without relying on labels or file presence
-- [ ] The phase remains planning-only and scoped to this target folder; phase 013 migration work and the six sibling concerns remain excluded
+- [x] The sealed-ledger contract identifies the finalized frontier, tail hash, stream high-watermarks, and authorized resume receipt boundary
+- [x] `001-typed-ledger-schema` and `002-reducers-and-projections` expose stable event, reducer, projection, identity, and fingerprint inputs
+- [x] Deep-improvement-common mode 004 ownership is recorded for evaluator, canary, promotion, receipt, budget, lock, and effect-recovery services
+- [x] The continuity-ladder mapping names every source layer and the state each layer contributes to re-entry
+- [x] The matrix-cell action table distinguishes reuse, reconcile, re-execute, compensate, unknown, and block without relying on labels or file presence
+- [x] The implementation remains additive-dark and scope-locked; phase 013 authority migration and the six sibling concerns remain excluded
 
 ### Definition of Done
 
-- [ ] A sealed-ledger fold and compatibility gate are specified for complete and checkpointed resume
-- [ ] Stable logical cell, operation, event, receipt, and attempt identities are documented
-- [ ] Duplicate and conflicting re-entry behavior is explicit and idempotent
-- [ ] Unknown effects and lost or late evidence have a safe recovery path through shared services
-- [ ] Model-specific scoring and workload semantics are retained without duplicating common evaluator or promotion authority
-- [ ] The resume contract supplies deterministic fingerprints and receipts for `006-shadow-parity` and the later mode gate
-- [ ] The phase checklist and strict spec validation are green
+- [x] A sealed-ledger fold and compatibility gate are specified for complete and checkpointed resume
+- [x] Stable logical cell, operation, event, receipt, and attempt identities are documented
+- [x] Duplicate and conflicting re-entry behavior is explicit and idempotent
+- [x] Unknown effects and lost or late evidence have a safe recovery path through shared services
+- [x] Model-specific scoring and workload semantics are retained without duplicating common evaluator or promotion authority
+- [x] The resume contract supplies deterministic fingerprints and receipts for `006-shadow-parity` and the later mode gate
+- [x] The phase checklist and strict spec validation are green
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -183,10 +186,10 @@ validator is the documentation gate.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase creates planning documents only and performs no runtime replay, ledger append, projection mutation, provider call,
-or authority change. If later implementation fails parity or discovers a compatibility defect, disable the new resume adapter,
-retain the sealed ledger and prior reducer projection, and keep the legacy Model Benchmark path authoritative. Rebuild from the
-last known-good sealed frontier after correcting the reducer or compatibility contract; never delete, rewrite, or reclassify
-raw trial evidence to make a resume plan pass. A path-scoped git revert restores the prior adapter and shared-service
-references while preserving replay fixtures and receipts.
+This phase adds a dark decision adapter and performs no ledger append, projection mutation, provider call, or authority
+change. If parity discovers a compatibility defect, disable the new resume adapter, retain the sealed ledger and prior
+reducer projection, and keep the legacy Model Benchmark path authoritative. Rebuild from the last known-good sealed frontier
+after correcting the reducer or compatibility contract; never delete, rewrite, or reclassify raw trial evidence to make a
+resume plan pass. A path-scoped git revert removes the adapter and shared-service references while preserving replay
+fixtures and receipts.
 <!-- /ANCHOR:rollback -->

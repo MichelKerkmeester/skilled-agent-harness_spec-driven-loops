@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-git/017-config-filter-transparency",
+  "description": "A `maintainer-flags` clean filter maps four config files so that the committed blob differs from the file on disk: the working copies carry `\"true\"`",
+  "keywords": [
+    "maintainer-flags",
+    "clean",
+    "filter",
+    "maps",
+    "four",
+    "config",
+    "files",
+    "committed",
+    "blob",
+    "differs",
+    "file",
+    "disk",
+    "working",
+    "copies",
+    "carry",
+    "true"
+  ],
+  "lastUpdated": "2026-07-28T03:41:27.820Z",
+  "specId": "017",
+  "folderSlug": "config-filter-transparency",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

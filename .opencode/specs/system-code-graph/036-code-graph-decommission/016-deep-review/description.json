@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-code-graph/036-code-graph-decommission/016-deep-review",
+  "description": "Phase 1: deep-review",
+  "keywords": [
+    "phase",
+    "deep-review"
+  ],
+  "lastUpdated": "2026-07-28T05:29:53.136Z",
+  "specId": "016",
+  "folderSlug": "deep-review",
+  "parentChain": [
+    "system-code-graph",
+    "036-code-graph-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

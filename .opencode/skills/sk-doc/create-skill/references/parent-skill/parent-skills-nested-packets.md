@@ -53,7 +53,7 @@ Core rules:
 - **Mode kind**: every mode entry declares `packetKind: "workflow" | "surface" | "transport"`. Workflow and surface are the two primary axes; `transport` is a narrow third kind for packets that bridge to an external tool's CLI/MCP surface (declared via the `transport-axis` extension) and never perform the hub's own judgment.
 - **Workflow packets**: process or lifecycle modes such as implement, quality, review, research, or audit. They may mutate or stay read-only according to their role.
 - **Surface packets**: read-only evidence bases such as `code-webflow` or `code-opencode` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
-- **One advisor identity**: only the hub has `graph-metadata.json` and `description.json` (the advisor-routable metadata pair); packets never carry their own. No mode packet or `shared/` directory holds either file.
+- **One advisor identity**: only the hub has `graph-metadata.json` and `description.json` (the advisor-routable metadata pair); packets never carry their own. No mode packet or `shared/` directory holds either file. The full per-class rule for every root-level metadata JSON — including why `description.json` is hub-only — is canonical in [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md).
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
 

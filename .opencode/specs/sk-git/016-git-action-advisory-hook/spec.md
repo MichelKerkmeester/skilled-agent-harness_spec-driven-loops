@@ -120,6 +120,8 @@ The last row is the most damaging and the only one with no rule. A pathspec comm
 | 002 | `002-rule-encoding/` | Encode sk-git rules as `hard_rules:` frontmatter | Planned |
 | 003 | `003-preflight-hook/` | The advisory hook and its wiring | Planned |
 | 004 | `004-pathspec-integrity/` | The commit-integrity check that has no rule today | Planned |
+| 005 | `005-destructive-tier/` | The retained destructive rules, each narrowed to positive state | Complete |
+| 006 | `006-runtime-parity/` | One runtime-agnostic hook serving Claude and Codex | Complete |
 
 | 1 | 001-advisory-research/ | [Phase 1 scope] | Pending |
 | 2 | 002-rule-encoding/ | [Phase 2 scope] | Pending |

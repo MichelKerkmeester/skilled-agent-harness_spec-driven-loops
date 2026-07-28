@@ -1,13 +1,28 @@
 [
   {
     "workflowMode": "mcp-code-mode",
-    "leafResourceId": "references/naming-convention.md",
-    "diskPath": "references/naming-convention.md"
+    "leafResourceId": "assets/config-template.md",
+    "diskPath": "assets/config-template.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "assets/env-template.md",
+    "diskPath": "assets/env-template.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "references/architecture.md",
+    "diskPath": "references/architecture.md"
   },
   {
     "workflowMode": "mcp-code-mode",
     "leafResourceId": "references/configuration.md",
     "diskPath": "references/configuration.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "references/naming-convention.md",
+    "diskPath": "references/naming-convention.md"
   },
   {
     "workflowMode": "mcp-code-mode",
@@ -18,20 +33,5 @@
     "workflowMode": "mcp-code-mode",
     "leafResourceId": "references/workflows.md",
     "diskPath": "references/workflows.md"
-  },
-  {
-    "workflowMode": "mcp-code-mode",
-    "leafResourceId": "references/architecture.md",
-    "diskPath": "references/architecture.md"
-  },
-  {
-    "workflowMode": "mcp-code-mode",
-    "leafResourceId": "assets/config-template.md",
-    "diskPath": "assets/config-template.md"
-  },
-  {
-    "workflowMode": "mcp-code-mode",
-    "leafResourceId": "assets/env-template.md",
-    "diskPath": "assets/env-template.md"
   }
 ]

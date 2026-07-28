@@ -143,12 +143,18 @@ routes:
     gate3_location: "n/a (read-only structural audit; inspects a parent skill's graph-metadata/registry and reports, no writes)"
     mcp_tools: []   # script-only structural audit; no MCP calls
     script_invocations:
+      # The fleet class gate runs first: it starts from SKILL.md, so it is the only
+      # check that can report a metadata file a root never wrote. The per-hub audit
+      # then goes deep on the one directory the operator named.
+      - 'node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs'
       - 'node .opencode/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
     trigger_phrases:
       - "parent skill structure audit"
       - "nested mode packet check"
       - "mode-registry drift guard"
       - "single graph-metadata identity"
+      - "skill root metadata contract"
+      - "missing skill json files"
 
   - target: skill-graph-freshness
     yaml: doctor-skill-graph-freshness.yaml

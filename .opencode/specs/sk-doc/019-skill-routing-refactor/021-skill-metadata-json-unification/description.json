@@ -1,17 +1,19 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
-  "description": "A census of the 12 skill roots produces twelve distinct metadata shapes",
+  "description": "The authoring-time census of 12 skill roots produced twelve distinct metadata shapes",
   "keywords": [
+    "authoring-time",
     "census",
     "skill",
     "roots",
-    "produces",
+    "produced",
     "twelve",
     "distinct",
     "metadata",
     "shapes"
   ],
-  "lastUpdated": "2026-07-27T17:48:54.762Z",
+  "lastUpdated": "2026-07-28T04:11:05.214Z",
   "specId": "021",
   "folderSlug": "skill-metadata-json-unification",
   "parentChain": [

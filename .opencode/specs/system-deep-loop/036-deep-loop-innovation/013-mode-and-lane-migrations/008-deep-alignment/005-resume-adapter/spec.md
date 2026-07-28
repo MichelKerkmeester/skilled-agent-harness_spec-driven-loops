@@ -14,11 +14,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter"
     last_updated_at: "2026-07-15T23:30:00Z"
     last_updated_by: "opencode"
-    recent_action: "Scoped ledger-only recovery for authority-bound alignment lanes"
-    next_safe_action: "Map shared review events to the alignment continuity ladder"
+    recent_action: "Implemented certificate-bound alignment resume decisions"
+    next_safe_action: "Shadow parity consumes the closed resume evidence"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Phase 013 Deep Alignment fan-out; resume-adapter concern from the typed ledger migration |
@@ -57,18 +57,17 @@ witnesses, applies visible deviations, and derives a conformance result. An inte
 boundaries. A mutable last-action note or current authority file cannot establish whether an observation, proof, deviation,
 or report projection was already committed, nor whether it remains comparable under a changed authority or verifier.
 
-This phase plans a **Resume Adapter** whose only authoritative input is the sealed ledger frontier. It must validate the seal,
+This phase implements a **Resume Adapter** whose only authoritative input is the sealed ledger frontier. It validates the seal,
 fold the accepted event prefix through the shared reducers, and rebuild the Deep Alignment continuity ladder from authority
 binding through lane completion and terminal handoff. Re-entry must distinguish reusable compatible evidence from affected
 re-execution, reconciliation, compensation, or rejection. It must preserve raw detector observations, proof-carrying
 verification, authority compatibility, applicability, and deviation events as immutable facts while deriving lane verdicts and
 conformance presentation from the folded state.
 
-The adapter reuses the shared review-loop backbone frozen for Deep Review mode 002 in phase 012. The per-mode migration
-execution lands only after the shared contracts and write-set conflict graph are frozen. This phase is planning only: it does
+The adapter reuses the shared review-loop backbone frozen for Deep Review mode 002 in phase 012. The implementation does
 not define the shared backbone, implement the six sibling concerns, move authority, or solve the mode gate.
 The Deep Alignment schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
-Planned adapter consumes them without moving authority.
+implemented adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

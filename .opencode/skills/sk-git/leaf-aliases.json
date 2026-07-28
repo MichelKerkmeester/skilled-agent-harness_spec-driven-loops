@@ -1,0 +1,332 @@
+[
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "assets/commit-message-template.md",
+    "diskPath": "assets/commit-message-template.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "assets/pr-template.md",
+    "diskPath": "assets/pr-template.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "assets/worktree-checklist.md",
+    "diskPath": "assets/worktree-checklist.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/remote-platform-integration/github-mcp-integration.md",
+    "diskPath": "feature-catalog/remote-platform-integration/github-mcp-integration.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
+    "diskPath": "feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/session-lifecycle/continuous-integration-autosync.md",
+    "diskPath": "feature-catalog/session-lifecycle/continuous-integration-autosync.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md",
+    "diskPath": "feature-catalog/session-lifecycle/launch-wrapper-session-isolation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/session-lifecycle/worktree-reaper.md",
+    "diskPath": "feature-catalog/session-lifecycle/worktree-reaper.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/workflow-playbooks/conventional-commit-workflows.md",
+    "diskPath": "feature-catalog/workflow-playbooks/conventional-commit-workflows.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/workflow-playbooks/finish-and-integration-workflows.md",
+    "diskPath": "feature-catalog/workflow-playbooks/finish-and-integration-workflows.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/workflow-playbooks/large-reorg-playbook.md",
+    "diskPath": "feature-catalog/workflow-playbooks/large-reorg-playbook.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/workflow-playbooks/numbered-worktree-workflows.md",
+    "diskPath": "feature-catalog/workflow-playbooks/numbered-worktree-workflows.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/worktree-naming/owner-first-worktree-naming.md",
+    "diskPath": "feature-catalog/worktree-naming/owner-first-worktree-naming.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/worktree-naming/pre-push-naming-enforcement.md",
+    "diskPath": "feature-catalog/worktree-naming/pre-push-naming-enforcement.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/co-authored-by-footer.md",
+    "diskPath": "manual-testing-playbook/commit-formation/co-authored-by-footer.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/conventional-commit-from-diff.md",
+    "diskPath": "manual-testing-playbook/commit-formation/conventional-commit-from-diff.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md",
+    "diskPath": "manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md",
+    "diskPath": "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md",
+    "diskPath": "manual-testing-playbook/cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/cross-cli-orchestration/cli-opencode-delegation.md",
+    "diskPath": "manual-testing-playbook/cross-cli-orchestration/cli-opencode-delegation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/cross-cli-orchestration/native-claude-code-invocation.md",
+    "diskPath": "manual-testing-playbook/cross-cli-orchestration/native-claude-code-invocation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/integration-and-pr/branch-cleanup-after-merge.md",
+    "diskPath": "manual-testing-playbook/integration-and-pr/branch-cleanup-after-merge.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/integration-and-pr/failing-tests-block-merge.md",
+    "diskPath": "manual-testing-playbook/integration-and-pr/failing-tests-block-merge.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md",
+    "diskPath": "manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/integration-and-pr/finish-merge-to-main.md",
+    "diskPath": "manual-testing-playbook/integration-and-pr/finish-merge-to-main.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/create-owner-first-and-detached-worktrees.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/locked-unique-number-allocation.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/locked-unique-number-allocation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/orchestrated-child-execs-in-place.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/orchestrated-child-execs-in-place.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/owner-slug-branch-pair-validation.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/owner-slug-branch-pair-validation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-gates-only-new-branches.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-gates-only-new-branches.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-migration-tolerance.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-migration-tolerance.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-never-blocks-release-branches.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-never-blocks-release-branches.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-skip-env-bypass.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-skip-env-bypass.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/runtime-identity-validation.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/runtime-identity-validation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/session-activity-marker.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/session-activity-marker.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/shared-artifact-symlink-containment.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/shared-artifact-symlink-containment.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/top-level-session-isolation.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/top-level-session-isolation.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/wrapper-lane-exemption-vs-illegal-owner.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/wrapper-lane-exemption-vs-illegal-owner.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/recovery-and-edge-cases/accidental-commit-wrong-branch.md",
+    "diskPath": "manual-testing-playbook/recovery-and-edge-cases/accidental-commit-wrong-branch.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/recovery-and-edge-cases/empty-commit-or-no-changes.md",
+    "diskPath": "manual-testing-playbook/recovery-and-edge-cases/empty-commit-or-no-changes.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/recovery-and-edge-cases/merge-conflict-resolution.md",
+    "diskPath": "manual-testing-playbook/recovery-and-edge-cases/merge-conflict-resolution.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/recovery-and-edge-cases/rebase-vs-merge-decision.md",
+    "diskPath": "manual-testing-playbook/recovery-and-edge-cases/rebase-vs-merge-decision.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/safety-refusals/amend-published-commit-refused.md",
+    "diskPath": "manual-testing-playbook/safety-refusals/amend-published-commit-refused.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/safety-refusals/force-push-to-main-refused.md",
+    "diskPath": "manual-testing-playbook/safety-refusals/force-push-to-main-refused.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/safety-refusals/no-verify-bypass-refused.md",
+    "diskPath": "manual-testing-playbook/safety-refusals/no-verify-bypass-refused.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/safety-refusals/secrets-in-diff-refused.md",
+    "diskPath": "manual-testing-playbook/safety-refusals/secrets-in-diff-refused.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/worktree-setup/current-branch-no-worktree.md",
+    "diskPath": "manual-testing-playbook/worktree-setup/current-branch-no-worktree.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/worktree-setup/fresh-feature-isolated-worktree.md",
+    "diskPath": "manual-testing-playbook/worktree-setup/fresh-feature-isolated-worktree.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/worktree-setup/stay-on-main-no-feature-branches.md",
+    "diskPath": "manual-testing-playbook/worktree-setup/stay-on-main-no-feature-branches.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/commit-workflows.md",
+    "diskPath": "references/commit-workflows.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/config-content-filters.md",
+    "diskPath": "references/config-content-filters.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/continuous-integration.md",
+    "diskPath": "references/continuous-integration.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/finish-workflows.md",
+    "diskPath": "references/finish-workflows.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/github-mcp-integration.md",
+    "diskPath": "references/github-mcp-integration.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/gitkraken-mcp-integration.md",
+    "diskPath": "references/gitkraken-mcp-integration.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/large-reorg-playbook.md",
+    "diskPath": "references/large-reorg-playbook.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/quick-reference.md",
+    "diskPath": "references/quick-reference.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/remote-branch-policy.md",
+    "diskPath": "references/remote-branch-policy.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/shared-patterns.md",
+    "diskPath": "references/shared-patterns.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "references/worktree-workflows.md",
+    "diskPath": "references/worktree-workflows.md"
+  }
+]

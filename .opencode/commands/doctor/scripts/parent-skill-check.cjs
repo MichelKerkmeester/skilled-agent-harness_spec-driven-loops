@@ -1235,6 +1235,46 @@ function main() {
   }
 
   // ───────────────────────────────────────────────────────────────
+  // 11. Root-metadata class contract (canon: FAIL by default)
+  //
+  // Checks 1-10 each assume the target is a hub and gate one file at a time,
+  // so a root that adopted none of them produced silence rather than findings.
+  // The shared classifier decides the root's class from its own authored
+  // declaration first, then reports the whole required/forbidden/overlay set at
+  // once — which is what makes a never-adopted file reportable here.
+  // ───────────────────────────────────────────────────────────────
+  const rootContractPath = path.join(
+    path.dirname(target), 'sk-doc', 'create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs',
+  );
+  if (!fs.existsSync(rootContractPath)) {
+    softFail('11-lib: the shared skill-root metadata contract library is missing under sk-doc/create-skill/scripts/lib/');
+  } else {
+    let rootContract = null;
+    try {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      rootContract = require(rootContractPath);
+    } catch (e) {
+      softFail(`11-lib: failed to load the skill-root metadata contract library: ${e.message}`);
+    }
+    if (rootContract) {
+      const presence = {};
+      for (const name of rootContract.METADATA_FILES) {
+        presence[name] = fs.existsSync(path.join(target, name));
+      }
+      const evaluation = rootContract.evaluateRoot(basename, presence);
+      if (evaluation.skillClass === null) {
+        softFail(`11a-class: ${evaluation.reason}`);
+      } else if (evaluation.violations.length === 0) {
+        pass(`11a-class: root metadata conforms to class ${evaluation.skillClass} (${evaluation.reason})`);
+      } else {
+        for (const violation of evaluation.violations) {
+          softFail(`11a-class: ${violation.code} — ${violation.message}`);
+        }
+      }
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────
   // SUMMARY
   // ───────────────────────────────────────────────────────────────
   console.log('');

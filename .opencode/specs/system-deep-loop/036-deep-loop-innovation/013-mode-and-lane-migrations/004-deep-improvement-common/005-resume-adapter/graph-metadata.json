@@ -39,14 +39,36 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-resume-adapter.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement-common-resume-adapter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-resume-adapter.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +91,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -144,15 +172,21 @@
         "source": "derived"
       },
       {
-        "name": "seal",
+        "name": "dark-only",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "explicit",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,43 +194,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder mapping, idempotent re-entry, and the shared evaluator, canary, and guarded-promotion service contracts reused by the three benchmark variants.",
     "created_at": "2026-07-16T03:43:36.808Z",
-    "last_save_at": "2026-07-24T07:16:37.762Z",
+    "last_save_at": "2026-07-27T23:01:43.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:336bc1598f9d914806e362a5ca423273cefd5f2483f18840a465513e2f5dbdd2",
+    "source_fingerprint": "sha256:2e672e257555164dfa5bec19762d2f8893066e01bcb973e4a12a0336bf45c74c",
     "source_doc_hashes": {
-      "spec.md": "a74e92109f2816ab2fc443b64f1b6d532d82752088805b7cdb96b430022504e4",
-      "plan.md": "4f2642f7cfa686c57a4ada61c30656f17b172962e7423d2c57becc5cae6f5673",
-      "tasks.md": "de814324f66bed0b23f4630017bad8103cd71679e0117d435bc196be00b54fcd",
-      "checklist.md": "6b49c15ddb41b9da5c0a566a0b35beff28e680a84d4af01eeebf0768c8988184"
+      "spec.md": "902ea6e3bdba4e5c165c04526bd0165ba9d13492699d737306539e3aee625626",
+      "plan.md": "abb08f810f1bffd9d645c1f6bc945073776c8b9e563c1c34fd8ce29bed720c52",
+      "tasks.md": "8a7f3aa01341217f3d14f5a5ab945407a86c4c11b8400c6f22b529d1a0d2b97c",
+      "checklist.md": "3cdbdaea05792df759c8e484fa5b8afb5b853e3cc3f781cbc484bfb346289926",
+      "implementation-summary.md": "60642d99c04d2b56f247295d3d84bf04564b3e049fc18a5bd5013ac586cc5459"
     },
     "last_active_child_id": null,
     "last_active_at": null

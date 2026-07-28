@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:50:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped Agent Improvement certificates and transition receipts over common services"
-    next_safe_action: "Freeze certificate fields and verifier vectors against phase-007 primitives"
+    last_updated_at: "2026-07-27T18:49:19Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Agent Improvement certificates and receipts"
+    next_safe_action: "Resume adapter can consume verified evidence bundles"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Formal depends_on** | [] |
@@ -49,13 +49,13 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Agent Improvement generates and scores mutable agent proposals across a lineage of target definitions, operator choices, evaluator observations, and promotion decisions. Its typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and non-authoritative while this leaf stays Planned. A terminal score or status does not prove which proposal, evaluator epoch, canary set, executor, budget, or prior transition produced it, and it cannot be independently replayed after the live services change. The typed ledger therefore needs a mode-specific per-run certificate and receipts for every proposal/scoring/promotion transition.
+Agent Improvement generates and scores mutable agent proposals across a lineage of target definitions, operator choices, evaluator observations, and promotion decisions. Its typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, and this leaf now adds the additive-dark evidence layer without changing authority. A terminal score or status alone does not prove which proposal, evaluator epoch, canary set, executor, budget, or prior transition produced it. The implemented certificate and receipts bind that evidence for independent replay after live services change.
 
 The certificate must attest to the completed Agent Improvement run without making the certificate itself the evaluator. Each receipt must bind one authorized transition to its ordered inputs, outputs, predecessor receipts, and evidence digests. Replay fingerprints must make the relevant dependency closure explicit, while an offline verifier must recompute the fingerprints and reject missing, reordered, mutated, stale, or unauthorized evidence.
 
 ### Purpose
 
-Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, references deep-improvement-common evaluator/canary/promotion services, and can be re-verified offline before the mode gate accepts shadow parity.
+Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves deep-improvement-common evaluator/canary/promotion identities, and can be re-verified offline before the mode gate accepts shadow parity.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -142,11 +142,13 @@ remains advisory rather than an authority or score input.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
-- Which canonical certificate and receipt-root algorithm is fixed by the phase-007 primitives, and which fields remain mode-owned extensions?
-- Does the Agent Improvement receipt reference common-service receipts by stable ID only, or also carry a typed projection needed by the offline verifier?
-- Which event namespace and transition vocabulary does phase 012 freeze for proposal, evaluation, canary, promotion, rollback, and closure transitions?
-- What disclosure transition releases exact evaluator scores or protected fixture identities after candidate optimization ends?
-- Which verifier failure codes are shared across modes and which Agent Improvement codes belong in the mode-specific contract?
+No implementation questions remain. Resolved decisions:
+
+- Canonical certificate and receipt digests use `event-envelope` canonical bytes and SHA-256 through the shipped substrate.
+- Agent Improvement preserves the exact common certificate plus ordered common receipt identities and invokes the common offline verifier.
+- The mode-owned transition order is `proposal-created`, `score-reduced`, then `benchmark-evidence-recorded`.
+- Protected evaluator disclosure remains represented and verified by the common certificate boundary.
+- The mode exports a closed `AgentImprovementCertificateFailureCodes` vocabulary while preserving common verifier results at its boundary.
 <!-- /ANCHOR:questions -->

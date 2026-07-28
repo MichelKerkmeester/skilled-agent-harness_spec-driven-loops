@@ -12,13 +12,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:40:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Established ledger-only resume scope and shared service ownership"
-    next_safe_action: "Define reducer mapping and idempotent re-entry fixtures"
+    last_updated_at: "2026-07-27T21:56:30Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the authenticated resume decision adapter"
+    next_safe_action: "Consume the frozen contract in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-improvement common services) |
 | **Origin** | Resume Adapter child of the deep-improvement common migration under phase 013 |
@@ -64,8 +67,8 @@ stable logical identities plus idempotency receipts to prevent double-apply, los
 must treat immutable LLM or executor observations as history inputs; replay re-runs orchestration over those observations rather
 than regenerating them.
 
-The Deep Improvement Common schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark;
-this Planned adapter consumes them without moving authority.
+The Deep Improvement Common schema, reducer/projection, sealed-artifact, and certificate predecessor leaves are LANDED but
+additive-dark; this implemented adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

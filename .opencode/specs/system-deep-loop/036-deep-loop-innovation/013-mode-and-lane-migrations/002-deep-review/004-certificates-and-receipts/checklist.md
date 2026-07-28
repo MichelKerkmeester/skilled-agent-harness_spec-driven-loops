@@ -13,16 +13,16 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the Deep Review attestation boundary and verifier inputs"
-    next_safe_action: "Finalize receipt and certificate fields against phases 003 and 009"
+    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact phase-007 certificate primitive signs or seals the run certificate?"
-      - "Which receipt states are canonical for unresolved report findings?"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-certificates.vitest.ts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "Planned scope excludes authority cutover and resume policy"
+      - "Implemented scope excludes authority cutover and resume policy"
 ---
 # Checklist: Deep Review - Certificates & Receipts
 
@@ -44,74 +44,74 @@ verifier dependency on live services, or unexpected tracked mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase `003-sealed-artifacts` publishes the receipt and certificate primitives, seal/reference format, and verification hooks
-- [ ] CHK-002 [P0] Phase 012 publishes the shared review-loop, transition, lineage, replay, report-reference, and write-set contracts
-- [ ] CHK-003 [P0] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references
-- [ ] CHK-004 [P1] The current Deep Review lifecycle and receipt-bearing boundaries are inventoried from the mode state, evidence, adjudication, convergence, synthesis, report, and continuity records
-- [ ] CHK-005 [P1] The receipt ownership matrix names one owner for every shared, mode, effect, certificate, report, and later resume transition
-- [ ] CHK-006 [P2] The candidate report records the phase revisions, certificate/receipt revisions, fingerprint manifest hash, and trusted offline bundle hash
+- [x] CHK-001 [P0] Phase `003-sealed-artifacts` publishes the receipt and certificate primitives, seal/reference format, and verification hooks [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-002 [P0] Phase 012 publishes the shared review-loop, transition, lineage, replay, report-reference, and write-set contracts [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-003 [P0] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-004 [P1] The current Deep Review lifecycle and receipt-bearing boundaries are inventoried from the mode state, evidence, adjudication, convergence, synthesis, report, and continuity records [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-005 [P1] The receipt ownership matrix names one owner for every shared, mode, effect, certificate, report, and later resume transition [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-006 [P2] The candidate report records the phase revisions, certificate/receipt revisions, fingerprint manifest hash, and trusted offline bundle hash
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-007 [P0] The transition receipt reuses shared identity, causation, lineage, authorization, integrity, and replay fields without mode-local duplicates
-- [ ] CHK-008 [P0] The run certificate binds one run, target/base/head digests, scope and dimension coverage, finalized event range, receipt-set root, replay fingerprint, outcome, and report handoff
-- [ ] CHK-009 [P0] Every receipt type records transition identity, source and output references, authorization, append position, `prevEventHash`, attempt state, and explicit effect status
-- [ ] CHK-010 [P1] Certificate claims attest recorded process integrity and declared result completeness without replacing semantic evidence or claiming unsupported finding truth
-- [ ] CHK-011 [P1] Stable identity and behavior input classes are explicit in the replay-fingerprint manifest; target, scope, dimensions, protocol, executor, tool, analyzer, evaluator, policy, artifact, reducer, and report drift are distinguishable
-- [ ] CHK-012 [P1] Deep Review and deep-alignment share one review-loop contract; no local duplicate scope, dimension, convergence, lineage, or report transition family is introduced
+- [x] CHK-007 [P0] The transition receipt reuses shared identity, causation, lineage, authorization, integrity, and replay fields without mode-local duplicates [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-008 [P0] The run certificate binds one run, target/base/head digests, scope and dimension coverage, finalized event range, receipt-set root, replay fingerprint, outcome, and report handoff [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-009 [P0] Every receipt type records transition identity, source and output references, authorization, append position, `prevEventHash`, attempt state, and explicit effect status [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-010 [P1] Certificate claims attest recorded process integrity and declared result completeness without replacing semantic evidence or claiming unsupported finding truth [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-011 [P1] Stable identity and behavior input classes are explicit in the replay-fingerprint manifest; target, scope, dimensions, protocol, executor, tool, analyzer, evaluator, policy, artifact, reducer, and report drift are distinguishable [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-012 [P1] Deep Review and deep-alignment share one review-loop contract; no local duplicate scope, dimension, convergence, lineage, or report transition family is introduced [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-013 [P0] A complete fixture covers `scope -> per-dimension passes -> candidate/evidence -> adjudication -> convergence -> synthesis -> review-report -> completion` with receipt closure
-- [ ] CHK-014 [P0] Run and scope receipts preserve target, base/head, selected and omitted targets, ordered dimensions, protocol plan, contract revisions, and scope evidence digests
-- [ ] CHK-015 [P0] Pass and evidence receipts preserve raw analyzer/test/runtime observations, evidence locators, tool fingerprints, independent evidence classes, stability, causal proximity, relevance, and raw scores
-- [ ] CHK-016 [P0] Candidate and adjudication fixtures preserve orthogonal impact, confidence, reachability, exploitability, evidence strength, evidence scope, counterevidence, and validator identity
-- [ ] CHK-017 [P0] P0/P1/P2 activation is rejected without a valid typed adjudication receipt; high impact with weak evidence remains a distinct state
-- [ ] CHK-018 [P0] Finding lineage fixtures preserve introduced, updated, unchanged, fixed, preexisting, absent, and disproved states with append-only supersession
-- [ ] CHK-019 [P0] Convergence, blocked-stop, pause, recovery, and terminal fixtures preserve raw signals, required coverage, gate results, blockers, stop reason, recovery strategy, and finalized frontier
-- [ ] CHK-020 [P0] Synthesis and report fixtures preserve included and excluded receipt digests, event range, finding input digest, report revision/digest, unresolved and deferred IDs, and certificate linkage
-- [ ] CHK-021 [P0] Replay fixtures produce stable fingerprints for unchanged inputs and typed exact, compatible, migrate, pin-old-runtime, or blocked outcomes after target, policy, schema, tool, evaluator, artifact, reducer, or report drift
-- [ ] CHK-022 [P0] Tampering with an event, receipt, certificate, artifact reference, authorization result, or fingerprint input returns invalid or blocked and identifies the first failed invariant
-- [ ] CHK-023 [P0] Unknown event or receipt versions, missing sealed references, mutable references, and contradictory receipt chains fail closed without a guessed decoder or passing certificate
-- [ ] CHK-024 [P0] The offline verifier completes with model, network, external tool, and mutable workspace access unavailable
-- [ ] CHK-025 [P1] Unknown external effects remain unknown or recovery-required and cannot become successful completion through retry or certificate generation
-- [ ] CHK-037 [P0] The certificate contract declares every deferred `(artifact kind, plain-digest field) -> expected artifact kind(s)` mapping from the sealed-leaf decision, checks array elements independently, recomputes the ordered dependency closure across certificates, receipts, replay fingerprints, and event-ledger evidence, and distinguishes missing input from typed `unverifiable` bundle absence
-- [ ] CHK-038 [P0] Real-store anti-vacuous fixtures reject fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named references and prove `locator.selector` resolves to real target context without becoming severity or authority input
+- [x] CHK-013 [P0] A complete fixture covers `scope -> per-dimension passes -> candidate/evidence -> adjudication -> convergence -> synthesis -> review-report -> completion` with receipt closure [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-014 [P0] Run and scope receipts preserve target, base/head, selected and omitted targets, ordered dimensions, protocol plan, contract revisions, and scope evidence digests [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-015 [P0] Pass and evidence receipts preserve raw analyzer/test/runtime observations, evidence locators, tool fingerprints, independent evidence classes, stability, causal proximity, relevance, and raw scores [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-016 [P0] Candidate and adjudication fixtures preserve orthogonal impact, confidence, reachability, exploitability, evidence strength, evidence scope, counterevidence, and validator identity [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-017 [P0] P0/P1/P2 activation is rejected without a valid typed adjudication receipt; high impact with weak evidence remains a distinct state [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-018 [P0] Finding lineage fixtures preserve introduced, updated, unchanged, fixed, preexisting, absent, and disproved states with append-only supersession [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-019 [P0] Convergence, blocked-stop, pause, recovery, and terminal fixtures preserve raw signals, required coverage, gate results, blockers, stop reason, recovery strategy, and finalized frontier [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-020 [P0] Synthesis and report fixtures preserve included and excluded receipt digests, event range, finding input digest, report revision/digest, unresolved and deferred IDs, and certificate linkage [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-021 [P0] Replay fixtures produce stable fingerprints for unchanged inputs and typed exact, compatible, migrate, pin-old-runtime, or blocked outcomes after target, policy, schema, tool, evaluator, artifact, reducer, or report drift [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-022 [P0] Tampering with an event, receipt, certificate, artifact reference, authorization result, or fingerprint input returns invalid or blocked and identifies the first failed invariant [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-023 [P0] Unknown event or receipt versions, missing sealed references, mutable references, and contradictory receipt chains fail closed without a guessed decoder or passing certificate [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-024 [P0] The offline verifier completes with model, network, external tool, and mutable workspace access unavailable [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-025 [P1] Unknown external effects remain unknown or recovery-required and cannot become successful completion through retry or certificate generation [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-037 [P0] The certificate contract declares every deferred `(artifact kind, plain-digest field) -> expected artifact kind(s)` mapping from the sealed-leaf decision, checks array elements independently, recomputes the ordered dependency closure across certificates, receipts, replay fingerprints, and event-ledger evidence, and distinguishes missing input from typed `unverifiable` bundle absence [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-038 [P0] Real-store anti-vacuous fixtures reject fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named references and prove `locator.selector` resolves to real target context without becoming severity or authority input [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-026 [P0] The receipt matrix covers every Deep Review transition in the typed event union and every certificate claim resolves to a pinned event, receipt, or sealed-artifact digest
-- [ ] CHK-027 [P1] The fingerprint manifest and offline-verifier handoff give `005-resume-adapter`, later mode-gate work, and deep-alignment stable references without prescribing their decision algorithms
+- [x] CHK-026 [P0] The receipt matrix covers every Deep Review transition in the typed event union and every certificate claim resolves to a pinned event, receipt, or sealed-artifact digest [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-027 [P1] The fingerprint manifest and offline-verifier handoff give `005-resume-adapter`, later mode-gate work, and deep-alignment stable references without prescribing their decision algorithms [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-028 [P0] Source, code, analyzer output, runtime witnesses, prompts, tool results, and report references are untrusted inputs; no instruction-bearing body is executed through a receipt or certificate
-- [ ] CHK-029 [P1] Source, prompt, executor, analyzer, evaluator, artifact, and certificate digests do not expose credentials or persist secret-bearing content
-- [ ] CHK-030 [P0] Authorization, certificate primitive, contract, and replay registries are resolved from the trusted verifier bundle rather than accepted from an untrusted event payload
-- [ ] CHK-031 [P1] The verifier does not make network calls, invoke a model or tool, read mutable workspace state, or treat an unresolved external effect as success
+- [x] CHK-028 [P0] Source, code, analyzer output, runtime witnesses, prompts, tool results, and report references are untrusted inputs; no instruction-bearing body is executed through a receipt or certificate [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-029 [P1] Source, prompt, executor, analyzer, evaluator, artifact, and certificate digests do not expose credentials or persist secret-bearing content [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-030 [P0] Authorization, certificate primitive, contract, and replay registries are resolved from the trusted verifier bundle rather than accepted from an untrusted event payload [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-031 [P1] The verifier does not make network calls, invoke a model or tool, read mutable workspace state, or treat an unresolved external effect as success [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist agree on the certificate/receipt ownership boundary and planned status
-- [ ] CHK-033 [P2] The phase adjacency line names predecessor `003-sealed-artifacts` and successor `005-resume-adapter` verbatim
-- [ ] CHK-034 [P1] The packet documents the distinction between recorded process integrity, semantic finding truth, and later authority decisions
+- [x] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist agree on the certificate/receipt ownership boundary and implemented status [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-033 [P2] The phase adjacency line names predecessor `003-sealed-artifacts` and successor `005-resume-adapter` verbatim
+- [x] CHK-034 [P1] The packet documents the distinction between recorded process integrity, semantic finding truth, and later authority decisions [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-035 [P1] Only the four authored documents are created in this target folder; `description.json` and `graph-metadata.json` are generated by deterministic tooling
-- [ ] CHK-036 [P1] Certificate, receipt, fingerprint, verifier, and fixture implementation changes land in dependency-closed, path-scoped commits after this planning phase
+- [x] CHK-035 [P1] The five authored documents remain in this target folder; `description.json` and `graph-metadata.json` are generated by deterministic tooling [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
+- [x] CHK-036 [P1] Certificate, receipt, fingerprint, verifier, and fixture implementation changes are dependency-closed and path-scoped [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

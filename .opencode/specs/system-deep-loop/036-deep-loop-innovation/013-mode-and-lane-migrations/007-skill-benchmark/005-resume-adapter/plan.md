@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter"
-    last_updated_at: "2026-07-15T23:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Outlined Skill Benchmark scenario and scoring replay boundaries"
-    next_safe_action: "Freeze continuity ladder and scenario-cell action matrix"
+    last_updated_at: "2026-07-28T00:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Delivered the scoped resume adapter and decision matrix"
+    next_safe_action: "Consume the frozen adapter in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +35,12 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop / deep-improvement / skill-benchmark child phase |
-| **Change class** | Planning contract: sealed-ledger reconstruction and idempotent scenario re-entry |
-| **Execution** | Plan against frozen ledger, reducer, common-service, and phase-015 contracts; no authority cutover or runtime implementation in this phase |
+| **Change class** | Additive-dark implementation: sealed-ledger reconstruction and idempotent scenario re-entry |
+| **Execution** | Runtime decision adapter over frozen ledger, reducer, certificate, sealed-store, and common-service contracts; no authority cutover |
 
 ### Overview
 
-This plan defines a Skill Benchmark-specific Resume Adapter for paired scenario runs and scoring state. The adapter accepts only
+This plan delivered a Skill Benchmark-specific Resume Adapter for paired scenario runs and scoring state. The adapter accepts only
 a validated sealed ledger frontier, folds it through the typed reducers, maps the result to the continuity ladder, and derives a
 stable re-entry plan for each logical scenario cell. It separates reusable terminal evidence from incomplete, invalid,
 contaminated, underpowered, and unknown work while retaining discovery, invocation, trajectory, outcome, gold, and scoring
@@ -51,23 +54,23 @@ reimplemented.
 
 ### Definition of Ready
 
-- [ ] The sealed-ledger contract identifies the finalized frontier, event-tail hash, stream high-watermarks, and authorized resume receipt boundary
-- [ ] Skill Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections` expose stable event, reducer, projection, identity, and fingerprint inputs
-- [ ] Deep-improvement-common mode 004 ownership is recorded for evaluator, canary, promotion, receipt, budget, lock, continuity, compatibility, and effect-recovery services
-- [ ] The continuity ladder names every state from design and treatment assignment through scenario closure, scoring, shared status, and the resumable frontier
-- [ ] The scenario-cell action table distinguishes reuse, reconcile, re-execute, compensate, unknown, and block without relying on labels or file presence
-- [ ] Skill-specific score restoration preserves stage mediation, raw observations, gold integrity, constraint coverage, validity, and uncertainty
-- [ ] The phase remains planning-only and scoped to this target folder; phase 013 migration work and the six sibling concerns remain excluded
+- [x] The sealed-ledger contract identifies the finalized frontier, event-tail hash, stream high-watermarks, and authorized resume receipt boundary
+- [x] Skill Benchmark `001-typed-ledger-schema` and `002-reducers-and-projections` expose stable event, reducer, projection, identity, and fingerprint inputs
+- [x] Deep-improvement-common mode 004 ownership is recorded for evaluator, canary, promotion, receipt, budget, lock, continuity, compatibility, and effect-recovery services
+- [x] The continuity ladder names every state from design and treatment assignment through scenario closure, scoring, shared status, and the resumable frontier
+- [x] The scenario-cell action table distinguishes reuse, reconcile, re-execute, compensate, unknown, and block without relying on labels or file presence
+- [x] Skill-specific score restoration preserves stage mediation, raw observations, gold integrity, constraint coverage, validity, and uncertainty
+- [x] The phase remains planning-only and scoped to this target folder; phase 013 migration work and the six sibling concerns remain excluded
 
 ### Definition of Done
 
-- [ ] A sealed-ledger fold and compatibility gate are specified for complete and interrupted scenario runs
-- [ ] Stable design-cell, scenario-cell, logical-operation, event, receipt, and attempt identities are documented
-- [ ] Duplicate and conflicting re-entry behavior is explicit and idempotent
-- [ ] Unknown effects and lost or late evidence have a safe recovery path through shared services
-- [ ] Skill-specific discovery, invocation, trajectory, gold, and scoring semantics are retained without duplicating common authority
-- [ ] The resume contract supplies deterministic fingerprints and receipts for `006-shadow-parity` and the later mode gate
-- [ ] The phase checklist and strict spec validation are green
+- [x] A sealed-ledger fold and compatibility gate are specified for complete and interrupted scenario runs
+- [x] Stable design-cell, scenario-cell, logical-operation, event, receipt, and attempt identities are documented
+- [x] Duplicate and conflicting re-entry behavior is explicit and idempotent
+- [x] Unknown effects and lost or late evidence have a safe recovery path through shared services
+- [x] Skill-specific discovery, invocation, trajectory, gold, and scoring semantics are retained without duplicating common authority
+- [x] The resume contract supplies deterministic fingerprints and receipts for `006-shadow-parity` and the later mode gate
+- [x] The phase checklist and strict spec validation are green
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -183,10 +186,11 @@ documentation gate.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase creates planning documents only and performs no runtime replay, ledger append, projection mutation, executor call,
-score recomputation, or authority change. If later implementation fails parity or discovers a compatibility defect, disable the
-new Resume Adapter, retain the sealed ledger and prior reducer projections, and keep the legacy Skill Benchmark path
+This phase creates an additive-dark decision adapter and performs no ledger append, executor call, score recomputation, or
+authority change. If later integration fails parity or discovers a compatibility defect, disable the new Resume Adapter, retain
+the sealed ledger and prior reducer projections, and keep the legacy Skill Benchmark path
 authoritative. Rebuild from the last known-good sealed frontier after correcting the reducer or compatibility contract; never
 delete, rewrite, or reclassify raw skill, trajectory, gold, or score evidence to make a resume plan pass. A path-scoped git revert
 restores the prior adapter and shared-service references while preserving fixtures and receipts.
 <!-- /ANCHOR:rollback -->
+

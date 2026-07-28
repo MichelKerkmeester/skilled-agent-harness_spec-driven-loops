@@ -39,14 +39,36 @@
       "ledger"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-resume-adapter.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "model-benchmark-resume-adapter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-resume-adapter.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +91,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -120,13 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "shared",
+        "name": "mode-004",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "mode-004",
+        "name": "filesystem",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -166,37 +194,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:40.285Z",
-    "last_save_at": "2026-07-24T07:16:38.280Z",
+    "last_save_at": "2026-07-28T03:53:48.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ca643fe80a753e70d9d1712d672e7dfabf226659eb2ae4d7b68c8b389c69d93",
+    "source_fingerprint": "sha256:427e92a9b310ac7ed894289f9d78b15852a9393e4e6ea0117ca705bb81090474",
     "source_doc_hashes": {
-      "spec.md": "b5d2c1d8dee360ba11998d79f5a8659d6fa52c6f6ef1211889d368a0585e3c75",
-      "plan.md": "5d84a0fb680a4817972374b0913224d1d6ef60516ca6f632660a6ceab603801c",
-      "tasks.md": "c0558381196649c6d58cb604ba9003c1b07e601713083ab66dcb1cc675bfd63b",
-      "checklist.md": "475d77ba9ebc93ca49db50f7a405ec794f15b6842522e3b6d9b6cfe732ec7151"
+      "spec.md": "1e1001c0c9506717cb3b1d9601a2edd71f81e4a8ca68ee39d4a140c39e22b6b7",
+      "plan.md": "c894ebb3f09dfd20bcfd02f26aa925f612b76f44f7f1aac5cb89597e625fd70a",
+      "tasks.md": "640522217690633c52aeb6644d068dd88447152e39f0dc6394e2edff50654574",
+      "checklist.md": "5b47ed56d4f4eb1c5c24b840998f609adc81817b61391d7efa985fac23139e04",
+      "implementation-summary.md": "0a26ddc3b32d240867565e49c53be50805efcced5746202492899d0419e24844"
     },
     "last_active_child_id": null,
     "last_active_at": null

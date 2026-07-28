@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Turned resume invariants into a sealed-frontier task sequence"
-    next_safe_action: "Confirm shared event and reducer contracts before adapter implementation"
+    recent_action: "Completed the certificate-bound resume adapter"
+    next_safe_action: "Shadow parity can consume the closed resume evidence"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,45 +40,45 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-012 shared review-loop contract is frozen and record its sealed-frontier, reducer, replay-fingerprint, and terminal-state interfaces
-- [ ] T002 Confirm phase 015 mode contracts and the executable write-set conflict graph are available for the Deep Review lineage
-- [ ] T003 Inventory interruption boundaries and classify each boundary as committed, uncommitted, unknown-effect, or projection-pending
-- [ ] T004 Define the continuity-ladder state table and the invariants for scope, dimension cells, candidates, proofs, convergence, and report materialization
+- [x] T001 Confirm the phase-012 shared review-loop contract is frozen and record its sealed-frontier, reducer, replay-fingerprint, and terminal-state interfaces [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T002 Confirm phase 015 mode contracts and the executable write-set conflict graph are available for the Deep Review lineage [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T003 Inventory interruption boundaries and classify each boundary as committed, uncommitted, unknown-effect, or projection-pending [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T004 Define the continuity-ladder state table and the invariants for scope, dimension cells, candidates, proofs, convergence, and report materialization [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [P] Bind recovery to the sealed ledger frontier and reject invalid sequence, hash, schema, reducer, or replay-fingerprint inputs
-- [ ] T006 Implement the shared reducer fold and Deep Review continuity projection without adding a mode-local loop backbone
-- [ ] T007 Implement reducer-owned finding matching with versioned partial fingerprints and introduced/fixed/preexisting lineage
-- [ ] T008 Implement logical pass, finding, proof, and report identities with separate attempt IDs
-- [ ] T009 Implement reuse, reexecute, compensate, reconcile, and reject planning for incomplete work and external effects
-- [ ] T010 Persist an idempotent resume decision keyed by lineage, frontier, manifest revision, and replay fingerprint
-- [ ] T011 Preserve branch-local successes and late events while preventing duplicate application or silent event loss
-- [ ] T012 Materialize or reuse the report projection only from the folded sealed state and expose the next safe action to the shared runner
+- [x] T005 [P] Bind recovery to the sealed ledger frontier and reject invalid sequence, hash, schema, reducer, or replay-fingerprint inputs [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T006 Implement the shared reducer fold and Deep Review continuity projection without adding a mode-local loop backbone [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T007 Implement reducer-owned finding matching with versioned partial fingerprints and introduced/fixed/preexisting lineage [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T008 Implement logical pass, finding, proof, and report identities with separate attempt IDs [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T009 Implement reuse, reexecute, compensate, reconcile, and reject planning for incomplete work and external effects [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T010 Persist an idempotent resume decision keyed by lineage, frontier, manifest revision, and replay fingerprint [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T011 Preserve branch-local successes and late events while preventing duplicate application or silent event loss [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T012 Materialize or reuse the report projection only from the folded sealed state and expose the next safe action to the shared runner [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Verify deterministic fold parity from an empty reducer and from every interruption frontier
-- [ ] T014 Verify crash recovery after append, candidate admission, proof receipt, convergence evaluation, and report projection
-- [ ] T015 Verify duplicate and concurrent resume requests produce one logical decision and one report projection per input frontier
-- [ ] T016 Verify missing, reordered, duplicated, conflicting, and unsealed events fail closed before new work is scheduled
-- [ ] T017 Verify compatible, migrated, pinned, incompatible, and changed-manifest fingerprints select the correct re-entry decision
-- [ ] T018 Verify unknown external effects require reconciliation or compensation and are never automatically replayed as safe
-- [ ] T019 Verify raw finding and proof events remain immutable and derived P0/P1/P2 presentation survives replay
-- [ ] T020 Verify the adapter consumes phase-012 transitions and respects phase-015 write ownership for same-lineage and independent-lineage resumes
-- [ ] T021 Verify readiness for the later shadow-parity and mode-gate checks without authority cutover or legacy-writer changes
+- [x] T013 Verify deterministic fold parity from an empty reducer and from every interruption frontier [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T014 Verify crash recovery after append, candidate admission, proof receipt, convergence evaluation, and report projection [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T015 Verify duplicate and concurrent resume requests produce one logical decision and one report projection per input frontier [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T016 Verify missing, reordered, duplicated, conflicting, and unsealed events fail closed before new work is scheduled [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T017 Verify compatible, migrated, pinned, incompatible, and changed-manifest fingerprints select the correct re-entry decision [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T018 Verify unknown external effects require reconciliation or compensation and are never automatically replayed as safe [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T019 Verify raw finding and proof events remain immutable and derived P0/P1/P2 presentation survives replay [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T020 Verify the adapter consumes phase-012 transitions and respects phase-015 write ownership for same-lineage and independent-lineage resumes [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] T021 Verify readiness for the later shadow-parity and mode-gate checks without authority cutover or legacy-writer changes [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test as applicable)
+- [x] All tasks complete [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] All requirements in spec.md met with evidence [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
+- [x] Phase gate green (validate/build/test as applicable) [evidence: implementation-summary.md verification records focused Vitest 6/6 and whole-runtime TypeScript exit 0]
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

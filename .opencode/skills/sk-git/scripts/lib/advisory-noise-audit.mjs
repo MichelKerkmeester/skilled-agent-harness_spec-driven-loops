@@ -66,6 +66,8 @@ const SHOULD_FIRE = [
   { cmd: 'git add no-such-path-anywhere.xyz', needs: 'nothing' },
   { cmd: 'git merge -Xours topic', needs: 'nothing' },
   { cmd: 'git restore --source=HEAD .', needs: 'nothing' },
+  { cmd: 'git push --force origin main', needs: 'nothing' },
+  { cmd: 'git reflog expire --expire=now --all', needs: 'nothing' },
 ];
 
 function main() {

@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the resume adapter around sealed frontier and reducer replay"
-    next_safe_action: "Map shared loop events to Deep Review continuity ladder states"
+    recent_action: "Implemented the certificate-bound resume adapter"
+    next_safe_action: "Shadow parity can consume the closed resume evidence"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,8 +32,8 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Surface** | system-deep-loop deep-review mode |
-| **Change class** | Planning contract for ledger-backed recovery and re-entry |
-| **Execution** | Later implementation against the phase-012 shared loop contract and phase-012 conflict graph |
+| **Change class** | Additive-dark ledger-backed recovery and re-entry |
+| **Execution** | Implemented against the landed typed ledger, reducers, sealed artifacts, certificates, and shared effect substrate |
 
 ### Overview
 The adapter will rebuild Deep Review from a sealed ledger frontier rather than from a mutable checkpoint or report. It will run the shared reducers over the accepted event prefix, derive the continuity ladder from scope through review dimensions, candidate/proof obligations, convergence, and report materialization, then return one typed re-entry decision. The decision is keyed by manifest revision, logical identity, artifact receipt, and replay fingerprint; it never assumes that a prior status is reusable merely because a label matches.

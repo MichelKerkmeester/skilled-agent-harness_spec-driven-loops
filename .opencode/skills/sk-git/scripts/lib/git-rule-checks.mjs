@@ -226,6 +226,102 @@ export const GIT_CHECKS = {
     if (candidates.length === 0) return true;
     return !candidates.some((path) => ctx.filterFor(path) !== null);
   },
+
+  // ── Destructive tier ─────────────────────────────────────────────────────
+  // Retained by the research on the condition that each be narrowed to positive state — never
+  // the verb. Where an operation is rare AND carries an explicit destructive token, firing on
+  // the command shape alone is acceptable, because rarity keeps it inside the noise budget.
+
+  /**
+   * A hard reset while the working tree holds modifications. Those modifications are what gets
+   * destroyed, unrecoverably — the reflog protects commits, never uncommitted work. A hard
+   * reset on a clean tree destroys nothing on disk and stays silent.
+   */
+  'reset-hard-discards-changes': (cmd, ctx) => {
+    const p = parseGitCommand(cmd);
+    if (!p || p.sub !== 'reset' || !has(p.flags, '--hard')) return true;
+    return ctx.dirtyCount() === 0;
+  },
+
+  /**
+   * A forced clean that would actually delete something. With -x the blast radius jumps from
+   * untracked work to everything gitignore protects — dependency trees, databases, logs — so
+   * -x fires on any non-empty dry run, while the plain form is given headroom for the routine
+   * few-file case.
+   */
+  'clean-force-deletes-files': (cmd, ctx) => {
+    const p = parseGitCommand(cmd);
+    if (!p || p.sub !== 'clean') return true;
+    const forced = p.flags.some((f) => /^-[a-z]*f/.test(f) || f === '--force');
+    if (!forced) return true;
+    const withDirs = p.flags.some((f) => /^-[a-z]*d/.test(f));
+    const withIgnored = p.flags.some((f) => /^-[a-z]*[xX]/.test(f));
+    const would = ctx.cleanDryRun(withDirs, withIgnored);
+    if (would === null || would.length === 0) return true;
+    return withIgnored ? false : would.length < 10;
+  },
+
+  /**
+   * A forced branch delete aimed at a branch with commits not merged into HEAD. This mirrors
+   * git's own -d guard, because -D exists precisely to bypass it; the plain -d form stays
+   * silent since git already refuses it on its own.
+   */
+  'branch-force-delete-unmerged': (cmd, ctx) => {
+    const p = parseGitCommand(cmd);
+    if (!p || p.sub !== 'branch') return true;
+    const forcedDelete = has(p.flags, '-D') || (has(p.flags, '--delete', '-d') && has(p.flags, '--force', '-f'));
+    if (!forcedDelete || p.paths.length === 0) return true;
+    const unmerged = ctx.unmergedBranches();
+    return !p.paths.some((name) => unmerged.has(name));
+  },
+
+  /**
+   * Clearing the stash while entries exist. Dropped stashes are unreachable the moment the
+   * command returns; a targeted `stash drop` names its victim and stays silent.
+   */
+  'stash-clear-drops-entries': (cmd, ctx) => {
+    const p = parseGitCommand(cmd);
+    if (!p || p.sub !== 'stash') return true;
+    if (p.paths[0] !== 'clear') return true;
+    return ctx.stashCount() === 0;
+  },
+
+  /**
+   * Immediate history expiry. These two shapes delete the safety net every other recovery
+   * relies on, are rare, and carry their destructive intent in the flags — the combination the
+   * research allowed to fire on shape alone.
+   */
+  'history-expiry-defeats-recovery': (cmd) => {
+    const p = parseGitCommand(cmd);
+    if (!p) return true;
+    if (p.sub === 'reflog' && p.paths[0] === 'expire' && p.flags.some((f) => /^--expire(-unreachable)?=now$/.test(f))) return false;
+    if (p.sub === 'gc' && p.flags.some((f) => f === '--prune=now' || f === '--aggressive')) return false;
+    return true;
+  },
+
+  /**
+   * Deleting a ref on the remote. Destructive at a distance, invisible locally, and rare
+   * enough that the shape alone stays inside the budget.
+   */
+  'push-deletes-remote-ref': (cmd) => {
+    const p = parseGitCommand(cmd);
+    if (!p || p.sub !== 'push') return true;
+    if (has(p.flags, '--delete', '-d')) return false;
+    return !p.paths.some((a) => /^:.+/.test(a));
+  },
+
+  /**
+   * A force push without a lease. The lease form fails when the remote moved under you, which
+   * is the entire difference between overwriting your own history and overwriting someone
+   * else's; plain --force cannot tell those apart.
+   */
+  'force-push-without-lease': (cmd) => {
+    const p = parseGitCommand(cmd);
+    if (!p || p.sub !== 'push') return true;
+    const plainForce = p.flags.some((f) => f === '--force' || f === '-f');
+    const leased = p.flags.some((f) => f.startsWith('--force-with-lease'));
+    return !plainForce || leased;
+  },
 };
 
 export const GIT_CHECK_IDS = Object.keys(GIT_CHECKS);

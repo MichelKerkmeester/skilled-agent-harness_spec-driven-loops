@@ -12,13 +12,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter"
-    last_updated_at: "2026-07-15T23:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Bounded Skill Benchmark ledger-only resume and shared-service ownership"
-    next_safe_action: "Define scenario-cell reducers and idempotent re-entry fixtures"
+    last_updated_at: "2026-07-28T00:15:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the Skill Benchmark resume adapter"
+    next_safe_action: "Consume the frozen adapter in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Skill Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 013 mode-and-lane migration fan-out; Skill Benchmark resume-adapter planning contract |
@@ -70,10 +73,10 @@ an explicit continuity ladder, and produces idempotent re-entry decisions. It bu
 mode 004 and adds only Skill Benchmark scenario-cell and scoring logic; it does not re-implement shared evaluator, canary,
 promotion, receipt, budget, lock, continuity, or effect-recovery services.
 
-The phase is planning only. The per-mode 010 migration lands after phase 012 freezes the shared contracts and emits the
-write-set conflict graph. The six sibling concerns and the mode gate integrate the rest of Skill Benchmark.
-The Skill Benchmark schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
-Planned adapter consumes them without moving authority.
+The adapter is implemented as an additive-dark decision layer. The per-mode 010 migration still lands after phase 012 freezes
+the shared contracts and emits the write-set conflict graph. The six sibling concerns and the mode gate integrate the rest of
+Skill Benchmark. The landed schema, reducer/projection, sealed-artifact, and certificate leaves remain the sole evidence
+authorities; this adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
