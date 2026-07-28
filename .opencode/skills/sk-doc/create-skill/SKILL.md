@@ -217,6 +217,8 @@ skill-name/
 
 `SKILL.md` is required. `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
 
+A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file — `leaf-manifest.config.json`, naming its single workflow mode and leaf roots — and generates the rest. Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md); do not infer them from a sibling skill.
+
 The last two directories are a pair: `manual-testing-playbook/` holds the corpus a run reads, and
 `benchmark/` holds what the run wrote. Keeping them apart is what lets a run be re-executed against
 the same scenarios later and compared, so neither one is optional once a skill is benchmarked.
@@ -266,6 +268,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 23. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
 24. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
 25. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
+26. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs`. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
 
 ### Parent Hub Shape
 

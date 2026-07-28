@@ -200,7 +200,26 @@ def main() -> int:
     skill_path = Path(args.skill_path)
     script_path = Path(__file__).resolve()
     package_skill = Path(__file__).parent / 'package_skill.py'
-    kind = 'parent' if (skill_path / 'mode-registry.json').exists() else 'standalone'
+    # A hub is declared by the mode-registry and hub-router TOGETHER: the router's
+    # signal keys must name registry modes, so the two are one coupled declaration.
+    # Inferring the kind from the registry alone lets a root that declares exactly
+    # one of them pass as a hub while its routing half is missing, so the partial
+    # case is failed explicitly rather than resolved to either kind.
+    has_registry = (skill_path / 'mode-registry.json').exists()
+    has_router = (skill_path / 'hub-router.json').exists()
+    kind = 'parent' if has_registry else 'standalone'
+    partial_declaration_error = None
+    if has_registry != has_router:
+        present, absent = (
+            ('mode-registry.json', 'hub-router.json')
+            if has_registry
+            else ('hub-router.json', 'mode-registry.json')
+        )
+        partial_declaration_error = (
+            f"Partial hub declaration: {present} is present but {absent} is missing. "
+            "A skill root declares both (hub) or neither (standalone). See "
+            "create-skill/references/shared/skill-root-metadata-contract.md"
+        )
 
     package_command = [
         sys.executable,
@@ -218,6 +237,14 @@ def main() -> int:
     )
     checks = [run_check(package_check_name, package_command)]
     missing_checker_error = None
+
+    if partial_declaration_error:
+        checks.append({
+            'name': 'skill-root-metadata-contract',
+            'exit': 1,
+            'ok': False,
+            'output': partial_declaration_error,
+        })
 
     if kind == 'parent':
         opencode_root = find_opencode_root(script_path)

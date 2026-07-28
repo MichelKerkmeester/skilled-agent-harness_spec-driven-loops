@@ -178,6 +178,7 @@
         "references/parent-skill/parent-skills-nested-packets.md",
         "references/shared/common-pitfalls.md",
         "references/shared/overview.md",
+        "references/shared/skill-root-metadata-contract.md",
         "references/shared/validation-and-packaging.md",
         "references/skill/creation-workflow.md",
         "references/skill/examples-and-maintenance.md"
@@ -209,6 +210,7 @@
         "references/parent-skill/parent-skills-nested-packets.md",
         "references/shared/common-pitfalls.md",
         "references/shared/overview.md",
+        "references/shared/skill-root-metadata-contract.md",
         "references/shared/validation-and-packaging.md",
         "references/skill/creation-workflow.md",
         "references/skill/examples-and-maintenance.md"
