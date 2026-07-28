@@ -19,7 +19,9 @@
       "Deep Review shadow parity tasks",
       "deep-review event parity tasks",
       "Deep Review shadow parity checklist",
-      "deep-review parity gate"
+      "deep-review parity gate",
+      "Deep Review shadow parity implementation",
+      "deep-review parity receipt handoff"
     ],
     "key_topics": [
       "deep",
@@ -36,14 +38,43 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "harness-adapter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-shadow-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -54,6 +85,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -81,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "Defined Deep Review",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Deep Review Shadow Parity",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -100,6 +131,12 @@
       },
       {
         "name": "Flipping Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "Outlined Deep Review",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -153,25 +184,13 @@
         "source": "derived"
       },
       {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Blocking Level",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -179,21 +198,23 @@
     ],
     "causal_summary": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed event-ledger substrate. The new path runs in shadow beside the legacy emitter, compares normalized projections event-for-event, and remains non-authoritative until every parity and fail-closed cutover criterion is green.",
     "created_at": "2026-07-16T03:43:33.437Z",
-    "last_save_at": "2026-07-24T07:18:59.192Z",
+    "last_save_at": "2026-07-28T05:11:09.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba7dcf1a1b290380fa3da580b4432a8aa1416fcb09079d0faed6f04ecb028793",
+    "source_fingerprint": "sha256:70af20dc58db441a642609a61a10736274603f1626a486a64593cdcf4c95f51f",
     "source_doc_hashes": {
-      "spec.md": "9baa6c5d1d6696e14d18fa66326d9e4cdf3d92b120f054479e759aab3a669e45",
-      "plan.md": "b86b3566a89f0cf595d425f5e93dfc5381795811b6cd616c849e6295a51534ec",
-      "tasks.md": "772dde3845e32fb2c6a6990e042369ce4e5be17144cc3d7d989dd274defff178",
-      "checklist.md": "bbdb06a1008f062cb51b1b8cabef3d477ab54d5d56a0f9141d1a159eeb660130"
+      "spec.md": "fa30f2e07e4640f0a4656484f55492ef4a414c0227914163224ed3a3af57fca2",
+      "plan.md": "b1dcae9d39d6c588e9bb056f8d0805a66c41820df8c49115a2afa0821a899ba2",
+      "tasks.md": "552043857a348e0858d00ca69c8e84062e78f5eecaa8dd258420d27b21ee1b11",
+      "checklist.md": "e74e03e5a729b52010ec6c69def5d6f4fe19e728b03a8741121f3301d16ad1cd",
+      "implementation-summary.md": "a060e89cd9dfdfda76a82972cc4ed7e2b8a60af6cea417c1ea5b925a128372a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

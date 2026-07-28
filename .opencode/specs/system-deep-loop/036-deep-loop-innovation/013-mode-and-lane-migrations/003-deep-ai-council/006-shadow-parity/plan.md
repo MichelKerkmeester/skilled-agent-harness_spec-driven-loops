@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined paired legacy-ledger execution and canonical event comparison"
-    next_safe_action: "Freeze the normalization profile and council parity fixture matrix"
+    recent_action: "Implemented paired council shadow comparison"
+    next_safe_action: "Consume parity evidence in the successor mode gate"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,18 +43,18 @@ The current council lifecycle is observable through append-only state and packet
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-014 shadow framework contract, phase 012 shared mode contract, and the sibling `001-typed-ledger-schema` through `005-resume-adapter` interfaces are pinned
-- [ ] A frozen input boundary includes BASE/candidate SHAs, council config, target version, seat manifests, recorded outputs, tool receipts, and fixture digests
-- [ ] The canonical legacy-to-ledger event mapping and the versioned normalization profile are reviewed
-- [ ] The parity matrix covers completion, multiple rounds, timeout/error, contradiction, non-convergence, rollback, resume, and mode-specific evidence fields
-- [ ] Legacy remains authoritative and the shadow path has no permission to dispatch or commit external side effects
+- [x] The phase-014 shadow framework contract, phase 012 shared mode contract, and the sibling `001-typed-ledger-schema` through `005-resume-adapter` interfaces are pinned
+- [x] A frozen input boundary includes BASE/candidate SHAs, council config, target version, seat manifests, recorded outputs, tool receipts, and fixture digests
+- [x] The canonical legacy-to-ledger event mapping and the versioned normalization profile are reviewed
+- [x] The parity matrix covers completion, multiple rounds, timeout/error, contradiction, non-convergence, rollback, resume, and mode-specific evidence fields
+- [x] Legacy remains authoritative and the shadow path has no permission to dispatch or commit external side effects
 
 ### Definition of Done
-- [ ] Every parity fixture has equal ordered canonical behavior events with no unexplained legacy-only or ledger-only behavior event
-- [ ] Council projections, artifacts, terminal decisions, resume, and rollback semantics match across both paths
-- [ ] Ledger authorization, receipts, audit rows, and duplicate-effect checks are green
-- [ ] Replays and supported completion-order permutations produce stable parity fingerprints
-- [ ] A cutover-blocking parity receipt records zero unexplained diffs and leaves legacy authority unchanged
+- [x] Every parity fixture has equal ordered canonical behavior events with no unexplained legacy-only or ledger-only behavior event
+- [x] Council projections, artifacts, terminal decisions, resume, and rollback semantics match across both paths
+- [x] Ledger authorization, receipts, audit rows, and duplicate-effect checks are green
+- [x] Replays and supported completion-order permutations produce stable parity fingerprints
+- [x] A cutover-blocking parity receipt records zero unexplained diffs and leaves legacy authority unchanged
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

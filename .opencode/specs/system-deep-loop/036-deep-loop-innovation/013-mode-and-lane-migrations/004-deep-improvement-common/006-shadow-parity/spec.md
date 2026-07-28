@@ -1,24 +1,24 @@
 ---
 title: "Feature Specification: Deep Improvement Common Services - Shadow Parity"
-description: "Plan the shadow-parity harness for the shared Deep Improvement Common Services backbone: run the typed ledger path beside the legacy emitter, compare projections event-for-event, and block authority cutover until evaluator, canary, and promotion parity is proven."
+description: "Implemented the shared Deep Improvement Common Services shadow-parity harness with logical event pairing, independent projections, fault injection, and manifest-bound receipts."
 trigger_phrases:
   - "deep improvement common shadow parity"
   - "deep improvement ledger parity"
   - "evaluator canary promotion shadow"
   - "shared service event parity"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity"
-    last_updated_at: "2026-07-15T20:30:00Z"
+    last_updated_at: "2026-07-28T06:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Scoped shared parity to event-level legacy projection comparison"
-    next_safe_action: "Define parity fixtures, mismatch classes, and cutover-blocking thresholds"
+    recent_action: "Verified the shared shadow parity contract"
+    next_safe_action: "Consume the contract in downstream lane migrations"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Improvement Common Services) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 004; sixth child of the shared Deep Improvement Common Services migration |

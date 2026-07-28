@@ -39,14 +39,43 @@
       "event"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts",
       "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "harness-adapter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-alignment-shadow-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,6 +86,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -84,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "Verified Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Deep Alignment Shadow Parity",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -97,12 +138,6 @@
       },
       {
         "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Which Deep Alignment",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -122,12 +157,6 @@
       {
         "name": "Inventory Deep Alignment",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -162,29 +191,31 @@
         "source": "derived"
       },
       {
-        "name": "Every Deep Alignment",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
     "created_at": "2026-07-16T03:43:44.129Z",
-    "last_save_at": "2026-07-24T07:19:00.694Z",
+    "last_save_at": "2026-07-28T12:45:44.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f152d31b7847f4fb1e3511befeccaa330e5cffa5c9dbc7221967bc52cabb714",
+    "source_fingerprint": "sha256:c979bf7d598ffcab46a70547be218e0153249d2d57251d4e33cb982245c4cb88",
     "source_doc_hashes": {
-      "spec.md": "29c8e2ee91e8fb885d17187b60b24bb1cd08a1918095a6c5d6e46fee4be0a326",
-      "plan.md": "98edd16250a968fb979c7cfc2e293761920520a6c276c0f625ca2d83b80ca903",
-      "tasks.md": "ada3a386e3e1ef67d75a828202f4f3a0f307827d53ee946e6ad9561e8940ee4f",
-      "checklist.md": "1d58e39565327bbd9588c7998d40e9c453b04a08adbaf4b1ef079be1f6150a3e"
+      "spec.md": "81f716fa8e85d80989ac189f0346dfe02c40b84ba962b6fd126736a3e0fceff5",
+      "plan.md": "95dd0a36860a184a7070827a52f3f54f4d708de1d059fefc40588ed77616c166",
+      "tasks.md": "40a190611f7ef631e6443b10e0e1f31c5ba163e0e4be0ddbd7e7279ccc6f8189",
+      "checklist.md": "af42a398fa69e7280dd52344dd28159a7002fdcfd1336eacf7eb83891f69599f",
+      "implementation-summary.md": "4c21fc251ffd84e7b8bfb4027ce6da4ab1fa7cf550e6225befd5756d035c7bbf"
     },
     "last_active_child_id": null,
     "last_active_at": null
