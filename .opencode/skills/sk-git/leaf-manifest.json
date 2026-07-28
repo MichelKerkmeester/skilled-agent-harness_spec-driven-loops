@@ -23,6 +23,7 @@
         "manual-testing-playbook/cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md",
         "manual-testing-playbook/cross-cli-orchestration/cli-opencode-delegation.md",
         "manual-testing-playbook/cross-cli-orchestration/native-claude-code-invocation.md",
+        "manual-testing-playbook/git-preflight-advisory/advisory-fires-on-silent-scope-drop.md",
         "manual-testing-playbook/integration-and-pr/branch-cleanup-after-merge.md",
         "manual-testing-playbook/integration-and-pr/failing-tests-block-merge.md",
         "manual-testing-playbook/integration-and-pr/finish-create-pr-with-template.md",
