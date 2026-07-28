@@ -1,4 +1,8 @@
-// Git preflight advisory checks.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Git Preflight Advisory Rule Checks                           ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Parse direct git commands and evaluate repository-aware rules. ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // Each check answers one question: given this command and the repository as it stands right now,
 // will the command quietly do something other than what it appears to say? A check returns true
@@ -14,11 +18,12 @@
 // All checks fail open. Uncertainty means silence, because a false positive spends the one thing
 // this system cannot rebuild once lost, which is the reader's attention.
 
-// ── Command parsing ──────────────────────────────────────────────────────────
-//
-// Deliberately narrow: only a directly visible `git ...` invocation is classified. Aliases,
-// wrapper scripts and anything behind a shell variable are left alone, because guessing at
-// their expansion would produce advisories about commands the operator never typed.
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Adapters share this narrow gate so unrelated shell commands never collect repository state.
+export const GIT_SHAPE = /(?:^|[;&|]\s*)(?:\w+=\S+\s+)*git\s+(?:-C\s+\S+\s+)?[a-z-]+/;
 
 const GIT_INVOCATION = /(?:^|[;&|]\s*)(?:\w+=\S+\s+)*git\s+(?:-C\s+\S+\s+)?([a-z-]+)((?:\s+[^;&|]*)?)/;
 
@@ -34,9 +39,20 @@ const VALUE_FLAGS = new Set([
 // decides, so the ambiguous ones are listed per subcommand rather than globally.
 const BARE_IN_SUBCOMMAND = { add: new Set(['-u']), restore: new Set(['-s']) };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. COMMAND PARSING
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// Deliberately narrow: only a directly visible `git ...` invocation is classified. Aliases,
+// wrapper scripts and anything behind a shell variable are left alone, because guessing at
+// their expansion would produce advisories about commands the operator never typed.
+
 /**
  * Split a git command into subcommand, flags and positional pathspec arguments.
- * @returns {{sub:string, flags:string[], paths:string[], raw:string, afterSeparator:boolean}|null}
+ *
+ * @param {string} command - Shell command containing a directly visible git invocation.
+ * @returns {{sub: string, flags: string[], paths: string[], raw: string,
+ *   afterSeparator: boolean}|null} Parsed command or null when no git invocation is visible.
  */
 export function parseGitCommand(command) {
   const cmd = String(command || '');
@@ -68,7 +84,9 @@ export function parseGitCommand(command) {
 
 const has = (flags, ...names) => flags.some((f) => names.some((n) => f === n || f.startsWith(`${n}=`)));
 
-// ── Checks ───────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CHECKS
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const GIT_CHECKS = {
   /**
@@ -227,7 +245,7 @@ export const GIT_CHECKS = {
     return !candidates.some((path) => ctx.filterFor(path) !== null);
   },
 
-  // ── Destructive tier ─────────────────────────────────────────────────────
+  // Destructive tier.
   // Retained by the research on the condition that each be narrowed to positive state — never
   // the verb. Where an operation is rare AND carries an explicit destructive token, firing on
   // the command shape alone is acceptable, because rarity keeps it inside the noise budget.
@@ -323,5 +341,9 @@ export const GIT_CHECKS = {
     return !plainForce || leased;
   },
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. DERIVED EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const GIT_CHECK_IDS = Object.keys(GIT_CHECKS);

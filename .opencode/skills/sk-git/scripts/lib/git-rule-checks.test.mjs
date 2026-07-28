@@ -1,8 +1,16 @@
-// Tests for the git preflight advisory checks. Run: node --test <this file>
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Git Preflight Advisory Rule Tests                            ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Verify advisory checks against real temporary repositories.    ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // Every check is exercised against a real temporary repository rather than a stubbed context.
 // The checks exist because git's actual behaviour surprises people; asserting against a mock of
 // that behaviour would encode the same misunderstanding the checks are meant to catch.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -14,6 +22,10 @@ import { execFileSync } from 'node:child_process';
 import { GIT_CHECKS, parseGitCommand } from './git-rule-checks.mjs';
 import { createGitContext } from './git-context.mjs';
 import { readHardRules, evaluate } from '../../../cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. TEST SETUP
+// ─────────────────────────────────────────────────────────────────────────────
 
 const SKILL_MD = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../SKILL.md');
 
@@ -47,7 +59,9 @@ process.on('exit', () => cleanup.forEach((d) => fs.rmSync(d, { recursive: true, 
 
 const check = (id, cmd, dir) => GIT_CHECKS[id](cmd, createGitContext(dir));
 
-// ── The original incident ────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ORIGINAL INCIDENT
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('a directory-scoped commit silently drops untracked files inside that scope', () => {
   const dir = repo();
@@ -93,7 +107,9 @@ test('commit --only flags a named path with nothing to contribute', () => {
   assert.equal(check('commit-pathspec-empty-change', 'git commit --only seed.txt -m x', dir), true);
 });
 
-// ── Staging that does less than it appears to ────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. STAGING THAT DOES LESS THAN IT APPEARS TO
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('add flags a pathspec matching nothing', () => {
   const dir = repo();
@@ -119,7 +135,9 @@ test('add -u flags the untracked files it will leave behind', () => {
   assert.equal(check('add-update-skips-untracked', 'git add -u', dir), true);
 });
 
-// ── The index-versus-worktree gap ────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. INDEX-VERSUS-WORKTREE GAP
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('restore flags a path whose staged copy will survive the revert', () => {
   const dir = repo();
@@ -145,7 +163,9 @@ test('restoring from a ref is flagged because it stages without an add', () => {
   assert.equal(check('checkout-from-ref-stages-silently', 'git checkout -- seed.txt', dir), true);
 });
 
-// ── Command-shape checks ─────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. COMMAND-SHAPE CHECKS
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('one-sided merge strategies are flagged; ordinary merges are not', () => {
   const dir = repo();
@@ -170,7 +190,9 @@ test('a clean filter on a staged path is flagged', () => {
   assert.equal(check('staged-path-rewritten-by-filter', 'git add seed.txt', dir), true);
 });
 
-// ── Destructive tier ─────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. DESTRUCTIVE TIER
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('reset --hard fires only when the tree holds modifications', () => {
   const dir = repo();
@@ -226,7 +248,9 @@ test('shape-only destructive tokens fire regardless of state', () => {
   assert.equal(check('force-push-without-lease', 'git push origin main', dir), true);
 });
 
-// ── Parsing and contract ─────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. PARSING AND CONTRACT
+// ─────────────────────────────────────────────────────────────────────────────
 
 test('parser separates flags from pathspec across invocation shapes', () => {
   assert.equal(parseGitCommand('git commit --only a.txt -m x').sub, 'commit');
