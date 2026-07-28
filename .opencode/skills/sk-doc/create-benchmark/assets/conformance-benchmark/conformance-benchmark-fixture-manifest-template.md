@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Conformance Benchmark Fixture-Manifest Template
+
+This template produces a JSON fixture manifest for a conformance benchmark.
+
+---
+
 <!--
 Copy-paste scaffold for ONE conformance-benchmark FIXTURE MANIFEST:
   <deep-loop-mode>/assets/conformance-benchmark/<benchmark-id>/fixtures/fixture-manifest.json

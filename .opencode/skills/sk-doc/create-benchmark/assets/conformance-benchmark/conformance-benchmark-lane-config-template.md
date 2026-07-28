@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Conformance Benchmark Lane-Config Template
+
+This template produces a JSON lane configuration for a conformance benchmark.
+
+---
+
 <!--
 Copy-paste scaffold for ONE conformance-benchmark LANE CONFIG:
   <deep-loop-mode>/assets/conformance-benchmark/<benchmark-id>/lane-config.json

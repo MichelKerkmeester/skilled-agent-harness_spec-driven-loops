@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Behavior Benchmark Index Template
+
+This template produces a behavior benchmark package index with scenario contracts and axis coverage.
+
+---
+
 <!--
 Copy-paste scaffold for a behavior-benchmark PACKAGE INDEX:
   <deep-loop-mode>/behavior-benchmark/behavior-benchmark.md

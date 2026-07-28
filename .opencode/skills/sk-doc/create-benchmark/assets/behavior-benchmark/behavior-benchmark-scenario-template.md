@@ -12,6 +12,12 @@ contextType: "general"
 version: 1.1.0.0
 ---
 
+# Behavior Benchmark Scenario Template
+
+This template produces a behavior benchmark scenario contract for framework scoring.
+
+---
+
 <!--
 Copy-paste scaffold for ONE behavior-benchmark scenario file:
   <deep-loop-mode>/behavior-benchmark/scenarios/<PREFIX>-NNN-<slug>.md
