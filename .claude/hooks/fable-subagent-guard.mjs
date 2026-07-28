@@ -1,0 +1,1 @@
+../../.opencode/skills/system-deep-loop/runtime/hooks/claude/fable-subagent-guard.mjs
