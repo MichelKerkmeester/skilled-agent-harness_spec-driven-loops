@@ -17,12 +17,12 @@ description: "Cross-mode Python and Node checkers plus their node:test coverage,
 
 | File | Purpose |
 |------|---------|
-| `md_table.py` | Shared Markdown table parsing helpers (`_clean_cell`, `_strip_markdown`, `_split_table_row`, `_is_separator_row`) imported by every Python checker in this file, plus `baseline_rhythm_check.py` and `naming_doc_check.py` in `design-interface/scripts` (`contrast_check.py` parses no tables and does not import it). |
+| `md_table.py` | Shared Markdown table parsing helpers (`_clean_cell`, `_strip_markdown`, `_split_table_row`, `_is_separator_row`) imported by every Python checker in this file, plus `baseline_rhythm_check.py` and `naming_doc_check.py` in `sk-design-interface/scripts` (`contrast_check.py` parses no tables and does not import it). |
 | `numeric_law_check.py` | Completeness and uniqueness gate for `shared/numeric-design-laws.md`'s Law Index table: every row needs all six required cells filled and no duplicate values. |
 | `variant_parameter_check.py` | Schema gate for `shared/assets/variant-parameter-contract.md`: every variant knob row must have its required cells filled and name every canonical transport. |
 | `proof_check.py` | Proof-of-application gate for a filled context-loading notes file or `shared/assets/proof-of-application-card.md`: requires REGISTER/DIALS, CONTRAST PAIRS, INTERFACE PREFLIGHT, and AUDIT EVIDENCE fields plus a READY verdict. |
 | `procedure-card-schema-check.mjs` | Automates rules 1-7 and 9 of the Required-Field Lint in `shared/procedure-card-schema.md` Section 5 against every `procedures/*.md` card: frontmatter fields and the seven required field rows (Purpose, Owning mode, Source reference, Trigger, Output contract, Proof gate, Privacy rule). Rules 8 and 10 stay a called-out manual review item. |
-| `design-command-surface-check.mjs` | Validates the `/interface:*` command surface: every command in `command-metadata.json` carries its required fields, the auto/confirm YAML assets exist and match the registry, and intent-signal keys stay in sync with `design-interface/SKILL.md`. |
+| `design-command-surface-check.mjs` | Validates the `/interface:*` command surface: every command in `command-metadata.json` carries its required fields, the auto/confirm YAML assets exist and match the registry, and intent-signal keys stay in sync with `sk-design-interface/SKILL.md`. |
 | `design-command-surface-check.test.mjs` | `node:test` coverage for `design-command-surface-check.mjs`'s exported helpers (`commandSetForModes`, `validateMetadata`, `validateDiscriminator`, and related parsers). |
 | `interface-command-contract.test.mjs` | `node:test` coverage asserting the canonical `/interface:*` commands resolve to stable internal modes and that each command surface exposes its required output blocks (Route Proof, Resolved Brief, Context Manifest, Grounding Record, Creation/Remediation Artifact, Critique/Validation, Evidence Ledger, Next Action/Handoff). |
 
@@ -30,7 +30,7 @@ description: "Cross-mode Python and Node checkers plus their node:test coverage,
 
 ## 3. CONSUMERS
 
-- `design-interface/scripts/baseline_rhythm_check.py` and `naming_doc_check.py` import `md_table.py`.
+- `sk-design-interface/scripts/baseline_rhythm_check.py` and `naming_doc_check.py` import `md_table.py`.
 - `shared/numeric-design-laws.md` and `shared/context-loading-contract.md` document `numeric_law_check.py` and `proof_check.py` as their own verification commands.
 
 ---

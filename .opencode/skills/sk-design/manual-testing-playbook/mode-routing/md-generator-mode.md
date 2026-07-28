@@ -3,27 +3,27 @@ title: "MDR-005: md-generator Mode Routing"
 description: "Verify live-site DESIGN.md extraction requests resolve to md-generator and load the design-md-generator packet."
 version: 1.0.0.0
 id: MDR-005
-expected_workflow_mode: md-generator
+expected_workflow_mode: sk-design-md-generator
 expected_leaf_resources:
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/design-md-format.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/writing-style-guide.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/color-role-taxonomy.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/component-taxonomy.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/anti-patterns.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/extraction-workflow.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/troubleshooting.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/design-md-prompt-template.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/cardinal-rules-card.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/source-of-truth-router-card.md
 ---
 
@@ -54,22 +54,22 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 - The registry sets `backendKind: playwright-extract`, `mutatesWorkspace: true`, and allows `Write`, `Edit`, and `Bash` only for this mode.
 
 **Expected packet loaded**:
-- `design-md-generator/SKILL.md`
+- `sk-design-md-generator/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - UNKNOWN. The md-generator packet guards paths inside its own folder and does not cite the parent shared reference base in its router.
 
 **Expected mode resources loaded or cited**:
-- `design-md-generator/references/design-md-format.md`
-- `design-md-generator/references/writing-style-guide.md`
-- `design-md-generator/references/color-role-taxonomy.md`
-- `design-md-generator/references/component-taxonomy.md`
-- `design-md-generator/references/anti-patterns.md`
-- `design-md-generator/references/extraction-workflow.md`
-- `design-md-generator/references/troubleshooting.md`
-- `design-md-generator/assets/design-md-prompt-template.md`
-- `design-md-generator/assets/cardinal-rules-card.md`
-- `design-md-generator/assets/source-of-truth-router-card.md`
+- `sk-design-md-generator/references/design-md-format.md`
+- `sk-design-md-generator/references/writing-style-guide.md`
+- `sk-design-md-generator/references/color-role-taxonomy.md`
+- `sk-design-md-generator/references/component-taxonomy.md`
+- `sk-design-md-generator/references/anti-patterns.md`
+- `sk-design-md-generator/references/extraction-workflow.md`
+- `sk-design-md-generator/references/troubleshooting.md`
+- `sk-design-md-generator/assets/design-md-prompt-template.md`
+- `sk-design-md-generator/assets/cardinal-rules-card.md`
+- `sk-design-md-generator/assets/source-of-truth-router-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
@@ -92,13 +92,13 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `md-generator`, packet is `design-md-generator/SKILL.md`, backend is identified as `playwright-extract`, and the response names the extract-write-validate pipeline.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `md-generator`, packet is `sk-design-md-generator/SKILL.md`, backend is identified as `playwright-extract`, and the response names the extract-write-validate pipeline.
 - **FAIL** iff `interface` invents a design direction, `foundations` authors tokens without measuring the live site, or the AI omits the md-generator pipeline.
 
 ### Failure Triage
 
 1. If another mode wins, verify `extract design system`, `DESIGN.md`, and a live URL are present.
-2. If the pipeline is missing, inspect `design-md-generator/SKILL.md` sections `SMART ROUTING` and `The Three-Phase Pipeline`.
+2. If the pipeline is missing, inspect `sk-design-md-generator/SKILL.md` sections `SMART ROUTING` and `The Three-Phase Pipeline`.
 3. If shared resources are claimed as required, verify that claim against the md-generator router guard.
 
 ---
@@ -107,7 +107,7 @@ Extract the design system from https://example.com into a DESIGN.md style refere
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md`
 
 ---
 

@@ -109,5 +109,5 @@ Reach for sk-design when output looks generic and needs taste, when a visual sys
 | [`benchmark/`](./benchmark/) | Frozen baseline and after-009 skill-benchmark reports for router trace scoring. |
 | [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) | Eight-category, 37-scenario hub playbook covering mode routing (including the nested transport packet), advisor integration, transform verbs, md-generator, shared references, parity behavior, fallback/resilience, and hub manager intake. |
 | [`shared/procedures/polish-gate-orchestration.md`](./shared/procedures/polish-gate-orchestration.md) | Shared maintainer-facing procedure card for polish-gate orchestration across modes. |
-| [`design-interface/SKILL.md`](./design-interface/SKILL.md) | An example mode packet. |
+| [`sk-design-interface/SKILL.md`](./sk-design-interface/SKILL.md) | An example mode packet. |
 | [`changelog/v1.2.0.0.md`](./changelog/v1.2.0.0.md) | Maintainer note for the mode-local procedure operating model. |

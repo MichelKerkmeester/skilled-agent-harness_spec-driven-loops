@@ -3,15 +3,15 @@ title: "MG-002: Validate DESIGN.md"
 description: "Verify validation-only requests route to md-generator and use the VALIDATE phase resources."
 version: 1.0.0.0
 id: MG-002
-expected_workflow_mode: md-generator
+expected_workflow_mode: sk-design-md-generator
 expected_leaf_resources:
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/design-md-format.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/quality-checklist.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/anti-patterns.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/cardinal-rules-card.md
 ---
 
@@ -39,19 +39,19 @@ Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex acc
 **Why**:
 - `mode-registry.json` lists `validate design.md` as an `md-generator` alias.
 - `hub-router.json` maps `md-generator-validation` keyword `design fidelity` and `md-generator-aliases` keyword `validate design.md` to `md-generator`.
-- `design-md-generator/SKILL.md` phase detection sets `PHASE="VALIDATE"` for validate, check accuracy, verify design, hex check, and section completeness prompts.
+- `sk-design-md-generator/SKILL.md` phase detection sets `PHASE="VALIDATE"` for validate, check accuracy, verify design, hex check, and section completeness prompts.
 
 **Expected packet loaded**:
-- `design-md-generator/SKILL.md`
+- `sk-design-md-generator/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - UNKNOWN. Validation is scoped to the md-generator packet.
 
 **Expected mode resources loaded or cited**:
-- `design-md-generator/references/design-md-format.md`
-- `design-md-generator/references/quality-checklist.md`
-- `design-md-generator/references/anti-patterns.md`
-- `design-md-generator/assets/cardinal-rules-card.md`
+- `sk-design-md-generator/references/design-md-format.md`
+- `sk-design-md-generator/references/quality-checklist.md`
+- `sk-design-md-generator/references/anti-patterns.md`
+- `sk-design-md-generator/assets/cardinal-rules-card.md`
 
 **Expected pipeline stage named**:
 - `VALIDATE`: `validate.ts` checks every hex code in DESIGN.md exists in tokens.json, required v3 sections are present, and Quick Start fidelity holds.
@@ -75,13 +75,13 @@ Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex acc
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, mode is `md-generator`, packet is `design-md-generator/SKILL.md`, and the response uses the VALIDATE phase with `validate.ts` or equivalent packet guidance.
+- **PASS** iff advisor top-1 is `sk-design`, mode is `md-generator`, packet is `sk-design-md-generator/SKILL.md`, and the response uses the VALIDATE phase with `validate.ts` or equivalent packet guidance.
 - **FAIL** iff `audit` produces a design review instead of token fidelity validation, or `interface`/`foundations` rewrite the design reference.
 
 ### Failure Triage
 
 1. If `audit` wins, verify the prompt says `Validate DESIGN.md` and not `audit this design`.
-2. If validation resources are missing, inspect `design-md-generator/SKILL.md` `RESOURCE_MAP.VALIDATE`.
+2. If validation resources are missing, inspect `sk-design-md-generator/SKILL.md` `RESOURCE_MAP.VALIDATE`.
 3. If `DESIGN.md` is edited before validation, inspect the cardinal fidelity rule.
 
 ---
@@ -90,7 +90,7 @@ Validate /tmp/skd-MG002/DESIGN.md against /tmp/skd-MG002/tokens.json for hex acc
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md`
 
 ---
 

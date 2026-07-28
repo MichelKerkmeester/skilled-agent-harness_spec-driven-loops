@@ -3,13 +3,13 @@ title: "TV-003: clarify Alias-Only Routing"
 description: "Verify clarify routes as an interface alias but is not part of command projection parity."
 version: 1.0.0.0
 id: TV-003
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources:
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/design-principles.md
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/brief-to-dials.md
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: assets/interface-preflight-card.md
 ---
 
@@ -41,16 +41,16 @@ Clarify this hero section's visual hierarchy without changing its content.
 - `hub-router.json` includes `clarify` under `interface-aliases`; audit routing only applies when the prompt uses `should it be clarify` framing.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/context-loading-contract.md`
 
 **Expected mode resources loaded or cited**:
-- `design-interface/references/design-process/design-principles.md`
-- `design-interface/references/design-process/brief-to-dials.md`
-- `design-interface/assets/interface-preflight-card.md`
+- `sk-design-interface/references/design-process/design-principles.md`
+- `sk-design-interface/references/design-process/brief-to-dials.md`
+- `sk-design-interface/assets/interface-preflight-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
@@ -71,7 +71,7 @@ Clarify this hero section's visual hierarchy without changing its content.
 
 ### Pass/Fail Criteria
 
-- **PASS** iff the prompt resolves `interface`, loads `design-interface/SKILL.md`, and the response treats `clarify` as a visual-direction refinement rather than a command projection parity alias.
+- **PASS** iff the prompt resolves `interface`, loads `sk-design-interface/SKILL.md`, and the response treats `clarify` as a visual-direction refinement rather than a command projection parity alias.
 - **FAIL** iff `audit` resolves without `should it be` framing, or the response claims `clarify` is in `commandProjectionParity`.
 
 ### Failure Triage
@@ -86,7 +86,7 @@ Clarify this hero section's visual hierarchy without changing its content.
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

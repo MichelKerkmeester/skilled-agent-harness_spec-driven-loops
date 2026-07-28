@@ -41,7 +41,7 @@ Run the focused STUDY regressions for exact-value and normalized-span leaks plus
 ### Exact Command Sequence
 
 ```bash
-cd .opencode/skills/sk-design/design-md-generator/backend
+cd .opencode/skills/sk-design/sk-design-md-generator/backend
 npx vitest run tests/study-exemplars.test.ts -t "trips independently on exact source values and normalized source spans|runs the production author command with the no-STUDY prompt and validates its draft"
 ```
 
@@ -75,9 +75,9 @@ Capture the Vitest summary, the two selected test names and the zero-failure exi
 
 | File | Role |
 |---|---|
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/study-exemplars.ts` | De-literalization and two-signal leak gate. |
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts` | Draft discard and production no-STUDY retry. |
-| `.opencode/skills/sk-design/design-md-generator/backend/tests/study-exemplars.test.ts` | Focused leak and retry regressions. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/study-exemplars.ts` | De-literalization and two-signal leak gate. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/guided-run.ts` | Draft discard and production no-STUDY retry. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/tests/study-exemplars.test.ts` | Focused leak and retry regressions. |
 
 ---
 

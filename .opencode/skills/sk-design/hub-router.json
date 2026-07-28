@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": "interface",
     "ambiguityDelta": 1,
-    "tieBreak": ["interface", "md-generator", "design-mcp-open-design"],
+    "tieBreak": ["sk-design-interface", "sk-design-md-generator", "sk-design-mcp-open-design"],
     "outcomes": {
       "single": "one dominant design axis routes to one mode",
       "orderedBundle": "clearly separate design axes route to an ordered mode list",
@@ -24,7 +24,7 @@
     }
   },
   "routerSignals": {
-    "interface": {
+    "sk-design-interface": {
       "weight": 4,
       "classes": [
         "interface-aliases",
@@ -40,9 +40,9 @@
         "motion-runtime",
         "motion-feel"
       ],
-      "resources": ["design-interface/SKILL.md"]
+      "resources": ["sk-design-interface/SKILL.md"]
     },
-    "md-generator": {
+    "sk-design-md-generator": {
       "weight": 4,
       "classes": [
         "md-generator-aliases",
@@ -50,14 +50,14 @@
         "md-generator-artifacts",
         "md-generator-validation"
       ],
-      "resources": ["design-md-generator/SKILL.md"]
+      "resources": ["sk-design-md-generator/SKILL.md"]
     },
-    "design-mcp-open-design": {
+    "sk-design-mcp-open-design": {
       "weight": 4,
       "classes": [
         "design-mcp-open-design-aliases"
       ],
-      "resources": ["design-mcp-open-design/SKILL.md"]
+      "resources": ["sk-design-mcp-open-design/SKILL.md"]
     }
   },
   "vocabularyClasses": {

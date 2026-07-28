@@ -37,7 +37,7 @@ Boundary evidence proves the required context and proof demands survived delegat
 
 Current copy set: canonical-only.
 
-No real duplicate consumer currently carries this asset. Until one exists, the checker guards this canonical file's contract markers and verifies that `../design-interface/SKILL.md` points child-agent and small-model dispatches back here. Do not create a duplicate only to satisfy parity. When a real duplicate consumer is added, declare it in the checker input and keep the duplicate content identical to this file.
+No real duplicate consumer currently carries this asset. Until one exists, the checker guards this canonical file's contract markers and verifies that `../sk-design-interface/SKILL.md` points child-agent and small-model dispatches back here. Do not create a duplicate only to satisfy parity. When a real duplicate consumer is added, declare it in the checker input and keep the duplicate content identical to this file.
 
 ---
 

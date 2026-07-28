@@ -36,9 +36,9 @@ Motion owns `interaction-states-pass.md`. Md-generator owns `design-system-extra
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md` | Shared | Cross-mode final polish orchestration. |
-| `.opencode/skills/sk-design/design-interface/procedures/*.md` | Shared | Nine interface procedure cards (six original plus three folded in from the retired foundations mode). |
-| `.opencode/skills/sk-design/design-interface/procedures/interaction-states-pass.md` | Shared | One motion procedure card. |
-| `.opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md` | Shared | One md-generator procedure card. |
+| `.opencode/skills/sk-design/sk-design-interface/procedures/*.md` | Shared | Nine interface procedure cards (six original plus three folded in from the retired foundations mode). |
+| `.opencode/skills/sk-design/sk-design-interface/procedures/interaction-states-pass.md` | Shared | One motion procedure card. |
+| `.opencode/skills/sk-design/sk-design-md-generator/procedures/design-system-extraction.md` | Shared | One md-generator procedure card. |
 
 ### Validation And Tests
 

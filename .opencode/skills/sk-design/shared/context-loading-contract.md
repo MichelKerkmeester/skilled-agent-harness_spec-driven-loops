@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Design Context Loading Contract
 
-This file is shared vocabulary, not a workflow and not a fourth mode. The mode packets still own craft: `../design-interface/SKILL.md` owns interface direction, the static visual system, contrast, and evidence-backed pre-delivery claims through `../design-interface/assets/interface-preflight-card.md`.
+This file is shared vocabulary, not a workflow and not a fourth mode. The mode packets still own craft: `../sk-design-interface/SKILL.md` owns interface direction, the static visual system, contrast, and evidence-backed pre-delivery claims through `../sk-design-interface/assets/interface-preflight-card.md`.
 
 ---
 
@@ -24,7 +24,7 @@ This file is shared vocabulary, not a workflow and not a fourth mode. The mode p
 Required first files:
 
 - `register.md`
-- `../design-interface/references/design-process/brief-to-dials.md`
+- `../sk-design-interface/references/design-process/brief-to-dials.md`
 
 ---
 
@@ -33,9 +33,9 @@ Required first files:
 For narrow advice, the parent hub's smallest-useful-mode rule still applies. For work that builds, redesigns, generates, or evaluates a UI surface, the smallest useful bundle is larger than one mode:
 
 - `interface` for direction, the static visual system (palette, type, layout, responsive, token, and contrast decisions), surface read, and pre-flight.
-- `register.md` plus `../design-interface/references/design-process/brief-to-dials.md` for register and dials.
-- `../design-interface/assets/interface-preflight-card.md` before delivery, score, accessibility, release-ready, or production-ready claims.
-- Matching visual-system references under `../design-interface/references/` when color, type, layout, data, or responsive work is in scope.
+- `register.md` plus `../sk-design-interface/references/design-process/brief-to-dials.md` for register and dials.
+- `../sk-design-interface/assets/interface-preflight-card.md` before delivery, score, accessibility, release-ready, or production-ready claims.
+- Matching visual-system references under `../sk-design-interface/references/` when color, type, layout, data, or responsive work is in scope.
 
 ---
 
@@ -87,7 +87,7 @@ CONTRAST PAIRS:
   fix if fail:
 ```
 
-`interface` owns the contrast repair logic; use actual foreground/background pairs and adjust OKLCH lightness first when repairing. Compute each ratio with `../design-interface/scripts/contrast_check.py` (a calculator, not an estimate); `result` is `fail` for any pair below 4.5:1 body unless the 3:1 large/UI target applies.
+`interface` owns the contrast repair logic; use actual foreground/background pairs and adjust OKLCH lightness first when repairing. Compute each ratio with `../sk-design-interface/scripts/contrast_check.py` (a calculator, not an estimate); `result` is `fail` for any pair below 4.5:1 body unless the 3:1 large/UI target applies.
 
 ### Interface Preflight
 
@@ -187,7 +187,7 @@ dimensions:
   anti-patterns:
 ```
 
-`interface` owns severity, scoring, labels, and finding order through `../design-interface/assets/interface-preflight-card.md`. Carry confirmed, inferred, blocked, and not-assessed labels into findings and scores. Accessibility coverage is resolved only when every layer is `confirmed`, `inferred`, or `blocked` with a reason. `blocked` is not a pass; it is an honest resolved-with-reason state. Any `not-assessed` layer blocks WCAG, accessible, release-ready, and production-ready claims. The checkable floor is layer presence plus one valid state per layer; truthfulness of a `confirmed` state and sufficiency of the covered behavior remain review judgment.
+`interface` owns severity, scoring, labels, and finding order through `../sk-design-interface/assets/interface-preflight-card.md`. Carry confirmed, inferred, blocked, and not-assessed labels into findings and scores. Accessibility coverage is resolved only when every layer is `confirmed`, `inferred`, or `blocked` with a reason. `blocked` is not a pass; it is an honest resolved-with-reason state. Any `not-assessed` layer blocks WCAG, accessible, release-ready, and production-ready claims. The checkable floor is layer presence plus one valid state per layer; truthfulness of a `confirmed` state and sufficiency of the covered behavior remain review judgment.
 
 ### Decision Rationale
 
@@ -274,7 +274,7 @@ Use logical properties for RTL-sensitive layout (`margin-inline-start`, `padding
 | Decision Rationale | Any direction, pattern-break, or handoff claim before the decision, considered options, evidence sources, trade-offs, validation plan, and source proofs are recorded |
 | Locale Stress / RTL | Any global or localized UI ready claim before locale-stress proof is filled and the documented RTL physical-direction lint has been run or explicitly marked N/A |
 
-**Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../design-interface/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
+**Deterministic enforcement.** Two gates ship with a calculator so they are checked, not eyeballed. For the Foundations Contrast gate, run `../sk-design-interface/scripts/contrast_check.py "<fg>" "<bg>" [...]` (WCAG ratio + APCA Lc; exits non-zero on a body-contrast fail). For the final delivery gate, run `scripts/proof_check.py <notes-or-card>.md` (exits non-zero unless all four proof fields are present and the verdict reads READY). Wire both into any build, delivery, or CI step that would produce a ready, accessible, or release claim — including delegated and small-model output.
 
 Documented RTL physical-direction lint, deterministic when run and not an always-on wired gate:
 

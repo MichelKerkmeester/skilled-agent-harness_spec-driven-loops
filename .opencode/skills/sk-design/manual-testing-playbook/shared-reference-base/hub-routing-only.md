@@ -3,9 +3,9 @@ title: "SR-004: Hub Is Routing Only"
 description: "Verify the hub resolves modes through the registry and packet files own per-mode design logic."
 version: 1.1.0.0
 id: SR-004
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources:
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: assets/interface-preflight-card.md
 ---
 
@@ -36,14 +36,14 @@ For a design pre-delivery quality pass, show which packet owns the pass/fail sco
 - `SKILL.md` says the hub holds no per-mode design logic and each mode keeps its own contract in its packet.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md` if severity posture is discussed
 - `shared/context-loading-contract.md` if readiness or proof claims are discussed
 
 **Expected mode resources loaded or cited**:
-- `design-interface/assets/interface-preflight-card.md`
+- `sk-design-interface/assets/interface-preflight-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` because this is a design-family routing/ownership prompt.
 
@@ -55,7 +55,7 @@ For a design pre-delivery quality pass, show which packet owns the pass/fail sco
 
 1. `SKILL.md` states the hub is routing-only.
 2. `mode-registry.json` maps `interface` to `design-interface`.
-3. `design-interface/assets/interface-preflight-card.md` contains the binary pass/fail pre-delivery gate.
+3. `sk-design-interface/assets/interface-preflight-card.md` contains the binary pass/fail pre-delivery gate.
 
 ### Exact Command Sequence
 
@@ -65,12 +65,12 @@ For a design pre-delivery quality pass, show which packet owns the pass/fail sco
 
 ### Pass/Fail Criteria
 
-- **PASS** iff the AI says the hub routes through `mode-registry.json`, the pass/fail scoring logic lives in `design-interface/assets/interface-preflight-card.md`, and no per-mode logic is attributed to the hub.
-- **FAIL** iff the AI claims `SKILL.md` owns the pre-delivery scoring logic, bypasses `mode-registry.json`, or fails to load `design-interface/SKILL.md`.
+- **PASS** iff the AI says the hub routes through `mode-registry.json`, the pass/fail scoring logic lives in `sk-design-interface/assets/interface-preflight-card.md`, and no per-mode logic is attributed to the hub.
+- **FAIL** iff the AI claims `SKILL.md` owns the pre-delivery scoring logic, bypasses `mode-registry.json`, or fails to load `sk-design-interface/SKILL.md`.
 
 ### Failure Triage
 
-1. If the hub is credited with the pre-delivery scoring, re-read `SKILL.md` rules and `design-interface/assets/interface-preflight-card.md`.
+1. If the hub is credited with the pre-delivery scoring, re-read `SKILL.md` rules and `sk-design-interface/assets/interface-preflight-card.md`.
 2. If the registry is bypassed, inspect `mode-registry.json` and the hub routing rule.
 3. If shared resources are mistaken for mode logic, inspect `SKILL.md` backend description for shared reference-base boundaries.
 
@@ -81,7 +81,7 @@ For a design pre-delivery quality pass, show which packet owns the pass/fail sco
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

@@ -61,7 +61,7 @@ I only have a Figma export and no rendered responsive checks. Tell me whether th
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 
 ---

@@ -45,6 +45,6 @@ Read-only modes may cite the shared card to produce a review plan, findings repo
 
 ## 5. RELATED CARDS
 
-- `../../design-interface/assets/interface-preflight-card.md` - the mechanical pre-delivery gate this card orchestrates findings around, including its AI-tell sweep (Section 11) and interaction-state matrix (Section 12).
-- `../../design-interface/procedures/hierarchy-rhythm-review.md` - the `design-interface` hierarchy and rhythm fix card.
-- `../../design-interface/procedures/interaction-states-pass.md` - the `design-interface` interaction-state and transition fix card (relocated from the retired `motion` mode).
+- `../../sk-design-interface/assets/interface-preflight-card.md` - the mechanical pre-delivery gate this card orchestrates findings around, including its AI-tell sweep (Section 11) and interaction-state matrix (Section 12).
+- `../../sk-design-interface/procedures/hierarchy-rhythm-review.md` - the `design-interface` hierarchy and rhythm fix card.
+- `../../sk-design-interface/procedures/interaction-states-pass.md` - the `design-interface` interaction-state and transition fix card (relocated from the retired `motion` mode).

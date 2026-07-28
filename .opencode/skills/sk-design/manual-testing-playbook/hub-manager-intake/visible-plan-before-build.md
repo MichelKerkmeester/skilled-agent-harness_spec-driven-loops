@@ -3,7 +3,7 @@ title: "HM-002: Visible Plan Before Build"
 description: "Verify the sk-design hub shows route, loaded context, design moves, proof expectations, and handoff target before substantial design/build/transport work."
 version: 1.0.0.0
 id: HM-002
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 

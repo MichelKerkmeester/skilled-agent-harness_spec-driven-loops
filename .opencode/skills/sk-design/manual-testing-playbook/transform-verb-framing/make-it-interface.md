@@ -3,7 +3,7 @@ title: "TV-001: make it Transform Frame Routes Interface"
 description: "Verify make-it transform verbs bolder, quieter, distill, and delight resolve to interface."
 version: 1.0.0.0
 id: TV-001
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 
@@ -25,10 +25,10 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 
 | Variant | Exact Prompt | Expected Mode |
 |---|---|---|
-| V1 | `Make it bolder without changing the product copy.` | `interface` |
-| V2 | `Make it quieter while keeping the same layout.` | `interface` |
-| V3 | `Make it distill the visual hierarchy down to fewer competing elements.` | `interface` |
-| V4 | `Make it delight users with one memorable interface detail.` | `interface` |
+| V1 | `Make it bolder without changing the product copy.` | `sk-design-interface` |
+| V2 | `Make it quieter while keeping the same layout.` | `sk-design-interface` |
+| V3 | `Make it distill the visual hierarchy down to fewer competing elements.` | `sk-design-interface` |
+| V4 | `Make it delight users with one memorable interface detail.` | `sk-design-interface` |
 
 **Expected mode resolution**: `interface` for every variant.
 
@@ -39,16 +39,16 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 - `hub-router.json` includes `bolder`, `quieter`, `distill`, and `delight` under `interface-aliases`.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/context-loading-contract.md`
 
 **Expected mode resources loaded or cited**:
-- `design-interface/references/design-process/design-principles.md`
-- `design-interface/references/design-process/brief-to-dials.md`
-- `design-interface/assets/interface-preflight-card.md`
+- `sk-design-interface/references/design-process/design-principles.md`
+- `sk-design-interface/references/design-process/brief-to-dials.md`
+- `sk-design-interface/assets/interface-preflight-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
@@ -69,14 +69,14 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 
 ### Pass/Fail Criteria
 
-- **PASS** iff all variants resolve `interface`, load `design-interface/SKILL.md`, and avoid audit framing.
+- **PASS** iff all variants resolve `interface`, load `sk-design-interface/SKILL.md`, and avoid audit framing.
 - **FAIL** iff any variant resolves `audit`, `foundations`, `motion`, or `md-generator`, or if the response asks whether the transform should happen instead of applying the requested transform framing.
 
 ### Failure Triage
 
 1. If `audit` wins, inspect whether the prompt was changed to `should it be` framing.
 2. If a variant fails, compare the alias spelling to `interfaceAliases` and `commandProjectionParity`.
-3. If resources are missing, inspect `design-interface/SKILL.md` resource-loading defaults.
+3. If resources are missing, inspect `sk-design-interface/SKILL.md` resource-loading defaults.
 
 ---
 
@@ -84,7 +84,7 @@ This scenario verifies the interface side of `transformVerbRouting`: commands fr
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

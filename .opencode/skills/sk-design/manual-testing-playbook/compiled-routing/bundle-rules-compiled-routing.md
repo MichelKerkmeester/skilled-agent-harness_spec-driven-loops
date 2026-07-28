@@ -4,48 +4,48 @@ category: compiled_routing
 stage: routing
 title: "sk-design bundle-rules md-generator route serves compiled and matches legacy"
 route_shape: bundleRules
-expected_intent: md-generator
+expected_intent: sk-design-md-generator
 expected_resources:
-  - design-md-generator/references/design-md-format.md
-  - design-md-generator/references/writing-style-guide.md
-  - design-md-generator/references/color-role-taxonomy.md
-  - design-md-generator/references/component-taxonomy.md
-  - design-md-generator/references/anti-patterns.md
-  - design-md-generator/references/extraction-workflow.md
-  - design-md-generator/references/troubleshooting.md
-  - design-md-generator/references/quality-checklist.md
-  - design-md-generator/references/authoring-boundary.md
-  - design-md-generator/assets/design-md-prompt-template.md
-  - design-md-generator/assets/cardinal-rules-card.md
-  - design-md-generator/assets/source-of-truth-router-card.md
-expected_workflow_mode: md-generator
+  - sk-design-md-generator/references/design-md-format.md
+  - sk-design-md-generator/references/writing-style-guide.md
+  - sk-design-md-generator/references/color-role-taxonomy.md
+  - sk-design-md-generator/references/component-taxonomy.md
+  - sk-design-md-generator/references/anti-patterns.md
+  - sk-design-md-generator/references/extraction-workflow.md
+  - sk-design-md-generator/references/troubleshooting.md
+  - sk-design-md-generator/references/quality-checklist.md
+  - sk-design-md-generator/references/authoring-boundary.md
+  - sk-design-md-generator/assets/design-md-prompt-template.md
+  - sk-design-md-generator/assets/cardinal-rules-card.md
+  - sk-design-md-generator/assets/source-of-truth-router-card.md
+expected_workflow_mode: sk-design-md-generator
 expected_leaf_resources:
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/design-md-format.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/writing-style-guide.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/color-role-taxonomy.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/component-taxonomy.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/anti-patterns.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/extraction-workflow.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/troubleshooting.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/quality-checklist.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/authoring-boundary.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/design-md-prompt-template.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/cardinal-rules-card.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/source-of-truth-router-card.md
 full_inventory_intent: false
-evidence_compiled_route: sk-design/md-generator
+evidence_compiled_route: sk-design/sk-design-md-generator
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving

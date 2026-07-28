@@ -3,7 +3,7 @@ title: "MDR-007: Open Design Transport Mode Routing"
 description: "Verify Open Design wiring/CLI requests resolve to the nested design-mcp-open-design transport packet, not a design-judgment mode."
 version: 1.0.0.0
 id: MDR-007
-expected_workflow_mode: design-mcp-open-design
+expected_workflow_mode: sk-design-mcp-open-design
 expected_leaf_resources: []
 ---
 
@@ -34,7 +34,7 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 - The request names Open Design and a wiring action, not a visual-direction, token, motion, audit, or extraction axis, so none of the five `packetKind: "workflow"` modes should win.
 
 **Expected packet loaded**:
-- `design-mcp-open-design/SKILL.md`
+- `sk-design-mcp-open-design/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - None required. `design-mcp-open-design` is a transport packet, not a doc-guidance mode; it does not consume `shared/anti-slop-principles.md`, `shared/cognitive-laws.md`, or `shared/design-token-vocabulary.md`.
@@ -51,7 +51,7 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 1. `mode-registry.json` contains a mode with `workflowMode: design-mcp-open-design`, `packetKind: "transport"`, and `packet: design-mcp-open-design`.
 2. `hub-router.json` contains a `design-mcp-open-design-aliases` vocabulary class and a matching `routerSignals` entry.
-3. `.opencode/skills/sk-design/design-mcp-open-design/` exists with `SKILL.md` and no `graph-metadata.json` of its own.
+3. `.opencode/skills/sk-design/sk-design-mcp-open-design/` exists with `SKILL.md` and no `graph-metadata.json` of its own.
 
 ### Exact Command Sequence
 
@@ -61,7 +61,7 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `design-mcp-open-design`, packet is `design-mcp-open-design/SKILL.md`, and no `Write`/`Edit` tool call occurs.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `design-mcp-open-design`, packet is `sk-design-mcp-open-design/SKILL.md`, and no `Write`/`Edit` tool call occurs.
 - **FAIL** iff a design-judgment mode (`interface`/`foundations`/`motion`/`audit`/`md-generator`) wins instead, the external `mcp-figma` skill wins, or a mutating tool beyond `Bash` is used.
 
 ### Failure Triage
@@ -76,7 +76,7 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-mcp-open-design/SKILL.md`
 
 ---
 

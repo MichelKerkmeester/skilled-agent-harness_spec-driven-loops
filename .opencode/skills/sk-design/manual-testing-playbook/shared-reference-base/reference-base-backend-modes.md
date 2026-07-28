@@ -23,9 +23,9 @@ This scenario verifies that the one non-md-generator design mode, `interface`, u
 
 | Probe | Exact Prompt | Expected Mode | Expected Shared Resource |
 |---|---|---|---|
-| P1 | `Create a responsive spacing system and token starter for this product dashboard.` | `interface` | `shared/register.md` |
-| P2 | `Design the motion budget and reduced-motion alternative for this onboarding flow.` | `interface` | `shared/register.md` |
-| P3 | `Audit this page for design slop and give severity-ranked findings.` | `interface` | `shared/register.md` |
+| P1 | `Create a responsive spacing system and token starter for this product dashboard.` | `sk-design-interface` | `shared/register.md` |
+| P2 | `Design the motion budget and reduced-motion alternative for this onboarding flow.` | `sk-design-interface` | `shared/register.md` |
+| P3 | `Audit this page for design slop and give severity-ranked findings.` | `sk-design-interface` | `shared/register.md` |
 
 **Expected mode resolution**:
 - P1: `interface`
@@ -35,13 +35,13 @@ This scenario verifies that the one non-md-generator design mode, `interface`, u
 **Why**:
 - `mode-registry.json` sets `backendKind: reference-base` for `interface`, the only remaining doc-guidance mode after `foundations`, `audit`, and `motion` were retired as separate registry entries.
 - `mode-registry.json` sets `backendKind: playwright-extract` only for `md-generator`.
-- `hub-router.json` routes the `foundations-*` vocabulary classes (token/spacing/color/type/layout signals) and the `motion-*` vocabulary classes (animation/transition/reduced-motion signals) into `interface`'s `routerSignals`, and the retired `audit` capability's anti-slop/severity-ranked findings now run through `interface`'s own pre-delivery gate (`design-interface/assets/interface-preflight-card.md`).
+- `hub-router.json` routes the `foundations-*` vocabulary classes (token/spacing/color/type/layout signals) and the `motion-*` vocabulary classes (animation/transition/reduced-motion signals) into `interface`'s `routerSignals`, and the retired `audit` capability's anti-slop/severity-ranked findings now run through `interface`'s own pre-delivery gate (`sk-design-interface/assets/interface-preflight-card.md`).
 - The mode packet cites `../shared/register.md` for family-level posture or severity calibration.
 
 **Expected packets loaded**:
-- P1: `design-interface/SKILL.md`
-- P2: `design-interface/SKILL.md`
-- P3: `design-interface/SKILL.md`
+- P1: `sk-design-interface/SKILL.md`
+- P2: `sk-design-interface/SKILL.md`
+- P3: `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md` for all probes
@@ -67,13 +67,13 @@ This scenario verifies that the one non-md-generator design mode, `interface`, u
 
 ### Pass/Fail Criteria
 
-- **PASS** iff every probe resolves `interface`, identifies `backendKind: reference-base`, loads `design-interface/SKILL.md`, and cites `shared/register.md`.
+- **PASS** iff every probe resolves `interface`, identifies `backendKind: reference-base`, loads `sk-design-interface/SKILL.md`, and cites `shared/register.md`.
 - **FAIL** iff `md-generator` handles a reference-base prompt, the tested mode omits `shared/register.md`, or the tested read-only mode uses Write/Edit/Bash.
 
 ### Failure Triage
 
 1. If md-generator wins, inspect whether the prompt was changed to include `DESIGN.md`, extraction, or a URL.
-2. If shared register is missing, inspect `design-interface/SKILL.md`'s Resource Loading Levels.
+2. If shared register is missing, inspect `sk-design-interface/SKILL.md`'s Resource Loading Levels.
 3. If mutating tools are used, compare the run with the registry `toolSurface` for the resolved mode.
 
 ---
@@ -82,7 +82,7 @@ This scenario verifies that the one non-md-generator design mode, `interface`, u
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 - `.opencode/skills/sk-design/shared/register.md`
 
 ---

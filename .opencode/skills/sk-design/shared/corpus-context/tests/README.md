@@ -9,7 +9,7 @@ description: "node:test suite for the shared neutral corpus-context plan validat
 
 ## 1. OVERVIEW
 
-`corpus-context/tests/` owns the `node:test` coverage for `../validate-context-plan.mjs`, the validator pair behind the neutral `CORPUS_CONTEXT_PLAN v1` seam shared by every design mode's corpus adapter. `POSITIVE_FIXTURE` from this folder is also imported directly by `design-mcp-open-design/tests/transport-grounding.test.mjs`, so this is the canonical fixture source beyond its own suite.
+`corpus-context/tests/` owns the `node:test` coverage for `../validate-context-plan.mjs`, the validator pair behind the neutral `CORPUS_CONTEXT_PLAN v1` seam shared by every design mode's corpus adapter. `POSITIVE_FIXTURE` from this folder is also imported directly by `sk-design-mcp-open-design/tests/transport-grounding.test.mjs`, so this is the canonical fixture source beyond its own suite.
 
 ---
 
@@ -24,7 +24,7 @@ description: "node:test suite for the shared neutral corpus-context plan validat
 
 ## 3. CONSUMERS
 
-- [`../../../design-mcp-open-design/tests/README.md`](../../../design-mcp-open-design/tests/README.md) - imports `POSITIVE_FIXTURE` directly for the transport grounding suite.
+- [`../../../sk-design-mcp-open-design/tests/README.md`](../../../sk-design-mcp-open-design/tests/README.md) - imports `POSITIVE_FIXTURE` directly for the transport grounding suite.
 
 ---
 

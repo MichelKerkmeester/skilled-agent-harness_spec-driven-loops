@@ -2,21 +2,6 @@
   "modes": [
     {
       "leaves": [
-        "references/cli-child-pairing.md",
-        "references/design-parity-transport.md",
-        "references/freshness-invalidation.md",
-        "references/guarded-proxy.md",
-        "references/inner-generator-binding.md",
-        "references/mcp-wiring.md",
-        "references/od-cli-reference.md",
-        "references/smart-router-pseudocode.md",
-        "references/tool-surface.md"
-      ],
-      "packet": "design-mcp-open-design",
-      "workflowMode": "design-mcp-open-design"
-    },
-    {
-      "leaves": [
         "assets/foundations/contrast-pair-inventory.md",
         "assets/foundations/token-starter.md",
         "assets/interface-preflight-card.md",
@@ -55,8 +40,23 @@
         "references/motion/motion-strategy.md",
         "references/motion/performance-reduced-motion.md"
       ],
-      "packet": "design-interface",
-      "workflowMode": "interface"
+      "packet": "sk-design-interface",
+      "workflowMode": "sk-design-interface"
+    },
+    {
+      "leaves": [
+        "references/cli-child-pairing.md",
+        "references/design-parity-transport.md",
+        "references/freshness-invalidation.md",
+        "references/guarded-proxy.md",
+        "references/inner-generator-binding.md",
+        "references/mcp-wiring.md",
+        "references/od-cli-reference.md",
+        "references/smart-router-pseudocode.md",
+        "references/tool-surface.md"
+      ],
+      "packet": "sk-design-mcp-open-design",
+      "workflowMode": "sk-design-mcp-open-design"
     },
     {
       "leaves": [
@@ -88,8 +88,8 @@
         "references/troubleshooting.md",
         "references/writing-style-guide.md"
       ],
-      "packet": "design-md-generator",
-      "workflowMode": "md-generator"
+      "packet": "sk-design-md-generator",
+      "workflowMode": "sk-design-md-generator"
     }
   ],
   "resourceContractVersion": 1

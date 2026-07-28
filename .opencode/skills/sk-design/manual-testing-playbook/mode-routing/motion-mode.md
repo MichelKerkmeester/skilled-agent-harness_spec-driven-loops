@@ -3,7 +3,7 @@ title: "MDR-003: Motion-Flavored Temporal Routing"
 description: "Verify temporal-interaction (animation/micro-interaction/reduced-motion) requests still resolve to interface now that the standalone motion mode is retired."
 version: 1.1.0.0
 id: MDR-003
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 
@@ -33,17 +33,17 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 - `hub-router.json` routes the `motion-aliases`, `motion-temporal`, `motion-runtime`, and `motion-feel` vocabulary classes into `interface`'s `routerSignals`.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/sk-code-handoff.md` if implementation handoff is discussed
 
 **Expected mode resources loaded or cited**:
-- `design-interface/references/motion/animation-decision-framework.md` (the restraint gate, loaded first per `MOTION_DECISION`/temporal intents)
-- `design-interface/references/motion/micro-interactions.md`
-- `design-interface/references/motion/performance-reduced-motion.md`
-- `design-interface/assets/motion/motion-pattern-cards.md`
+- `sk-design-interface/references/motion/animation-decision-framework.md` (the restraint gate, loaded first per `MOTION_DECISION`/temporal intents)
+- `sk-design-interface/references/motion/micro-interactions.md`
+- `sk-design-interface/references/motion/performance-reduced-motion.md`
+- `sk-design-interface/assets/motion/motion-pattern-cards.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
@@ -66,14 +66,14 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, packet is `design-interface/SKILL.md`, the restraint gate and reduced-motion resources are loaded, and no mutating tool is used.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, packet is `sk-design-interface/SKILL.md`, the restraint gate and reduced-motion resources are loaded, and no mutating tool is used.
 - **FAIL** iff `md-generator` resolves instead, the restraint gate is skipped before timing/easing guidance, or mutating tools are used.
 
 ### Failure Triage
 
 1. If `md-generator` wins, check whether the prompt was accidentally rewritten to emphasize extraction language.
-2. If the temporal terms `micro-interactions`, `hover`, and `reduced-motion` did not route correctly, re-check `design-interface/SKILL.md`'s `MOTION_*` `INTENT_SIGNALS` keywords.
-3. If reduced-motion resources are missing, inspect `design-interface/SKILL.md` `RESOURCE_MAP.MOTION_PERFORMANCE`.
+2. If the temporal terms `micro-interactions`, `hover`, and `reduced-motion` did not route correctly, re-check `sk-design-interface/SKILL.md`'s `MOTION_*` `INTENT_SIGNALS` keywords.
+3. If reduced-motion resources are missing, inspect `sk-design-interface/SKILL.md` `RESOURCE_MAP.MOTION_PERFORMANCE`.
 
 ---
 
@@ -81,7 +81,7 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

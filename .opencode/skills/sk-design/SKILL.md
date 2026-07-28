@@ -22,9 +22,9 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 
 | Mode | Use it for | Packet |
 |------|-----------|--------|
-| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), the temporal/motion layer (animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/design-interface/` |
-| **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/design-md-generator/` |
-| **design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/design-mcp-open-design/` |
+| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), the temporal/motion layer (animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/sk-design-interface/` |
+| **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/sk-design-md-generator/` |
+| **design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/sk-design-mcp-open-design/` |
 
 ### Canonical Creation Commands
 
@@ -78,7 +78,7 @@ If a required fact is unknown and changes the route or acceptance bar, ask a foc
 classify the request to a workflowMode (dominant design intent; mode hint like "md-generator: ..." overrides)
 read mode-registry.json
   → resolve workflowMode from the hint / classified intent
-  → load the mode packet at registry[mode].packet (e.g. sk-design/design-interface/SKILL.md)
+  → load the mode packet at registry[mode].packet (e.g. sk-design/sk-design-interface/SKILL.md)
   → the mode cites the shared reference base, or runs its own backend per registry[mode].backendKind
 ```
 
@@ -174,7 +174,7 @@ For quick, narrow advice, the plan can be one sentence. For UI build or redesign
 
 ### Bundle Rule for Build/UI Work
 
-For UI build work, page or component generation, and redesign implementation, auto-load `interface` (which now owns both visual direction and the static visual system) plus `design-interface/assets/interface-preflight-card.md`, `shared/register.md`, `design-interface/references/design-process/brief-to-dials.md`, and the matching visual-system references for the axis in scope, before design or implementation decisions. Require a context manifest per `shared/context-loading-contract.md`, with `shared/assets/context-loaded-card.md` before recommendations and `shared/assets/proof-of-application-card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
+For UI build work, page or component generation, and redesign implementation, auto-load `interface` (which now owns both visual direction and the static visual system) plus `sk-design-interface/assets/interface-preflight-card.md`, `shared/register.md`, `sk-design-interface/references/design-process/brief-to-dials.md`, and the matching visual-system references for the axis in scope, before design or implementation decisions. Require a context manifest per `shared/context-loading-contract.md`, with `shared/assets/context-loaded-card.md` before recommendations and `shared/assets/proof-of-application-card.md` before any ready claim. Keep the smallest-useful-mode rule for narrow advice that does not produce, evaluate, or hand off a UI surface.
 
 Per-mode behavior is **not flattened**: each packet keeps its own design judgment, examples, standards, verification, and tool-permission needs. The one doc-guidance mode (`interface`) is read-and-guide; `md-generator` is the only mode that runs an extraction pipeline (Write/Edit/Bash over Playwright).
 
@@ -203,8 +203,8 @@ sk-design/
   shared/                # shared design reference base the hub + modes cite
   styles/lib/engine/     # legacy|shadow|persistent retrieval adapter (default: legacy)
   styles/lib/database/   # SQLite + FTS5 persistent index and rebuildable vectors
-  design-interface/  design-md-generator/   # two design mode packets
-  design-mcp-open-design/  # nested transport packet (packetKind: "transport")
+  sk-design-interface/  sk-design-md-generator/   # two design mode packets
+  sk-design-mcp-open-design/  # nested transport packet (packetKind: "transport")
 ```
 
 Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The hub references those packet paths directly.
@@ -250,7 +250,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - Authored brand systems: use `shared/references/brand-first-lane.md` with the templates and boundary guard under `shared/authored-brand/`; authored exports never write measured `DESIGN.md`, `tokens.json`, or `styles/` paths, and only a signed `reviewed-conversion` checklist can authorize the existing measured owner to recreate an approved value from independent evidence.
 - Creation commands: `shared/creation-contract.md` (nine-stage contract shared by the canonical `/interface:*` commands).
 - Style retrieval: `styles/lib/engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/lib/database/README.md` (persistent index lifecycle).
-- Mode packets: `design-interface/SKILL.md`, `design-md-generator/SKILL.md` (per-mode detail); `design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
+- Mode packets: `sk-design-interface/SKILL.md`, `sk-design-md-generator/SKILL.md` (per-mode detail); `sk-design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
 

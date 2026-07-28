@@ -3,13 +3,13 @@ title: "MDR-001: Interface Mode Routing"
 description: "Verify generic visual-direction requests resolve to the interface mode and load the design-interface packet."
 version: 1.0.0.0
 id: MDR-001
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources:
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/design-principles.md
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/brief-to-dials.md
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: assets/interface-preflight-card.md
 ---
 
@@ -40,16 +40,16 @@ Make this SaaS pricing page look less generic and give it a distinctive visual d
 - `hub-router.json` sets `routerPolicy.defaultMode` to `interface` for design-family prompts when no other axis dominates.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/context-loading-contract.md`
 
 **Expected mode resources loaded or cited**:
-- `design-interface/references/design-process/design-principles.md`
-- `design-interface/references/design-process/brief-to-dials.md`
-- `design-interface/assets/interface-preflight-card.md`
+- `sk-design-interface/references/design-process/design-principles.md`
+- `sk-design-interface/references/design-process/brief-to-dials.md`
+- `sk-design-interface/assets/interface-preflight-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for this positive design-control prompt.
 
@@ -72,14 +72,14 @@ Make this SaaS pricing page look less generic and give it a distinctive visual d
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, packet is `design-interface/SKILL.md`, required shared resources are cited, and no mutating tool is used.
-- **FAIL** iff another mode resolves, `design-interface/SKILL.md` is not loaded, or the AI uses `Write`, `Edit`, or `Bash` for this read-only design-direction request.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, packet is `sk-design-interface/SKILL.md`, required shared resources are cited, and no mutating tool is used.
+- **FAIL** iff another mode resolves, `sk-design-interface/SKILL.md` is not loaded, or the AI uses `Write`, `Edit`, or `Bash` for this read-only design-direction request.
 
 ### Failure Triage
 
 1. If advisor loses, inspect the `sk-design` graph signals for visual-direction keywords.
 2. If `foundations` wins, check whether the prompt was accidentally rewritten to emphasize tokens, palette, typography, layout, or grid.
-3. If resources are missing, verify `design-interface/SKILL.md` still lists `shared/register.md`, `shared/context-loading-contract.md`, `design-principles.md`, `brief-to-dials.md`, and `interface-preflight-card.md`.
+3. If resources are missing, verify `sk-design-interface/SKILL.md` still lists `shared/register.md`, `shared/context-loading-contract.md`, `design-principles.md`, `brief-to-dials.md`, and `interface-preflight-card.md`.
 
 ---
 
@@ -87,7 +87,7 @@ Make this SaaS pricing page look less generic and give it a distinctive visual d
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

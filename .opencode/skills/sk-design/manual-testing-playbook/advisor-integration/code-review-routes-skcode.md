@@ -30,7 +30,7 @@ Review this checkout API handler for SQL-injection risk and missing input valida
 **Expected mode resolution**: none for `sk-design`; route elsewhere.
 
 **Why**:
-- `design-interface/SKILL.md` names pure logic, data, or back-end work with no visual surface as an explicit When-NOT-to-Use trigger, routing it to `sk-code`.
+- `sk-design-interface/SKILL.md` names pure logic, data, or back-end work with no visual surface as an explicit When-NOT-to-Use trigger, routing it to `sk-code`.
 - The prompt's wording overlaps `interface`'s own vocabulary via the bare word "review", but the request itself is SQL-injection risk and input validation on an API handler — pure backend code correctness, not visual or UI design.
 - The expected owner is `sk-code`, whose code-review mode owns correctness, security, and reuse/simplification review of code changes.
 - No other `sk-design` mode shares a same-named sibling mode in `sk-code`; `interface` (which absorbed the retired `audit` mode's quality-review scope) vs `sk-code` code-review is the one explicitly-documented cross-skill collision.
@@ -66,7 +66,7 @@ Review this checkout API handler for SQL-injection risk and missing input valida
 ### Failure Triage
 
 1. If `sk-design` wins, inspect whether the bare word "review" or "audit" is over-weighted in `hub-router.json`'s `interface` vocab classes relative to the code-correctness signal (`SQL-injection`, `input validation`, `API handler`).
-2. If `design-interface/SKILL.md`'s When-NOT-to-Use trigger for pure back-end work is missing or was edited, treat as a `SKILL.md` regression, not an advisor scoring bug.
+2. If `sk-design-interface/SKILL.md`'s When-NOT-to-Use trigger for pure back-end work is missing or was edited, treat as a `SKILL.md` regression, not an advisor scoring bug.
 3. If the prompt was rewritten to include UI, visual, or design-system terms, restore the exact prompt.
 
 ---
@@ -74,7 +74,7 @@ Review this checkout API handler for SQL-injection risk and missing input valida
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
 
 ---

@@ -3,7 +3,7 @@ title: "PB-004: Motion Procedure Selection Proof"
 description: "Verify interface mode selects the relocated interaction-states procedure card and preserves the read-only interface tool surface, now that motion is retired as a separate mode."
 version: 1.1.0.0
 id: PB-004
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 
@@ -28,11 +28,11 @@ Define hover, focus, active, loading, disabled, and reduced-motion behavior for 
 
 **Expected mode resolution**: `interface`.
 
-**Expected procedure card**: `design-interface/procedures/interaction-states-pass.md`.
+**Expected procedure card**: `sk-design-interface/procedures/interaction-states-pass.md`.
 
 **Why**:
-- `design-interface/SKILL.md` section `Procedure Card Selection` maps hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, and missing feedback to `procedures/interaction-states-pass.md`.
-- `design-interface/SKILL.md` section `Context, Proof, And Direct Fallback` requires public mode, loaded references, selected card, affected states, motion budget, reduced-motion bar, and verification risks before a ready or handoff claim.
+- `sk-design-interface/SKILL.md` section `Procedure Card Selection` maps hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, and missing feedback to `procedures/interaction-states-pass.md`.
+- `sk-design-interface/SKILL.md` section `Context, Proof, And Direct Fallback` requires public mode, loaded references, selected card, affected states, motion budget, reduced-motion bar, and verification risks before a ready or handoff claim.
 
 **Expected tool surface**: read-only. The `interface` mode may use Read, Glob, and Grep only.
 
@@ -42,8 +42,8 @@ Define hover, focus, active, loading, disabled, and reduced-motion behavior for 
 
 ### Preconditions
 
-1. `design-interface/SKILL.md` contains `Procedure Card Selection` and `Context, Proof, And Direct Fallback`.
-2. `design-interface/procedures/interaction-states-pass.md` exists.
+1. `sk-design-interface/SKILL.md` contains `Procedure Card Selection` and `Context, Proof, And Direct Fallback`.
+2. `sk-design-interface/procedures/interaction-states-pass.md` exists.
 
 ### Exact Command Sequence
 
@@ -53,12 +53,12 @@ Define hover, focus, active, loading, disabled, and reduced-motion behavior for 
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, the response names `design-interface/procedures/interaction-states-pass.md`, the rationale ties it to interaction states and reduced-motion behavior, the context basis appears before timing guidance, and no mutating tool is used.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, the response names `sk-design-interface/procedures/interaction-states-pass.md`, the rationale ties it to interaction states and reduced-motion behavior, the context basis appears before timing guidance, and no mutating tool is used.
 - **FAIL** iff the card is omitted, a private procedure becomes a public route, the response uses Write/Edit/Bash/Task, or timing guidance appears before the context/proof basis.
 
 ### Failure Triage
 
-1. Re-read `design-interface/SKILL.md` section `Procedure Card Selection`.
+1. Re-read `sk-design-interface/SKILL.md` section `Procedure Card Selection`.
 2. Confirm the exact prompt includes interaction-state vocabulary rather than generic animation vocabulary.
 3. Compare observed tool calls against the read-only `interface` surface.
 
@@ -66,8 +66,8 @@ Define hover, focus, active, loading, disabled, and reduced-motion behavior for 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
-- `.opencode/skills/sk-design/design-interface/procedures/interaction-states-pass.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/procedures/interaction-states-pass.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 
 ---

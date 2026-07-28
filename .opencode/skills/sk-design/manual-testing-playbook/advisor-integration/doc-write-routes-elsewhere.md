@@ -30,7 +30,7 @@ Write a README section explaining how the sk-design hub routes its four modes.
 **Expected mode resolution**: none for `sk-design`; route elsewhere.
 
 **Why**:
-- `design-interface/SKILL.md` says skip interface when the work is documentation or prose, not interface.
+- `sk-design-interface/SKILL.md` says skip interface when the work is documentation or prose, not interface.
 - `sk-doc` is the markdown and playbook specialist; this prompt asks to write a README section.
 - The prompt mentions `sk-design`, but the requested deliverable is documentation, not interface, motion, extraction, or transport-wiring work.
 
@@ -73,7 +73,7 @@ Write a README section explaining how the sk-design hub routes its four modes.
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/SKILL.md`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

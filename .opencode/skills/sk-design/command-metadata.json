@@ -1,7 +1,7 @@
 [
   {
     "command": "/interface:design",
-    "ownerMode": "interface",
+    "ownerMode": "sk-design-interface",
     "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -81,20 +81,20 @@
       },
       {
         "order": 2,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/SKILL.md",
+        "skill": "sk-design-interface",
+        "resource": ".opencode/skills/sk-design/sk-design-interface/SKILL.md",
         "action": "load the interface mode contract"
       },
       {
         "order": 3,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/procedures/",
+        "skill": "sk-design-interface",
+        "resource": ".opencode/skills/sk-design/sk-design-interface/procedures/",
         "action": "choose at most one private procedure card (discovery-question-round.md for missing material brief facts, aesthetic-direction.md for greenfield direction without a stronger brand/system, wireframe-exploration.md for low-fidelity structure or storyboard, variation-set.md for multiple high-fidelity directions or alternatives, prototype-flow-spec.md for prototype/demo/stateful interaction briefs, deck-direction-spec.md for slide deck or presentation design) matching the request, or ../shared/procedures/polish-gate-orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline interface workflow' if no card matches"
       },
       {
         "order": 4,
-        "skill": "design-interface",
-        "resource": ".opencode/skills/sk-design/design-interface/references/",
+        "skill": "sk-design-interface",
+        "resource": ".opencode/skills/sk-design/sk-design-interface/references/",
         "action": "load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS"
       },
       {
@@ -239,8 +239,8 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/design-principles.md"
+          "sk-design-interface/references/design-process/transform-application.md",
+          "sk-design-interface/references/design-process/design-principles.md"
         ],
         "requires": "an interface surface to push louder",
         "fixtures": [
@@ -253,8 +253,8 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/design-principles.md"
+          "sk-design-interface/references/design-process/transform-application.md",
+          "sk-design-interface/references/design-process/design-principles.md"
         ],
         "requires": "an interface surface to calm",
         "fixtures": [
@@ -267,8 +267,8 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/variation-diversity.md"
+          "sk-design-interface/references/design-process/transform-application.md",
+          "sk-design-interface/references/design-process/variation-diversity.md"
         ],
         "requires": "an interface surface to reduce to essentials",
         "fixtures": [
@@ -281,8 +281,8 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
-          "design-interface/references/design-process/transform-application.md",
-          "design-interface/references/design-process/real-ui-loop.md"
+          "sk-design-interface/references/design-process/transform-application.md",
+          "sk-design-interface/references/design-process/real-ui-loop.md"
         ],
         "requires": "an interface surface to add an earned moment to",
         "fixtures": [
@@ -373,7 +373,7 @@
   },
   {
     "command": "/interface:design-reference",
-    "ownerMode": "md-generator",
+    "ownerMode": "sk-design-md-generator",
     "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
@@ -452,20 +452,20 @@
       },
       {
         "order": 2,
-        "skill": "design-md-generator",
-        "resource": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+        "skill": "sk-design-md-generator",
+        "resource": ".opencode/skills/sk-design/sk-design-md-generator/SKILL.md",
         "action": "load the md-generator mode contract"
       },
       {
         "order": 3,
-        "skill": "design-md-generator",
-        "resource": ".opencode/skills/sk-design/design-md-generator/procedures/",
+        "skill": "sk-design-md-generator",
+        "resource": ".opencode/skills/sk-design/sk-design-md-generator/procedures/",
         "action": "select the private design-system-extraction.md card when the request involves measured extraction, token capture, CSS capture, DESIGN.md generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline md-generator pipeline' if the card does not match"
       },
       {
         "order": 4,
-        "skill": "design-md-generator",
-        "resource": ".opencode/skills/sk-design/design-md-generator/references/",
+        "skill": "sk-design-md-generator",
+        "resource": ".opencode/skills/sk-design/sk-design-md-generator/references/",
         "action": "load mode references and assets as the work requires, then apply the md-generator workflow to $ARGUMENTS"
       },
       {

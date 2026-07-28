@@ -37,19 +37,19 @@ At the draft boundary, exact-value and normalized-span signals run independently
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/schema-v3.ts` | Shared | Defines the single v3 schema authority and drift sentinel. |
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts` | Handler | Emits schema-driven value sections and Quick Start groups. |
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/study-prepare.ts` | Handler | Selects and hydrates one generation-bound exemplar. |
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/study-exemplars.ts` | Shared | De-literalizes observations and enforces the leak gate. |
-| `.opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts` | Handler | Discards leaking drafts and runs the no-STUDY retry. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/schema-v3.ts` | Shared | Defines the single v3 schema authority and drift sentinel. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/formatters-v3.ts` | Handler | Emits schema-driven value sections and Quick Start groups. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/study-prepare.ts` | Handler | Selects and hydrates one generation-bound exemplar. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/study-exemplars.ts` | Shared | De-literalizes observations and enforces the leak gate. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/scripts/guided-run.ts` | Handler | Discards leaking drafts and runs the no-STUDY retry. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/sk-design/design-md-generator/backend/tests/schema-v3.test.ts` | Automated test | Covers schema drift, required groups and hard-issue immutability. |
-| `.opencode/skills/sk-design/design-md-generator/backend/tests/study-exemplars.test.ts` | Automated test | Covers injection neutralization, leak signals and production retry. |
-| `.opencode/skills/sk-design/design-md-generator/backend/tests/validate.test.ts` | Automated test | Covers schema-aware hard and advisory validation. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/tests/schema-v3.test.ts` | Automated test | Covers schema drift, required groups and hard-issue immutability. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/tests/study-exemplars.test.ts` | Automated test | Covers injection neutralization, leak signals and production retry. |
+| `.opencode/skills/sk-design/sk-design-md-generator/backend/tests/validate.test.ts` | Automated test | Covers schema-aware hard and advisory validation. |
 
 ---
 

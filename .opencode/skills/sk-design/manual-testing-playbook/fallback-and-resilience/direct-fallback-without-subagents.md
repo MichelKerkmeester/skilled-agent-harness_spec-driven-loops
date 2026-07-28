@@ -3,7 +3,7 @@ title: "FR-002: Direct Fallback Without Subagents"
 description: "Verify sk-design modes preserve their proof bar when subagents are unavailable, including the md-generator backend boundary."
 version: 1.1.0.0
 id: FR-002
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 
@@ -28,7 +28,7 @@ Subagents are unavailable. Define the feedback states and reduced-motion path fo
 
 **Expected mode resolution**: `interface`.
 
-**Expected procedure card**: `design-interface/procedures/interaction-states-pass.md`.
+**Expected procedure card**: `sk-design-interface/procedures/interaction-states-pass.md`.
 
 **Expected fallback**: Execute directly with Read, Glob, and Grep only, preserving the same proof bar.
 
@@ -64,8 +64,8 @@ Subagents are unavailable. Define the feedback states and reduced-motion path fo
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
-- `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md`
 - `.opencode/skills/sk-design/mode-registry.json`
 
 ---

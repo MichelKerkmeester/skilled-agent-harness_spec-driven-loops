@@ -3,7 +3,7 @@ title: "HM-004: Design-Mode Pairing Before Run"
 description: "Verify the sk-design hub pairs a design-judgment mode with design-mcp-open-design and names it as a hard precondition before a RUN-direction Open Design generation request, instead of resolving the transport packet alone."
 version: 1.0.0.0
 id: HM-004
-expected_workflow_mode: interface+design-mcp-open-design
+expected_workflow_mode: interface+sk-design-mcp-open-design
 expected_leaf_resources: []
 ---
 
@@ -32,7 +32,7 @@ Commission an Open Design generation run for a new settings page, grounding it i
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
-**Expected visible plan**: The paired design-judgment mode named as a hard precondition, citing hub `SKILL.md`'s `Transports and Consumers` rule ("Use them after the design mode is chosen") and `design-mcp-open-design/SKILL.md`'s own MANDATORY PAIRING banner, before any `start_run` / `od run start` call is described as already executed.
+**Expected visible plan**: The paired design-judgment mode named as a hard precondition, citing hub `SKILL.md`'s `Transports and Consumers` rule ("Use them after the design mode is chosen") and `sk-design-mcp-open-design/SKILL.md`'s own MANDATORY PAIRING banner, before any `start_run` / `od run start` call is described as already executed.
 
 **Why this scenario differs from existing coverage**:
 - `MDR-007` and `AI-001` P6 both use the WIRE-direction prompt ("Wire Open Design's MCP server into opencode..."), the one case `openDesignExemption` explicitly exempts from pairing.
@@ -46,7 +46,7 @@ Commission an Open Design generation run for a new settings page, grounding it i
 ### Preconditions
 
 1. Hub `SKILL.md` contains `Visible Plan Before Design or Build Work` and `Transports and Consumers`.
-2. `design-mcp-open-design/SKILL.md` contains the MANDATORY PAIRING banner and the `openDesignExemption` positive-purpose gate.
+2. `sk-design-mcp-open-design/SKILL.md` contains the MANDATORY PAIRING banner and the `openDesignExemption` positive-purpose gate.
 3. The prompt is RUN-direction (generation, `start_run` / `od run start`), not WIRE-direction, so `openDesignExemption` cannot apply.
 
 ### Exact Command Sequence
@@ -73,7 +73,7 @@ Commission an Open Design generation run for a new settings page, grounding it i
 - `.opencode/skills/sk-design/SKILL.md`
 - `.opencode/skills/sk-design/hub-router.json`
 - `.opencode/skills/sk-design/mode-registry.json`
-- `.opencode/skills/sk-design/design-mcp-open-design/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-mcp-open-design/SKILL.md`
 
 ---
 

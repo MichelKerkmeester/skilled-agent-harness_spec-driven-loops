@@ -3,7 +3,7 @@ title: "FR-001: No-Card-Matches Fallback"
 description: "Verify sk-design modes state the explicit no-procedure fallback instead of loading every procedure card or inventing a card."
 version: 1.1.0.0
 id: FR-001
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 
@@ -65,8 +65,8 @@ Note: the retired `motion` mode's own `Procedure applied: none - baseline motion
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
-- `.opencode/skills/sk-design/design-md-generator/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md`
 
 ---
 

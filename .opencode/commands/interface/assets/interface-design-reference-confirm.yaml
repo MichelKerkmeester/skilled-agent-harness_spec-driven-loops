@@ -196,7 +196,7 @@ workflow:
     output: grounding_record
   step_7_load_mode:
     purpose: Load the stable md-generator mode and owned backend
-    action: "Read .opencode/skills/sk-design/design-md-generator/SKILL.md, then references/ and assets as required"
+    action: "Read .opencode/skills/sk-design/sk-design-md-generator/SKILL.md, then references/ and assets as required"
     output: mode_context
   step_8_select_procedure_card:
     purpose: Select the extraction procedure card

@@ -47,9 +47,9 @@ This card blocks pre-work drift. Fill the surface, register, dials, loaded-file 
 | File | Loaded |
 |---|---|
 | `../register.md` | [ ] yes [ ] no |
-| `../../design-interface/references/design-process/brief-to-dials.md` | [ ] yes [ ] no |
-| `../../design-interface/SKILL.md` | [ ] yes [ ] no [ ] N/A |
-| `../../design-interface/assets/interface-preflight-card.md` | [ ] yes [ ] no [ ] N/A |
+| `../../sk-design-interface/references/design-process/brief-to-dials.md` | [ ] yes [ ] no |
+| `../../sk-design-interface/SKILL.md` | [ ] yes [ ] no [ ] N/A |
+| `../../sk-design-interface/assets/interface-preflight-card.md` | [ ] yes [ ] no [ ] N/A |
 | Interface contrast refs for color/text-surface work | [ ] yes [ ] no [ ] N/A |
 | Interface evidence refs for score/accessibility/release claims | [ ] yes [ ] no [ ] N/A |
 | Small-model profile for delegation | [ ] yes [ ] no [ ] N/A |

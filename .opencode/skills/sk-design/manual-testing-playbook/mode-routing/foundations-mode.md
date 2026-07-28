@@ -3,7 +3,7 @@ title: "MDR-002: Foundations-Flavored Token Routing"
 description: "Verify static-token-heavy (OKLCH/typography/spacing/grid) requests still resolve to interface now that the standalone foundations mode is retired."
 version: 1.1.0.0
 id: MDR-002
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources: []
 ---
 
@@ -33,13 +33,13 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 - `hub-router.json` routes the `foundations-color`, `foundations-type`, `foundations-layout`, and `foundations-tokens` vocabulary classes into `interface`'s `routerSignals`.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/context-loading-contract.md`
 
-**Known gap (report, do not fail the scenario on this alone)**: as of this writing, `design-interface/SKILL.md`'s machine-parseable `RESOURCE_MAP` has no entries for the physically relocated `references/foundations/**` or `assets/foundations/**` files (color, type, layout, token-starter). The prompt should still resolve to `interface`, but the response may fall through to `DEFAULT_RESOURCE` only rather than citing a specific color/type/layout/token reference. Log that as a routing-completeness finding, separate from this scenario's mode-resolution PASS/FAIL.
+**Known gap (report, do not fail the scenario on this alone)**: as of this writing, `sk-design-interface/SKILL.md`'s machine-parseable `RESOURCE_MAP` has no entries for the physically relocated `references/foundations/**` or `assets/foundations/**` files (color, type, layout, token-starter). The prompt should still resolve to `interface`, but the response may fall through to `DEFAULT_RESOURCE` only rather than citing a specific color/type/layout/token reference. Log that as a routing-completeness finding, separate from this scenario's mode-resolution PASS/FAIL.
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
@@ -62,7 +62,7 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, packet is `design-interface/SKILL.md`, and no mutating tool is used.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, packet is `sk-design-interface/SKILL.md`, and no mutating tool is used.
 - **FAIL** iff `motion`, `md-generator`, or a non-design skill resolves instead, or if mutating tools are used.
 
 ### Failure Triage
@@ -76,7 +76,7 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
 
 ---
 

@@ -3,13 +3,13 @@ title: "PB-003: md-generator Preservation Confirmation"
 description: "Verify parity behavior keeps md-generator as the only mutating mode and preserves its measured extraction procedure."
 version: 1.0.0.0
 id: PB-003
-expected_workflow_mode: md-generator
+expected_workflow_mode: sk-design-md-generator
 expected_leaf_resources:
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/extraction-workflow.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/source-of-truth-router-card.md
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: assets/cardinal-rules-card.md
 ---
 
@@ -34,7 +34,7 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 
 **Expected mode resolution**: `md-generator`.
 
-**Expected procedure card**: `design-md-generator/procedures/design-system-extraction.md`.
+**Expected procedure card**: `sk-design-md-generator/procedures/design-system-extraction.md`.
 
 **Why**:
 - `hub-router.json` maps `extract design system`, `design.md`, `capture website css`, and `design tokens from url` signals to `md-generator`.
@@ -42,16 +42,16 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 - `design-system-extraction.md` requires measured source evidence, visible gaps, and source-traceable values rather than silently filled design prose.
 
 **Expected packet loaded**:
-- `design-md-generator/SKILL.md`
+- `sk-design-md-generator/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - UNKNOWN. The md-generator packet guards paths inside its own folder and does not require the parent shared reference base for extraction.
 
 **Expected mode resources loaded or cited**:
-- `design-md-generator/procedures/design-system-extraction.md`
-- `design-md-generator/references/extraction-workflow.md`
-- `design-md-generator/assets/source-of-truth-router-card.md`
-- `design-md-generator/assets/cardinal-rules-card.md`
+- `sk-design-md-generator/procedures/design-system-extraction.md`
+- `sk-design-md-generator/references/extraction-workflow.md`
+- `sk-design-md-generator/assets/source-of-truth-router-card.md`
+- `sk-design-md-generator/assets/cardinal-rules-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
@@ -64,7 +64,7 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 ### Preconditions
 
 1. `mode-registry.json` contains `workflowMode: md-generator`, `backendKind: playwright-extract`, and `mutatesWorkspace: true`.
-2. `design-md-generator/procedures/design-system-extraction.md` exists and requires source-traceable extraction evidence.
+2. `sk-design-md-generator/procedures/design-system-extraction.md` exists and requires source-traceable extraction evidence.
 3. The output path is under `/tmp/skd-PB003/` if live execution is performed.
 
 ### Exact Command Sequence
@@ -75,7 +75,7 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `md-generator`, the response names `design-md-generator/procedures/design-system-extraction.md`, it confirms only `md-generator` may write extraction artifacts, and live execution either writes sandboxed `/tmp/skd-PB003/` outputs or explicitly records that operator execution is required.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `md-generator`, the response names `sk-design-md-generator/procedures/design-system-extraction.md`, it confirms only `md-generator` may write extraction artifacts, and live execution either writes sandboxed `/tmp/skd-PB003/` outputs or explicitly records that operator execution is required.
 - **FAIL** iff a read-only mode attempts extraction writes, the response invents measured CSS evidence without running extraction, the md-generator pipeline is omitted, or output is directed outside the sandbox.
 
 ### Failure Triage
@@ -90,8 +90,8 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-md-generator/SKILL.md`
-- `.opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md`
+- `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-md-generator/procedures/design-system-extraction.md`
 
 ---
 

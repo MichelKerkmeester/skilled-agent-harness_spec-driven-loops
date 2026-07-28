@@ -3,11 +3,11 @@ title: "PB-001: Procedure Selection Proof"
 description: "Verify a public sk-design mode records which internal procedure card it selected and why without requiring mutation from a read-only mode."
 version: 1.0.0.0
 id: PB-001
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources:
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/brief-to-dials.md
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: assets/interface-preflight-card.md
 ---
 
@@ -32,24 +32,24 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 
 **Expected mode resolution**: `interface`.
 
-**Expected procedure card**: `design-interface/procedures/aesthetic-direction.md`.
+**Expected procedure card**: `sk-design-interface/procedures/aesthetic-direction.md`.
 
 **Why**:
 - `hub-router.json` maps `less generic`, `premium ui`, and `visual direction` signals to `interface` through `interface-taste`.
-- `mode-registry.json` keeps `interface` as a public mode with `proceduresPath: design-interface/procedures` and a read-only tool surface.
+- `mode-registry.json` keeps `interface` as a public mode with `proceduresPath: sk-design-interface/procedures` and a read-only tool surface.
 - `aesthetic-direction.md` is the matching card when a visual redesign lacks a stronger existing brand or reference source and must produce a non-generic direction brief.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/context-loading-contract.md`
 
 **Expected mode resources loaded or cited**:
-- `design-interface/procedures/aesthetic-direction.md`
-- `design-interface/references/design-process/brief-to-dials.md`
-- `design-interface/assets/interface-preflight-card.md`
+- `sk-design-interface/procedures/aesthetic-direction.md`
+- `sk-design-interface/references/design-process/brief-to-dials.md`
+- `sk-design-interface/assets/interface-preflight-card.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for this positive design-direction prompt.
 
@@ -61,8 +61,8 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 
 ### Preconditions
 
-1. `mode-registry.json` contains `workflowMode: interface`, `packet: design-interface`, and `proceduresPath: design-interface/procedures`.
-2. `design-interface/procedures/aesthetic-direction.md` exists and names `design-interface` as owning mode.
+1. `mode-registry.json` contains `workflowMode: interface`, `packet: design-interface`, and `proceduresPath: sk-design-interface/procedures`.
+2. `sk-design-interface/procedures/aesthetic-direction.md` exists and names `design-interface` as owning mode.
 
 ### Exact Command Sequence
 
@@ -72,12 +72,12 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, the response names `design-interface/procedures/aesthetic-direction.md` as the selected procedure card, the rationale ties the card to missing stronger brand/reference context and non-generic direction, and no mutating tool is used.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, the response names `sk-design-interface/procedures/aesthetic-direction.md` as the selected procedure card, the rationale ties the card to missing stronger brand/reference context and non-generic direction, and no mutating tool is used.
 - **FAIL** iff a private procedure becomes a public skill, the response omits the selected card/rationale, another mode resolves without justification, or the AI uses `Write`, `Edit`, or `Bash`.
 
 ### Failure Triage
 
-1. If the procedure card is omitted, inspect `design-interface/SKILL.md` for procedure-selection proof instructions.
+1. If the procedure card is omitted, inspect `sk-design-interface/SKILL.md` for procedure-selection proof instructions.
 2. If `foundations` wins, check whether the prompt was rewritten around tokens, typography, grid, or spacing rather than direction.
 3. If a mutating tool is used, compare the tool calls against the `interface` `toolSurface` in `mode-registry.json`.
 
@@ -87,8 +87,8 @@ Make this fintech dashboard feel premium and less generic. Before giving directi
 
 - `.opencode/skills/sk-design/mode-registry.json`
 - `.opencode/skills/sk-design/hub-router.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
-- `.opencode/skills/sk-design/design-interface/procedures/aesthetic-direction.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/procedures/aesthetic-direction.md`
 
 ---
 

@@ -36,7 +36,7 @@ When transport output conflicts with the proof plan, the mode contract decides t
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/sk-design/SKILL.md` | Shared | Defines transport and consumer integration rules. |
-| `.opencode/skills/sk-design/design-md-generator/SKILL.md` | Shared | Defines the one mutating design-mode backend and its fidelity proof boundary. |
+| `.opencode/skills/sk-design/sk-design-md-generator/SKILL.md` | Shared | Defines the one mutating design-mode backend and its fidelity proof boundary. |
 
 ### Validation And Tests
 

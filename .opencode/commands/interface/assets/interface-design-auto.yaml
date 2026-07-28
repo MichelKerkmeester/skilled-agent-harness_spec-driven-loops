@@ -189,7 +189,7 @@ workflow:
     output: grounding_record
   step_7_load_mode:
     purpose: Load the stable interface mode and only required private resources
-    action: "Read .opencode/skills/sk-design/design-interface/SKILL.md, then references/ and assets as required"
+    action: "Read .opencode/skills/sk-design/sk-design-interface/SKILL.md, then references/ and assets as required"
     output: mode_context
   step_8_select_procedure_card:
     purpose: Select at most one private card or the explicit fallback

@@ -25,7 +25,7 @@ const assetsRootUrl = new URL("commands/interface/assets/", opencodeRootUrl);
 const [metadata, registry, interfaceSkillSource] = await Promise.all([
   readJson(new URL("command-metadata.json", skillRootUrl)),
   readJson(new URL("mode-registry.json", skillRootUrl)),
-  readFile(new URL("design-interface/SKILL.md", skillRootUrl), "utf8")
+  readFile(new URL("sk-design-interface/SKILL.md", skillRootUrl), "utf8")
 ]);
 
 const workflowModes = readWorkflowModes(registry);

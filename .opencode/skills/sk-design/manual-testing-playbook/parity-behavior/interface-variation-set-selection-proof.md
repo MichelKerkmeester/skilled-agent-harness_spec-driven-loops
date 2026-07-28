@@ -3,11 +3,11 @@ title: "PB-007: Interface Variation-Set Selection Proof"
 description: "Verify interface mode selects the variation-set.md procedure card, not aesthetic-direction.md, and applies the seed-of-thought debias when a brief asks for two or more genuinely distinct visual directions."
 version: 1.0.0.0
 id: PB-007
-expected_workflow_mode: interface
+expected_workflow_mode: sk-design-interface
 expected_leaf_resources:
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/variation-diversity.md
-  - workflow_mode: interface
+  - workflow_mode: sk-design-interface
     leaf_resource_id: references/design-process/brief-to-dials.md
 ---
 
@@ -32,25 +32,25 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 
 **Expected mode resolution**: `interface`.
 
-**Expected procedure card**: `design-interface/procedures/variation-set.md` (explicitly not `aesthetic-direction.md`).
+**Expected procedure card**: `sk-design-interface/procedures/variation-set.md` (explicitly not `aesthetic-direction.md`).
 
 **Why**:
 - `mode-registry.json` keeps `design variations` among the `interface` mode's aliases, and the `interface` registry entry allows `Read`, `Glob`, `Grep` only, forbidding `Write`, `Edit`, `Bash`.
-- `design-interface/SKILL.md` section `Procedure Card Selection` maps "Multiple high-fidelity directions or alternatives" to `procedures/variation-set.md`, distinct from the "Greenfield direction without a stronger brand/system" row that maps to `procedures/aesthetic-direction.md`.
-- `design-interface/SKILL.md` ALWAYS rule 6 requires debiasing multiple directions with the seed of thought from `references/design-process/variation-diversity.md` whenever a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, never surfaced as a style chooser.
+- `sk-design-interface/SKILL.md` section `Procedure Card Selection` maps "Multiple high-fidelity directions or alternatives" to `procedures/variation-set.md`, distinct from the "Greenfield direction without a stronger brand/system" row that maps to `procedures/aesthetic-direction.md`.
+- `sk-design-interface/SKILL.md` ALWAYS rule 6 requires debiasing multiple directions with the seed of thought from `references/design-process/variation-diversity.md` whenever a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, never surfaced as a style chooser.
 - The machine-parseable `RESOURCE_MAP` router maps intent `VARIATION_DIVERSITY` (weight 4, keywords including "several directions", "three directions", "diverse", "seed of thought", "debias") to that same `references/design-process/variation-diversity.md` file.
 
 **Expected packet loaded**:
-- `design-interface/SKILL.md`
+- `sk-design-interface/SKILL.md`
 
 **Expected shared resources loaded or cited**:
 - `shared/register.md`
 - `shared/context-loading-contract.md`
 
 **Expected mode resources loaded or cited**:
-- `design-interface/procedures/variation-set.md`
-- `design-interface/references/design-process/variation-diversity.md`
-- `design-interface/references/design-process/brief-to-dials.md`
+- `sk-design-interface/procedures/variation-set.md`
+- `sk-design-interface/references/design-process/variation-diversity.md`
+- `sk-design-interface/references/design-process/brief-to-dials.md`
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80` for this positive multi-direction design prompt.
 
@@ -63,8 +63,8 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 ### Preconditions
 
 1. `mode-registry.json` contains `workflowMode: interface` with `design variations` in its `aliases` list and a read-only `toolSurface`.
-2. `design-interface/procedures/variation-set.md` and `design-interface/procedures/aesthetic-direction.md` both exist and are distinct cards in the `Procedure Card Selection` table.
-3. `design-interface/references/design-process/variation-diversity.md` exists and is reachable from `RESOURCE_MAP["VARIATION_DIVERSITY"]`.
+2. `sk-design-interface/procedures/variation-set.md` and `sk-design-interface/procedures/aesthetic-direction.md` both exist and are distinct cards in the `Procedure Card Selection` table.
+3. `sk-design-interface/references/design-process/variation-diversity.md` exists and is reachable from `RESOURCE_MAP["VARIATION_DIVERSITY"]`.
 
 ### Exact Command Sequence
 
@@ -75,12 +75,12 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, the response names `design-interface/procedures/variation-set.md` as the selected card, states why it differs from `aesthetic-direction.md` (two-or-more genuinely distinct directions vs. a single-direction brief), cites the seed-of-thought debias from `variation-diversity.md`, produces three directions that are meaningfully distinct rather than N safe variations of the median, and no mutating tool is used.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `interface`, the response names `sk-design-interface/procedures/variation-set.md` as the selected card, states why it differs from `aesthetic-direction.md` (two-or-more genuinely distinct directions vs. a single-direction brief), cites the seed-of-thought debias from `variation-diversity.md`, produces three directions that are meaningfully distinct rather than N safe variations of the median, and no mutating tool is used.
 - **FAIL** iff `aesthetic-direction.md` is selected for a multi-direction brief, no procedure card is cited, the seed-of-thought debias is omitted or not named, the directions read as near-identical variations, or `Write`, `Edit`, or `Bash` is used.
 
 ### Failure Triage
 
-1. If `aesthetic-direction.md` is selected instead, re-read `design-interface/SKILL.md` `Procedure Card Selection` and confirm the prompt's "three genuinely distinct" language should route to the "Multiple high-fidelity directions or alternatives" row, not the greenfield single-direction row.
+1. If `aesthetic-direction.md` is selected instead, re-read `sk-design-interface/SKILL.md` `Procedure Card Selection` and confirm the prompt's "three genuinely distinct" language should route to the "Multiple high-fidelity directions or alternatives" row, not the greenfield single-direction row.
 2. If the seed-of-thought debias is missing, check whether ALWAYS rule 6 was loaded and whether `RESOURCE_MAP["VARIATION_DIVERSITY"]` fired for the prompt's keywords ("three directions", "distinct").
 3. If the three directions read as near-identical, inspect whether `variation-diversity.md`'s non-median seed and spread mechanism were actually applied or only cited.
 4. If a mutating tool is used, compare the tool calls against the `interface` `toolSurface` in `mode-registry.json`.
@@ -90,10 +90,10 @@ Give me three genuinely distinct visual directions for this fintech onboarding f
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-design/mode-registry.json`
-- `.opencode/skills/sk-design/design-interface/SKILL.md`
-- `.opencode/skills/sk-design/design-interface/procedures/variation-set.md`
-- `.opencode/skills/sk-design/design-interface/procedures/aesthetic-direction.md`
-- `.opencode/skills/sk-design/design-interface/references/design-process/variation-diversity.md`
+- `.opencode/skills/sk-design/sk-design-interface/SKILL.md`
+- `.opencode/skills/sk-design/sk-design-interface/procedures/variation-set.md`
+- `.opencode/skills/sk-design/sk-design-interface/procedures/aesthetic-direction.md`
+- `.opencode/skills/sk-design/sk-design-interface/references/design-process/variation-diversity.md`
 
 ---
 
