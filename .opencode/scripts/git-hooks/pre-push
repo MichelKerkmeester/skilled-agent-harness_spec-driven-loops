@@ -162,4 +162,28 @@ if [[ "$REJECTED" -ne 0 ]]; then
   exit 1
 fi
 
+# ── Test gate (third gate, independently bypassable) ─────────────────────────
+#
+# Runs the repository's discovered test suites before anything reaches origin.
+# This gate exists because *.test.mjs files here were silently never run by any
+# harness — suites passed by hand and rotted in place, and one live suite was
+# found genuinely broken only when discovery finally happened.
+#
+# Report-only by default: known-failing suites predate this gate, and blocking
+# every session's pushes on another surface's rot would be hostage-taking.
+# Flip to blocking with SPECKIT_PREPUSH_TESTS_ENFORCE=1 once those are green.
+# Skip entirely with SPECKIT_SKIP_PREPUSH_TESTS=1.
+if [[ "${SPECKIT_SKIP_PREPUSH_TESTS:-0}" != "1" ]]; then
+  TEST_RUNNER="$REPO_ROOT/.opencode/scripts/run-node-tests.mjs"
+  if [[ -f "$TEST_RUNNER" ]]; then
+    if ! node "$TEST_RUNNER" >&2; then
+      if [[ "${SPECKIT_PREPUSH_TESTS_ENFORCE:-0}" = "1" ]]; then
+        echo "BLOCKED: test suites failed and SPECKIT_PREPUSH_TESTS_ENFORCE=1 is set." >&2
+        exit 1
+      fi
+      echo "WARNING: test suites failed (report-only; enforce with SPECKIT_PREPUSH_TESTS_ENFORCE=1)." >&2
+    fi
+  fi
+fi
+
 exit 0

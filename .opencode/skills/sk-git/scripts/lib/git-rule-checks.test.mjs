@@ -170,6 +170,62 @@ test('a clean filter on a staged path is flagged', () => {
   assert.equal(check('staged-path-rewritten-by-filter', 'git add seed.txt', dir), true);
 });
 
+// ── Destructive tier ─────────────────────────────────────────────────────────
+
+test('reset --hard fires only when the tree holds modifications', () => {
+  const dir = repo();
+  assert.equal(check('reset-hard-discards-changes', 'git reset --hard HEAD~1', dir), true, 'clean tree destroys nothing on disk');
+  fs.writeFileSync(path.join(dir, 'seed.txt'), 'modified\n');
+  assert.equal(check('reset-hard-discards-changes', 'git reset --hard', dir), false);
+  assert.equal(check('reset-hard-discards-changes', 'git reset --soft HEAD~1', dir), true, 'soft reset touches no files');
+});
+
+test('clean -x fires on any real deletion; the plain form gets headroom', () => {
+  const dir = repo();
+  fs.writeFileSync(path.join(dir, '.gitignore'), 'cache/\n');
+  fs.mkdirSync(path.join(dir, 'cache'));
+  fs.writeFileSync(path.join(dir, 'cache', 'db.sqlite'), 'x\n');
+  fs.writeFileSync(path.join(dir, 'loose.txt'), 'x\n');
+  assert.equal(check('clean-force-deletes-files', 'git clean -fdx', dir), false, '-x reaches ignored files');
+  assert.equal(check('clean-force-deletes-files', 'git clean -f', dir), true, 'one loose file is routine');
+  assert.equal(check('clean-force-deletes-files', 'git clean -n', dir), true, 'a dry run deletes nothing');
+});
+
+test('branch -D fires only for a branch with unmerged commits', () => {
+  const dir = repo();
+  git(dir, 'branch', 'merged-twin');
+  git(dir, 'checkout', '-q', '-b', 'ahead');
+  fs.writeFileSync(path.join(dir, 'extra.txt'), 'x\n');
+  git(dir, 'add', 'extra.txt');
+  git(dir, 'commit', '-q', '-m', 'unique');
+  git(dir, 'checkout', '-q', '-');
+  assert.equal(check('branch-force-delete-unmerged', 'git branch -D ahead', dir), false);
+  assert.equal(check('branch-force-delete-unmerged', 'git branch -D merged-twin', dir), true, 'nothing unique to lose');
+  assert.equal(check('branch-force-delete-unmerged', 'git branch -d ahead', dir), true, 'git refuses -d on its own');
+});
+
+test('stash clear fires only when entries exist', () => {
+  const dir = repo();
+  assert.equal(check('stash-clear-drops-entries', 'git stash clear', dir), true, 'nothing to drop');
+  fs.writeFileSync(path.join(dir, 'seed.txt'), 'modified\n');
+  git(dir, 'stash');
+  assert.equal(check('stash-clear-drops-entries', 'git stash clear', dir), false);
+  assert.equal(check('stash-clear-drops-entries', 'git stash drop stash@{0}', dir), true, 'a targeted drop names its victim');
+});
+
+test('shape-only destructive tokens fire regardless of state', () => {
+  const dir = repo();
+  assert.equal(check('history-expiry-defeats-recovery', 'git reflog expire --expire=now --all', dir), false);
+  assert.equal(check('history-expiry-defeats-recovery', 'git gc --prune=now', dir), false);
+  assert.equal(check('history-expiry-defeats-recovery', 'git gc', dir), true);
+  assert.equal(check('push-deletes-remote-ref', 'git push origin --delete topic', dir), false);
+  assert.equal(check('push-deletes-remote-ref', 'git push origin :topic', dir), false);
+  assert.equal(check('push-deletes-remote-ref', 'git push origin main', dir), true);
+  assert.equal(check('force-push-without-lease', 'git push --force origin main', dir), false);
+  assert.equal(check('force-push-without-lease', 'git push --force-with-lease origin main', dir), true);
+  assert.equal(check('force-push-without-lease', 'git push origin main', dir), true);
+});
+
 // ── Parsing and contract ─────────────────────────────────────────────────────
 
 test('parser separates flags from pathspec across invocation shapes', () => {

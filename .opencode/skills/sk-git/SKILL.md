@@ -45,6 +45,34 @@ hard_rules:
     check: staged-path-rewritten-by-filter
     message: "A path here passes through a clean filter, so the committed content differs from the file on disk. Reading the working copy will not tell you what you are committing; use `git show HEAD:<path>` to see the committed form."
     severity: warn
+  - id: reset-hard-discards-changes
+    check: reset-hard-discards-changes
+    message: "The working tree has modifications and `reset --hard` destroys them unrecoverably — the reflog protects commits, never uncommitted work. Stash first, or run `git status` to see what is about to be lost."
+    severity: warn
+  - id: clean-force-deletes-files
+    check: clean-force-deletes-files
+    message: "This clean would actually delete files — with `-x` including everything gitignore protects, such as dependency trees and databases. `git clean -n` with the same flags shows the exact list before it is gone."
+    severity: warn
+  - id: branch-force-delete-unmerged
+    check: branch-force-delete-unmerged
+    message: "This branch holds commits not merged into HEAD, which is exactly the situation `-d` refuses and `-D` bypasses. Note the branch tip SHA first; after deletion the reflog is the only way back."
+    severity: warn
+  - id: stash-clear-drops-entries
+    check: stash-clear-drops-entries
+    message: "Stash entries exist and `stash clear` discards all of them unrecoverably. `git stash list` shows what is about to be dropped; `stash drop` removes one entry by name instead."
+    severity: warn
+  - id: history-expiry-defeats-recovery
+    check: history-expiry-defeats-recovery
+    message: "Immediate expiry deletes the reflog safety net that every other git recovery relies on. After this runs, dropped commits and resets are genuinely gone rather than recoverable."
+    severity: warn
+  - id: push-deletes-remote-ref
+    check: push-deletes-remote-ref
+    message: "This push deletes a ref on the remote — destructive at a distance and invisible locally. Confirm the branch name and that nobody else's work rides on it."
+    severity: warn
+  - id: force-push-without-lease
+    check: force-push-without-lease
+    message: "Plain `--force` overwrites the remote even if someone pushed after you last fetched. `--force-with-lease` fails in that case instead, which is the entire difference between rewriting your own history and destroying someone else's."
+    severity: warn
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, owner-first-branch, skill-scoped-worktree, worktree-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->

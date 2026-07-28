@@ -67,14 +67,17 @@ async function main() {
     return approve();
   }
 
-  if (payload?.tool_name !== 'Bash') return approve();
+  // Claude delivers shell commands as tool_name "Bash"; Codex delivers the same payload shape
+  // as "exec". One hook serves both, because a second copy would be a second thing to drift.
+  const tool = String(payload?.tool_name || '').toLowerCase();
+  if (tool !== 'bash' && tool !== 'exec') return approve();
   const command = payload?.tool_input?.command;
   if (typeof command !== 'string' || !GIT_SHAPE.test(command)) return approve();
 
   const tiers = suppression();
   if (tiers.off) return approve();
 
-  const projectDir = process.env.CLAUDE_PROJECT_DIR || process.cwd();
+  const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.env.CODEX_PROJECT_DIR || process.cwd();
   const rules = readHardRules(path.join(projectDir, '.opencode', 'skills', 'sk-git', 'SKILL.md'))
     .filter((r) => GIT_CHECKS[r.check] && !tiers.silenced(r.id));
   if (rules.length === 0) return approve();
