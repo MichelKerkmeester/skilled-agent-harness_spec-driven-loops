@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/016-git-action-advisory-hook"
-    last_updated_at: "2026-07-27T21:00:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Scaffolded the packet from four observed incidents"
-    next_safe_action: "Run the ten-iteration research program in phase 001"
+    last_updated_at: "2026-07-28T09:30:00Z"
+    last_updated_by: "claude-fable-5"
+    recent_action: "Closed the packet: all eight phases complete, six runtimes covered, pushed to v4"
+    next_safe_action: "Operator smoke-tests the Pi, OpenCode and Cursor adapters live"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,9 +22,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-27-sk-git-016"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which git operations warrant an advisory, and which would become noise?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "The PreToolUse Bash advisory mechanism already exists and is proven by cli-opencode."
 ---
@@ -40,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
@@ -116,19 +115,15 @@ The last row is the most damaging and the only one with no rule. A pathspec comm
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-advisory-research/` | Ten-iteration research: which operations, what evidence, how to avoid noise | Planned |
-| 002 | `002-rule-encoding/` | Encode sk-git rules as `hard_rules:` frontmatter | Planned |
-| 003 | `003-preflight-hook/` | The advisory hook and its wiring | Planned |
-| 004 | `004-pathspec-integrity/` | The commit-integrity check that has no rule today | Planned |
+| 001 | `001-advisory-research/` | Ten-iteration research: which operations, what evidence, how to avoid noise | Complete |
+| 002 | `002-rule-encoding/` | Encode sk-git rules as `hard_rules:` frontmatter | Complete |
+| 003 | `003-preflight-hook/` | The advisory hook and its wiring | Complete |
+| 004 | `004-pathspec-integrity/` | The commit-integrity check that has no rule today | Complete |
 | 005 | `005-destructive-tier/` | The retained destructive rules, each narrowed to positive state | Complete |
 | 006 | `006-runtime-parity/` | One runtime-agnostic hook serving Claude and Codex | Complete |
 | 007 | `007-runtime-coverage/` | Adapters for OpenCode, Pi, Cursor and Devin, plus style alignment | Complete |
 | 008 | `008-docs-and-playbooks/` | Code READMEs and playbook coverage across all seven skills | Complete |
 
-| 1 | 001-advisory-research/ | [Phase 1 scope] | Pending |
-| 2 | 002-rule-encoding/ | [Phase 2 scope] | Pending |
-| 3 | 003-preflight-hook/ | [Phase 3 scope] | Pending |
-| 4 | 004-pathspec-integrity/ | [Phase 4 scope] | Pending |
 ### Phase Transition Rules
 
 - Research completes before any rule is encoded; the incident list is a starting point, not the answer.
