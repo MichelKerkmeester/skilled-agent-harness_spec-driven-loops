@@ -1,4 +1,46 @@
 ---
+title: Runtime Sync Manifest Template
+description: Template and guidelines for authoring a runtime config dir's SYNC.md, documenting how it derives from the canonical .opencode tree and how to detect drift.
+trigger_phrases:
+  - "runtime sync manifest template"
+  - "sync md template"
+  - "runtime dir sync documentation"
+  - "mirror drift manifest"
+importance_tier: normal
+contextType: general
+version: 1.0.0.0
+---
+
+# Runtime Sync Manifest Template
+
+Template for a runtime config dir's `SYNC.md`: how `.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.pi/` or a future runtime derives from the canonical `.opencode/` tree, and which checks catch drift.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Every runtime config dir mirrors canonical content through some mix of symlinks, generators and hand-authored files. A SYNC manifest makes that topology legible from inside the runtime dir: what each surface is, where it comes from, when it can drift and which command proves it has not. The live manifests in `.claude/`, `.codex/`, `.cursor/`, `.devin/` and `.pi/` are the reference implementations of this template.
+
+### Usage
+
+Copy the fillable scaffold in Section 2 into `<runtime-dir>/SYNC.md`, replace every placeholder with facts verified against the actual tree, remove unused scaffolding and preserve the nine-section order. Cross-link the new manifest from every sibling runtime's RELATED DOCUMENTS row.
+
+Rules the scaffold enforces:
+
+- Each surface row declares exactly one mechanism: whole-dir symlink, per-file symlink, generated, hand-authored or operator-local.
+- Counts never carry authority. Any "N agents" claim names the drift check that supersedes it.
+- Drift-check commands run unchanged from the repository root, with exit semantics stated.
+- Generated surfaces state what generation loses, because lossy mappings cannot round-trip.
+- KNOWN GAPS lists what stays unautomated, honestly.
+
+---
+
+## 2. FILLABLE SCAFFOLD
+
+````markdown
+---
 title: "[RUNTIME] — Runtime Sync Manifest"
 description: "How [RUNTIME_DIR] derives from .opencode: [SUMMARY]."
 ---
@@ -75,7 +117,7 @@ description: "[DESCRIPTION WITH A COLON: QUOTE THIS]"
 - [PLACEHOLDER: Required source-path or symlink invariant]
 - [PLACEHOLDER: Required parser or generated-output invariant]
 
-<!-- Authoring guidance: Never hard-code counts as authority. Any “N agents” or “N commands” claim must name the authoritative drift check so the check dates the snapshot when items are added or retired. -->
+<!-- Authoring guidance: Never hard-code counts as authority. Any "N agents" or "N commands" claim must name the authoritative drift check so the check dates the snapshot when items are added or retired. -->
 
 ## 7. DRIFT CHECKS
 
@@ -103,3 +145,4 @@ description: "[DESCRIPTION WITH A COLON: QUOTE THIS]"
 | Sibling manifests | [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) |
 
 <!-- Authoring guidance: End with the sibling-manifests row. Keep every other live runtime SYNC.md cross-linked and omit only the manifest being authored. -->
+````
