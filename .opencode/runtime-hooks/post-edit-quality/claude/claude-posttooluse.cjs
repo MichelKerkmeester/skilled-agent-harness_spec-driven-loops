@@ -1,16 +1,27 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Devin PostToolUse Quality Check
-// ───────────────────────────────────────────────────────────────────
-// STATUS: hooks fire live under `devin -p` with the documented top-level event
-// arrays and nested matcher groups in .devin/hooks.v1.json.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Claude PostToolUse Quality Check                              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Run the edited file's quality checkers, warn-only.              ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// PostToolUse(Write|Edit) unified quality-check hook for Claude Code.
 //
-// PostToolUse quality-check hook for Devin CLI -- the Devin sibling of the
-// Codex/Claude post-edit quality hook. Reads the hook's stdin JSON, resolves the
-// edited file's checker via the shared post-edit-router core, and runs it under
-// the hook budget; separately preserves the dist-staleness coverage. Warn-only,
-// fail-open: a checker bug, a missing binary, or a malformed payload must never
-// block the tool call this hook observes.
+// Thin adapter over the shared runtime-neutral post-edit-router core: reads
+// the hook's stdin JSON, resolves the edited file's checker via the same
+// dispatch policy the OpenCode plugin shares, and runs it under the existing
+// hook budget. Separately preserves the dist-staleness coverage the prior
+// Python hook always ran alongside comment hygiene (kept out of the shared
+// dispatch table because OpenCode already carries its own dist-freshness
+// plugin, so folding it into the shared table would double-run it there).
+//
+// Always exits 0 (warn-only, fail-open): a checker bug, a missing binary, or
+// a malformed payload must never block the tool call this hook observes.
+//
+// Hook entry (settings.json):
+//   { "matcher": "Write|Edit",
+//     "hooks": [{ "type": "command",
+//                 "command": "bash -c 'cd \"...repo...\" && node .opencode/runtime-hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
+//                 "timeout": 10 }] }
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -18,16 +29,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
-const path = require('node:path');
-const router = require('../../lib/post-edit-router.cjs');
+const router = require('../lib/post-edit-router.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
-// Devin file-write tool -- proposed name (research §10), unconfirmed live.
-const DEVIN_EDIT_TOOLS = new Set(['edit']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -41,12 +49,6 @@ async function readStdin() {
 
 function remainingMs(startedAt, budgetMs) {
   return budgetMs - (Date.now() - startedAt);
-}
-
-function filePathFrom(toolInput) {
-  if (!toolInput || typeof toolInput !== 'object') return undefined;
-  const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  return typeof candidate === 'string' && candidate ? candidate : undefined;
 }
 
 function printCommentHygieneFinding(finding, filePath) {
@@ -96,16 +98,12 @@ async function main() {
   }
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return;
 
-  if (!DEVIN_EDIT_TOOLS.has(String(payload.tool_name || '').toLowerCase())) return;
+  const toolName = payload.tool_name;
+  if (toolName !== 'Write' && toolName !== 'Edit') return;
 
   const toolInput = payload.tool_input && typeof payload.tool_input === 'object' ? payload.tool_input : {};
-  const projectDir = typeof payload.cwd === 'string' && payload.cwd
-    ? payload.cwd
-    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
-
-  let filePath = filePathFrom(toolInput);
+  const filePath = toolInput.file_path;
   if (typeof filePath !== 'string' || !filePath) return;
-  if (!path.isAbsolute(filePath)) filePath = path.join(projectDir, filePath);
 
   let fileExists = false;
   try {
@@ -114,6 +112,10 @@ async function main() {
     fileExists = false;
   }
   if (!fileExists) return;
+
+  const projectDir = typeof payload.cwd === 'string' && payload.cwd
+    ? payload.cwd
+    : (process.env.CLAUDE_PROJECT_DIR || process.cwd());
 
   try {
     const entries = router.resolveDispatch(filePath, projectDir);
@@ -127,7 +129,7 @@ async function main() {
     // Fail-open: a dispatch/spawn bug must never surface a traceback.
   }
 
-  // Dist-staleness coverage, preserved independent of the shared table.
+  // Legacy dist-staleness coverage, preserved independent of the shared table.
   try {
     const distBudget = remainingMs(startedAt, router.CLAUDE_HOOK_BUDGET_MS);
     if (distBudget >= router.CLAUDE_MIN_CHECKER_MS) {

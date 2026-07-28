@@ -38,7 +38,7 @@ import { join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GUARD_SCRIPT_RELATIVE = '.opencode/skills/system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs';
+const GUARD_SCRIPT_RELATIVE = '.opencode/runtime-hooks/task-dispatch/claude/task-dispatch-guard.cjs';
 const CHILD_TIMEOUT_MS = 5_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

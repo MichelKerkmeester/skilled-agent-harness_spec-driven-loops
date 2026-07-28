@@ -1,25 +1,27 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Devin PreToolUse Dispatch Preflight
+// MODULE: Devin PreToolUse Subagent Dispatch Guard
 // ───────────────────────────────────────────────────────────────────
 // STATUS: hooks fire live under `devin -p` with the documented top-level event
 // arrays and nested matcher groups in .devin/hooks.v1.json.
 //
-// PreToolUse(exec) preflight for CLI dispatch under Devin CLI -- the Devin sibling
-// of the Codex/Claude dispatch-preflight-lint hook. Intercepts a composed
-// `opencode run` / `claude -p` / `codex exec -p` command BEFORE it spawns on the
-// shell surface and evaluates the target skill's declared hard_rules (SKILL.md
-// `hard_rules:` frontmatter). A `block`-severity violation denies with the rule's
-// reason; `warn` violations attach an advisory and let the normal permission flow
-// proceed. FAILS OPEN -- any internal error approves silently, never blocks.
+// PreToolUse(run_subagent) deep-loop dispatch guard for Devin CLI -- a deliberate
+// divergence from the Codex precedent, not a port. Codex folds this concern into
+// its exec-shape recognizer because Codex has no native subagent-dispatch tool.
+// Devin's `run_subagent` is a real, first-class dispatch tool (confirmed via
+// the live CLI contract pin), so it gets a real adapter, mirroring Claude's Task
+// hook instead: intercepts a run_subagent call BEFORE it dispatches and evaluates
+// the same runtime-neutral policy (Deep Route mode mismatch + loop-like repeated
+// hand-offs to command-owned loop executors) through the shared dispatch-guard
+// core. FAILS OPEN -- any missing payload or internal error approves silently.
+'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { readHardRules, evaluate } from '../../lib/dispatch-rule-checks.mjs';
-import { DISPATCH_SHAPES } from '../../lib/dispatch-audit.mjs';
-import path from 'node:path';
+const guardCore = require('../lib/dispatch-guard.cjs');
+const { parseJsonFailOpen, readStdin } = require('../../../skills/system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -30,10 +32,16 @@ function approve() {
   process.exit(0);
 }
 
-async function readStdin() {
-  const chunks = [];
-  for await (const chunk of process.stdin) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
+// A `||` chain picks the first truthy VALUE, not the first valid string -- a
+// truthy non-string in an earlier field would suppress a valid string in a
+// later one and still resolve to undefined. This picks the first field that
+// is actually a non-blank string, confirmed-canonical field first, so a
+// partial/malformed payload never silently masks a real alias.
+function firstNonBlankString(...candidates) {
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim().length > 0) return candidate;
+  }
+  return undefined;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,56 +49,53 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  let payload;
-  try {
-    payload = JSON.parse(await readStdin());
-  } catch {
-    return approve(); // no/invalid payload -> fail open
-  }
+  const payload = parseJsonFailOpen(await readStdin());
+  if (payload === null) return approve(); // no/invalid payload -> fail open
 
-  if (String(payload?.tool_name || '').toLowerCase() !== 'exec') return approve();
-  const command = payload?.tool_input?.command;
-  if (typeof command !== 'string' || command.length === 0) return approve();
+  if (String(payload?.tool_name || '').toLowerCase() !== 'run_subagent') return approve();
 
-  // Fast-exit unless the command is a known dispatch shape.
-  const match = DISPATCH_SHAPES.find((d) => d.test.test(command));
-  if (!match) return approve();
-
+  const toolInput = payload?.tool_input || {};
   // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
   const workspaceCwd = payload?.cwd;
   const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
     ? workspaceCwd
     : (process.env.DEVIN_PROJECT_DIR || process.cwd());
-  const skillMd = path.join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md');
-  const rules = readHardRules(skillMd);
-  if (rules.length === 0) return approve(); // nothing declared -> nothing to enforce
 
-  const violations = evaluate(command, rules);
-  if (violations.length === 0) return approve();
+  const result = guardCore.evaluateDispatch({
+    subagentType: firstNonBlankString(toolInput.subagent_type, toolInput.subagentType, toolInput.agent_type, toolInput.agentType),
+    prompt: toolInput.prompt,
+    sessionID: payload?.session_id,
+    projectDir,
+    env: process.env,
+  });
 
-  const blocking = violations.filter((v) => v.severity === 'block');
-  const warnings = violations.filter((v) => v.severity === 'warn');
+  const { stateDir } = guardCore.resolveGuardPaths(projectDir);
+  for (const audit of result.audits || []) guardCore.appendRejectModeDegradedAudit(stateDir, audit);
+  for (const warning of result.warnings || []) guardCore.appendWarningLog(stateDir, warning);
 
-  if (blocking.length > 0) {
-    const reason = `Dispatch blocked by ${match.skill} hard-rule(s):\n` +
-      blocking.map((v) => `  • [${v.id}] ${v.message}`).join('\n');
+  if (result.decision === 'reject') {
     process.stdout.write(JSON.stringify({
       hookSpecificOutput: {
         hookEventName: 'PreToolUse',
         permissionDecision: 'deny',
-        permissionDecisionReason: reason,
+        permissionDecisionReason: result.detail,
       },
     }));
     return process.exit(0);
   }
 
-  // Warn-only: surface the advisory without overriding the permission decision.
-  const advisory = `⚠ ${match.skill} dispatch hard-rule advisory:\n` +
-    warnings.map((v) => `  • [${v.id}] ${v.message}`).join('\n');
-  process.stdout.write(JSON.stringify({
-    hookSpecificOutput: { hookEventName: 'PreToolUse', additionalContext: advisory },
-  }));
-  return process.exit(0);
+  if (result.warnings && result.warnings.length > 0) {
+    // Warn-only: surface the advisory without overriding the permission decision.
+    process.stdout.write(JSON.stringify({
+      hookSpecificOutput: {
+        hookEventName: 'PreToolUse',
+        additionalContext: result.warnings.join('\n'),
+      },
+    }));
+    return process.exit(0);
+  }
+
+  return approve();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

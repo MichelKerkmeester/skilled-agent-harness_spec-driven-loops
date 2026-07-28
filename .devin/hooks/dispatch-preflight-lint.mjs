@@ -1,1 +1,1 @@
-../../.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-preflight-lint.mjs
+../../.opencode/runtime-hooks/dispatch/devin/dispatch-preflight-lint.mjs

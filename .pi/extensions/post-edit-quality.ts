@@ -25,7 +25,7 @@ export default function postEditQuality(pi: ExtensionAPI): void {
       const filePath = resolve(ctx.cwd, rawPath);
       if (!existsSync(filePath)) return;
 
-      const router = await import("../../.opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs");
+      const router = await import("../../.opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs");
       const entries = router.resolveDispatch(filePath, ctx.cwd);
       const findings = router.runChecks(entries, router.CLAUDE_HOOK_BUDGET_MS, {
         perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,

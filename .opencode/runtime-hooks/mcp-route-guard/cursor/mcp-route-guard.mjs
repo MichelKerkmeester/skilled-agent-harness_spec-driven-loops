@@ -33,7 +33,7 @@ import { join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GUARD_SCRIPT_RELATIVE = '.opencode/skills/mcp-code-mode/runtime/hooks/claude/mcp-route-guard.cjs';
+const GUARD_SCRIPT_RELATIVE = '.opencode/runtime-hooks/mcp-route-guard/claude/mcp-route-guard.cjs';
 const CHILD_TIMEOUT_MS = 3_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

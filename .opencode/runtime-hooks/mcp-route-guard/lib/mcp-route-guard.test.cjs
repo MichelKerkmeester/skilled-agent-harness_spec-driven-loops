@@ -23,7 +23,7 @@ const { join } = require('node:path');
 
 const guardCore = require('./mcp-route-guard.cjs');
 
-const CLAUDE_HOOK_PATH = join(__dirname, '..', 'hooks', 'claude', 'mcp-route-guard.cjs');
+const CLAUDE_HOOK_PATH = join(__dirname, '..', 'claude', 'mcp-route-guard.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Fixtures

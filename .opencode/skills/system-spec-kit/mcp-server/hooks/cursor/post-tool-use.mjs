@@ -34,8 +34,8 @@ import { join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs';
-const DISPATCH_AUDIT_RELATIVE = '.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs';
+const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/runtime-hooks/post-edit-quality/claude/claude-posttooluse.cjs';
+const DISPATCH_AUDIT_RELATIVE = '.opencode/runtime-hooks/dispatch/claude/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 

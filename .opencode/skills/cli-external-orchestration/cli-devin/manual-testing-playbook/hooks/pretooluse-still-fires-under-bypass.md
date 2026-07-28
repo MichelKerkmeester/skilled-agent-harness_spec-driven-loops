@@ -52,7 +52,7 @@ The naive assumption that bypass disables every hook is false. The spec-gate and
 |---|---|
 | `../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Explicit statement that PreToolUse remains active under bypass |
 | `../../../../skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs` | Guard adapter under test |
-| `../../../../skills/system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs` | Shared dispatch-guard core |
+| `../../../../../runtime-hooks/task-dispatch/claude/task-dispatch-guard.cjs` | Shared dispatch-guard core |
 
 ## 5. SOURCE METADATA
 

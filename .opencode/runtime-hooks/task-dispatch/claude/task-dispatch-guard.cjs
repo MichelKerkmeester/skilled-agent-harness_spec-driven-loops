@@ -1,27 +1,28 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Devin PreToolUse Subagent Dispatch Guard
+// MODULE: Claude PreToolUse Task Dispatch Guard
 // ───────────────────────────────────────────────────────────────────
-// STATUS: hooks fire live under `devin -p` with the documented top-level event
-// arrays and nested matcher groups in .devin/hooks.v1.json.
+// STATUS: wired live via .claude/settings.json PreToolUse Task matcher;
+// rejects a deep-loop mode mismatch before the dispatch runs.
 //
-// PreToolUse(run_subagent) deep-loop dispatch guard for Devin CLI -- a deliberate
-// divergence from the Codex precedent, not a port. Codex folds this concern into
-// its exec-shape recognizer because Codex has no native subagent-dispatch tool.
-// Devin's `run_subagent` is a real, first-class dispatch tool (confirmed via
-// the live CLI contract pin), so it gets a real adapter, mirroring Claude's Task
-// hook instead: intercepts a run_subagent call BEFORE it dispatches and evaluates
-// the same runtime-neutral policy (Deep Route mode mismatch + loop-like repeated
-// hand-offs to command-owned loop executors) through the shared dispatch-guard
-// core. FAILS OPEN -- any missing payload or internal error approves silently.
+// PreToolUse(Task) deep-loop dispatch guard for Claude Code.
+//
+// Claude's counterpart to the mk-deep-loop-guard OpenCode plugin: it intercepts a
+// Task tool call BEFORE it dispatches and evaluates the same runtime-neutral policy
+// (Deep Route mode mismatch + loop-like repeated hand-offs to command-owned loop
+// executors) through the shared dispatch-guard core. A policy denial emits Claude's
+// PreToolUse deny form; a warning appends to the SAME bounded state-dir log both
+// runtimes share and surfaces an advisory via additionalContext without overriding
+// the permission decision. FAILS OPEN -- any missing payload or internal error
+// approves silently, so a bug here never blocks unrelated, correctly-routed work.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const guardCore = require('../../lib/deep-loop/dispatch-guard.cjs');
-const { parseJsonFailOpen, readStdin } = require('../../../../system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
+const guardCore = require('../lib/dispatch-guard.cjs');
+const { parseJsonFailOpen, readStdin } = require('../../../skills/system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -36,7 +37,9 @@ function approve() {
 // truthy non-string in an earlier field would suppress a valid string in a
 // later one and still resolve to undefined. This picks the first field that
 // is actually a non-blank string, confirmed-canonical field first, so a
-// partial/malformed payload never silently masks a real alias.
+// partial/malformed payload never silently masks a real alias. Cursor's own
+// task-dispatch-guard.mjs forwards its payload into this file unchanged, so
+// this fix covers both runtimes.
 function firstNonBlankString(...candidates) {
   for (const candidate of candidates) {
     if (typeof candidate === 'string' && candidate.trim().length > 0) return candidate;
@@ -52,17 +55,14 @@ async function main() {
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null) return approve(); // no/invalid payload -> fail open
 
-  if (String(payload?.tool_name || '').toLowerCase() !== 'run_subagent') return approve();
+  // Normalize tool-name case: Claude emits 'Task', OpenCode 'task'.
+  if (String(payload?.tool_name || '').toLowerCase() !== 'task') return approve();
 
   const toolInput = payload?.tool_input || {};
-  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
-  const workspaceCwd = payload?.cwd;
-  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
-    ? workspaceCwd
-    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
+  const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.cwd();
 
   const result = guardCore.evaluateDispatch({
-    subagentType: firstNonBlankString(toolInput.subagent_type, toolInput.subagentType, toolInput.agent_type, toolInput.agentType),
+    subagentType: firstNonBlankString(toolInput.subagent_type, toolInput.subagentType),
     prompt: toolInput.prompt,
     sessionID: payload?.session_id,
     projectDir,

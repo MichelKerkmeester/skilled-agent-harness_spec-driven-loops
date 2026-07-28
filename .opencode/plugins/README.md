@@ -254,7 +254,8 @@ See [`tests/README.md`](./tests/README.md) for the current suite inventory, help
 - [`../skills/system-deep-loop/`](../skills/system-deep-loop/): deep-loop dispatch policy
 - [`../skills/system-skill-advisor/`](../skills/system-skill-advisor/): skill advisor bridge and runtime
 - [`../skills/system-spec-kit/`](../skills/system-spec-kit/): continuity, spec gate, completion and dist freshness logic
-- [`../skills/sk-code/code-quality/`](../skills/sk-code/code-quality/): post-edit quality routing
+- [`../skills/sk-code/code-quality/`](../skills/sk-code/code-quality/): post-edit quality routing (the checker scripts `mk-post-edit-quality.js` invokes stay here; the router core it imports moved, see below)
 - [`../skills/mcp-code-mode/`](../skills/mcp-code-mode/): MCP routing policy
-- [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch audit core
+- [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch skill this hub's rule sets belong to (the audit/rule-check cores `mk-cli-dispatch-audit.js`/`mk-git-preflight-advisory.js` import moved, see below)
+- [`../runtime-hooks/README.md`](../runtime-hooks/README.md): the fully-portable guard cores `mk-mcp-route-guard.js`, `mk-post-edit-quality.js`, `mk-cli-dispatch-audit.js`, `mk-deep-loop-guard.js`, and `mk-git-preflight-advisory.js` import directly
 - [`../skills/system-spec-kit/references/hooks/injection-contract.md`](../skills/system-spec-kit/references/hooks/injection-contract.md): what every plugin's `experimental.chat.system.transform` call actually injects, and why none of it is rendered as a visible chat message today (that would need `chat.message`'s mutable `parts` instead)

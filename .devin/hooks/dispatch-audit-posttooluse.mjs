@@ -1,1 +1,1 @@
-../../.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-audit-posttooluse.mjs
+../../.opencode/runtime-hooks/dispatch/devin/dispatch-audit-posttooluse.mjs

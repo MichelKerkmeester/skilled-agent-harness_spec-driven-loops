@@ -497,7 +497,7 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 |---|---|---|
 | `.opencode/skills/mcp-code-mode/scripts/validate_config.py` | `.utcp_config.json` schema + env-var presence | CM-010 |
 | `.opencode/skills/mcp-code-mode/scripts/test/manual_namespace.test.js` (if present) | Manual-namespace contract | CM-005, CM-006, CM-007 |
-| `.opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.test.cjs` | Shared route-guard core + Claude-hook unit assertions | mcp-route-guard |
+| `.opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs` | Shared route-guard core + Claude-hook unit assertions | mcp-route-guard |
 
 > Note: most Code Mode behavior is exercised through the live MCP servers it wraps, not through dedicated unit tests in the skill itself. The playbook scenarios serve as the primary regression surface.
 

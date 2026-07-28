@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Codex PostToolUse Quality Check
+// MODULE: Devin PostToolUse Quality Check
 // ───────────────────────────────────────────────────────────────────
-// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
-// PostToolUse `apply_patch|edit` matcher group.
-// PostToolUse quality-check hook for Codex CLI -- the Codex sibling of the Claude
-// post-edit quality hook. Reads the hook's stdin JSON, resolves the edited file's
-// checker via the shared post-edit-router core, and runs it under the hook
-// budget; separately preserves the dist-staleness coverage. Warn-only,
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
+// PostToolUse quality-check hook for Devin CLI -- the Devin sibling of the
+// Codex/Claude post-edit quality hook. Reads the hook's stdin JSON, resolves the
+// edited file's checker via the shared post-edit-router core, and runs it under
+// the hook budget; separately preserves the dist-staleness coverage. Warn-only,
 // fail-open: a checker bug, a missing binary, or a malformed payload must never
 // block the tool call this hook observes.
 'use strict';
@@ -18,15 +19,15 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const router = require('../../lib/post-edit-router.cjs');
+const router = require('../lib/post-edit-router.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
-// Codex file-write tools that produce a file worth checking.
-const CODEX_EDIT_TOOLS = new Set(['apply_patch', 'edit']);
+// Devin file-write tool -- proposed name (research §10), unconfirmed live.
+const DEVIN_EDIT_TOOLS = new Set(['edit']);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -42,21 +43,10 @@ function remainingMs(startedAt, budgetMs) {
   return budgetMs - (Date.now() - startedAt);
 }
 
-// Codex `apply_patch` carries the target inside the patch body (tool_input.command)
-// as an `*** Add/Update/Delete File:` header, not a file_path field. Without parsing
-// it the checker never runs on a Codex patch.
-function firstPatchPath(patchText) {
-  if (typeof patchText !== 'string') return undefined;
-  const match = patchText.match(/^\*\*\* (?:Add|Update|Delete) File: (.+?)\s*$/m)
-    || patchText.match(/^\*\*\* Move to: (.+?)\s*$/m);
-  return match ? match[1].trim() : undefined;
-}
-
 function filePathFrom(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') return undefined;
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  if (typeof candidate === 'string' && candidate) return candidate;
-  return firstPatchPath(toolInput.command || toolInput.input || toolInput.patch);
+  return typeof candidate === 'string' && candidate ? candidate : undefined;
 }
 
 function printCommentHygieneFinding(finding, filePath) {
@@ -106,18 +96,15 @@ async function main() {
   }
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return;
 
-  if (!CODEX_EDIT_TOOLS.has(String(payload.tool_name || '').toLowerCase())) return;
+  if (!DEVIN_EDIT_TOOLS.has(String(payload.tool_name || '').toLowerCase())) return;
 
   const toolInput = payload.tool_input && typeof payload.tool_input === 'object' ? payload.tool_input : {};
   const projectDir = typeof payload.cwd === 'string' && payload.cwd
     ? payload.cwd
-    : (process.env.CODEX_PROJECT_DIR || process.cwd());
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
 
   let filePath = filePathFrom(toolInput);
   if (typeof filePath !== 'string' || !filePath) return;
-  // A patch-derived path is relative to the project dir; resolve it so the
-  // existence check and the checkers see the real file rather than a path
-  // relative to wherever the hook process happens to be running.
   if (!path.isAbsolute(filePath)) filePath = path.join(projectDir, filePath);
 
   let fileExists = false;

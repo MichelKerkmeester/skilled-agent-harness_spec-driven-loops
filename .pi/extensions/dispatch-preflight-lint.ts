@@ -12,8 +12,8 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
       const [lint, audit] = await Promise.all([
-        import("../../.opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs"),
-        import("../../.opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs"),
+        import("../../.opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs"),
+        import("../../.opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs"),
       ]);
       const match = audit.DISPATCH_SHAPES.find((shape) => shape.test.test(event.input.command));
       if (!match) return;

@@ -1,1 +1,1 @@
-../../.opencode/skills/system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs
+../../.opencode/runtime-hooks/task-dispatch/claude/task-dispatch-guard.cjs

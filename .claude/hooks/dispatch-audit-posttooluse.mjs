@@ -1,1 +1,1 @@
-../../.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs
+../../.opencode/runtime-hooks/dispatch/claude/dispatch-audit-posttooluse.mjs

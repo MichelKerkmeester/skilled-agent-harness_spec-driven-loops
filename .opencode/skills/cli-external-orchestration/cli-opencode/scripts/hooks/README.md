@@ -138,8 +138,8 @@ Main flow:
 Run from the repository root. The cores these hooks call carry the tests, and they use two runners.
 
 ```bash
-node --test .opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.test.mjs
-npx vitest run .opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.test.mjs
+node --test .opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+npx vitest run .opencode/runtime-hooks/dispatch/lib/dispatch-audit.test.mjs
 ```
 
 Expected result: all tests pass.

@@ -23,7 +23,7 @@ const require = createRequire(import.meta.url);
 // A .cjs core is imported here as the ESM default export so this file can stay
 // a thin, default-export-only OpenCode plugin while the Claude hook consumes
 // the identical policy.
-const guardCore = require('../skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs');
+const guardCore = require('../runtime-hooks/mcp-route-guard/lib/mcp-route-guard.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

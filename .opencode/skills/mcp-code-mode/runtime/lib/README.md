@@ -20,8 +20,8 @@ description: "Runtime-neutral policy that decides whether a native external MCP 
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/mcp-code-mode/runtime/hooks/claude/mcp-route-guard.cjs`
-- `.opencode/skills/mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs`
+- `.opencode/runtime-hooks/mcp-route-guard/claude/mcp-route-guard.cjs`
+- `.opencode/runtime-hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
 - `.opencode/plugins/mk-mcp-route-guard.js` (OpenCode plugin adapter, outside this skill)
 
 ## 4. VALIDATION
@@ -29,7 +29,7 @@ description: "Runtime-neutral policy that decides whether a native external MCP 
 Run from the repository root:
 
 ```bash
-node .opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.test.cjs
+node .opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
 ```
 
 Expected result: `[mcp-route-guard] <passed>/<total> assertions passed` with `passed` equal to the total.

@@ -75,7 +75,7 @@ Operators run the exact prompt and command sequence for `PI-020` and confirm the
 || `.pi/extensions/git-preflight-advisory.ts` | The Pi extension: `tool_call` on `bash`, warning returned as `{ reason }`, fail-open catch returns `undefined` |
 || `../../../../../skills/sk-git/scripts/lib/git-rule-checks.mjs` | Shared `GIT_SHAPE`, `GIT_CHECKS` the extension dynamic-imports |
 || `../../../../../skills/sk-git/scripts/lib/git-context.mjs` | Shared `createGitContext` the extension dynamic-imports |
-|| `../../../../../skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the extension dynamic-imports |
+|| `../../../../../runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the extension dynamic-imports |
 || `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 

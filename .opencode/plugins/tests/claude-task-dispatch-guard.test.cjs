@@ -28,10 +28,8 @@ const HOOK_PATH = path.join(
   __dirname,
   '..',
   '..',
-  'skills',
-  'system-deep-loop',
-  'runtime',
-  'hooks',
+  'runtime-hooks',
+  'task-dispatch',
   'claude',
   'task-dispatch-guard.cjs',
 );

@@ -125,8 +125,8 @@ Main flow (audit core):
 Run from the repository root. The two test files use different runners.
 
 ```bash
-node --test .opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.test.mjs
-npx vitest run .opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.test.mjs
+node --test .opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+npx vitest run .opencode/runtime-hooks/dispatch/lib/dispatch-audit.test.mjs
 ```
 
 Expected result: all tests pass.

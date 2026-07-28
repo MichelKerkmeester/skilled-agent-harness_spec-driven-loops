@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs
+../../.opencode/runtime-hooks/mcp-route-guard/cursor/mcp-route-guard.mjs

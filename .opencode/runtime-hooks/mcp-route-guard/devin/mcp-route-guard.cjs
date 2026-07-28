@@ -1,29 +1,24 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Codex PreToolUse MCP Route Guard
+// MODULE: Devin PreToolUse MCP Route Guard
 // ───────────────────────────────────────────────────────────────────
-// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
-// PreToolUse `mcp__.*` matcher group; dormant until an external,
-// non-`mk_`-prefixed MCP server is registered under Codex.
-// PreToolUse advisory hook for native external MCP calls under Codex CLI -- the
-// Codex sibling of the Claude mcp-route-guard hook. Reads a matched `mcp__.*`
-// tool call and evaluates the runtime-neutral mcp-route-guard core; a match
-// against the Code Mode manifest emits an additionalContext advisory nudging the
-// call toward call_tool_chain. NEVER emits a permissionDecision -- warn-only is
-// the only path this guard can ever take. FAILS OPEN.
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
 //
-// Dormant under Codex today: Codex's registered MCP servers are all
-// `mk_`-prefixed and thus exempted by the core (isInternalServerToken), and
-// there is no external Code Mode MCP under Codex to guard. This adapter activates
-// only if/when an external MCP family is registered.
+// PreToolUse advisory hook for native external MCP calls under Devin CLI -- the
+// Devin sibling of the Codex/Claude mcp-route-guard hook. Reads a matched
+// `mcp__.*` tool call and evaluates the runtime-neutral mcp-route-guard core; a
+// match against the Code Mode manifest emits an additionalContext advisory
+// nudging the call toward call_tool_chain. NEVER emits a permissionDecision --
+// warn-only is the only path this guard can ever take. FAILS OPEN.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const guardCore = require('../../lib/mcp-route-guard.cjs');
-const { parseJsonFailOpen, readStdin } = require('../../../../system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
+const guardCore = require('../lib/mcp-route-guard.cjs');
+const { parseJsonFailOpen, readStdin } = require('../../../skills/system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -43,7 +38,11 @@ async function main() {
   if (payload === null) return approve(); // no/invalid payload -> fail open
 
   const toolName = payload?.tool_name;
-  const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
+  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
 
   const result = guardCore.evaluateNativeMcpCall({
     toolName,

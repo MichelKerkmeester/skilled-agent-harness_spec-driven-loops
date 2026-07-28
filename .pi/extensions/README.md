@@ -47,15 +47,17 @@ extensions/
 |---|---|---|
 | `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
 | `spec-gate-classify.ts` | `input` | `system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
-| `dispatch-preflight-lint.ts` | `tool_call` (bash) | `cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
-| `dispatch-audit.ts` | `tool_result` (bash) | `cli-external-orchestration/cli-opencode/scripts/lib/dispatch-audit.mjs` `recordDispatch()` |
-| `post-edit-quality.ts` | `tool_result` (edit/write) | `sk-code/code-quality/scripts/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
-| `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `mcp-code-mode/runtime/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
+| `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
+| `dispatch-audit.ts` | `tool_result` (bash) | `.opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
+| `post-edit-quality.ts` | `tool_result` (edit/write) | `.opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
+| `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `.opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
 | `session-start-context.ts` | `session_start` | `system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
 | `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`) |
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
 | `prompt-advisor.ts` | `input` | `system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js` -> `system-skill-advisor` (via `lib/claude-hook-adapter.ts`) |
 | `session-compact-context.ts` | `session_compact` | Native port of `mcp-server/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file + `spec-memory.cjs` CLI fallback) |
+
+Paths without a leading `.opencode/` are relative to `.opencode/skills/`. The four `.opencode/runtime-hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.opencode/runtime-hooks/README.md`](../../.opencode/runtime-hooks/README.md) for why those four moved and the rest did not.
 
 ---
 

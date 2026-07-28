@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Codex hook scripts; r
 
 ## 1. OVERVIEW
 
-`.codex/hooks/` contains 16 symlinks to hook scripts owned under `.opencode/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
+`.codex/hooks/` contains 16 symlinks to hook scripts owned under `.opencode/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, and `post-edit-quality.cjs` target `.opencode/runtime-hooks/` (the fully-portable guard cores, see [`runtime-hooks/README.md`](../../.opencode/runtime-hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
 
 Two compiled ESM adapters do not execute through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Invoke those files through the real command path used by `hooks.json`.
 
@@ -51,3 +51,4 @@ Expected result: the managed Codex hook installation reports no drift.
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
 - [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
+- [Runtime hooks tree](../../.opencode/runtime-hooks/README.md): the four fully-portable guard cores this mirror points at outside `.opencode/skills/`

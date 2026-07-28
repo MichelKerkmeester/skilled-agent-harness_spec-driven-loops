@@ -1,44 +1,28 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Codex PreToolUse Dispatch Preflight
+// MODULE: Devin PreToolUse Dispatch Preflight
 // ───────────────────────────────────────────────────────────────────
-// STATUS: hooks fire live under Codex CLI via `.codex/hooks.json`'s
-// PreToolUse `exec` matcher group.
-// PreToolUse(exec) preflight for CLI dispatch under Codex CLI -- the Codex sibling
-// of the Claude dispatch-preflight-lint hook. Intercepts a composed
-// `opencode run` / `claude -p` command BEFORE it spawns on the exec surface and
-// evaluates the target skill's declared hard_rules (SKILL.md `hard_rules:`
-// frontmatter). A `block`-severity violation denies with the rule's reason (the
-// same permissionDecision:'deny' envelope Codex honors); `warn` violations attach
-// an advisory and let the normal permission flow proceed. Runs on every exec
-// call, so it fast-exits on anything that is not a dispatch shape, and it FAILS
-// OPEN -- any internal error approves silently, never blocks.
+// STATUS: hooks fire live under `devin -p` with the documented top-level event
+// arrays and nested matcher groups in .devin/hooks.v1.json.
+//
+// PreToolUse(exec) preflight for CLI dispatch under Devin CLI -- the Devin sibling
+// of the Codex/Claude dispatch-preflight-lint hook. Intercepts a composed
+// `opencode run` / `claude -p` / `codex exec -p` command BEFORE it spawns on the
+// shell surface and evaluates the target skill's declared hard_rules (SKILL.md
+// `hard_rules:` frontmatter). A `block`-severity violation denies with the rule's
+// reason; `warn` violations attach an advisory and let the normal permission flow
+// proceed. FAILS OPEN -- any internal error approves silently, never blocks.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { readHardRules, evaluate } from '../../lib/dispatch-rule-checks.mjs';
-import { DISPATCH_SHAPES } from '../../lib/dispatch-audit.mjs';
+import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
+import { DISPATCH_SHAPES } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Codex dispatches sub-agents via `codex exec -p <agent>` on the exec surface --
-// a shape the shared cross-runtime core (opencode run / claude -p) does not know.
-// Add it here, in the adapter, so cli-codex hard-rules are enforced on a Codex
-// sub-dispatch without changing the shared dispatch core.
-const CODEX_EXEC_SHAPE = {
-  test: /\bcodex\s+exec\b[^\n]*\s-p\b/,
-  skill: 'cli-codex',
-  packetPath: 'cli-external-orchestration/cli-codex',
-};
-const DISPATCH_SKILLS = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE];
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 3. HELPERS
+// 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function approve() {
@@ -53,7 +37,7 @@ async function readStdin() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. MAIN
+// 3. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -69,10 +53,14 @@ async function main() {
   if (typeof command !== 'string' || command.length === 0) return approve();
 
   // Fast-exit unless the command is a known dispatch shape.
-  const match = DISPATCH_SKILLS.find((d) => d.test.test(command));
+  const match = DISPATCH_SHAPES.find((d) => d.test.test(command));
   if (!match) return approve();
 
-  const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
+  // Whitespace-only cwd is treated as absent so all 10 devin adapters agree.
+  const workspaceCwd = payload?.cwd;
+  const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
+    ? workspaceCwd
+    : (process.env.DEVIN_PROJECT_DIR || process.cwd());
   const skillMd = path.join(projectDir, '.opencode', 'skills', match.packetPath, 'SKILL.md');
   const rules = readHardRules(skillMd);
   if (rules.length === 0) return approve(); // nothing declared -> nothing to enforce
@@ -106,7 +94,7 @@ async function main() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. ENTRYPOINT
+// 4. ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 main().catch(() => approve());

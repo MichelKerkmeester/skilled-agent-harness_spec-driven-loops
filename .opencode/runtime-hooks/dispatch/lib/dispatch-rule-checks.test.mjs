@@ -6,9 +6,9 @@ import { fileURLToPath } from 'node:url';
 import { parseHardRules, readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const SKILLS = path.resolve(HERE, '../../../'); // .opencode/skills
-const CO = path.join(SKILLS, 'cli-opencode/SKILL.md');
-const CC = path.join(SKILLS, 'cli-claude-code/SKILL.md');
+const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
+const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
+const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
 
 test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
   const co = readHardRules(CO);

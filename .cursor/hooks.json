@@ -52,7 +52,7 @@
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+        "command": "node .opencode/runtime-hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
         "type": "command",
         "matcher": "Task",
         "timeout": 10
@@ -92,7 +92,7 @@
     ],
     "beforeMCPExecution": [
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+        "command": "node .opencode/runtime-hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
         "type": "command",
         "timeout": 10
       }

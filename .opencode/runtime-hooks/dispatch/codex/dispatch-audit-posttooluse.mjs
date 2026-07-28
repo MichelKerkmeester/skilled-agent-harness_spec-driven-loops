@@ -26,7 +26,7 @@ import {
   extractDispatchMeta,
   buildAuditLine,
   appendAuditLog,
-} from '../../lib/dispatch-audit.mjs';
+} from '../lib/dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
