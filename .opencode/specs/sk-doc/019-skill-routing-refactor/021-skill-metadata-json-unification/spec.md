@@ -12,9 +12,9 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T20:31:30Z"
+    last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
-    recent_action: "Shipped all six phases; fleet 12/12"
+    recent_action: "Post-ship audit: active fleet 11/11; historical 12-root evidence retained"
     next_safe_action: "Operator review and merge"
     blockers:
       - "Uncommitted: worktree pending operator review"
@@ -25,8 +25,7 @@ _memory:
       session_id: "021-skill-metadata-json-unification-authoring"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Should the root framework doc point directly at the canonical contract? Deferred; that file was under concurrent edit."
+    open_questions: []
     answered_questions:
       - "leaf-manifest.json is generated output, not authored: generate-leaf-manifest.cjs derives it from mode-registry.json (hubs) or leaf-manifest.config.json (registry-less skills)"
       - "Operator directive: uniformity is enforced per documented class; cross-class variance is legal only when a written rule explains it"
@@ -34,6 +33,8 @@ _memory:
       - "description.json is hub-only; no production advisor consumer reads a skill-root description.json"
       - "leaf-aliases.json is generated for S as an identity projection and authored for H"
       - "command-metadata.json stays an sk-design overlay; its consumers do not enumerate roots"
+      - "Root framework pointer and fleet CI wiring are current in 2fa9fc480c; AGENTS.md:450 and routing-registry-drift.yml:99-108"
+      - "Post-ship active fleet is 11 roots; system-code-graph was removed after authoring and the gate reports checked=11"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -44,7 +45,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The 12 skills under `.opencode/skills/` carry eight distinct root-level metadata JSON files between them, and no two skills carry the same set. Some of that variance is principled and load-bearing (a registry-less skill uses `leaf-manifest.config.json` where a parent hub uses `mode-registry.json`). Some of it is undocumented drift with real consequences (five skills ship `graph-metadata.json` with no paired `description.json`, breaking the advisor identity pair that the root framework doc declares mandatory). And some of it is a single-skill pilot that never generalized (`command-metadata.json` exists only for `sk-design`, while three other skills own multiple commands).
+The authoring-time census of 12 skills under `.opencode/skills/` found eight distinct root-level metadata JSON files between them, and no two skills carried the same set. Some of that variance was principled and load-bearing (a registry-less skill used `leaf-manifest.config.json` where a parent hub used `mode-registry.json`). Some was undocumented drift with real consequences (five skills shipped `graph-metadata.json` without a paired `description.json`, breaking the advisor identity pair that the root framework doc declared mandatory). And some was a single-skill pilot that never generalized (`command-metadata.json` existed only for `sk-design`, while three other skills owned multiple commands). The post-ship active fleet is 11 roots because `system-code-graph` was removed; the historical census is retained as measured evidence.
 
 Today a maintainer cannot tell, from any document, which of these files their skill is supposed to have. That is the actual defect: the absence of a written per-class contract is what lets drift accumulate silently.
 
@@ -77,7 +78,7 @@ Today a maintainer cannot tell, from any document, which of these files their sk
 
 ### Problem Statement
 
-A census of the 12 skill roots produces twelve distinct metadata shapes. The confirmed variance, measured on disk:
+The authoring-time census of 12 skill roots produced twelve distinct metadata shapes. The confirmed variance, measured on disk:
 
 | Skill | description | graph-metadata | leaf-manifest | leaf-aliases | leaf-manifest.config | mode-registry | hub-router | command-metadata |
 |-------|-------------|----------------|---------------|--------------|----------------------|---------------|------------|------------------|
@@ -96,10 +97,10 @@ A census of the 12 skill roots produces twelve distinct metadata shapes. The con
 
 Four distinct defect classes are visible in that table:
 
-1. **Broken advisor identity pair.** Five skills (`mcp-code-mode`, `sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit`) ship `graph-metadata.json` without `description.json`. The root framework doc states the advisor metadata pair lives together at a hub or standalone-skill root. Half the pair is missing on 42 percent of the fleet.
+1. **Broken advisor identity pair at authoring time.** Five skills (`mcp-code-mode`, `sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit`) shipped `graph-metadata.json` without `description.json`. The root framework doc stated the advisor metadata pair lived together at a hub or standalone-skill root. Half the pair was missing on 42 percent of the authoring-time fleet.
 2. **Unexplained alias-overlay variance.** `leaf-aliases.json` exists on five skills and not the other seven. `generate-leaf-manifest.cjs` treats absence as zero authored aliases, so absence is legal — but no document states when a skill should author one, so a maintainer cannot tell whether their skill's absence is correct or an oversight.
 3. **Ungeneralized command-metadata pilot.** `command-metadata.json` exists only for `sk-design`, consumed by four distinct call sites including the skill-benchmark harness and an advisor command-binding test. `sk-doc`, `system-deep-loop` and `system-spec-kit` each own multiple commands and have no equivalent, so those consumers see partial fleet coverage.
-4. **No canonical documentation and no fleet-wide gate.** `create-skill` documents the leaf-manifest generator's mechanics but not the per-class presence contract. `ci-leaf-manifest-freshness.cjs` gates one file type fleet-wide; the other seven have no equivalent coverage gate. Nothing regenerates or backfills the pair-level metadata automatically.
+4. **No canonical documentation and no fleet-wide gate at authoring time.** `create-skill` documented the leaf-manifest generator's mechanics but not the per-class presence contract. `ci-leaf-manifest-freshness.cjs` gated one file type fleet-wide; the other seven had no equivalent coverage gate. Nothing regenerated or backfilled the pair-level metadata automatically. Post-ship, the class gate and freshness gate run in CI at `.github/workflows/routing-registry-drift.yml:99-108` (wiring commit `2fa9fc480c`).
 
 The through-line: partial adoption is invisible because nothing declares what full adoption means.
 
@@ -249,7 +250,7 @@ Enumerated after research synthesis. The classes of change are known:
 | R-001 | Backfilled `description.json` files shift advisor routing outcomes | H | M | Baseline routing accuracy before, re-measure after, block on regression |
 | R-002 | The class taxonomy is drawn to fit the current drift rather than the real design intent, ratifying the mess | H | M | Require the taxonomy to be justified from consumer requirements and file:line evidence, not from the presence table |
 | R-003 | `command-metadata.json` generalization breaks a consumer written against the single sk-design example | M | M | Enumerate and test all four consumers before authoring new files |
-| R-004 | The new gate is added but not wired into any path that actually runs | M | M | Wire into the existing doctor route and CI script, and prove it fails on a broken fixture |
+| R-004 | The new gate is added but not wired into any path that actually runs | M | M | Resolved post-ship: doctor and CI wiring are present; `.github/workflows/routing-registry-drift.yml:99-108` invokes both fleet gates (commit `2fa9fc480c`) |
 
 ---
 
@@ -276,12 +277,7 @@ Enumerated after research synthesis. The classes of change are known:
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- What is the correct class taxonomy, and is it one axis or several crossed axes?
-- Is `leaf-aliases.json` a durable authored contract, or should its data fold into `mode-registry.json` / `leaf-manifest.config.json` so the file type disappears?
-- Should `command-metadata.json` generalize to every command-owning skill, or retract to a documented sk-design-specific case?
-- Is `sk-git` a legitimate sparse class, or the most non-conforming skill in the fleet?
-- Does backfilling the five missing `description.json` files measurably change advisor routing, and if so, in which direction?
-- Can the eight file types be reduced without breaking a consumer, and is reduction actually better than documented per-class presence?
+- None outstanding. The class taxonomy, alias split, command-metadata scope, `sk-git` remediation, and consumer-impact questions were resolved by the shipped implementation and recorded in `decision-record.md`; the root framework pointer and CI wiring were subsequently confirmed in `2fa9fc480c`.
 <!-- /ANCHOR:questions -->
 
 ---

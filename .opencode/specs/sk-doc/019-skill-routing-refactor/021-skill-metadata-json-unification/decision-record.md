@@ -11,7 +11,7 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T20:31:30Z"
+    last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded six ADRs"
     next_safe_action: "None; decisions Accepted"
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Twelve skill roots carried twelve distinct metadata shapes. No document stated which files a given root should have, so a maintainer could not distinguish conformance from drift without comparing against a sibling and guessing which sibling was right.
+At packet authoring, twelve skill roots carried twelve distinct metadata shapes. No document stated which files a given root should have, so a maintainer could not distinguish conformance from drift without comparing against a sibling and guessing which sibling was right.
 
 ### Constraints
 
@@ -194,7 +194,7 @@ The "five skills are missing description.json" framing was wrong: four are confo
 
 ### Context
 
-The research concluded flatly that `leaf-aliases.json` must remain authored for every class, reasoning that neither the registry nor the config can express a workflowMode/resourceId/diskPath triple.
+The research concluded flatly that `leaf-aliases.json` must remain authored for every class, reasoning that neither the registry nor the config can express a workflowMode/resourceId/diskPath triple. The measurements below are ship-time evidence; `system-code-graph` was removed after packet authoring, so its row is not current fleet membership.
 
 Measuring the committed files showed that conclusion holds for hubs and not for standalone roots:
 
@@ -302,7 +302,7 @@ Classify as S and remediate: author `leaf-manifest.config.json`, then generate t
 
 ### Consequences
 
-`sk-git` now conforms; the fleet is 12/12. Its 65 corpus docs are addressable through the same leaf contract as every other routed skill. Its `scripts/` and `benchmark/` trees stay outside the leaf roots and are correctly excluded.
+`sk-git` now conforms; the active fleet is 11/11 on the post-ship audit dated 2026-07-28. `system-code-graph` was removed after packet authoring, so the ship-time 53/53 measurement above remains historical evidence. `sk-git`'s 65 corpus docs are addressable through the same leaf contract as every other routed skill. Its `scripts/` and `benchmark/` trees stay outside the leaf roots and are correctly excluded.
 <!-- /ANCHOR:adr-001-impl -->
 
 ---

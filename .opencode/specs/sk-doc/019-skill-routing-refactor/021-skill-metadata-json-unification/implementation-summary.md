@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill Root Metadata JSON Unification"
-description: "Shipped state: a two-class root-metadata contract enforced by a SKILL.md-first fleet gate, canonical create-skill doctrine, shared judgment across doctor and package validation, and sk-git remediated to conforming. Fleet is 12/12."
+description: "Shipped state: a two-class root-metadata contract enforced by a SKILL.md-first fleet gate, canonical create-skill doctrine, shared judgment across doctor and package validation, and sk-git remediated to conforming. Active fleet is 11/11 after a post-ship root removal."
 trigger_phrases:
   - "skill metadata unification shipped"
   - "skill root class gate result"
@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T20:31:30Z"
+    last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
-    recent_action: "Shipped all six phases; fleet gate 12/12, idempotent, all suites green"
+    recent_action: "Post-ship audit: active fleet gate 11/11; historical ship-time suites remain green"
     next_safe_action: "Operator review and merge of worktree branch sk-doc/0112-skill-metadata-json-unification"
     blockers:
       - "Uncommitted: worktree is dirty by design pending operator review"
@@ -29,11 +29,12 @@ _memory:
       session_id: "021-skill-metadata-json-unification-build"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Should the root framework doc's advisor-metadata paragraph point directly at the new canonical contract? Deferred to avoid contending with a concurrent session editing that file."
+    open_questions: []
     answered_questions:
       - "Standalone alias files are a derivable identity projection; hub alias files are authored relocations"
       - "No production advisor consumer reads a skill-root description.json, so it is hub-only"
+      - "Root framework pointer and fleet CI wiring resolved in 2fa9fc480c; AGENTS.md:450 and routing-registry-drift.yml:99-108"
+      - "Post-ship active fleet is 11 roots; system-code-graph was removed after packet authoring"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -63,7 +64,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The fleet's twelve skill roots now conform to one of two documented classes, and a gate enforces it. **Current state: 12/12 roots conform**, and the gate is idempotent — a second `--fix` pass on a conforming tree writes nothing.
+The packet's twelve-root ship-time fleet conformed to one of two documented classes, and a gate enforces it. **Current state: 11/11 active roots conform** (post-ship audit 2026-07-28); `system-code-graph` was removed after packet authoring. The gate is idempotent — a second `--fix` pass on a conforming tree writes nothing.
 
 | Deliverable | Path |
 |---|---|
@@ -80,7 +81,7 @@ The fleet's twelve skill roots now conform to one of two documented classes, and
 
 **H — packet hub** (7 roots): `cli-external-orchestration`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `system-deep-loop`. Requires `graph-metadata.json`, `description.json`, `mode-registry.json`, `hub-router.json`, generated `leaf-manifest.json`.
 
-**S — standalone routed-resource skill** (5 roots): `mcp-code-mode`, `sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit`. Requires `graph-metadata.json`, authored `leaf-manifest.config.json`, generated `leaf-manifest.json` and `leaf-aliases.json`.
+**S — standalone routed-resource skill** (4 active roots): `mcp-code-mode`, `sk-git`, `system-skill-advisor`, `system-spec-kit`. Requires `graph-metadata.json`, authored `leaf-manifest.config.json`, generated `leaf-manifest.json` and `leaf-aliases.json`. `system-code-graph` was an S root in the ship-time 12-root fleet and was removed afterward; its historical measurements remain below.
 
 The discriminator is the `mode-registry.json` + `hub-router.json` pair: both means H, neither means S, exactly one is rejected as a half-written declaration.
 <!-- /ANCHOR:what-built -->
@@ -121,6 +122,8 @@ Six ADRs are recorded in `decision-record.md`. The four that changed the outcome
 
 **Alias generation splits on class (ADR-004)** — a deliberate, evidence-backed deviation from the research report, which concluded aliases must stay authored everywhere. Measurement showed that holds only for hubs:
 
+The following alias measurement is historical ship-time evidence; `system-code-graph` was removed after packet authoring, so its 53/53 row is not current membership.
+
 | Root | Class | Rows | Identity map? |
 |---|---|---:|---|
 | `system-skill-advisor` | S | 103 | yes |
@@ -141,17 +144,21 @@ A single-mode root collapses the workflowMode/resourceId/diskPath triple to iden
 <!-- ANCHOR:verification -->
 ## Verification
 
+The rows below preserve ship-time outputs from the 12-root fleet as historical evidence. The post-ship audit dated 2026-07-28 reports the current 11-root fleet.
+
 | Gate | Command | Observed |
 |---|---|---|
-| Class gate | `ci-skill-root-metadata.cjs` | `checked=12 passed=12 failed=0` |
+| Class gate | `ci-skill-root-metadata.cjs` | Ship-time: `checked=12 passed=12 failed=0`; post-ship: `checked=11 passed=11 failed=0` |
 | Idempotence | `ci-skill-root-metadata.cjs --fix` | `fixed=0` |
 | Contract + gate tests | `tests/skill-root-metadata-contract.test.cjs` | passed, 21 tests |
-| Freshness gate | `ci-leaf-manifest-freshness.cjs` | `checked=12 fresh=12 failed=0` (was 11 manifests) |
+| Freshness gate | `ci-leaf-manifest-freshness.cjs` | Ship-time: `checked=12 fresh=12 failed=0` (was 11 manifests); post-ship: `checked=11 fresh=11 failed=0` |
 | create-skill suite | `scripts/tests/*.test.cjs` | 5/5 pass |
 | Doctor suite | `doctor/scripts/tests/*.test.cjs` | pass, 3/3 deterministic |
 | Per-hub rule | `parent-skill-check.cjs` × 7 hubs | `11a-class` PASS on all 7 |
 
 **Mutation-checked.** The fleet assertions are load-bearing, not vacuous: removing `sk-git`'s config fails with `class S requires leaf-manifest.config.json`, and planting `leaf-manifest.config.json` on `sk-doc` fails with `class H forbids leaf-manifest.config.json`.
+
+**Cross-AI review (2026-07-28).** GLM-5.2 (`cli-devin`) adversarial review returned one P0 claiming `ci-leaf-manifest-freshness.cjs` was missing; that finding was **REFUTED** because the reviewer's search sandbox could not see `.opencode/`, while the file exists and runs. One P2 about the `isSkillShapedGraph` edges-only disjunction was adjudicated **NO-CHANGE** because the gate deliberately mirrors the advisor ingestion discriminator in `skill-graph-db.ts` (`skill_id|family|edges`) and no continuity file carries `edges`. One P2 about the `kind` label on XOR roots was **CONFIRMED** and fixed in `validate_skill_package.py`.
 
 **Side effects, verified.** Two committed standalone alias files (`system-spec-kit`, `mcp-code-mode`) were reordered into manifest order for byte reproducibility — confirmed set-identical (48→48, 7→7 rows), and every consumer reads these rows as a set rather than positionally. Adding the canonical doc made `sk-doc`'s manifest stale; it was regenerated and now carries the doc as a leaf under both consuming modes.
 <!-- /ANCHOR:verification -->
@@ -163,7 +170,7 @@ A single-mode root collapses the workflowMode/resourceId/diskPath triple to iden
 
 **Nothing is committed.** All work is uncommitted in worktree `.worktrees/0112-sk-doc-skill-metadata-json-unification` on branch `sk-doc/0112-skill-metadata-json-unification`, based on `skilled/v4.0.0.0` at `f8399bf5a0`. Commit and merge are operator decisions.
 
-**Root framework doc pointer deferred.** The advisor-metadata-placement paragraph in the root framework doc still points at `parent-skills-nested-packets.md` rather than directly at the new canonical contract. That file was being edited by a concurrent session during this build, so the pointer was routed through `parent-skills-nested-packets.md` instead — which now names the canonical contract, so the chain resolves either way.
+**Post-ship root inventory.** `system-code-graph` was removed after the packet was authored against a 12-root fleet. Current class and freshness gates report 11/11; ship-time 12-root measurements remain labeled as historical evidence.
 
 **Worktree toolchain is incomplete.** The worktree lacks `scripts/node_modules`, so three validation rules that shell out to `tsx` cannot run there; the packet is validated from the main tree instead, which has that dependency.
 

@@ -9,7 +9,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T20:31:30Z"
+    last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
     recent_action: "All tasks executed and marked with observed evidence"
     next_safe_action: "Run the completion gate"
@@ -44,7 +44,7 @@ Evidence is the observed result of the named command, not a restatement of inten
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] **P0** Census the eight metadata files across all 12 roots — 12 distinct shapes confirmed on disk
+- [x] **P0** Census the eight metadata files across all 12 roots at authoring time — 12 distinct shapes confirmed on disk (historical baseline)
 - [x] **P0** Trace each file's producer and consumers to file:line — recorded in `research/lineages/sol-high-fast/research.md` §5-7
 - [x] **P0** Establish the root cause of invisibility — all three gates confirmed presence-conditional: `parent-skill-check.cjs:237-238` takes one dir per run and scopes description to hubs, its leaf block is opt-in (`:1067-1070`), and `ci-leaf-manifest-freshness.cjs:11` walks committed manifests only
 <!-- /ANCHOR:phase-1 -->
@@ -65,11 +65,11 @@ Evidence is the observed result of the named command, not a restatement of inten
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] **P0** Fleet gate passes — `checked=12 passed=12 failed=0`
+- [x] **P0** Fleet gate passed at ship time — `checked=12 passed=12 failed=0` (historical; post-ship active fleet audit is `checked=11 passed=11 failed=0` on 2026-07-28)
 - [x] **P0** Idempotent on re-run — `fixed=0`
 - [x] **P0** Unit + gate suite passes — `[sk-doc] skill-root-metadata contract + fleet gate coverage passed` (21 tests)
 - [x] **P0** Mutation-check the fleet assertions — removing `sk-git`'s config and planting a forbidden file on `sk-doc` each fail the suite with the expected message
-- [x] **P0** Existing freshness gate still green — `checked=12 fresh=12 failed=0` (was 11 manifests, now 12)
+- [x] **P0** Existing freshness gate was green at ship time — `checked=12 fresh=12 failed=0` (was 11 manifests, now 12; historical output retained; post-ship active fleet is 11/11)
 - [x] **P1** Full create-skill suite — 5/5 pass
 - [x] **P1** Doctor suite — `parent-skill-check-leaf-manifest.test.cjs` passes, 3/3 deterministic re-runs
 - [x] **P1** `11a-class` PASS on all 7 hubs
@@ -91,7 +91,7 @@ Evidence is the observed result of the named command, not a restatement of inten
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- Fleet gate exits 0 across all 12 roots and is idempotent
+- Fleet gate exited 0 across all 12 roots at ship time and remains idempotent; post-ship active fleet is 11/11
 - Every presence difference is explained by a written class rule
 - One canonical document exists; no other doc restates the table
 - The same class judgment is reached by the fleet gate, the per-hub audit, and package validation

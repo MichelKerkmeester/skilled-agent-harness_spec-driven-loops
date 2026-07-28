@@ -9,7 +9,7 @@ contextType: "validation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T20:31:30Z"
+    last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded observed results for every verification item"
     next_safe_action: "None; verification complete"
@@ -45,7 +45,7 @@ Every item records the command run and the result observed, not the result expec
 - [x] CHK-001 [P1] Research converged before implementation began — 5/10 iterations, 5/5 questions answered, stop reason `converged`
 - [x] CHK-002 [P1] Operator directive resolved before design — uniformity per documented class, scope limited to root-level JSON [evidence: operator selected "Uniform per class, documented" and scope "All root-level skill JSONs" at the pre-build question]
 - [x] CHK-003 [P1] Root cause confirmed against source, not inferred — all three gates verified presence-conditional at file:line [evidence: parent-skill-check.cjs:237-238 single-target, :1067-1070 opt-in leaf block, ci-leaf-manifest-freshness.cjs:11 walks committed manifests]
-- [x] CHK-004 [P1] Baseline captured before any change — 12 roots, 12 distinct shapes, `sk-git` sparsest
+- [x] CHK-004 [P1] Authoring baseline captured before any change — 12 roots, 12 distinct shapes, `sk-git` sparsest (historical)
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -76,7 +76,7 @@ Every item records the command run and the result observed, not the result expec
 - [x] CHK-017 [P0] Fleet gate exits 0 — `checked=12 passed=12 failed=0`
 - [x] CHK-018 [P0] Idempotent — re-run reports `fixed=0`
 - [x] CHK-019 [P0] `sk-git` conforms — one authored file added, manifest (65 leaves) and aliases derived
-- [x] CHK-020 [P0] Existing freshness gate green and now covering 12 manifests — `checked=12 fresh=12 failed=0` (previously 11)
+- [x] CHK-020 [P0] Existing freshness gate green and covering 12 manifests at ship time — `checked=12 fresh=12 failed=0` (previously 11; historical output retained; post-ship active fleet is 11/11)
 - [x] CHK-021 [P0] All 7 hubs pass the new per-hub rule — `11a-class` PASS on each
 - [x] CHK-022 [P0] XOR half-declaration now rejected — synthetic root fails package validation with the partial-declaration message [evidence: synthetic halfhub root returns `skill-root-metadata-contract: FAIL (exit 1)` with the partial-declaration message]
 - [x] CHK-023 [P0] The two rewritten alias files verified set-identical — 48→48 and 7→7 rows [evidence: sorted-key set comparison returned true for both files, 48/48 and 7/7 rows]
@@ -117,10 +117,10 @@ Every item records the command run and the result observed, not the result expec
 
 | Gate | Command | Result |
 |---|---|---|
-| Class gate | `ci-skill-root-metadata.cjs` | `checked=12 passed=12 failed=0` |
+| Class gate | `ci-skill-root-metadata.cjs` | `checked=11 passed=11 failed=0` (post-ship audit 2026-07-28; ship-time 12/12 evidence retained in CHK-017) |
 | Idempotence | `ci-skill-root-metadata.cjs --fix` (second pass) | `fixed=0` |
 | Contract + gate tests | `tests/skill-root-metadata-contract.test.cjs` | passed, 21 tests |
-| Freshness gate | `ci-leaf-manifest-freshness.cjs` | `checked=12 fresh=12 failed=0` |
+| Freshness gate | `ci-leaf-manifest-freshness.cjs` | `checked=11 fresh=11 failed=0` (post-ship audit 2026-07-28; ship-time 12/12 evidence retained in CHK-020) |
 | create-skill suite | `scripts/tests/*.test.cjs` | 5/5 pass |
 | Doctor suite | `doctor/scripts/tests/*.test.cjs` | pass, 3/3 deterministic |
 | Per-hub rule | `parent-skill-check.cjs` × 7 hubs | `11a-class` PASS on all 7 |
@@ -139,7 +139,7 @@ Every item records the command run and the result observed, not the result expec
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [x] CHK-110 [P1] Fleet gate stays fast enough for the existing doctor and CI paths — 12 roots evaluated per run with no new timeout budget requested (NFR-P01) [evidence: 12 roots per run, no timeout budget requested by the doctor route entry in `_routes.yaml`]
+- [x] CHK-110 [P1] Fleet gate stays fast enough for the existing doctor and CI paths — 12 roots evaluated per run at ship time; the post-ship audit evaluates 11 active roots with no new timeout budget requested (NFR-P01) [evidence: 2026-07-28 class-gate output and no timeout budget requested by the doctor route entry in `_routes.yaml`]
 - [x] CHK-111 [P1] Generated output is byte-reproducible, so freshness comparison is a constant-cost byte compare rather than a semantic diff (NFR-R01) [evidence: `canonicalManifestBytes` plus sorted alias projection; freshness is `Buffer.compare`]
 - [x] CHK-112 [P2] No load testing required — the gate is a bounded local filesystem walk over 12 direct children, not a service
 - [x] CHK-113 [P2] Cost characteristic documented: one manifest regeneration per class-required root, reusing the existing generator
@@ -178,7 +178,7 @@ Every item records the command run and the result observed, not the result expec
 
 | Role | Status | Evidence |
 |---|---|---|
-| Implementation | Complete | 12/12 fleet conformance, idempotent |
+| Implementation | Complete | 11/11 active-root conformance, idempotent (post-ship audit 2026-07-28) |
 | Verification | Complete | Every gate in `plan.md` §2 run, results recorded above |
 | Documentation | Complete | Canonical doc plus pointers; no restatement |
 | Operator acceptance | Pending | Worktree not merged; merge is an operator decision |

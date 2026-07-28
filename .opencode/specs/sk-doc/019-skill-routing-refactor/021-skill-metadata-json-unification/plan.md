@@ -10,7 +10,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T20:31:30Z"
+    last_updated_at: "2026-07-28T04:11:05Z"
     last_updated_by: "claude-code"
     recent_action: "All six phases executed and verified"
     next_safe_action: "Run the completion gate and reconcile the packet"
@@ -48,10 +48,10 @@ The ordering is dictated by one dependency: every other phase consumes the class
 
 | Gate | Command | Threshold |
 |------|---------|-----------|
-| Class gate | `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs` | 12/12 pass, exit 0 |
+| Class gate | `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs` | 11/11 active roots pass, exit 0 (post-ship audit 2026-07-28) |
 | Idempotence | Re-run `--fix` on a conforming tree | `fixed=0`, zero diffs |
 | Contract + gate unit tests | `node .../scripts/tests/skill-root-metadata-contract.test.cjs` | all assertions pass |
-| Existing freshness gate | `node .../scripts/ci-leaf-manifest-freshness.cjs` | 12/12 fresh |
+| Existing freshness gate | `node .../scripts/ci-leaf-manifest-freshness.cjs` | 11/11 active roots fresh (post-ship audit 2026-07-28) |
 | create-skill suite | every `scripts/tests/*.test.cjs` | 5/5 pass |
 | Doctor suite | `.opencode/commands/doctor/scripts/tests/*.test.cjs` | pass |
 | Per-hub audit | `parent-skill-check.cjs` on all 7 hubs | `11a-class` PASS on each |
@@ -214,7 +214,7 @@ Phase 1 → 2 → 3 → 6. Phases 4 and 5 run off the critical path once Phase 1
 |---|---|
 | Class judgment exists and is testable | Contract library plus passing unit tests |
 | Fleet baseline measurable | Gate reports 11/12 with `sk-git` as the single failure |
-| Fleet conforms | Gate reports 12/12, idempotent on re-run |
+| Fleet conforms | Gate reports 11/11 active roots, idempotent on re-run (post-ship audit 2026-07-28; the ship-time 12/12 result is historical) |
 | Contract is knowable | Canonical doc plus pointers from every doc that touched the subject |
 | Judgment is shared | `11a-class` PASS on all 7 hubs; XOR rejected by package validation |
 
@@ -272,6 +272,6 @@ Blockers hit during this packet and their disposition:
 | Blocker | Disposition |
 |---|---|
 | Hollow `mcp-server/node_modules` in the main tree breaks `validate.sh` there | Surfaced to the operator rather than repaired; no lockfile exists, so a repair would resolve fresh versions. Validation ran from the tree that has the dependency |
-| Root framework doc under concurrent edit | Pointer routed through `parent-skills-nested-packets.md` instead; the chain still resolves. Recorded as an open question |
+| Root framework doc pointer and CI wiring | Resolved by `2fa9fc480c`; `AGENTS.md:450` points directly to the canonical contract and `.github/workflows/routing-registry-drift.yml:99-108` runs both fleet gates. No blocker remains; post-ship audit 2026-07-28 confirmed the direct pointer and active 11-root gate |
 
 ---
