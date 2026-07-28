@@ -453,6 +453,7 @@ def init_parent_skill(
     mode_registry = {
         "skill": skill_name,
         "version": "1.0.0.0",
+        "resourceContractVersion": 1,
         "modes": [
             {
                 "workflowMode": mode,

@@ -167,6 +167,19 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
     for (const leaf of leaves) rawPairs.push({ workflowMode: mode.workflowMode, leafResourceId: leaf });
     modeEntries.push({ workflowMode: mode.workflowMode, packet: mode.packet, leaves });
   }
+  const knownModes = new Set((registryModes || [])
+    .map((mode) => mode && mode.workflowMode)
+    .filter(Boolean));
+  for (const alias of aliasEntries || []) {
+    const workflowMode = alias && alias.workflowMode;
+    if (!knownModes.has(workflowMode)) {
+      const leafResourceId = alias && alias.leafResourceId;
+      throw new contract.ContractError(
+        'ORPHAN_ALIAS_MODE',
+        `alias workflowMode ${JSON.stringify(workflowMode)} has no matching registry mode for leafResourceId ${JSON.stringify(leafResourceId)}`,
+      );
+    }
+  }
   return { modeEntries, rawPairs };
 }
 
