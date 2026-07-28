@@ -8,7 +8,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 export default function specGateClassify(pi: ExtensionAPI): void {
   pi.on("input", async (event, ctx) => {
     try {
-      const guard = await import("../../.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs");
+      const guard = await import("../../.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs");
       const result = guard.classifyIntent({
         prompt: event.text,
         sessionID: ctx.sessionManager.getSessionId(),

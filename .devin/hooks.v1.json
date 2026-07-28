@@ -42,7 +42,7 @@
         },
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-classify.mjs'",
           "timeout": 10
         }
       ]
@@ -59,7 +59,7 @@
         },
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs'",
           "timeout": 5
         },
         {
@@ -74,7 +74,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs'",
           "timeout": 5
         }
       ]
@@ -128,7 +128,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs'",
           "timeout": 5
         }
       ]

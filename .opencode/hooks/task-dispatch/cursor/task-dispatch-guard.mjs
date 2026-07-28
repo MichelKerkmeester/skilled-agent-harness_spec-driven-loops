@@ -19,7 +19,7 @@
 // payload as-is with no field renaming.
 //
 // Deliberately NOT a thin proxy through shared.ts's runClaudeHookAdapter():
-// task-dispatch-guard.cjs lives under system-deep-loop/runtime/hooks/claude/,
+// task-dispatch-guard.cjs lives in this tree's own claude/ sibling folder,
 // outside mcp-server/hooks/claude/, so runClaudeHookAdapter's
 // `../claude/<filename>` resolution does not reach it. Spawns it directly by
 // its known repo-relative path instead, mirroring spec-gate-enforce.mjs's

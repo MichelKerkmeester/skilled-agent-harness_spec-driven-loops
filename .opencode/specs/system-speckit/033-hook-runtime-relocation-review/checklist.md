@@ -104,6 +104,8 @@ _memory:
 - [x] CHK-041 [P1] ~20 live documentation files updated for the new paths; 2 files' relative-depth math manually recomputed via Python `os.path.normpath` after an initial wrong sed pass. Two subsequent sweeps still missed references: the first (R4-P1-001) missed 2 executable-command references in `cli-dispatch-audit-trail.md`/`codex-hook-parity.md`, fixed in T020. The second (the re-review's F006/F007/F008) found 3 more: `cli-codex/references/hook-contract.md` (4 stale adapter path cells), `deep-alignment/references/adapters/sk-doc-known-deviations.md` (stale path + a pre-existing `cli-external`/`cli-external-orchestration` typo fixed while already touching the line), and `.opencode/skills/.loop-guard-state/README.md` (3 stale relative links). All now fixed and path-verified via `os.path.normpath` before editing.
 - [x] CHK-042 [P1] All touched/new README and playbook files report 0 issues via `validate_document.py`.
 - [x] CHK-043 [P1] Phase 7: `.opencode/hooks/README.md`'s OVERVIEW and directory-tree diagram rewritten for the unified scope (the old collision-explaining prose no longer applies); 35 touched documentation files all report 0 issues via `validate_document.py`.
+- [x] CHK-016 [P0] Phase 8: `system-spec-kit/runtime/` fully merged into `mcp-server/hooks/` with git history preserved, all 37 external reference sites repointed, and a repo-wide grep showing 0 live `system-spec-kit/runtime` references. [evidence: T035-T038; 172/175 tests pass, 0 fail]
+- [x] CHK-044 [P1] Phase 8: every concern folder under `.opencode/hooks/` and every spec-kit hook folder carries a current README; 12 ghost README-only folders deleted; sk-code's legacy-file README rewritten. [evidence: T039-T040; `validate_document.py` 0 issues on all 17 touched docs]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -122,8 +124,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
-| P1 Items | 12 | 12/12 |
+| P0 Items | 10 | 10/10 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-07-28

@@ -118,17 +118,17 @@ Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Un
 | Event | Matcher | Command | Timeout | Purpose |
 |---|---|---:|---:|---|
 | `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-start.js` | 10 | Startup context priming (proxies to `session-prime.js`). |
-| `sessionStart` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | 10 | Validates `MK_SPEC_FOLDER` or opens explicitly enabled Gate-3 state for an identifiable top-level session. |
+| `sessionStart` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | 10 | Validates `MK_SPEC_FOLDER` or opens explicitly enabled Gate-3 state for an identifiable top-level session. |
 | `sessionStart` | none | `bash .opencode/bin/worktree-guard.sh` | 10 | Workspace safety guard. |
 | `sessionStart` | none | `bash .opencode/bin/check-git-hooks.sh` | 10 | Git-hooks-installed guard. |
 | `sessionStart` | none | `python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all` | 10 | Dist-staleness warning across every watched package. |
 | `sessionStart` | none | `node .opencode/bin/install-codex-hooks.mjs --check` | 10 | Codex hook-drift warning. |
 | `sessionEnd` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-end.js` | 10 | Session-stop accounting (proxies to `session-stop.js`; Cursor's `stop` event never fires under the CLI, so `sessionEnd` is the confirmed substitute). |
 | `sessionEnd` | none | `bash .opencode/scripts/session-cleanup.sh` | 10 | Session-scoped MCP-helper cleanup. |
-| `preToolUse` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | 10 | Evaluates the shared spec-gate mutation policy before every tool call (`Shell`/`Write`). |
+| `preToolUse` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs` | 10 | Evaluates the shared spec-gate mutation policy before every tool call (`Shell`/`Write`). |
 | `preToolUse` | `Task` | `node .opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | 10 | Deep-loop dispatch policy for a delegated subagent (`Task`) tool call; fires alongside the unmatched entry above, not instead of it. |
 | `postToolUse` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | 10 | Chains `Write`/`Shell` tool calls into the Claude post-edit-quality, code-graph-freshness, and CLI-dispatch-audit hooks. |
-| `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs` | 10 | Advisory Gate-3 classification. Registered for parity; confirmed dormant under the installed CLI build (event never fires). |
+| `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs` | 10 | Advisory Gate-3 classification. Registered for parity; confirmed dormant under the installed CLI build (event never fires). |
 | `beforeSubmitPrompt` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js` | 10 | Prompt-time skill-advisor brief. Registered for parity; confirmed dormant alongside the classify hook above. |
 | `beforeMCPExecution` | none | `node .opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs` | 10 | Advises routing an external MCP call through Code Mode. Recombines Cursor's split `mcp_server_name` + bare `tool_name` into the packed shape the shared core parses (see the split-shape caveat below). |
 | `preCompact` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/precompact.js` | 10 | Compaction payload pre-caching (proxies to `compact-inject.js`). Registered for parity; delivery unconfirmed and untestable in isolation (no CLI-reachable compaction trigger exists). |
@@ -140,7 +140,7 @@ Helper module (statically imported by every entrypoint, NOT directly wired): `sh
 ```jsonc
 "preToolUse": [
   {
-    "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+    "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs",
     "type": "command",
     "timeout": 10
   },

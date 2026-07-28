@@ -41,10 +41,23 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 
 - The project's `.devin/hooks.v1.json` registers compiled `dist/hooks/devin/*.js` outputs against `SessionStart`, `UserPromptSubmit` and `Stop`, plus plain `.cjs` files against `Stop` and `PostCompaction`. The `.ts` adapters require `npm run build` in `mcp-server/` before their `dist/` paths resolve.
 
-## 5. RELATED
+## 5. SPEC-GATE (GATE-3) AND PERMISSION HOOKS
+
+This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (direct-run `.mjs`, no build step), calling into `../lib/spec-gate/spec-gate-core.mjs` alongside the Claude hook, the OpenCode plugin and the Codex hook so the core never changes for a new runtime. Both spec-gate entrypoints fail open. Live-probed against `devin 3000.2.17`: `spec-gate-classify.mjs` delivered Gate-3 context on `UserPromptSubmit` and `spec-gate-enforce.mjs` ran on observed `PreToolUse` events; the deny branch remains structurally verified only, since no block-severity fixture exists for an end-to-end denial.
+
+| File | Purpose | Status |
+|------|---------|--------|
+| `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` and surfaces the bounded Gate-3 question as `additionalContext`. | **Live** — model-visible context observed. |
+| `spec-gate-enforce.mjs` | `PreToolUse(^exec$\|^edit$)` hook. Calls `evaluateMutation()` directly; deny emits `permissionDecision: "deny"`, advise adds context. | **Live for observed tool paths** — deny branch unobserved end to end. |
+| `permission-request-policy.mjs` | `PermissionRequest` hook. Combines the spec-gate mutation policy with the dispatch hard-rule engine (`.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs`) to answer Devin permission prompts for write tools. | Registered; `PermissionRequest` unobserved in the live probe. |
+| `spec-gate-devin.test.mjs`, `permission-request-policy.test.mjs` | Co-located tests, run with `node --test`. | — |
+
+`.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit`, `spec-gate-enforce.mjs` to `PreToolUse` (`^exec$`, `^edit$` matchers), and `permission-request-policy.mjs` to `PermissionRequest`.
+
+## 6. RELATED
 
 - [`../README.md`](../README.md)
 - [`../codex/README.md`](../codex/README.md) -- structural precedent; Devin's envelope shape matches Codex's, unlike Cursor's distinct `{permission, user_message, agent_message}` shape.
-- [`../../runtime/hooks/devin/README.md`](../../runtime/hooks/devin/README.md)
+- [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)
 - [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md`](../../../../../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md) -- canonical current and superseded test evidence.
 - [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md`](../../../../../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md) -- ADRs for `session-stop.ts`, `completion-evidence-stop.cjs`, `post-compaction.cjs`.

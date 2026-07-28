@@ -36,7 +36,7 @@ A core only qualifies for this tree when it imports nothing but Node builtins (o
 
 Hooks that did **not** move stay inside their owning skill because their core logic genuinely is that skill's engine, not a bolt-on guard: `spec-gate-*`, the session-lifecycle hooks, and `completion-evidence-stop` (`system-spec-kit`), the skill-advisor brief (`system-skill-advisor`), and `git-preflight-advisory` (`sk-git`, depends on its own `git-context.mjs`/`git-rule-checks.mjs` rule engine).
 
-`hook-adapter-shared.cjs`, a tiny stdin-parsing helper with zero dependencies of its own, has its own local copy at `shared/hook-adapter-shared.cjs`. It used to be a single copy left in `system-spec-kit/runtime/lib/` that adapters here reached back into — a real cross-tree dependency that contradicted the whole point of this relocation (a user adopting the enforcement layer without the skill would still have pulled in a `system-spec-kit` file). A second, independent copy still lives at `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` for that skill's own `spec-gate-enforce.mjs`, which is not part of the fully-portable set; the two copies are allowed to drift only in the sense that either could change independently, though in practice this file is small and stable enough that they shouldn't.
+`hook-adapter-shared.cjs`, a tiny stdin-parsing helper with zero dependencies of its own, has its own local copy at `shared/hook-adapter-shared.cjs`. It used to be a single copy inside `system-spec-kit` that adapters here reached back into — a real cross-tree dependency that contradicted the whole point of this relocation (a user adopting the enforcement layer without the skill would still have pulled in a `system-spec-kit` file). A second, independent ESM sibling lives at `system-spec-kit/mcp-server/hooks/lib/hook-adapter-shared.mjs` for that skill's own four `spec-gate-enforce.mjs` adapters, which are not part of the fully-portable set; the two copies are allowed to drift only in the sense that either could change independently, though in practice this file is small and stable enough that they shouldn't.
 
 ---
 
@@ -136,6 +136,7 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"` �
 ## 6. RELATED
 
 - [`../skills/system-spec-kit/references/hooks/injection-contract.md`](../skills/system-spec-kit/references/hooks/injection-contract.md): what every hook (including the ones that stayed in their skill) actually injects.
+- Per-concern READMEs: [`dispatch/`](./dispatch/README.md), [`mcp-route-guard/`](./mcp-route-guard/README.md), [`post-edit-quality/`](./post-edit-quality/README.md), [`task-dispatch/`](./task-dispatch/README.md), [`shared/`](./shared/README.md).
 - [`git/README.md`](./git/README.md): the git commit-hooks installer nested in this tree.
 - [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the primary git-hooks installer that chain-calls `git/pre-commit`.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.

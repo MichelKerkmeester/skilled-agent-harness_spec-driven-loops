@@ -76,7 +76,7 @@ B) Create a new spec folder
 ```
 
 - **Trigger:** a user prompt the classifier scores as a probable file mutation, once per session until answered.
-- **Owning module:** `system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
+- **Owning module:** `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
 - **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`mk-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
 
 ### Spec Memory / Goal / Dist-Freshness Context (OpenCode only)

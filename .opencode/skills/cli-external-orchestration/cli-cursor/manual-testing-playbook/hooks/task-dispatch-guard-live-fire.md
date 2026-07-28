@@ -70,7 +70,7 @@ Operators run the exact prompt and command sequence for `CU-021` and confirm the
 |---|---|
 | `../../../../../hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | The real `matcher: "Task"`-wired `preToolUse` guard this scenario's live-fire evidence supports |
 | `../../../../../hooks/task-dispatch/lib/dispatch-guard.cjs` | The shared deep-loop dispatch guard core `task-dispatch-guard.mjs` proxies to |
-| `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | The pre-existing unmatched `preToolUse` entry this scenario confirms keeps firing alongside the new matched entry |
+| `../../../../system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs` | The pre-existing unmatched `preToolUse` entry this scenario confirms keeps firing alongside the new matched entry |
 
 ---
 

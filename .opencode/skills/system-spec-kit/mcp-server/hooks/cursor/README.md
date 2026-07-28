@@ -20,7 +20,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | Cursor event | CLI delivery | Adapter | Notes |
 |---|---|---|---|
 | `sessionStart` | **Confirmed fires** | `session-start.ts` plus `spec-gate-prebind.mjs` | Primes context and initializes opt-in Gate-3 state. |
-| `preToolUse` | **Confirmed fires** | `../../runtime/hooks/cursor/spec-gate-enforce.mjs` | Fires before every tool call (`Shell`, `Read`, `Grep`, `Write` all observed); the deny path (`permission:"deny"` + exit 2) was live-verified to actually block the tool call |
+| `preToolUse` | **Confirmed fires** | `spec-gate-enforce.mjs` (this folder) | Fires before every tool call (`Shell`, `Read`, `Grep`, `Write` all observed); the deny path (`permission:"deny"` + exit 2) was live-verified to actually block the tool call |
 | `postToolUse` | **Confirmed fires** | `post-tool-use.mjs` | Runs post-edit, graph-freshness, and dispatch-audit adapters. |
 | `sessionEnd` | **Confirmed fires** | `session-end.ts` → delegates to `../claude/session-stop.js` | Fires once per process with `reason`/`final_status` and a real `transcript_path` |
 | `beforeShellExecution` / `afterShellExecution` | **Confirmed fires** | Covered by `preToolUse`/`postToolUse` instead (broader) | Not separately wired — `preToolUse` already gates shell calls |
@@ -51,8 +51,21 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 - `.cursor/hooks.json` is the committed registration authority for these adapters and the sibling runtime spec-gate scripts.
 - The file is shared by Cursor CLI and the Cursor editor, so every entry remains fail-open and enforcement remains opt-in.
 
-## 5. RELATED
+## 5. SPEC-GATE (GATE-3) HOOKS
+
+This folder also holds Cursor's Gate-3 adapters (direct-run `.mjs`, no build step). The startup prebind establishes state that Cursor's undelivered prompt event cannot create, the pre-tool adapter consumes that state through the shared evaluator in `../lib/spec-gate/spec-gate-core.mjs`, and the prompt classifier remains registered for forward compatibility. Every entrypoint fails open.
+
+Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-gate-enforce.mjs` is wired there rather than `beforeShellExecution` (which only covers shell and would miss `Write` entirely). `beforeSubmitPrompt` remains registered but has not fired under the installed CLI; `spec-gate-prebind.mjs` therefore uses confirmed `sessionStart` delivery to satisfy a validated `MK_SPEC_FOLDER` or open state only when `MK_SPEC_GATE_ENFORCE=1` is explicitly set for an identifiable top-level session. A dispatched/child session (`AI_SESSION_CHILD=1`) is a complete Gate-3 no-op enforced in the shared core. Both spec-gate adapters resolve `workspace_roots[0]` only, so multi-root Cursor workspaces are not enforced against secondary roots.
+
+| File | Purpose | Status |
+|------|---------|--------|
+| `spec-gate-prebind.mjs` | `sessionStart` hook. Validates an explicit folder or opens opt-in top-level enforcement state. | **Active** — process-tested; disabled, child, malformed, and missing-session cases write no state. |
+| `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. | **Active** — the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
+| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Would surface the bounded Gate-3 question as `agent_message`. | **Registered, delivery unconfirmed** — `beforeSubmitPrompt` did not fire under the tested CLI build. |
+| `spec-gate-prebind.test.mjs` | Co-located tests, run with `node --test`. | — |
+
+## 6. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../runtime/hooks/cursor/README.md`](../../runtime/hooks/cursor/README.md)
+- [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)
 - [`.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md`](../../../../../../.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md) — ADR-001 (registration scope) and ADR-002 (event mapping + the live-verification methodology and results above)

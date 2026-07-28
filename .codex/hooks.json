@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           }
         ]
@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 5
           }
         ]

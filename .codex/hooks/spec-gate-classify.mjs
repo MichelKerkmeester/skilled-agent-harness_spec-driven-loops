@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs
+../../.opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs

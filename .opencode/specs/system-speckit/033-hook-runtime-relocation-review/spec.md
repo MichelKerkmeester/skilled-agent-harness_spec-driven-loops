@@ -114,7 +114,13 @@ Operator direction: fold the pre-existing git commit-hooks installer folder (`.o
 - Fixing 2 stale references (`.opencode/skills/.loop-guard-state/README.md`, `cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md`) that predate even the original relocation — missed by every prior sweep (relocation, both review rounds, both remediation rounds) because none scoped a true repo-wide grep for the `task-dispatch-guard.cjs`/`.mjs` old paths specifically.
 - A live git-commit smoke test of the actual hygiene-gate chain (not just a path grep), since this pass's blast radius includes the repo's own commit-time enforcement mechanism.
 
-### Out of Scope
+### Spec-Kit Hook Consolidation Scope (Phase 8)
+
+Operator direction: fold `system-spec-kit`'s remaining second hook home (`runtime/` — the spec-gate enforce/classify/prebind adapters, permission-request-policy, and their `lib/`) into `mcp-server/hooks/`, so all spec-kit hooks live in one place; give every concern folder under `.opencode/hooks/` its own README; and delete the 12 ghost README-only folders left behind at pre-relocation hook locations (plus a rewrite of sk-code's partially-stale hooks README, whose folder still holds a real legacy file).
+
+- `runtime/hooks/{claude,codex,cursor,devin}/*.mjs` merged file-by-file into the existing `mcp-server/hooks/<runtime>/` folders; `runtime/lib/` became `mcp-server/hooks/lib/` (spec-gate core + workspace/repo-root + the ESM `hook-adapter-shared.mjs`). The dead CommonJS twin `hook-adapter-shared.cjs` (zero importers after the earlier dependency-removal) was deleted. Each old per-runtime README's spec-gate content was merged into the existing lifecycle README rather than overwriting it.
+- 37 external reference sites repointed: 12 config command strings across all 4 runtime configs, 10 discovery symlinks, 5 code imports (2 OpenCode plugins for `repo-root.mjs`, `mk-spec-gate.js`, 2 Pi extensions), and the live docs/playbooks. Relative-depth imports inside moved files verified with `os.path.normpath` before editing; `spec-gate-core.mjs`'s `shared/dist/gate-3-classifier.js` import gained one level, while prebind's and permission-request-policy's cross-tree imports kept identical depth by construction.
+- Five new concern READMEs (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/`, `task-dispatch/`, `shared/`) authored from verified file-header content, linked from the root tree README.
 
 - Spec-gate, session-lifecycle, and skill-advisor-brief hooks — these are genuinely part of their owning skill's own engine (`spec-gate-core.mjs` depends on system-spec-kit's own `gate-3-classifier.js`; the advisor brief IS system-skill-advisor's core deliverable) and were confirmed NOT fully-portable.
 - `git-preflight-advisory.mjs` (sk-git) — depends on sk-git's own `git-context.mjs`/`git-rule-checks.mjs`, its real rule engine.

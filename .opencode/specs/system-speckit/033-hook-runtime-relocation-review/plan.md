@@ -159,6 +159,15 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 - [x] Live git-commit smoke test of the actual hygiene-gate chain via direct script invocation (native git-hook trigger untestable in this session: a shared, repo-wide `core.hooksPath` override to a `.no-hooks` sentinel was already active, unrelated to this work, and not something to change unilaterally since it could affect concurrent sessions).
 - [x] Re-run all directly affected test suites (73/74 real passes; 1 failure is the same pre-existing "fresh worktree dist not built" environment gap from `spec-gate-core.mjs`, unrelated to this move).
 - [x] `validate_document.py` on all 35 touched documentation files.
+
+### Phase 8: Spec-Kit Hook Consolidation + README Coverage + Ghost Cleanup
+
+- [x] Merge `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin}` file-by-file into `mcp-server/hooks/<runtime>/`; `runtime/lib/` -> `mcp-server/hooks/lib/`; delete the zero-importer `hook-adapter-shared.cjs` twin; remove the empty `runtime/` tree.
+- [x] Merge each old per-runtime README's spec-gate content into the existing lifecycle README (new SPEC-GATE sections) instead of overwriting.
+- [x] Fix in-tree relative imports (depths verified via `os.path.normpath` first) and repoint all 37 external reference sites: 4 configs (JSON re-validated), 10 symlinks (resolution verified), 5 code imports, live docs/playbooks including relative-depth forms.
+- [x] Author 5 concern READMEs under `.opencode/hooks/` and link them from the root tree README.
+- [x] Delete 12 ghost README-only folders at pre-relocation hook locations; rewrite sk-code's partially-stale hooks README around its one remaining legacy file; fix 2 stale narration sites surfaced by the post-deletion dangling-link sweep.
+- [x] Verify: 172/175 `node --test` pass (0 fail, 3 suite-internal skips), plugin import smoke OK for all 3 touched plugins, live Pi smoke exit 0, spec-gate replay at the new path returns a sane allow, repo-wide grep for `system-spec-kit/runtime` shows 0 live hits, `validate_document.py` 0 issues on all 17 touched docs.
 <!-- /ANCHOR:phases -->
 
 ---

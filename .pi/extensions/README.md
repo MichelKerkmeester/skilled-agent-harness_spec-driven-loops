@@ -45,8 +45,8 @@ extensions/
 
 | File | Pi event | Delegates to |
 |---|---|---|
-| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
-| `spec-gate-classify.ts` | `input` | `system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
+| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` `evaluateMutation()` |
+| `spec-gate-classify.ts` | `input` | `system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()` |
 | `dispatch-preflight-lint.ts` | `tool_call` (bash) | `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs` `readHardRules()`/`evaluate()` |
 | `dispatch-audit.ts` | `tool_result` (bash) | `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` `recordDispatch()` |
 | `post-edit-quality.ts` | `tool_result` (edit/write) | `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |

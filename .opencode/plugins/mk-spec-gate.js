@@ -25,7 +25,7 @@
 // thin, default-export-only OpenCode plugin while the Claude hooks consume the
 // same core. Unlike the deep-loop guard's .cjs core, this core is real ESM
 // (it statically imports the ESM Gate-3 classifier), so it is imported directly.
-import * as guardCore from '../skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs';
+import * as guardCore from '../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TRANSPORT HELPERS

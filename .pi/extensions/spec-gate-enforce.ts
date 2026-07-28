@@ -17,7 +17,7 @@ export default function specGateEnforce(pi: ExtensionAPI): void {
     try {
       if (event.toolName !== "bash" && event.toolName !== "write" && event.toolName !== "edit") return;
 
-      const guard = await import("../../.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs");
+      const guard = await import("../../.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs");
       const result = guard.evaluateMutation({
         tool: event.toolName,
         filePath: projectFilePath(event.input),

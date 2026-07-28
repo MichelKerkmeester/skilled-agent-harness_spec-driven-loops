@@ -56,7 +56,19 @@ Advisor registration snippet:
 
 Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the current process session.
 
-## 5. DESIGN PRINCIPLE
+## 5. SPEC-GATE (GATE-3) HOOKS
+
+This folder also holds the Claude Code side of the Gate-3 spec-folder discipline. Both files call into `../lib/spec-gate/spec-gate-core.mjs` and never decide policy themselves. Every entrypoint fails open: a missing or invalid stdin payload always resolves to approve, so a bug here never blocks an unrelated turn. Unlike the lifecycle hooks above, these are direct-run `.mjs` files with no build step.
+
+| File | Purpose |
+|------|---------|
+| `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn, opens the session gate and surfaces the bounded Gate-3 question as `additionalContext`. Advisory only, no deny capability. |
+| `spec-gate-enforce.mjs` | `PreToolUse` hook. Runs `evaluateMutation()` before a Write, Edit or Bash call. Write and Edit are deny-capable, Bash is advise-only. Logs every non-allow decision through `appendWarningLog()`. |
+| `spec-gate-claude.test.mjs` | Co-located tests, run with `node --test`. |
+
+`.claude/settings.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit` and `spec-gate-enforce.mjs` to the `Write|Edit` and `Bash` `PreToolUse` matchers.
+
+## 6. DESIGN PRINCIPLE
 
 Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
 For packet work, the operator-facing recovery surface remains `/speckit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.

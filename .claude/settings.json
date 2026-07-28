@@ -23,7 +23,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/claude/spec-gate-enforce.mjs'",
             "timeout": 5
           },
           {
@@ -68,7 +68,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/claude/spec-gate-enforce.mjs'",
             "timeout": 5
           }
         ]
@@ -85,7 +85,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/claude/spec-gate-classify.mjs'",
             "timeout": 3
           }
         ]

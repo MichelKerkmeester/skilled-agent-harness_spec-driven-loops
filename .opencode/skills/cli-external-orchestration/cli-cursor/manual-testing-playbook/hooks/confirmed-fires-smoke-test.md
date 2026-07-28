@@ -69,7 +69,7 @@ Operators run the exact prompt and command sequence for `CU-013` and confirm the
 | File | Role |
 |---|---|
 | `../../../../system-spec-kit/mcp-server/hooks/cursor/README.md` | Full event-delivery evidence table this repo's own adapters were built against |
-| `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | The real `preToolUse`-wired enforcement adapter this scenario's confirmed-fires evidence supports |
+| `../../../../system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs` | The real `preToolUse`-wired enforcement adapter this scenario's confirmed-fires evidence supports |
 
 ---
 

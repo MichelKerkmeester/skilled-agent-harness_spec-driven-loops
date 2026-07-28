@@ -9,9 +9,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T17:45:00Z"
+    last_updated_at: "2026-07-28T19:05:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase 7 hooks-tree consolidation complete, verified this pass"
+    recent_action: "Phase 8 spec-kit hook consolidation and README coverage complete"
     next_safe_action: "Await merge/push/leave-local decision from operator"
     blockers:
       - "Merge/push/leave-local decision still pending, operator call."
@@ -136,6 +136,8 @@ Phase 7 (the hooks-tree consolidation) was built the same way in a fresh isolate
 | Round-2 remediation (this pass, done directly rather than via another full plan/implement cycle given the small mechanical scope) | 4 P0 broken imports fixed in `system-spec-kit`/`sk-git` (`permission-request-policy.mjs`, `git-preflight-advisory.mjs`, `advisory-noise-audit.mjs`, `git-rule-checks.test.mjs`) — all still pointed at the pre-relocation `dispatch-rule-checks.mjs` path, surviving the relocation, round-1 review, AND round-1 remediation. Plus 3 P1 stale-doc-reference fixes (`cli-codex/references/hook-contract.md`, `deep-alignment/references/adapters/sk-doc-known-deviations.md`, `.loop-guard-state/README.md`) and this packet's own CHK-011/CHK-041 evidence rows corrected again. Independently re-verified: module resolution succeeds on all 3 previously-broken `.mjs` files, `node --test` 23/23 + 2/2 on their suites, and a genuine unscoped repo-wide grep for every old relocated-core path string now returns zero hits outside archival specs/benchmark history. |
 | Phase 7 hooks-tree consolidation | `.opencode/hooks/` + `.opencode/runtime-hooks/` folded into one `.opencode/hooks/` tree (`git/` subfolder + 4 concern folders + `shared/`). Live `.git/hooks/pre-commit` chain-call to the moved hygiene gate fixed and verified via direct script invocation. 2 more stale references found by a second sweep (predating this session entirely — missed by every prior pass). |
 | Post-consolidation test re-run | 73/74 real `node --test` passes (1 pre-existing "dist not built in fresh worktree" gap on `spec-gate-core.mjs`, confirmed unrelated) + 40/40 `vitest`. `validate_document.py`: 0 issues on all 35 touched docs. |
+| Phase 8 spec-kit hook consolidation | `system-spec-kit/runtime/` merged into `mcp-server/hooks/` (per-runtime spec-gate adapters + `lib/`), dead `.cjs` helper twin deleted, 37 reference sites repointed, spec-gate content merged into the existing lifecycle READMEs. Verified: 172/175 `node --test` pass (0 fail), 3 plugin import smokes OK, live Pi smoke exit 0, spec-gate replay at the new path returns a sane allow, 0 live `system-spec-kit/runtime` references remain. |
+| Phase 8 README coverage + ghost cleanup | 5 new concern READMEs under `.opencode/hooks/`; 12 ghost README-only folders deleted at pre-relocation locations; sk-code's hooks README rewritten around its one remaining legacy file; 17 touched docs validate clean. |
 <!-- /ANCHOR:verification -->
 
 ---
