@@ -4,7 +4,7 @@
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 set -euo pipefail
 
-CHECKER=".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh"
+CHECKER=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 CHECKER_PATH="$REPO_ROOT/$CHECKER"
 

@@ -21,7 +21,7 @@ import { dirname, isAbsolute, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
-const router = require('../skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs');
+const router = require('../skills/sk-code/sk-code-quality/scripts/lib/post-edit-router.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. CONSTANTS

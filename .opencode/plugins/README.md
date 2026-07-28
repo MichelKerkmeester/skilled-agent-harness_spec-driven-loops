@@ -260,6 +260,6 @@ See [`tests/README.md`](./tests/README.md) for the current suite inventory, help
 - [`../skills/system-deep-loop/`](../skills/system-deep-loop/): deep-loop dispatch policy
 - [`../skills/system-skill-advisor/`](../skills/system-skill-advisor/): skill advisor bridge and runtime
 - [`../skills/system-spec-kit/`](../skills/system-spec-kit/): continuity, spec gate, completion and dist freshness logic
-- [`../skills/sk-code/code-quality/`](../skills/sk-code/code-quality/): post-edit quality routing
+- [`../skills/sk-code/sk-code-quality/`](../skills/sk-code/sk-code-quality/): post-edit quality routing
 - [`../skills/mcp-code-mode/`](../skills/mcp-code-mode/): MCP routing policy
 - [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch audit core

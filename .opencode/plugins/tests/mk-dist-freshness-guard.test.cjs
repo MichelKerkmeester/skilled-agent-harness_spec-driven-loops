@@ -32,7 +32,7 @@ const CLAUDE_HOOK_PATH = path.join(
   '..',
   'skills',
   'sk-code',
-  'code-quality',
+  'sk-code-quality',
   'scripts',
   'hooks',
   'claude-posttooluse.sh',
@@ -43,7 +43,7 @@ const CHECK_DIST_WRAPPER = path.join(
   '..',
   'skills',
   'sk-code',
-  'code-quality',
+  'sk-code-quality',
   'scripts',
   'check-dist-staleness.sh',
 );
@@ -358,7 +358,7 @@ test('Claude hook rejects malformed envelopes without traceback', () => {
 
 test('Claude hook shares one deadline across sequential checkers', (t) => {
   const tmpDir = temporaryDirectory(t, 'dist-freshness-hook-budget-');
-  const scriptsDir = path.join(tmpDir, '.opencode', 'skills', 'sk-code', 'code-quality', 'scripts');
+  const scriptsDir = path.join(tmpDir, '.opencode', 'skills', 'sk-code', 'sk-code-quality', 'scripts');
   const editedFile = path.join(tmpDir, 'edited.ts');
   const commentChecker = path.join(scriptsDir, 'check-comment-hygiene.sh');
   const distChecker = path.join(scriptsDir, 'check-dist-staleness.sh');

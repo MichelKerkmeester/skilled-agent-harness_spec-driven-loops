@@ -28,7 +28,7 @@ const { spawnSync } = require('node:child_process');
 
 // Canonical checker paths (repo-relative). Pinned here so a future move of any
 // checker script only requires a one-line update, not a per-runtime hunt.
-// Comment-hygiene = sk-code/code-quality (not the older system-spec-kit/rules
+// Comment-hygiene = sk-code/sk-code-quality (not the older system-spec-kit/rules
 // variant); placeholders = spec/ (rules/check-placeholders.sh is sourced-only,
 // not CLI-invocable); links = rules/; frontmatter + flowchart canonical live
 // under sk-doc.
