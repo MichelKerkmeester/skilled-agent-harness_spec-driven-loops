@@ -19,11 +19,13 @@
  *
  * Usage:
  *   node parent-skill-check.cjs [parent-skill-dir]
- *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # 5-9 as WARN (WIP opt-out)
+ *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # 5-11 as WARN (WIP opt-out)
  *
  * The canon checks 5-9 (hub-router validity, registry/directory reverse
  * consistency, changelog shape, description.json, playbook + benchmark
- * baseline) FAIL by default now that every hub carries the canon fields;
+ * baseline), check 10 (leaf-manifest contract guards, opt-in once a hub
+ * commits a manifest), and check 11 (skill-root metadata class contract)
+ * FAIL by default now that every hub carries the canon fields;
  * PARENT_HUB_CHECK_STRICT=0 downgrades them to advisory WARN for a
  * work-in-progress hub still being scaffolded.
  *

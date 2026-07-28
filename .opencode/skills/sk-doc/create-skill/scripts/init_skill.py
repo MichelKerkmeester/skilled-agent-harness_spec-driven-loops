@@ -267,6 +267,45 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         .replace('{{SKILL_NAME}}', skill_name)
         .replace('{{SKILL_TITLE}}', skill_title)
     )
+    timestamp = datetime.now(timezone.utc).isoformat()
+    graph_metadata = {
+        "schema_version": 2,
+        "skill_id": skill_name,
+        "family": "sk-util",
+        "category": "skill",
+        "deprecated": False,
+        "edges": {
+            "depends_on": [],
+            "enhances": [],
+            "siblings": [],
+            "conflicts_with": [],
+            "prerequisite_for": [],
+        },
+        "manual": {"depends_on": [], "related_to": []},
+        "domains": [skill_name],
+        "intent_signals": [skill_name],
+        "derived": {
+            "trigger_phrases": [skill_name],
+            "key_topics": [skill_name],
+            "source_docs": ["SKILL.md", "leaf-manifest.config.json"],
+            "created_at": timestamp,
+            "last_updated_at": timestamp,
+        },
+    }
+    leaf_manifest_config = {
+        "workflowMode": skill_name,
+        "packet": ".",
+        "leafRoots": ["references", "assets", "feature-catalog", "manual-testing-playbook"],
+        "excludeIndexFiles": True,
+        "resourceContractVersion": 1,
+        "_note": (
+            "Standalone single-mode manifest config. Consumed by "
+            "generate-leaf-manifest.cjs to emit leaf-manifest.json; "
+            "leaf-aliases.json is the derived identity projection of that "
+            "manifest, so regenerate both together via "
+            "ci-skill-root-metadata.cjs --fix."
+        ),
+    }
 
     try:
         skill_dir.mkdir(parents=True, exist_ok=False)
@@ -283,6 +322,13 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
     try:
         skill_md_path.write_text(skill_content, encoding='utf-8')
         print("✅ Created SKILL.md")
+        with (skill_dir / 'graph-metadata.json').open('w', encoding='utf-8') as handle:
+            json.dump(graph_metadata, handle, indent=2)
+            handle.write('\n')
+        with (skill_dir / 'leaf-manifest.config.json').open('w', encoding='utf-8') as handle:
+            json.dump(leaf_manifest_config, handle, indent=2)
+            handle.write('\n')
+        print("✅ Created graph-metadata.json and leaf-manifest.config.json")
     except OSError as exc:
         print(f"❌ Error creating SKILL.md: {exc}")
         return None

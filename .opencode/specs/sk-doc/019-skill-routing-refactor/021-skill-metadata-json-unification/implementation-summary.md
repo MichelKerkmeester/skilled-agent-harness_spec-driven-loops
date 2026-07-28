@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-28T04:11:05Z"
+    last_updated_at: "2026-07-28T05:53:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Post-ship audit: active fleet gate 11/11; historical ship-time suites remain green"
-    next_safe_action: "Operator review and merge of worktree branch sk-doc/0112-skill-metadata-json-unification"
+    recent_action: "Applied the eight-fix conformance pass with cross-model verification"
+    next_safe_action: "None; packet complete and pushed — future contract changes start a new phase"
     blockers:
       - "Uncommitted: worktree is dirty by design pending operator review"
       - "MAIN tree system-spec-kit/mcp-server/node_modules is hollow, which breaks validate.sh there; pre-existing and unrelated to this packet"
@@ -161,6 +161,8 @@ The rows below preserve ship-time outputs from the 12-root fleet as historical e
 **Cross-AI review (2026-07-28).** GLM-5.2 (`cli-devin`) adversarial review returned one P0 claiming `ci-leaf-manifest-freshness.cjs` was missing; that finding was **REFUTED** because the reviewer's search sandbox could not see `.opencode/`, while the file exists and runs. One P2 about the `isSkillShapedGraph` edges-only disjunction was adjudicated **NO-CHANGE** because the gate deliberately mirrors the advisor ingestion discriminator in `skill-graph-db.ts` (`skill_id|family|edges`) and no continuity file carries `edges`. One P2 about the `kind` label on XOR roots was **CONFIRMED** and fixed in `validate_skill_package.py`.
 
 **Side effects, verified.** Two committed standalone alias files (`system-spec-kit`, `mcp-code-mode`) were reordered into manifest order for byte reproducibility — confirmed set-identical (48→48, 7→7 rows), and every consumer reads these rows as a set rather than positionally. Adding the canonical doc made `sk-doc`'s manifest stale; it was regenerated and now carries the doc as a leaf under both consuming modes.
+
+**Conformance pass (2026-07-28, LUNA-writes / SOL-verifies).** A post-landing audit against the `sk-code/code-opencode` standards and the doc surface produced eight fixes, written by GPT-5.6-LUNA (xhigh) and adversarially verified by GPT-5.6-SOL (high, verdict CLEAN with two P2s, both applied): shebang removed from the pure contract library; the tests README gained the missing row and run command; the doctor header now names checks 10–11 and the correct strict-flag range; the canonical doc's fleet table reflects the live 11 roots (version 1.0.1.0); three stale `leaf-manifest.config.json` `_note` fields now state the derived-projection rule; `init_skill.py` scaffolds class-conforming standalone roots (`graph-metadata.json` + `leaf-manifest.config.json`, proven end-to-end by scaffolding a temp skill that passes the fleet gate with `--fix` and re-runs clean); the sk-doc hub router carries the contract's five trigger phrases (compiled manifest re-minted, guard back at its pre-existing baseline); and `validation-and-packaging.md` documents both completion gates with a link to the canonical contract. Deliberately skipped as out of scope: directory-wide missing JSDoc `@param/@returns` tags (pre-existing drift shared by every sibling) and the box-header inconsistency inside sk-code's own standards docs.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -168,13 +170,13 @@ The rows below preserve ship-time outputs from the 12-root fleet as historical e
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-**Nothing is committed.** All work is uncommitted in worktree `.worktrees/0112-sk-doc-skill-metadata-json-unification` on branch `sk-doc/0112-skill-metadata-json-unification`, based on `skilled/v4.0.0.0` at `f8399bf5a0`. Commit and merge are operator decisions.
+**Landed.** The packet's four commits were rebased onto the moving origin tip and pushed to `origin/skilled/v4.0.0.0` at `2fa9fc480c` on 2026-07-28, followed by the reconciliation commits through `c95b899bdc` and this conformance pass. The local main-tree `skilled/v4.0.0.0` diverged during landing (same-subject rebased duplicates from a concurrent session) and is left for its owning session to reconcile.
 
 **Post-ship root inventory.** `system-code-graph` was removed after the packet was authored against a 12-root fleet. Current class and freshness gates report 11/11; ship-time 12-root measurements remain labeled as historical evidence.
 
 **Worktree toolchain is incomplete.** The worktree lacks `scripts/node_modules`, so three validation rules that shell out to `tsx` cannot run there; the packet is validated from the main tree instead, which has that dependency.
 
-**Unrelated pre-existing blocker.** In the main tree, `system-spec-kit/mcp-server/node_modules` is hollow — `zod` is an empty directory and roughly half the declared packages are absent. It has no `package-lock.json`, so a repair resolves fresh versions across the memory MCP server. Not caused by this packet and not repaired here.
+**Unrelated pre-existing blocker, since repaired.** During landing, the main tree's `system-spec-kit/mcp-server/node_modules` was found hollow (`zod` an empty directory, roughly half the declared packages absent), which broke `validate.sh` repo-wide. It was repaired by reinstall during the post-ship reconciliation; noted here because it shaped where validation could run during this packet's build.
 
 **Overlay widening remains manual by design.** Generalizing `command-metadata.json` to other roots requires a shared schema and a root-enumerating consumer, not another copy. The contract makes that a deliberate edit to one list rather than an accident.
 <!-- /ANCHOR:limitations -->
