@@ -22,6 +22,7 @@
     "node": ">=20.11.0"
   },
   "dependencies": {
-    "@huggingface/transformers": "^3.8.1"
+    "@huggingface/transformers": "^3.8.1",
+    "@modelcontextprotocol/sdk": "^1.24.3"
   }
 }

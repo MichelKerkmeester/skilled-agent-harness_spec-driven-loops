@@ -1107,7 +1107,7 @@ const hfControl = mss.createModelServerControl({
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 14. LEASE CLEANUP & CODE-GRAPH DB HELPERS
+// 14. LEASE CLEANUP
 // ─────────────────────────────────────────────────────────────────────────────
 
 function clearLeaseFile() {
@@ -1129,21 +1129,6 @@ function clearLeaseFile() {
 function clearAllLeaseFiles() {
   clearLeaseFile();
   clearOwnerLeaseFile();
-}
-
-function isInside(parent, child) {
-  const relative = path.relative(parent, child);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
-function enforceStandaloneCodeGraphDb(actions) {
-  const resolvedCurrent = current ? path.resolve(current) : null;
-  const specKitRoot = path.resolve(kitDir);
-
-  if (!resolvedCurrent || isInside(specKitRoot, resolvedCurrent)) {
-    actions.push(
-    );
-  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1761,7 +1746,6 @@ async function main() {
 
     ensureLayout(actions);
     refreshPaths();
-    enforceStandaloneCodeGraphDb(actions);
 
     if (strictSingleWriter) {
       const ownerLeaseResult = acquireOwnerLeaseFile();
