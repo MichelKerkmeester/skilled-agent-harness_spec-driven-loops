@@ -242,3 +242,6 @@ Companion file policy:
 - [validation-and-packaging.md](../shared/validation-and-packaging.md) - validation and packaging gates.
 - [parent-skill-hub-template.md](../../assets/parent-skill/parent-skill-hub-template.md) - routing-only hub template.
 - [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) - registry scaffold.
+- [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) - command-surface scaffold (class-H requirement; `[]` when the hub owns no commands).
+- [parent-skill-leaf-aliases-template.json](../../assets/parent-skill/parent-skill-leaf-aliases-template.json) - authored alias scaffold for the rare hub that relocates a mode resource into `shared/`.
+- [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - the full file matrix with the per-class template map.
