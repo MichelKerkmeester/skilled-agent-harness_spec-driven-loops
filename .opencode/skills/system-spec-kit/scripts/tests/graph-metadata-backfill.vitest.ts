@@ -4,7 +4,10 @@ import path from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { loadGraphMetadata } from '../../mcp-server/lib/graph/graph-metadata-parser.js';
+import {
+  loadGraphMetadata,
+  refreshGraphMetadataForSpecFolder,
+} from '../../mcp-server/lib/graph/graph-metadata-parser.js';
 import { collectSpecFolders, runBackfill } from '../graph/backfill-graph-metadata.js';
 
 const createdRoots = new Set<string>();
@@ -67,6 +70,43 @@ function createSpecTree(): string {
   return specsRoot;
 }
 
+function writePhaseParent(specsRoot: string, name: string): string {
+  const specFolder = path.join(specsRoot, 'system-spec-kit', name);
+  fs.mkdirSync(specFolder, { recursive: true });
+  fs.writeFileSync(path.join(specFolder, 'spec.md'), [
+    '---',
+    'title: "Phase Parent"',
+    'description: "Coordinate child phases without duplicating child implementation state."',
+    'status: "planned"',
+    '---',
+    '',
+    '# Phase Parent',
+  ].join('\n'), 'utf-8');
+  return specFolder;
+}
+
+function writePhaseChild(
+  parent: string,
+  name: string,
+  complete: boolean,
+  lastSaveAt: string,
+): string {
+  const child = path.join(parent, name);
+  writePacket(
+    child,
+    name,
+    'Exercise phase-parent graph metadata rollup.',
+    'mcp-server/lib/graph/graph-metadata-parser.ts',
+  );
+  fs.writeFileSync(
+    path.join(child, 'checklist.md'),
+    `# Checklist\n\n- [${complete ? 'x' : ' '}] Child work\n`,
+    'utf-8',
+  );
+  refreshGraphMetadataForSpecFolder(child, { now: lastSaveAt });
+  return child;
+}
+
 afterEach(() => {
   for (const root of createdRoots) {
     fs.rmSync(root, { recursive: true, force: true });
@@ -124,5 +164,76 @@ describe('graph metadata backfill', () => {
     const summary = runBackfill({ dryRun: true, root: specsRoot, activeOnly: true });
     expect(summary.totalSpecFolders).toBe(2);
     expect(summary.created).toBe(2);
+  });
+
+  it('rolls an all-complete phase parent to complete', () => {
+    const specsRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-rollup-'));
+    createdRoots.add(specsRoot);
+    const parent = writePhaseParent(
+      path.join(specsRoot, '.opencode', 'specs'),
+      '920-complete-parent',
+    );
+    writePhaseChild(parent, '001-foundation', true, '2026-06-01T10:00:00.000Z');
+    writePhaseChild(parent, '002-delivery', true, '2026-06-02T10:00:00.000Z');
+
+    const refreshed = refreshGraphMetadataForSpecFolder(parent);
+
+    expect(refreshed.metadata.derived.status).toBe('complete');
+    expect(refreshed.metadata.derived.last_active_child_id)
+      .toBe('system-spec-kit/920-complete-parent/002-delivery');
+    expect(refreshed.metadata.derived.last_active_at).toBeNull();
+  });
+
+  it('rolls a mixed phase parent to in_progress', () => {
+    const specsRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-rollup-'));
+    createdRoots.add(specsRoot);
+    const parent = writePhaseParent(
+      path.join(specsRoot, '.opencode', 'specs'),
+      '921-mixed-parent',
+    );
+    writePhaseChild(parent, '001-foundation', true, '2026-06-01T10:00:00.000Z');
+    writePhaseChild(parent, '002-delivery', false, '2026-06-02T10:00:00.000Z');
+
+    const refreshed = refreshGraphMetadataForSpecFolder(parent);
+
+    expect(refreshed.metadata.derived.status).toBe('in_progress');
+  });
+
+  it('leaves a packet without graph-metadata children unchanged', () => {
+    const specsRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-rollup-'));
+    createdRoots.add(specsRoot);
+    const packet = writePhaseParent(
+      path.join(specsRoot, '.opencode', 'specs'),
+      '922-leaf-packet',
+    );
+
+    const refreshed = refreshGraphMetadataForSpecFolder(packet);
+
+    expect(refreshed.metadata.derived.status).toBe('planned');
+    expect(refreshed.metadata.derived.last_active_child_id).toBeNull();
+  });
+
+  it('preserves an existing last_active_child_id during phase-parent rollup', () => {
+    const specsRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-rollup-'));
+    createdRoots.add(specsRoot);
+    const parent = writePhaseParent(
+      path.join(specsRoot, '.opencode', 'specs'),
+      '923-pointer-parent',
+    );
+    writePhaseChild(parent, '001-foundation', true, '2026-06-01T10:00:00.000Z');
+    writePhaseChild(parent, '002-delivery', true, '2026-06-02T10:00:00.000Z');
+    const first = refreshGraphMetadataForSpecFolder(parent);
+    const existingChildId = 'system-spec-kit/923-pointer-parent/001-foundation';
+    fs.writeFileSync(first.filePath, `${JSON.stringify({
+      ...first.metadata,
+      derived: {
+        ...first.metadata.derived,
+        last_active_child_id: existingChildId,
+      },
+    }, null, 2)}\n`, 'utf-8');
+
+    const refreshed = refreshGraphMetadataForSpecFolder(parent);
+
+    expect(refreshed.metadata.derived.last_active_child_id).toBe(existingChildId);
   });
 });

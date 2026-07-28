@@ -35,7 +35,7 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-002 Lane B rollup covered by unit test; spec-kit graph suite green
+- [x] CHK-002 Lane B rollup covered by unit test; spec-kit graph suite green - evidence: `mcp-server/node_modules/.bin/vitest run scripts/tests/graph-metadata-backfill.vitest.ts scripts/tests/graph-metadata-refresh.vitest.ts --config mcp-server/vitest.config.ts` (10 passed, 1 skipped)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -84,5 +84,5 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Pending lane execution.
+Lane B verified; remaining lanes are pending.
 <!-- /ANCHOR:summary -->

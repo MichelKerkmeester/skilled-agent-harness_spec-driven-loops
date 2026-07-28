@@ -22,7 +22,10 @@
     "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
     "sk-doc/019-skill-routing-refactor/017-post-019-alignment",
     "sk-doc/019-skill-routing-refactor/018-post-019-research",
-    "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation"
+    "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
+    "sk-doc/019-skill-routing-refactor/020-compiled-routing-next-move",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
+    "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
   ],
   "manual": {
     "depends_on": [],
@@ -56,6 +59,7 @@
     "status": "in_progress",
     "key_files": [
       "context-index.md",
+      "018-post-019-research/research/research.md",
       "017-post-019-alignment/alignment/alignment-report.md",
       "spec.md",
       "handover.md"
@@ -160,19 +164,19 @@
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-24T19:22:45.094Z",
+    "last_save_at": "2026-07-28T11:42:47.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d6fdbdab2a7373d2f4bf4a4b244998f634b86ce086f853bc2bcc87757b0ca9f6",
+    "source_fingerprint": "sha256:317e6ab79b6c76e2d54573da7163c8eeec6b04b477474010ba911779eaf2b5ef",
     "source_doc_hashes": {
       "spec.md": "bf96c14e030b4987885a96e89982d099ad7a6e7809c54749a41c91a19f9ab06a",
-      "handover.md": "532f48eed409eabc4fff3fab00ca96584db791ab5ab7ea93423c511facb39e99"
+      "handover.md": "3f9835cd28f6ae607b6c2e20af141b9ae1ff5896e7f03c0c5127d072d89cfcd8"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
     "last_active_at": null
   }
 }

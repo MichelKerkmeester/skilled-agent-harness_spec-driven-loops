@@ -40,7 +40,7 @@ parent: "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename"
 
 - [ ] T101 Lane C: family-registry repair + dead-mode cleanup (SOL dispatch, verify, commit)
 - [ ] T102 Lane D: additive advisor vocabulary (SOL dispatch, verify, commit)
-- [ ] T103 Lane B: phase-parent rollup + tests (SOL dispatch, verify, commit)
+- [x] T103 Lane B: phase-parent rollup + tests (implemented and verified; commit remains with the coordinating lane)
 - [ ] T104 Lane A: route-gold refresh + re-baseline (SOL dispatch, verify, commit)
 <!-- /ANCHOR:phase-2 -->
 

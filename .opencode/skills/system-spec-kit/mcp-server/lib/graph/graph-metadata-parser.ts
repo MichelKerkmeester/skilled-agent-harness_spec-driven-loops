@@ -47,6 +47,7 @@ import {
 } from './graph-metadata-schema.js';
 
 const GRAPH_METADATA_STATUS_SET: ReadonlySet<string> = new Set(GRAPH_METADATA_STATUS_VALUES);
+const PHASE_CHILD_DIRECTORY_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
 const CANONICAL_PACKET_DOCS = [
   'spec.md',
@@ -1301,6 +1302,66 @@ function deriveImportanceTier(docs: ParsedSpecDoc[]): string {
   return selectFirstValue(ranked, 'important');
 }
 
+interface PhaseParentRollup {
+  status: GraphMetadataStatus;
+  lastActiveChildId: string | null;
+}
+
+function derivePhaseParentRollup(
+  specFolderPath: string,
+  specFolder: string,
+  derivedStatus: GraphMetadataStatus,
+  existingLastActiveChildId: string | null,
+  statusOverride?: string | null,
+): PhaseParentRollup {
+  const children = listPhaseChildren(specFolderPath)
+    .filter((child) => PHASE_CHILD_DIRECTORY_RE.test(child.name))
+    .map((child) => ({
+      id: `${specFolder}/${child.name}`,
+      name: child.name,
+      metadata: loadGraphMetadata(path.join(specFolderPath, child.name, GRAPH_METADATA_FILENAME)),
+    }))
+    .filter((child): child is typeof child & { metadata: GraphMetadata } => child.metadata !== null);
+
+  if (children.length === 0) {
+    return {
+      status: derivedStatus,
+      lastActiveChildId: existingLastActiveChildId,
+    };
+  }
+
+  let status = derivedStatus;
+  if (!normalizeDerivedStatus(statusOverride)) {
+    if (children.every((child) => child.metadata.derived.status === 'complete')) {
+      status = 'complete';
+    } else if (children.some((child) => (
+      child.metadata.derived.status === 'in_progress'
+      || child.metadata.derived.status === 'complete'
+    ))) {
+      status = 'in_progress';
+    }
+  }
+
+  let lastActiveChildId = existingLastActiveChildId;
+  if (lastActiveChildId === null) {
+    const latestSavedChild = children
+      .map((child) => ({
+        ...child,
+        lastSaveTime: Date.parse(child.metadata.derived.last_save_at),
+      }))
+      .filter((child) => Number.isFinite(child.lastSaveTime))
+      .sort((a, b) => b.lastSaveTime - a.lastSaveTime || b.name.localeCompare(a.name))[0];
+
+    lastActiveChildId = latestSavedChild?.id
+      ?? children
+        .filter((child) => child.metadata.derived.status === 'complete')
+        .sort((a, b) => b.name.localeCompare(a.name))[0]?.id
+      ?? null;
+  }
+
+  return { status, lastActiveChildId };
+}
+
 /**
  * Derive graph metadata from the canonical documents in a spec folder.
  *
@@ -1327,12 +1388,19 @@ export function deriveGraphMetadata(
   const sourceDocs = docs.map((doc) => doc.relativePath);
   const entities = deriveEntities(specFolder, docs, keyFiles);
   const statusResult = deriveStatus(docs, collectedDocs.availability, options.statusOverride, existing?.derived.status);
+  const phaseParentRollup = derivePhaseParentRollup(
+    specFolderPath,
+    specFolder,
+    statusResult.status,
+    existing?.derived.last_active_child_id ?? null,
+    options.statusOverride,
+  );
 
   const derived: GraphMetadataDerived = {
     trigger_phrases: triggerPhrases,
     key_topics: keyTopics,
     importance_tier: deriveImportanceTier(docs),
-    status: statusResult.status,
+    status: phaseParentRollup.status,
     key_files: keyFiles,
     entities,
     causal_summary: causalSummary,
@@ -1355,7 +1423,7 @@ export function deriveGraphMetadata(
       : undefined,
     // Chronology pointer is owned by the canonical save path (generate-context.ts);
     // a derive/re-derive must carry it forward, never invent or drop it.
-    last_active_child_id: existing?.derived.last_active_child_id ?? null,
+    last_active_child_id: phaseParentRollup.lastActiveChildId,
     last_active_at: existing?.derived.last_active_at ?? null,
   };
 

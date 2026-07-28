@@ -36,6 +36,7 @@ function createSpecFolder(): string {
     '---',
     'title: "Implementation Summary"',
     'status: "complete"',
+    'completion_pct: 100',
     '---',
     '',
     '| File Path | Change Type | Description |',
