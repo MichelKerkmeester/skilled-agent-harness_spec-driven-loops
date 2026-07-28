@@ -123,4 +123,4 @@ Expect the 13 repo agents alongside Cursor's own built-ins. Note that dispatchin
 | [`hooks/README.md`](hooks/README.md) | Why the mirror is discovery-only, incl. the compiled-ESM caveat |
 | [`rules/skill-routing.md`](rules/skill-routing.md) | The static routing rule, also consumed by Devin |
 | `.opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md` | Dispatch contract and the corrected custom-agent record |
-| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |
+| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |

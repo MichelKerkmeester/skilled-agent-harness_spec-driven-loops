@@ -9,6 +9,7 @@ tools:
   - grep
   - find
   - ls
+# Unmapped OpenCode permission keys: memory, detect_changes
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent
@@ -160,7 +161,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
-- Use Code Graph structural search only when exposed and exact symbols are unknown; verify hits with direct reads.
+- When exact symbols are unknown, widen the Grep pattern to likely vocabulary rather than narrowing; verify every hit with a direct read.
 - For local diff review, use `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
 - If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
 - Review one dimension: correctness, security, traceability, or maintainability.
@@ -253,12 +254,13 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 ### Tools
 
-Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Code Graph only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
+Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
 
 ### MCP + Code Intelligence Tools
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
 - `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
+- `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
 - **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills

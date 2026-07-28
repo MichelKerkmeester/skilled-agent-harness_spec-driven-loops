@@ -133,4 +133,4 @@ developer_instructions = '''
 | [`hooks/README.md`](hooks/README.md) | Why `hooks/` is discovery-only |
 | `.opencode/skills/system-spec-kit/scripts/codex/README.md` | The generator contract |
 | `.opencode/bin/README.md` | `install-codex-hooks.mjs` ownership model and worktree guard |
-| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |
+| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |
