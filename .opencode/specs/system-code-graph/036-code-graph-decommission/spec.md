@@ -122,7 +122,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 13 | 013-skill-deletion-and-daemon-reap/ | Reap the daemon, release leases and sockets, remove the directory — gated on 003–012 | Complete |
 | 14 | 014-historical-reference-policy/ | Leave archived history intact; add one tombstone at the track root | Complete |
 | 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | Complete |
-| 16 | 016-deep-review/ | Two-lane external audit (Grok 4.5 High + DeepSeek v4 Pro, 5 iterations each, forced depth) of every touched surface | Pending |
+| 16 | 016-deep-review/ | Two-lane external audit (Grok 4.5 High + DeepSeek v4 Pro, 5 iterations each, forced depth) of every touched surface | Complete |
 
 ### Phase Transition Rules
 

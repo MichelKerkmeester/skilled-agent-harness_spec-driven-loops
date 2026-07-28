@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Roughly fifty spec-kit test files reference the code graph, and they are not uniform: some exist solely to test the launcher lifecycle and boundary proxy and become meaningless, while others assert on session payloads that survive phase 005 in a changed shape",
     "created_at": "2026-07-27T16:33:56Z",
-    "last_save_at": "2026-07-28T04:51:21.508Z",
+    "last_save_at": "2026-07-28T09:42:18.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d1aa4636247099954f63b34c08b97c233a1ac90bfb18d59fbcb08c00a939262",
+    "source_fingerprint": "sha256:c0570175d5e2069c7b52c41ea3f54de8e62772ccf2de8276713326505659dccd",
     "source_doc_hashes": {
-      "spec.md": "10102849c2598e8b857515ffc4af52bbdea41e9f1f352c9bd5b6e08fb03e990b",
+      "spec.md": "5647c86cf292944e52bade7e48cb19c7993910f9345e4f3c37704a39aa5621c9",
       "plan.md": "1c917b2f3905e399c92e9ac4313d6abb9f186212d21f24614d187b99d57e7319",
       "tasks.md": "452b38c7116191f04dba213807a5801972c2a489b2d910677c98aee77d3ce6e1",
-      "implementation-summary.md": "e2a532eb92108222cbeb46b34f35e677f4f888572386aa577e977d8c591b503d"
+      "implementation-summary.md": "f78d4e41887927ae1e79a5ba0dac1d01ceb66cf1cf205e6837ff0416b197da13"
     },
     "last_active_child_id": null,
     "last_active_at": null

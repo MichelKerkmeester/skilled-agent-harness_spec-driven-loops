@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 15 |
+| **Phase** | 9 of 16 |
 | **Predecessor** | 008-deep-loop-and-skill-surface |
 | **Successor** | 010-agent-definitions |
 | **Handoff Criteria** | No command routes to, grants, or documents a removed tool, and every generated contract is re-rendered from an updated source |

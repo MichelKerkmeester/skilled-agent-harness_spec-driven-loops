@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
-    last_updated_at: "2026-07-28T04:51:16Z"
+    last_updated_at: "2026-07-28T09:34:43Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -78,7 +78,7 @@ _memory:
 - [x] T012 Confirm live-surface sweep uses `--hidden --no-ignore` (REQ-001)
 - [x] T013 Confirm only intended references survive (REQ-002: tombstone + archival paths) — evidence: `scratch/closeout-facts.md`
 - [x] T014 Confirm results reported as deltas (REQ-003: before/after numbers recorded) — evidence: `scratch/closeout-facts.md`
-- [ ] T015 Full-suite run complete — still in flight at authoring time; 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)
+- [x] T015 Full-suite run complete — 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation) — evidence: `../016-deep-review/implementation-summary.md`
 - [x] T016 Confirm completion metadata reconciled across packet documents (REQ-005) — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
@@ -87,8 +87,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` — T015 pending (full-suite run in flight)
-- [ ] No `[B]` blocked tasks remaining — T015 is not blocked; the run is in progress
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed (sweep + typecheck + 418 tests + route-guard + process/socket/tree/config)
 <!-- /ANCHOR:completion -->
 

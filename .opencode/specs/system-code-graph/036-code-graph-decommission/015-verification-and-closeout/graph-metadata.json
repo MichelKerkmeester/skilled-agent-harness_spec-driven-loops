@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A decommission of this breadth fails quietly rather than loudly",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-28T04:54:17.548Z",
+    "last_save_at": "2026-07-28T09:42:20.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5cf2f50acd6900e8dc398fbdd7a69f5c67787ac1f0dd33e1f0ff3641affb65a",
+    "source_fingerprint": "sha256:6221cf906b47d190e371cfdd711c209fc0ba66270504a9c1ea66ed6e176c2f52",
     "source_doc_hashes": {
-      "spec.md": "21276ee00cc8c6e480092c049cbc8b97278b21e0c05ab0df95629f9c674c4453",
-      "plan.md": "2deea7478b1e21105f58950cac21d4da5cdb0e3964f831c8197e55fd8252007a",
-      "tasks.md": "1cec6f8ef3a89887dfc0fc7f9bfa33ae275e8b195cc755d4e717cbcb33143ecb",
-      "implementation-summary.md": "fd8f98062d05c06b95221baa83e50f3e192b70dbf1cdfbab4377bfcc40c93222"
+      "spec.md": "ecfdf6dfd973cfb14f6f039ad95c70ffd1fca5ba0c159879aca9bc47eef1638c",
+      "plan.md": "a0cc812df33b4917a6bddfde6b9367030e979129ef902eca6ad3212f7f69e05b",
+      "tasks.md": "ad967fa6119f05dd6ee8080146c34adc678b63835c1fad451e7e88e101dd4fe3",
+      "implementation-summary.md": "1dcdfa21424b32b9cd3f3616093f141a7218361c7a962b7afb40dd0ba40c98fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

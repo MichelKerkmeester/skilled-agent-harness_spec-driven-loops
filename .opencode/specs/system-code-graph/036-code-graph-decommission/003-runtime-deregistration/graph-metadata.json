@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The server is registered in `opencode.json`, `.claude/mcp.json`, and `.codex/config.toml`, and reached again through two symlinks — `.mcp.json` and `.cursor/mcp.json` both resolve to `.claude/mcp.json`, which makes Cursor a fifth registered surface that a naive audit misses",
     "created_at": "2026-07-27T16:33:54Z",
-    "last_save_at": "2026-07-28T04:51:20.704Z",
+    "last_save_at": "2026-07-28T09:42:17.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:280fa7780d6d8d0c2ab822c5d84f641929ff7f400827cf33cd77443466981178",
+    "source_fingerprint": "sha256:a5ec6009c49aa7e861b6e7f296a0d71100fbf388bc74aa3438b8ccdebfca29c7",
     "source_doc_hashes": {
-      "spec.md": "40bb58a98669e77bcd48ae31dd32b45aefdc3f77b2137ae14942a91ff4556f07",
+      "spec.md": "6835928bd733dee04b2278879a43ef4a79922afe8fc63aa7790806da77b9d26f",
       "plan.md": "ee51e18d15f4b761603725c36cbd49cfa7b037960b4e3d8ff3f7d30de8897a6c",
       "tasks.md": "db35480d72b58390ddfd5ea3e24690a60db407a2e6de1959e6e6dd31994a2b9f",
-      "implementation-summary.md": "fdce5652f313626c4480ca9b1f3008e86e89854c5cf8c4450d7da8a103beb647"
+      "implementation-summary.md": "2367757fe91966edb546de1cfb24d278716037fb62801f2129757f0f28008452"
     },
     "last_active_child_id": null,
     "last_active_at": null

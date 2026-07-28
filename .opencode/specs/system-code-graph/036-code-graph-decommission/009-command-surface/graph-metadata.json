@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The command surface is the largest single grouping outside the skills, and it mixes three kinds of file",
     "created_at": "2026-07-27T16:33:58Z",
-    "last_save_at": "2026-07-28T04:51:22.286Z",
+    "last_save_at": "2026-07-28T09:42:18.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:069265daa910e6b0fee3d5a723801a6fd5166271a0d78d028ba508d2bb7a0000",
+    "source_fingerprint": "sha256:1f5cfac032e591f744be77801be21f8f646147f440481fe97eea4f892ee62661",
     "source_doc_hashes": {
-      "spec.md": "52c99fa841998aa8858f5199a1d05bb9b84de80a2c0b1e553471ebe5c3cf0f42",
+      "spec.md": "4b80b2380f06e4f0d9baff9fc74020ff3dd11b38cd8cc9466bb8b89139b7a9ee",
       "plan.md": "a74dc5e0a2f5a933e8fa55a08b85351d0e3df142f93a6ab158c5f7fe22f6047f",
       "tasks.md": "a86f3a71e7db60faa1ba92e92af790b9ea0094749d93954c63867a6ead7acf29",
-      "implementation-summary.md": "5dbb6cc3d287543bd7677622406f0ccb52158cf45b904fd5cada6cc45e61830a"
+      "implementation-summary.md": "f34d35d2ca75001517eadd2124eb3a1bd903a38936f962ff864607b4c6f61bc7"
     },
     "last_active_child_id": null,
     "last_active_at": null

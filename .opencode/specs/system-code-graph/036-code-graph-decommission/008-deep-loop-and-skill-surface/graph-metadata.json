@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The subsystem appears across the rest of the skill tree in three different ways, and they need different handling",
     "created_at": "2026-07-27T16:33:57Z",
-    "last_save_at": "2026-07-28T04:51:22.029Z",
+    "last_save_at": "2026-07-28T09:42:18.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c59213e744963ecddc333a2bd5c29a898f4d3e99bd7a1de0e5c983352337e850",
+    "source_fingerprint": "sha256:b50a040dd4dcf717a78e123e4e282cde174cc624869d80d37a53a46598046c43",
     "source_doc_hashes": {
-      "spec.md": "bf0d10b196491eefae613b9a31fb7fc9f25bc1921de166db63e3848c78d76eb1",
+      "spec.md": "715a81e6499d90be84f39f8a3f49d6b98974cf495c16c98024fc1c5d431e1e56",
       "plan.md": "79c3c90c1387ffb26f04825a847b7838018844b48fe1ba671cc822c80d2ec5eb",
       "tasks.md": "6224bd28e3687408eb5653699f2904c0aa8e6ec635bb7b94002ca49ab20be42c",
-      "implementation-summary.md": "c3dc62699a935b5e26ca8d1f0819d5cb3534de569f4968f7a807a96f72d4d6fc"
+      "implementation-summary.md": "e7ed8d171c775247b3d8013224adaa997915cd23fe1503fcfe3e078aacef6167"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers, a process-level boundary in `system-spec-kit`, the skill-advisor graph, a CI job, and the `/doctor` surface",
     "created_at": "2026-07-27T16:33:53Z",
-    "last_save_at": "2026-07-28T04:48:09.841Z",
+    "last_save_at": "2026-07-28T09:42:16.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7e9e95a8fb4b3ecf55ef153194c0621d1c5e915c6a0c0351c6f0908afa8741e1",
+    "source_fingerprint": "sha256:de333ed359300dec9c23ac634a75d3e9846afb93ee7f5b77a56df42e2722be0d",
     "source_doc_hashes": {
-      "spec.md": "1d1ec21989ac5fd91bd7d672810e7d536a5c9d9aa9e1838f4909b94a30f665e7",
+      "spec.md": "9de455f7f18c80a9deb22feb2d2d46c34a916d0f0d14a889ae15951435850b10",
       "plan.md": "6462b1edfa4fe1f990b24d4f4b3eda7332151e4b402468de6fd7dd241a7be19b",
       "tasks.md": "a6dd4213d41ed9d59b12bd66d7df9ff138cd03aba4d39b7b808471e7b6038b32",
-      "implementation-summary.md": "d536c85b5f542ebb4bccd54115a988b3377c7ba61a007f3f9b5083275e353835",
+      "implementation-summary.md": "c7216714b04513a8e33c4457553ab990ae0b64fd15432b549dd3c24770f21d2c",
       "research/research.md": "43c7697cc6947444edd3117dce2c68c4a69b7d0bfdaf85026eaf5777cbc35ffd"
     },
     "last_active_child_id": null,

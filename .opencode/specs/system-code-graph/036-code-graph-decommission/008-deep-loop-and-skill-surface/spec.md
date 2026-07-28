@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 15 |
+| **Phase** | 8 of 16 |
 | **Predecessor** | 007-skill-advisor-decoupling |
 | **Successor** | 009-command-surface |
 | **Handoff Criteria** | No surviving skill references the removed subsystem in code, routing data, or documentation |

@@ -101,15 +101,15 @@
     ],
     "causal_summary": "The `system-code-graph` skill is not documentation — it is the live implementation of the `mkcodeindex` MCP server, hosting all eight `codegraph` tools, a SQLite graph store, and a CLI",
     "created_at": "2026-07-27T16:33:52Z",
-    "last_save_at": "2026-07-28T05:31:35.859Z",
+    "last_save_at": "2026-07-28T09:34:43.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ad2f57a7e52a866b658998df6013d8ec0270fd5748a9e91b2357fe9dfa17aa0f",
+    "source_fingerprint": "sha256:2b645876e4e1b09c5203e370a53a1068dea7159660d947160fc21c0f89b9e47b",
     "source_doc_hashes": {
-      "spec.md": "070f0bd172414991c1e0b4d9dcecc371eb28b769d58b6791ea9f7f9575fbd165"
+      "spec.md": "4cdee9fac6b793ca9b0979bb94ed5e41c9ad59631db22a9328c94113e5aba31e"
     },
     "last_active_child_id": null,
     "last_active_at": null

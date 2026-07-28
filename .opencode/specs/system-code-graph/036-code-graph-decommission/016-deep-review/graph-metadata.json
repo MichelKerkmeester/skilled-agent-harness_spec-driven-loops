@@ -18,7 +18,7 @@
       "016 deep review",
       "implementation",
       "plan",
-      "name",
+      "deep review",
       "template",
       "plan core",
       "tasks",
@@ -36,15 +36,31 @@
       "audit",
       "implementation",
       "plan",
-      "name"
+      "template"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      "plan.md",
-      "tasks.md"
+      "mcp-server/context-server.ts",
+      "mcp-server/tool-schemas.ts",
+      "mcp-server/hooks/claude/session-prime.ts",
+      "mcp-server/hooks/claude/compact-inject.ts",
+      "mcp-server/hooks/cursor/post-tool-use.mjs",
+      "mcp-server/lib/architecture/layer-definitions.ts",
+      "mcp-server/handlers/session-resume.ts",
+      "mcp-server/tests/compact-merger.vitest.ts",
+      "mcp-server/tests/m8-trust-state-vocabulary.vitest.ts",
+      "mcp-server/tests/hook-precompact.vitest.ts",
+      "mcp-server/tests/context-server.vitest.ts",
+      "mcp-server/stress-test/durability/release-cleanup-new-surfaces-stress.vitest.ts",
+      "mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs",
+      "mcp-server/stress-test/substrate/substrate-harness-hardening.vitest.ts",
+      "mcp-server/stress-test/substrate/substrate-runner-harness.vitest.ts",
+      "mcp-server/matrix-runners/matrix-manifest.json",
+      ".opencode/plugins/README.md",
+      ".opencode/skills/system-spec-kit/graph-metadata.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -54,31 +70,121 @@
         "source": "derived"
       },
       {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp-server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "mcp-server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-tool-use.mjs",
+        "kind": "file",
+        "path": "mcp-server/hooks/cursor/post-tool-use.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/architecture/layer-definitions.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume.ts",
+        "kind": "code",
+        "path": "mcp-server/handlers/session-resume.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-merger.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/compact-merger.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "m8-trust-state-vocabulary.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/m8-trust-state-vocabulary.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-precompact.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/hook-precompact.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "release-cleanup-new-surfaces-stress.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/stress-test/durability/release-cleanup-new-surfaces-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": "mcp-server/stress-test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-harness-hardening.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/stress-test/substrate/substrate-harness-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-runner-harness.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/stress-test/substrate/substrate-runner-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-manifest.json",
+        "kind": "config",
+        "path": "mcp-server/matrix-runners/matrix-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -100,101 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The decommission touched five runtimes, the memory server's session payloads, the skill router's scoring lanes, fifty-plus command files, and four agent mirrors — verified so far only by the executing session's own checks",
     "created_at": "2026-07-28T05:29:52Z",
-    "last_save_at": "2026-07-28T05:31:07.710Z",
+    "last_save_at": "2026-07-28T09:42:20.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +219,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee58aa5ac20bf209ed7e9f230019f842a565e8f69611cd55d61b1fa0df9c4650",
+    "source_fingerprint": "sha256:295ee79ba871cd5a0698c48e634159b7340853903dbed34570ceb1ae9b0ba3ca",
     "source_doc_hashes": {
-      "spec.md": "963a49ab48788f3ed29118d6e4fc6e1700f24c51640ee7f5211309de553d0661",
-      "plan.md": "5cd9b83db962d06161de0a33fb5e7270b35ec4324dd2e07a16f0e1ab15992421",
-      "tasks.md": "54bdbc49429e4b423baf7c1e38dc81a6b17a08970850471a3c41575c4225489b",
-      "implementation-summary.md": "1fdd2bb02d52bc7de2409693f64e451a79b76011e2341baab4c536ab7df3ea06"
+      "spec.md": "32be0bb008881dc10799ce737b2896cc5d2943ad2607bec3767a953060a25d76",
+      "plan.md": "9070f2b767477efa14c1b976c748ff0fc40419a5150d76cf42c0998a54574073",
+      "tasks.md": "7ce8d04c05dc758523836e733885929f94d629556f4d84aa7d7f09ddbed7ceca",
+      "implementation-summary.md": "7776e03c858bf781a92e7d6158882b99eff0196ad7ff12fd5ac67314fd0ff329"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The overwhelming majority of references to the subsystem — several thousand files — live inside archived spec packets, changelogs, and benchmark reports",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-28T04:51:23.589Z",
+    "last_save_at": "2026-07-28T09:42:20.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab8c66a9177b1052375054a8af4d65125c2e0ee6c12bc22329bb892c5729e4ea",
+    "source_fingerprint": "sha256:4938282fdb1686c1a05f980690b8fee96d772c7f7baf1a72ccf78998c28c35e5",
     "source_doc_hashes": {
-      "spec.md": "8e233b06097881da4ee0bd3fa0149c5bf5812a9431e376147c52ec1737b5b3d6",
+      "spec.md": "93ccdfa5f43f37c332e97eeb4eef2a4ebefbac14b9af205a4ffe6d638cebe988",
       "plan.md": "67bdda82cd909f0ab64480fd80c46a581efc44bf823c572d84211d577faee340",
       "tasks.md": "ec0aad0c4608c388d0ee7e035d567dd80bf4241003ab8e782f4126bd5c7699ae",
-      "implementation-summary.md": "d684f23883917de65a2479f5e43937d1e56397376758e72625709b724f83068f"
+      "implementation-summary.md": "ff930b773d3c1eb09cc60d5ccbf86add99d5d6338ce4d6e43e462a4acac6d652"
     },
     "last_active_child_id": null,
     "last_active_at": null

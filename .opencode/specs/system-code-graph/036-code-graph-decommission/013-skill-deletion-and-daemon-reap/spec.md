@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 13 of 15 |
+| **Phase** | 13 of 16 |
 | **Predecessor** | 012-ci-and-binaries |
 | **Successor** | 014-historical-reference-policy |
 | **Handoff Criteria** | The directory is gone from the working tree and the index, no daemon process survives, and every runtime still starts |

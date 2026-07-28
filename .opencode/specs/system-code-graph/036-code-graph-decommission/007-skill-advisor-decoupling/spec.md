@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 15 |
+| **Phase** | 7 of 16 |
 | **Predecessor** | 006-spec-kit-test-and-harness-cleanup |
 | **Successor** | 008-deep-loop-and-skill-surface |
 | **Handoff Criteria** | A rebuilt advisor recommends no removed skill for structural-search prompts, and its own suite is green |

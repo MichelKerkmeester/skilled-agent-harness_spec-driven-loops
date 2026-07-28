@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Two OpenCode plugins reach into the skill folder at load time — one through a static ESM import of a transport bridge, one through a `require` of the shared freshness core",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-28T04:51:20.986Z",
+    "last_save_at": "2026-07-28T09:42:17.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a07a41929b73bb161b3666fcfa6bfd546bf5c23d7fe64578e5e7c352542d313",
+    "source_fingerprint": "sha256:bf0ae9c257fc7b3b8617309e829afe227ef2599b257d8a0d77b761554f1e88d2",
     "source_doc_hashes": {
-      "spec.md": "598ea5935e85cb3ceb8f370ab4cca7787aadc4412d4656aae6fba5160571a3db",
+      "spec.md": "18e661d55c26e51cd7848110dd13b157079a60265130390201cc36b4aa9473d5",
       "plan.md": "d1a74c597a50205d331c2f421577fa85acd26d1c54b1f1a6cddeb33e0a130d5f",
       "tasks.md": "ce792a2ea8b82aa9fdcfbf4ef9e6704d7275f19a772e55b7234035f84e39ade0",
-      "implementation-summary.md": "4d79f55b05c00cc5321d920aaa437d071dc667415215b24edf9e33e7c838b615"
+      "implementation-summary.md": "5d550998901276a46e3ef59eeb72ab45c937537f2e39724f53ff57bd7b094954"
     },
     "last_active_child_id": null,
     "last_active_at": null

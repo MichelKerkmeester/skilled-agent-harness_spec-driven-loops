@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 15 |
+| **Phase** | 12 of 16 |
 | **Predecessor** | 011-doctrine-and-docs |
 | **Successor** | 013-skill-deletion-and-daemon-reap |
 | **Handoff Criteria** | No binary, shim, test, or CI job remains that targets the subsystem, and the remaining CI suite is green |

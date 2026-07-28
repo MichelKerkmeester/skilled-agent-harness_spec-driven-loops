@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 15 |
+| **Phase** | 10 of 16 |
 | **Predecessor** | 009-command-surface |
 | **Successor** | 011-doctrine-and-docs |
 | **Handoff Criteria** | No agent definition in any runtime grants or documents a removed tool, and the three mirrors stay consistent |

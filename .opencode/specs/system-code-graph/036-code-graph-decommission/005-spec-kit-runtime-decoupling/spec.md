@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 15 |
+| **Phase** | 5 of 16 |
 | **Predecessor** | 004-plugin-and-hook-removal |
 | **Successor** | 006-spec-kit-test-and-harness-cleanup |
 | **Handoff Criteria** | The spec-kit MCP server builds and serves with no path, import, or spawn reaching the code graph |

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`system-spec-kit` is the deepest consumer",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-28T04:51:21.247Z",
+    "last_save_at": "2026-07-28T09:42:17.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:399b37c33bd914bcc7a6f38c97a8719ce704a9b867db79a42a989f4cdaf47646",
+    "source_fingerprint": "sha256:9e0bcc174492405c766bb472be5e0c0c6643f7803502fd5edca1fdeac7287892",
     "source_doc_hashes": {
-      "spec.md": "c4266e463a97554109f6e7fdd7f60d0a9fcf92d1553dc109c1f3c82467fe95fc",
+      "spec.md": "e56bf114e4ea5f4340f531ba5a34f1426acff12ce74606d5efb1c45c69284dc0",
       "plan.md": "d7594b43ce83bedd619f74aa8b27722d1fe7b7c3e651a5524ba69aa5ebd40dd6",
       "tasks.md": "d75c5279f2045c47a1d7c4d2841ffd583f0be88235d09beb885ec8ef97cc5e7e",
-      "implementation-summary.md": "827f63d7856ceaeeeb31deb1071152488fe2fd45ec389afdd475f8a9fd769f0e"
+      "implementation-summary.md": "88423b6dd59e6fa23b00934a464cc55cea723cac4fdab484089357b5a5f7a395"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 15: verification-and-closeout"
-description: "Prove the decommission landed: a hidden-inclusive no-ignore sweep of the live surface, green suites against a captured baseline, clean runtime starts, a rebuilt advisor, and reconciled completion metadata. The full-suite run was still in flight at authoring time with 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)."
+description: "Prove the decommission landed: a hidden-inclusive no-ignore sweep of the live surface, green suites against a captured baseline, clean runtime starts, a rebuilt advisor, and reconciled completion metadata. The full-suite run has since completed with 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
-    last_updated_at: "2026-07-28T04:51:16Z"
+    last_updated_at: "2026-07-28T09:34:43Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Testing** | `rg --hidden --no-ignore` sweep, vitest, typecheck, mcp-route-guard |
 
 ### Overview
-Verification and metadata reconciliation for the entire decommission. A `--hidden --no-ignore` live-surface sweep confirmed no unintended reference survives (residual 50 hits, all string literals in fixtures/corpora/manifests). Spec-kit typecheck passed with 0 errors, 418 tests green across changed spec-kit files, mcp-route-guard 16/16, no daemon process or socket, 0 tracked files under the old skill path. The full-suite run was still in flight at authoring time with 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation).
+Verification and metadata reconciliation for the entire decommission. A `--hidden --no-ignore` live-surface sweep confirmed no unintended reference survives (residual 50 hits, all string literals in fixtures/corpora/manifests). Spec-kit typecheck passed with 0 errors, 418 tests green across changed spec-kit files, mcp-route-guard 16/16, no daemon process or socket, 0 tracked files under the old skill path. The full-suite run has since completed with 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -67,7 +67,7 @@ Verification and metadata reconciliation for the entire decommission. A `--hidde
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met — full-suite run still in flight at authoring time
+- [x] All acceptance criteria met — full-suite run complete with 3 accounted-for failures
 - [x] Tests passing (if applicable) — spec-kit typecheck 0 errors, 418 tests green, mcp-route-guard 16/16
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -129,7 +129,7 @@ Not applicable as a fix_bug finding. This phase is verification and metadata rec
 - [x] Live-surface sweep uses `--hidden --no-ignore` (REQ-001)
 - [x] Only intended references survive (REQ-002: tombstone + archival paths)
 - [x] Results reported as deltas (REQ-003: before/after numbers recorded)
-- [ ] Full-suite run complete — still in flight at authoring time; 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)
+- [x] Full-suite run complete — 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)
 - [x] Completion metadata reconciled across packet documents
 <!-- /ANCHOR:phases -->
 

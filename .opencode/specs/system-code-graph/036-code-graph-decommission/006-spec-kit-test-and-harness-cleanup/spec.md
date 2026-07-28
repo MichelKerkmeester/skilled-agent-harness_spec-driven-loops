@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 15 |
+| **Phase** | 6 of 16 |
 | **Predecessor** | 005-spec-kit-runtime-decoupling |
 | **Successor** | 007-skill-advisor-decoupling |
 | **Handoff Criteria** | The spec-kit test suite passes with no skipped or deleted-module test, and the search-quality baseline is re-captured |

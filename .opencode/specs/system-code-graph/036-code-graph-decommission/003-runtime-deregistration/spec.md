@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 15 |
+| **Phase** | 3 of 16 |
 | **Predecessor** | 002-decommission-decision-record |
 | **Successor** | 004-plugin-and-hook-removal |
 | **Handoff Criteria** | No runtime config references `mk_code_index`, and a fresh session in each runtime starts without an MCP registration error |

@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
-    last_updated_at: "2026-07-28T04:51:16Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -78,7 +78,7 @@ The full-suite run was still in flight at authoring time. It produced 3 accounte
 | File | Action | Purpose |
 |------|--------|---------|
 | `implementation-summary.md` | Modified | Record evidence, deltas, and limitations |
-| `checklist.md` | Created | Verification items with cited evidence |
+| `checklist.md` | Not created | Level 1 phase — evidence rows live in tasks.md; an earlier draft over-claimed creation and the 016 review caught it |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -129,7 +129,7 @@ Every check was run with the exact command shape that the research phase proved 
 | 0 tracked files under old skill path | PASS — `git ls-files` clean |
 | No `mk_code_index` in runtime configs | PASS — sweep clean across all four configs |
 | Advisor rebuild + routing check | PASS — removed skill is unroutable |
-| Full-suite run | IN FLIGHT — 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation) |
+| Full-suite run | COMPLETE — 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -142,7 +142,7 @@ Every check was run with the exact command shape that the research phase proved 
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **Full-suite run was still in flight at authoring time.** The full-suite run had not completed when this summary was authored. It produced 3 accounted-for failures: 2 pre-existing and unrelated to the decommission, and 1 timeout artifact that passes in isolation. The phase is marked In Progress until the full suite completes and the final delta is recorded.
+1. **Full-suite run was still in flight at authoring time.** The full-suite run had not completed when this summary was authored. It produced 3 accounted-for failures: 2 pre-existing and unrelated to the decommission, and 1 timeout artifact that passes in isolation. The suite has since completed with those same 3 accounted-for failures, and the phase is Complete.
 
 2. **Fresh-clone check was not performed.** The open question in spec.md asked whether closeout should require a fresh clone check to catch anything that only works because of local build artifacts. This was not performed; the verification relied on the working tree and the captured baseline.
 <!-- /ANCHOR:limitations -->

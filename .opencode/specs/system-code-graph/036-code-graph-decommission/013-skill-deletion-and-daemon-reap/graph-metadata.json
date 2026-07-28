@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This is the one step that cannot be undone by editing a file back",
     "created_at": "2026-07-27T16:34:01Z",
-    "last_save_at": "2026-07-28T04:51:23.331Z",
+    "last_save_at": "2026-07-28T09:42:19.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5129e0f7a1fe35a9de52992946665463c833b8202bc0db1a9457bbebb6d58dda",
+    "source_fingerprint": "sha256:6d1572feb88f25b68d085a6a407d50b33250434bacadb76be753c5b127567678",
     "source_doc_hashes": {
-      "spec.md": "60088d86cd281917e8d208b134504d1da11a138dca451fd614107b58377f8902",
+      "spec.md": "2707364ea80e297eaf86dd5e9d5e84c955876ac893ac7d2cac2edfc234859b72",
       "plan.md": "346f51286030d2ad0bcd674d0d5454decc8e69958d8fefa41ed078a1e29e494d",
       "tasks.md": "08717a293f56a7fce509fe11e27dfc14a6ee0677b64fec82c1ecd83476823237",
-      "implementation-summary.md": "d87a7be6b9c26d39b906f06b6a2aa0b22f3474fdff296bca7e89d390b9239113"
+      "implementation-summary.md": "f68d38a555d1baa406ee5300096708f9c6069e84d04e74d82aeff8a9ba1c01b3"
     },
     "last_active_child_id": null,
     "last_active_at": null

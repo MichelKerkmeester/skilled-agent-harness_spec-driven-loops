@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The launcher is the single largest artifact outside the skill itself, and it is the piece every runtime registration pointed at",
     "created_at": "2026-07-27T16:34:00Z",
-    "last_save_at": "2026-07-28T04:51:23.069Z",
+    "last_save_at": "2026-07-28T09:42:19.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73b17d44a7bc62c410f8ac8acc083023c2845e0aff12170c3af570f25062d488",
+    "source_fingerprint": "sha256:7c99d09fe67b6754fa82e5e1c15853085759750d2041fd03bdc5f2e74c55e4ef",
     "source_doc_hashes": {
-      "spec.md": "7fc319596ccb3a1e5b4c14b10843dd77460fb56213f12f2ce560748c85a070c2",
+      "spec.md": "bd500ed403131a28d93fa5a103bdd1bdf41d07cb990780520d21bc6184b7189c",
       "plan.md": "8aa25a7c6a4993944157df2cba33cf3689325c263c3a9f603ee42c40144d8ed6",
       "tasks.md": "aa9fa8a58276019b23dc7a612a9715f8d02a182c9b6e940f06143febfd00d71a",
-      "implementation-summary.md": "124a2c6d801c3d4acba255f3efd84f32c1a8e44149f3dc8d4e5aa894cb165775"
+      "implementation-summary.md": "98805c93a0789b6e55b6ddad66341b6ea8222f6d4d7a0b3623482fb6e71f6532"
     },
     "last_active_child_id": null,
     "last_active_at": null

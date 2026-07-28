@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 15 |
+| **Phase** | 2 of 16 |
 | **Predecessor** | 001-touchpoint-research |
 | **Successor** | 003-runtime-deregistration |
 | **Handoff Criteria** | `decision-record.md` records the accepted capability loss, the per-consumer disposition, the archival boundary, and a tested rollback procedure |

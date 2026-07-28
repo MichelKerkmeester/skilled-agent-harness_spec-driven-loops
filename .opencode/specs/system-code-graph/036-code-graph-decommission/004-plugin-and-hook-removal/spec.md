@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 15 |
+| **Phase** | 4 of 16 |
 | **Predecessor** | 003-runtime-deregistration |
 | **Successor** | 005-spec-kit-runtime-decoupling |
 | **Handoff Criteria** | No plugin, hook, or lifecycle script resolves a path inside the skill folder |

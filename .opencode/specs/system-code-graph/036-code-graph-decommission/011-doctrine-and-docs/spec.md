@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 15 |
+| **Phase** | 11 of 16 |
 | **Predecessor** | 010-agent-definitions |
 | **Successor** | 012-ci-and-binaries |
 | **Handoff Criteria** | No instruction file mandates, and no README documents, a subsystem that is being removed |

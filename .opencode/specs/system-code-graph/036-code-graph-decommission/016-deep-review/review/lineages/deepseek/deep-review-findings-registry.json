@@ -1,0 +1,48 @@
+{
+  "sessionId": "fanout-deepseek-1785216731182-5rt43x",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Missing plugin file breaks test imports","file":".opencode/skills/system-spec-kit/mcp-server/tests/opencode-plugin.vitest.ts","line":13,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F002","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Session-prime injects potentially stale code-graph tool guidance","file":".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts","line":212,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F003","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Compact-inject regex matches potentially nonexistent tool names","file":".opencode/skills/system-spec-kit/mcp-server/hooks/claude/compact-inject.ts","line":121,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F004","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"Layer-definitions lists code_graph tools without namespace prefix","file":".opencode/skills/system-spec-kit/mcp-server/lib/architecture/layer-definitions.ts","line":115,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F005","severity":"P2","category":"correctness","status":"deferred","dimension":"correctness","title":"External code-graph contract imports in test-only code — traceability note","file":".opencode/skills/system-spec-kit/mcp-server/tests/opencode-transport.vitest.ts","line":6,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F006","severity":"P2","category":"security","status":"deferred","dimension":"security","title":"cli-opencode executor grants full OS write access with no sandbox enforcement","file":".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md","line":280,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F007","severity":"P2","category":"security","status":"deferred","dimension":"security","title":"Security-sensitive fix overrides are SPEC-ONLY with no runtime enforcement","file":".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md","line":77,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F008","severity":"P2","category":"security","status":"deferred","dimension":"security","title":"Fable-subagent-guard fails open when transcript is unreadable","file":".opencode/skills/system-deep-loop/runtime/hooks/claude/fable-subagent-guard.mjs","line":13,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F009","severity":"P2","category":"security","status":"deferred","dimension":"security","title":"Session-prime emits code-graph tool guidance without server-health validation","file":".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts","line":212,"firstSeen":2,"lastSeen":2,"transitions":[{"iteration":2,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F010","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"015 closeout claim 'no live imports survive' is misleading — live signal handlers remain","file":".opencode/specs/system-code-graph/036-code-graph-decommission/015-verification-and-closeout/implementation-summary.md","line":64,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P1","reason":"Initial discovery"}]},
+    {"findingId":"F011","severity":"P2","category":"traceability","status":"deferred","dimension":"traceability","title":"Layer-definitions tool list not refreshed post-decommission","file":".opencode/skills/system-spec-kit/mcp-server/lib/architecture/layer-definitions.ts","line":115,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F012","severity":"P2","category":"traceability","status":"deferred","dimension":"traceability","title":"Spec wording 'unrelated external models' could imply different access surfaces","file":".opencode/specs/system-code-graph/036-code-graph-decommission/016-deep-review/spec.md","line":84,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F013","severity":"P2","category":"traceability","status":"deferred","dimension":"traceability","title":"implementation-summary.md is an unpopulated scaffold","file":".opencode/specs/system-code-graph/036-code-graph-decommission/016-deep-review/implementation-summary.md","line":1,"firstSeen":3,"lastSeen":3,"transitions":[{"iteration":3,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F014","severity":"P2","category":"maintainability","status":"deferred","dimension":"maintainability","title":"Agent mirror permission models differ (deny-list vs allow-list)","file":".opencode/agents/orchestrate.md","line":4,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F015","severity":"P2","category":"maintainability","status":"deferred","dimension":"maintainability","title":"Orchestrator agent mirrors have expected per-runtime divergences","file":".opencode/agents/orchestrate.md","line":157,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F016","severity":"P2","category":"maintainability","status":"deferred","dimension":"maintainability","title":"plan.md, tasks.md, implementation-summary.md are scaffold templates","file":".opencode/specs/system-code-graph/036-code-graph-decommission/016-deep-review/plan.md","line":1,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F017","severity":"P2","category":"maintainability","status":"deferred","dimension":"maintainability","title":"016-deep-review lacks checklist.md (Level 1, not required)","file":".opencode/specs/system-code-graph/036-code-graph-decommission/016-deep-review/spec.md","line":39,"firstSeen":4,"lastSeen":4,"transitions":[{"iteration":4,"from":null,"to":"P2","reason":"Initial discovery"}]},
+    {"findingId":"F018","severity":"P2","category":"maintainability","status":"deferred","dimension":"maintainability","title":"Grok lane completed before DeepSeek lane — fan-out timing observation","file":"review/lineages/grok/review-report.md","line":1,"firstSeen":5,"lastSeen":5,"transitions":[{"iteration":5,"from":null,"to":"P2","reason":"Initial discovery"}]}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 16
+  },
+  "openFindingsCount": 17,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 1.01,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

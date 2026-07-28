@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 15 |
+| **Phase** | 14 of 16 |
 | **Predecessor** | 013-skill-deletion-and-daemon-reap |
 | **Successor** | 015-verification-and-closeout |
 | **Handoff Criteria** | A tombstone explains the removal, and no archived packet has been rewritten |

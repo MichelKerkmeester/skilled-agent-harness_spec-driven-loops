@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The advisor treats the code graph as a first-class routable skill: it is a node in the skill graph with a declared dependency edge and inbound edges from two other skills, it carries a block of intent signals, and it is counted in the total skill population",
     "created_at": "2026-07-27T16:33:56Z",
-    "last_save_at": "2026-07-28T04:51:21.767Z",
+    "last_save_at": "2026-07-28T09:42:18.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9ca74a0e24d59d16556c767a3b24eb5f3f755895803385e5ad10e5d31d90d4c",
+    "source_fingerprint": "sha256:b07539dcec5e337acba91b3bce2872eb1aa1b04e43212118979b10277c4d9941",
     "source_doc_hashes": {
-      "spec.md": "45f0c16d452984ac601ff1c50a357b0d6c3d74363e8e2155acdcb1f36f9112ff",
+      "spec.md": "827941c8802c707d9bbd565eb8773dd1d600258244bcde23b2ec051ae66d280b",
       "plan.md": "ddd68840a473d39108e194bf789d7b1b2fc7ac52a102406aaee74748d46bd858",
       "tasks.md": "16c0930ccf0ea1ab3583b8e29eecd6208a57e77bd6aeda7cf733c4b84ffb1ea5",
-      "implementation-summary.md": "37bf28b76441ded26074cbfe5960a71aded29a99ee1be5ac850d158df3838c62"
+      "implementation-summary.md": "8841906592abe0a1803857dbb473d4574a3aa49903a95b315dd35d761c312ac2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 15 |
+| **Phase** | 1 of 16 |
 | **Predecessor** | None |
 | **Successor** | 002-decommission-decision-record |
 | **Handoff Criteria** | `research/research.md` exists with a cited touchpoint inventory and a per-consumer removal-vs-fallback recommendation |
