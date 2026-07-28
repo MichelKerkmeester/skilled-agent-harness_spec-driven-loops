@@ -501,7 +501,7 @@ const lineageMetadataShape = {
  * - `count`: number of replicas of THIS config to run (e.g. 5x the same model).
  * - `iterations`: per-lineage max-iterations override; null = packet default.
  * - `promptFramework`: optional per-model prompt framing key (e.g. "costar",
- *   "tidd-ec") resolved against sk-prompt/prompt-models when a consumer renders the
+ *   "tidd-ec") resolved against sk-prompt/sk-prompt-models when a consumer renders the
  *   lineage prompt. null = consumer default. Loop-type-agnostic and optional, so
  *   research/review lineages that omit it are unaffected.
  * - `assignment_model`: defaults to the existing flat pool; `wave` is accepted

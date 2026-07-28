@@ -154,7 +154,7 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
   outputsDir          : where SWEEP reports land — read ONLY by sweep-benchmark.cjs, falling back to a temp dir when the
                         token is unresolved. NOT read by run-benchmark.cjs or the /deep:model-benchmark command; both take
                         `--outputs-dir` on the CLI instead, and the command supplies a fixed hub path
-                        (.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/), ignoring this field entirely.
+                        (.opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/), ignoring this field entirely.
                         Emitted files differ by path: run-benchmark.cjs -> report.json + report-history/; sweep-benchmark.cjs
                         -> results.json (+ aggregate.json/synthesis.md by default); reviewer-scorer.cjs -> reviewer-report.json.
                         When this field IS read (standalone sweep), use the "{spec_folder}" (and/or "{run_label}") token —

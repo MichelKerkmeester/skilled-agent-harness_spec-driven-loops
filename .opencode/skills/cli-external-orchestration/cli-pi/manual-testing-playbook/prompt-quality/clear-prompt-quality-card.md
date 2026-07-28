@@ -67,7 +67,7 @@ Prompt quality is part of dispatch correctness. The Pi card must preserve the ca
 |---|---|
 | `.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md` | Sibling card shape |
 | `.opencode/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md` | Sibling card shape |
-| `.opencode/skills/sk-prompt/prompt-models/assets/cli-prompt-quality-card.md` | Canonical CLEAR source |
+| `.opencode/skills/sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` | Canonical CLEAR source |
 
 ---
 

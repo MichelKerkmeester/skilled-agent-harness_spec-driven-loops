@@ -24,7 +24,7 @@ This card is the Cursor CLI fast-path prompt-quality reference; it delegates the
 ### Precedence Rule (state this first, always)
 
 1. **`sk-prompt`** is authoritative for framework definitions (RCAF, CO-STAR, TIDD-EC, etc.).
-2. **`sk-prompt/prompt-models`** governs per-model defaults for any profiled model.
+2. **`sk-prompt/sk-prompt-models`** governs per-model defaults for any profiled model.
 3. **This card** adds only confirmed Cursor-dispatch-mechanics addenda that don't belong in either of the first two tiers — never a competing framework, never an invented per-model default.
 
 ---
@@ -33,7 +33,7 @@ This card is the Cursor CLI fast-path prompt-quality reference; it delegates the
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
+-> `../../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
 
 ---
 
@@ -52,7 +52,7 @@ These are mechanical facts about how Cursor CLI receives and processes a prompt 
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
 
 Cursor-specific escalation example: if the task needs a prompt disambiguating execution mode (default vs. `--mode plan`/`--mode ask`) plus explicit model-id selection across Cursor's wide roster, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Cursor CLI. Escalate on any canonical Tier 3 trigger.
 
@@ -60,4 +60,4 @@ Cursor-specific escalation example: if the task needs a prompt disambiguating ex
 
 ## 5. RELATED RESOURCES
 
--> `../../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md` · `../../../sk-prompt/prompt-models/references/models/` (per-model profiles)
+-> `../../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md` · `../../../sk-prompt/sk-prompt-models/references/models/` (per-model profiles)

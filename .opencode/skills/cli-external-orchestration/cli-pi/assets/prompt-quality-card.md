@@ -34,7 +34,7 @@ Use the canonical card for ordinary Pi dispatches. Select the framework there, a
 
 ### Tier 2 - Model Override
 
-If the selected Pi provider/model has a profile in sk-prompt/prompt-models, that profile overrides the cross-model default. Read the profile before composing the prompt.
+If the selected Pi provider/model has a profile in sk-prompt/sk-prompt-models, that profile overrides the cross-model default. Read the profile before composing the prompt.
 
 ### Tier 3 - Deep Path
 

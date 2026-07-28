@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Composer's RCAF prompt-craft profile (`sk-prompt/prompt-models/references/models/composer-2.5.md`) for `CU-019`. It focuses on filling the profile's own scaffold for a small, concrete task and dispatching it with `--model composer-2.5`, confirming the output matches the Format contract the scaffold specifies.
+This scenario validates Composer's RCAF prompt-craft profile (`sk-prompt/sk-prompt-models/references/models/composer-2.5.md`) for `CU-019`. It focuses on filling the profile's own scaffold for a small, concrete task and dispatching it with `--model composer-2.5`, confirming the output matches the Format contract the scaffold specifies.
 
 ### Why This Matters
 
@@ -61,14 +61,14 @@ Operators run the exact prompt and command sequence for `CU-019` and confirm the
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../../sk-prompt/prompt-models/references/models/composer-2.5.md` (§5 Tuned Template Snippet) | Authoritative RCAF scaffold this scenario fills verbatim |
+| `../../../../sk-prompt/sk-prompt-models/references/models/composer-2.5.md` (§5 Tuned Template Snippet) | Authoritative RCAF scaffold this scenario fills verbatim |
 | `../../SKILL.md` (§3 Model Selection) | Documents Composer as Cursor's own native model |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../../../sk-prompt/prompt-models/references/models/composer-2.5.md` | §3 Recommended Framework (RCAF), §4 Benchmark Evidence (`default-unverified`), §5 scaffold |
+| `../../../../sk-prompt/sk-prompt-models/references/models/composer-2.5.md` | §3 Recommended Framework (RCAF), §4 Benchmark Evidence (`default-unverified`), §5 scaffold |
 | `../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing/implementation-summary.md` | Live confirmation Composer is dispatchable end-to-end (`pong` smoke test) |
 
 ---

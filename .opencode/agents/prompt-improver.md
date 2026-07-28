@@ -60,7 +60,7 @@ Use these IDs when a recommendation depends on an integration point.
 | --- | --- | --- |
 | `INT-CALLER-GENERAL` | `@general` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
 | `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.opencode/commands/prompt-improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
-| `INT-SKILL-PROMPT-IMPROVER` | `.opencode/skills/sk-prompt/prompt-improve/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
+| `INT-SKILL-PROMPT-IMPROVER` | `.opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, or `copilot` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
 | `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
@@ -138,7 +138,7 @@ Incoming prompt-escalation request
 ### ✅ ALWAYS
 
 - Confirm `raw_task` is present and within prompt-construction scope before selecting a framework.
-- Read `.opencode/skills/sk-prompt/prompt-improve/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Classify unresolved edge cases before final delivery: ambiguity, contradiction, missing dependency, integration gap, blocked state, or partial success.
 - Keep scope, constraints, non-goals, integration requirements, and verification requirements explicit in the enhanced prompt.

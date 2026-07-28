@@ -75,7 +75,7 @@ Pi print mode is the one-shot path. JSON mode is an event stream. RPC is a long-
 
 The packet's guard is conservative. Process ancestry is checked first, then a .pi project-directory heuristic is checked. Neither absence of a signal nor the presence of a directory proves that a session is active. A detected signal stops dispatch.
 
-Prompt quality follows the shared three-tier rule in [prompt-quality-card.md](./assets/prompt-quality-card.md). The card delegates framework selection to sk-prompt/prompt-models and adds only Pi dispatch mechanics.
+Prompt quality follows the shared three-tier rule in [prompt-quality-card.md](./assets/prompt-quality-card.md). The card delegates framework selection to sk-prompt/sk-prompt-models and adds only Pi dispatch mechanics.
 
 ---
 

@@ -90,7 +90,7 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 | PreToolUse · `exec\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
 | UserPromptSubmit | spec-gate classify (advisory) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
 | PreToolUse · `exec` | dispatch preflight lint (deny-capable) | `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` |
-| PostToolUse · `apply_patch\|edit` | post-edit quality | `sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs` |
+| PostToolUse · `apply_patch\|edit` | post-edit quality | `sk-code/sk-code-quality/scripts/hooks/codex/post-edit-quality.cjs` |
 | PostToolUse · `apply_patch\|edit` | code-graph freshness | `system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs` |
 | PostToolUse · `exec` | dispatch audit (observe) | `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` |
 | Stop | completion-evidence sentinel (advisory) | `system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs` |

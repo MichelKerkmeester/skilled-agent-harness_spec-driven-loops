@@ -156,7 +156,7 @@ STATUS=FAIL ERROR="[specific message]"
 ```
 
 Standard failure messages:
-- Skill missing: `prompt-improve packet not found at .opencode/skills/sk-prompt/prompt-improve/SKILL.md`
+- Skill missing: `prompt-improve packet not found at .opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md`
 - CLEAR below threshold after 3 iterations: `CLEAR score below threshold after 3 iterations: [SCORE]/50`
 - User cancels: emit `STATUS=CANCELLED`
 
@@ -166,6 +166,6 @@ Standard failure messages:
 |-----------|-------------------|--------|
 | Enhanced prompt should become a skill | `/create:skill` | Scaffold an OpenCode skill from the prompt |
 | Prompt-engineering patterns worth documenting | `/create:readme` | Package the results as a documentation artifact |
-| Small-model dispatch of the enhanced prompt | consult `sk-prompt/prompt-models` | Per-model framework/scaffold before dispatch |
+| Small-model dispatch of the enhanced prompt | consult `sk-prompt/sk-prompt-models` | Per-model framework/scaffold before dispatch |
 
 End interactive presentations with a single next-step prompt.

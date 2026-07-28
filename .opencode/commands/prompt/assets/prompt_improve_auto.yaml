@@ -4,7 +4,7 @@
 role: Expert prompt engineer running the sk-prompt improvement pipeline autonomously
 purpose: Transform a prompt or topic into a structured, CLEAR-scored prompt without pausing
 action: Confirm bound inputs -> load sk-prompt -> run DEPTH -> score with CLEAR -> deliver -> optionally save
-skill_owner: ".opencode/skills/sk-prompt/prompt-improve/"
+skill_owner: ".opencode/skills/sk-prompt/sk-prompt-improve/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -39,7 +39,7 @@ mutation_boundaries:
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  skill: ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"   # the DEPTH/CLEAR engine
+  skill: ".opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md"   # the DEPTH/CLEAR engine
   agent: "prompt-improver"                                       # fresh-context dispatch target for dispatch_mode AGENT
   conditional_references:
     depth: "references/depth-framework.md + references/patterns-evaluation.md"   # for text/improve/refine/short
@@ -77,7 +77,7 @@ workflow:
       - "Read upstream_assets.skill."
       - "Load conditional_references per enhancement_mode (depth set for text/improve/refine/short; json/yaml guides added for those formats; none for raw)."
     on_missing_skill:
-      status: 'STATUS=FAIL ERROR="prompt-improve packet not found at .opencode/skills/sk-prompt/prompt-improve/SKILL.md"'
+      status: 'STATUS=FAIL ERROR="prompt-improve packet not found at .opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md"'
     validation: skill_loaded
 
   phase_2_enhance:

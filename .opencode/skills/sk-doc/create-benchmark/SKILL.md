@@ -78,7 +78,7 @@ Use another `sk-doc` packet when:
 - A re-run confirms the same headline; update the existing `benchmark-report.md` with a re-run note instead.
 - The result mixes data from different MCP stacks and asks for a single comparative verdict.
 - The task hand-edits renderer-owned `skill-benchmark-report.md` or defines scoring (rubric, evaluator, reviewer verdict, D1-D5 weight). Scoring stays lane-local; this packet authors inputs, indexes, and reports (§10-11).
-- A one-off experiment fits none of the six families, such as `sk-prompt/prompt-models/references/vision-audit-benchmark.md`. Keep it lane-local; there is no "misc" family.
+- A one-off experiment fits none of the six families, such as `sk-prompt/sk-prompt-models/references/vision-audit-benchmark.md`. Keep it lane-local; there is no "misc" family.
 
 If unsure, default to "not yet." Promote after rigor.
 

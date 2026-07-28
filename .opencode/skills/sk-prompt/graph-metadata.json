@@ -123,9 +123,9 @@
       ".opencode/skills/sk-prompt/mode-registry.json",
       ".opencode/skills/sk-prompt/hub-router.json",
       ".opencode/skills/sk-prompt/description.json",
-      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-models/references/pattern-index.md",
+      ".opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md",
+      ".opencode/skills/sk-prompt/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt/sk-prompt-models/references/pattern-index.md",
       ".claude/agents/prompt-improver.md",
       ".opencode/agents/prompt-improver.md"
     ],
@@ -139,13 +139,13 @@
       {
         "name": "prompt-improve",
         "kind": "reference",
-        "path": ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+        "path": ".opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md",
         "source": "derived"
       },
       {
         "name": "prompt-models",
         "kind": "reference",
-        "path": ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
+        "path": ".opencode/skills/sk-prompt/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {

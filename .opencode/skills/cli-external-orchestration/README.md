@@ -96,7 +96,7 @@ Use cli-pi for a guarded headless JSON-event review.
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt` | Enhances edge (weight 0.5). `cli-opencode`'s small-model dispatch is a sentinel for `sk-prompt/prompt-models` profiles |
+| `sk-prompt` | Enhances edge (weight 0.5). `cli-opencode`'s small-model dispatch is a sentinel for `sk-prompt/sk-prompt-models` profiles |
 | `system-spec-kit` | Manual dependency. A full-runtime `cli-opencode` dispatch carries the Spec-Kit-Memory runtime |
 | `sk-code` | Code implementation, review and debugging, not CLI dispatch. This hub orchestrates the dispatch, `sk-code` owns the work inside it |
 | `system-deep-loop` | Related. Ablation-suite and worker-farm patterns that dispatch parallel `cli-opencode` sessions |

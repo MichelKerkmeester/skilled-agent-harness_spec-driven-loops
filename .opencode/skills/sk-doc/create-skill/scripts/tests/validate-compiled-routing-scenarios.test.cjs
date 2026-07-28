@@ -30,7 +30,7 @@ expected_workflow_mode: prompt-improve
 expected_leaf_resources:
   - workflow_mode: prompt-improve
     leaf_resource_id: references/depth-framework.md
-evidence_compiled_route: sk-prompt/prompt-improve
+evidence_compiled_route: sk-prompt/sk-prompt-improve
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving

@@ -9,7 +9,7 @@
       {
         "target": "sk-prompt",
         "weight": 0.5,
-        "context": "small-model patterns sentinel (prompt-models packet); folded from cli-opencode's original enhances edge — the advisor co-surfaces sk-prompt/prompt-models alongside the cli-opencode mode for small-model dispatch."
+        "context": "small-model patterns sentinel (prompt-models packet); folded from cli-opencode's original enhances edge — the advisor co-surfaces sk-prompt/sk-prompt-models alongside the cli-opencode mode for small-model dispatch."
       }
     ],
     "siblings": [],

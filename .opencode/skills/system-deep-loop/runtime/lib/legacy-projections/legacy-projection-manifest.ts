@@ -189,7 +189,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'model-benchmark-hub-output', format: 'mixed',
-    pathTemplate: '.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/',
+    pathTemplate: '.opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/',
     legacyWriter: 'model-benchmark lane', readers: ['model benchmark report and promotion tools'],
     fixture: CONTROL_FIXTURE, disposition: 'retain-legacy-input', serializerId: null,
     refreshBoundary: null, nonProjectableReason: 'Write-once benchmark evidence remains source-owned',

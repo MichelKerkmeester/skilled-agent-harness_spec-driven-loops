@@ -578,7 +578,7 @@ This category covers 2 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `sk-prompt/prompt-models/assets/cli-prompt-quality-card.md`, reached through the local `assets/prompt-quality-card.md` delegation) and that an under-scored prompt is escalated to a structured framework before dispatch.
+Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`, reached through the local `assets/prompt-quality-card.md` delegation) and that an under-scored prompt is escalated to a structured framework before dispatch.
 
 #### Scenario Contract
 
@@ -596,7 +596,7 @@ Desired user-visible outcome: An auditable trail showing the prompt-quality disc
 
 #### Description
 
-Verify Composer's RCAF prompt-craft profile (`sk-prompt/prompt-models/references/models/composer-2.5.md`, `status: default-unverified`) produces a working generation when a task is filled into its scaffold and dispatched with `--model composer-2.5`.
+Verify Composer's RCAF prompt-craft profile (`sk-prompt/sk-prompt-models/references/models/composer-2.5.md`, `status: default-unverified`) produces a working generation when a task is filled into its scaffold and dispatched with `--model composer-2.5`.
 
 #### Scenario Contract
 
