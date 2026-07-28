@@ -196,10 +196,12 @@ Follow these steps in order, skipping only when the target skill already exists 
 24. Put completion checks in `SUCCESS CRITERIA`.
 25. Put references only as overflow pointers for deep detail, examples, or schemas.
 26. Run `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs --fix` after authoring so the manifest and derived aliases are generated and the root passes its class gate.
-27. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
-28. Fix every hard failure and rerun the check until it exits clean.
-29. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
-30. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
+27. Replace every slug-only routing default before calling the skill done: `graph-metadata.json` `domains` and `intent_signals` plus the `SKILL.md` keyword comment are the fields the advisor's scorers actually read, so fill them with phrases a user would genuinely type, not the skill name repeated.
+28. Confirm advisor discovery. A warm advisor daemon ingests a new root automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next daemon start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test routing with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
+29. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
+30. Fix every hard failure and rerun the check until it exits clean.
+31. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
+32. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
 
 ### Required Standalone Skill Shape
 
@@ -277,6 +279,8 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 24. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
 25. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
 26. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
+27. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
+28. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
 ### Parent Hub Shape
 

@@ -393,13 +393,22 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     throw new Error('Skill graph watcher requires a watchFactory provided by the MCP server startup');
   }
 
-  const watcher = options.watchFactory(targetPaths, {
+  // The skills root itself is watched alongside the explicit file targets so
+  // a BRAND-NEW top-level skill directory announces itself. Discovery only
+  // enumerates roots that exist when it runs, and refreshTargets() only fires
+  // at the tail of an event on an already-watched file — so without this, a
+  // freshly created skill produced no event, no refresh, and no ingestion
+  // until a restart or an unrelated change. depth: 0 keeps the directory
+  // watch shallow (top-level create/delete only); explicit file targets are
+  // unaffected by the depth limit.
+  const watcher = options.watchFactory([...targetPaths, skillsRoot], {
     ignoreInitial: true,
     awaitWriteFinish: {
       stabilityThreshold: options.backpressure?.stableWriteMs ?? envPositiveInt('SPECKIT_SKILL_GRAPH_STABLE_WRITE_MS', DEFAULT_STABLE_WRITE_MS),
     },
     atomic: true,
     followSymlinks: false,
+    depth: 0,
     ignored: (targetPath: string) => TEMP_SUFFIX_PATTERN.test(targetPath),
   }) as SkillGraphFsWatcher;
 
@@ -578,6 +587,36 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
   });
   watcher.on('unlink', (targetPath: unknown) => {
     if (typeof targetPath === 'string') enqueue(targetPath);
+  });
+  // A new top-level directory under the skills root is a skill being born.
+  // Watching the new directory immediately (depth 0 → its direct children)
+  // means the SKILL.md that lands moments later fires a normal add event even
+  // though discovery has not run yet; enqueueing the expected SKILL.md path
+  // routes through the standard debounce, and the reindex tail's
+  // refreshTargets() promotes the root's files into durable targets. A file
+  // that is still absent at flush time is handled by the orchestrator's
+  // missing-path branch, which reindexes rather than skipping.
+  watcher.on('addDir', (dirPath: unknown) => {
+    if (typeof dirPath !== 'string' || closed) return;
+    const normalized = resolve(dirPath);
+    if (resolve(dirname(normalized)) !== skillsRoot) return;
+    if (basename(normalized).startsWith('.')) return;
+    // The identity files are re-add()ed explicitly, not just the directory:
+    // chokidar persists unwatch()ed paths in its ignore set, so a root that
+    // was deleted (whose file targets refreshTargets() unwatched) would come
+    // back with its SKILL.md permanently ignored and never announce itself
+    // again. add() clears the ignore entry, making delete/recreate cycles
+    // symmetric with first creation.
+    watcher.add?.([normalized, join(normalized, SKILL_MD), join(normalized, GRAPH_METADATA)]);
+    enqueue(join(normalized, SKILL_MD));
+  });
+  // Deleting a root retires its targets instead of leaking watches; the
+  // refresh also prunes pending work for slugs that no longer exist on disk.
+  watcher.on('unlinkDir', (dirPath: unknown) => {
+    if (typeof dirPath !== 'string' || closed) return;
+    const normalized = resolve(dirPath);
+    if (resolve(dirname(normalized)) !== skillsRoot) return;
+    refreshTargets();
   });
   watcher.on('error', (error: unknown) => {
     // WATCHER_ERROR counter tracks the total number of error

@@ -340,6 +340,8 @@ The surface is dual-stack: the same 9 tools are callable through the full-parity
 
 The advisor implementation, skill-graph library and package-local database now live under this skill package, while memory remains focused on memory tools.
 
+**Skill lifecycle: how a new skill becomes routable.** The daemon's watcher watches the skills root itself (shallow, top-level directories only) in addition to each known root's identity files, so a skill created while the daemon is warm is ingested automatically — the new directory's event routes through the normal debounce into reindex, and the reindex promotes the root's `SKILL.md`/`graph-metadata.json` into durable watch targets. With no daemon running, the next daemon start ingests it through normal discovery. Manual refresh at any time: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Deleting a root retires its targets through the same path. The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
+
 ---
 
 ## 4. RULES
