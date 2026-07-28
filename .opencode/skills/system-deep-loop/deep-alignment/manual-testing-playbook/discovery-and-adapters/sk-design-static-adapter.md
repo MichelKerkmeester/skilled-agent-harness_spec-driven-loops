@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the sk-design static alignment adapter: DESIGN.md/tokens.json discover(), structural + banned-pattern deterministic checks, and the cited-dimension verify-first audit-rubric layer. Confirm it never renders.
 ### Commands
-1. `bash: node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs discover .opencode/skills/sk-design/design-md-generator/references/examples | head -40`
-2. `bash: node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs check "$(node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs discover .opencode/skills/sk-design/design-md-generator/references/examples | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);const a=(j.artifacts||[]).find(x=>x.path.endsWith("DESIGN.md"));process.stdout.write(a?a.path:"")})')"`
+1. `bash: node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs discover .opencode/skills/sk-design/sk-design-md-generator/references/examples | head -40`
+2. `bash: node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs check "$(node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs discover .opencode/skills/sk-design/sk-design-md-generator/references/examples | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);const a=(j.artifacts||[]).find(x=>x.path.endsWith("DESIGN.md"));process.stdout.write(a?a.path:"")})')"`
 3. `bash: rg -n 'REQUIRED_HEADINGS|EXTRACTOR_INTERNAL_VAR_RE|PLACEHOLDER_VARIANT_RE|FREQUENCY_DUMP_RE|checkQuickStartConsistency|checkAuditRubric|never render|STATIC-ONLY|DESIGN_ARTIFACT_BASENAMES' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs`
 4. `bash: rg -n 'chrome-devtools|playwright|renderResult|design-mcp' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs || echo "NO RENDER PATH (expected)"`
 ### Expected
@@ -74,7 +74,7 @@ If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the ver
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs` | discover/check, required headings, banned-pattern regexes, `checkAuditRubric` verify-first gate |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-design-adapter.md` | Full adapter specification incl. STATIC-ONLY scope and required-heading scope |
-| `.opencode/skills/sk-design/design-md-generator/references/design-md-format.md` | The Style Reference format the adapter checks against |
+| `.opencode/skills/sk-design/sk-design-md-generator/references/design-md-format.md` | The Style Reference format the adapter checks against |
 
 ---
 

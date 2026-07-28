@@ -40,8 +40,8 @@
  *   node sk-design.cjs standard-source
  *
  * Examples:
- *   node sk-design.cjs discover .opencode/skills/sk-design/design-md-generator/references/examples
- *   node sk-design.cjs check .opencode/skills/sk-design/design-md-generator/references/examples/vercel/DESIGN.md
+ *   node sk-design.cjs discover .opencode/skills/sk-design/sk-design-md-generator/references/examples
+ *   node sk-design.cjs check .opencode/skills/sk-design/sk-design-md-generator/references/examples/vercel/DESIGN.md
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
