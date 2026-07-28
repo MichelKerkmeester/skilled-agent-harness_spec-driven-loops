@@ -313,6 +313,27 @@ Once permission is granted, set `SPECKIT_ALLOW_REMOTE_PUSH=1` for that one `git 
 
 **Continuous-integration exception**: the launch-wrapper's autosync publish (ALWAYS #16) targets exactly one branch per session — `$SPECKIT_LIVE_BRANCH`, the primary checkout's own branch chosen before the session started — and is exempt from this ask, because `git-sync.sh`'s own contract never blocks mid-hook (see [continuous-integration.md](references/continuous-integration.md)). The exemption is scoped to that one branch; autosync publishing to any OTHER branch still asks.
 
+### Preflight Advisory — the rules reach you at command time
+
+The `hard_rules:` block at the top of this file is not documentation — it is executed. A
+preflight advisory hook evaluates every visible `git` command against those rules using live
+repository state, and prints the matching rule at the moment the command is typed. It advises
+and never blocks: enforcement stays with the pre-commit, commit-msg and pre-push hooks.
+
+Every rule is a state discriminator, never a verb match — a `reset --hard` warns only when the
+working tree holds changes it would destroy; a directory-scoped commit warns only when untracked
+files sit inside that scope. Measured fire rate across ordinary commands is zero.
+
+All six AI runtimes carry the same shared hook: Claude and Codex/Devin via their PreToolUse hook
+configs, Cursor via a Shell-payload proxy, OpenCode via the `mk-git-preflight-advisory` plugin,
+and Pi via a native extension. Registration paths, delivery channels, and the fail-open contract:
+[scripts/hooks/README.md](scripts/hooks/README.md). The rule engine and its tests:
+[scripts/lib/README.md](scripts/lib/README.md). Operator test scenario: the
+`git-preflight-advisory/` feature in [manual-testing-playbook/](manual-testing-playbook/manual-testing-playbook.md).
+
+Suppression tiers: `SKGIT_ADVISORY=0` (global), `SKGIT_ADVISORY_SKIP=<rule-id>` (one rule), or a
+prefix like `SKGIT_ADVISORY_SKIP=commit` (a family).
+
 ### Git Development Lifecycle Map
 
 Git development flows through 3 phases:

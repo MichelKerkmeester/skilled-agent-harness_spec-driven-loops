@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-git/016-git-action-advisory-hook/007-runtime-coverage",
+  "description": "Phases 003 and 006 wired the shared advisory hook for Claude (`Bash`) and Codex/Devin (`exec`)",
+  "keywords": [
+    "phases",
+    "wired",
+    "shared",
+    "advisory",
+    "hook",
+    "claude",
+    "bash",
+    "codex",
+    "devin",
+    "exec"
+  ],
+  "lastUpdated": "2026-07-28T05:56:12.073Z",
+  "specId": "007",
+  "folderSlug": "runtime-coverage",
+  "parentChain": [
+    "sk-git",
+    "016-git-action-advisory-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

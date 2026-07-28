@@ -56,6 +56,12 @@
         "type": "command",
         "matcher": "Task",
         "timeout": 10
+      },
+      {
+        "command": "node .cursor/hooks/git-preflight-advisory.mjs",
+        "type": "command",
+        "matcher": "Shell",
+        "timeout": 10
       }
     ],
     "postToolUse": [

@@ -122,6 +122,8 @@ The last row is the most damaging and the only one with no rule. A pathspec comm
 | 004 | `004-pathspec-integrity/` | The commit-integrity check that has no rule today | Planned |
 | 005 | `005-destructive-tier/` | The retained destructive rules, each narrowed to positive state | Complete |
 | 006 | `006-runtime-parity/` | One runtime-agnostic hook serving Claude and Codex | Complete |
+| 007 | `007-runtime-coverage/` | Adapters for OpenCode, Pi, Cursor and Devin, plus style alignment | Complete |
+| 008 | `008-docs-and-playbooks/` | Code READMEs and playbook coverage across all seven skills | Complete |
 
 | 1 | 001-advisory-research/ | [Phase 1 scope] | Pending |
 | 2 | 002-rule-encoding/ | [Phase 2 scope] | Pending |

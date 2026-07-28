@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.2
+version: 1.8.0.3
 ---
 
 # Skill Validation and Packaging
@@ -32,13 +32,22 @@ This reference covers the two validation tiers a skill passes before release and
 **Key Sources**:
 - `scripts/quick_validate.py` - minimal frontmatter sanity check
 - `scripts/extract_structure.py` - structure checklist for comprehensive validation
+- `scripts/validate_skill_package.py` - completion gate: classifies the root from its registry/router pair (rejecting a half-declared pair as unclassified), runs the parent-hub root checks, and wraps `package_skill.py --check`; standalone class conformance is enforced by the fleet gate `ci-skill-root-metadata.cjs`
 - `scripts/package_skill.py` - validation plus packaging
 
 ---
 
 ## 2. VALIDATION REQUIREMENTS
 
-### Completion Gate (package_skill.py --check)
+### Completion Gate (validate_skill_package.py)
+
+**Purpose**: Authoritative pre-completion gate. Run before claiming a skill is done. It delegates the package check, detects standalone versus parent roots from the coupled registry/router declaration, and fails an unclassified root rather than guessing its class.
+
+```bash
+scripts/validate_skill_package.py <path/to/skill>
+```
+
+### Package Check (package_skill.py --check)
 
 **Purpose**: Authoritative pre-completion gate. Run before claiming a skill is done.
 
@@ -53,6 +62,15 @@ scripts/package_skill.py <path/to/skill> --check
 - A missing required SKILL.md section (e.g., `REFERENCES` with no approved combined-heading variant).
 
 It reports non-kebab generated package paths as advisory findings so existing repository debt remains inspectable. Run `--strict` for a newly generated package: strict validation and actual packaging reject every non-exempt path that is not kebab-case. Python filenames, Python import-package directories, frozen/generated subtrees, and tool-mandated names such as `SKILL.md`, `README.md`, `.utcp_config.json`, `action.yml`, and `conftest.py` remain exact.
+
+### Fleet Class Gate (ci-skill-root-metadata.cjs)
+
+Run the fleet-wide class gate before release to check metadata presence, forbidden files, and generated-file freshness. `--fix` regenerates derivable files only. The canonical contract is [skill-root-metadata-contract.md](skill-root-metadata-contract.md).
+
+```bash
+node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs
+node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs --fix
+```
 
 ### Minimal Validation (quick_validate.py)
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill metadata drift gate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Skill Root Metadata Contract
@@ -49,6 +49,7 @@ Classification deliberately ignores every other file, including generated output
 | Class | Roots |
 | --- | --- |
 | **H** (7) | `cli-external-orchestration`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `system-deep-loop` |
+| **S** (4) | `mcp-code-mode`, `sk-git`, `system-skill-advisor`, `system-spec-kit` |
 
 ---
 

@@ -35,7 +35,7 @@
   },
   "vocabularyClasses": {
     "quality-actions": { "keywords": ["validate", "score", "optimize", "check", "review", "harden", "audit"] },
-    "create-skill-aliases": { "keywords": ["create skill", "new skill", "skill scaffold", "SKILL.md scaffold", "OpenCode skill", "package skill", "sk-skill", "create sk-", "reusable capability", "reusable helper", "starter reference docs"] },
+    "create-skill-aliases": { "keywords": ["create skill", "new skill", "skill scaffold", "SKILL.md scaffold", "OpenCode skill", "package skill", "sk-skill", "create sk-", "reusable capability", "reusable helper", "starter reference docs", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "hub versus standalone skill class", "skill metadata drift gate"] },
     "create-skill-parent-aliases": { "keywords": ["parent skill", "parent hub", "mode packet", "nested workflow packet"] },
     "create-readme-aliases": { "keywords": ["create readme", "readme", "folder readme", "write readme", "README.md", "install guide", "installation guide", "setup guide", "code folder readme", "front-page overview", "getting our project running", "running from scratch"] },
     "create-agent-aliases": { "keywords": ["create agent", "OpenCode agent", "Claude Code agent", "agent file", "new agent", "agent persona", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory", "agent and paired"] },

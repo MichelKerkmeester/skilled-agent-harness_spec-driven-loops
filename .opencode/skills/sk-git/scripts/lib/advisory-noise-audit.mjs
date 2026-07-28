@@ -1,5 +1,9 @@
 #!/usr/bin/env node
-// Measure how often the advisory rules would actually fire.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Git Advisory Noise Audit                                     ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Measure fire rates for ordinary commands and control shapes.   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // The research that produced these rules was clear that noise is the failure mode, not missed
 // detections: an advisory firing on a large share of commands is worse than none, because it
@@ -13,10 +17,22 @@
 //
 // Run: node <this file> [repo-path]
 
-import { readHardRules, evaluate } from '../../../cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs';
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+
+import {
+  evaluate,
+  readHardRules,
+} from '../../../cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs';
 import { GIT_CHECKS } from './git-rule-checks.mjs';
 import { createGitContext } from './git-context.mjs';
-import path from 'node:path';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Shapes weighted toward what the reflog says people actually run here: commit dominates,
 // followed by reset and the staging commands that precede them. Deliberately includes the
@@ -49,14 +65,6 @@ const ORDINARY_TEMPLATE = [
   'git restore --staged {FILE}',
 ];
 
-// The probe set has to name a path that exists in the target repository. An earlier version
-// hardcoded README.md and then reported a noise problem in any repo lacking one — the rule was
-// right and the measurement was wrong, which is the more dangerous of the two failures.
-function ordinaryFor(ctx) {
-  const real = [...ctx.tracked()][0] || '.';
-  return ORDINARY_TEMPLATE.map((c) => c.replace('{FILE}', real));
-}
-
 // A control group of shapes that SHOULD draw an advisory when the repository state warrants it.
 // Without this, a zero fire rate on ordinary commands is ambiguous: well-gated rules and rules
 // that never fire at all produce the same number, and only one of those is good news.
@@ -69,6 +77,22 @@ const SHOULD_FIRE = [
   { cmd: 'git push --force origin main', needs: 'nothing' },
   { cmd: 'git reflog expire --expire=now --all', needs: 'nothing' },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// The probe set has to name a path that exists in the target repository. An earlier version
+// hardcoded README.md and then reported a noise problem in any repo lacking one — the rule was
+// right and the measurement was wrong, which is the more dangerous of the two failures.
+function ordinaryFor(ctx) {
+  const real = [...ctx.tracked()][0] || '.';
+  return ORDINARY_TEMPLATE.map((c) => c.replace('{FILE}', real));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
   const repo = path.resolve(process.argv[2] || process.cwd());
@@ -94,8 +118,8 @@ function main() {
   let commandsWithAny = 0;
   const fired = [];
 
-  const ORDINARY = ordinaryFor(ctx);
-  for (const cmd of ORDINARY) {
+  const ordinaryCommands = ordinaryFor(ctx);
+  for (const cmd of ordinaryCommands) {
     const v = evaluate(cmd, rules, { checks: GIT_CHECKS, context: createGitContext(repo) });
     if (v.length > 0) {
       commandsWithAny += 1;
@@ -104,7 +128,7 @@ function main() {
     for (const x of v) perRule.set(x.id, perRule.get(x.id) + 1);
   }
 
-  const total = ORDINARY.length;
+  const total = ordinaryCommands.length;
   const pct = (n) => `${((n / total) * 100).toFixed(1)}%`;
 
   console.log(`repository:      ${repo}`);
@@ -146,5 +170,9 @@ function main() {
   console.log(`\nverdict: ${over ? 'OVER' : 'within'} the 3-in-100 aggregate budget, with the rule set confirmed live`);
   process.exit(over ? 1 : 0);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 main();

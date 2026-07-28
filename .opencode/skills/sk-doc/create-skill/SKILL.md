@@ -195,10 +195,11 @@ Follow these steps in order, skipping only when the target skill already exists 
 23. Put required actions, forbidden actions, and escalation conditions in `RULES`.
 24. Put completion checks in `SUCCESS CRITERIA`.
 25. Put references only as overflow pointers for deep detail, examples, or schemas.
-26. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
-27. Fix every hard failure and rerun the check until it exits clean.
-28. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
-29. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
+26. Run `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs --fix` after authoring so the manifest and derived aliases are generated and the root passes its class gate.
+27. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
+28. Fix every hard failure and rerun the check until it exits clean.
+29. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
+30. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
 
 ### Required Standalone Skill Shape
 

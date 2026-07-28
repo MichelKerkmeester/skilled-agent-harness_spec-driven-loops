@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks",
+  "spec_folder": "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks",
+  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git advisory docs and playbooks",
+      "008-docs-and-playbooks docs"
+    ],
+    "key_topics": [
+      "git",
+      "advisory",
+      "docs",
+      "playbooks",
+      "008-docs-and-playbooks",
+      "phase",
+      "landed",
+      "four",
+      "runtime",
+      "adapters",
+      "style-aligned",
+      "scripts"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "scripts/lib/README.md",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "intact",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Complete",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 007 landed four runtime adapters and style-aligned scripts, but the `scripts/lib/` and `scripts/hooks/` directories had no READMEs, and no manual-testing playbook feature exercised the advisory's trap shape (a directory-scoped commit silently dropping an untracked file) on any runtime",
+    "created_at": "2026-07-28T06:05:25.617Z",
+    "last_save_at": "2026-07-28T06:05:25.617Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d2219770a63fa5ca6185e17c8a1815b3106031fd162b031ded75028123e2c41",
+    "source_doc_hashes": {
+      "spec.md": "bccfe7b6bf04cf950d272708f096951bdff665a8a541eeee10fc9e4e4834eacf",
+      "plan.md": "fc4eaa1470494ec124adc1d531be51a37fd198cfeb6bb1238576f4f0aa87a9d9",
+      "tasks.md": "84920b9a7311673647efcb4c0d18a8789081186732a2e40bf73ca6ab52cdc7fd",
+      "implementation-summary.md": "63a2f4cd83ec0c9d93349a4bd02a357e217d6527e0dc0919b6b54f1c03b02362"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

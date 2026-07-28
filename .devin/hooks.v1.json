@@ -61,6 +61,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
           "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"\\\"}}\"'",
+          "timeout": 5
         }
       ]
     },
