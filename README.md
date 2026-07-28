@@ -32,7 +32,6 @@
 - [FEATURES](#3--features)
   - [SPEC KIT FRAMEWORK](#spec-kit-framework)
   - [MEMORY ENGINE](#memory-engine)
-  - [CODE GRAPH](#code-graph)
   - [SKILL ADVISOR](#skill-advisor)
   - [DEEP LOOP](#deep-loop)
   - [SKILLS LIBRARY](#skills-library)
@@ -546,115 +545,6 @@ The mk-spec-memory text embedder layer is pluggable. Swap defaults through the m
 
 ---
 
-### 🔍 Code Graph
-
-The Code Graph is an indexed relationship map of your code, so the assistant answers structural questions straight from real call and import edges instead of guessing from text: "what calls this?", "what imports this?", "what breaks if we change it?"
-
-The intended routing order is graph-first: the Code Graph resolves structural queries first, then Memory supports session decisions and active-task context after the packet-local recovery sources have been checked. A 3-tier FTS fallback escalates automatically when results are weak.
-
-&nbsp;
-#### Default Scope (End-User Code Only)
-
-By default, code-graph scans your repo code only. Five `.opencode/` folders are excluded so end-user search results stay signal-rich:
-
-- `.opencode/skills/**`
-- `.opencode/agents/**`
-- `.opencode/commands/**`
-- `<active-spec-folder>/**`
-- `.opencode/plugins/**`
-
-Maintainers can opt folders back in process-wide with env vars:
-
-```bash
-SPECKIT_CODE_GRAPH_INDEX_SKILLS=true       # all skills
-SPECKIT_CODE_GRAPH_INDEX_SKILLS=sk-x,sk-y  # only listed skills (csv)
-SPECKIT_CODE_GRAPH_INDEX_AGENTS=true
-SPECKIT_CODE_GRAPH_INDEX_COMMANDS=true
-SPECKIT_CODE_GRAPH_INDEX_SPECS=true
-SPECKIT_CODE_GRAPH_INDEX_PLUGINS=true
-SPECKIT_CODE_GRAPH_DB_DIR=/path/to/code-graph-db # optional DB-dir override
-```
-
-Per-call args override env vars when provided. Env vars apply only for fields omitted from the scan call:
-
-```ts
-  includeSkills: ['sk-code', 'sk-doc'], // granular: only these skills
-  includeAgents: true,                         // all .opencode/agents/**
-})
-```
-
-
-&nbsp;
-#### How the Code Graph Works
-
-
-**Startup injection.** When the MCP server starts, it initializes the `code-graph.sqlite` database, runs a non-blocking startup scan and activates a file watcher. Claude Code transports the compact startup shared-payload through its runtime hook (`session-prime.ts`). OpenCode uses plugin surfaces for in-session context and routing. The payload includes a one-line health summary, `graphQualitySummary` (detector provenance + edge-enrichment summary) and the `sharedPayloadTransport` envelope. `session_bootstrap()` remains available as a manual recovery surface when native hooks are disabled.
-
-**Auto-indexing.** The graph stays current through three mechanisms:
-1. **Startup scan** - indexes on server boot (async, non-blocking)
-2. **File watcher** - Chokidar monitors spec and source folders with a 2-second debounce, reindexing changed files in real time
-
-The indexer uses tree-sitter to parse source files and extract functions, classes, imports and call relationships. It tracks per-file content hashes to skip unchanged files, making incremental scans fast.
-
-&nbsp;
-#### Readiness & Response Contract
-
-
-
-&nbsp;
-#### Edge Explanations and Better Blast Radius
-
-
-`blast_radius` keeps the prior payload (affected files, source files, hot files, multi-file union, depth) and adds:
-
-- **`depthGroups`**: affected nodes bucketed by how far they sit from the change
-- **`riskLevel`**: `high` when the subject is ambiguous or fans out to more than 10 things at depth one, `medium` for 4–10, `low` otherwise
-- **`minConfidence`** filter, drop traversals below a confidence floor
-- **`ambiguityCandidates`**: list of plausible matches when the subject can't be resolved
-- **`failureFallback`**: structured info instead of a bare error string when resolution can't continue
-
-All of this rides inside the existing `code_edges.metadata` JSON blob, no SQLite schema changes.
-
-&nbsp;
-#### `detect_changes`: Preflight Impact Check
-
-
-You hand it `{ diff: string, rootDir?: string }`. It walks each diff hunk, overlaps the line ranges with stored symbols and returns `{ status, affectedSymbols[], affectedFiles[], blockedReason?, timestamp, readiness }`.
-
-Safety is non-negotiable: the tool checks the graph is fresh before parsing the diff. If the graph is stale or unavailable, it returns `status: 'blocked'` immediately, so an out-of-date index never produces a false "nothing impacted" answer. Inline indexing is explicitly disabled here, so the read-only contract is enforced.
-
-Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
-
-&nbsp;
-#### Apply-Pipeline Safety
-
-
-
-&nbsp;
-#### What Each System Does
-
-| System                   | Best for                                                                   | Primary surface                                                                  |
-| ------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| **Session bridge tools** | Session bootstrap, resume and health checks around graph availability      | `session_bootstrap`, `session_resume`, `session_health`                          |
-
-&nbsp;
-#### How Query Routing Works (Graph-First)
-
-The default routing order is: **Code Graph** (structural) -> **Memory** (session/decision context). This graph-first approach tries structural resolution first, with a 3-tier FTS fallback when earlier stages miss.
-
-- Use the **Code Graph** first for structural questions: callers, callees, imports, hierarchy, file outlines and reverse impact.
-- Use **session tools** when recovering or checking environment readiness, but treat `/speckit:resume` as the canonical operator-facing recovery surface.
-- Rebuild task continuity in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs.
-- Use **Memory** after those packet-local sources when the question is about prior decisions, spec history, handovers or task continuity that still needs deeper retrieval.
-
-&nbsp;
-#### Why It Matters
-
-Structural search answers relationship questions that text matching cannot. Instead of "this code looks relevant", the Code Graph tells you how it connects: which functions call it, which files import it and what breaks if you change it. That turns impact analysis from a guess into a lookup.
-
-
----
-
 ### 🎯 Skill Advisor
 
 The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `mk_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp-server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
@@ -735,7 +625,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
 - **CLI front door**: `skill-advisor.cjs` exposes the same 9 tools over the warm daemon for hooks, cron and shell diagnostics; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are gated behind `--trusted`.
-- **Launcher resilience**: the advisor launcher carries the same owner lease and reconnecting session proxy as the spec-memory and code-index launchers, and acts on dead-socket respawn decisions under a bootstrap lock — a hung daemon is reaped and replaced instead of stranding the session or spawning a second writer.
+- **Launcher resilience**: the advisor launcher carries the same owner lease and reconnecting session proxy as the spec-memory launcher, and acts on dead-socket respawn decisions under a bootstrap lock — a hung daemon is reaped and replaced instead of stranding the session or spawning a second writer.
 
 &nbsp;
 #### Validation and Testing
@@ -1101,7 +991,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp-server/](.opencode/skills/system-spec-kit/mcp-server/) for the dedicated [stress-test/](.opencode/skills/system-spec-kit/mcp-server/stress-test/) suite, which covers search-quality, memory, skill-advisor, code-graph, session and matrix subsystems. [matrix-runners/](.opencode/skills/system-spec-kit/mcp-server/matrix-runners/) provides per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across the remaining active CLI skill surfaces.
+The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp-server/](.opencode/skills/system-spec-kit/mcp-server/) for the dedicated [stress-test/](.opencode/skills/system-spec-kit/mcp-server/stress-test/) suite, which covers search-quality, memory, skill-advisor, session and matrix subsystems. [matrix-runners/](.opencode/skills/system-spec-kit/mcp-server/matrix-runners/) provides per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across the remaining active CLI skill surfaces.
 
 &nbsp;
 #### DEEP
@@ -1132,20 +1022,20 @@ The active autonomous loop families (the improvement family carries three lanes)
 Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
 
 **`/doctor <target>` (router)**
-- Single entry point for 9 subsystems: `memory`, `embeddings`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
+- Single entry point for 8 subsystems: `memory`, `embeddings`, `causal-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
 - Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor code-graph --scope=stale`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
+- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`**
 - MCP infrastructure repair (replaces the standalone `/doctor:mcp_install` and `/doctor:mcp_debug` from v3.4.0.0)
 - `install`. Fresh install or reinstall of the native MCP servers from their install guides. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
-- `debug`. Diagnoses the native MCP servers (Spec Kit Memory, System Skill Advisor, System Code Graph, Code Mode, Sequential Thinking) with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
+- `debug`. Diagnoses the native MCP servers (Spec Kit Memory, System Skill Advisor, Code Mode, Sequential Thinking) with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
 **`/doctor:update`**
-- Multi-subsystem orchestrator: dependency-safe rebuild across code-graph → context-index + vector-index → causal-edges → skill-graph → advisor → deep-loop → eval
+- Multi-subsystem orchestrator: dependency-safe rebuild across context-index + vector-index → causal-edges → skill-graph → advisor → deep-loop → eval
 - One lock (`mcp-server/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
 - Tier-aware mid-run prompts: SHORT steps auto-acknowledge. MEDIUM steps share one combined prompt (Q-MED). LONG-POLE `memory_index_scan` gets explicit ETA prompt (Q-LONG, 5-15 min)
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
@@ -1349,36 +1239,6 @@ The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus 
     }
   }
 }
-```
-
-&nbsp;
-### Maintainer-Mode Code-Graph Flags (already disabled for end users)
-
-All supported runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.vscode/mcp.json`) carry five opt-in maintainer flags:
-
-```text
-SPECKIT_CODE_GRAPH_INDEX_SKILLS    (covers .opencode/skills/**)
-SPECKIT_CODE_GRAPH_INDEX_AGENTS    (covers .opencode/agents/**)
-SPECKIT_CODE_GRAPH_INDEX_COMMANDS  (covers .opencode/commands/**)
-SPECKIT_CODE_GRAPH_INDEX_SPECS     (covers <active-spec-folder>/**)
-SPECKIT_CODE_GRAPH_INDEX_PLUGINS   (covers .opencode/plugins/**)
-SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory override)
-```
-
-**End users see all 5 as `"false"`** thanks to the [git clean filter](#git-clean-filter--maintainer-mode-stays-local). That's the framework default and what you want, the code graph indexes your project code, not the framework backend.
-
-**Maintainers (us) have all 5 as `"true"`** locally because we navigate `.opencode/` to iterate on the framework. The smudge filter restores `"true"` on checkout/pull/clone after running `./scripts/setup-maintainer-filters.sh`.
-
-
-<a id="git-clean-filter--maintainer-mode-stays-local"></a>
-#### Git clean filter: maintainer mode stays local
-
-A `.gitattributes` clean/smudge filter keeps these flags `"false"` in every commit while letting maintainers run with `"true"` locally. End users never need to touch this. Maintainers contributing upstream can opt in on a fresh clone:
-
-```bash
-./scripts/setup-maintainer-filters.sh
-git rm --cached opencode.json .claude/mcp.json .vscode/mcp.json
-git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json
 ```
 
 <!-- /ANCHOR:configuration -->
