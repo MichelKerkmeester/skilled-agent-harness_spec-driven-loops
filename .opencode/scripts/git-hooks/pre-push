@@ -162,6 +162,35 @@ if [[ "$REJECTED" -ne 0 ]]; then
   exit 1
 fi
 
+# ── Skill-metadata gate (independently bypassable) ───────────────────────────
+#
+# Runs the fleet-wide skill-root metadata class gate before skill changes reach
+# origin. It exists because both live regressions to date were pushes that grew
+# a skill's doc corpus without regenerating its generated files — CI on the
+# release line only catches that after the fact, while this catches it before.
+# The gate is dependency-free and finishes in about a second, so it runs
+# blocking (unlike the report-only test gate below); a stale result is fixed
+# with `ci-skill-root-metadata.cjs --fix`, not bypassed.
+#
+# The gate reads the working tree, which on a normal push from a clean worktree
+# is exactly what is being pushed. A deliberately partial push from a dirty
+# tree can skip with SPECKIT_SKIP_PREPUSH_SKILL_GATE=1.
+if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
+  SKILL_GATE="$REPO_ROOT/.opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs"
+  if [[ -f "$SKILL_GATE" ]] && ! git -C "$REPO_ROOT" diff --quiet HEAD@{push} HEAD -- .opencode/skills 2>/dev/null; then
+    if ! node "$SKILL_GATE" >&2; then
+      {
+        echo ""
+        echo "BLOCKED: skill-root metadata gate failed for skills being pushed."
+        echo "Fix with:  node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+        echo "Skip (partial push from a dirty tree only): SPECKIT_SKIP_PREPUSH_SKILL_GATE=1 git push ..."
+        echo ""
+      } >&2
+      exit 1
+    fi
+  fi
+fi
+
 # ── Test gate (third gate, independently bypassable) ─────────────────────────
 #
 # Runs the repository's discovered test suites before anything reaches origin.

@@ -9,7 +9,9 @@ name: Routing Registry Drift Guard
 # below cover every input that can invalidate a serving manifest.
 on:
   push:
-    branches: [main]
+    # skilled/v* is included because release-line pushes land directly (no PR),
+    # and both live skill-metadata regressions to date arrived exactly that way.
+    branches: [main, 'skilled/v*']
     paths:
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
