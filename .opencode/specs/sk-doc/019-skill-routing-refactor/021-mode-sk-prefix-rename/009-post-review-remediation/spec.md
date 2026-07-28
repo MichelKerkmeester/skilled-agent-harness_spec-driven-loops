@@ -72,3 +72,25 @@ only speaks the pre-rename names. This phase closes all four.
 
 - All four lanes verified and committed independently; full gate matrix green with the Lane A baseline consciously re-recorded.
 <!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Risk | Mitigation |
+|------|------------|
+| The rollup change touches a shared spec-kit library | Unit-tested, full-suite failures baselined at the prior commit, untouched packets integrity-checked |
+| Route-gold refresh could shift gate numbers unnoticed | Per-scenario diff against pre-refresh snapshots; both hubs proved byte-stable |
+
+**Dependencies:** the merged review report's findings reconciliation and the frozen rename map.
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+1. When to schedule the follow-up packet for the real router misses (two sk-design interface
+   expectations, ten sk-code scenarios without typed gold) now that stale gold is ruled out.
+<!-- /ANCHOR:questions -->

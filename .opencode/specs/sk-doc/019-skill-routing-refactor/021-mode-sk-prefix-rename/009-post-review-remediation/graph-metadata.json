@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Fix every remaining deep-review finding: route-gold refresh, phase-parent status rollup, pre-existing repairs, additive advisor vocabulary.",
     "created_at": "2026-07-28T11:56:16.836Z",
-    "last_save_at": "2026-07-28T11:56:16.836Z",
+    "last_save_at": "2026-07-28T12:00:00.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,9 +196,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f689a56fc28275b21b7d9c9a50df3be1d093feafda0cff41b6e7a529866c153b",
+    "source_fingerprint": "sha256:6c0d8257673a516d842f911148fb62bbb10dbc61b95b33f7578359dd37f4a6fe",
     "source_doc_hashes": {
-      "spec.md": "4e9206d99ad7d57cf1af0740e7e112eb8fba2b19e003483b9cd471532174c098",
+      "spec.md": "c6c980ea081a1e2b09b8a8f789748e44cc0930cd526c8524d929679582666a5a",
       "plan.md": "6421569efc7b814fc7c02635d01d279b7743f459f3ceb2cc1970a595ed5ab8cc",
       "tasks.md": "86362b797876226586b259fc81ac16fd22f88125ce2892b1d73921a47bdecc9e",
       "checklist.md": "796748ca9969fdc0d4df6adfa5d315114e34eb611f7959416af0513510f7a3f5",
