@@ -1,6 +1,6 @@
 ---
 name: deep-review
-description: LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state.
+description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
 mode: subagent
 temperature: 0.1
 permission:
