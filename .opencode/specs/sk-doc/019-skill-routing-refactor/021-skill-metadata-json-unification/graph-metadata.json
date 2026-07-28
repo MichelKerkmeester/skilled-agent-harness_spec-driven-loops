@@ -15,7 +15,14 @@
       "leaf-manifest leaf-aliases description drift",
       "skill root json contract",
       "command-metadata coverage",
-      "automate skill json generation"
+      "automate skill json generation",
+      "skill metadata unification plan",
+      "fleet class gate implementation phases",
+      "skill root contract rollout",
+      "skill metadata unification tasks",
+      "fleet class gate task list",
+      "skill metadata unification checklist",
+      "fleet class gate verification"
     ],
     "key_topics": [
       "skill",
@@ -32,10 +39,20 @@
       "coverage"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+      "research/lineages/sol-high-fast/research.md",
+      "decision-record.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "scripts/README.md",
+      "lib/README.md",
+      "scripts/lib/README.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -45,9 +62,51 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -58,12 +117,6 @@
       },
       {
         "name": "Skill Root Metadata",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -85,19 +138,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blocked Task Protocol On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A census of the 12 skill roots produces twelve distinct metadata shapes",
     "created_at": "2026-07-27T17:47:35.453Z",
-    "last_save_at": "2026-07-27T17:47:35.453Z",
+    "last_save_at": "2026-07-27T20:31:30.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec4b8c933ab63efe62e452c37aeba228ce45c40b87e3cf42d2e46ab1b473f186",
+    "source_fingerprint": "sha256:a9bf0b6874c97dacbe0c6382f24f433be052be068dde2cb341a3c2a0a3a13050",
     "source_doc_hashes": {
-      "spec.md": "03c7c19da0a97b67c0cee556925ec5bbb87ac20d380b52789b5b7ff350fd2b9c"
+      "spec.md": "37dce339b5d65bffbfcd0463c8fd7c6b6cef3acad04b18800867a32e928d5f3b",
+      "plan.md": "bce8ae2c6e7906aa47b7fad62abea5c9f14f54745869d42f77556a6ed74b0de6",
+      "tasks.md": "a7ecf1358e0509ff03d3701539ff2a0d060a358748caa32429e87d5b273cd905",
+      "checklist.md": "cadbe1f60fc2df74861895b0379d1d84226e98fb759c8fd8c509c02ba9921ab2",
+      "decision-record.md": "8990697411ecc4a21a4dafa3af56d570049ad8e695b1b62346e5a87c65b394c0",
+      "implementation-summary.md": "9e3bfaaddda7dcd26450111bcd5aa3c31eacd95c12a93e011853ec14819b5957"
     },
     "last_active_child_id": null,
     "last_active_at": null

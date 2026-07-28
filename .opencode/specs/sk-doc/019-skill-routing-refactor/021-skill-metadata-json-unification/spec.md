@@ -12,26 +12,28 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-27T20:31:30Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored Level 3 research-first scaffold from the operator's JSON-drift report"
-    next_safe_action: "Run the 10-iteration deep-research loop over the skill-root JSON contract, then author plan.md from its synthesis"
+    recent_action: "Shipped all six phases; fleet 12/12"
+    next_safe_action: "Operator review and merge"
     blockers:
-      - "Class taxonomy and per-class mandatory set are the research deliverable; implementation must not start before synthesis lands"
+      - "Uncommitted: worktree pending operator review"
     key_files:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "021-skill-metadata-json-unification-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "What is the correct skill class taxonomy, and which JSONs are mandatory per class?"
-      - "Is leaf-aliases.json a durable contract or should its data fold into mode-registry/leaf-manifest.config?"
-      - "Should command-metadata.json generalize to every command-owning skill, or retract to sk-design only?"
+      - "Should the root framework doc point directly at the canonical contract? Deferred; that file was under concurrent edit."
     answered_questions:
       - "leaf-manifest.json is generated output, not authored: generate-leaf-manifest.cjs derives it from mode-registry.json (hubs) or leaf-manifest.config.json (registry-less skills)"
       - "Operator directive: uniformity is enforced per documented class; cross-class variance is legal only when a written rule explains it"
+      - "Two classes: H (registry+router hub) and S (standalone); the pair is the discriminator"
+      - "description.json is hub-only; no production advisor consumer reads a skill-root description.json"
+      - "leaf-aliases.json is generated for S as an identity projection and authored for H"
+      - "command-metadata.json stays an sk-design overlay; its consumers do not enumerate roots"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -59,12 +61,13 @@ Today a maintainer cannot tell, from any document, which of these files their sk
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
+| **Completed** | 2026-07-27 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Parent Spec** | ../spec.md |
-| **Research Source** | `research/research.md` (this packet, pending) |
+| **Research Source** | `research/lineages/sol-high-fast/research.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -285,7 +288,7 @@ Enumerated after research synthesis. The classes of change are known:
 
 ## RELATED DOCUMENTS
 
-- **Research Source**: `research/research.md` (produced by this packet's deep-research loop)
+- **Research Source**: `research/lineages/sol-high-fast/research.md`
 - **Prior routing-registry work (shared boundary)**: `../012-skill-advisor-routing-fixes/spec.md`
 - **Prior hub-side routing work**: `../011-sk-doc-routing-fixes/spec.md`
 - **Router unification program**: `../015-router-unification-program/spec.md`
