@@ -24,8 +24,8 @@
 #             (prevents the model-unreachable-by-name class, e.g. qwen3.6).
 #
 # Canonical locations (allowed to carry the tables / the Tier-3 list):
-#   .opencode/skills/sk-prompt/prompt-models/assets/cli-prompt-quality-card.md
-#   .opencode/skills/sk-prompt/prompt-improve/references/patterns-evaluation.md
+#   .opencode/skills/sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md
+#   .opencode/skills/sk-prompt/sk-prompt-improve/references/patterns-evaluation.md
 #
 # Exit codes:
 #   0 — all checks pass
@@ -118,7 +118,7 @@ if python3 - <<'PY'
 import json, os, re, glob, sys
 
 ROOT = os.environ["ROOT"]
-H = f"{ROOT}/.opencode/skills/sk-prompt/prompt-models"
+H = f"{ROOT}/.opencode/skills/sk-prompt/sk-prompt-models"
 reg = json.load(open(f"{H}/assets/model-profiles.json"))
 idx = open(f"{H}/references/models/_index.md").read()
 all_ids = {m["id"] for m in reg["models"]}
