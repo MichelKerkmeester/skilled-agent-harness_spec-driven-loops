@@ -1,0 +1,39 @@
+{
+  "researchTopic": "Enumerate every surface, reference and path that must change when 20 mode packet directories and 21 workflowMode keys across sk-code, sk-design, sk-doc and sk-prompt are renamed with an sk- prefix. Classify each occurrence as a typed position safe to sweep, a path position, or free prose where a bare key collides with English. Identify which artifacts are generated and must be rebuilt rather than edited, state ordering constraints, and name the command that verifies each class after the rename.",
+  "researchTargetType": "spec-folder",
+  "specFolder": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "auto",
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "label": "grok-4-5-high",
+          "kind": "cli-cursor",
+          "model": "cursor-grok-4.5-high",
+          "sandboxMode": "workspace-write",
+          "timeoutSeconds": 3600,
+          "iterations": 5
+        },
+        {
+          "label": "glm-5-2",
+          "kind": "cli-devin",
+          "model": "glm-5-2",
+          "sandboxMode": "workspace-write",
+          "timeoutSeconds": 3600,
+          "iterations": 5,
+          "promptFramework": "COSTAR"
+        }
+      ],
+      "concurrency": 1,
+      "maxRetries": 3
+    }
+  }
+}

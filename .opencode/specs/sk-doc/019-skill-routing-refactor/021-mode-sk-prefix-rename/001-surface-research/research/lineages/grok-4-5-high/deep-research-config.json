@@ -1,0 +1,85 @@
+{
+  "topic": "Enumerate every surface, reference and path that must change when 20 mode packet directories and 21 workflowMode keys across sk-code, sk-design, sk-doc and sk-prompt are renamed with an sk- prefix. Classify each occurrence as a typed position safe to sweep, a path position, or free prose where a bare key collides with English. Identify which artifacts are generated and must be rebuilt rather than edited, state ordering constraints, and name the command that verifies each class after the rename.",
+  "researchTopic": "Enumerate every surface, reference and path that must change when 20 mode packet directories and 21 workflowMode keys across sk-code, sk-design, sk-doc and sk-prompt are renamed with an sk- prefix. Classify each occurrence as a typed position safe to sweep, a path position, or free prose where a bare key collides with English. Identify which artifacts are generated and must be rebuilt rather than edited, state ordering constraints, and name the command that verifies each class after the rename.",
+  "researchTargetType": "spec-folder",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research",
+  "createdAt": "2026-07-27T20:13:32.751Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  },
+  "resource_map_present": false,
+  "executor": {
+    "kind": "cli-cursor",
+    "model": "cursor-grok-4.5-high",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-grok-4-5-high-1785183212749-q9al64",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "label": "grok-4-5-high",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

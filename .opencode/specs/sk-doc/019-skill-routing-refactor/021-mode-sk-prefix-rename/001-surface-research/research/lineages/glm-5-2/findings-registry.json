@@ -1,0 +1,31 @@
+{
+  "openQuestions": [
+    {"id":"GAP-1","question":"Location of /doc:quality command router file","status":"open"},
+    {"id":"GAP-2","question":"Sibling drift-guard tests for the four sk- hubs (only deep-loop confirmed)","status":"open"},
+    {"id":"GAP-3","question":"Full labeled-prompts.jsonl scan for mode-level expected labels","status":"open"},
+    {"id":"GAP-4","question":"Whether .devin/skills/ dir names should be renamed (judgment: no)","status":"open"},
+    {"id":"GAP-5","question":"orchestrate.md/deep-alignment.md agent line-level mode-key verification","status":"open"}
+  ],
+  "resolvedQuestions": [
+    {"id":"Q1","answer":"13 consumer classes A-M enumerated with file:line evidence"},
+    {"id":"Q2","answer":"typed/path/prose classified; quality+interface are bare-English collision hazards"},
+    {"id":"Q3","answer":"generated: graph-metadata.json, description.json, benchmark reports, .codex/agents/*.toml; rest hand-edited"},
+    {"id":"Q4","answer":"7 ordering constraints; 2 HARD (shared-packet create-skill, registry<->dir reverse mapping)"},
+    {"id":"Q5","answer":"9 verification levers (doctor routes + test guards)"},
+    {"id":"SPEC-OQ","answer":"no non-filesystem DB/cache mode-key consumer; caches skill-identity-keyed"}
+  ],
+  "keyFindings": [
+    {"id":"F-001","class":"A-G","finding":"Typed manifests (mode-registry/hub-router/leaf-manifest/leaf-aliases/command-metadata) carry workflowMode+packet in exact-string fields — safe to sweep"},
+    {"id":"F-002","class":"collision","finding":"Only quality and interface are bare-English collision hazards; 19 other keys are compound/prefixed"},
+    {"id":"F-003","class":"generated","finding":"graph-metadata.json (backfill-graph-metadata.ts) and description.json (generate-description.ts) are generated — rebuild not sweep"},
+    {"id":"F-004","class":"H","finding":"Runtime mirrors are real dirs in this worktree (SYNC.md symlink claim does not hold) — separate sweep or re-sync"},
+    {"id":"F-005","class":"ordering","finding":"create-skill packet shared by two workflowModes; dir rename updates both modes simultaneously; create-skill-parent keeps key!=directory"},
+    {"id":"F-006","class":"K","finding":"Advisor DB/cache/state keyed by skill identity not mode keys; no non-filesystem mode-key consumer"},
+    {"id":"F-007","class":"L","finding":".devin/skills/ dir names are advisor identities (out of scope); content mirrors command routers (in scope)"}
+  ],
+  "ruledOutDirections": [
+    {"id":"R-001","direction":"Exhaustive prose enumeration of every aliases/keywords entry across all hubs","reason":"prose positions flagged as a class, not individually swept; sampled sk-code"},
+    {"id":"R-002","direction":"Full labeled-prompts.jsonl scan","reason":"sampled 3 rows; documented label key is skill_top_1 (skill identity)"}
+  ],
+  "rejectedPatterns": [], "rejectedPatternIndex": [], "suppressedCandidates": [], "promotedIdeas": [], "ideaObservations": []
+}
