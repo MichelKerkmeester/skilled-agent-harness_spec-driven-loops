@@ -22,7 +22,7 @@ export default function dispatchAudit(pi: ExtensionAPI): void {
     try {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
-      const audit = await import("../../.opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs");
+      const audit = await import("../../.opencode/hooks/dispatch/lib/dispatch-audit.mjs");
       audit.recordDispatch({
         command: event.input.command,
         logPath: join(ctx.cwd, audit.DEFAULT_LOG_RELATIVE_PATH),

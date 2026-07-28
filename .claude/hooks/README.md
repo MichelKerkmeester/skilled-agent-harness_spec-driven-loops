@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Claude hook scripts; 
 
 ## 1. OVERVIEW
 
-`.claude/hooks/` contains 19 symlinks to hook scripts owned under `.opencode/`. Most target their owning skill under `.opencode/skills/`; the four fully-portable guard cores (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs`, `task-dispatch-guard.cjs`, `fable-subagent-guard.mjs`, `claude-posttooluse.cjs`) target `.opencode/runtime-hooks/` instead, see [`runtime-hooks/README.md`](../../.opencode/runtime-hooks/README.md) for why. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
+`.claude/hooks/` contains 19 symlinks to hook scripts owned under `.opencode/`. Most target their owning skill under `.opencode/skills/`; the four fully-portable guard cores (`dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs`, `task-dispatch-guard.cjs`, `fable-subagent-guard.mjs`, `claude-posttooluse.cjs`) target `.opencode/hooks/` instead, see [`hooks/README.md`](../../.opencode/hooks/README.md) for why. The mirror gives maintainers one place to inspect the Claude inventory. Claude executes the real paths declared in `.claude/settings.json`, not these links.
 
 Two compiled ESM entrypoints do not execute correctly through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Keep all runtime commands pointed at the real files.
 
@@ -57,4 +57,4 @@ Expected result: hook scripts use mode `120000`; `README.md` uses mode `100644`.
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
 - [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
-- [Runtime hooks tree](../../.opencode/runtime-hooks/README.md): the four fully-portable guard cores this mirror now points at outside `.opencode/skills/`
+- [Runtime hooks tree](../../.opencode/hooks/README.md): the four fully-portable guard cores this mirror now points at outside `.opencode/skills/`

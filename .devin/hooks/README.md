@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for Devin-specific hook adapters; runtime 
 
 ## 1. OVERVIEW
 
-`.devin/hooks/` contains 13 relative symlinks to Devin adapters owned under `.opencode/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and `task-dispatch-guard.cjs` target `.opencode/runtime-hooks/` (the fully-portable guard cores, see [`runtime-hooks/README.md`](../../.opencode/runtime-hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Devin executes the real paths declared in `.devin/hooks.v1.json`. The mirror exists for discovery and direct comparison across runtimes.
+`.devin/hooks/` contains 13 relative symlinks to Devin adapters owned under `.opencode/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and `task-dispatch-guard.cjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Devin executes the real paths declared in `.devin/hooks.v1.json`. The mirror exists for discovery and direct comparison across runtimes.
 
 The current registration is live under `devin -p` when events are top-level arrays with nested matcher groups. Six lifecycle events have fired in a corrected-schema session. `PermissionRequest` and `PostCompaction` remain unobserved because those events did not occur.
 
@@ -51,4 +51,4 @@ Expected result: `8`.
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Canonical live evidence](../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md)
 - [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
-- [Runtime hooks tree](../../.opencode/runtime-hooks/README.md): the five fully-portable guard cores this mirror points at outside `.opencode/skills/`
+- [Runtime hooks tree](../../.opencode/hooks/README.md): the five fully-portable guard cores this mirror points at outside `.opencode/skills/`

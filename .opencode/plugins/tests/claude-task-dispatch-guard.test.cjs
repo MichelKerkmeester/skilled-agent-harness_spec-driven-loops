@@ -28,7 +28,7 @@ const HOOK_PATH = path.join(
   __dirname,
   '..',
   '..',
-  'runtime-hooks',
+  'hooks',
   'task-dispatch',
   'claude',
   'task-dispatch-guard.cjs',

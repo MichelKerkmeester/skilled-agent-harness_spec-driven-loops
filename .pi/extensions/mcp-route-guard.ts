@@ -12,7 +12,7 @@ export default function mcpRouteGuard(pi: ExtensionAPI): void {
     try {
       if (typeof event.toolName !== "string" || !event.toolName.startsWith(MCP_TOOL_PREFIX)) return;
 
-      const guard = await import("../../.opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.cjs");
+      const guard = await import("../../.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs");
       const result = guard.evaluateNativeMcpCall({
         toolName: event.toolName,
         projectDir: ctx.cwd,

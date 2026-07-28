@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/task-dispatch/claude/task-dispatch-guard.cjs
+../../.opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs

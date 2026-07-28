@@ -21,7 +21,7 @@ import { execFileSync } from 'node:child_process';
 
 import { GIT_CHECKS, parseGitCommand } from './git-rule-checks.mjs';
 import { createGitContext } from './git-context.mjs';
-import { readHardRules, evaluate } from '../../../../runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { readHardRules, evaluate } from '../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TEST SETUP

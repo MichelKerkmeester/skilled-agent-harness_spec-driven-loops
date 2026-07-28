@@ -75,7 +75,7 @@ Operators run the exact prompt and command sequence for `CO-038` and confirm the
 || `.opencode/plugins/mk-git-preflight-advisory.js` | The OpenCode plugin: `tool.execute.before` on `bash`, bounded next-turn `experimental.chat.system.transform` delivery, no stdout/stderr |
 || `../../../../../skills/sk-git/scripts/lib/git-rule-checks.mjs` | Shared `GIT_SHAPE`, `GIT_CHECKS` the plugin imports |
 || `../../../../../skills/sk-git/scripts/lib/git-context.mjs` | Shared `createGitContext` the plugin imports |
-|| `../../../../../runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the plugin imports |
+|| `../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the plugin imports |
 || `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 

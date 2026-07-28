@@ -132,7 +132,7 @@ When you reach Phase 1.5 Code Quality Gate:
 
    The same check is enforced automatically at three gates — manual invocation here is early feedback, not the only safety net:
    - **Write-time** (Claude Code only): `claude-posttooluse.sh` fires on every Write/Edit tool call and warns inline before the next AI turn
-   - **Commit-time**: `.opencode/hooks/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`
+   - **Commit-time**: `.opencode/hooks/git/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`
    - **CI**: `.github/workflows/comment-hygiene.yml` re-validates on every PR to main; cannot be bypassed with `--no-verify`
 
 3. Load the matching surface checklist (see §6).

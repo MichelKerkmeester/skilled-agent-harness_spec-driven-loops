@@ -8,17 +8,17 @@ contextType: "verification"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T14:09:19Z"
+    last_updated_at: "2026-07-28T17:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase 6 remediation checklist items (CHK-011/CHK-041) corrected and re-verified"
-    next_safe_action: "Re-run /deep:review before the merge/push/leave-local decision"
+    recent_action: "Phase 7 checklist items (CHK-014/015/024/043) added, verified"
+    next_safe_action: "Await merge/push/leave-local decision from operator"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 98
     open_questions: []
     answered_questions: []
 ---
@@ -57,7 +57,9 @@ _memory:
 - [x] CHK-010 [P0] Every relocated core imports only Node builtins or an unmoved checker via `spawnSync`. [evidence: manual import-graph trace, this session]
 - [x] CHK-011 [P0] No stale path reference survives outside git history. [evidence: this claim was WRONG twice before this evidence row. (1) The relocation-time grep and the first deep-review both scoped to specific known-affected files, missing 2 executable commands in `cli-dispatch-audit-trail.md`/`codex-hook-parity.md` (R4-P1-001, fixed in T020, re-verified via `rg` + a live `npx vitest run` re-run). (2) The re-review fan-out (`cli-devin`/glm-5-2) found the Phase 6 fix STILL wasn't repo-wide: 4 P0 broken imports in `system-spec-kit`/`sk-git` (`permission-request-policy.mjs`, `git-preflight-advisory.mjs`, `advisory-noise-audit.mjs`, `git-rule-checks.test.mjs`) plus 3 more stale doc references (`cli-codex/references/hook-contract.md`, `deep-alignment/references/adapters/sk-doc-known-deviations.md`, `.opencode/skills/.loop-guard-state/README.md`) had never been swept. All 7 fixed this pass and independently re-verified: `node -e "import(...)"` resolves cleanly on all 3 previously-broken `.mjs` modules, `node --test` 23/23 + 2/2 on their owning suites, and a genuine unscoped repo-wide `grep -rln` for every old relocated-core path string now returns zero hits outside `specs/`, `benchmark/reports/`, and `.loop-guard-state` history (archival artifacts, not live code/config)]
 - [x] CHK-012 [P1] Git history preserved on every relocated file (`git mv`, not delete+add). [evidence: commit `40d5f0d2b3` shows renames]
-- [x] CHK-013 [P1] Code follows the existing per-runtime adapter pattern (lib/ + one folder per runtime needing a real file). [evidence: `.opencode/runtime-hooks/README.md` directory tree]
+- [x] CHK-013 [P1] Code follows the existing per-runtime adapter pattern (lib/ + one folder per runtime needing a real file). [evidence: `.opencode/hooks/README.md` directory tree]
+- [x] CHK-014 [P0] The git commit-hooks folder is folded into the tree as `git/` and the whole tree renamed to `.opencode/hooks/`, with git history preserved throughout. [evidence: `find .opencode/hooks -maxdepth 2`; `git log --follow` on `.opencode/hooks/README.md` and `.opencode/hooks/git/README.md` both resolve their true history despite the two-hop move]
+- [x] CHK-015 [P0] The live git-hooks chain still works after the move: `.opencode/scripts/git-hooks/pre-commit`'s `HYGIENE_HOOK` finds and executes the moved comment-hygiene gate. [evidence: direct script invocation with a staged forbidden-comment file (blocked, exit 1) and a clean file (passed, exit 0); native git-commit trigger untestable this session -- a shared, pre-existing `core.hooksPath` `.no-hooks` override in the common `.git/config` affects every worktree and was not changed]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -69,6 +71,7 @@ _memory:
 - [x] CHK-021 [P0] `mcp-route-guard.test.cjs`: 1/1 pass post-fix.
 - [x] CHK-022 [P1] `mk-post-edit-quality.test.cjs` + `mk-deep-loop-guard.test.cjs` + `claude-task-dispatch-guard.test.cjs`: 40/40 combined pass.
 - [x] CHK-023 [P1] `test-root-name-consumer-matrix.cjs`: 17/17 pass post-fix; `dispatch-audit.test.mjs`: 38/38 pass via its own documented `npx vitest run` (no code change needed, wrong-runner false alarm caught and corrected).
+- [x] CHK-024 [P1] Post-consolidation (Phase 7) re-run of every directly affected suite: 73/74 real `node --test` passes (1 pre-existing "dist not built in fresh worktree" environment gap on `spec-gate-core.mjs`, confirmed unrelated to this move and untouched by it) + 40/40 `vitest`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -100,6 +103,7 @@ _memory:
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized with the actual completed work. [evidence: `spec.md`/`plan.md`/`tasks.md` Phase 6 added together, this session]
 - [x] CHK-041 [P1] ~20 live documentation files updated for the new paths; 2 files' relative-depth math manually recomputed via Python `os.path.normpath` after an initial wrong sed pass. Two subsequent sweeps still missed references: the first (R4-P1-001) missed 2 executable-command references in `cli-dispatch-audit-trail.md`/`codex-hook-parity.md`, fixed in T020. The second (the re-review's F006/F007/F008) found 3 more: `cli-codex/references/hook-contract.md` (4 stale adapter path cells), `deep-alignment/references/adapters/sk-doc-known-deviations.md` (stale path + a pre-existing `cli-external`/`cli-external-orchestration` typo fixed while already touching the line), and `.opencode/skills/.loop-guard-state/README.md` (3 stale relative links). All now fixed and path-verified via `os.path.normpath` before editing.
 - [x] CHK-042 [P1] All touched/new README and playbook files report 0 issues via `validate_document.py`.
+- [x] CHK-043 [P1] Phase 7: `.opencode/hooks/README.md`'s OVERVIEW and directory-tree diagram rewritten for the unified scope (the old collision-explaining prose no longer applies); 35 touched documentation files all report 0 issues via `validate_document.py`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -118,8 +122,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 7/7 |
-| P1 Items | 10 | 10/10 |
+| P0 Items | 9 | 9/9 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-07-28

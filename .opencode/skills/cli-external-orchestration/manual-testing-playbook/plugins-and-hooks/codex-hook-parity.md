@@ -32,11 +32,11 @@ The adapters under test:
 |---|---|---|---|
 | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
 | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
-| `runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
-| `.opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
-| `.opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
+| `hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
+| `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
+| `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
 | `system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
-| `runtime-hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
+| `hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 
 This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (allow / advise / deny / fail-open); a live `codex exec` run confirming the SessionStart, UserPromptSubmit, and Stop chains fire and that the injected Gate-3 advisory is honored by the model; and the idempotent installer merging the repo hook set into `~/.codex/hooks.json` while preserving pre-existing (Superset `notify.sh`) entries.
 
@@ -83,7 +83,7 @@ printf '%s' '{"prompt":"implement a new parser function and fix the failing test
 ```bash
 PROJ="$HOME/.codex-hook-fixtures/proj"
 printf '%s' "{\"tool_name\":\"exec\",\"tool_input\":{\"command\":\"codex exec -p orchestrate 'do x'\"},\"cwd\":\"$PROJ\",\"session_id\":\"aud-1\",\"tool_response\":{\"stdout\":\"ok\"}}" \
-  | node .opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+  | node .opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
 tail -1 "$PROJ/.opencode/logs/cli-dispatch-audit.log"
 ```
 
@@ -222,11 +222,11 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
 - Guard adapters (this parity set):
   - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs`
   - `.opencode/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs`
-  - `.opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs`
-  - `.opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs`
-  - `.opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
+  - `.opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs`
+  - `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
+  - `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
   - `.opencode/skills/system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs`
-  - `.opencode/runtime-hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
+  - `.opencode/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
 - Repo hook registration (versioned source of truth): `.codex/hooks.json`
 - Installer (merge into user-global `~/.codex/hooks.json`): `.opencode/bin/install-codex-hooks.mjs`
 - Spec packet: `.opencode/specs/skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity/`

@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/mcp-route-guard/devin/mcp-route-guard.cjs
+../../.opencode/hooks/mcp-route-guard/devin/mcp-route-guard.cjs

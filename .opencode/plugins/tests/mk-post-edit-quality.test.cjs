@@ -18,13 +18,13 @@ const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const ROUTER_PATH = path.join(
-  __dirname, '..', '..', 'runtime-hooks', 'post-edit-quality', 'lib', 'post-edit-router.cjs',
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'lib', 'post-edit-router.cjs',
 );
 const CLAUDE_HOOK_PATH = path.join(
-  __dirname, '..', '..', 'runtime-hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs',
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs',
 );
 const CODEX_HOOK_PATH = path.join(
-  __dirname, '..', '..', 'runtime-hooks', 'post-edit-quality', 'codex', 'post-edit-quality.cjs',
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'codex', 'post-edit-quality.cjs',
 );
 const REPO_ROOT = path.join(__dirname, '..', '..', '..');
 const LOG_RELATIVE = ['.opencode', 'logs', 'post-edit-quality.log'];

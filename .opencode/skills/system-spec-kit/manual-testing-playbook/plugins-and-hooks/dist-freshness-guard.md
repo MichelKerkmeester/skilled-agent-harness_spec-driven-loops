@@ -269,8 +269,8 @@ same shared `dist-freshness.cjs` core.
 - Plugin unit test: `.opencode/plugins/tests/mk-dist-freshness-guard.test.cjs`
 - Shared core: `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`
 - Claude `SessionStart` wrapper: `.opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh`
-- Claude `PostToolUse(Write|Edit)` hook: `.opencode/runtime-hooks/post-edit-quality/claude/claude-posttooluse.cjs`
-- Claude hook router: `.opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs`
+- Claude `PostToolUse(Write|Edit)` hook: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
+- Claude hook router: `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`
 - Hook wiring: `.claude/settings.json` (`SessionStart` and `PostToolUse` blocks)
 - Guard audit log (runtime artifact, not source): `.opencode/logs/dist-freshness-guard.log`
 

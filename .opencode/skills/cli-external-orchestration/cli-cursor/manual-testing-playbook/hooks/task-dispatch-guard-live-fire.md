@@ -16,7 +16,7 @@ This scenario validates that a `preToolUse` array entry scoped with `"matcher": 
 
 ### Why This Matters
 
-This repo's `mcp-server/hooks/cursor/task-dispatch-guard.mjs` is registered as a SECOND `preToolUse` entry alongside the existing unmatched `spec-gate-enforce.mjs` entry, proxying to the same deep-loop dispatch guard (`system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs`) Claude Code's own `preToolUse` hook already uses. If Cursor's `matcher` schema field stopped routing by `tool_name`, or if adding a second array entry silently shadowed the first, the deep-loop dispatch guard would go dark for Cursor-originated subagent delegation without any visible failure.
+This repo's `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` is registered as a SECOND `preToolUse` entry alongside the existing unmatched `spec-gate-enforce.mjs` entry, proxying to the same deep-loop dispatch guard (`.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs`, via the `claude/task-dispatch-guard.cjs` adapter) Claude Code's own `preToolUse` hook already uses. If Cursor's `matcher` schema field stopped routing by `tool_name`, or if adding a second array entry silently shadowed the first, the deep-loop dispatch guard would go dark for Cursor-originated subagent delegation without any visible failure.
 
 ---
 
@@ -68,8 +68,8 @@ Operators run the exact prompt and command sequence for `CU-021` and confirm the
 
 | File | Role |
 |---|---|
-| `../../../../system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs` | The real `matcher: "Task"`-wired `preToolUse` guard this scenario's live-fire evidence supports |
-| `../../../../system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs` | The shared deep-loop dispatch guard core `task-dispatch-guard.mjs` proxies to |
+| `../../../../../hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | The real `matcher: "Task"`-wired `preToolUse` guard this scenario's live-fire evidence supports |
+| `../../../../../hooks/task-dispatch/lib/dispatch-guard.cjs` | The shared deep-loop dispatch guard core `task-dispatch-guard.mjs` proxies to |
 | `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs` | The pre-existing unmatched `preToolUse` entry this scenario confirms keeps firing alongside the new matched entry |
 
 ---

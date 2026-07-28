@@ -84,7 +84,7 @@ Allowed dependency direction:
 
 ```text
 post-commit / post-merge / post-rewrite → lib/memory-drift-marker.sh
-pre-commit → .opencode/hooks/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, tool-ownership lint runner
+pre-commit → .opencode/hooks/git/pre-commit, sk-doc validator, skill-advisor card-sync guard, doctor mutation-class guard, tool-ownership lint runner
 pre-push → .opencode/skills/sk-git/scripts/worktree-naming.sh (sourced; validators only)
 ```
 

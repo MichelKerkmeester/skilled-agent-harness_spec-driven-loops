@@ -25,7 +25,7 @@
 // The guard policy lives outside .opencode/plugins/ so this file can remain a
 // thin, default-export-only OpenCode plugin while the Claude hook consumes the
 // same core. A .cjs core is imported here as the ESM default export.
-import guardCore from '../runtime-hooks/task-dispatch/lib/dispatch-guard.cjs';
+import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY

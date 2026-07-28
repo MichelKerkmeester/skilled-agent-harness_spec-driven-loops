@@ -47,7 +47,7 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
       const [lint, gitChecks, gitContext] = await Promise.all([
-        import("../../.opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs"),
+        import("../../.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
         import("../../.opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs"),
         import("../../.opencode/skills/sk-git/scripts/lib/git-context.mjs"),
       ]);

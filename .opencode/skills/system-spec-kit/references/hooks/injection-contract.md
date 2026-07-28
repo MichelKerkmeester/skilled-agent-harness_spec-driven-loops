@@ -111,7 +111,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 ```
 
 - **Trigger:** a bash tool call matching a known CLI-dispatch shape (`opencode run`, `claude -p`, etc.).
-- **Owning module:** `.opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
+- **Owning module:** `.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
 - **Channel:** the block path is `[BLOCK]`. The warn-only path is `[SYS]` (`additionalContext`) on Claude/Cursor/Devin/Codex/Pi, or a bounded system-transform append on OpenCode.
 
 ### MCP Route Guard
@@ -119,7 +119,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 **Injects:** a warning that a native `mcp_*` tool call should have routed through an available Code Mode manual instead.
 
 - **Trigger:** a native (non-Code-Mode) MCP tool call matching a manual Code Mode already covers.
-- **Owning module:** `.opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.cjs`, relocated from `mcp-code-mode/runtime/lib/`.
+- **Owning module:** `.opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`, relocated from `mcp-code-mode/runtime/lib/`.
 - **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex/Pi (`additionalContext`/`reason`). `[LOG]`-only on OpenCode: `mk-mcp-route-guard.js`'s own README entry says explicitly it "writes advisory logs only and never rejects a call," so this is the one guard genuinely invisible to the OpenCode model, not just invisible to the human.
 
 ### Dispatch Audit
@@ -133,7 +133,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 **Injects:** an allow/deny decision (with reason on deny) for a subagent/sub-task dispatch.
 
 - **Trigger:** a `run_subagent`/Task-tool dispatch.
-- **Owning module:** `.opencode/runtime-hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
+- **Owning module:** `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
 - **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Not wired for Pi (no distinguishable pi-subagent tool name to match on, per phase 008's documented deferral).
 
 ### Post-Edit Quality
@@ -148,7 +148,7 @@ Violations in src/foo.ts:
 ```
 
 - **Trigger:** a completed `edit`/`write` tool call.
-- **Owning module:** `.opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/code-quality/scripts/lib/`.
+- **Owning module:** `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/code-quality/scripts/lib/`.
 - **Channel, read this one carefully:** Claude Code's and Devin's own adapters (`claude-posttooluse.cjs`, `devin/post-edit-quality.cjs`) write this text to **plain stdout and always exit 0**, with no `hookSpecificOutput`/`systemMessage` field at all. Per Claude Code's documented `PostToolUse` contract, exit-0 stdout is "shown in transcript," the debug/verbose transcript view, not the normal conversation the assistant reasons over. **These two adapters' findings likely never reach the assistant's context at all in normal use**, unlike every other `[SYS]`-tagged hook in this document. This is confirmed for Claude Code from its own hook documentation. Devin's exact handling of plain (non-JSON) `PostToolUse` stdout is not independently verified in this repo. Pi's `post-edit-quality.ts` and OpenCode's `mk-post-edit-quality.js` both use their runtime's real context-injection channel instead (`ToolResultEventResult.content` for Pi, `experimental.chat.system.transform` for OpenCode), so only those two are confirmed to reach the model.
 
 ---
@@ -224,4 +224,4 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 - [`../../../../.opencode/plugins/README.md`](../../../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../../../.pi/extensions/README.md`](../../../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../../../.claude/hooks/README.md`](../../../../.claude/hooks/README.md), [`../../../../.cursor/hooks/README.md`](../../../../.cursor/hooks/README.md), [`../../../../.devin/hooks/README.md`](../../../../.devin/hooks/README.md), [`../../../../.codex/hooks/README.md`](../../../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`../../../runtime-hooks/README.md`](../../../runtime-hooks/README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.opencode/skills/` while every other hook in this doc stays inside its owning skill.
+- [`../../../hooks/README.md`](../../../hooks/README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.opencode/skills/` while every other hook in this doc stays inside its owning skill.

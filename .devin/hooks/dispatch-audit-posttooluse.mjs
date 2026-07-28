@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/dispatch/devin/dispatch-audit-posttooluse.mjs
+../../.opencode/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs

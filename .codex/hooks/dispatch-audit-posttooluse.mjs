@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+../../.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs

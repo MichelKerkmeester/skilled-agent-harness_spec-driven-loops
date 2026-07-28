@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/post-edit-quality/devin/post-edit-quality.cjs
+../../.opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs

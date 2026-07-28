@@ -54,7 +54,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/dispatch/devin/dispatch-preflight-lint.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs'",
           "timeout": 5
         },
         {
@@ -84,7 +84,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/task-dispatch/devin/task-dispatch-guard.cjs'",
           "timeout": 5
         }
       ]
@@ -94,7 +94,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/mcp-route-guard/devin/mcp-route-guard.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/mcp-route-guard/devin/mcp-route-guard.cjs'",
           "timeout": 5
         }
       ]
@@ -106,7 +106,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/post-edit-quality/devin/post-edit-quality.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs'",
           "timeout": 10
         }
       ]
@@ -116,7 +116,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/dispatch/devin/dispatch-audit-posttooluse.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs'",
           "timeout": 5
         }
       ]

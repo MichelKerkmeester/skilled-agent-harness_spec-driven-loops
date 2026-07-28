@@ -10,25 +10,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T14:09:19Z"
+    last_updated_at: "2026-07-28T17:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Implemented Phase 6 (T017-T024): all 6 P1 findings fixed + re-verified"
-    next_safe_action: "Re-run /deep:review before the merge/push/leave-local decision"
+    recent_action: "Phase 7 hooks-tree consolidation complete, verified this pass"
+    next_safe_action: "Await merge/push/leave-local decision from operator"
     blockers:
-      - "Re-review not yet run; merge/push/leave-local decision still pending."
+      - "Merge/push/leave-local decision still pending, operator call."
     key_files:
-      - ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md"
-      - "review/review-report.md"
+      - ".opencode/hooks/README.md"
+      - ".opencode/scripts/git-hooks/pre-commit"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 98
     open_questions:
-      - "Merge/push/leave-local decision pending remediation + re-review."
+      - "Merge/push/leave-local decision, now including Phase 7."
     answered_questions:
-      - "Deep-review result: CONDITIONAL, P0=0 P1=6 P2=4."
-      - "Remediation scope: all 6 P1s within this packet, not a separate follow-up."
+      - "Deep-review round 1: CONDITIONAL P0=0/P1=6/P2=4, remediated."
+      - "Re-review round 2 (fan-out): FAIL P0=4/P1=4/P2=1, remediated."
+      - "Hooks-tree consolidation: git/ folded in, tree renamed to .opencode/hooks/."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Relocate fully-portable runtime-hook guard cores
@@ -72,8 +73,9 @@ Classify every hook candidate by real import dependency (not assumption), reloca
 - [x] All affected test suites re-run and passing. [evidence: see checklist.md]
 - [x] Forced 5-iteration deep review completed with synthesized verdict. [evidence: CONDITIONAL, P0=0 P1=6 P2=4, `review/review-report.md`]
 - [x] All 6 active P1s remediated (REQ-008 through REQ-013). [evidence: T017-T023, this session — see `tasks.md` Phase 6]
-- [ ] Re-review confirms no regressions. [evidence: pending]
-- [ ] Merge/push/leave-local decision made. [evidence: pending, gated on re-review]
+- [x] Re-review confirms no regressions. [evidence: round-2 fan-out FAIL then fixed+re-verified, `review/review-report.md`]
+- [x] Hooks-tree consolidation (REQ-014, REQ-015) complete with live hygiene-chain proof. [evidence: `tasks.md` Phase 7]
+- [ ] Merge/push/leave-local decision made. [evidence: pending]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -142,7 +144,21 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 - [x] REQ-012 (R4-P1-002): Resolve the "verified across 6 runtimes" overclaim in implementation-summary.md (narrow to what was actually live-tested, or add real live evidence for the other 4).
 - [x] REQ-013 (R5-P1-001): Resolve or accurately frame the system-spec-kit dependency in the 5 relocated adapters that import `hook-adapter-shared.cjs`.
 - [x] Re-run affected test suites and re-validate docs after the fixes.
-- [ ] Re-review (or re-verify) before the merge/push/leave-local decision.
+- [x] Re-review: fan-out (`cli-devin`/`glm-5-2` + `cli-pi`/`gpt-5.6-luna`, 3 iters each, `stop_policy=max-iterations`) returned FAIL (P0=4 P1=4 P2=1, all from `glm`; `luna` never dispatched, a pre-existing `fanout-run.cjs` cli-pi gap). All 7 findings independently re-verified and fixed directly (small mechanical scope; not routed through another full plan/implement cycle).
+
+### Phase 7: Hooks-Tree Consolidation (REQ-014, REQ-015)
+
+- [x] `git mv` the git-hooks trio (`install-hooks.sh`, `README.md`, `pre-commit`) into `.opencode/runtime-hooks/git/`.
+- [x] `git mv .opencode/runtime-hooks .opencode/hooks` (caught and corrected a nesting mistake mid-move: the vacated `.opencode/hooks/` directory still existed on disk, so the first attempt nested `runtime-hooks/` one level too deep — fixed before anything was committed).
+- [x] Fix the critical live-wiring line: `.opencode/scripts/git-hooks/pre-commit`'s `HYGIENE_HOOK` path.
+- [x] Fix the relocated installer's own self-reference (`HOOKS_SRC`, `REPO_ROOT` depth) and add a primary-installer clarification note.
+- [x] Cascade-fix ~11 doc references to the old bare `.opencode/hooks/{pre-commit,install-hooks.sh,README.md}` paths, and ~54 files containing the literal string `runtime-hooks`.
+- [x] Re-point 17 runtime discovery mirror symlinks; verify each resolves to a real file.
+- [x] Second-sweep grep beyond the mechanical substitution found 2 additional stale references predating even the original relocation (`.loop-guard-state/README.md`, `cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md`) — fixed.
+- [x] Rewrite `.opencode/hooks/README.md`'s OVERVIEW and directory-tree diagram to reflect the unified scope (the old collision-explanation prose no longer applies once the collision is resolved).
+- [x] Live git-commit smoke test of the actual hygiene-gate chain via direct script invocation (native git-hook trigger untestable in this session: a shared, repo-wide `core.hooksPath` override to a `.no-hooks` sentinel was already active, unrelated to this work, and not something to change unilaterally since it could affect concurrent sessions).
+- [x] Re-run all directly affected test suites (73/74 real passes; 1 failure is the same pre-existing "fresh worktree dist not built" environment gap from `spec-gate-core.mjs`, unrelated to this move).
+- [x] `validate_document.py` on all 35 touched documentation files.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -159,6 +175,8 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 | Regression baseline | `mcp-code-mode` hub invariant failures | `parent-skill-check.cjs` run against unmodified main tree for comparison |
 | Independent review | Full diff, all dimensions | `/deep:review:auto`, 5 forced iterations -- CONDITIONAL (P0=0 P1=6 P2=4) |
 | Remediation regression | REQ-008/REQ-009/REQ-010 code fixes | New/updated unit tests: multi-file patch coverage, forged-marker rejection, out-of-allowlist secret redaction |
+| Re-review (fan-out) | Full remediated diff | `cli-devin`/`glm-5-2` + `cli-pi`/`gpt-5.6-luna`, 3 iters each -- FAIL (P0=4 P1=4 P2=1), all 7 fixed and re-verified |
+| Live hook-chain smoke test | `.opencode/scripts/git-hooks/pre-commit`'s hygiene sub-gate | Direct script invocation with a staged forbidden-comment file (blocked, exit 1) and a clean file (passed, exit 0) |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -193,8 +211,9 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|--------------------|
 | `/deep:review` command contract | Internal | Available | Cannot obtain independent verification before merge. |
-| Isolated worktree `.worktrees/0118-skilled-hook-runtime-relocation` | Internal | Active | Relocation and its review must stay scoped to this worktree until merge. |
-| `cli-opencode` executor + `gpt-5.6-sol` model | External CLI | Assumed available | Review cannot run with the operator-specified executor. |
+| Isolated worktree `.worktrees/0118-skilled-hook-runtime-relocation` (Phases 1-6, now merged) / `.worktrees/0120-skilled-unify-hooks-tree` (Phase 7) | Internal | Merged / Active | Relocation and its review must stay scoped to its worktree until merge. |
+| `cli-opencode` executor + `gpt-5.6-sol` model (round 1), `cli-devin`/`glm-5-2` + `cli-pi`/`gpt-5.6-luna` (round 2) | External CLI | Available (confirmed via real dispatch receipts each round) | Review cannot run with the operator-specified executor. |
+| Shared `core.hooksPath` `.no-hooks` override in the repo's common `.git/config` | External/shared | Active, pre-existing, not caused by this work | Native git-hook trigger cannot be exercised in this session; script logic verified directly instead. |
 <!-- /ANCHOR:dependencies -->
 
 ---

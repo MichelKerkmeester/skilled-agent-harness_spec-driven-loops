@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/dispatch/claude/dispatch-preflight-lint.mjs
+../../.opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs

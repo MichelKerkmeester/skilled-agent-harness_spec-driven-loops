@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/dispatch/claude/dispatch-preflight-lint.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/claude/dispatch-preflight-lint.mjs'",
             "timeout": 5
           },
           {
@@ -38,7 +38,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/task-dispatch/claude/task-dispatch-guard.cjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs'",
             "timeout": 5
           }
         ]
@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/task-dispatch/claude/fable-subagent-guard.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/task-dispatch/claude/fable-subagent-guard.mjs'",
             "timeout": 5
           }
         ]
@@ -58,7 +58,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/mcp-route-guard/claude/mcp-route-guard.cjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/mcp-route-guard/claude/mcp-route-guard.cjs'",
             "timeout": 5
           }
         ]
@@ -172,7 +172,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
             "timeout": 10
           }
         ]
@@ -182,7 +182,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/runtime-hooks/dispatch/claude/dispatch-audit-posttooluse.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs'",
             "timeout": 5
           }
         ]

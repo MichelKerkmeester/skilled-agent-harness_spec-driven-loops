@@ -28,7 +28,7 @@ import path from 'node:path';
 import {
   evaluate,
   readHardRules,
-} from '../../../../runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs';
+} from '../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { createGitContext } from '../lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../lib/git-rule-checks.mjs';
 

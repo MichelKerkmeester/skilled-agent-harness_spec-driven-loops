@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "hook runtime relocation",
-      "runtime-hooks tree",
+      "hooks tree consolidation",
       "fully-portable guard cores",
       "hook relocation deep review",
       "hook relocation plan",
@@ -26,36 +26,36 @@
       "hook",
       "runtime",
       "relocation",
-      "runtime-hooks",
+      "hooks",
       "tree",
+      "consolidation",
       "fully-portable",
       "guard",
       "cores",
       "deep",
       "review",
-      "plan",
-      "git"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/runtime-hooks/README.md",
+      ".opencode/hooks/README.md",
       ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md",
-      "review/review-report.md",
       ".pi/extensions/git-preflight-advisory.ts",
       ".claude/settings.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".codex/hooks.json",
       "spec.md",
+      "review/review-report.md",
       "review/lineages/glm/review-report.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/hooks/git/install-hooks.sh",
+      ".opencode/scripts/install-git-hooks.sh",
       ".opencode/plugins/README.md",
-      ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs",
-      ".opencode/runtime-hooks/task-dispatch/lib/dispatch-guard.cjs",
-      ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs",
       "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/.loop-guard-state/README.md",
       "tasks.md",
       ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/checklist.md",
       ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/implementation-summary.md"
@@ -64,19 +64,13 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/runtime-hooks/README.md",
+        "path": ".opencode/hooks/README.md",
         "source": "derived"
       },
       {
         "name": "injection-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -110,27 +104,27 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
-        "name": "post-edit-quality.cjs",
-        "kind": "file",
-        "path": ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs",
+        "name": "install-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/hooks/git/install-hooks.sh",
         "source": "derived"
       },
       {
-        "name": "dispatch-guard.cjs",
-        "kind": "file",
-        "path": ".opencode/runtime-hooks/task-dispatch/lib/dispatch-guard.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-audit.mjs",
-        "kind": "file",
-        "path": ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs",
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
         "source": "derived"
       },
       {
@@ -153,12 +147,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implemented Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -204,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Review Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "While documenting every lifecycle hook's injections (`injection-contract.md`), the operator asked whether hook implementations should live outside `.opencode/skills/` entirely, since a user might want a skill's knowledge without its enforcement hooks (or vice versa)",
     "created_at": "2026-07-28T12:20:01.635Z",
-    "last_save_at": "2026-07-28T14:42:56.530Z",
+    "last_save_at": "2026-07-28T15:46:36.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37c967ebac5c4e037f94a019f3aae6abeb931fa7343813869cdd26bc79d3861a",
+    "source_fingerprint": "sha256:27c8f86c2c9c6a200d7494d81afccc146f5f92427df670983fd735b65c9d7cb7",
     "source_doc_hashes": {
-      "spec.md": "6ad2f967f34a6439010331e392a016fea68965bf61bd438693f32a2ea7be97c3",
-      "plan.md": "5d0f5ecef40237ca267970664e5b058ea2fc19cd9c6f1af10b03621ccecd7c09",
-      "tasks.md": "b8f8b3d5ff903f40ee584fa99d8d28891952e1455588a1ee29844572b3488d5e",
-      "checklist.md": "c9c3dfd9f0f481e4331afd0baf66f8f01436a373b5a82dd3fa141351481218e2",
-      "implementation-summary.md": "b0c90d3cf8d2f6536a77d57724c3c2b7d4da1e91e7d1111b6a1a6beb33ffb992"
+      "spec.md": "04b436692dfeacdd508fc541d9ff0f5edc7366844e9162e2137bd0b2fe1967e7",
+      "plan.md": "6baff2ee80148bd9a797b1fe2bbd50344df1c92cab9447e460f04da608c52199",
+      "tasks.md": "d65dd7a4d64175e534e880daecc03c77edc78221f920e83e70129c7cc9b8215d",
+      "checklist.md": "9318fb15cbf55230aacda180380ce29b49c24688432ee882ea08dd76ebd2865a",
+      "implementation-summary.md": "2401d68b1d0e3609fe38b028d8ab87e096823eab2668a7f4459c633613cde634"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,1 +1,1 @@
-../../.opencode/runtime-hooks/dispatch/claude/dispatch-audit-posttooluse.mjs
+../../.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs

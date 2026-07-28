@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: Relocate fully-portable runtime-hook guard cores into .opencode/runtime-hooks/"
-description: "Physically relocate the dispatch, mcp-route-guard, post-edit-quality, and task-dispatch guard cores + per-runtime adapters out of their owning skills into a new .opencode/runtime-hooks/ tree, decoupling hook enforcement from skill knowledge, then run a forced 5-iteration deep-review before merge."
+title: "Feature Specification: Relocate + consolidate fully-portable hook guard cores into .opencode/hooks/"
+description: "Physically relocate the dispatch, mcp-route-guard, post-edit-quality, and task-dispatch guard cores + per-runtime adapters out of their owning skills, then fold the pre-existing git commit-hooks installer in and rename the whole tree to .opencode/hooks/, one root for every hook concept in the repo. Two forced deep-review rounds gate the merge decision."
 trigger_phrases:
   - "hook runtime relocation"
-  - "runtime-hooks tree"
+  - "hooks tree consolidation"
   - "fully-portable guard cores"
   - "hook relocation deep review"
 importance_tier: "normal"
@@ -11,32 +11,32 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T14:09:19Z"
+    last_updated_at: "2026-07-28T17:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Implemented Phase 6 (T017-T024): all 6 P1 findings fixed + re-verified"
-    next_safe_action: "Re-run /deep:review before the merge/push/leave-local decision"
+    recent_action: "Phase 7 hooks-tree consolidation complete, verified this pass"
+    next_safe_action: "Await merge/push/leave-local decision from operator"
     blockers:
-      - "Re-review not yet run; merge/push/leave-local decision still pending."
+      - "Merge/push/leave-local decision still pending, operator call."
     key_files:
-      - ".opencode/runtime-hooks/README.md"
+      - ".opencode/hooks/README.md"
+      - ".opencode/scripts/git-hooks/pre-commit"
       - ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md"
-      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 98
     open_questions:
-      - "Merge into skilled/v4.0.0.0 now, push the branch only, or leave local, pending remediation + re-review."
+      - "Merge into skilled/v4.0.0.0 now, push the branch only, or leave local."
     answered_questions:
       - "Relocation scope: fully-portable set only (dispatch, mcp-route-guard, post-edit-quality, task-dispatch)."
-      - "Worktree vs branch: isolated worktree."
-      - "Deep-review setup: new packet, force all 5 iterations regardless of early convergence."
-      - "Deep-review result: CONDITIONAL, P0=0 P1=6 P2=4 -- see review/review-report.md."
-      - "Remediation scope: fix all 6 active P1s within this same packet (not split into a separate follow-up packet), per operator direction."
+      - "Worktree vs branch: isolated worktree, each phase."
+      - "Deep-review round 1: CONDITIONAL P0=0/P1=6/P2=4, remediated."
+      - "Re-review round 2 (fan-out glm+luna): FAIL P0=4/P1=4/P2=1, remediated."
+      - "Hooks-tree consolidation: git/ folded in, tree renamed to .opencode/hooks/."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Relocate fully-portable runtime-hook guard cores into .opencode/runtime-hooks/
+# Feature Specification: Relocate + consolidate fully-portable hook guard cores into .opencode/hooks/
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -49,9 +49,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress — remediation phase (deep review CONDITIONAL, P0=0 P1=6 P2=4) |
+| **Status** | In Progress — Phase 7 hooks-tree consolidation |
 | **Created** | 2026-07-28 |
-| **Branch** | `skilled/0118-hook-runtime-relocation` (worktree `.worktrees/0118-skilled-hook-runtime-relocation`, from `skilled/v4.0.0.0`) |
+| **Branch** | `skilled/0120-unify-hooks-tree` (worktree `.worktrees/0120-skilled-unify-hooks-tree`, from `skilled/v4.0.0.0`; supersedes the merged `skilled/0118-hook-runtime-relocation` branch for Phase 7 only) |
 | **Workflow** | Claude plan-mode implementation, followed by `/deep:review:auto` |
 | **Authority** | Cross-cutting: `cli-external-orchestration`, `mcp-tooling` (mcp-code-mode), `sk-code`, `system-deep-loop`, `system-spec-kit` |
 <!-- /ANCHOR:metadata -->
@@ -103,6 +103,16 @@ The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=
 - **R4-P1-001** (gap introduced by this session's own retroactive documentation): 2 manual-testing-playbook files (`cli-dispatch-audit-trail.md`, `codex-hook-parity.md`) still carry executable commands pointing at pre-relocation, skill-owned paths; `checklist.md`'s CHK-011/CHK-041 rows currently overstate these as already fixed.
 - **R4-P1-002** (gap introduced by this session's own retroactive documentation): `implementation-summary.md` claims verification "across 6 runtimes" but this session only live-smoke-tested Pi and OpenCode; Claude/Cursor/Devin/Codex were only confirmed via config/symlink/test-suite checks, not live post-move smoke tests.
 - **R5-P1-001** (design gap, not a regression): 5 relocated adapters (Claude+Devin task-dispatch, Claude+Codex+Devin mcp-route-guard) hard-import `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` (confirmed: exactly 24 lines, zero external dependencies of its own); `.opencode/runtime-hooks/README.md` currently frames this as equivalent to relying on a Node builtin, which is not accurate for these 5 files.
+
+### Consolidation Scope (Phase 7 — hooks-tree unification)
+
+Operator direction: fold the pre-existing git commit-hooks installer folder (`.opencode/hooks/`) into the runtime-hooks tree as a `git/` subfolder, then rename the whole tree from `.opencode/runtime-hooks/` to `.opencode/hooks/` — one root for every "hook" concept in the repo, resolving the naming collision the original relocation deliberately worked around by choosing the `runtime-hooks` name.
+
+- `git mv .opencode/hooks/{install-hooks.sh,README.md,pre-commit}` into `.opencode/runtime-hooks/git/`, then `git mv .opencode/runtime-hooks .opencode/hooks`.
+- **Critical discovery, not previously known**: `.opencode/hooks/pre-commit` is chain-called by the repo's *actual* installed `.git/hooks/pre-commit` (`.opencode/scripts/git-hooks/pre-commit`) as its comment-hygiene sub-gate, via a hardcoded `HYGIENE_HOOK` path. Missing this fix would silently disable comment-hygiene and agent-mirror-sync enforcement repo-wide with no error surfaced.
+- Cascading the rename across the same reference surface as the original relocation: 4 runtime configs, 17 runtime discovery symlinks (re-linked and verified resolving to real files), Pi/OpenCode import paths, cross-adapter hardcoded spawn constants, and ~35 documentation files (confirmed via a repo-wide grep for the literal string `runtime-hooks`).
+- Fixing 2 stale references (`.opencode/skills/.loop-guard-state/README.md`, `cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md`) that predate even the original relocation — missed by every prior sweep (relocation, both review rounds, both remediation rounds) because none scoped a true repo-wide grep for the `task-dispatch-guard.cjs`/`.mjs` old paths specifically.
+- A live git-commit smoke test of the actual hygiene-gate chain (not just a path grep), since this pass's blast radius includes the repo's own commit-time enforcement mechanism.
 
 ### Out of Scope
 
@@ -156,6 +166,8 @@ The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=
 | REQ-011 | Fix the 2 stale manual-testing-playbook paths and correct their checklist evidence (R4-P1-001). | `cli-dispatch-audit-trail.md` and `codex-hook-parity.md` point only at real, current paths; `checklist.md` CHK-011/CHK-041 evidence lines reflect the actual state, not an overstated claim. |
 | REQ-012 | Resolve the "verified across 6 runtimes" overclaim (R4-P1-002). | `implementation-summary.md` either carries real commit-pinned live smoke evidence for Claude, Cursor, Devin, and Codex, or explicitly states that only Pi and OpenCode were live-smoke-tested and the other 4 were verified via config/symlink/test-suite checks. |
 | REQ-013 | Resolve or accurately frame the system-spec-kit dependency in 5 relocated adapters (R5-P1-001). | Either the 5 adapters no longer import `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` (e.g. via a duplicated dependency-free helper inside `runtime-hooks/`), or `runtime-hooks/README.md` states plainly that `system-spec-kit` is a required runtime dependency for those 5 adapters, dropping the Node-builtin-equivalence framing. |
+| REQ-014 | Fold `.opencode/hooks/` (git commit-hooks installer) into the runtime-hooks tree as `git/`, then rename the whole tree to `.opencode/hooks/`. | `git mv` history preserved on all 3 git-hooks files and all runtime-hooks-tree files; final tree is `.opencode/hooks/{README.md,dispatch,mcp-route-guard,post-edit-quality,task-dispatch,shared,git}`; zero live references to the literal string `runtime-hooks` or the old bare `.opencode/hooks/{pre-commit,install-hooks.sh,README.md}` paths remain outside git history. |
+| REQ-015 | Keep the real git-hooks chain working after the move. | `.opencode/scripts/git-hooks/pre-commit`'s `HYGIENE_HOOK` path points at `.opencode/hooks/git/pre-commit`; a direct invocation of the real installed hook script with a staged forbidden-comment-pattern file blocks (exit 1) and a clean file passes (exit 0). |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -168,6 +180,7 @@ The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=
 - **SC-003**: A live Pi session and a live OpenCode session both load all touched extensions/plugins with zero errors.
 - **SC-004**: The forced 5-iteration deep review completes with a synthesized verdict (PASS/CONDITIONAL/FAIL) and no unresolved P0 findings before merge. **Result: CONDITIONAL, P0=0, P1=6, P2=4** -- see `review/review-report.md`.
 - **SC-005**: All 6 active P1s from the review (REQ-008 through REQ-013) are resolved and a re-review confirms no regressions before the merge/push/leave-local decision.
+- **SC-006**: The Phase 7 hooks-tree consolidation (REQ-014, REQ-015) lands with the live hygiene-gate chain proven working via direct script invocation, not just a path grep.
 
 ### Acceptance Scenarios
 
@@ -175,6 +188,8 @@ The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=
 - **Given** a hardcoded cross-adapter `spawnSync` path constant, **When** the target file moves, **Then** the constant is updated and the adapter still resolves the child process correctly.
 - **Given** the 5 test files with stale relative-path constants, **When** each is fixed, **Then** re-running that file's own documented test runner passes.
 - **Given** the completed relocation, **When** `/deep:review` runs 5 forced iterations, **Then** each iteration broadens its review angle (per `stop_policy=max-iterations`) rather than synthesizing early.
+- **Given** the git-hooks folder is moved into the runtime-hooks tree, **When** the real installed `.git/hooks/pre-commit` (`.opencode/scripts/git-hooks/pre-commit`) runs, **Then** its `HYGIENE_HOOK` chain-call still finds and executes the moved comment-hygiene gate at its new path.
+- **Given** a repo-wide session-level `core.hooksPath` override to a `.no-hooks` sentinel (confirmed pre-existing, shared across worktrees, not caused by this work), **When** the native git-commit trigger itself cannot be exercised, **Then** the hook script's own logic is verified directly instead, and the untestable native-trigger gap is disclosed rather than assumed passing.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -232,10 +247,10 @@ The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 18/25 | 4 concern folders, ~85 files touched across 6 runtimes. |
-| Risk | 16/25 | Live hook wiring for concurrent multi-runtime, multi-session use. |
-| Research | 10/20 | Import-dependency portability analysis per candidate hook. |
-| **Total** | **44/70** | **Level 2 verification packet** |
+| Scope | 20/25 | 5 concern folders (incl. `git/`), ~140 files touched across 6 runtimes plus the repo's own git-hook chain. |
+| Risk | 19/25 | Live hook wiring for concurrent multi-runtime, multi-session use, now including the repo's own commit-time enforcement mechanism. |
+| Research | 12/20 | Import-dependency portability analysis per candidate hook, plus discovering the live git-hooks chain-call dependency. |
+| **Total** | **51/70** | **Level 2 verification packet** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -243,5 +258,6 @@ The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Merge into `skilled/v4.0.0.0` now, push the branch only, or leave local — deferred until remediation (REQ-008 through REQ-013) is implemented and re-reviewed.
+- Merge into `skilled/v4.0.0.0` now, push the branch only, or leave local — now includes the Phase 7 hooks-tree consolidation; pending operator decision.
+- Whether to independently re-verify the native git-hook trigger (not just the script logic) once the shared `core.hooksPath` `.no-hooks` override is no longer active for this session — flagged, not resolved, since changing that override could affect other concurrent sessions.
 <!-- /ANCHOR:questions -->

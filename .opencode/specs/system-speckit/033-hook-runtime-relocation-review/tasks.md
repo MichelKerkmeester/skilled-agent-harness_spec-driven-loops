@@ -8,22 +8,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T14:09:19Z"
+    last_updated_at: "2026-07-28T17:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Implemented Phase 6 (T017-T024): all 6 P1 findings fixed + re-verified"
-    next_safe_action: "Re-run /deep:review before the merge/push/leave-local decision"
+    recent_action: "Phase 7 hooks-tree consolidation complete, verified this pass"
+    next_safe_action: "Await merge/push/leave-local decision from operator"
     blockers:
-      - "Re-review not yet run; merge/push/leave-local decision still pending."
+      - "Merge/push/leave-local decision still pending, operator call."
     key_files:
       - "review/review-report.md"
+      - ".opencode/hooks/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 98
     open_questions: []
     answered_questions:
-      - "Deep-review result: CONDITIONAL, P0=0 P1=6 P2=4."
+      - "Deep-review round 1: CONDITIONAL P0=0/P1=6/P2=4, remediated."
+      - "Re-review round 2 (fan-out): FAIL P0=4/P1=4/P2=1, remediated."
 ---
 # Tasks: Relocate fully-portable runtime-hook guard cores
 
@@ -87,9 +89,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` (T025, the re-review, is the sole remaining item)
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` (T001-T034 complete; the merge/push/leave-local decision is an operator call, not a task)
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (live git-commit hygiene-chain smoke test, all affected test suites, `validate_document.py`)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -113,4 +115,16 @@ _memory:
 - [x] T022 Resolve the "verified across 6 runtimes" overclaim in `implementation-summary.md` (REQ-012 / R4-P1-002): narrow the claim or add real commit-pinned live evidence for Claude/Cursor/Devin/Codex. [evidence: frontmatter `description` and Verification table narrowed to match `spec.md` REQ-002/NFR-R01's framing; Known Limitations reconciled with the actual CONDITIONAL review outcome]
 - [x] T023 Resolve or accurately frame the `hook-adapter-shared.cjs` dependency in the 5 affected adapters (REQ-013 / R5-P1-001), updating `.opencode/runtime-hooks/README.md` accordingly. [evidence: new `.opencode/runtime-hooks/shared/hook-adapter-shared.cjs`; all 5 adapters repointed to it (zero remaining `system-spec-kit` import from this tree, confirmed via `rg`); README's dependency framing corrected]
 - [x] T024 Re-run all affected test suites and `validate_document.py` after the Phase 6 fixes. [evidence: combined `node --test` 48/48, `vitest` 40/40, `test-root-name-consumer-matrix.cjs` 17/17, `validate_document.py` 0 issues on all 5 touched docs, this session]
-- [ ] T025 Re-review (or re-verify) the remediated diff, then resolve the merge/push/leave-local decision. Out of scope for `/speckit:implement` (which terminates before another review pass); the next step is a fresh `/deep:review` dispatch over the remediated diff.
+- [x] T025 Re-review the remediated diff: fan-out `/deep:review:auto` (`cli-devin`/`glm-5-2` + `cli-pi`/`gpt-5.6-luna`, 3 iters each, `stop_policy=max-iterations`, `lineage_mode=restart`). [evidence: FAIL, P0=4 P1=4 P2=1, all from `glm` (`luna` never dispatched -- pre-existing `fanout-run.cjs` cli-pi stub, not a config error); all 7 findings independently re-verified via direct grep/module-resolution checks and fixed this pass (4 broken imports in system-spec-kit/sk-git, 3 stale doc references); `review/review-report.md`]
+
+## Phase 7: Hooks-Tree Consolidation (REQ-014, REQ-015)
+
+- [x] T026 `git mv` the git-hooks trio into `.opencode/runtime-hooks/git/`, then `git mv .opencode/runtime-hooks .opencode/hooks`. [evidence: caught and corrected a nesting mistake mid-move before anything was committed; final tree verified via `find .opencode/hooks -maxdepth 2`]
+- [x] T027 Fix the critical live-wiring line: `.opencode/scripts/git-hooks/pre-commit`'s `HYGIENE_HOOK` path -> `.opencode/hooks/git/pre-commit`. [evidence: this was a previously-undiscovered dependency -- `.opencode/hooks/pre-commit` is chain-called by the repo's actual installed hook, not standalone]
+- [x] T028 Fix `.opencode/hooks/git/install-hooks.sh`'s own `HOOKS_SRC`/`REPO_ROOT` self-reference (new directory is 1 level deeper) and add a primary-installer clarification note.
+- [x] T029 Cascade-fix ~11 doc references to the old bare `.opencode/hooks/{pre-commit,install-hooks.sh,README.md}` paths, and ~54 files containing the literal string `runtime-hooks`. [evidence: repo-wide grep sweep before/after, 0 remaining live hits]
+- [x] T030 [P] Re-point 17 runtime discovery mirror symlinks (`.claude/hooks/`, `.cursor/hooks/`, `.devin/hooks/`, `.codex/hooks/`); verify each resolves to a real file.
+- [x] T031 [P] Second-sweep grep beyond the mechanical substitution found 2 stale references predating even the original relocation, missed by every prior sweep: `.opencode/skills/.loop-guard-state/README.md`, `cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md` (both cited pre-relocation `task-dispatch-guard.cjs`/`.mjs` paths). Fixed.
+- [x] T032 Rewrite `.opencode/hooks/README.md`'s OVERVIEW and directory-tree diagram for the unified scope (old collision-explanation prose no longer applies).
+- [x] T033 Live git-commit smoke test of the hygiene-gate chain via direct script invocation (staged forbidden-comment file blocked exit 1; clean file passed exit 0). [evidence: native git-hook trigger untestable this session -- a shared, repo-wide `core.hooksPath` override to a `.no-hooks` sentinel in the common `.git/config` predates this work and was not changed, since it could affect concurrent sessions]
+- [x] T034 Re-run all directly affected test suites and `validate_document.py` on all 35 touched docs. [evidence: 73/74 `node --test` real passes (1 pre-existing "dist not built in fresh worktree" environment gap, unrelated to this move); `vitest` 40/40; `validate_document.py` 0 issues]

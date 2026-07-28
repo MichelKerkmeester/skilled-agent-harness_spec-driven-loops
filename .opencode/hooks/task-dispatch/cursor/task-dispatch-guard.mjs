@@ -1,26 +1,31 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Cursor beforeMCPExecution Route Guard
+// MODULE: Cursor preToolUse Task Dispatch Guard
 // ───────────────────────────────────────────────────────────────────
-// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b; advisory only, fails open.
-// Cursor's counterpart to Claude's mcp-route-guard.cjs (PreToolUse `mcp__claude_ai_.*` matcher).
+// STATUS: confirmed live-firing under cursor-agent 2026.07.23-e383d2b for Task tool calls; advisory/deny per shared core.
+// Cursor's counterpart to Claude's task-dispatch-guard.cjs. Wired under a SEPARATE
+// preToolUse array entry with `"matcher": "Task"` (a confirmed hooks.json
+// schema field -- hook-contract.md §2) so it runs alongside, not instead of,
+// the existing unmatched spec-gate-enforce.mjs entry that already covers
+// every tool call.
 //
-// `beforeMCPExecution` is confirmed live-firing against cursor-agent
-// 2026.07.23-e383d2b, with a real captured payload (isolated workspace, own
-// mcp.json + probe hooks.json, dispatched with `--approve-mcps`).
+// Confirmed live via a temporary probe-hook dispatch against cursor-agent
+// 2026.07.23-e383d2b (isolated repo, custom .cursor/hooks.json wiring
+// preToolUse to a logging probe, dispatched with a subagent-delegation
+// prompt): a Task tool call emits `tool_name: "Task"`,
+// `tool_input: {description, prompt, model, subagent_type}` -- a shape the
+// existing Claude guard core already reads via `subagent_type`/
+// `subagentType` (task-dispatch-guard.cjs), so this proxy forwards the
+// payload as-is with no field renaming.
 //
-// The captured payload carries the server and the tool in SEPARATE fields --
-// `mcp_server_name: "sequential_thinking"` alongside a BARE
-// `tool_name: "sequentialthinking"` -- unlike Claude, which packs both into a
-// single `mcp__<server>__<tool>` string. The shared guard core only parses
-// those two packed shapes (`mcp__<server>__<tool>` or `<server>_<tool>`), so
-// forwarding Cursor's bare tool_name verbatim matches NOTHING and the guard
-// silently never advises. The two fields are therefore recombined into the
-// packed Claude shape before the core sees them; verified against the core
-// directly, the bare form returns no advisory where the packed form does.
-//
-// Advisory only -- this guard never denies. FAILS OPEN: any missing payload,
-// spawn error, or parse failure approves silently.
+// Deliberately NOT a thin proxy through shared.ts's runClaudeHookAdapter():
+// task-dispatch-guard.cjs lives under system-deep-loop/runtime/hooks/claude/,
+// outside mcp-server/hooks/claude/, so runClaudeHookAdapter's
+// `../claude/<filename>` resolution does not reach it. Spawns it directly by
+// its known repo-relative path instead, mirroring spec-gate-enforce.mjs's
+// plain-.mjs style. FAILS OPEN -- any missing payload, spawn error, or
+// internal error approves silently, so a bug here never blocks a
+// correctly-scoped Task dispatch.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -33,13 +38,9 @@ import { join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GUARD_SCRIPT_RELATIVE = '.opencode/runtime-hooks/mcp-route-guard/claude/mcp-route-guard.cjs';
-const CHILD_TIMEOUT_MS = 3_000;
+const GUARD_SCRIPT_RELATIVE = '.opencode/hooks/task-dispatch/claude/task-dispatch-guard.cjs';
+const CHILD_TIMEOUT_MS = 5_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
-
-// The packed shape the shared core parses: `mcp__<server>__<tool>`.
-const CLAUDE_MCP_PREFIX = 'mcp__';
-const CLAUDE_MCP_SEPARATOR = '__';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -59,15 +60,6 @@ async function readStdin() {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-// Recombine Cursor's split server/tool fields into the single packed string
-// the shared core parses. Without a server name there is nothing to pack, so
-// the bare tool name is passed through and simply will not match -- the same
-// silent no-match the core already gives any unrecognized shape.
-function packServerAndTool(serverName, toolName) {
-  if (!serverName || !toolName) return toolName;
-  return `${CLAUDE_MCP_PREFIX}${serverName}${CLAUDE_MCP_SEPARATOR}${toolName}`;
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
@@ -80,9 +72,13 @@ async function main() {
     return approve();
   }
 
+  if (String(payload?.tool_name || '') !== 'Task') return approve();
+
   const projectDir = payload?.workspace_roots?.[0] || process.cwd();
   const guardPayload = {
-    tool_name: packServerAndTool(payload?.mcp_server_name, payload?.tool_name),
+    tool_name: 'Task',
+    tool_input: payload?.tool_input || {},
+    session_id: payload?.session_id,
     cwd: projectDir,
   };
 
@@ -104,10 +100,25 @@ async function main() {
 
   if (!rawOutput) return approve();
 
+  // task-dispatch-guard.cjs emits Claude's hookSpecificOutput envelope
+  // (permissionDecision: 'deny' + permissionDecisionReason, OR
+  // additionalContext for a warn-only advisory) -- translate both cases into
+  // Cursor's permission envelope. Never treat plain/non-JSON output as deny.
   try {
     const parsed = JSON.parse(rawOutput);
-    const context = parsed?.hookSpecificOutput?.additionalContext;
-    if (typeof context === 'string' && context.trim()) return approve(context);
+    const hookOutput = parsed?.hookSpecificOutput;
+    if (hookOutput?.permissionDecision === 'deny') {
+      const reason = hookOutput.permissionDecisionReason;
+      process.stdout.write(JSON.stringify({
+        permission: 'deny',
+        user_message: reason,
+        agent_message: reason,
+      }));
+      return process.exit(2);
+    }
+    if (typeof hookOutput?.additionalContext === 'string' && hookOutput.additionalContext.trim()) {
+      return approve(hookOutput.additionalContext);
+    }
   } catch {
     // Non-JSON output -- fall through to plain approve.
   }
