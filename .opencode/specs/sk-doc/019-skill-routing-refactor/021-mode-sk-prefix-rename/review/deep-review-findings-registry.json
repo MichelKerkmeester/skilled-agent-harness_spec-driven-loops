@@ -1,0 +1,1305 @@
+{
+  "mergedFrom": [
+    "composer-2-5",
+    "composer-2-5-r2",
+    "swe-1-7"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F002--ebcce15325c0",
+      "severity": "P1",
+      "title": "`graph-metadata.json` `derived.status` is `\"planned\"` [SOURCE: graph-metadata.json:42] and `last_active_child_id` is `null` [SOURCE: graph-metadata.json:102] despite phase 008 completing 2026-07-28. Memory graph traversal will mis-rank packet readiness and `/speckit:resume` cannot auto-select the closeout child.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--ebcce15325c0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--7bbbe7979632",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--972fdf50766b",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--5fefedfbe2b3",
+      "severity": "P2",
+      "title": "Contract freeze-evidence table cites pre-rename packet paths as evidence anchors without an explicit freeze-time column [SOURCE: 002-rename-contract-and-map/contract.md:21-22].",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--5fefedfbe2b3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--529c86beeb10",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--f2274cc8079b",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--529c86beeb10",
+      "severity": "P2",
+      "title": "Contract inventory table cites paths like `.opencode/skills/sk-doc/create-skill/...` [SOURCE: contract.md:21-22] as freeze evidence for the EDITED action. Intentional as pre-rename citations, but rows lack an explicit \"freeze-time path\" column label; operators running survivor greps may treat them as live targets.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--529c86beeb10",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--5fefedfbe2b3",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--f2274cc8079b",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--f4d7a38a8227",
+      "severity": "P2",
+      "title": "Lane C skill-benchmark fixtures still expect `workflowMode: \"interface\"` and `resources: [\"design-interface/SKILL.md\"]` [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/sk-design/sk-design-transform-bolder-alias.private.json:8-10]. Aligns with documented sk-design BLOCKED-BY-ROUTE-GOLD 91 hold.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--f4d7a38a8227",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--a90ae287e732",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--7bbbe7979632",
+      "severity": "P1",
+      "title": "Parent `graph-metadata.json` `derived.status` remains `planned` and `last_active_child_id` is null after phase 008 closeout [SOURCE: graph-metadata.json:42,102].",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--7bbbe7979632",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--ebcce15325c0",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--972fdf50766b",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--131e95e1825b",
+      "severity": "P1",
+      "title": "Parent `spec.md` declares **Status: Planned** [SOURCE: spec.md:25] while phase `008-verification-and-closeout/spec.md` declares **Status: Complete** [SOURCE: 008-verification-and-closeout/spec.md:24] and `implementation-summary.md` records gate reproduction and closeout [SOURCE: 008-verification-and-closeout/implementation-summary.md:63]. All eight phase children carry `implementation-summary.md`. Parent metadata was not reconciled after closeout, violating REQ traceability for packet completion state.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--131e95e1825b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--c59b63d0c97b",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--669261258181",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--c59b63d0c97b",
+      "severity": "P1",
+      "title": "Parent `spec.md` Status remains `Planned` while phase 008 is `Complete` with gate reproduction evidence [SOURCE: spec.md:25; 008-verification-and-closeout/spec.md:24; 008-verification-and-closeout/implementation-summary.md:63].",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--c59b63d0c97b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--131e95e1825b",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--669261258181",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--42acc55ef507",
+      "severity": "P2",
+      "title": "Parent packet is Level 3 [SOURCE: spec.md:24] but has no `checklist.md`; only phase 001 carries a checklist. Per-child checklists exist but parent-level AC_COVERAGE and completion verification cannot run at the phase-parent root without a consolidated checklist or explicit lean-trio exemption note.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--42acc55ef507",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--7e6710933b15",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--698f5e260e43",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--3d1eed040194",
+      "severity": "P2",
+      "title": "Parent problem statement still narrates pre-rename examples (`design-interface`, `code-quality`) as the motivating defect [SOURCE: spec.md:35-37]. Accurate as historical framing but may confuse readers post-closeout who expect sk-prefixed examples.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--3d1eed040194",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--e103697fd31f",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--7e6710933b15",
+      "severity": "P2",
+      "title": "Phase parent is Level 3 but lacks root `checklist.md`; AC_COVERAGE signal cannot run at parent scope [SOURCE: spec.md:24].",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--7e6710933b15",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--42acc55ef507",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--698f5e260e43",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--0cb6d83b677b",
+      "severity": "P2",
+      "title": "REQ-005 asks gold to reference new keys and score as before. Closeout reports sk-design and sk-code remain **BLOCKED-BY-ROUTE-GOLD 91** [SOURCE: 008-verification-and-closeout/implementation-summary.md:63], explicitly held constant per phase decision. Behavior-preserving but leaves REQ-005 only partially satisfied until a separate gold fix lands.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--0cb6d83b677b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--c0eec5f25f3c",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--244e34057938",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--c0eec5f25f3c",
+      "severity": "P2",
+      "title": "REQ-005 partially met",
+      "file": "sk-code and sk-design remain BLOCKED-BY-ROUTE-GOLD 91 by explicit hold-constant policy [SOURCE: 008-verification-and-closeout/implementation-summary.md:63].",
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--c0eec5f25f3c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--0cb6d83b677b",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--244e34057938",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006--e103697fd31f",
+      "severity": "P2",
+      "title": "sk-create-skill test fixture uses old md-generator workflow and resources",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs",
+      "line": 68,
+      "description": "The HOLDOUT_LEAK fixture hardcodes \"expected_workflow_mode: md-generator\", \"expected_resources: design-md-generator/references/design-md-format.md\", and \"evidence_compiled_route: sk-design/md-generator\". These are pre-rename identifiers.",
+      "findingClass": "maintainability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F006",
+      "_conflict_id": "F006--e103697fd31f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F006",
+          "peerId": "F006--3d1eed040194",
+          "peerLineages": [
+            "composer-2-5",
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005--f2274cc8079b",
+      "severity": "P2",
+      "title": "sk-design manual-testing playbook uses old design mode names in pass/fail criteria",
+      "file": ".opencode/skills/sk-design/manual-testing-playbook/mode-routing/mcp-open-design-mode.md",
+      "line": 64,
+      "description": "The FAIL criteria list the pre-rename design-judgment modes \"interface/foundations/motion/audit/md-generator\". These names no longer exist in the registry and could confuse test operators.",
+      "findingClass": "traceability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F005",
+      "_conflict_id": "F005--f2274cc8079b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--5fefedfbe2b3",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F005",
+          "peerId": "F005--529c86beeb10",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--698f5e260e43",
+      "severity": "P2",
+      "title": "sk-design shared creation-contract example uses stale workflowMode \"interface\"",
+      "file": ".opencode/skills/sk-design/shared/creation-contract.md",
+      "line": 80,
+      "description": "The typed context envelope JSON example still uses the pre-rename \"workflowMode\": \"interface\". This is a live shared reference consumed by modes and can mislead implementers.",
+      "findingClass": "traceability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--698f5e260e43",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--42acc55ef507",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--7e6710933b15",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--972fdf50766b",
+      "severity": "P2",
+      "title": "sk-design skill-benchmark route-gold fixtures still expect old workflowMode names",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/sk-design/sk-design-transform-bolder-alias.private.json",
+      "line": 10,
+      "description": "The fixture expects \"workflowMode\": \"interface\" and \"resources\": [\"design-interface/SKILL.md\"]. Multiple sk-design gold files in the same directory share this pattern. The implementation summary reports sk-design BLOCKED-BY-ROUTE-GOLD 91, confirming these stale expectations are still being honored rather than updated to sk-design-interface.",
+      "findingClass": "correctness",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--972fdf50766b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--ebcce15325c0",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--7bbbe7979632",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--244e34057938",
+      "severity": "P2",
+      "title": "sk-design-mcp-open-design CLI pairing example references pre-rename packet name",
+      "file": ".opencode/skills/sk-design/sk-design-mcp-open-design/references/cli-child-pairing.md",
+      "line": 83,
+      "description": "The childLoadedSkills example lists \"design-mcp-open-design\" instead of the renamed \"sk-design-mcp-open-design\".",
+      "findingClass": "traceability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--244e34057938",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--0cb6d83b677b",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--c0eec5f25f3c",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F008--a90ae287e732",
+      "severity": "P2",
+      "title": "sk-doc hub description uses bare pre-rename phrases in keywords",
+      "file": ".opencode/skills/sk-doc/description.json",
+      "line": 25,
+      "description": "The keywords array includes \"create diff report\" and \"document before after review\" without the sk- prefix. These match the pre-rename workflow names.",
+      "findingClass": "maintainability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F008",
+      "_conflict_id": "F008--a90ae287e732",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F008",
+          "peerId": "F008--f4d7a38a8227",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007--e832cfee2571",
+      "severity": "P2",
+      "title": "sk-prompt description.json uses bare pre-rename keywords",
+      "file": ".opencode/skills/sk-prompt/description.json",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "msk-r2-f007-bare-keywords",
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--e832cfee2571",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--a1298e673b09",
+          "peerLineages": [
+            "swe-1-7"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007--a1298e673b09",
+      "severity": "P2",
+      "title": "sk-prompt hub description uses bare pre-rename keywords",
+      "file": ".opencode/skills/sk-prompt/description.json",
+      "line": 12,
+      "description": "The keywords array includes \"prompt-improve\" and \"prompt-models\" without the sk- prefix. These are not the canonical workflowMode names and can pollute advisor search results.",
+      "findingClass": "maintainability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F007",
+      "_conflict_id": "F007--a1298e673b09",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F007",
+          "peerId": "F007--e832cfee2571",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--669261258181",
+      "severity": "P1",
+      "title": "skill_advisor hardcodes old sk-prompt/prompt-models path",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "line": 3377,
+      "description": "The advisor constructs model_profiles_path from the pre-rename directory \"sk-prompt/prompt-models\", which no longer exists. The try/except silently swallows the OSError, so small-model prompt dispatch may run with empty profiles and no diagnostics.",
+      "findingClass": "correctness",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "swe-1-7"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--669261258181",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--131e95e1825b",
+          "peerLineages": [
+            "composer-2-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--c59b63d0c97b",
+          "peerLineages": [
+            "composer-2-5-r2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "spec_code protocol",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "spec_code protocol",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "Security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "Correctness breadth",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "Traceability breadth",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "Maintainability breadth",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5",
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "Maintainability breadth",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "Final traceability sweep",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "composer-2-5-r2"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 22
+  },
+  "openFindingsCount": 29,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 7,
+  "activeP2": 22
+}
