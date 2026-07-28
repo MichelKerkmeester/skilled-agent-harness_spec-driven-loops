@@ -3,7 +3,7 @@
   "expected": {
     "skillId": "sk-design",
     "intentKeys": ["interface"],
-    "resources": ["design-interface/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false
   },
   "rubric": {

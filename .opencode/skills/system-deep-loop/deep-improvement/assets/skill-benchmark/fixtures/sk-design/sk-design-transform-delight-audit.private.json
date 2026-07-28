@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_transform_delight_audit",
   "expected": {
     "skillId": "sk-design",
-    "mode": "audit",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["audit"],
-    "resources": ["design-audit/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": "audit",
+    "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "md-generator"],
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "transform-delight-audit-interface"
   },
   "rubric": {

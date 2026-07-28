@@ -3,11 +3,11 @@
   "expected": {
     "skillId": "sk-design",
     "intentKeys": ["interface"],
-    "resources": ["design-interface/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
     "commandRecipe": {
       "command": "/design:interface",
-      "ownerMode": "interface",
+      "ownerMode": "sk-design-interface",
       "argumentHint": "<target> [--mode]",
       "wrapperCommand": "/design:interface",
       "argumentGrammar": {
@@ -19,9 +19,9 @@
         ],
         "render": "<target> --wrong"
       },
-      "workflowMode": "interface",
+      "workflowMode": "sk-design-interface",
       "routeOutcome": "single",
-      "forbiddenWorkflowModes": ["audit", "foundations", "motion", "md-generator"],
+      "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
       "choreography": [
         {
           "order": 1,
@@ -31,13 +31,13 @@
         },
         {
           "order": 2,
-          "skill": "design-interface",
+          "skill": "sk-design-interface",
           "resource": ".opencode/skills/sk-design/sk-design-interface/SKILL.md",
           "action": "load the interface mode contract"
         },
         {
           "order": 3,
-          "skill": "design-interface",
+          "skill": "sk-design-interface",
           "resource": ".opencode/skills/sk-design/sk-design-interface/references/",
           "action": "load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS"
         },

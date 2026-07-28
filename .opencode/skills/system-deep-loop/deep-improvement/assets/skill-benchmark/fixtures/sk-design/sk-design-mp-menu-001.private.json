@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_mp_menu_001",
   "expected": {
     "skillId": "sk-design",
-    "mode": "motion",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["motion"],
-    "resources": ["design-motion/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": "motion",
+    "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["interface", "foundations", "audit", "md-generator"],
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "mp-menu-animate-vs-redesign"
   },
   "rubric": {

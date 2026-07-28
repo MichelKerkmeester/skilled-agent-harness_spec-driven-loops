@@ -2,15 +2,15 @@
   "scenarioId": "sk_design_mp_tokens_001",
   "expected": {
     "skillId": "sk-design",
-    "mode": "foundations",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "rankBelowSkillIds": ["mcp-figma", "mcp-open-design"],
     "intentKeys": ["foundations"],
-    "resources": ["design-foundations/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": "foundations",
+    "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["interface", "motion", "audit", "md-generator"],
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "mp-tokens-single-vs-bundle"
   },
   "rubric": {

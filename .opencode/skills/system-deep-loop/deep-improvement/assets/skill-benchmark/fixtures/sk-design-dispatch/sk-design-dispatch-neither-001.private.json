@@ -9,7 +9,7 @@
     "negativeActivation": true,
     "workflowMode": null,
     "routeOutcome": "defer",
-    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "audit", "md-generator"],
+    "forbiddenWorkflowModes": ["sk-design-interface", "sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "sk-design-dispatch-token-survival",
     "tokenLint": {
       "verdict": "rejected",

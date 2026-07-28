@@ -32,8 +32,8 @@ const { spawnSync } = require('node:child_process');
 
 const CHECKER_PATH = path.join(__dirname, '..', 'parent-skill-check.cjs');
 const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 'sk-doc');
-const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
+const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
 
 const MODE_A = 'demo-alpha';
 const MODE_B = 'demo-beta';
@@ -60,7 +60,7 @@ function makeTempHubDir() {
 // The generator/library resolve from the sibling sk-doc hub, matching the real
 // multi-hub layout while keeping each fixture isolated.
 function installContractLibrary(hubRoot) {
-  const scriptsDir = path.join(path.dirname(hubRoot), 'sk-doc', 'create-skill', 'scripts');
+  const scriptsDir = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts');
   const libDir = path.join(scriptsDir, 'lib');
   fs.mkdirSync(libDir, { recursive: true });
   fs.copyFileSync(REAL_GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
@@ -148,7 +148,7 @@ function buildCleanFixture() {
 
   installContractLibrary(hubRoot);
 
-  const generatorPath = path.join(path.dirname(hubRoot), 'sk-doc', 'create-skill', 'scripts', 'generate-leaf-manifest.cjs');
+  const generatorPath = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const generator = require(generatorPath);
   fs.writeFileSync(path.join(hubRoot, 'leaf-manifest.json'), generator.buildManifestBytes(hubRoot));

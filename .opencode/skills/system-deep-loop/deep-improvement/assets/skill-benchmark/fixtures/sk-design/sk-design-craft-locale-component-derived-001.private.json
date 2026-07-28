@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_craft_locale_component_derived_001",
   "expected": {
     "skillId": "sk-design",
-    "mode": "interface",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["interface", "foundations"],
-    "resources": ["design-interface/SKILL.md", "design-foundations/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": ["interface", "foundations"],
-    "routeOutcome": "orderedBundle",
-    "forbiddenWorkflowModes": ["motion", "audit", "md-generator"],
+    "workflowMode": "sk-design-interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "craft-locale-component-holdout-derived"
   },
   "rubric": {

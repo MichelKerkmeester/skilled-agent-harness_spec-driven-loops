@@ -66,8 +66,8 @@ const SK_DOC_DIR = path.join(SKILLS_DIR, 'sk-doc');
 const VALIDATE_DOCUMENT_PY = path.join(SK_DOC_DIR, 'shared', 'scripts', 'validate_document.py');
 const EXTRACT_STRUCTURE_PY = path.join(SK_DOC_DIR, 'shared', 'scripts', 'extract_structure.py');
 const CORE_STANDARDS_MD = path.join(SK_DOC_DIR, 'shared', 'references', 'core-standards.md');
-const CREATE_SKILL_ASSETS_DIR = path.join(SK_DOC_DIR, 'create-skill', 'assets');
-const CREATE_SKILL_REFERENCES_DIR = path.join(SK_DOC_DIR, 'create-skill', 'references');
+const CREATE_SKILL_ASSETS_DIR = path.join(SK_DOC_DIR, 'sk-create-skill', 'assets');
+const CREATE_SKILL_REFERENCES_DIR = path.join(SK_DOC_DIR, 'sk-create-skill', 'references');
 const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk-doc-known-deviations.md');
 
 // Ported from validate_document.py:54-64 (EXCLUDED_PATH_PATTERNS) so discover() does not

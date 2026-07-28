@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_craft_stateful_upload_derived_001",
   "expected": {
     "skillId": "sk-design",
-    "mode": "interface",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["interface", "motion"],
-    "resources": ["design-interface/SKILL.md", "design-motion/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": ["interface", "motion"],
-    "routeOutcome": "orderedBundle",
-    "forbiddenWorkflowModes": ["foundations", "audit", "md-generator"],
+    "workflowMode": "sk-design-interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "craft-stateful-upload-holdout-derived"
   },
   "rubric": {

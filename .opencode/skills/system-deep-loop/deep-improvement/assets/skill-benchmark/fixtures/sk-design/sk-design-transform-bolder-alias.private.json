@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_transform_bolder_alias",
   "expected": {
     "skillId": "sk-design",
-    "mode": "interface",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["interface"],
-    "resources": ["design-interface/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": "interface",
+    "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["foundations", "motion", "audit", "md-generator"],
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "transform-bolder-audit-interface"
   },
   "rubric": {

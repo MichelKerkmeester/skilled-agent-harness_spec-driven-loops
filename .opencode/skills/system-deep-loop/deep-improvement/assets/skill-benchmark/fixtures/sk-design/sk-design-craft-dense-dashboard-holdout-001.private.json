@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_craft_dense_dashboard_holdout_001",
   "expected": {
     "skillId": "sk-design",
-    "mode": "foundations",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["foundations"],
-    "resources": ["design-foundations/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": "foundations",
+    "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["interface", "motion", "audit", "md-generator"],
+    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
     "minimalPairGroup": "craft-dense-dashboard-holdout-derived"
   },
   "rubric": {

@@ -3,11 +3,11 @@
   "expected": {
     "skillId": "sk-design",
     "intentKeys": ["interface"],
-    "resources": ["design-interface/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md"],
     "negativeActivation": false,
     "commandRecipe": {
       "command": "/design:missing",
-      "ownerMode": "interface",
+      "ownerMode": "sk-design-interface",
       "argumentHint": "<target> [--mode]",
       "wrapperCommand": "/design:missing",
       "argumentGrammar": {
@@ -19,9 +19,9 @@
         ],
         "render": "<target> [--mode]"
       },
-      "workflowMode": "interface",
+      "workflowMode": "sk-design-interface",
       "routeOutcome": "single",
-      "forbiddenWorkflowModes": ["audit", "foundations", "motion", "md-generator"],
+      "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
       "choreography": [
         {
           "order": 1,

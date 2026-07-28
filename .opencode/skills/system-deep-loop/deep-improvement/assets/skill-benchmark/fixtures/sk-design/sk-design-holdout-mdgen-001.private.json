@@ -2,15 +2,15 @@
   "scenarioId": "sk_design_holdout_mdgen_001",
   "expected": {
     "skillId": "sk-design",
-    "mode": "md-generator",
+    "mode": "sk-design-md-generator",
     "advisorLane": "sk-design",
     "intentKeys": ["md-generator"],
-    "resources": ["design-md-generator/SKILL.md"],
+    "resources": ["sk-design-md-generator/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": "md-generator",
+    "workflowMode": "sk-design-md-generator",
     "routeOutcome": "single",
     "knownRouteGap": true,
-    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "audit"],
+    "forbiddenWorkflowModes": ["sk-design-interface", "sk-design-mcp-open-design"],
     "minimalPairGroup": null
   },
   "rubric": {

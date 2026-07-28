@@ -2,14 +2,14 @@
   "scenarioId": "sk_design_mp_tokens_002",
   "expected": {
     "skillId": "sk-design",
-    "mode": "foundations",
+    "mode": "sk-design-interface",
     "advisorLane": "sk-design",
     "intentKeys": ["foundations", "md-generator"],
-    "resources": ["design-foundations/SKILL.md", "design-md-generator/SKILL.md"],
+    "resources": ["sk-design-interface/SKILL.md", "sk-design-md-generator/SKILL.md"],
     "negativeActivation": false,
-    "workflowMode": ["foundations", "md-generator"],
+    "workflowMode": ["sk-design-interface", "sk-design-md-generator"],
     "routeOutcome": "orderedBundle",
-    "forbiddenWorkflowModes": ["interface", "motion", "audit"],
+    "forbiddenWorkflowModes": ["sk-design-mcp-open-design"],
     "minimalPairGroup": "mp-tokens-single-vs-bundle"
   },
   "rubric": {
