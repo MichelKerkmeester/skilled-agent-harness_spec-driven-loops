@@ -2,20 +2,20 @@
   "skill": "sk-prompt",
   "version": "1.0.0.0",
   "routerPolicy": {
-    "defaultMode": "prompt-improve",
+    "defaultMode": "sk-prompt-improve",
     "ambiguityDelta": 1,
-    "tieBreak": ["prompt-improve", "prompt-models"],
+    "tieBreak": ["sk-prompt-improve", "sk-prompt-models"],
     "outcomes": {
       "single": "one dominant prompt intent routes to one workflow mode",
       "orderedBundle": "clearly separate prompt intents route to an ordered workflow mode list",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
-    "defaultResource": ["prompt-improve/SKILL.md"],
+    "defaultResource": ["sk-prompt-improve/SKILL.md"],
     "bundleRules": []
   },
   "routerSignals": {
-    "prompt-improve": { "weight": 4, "classes": ["prompt-improve-aliases", "prompt-improve-actions", "hub-identity"], "resources": ["prompt-improve/SKILL.md"] },
-    "prompt-models": { "weight": 6, "classes": ["prompt-models-aliases", "prompt-models-runtime"], "resources": ["prompt-models/SKILL.md"] }
+    "sk-prompt-improve": { "weight": 4, "classes": ["prompt-improve-aliases", "prompt-improve-actions", "hub-identity"], "resources": ["sk-prompt-improve/SKILL.md"] },
+    "sk-prompt-models": { "weight": 6, "classes": ["prompt-models-aliases", "prompt-models-runtime"], "resources": ["sk-prompt-models/SKILL.md"] }
   },
   "vocabularyClasses": {
     "hub-identity": { "keywords": ["sk-prompt", "prompt", "mode-registry", "hub-router", "workflowmode", "packetkind"] },

@@ -288,3 +288,22 @@ evidence did not verify them as stated:
   match, but the lineage itself flagged the full label scan as incomplete.
 * No claim that parent-skill template placeholders are live rename targets is carried
   forward; the template evidence shows placeholders and generic schema fields.
+
+---
+
+## 8. Amendments from execution (sk-prompt, first hub)
+
+The first hub's gate falsified three contract claims; later hubs inherit the corrections.
+
+1. **Playbook gold is wider than `expected_intent:`.** The scenario loader also reads
+   `expected_resources` (packet-prefixed paths), `expected_leaf_resources` (`- workflow_mode:` /
+   `leaf_resource_id:` typed pairs — note the list-item dash), `expected_workflow_mode:`, and
+   `workflow_mode:`. A stale typed pair excludes every scenario as `fixture_topology_error`, which
+   reads as NO-SCENARIOS. All of these are typed positions and move with the hub.
+2. **`shared/references/smart-routing.md` is a path surface, not prose.** Its resource arrays carry
+   slash-bounded packet paths that the router replay emits verbatim; leaving them produces
+   `intentOk=true, resourceOk=false` across the board. One lineage classified this file as bare-word
+   prose; that classification was wrong.
+3. **Cross-hub inbound path links move in the hub's own commit.** The link gate does not wait for the
+   consumer phase; deferring path-shaped inbound references breaks CI at the commit boundary.
+   Phase 007 keeps only non-link consumers: hooks, agents, metadata, mirrors, gold regeneration.

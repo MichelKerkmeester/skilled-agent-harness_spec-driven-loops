@@ -3,12 +3,12 @@ id: SP-002
 category: hub_routing
 stage: routing
 title: "Named small-model request routes to prompt-models"
-expected_intent: prompt-models
+expected_intent: sk-prompt-models
 expected_resources:
-  - prompt-models/references/models/deepseek-v4-pro.md
-expected_workflow_mode: prompt-models
+  - sk-prompt-models/references/models/deepseek-v4-pro.md
+expected_workflow_mode: sk-prompt-models
 expected_leaf_resources:
-  - workflow_mode: prompt-models
+  - workflow_mode: sk-prompt-models
     leaf_resource_id: references/models/deepseek-v4-pro.md
 created: 2026-07-09
 version: 1.0.0.0

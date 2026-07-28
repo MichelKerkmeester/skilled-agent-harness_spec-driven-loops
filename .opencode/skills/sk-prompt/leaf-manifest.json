@@ -10,8 +10,8 @@
         "references/design-generation-patterns.md",
         "references/patterns-evaluation.md"
       ],
-      "packet": "prompt-improve",
-      "workflowMode": "prompt-improve"
+      "packet": "sk-prompt-improve",
+      "workflowMode": "sk-prompt-improve"
     },
     {
       "leaves": [
@@ -32,8 +32,8 @@
         "references/quota-fallback.md",
         "references/vision-audit-benchmark.md"
       ],
-      "packet": "prompt-models",
-      "workflowMode": "prompt-models"
+      "packet": "sk-prompt-models",
+      "workflowMode": "sk-prompt-models"
     }
   ],
   "resourceContractVersion": 1

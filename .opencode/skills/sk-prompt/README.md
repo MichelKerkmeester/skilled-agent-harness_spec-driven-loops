@@ -48,7 +48,7 @@ Both packets keep their own `SKILL.md`, `README.md`, and `changelog/`. The hub c
 **Small-model prompt craft (no command — read the profile directly or let the advisor co-surface it alongside `cli-opencode`):**
 
 ```text
-Read .opencode/skills/sk-prompt/prompt-models/references/models/deepseek-v4-pro.md
+Read .opencode/skills/sk-prompt/sk-prompt-models/references/models/deepseek-v4-pro.md
 ```
 
 ---

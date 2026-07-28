@@ -74,41 +74,41 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "IMPROVE": [
-        "prompt-improve/references/depth-framework.md"
+        "sk-prompt-improve/references/depth-framework.md"
     ],
     "DESIGN_PROMPT": [
-        "prompt-improve/references/design-generation-patterns.md"
+        "sk-prompt-improve/references/design-generation-patterns.md"
     ],
     "EVAL_PATTERNS": [
-        "prompt-improve/references/patterns-evaluation.md"
+        "sk-prompt-improve/references/patterns-evaluation.md"
     ],
     "FORMAT_JSON": [
-        "prompt-improve/assets/format-guide-json.md"
+        "sk-prompt-improve/assets/format-guide-json.md"
     ],
     "FORMAT_MARKDOWN": [
-        "prompt-improve/assets/format-guide-markdown.md"
+        "sk-prompt-improve/assets/format-guide-markdown.md"
     ],
     "FORMAT_YAML": [
-        "prompt-improve/assets/format-guide-yaml.md"
+        "sk-prompt-improve/assets/format-guide-yaml.md"
     ],
     "MODEL_INDEX": [
-        "prompt-models/references/models/_index.md",
-        "prompt-models/references/pattern-index.md"
+        "sk-prompt-models/references/models/_index.md",
+        "sk-prompt-models/references/pattern-index.md"
     ],
     "MODEL_DEEPSEEK": [
-        "prompt-models/references/models/deepseek-v4-pro.md"
+        "sk-prompt-models/references/models/deepseek-v4-pro.md"
     ],
     "MODEL_KIMI": [
-        "prompt-models/references/models/kimi-k2.7-code.md"
+        "sk-prompt-models/references/models/kimi-k2.7-code.md"
     ],
     "MODEL_MINIMAX": [
-        "prompt-models/references/models/minimax-m3.md"
+        "sk-prompt-models/references/models/minimax-m3.md"
     ],
     "MODEL_MIMO": [
-        "prompt-models/references/models/mimo-v2.5-pro.md"
+        "sk-prompt-models/references/models/mimo-v2.5-pro.md"
     ],
     "MODEL_GLM": [
-        "prompt-models/references/models/glm-5.2.md"
+        "sk-prompt-models/references/models/glm-5.2.md"
     ],
 }
 ```

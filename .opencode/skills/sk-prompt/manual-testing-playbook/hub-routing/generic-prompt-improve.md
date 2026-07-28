@@ -3,12 +3,12 @@ id: SP-001
 category: hub_routing
 stage: routing
 title: "Generic prompt-improvement request routes to prompt-improve"
-expected_intent: prompt-improve
+expected_intent: sk-prompt-improve
 expected_resources:
-  - prompt-improve/references/depth-framework.md
-expected_workflow_mode: prompt-improve
+  - sk-prompt-improve/references/depth-framework.md
+expected_workflow_mode: sk-prompt-improve
 expected_leaf_resources:
-  - workflow_mode: prompt-improve
+  - workflow_mode: sk-prompt-improve
     leaf_resource_id: references/depth-framework.md
 created: 2026-07-09
 version: 1.0.0.0

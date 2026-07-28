@@ -21,8 +21,8 @@ This is a thin delegator. The canonical prompt-models packet owns the framework 
 
 Load:
 
-- [Canonical CLI prompt-quality card](../../../sk-prompt/prompt-models/assets/cli-prompt-quality-card.md)
-- [Canonical model profiles](../../../sk-prompt/prompt-models/references/models/)
+- [Canonical CLI prompt-quality card](../../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md)
+- [Canonical model profiles](../../../sk-prompt/sk-prompt-models/references/models/)
 
 Do not copy the canonical taxonomy into this card. Do not create a second STAR, BUILD, ATLAS, or CONTEXT table here.
 

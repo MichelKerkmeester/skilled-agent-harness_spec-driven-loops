@@ -3,12 +3,12 @@ id: SP-004
 category: hub_routing
 stage: routing
 title: "Second named model (GLM-5.2) also routes to prompt-models"
-expected_intent: prompt-models
+expected_intent: sk-prompt-models
 expected_resources:
-  - prompt-models/references/models/glm-5.2.md
-expected_workflow_mode: prompt-models
+  - sk-prompt-models/references/models/glm-5.2.md
+expected_workflow_mode: sk-prompt-models
 expected_leaf_resources:
-  - workflow_mode: prompt-models
+  - workflow_mode: sk-prompt-models
     leaf_resource_id: references/models/glm-5.2.md
 created: 2026-07-09
 version: 1.0.0.0

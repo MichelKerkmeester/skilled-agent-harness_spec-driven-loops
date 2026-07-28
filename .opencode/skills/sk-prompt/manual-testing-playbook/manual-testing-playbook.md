@@ -31,7 +31,7 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 | SP-003 | `hub-routing/ambiguous-default.md` | `prompt-improve` (model-adjacent vocabulary, no model id) |
 | SP-004 | `hub-routing/second-model-glm.md` | `prompt-models` (GLM-5.2 named — confirms the signal generalizes beyond one example model) |
 
-A separate, non-scored functional check: `/prompt-improve "Write a blog post about AI"` should read `.opencode/skills/sk-prompt/prompt-improve/SKILL.md` (not the hub's own thin `SKILL.md`) — verified directly in phase 004, not part of this scored corpus.
+A separate, non-scored functional check: `/prompt-improve "Write a blog post about AI"` should read `.opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md` (not the hub's own thin `SKILL.md`) — verified directly in phase 004, not part of this scored corpus.
 
 **Routing-outcome scope (ordered-bundle determinism).** The hub declares the base router outcomes `single` / `n` / `defer`; the `n` / `orderedBundle` outcome in `hub-router.json` currently carries **no deterministic bundle rules** (`routerPolicy.bundleRules: []`). This playbook therefore asserts single-mode resolution only (`prompt-improve` vs `prompt-models`) and does not advertise a deterministic dual-intent ordered bundle as scored evidence: an unproven ordered-bundle claim is documented here as unproven rather than presented as a passing route. The single default-mode serving-authority route is covered by the compiled-routing scenario `SP-CR-001` (`compiled-routing/default-mode-compiled-routing.md`).
 

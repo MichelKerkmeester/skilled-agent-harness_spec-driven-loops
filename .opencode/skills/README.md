@@ -196,4 +196,4 @@ The family is the prefix before the first hyphen: `cli-*`, `deep-*`, `mcp-*`, `s
 | [`sk-git/README.md`](sk-git/README.md) | Git workflow: worktrees, Conventional Commits and PR integration |
 | [`sk-doc/README.md`](sk-doc/README.md) | Documentation quality, validation scripts and the DQI score |
 | [`sk-prompt/README.md`](sk-prompt/README.md) | Structured prompt engineering across seven frameworks |
-| [`sk-prompt/prompt-models/README.md`](sk-prompt/prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |
+| [`sk-prompt/sk-prompt-models/README.md`](sk-prompt/sk-prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |
