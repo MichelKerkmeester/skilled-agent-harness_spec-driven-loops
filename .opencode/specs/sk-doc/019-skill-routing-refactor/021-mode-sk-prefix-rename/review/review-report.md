@@ -64,4 +64,11 @@ Merged lineage-time verdict CONDITIONAL; every genuine P1 has been remediated an
 the remaining open entries are lineage-time snapshots of items fixed, deliberately kept, fabricated
 placeholders, or pre-existing failures. Effective post-remediation verdict: **PASS with advisories**.
 
+## 6. Post-Remediation Update
+
+Phase 009 closed the four deferred lanes (commits 9bbd2c1acb, a1426210ef, e095152fac, 265adfbf23).
+The route-gold refresh falsified the stale-gold hypothesis: both BLOCKED verdicts are byte-stable at
+91 after the rename-complete fixtures, caused by two genuine sk-design router misses and ten sk-code
+scenarios lacking typed gold — follow-up router work, tracked outside this packet.
+
 Review verdict: CONDITIONAL

@@ -38,10 +38,10 @@ parent: "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename"
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T101 Lane C: family-registry repair + dead-mode cleanup (SOL dispatch, verify, commit)
-- [ ] T102 Lane D: additive advisor vocabulary (SOL dispatch, verify, commit)
+- [x] T101 Lane C: family-registry repair + dead-mode cleanup (SOL dispatch, verify, commit)
+- [x] T102 Lane D: additive advisor vocabulary (SOL dispatch, verify, commit)
 - [x] T103 Lane B: phase-parent rollup + tests (implemented and verified; commit remains with the coordinating lane)
-- [ ] T104 Lane A: route-gold refresh + re-baseline (SOL dispatch, verify, commit)
+- [x] T104 Lane A: route-gold refresh + re-baseline (SOL dispatch, verify, commit)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,8 +49,8 @@ parent: "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename"
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T201 Final 4-hub matrix with Lane A baseline recorded
-- [ ] T202 validate.sh --recursive --strict Errors 0; review-report reconciliation updated
+- [x] T201 Final 4-hub matrix with Lane A baseline recorded
+- [x] T202 validate.sh --recursive --strict Errors 0; review-report reconciliation updated
 <!-- /ANCHOR:phase-3 -->
 
 ---

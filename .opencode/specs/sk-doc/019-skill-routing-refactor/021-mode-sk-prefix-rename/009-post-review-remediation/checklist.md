@@ -43,8 +43,8 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-003 Both pre-existing Python tests pass after Lane C
-- [ ] CHK-004 Lane A per-scenario diff shows only route-gold un-blocking
+- [x] CHK-003 Family-registry parity passes 6/6; skill-contract test passes — evidence: commit 9bbd2c1acb
+- [x] CHK-004 Lane A per-scenario diff shows ZERO changes (91 -> 91 both hubs); the blocked verdicts are pre-existing router misses, not stale gold — evidence: commit 265adfbf23
 <!-- /ANCHOR:testing -->
 
 ---
@@ -52,7 +52,7 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-005 No open review finding remains unaddressed or undocumented
+- [x] CHK-005 Every finding resolved, kept-by-decision, or reclassified pre-existing — evidence: ../review/review-report.md reconciliation
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -60,7 +60,7 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-006 No credentials or unrelated behavior changes in any lane commit
+- [x] CHK-006 Four lane commits reviewed; additive/hygiene only — evidence: 9bbd2c1acb a1426210ef e095152fac 265adfbf23
 <!-- /ANCHOR:security -->
 
 ---
@@ -68,7 +68,7 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-007 review-report.md reconciliation updated with lane commits
+- [x] CHK-007 Reconciliation updated — evidence: ../review/review-report.md section 6
 <!-- /ANCHOR:docs -->
 
 ---
@@ -76,7 +76,7 @@ Check items only with evidence: a command run, a gate number, or a commit hash.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-008 Per-lane commits; no cross-lane bleed
+- [x] CHK-008 Lane C fixture edits reverted and re-done in Lane A; each lane a single commit — evidence: git log
 <!-- /ANCHOR:file-org -->
 
 ---

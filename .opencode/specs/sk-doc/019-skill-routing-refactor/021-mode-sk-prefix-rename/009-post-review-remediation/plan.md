@@ -42,8 +42,8 @@ commit, treating agent completion reports as hypotheses.
 - [x] Lane order and gates fixed before dispatch
 
 ### Definition of Done
-- [ ] Four lanes committed with per-lane verification evidence
-- [ ] Final matrix green; validation Errors 0
+- [x] Four lanes committed with per-lane verification evidence
+- [x] Final matrix green; validation Errors 0
 <!-- /ANCHOR:quality-gates -->
 
 ---

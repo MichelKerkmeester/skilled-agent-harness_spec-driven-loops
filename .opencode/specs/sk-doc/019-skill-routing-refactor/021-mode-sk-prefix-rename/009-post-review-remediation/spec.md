@@ -21,7 +21,7 @@ parent: "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename"
 |-------|-------|
 | **Packet** | sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/009-post-review-remediation |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
 | **Executors** | GPT-5.6-SOL medium (cli-codex), one dispatch per lane; orchestrator verifies and commits |
 <!-- /ANCHOR:metadata -->

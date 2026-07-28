@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research",
-  "spec_folder": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research",
+  "packet_id": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/009-post-review-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/009-post-review-remediation",
   "parent_id": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
   "children_ids": [],
   "manual": {
@@ -11,34 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk prefix rename research",
-      "mode rename surface discovery",
-      "sk rename research checklist"
+      "post review remediation",
+      "route gold refresh",
+      "post review remediation summary"
     ],
     "key_topics": [
-      "prefix",
-      "rename",
-      "research",
-      "mode",
-      "surface",
-      "discovery",
-      "checklist",
-      "two",
-      "independent",
-      "models",
-      "clis",
-      "enumerate"
+      "post",
+      "review",
+      "remediation",
+      "route",
+      "gold",
+      "refresh",
+      "summary",
+      "every",
+      "remaining",
+      "deep-review",
+      "finding",
+      "route-gold"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "research/lineages/grok-4-5-high/research.md",
-      "research/lineages/glm-5-2/research.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -54,12 +52,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -72,19 +64,19 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Find Every Surface An",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Prefix Rename Touches",
+        "name": "Review Remediation Of The Remaining Rename Findings",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -102,7 +94,13 @@
         "source": "derived"
       },
       {
-        "name": "cli-cursor",
+        "name": "Both Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -114,25 +112,25 @@
         "source": "derived"
       },
       {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Run",
+        "name": "Overview One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "paired",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "git-paired",
+        "name": "per-lane",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -150,6 +148,18 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane A",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -162,33 +172,21 @@
         "source": "derived"
       },
       {
-        "name": "PHASE 2: IMPLEMENTATION",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "PHASE 3: VERIFICATION",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "COMPLETION CRITERIA",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Protocol Check",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Two independent models on two CLIs enumerate every consumer of a mode packet directory or workflowMode key, so the rename phases start from a found surface rather than a guessed one.",
-    "created_at": "2026-07-28T05:34:08.652Z",
-    "last_save_at": "2026-07-28T11:57:32.014Z",
+    "causal_summary": "Fix every remaining deep-review finding: route-gold refresh, phase-parent status rollup, pre-existing repairs, additive advisor vocabulary.",
+    "created_at": "2026-07-28T11:56:16.836Z",
+    "last_save_at": "2026-07-28T11:56:16.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +196,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8fce15784fced9b5354d901bb910eb45d158be21985b5c08d3b7146649e5ba2d",
+    "source_fingerprint": "sha256:f689a56fc28275b21b7d9c9a50df3be1d093feafda0cff41b6e7a529866c153b",
     "source_doc_hashes": {
-      "spec.md": "4c57754b49b77884116db66b3fd56a880f118aeca92d2078b332e0a46eb922e2",
-      "plan.md": "21578623d39e2381021a6629e99f300dad8803c13b4d188d72a140cf938133eb",
-      "tasks.md": "cfcd4fccd1b6380141a142492f568d34678d552acd834abdfd3e572c03802401",
-      "checklist.md": "0705cbbd1910536651420a71315d51cc76023dd2c58a0efbdffe84a2c59072fb",
-      "implementation-summary.md": "7e5dcf1f52058469762fa9c6e3ce5598776d19fb0c4494404a9b5e9eabadbb80"
+      "spec.md": "4e9206d99ad7d57cf1af0740e7e112eb8fba2b19e003483b9cd471532174c098",
+      "plan.md": "6421569efc7b814fc7c02635d01d279b7743f459f3ceb2cc1970a595ed5ab8cc",
+      "tasks.md": "86362b797876226586b259fc81ac16fd22f88125ce2892b1d73921a47bdecc9e",
+      "checklist.md": "796748ca9969fdc0d4df6adfa5d315114e34eb611f7959416af0513510f7a3f5",
+      "implementation-summary.md": "ed16ea701ae186b20687acb4981d3c555c10ea63f183293b3741f49c97dce682"
     },
     "last_active_child_id": null,
     "last_active_at": null
