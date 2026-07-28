@@ -46,6 +46,7 @@
       ".cursor/hooks.json",
       "mcp-server/hooks/devin/shared.ts",
       ".pi/extensions/README.md",
+      ".opencode/logs/cli-dispatch-audit.log",
       "hooks/devin/shared.ts",
       "implementation-summary.md",
       "plan.md",
@@ -114,6 +115,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.log",
+        "kind": "file",
+        "path": ".opencode/logs/cli-dispatch-audit.log",
         "source": "derived"
       },
       {
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 012 built 6 `.pi/extensions/.ts` files bridging the toolcall/toolresult/input-scoped guard cores (spec-gate, dispatch-preflight, dispatch-audit, post-edit-quality, mcp-route-guard)",
     "created_at": "2026-07-27T20:39:41.538Z",
-    "last_save_at": "2026-07-27T20:39:41.538Z",
+    "last_save_at": "2026-07-28T03:47:57.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc459a818835cb029cae3c0691743a3ca669678096cd968bd9898e30de569754",
+    "source_fingerprint": "sha256:d9ecf7ea3dc4cf81212c78cbbb0a9e99e2105753c8170caa120bae8fb1dfc494",
     "source_doc_hashes": {
       "spec.md": "f24613ffa309faf086c36f9e5e1db98124dcc9ebf9a15205d646ebd92db682a8",
       "plan.md": "6a9f7bb17040e10e7e9b550956155d4041104f3453dc15f3576d2a642174f7c6",
       "tasks.md": "f5e5ae4990e29443773cbd7b5ae96122fd99e98289113bdec91114280779f901",
       "checklist.md": "882f4128c29d30a48346ea07c71b8b133e828fb6fffa49d50e14a5272a42707a",
-      "implementation-summary.md": "ede189c667815d88a73a778d8b32778973fb4840fa262b3caab30de426eee05c"
+      "implementation-summary.md": "4cc67bc3e9c15af73f00905b0dca203c62f3b5d3a2f0dbc40562d8915a058d9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

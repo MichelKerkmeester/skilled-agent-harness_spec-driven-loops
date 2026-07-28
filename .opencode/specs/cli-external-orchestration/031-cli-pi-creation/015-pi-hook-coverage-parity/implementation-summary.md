@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity"
-    last_updated_at: "2026-07-27T20:38:38Z"
+    last_updated_at: "2026-07-28T03:47:22Z"
     last_updated_by: "claude-code"
-    recent_action: "Built directly, GLM-5.2 reviewed, all 5 findings fixed, closed Complete"
+    recent_action: "Live-traced all bridged hooks with real providers; evidence upgraded, limitations rewritten"
     next_safe_action: "None -- terminal phase; packet re-closes at 15 phases"
     blockers: []
     key_files: [".pi/extensions/lib/claude-hook-adapter.ts", ".pi/extensions/session-start-context.ts", ".pi/extensions/session-compact-context.ts", ".pi/extensions/README.md"]
@@ -122,9 +122,24 @@ All 5 fixed; the path construction in `claude-hook-adapter.ts`, the raw-stdout h
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A live provider-authenticated interactive-session trace confirming every new hook fires exactly as designed remains open**, inherited from phase 008 -- this phase's verification is a clean extension-load smoke test plus isolated spawn tests of each proxied dist hook, not a full interactive session trace under real credentials.
-2. **`pi.sendMessage()`'s LLM-visibility is behaviorally confirmed but not exhaustively tested** -- a smoke-test session's response referenced content only present in the injected `session-prime.js` text, and `messages.ts`'s `convertToLlm()` type-confirms `CustomMessage` entries transform into LLM-compatible messages, but no test enumerated every mode (tui/rpc/json/print) this holds across.
-3. **`task-dispatch-guard` and `completion-evidence-stop.cjs` remain deliberately deferred**, unchanged from phase 008/012 -- this phase did not attempt to resolve them.
+1. **`session_compact` remains the one untraced event** -- it only fires on a manual `/compact`, the context threshold, or overflow recovery in a long interactive session, none of which a bounded print-mode trace can trigger. Its handler logic is the GLM-reviewed native port of `post-compaction.cjs`, and every helper it calls (state-file read, `spec-memory.cjs` CLI) is independently spawn-tested, but the event-to-injection path has not fired live.
+2. **`session-start-advisories.ts` warnings are TUI-visible only** -- `ctx.ui.notify()` is a confirmed no-op in print mode (`noOpUIContext` in the installed package's `runner.js`), so in `-p` dispatches the 4 checks run (total ~0.25s) but their warnings surface nowhere. Interactive sessions see them.
+3. **`prompt-advisor.ts` adds a measured 1.9-2.6s to every user prompt** (isolated spawn timings of the advisor hook, capped by its 2.8s budget) -- the same per-prompt cost devin/cursor already pay for the same hook. If it feels laggy interactively, the file can be deleted standalone (Pi discovers by file presence) or gated warm-only.
+4. **`task-dispatch-guard` and `completion-evidence-stop.cjs` remain deliberately deferred**, unchanged from phase 008/012 -- this phase did not attempt to resolve them.
+
+### Live-trace amendment (2026-07-28)
+
+A follow-up session with real authenticated providers (openai-codex, deepseek, minimax, xiaomi) upgraded the verification from load-tested to live-traced, using a temporary probe extension (created, used, deleted) plus two real `deepseek-v4-flash` print-mode sessions:
+
+| Hook | Live evidence |
+|------|---------------|
+| `session_start` / `session_shutdown(quit)` firing in print mode | Probe log shows both events with real session ids; confirmed in the installed source that print mode's `disposeRuntime()` -> `runtimeHost.dispose()` emits `session_shutdown` reason `quit` (`agent-session-runtime.js:285`) |
+| `prompt-advisor.ts` + `spec-gate-classify.ts` transform injection | The probe (alphabetically last `input` handler) received `textLen=970` for a ~90-char prompt -- ~880 chars of advisor context and gate question injected ahead of it in the live chain |
+| `dispatch-audit.ts` end-to-end | A live session running a dispatch-shaped command wrote a real `"runtime":"pi"` line to `.opencode/logs/cli-dispatch-audit.log` with the pi session id; the earlier miss on a plain `echo` was `recordDispatch()`'s own correct fast-exit for non-dispatch commands |
+| `session-stop-context.ts` bridge | Probe-instrumented shutdown handler logged `session-stop spawn result: ok(len=0)` -- the spawn succeeds with exit 0; the hook writes no state without a transcript, its own documented no-op path |
+| `session-start-context.ts` | Prior behavioral evidence stands (a session's reply referenced injected session-prime content) |
+
+One environment finding, unrelated to these hooks: the `pi-mcp-extension` retry loop for the down `mk-spec-memory` daemon adds ~49s to every pi startup in this repo (5 retries, 1s->30s backoff). Print-mode dispatches should budget timeouts above 90s or pass a session where the daemon is warm.
 <!-- /ANCHOR:limitations -->
 
 ---
