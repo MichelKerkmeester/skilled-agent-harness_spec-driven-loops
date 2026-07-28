@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-hook-runtime-relocation-review",
+  "spec_folder": "system-speckit/033-hook-runtime-relocation-review",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook runtime relocation",
+      "runtime-hooks tree",
+      "fully-portable guard cores",
+      "hook relocation deep review",
+      "hook relocation plan",
+      "runtime-hooks git mv",
+      "portability classification",
+      "hook relocation tasks",
+      "hook relocation checklist",
+      "hook relocation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "runtime",
+      "relocation",
+      "runtime-hooks",
+      "tree",
+      "fully-portable",
+      "guard",
+      "cores",
+      "deep",
+      "review",
+      "plan",
+      "git"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/runtime-hooks/README.md",
+      ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md",
+      ".pi/extensions/git-preflight-advisory.ts",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".codex/hooks.json",
+      ".opencode/plugins/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/runtime-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.ts",
+        "kind": "code",
+        "path": ".pi/extensions/git-preflight-advisory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement While",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Relocate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "User Story",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Moving Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Executor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Concern",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "While documenting every lifecycle hook's injections (`injection-contract.md`), the operator asked whether hook implementations should live outside `.opencode/skills/` entirely, since a user might want a skill's knowledge without its enforcement hooks (or vice versa)",
+    "created_at": "2026-07-28T12:20:01.635Z",
+    "last_save_at": "2026-07-28T12:22:27.411Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1dc29229c652f44f0d589b0b77d8a3625fcc72386a0c8d2f727056051dbb172",
+    "source_doc_hashes": {
+      "spec.md": "59dd8b5d4735c888df300cb661edbe6a6e40dd82eae9d8781027947dbbba3f75",
+      "plan.md": "e2e1f81a80a74077f56b0bb733656d267c3238f1eaf4c22242ac87d754798861",
+      "tasks.md": "f5fb5551110d8c45f3788433697fecf1e847484147e3a057ac7f2968b0aea2e2",
+      "checklist.md": "56ddca5078b0be9d4e6dc69a443e34f87868c1f5251ec94464c705f7b2a1a4ab",
+      "implementation-summary.md": "a92792eaa982abff2a746816316e2403cd3a1100b2b8abb558a5ed56878a2680"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

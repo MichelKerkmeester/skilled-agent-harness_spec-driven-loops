@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/033-hook-runtime-relocation-review",
+  "description": "Relocate fully-portable runtime-hook guard cores into .opencode/runtime-hooks/, then gate merge on a forced 5-iteration deep review.",
+  "keywords": [
+    "relocate",
+    "fully-portable",
+    "runtime-hook",
+    "guard",
+    "cores",
+    "opencode",
+    "runtime-hooks",
+    "gate",
+    "merge",
+    "forced",
+    "5-iteration",
+    "deep",
+    "review"
+  ],
+  "lastUpdated": "2026-07-28T12:19:52.542Z",
+  "specId": "033",
+  "folderSlug": "hook-runtime-relocation-review",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
