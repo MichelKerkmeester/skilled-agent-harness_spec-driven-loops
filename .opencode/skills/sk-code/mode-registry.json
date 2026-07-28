@@ -2,7 +2,7 @@
   "skill": "sk-code",
   "version": "4.1.0.0",
   "resourceContractVersion": 1,
-  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (quality/code-review) is process; the SURFACE axis (code-webflow/code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md, symlinked into each surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
+  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-webflow/sk-code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md, symlinked into each surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for process modes that act, 'surface' for read-only domain-evidence packets bundled alongside a workflow mode.",
@@ -16,12 +16,12 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They bundle stack knowledge plus the workflow doctrine as read-only evidence; the acting agent applies it — the surface never executes the process itself.",
-      "surfaces": ["code-webflow", "code-opencode"]
+      "surfaces": ["sk-code-webflow", "sk-code-opencode"]
     }
   },
   "modes": [
     {
-      "workflowMode": "quality",
+      "workflowMode": "sk-code-quality",
       "packetKind": "workflow",
       "backendKind": "surface-router",
       "toolSurface": {
@@ -30,17 +30,17 @@
         "mutatesWorkspace": true,
         "bashAllowlist": []
       },
-      "packet": "code-quality",
-      "packetSkillName": "code-quality",
+      "packet": "sk-code-quality",
+      "packetSkillName": "sk-code-quality",
       "grandfatheredFolderMismatch": false,
       "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys", "quality check", "check before done", "author quality gate", "pre-verification quality check", "p0 p1 p2 review"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "code-quality"
+        "packetSkillName": "sk-code-quality"
       }
     },
     {
-      "workflowMode": "code-review",
+      "workflowMode": "sk-code-review",
       "packetKind": "workflow",
       "backendKind": "review-cache",
       "toolSurface": {
@@ -50,17 +50,17 @@
         "bashAllowlist": [],
         "writeScopeNote": "Write is scoped to the ephemeral, untracked review cache (.opencode/.code-review-cache/<repo-ref>.jsonl); code-review never writes tracked project files (Edit is forbidden), so the tracked workspace is not mutated."
       },
-      "packet": "code-review",
-      "packetSkillName": "code-review",
+      "packet": "sk-code-review",
+      "packetSkillName": "sk-code-review",
       "grandfatheredFolderMismatch": false,
       "aliases": ["code review", "reviewer", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "code-review"
+        "packetSkillName": "sk-code-review"
       }
     },
     {
-      "workflowMode": "code-webflow",
+      "workflowMode": "sk-code-webflow",
       "packetKind": "surface",
       "backendKind": "evidence-base",
       "toolSurface": {
@@ -69,17 +69,17 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "code-webflow",
-      "packetSkillName": "code-webflow",
+      "packet": "sk-code-webflow",
+      "packetSkillName": "sk-code-webflow",
       "grandfatheredFolderMismatch": false,
       "aliases": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "code-webflow"
+        "packetSkillName": "sk-code-webflow"
       }
     },
     {
-      "workflowMode": "code-opencode",
+      "workflowMode": "sk-code-opencode",
       "packetKind": "surface",
       "backendKind": "evidence-base",
       "toolSurface": {
@@ -88,13 +88,13 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "code-opencode",
-      "packetSkillName": "code-opencode",
+      "packet": "sk-code-opencode",
+      "packetSkillName": "sk-code-opencode",
       "grandfatheredFolderMismatch": false,
       "aliases": ["opencode system code", "opencode system code workflow", "opencode typescript verification"],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "code-opencode"
+        "packetSkillName": "sk-code-opencode"
       }
     }
   ]

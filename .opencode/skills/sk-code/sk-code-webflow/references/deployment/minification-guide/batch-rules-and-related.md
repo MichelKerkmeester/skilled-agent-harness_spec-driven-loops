@@ -35,13 +35,13 @@ Provides the detailed batch minification, rules & related guidance for the broad
 
 ```bash
 # Step 1: Minify all
-node .opencode/skills/sk-code/code-webflow/assets/scripts/minify-webflow.mjs --force
+node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs --force
 
 # Step 2: Verify all
-node .opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs
 
 # Step 3: Test all
-node .opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs
 
 # Step 4: Browser test key pages
 bdg https://your-project.webflow.io/
@@ -57,10 +57,10 @@ npx terser src/javascript/hero/hero_video.js --compress --mangle \
   -o src/javascript/z_minified/hero/hero_video.min.js
 
 # Step 2: Verify (runs on all, but check specific file in output)
-node .opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs
 
 # Step 3: Test
-node .opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs
 
 # Step 4: Browser test
 bdg https://your-project.webflow.io/
@@ -109,9 +109,9 @@ bdg stop
 
 ### Scripts
 
-- `.opencode/skills/sk-code/code-webflow/assets/scripts/minify-webflow.mjs` - Batch minification
-- `.opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs` - AST verification
-- `.opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs` - Runtime testing
 
 ### External
 

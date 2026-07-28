@@ -36,27 +36,27 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack-detection.md`
 - `references/smart-routing.md`
 - `references/smart-routing.md`
-- `code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- `code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
-- `code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`
-- `code-webflow/references/animation/performance-and-pitfalls.md`
-- `code-webflow/references/animation/integration-patterns.md`
+- `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
+- `sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
+- `sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`
+- `sk-code-webflow/references/animation/performance-and-pitfalls.md`
+- `sk-code-webflow/references/animation/integration-patterns.md`
 
 **Expected assets loaded**:
-- `code-review/assets/code-quality-checklist.md`
-- `code-webflow/assets/webflow-verification-checklist.md`
-- `code-webflow/assets/animation/snippets/hover-gesture.js`
-- `code-webflow/assets/animation/snippets/in-view-reveal.js`
+- `sk-code-review/assets/code-quality-checklist.md`
+- `sk-code-webflow/assets/webflow-verification-checklist.md`
+- `sk-code-webflow/assets/animation/snippets/hover-gesture.js`
+- `sk-code-webflow/assets/animation/snippets/in-view-reveal.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff surface is `WEBFLOW`, `code-webflow/references/animation/performance-and-pitfalls.md` loads, the user response cites Motion.dev reduced-motion guidance, and Webflow verification/a11y guidance is also loaded.
+- **PASS** iff surface is `WEBFLOW`, `sk-code-webflow/references/animation/performance-and-pitfalls.md` loads, the user response cites Motion.dev reduced-motion guidance, and Webflow verification/a11y guidance is also loaded.
 - **FAIL** iff Motion.dev reduced-motion guidance is missing, Webflow guidance is missing, surface is not `WEBFLOW`, or an agent is dispatched.
 
 **Failure triage**:
-1. If Motion reduced-motion guidance is missing, inspect `code-webflow/references/animation/performance-and-pitfalls.md`.
-2. If Webflow verification is missing, inspect `code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`.
+1. If Motion reduced-motion guidance is missing, inspect `sk-code-webflow/references/animation/performance-and-pitfalls.md`.
+2. If Webflow verification is missing, inspect `sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`.
 3. If the response only says "disable animations", check whether it preserves state changes and usability.
 
 ---
@@ -73,10 +73,10 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-webflow/references/animation/performance-and-pitfalls.md` - Motion reduced-motion guidance.
-- `.opencode/skills/sk-code/code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md` - Webflow animation accessibility guidance.
-- `.opencode/skills/sk-code/code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` - Browser evidence expectations.
-- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/hover-gesture.js` - Reduced-motion snippet pattern.
+- `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Motion reduced-motion guidance.
+- `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md` - Webflow animation accessibility guidance.
+- `.opencode/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` - Browser evidence expectations.
+- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Reduced-motion snippet pattern.
 
 ---
 

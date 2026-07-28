@@ -36,26 +36,26 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack-detection.md`
 - `references/smart-routing.md`
 - `references/smart-routing.md`
-- `code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- `code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
-- `code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md`
-- `code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`
-- `code-webflow/references/animation/quick-start.md`
-- `code-webflow/references/animation/integration-patterns.md`
-- `code-webflow/references/animation/scroll-and-gestures.md`
-- `code-webflow/references/animation/performance-and-pitfalls.md`
+- `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
+- `sk-code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
+- `sk-code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md`
+- `sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`
+- `sk-code-webflow/references/animation/quick-start.md`
+- `sk-code-webflow/references/animation/integration-patterns.md`
+- `sk-code-webflow/references/animation/scroll-and-gestures.md`
+- `sk-code-webflow/references/animation/performance-and-pitfalls.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/checklists/code-quality-checklist.md`
-- `code-webflow/assets/checklists/verification_checklist.md`
-- `code-webflow/assets/animation/install-card.md`
-- `code-webflow/assets/animation/snippets/in-view-reveal.js`
-- `code-webflow/assets/animation/snippets/cdn-bootstrap.js`
+- `sk-code-webflow/assets/checklists/code-quality-checklist.md`
+- `sk-code-webflow/assets/checklists/verification_checklist.md`
+- `sk-code-webflow/assets/animation/install-card.md`
+- `sk-code-webflow/assets/animation/snippets/in-view-reveal.js`
+- `sk-code-webflow/assets/animation/snippets/cdn-bootstrap.js`
 
 **Expected agent dispatch**: none for this read-only routing-analysis harness. If the same prompt were implementation work, `@code` could be dispatched by an orchestrator, but this scenario forbids dispatch.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff surface is `WEBFLOW`, at least one `code-webflow/references/implementation/*` path loads, `code-webflow/references/animation/quick-start.md` and `code-webflow/assets/animation/snippets/in-view-reveal.js` load, and `agent_dispatched` is `none`.
+- **PASS** iff surface is `WEBFLOW`, at least one `sk-code-webflow/references/implementation/*` path loads, `sk-code-webflow/references/animation/quick-start.md` and `sk-code-webflow/assets/animation/snippets/in-view-reveal.js` load, and `agent_dispatched` is `none`.
 - **FAIL** iff surface is not `WEBFLOW`, Motion.dev peer references are omitted, or any agent is dispatched.
 
 **Failure triage**:
@@ -79,8 +79,8 @@ Expected result files:
 
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - WEBFLOW marker block.
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` - WEBFLOW plus MOTION_DEV loading rules.
-- `.opencode/skills/sk-code/code-webflow/references/animation/quick-start.md` - Motion install and import guidance.
-- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/in-view-reveal.js` - Required snippet.
+- `.opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md` - Motion install and import guidance.
+- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required snippet.
 
 ---
 

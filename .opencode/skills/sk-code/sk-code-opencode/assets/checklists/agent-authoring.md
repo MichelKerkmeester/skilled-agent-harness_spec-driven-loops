@@ -73,4 +73,4 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 - Mirror checker: `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`
 - Mirrored example: `.opencode/agents/code.md` and `.claude/agents/code.md`
 - Runtime directories: `.opencode/agents/` and `.claude/agents/`
-- Verification recipes: `.opencode/skills/sk-code/code-opencode/assets/checklists/universal-checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

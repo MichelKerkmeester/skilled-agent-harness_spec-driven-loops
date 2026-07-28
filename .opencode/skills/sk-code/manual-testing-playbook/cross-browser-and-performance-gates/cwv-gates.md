@@ -83,8 +83,8 @@ Measure LCP, CLS, and INP on the Motion-heavy page; return PASS/FAIL against CWV
 | File | Role |
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../code-webflow/references/animation/performance-and-pitfalls.md` | Local Motion performance and reduced-jank guidance |
-| `../../code-webflow/references/animation/animate-and-timelines.md` | Local animation property and sequence guidance |
+| `../../sk-code-webflow/references/animation/performance-and-pitfalls.md` | Local Motion performance and reduced-jank guidance |
+| `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local animation property and sequence guidance |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown interaction and height animation anchor |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider interaction and transform animation anchor |
 | `https://motion.dev/docs/performance` | Official Motion performance guidance |

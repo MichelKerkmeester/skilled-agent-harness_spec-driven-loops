@@ -20,7 +20,7 @@
 // Hook entry (settings.json):
 //   { "matcher": "Write|Edit",
 //     "hooks": [{ "type": "command",
-//                 "command": "bash -c 'cd \"...repo...\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs'",
+//                 "command": "bash -c 'cd \"...repo...\" && node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs'",
 //                 "timeout": 10 }] }
 'use strict';
 

@@ -31,7 +31,7 @@ Apply each relevant check to the target JavaScript or CSS file before reporting 
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 2](../../../code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
+**Reference:** [code-style-guide.md Section 2](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Variable Naming
 
@@ -91,7 +91,7 @@ function data(form) { }    // Should be: get_form_data
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-quality-standards.md Section 2](../../../code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md)
+**Reference:** [code-quality-standards.md Section 2](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md)
 
 ### CDN-Safe Initialization
 
@@ -141,7 +141,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 4](../../../code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
+**Reference:** [code-style-guide.md Section 4](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Basic Formatting
 
@@ -158,7 +158,7 @@ if (window.Webflow?.push) {
 
 **Applies to:** CSS (`.css`)
 
-**Reference:** [css/style-guide.md](../../../code-webflow/references/css/style-guide.md) — full CSS conventions (BEM naming, custom property prefixes, attribute selectors, animation CSS, file organization)
+**Reference:** [css/style-guide.md](../../../sk-code-webflow/references/css/style-guide.md) — full CSS conventions (BEM naming, custom property prefixes, attribute selectors, animation CSS, file organization)
 
 ### Custom Property Naming
 

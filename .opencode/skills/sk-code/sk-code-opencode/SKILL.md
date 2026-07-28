@@ -1,5 +1,5 @@
 ---
-name: code-opencode
+name: sk-code-opencode
 description: "sk-code OPENCODE surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.0.0.4
@@ -47,7 +47,7 @@ This block is the deterministic projection of code-opencode's own reference/asse
 ```python
 # code-opencode owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with code-opencode/) and the sibling code-webflow map plus the
+# (re-prefixed with sk-code-opencode/) and the sibling code-webflow map plus the
 # parent-owned universal/shared tier; the sk-code-router-sync.vitest.ts suite
 # (under system-deep-loop's skill-benchmark tests) is the guard that enforces
 # that equality. verify_alignment_drift.py is markdown-blind by default and does

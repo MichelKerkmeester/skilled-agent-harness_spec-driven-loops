@@ -27,7 +27,7 @@ silently trusts an out-of-date build. It reuses the shared `checkAllFreshness()`
 against a fixed registry of seven watched packages (`system-spec-kit/shared`,
 `system-spec-kit/scripts`, `system-spec-kit/mcp-server`, `mcp-code-mode/mcp-server`,
 `system-skill-advisor/mcp-server`, `system-code-graph/mcp-server`, and
-`sk-design/design-md-generator/backend`).
+`sk-design/sk-design-md-generator/backend`).
 
 The guard fires diagnostics on three triggers: OpenCode's `session.created` event (once per
 session, deduplicated by session ID up to `MAX_SESSION_IDS = 1000`), a risky Bash command
@@ -213,7 +213,7 @@ exit code `69`, and the JSON `results` array shows 6 packages `"status":"fresh"`
 genuinely stale package:
 
 ```json
-{"packageId":"sk-design/design-md-generator/backend","packageName":"design-system-extractor","status":"stale","stale":true,"packageRoot":".../.opencode/skills/sk-design/design-md-generator/backend","distEntry":".../dist/cli.js","entry":"default","rebuildCommand":"cd .opencode/skills/sk-design/design-md-generator/backend && npm run build","sourceCount":27,"newestSourceMtime":1783693794883.08,"newestSourceFile":".../scripts/report-gen.ts","distMtime":1782965858277.41,"message":"design-system-extractor dist is stale. Rebuild with: cd .opencode/skills/sk-design/design-md-generator/backend && npm run build"}
+{"packageId":"sk-design/sk-design-md-generator/backend","packageName":"design-system-extractor","status":"stale","stale":true,"packageRoot":".../.opencode/skills/sk-design/sk-design-md-generator/backend","distEntry":".../dist/cli.js","entry":"default","rebuildCommand":"cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build","sourceCount":27,"newestSourceMtime":1783693794883.08,"newestSourceFile":".../scripts/report-gen.ts","distMtime":1782965858277.41,"message":"design-system-extractor dist is stale. Rebuild with: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build"}
 ```
 
 Step 3 -- live plugin `session.created` -> `experimental.chat.system.transform` injection,
@@ -222,7 +222,7 @@ run against the same live repository (`ctx.directory = process.cwd()`), captured
 
 ```json
 [
-  "[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:\n- STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/design-md-generator/backend && npm run build"
+  "[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:\n- STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build"
 ]
 ```
 
@@ -242,9 +242,9 @@ carries prior `inject:`-prefixed lines from an actual concurrently running OpenC
 using this same plugin, confirming the log is genuinely live, not a fixture):
 
 ```text
-2026-07-11T12:06:56.015Z [mk-dist-freshness-guard] inject: STALE DIST WARNING: @spec-kit/shared -- run: cd .opencode/skills/system-spec-kit/shared && npm run build; STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .opencode/skills/system-skill-advisor/mcp-server && npm run build; STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/design-md-generator/backend && npm run build
-2026-07-11T12:40:11.580Z [mk-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/design-md-generator/backend && npm run build
-2026-07-11T12:40:40.362Z [mk-dist-freshness-guard] risky-bash: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/design-md-generator/backend && npm run build
+2026-07-11T12:06:56.015Z [mk-dist-freshness-guard] inject: STALE DIST WARNING: @spec-kit/shared -- run: cd .opencode/skills/system-spec-kit/shared && npm run build; STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .opencode/skills/system-skill-advisor/mcp-server && npm run build; STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
+2026-07-11T12:40:11.580Z [mk-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
+2026-07-11T12:40:40.362Z [mk-dist-freshness-guard] risky-bash: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
 ```
 
 (The earlier `inject:` line also names `@spec-kit/shared` and
@@ -255,7 +255,7 @@ drift the guard exists to catch -- it does not indicate a bug in this scenario's
 Step 5 -- Claude-side `SessionStart` sibling wrapper, live run:
 
 ```text
-STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/design-md-generator/backend && npm run build
+STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
 ```
 
 Identical stale-package name and rebuild command to steps 2 and 3, confirming the OpenCode

@@ -82,4 +82,4 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 - Launcher examples: `.opencode/bin/mk-spec-memory-launcher.cjs`, `.opencode/bin/mk-skill-advisor-launcher.cjs`, `.opencode/bin/mk-code-index-launcher.cjs`
 - Direct-dist example: `.opencode/skills/mcp-code-mode/mcp-server/dist/index.js`
 - MCP server examples: `.opencode/skills/system-spec-kit/mcp-server/`, `.opencode/skills/system-code-graph/mcp-server/`, `.opencode/skills/system-skill-advisor/mcp-server/`, `.opencode/skills/mcp-code-mode/mcp-server/`
-- Verification recipes: `.opencode/skills/sk-code/code-opencode/assets/checklists/typescript-checklist.md`, `.opencode/skills/sk-code/code-opencode/assets/checklists/python-checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md`, `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/python-checklist.md`

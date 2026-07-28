@@ -76,8 +76,8 @@ Inspect Motion dropdown and slider compositing in Chrome DevTools; flag layout a
 | File | Role |
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../code-webflow/references/animation/performance-and-pitfalls.md` | Local compositor-friendly animation guidance |
-| `../../code-webflow/references/animation/animate-and-timelines.md` | Local transform/opacity animation reference |
+| `../../sk-code-webflow/references/animation/performance-and-pitfalls.md` | Local compositor-friendly animation guidance |
+| `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local transform/opacity animation reference |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown height/opacity animation and forced reflow anchor |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider transform/motionValue/willChange anchor |
 | `https://motion.dev/docs/performance` | Official Motion performance and compositor guidance |

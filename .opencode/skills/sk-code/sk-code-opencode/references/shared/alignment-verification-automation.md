@@ -31,7 +31,7 @@ Use this reference when tuning recurring checks or interpreting verifier output 
 
 ## 2. SCRIPT
 
-- Path: `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py`
+- Path: `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`
 - Purpose: run lightweight, deterministic, behavior-neutral checks across OpenCode system languages.
 
 ## 3. WHAT IT CHECKS
@@ -73,19 +73,19 @@ not by this script. These remain manual review gates:
 ## 4. USAGE
 
 ```bash
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode
+python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode
 ```
 
 Strict CI mode:
 
 ```bash
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode --fail-on-warn
+python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode --fail-on-warn
 ```
 
 Router dead-route check (default off):
 
 ```bash
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code --check-router
+python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code --check-router
 ```
 
 Notes:
@@ -104,7 +104,7 @@ Notes:
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
 - RESOURCE_MAP equality guard: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts` — the Vitest suite that enforces parent↔child RESOURCE_MAP equality and the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection. This, not `verify_alignment_drift.py`, is the equality authority.
-- Drift-guard entry point: `.opencode/skills/sk-code/code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, and the router-sync suite together as one gate.
+- Drift-guard entry point: `.opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, and the router-sync suite together as one gate.
 
 ---
 

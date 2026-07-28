@@ -74,7 +74,7 @@ If `check` produces a `reasoning-agent` finding with no caller `verifiedFindings
 |---|---|
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs` | discover/classify, deterministic layers, `excludedFromCheck`, `checkPatternConformance` verify-first gate |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-code-adapter.md` | Full adapter specification incl. the excluded-minifier rationale and layer split |
-| `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py` | The real OPENCODE drift tool the adapter wraps |
+| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | The real OPENCODE drift tool the adapter wraps |
 
 ---
 

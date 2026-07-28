@@ -39,8 +39,8 @@ The adapter deliberately excludes `minify-webflow.mjs` from `check()` because it
 | `scripts/adapters/sk-code.cjs` | Adapter | `discover`/`standardSource`/`check`, the ported surface classifier, per-surface subprocess wrappers, and `buildReasoningLayerDispatch()`. |
 | `references/adapters/sk-code-adapter.md` | Reference | Full specification: surface classifier provenance, the two deterministic surfaces (Section 4.1), the reasoning-agent dispatch (ADR-008). |
 | `references/adapters/sk-code-known-deviations.md` | Reference | The sk-code suppression list parsed by `loadKnownDeviations()`. |
-| `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py` | Wrapped tool | The OPENCODE deterministic drift checker. |
-| `.opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs` | Wrapped tool | The WEBFLOW minification-pattern-preservation checker (read-only). |
+| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Wrapped tool | The OPENCODE deterministic drift checker. |
+| `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs` | Wrapped tool | The WEBFLOW minification-pattern-preservation checker (read-only). |
 
 ### Validation And Tests
 

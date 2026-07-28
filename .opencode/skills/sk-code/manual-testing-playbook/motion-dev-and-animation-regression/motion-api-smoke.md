@@ -83,9 +83,9 @@ Create a Webflow-style Motion smoke page using pinned CDN animate, inView, and s
 | File | Role |
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../code-webflow/references/animation/quick-start.md` | Local Motion install and import-mode reference |
-| `../../code-webflow/references/animation/animate-and-timelines.md` | Local `animate()` and sequence guidance |
-| `../../code-webflow/references/animation/scroll-and-gestures.md` | Local `inView()` and viewport trigger guidance |
+| `../../sk-code-webflow/references/animation/quick-start.md` | Local Motion install and import-mode reference |
+| `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local `animate()` and sequence guidance |
+| `../../sk-code-webflow/references/animation/scroll-and-gestures.md` | Local `inView()` and viewport trigger guidance |
 | `https://motion.dev/docs/quick-start` | Official install and first-animation reference |
 | `https://motion.dev/docs/animate` | Official `animate()` reference |
 | `https://motion.dev/docs/inview` | Official `inView()` reference |

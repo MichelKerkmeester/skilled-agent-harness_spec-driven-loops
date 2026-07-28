@@ -98,7 +98,7 @@ python -m json.tool config.json
 grep -v '^\s*//' config.jsonc | python -m json.tool
 
 # Header and comment policy spot-checks (JSONC, manual review support)
-rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .opencode/skills/sk-code/code-opencode/references/config
+rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .opencode/skills/sk-code/sk-code-opencode/references/config
 ```
 
 ---

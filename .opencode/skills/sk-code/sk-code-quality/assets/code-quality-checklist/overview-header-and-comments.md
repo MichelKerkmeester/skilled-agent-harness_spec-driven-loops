@@ -41,17 +41,17 @@ Validate code against style standards before claiming implementation is complete
 
 For formal findings-first review output, run `sk-code`'s code-review mode as the baseline and use this checklist as the web overlay.
 
-- Severity model and review output contract: `sk-code/code-review/references/quick-reference.md`
+- Severity model and review output contract: `sk-code/sk-code-review/references/quick-reference.md`
 - Baseline security/quality/test review checks: `sk-code`'s code-review mode references
 - This checklist: web-specific JavaScript/CSS standards evidence
 
 ### Source Standards (per-language tree)
 
-- [shared/cross-language-rules.md](../../../code-webflow/references/shared/cross-language-rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
-- [javascript/style-guide.md](../../../code-webflow/references/javascript/style-guide/overview-naming-and-structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
-- [javascript/quality-standards.md](../../../code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md) - JS defensive patterns + JS naming/init enforcement
-- [css/style-guide.md](../../../code-webflow/references/css/style-guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
-- [css/quality-standards.md](../../../code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns + CSS enforcement subsections
+- [shared/cross-language-rules.md](../../../sk-code-webflow/references/shared/cross-language-rules.md) - Cross-language rules (file naming, comment WHY-not-WHAT, banner format, platform prefixes)
+- [javascript/style-guide.md](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md) - JS naming (`snake_case`), file structure, formatting, JSDoc, debug logging
+- [javascript/quality-standards.md](../../../sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md) - JS defensive patterns + JS naming/init enforcement
+- [css/style-guide.md](../../../sk-code-webflow/references/css/style-guide.md) - CSS naming (BEM), custom properties, attribute selectors, animation CSS, file org
+- [css/quality-standards.md](../../../sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md) - CSS quality patterns + CSS enforcement subsections
 
 ---
 
@@ -59,7 +59,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 3](../../../code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
+**Reference:** [code-style-guide.md Section 3](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### File Header Format
 
@@ -102,7 +102,7 @@ For formal findings-first review output, run `sk-code`'s code-review mode as the
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 3](../../../code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
+**Reference:** [code-style-guide.md Section 3](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Section Headers
 
@@ -163,7 +163,7 @@ const INIT_FLAG = '__componentNameInit';
 
 **Applies to:** JavaScript (`.js`)
 
-**Reference:** [code-style-guide.md Section 5](../../../code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
+**Reference:** [code-style-guide.md Section 5](../../../sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md)
 
 ### Comment Principles
 
@@ -172,7 +172,7 @@ const INIT_FLAG = '__componentNameInit';
 - [ ] **[P1] CHK-CMT-03**: Maximum 5 comments per 10 lines of code (not over-commented)
 - [ ] **[P1] CHK-CMT-04**: Platform constraints documented (WEBFLOW, MOTION, LENIS, HLS.JS)
 
-> **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../../code-webflow/references/animation/quick-start.md`](../../../code-webflow/references/animation/quick-start.md) and the documents in [`../../code-webflow/references/animation`](../../code-webflow/references/animation). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
+> **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../../sk-code-webflow/references/animation/quick-start.md`](../../../sk-code-webflow/references/animation/quick-start.md) and the documents in [`../../sk-code-webflow/references/animation`](../../sk-code-webflow/references/animation). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
 
 ### Function Comments
 

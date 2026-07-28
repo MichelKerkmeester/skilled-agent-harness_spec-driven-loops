@@ -40,7 +40,7 @@
  *
  * Module usage:
  *   const adapter = require('./sk-code.cjs');
- *   const { artifacts, nodes } = adapter.discover({ type: 'paths', values: ['.opencode/skills/sk-code/code-opencode/assets/scripts'] });
+ *   const { artifacts, nodes } = adapter.discover({ type: 'paths', values: ['.opencode/skills/sk-code/sk-code-opencode/assets/scripts'] });
  *   const rules = adapter.standardSource('sk-code');
  *   const findings = adapter.check(artifacts[0], rules);
  *
@@ -51,9 +51,9 @@
  *   node sk-code.cjs reasoning-dispatch <artifact-path>
  *
  * Examples:
- *   node sk-code.cjs discover .opencode/skills/sk-code/code-opencode/assets/scripts
+ *   node sk-code.cjs discover .opencode/skills/sk-code/sk-code-opencode/assets/scripts
  *   node sk-code.cjs check .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs
- *   node sk-code.cjs reasoning-dispatch .opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs
+ *   node sk-code.cjs reasoning-dispatch .opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs
  */
 
 // ─────────────────────────────────────────────────────────────────────────────

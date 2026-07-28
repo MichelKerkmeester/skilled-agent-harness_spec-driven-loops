@@ -36,19 +36,19 @@ Implementation can produce code that is behaviorally close but still not shippab
 
 ### What It Does
 
-`code-quality` consumes the parent `sk-code` surface detection, loads the required quality checklist, selects an OpenCode authoring checklist by target path when needed, runs the comment-hygiene checker per modified file, and applies P0/P1/P2 author checks. It can edit existing scoped files to fix gate failures. It does not create new files, dispatch tasks, or produce formal review reports.
+`sk-code-quality` consumes the parent `sk-code` surface detection, loads the required quality checklist, selects an OpenCode authoring checklist by target path when needed, runs the comment-hygiene checker per modified file, and applies P0/P1/P2 author checks. It can edit existing scoped files to fix gate failures. It does not create new files, dispatch tasks, or produce formal review reports.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Route after implementation.** Use this mode after the surface skill (`code-webflow` / `code-opencode`) has changed files and before the surface's verification workflow (`workflow-verify.md`) collects final evidence.
+**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow` / `sk-code-opencode`) has changed files and before the surface's verification workflow (`workflow-verify.md`) collects final evidence.
 
-**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist.md`](assets/code-quality-checklist/overview-header-and-comments.md). For `.opencode/` targets, it also loads the matching checklist under [`assets/checklists/`](../code-opencode/assets/checklists/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist.md`](assets/code-quality-checklist/overview-header-and-comments.md). For `.opencode/` targets, it also loads the matching checklist under [`assets/checklists/`](../sk-code-opencode/assets/checklists/).
 
 **Step 3: Run comment hygiene per modified file.** Use [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) for every modified file that can contain comments.
 
-**Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Hand broader implementation to the surface skill (`code-webflow` / `code-opencode`), root-cause failures to the surface's debugging workflow (`workflow-debug.md`), and final evidence to the surface's verification workflow (`workflow-verify.md`).
+**Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Hand broader implementation to the surface skill (`sk-code-webflow` / `sk-code-opencode`), root-cause failures to the surface's debugging workflow (`workflow-debug.md`), and final evidence to the surface's verification workflow (`workflow-verify.md`).
 
 ---
 
@@ -62,7 +62,7 @@ OpenCode authoring targets route to specific checklists: skills, agents, command
 
 ### Mutation Boundary
 
-This mode can edit already-scoped files because author-side quality correction is part of implementation. It cannot write new files and cannot dispatch subagents. Findings-only review belongs to `code-review`.
+This mode can edit already-scoped files because author-side quality correction is part of implementation. It cannot write new files and cannot dispatch subagents. Findings-only review belongs to `sk-code-review`.
 
 ---
 
@@ -77,8 +77,8 @@ Use it when a change is already written and needs standards enforcement before f
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Parent hub that routes the quality workflow here |
-| `code-webflow` / `code-opencode` | Surface skills that implement/change files, own root-cause debugging, and gather verification evidence via the implement → debug → verify workflow doctrine. |
-| `code-review` | Produces findings-first reports when no author-side editing is wanted |
+| `sk-code-webflow` / `sk-code-opencode` | Surface skills that implement/change files, own root-cause debugging, and gather verification evidence via the implement → debug → verify workflow doctrine. |
+| `sk-code-review` | Produces findings-first reports when no author-side editing is wanted |
 
 ---
 
@@ -86,8 +86,8 @@ Use it when a change is already written and needs standards enforcement before f
 
 | Check | How to run it |
 |---|---|
-| Comment hygiene | `bash .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <modified-file>` |
-| Distribution drift | `bash .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh` when generated artifacts are involved |
+| Comment hygiene | `bash .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <modified-file>` |
+| Distribution drift | `bash .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` when generated artifacts are involved |
 | Skill structure | Validate changed skill docs with the project documentation validator when applicable |
 | Final claim | Hand to the surface's verification workflow (`workflow-verify.md`); this mode does not make done or works claims |
 
@@ -99,7 +99,7 @@ Use it when a change is already written and needs standards enforcement before f
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
 | [`assets/code-quality-checklist.md`](assets/code-quality-checklist/overview-header-and-comments.md) | Required quality checklist before implementation completion claims |
-| [`assets/checklists/`](../code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |
+| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Per-file comment-hygiene checker |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |
 | [`../shared/references/stack-detection.md`](../shared/references/stack-detection.md) | Shared surface detection |

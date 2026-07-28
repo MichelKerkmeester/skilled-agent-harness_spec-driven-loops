@@ -80,4 +80,4 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 ## 7. RELATED
 
 - [`../SKILL.md`](../SKILL.md) — the `sk-code` runtime contract that routes surfaces and workflow modes into these references.
-- [`../code-quality/README.md`](../code-quality/README.md) — a workflow mode that consumes the universal quality standards above for its Phase 1.5 gate.
+- [`../sk-code-quality/README.md`](../sk-code-quality/README.md) — a workflow mode that consumes the universal quality standards above for its Phase 1.5 gate.

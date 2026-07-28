@@ -1,5 +1,5 @@
 ---
-name: code-webflow
+name: sk-code-webflow
 description: "sk-code WEBFLOW surface: frontend evidence (CSS/HTML/JavaScript standards, implementation and performance patterns, CDN deployment, browser debugging and verification) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.0.0.0
@@ -57,7 +57,7 @@ This block is the deterministic projection of code-webflow's own reference/asset
 ```python
 # code-webflow owns its intent -> reference/asset routing. Paths are relative to
 # this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with code-webflow/) and the sibling code-opencode map plus the
+# (re-prefixed with sk-code-webflow/) and the sibling code-opencode map plus the
 # parent-owned universal/shared tier; a drift guard enforces that equality.
 DEFAULT_RESOURCE = [
     "references/shared/dev-workflow/overview-nav-and-logging.md",

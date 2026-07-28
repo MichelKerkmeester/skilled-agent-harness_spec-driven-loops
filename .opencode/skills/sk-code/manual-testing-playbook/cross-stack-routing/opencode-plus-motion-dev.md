@@ -31,23 +31,23 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 - `references/stack-detection.md`
 - `references/smart-routing.md`
 - `references/smart-routing.md`
-- `code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
-- `code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `code-opencode/references/typescript/quick-reference/template-naming-and-types.md`
-- `code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
-- `code-opencode/references/typescript/quality-standards/overview-and-type-system.md`
-- `code-webflow/references/animation/quick-start.md`
-- `code-webflow/references/animation/integration-patterns.md`
-- `code-webflow/references/animation/animate-and-timelines.md`
+- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md`
+- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
+- `sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md`
+- `sk-code-webflow/references/animation/quick-start.md`
+- `sk-code-webflow/references/animation/integration-patterns.md`
+- `sk-code-webflow/references/animation/animate-and-timelines.md`
 
 **Expected assets loaded**:
-- `code-opencode/assets/checklists/universal-checklist.md`
-- `code-opencode/assets/checklists/typescript-checklist.md`
-- `code-webflow/assets/animation/snippets/es-module-bootstrap.js`
+- `sk-code-opencode/assets/checklists/universal-checklist.md`
+- `sk-code-opencode/assets/checklists/typescript-checklist.md`
+- `sk-code-webflow/assets/animation/snippets/es-module-bootstrap.js`
 
 **Expected NOT loaded as authoritative surface guidance**:
-- `code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
-- `code-webflow/assets/checklists/verification_checklist.md`
+- `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
+- `sk-code-webflow/assets/checklists/verification_checklist.md`
 
 **Expected agent dispatch**: none.
 
@@ -76,8 +76,8 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - OPENCODE precedence rule.
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` - OPENCODE and MOTION_DEV maps.
-- `.opencode/skills/sk-code/code-opencode/references/typescript/quick-reference/template-naming-and-types.md` - Expected TypeScript route.
-- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/es-module-bootstrap.js` - Supplementary Motion ESM pattern.
+- `.opencode/skills/sk-code/sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md` - Expected TypeScript route.
+- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/es-module-bootstrap.js` - Supplementary Motion ESM pattern.
 
 ---
 

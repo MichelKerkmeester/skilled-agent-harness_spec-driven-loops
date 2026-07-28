@@ -482,14 +482,14 @@ function selectIntents(scores) {
 // Which surface a resource belongs to, by its on-disk path prefix. Webflow and
 // OpenCode resources live under their code-<surface>/ packet folders, so the
 // prefix IS the surface. Motion.dev is a cross-stack overlay folded into
-// code-webflow/{references,assets}/animation/; it is matched FIRST so it stays a
+// sk-code-webflow/{references,assets}/animation/; it is matched FIRST so it stays a
 // distinct overlay surface (kept regardless of the detected code surface) rather
-// than collapsing into WEBFLOW's broader code-webflow/ prefix. Everything else
+// than collapsing into WEBFLOW's broader sk-code-webflow/ prefix. Everything else
 // (universal refs, the detection/router preamble) is surface-agnostic.
 const SURFACE_PREFIXES = {
-  MOTION: ['code-webflow/references/animation/', 'code-webflow/assets/animation/'],
-  WEBFLOW: ['code-webflow/'],
-  OPENCODE: ['code-opencode/'],
+  MOTION: ['sk-code-webflow/references/animation/', 'sk-code-webflow/assets/animation/'],
+  WEBFLOW: ['sk-code-webflow/'],
+  OPENCODE: ['sk-code-opencode/'],
 };
 function resourceSurface(r) {
   for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {
@@ -601,8 +601,8 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
   let resources = [...resourceSet];
 
   const mapResources = Object.values(router.resourceMap).flat();
-  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('code-webflow/references/'))
-    && mapResources.some((r) => r.startsWith('code-opencode/references/'));
+  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('sk-code-webflow/references/'))
+    && mapResources.some((r) => r.startsWith('sk-code-opencode/references/'));
   let surface;
   if (hasSurfaceLayout) {
     surface = detectSurface(taskLower);
@@ -619,7 +619,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
       if (surface === 'UNKNOWN') return false;
       if (rs !== surface) return false;
       if (ocLangs.size) {
-        const m = /^code-opencode\/references\/([^/]+)\//.exec(r);
+        const m = /^sk-code-opencode\/references\/([^/]+)\//.exec(r);
         if (m && OPENCODE_LANGUAGES.includes(m[1]) && !ocLangs.has(m[1])) return false;
       }
       return true;

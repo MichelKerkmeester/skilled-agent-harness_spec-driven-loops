@@ -76,9 +76,9 @@ Test the Motion dropdown and slider in Chrome, Safari, and Firefox; return per-b
 | File | Role |
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../code-webflow/references/animation/quick-start.md` | Local Motion install/import reference |
-| `../../code-webflow/references/animation/animate-and-timelines.md` | Local `animate()` and sequence guidance |
-| `../../code-webflow/references/animation/performance-and-pitfalls.md` | Local browser/performance risk guidance |
+| `../../sk-code-webflow/references/animation/quick-start.md` | Local Motion install/import reference |
+| `../../sk-code-webflow/references/animation/animate-and-timelines.md` | Local `animate()` and sequence guidance |
+| `../../sk-code-webflow/references/animation/performance-and-pitfalls.md` | Local browser/performance risk guidance |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown behavior under browser comparison |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider behavior under browser comparison |
 | `https://motion.dev/docs/quick-start` | Official Motion install reference |

@@ -324,7 +324,7 @@ For formal findings-first review output, use `sk-code`'s code-review mode as the
 
 - [ ] JavaScript standards validated in `javascript-checklist.md`
 - [ ] Universal standards validated in `universal-checklist.md`
-- [ ] Findings severity/order produced with `sk-code/code-review/references/quick-reference.md`
+- [ ] Findings severity/order produced with `sk-code/sk-code-review/references/quick-reference.md`
 - [ ] Baseline security, quality, and test checks sourced from `sk-code`'s code-review mode
 - [ ] Surface-specific deviations documented with file:line evidence
 ```

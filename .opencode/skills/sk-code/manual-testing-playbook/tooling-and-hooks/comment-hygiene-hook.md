@@ -8,7 +8,7 @@ version: 3.5.0.16
 
 ## 1. OVERVIEW
 
-This scenario verifies the comment-hygiene half of `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh`, the shared Claude Code PostToolUse hook that fires on every `Write`/`Edit`. This is the hook's original check; the dist-staleness branch validated by TH-001 was added later and runs alongside it on the same edit. On each edit the hook calls `.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh` against the edited file. If a comment line carries an ephemeral-artifact pointer — a spec path, packet/phase number, or ADR/REQ/task/finding id (the forbidden classes in `references/universal/code-style-guide.md` §4) — the checker prints each offending line to stdout as `<file>:<lineno>: <excerpt>` and exits 1. When the hook sees that `returncode == 1` with non-empty stdout, it wraps those lines in a `COMMENT HYGIENE WARNING:` banner. The hook is warn-only: it always exits 0 and never blocks the edit, regardless of what the checker finds or whether the checker itself fails.
+This scenario verifies the comment-hygiene half of `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, the shared Claude Code PostToolUse hook that fires on every `Write`/`Edit`. This is the hook's original check; the dist-staleness branch validated by TH-001 was added later and runs alongside it on the same edit. On each edit the hook calls `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` against the edited file. If a comment line carries an ephemeral-artifact pointer — a spec path, packet/phase number, or ADR/REQ/task/finding id (the forbidden classes in `references/universal/code-style-guide.md` §4) — the checker prints each offending line to stdout as `<file>:<lineno>: <excerpt>` and exits 1. When the hook sees that `returncode == 1` with non-empty stdout, it wraps those lines in a `COMMENT HYGIENE WARNING:` banner. The hook is warn-only: it always exits 0 and never blocks the edit, regardless of what the checker finds or whether the checker itself fails.
 
 **No gap found while authoring this scenario (contrast with TH-001)**: unlike its dist-staleness sibling — which shipped with a missing executable bit that silently suppressed the banner in a live session — `check-comment-hygiene.sh` ships with its executable bit intact (`-rwxr-xr-x`), which is exactly what `claude-posttooluse.sh`'s `subprocess.run([checker_path, file_path], ...)` invocation requires to exec the checker directly. The full hook path therefore fires the `COMMENT HYGIENE WARNING` banner to stdout as intended, verified end-to-end below in both directions: the positive case (forbidden comment present → banner reaches stdout → hook exits 0) and the negative case (comment rewritten as a durable WHY → checker clean → no banner → hook still exits 0). This scenario brings the pre-existing comment-hygiene branch under manual coverage for the first time; see §3 Failure Triage if the executable bit ever regresses (e.g. after a checkout that strips permissions), since that would reproduce the class of gap TH-001 documented for its sibling checker.
 
@@ -35,9 +35,9 @@ In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact
 
 ### Preconditions
 
-1. The hook resolves: `bash: test -f .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh`.
-2. The comment-hygiene checker resolves: `bash: test -f .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh`.
-3. **Check the executable bit before running** (`bash: ls -la .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh`) — it should read `-rwxr-xr-x`. If it reads `-rw-r--r--`, the run will reproduce the class of gap TH-001 documented (banner suppressed, `Permission denied` on stderr) instead of the intended banner; run `chmod +x` on it first if the goal is to verify the intended contract rather than reproduce that gap.
+1. The hook resolves: `bash: test -f .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`.
+2. The comment-hygiene checker resolves: `bash: test -f .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`.
+3. **Check the executable bit before running** (`bash: ls -la .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`) — it should read `-rwxr-xr-x`. If it reads `-rw-r--r--`, the run will reproduce the class of gap TH-001 documented (banner suppressed, `Permission denied` on stderr) instead of the intended banner; run `chmod +x` on it first if the goal is to verify the intended contract rather than reproduce that gap.
 4. A writable `/tmp` sandbox path is available; the scenario writes only under `/tmp/skc-TH002-sandbox/` and never touches a project file (the forbidden comment lives in a throwaway file, not in real source).
 
 ### Exact Command Sequence
@@ -56,12 +56,12 @@ In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact
    ```
 2. **Invoke the checker directly** to confirm the underlying rc=1 contract independent of the hook's subprocess call:
    ```bash
-   python3 .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh "$SRC"; echo "direct_prefix_exit=$?"
+   python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh "$SRC"; echo "direct_prefix_exit=$?"
    ```
 3. **Invoke the full hook** the way Claude Code actually calls it, via stdin JSON (set `cwd` to the repo root so the hook resolves the checker):
    ```bash
    PAYLOAD=$(python3 -c "import json; print(json.dumps({'tool_name':'Edit','tool_input':{'file_path':'$SRC'},'cwd':'$(pwd)'}))")
-   echo "$PAYLOAD" | python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh; echo "hook_exit=$?"
+   echo "$PAYLOAD" | python3 .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh; echo "hook_exit=$?"
    ```
 4. **Fix the comment in place** — rewrite it as a durable WHY with no ephemeral id:
    ```bash
@@ -74,7 +74,7 @@ In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact
    ```
 5. **Re-run the checker directly** to confirm the fix clears the violation:
    ```bash
-   python3 .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh "$SRC"; echo "direct_postfix_exit=$?"
+   python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh "$SRC"; echo "direct_postfix_exit=$?"
    ```
 6. **Clean up** (all mutations were confined to `/tmp`):
    ```bash
@@ -108,15 +108,15 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 
 ### Failure Triage
 
-1. **Banner missing, stderr shows `Permission denied` on `check-comment-hygiene.sh`**: the checker's executable bit was stripped — the same class of gap TH-001 documented for its sibling. Fix: `chmod +x .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh` (it ships `-rwxr-xr-x`), then re-run step 3.
+1. **Banner missing, stderr shows `Permission denied` on `check-comment-hygiene.sh`**: the checker's executable bit was stripped — the same class of gap TH-001 documented for its sibling. Fix: `chmod +x .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` (it ships `-rwxr-xr-x`), then re-run step 3.
 2. **Banner missing, no stderr, checker returned rc=2 (skip) or rc=0 (clean)**: the comment did not register as a violation. Confirm the comment sits on a comment line, matches a `VIOLATION_PATTERN`, carries no `hygiene-ok` escape, and is not pre-empted by an `ALLOWED_PATTERN` (`CWE-`, `RFC`, `POSIX`, `HTTP <ddd>`, `WEBFLOW:`, `MOTION:`, `LENIS:`, `V<d>:`); and that the file has a checked extension (`.ts`, `.tsx`, `.js`, `.mjs`, `.cjs`, `.py`, `.sh`, `.bash`, `.jsonc`) and does not sit under `/dist/`, `/node_modules/`, or `/.git/` (those exit rc=2, silently skipped). Verify with `python3 .../check-comment-hygiene.sh "$SRC"; echo rc=$?`.
 3. **Banner missing yet the direct checker returns rc=1**: inspect the hook's `if result.returncode == 1 and result.stdout.strip():` guard in `claude-posttooluse.sh` — both conditions must hold for the banner to print.
 4. **Hook exits non-zero**: this breaks the warn-only contract and is a regression — inspect the outer `try`/`except` around the comment-checker `subprocess.run` call; it must never propagate a checker failure (or a violation rc) as a hook failure. The hook's final `sys.exit(0)` is unconditional by design.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; prints the `COMMENT HYGIENE WARNING` banner only when the comment checker returns rc=1 with non-empty stdout; always exits 0.
-- `.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker (Python, `.sh` extension); ships executable (`-rwxr-xr-x`). Exit 0 clean, 1 violations (printed as `<file>:<lineno>: <excerpt>`), 2 skipped (excluded dir, unknown extension, or unreadable).
+- `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; prints the `COMMENT HYGIENE WARNING` banner only when the comment checker returns rc=1 with non-empty stdout; always exits 0.
+- `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker (Python, `.sh` extension); ships executable (`-rwxr-xr-x`). Exit 0 clean, 1 violations (printed as `<file>:<lineno>: <excerpt>`), 2 skipped (excluded dir, unknown extension, or unreadable).
 - `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` §4 — The forbidden ephemeral-artifact-pointer classes and the durable-WHY convention the checker enforces.
 
 **Related**: `claude-posttooluse.sh` also runs the dist-staleness checker (`check-dist-staleness.sh`) on the same edit; that branch is validated by TH-001 (see `tooling-and-hooks/check-dist-staleness-hook.md`). The `ceiling:` intentional-simplification convention that must pass this same comment-hygiene checker without allow-listing is validated by DR-003 (see `design-restraint/ceiling-comment-convention.md`), which asserts the checker exits 0 on a well-formed ceiling comment; TH-002 is the complementary case, asserting rc=1 (and the banner) on a genuine violation.

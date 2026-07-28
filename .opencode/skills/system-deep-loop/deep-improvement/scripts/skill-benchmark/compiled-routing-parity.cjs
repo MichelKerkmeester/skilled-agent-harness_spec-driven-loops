@@ -91,9 +91,9 @@ const STATUS_PROBE = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route-stat
 // be scored against a scorer that changed mid-flight. These are the same digests
 // the activation driver refuses to run without.
 const PINNED_FROZEN_SCORER_DIGESTS = Object.freeze({
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
+  'router-replay.cjs': '141250811e33ca750687199c94155d4810034d83252132e333e2abf73c31dc7b',
   'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
 });
 
 // Per-scenario parity status. Only `match` is a pass; `n/a` is informational

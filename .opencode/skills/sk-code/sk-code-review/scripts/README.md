@@ -15,7 +15,7 @@ description: "Locks load-bearing rule wording (review-status vocabulary, the Iro
 
 | File | Purpose |
 |------|---------|
-| `check-rule-copies.js` | Asserts that `Review status: APPROVED/REQUESTED_CHANGES/COMMENTED` appear verbatim in `code-review/SKILL.md` and `code-review/README.md`, that `COMMENTED` appears in the changelog and dedup reference, and that at least one Iron Law line in `workflow-verify.md`, `CLAUDE.md` and `AGENTS.md` carries both "completion claim" and "verification". A canary, not a generator, it never rewrites anything |
+| `check-rule-copies.js` | Asserts that `Review status: APPROVED/REQUESTED_CHANGES/COMMENTED` appear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that `COMMENTED` appears in the changelog and dedup reference, and that at least one Iron Law line in `workflow-verify.md`, `CLAUDE.md` and `AGENTS.md` carries both "completion claim" and "verification". A canary, not a generator, it never rewrites anything |
 | `check-rule-copies.test.sh` | Self-contained bash test that runs the canary against the real repo tree (expects pass) and against two tampered copies with a deleted status string and a reworded Iron Law line (expects each to fail) |
 
 ## 3. VALIDATION
@@ -23,7 +23,7 @@ description: "Locks load-bearing rule wording (review-status vocabulary, the Iro
 Run from the repository root:
 
 ```bash
-node .opencode/skills/sk-code/code-review/scripts/check-rule-copies.js
+node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
 ```
 
 Expected: `OK: all rule invariants present (4 exact-string file(s) + 3 Iron Law file(s)).` and exit code 0.
@@ -31,7 +31,7 @@ Expected: `OK: all rule invariants present (4 exact-string file(s) + 3 Iron Law 
 Or run the test harness from anywhere:
 
 ```bash
-bash .opencode/skills/sk-code/code-review/scripts/check-rule-copies.test.sh
+bash .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh
 ```
 
 Expected: `All rule-canary test cases passed`.

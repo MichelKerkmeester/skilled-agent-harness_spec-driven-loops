@@ -76,4 +76,4 @@ This checklist keeps user-invoked commands consistent with the two live command 
 - Contract-renderer example: `.opencode/commands/deep/research.md`
 - Renderer: `.opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`
 - Command parity path: `.claude/commands` symlink to `../.opencode/commands`
-- Verification recipes: `.opencode/skills/sk-code/code-opencode/assets/checklists/universal-checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

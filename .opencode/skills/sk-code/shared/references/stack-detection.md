@@ -87,13 +87,13 @@ After OPENCODE surface detection, select language resources by extension first:
 
 | Language | Extensions | Resource Folder |
 | --- | --- | --- |
-| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `code-opencode/references/javascript/` |
-| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `code-opencode/references/typescript/` |
-| PYTHON | `.py` | `code-opencode/references/python/` |
-| SHELL | `.sh`, `.bash` | `code-opencode/references/shell/` |
-| RUST | `.rs`; fallback markers `Cargo.toml`, `Cargo.lock`; napi-rs/wasm-bindgen vocabulary | `code-opencode/references/rust/` |
-| CONFIG | `.json`, `.jsonc` | `code-opencode/references/config/` |
-| CONFIG | `.yaml`, `.yml` | `code-opencode/references/config/` |
+| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `sk-code-opencode/references/javascript/` |
+| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `sk-code-opencode/references/typescript/` |
+| PYTHON | `.py` | `sk-code-opencode/references/python/` |
+| SHELL | `.sh`, `.bash` | `sk-code-opencode/references/shell/` |
+| RUST | `.rs`; fallback markers `Cargo.toml`, `Cargo.lock`; napi-rs/wasm-bindgen vocabulary | `sk-code-opencode/references/rust/` |
+| CONFIG | `.json`, `.jsonc` | `sk-code-opencode/references/config/` |
+| CONFIG | `.yaml`, `.yml` | `sk-code-opencode/references/config/` |
 
 When multiple languages are touched, load shared OpenCode guidance plus each touched language quick reference/checklist. Rust is a touched-language-set case, not a first-match override: a napi-rs/WASM parity task that touches both `.rs` and `.ts` loads the Rust trio AND the TypeScript trio plus shared guidance, because the Rust module must be verified byte-for-byte against its TypeScript oracle. Cargo markers (`Cargo.toml`/`Cargo.lock`) are evaluated only after OPENCODE surface detection, never as a cross-project surface signal.
 

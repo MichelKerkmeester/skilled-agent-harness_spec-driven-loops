@@ -4,18 +4,18 @@ category: compiled_routing
 stage: routing
 title: "sk-code surface-bundle route serves compiled and matches legacy"
 route_shape: surfaceBundle
-expected_intent: code-webflow
+expected_intent: sk-code-webflow
 expected_resources:
-  - code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md
-  - code-webflow/references/implementation/animation-workflows/motion-dev-and-performance.md
-expected_workflow_mode: code-webflow
+  - sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md
+  - sk-code-webflow/references/implementation/animation-workflows/motion-dev-and-performance.md
+expected_workflow_mode: sk-code-webflow
 expected_leaf_resources:
-  - workflow_mode: code-webflow
+  - workflow_mode: sk-code-webflow
     leaf_resource_id: references/implementation/animation-workflows/overview-decision-tree-and-css.md
-  - workflow_mode: code-webflow
+  - workflow_mode: sk-code-webflow
     leaf_resource_id: references/implementation/animation-workflows/motion-dev-and-performance.md
 full_inventory_intent: false
-evidence_compiled_route: sk-code/code-webflow
+evidence_compiled_route: sk-code/sk-code-webflow
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving

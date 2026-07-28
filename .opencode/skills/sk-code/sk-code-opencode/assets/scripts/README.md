@@ -1,6 +1,6 @@
 ---
 title: "sk code assets scripts: Code README"
-description: "Code-facing README for .opencode/skills/sk-code/code-opencode/assets/scripts."
+description: "Code-facing README for .opencode/skills/sk-code/sk-code-opencode/assets/scripts."
 trigger_phrases:
   - "sk-code assets/scripts"
   - "code readme"
@@ -20,7 +20,7 @@ Operator and maintenance scripts for this skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/sk-code/code-opencode/assets/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.opencode/skills/sk-code/sk-code-opencode/assets/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -45,7 +45,7 @@ Start with `.opencode/skills/sk-code/SKILL.md` for runtime routing and workflow 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/sk-code/code-opencode/assets/scripts
+rg --files .opencode/skills/sk-code/sk-code-opencode/assets/scripts
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -90,7 +90,7 @@ Run individual scripts from the repository root with the documented arguments.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/sk-code/code-opencode/assets/scripts for sk-code and README coverage.
+User request: Check .opencode/skills/sk-code/sk-code-opencode/assets/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the current refinement and release-alignment review.
 ```
@@ -110,6 +110,6 @@ Expected output: Findings recorded in the current refinement and release-alignme
 
 | Document | Purpose |
 |---|---|
-| [`code-opencode/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`code-opencode/SKILL.md`](../../SKILL.md) | OpenCode coding standards and verification routing. |
+| [`sk-code-opencode/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
+| [`sk-code-opencode/SKILL.md`](../../SKILL.md) | OpenCode coding standards and verification routing. |
 | [`sk-doc skill-readme-template.md`](../../../../sk-doc/create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

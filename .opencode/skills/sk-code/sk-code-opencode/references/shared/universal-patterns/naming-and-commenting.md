@@ -241,7 +241,7 @@ Comment hygiene is not a soft style preference in OpenCode system code. Ephemera
 This is enforced in two real hooks:
 
 - `.opencode/hooks/pre-commit` runs the shared checker against staged code files and blocks the commit when violations are found.
-- `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh` runs the same checker after Write/Edit tool use and surfaces immediate comment-hygiene warnings for the edited file.
+- `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` runs the same checker after Write/Edit tool use and surfaces immediate comment-hygiene warnings for the edited file.
 
 ### Allowed Reference Comments
 

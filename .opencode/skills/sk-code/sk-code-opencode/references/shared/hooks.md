@@ -86,7 +86,7 @@ Claude Code hook wiring is checked in at `.claude/settings.json`. Use that file 
 | `SessionStart` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js'` | 3 | Startup context priming. |
 | `SessionStart` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && bash .opencode/bin/worktree-guard.sh'` | 3 | Workspace safety guard. |
 | `Stop` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js ; stop_status=$? ; bash .opencode/scripts/session-cleanup.sh || true ; exit "$stop_status"'` | 10 | Session-stop accounting and cleanup; async. |
-| `PostToolUse` | `Write|Edit` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'` | 10 | Warn-only comment-hygiene and dist-staleness checks after source edits. |
+| `PostToolUse` | `Write|Edit` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh'` | 10 | Warn-only comment-hygiene and dist-staleness checks after source edits. |
 
 Helper modules (statically imported by the entrypoints, NOT directly wired): `claude-transcript.ts`, `hook-state.ts`, `shared.ts`.
 
@@ -121,7 +121,7 @@ Cursor CLI hook wiring is checked in at `.cursor/hooks.json` (project scope). Un
 | `sessionStart` | none | `node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | 10 | Validates `MK_SPEC_FOLDER` or opens explicitly enabled Gate-3 state for an identifiable top-level session. |
 | `sessionStart` | none | `bash .opencode/bin/worktree-guard.sh` | 10 | Workspace safety guard. |
 | `sessionStart` | none | `bash .opencode/bin/check-git-hooks.sh` | 10 | Git-hooks-installed guard. |
-| `sessionStart` | none | `python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all` | 10 | Dist-staleness warning across every watched package. |
+| `sessionStart` | none | `python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all` | 10 | Dist-staleness warning across every watched package. |
 | `sessionStart` | none | `node .opencode/bin/install-codex-hooks.mjs --check` | 10 | Codex hook-drift warning. |
 | `sessionEnd` | none | `node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/session-end.js` | 10 | Session-stop accounting (proxies to `session-stop.js`; Cursor's `stop` event never fires under the CLI, so `sessionEnd` is the confirmed substitute). |
 | `sessionEnd` | none | `bash .opencode/scripts/session-cleanup.sh` | 10 | Session-scoped MCP-helper cleanup. |

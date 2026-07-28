@@ -34,8 +34,8 @@ Per REQ-001/REQ-002, four real, already-shipping sources, cited with exact line 
 
 1. `.opencode/skills/sk-code/shared/references/stack-detection.md`: the surface-detection Detection Order (§2, lines 36-56) this adapter's `classifySurface()` ports directly.
 2. `.opencode/skills/sk-code/shared/references/smart-routing.md`: the MOTION_DEV overlay's peer-category framing (§5) and the machine-readable `INTENT_SIGNALS`/`RESOURCE_MAP` this adapter's `standardSource()` points at.
-3. `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py`: the real OPENCODE-surface deterministic pattern-drift checker. CLI usage at lines 110-123 (`--root` is `action='append'`, repeatable, directory-only, see Section 4.1's live-reality note). `SUPPORTED_EXTENSIONS` at lines 39-51 lists **7 languages**: TypeScript, JavaScript, Python, Shell, **Rust**, JSON and JSONC, one more than spec.md REQ-002's own acceptance-criteria prose names, "TS/JS/Python/Shell/JSON/JSONC". This was confirmed by reading the live docstring, lines 11-18, and `check_rust()`, lines 357-393, in full. It is a real spec-vs-tool discrepancy recorded here rather than silently resolved either direction. No `--json` flag exists (text stdout only, parsed by regex, Section 4.1).
-4. `.opencode/skills/sk-code/code-webflow/assets/scripts/{verify-minification.mjs,test-minified-runtime.mjs}`: the real, read-only WEBFLOW-surface verification scripts (Section 4.2's live-reality findings explain why `minify-webflow.mjs`, the third script in this directory, is explicitly excluded).
+3. `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`: the real OPENCODE-surface deterministic pattern-drift checker. CLI usage at lines 110-123 (`--root` is `action='append'`, repeatable, directory-only, see Section 4.1's live-reality note). `SUPPORTED_EXTENSIONS` at lines 39-51 lists **7 languages**: TypeScript, JavaScript, Python, Shell, **Rust**, JSON and JSONC, one more than spec.md REQ-002's own acceptance-criteria prose names, "TS/JS/Python/Shell/JSON/JSONC". This was confirmed by reading the live docstring, lines 11-18, and `check_rust()`, lines 357-393, in full. It is a real spec-vs-tool discrepancy recorded here rather than silently resolved either direction. No `--json` flag exists (text stdout only, parsed by regex, Section 4.1).
+4. `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/{verify-minification.mjs,test-minified-runtime.mjs}`: the real, read-only WEBFLOW-surface verification scripts (Section 4.2's live-reality findings explain why `minify-webflow.mjs`, the third script in this directory, is explicitly excluded).
 
 Explicitly **not wrapped**: any new deterministic linter beyond what already exists (spec.md Out of Scope: "Building new deterministic linters beyond what already exists... out of scope; this phase reuses, not extends, the deterministic layer").
 
@@ -55,31 +55,31 @@ Explicitly **not wrapped**: any new deterministic linter beyond what already exi
   "validators": {
     "opencodeDrift": {
       "tool": "verify_alignment_drift.py",
-      "path": "<repo>/.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+      "path": "<repo>/.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
       "coversSurface": "OPENCODE",
       "layer": "deterministic",
       "coveredExtensions": [".ts", ".tsx", ".mts", ".js", ".mjs", ".cjs", ".py", ".sh", ".rs", ".json", ".jsonc"]
     },
     "webflowMinificationVerify": {
       "tool": "verify-minification.mjs",
-      "path": "<repo>/.opencode/skills/sk-code/code-webflow/assets/scripts/verify-minification.mjs",
+      "path": "<repo>/.opencode/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs",
       "coversSurface": "WEBFLOW", "layer": "deterministic", "requiresProjectRoot": true
     },
     "webflowRuntimeTest": {
       "tool": "test-minified-runtime.mjs",
-      "path": "<repo>/.opencode/skills/sk-code/code-webflow/assets/scripts/test-minified-runtime.mjs",
+      "path": "<repo>/.opencode/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
       "coversSurface": "WEBFLOW", "layer": "deterministic", "requiresProjectRoot": true
     }
   },
   "excludedFromCheck": [{
     "tool": "minify-webflow.mjs",
-    "path": "<repo>/.opencode/skills/sk-code/code-webflow/assets/scripts/minify-webflow.mjs",
+    "path": "<repo>/.opencode/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs",
     "reason": "Writes src/2_javascript/z_minified/*.min.js and manifest.tsv -- mutates the reviewed tree, violating ADR-005/NFR-S01 read-only-by-default. plan.md named it as part of the deterministic chain; this adapter excludes it from check() (Section 4.1.2)."
   }],
   "references": {
-    "opencode": "<repo>/.opencode/skills/sk-code/code-opencode/references",
-    "webflow": "<repo>/.opencode/skills/sk-code/code-webflow/references",
-    "motionOverlay": "<repo>/.opencode/skills/sk-code/code-webflow/references/animation"
+    "opencode": "<repo>/.opencode/skills/sk-code/sk-code-opencode/references",
+    "webflow": "<repo>/.opencode/skills/sk-code/sk-code-webflow/references",
+    "motionOverlay": "<repo>/.opencode/skills/sk-code/sk-code-webflow/references/animation"
   },
   "knownDeviations": [ /* 6 entries, parsed from sk-code-known-deviations.md Section 9 */ ]
 }
@@ -168,7 +168,7 @@ Per spec.md's Data Boundaries edge case, a `P1` `surface-undetected` finding: ne
 
 ### 4.2 Layer 2 - Reasoning-Agent (Structurally Cannot Self-Judge)
 
-Extracting "does this code follow the surface's architectural patterns" from an artifact and judging it against `code-webflow/references/implementation/*` or `code-opencode/references/shared/universal_patterns.md` is a reasoning act: no deterministic script can invent that judgment, and having `sk-code.cjs` try to perform it internally would be **a category error** (plan.md's own framing, ADR-008). This adapter's answer, matching the task's explicit design requirement, is two separate pieces:
+Extracting "does this code follow the surface's architectural patterns" from an artifact and judging it against `sk-code-webflow/references/implementation/*` or `sk-code-opencode/references/shared/universal_patterns.md` is a reasoning act: no deterministic script can invent that judgment, and having `sk-code.cjs` try to perform it internally would be **a category error** (plan.md's own framing, ADR-008). This adapter's answer, matching the task's explicit design requirement, is two separate pieces:
 
 1. **`buildReasoningLayerDispatch(artifact, rules)`**, exported, independently callable (`node sk-code.cjs reasoning-dispatch <path>`), builds the well-formed input package a reasoning agent needs: the artifact path, its detected `surface` and `motionDevOverlay` flag, the exact `standardSource()` reference paths to read for that surface (plus the Motion overlay directory when the flag is set), the four conformance dimensions layer 1 cannot check (`naming-conventions-beyond-regex`, `architectural-pattern-conformance`, `cross-file-consistency`, `comment-hygiene-beyond-simple-patterns`, named directly from plan.md's Architecture section) and the exact `expectedFindingShape` the caller must produce. **This function never judges anything itself.** It is documentation-as-code for a follow-on step, not a hidden judgment engine.
 2. **`checkPatternConformance(artifact, options)`**: the actual layer-2 sub-check inside `check()`. Mirrors `sk-doc.cjs`'s `checkRealityAlignment()` exactly: accepts `options.verifiedFindings`, an array of already-judged `{dimension, claim, matchesStandard, evidence, severity}` records the caller (a future phase-008 ITERATE-state reasoning-agent dispatch step) produced by actually reading the artifact and the cited references. A finding is emitted **only** for entries where `matchesStandard === false` **and** `evidence` is present. No `verifiedFindings` supplied → no findings, never an invented one, the identical "no verifiedClaims → no findings" invariant `sk-doc_adapter.md` §4.2 documents for its own reality-alignment sub-check.
@@ -224,7 +224,7 @@ Confirms Section 4.1.2's claim directly: for any WEBFLOW-surface artifact this a
 ### 8.2 sk-code's own Webflow-named tooling classifies OPENCODE, not WEBFLOW
 
 ```
-$ node scripts/adapters/sk-code.cjs discover .opencode/skills/sk-code/code-webflow/assets/scripts
+$ node scripts/adapters/sk-code.cjs discover .opencode/skills/sk-code/sk-code-webflow/assets/scripts
 ```
 returned all three files (`minify-webflow.mjs`, `test-minified-runtime.mjs`, `verify-minification.mjs`) as `"surface": "OPENCODE"`, `"detectedFrom": "path"`, because they live under `.opencode/`, and `stack-detection.md`'s own Detection Order gives OPENCODE strict precedence, with a documented rationale (line 56) that names this exact scenario ("`.opencode/` system tools... may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts"). Recorded as `sk-code-known-deviations.md` Section 6 so a reasoning-agent reviewer does not mistake this for a bug.
 
@@ -239,7 +239,7 @@ Six live `verify_alignment_drift.py` dry-runs, increasing in corpus size, all re
 | Root scanned | Files scanned | Findings |
 |---|---|---|
 | `deep-alignment/scripts` | 2 | 0 |
-| `sk-code/code-opencode/assets/scripts` | 3 | 0 |
+| `sk-code/sk-code-opencode/assets/scripts` | 3 | 0 |
 | `deep-review/scripts` | 7 | 0 |
 | `runtime/scripts` | 14 | 0 |
 | `sk-code` (whole skill) | 62 | 0 |
@@ -260,13 +260,13 @@ $ node scripts/adapters/sk-code.cjs check .opencode/skills/system-deep-loop/deep
 
 **Deterministic today (layer 1):**
 - **Surface classification** (`classifySurface()`): fully deterministic, a direct port of `stack-detection.md` §2's real Detection Order. Confirmed accurate against real repo files (Section 8.2), including a correct-but-surprising precedence outcome.
-- **OPENCODE pattern-drift**: real and reproducible via `verify_alignment_drift.py`. Its coverage is **12 mechanical rule types** across 7 languages: shebang-line presence, a `'use strict'` pragma, a docstring marker, a `MODULE:` header marker, `set -euo pipefail`, JSON/JSONC parseability, CRLF/UTF-8 hygiene and two Rust boundary-safety greps. Every one of these is a **syntax-shape or boilerplate-presence** check: none of them reads for architectural correctness, the right abstraction, or whether an implementation actually follows `code-opencode/references/shared/universal_patterns.md` or any per-language `style-guide.md`/`quality-standards.md`'s actual prose guidance. Six-plus full reference documents per language describe what "OPENCODE conformance" really means in this hub's own routing (`smart-routing.md` §6). The 12 mechanical rules check a narrow, real, but genuinely small slice of that.
+- **OPENCODE pattern-drift**: real and reproducible via `verify_alignment_drift.py`. Its coverage is **12 mechanical rule types** across 7 languages: shebang-line presence, a `'use strict'` pragma, a docstring marker, a `MODULE:` header marker, `set -euo pipefail`, JSON/JSONC parseability, CRLF/UTF-8 hygiene and two Rust boundary-safety greps. Every one of these is a **syntax-shape or boilerplate-presence** check: none of them reads for architectural correctness, the right abstraction, or whether an implementation actually follows `sk-code-opencode/references/shared/universal_patterns.md` or any per-language `style-guide.md`/`quality-standards.md`'s actual prose guidance. Six-plus full reference documents per language describe what "OPENCODE conformance" really means in this hub's own routing (`smart-routing.md` §6). The 12 mechanical rules check a narrow, real, but genuinely small slice of that.
 - **WEBFLOW pattern-drift**: real and reproducible **only when a Webflow project root exists in scope**. Presently zero such roots exist anywhere in this monorepo (Section 8.1), so this layer is not merely "thinner" than OPENCODE's (as the plan's Risk register anticipated) but **currently unavailable** for every WEBFLOW-surface artifact this adapter can discover here. It remains real, working code for a consumer repo that does carry a live `src/2_javascript/` tree.
 
 **Reasoning-agent, not automated today (layer 2):**
 - All four named dimensions (naming conventions beyond simple regex, architectural/pattern conformance, cross-file consistency, comment hygiene beyond simple patterns) are 100% reasoning-agent judgment. `sk-code.cjs` does not perform this judgment. It prepares the dispatch packet (`buildReasoningLayerDispatch()`) and accepts pre-verified results back (`checkPatternConformance()`'s `options.verifiedFindings`). This is the majority of what "does this code follow the surface's stack patterns" actually asks. The mechanical layer answers a real but narrow "is the boilerplate present and does it parse" question. The reasoning layer answers the "is this the right pattern" question, and today, only a human or LLM reasoning agent can answer that.
 
-**Honest fraction**: of the full conformance question, the deterministic layer's real, working coverage is a **minority slice restricted to mechanical hygiene** (12 OPENCODE rule types, WEBFLOW's real scripts gated on a project-root precondition presently unmet in this repo). The reasoning-agent layer covers everything else: the substantive "architectural/pattern conformance" the surface's own reference material (`code-webflow/references/implementation/*`, `code-opencode/references/shared/*`) actually prescribes. This is not a hedge. It is the concrete answer ADR-008 asked this phase to produce, and it is why every finding is layer-tagged rather than presented as one undifferentiated "conformance check."
+**Honest fraction**: of the full conformance question, the deterministic layer's real, working coverage is a **minority slice restricted to mechanical hygiene** (12 OPENCODE rule types, WEBFLOW's real scripts gated on a project-root precondition presently unmet in this repo). The reasoning-agent layer covers everything else: the substantive "architectural/pattern conformance" the surface's own reference material (`sk-code-webflow/references/implementation/*`, `sk-code-opencode/references/shared/*`) actually prescribes. This is not a hedge. It is the concrete answer ADR-008 asked this phase to produce, and it is why every finding is layer-tagged rather than presented as one undifferentiated "conformance check."
 
 ---
 
@@ -284,5 +284,5 @@ $ node scripts/adapters/sk-code.cjs check .opencode/skills/system-deep-loop/deep
 - `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-003`, `adr-004`, `adr-005`, `adr-008`): the contract, sequencing rationale, alignment invariants and the HYBRID lock this adapter implements.
 - `../discover-contract.md`, `../lane-config-schema.md`: the real, live `discover(scope)->artifacts` contract this adapter's `discover()` conforms to.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md`, `smart-routing.md`: the shared surface router this adapter reuses (REQ-001), never reimplements.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py`: the real OPENCODE deterministic checker.
-- `.opencode/skills/sk-code/code-webflow/assets/scripts/{verify-minification.mjs,test-minified-runtime.mjs,minify-webflow.mjs}`: the real WEBFLOW scripts (the third excluded from `check()`, Section 4.1.2).
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`: the real OPENCODE deterministic checker.
+- `.opencode/skills/sk-code/sk-code-webflow/assets/scripts/{verify-minification.mjs,test-minified-runtime.mjs,minify-webflow.mjs}`: the real WEBFLOW scripts (the third excluded from `check()`, Section 4.1.2).

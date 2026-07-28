@@ -70,9 +70,9 @@ Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, i
 | File | Role |
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../code-webflow/references/animation/quick-start.md` | Local Motion install and version-pin reference |
-| `../../code-webflow/references/animation/integration-patterns.md` | Local CDN/global/ESM integration guidance |
-| `../../code-webflow/assets/animation/install-card.md` | Local install card with pinned-version notes |
+| `../../sk-code-webflow/references/animation/quick-start.md` | Local Motion install and version-pin reference |
+| `../../sk-code-webflow/references/animation/integration-patterns.md` | Local CDN/global/ESM integration guidance |
+| `../../sk-code-webflow/assets/animation/install-card.md` | Local install card with pinned-version notes |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Pinned ESM CDN import and required exports |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | `window.Motion.animate` runtime guard |
 | `https://motion.dev/docs/quick-start` | Official CDN install and version-pin guidance |

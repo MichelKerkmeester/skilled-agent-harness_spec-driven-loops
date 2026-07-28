@@ -197,7 +197,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 #### Step 6: Classify Findings
 
-- Load `.opencode/skills/sk-code/code-review/references/review-core.md` before assigning severity — the P0/P1/P2 severity scale and evidence-density discipline are the same shared vocabulary `reduce-alignment-state.cjs` uses (its `SEVERITY_WEIGHTS` mirror `reduce-state.cjs` exactly), reused as-is.
+- Load `.opencode/skills/sk-code/sk-code-review/references/review-core.md` before assigning severity — the P0/P1/P2 severity scale and evidence-density discipline are the same shared vocabulary `reduce-alignment-state.cjs` uses (its `SEVERITY_WEIGHTS` mirror `reduce-state.cjs` exactly), reused as-is.
 - Do NOT tag findings by review dimension (correctness/security/traceability/maintainability) — that taxonomy does not apply in this mode. Tag each finding by its lane identity (`authority`, `artifactClass`, `scope`) plus the adapter's own `type` / `subcheck` / `layer` fields (for example `template-conformance`/`deterministic`, `reality-alignment`/`reasoning-agent`, `commit-message-grammar`/`deterministic`, `live-render-judgment`/`reasoning-agent`). Findings classification in this mode is per-lane, never per-dimension.
 - P0/P1 findings require concrete evidence and counterevidence review — a completed live re-probe, not a second reviewer's opinion, is this mode's counterevidence mechanism (Invariant 1).
 - P2 findings require actionable evidence and may include documented inference.

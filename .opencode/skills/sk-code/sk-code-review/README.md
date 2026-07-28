@@ -53,7 +53,7 @@ It is not the multi-iteration loop. `deep-review` adds JSONL state, deltas and c
 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
 
 # Or read the runtime instructions directly
-Read(".opencode/skills/sk-code/code-review/SKILL.md")
+Read(".opencode/skills/sk-code/sk-code-review/SKILL.md")
 ```
 
 **Step 2: Read the output contract.** Every review follows the same shape. Findings come before summary. Security and correctness checks run first. The review ends with one exact status line.
@@ -186,9 +186,9 @@ The mode ships a manual testing playbook with per-feature scenarios for findings
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/code-review/README.md --type readme` reports zero issues |
-| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/code-review/manual-testing-playbook/manual-testing-playbook.md` |
-| Rule invariants | `node .opencode/skills/sk-code/code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/sk-code-review/README.md --type readme` reports zero issues |
+| Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` |
+| Rule invariants | `node .opencode/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session |
 
 ---

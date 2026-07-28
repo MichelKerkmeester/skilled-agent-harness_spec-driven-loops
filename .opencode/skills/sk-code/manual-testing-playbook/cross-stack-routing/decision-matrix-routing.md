@@ -30,23 +30,23 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 - `references/stack-detection.md`
 - `references/smart-routing.md`
 - `references/smart-routing.md`
-- `code-webflow/references/animation/decision-matrix.md`
-- `code-webflow/references/animation/performance-and-pitfalls.md`
-- `code-webflow/references/animation/integration-patterns.md`
+- `sk-code-webflow/references/animation/decision-matrix.md`
+- `sk-code-webflow/references/animation/performance-and-pitfalls.md`
+- `sk-code-webflow/references/animation/integration-patterns.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/animation/snippets/hover-gesture.js`
+- `sk-code-webflow/assets/animation/snippets/hover-gesture.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff the AI lists `code-webflow/references/animation/decision-matrix.md`, keeps surface as `UNKNOWN` or `N/A`, and its user response compares CSS and Motion.dev with conditions.
+- **PASS** iff the AI lists `sk-code-webflow/references/animation/decision-matrix.md`, keeps surface as `UNKNOWN` or `N/A`, and its user response compares CSS and Motion.dev with conditions.
 - **FAIL** iff `decision-matrix.md` is omitted, the AI invents a surface, or it gives an implementation-only answer.
 
 **Failure triage**:
 1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/smart-routing.md`.
 2. If `WEBFLOW` is selected, verify the prompt contains no Webflow path, vendor global, or `wrangler.toml`.
-3. If the response is one-sided, compare it against `code-webflow/references/animation/decision-matrix.md`.
+3. If the response is one-sided, compare it against `sk-code-webflow/references/animation/decision-matrix.md`.
 
 ---
 
@@ -62,9 +62,9 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-webflow/references/animation/decision-matrix.md` - Required decision reference.
-- `.opencode/skills/sk-code/code-webflow/references/animation/performance-and-pitfalls.md` - Performance and reduced-motion caveats.
-- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/hover-gesture.js` - Hover example when Motion.dev is justified.
+- `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - Required decision reference.
+- `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Performance and reduced-motion caveats.
+- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Hover example when Motion.dev is justified.
 
 ---
 

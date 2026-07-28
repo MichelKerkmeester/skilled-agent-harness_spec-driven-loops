@@ -40,7 +40,7 @@ The recovery hierarchy is universal. Specific commands and tools change per stac
 
 ### Key Sources
 
-- Surface debugging docs: `.opencode/skills/sk-code/code-webflow/references/debugging/error-recovery.md` and `.opencode/skills/sk-code/code-opencode/references/shared/alignment-verification-automation.md`.
+- Surface debugging docs: `.opencode/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` and `.opencode/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`.
 - Universal debugging discipline: `.opencode/skills/sk-code/shared/references/universal-debugging-checklist.md` (4-phase workflow).
 
 ---
@@ -105,8 +105,8 @@ If 3+ retries with isolation + prerequisite verification fail, STOP iterating bl
 
 | Surface  | Reference                                                                              |
 | -------- | -------------------------------------------------------------------------------------- |
-| WEBFLOW  | `.opencode/skills/sk-code/code-webflow/references/debugging/error-recovery.md` (CDN, minification, version mismatch) |
-| OPENCODE | `.opencode/skills/sk-code/code-opencode/references/shared/alignment-verification-automation.md` and language refs    |
+| WEBFLOW  | `.opencode/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` (CDN, minification, version mismatch) |
+| OPENCODE | `.opencode/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` and language refs    |
 
 ---
 

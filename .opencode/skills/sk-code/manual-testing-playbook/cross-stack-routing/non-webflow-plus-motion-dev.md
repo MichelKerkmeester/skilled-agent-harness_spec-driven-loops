@@ -30,19 +30,19 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 - `references/stack-detection.md`
 - `references/smart-routing.md`
 - `references/smart-routing.md`
-- `code-webflow/references/animation/quick-start.md`
-- `code-webflow/references/animation/integration-patterns.md`
-- `code-webflow/references/animation/scroll-and-gestures.md`
-- `code-webflow/references/animation/decision-matrix.md`
+- `sk-code-webflow/references/animation/quick-start.md`
+- `sk-code-webflow/references/animation/integration-patterns.md`
+- `sk-code-webflow/references/animation/scroll-and-gestures.md`
+- `sk-code-webflow/references/animation/decision-matrix.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/animation/snippets/hover-gesture.js`
-- `code-webflow/assets/animation/snippets/in-view-reveal.js`
-- `code-webflow/assets/animation/install-card.md`
+- `sk-code-webflow/assets/animation/snippets/hover-gesture.js`
+- `sk-code-webflow/assets/animation/snippets/in-view-reveal.js`
+- `sk-code-webflow/assets/animation/install-card.md`
 
 **Expected NOT loaded**:
-- `code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
-- `code-webflow/assets/checklists/code-quality-checklist.md`
+- `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
+- `sk-code-webflow/assets/checklists/code-quality-checklist.md`
 
 **Expected agent dispatch**: none.
 
@@ -71,8 +71,8 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - generic-node guard.
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` - MOTION_DEV signals.
-- `.opencode/skills/sk-code/code-webflow/references/animation/decision-matrix.md` - CSS/Motion/WAAPI trade-offs.
-- `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/hover-gesture.js` - Required snippet.
+- `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - CSS/Motion/WAAPI trade-offs.
+- `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Required snippet.
 
 ---
 

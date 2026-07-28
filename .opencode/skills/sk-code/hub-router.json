@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["quality", "code-review", "code-webflow", "code-opencode"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -14,25 +14,25 @@
     "defaultResource": ["shared/README.md"]
   },
   "routerSignals": {
-    "quality": {
+    "sk-code-quality": {
       "weight": 4,
       "classes": ["quality-aliases", "quality-gates", "hub-identity"],
-      "resources": ["code-quality/SKILL.md"]
+      "resources": ["sk-code-quality/SKILL.md"]
     },
-    "code-review": {
+    "sk-code-review": {
       "weight": 4,
       "classes": ["code-review-aliases", "code-review-findings", "code-review-security", "code-review-pr", "hub-identity"],
-      "resources": ["code-review/SKILL.md"]
+      "resources": ["sk-code-review/SKILL.md"]
     },
-    "code-webflow": {
+    "sk-code-webflow": {
       "weight": 4,
       "classes": ["code-webflow-aliases", "code-webflow-runtime", "hub-identity"],
-      "resources": ["code-webflow/SKILL.md"]
+      "resources": ["sk-code-webflow/SKILL.md"]
     },
-    "code-opencode": {
+    "sk-code-opencode": {
       "weight": 4,
       "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring", "hub-identity"],
-      "resources": ["code-opencode/SKILL.md"]
+      "resources": ["sk-code-opencode/SKILL.md"]
     }
   },
   "vocabularyClasses": {

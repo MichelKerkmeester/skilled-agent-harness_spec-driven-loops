@@ -33,7 +33,7 @@ Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts t
 - `references/smart-routing.md`
 - `references/universal/code-quality-standards.md`
 - `references/phase-detection.md`
-- `code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
+- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
 
 **Expected ladder behavior**:
 - The ladder runs AFTER surface and intent routing, not before.

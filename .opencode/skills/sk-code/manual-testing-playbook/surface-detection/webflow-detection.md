@@ -10,7 +10,7 @@ version: 3.5.0.6
 
 This scenario verifies that sk-code's smart router correctly identifies WEBFLOW as the active code surface when the prompt references vanilla-JS animation libraries (motion.dev, GSAP, Lenis, HLS, Swiper, FilePond) or marker file paths (`src/2_javascript/`, `*.webflow.js`, `wrangler.toml`).
 
-WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `code-webflow/references/*` and `code-webflow/assets/*` and SHOULD NOT load any `code-opencode/references/*` resources.
+WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation projects. When detected, sk-code MUST load `sk-code-webflow/references/*` and `sk-code-webflow/assets/*` and SHOULD NOT load any `sk-code-opencode/references/*` resources.
 
 Detection markers are defined verbatim in `references/stack-detection.md:30-37`.
 
@@ -33,23 +33,23 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `references/smart-routing.md`
 - `references/phase-detection.md`
 - `references/universal/code-quality-standards.md`
-- `code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
-- `code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- `code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
-- `code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
-- `code-webflow/references/javascript/style-guide/overview-naming-and-structure.md`
-- `code-webflow/references/css/style-guide.md`
-- `code-webflow/references/shared/cross-language-rules.md`
+- `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
+- `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
+- `sk-code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
+- `sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
+- `sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md`
+- `sk-code-webflow/references/css/style-guide.md`
+- `sk-code-webflow/references/shared/cross-language-rules.md`
 
 **Expected assets loaded**:
-- `code-webflow/assets/webflow-verification-checklist.md`
-- `code-webflow/assets/patterns/interaction-gate-patterns.js` (when intent is implementation gating)
+- `sk-code-webflow/assets/webflow-verification-checklist.md`
+- `sk-code-webflow/assets/patterns/interaction-gate-patterns.js` (when intent is implementation gating)
 
-**Expected NOT loaded**: any `code-opencode/references/*` or `code-opencode/assets/*` (would indicate misrouting).
+**Expected NOT loaded**: any `sk-code-opencode/references/*` or `sk-code-opencode/assets/*` (would indicate misrouting).
 
 **Expected agent dispatch**: `@code` (LEAF) for the actual edit, dispatched ONLY by `@orchestrate`. If the user prompt is invoked directly without orchestration, the AI may apply the change inline using sk-code guidance without dispatching @code.
 
-**Desired user-visible outcome**: The AI applies the edit to `src/2_javascript/scroll.js`, citing webflow-specific patterns (IntersectionObserver gate from `code-webflow/assets/patterns/interaction-gate-patterns.js`) and confirming the modification with a Lenis initializer + observer fence.
+**Desired user-visible outcome**: The AI applies the edit to `src/2_javascript/scroll.js`, citing webflow-specific patterns (IntersectionObserver gate from `sk-code-webflow/assets/patterns/interaction-gate-patterns.js`) and confirming the modification with a Lenis initializer + observer fence.
 
 ## 3. TEST EXECUTION
 
@@ -78,7 +78,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 | 1 | Advisor returns JSON with `top_skill: "sk-code"`, `score: ≥ 0.80`. |
 | 2 | Pass — proceed. |
 | 3 | sk-code SKILL.md is loaded; the AI runs the smart router pseudocode and emits `SURFACE: WEBFLOW`. |
-| 4 | The AI lists `code-webflow/references/implementation/*` as loaded; lists `code-webflow/assets/webflow-verification-checklist.md` as loaded; does NOT list any `code-opencode/references/*`. |
+| 4 | The AI lists `sk-code-webflow/references/implementation/*` as loaded; lists `sk-code-webflow/assets/webflow-verification-checklist.md` as loaded; does NOT list any `sk-code-opencode/references/*`. |
 | 5 | Evidence file contains all of the above. |
 
 ### Pass/Fail Criteria
@@ -86,25 +86,25 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - **PASS** iff:
   - Advisor wins sk-code at score ≥ 0.80.
   - sk-code reports surface == WEBFLOW.
-  - Loaded references include at least 3 paths under `code-webflow/references/implementation/`.
-  - Loaded references DO NOT include any `code-opencode/references/`.
+  - Loaded references include at least 3 paths under `sk-code-webflow/references/implementation/`.
+  - Loaded references DO NOT include any `sk-code-opencode/references/`.
 - **PARTIAL** iff:
   - Surface correct, but the AI loads extra `universal/` resources beyond the listed expectations (acceptable drift).
 - **FAIL** iff:
-  - Advisor loses sk-code, OR surface != WEBFLOW, OR any `code-opencode/references/*` is loaded.
+  - Advisor loses sk-code, OR surface != WEBFLOW, OR any `sk-code-opencode/references/*` is loaded.
 
 ### Failure Triage
 
 1. If advisor doesn't win sk-code: check `skill-graph.json` `sk-code.signals` array — ensure "webflow", "frontend", "animation" are present.
 2. If surface != WEBFLOW: re-read `references/stack-detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
-3. If `code-opencode/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
+3. If `sk-code-opencode/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
 
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` — WEBFLOW marker definitions (lines 30-37).
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` — Intent → resource-loading mapping.
-- `.opencode/skills/sk-code/code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md` — Expected-loaded reference.
+- `.opencode/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md` — Expected-loaded reference.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — sk-code signals + adjacency.
 
 ## 5. SOURCE METADATA

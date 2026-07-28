@@ -1,5 +1,5 @@
 ---
-name: code-quality
+name: sk-code-quality
 description: sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists.
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
 version: 1.0.0.1
@@ -65,7 +65,7 @@ QUALITY TASK
     +- Resource routing -> ../shared/references/smart-routing.md
     |
     +- WEBFLOW target     -> assets/code-quality-checklist/overview-header-and-comments.md + shared web standards
-    +- OPENCODE target    -> ../code-opencode/assets/checklists/<target-checklist>.md
+    +- OPENCODE target    -> ../sk-code-opencode/assets/checklists/<target-checklist>.md
     +- Comment hygiene    -> scripts/check-comment-hygiene.sh per modified file
     +- Dist staleness     -> scripts/check-dist-staleness.sh when generated artifacts are involved
 ```
@@ -87,7 +87,7 @@ Phase 1 Implementation writes or changes files
 ### Resource Domains
 
 - `assets/code-quality-checklist/overview-header-and-comments.md` is the Webflow/frontend quality checklist and the general post-implementation quality gate.
-- `../code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
+- `../sk-code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 - `scripts/check-comment-hygiene.sh` is the per-file comment-hygiene gate.
 - `scripts/check-dist-staleness.sh` checks generated/distribution artifact drift when that is part of the target.
 - `scripts/hooks/claude-posttooluse.sh` is the write-time warning hook for comment hygiene.
@@ -100,12 +100,12 @@ Phase 1 Implementation writes or changes files
 | ALWAYS | Any quality-gate invocation | `../shared/references/stack-detection.md`, `../shared/references/smart-routing.md`, `../shared/references/phase-detection.md` |
 | ALWAYS | Before any implementation-done claim | `assets/code-quality-checklist/overview-header-and-comments.md`, `../shared/references/universal/code-quality-standards.md`, `../shared/references/universal/code-style-guide.md` |
 | ALWAYS | Any modified file with comments or comment-capable syntax | `scripts/check-comment-hygiene.sh` |
-| CONDITIONAL | `.opencode/skills/` target | `../code-opencode/assets/checklists/skill-authoring.md` |
-| CONDITIONAL | `.opencode/agents/` target | `../code-opencode/assets/checklists/agent-authoring.md` |
-| CONDITIONAL | `.opencode/commands/` target | `../code-opencode/assets/checklists/command-authoring.md` |
+| CONDITIONAL | `.opencode/skills/` target | `../sk-code-opencode/assets/checklists/skill-authoring.md` |
+| CONDITIONAL | `.opencode/agents/` target | `../sk-code-opencode/assets/checklists/agent-authoring.md` |
+| CONDITIONAL | `.opencode/commands/` target | `../sk-code-opencode/assets/checklists/command-authoring.md` |
 | CONDITIONAL | `.opencode/specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
-| CONDITIONAL | MCP server source | `../code-opencode/assets/checklists/mcp-server-authoring.md` |
-| CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../code-opencode/assets/checklists/javascript-checklist.md`, `../code-opencode/assets/checklists/typescript-checklist.md`, `../code-opencode/assets/checklists/python-checklist.md`, `../code-opencode/assets/checklists/shell-checklist.md`, `../code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../code-opencode/assets/checklists/rust-checklist/p1-required.md`, `../code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../code-opencode/assets/checklists/config-checklist.md` as applicable |
+| CONDITIONAL | MCP server source | `../sk-code-opencode/assets/checklists/mcp-server-authoring.md` |
+| CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-opencode/assets/checklists/javascript-checklist.md`, `../sk-code-opencode/assets/checklists/typescript-checklist.md`, `../sk-code-opencode/assets/checklists/python-checklist.md`, `../sk-code-opencode/assets/checklists/shell-checklist.md`, `../sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-opencode/assets/checklists/config-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
 | ON_DEMAND | Need hook behavior details | `scripts/hooks/claude-posttooluse.sh` |
 
@@ -113,12 +113,12 @@ Phase 1 Implementation writes or changes files
 
 | Target Path | Authoring Checklist | Gate Behavior |
 | --- | --- | --- |
-| `.opencode/skills/` | `../code-opencode/assets/checklists/skill-authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
-| `.opencode/agents/` | `../code-opencode/assets/checklists/agent-authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
-| `.opencode/commands/` | `../code-opencode/assets/checklists/command-authoring.md` | Check command metadata, arguments, routing, and execution contract. |
+| `.opencode/skills/` | `../sk-code-opencode/assets/checklists/skill-authoring.md` | Check frontmatter, section structure, resource layout, routing, version, allowed tools, and validation path. |
+| `.opencode/agents/` | `../sk-code-opencode/assets/checklists/agent-authoring.md` | Check agent frontmatter, prompt boundary, tool access, and role clarity. |
+| `.opencode/commands/` | `../sk-code-opencode/assets/checklists/command-authoring.md` | Check command metadata, arguments, routing, and execution contract. |
 | `.opencode/specs/` | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) | Check spec-folder structure and packet-document consistency. |
-| MCP server source | `../code-opencode/assets/checklists/mcp-server-authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
-| OpenCode language/config files | language/config checklist in `../code-opencode/assets/checklists/` | Check language-specific quality and style expectations. |
+| MCP server source | `../sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Check tool contracts, input/output schemas, transport assumptions, and failure handling. |
+| OpenCode language/config files | language/config checklist in `../sk-code-opencode/assets/checklists/` | Check language-specific quality and style expectations. |
 | Webflow/frontend files | `assets/code-quality-checklist/overview-header-and-comments.md` | Check frontend style, maintainability, headers, comments, and platform expectations. |
 
 ### Comment-Hygiene Enforcement Gates
@@ -179,7 +179,7 @@ The target-path checklist map remains authoritative; the prompt-intent projectio
 
 1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.
 2. Collect the changed-file set from the task context or targeted paths. Read each target before editing.
-3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../code-opencode/assets/checklists/` when the target is OpenCode-owned.
+3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned.
 4. Run `scripts/check-comment-hygiene.sh <file>` for every modified comment-capable file.
 5. Apply the P0/P1/P2 model: P0 blocks completion, P1 should be fixed before handoff unless explicitly accepted, P2 can be documented when there is a clear reason.
 6. Fix gate failures in place with `Edit` when the correction is limited to already-authored files.
@@ -264,7 +264,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - The quality gate ran after implementation and before verification.
 - Surface identity came from the shared router, not packet-local detection logic.
 - `assets/code-quality-checklist/overview-header-and-comments.md` was loaded before any quality-pass claim.
-- The correct `../code-opencode/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
+- The correct `../sk-code-opencode/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
 - `scripts/check-comment-hygiene.sh` ran for each modified comment-capable file and reported zero violations or a documented escalation.
 - P0 issues are fixed in place or escalated with evidence; P1/P2 handling is explicit.
 - No new files were authored by this mode.
@@ -294,21 +294,21 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 ### Quality References And Assets
 
 - [`assets/code-quality-checklist/overview-header-and-comments.md`](assets/code-quality-checklist/overview-header-and-comments.md) - Required quality checklist before implementation completion claims.
-- [`assets/checklists/universal-checklist.md`](../code-opencode/assets/checklists/universal-checklist.md) - Universal OpenCode quality baseline.
-- [`assets/checklists/skill-authoring.md`](../code-opencode/assets/checklists/skill-authoring.md) - Skill authoring checklist.
-- [`assets/checklists/agent-authoring.md`](../code-opencode/assets/checklists/agent-authoring.md) - Agent authoring checklist.
-- [`assets/checklists/command-authoring.md`](../code-opencode/assets/checklists/command-authoring.md) - Command authoring checklist.
+- [`assets/checklists/universal-checklist.md`](../sk-code-opencode/assets/checklists/universal-checklist.md) - Universal OpenCode quality baseline.
+- [`assets/checklists/skill-authoring.md`](../sk-code-opencode/assets/checklists/skill-authoring.md) - Skill authoring checklist.
+- [`assets/checklists/agent-authoring.md`](../sk-code-opencode/assets/checklists/agent-authoring.md) - Agent authoring checklist.
+- [`assets/checklists/command-authoring.md`](../sk-code-opencode/assets/checklists/command-authoring.md) - Command authoring checklist.
 - [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
-- [`assets/checklists/mcp-server-authoring.md`](../code-opencode/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
-- [`assets/checklists/javascript-checklist.md`](../code-opencode/assets/checklists/javascript-checklist.md) - JavaScript checklist.
-- [`assets/checklists/typescript-checklist.md`](../code-opencode/assets/checklists/typescript-checklist.md) - TypeScript checklist.
-- [`assets/checklists/python-checklist.md`](../code-opencode/assets/checklists/python-checklist.md) - Python checklist.
-- [`assets/checklists/shell-checklist.md`](../code-opencode/assets/checklists/shell-checklist.md) - Shell checklist.
-- [`assets/checklists/rust-checklist/overview-and-p0-parity.md`](../code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
-- [`assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
-- [`assets/checklists/rust-checklist/p1-required.md`](../code-opencode/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
-- [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
-- [`assets/checklists/config-checklist.md`](../code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
+- [`assets/checklists/mcp-server-authoring.md`](../sk-code-opencode/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
+- [`assets/checklists/javascript-checklist.md`](../sk-code-opencode/assets/checklists/javascript-checklist.md) - JavaScript checklist.
+- [`assets/checklists/typescript-checklist.md`](../sk-code-opencode/assets/checklists/typescript-checklist.md) - TypeScript checklist.
+- [`assets/checklists/python-checklist.md`](../sk-code-opencode/assets/checklists/python-checklist.md) - Python checklist.
+- [`assets/checklists/shell-checklist.md`](../sk-code-opencode/assets/checklists/shell-checklist.md) - Shell checklist.
+- [`assets/checklists/rust-checklist/overview-and-p0-parity.md`](../sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
+- [`assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
+- [`assets/checklists/rust-checklist/p1-required.md`](../sk-code-opencode/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
+- [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
+- [`assets/checklists/config-checklist.md`](../sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
 
 ### Scripts
 

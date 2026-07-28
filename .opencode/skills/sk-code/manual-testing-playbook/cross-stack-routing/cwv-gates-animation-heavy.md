@@ -36,21 +36,21 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/stack-detection.md`
 - `references/smart-routing.md`
 - `references/smart-routing.md`
-- `code-webflow/references/performance/cwv-remediation.md`
-- `code-webflow/references/performance/interaction-gated-loading.md`
-- `code-webflow/references/performance/resource-loading.md`
-- `code-webflow/references/verification/performance-checklist.md`
-- `code-webflow/references/animation/performance-and-pitfalls.md`
-- `code-webflow/references/animation/decision-matrix.md`
+- `sk-code-webflow/references/performance/cwv-remediation.md`
+- `sk-code-webflow/references/performance/interaction-gated-loading.md`
+- `sk-code-webflow/references/performance/resource-loading.md`
+- `sk-code-webflow/references/verification/performance-checklist.md`
+- `sk-code-webflow/references/animation/performance-and-pitfalls.md`
+- `sk-code-webflow/references/animation/decision-matrix.md`
 
 **Expected assets loaded**:
 - `shared/references/performance-loading-checklist.md`
-- `code-webflow/assets/patterns/performance-patterns.js`
+- `sk-code-webflow/assets/patterns/performance-patterns.js`
 
 **Expected agent dispatch**: none.
 
 **Pass/fail criteria with binary grading**:
-- **PASS** iff surface is `WEBFLOW` and the load set includes both `code-webflow/references/animation/performance-and-pitfalls.md` and `code-webflow/references/performance/cwv-remediation.md`.
+- **PASS** iff surface is `WEBFLOW` and the load set includes both `sk-code-webflow/references/animation/performance-and-pitfalls.md` and `sk-code-webflow/references/performance/cwv-remediation.md`.
 - **FAIL** iff either required performance reference is missing, surface is not `WEBFLOW`, or an agent is dispatched.
 
 **Failure triage**:
@@ -72,8 +72,8 @@ Evidence files:
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/sk-code/code-webflow/references/performance/cwv-remediation.md` - Required Webflow CWV reference.
-- `.opencode/skills/sk-code/code-webflow/references/animation/performance-and-pitfalls.md` - Required Motion performance reference.
+- `.opencode/skills/sk-code/sk-code-webflow/references/performance/cwv-remediation.md` - Required Webflow CWV reference.
+- `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Required Motion performance reference.
 - `.opencode/skills/sk-code/shared/references/performance-loading-checklist.md` - Expected asset.
 
 ---

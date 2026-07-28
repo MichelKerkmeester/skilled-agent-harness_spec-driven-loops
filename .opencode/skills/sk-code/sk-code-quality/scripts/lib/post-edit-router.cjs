@@ -33,12 +33,12 @@ const { spawnSync } = require('node:child_process');
 // not CLI-invocable); links = rules/; frontmatter + flowchart canonical live
 // under sk-doc.
 const CHECKER_RELATIVE_PATHS = {
-  commentHygiene: '.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh',
+  commentHygiene: '.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh',
   flowchart: '.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh',
   frontmatterVersions: '.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh',
   placeholders: '.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh',
   wikilinks: '.opencode/skills/system-spec-kit/scripts/rules/check-links.sh',
-  distStaleness: '.opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh',
+  distStaleness: '.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh',
 };
 
 const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.py', '.sh', '.bash', '.jsonc']);

@@ -119,4 +119,4 @@ OK
 |---|---|
 | [`../SKILL.md`](../SKILL.md) | Owning packet: runtime routing and workflow boundaries. |
 | [`../references/cli-reference.md`](../references/cli-reference.md) | Authoritative CLI flags, JSON summaries, and contract. |
-| [`../../../sk-code/code-opencode/SKILL.md`](../../../sk-code/code-opencode/SKILL.md) | OpenCode coding standard these scripts conform to. |
+| [`../../../sk-code/sk-code-opencode/SKILL.md`](../../../sk-code/sk-code-opencode/SKILL.md) | OpenCode coding standard these scripts conform to. |

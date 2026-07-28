@@ -68,8 +68,17 @@
         "references/typescript/style-guide/formatting-imports-and-coexistence.md",
         "references/typescript/style-guide/overview-strict-and-naming.md"
       ],
-      "packet": "code-opencode",
-      "workflowMode": "code-opencode"
+      "packet": "sk-code-opencode",
+      "workflowMode": "sk-code-opencode"
+    },
+    {
+      "leaves": [
+        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
+        "assets/code-quality-checklist/overview-header-and-comments.md",
+        "assets/code-quality-checklist/verification-quick-reference-and-related.md"
+      ],
+      "packet": "sk-code-quality",
+      "workflowMode": "sk-code-quality"
     },
     {
       "leaves": [
@@ -84,8 +93,8 @@
         "references/review-core.md",
         "references/review-ux-single-pass.md"
       ],
-      "packet": "code-review",
-      "workflowMode": "code-review"
+      "packet": "sk-code-review",
+      "workflowMode": "sk-code-review"
     },
     {
       "leaves": [
@@ -206,17 +215,8 @@
         "references/verification/verification-workflows/gate-and-automated-options.md",
         "references/verification/verification-workflows/requirements-rules-and-checklist.md"
       ],
-      "packet": "code-webflow",
-      "workflowMode": "code-webflow"
-    },
-    {
-      "leaves": [
-        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
-        "assets/code-quality-checklist/overview-header-and-comments.md",
-        "assets/code-quality-checklist/verification-quick-reference-and-related.md"
-      ],
-      "packet": "code-quality",
-      "workflowMode": "quality"
+      "packet": "sk-code-webflow",
+      "workflowMode": "sk-code-webflow"
     }
   ],
   "resourceContractVersion": 1

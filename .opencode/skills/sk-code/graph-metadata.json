@@ -195,37 +195,37 @@
       "shared/references/stack-detection.md",
       "shared/references/smart-routing.md",
       "shared/references/phase-detection.md",
-      "code-webflow/references/animation/animate-and-timelines.md",
-      "code-webflow/references/animation/decision-matrix.md",
-      "code-webflow/references/animation/integration-patterns.md",
-      "code-webflow/references/animation/performance-and-pitfalls.md",
-      "code-webflow/references/animation/quick-start.md",
-      "code-webflow/references/animation/scroll-and-gestures.md",
-      "code-webflow/SKILL.md",
-      "code-opencode/SKILL.md"
+      "sk-code-webflow/references/animation/animate-and-timelines.md",
+      "sk-code-webflow/references/animation/decision-matrix.md",
+      "sk-code-webflow/references/animation/integration-patterns.md",
+      "sk-code-webflow/references/animation/performance-and-pitfalls.md",
+      "sk-code-webflow/references/animation/quick-start.md",
+      "sk-code-webflow/references/animation/scroll-and-gestures.md",
+      "sk-code-webflow/SKILL.md",
+      "sk-code-opencode/SKILL.md"
     ],
     "key_files": [
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md",
       ".opencode/skills/sk-code/mode-registry.json",
       ".opencode/skills/sk-code/hub-router.json",
-      ".opencode/skills/sk-code/code-quality/SKILL.md",
-      ".opencode/skills/sk-code/code-review/SKILL.md",
+      ".opencode/skills/sk-code/sk-code-quality/SKILL.md",
+      ".opencode/skills/sk-code/sk-code-review/SKILL.md",
       ".opencode/skills/sk-code/shared/references/stack-detection.md",
       ".opencode/skills/sk-code/shared/references/smart-routing.md",
       ".opencode/skills/sk-code/shared/references/phase-detection.md",
-      ".opencode/skills/sk-code/code-webflow/references/animation/quick-start.md",
-      ".opencode/skills/sk-code/code-webflow/references/animation/decision-matrix.md",
-      ".opencode/skills/sk-code/code-webflow/references/animation/integration-patterns.md",
-      ".opencode/skills/sk-code/code-webflow/references/animation/performance-and-pitfalls.md",
-      ".opencode/skills/sk-code/code-webflow/assets/animation/install-card.md",
-      ".opencode/skills/sk-code/code-webflow/assets/animation/playbook-entries.md",
-      ".opencode/skills/sk-code/code-webflow/assets/patterns/wait-patterns.js",
-      ".opencode/skills/sk-code/code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md",
-      ".opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
-      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
-      ".opencode/skills/sk-code/code-webflow/SKILL.md",
-      ".opencode/skills/sk-code/code-opencode/SKILL.md"
+      ".opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md",
+      ".opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md",
+      ".opencode/skills/sk-code/sk-code-webflow/references/animation/integration-patterns.md",
+      ".opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md",
+      ".opencode/skills/sk-code/sk-code-webflow/assets/animation/install-card.md",
+      ".opencode/skills/sk-code/sk-code-webflow/assets/animation/playbook-entries.md",
+      ".opencode/skills/sk-code/sk-code-webflow/assets/patterns/wait-patterns.js",
+      ".opencode/skills/sk-code/sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md",
+      ".opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+      ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
+      ".opencode/skills/sk-code/sk-code-opencode/SKILL.md"
     ],
     "entities": [
       {
@@ -237,7 +237,7 @@
       {
         "name": "motion_dev",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code/code-webflow/references/animation/quick-start.md",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md",
         "source": "derived"
       },
       {
@@ -249,7 +249,7 @@
       {
         "name": "verify_alignment_drift",
         "kind": "script",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       }
     ],

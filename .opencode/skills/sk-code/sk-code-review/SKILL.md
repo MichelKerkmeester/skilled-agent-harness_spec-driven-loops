@@ -1,5 +1,5 @@
 ---
-name: code-review
+name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
 version: 1.0.0.0

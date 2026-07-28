@@ -1,6 +1,6 @@
 ---
 title: sk-code
-description: The single advisor-routable code skill: a two-axis hub that routes to two workflow modes (quality, code-review) and bundles two read-only surface evidence packets (code-webflow, code-opencode), each carrying the implement/debug/verify workflow doctrine.
+description: The single advisor-routable code skill: a two-axis hub that routes to two workflow modes (sk-code-quality, sk-code-review) and bundles two read-only surface evidence packets (sk-code-webflow, sk-code-opencode), each carrying the implement/debug/verify workflow doctrine.
 trigger_phrases:
   - "code skill"
   - "code mode router"
@@ -10,7 +10,7 @@ version: 4.1.0.0
 
 # sk-code
 
-> Route code work to focused quality and code-review modes and to Webflow/OpenCode surface evidence — each surface carrying the implement → debug → verify workflow doctrine — over one shared surface-detection router.
+> Route code work to focused sk-code-quality and sk-code-review modes and to Webflow/OpenCode surface evidence — each surface carrying the implement → debug → verify workflow doctrine — over one shared surface-detection router.
 
 ---
 
@@ -19,7 +19,7 @@ version: 4.1.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Code-family work: implementation, quality, debugging, verification, and findings-first review. |
-| **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `quality:` or `code-review:`. |
+| **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:`. |
 | **Works on** | The shared surface-detection router for WEBFLOW, OPENCODE, and MOTION_DEV context. |
 | **Produces** | A routed mode or surface packet with the right code-work contract and tool surface. |
 
@@ -45,17 +45,17 @@ A code request resolves through the hub to a primary workflow mode and/or one-or
 
 | Mode | Owns |
 |---|---|
-| `code-quality` | Author-side quality gates, comment hygiene, and surface checklists. |
-| `code-review` | Findings-first review, security/correctness baseline, and review output cache. |
+| `sk-code-quality` | Author-side quality gates, comment hygiene, and surface checklists. |
+| `sk-code-review` | Findings-first review, security/correctness baseline, and review output cache. |
 
 **Surface evidence packets** (read-only, advisor-invisible — bundled alongside a workflow mode):
 
 | Surface | Carries |
 |---|---|
-| `code-webflow` | Frontend evidence (CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify) plus the Motion.dev animation overlay. |
-| `code-opencode` | System-code evidence (TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists). |
+| `sk-code-webflow` | Frontend evidence (CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify) plus the Motion.dev animation overlay. |
+| `sk-code-opencode` | System-code evidence (TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists). |
 
-The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, symlinked into each surface, so the active surface carries the full workflow. "review my webflow animation for jank" resolves to `[code-review, code-webflow]`.
+The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, symlinked into each surface, so the active surface carries the full workflow. "review my webflow animation for jank" resolves to `[sk-code-review, sk-code-webflow]`.
 
 ### One advisor identity
 
@@ -89,7 +89,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
 | [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals. |
 | [`shared/README.md`](./shared/README.md) | Shared surface detection, cross-mode helpers, and the implement/debug/verify workflow doctrine. |
-| [`code-quality/SKILL.md`](./code-quality/SKILL.md) | Quality mode packet. |
-| [`code-review/SKILL.md`](./code-review/SKILL.md) | Review mode packet. |
-| [`code-webflow/SKILL.md`](./code-webflow/SKILL.md) | Webflow surface packet. |
-| [`code-opencode/SKILL.md`](./code-opencode/SKILL.md) | OpenCode surface packet. |
+| [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet. |
+| [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet. |
+| [`sk-code-webflow/SKILL.md`](./sk-code-webflow/SKILL.md) | Webflow surface packet. |
+| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet. |

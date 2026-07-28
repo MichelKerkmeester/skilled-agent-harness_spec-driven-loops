@@ -20,7 +20,7 @@
         },
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all'",
           "timeout": 5
         },
         {
@@ -101,7 +101,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/devin/post-edit-quality.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/devin/post-edit-quality.cjs'",
           "timeout": 10
         }
       ]

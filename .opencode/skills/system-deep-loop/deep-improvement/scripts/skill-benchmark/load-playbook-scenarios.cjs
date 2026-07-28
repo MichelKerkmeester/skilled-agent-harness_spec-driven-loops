@@ -333,7 +333,7 @@ function extractPaths(block) {
   const seen = new Set();
   // code-<surface>/ packet paths (post two-axis split) sit alongside the
   // universal references/ + assets/ + sibling ../shared/ tiers the gold names.
-  const re = /(?:code-[a-z]+|references|assets|\.\.\/shared)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g;
+  const re = /(?:sk-code-[a-z]+|code-[a-z]+|references|assets|\.\.\/shared)\/[A-Za-z0-9_./-]+\.[a-z]{1,4}/g;
   let m;
   while ((m = re.exec(block)) !== null) {
     const p = m[0];
@@ -350,7 +350,7 @@ function extractForbiddenPrefixes(block) {
   if (!block) return [];
   const out = [];
   const seen = new Set();
-  const re = /`((?:code-[a-z]+|references|assets|\.\.\/shared)\/[A-Za-z0-9_./*-]+)`/g;
+  const re = /`((?:sk-code-[a-z]+|code-[a-z]+|references|assets|\.\.\/shared)\/[A-Za-z0-9_./*-]+)`/g;
   let m;
   while ((m = re.exec(block)) !== null) {
     const prefix = m[1].replace(/\*+$/, '');

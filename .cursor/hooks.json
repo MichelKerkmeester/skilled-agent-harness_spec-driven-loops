@@ -23,7 +23,7 @@
         "timeout": 10
       },
       {
-        "command": "python3 .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh --all",
+        "command": "python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all",
         "type": "command",
         "timeout": 10
       },

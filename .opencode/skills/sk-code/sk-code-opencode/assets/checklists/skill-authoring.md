@@ -64,7 +64,7 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 ## 4. POST-CHECKS
 
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` against the owning spec folder when the skill change is part of a spec folder.
-- [ ] Run `python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code` for the live parent-hub example; use the same script with the actual target skill root when reviewing another skill.
+- [ ] Run `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code` for the live parent-hub example; use the same script with the actual target skill root when reviewing another skill.
 - [ ] For a flat skill, verify the skill frontmatter includes `description`, `allowed-tools`, and `version` when the skill's family uses versions.
 - [ ] For a parent hub, verify `mode-registry.json` has `modes[]` entries with `workflowMode`, `packetKind`, `backendKind`, `packet`, `packetSkillName`, `toolSurface`, and `advisorRouting`.
 - [ ] For a parent hub, verify `hub-router.json` resources resolve on disk and the hub-level `graph-metadata.json` is the only graph identity for the skill family.
@@ -77,4 +77,4 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 - `.opencode/skills/sk-doc/create-skill/references/README.md` (source index for skill structure rules)
 - `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-hub structure and metadata contract)
 - Parent-hub example: `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-code/graph-metadata.json`, `.opencode/skills/sk-code/mode-registry.json`, `.opencode/skills/sk-code/hub-router.json`
-- Verification recipes: `.opencode/skills/sk-code/code-opencode/assets/checklists/universal-checklist.md`
+- Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

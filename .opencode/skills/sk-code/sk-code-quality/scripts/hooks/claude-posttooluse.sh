@@ -10,7 +10,7 @@ Always exits 0 (fail-safe): never blocks the tool even if the checker fails.
 Hook entry (settings.json):
   { "matcher": "Write|Edit",
     "hooks": [{ "type": "command",
-                "command": "bash -c 'cd \"/...repo...\" && python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'",
+                "command": "bash -c 'cd \"/...repo...\" && python3 .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh'",
                 "timeout": 10 }] }
 
 See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
@@ -21,8 +21,8 @@ import json
 import subprocess
 import time
 
-COMMENT_CHECKER_REL = ".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh"
-DIST_CHECKER_REL = ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh"
+COMMENT_CHECKER_REL = ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+DIST_CHECKER_REL = ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
 HOOK_BUDGET_SECONDS = 9.0
 CHECKER_TIMEOUT_SECONDS = 8.0
 MIN_CHECKER_SECONDS = 0.5

@@ -243,7 +243,7 @@ if (element) {
 Before claiming "done" or "complete" on **JavaScript or CSS** implementation:
 
 1. **Identify file type** - JavaScript or CSS
-2. **Load** [`code-quality-checklist.md`](../../../code-quality/assets/code-quality-checklist/overview-header-and-comments.md)
+2. **Load** [`code-quality-checklist.md`](../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md)
 3. **Apply cross-language rules** from this document (Sections 2-4: file headers, section organization, comment quality)
 4. **Apply per-language rules** from the matching `quality-standards.md` ([JS](../javascript/quality-standards/init-dom-error-and-async.md) | [CSS](../css/quality-standards/patterns-and-naming-enforcement.md))
 5. **Check** each P0 item systematically for that file type
@@ -307,7 +307,7 @@ For language-specific enforcement, see:
 - [`./cross-language-rules.md`](./cross-language-rules.md) — cross-language file naming, comment principles, banner format
 
 ### Checklists
-- [`../../../assets/webflow/checklists/code-quality-checklist.md`](../../../code-quality/assets/code-quality-checklist/overview-header-and-comments.md) — validation checklist
+- [`../../../assets/webflow/checklists/code-quality-checklist.md`](../../../sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) — validation checklist
 
 ### Production Examples
 

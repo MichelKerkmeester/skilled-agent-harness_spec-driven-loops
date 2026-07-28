@@ -40,9 +40,9 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 **Why it is not a violation**: `verify_alignment_drift.py`'s `classify_severity()` (verify_alignment_drift.py:253-257) downgrades every rule's severity to `WARN`, never `ERROR`, for any path containing a `z_archive`, `scratch`, `memory`, `research`, `context`, `assets`, `examples` or `fixtures` path segment (`is_context_advisory_path()`, verify_alignment_drift.py:225-228, checking `CONTEXT_ADVISORY_SEGMENTS`, lines 75-84). plan.md's Architecture section names this exact function as one of two candidate seeds for this list ("`is_context_advisory_path`, `is_test_heavy_path`").
 
 **Evidence**:
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:75-84`: `CONTEXT_ADVISORY_SEGMENTS` definition.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:225-228`: `is_context_advisory_path()`.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:253-257`: `classify_severity()`, the downgrade call site.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:75-84`: `CONTEXT_ADVISORY_SEGMENTS` definition.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:225-228`: `is_context_advisory_path()`.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:253-257`: `classify_severity()`, the downgrade call site.
 - `007-adapter-sk-code/plan.md` Architecture section names `is_context_advisory_path` as a seed candidate.
 
 **Match rule**: none currently (`matchTypes: []`). See Section 1: `verify_alignment_drift.py`'s own output already reflects this downgrade. `sk-code.cjs`'s layer-1 translator (`checkOpencodeDeterministic()`) faithfully carries the tool's own `severity` field through to P0/P1, so a `z_archive/`-path finding already prints as P1 (WARN), never P0, with no adapter-side suppression required.
@@ -58,8 +58,8 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 **Why it is not a violation**: the same `classify_severity()` downgrade applies to any path under a `/tests/` segment, or whose basename ends in `.test.ts`/`.spec.ts`/`.vitest.ts`/`.test.tsx`/`.spec.tsx`/`.vitest.tsx` (`is_test_heavy_path()`, verify_alignment_drift.py:231-236, `TS_TEST_SUFFIXES`, lines 85-92). Test fixtures and specs are held to a lighter mechanical bar than shipped implementation code.
 
 **Evidence**:
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:85-92`: `TS_TEST_SUFFIXES` definition.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:231-236`: `is_test_heavy_path()`.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:85-92`: `TS_TEST_SUFFIXES` definition.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:231-236`: `is_test_heavy_path()`.
 - `007-adapter-sk-code/plan.md` Architecture section names `is_test_heavy_path` as the second seed candidate.
 
 **Match rule**: none currently (`matchTypes: []`), same reasoning as Section 2.
@@ -75,8 +75,8 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 **Why it is not a violation**: a TypeScript file under a path containing both `/assets/` and `/patterns/` segments is exempt from the `TS-MODULE-HEADER` check entirely (`should_skip_ts_module_header()`, verify_alignment_drift.py:249-250, calling `is_ts_pattern_asset()`, lines 239-241). These are illustrative pattern snippets, not real modules expected to carry a `MODULE:` header block.
 
 **Evidence**:
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:239-241`: `is_ts_pattern_asset()`.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:249-250`: `should_skip_ts_module_header()`, the skip call site (this check is entirely skipped, not merely downgraded, distinct from Sections 2-3's severity-downgrade shape).
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:239-241`: `is_ts_pattern_asset()`.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:249-250`: `should_skip_ts_module_header()`, the skip call site (this check is entirely skipped, not merely downgraded, distinct from Sections 2-3's severity-downgrade shape).
 - `007-adapter-sk-code/plan.md` Architecture section names `is_ts_pattern_asset` as a third seed candidate.
 
 **Match rule**: none currently (`matchTypes: []`). `verify_alignment_drift.py` never emits `TS-MODULE-HEADER` for a matching path in the first place, so there is nothing for the adapter to suppress after the fact.
@@ -92,8 +92,8 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 **Why it is not a violation**: exactly one file, a deliberately-malformed JSON fixture used by an earlier spec-kit test suite, is exempt from the `JSON-PARSE` check by an exact-suffix match (`is_known_malformed_json_fixture()`, verify_alignment_drift.py:244-246, `KNOWN_MALFORMED_JSON_FIXTURE_SUFFIXES`, lines 94-97). The file is intentionally invalid JSON by design (it is a fixture for testing malformed-input handling), not a real drift instance.
 
 **Evidence**:
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:94-97`: the one hardcoded suffix, pointing at `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/001-test-agent-08/malformed.json`.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py:244-246`: `is_known_malformed_json_fixture()`.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:94-97`: the one hardcoded suffix, pointing at `.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/001-test-agent-08/malformed.json`.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:244-246`: `is_known_malformed_json_fixture()`.
 - `007-adapter-sk-code/plan.md` Architecture section names `is_known_malformed_json_fixture` as the fourth seed candidate.
 
 **Match rule**: none currently (`matchTypes: []`), same reasoning as Section 4 (unconditional skip inside the wrapped tool, nothing left for the adapter to suppress).
@@ -102,15 +102,15 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 
 ---
 
-## 6. SK-CODE'S OWN TOOLING UNDER `code-webflow/` CLASSIFIES OPENCODE, NOT WEBFLOW
+## 6. SK-CODE'S OWN TOOLING UNDER `sk-code-webflow/` CLASSIFIES OPENCODE, NOT WEBFLOW
 
 **Deviation name**: OPENCODE-precedence classification of Webflow-named tooling paths
 
-**Why it is not a violation**: `stack-detection.md`'s own Detection Order (Section 2, lines 38-56) gives OPENCODE strict precedence over WEBFLOW markers for any path under `.opencode/`, and names the exact live rationale: *"`.opencode/` system tools (e.g. preview servers, mock fixtures, animation demos under `.opencode/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards."* This adapter's own `classifySurface()` reproduces that precedence faithfully, which means every file under `.opencode/skills/sk-code/code-webflow/**` (its reference material, its verification *scripts*, even the word "webflow" in the directory name) classifies **OPENCODE**, not WEBFLOW, when discovered inside this monorepo. This is correct, intentional router behavior, confirmed live (Section 8's live-reality note below), not an adapter bug and not something a reasoning-agent reviewer should re-flag as "wrong surface."
+**Why it is not a violation**: `stack-detection.md`'s own Detection Order (Section 2, lines 38-56) gives OPENCODE strict precedence over WEBFLOW markers for any path under `.opencode/`, and names the exact live rationale: *"`.opencode/` system tools (e.g. preview servers, mock fixtures, animation demos under `.opencode/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards."* This adapter's own `classifySurface()` reproduces that precedence faithfully, which means every file under `.opencode/skills/sk-code/sk-code-webflow/**` (its reference material, its verification *scripts*, even the word "webflow" in the directory name) classifies **OPENCODE**, not WEBFLOW, when discovered inside this monorepo. This is correct, intentional router behavior, confirmed live (Section 8's live-reality note below), not an adapter bug and not something a reasoning-agent reviewer should re-flag as "wrong surface."
 
 **Evidence**:
 - `.opencode/skills/sk-code/shared/references/stack-detection.md:38,42,56`: the precedence rule and its own named rationale.
-- Live CLI dry-run, 2026-07-11: `node scripts/adapters/sk-code.cjs discover .opencode/skills/sk-code/code-webflow/assets/scripts` classified all three files (`minify-webflow.mjs`, `test-minified-runtime.mjs`, `verify-minification.mjs`) as `surface: "OPENCODE"`, `detectedFrom: "path"`. See `sk-code-adapter.md` Section 8 for the full transcript.
+- Live CLI dry-run, 2026-07-11: `node scripts/adapters/sk-code.cjs discover .opencode/skills/sk-code/sk-code-webflow/assets/scripts` classified all three files (`minify-webflow.mjs`, `test-minified-runtime.mjs`, `verify-minification.mjs`) as `surface: "OPENCODE"`, `detectedFrom: "path"`. See `sk-code-adapter.md` Section 8 for the full transcript.
 
 **Match rule**: none currently (`matchTypes: []`). This is a classification-outcome deviation, not a finding-type deviation. It is recorded here for the reasoning-agent layer's benefit (Section 1) and for any future human reviewer who encounters the same "why is this WEBFLOW-named file marked OPENCODE?" question.
 
@@ -122,7 +122,7 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 
 **Deviation name**: Motion.dev / GSAP / Lenis / Swiper / HLS peer-library references are not off-standard
 
-**Why it is not a violation**: `smart-routing.md` §5 states Motion.dev (and by the same logic, GSAP/Lenis/Swiper/HLS, the same marker family `stack-detection.md`'s WEBFLOW content-grep checks) is *"a peer resource category... It is not a separate code surface. It supplements WEBFLOW, OPENCODE, or future surfaces."* A file that references one of these peer libraries is not thereby non-conformant to its own surface's standard. It is drawing on documented, expected cross-stack integration material (`code-webflow/references/animation/`), the exact resource `standardSource()`'s `motionOverlay` reference already surfaces to the reasoning-agent layer when `motionDevOverlay: true`.
+**Why it is not a violation**: `smart-routing.md` §5 states Motion.dev (and by the same logic, GSAP/Lenis/Swiper/HLS, the same marker family `stack-detection.md`'s WEBFLOW content-grep checks) is *"a peer resource category... It is not a separate code surface. It supplements WEBFLOW, OPENCODE, or future surfaces."* A file that references one of these peer libraries is not thereby non-conformant to its own surface's standard. It is drawing on documented, expected cross-stack integration material (`sk-code-webflow/references/animation/`), the exact resource `standardSource()`'s `motionOverlay` reference already surfaces to the reasoning-agent layer when `motionDevOverlay: true`.
 
 **Evidence**:
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` Section 5 ("MOTION_DEV MAP"): "supplements... rather than replacing it."
@@ -242,5 +242,5 @@ Unlike sk-doc's known-deviation list (which suppresses findings `validate_docume
 
 - [sk-code-adapter.md](./sk-code-adapter.md): the full `standardSource`/`discover`/`check` specification this list is loaded by.
 - [sk-code.cjs](../../scripts/adapters/sk-code.cjs): the reference wiring script. `loadKnownDeviations()` parses Section 9's fenced block.
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py`: the real source of Sections 2-5's exemption functions.
+- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`: the real source of Sections 2-5's exemption functions.
 - `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-005`, `adr-008`): the alignment contract and hybrid-honesty decision this list satisfies.

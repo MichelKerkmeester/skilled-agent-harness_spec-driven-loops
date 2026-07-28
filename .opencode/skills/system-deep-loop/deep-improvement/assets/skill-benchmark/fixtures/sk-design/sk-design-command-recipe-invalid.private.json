@@ -32,13 +32,13 @@
         {
           "order": 2,
           "skill": "design-interface",
-          "resource": ".opencode/skills/sk-design/design-interface/SKILL.md",
+          "resource": ".opencode/skills/sk-design/sk-design-interface/SKILL.md",
           "action": "load the interface mode contract"
         },
         {
           "order": 3,
           "skill": "design-interface",
-          "resource": ".opencode/skills/sk-design/design-interface/references/",
+          "resource": ".opencode/skills/sk-design/sk-design-interface/references/",
           "action": "load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS"
         },
         {

@@ -35,7 +35,7 @@ import { join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs';
+const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs';
 const CODE_GRAPH_FRESHNESS_RELATIVE = '.opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs';
 const DISPATCH_AUDIT_RELATIVE = '.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;

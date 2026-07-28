@@ -263,7 +263,7 @@ These improve quality but can be deferred.
    - Shell: ShellCheck
 
 2. Run comment-hygiene checker on each modified file
-   - .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <file>
+   - .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>
    - Zero violations required
    - Escape: add `// hygiene-ok` to suppress a specific line
 
@@ -315,7 +315,7 @@ For formal findings-first review output, use `sk-code`'s code-review mode as the
 
 - [ ] Universal standards validated in `universal-checklist.md`
 - [ ] Language checklist validated for changed files
-- [ ] Findings severity/order produced with `sk-code/code-review/references/quick-reference.md`
+- [ ] Findings severity/order produced with `sk-code/sk-code-review/references/quick-reference.md`
 - [ ] Baseline risk checks sourced from `sk-code`'s code-review mode references
 - [ ] Surface-specific deviations documented with file:line evidence
 ```

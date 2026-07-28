@@ -26,24 +26,24 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 - Sub-language: `PYTHON` (target file `.py`, also Python-specific signal: `argparse`)
 
 **Expected references loaded**:
-- `code-opencode/references/python/style-guide.md`
-- `code-opencode/references/python/quality-standards.md`
-- `code-opencode/references/python/quick-reference.md`
-- `code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-opencode/references/python/style-guide.md`
+- `sk-code-opencode/references/python/quality-standards.md`
+- `sk-code-opencode/references/python/quick-reference.md`
+- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
-- `code-opencode/assets/checklists/python-checklist.md`
-- `code-opencode/assets/checklists/universal-checklist.md`
+- `sk-code-opencode/assets/checklists/python-checklist.md`
+- `sk-code-opencode/assets/checklists/universal-checklist.md`
 
-**Expected NOT loaded**: any of `code-opencode/references/{typescript,shell,config}/*`.
+**Expected NOT loaded**: any of `sk-code-opencode/references/{typescript,shell,config}/*`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists: `bash: test -f .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`
-2. Python sub-language reference set intact: 3 files under `code-opencode/references/python/`.
+2. Python sub-language reference set intact: 3 files under `sk-code-opencode/references/python/`.
 
 ### Exact Command Sequence
 
@@ -64,7 +64,7 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/sk-code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

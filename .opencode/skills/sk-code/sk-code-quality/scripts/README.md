@@ -26,7 +26,7 @@ description: "The code-quality skill's standalone checkers plus the hook adapter
 Run from the repository root:
 
 ```bash
-bash .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.test.sh
+bash .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh
 ```
 
 Expected: `All comment hygiene test cases passed`.

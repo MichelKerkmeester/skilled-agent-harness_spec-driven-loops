@@ -24,24 +24,24 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 - Sub-language: `CONFIG` (target `.json`, signals: `schema`, `descriptor`-style edits)
 
 **Expected references loaded**:
-- `code-opencode/references/config/style-guide.md`
-- `code-opencode/references/config/quality-standards.md`
-- `code-opencode/references/config/quick-reference.md`
-- `code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-opencode/references/config/style-guide.md`
+- `sk-code-opencode/references/config/quality-standards.md`
+- `sk-code-opencode/references/config/quick-reference.md`
+- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
-- `code-opencode/assets/checklists/config-checklist.md`
-- `code-opencode/assets/checklists/universal-checklist.md`
+- `sk-code-opencode/assets/checklists/config-checklist.md`
+- `sk-code-opencode/assets/checklists/universal-checklist.md`
 
-**Expected NOT loaded**: any `code-opencode/references/{typescript,python,shell}/*`.
+**Expected NOT loaded**: any `sk-code-opencode/references/{typescript,python,shell}/*`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists at the specified path (or any equivalent `.json` under `.opencode/`).
-2. Config sub-language reference set intact: 3 files under `code-opencode/references/config/`.
+2. Config sub-language reference set intact: 3 files under `sk-code-opencode/references/config/`.
 
 ### Exact Command Sequence
 
@@ -62,7 +62,7 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/sk-code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 

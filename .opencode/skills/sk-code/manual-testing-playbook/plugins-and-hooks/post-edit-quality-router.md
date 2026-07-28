@@ -43,8 +43,8 @@ fully silences every hook, and an edit outside the project root resolves to zero
 
 - Preconditions:
   - `.opencode/plugins/mk-post-edit-quality.js` exists (OpenCode plugin adapter).
-  - `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs` exists (Claude adapter).
-  - `.opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs` exists (shared core).
+  - `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs` exists (Claude adapter).
+  - `.opencode/skills/sk-code/sk-code-quality/scripts/lib/post-edit-router.cjs` exists (shared core).
   - `.claude/settings.json` wires `PostToolUse` matcher `Write|Edit` to the Claude adapter above.
   - `.opencode/plugins/tests/mk-post-edit-quality.test.cjs` (38 tests) is present.
   - All six canonical checker paths in `CHECKER_RELATIVE_PATHS` exist on disk (comment-hygiene,
@@ -103,7 +103,7 @@ cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_LIVE/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs
+  | node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_LIVE"
 ```
@@ -124,7 +124,7 @@ cat > "$TMPDIR_KILL/edited.ts" <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$PWD/$TMPDIR_KILL/edited.ts\"},\"cwd\":\"$PWD\"}" \
-  | MK_POST_EDIT_QUALITY_DISABLED=1 node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs
+  | MK_POST_EDIT_QUALITY_DISABLED=1 node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf "$TMPDIR_KILL"
 ```
@@ -139,17 +139,17 @@ just showed.
 
 ```bash
 TMPDIR_LIVE=$(mktemp -d ".opencode/plugins/tests/.tmp-manual-scenario-oc-XXXXXX")
-mkdir -p "$TMPDIR_LIVE/.opencode/skills/sk-code/code-quality/scripts"
+mkdir -p "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts"
 cat > "$TMPDIR_LIVE/edited.ts" <<'EOF'
 // See ADR-042 for details
 export const liveSample = 1;
 EOF
-cat > "$TMPDIR_LIVE/.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh" <<'HYG'
+cat > "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh" <<'HYG'
 #!/usr/bin/env bash
 echo "$1:1: fake ADR-style violation (live scenario fixture checker)"
 exit 1
 HYG
-chmod +x "$TMPDIR_LIVE/.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh"
+chmod +x "$TMPDIR_LIVE/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 
 cat > "$TMPDIR_LIVE/live-invoke.mjs" <<EOF
 import path from 'node:path';
@@ -185,7 +185,7 @@ cat > /private/tmp/mk-post-edit-quality-outside-root-check/outside-root.ts <<'EO
 export const liveSample = 1;
 EOF
 printf '%s' "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"/private/tmp/mk-post-edit-quality-outside-root-check/outside-root.ts\"},\"cwd\":\"$PWD\"}" \
-  | node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs
+  | node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 rm -rf /private/tmp/mk-post-edit-quality-outside-root-check
 ```
@@ -272,7 +272,7 @@ cat > /private/tmp/.../scratchpad/live-edit-sample.ts <<'EOF'
 export const liveSample = 1;
 EOF
 printf '%s' '{"tool_name":"Write","tool_input":{"file_path":".../scratchpad/live-edit-sample.ts"},"cwd":"'"$PWD"'"}' \
-  | node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs
+  | node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs
 echo "EXIT_CODE=$?"
 ```
 
@@ -287,12 +287,12 @@ unit test.)
 Checker-path existence check (all six canonical paths `post-edit-router.cjs` dispatches to):
 
 ```text
-OK  .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh
+OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
 OK  .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh
 OK  .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
 OK  .opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh
 OK  .opencode/skills/system-spec-kit/scripts/rules/check-links.sh
-OK  .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh
+OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
 ```
 
 `.claude/settings.json` wiring evidence (`PostToolUse` matcher `Write|Edit`):
@@ -303,7 +303,7 @@ OK  .opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh
   "hooks": [
     {
       "type": "command",
-      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs'",
+      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs'",
       "timeout": 10
     },
     {
@@ -335,17 +335,17 @@ directories; it made no edits to any source file.
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - OpenCode plugin adapter: `.opencode/plugins/mk-post-edit-quality.js`
-- Claude PostToolUse adapter: `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs`
-- Shared runtime-neutral core: `.opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs`
+- Claude PostToolUse adapter: `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs`
+- Shared runtime-neutral core: `.opencode/skills/sk-code/sk-code-quality/scripts/lib/post-edit-router.cjs`
 - Unit-test suite (38 tests): `.opencode/plugins/tests/mk-post-edit-quality.test.cjs`
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
-  - `.opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh`
+  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
   - `.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh`
   - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
   - `.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh`
   - `.opencode/skills/system-spec-kit/scripts/rules/check-links.sh`
-  - `.opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh`
+  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
 
 ---
 

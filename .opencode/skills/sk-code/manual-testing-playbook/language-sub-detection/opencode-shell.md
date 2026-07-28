@@ -24,24 +24,24 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 - Sub-language: `SHELL` (target `.sh`, signals: `set -euo pipefail`, `trap`)
 
 **Expected references loaded**:
-- `code-opencode/references/shell/style-guide/overview-structure-and-naming.md`
-- `code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md`
-- `code-opencode/references/shell/quick-reference/template-variables-and-loops.md`
-- `code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md`
+- `sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md`
+- `sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md`
+- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
-- `code-opencode/assets/checklists/shell-checklist.md`
-- `code-opencode/assets/checklists/universal-checklist.md`
+- `sk-code-opencode/assets/checklists/shell-checklist.md`
+- `sk-code-opencode/assets/checklists/universal-checklist.md`
 
-**Expected NOT loaded**: any `code-opencode/references/{typescript,python,config}/*`.
+**Expected NOT loaded**: any `sk-code-opencode/references/{typescript,python,config}/*`.
 
 ## 3. TEST EXECUTION
 
 ### Preconditions
 
 1. Target file exists: `bash: test -f .opencode/skills/system-spec-kit/scripts/spec/validate.sh`
-2. Shell sub-language reference set intact: 3 files under `code-opencode/references/shell/`.
+2. Shell sub-language reference set intact: 3 files under `sk-code-opencode/references/shell/`.
 
 ### Exact Command Sequence
 
@@ -62,7 +62,7 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
-- `.opencode/skills/sk-code/code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`.
+- `.opencode/skills/sk-code/sk-code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`.
 
 ## 5. SOURCE METADATA
 
