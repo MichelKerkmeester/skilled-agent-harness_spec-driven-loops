@@ -84,7 +84,6 @@
       "README.md",
       "mode-registry.json",
       "hub-router.json",
-      "description.json",
       "[workflow-packet-a]/SKILL.md",
       "[surface-name]/SKILL.md",
       "[surface-name]/references/[reference].md"
@@ -94,7 +93,6 @@
       ".opencode/skills/[parent-skill-name]/README.md",
       ".opencode/skills/[parent-skill-name]/mode-registry.json",
       ".opencode/skills/[parent-skill-name]/hub-router.json",
-      ".opencode/skills/[parent-skill-name]/description.json",
       ".opencode/skills/[parent-skill-name]/graph-metadata.json",
       ".opencode/skills/[parent-skill-name]/[workflow-packet-a]/SKILL.md",
       ".opencode/skills/[parent-skill-name]/[surface-name]/SKILL.md"

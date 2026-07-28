@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.8.0.33
+version: 0.8.0.34
 ---
 
 # system-skill-advisor
@@ -168,6 +168,8 @@ Reach for the advisor when a runtime needs to pick a skill for a non-trivial pro
 |---|---|
 | `system-spec-kit` | Owns memory, spec folders and continuity. The advisor depends on it for the shared embeddings stack and the IPC bridge. All other code is isolated. |
 | `sk-code`, `sk-doc`, `sk-git`, `mcp-code-mode` | Target skills the advisor recommends. Once the advisor points at one, that skill owns the work. |
+
+Skill-root metadata ownership follows the [canonical contract](../sk-doc/create-skill/references/shared/skill-root-metadata-contract.md); the advisor identity input is `graph-metadata.json`, not `description.json`.
 
 ---
 

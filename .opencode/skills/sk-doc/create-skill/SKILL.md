@@ -2,7 +2,7 @@
 name: create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -206,6 +206,10 @@ Follow these steps in order, skipping only when the target skill already exists 
 ```text
 skill-name/
 ├── SKILL.md
+├── graph-metadata.json
+├── leaf-manifest.config.json
+├── leaf-manifest.json              # generated
+├── leaf-aliases.json               # generated identity projection
 ├── README.md
 ├── references/
 ├── assets/
@@ -219,7 +223,7 @@ skill-name/
         └── <YYYY-MM-DD>--<subject>--<variant>/
 ```
 
-`SKILL.md` is required. `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
+`SKILL.md` is the root marker. Root JSON requirements are class-specific; the complete authored/generated matrix is [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md). `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
 
 A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file — `leaf-manifest.config.json`, naming its single workflow mode and leaf roots — and generates the rest. Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md); do not infer them from a sibling skill.
 
@@ -251,7 +255,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 2. Keep the hub routing-only; nested packets own detailed workflows, evidence, examples, tool boundaries, and validation.
 3. Ask whether the generated state must be `legacy` or `ready`; do not silently choose in the authoring workflow. Existing CLI calls remain backward-compatible and default to `legacy`.
 4. Scaffold the selected state with `scripts/init_skill.py <hub-name> --path <parent-directory> --kind parent --compiled-routing legacy|ready`.
-5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json` (one entry per owned slash command, `[]` when the hub owns none), `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
+5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json` (one entry per owned slash command, `[]` when the hub owns none), and generated `leaf-manifest.json`, plus `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
 6. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
 7. Add `references/` and `assets/` to surface packets when they carry evidence material.
 8. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
@@ -283,6 +287,8 @@ parent-hub/
 ├── hub-router.json
 ├── description.json
 ├── graph-metadata.json
+├── command-metadata.json
+├── leaf-manifest.json              # generated
 ├── changelog/
 ├── manual-testing-playbook/          # the scenario corpus — an input
 │   └── manual-testing-playbook.md    # the index; per-feature files in category folders
@@ -303,6 +309,8 @@ parent-hub/
     ├── assets/
     └── changelog/
 ```
+
+Class-H root metadata follows the [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md) matrix, including authored versus generated files.
 
 A packet may carry its own `benchmark/` in the same shape when it is measured separately from its
 hub. The corpus/output pairing and the owning-skill references described under the standalone shape

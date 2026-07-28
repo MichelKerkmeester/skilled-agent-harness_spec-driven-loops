@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.9.0.0
+version: 0.9.0.1
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -84,7 +84,7 @@ Resource domains:
 - `manual-testing-playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
 - `mcp-server/` owns handlers, schemas, tools, scripts, tests, library modules and the package-local SQLite database.
 
-**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill whose sole workflow mode is `system-skill-advisor` (there is no `mode-registry.json`). Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (regenerate with `generate-leaf-manifest.cjs --write .opencode/skills/system-skill-advisor`; it must stay byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the feature-catalog and manual-testing-playbook package indexes are navigation only and are never routed as typed leaves. `leaf-aliases.json` is the derived identity projection of the manifest; whenever the corpus changes, regenerate both together via `ci-skill-root-metadata.cjs --fix` (hand edits to either are overwritten). The `mcp-server/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf — it is intentionally outside every `leafRoot` and never appears in the manifest.
+**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill whose sole workflow mode is `system-skill-advisor` (there is no `mode-registry.json`). Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json`. Regenerate both generated class-S artifacts with `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs --fix`; the plain gate must keep them byte-stable. `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the feature-catalog and manual-testing-playbook package indexes are navigation only and are never routed as typed leaves. Do not hand-edit either generated file. The `mcp-server/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf — it is intentionally outside every `leafRoot` and never appears in the manifest.
 
 ### Resource loading levels
 
@@ -308,7 +308,7 @@ return {
 
 - Directory prefixes, filename stems, or globs in `RESOURCE_MAP`. Every value is an exact leaf path that exists in `leaf-manifest.json`.
 - Tuning `INTENT_SIGNALS` keywords to make individual scenario prompts hit their own leaf. Keys are documentation-topic vocabulary; a low honest routing recall is expected, not a defect to be inflated.
-- A hand-maintained resource inventory that drifts from `leaf-manifest.json`. Regenerate the manifest (and keep `leaf-aliases.json` in sync) from the on-disk corpus instead.
+- A hand-maintained resource inventory that drifts from `leaf-manifest.json`. Regenerate both generated class-S artifacts with `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs --fix` instead of synchronizing either file by hand.
 - Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
 - Hardcoded tool IDs in caller code. Consult the live registration in `mcp-server/tools/index.ts` and `mcp-server/tools/skill-graph-tools.ts`.
 
@@ -434,7 +434,7 @@ Expected consumers:
 Related skills:
 
 - `system-spec-kit` owns spec folders, memory, validation and packet governance.
-- `sk-doc` owns skill documentation, feature catalogs, install guides and playbooks. Its `create-skill` packet also owns the skill-root metadata contract the advisor's identity files live under — canonical doc at `create-skill/references/shared/skill-root-metadata-contract.md`, JSON scaffolds under `create-skill/assets/` (this root's own `graph-metadata.json` and `leaf-manifest.config.json` come from the `skill/` templates there).
+- `sk-doc` owns skill documentation, feature catalogs, install guides and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../sk-doc/create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../sk-doc/create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../sk-doc/create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
 - `sk-code` owns implementation once routing selects a code surface.
 - `mcp-code-mode` owns external MCP orchestration workflows.
 

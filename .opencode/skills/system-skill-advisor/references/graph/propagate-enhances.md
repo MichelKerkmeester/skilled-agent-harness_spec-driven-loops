@@ -7,7 +7,7 @@ trigger_phrases:
   - "enhances edge propagation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.5
+version: 0.8.0.6
 ---
 
 # Skill Graph Propagate Enhances Tool
@@ -36,6 +36,7 @@ Enhance-edge propagation is a high-trust authoring helper: report first, write o
 
 - `mcp-server/handlers/skill-graph/propagate-enhances.ts`
 - [`tool-ids-reference.md`](../runtime/tool-ids-reference.md)
+- [Skill-root metadata contract](../../../sk-doc/create-skill/references/shared/skill-root-metadata-contract.md)
 
 ---
 

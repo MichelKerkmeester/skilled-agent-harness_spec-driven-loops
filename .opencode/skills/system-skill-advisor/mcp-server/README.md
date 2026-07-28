@@ -326,3 +326,4 @@ Expected result: build and tests exit 0, README validation reports no blocking i
 - [Database](database/README.md)
 - [Tests](tests/README.md)
 - [Bench](bench/README.md)
+- [Skill-root metadata contract](../../sk-doc/create-skill/references/shared/skill-root-metadata-contract.md) - authority for skill metadata files this package indexes or mutates.

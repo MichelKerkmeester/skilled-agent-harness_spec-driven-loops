@@ -10,7 +10,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder owns the SQLite-backed skill graph used to index `.opencode/skills/*/graph-metadata.json` files. It stores skill nodes, typed relationships and graph metadata, then exposes query helpers for MCP tools and diagnostics.
+This folder owns the SQLite-backed skill graph used to index `.opencode/skills/*/graph-metadata.json` files. It stores skill nodes, typed relationships and graph metadata, then exposes query helpers for MCP tools and diagnostics. The [skill-root metadata contract](../../../../sk-doc/create-skill/references/shared/skill-root-metadata-contract.md) defines the authoring and generated-file boundary for those inputs.
 
 ## 2. DIRECTORY TREE
 

@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/cross-skill-edges/` detects missing inbound `enhances` edges from skill metadata and can apply selected high-confidence candidates back to `graph-metadata.json`. Report mode is the default; write mode must stay explicit.
+`lib/cross-skill-edges/` detects missing inbound `enhances` edges from skill metadata and can apply selected high-confidence candidates back to `graph-metadata.json`. Report mode is the default; write mode must stay explicit. Apply-mode ownership follows the [skill-root metadata contract](../../../../sk-doc/create-skill/references/shared/skill-root-metadata-contract.md).
 
 ---
 

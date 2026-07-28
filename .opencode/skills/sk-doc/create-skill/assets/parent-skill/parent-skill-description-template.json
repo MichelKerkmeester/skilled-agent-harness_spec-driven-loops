@@ -1,7 +1,7 @@
 {
-  "_template": "Parent-skill description.json scaffold. Replace every [bracketed] placeholder. Hub-specific arrays are allowed after the required fields; sk-code, for example, adds supported_surfaces and opencode_languages.",
+  "_template": "Parent-skill description.json scaffold for hub-doctor metadata. Replace every [bracketed] placeholder. Hub-specific arrays are allowed after the required fields; sk-code, for example, adds supported_surfaces and opencode_languages. See [skill-root-metadata-contract.md](../../references/shared/skill-root-metadata-contract.md) for file ownership.",
   "name": "[parent-skill-name]",
-  "description": "[One advisor-facing paragraph: what the hub covers, how it routes through mode-registry.json and hub-router.json, which workflow packets it owns, and which optional read-only surface evidence packets it can bundle.]",
+  "description": "[One hub-doctor metadata paragraph: what the hub covers, how it routes through mode-registry.json and hub-router.json, which workflow packets it owns, and which optional read-only surface evidence packets it can bundle. The advisor identity input is graph-metadata.json; see [skill-root-metadata-contract.md](../../references/shared/skill-root-metadata-contract.md).]",
   "version": "1.0.0.0",
   "importance_tier": "high",
   "keywords": [

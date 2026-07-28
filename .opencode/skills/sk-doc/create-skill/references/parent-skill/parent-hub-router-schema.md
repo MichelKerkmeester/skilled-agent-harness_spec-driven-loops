@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Parent Hub Router Schema
@@ -341,5 +341,6 @@ Treat check 5 warnings as schema drift. The parent hub may still route during mi
 ## 10. RELATED RESOURCES
 
 - [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md) - parent-skill pattern, single advisor identity, and registry routing contract.
+- [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.
 - [parent-skill-hub-template.md](../../assets/parent-skill/parent-skill-hub-template.md) - routing-only hub `SKILL.md` scaffold.
 - [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) - mode registry scaffold for parent hubs.
