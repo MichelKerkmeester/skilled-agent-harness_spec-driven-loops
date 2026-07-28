@@ -257,3 +257,4 @@ See [`tests/README.md`](./tests/README.md) for the current suite inventory, help
 - [`../skills/sk-code/code-quality/`](../skills/sk-code/code-quality/): post-edit quality routing
 - [`../skills/mcp-code-mode/`](../skills/mcp-code-mode/): MCP routing policy
 - [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch audit core
+- [`../skills/system-spec-kit/references/hooks/injection-contract.md`](../skills/system-spec-kit/references/hooks/injection-contract.md): what every plugin's `experimental.chat.system.transform` call actually injects, and why none of it is rendered as a visible chat message today (that would need `chat.message`'s mutable `parts` instead)

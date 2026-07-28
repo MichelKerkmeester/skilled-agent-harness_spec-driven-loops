@@ -55,3 +55,4 @@ Expected result: exit 0, proving the discovery link exists and resolves.
 - [Claude mirror](../../.claude/hooks/README.md)
 - [Codex mirror](../../.codex/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
+- [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default

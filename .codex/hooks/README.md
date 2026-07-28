@@ -27,7 +27,7 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 | Session lifecycle | `session-start.js`, `session-stop.js`, `session-cleanup.sh`, `compact-inject.js`, `user-prompt-submit.js` |
 | Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs` |
-| Edit and graph quality | `post-edit-quality.cjs`, `code-graph-freshness.cjs` |
+| Edit quality | `post-edit-quality.cjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh` |
 
 ## 4. VALIDATION
@@ -50,3 +50,4 @@ Expected result: the managed Codex hook installation reports no drift.
 - [Claude mirror](../../.claude/hooks/README.md)
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
+- [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default

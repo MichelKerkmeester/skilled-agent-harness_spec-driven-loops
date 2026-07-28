@@ -29,7 +29,7 @@ Empty output can be a normal allow decision. Compare a mirror invocation with it
 | Session lifecycle | `session-prime.js`, `session-stop.js`, `session-cleanup.sh`, `compact-inject.js`, `user-prompt-submit.js` |
 | Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `task-dispatch-guard.cjs`, `mcp-route-guard.cjs` |
-| Edit and graph quality | `claude-posttooluse.cjs`, `code-graph-freshness.cjs` |
+| Edit quality | `claude-posttooluse.cjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `install-codex-hooks.mjs` |
 
 ## 4. VALIDATION
@@ -56,3 +56,4 @@ Expected result: hook scripts use mode `120000`; `README.md` uses mode `100644`.
 - [Codex mirror](../../.codex/hooks/README.md)
 - [Cursor mirror](../../.cursor/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
+- [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
