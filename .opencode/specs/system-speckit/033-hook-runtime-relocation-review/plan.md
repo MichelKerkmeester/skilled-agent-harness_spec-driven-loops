@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
     last_updated_at: "2026-07-28T17:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Phase 7 hooks-tree consolidation complete, verified this pass"
+    recent_action: "Phase 9 Pi symlink relocation and behavioral READMEs complete"
     next_safe_action: "Await merge/push/leave-local decision from operator"
     blockers:
       - "Merge/push/leave-local decision still pending, operator call."
@@ -168,6 +168,13 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 - [x] Author 5 concern READMEs under `.opencode/hooks/` and link them from the root tree README.
 - [x] Delete 12 ghost README-only folders at pre-relocation hook locations; rewrite sk-code's partially-stale hooks README around its one remaining legacy file; fix 2 stale narration sites surfaced by the post-deletion dangling-link sweep.
 - [x] Verify: 172/175 `node --test` pass (0 fail, 3 suite-internal skips), plugin import smoke OK for all 3 touched plugins, live Pi smoke exit 0, spec-gate replay at the new path returns a sane allow, repo-wide grep for `system-spec-kit/runtime` shows 0 live hits, `validate_document.py` 0 issues on all 17 touched docs.
+
+### Phase 9: Behavioral READMEs + Pi Extensions Behind Symlinks
+
+- [x] Probe-gate Pi's symlink/import semantics before any mass move (loader accepts symlinks; imports resolve against the symlink path -> imports stay byte-identical).
+- [x] Relocate all 13 Pi extensions + adapter lib to their owners with relative symlinks back in `.pi/extensions/`; live behavioral proof (Gate-3 question injected through the relocated classifier).
+- [x] Enrich the 4 injecting concern READMEs with verbatim injected/deny text and visibility classes; rewrite the `.pi/extensions/` READMEs as the mirror index; add 3 skill-side `pi/` READMEs; correct the root tree README's Pi paragraph.
+- [x] Verify: live Pi clean, 11 docs validate 0 issues, core suites 0 fail.
 <!-- /ANCHOR:phases -->
 
 ---

@@ -18,7 +18,19 @@ Only two decisions exist: `allow` (silent) and `warn` (attach the advisory). The
 
 ---
 
-## 2. DIRECTORY TREE
+## 2. WHAT IT DOES AND INJECTS
+
+Fires before a native `mcp__*` tool call. When the target server family is Code-Mode-capable (per the manifest) and not an internal `mk_` server, it injects exactly this advisory into the model's context (`[SYS]` — model-visible `additionalContext`, invisible to the operator; per-runtime delivery varies, see `injection-contract.md`):
+
+```text
+mcp-route-guard: native call to "<server>" -- Code Mode can route this family via the "<manual>" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+```
+
+The call itself always proceeds — this guard is advisory-only by contract and has no deny path. When the family is not in the manifest, the server is internal, or anything at all goes wrong, it stays completely silent.
+
+---
+
+## 3. DIRECTORY TREE
 
 ```text
 mcp-route-guard/
@@ -28,12 +40,13 @@ mcp-route-guard/
 +-- claude/   mcp-route-guard.cjs
 +-- codex/    mcp-route-guard.cjs
 +-- devin/    mcp-route-guard.cjs
-`-- cursor/   mcp-route-guard.mjs
++-- cursor/   mcp-route-guard.mjs
+`-- pi/       mcp-route-guard.ts (symlinked from .pi/extensions/)
 ```
 
 ---
 
-## 3. KEY FILES
+## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
@@ -41,11 +54,11 @@ mcp-route-guard/
 | `{claude,codex,devin}/mcp-route-guard.cjs` | PreToolUse (`mcp__.*` matcher) adapters. Parse stdin via `../../shared/hook-adapter-shared.cjs`, call the core, emit the runtime's advisory envelope. |
 | `cursor/mcp-route-guard.mjs` | `beforeMCPExecution` adapter. Normalizes Cursor's split server/tool payload, then `spawnSync`s the Claude adapter so the two runtimes cannot drift. |
 
-OpenCode reaches the same core through `.opencode/plugins/mk-mcp-route-guard.js`; Pi through `.pi/extensions/mcp-route-guard.ts`.
+OpenCode reaches the same core through `.opencode/plugins/mk-mcp-route-guard.js`; Pi's adapter lives in `pi/` here, discovered via a relative symlink at `.pi/extensions/mcp-route-guard.ts`.
 
 ---
 
-## 4. BOUNDARIES AND FLOW
+## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
 |---|---|
@@ -55,7 +68,7 @@ OpenCode reaches the same core through `.opencode/plugins/mk-mcp-route-guard.js`
 
 ---
 
-## 5. VALIDATION
+## 6. VALIDATION
 
 ```bash
 node --test .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
@@ -65,7 +78,7 @@ Expected result: all tests pass.
 
 ---
 
-## 6. RELATED
+## 7. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
 - [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): the advisory's exact injected text and visibility.

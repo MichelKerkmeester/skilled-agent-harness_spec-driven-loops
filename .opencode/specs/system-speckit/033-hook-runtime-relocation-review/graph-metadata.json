@@ -208,7 +208,7 @@
     ],
     "causal_summary": "While documenting every lifecycle hook's injections (`injection-contract.md`), the operator asked whether hook implementations should live outside `.opencode/skills/` entirely, since a user might want a skill's knowledge without its enforcement hooks (or vice versa)",
     "created_at": "2026-07-28T12:20:01.635Z",
-    "last_save_at": "2026-07-28T16:26:49.021Z",
+    "last_save_at": "2026-07-28T16:39:37.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,11 +218,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d5f4d93d0cbc76b42d99d44413e9f5805ef444e031dcd3e42fb74e832c42914",
+    "source_fingerprint": "sha256:4269a03621526589a5e001a6a9859e4361bb09ee6b95938a428bde950986b21f",
     "source_doc_hashes": {
       "spec.md": "84af68a63b9ae2e6f151bce0f7b630ffb3d173dd69f89de421a629ec7dc74d8a",
-      "plan.md": "0e1551c8c09c5987c9d2269c7a30bb9474d07d07e7bea711af1211bb20ac5a5f",
-      "tasks.md": "2c91ca79bcc7c3486cd266c39012c70578ed9562ad313b5f553fa5c2d75f63f3",
+      "plan.md": "37381fc9a4c6e1409ae20575f662ce219a2acd65f6e6799c643a0d0fe4765085",
+      "tasks.md": "0c2067abdbbb90fe7cc7cb0c3af016a600b598444ed5d1fe52612fd00629870e",
       "checklist.md": "0a1a164af6ef782ff9428cc9327eda26b74498ae929c42a7501e52f605f911c7",
       "implementation-summary.md": "924c231f4b0aa12527dcd0489973e0725650b6f39f8542bb29c14631d7377456"
     },

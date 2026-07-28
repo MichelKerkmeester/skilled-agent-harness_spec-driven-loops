@@ -19,7 +19,31 @@ The core returns a transport-free `allow`/`warn`/`reject` decision; adapters tra
 
 ---
 
-## 2. DIRECTORY TREE
+## 2. WHAT IT DOES AND INJECTS
+
+**task-dispatch-guard** evaluates every Task-tool dispatch. Warnings are injected into the model's context as `additionalContext` (`[SYS]`), newline-joined when several apply. The two warning templates, verbatim from the core:
+
+```text
+mk-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="<agent>" (registry modes="<a|b>") but the prompt declares mode="<mode>"
+```
+
+```text
+mk-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.
+```
+
+Confirmed loop-recreation escalates from warn to a deny (`[BLOCK]`), with the same detail text as the denial reason. Every non-allow decision also appends a `[mk-deep-loop-guard] WARN:` line to the shared bounded log in `.opencode/skills/.loop-guard-state/`.
+
+**fable-subagent-guard** (Claude only) denies two dispatch shapes when the main loop runs on a Fable model — `subagent_type: "fork"` and any call omitting `model` — with this reason (`[BLOCK]`):
+
+```text
+Only "opus" or "sonnet" subagents may be dispatched while Fable drives the main loop.
+```
+
+Full taxonomy: `injection-contract.md` — Task Dispatch Guard entry.
+
+---
+
+## 3. DIRECTORY TREE
 
 ```text
 task-dispatch/
@@ -34,7 +58,7 @@ task-dispatch/
 
 ---
 
-## 3. KEY FILES
+## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
@@ -48,7 +72,7 @@ OpenCode reaches the core through `.opencode/plugins/mk-deep-loop-guard.js`.
 
 ---
 
-## 4. BOUNDARIES AND FLOW
+## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
 |---|---|
@@ -58,7 +82,7 @@ OpenCode reaches the core through `.opencode/plugins/mk-deep-loop-guard.js`.
 
 ---
 
-## 5. VALIDATION
+## 6. VALIDATION
 
 ```bash
 node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs .opencode/plugins/tests/mk-deep-loop-guard.test.cjs
@@ -68,7 +92,7 @@ Expected result: all tests pass (includes the forged-iteration-marker regression
 
 ---
 
-## 6. RELATED
+## 7. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
 - [`../../skills/.loop-guard-state/README.md`](../../skills/.loop-guard-state/README.md): the shared state directory contract.

@@ -12,6 +12,8 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
+This folder injects nothing into any AI session — it is pure plumbing for the adapters that do.
+
 `shared/` holds the single helper file the CommonJS adapters in this tree have in common: `hook-adapter-shared.cjs`, providing `readStdin()` (bounded stdin collection) and `parseJsonFailOpen()` (JSON parsing that resolves to `null` instead of throwing). Keeping a local copy is deliberate — it is what makes every adapter under `.opencode/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
 
 A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-spec-kit/mcp-server/hooks/lib/` for that skill's own spec-gate adapters, which are not part of the fully-portable set. The two are allowed to drift in principle; in practice the file is small and stable enough that they shouldn't.

@@ -58,16 +58,19 @@ hooks/
 |   |   `-- dispatch-audit.test.mjs
 |   +-- claude/   dispatch-preflight-lint.mjs, dispatch-audit-posttooluse.mjs
 |   +-- devin/    (same pair)
-|   `-- codex/    (same pair)
+|   +-- codex/    (same pair)
+|   `-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (symlinked from .pi/extensions/)
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
-|   `-- cursor/   mcp-route-guard.mjs
+|   +-- cursor/   mcp-route-guard.mjs
+|   `-- pi/       mcp-route-guard.ts (symlinked from .pi/extensions/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
 |   +-- devin/    post-edit-quality.cjs
-|   `-- codex/    post-edit-quality.cjs
+|   +-- codex/    post-edit-quality.cjs
+|   `-- pi/       post-edit-quality.ts (symlinked from .pi/extensions/)
 `-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
     +-- lib/dispatch-guard.cjs
     +-- claude/   task-dispatch-guard.cjs, fable-subagent-guard.mjs
@@ -75,7 +78,7 @@ hooks/
     `-- cursor/   task-dispatch-guard.mjs
 ```
 
-Pi (`.pi/extensions/*.ts`) and OpenCode (`.opencode/plugins/*.js`) cannot have their adapter files physically live here: both runtimes auto-discover hooks/plugins from their own fixed directory, so only their `import()`/`require()` path to these relocated cores changed. Cursor has no `dispatch`/`post-edit-quality` wiring today, so those subfolders have no `cursor/` entry.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder, so only their `require()`/`import` path to these cores changed. Cursor has no `dispatch`/`post-edit-quality` wiring today, so those subfolders have no `cursor/` entry.
 
 ---
 
@@ -83,9 +86,9 @@ Pi (`.pi/extensions/*.ts`) and OpenCode (`.opencode/plugins/*.js`) cannot have t
 
 | Concern | Real adapters here | Stays elsewhere, only its import path changed |
 |---|---|---|
-| `dispatch` | claude, devin, codex | `.pi/extensions/{dispatch-preflight-lint,dispatch-audit}.ts` |
-| `mcp-route-guard` | claude, cursor, devin, codex | `.pi/extensions/mcp-route-guard.ts`, `.opencode/plugins/mk-mcp-route-guard.js` |
-| `post-edit-quality` | claude, devin, codex | `.pi/extensions/post-edit-quality.ts`, `.opencode/plugins/mk-post-edit-quality.js` |
+| `dispatch` | claude, devin, codex, pi (symlinked from `.pi/extensions/`) | — |
+| `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked) | `.opencode/plugins/mk-mcp-route-guard.js` |
+| `post-edit-quality` | claude, devin, codex, pi (symlinked) | `.opencode/plugins/mk-post-edit-quality.js` |
 | `task-dispatch` | claude, cursor, devin | `.opencode/plugins/mk-deep-loop-guard.js` |
 
 `mk-git-preflight-advisory.js` and `mk-cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.

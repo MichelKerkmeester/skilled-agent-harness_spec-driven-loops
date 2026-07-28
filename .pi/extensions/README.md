@@ -13,7 +13,17 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.pi/extensions/` holds Pi's native TypeScript extension factories for this repository. Pi auto-discovers every `*.ts` file here with no `.pi/settings.json` registration required, and calls each file's default export once at session start with an `ExtensionAPI` handle.
+`.pi/extensions/` is Pi's discovery mirror for this repository's hook extensions. Pi auto-discovers every `*.ts` entry here with no `.pi/settings.json` registration required, and calls each file's default export once at session start with an `ExtensionAPI` handle. Every `*.ts` entry is a **relative symlink** to the real file in its owner's tree (probe-verified: Pi's loader accepts symlinks and resolves each extension's relative imports against the symlink path, so imports stay written for this folder as base). The real files live with their owners:
+
+| Symlink here | Real file |
+|---|---|
+| `dispatch-preflight-lint.ts`, `dispatch-audit.ts` | `.opencode/hooks/dispatch/pi/` |
+| `mcp-route-guard.ts` | `.opencode/hooks/mcp-route-guard/pi/` |
+| `post-edit-quality.ts` | `.opencode/hooks/post-edit-quality/pi/` |
+| `spec-gate-{classify,enforce}.ts`, `session-{start,stop,compact}-context.ts`, `session-start-advisories.ts` | `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/` |
+| `lib/claude-hook-adapter.ts` | `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/lib/` |
+| `prompt-advisor.ts` | `.opencode/skills/system-skill-advisor/hooks/pi/` |
+| `git-preflight-advisory.ts` | `.opencode/skills/sk-git/scripts/hooks/pi/` |
 
 Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. The 5 session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `prompt-advisor.ts`, `session-compact-context.ts`) instead proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. No guard or lifecycle logic is reimplemented here. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
 
@@ -34,9 +44,10 @@ extensions/
 +-- session-stop-context.ts     # Bridges session-stop's autosave/state-cleanup on quit
 +-- prompt-advisor.ts           # Bridges the skill-advisor's UserPromptSubmit recommendation
 +-- session-compact-context.ts  # Rehydrates spec-folder continuity after a compaction
++-- git-preflight-advisory.ts   # Warn-only git-outcome advisories on bash git commands
 +-- lib/
 |   `-- claude-hook-adapter.ts  # Pi-specific spawnSync proxy into the Claude lifecycle-hook dist files
-`-- README.md
+`-- README.md                   # (this file and lib/README.md are the only real files here; all *.ts are symlinks)
 ```
 
 ---

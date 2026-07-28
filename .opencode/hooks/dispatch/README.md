@@ -19,7 +19,43 @@ The `DISPATCH_SHAPES` regexes in `lib/dispatch-audit.mjs` are the single source 
 
 ---
 
-## 2. DIRECTORY TREE
+## 2. WHAT IT DOES AND INJECTS
+
+**Preflight lint** fires before a composed CLI dispatch command spawns and evaluates the target skill's declared `hard_rules:`. A `block`-severity violation denies the tool call with this reason (the model sees it as the denial message, `[BLOCK]` in `injection-contract.md` terms):
+
+```text
+Dispatch blocked by <skill> hard-rule(s):
+  • [<rule-id>] <rule message>
+```
+
+`warn`-severity violations let the call proceed but inject this into the model's context as `additionalContext` (`[SYS]` — model-visible, not shown to the operator):
+
+```text
+⚠ <skill> dispatch hard-rule advisory:
+  • [<rule-id>] <rule message>
+```
+
+The five rules currently declared (in `cli-opencode`/`cli-claude-code` SKILL.md frontmatter), with their exact injected messages:
+
+| Rule id | Injected message |
+|---|---|
+| `stdin-redirect-required` | Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output. |
+| `no-bare-agent-general` | Never pass a bare top-level `--agent general`; opencode rejects it on run. |
+| `command-flag-for-slash-prompt` | A slash-command-shaped prompt (`/family:name ...`) needs `--command <family>/<name>`, else opencode silently delivers the slash text as raw prose. |
+| `share-requires-confirmation` | `--share` publishes the session and requires prior operator confirmation. |
+| `non-interactive-permission-mode-risk` | Non-interactive `claude -p` with acceptEdits + no TTY + a Bash-heavy prompt can deadlock on an unanswerable shell-permission prompt; run it sandboxed with `--dangerously-skip-permissions` or ensure the prompt needs no shell approval. |
+
+**Audit** injects nothing into the model (`[LOG]`). After each completed dispatch it appends one scrubbed, truncated JSONL line to the size-rotated log:
+
+```json
+{"schema_version":1,"ts":"<ISO>","runtime":"<claude|codex|devin|opencode|pi>","sessionID":"...","callID":"...","skill":"...","command":"<scrubbed>","commandTruncated":false,"model":"...","target":"...","durationMs":1234,"exitCode":0,"outputBytes":5678}
+```
+
+Full visibility taxonomy: `injection-contract.md` — Dispatch Preflight Lint and Dispatch Audit entries.
+
+---
+
+## 3. DIRECTORY TREE
 
 ```text
 dispatch/
@@ -30,12 +66,13 @@ dispatch/
 |   `-- dispatch-audit.test.mjs        # npx vitest run
 +-- claude/   dispatch-preflight-lint.mjs, dispatch-audit-posttooluse.mjs
 +-- devin/    (same pair)
-`-- codex/    (same pair)
++-- codex/    (same pair)
+`-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (symlinked from .pi/extensions/)
 ```
 
 ---
 
-## 3. KEY FILES
+## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
@@ -44,11 +81,11 @@ dispatch/
 | `{claude,devin,codex}/dispatch-preflight-lint.mjs` | PreToolUse adapters. A `block`-severity violation denies with the rule's reason; `warn` attaches an advisory. Fast-exit on non-dispatch commands, fail open on any internal error. |
 | `{claude,devin,codex}/dispatch-audit-posttooluse.mjs` | PostToolUse adapters feeding the audit core after a Bash/exec call completes. Observe-only, never blocks. |
 
-Pi (`.pi/extensions/dispatch-preflight-lint.ts`, `dispatch-audit.ts`) and OpenCode (`.opencode/plugins/mk-cli-dispatch-audit.js`, `mk-git-preflight-advisory.js`) import these cores from their own runtime-pinned locations. Cursor has no dispatch wiring today; its Shell events reach `dispatch-audit-posttooluse.mjs` through `system-spec-kit`'s cursor `post-tool-use.mjs` proxy.
+Pi's adapters live in `pi/` here, discovered through relative symlinks in `.pi/extensions/` (Pi resolves their imports against the symlink path). OpenCode (`.opencode/plugins/mk-cli-dispatch-audit.js`, `mk-git-preflight-advisory.js`) imports these cores from its plugin folder. Cursor has no dispatch wiring today; its Shell events reach `dispatch-audit-posttooluse.mjs` through `system-spec-kit`'s cursor `post-tool-use.mjs` proxy.
 
 ---
 
-## 4. BOUNDARIES AND FLOW
+## 5. BOUNDARIES AND FLOW
 
 | Boundary | Rule |
 |---|---|
@@ -58,7 +95,7 @@ Pi (`.pi/extensions/dispatch-preflight-lint.ts`, `dispatch-audit.ts`) and OpenCo
 
 ---
 
-## 5. VALIDATION
+## 6. VALIDATION
 
 ```bash
 node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
@@ -69,7 +106,7 @@ Expected result: all tests pass.
 
 ---
 
-## 6. RELATED
+## 7. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
 - [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): what each hook injects and its operator visibility.
