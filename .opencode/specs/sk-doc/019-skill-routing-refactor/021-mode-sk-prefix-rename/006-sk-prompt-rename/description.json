@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/006-sk-prompt-rename",
+  "description": "Move prompt-improve and prompt-models to sk-prompt-improve and sk-prompt-models across directories, routing keys, gold and consumers, holding the Lane",
+  "keywords": [
+    "move",
+    "prompt-improve",
+    "prompt-models",
+    "sk-prompt-improve",
+    "sk-prompt-models",
+    "across",
+    "directories",
+    "routing",
+    "keys",
+    "gold",
+    "consumers",
+    "holding",
+    "lane"
+  ],
+  "lastUpdated": "2026-07-28T05:38:24.753Z",
+  "specId": "006",
+  "folderSlug": "sk-prompt-rename",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "021-mode-sk-prefix-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

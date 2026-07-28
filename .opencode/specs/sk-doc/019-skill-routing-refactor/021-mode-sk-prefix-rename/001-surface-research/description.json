@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research",
+  "description": "Two independent models on two CLIs enumerate every consumer of a mode packet directory or workflowMode key, so the rename phases start from a found",
+  "keywords": [
+    "two",
+    "independent",
+    "models",
+    "clis",
+    "enumerate",
+    "every",
+    "consumer",
+    "mode",
+    "packet",
+    "directory",
+    "workflowmode",
+    "key",
+    "rename",
+    "phases",
+    "start",
+    "found"
+  ],
+  "lastUpdated": "2026-07-28T05:38:24.754Z",
+  "specId": "001",
+  "folderSlug": "surface-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "021-mode-sk-prefix-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

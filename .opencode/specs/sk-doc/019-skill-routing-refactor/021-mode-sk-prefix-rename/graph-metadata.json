@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/002-rename-contract-and-map",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/003-sk-code-rename",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/004-sk-design-rename",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/005-sk-doc-rename",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/006-sk-prompt-rename",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
+    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/008-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk prefix rename",
+      "mode packet rename",
+      "workflowMode rename"
+    ],
+    "key_topics": [
+      "prefix",
+      "rename",
+      "mode",
+      "packet",
+      "workflowmode",
+      "packets",
+      "keys",
+      "across",
+      "four",
+      "hubs",
+      "directory",
+      "name"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prefix Across Every Mode Packet And Routing Key",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The One Deliberate Exception",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "another",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rename 20 mode packets and 21 workflowMode keys across the four sk- hubs so a mode's directory name and its routing key are the same string, and every consumer follows.",
+    "created_at": "2026-07-28T05:26:24.269Z",
+    "last_save_at": "2026-07-28T05:26:24.269Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bb2fa7e68b6d4a3d0fe293bf16f85ba97d22a277bcc0e836937577e69fcb5121",
+    "source_doc_hashes": {
+      "spec.md": "79e280cb2dc3c1b33ad17521243e86e7ca8d3c6aa53b3d04362fcf48f968e776"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

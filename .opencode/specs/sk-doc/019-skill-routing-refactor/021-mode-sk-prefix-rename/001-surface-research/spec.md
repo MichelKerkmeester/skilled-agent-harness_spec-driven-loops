@@ -19,7 +19,7 @@ parent: "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename"
 
 | Field | Value |
 |-------|-------|
-| **Packet** | 021-mode-sk-prefix-rename/001-surface-research |
+| **Packet** | sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/001-surface-research |
 | **Level** | 2 |
 | **Status** | In Progress |
 | **Executors** | Grok 4.5 high via cli-cursor, GLM 5.2 via cli-devin, five iterations each |
